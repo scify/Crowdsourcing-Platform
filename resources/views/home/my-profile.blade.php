@@ -132,8 +132,5 @@
 @stop
 
 @push('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_MAPS_KEY")}}&libraries=places&callback=initGoogleMap"
-            async defer></script>
-
     <script src="{{ mix('dist/js/myProfile.js')}}?{{env("APP_VERSION")}}"></script>
 @endpush
