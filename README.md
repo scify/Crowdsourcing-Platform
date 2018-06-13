@@ -1,4 +1,4 @@
-# CPinNG Web Application
+# ECAS Crowdsourcing Web Application
 
 Laravel 5.5 web application for the ECAS Crowdsourcing Platform project
 
@@ -43,14 +43,14 @@ You can edit the /etc/hosts/ file and add a record  ```127.0.0.1       cpinng.de
 
 
 ```
-% sudo touch /etc/apache2/sites-available/cpinng.conf
-% sudo nano /etc/apache2/sites-available/cpinng.conf
+% sudo touch /etc/apache2/sites-available/ecas.conf
+% sudo nano /etc/apache2/sites-available/ecas.conf
 <VirtualHost *:80>
        
-        ServerName cpinng.dev
-        ServerAlias cpinng.dev
-        DocumentRoot "/home/alex/Projects/enikos/cpinngenikos/public"
-        <Directory "/home/alex/Projects/enikos/cpinngenikos/public">
+        ServerName dev.ecas
+        ServerAlias dev.ecas
+        DocumentRoot "/home/path/to/project/public"
+        <Directory "/home/path/to/project/public">
             Require all granted
             AllowOverride all
         </Directory>
@@ -62,7 +62,7 @@ You can edit the /etc/hosts/ file and add a record  ```127.0.0.1       cpinng.de
 ```
 Make the symbolic link:
 ```
-% cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/cpinng.conf
+% cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/ecas.conf
 ```
 Enable mod_rewrite and restart apache:
 ```
@@ -77,10 +77,10 @@ find . -type f -exec chmod 664 {} \;
 find . -type d -exec chmod 775 {} \;
 ```
 
-Change host file so cpinng.dev points to to localhost 
+Change host file so ecas.dev points to to localhost 
 ```$xslt
 sudo nano /etc/hosts
-127.0.0.1       cpinng.dev
+127.0.0.1       dev.ecas
 
 ```
 ##Start web server
