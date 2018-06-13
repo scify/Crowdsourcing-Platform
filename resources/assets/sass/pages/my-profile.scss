@@ -1,0 +1,20 @@
+@import "../partials/google-search-helper";
+
+.details-table {
+  display: table;
+  div {
+    display: table-row;
+    span {
+      display: table-cell;
+      &:first-child {
+        font-weight: bold;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+.location-btn {
+  margin: 10px auto 0;
+  width: 200px;
+}
