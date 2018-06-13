@@ -20,7 +20,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
@@ -29,20 +28,62 @@
                     <h3 class="box-title">Personal Details</h3>
                 </div>
                 <div class="box-body">
-                    <div class="details-table">
-                        <div>
-                            <span>Full name:</span><span>{{ $userViewModel->fullName }}</span>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label for="current_password" class="col-sm-4 control-label">Full name:</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    {{ $userViewModel->fullName }}
+                                </div>
+                            </div>
+
+                            <label for="current_password" class="col-sm-4 control-label">Email:</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    {{ $userViewModel->email }}
+                                </div>
+                            </div>
+
                         </div>
-                        <div>
-                            <span>Email:</span><span>{{ $userViewModel->email }}</span>
-                        </div>
+
+                        <form id="form-change-password" role="form" method="POST" action="{{ url('/user/update') }}"
+                              novalidate>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="col-md-9">
+                                <label for="current_password" class="col-sm-4 control-label">Current Password</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="current_password"
+                                               name="current_password" placeholder="Current Password">
+                                    </div>
+                                </div>
+                                <label for="password" class="col-sm-4 control-label">New Password</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                               placeholder="Password">
+                                    </div>
+                                </div>
+                                <label for="password_confirmation" class="col-sm-4 control-label">Re-enter
+                                    Password</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password_confirmation"
+                                               name="password_confirmation" placeholder="Re-enter Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset col-sm-6">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 @stop
 
 @push('scripts')
