@@ -31,7 +31,6 @@
                     </a>
                 </li>
             @endcan
-
         </ul>
     </section>
     <!-- /.sidebar -->

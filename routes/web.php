@@ -20,6 +20,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get("/admin/edit-user/{id}", "CmsAdminController@cmsEditUser")->middleware("can:manage-cms");
     Route::post("/admin/invite-user", "CmsAdminController@inviteUserToCms")->middleware("can:manage-cms");
     Route::post("admin/update-user", "CmsAdminController@updateUserRoles")->middleware("can:manage-cms");
+    Route::post('/user/update', 'UserController@patch')->name('updateUser')->middleware("can:view-my-profile");
 });
 
 
