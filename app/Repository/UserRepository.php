@@ -21,12 +21,6 @@ class UserRepository extends Repository
         return User::class;
     }
 
-    function getUsersInfoToManage($cms_id, $user_id)
-    {
-        return UserRole::with('user')->with('role')->whereIn('role_id', [2, 3])
-            ->where('cms_id', $cms_id)->where('user_id', '<>', $user_id)->get();
-    }
-
     function getSingleUserInfo($id)
     {
         return $this->getModelInstance()->find($id);
@@ -37,21 +31,9 @@ class UserRepository extends Repository
         return $this->getModelInstance()->find($id)->roles->pluck('id')->first();
     }
 
-    function getCmsContentManagingRoles()
-    {
-        return UserRoleLookup::whereIn('id', [2, 3])->get();
-    }
-
     function getUserByEmail($email)
     {
         return $this->getModelInstance()->where('email', $email)->first();
-    }
-
-    function getUserRolesForCms($id, $cmsId)
-    {
-        $user = $this->getModelInstance()->find($id);
-        return $user->roles()->where('cms_id', $cmsId)->get();
-
     }
 
     function inviteUserToCms($userId, $roleSelect, $cmsId)
@@ -86,19 +68,6 @@ class UserRepository extends Repository
     function userIsPlatformAdmin($user)
     {
         return !is_null(UserRole::where('role_id', 1)->where('user_id', $user->id)->first());
-    }
-
-    function updateLocation($user, $location_name, $lat, $lon)
-    {
-        $lastLocation = $user->location;
-        if ($lastLocation)
-            $lastLocation->delete();
-        $location = new UserLocation();
-        $location->user_id = $user->id;
-        $location->location_name = $location_name;
-        $location->lat = $lat;
-        $location->lon = $lon;
-        $location->save();
     }
 
     public function getAllUsersWithRole($roleId) {
