@@ -1,5 +1,4 @@
 {!! csrf_field() !!}
-<input name="role" value="{{ $role }}" type="hidden">
 <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
     <input type="text" name="name" class="form-control" value="{{ old('name') }}"
            placeholder="Name">
