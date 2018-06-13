@@ -43,17 +43,8 @@ class UserManager
 
     public function getMyProfileData($user)
     {
-        $articles = $user->articles()->whereNull("parent_article_id");
 
-
-        $storeInfo  = $this->onlineStoreManager->getOnlineStoreStatsForUserPurchases($user);
-
-        $totalArticlesBought = $this->onlineStoreManager->getNumberArticlesUserHasPurchased($user);
-        return new UserProfile($user,
-            $articles,
-            $storeInfo->totalArticlesOnStore,
-            $storeInfo->totalEarningsFromStore,
-            $totalArticlesBought );
+        return new UserProfile($user);
 
     }
 
