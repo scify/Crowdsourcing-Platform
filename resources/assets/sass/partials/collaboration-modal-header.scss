@@ -1,0 +1,10 @@
+.title {
+  font-weight: bold;
+}
+
+.user-sent-request {
+  color: gray;
+  &.from-edit-article-page {
+    display: none;
+  }
+}

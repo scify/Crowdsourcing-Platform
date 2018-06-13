@@ -1,0 +1,40 @@
+@import "../variables";
+
+.articles-list {
+  img {
+    max-width: 200px;
+    max-height: 100px;
+  }
+  td {
+    max-width: 250px;
+    .info-text {
+      font-size: smaller;
+      color: gray;
+    }
+    .publish-article {
+      display: block;
+      margin: 10px 0;
+    }
+    .fa-warning {
+      color: $brand-danger;
+    }
+    .category-warning {
+      font-style: italic;
+      font-weight: bold;
+      padding-left: 8px;
+    }
+  }
+
+  .deleteBtn {
+    color: $brand-danger;
+    margin-left: 15px;
+
+  }
+  .preview{
+    margin-right:15px;
+  }
+}
+
+.filter-btn {
+  max-width: 250px;
+}

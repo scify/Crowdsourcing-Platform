@@ -1,0 +1,38 @@
+@import "../variables";
+
+.status-icon.fa-circle {
+  &.status-1{
+    //active
+    color: $brand-warning;
+  }
+  &.status-4{
+    //in progress
+    color: $brand-warning;
+  }
+  &.status-2, &.status-5 {
+    //inactive, rejected
+    color: $brand-danger;
+  }
+  &.status-3{
+    //completed
+    display: none;
+  }
+}
+.status-icon.fa-check-square {
+  &.status-1{
+    //active
+    display: none;
+  }
+  &.status-4 {
+    //in progress
+    display: none;
+  }
+  &.status-2, &.status-5{
+    //inactive,rejected
+    display: none;
+  }
+  &.status-3 {
+    //completed
+    color: $brand-success;
+  }
+}

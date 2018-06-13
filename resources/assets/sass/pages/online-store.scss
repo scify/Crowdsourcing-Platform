@@ -1,0 +1,49 @@
+.filter-btn {
+  max-width: 250px;
+}
+
+.articles-list {
+  .header {
+    font-size: 12px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    .fa-user {
+      font-size: 18px;
+      color: gray;
+      padding-top: 5px;
+      padding-left: 10px;
+    }
+    .price-tag {
+      font-size: 18px;
+      padding: 5px 10px;
+      text-align: right;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  .article {
+    background-color: white;
+    margin-bottom: 30px;
+  }
+  .image {
+    height: 150px;
+    background-size: cover;
+  }
+  .body {
+    padding: 5px;
+  }
+  .footer {
+    padding: 10px;
+  }
+  h2 {
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  p {
+    font-size: 18px;
+    height: 150px;
+    max-height: 150px;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,60 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
+
+@import "../../../public/vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.css";
+@import "../../../public/vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css";
+@import "../../../public/vendor/adminlte/vendor/Ionicons/css/ionicons.min.css";
+@import url("//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css");
+@import "../../../public/vendor/adminlte/dist/css/AdminLTE.css";
+@import '../../../public/vendor/adminlte/dist/css/skins/skin-blue.min.css';
+@import url("//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css");
+@import url("../../../public/vendor/adminlte/plugins/iCheck/square/blue.css");
+@import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
+@import url("~dropzone/dist/min/dropzone.min.css");
+@import "_variables.scss";
+
+body {
+  font-size:16px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.main-header .logo{
+  height:53px;
+}
+
+.modal.loading{
+  .modal-content:after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0,0,0,0.5);
+    background-image:url(loading.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+
+  }
+}
+
+.dropzone {
+  border: 2px dashed #0087F7 !important;
+  border-radius: 5px;
+  background: white !important;
+  font-size: 18px;
+}
+
+.warning-wrapper {
+  font-size: small;
+  background-color: lightgray;
+  padding: 10px;
+  b {
+    display: block;
+    i {
+      &.fa-exclamation-triangle {
+        color: $brand-danger;
+      }
+    }
+  }
+}
