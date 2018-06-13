@@ -2,31 +2,19 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\Models\CMS;
-use App\Models\User;
 use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
-use Auth;
-use Exception;
-use Gate;
-use Illuminate\Support\Facades\Route;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class UserManager
 {
     private $userRepository;
-    private $onlineStoreManager;
 
     /**
      * UserManager constructor.
      * @param $userRepository
      */
-    public function __construct(UserRepository $userRepository,
-                                OnlineStoreManager $onlineStoreManager
-    )
-    {
+    public function __construct(UserRepository $userRepository) {
         $this->userRepository = $userRepository;
-        $this->onlineStoreManager= $onlineStoreManager;
     }
 
 
@@ -34,11 +22,6 @@ class UserManager
     function userIsPlatformAdmin($user)
     {
         return $this->userRepository->userIsPlatformAdmin($user);
-    }
-
-    public function updateLocation($user, $location_name, $lat, $lon)
-    {
-        $this->userRepository->updateLocation($user, $location_name, $lat, $lon);
     }
 
     public function getMyProfileData($user)
@@ -50,9 +33,5 @@ class UserManager
 
     public function getUser($userId) {
         return $this->userRepository->find($userId);
-    }
-
-    public function getAllPublishers() {
-        return $this->userRepository->getAllUsersWithRole(PermissionsManager::PUBLISHER);
     }
 }
