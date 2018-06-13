@@ -15,24 +15,10 @@ class UserProfile
 {
     public $fullName;
     public $email;
-    public $articles;
-    public $location;
-    public $totalArticlesPublishedAtOnlineStore;
-    public $totalAmountEarned;
-    public $totalArticlesBought;
 
-    public function __construct(User $user, $articles,
-                                $totalArticlesPublishedAtOnlineStore,
-                                $totalAmountEarned,
-                                $totalArticlesBought)
+    public function __construct(User $user)
     {
         $this->fullName = $user->name . " " . $user->surname;
         $this->email = $user->email;
-        $this->articles = $articles;
-        $this->location = $user->location;
-
-        $this->totalArticlesPublishedAtOnlineStore = $totalArticlesPublishedAtOnlineStore;
-        $this->totalAmountEarned=$totalAmountEarned;
-        $this->totalArticlesBought= $totalArticlesBought;
     }
 }
