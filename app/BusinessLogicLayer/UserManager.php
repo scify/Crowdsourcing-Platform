@@ -8,6 +8,9 @@ use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
+use HttpException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserManager
 {
@@ -76,5 +79,25 @@ class UserManager
             $this->userRepository->updateUserRoles($user->id, $roleselect);
             return "__USER_ADDED";
         }
+    }
+
+    /**
+     * @param $data array the form data array
+     * @throws HttpException
+     */
+    public function updateUser($data) {
+        $user_id = Auth::User()->id;
+        $obj_user = User::find($user_id);
+        $obj_user->name = $data['name'];
+        $obj_user->surname = $data['surname'];
+        $current_password = $obj_user->password;
+        if($data['password']) {
+            if(Hash::check($data['current_password'], $current_password)) {
+                $obj_user->password = Hash::make($data['password']);
+            } else {
+                throw new HttpException("Current Password Incorrect");
+            }
+        }
+        $obj_user->save();
     }
 }

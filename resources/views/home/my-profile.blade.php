@@ -29,52 +29,68 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-9">
-                            <label for="current_password" class="col-sm-4 control-label">Full name:</label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    {{ $userViewModel->fullName }}
-                                </div>
-                            </div>
-
-                            <label for="current_password" class="col-sm-4 control-label">Email:</label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    {{ $userViewModel->email }}
-                                </div>
-                            </div>
-
-                        </div>
-
                         <form id="form-change-password" role="form" method="POST" action="{{ url('/user/update') }}"
                               novalidate>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <div class="col-md-9">
-                                <label for="current_password" class="col-sm-4 control-label">Current Password</label>
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="current_password"
-                                               name="current_password" placeholder="Current Password">
-                                    </div>
-                                </div>
-                                <label for="password" class="col-sm-4 control-label">New Password</label>
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="password" name="password"
-                                               placeholder="Password">
-                                    </div>
-                                </div>
-                                <label for="password_confirmation" class="col-sm-4 control-label">Re-enter
-                                    Password</label>
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="password_confirmation"
-                                               name="password_confirmation" placeholder="Re-enter Password">
-                                    </div>
+
+
+                            <label class="col-sm-4 control-label">First Name</label>
+                            <div class="col-sm-8">
+                                <div class="form-group has-feedback">
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           value="{{ $viewModel->user->name  }}"
+                                           required
+                                           autofocus
+                                           placeholder="Name">
                                 </div>
                             </div>
+                            <span class="form-control-feedback"></span>
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+
+
+                            <label class="col-sm-4 control-label">Surname</label>
+                            <div class="col-sm-8">
+                                <div class="form-group has-feedback">
+                                    <input id="surname" type="text" class="form-control" name="surname"
+                                           value="{{ $viewModel->user->surname}}"
+                                           required
+                                           autofocus placeholder="Surname">
+                                </div>
+                            </div>
+                            @if ($errors->has('surname'))
+                                <span class="help-block">
+                                            <strong>{{ $errors->first('surname') }}</strong>
+                                        </span>
+                            @endif
+                            <label for="current_password" class="col-sm-4 control-label">Current Password</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="current_password"
+                                           name="current_password" placeholder="Current Password">
+                                </div>
+                            </div>
+                            <label for="password" class="col-sm-4 control-label">New Password</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <label for="password_confirmation" class="col-sm-4 control-label">Re-enter
+                                Password</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password_confirmation"
+                                           name="password_confirmation" placeholder="Re-enter Password">
+                                </div>
+                            </div>
+
                             <div class="form-group">
-                                <div class="col-sm-offset col-sm-6">
+                                <div class="col-sm-6">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
@@ -83,6 +99,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @stop
 
