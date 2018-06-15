@@ -5,6 +5,7 @@ mix.disableNotifications();
 mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/pages/register.js', 'public/dist/js')
     .js('resources/assets/js/pages/myProfile.js', 'public/dist/js')
+    .js('resources/assets/js/UsersListController.js', 'public/dist/js')
     .sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/register.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/my-profile.scss', 'public/dist/css')

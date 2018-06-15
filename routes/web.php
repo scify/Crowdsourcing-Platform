@@ -24,6 +24,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/user/update', 'UserController@patch')->name('updateUser')->middleware("can:view-my-profile");
     Route::post('/user/delete', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
     Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
+    Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
 });
 
 
