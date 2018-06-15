@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\UserManager;
+use App\Http\OperationResponse;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -55,5 +56,22 @@ class UserController extends Controller
             session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
         }
         return back();
+    }
+
+    public function showUsersByCriteria(Request $request) {
+        $input = $request->all();
+
+        try {
+            $users = $this->userManager->getManageUsersViewModel($input);
+        }  catch (\Exception $e) {
+            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('common.ajax_error_message', compact('errorMessage'))));
+        }
+        if($users->count() == 0) {
+            $errorMessage = "No Users found";
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('common.ajax_error_message', compact('errorMessage'))));
+        } else {
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) view('admin.users-list', compact('users'))));
+        }
     }
 }
