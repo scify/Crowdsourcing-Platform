@@ -86,12 +86,13 @@
             <h3 class="box-title">Add new user</h3>
         </div>
         <div class="box-body">
-            <em>Insert email and choose role. If email exists in database, the role will be added to the user.
-                role.</em>
             <form action="{{ url('admin/add-user') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
+                        <em>Insert email and choose role. If email exists in database, the role will be added to the user.</em>
+                        <br>
+                        <br>
                         <div class="col-md-12 form-group">
                             <input id="email" type="email" class="form-control" name="email" required autofocus
                                    placeholder="Email">
@@ -108,23 +109,26 @@
                             <input id="password" type="password" class="form-control" name="password" required autofocus
                                    placeholder="Password">
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-12">
+                            <div class="col-md-6 no-padding form-group">
 
-                            <select class="form-control" name="roleselect">
-                                @foreach ($viewModel->allRoles as $role)
-                                    <option value="{{ $role->id }}" name="roleVal[{{ $role->id }}]">
-                                        {{ $role->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                                <select class="form-control" name="roleselect">
+                                    @foreach ($viewModel->allRoles as $role)
+                                        <option value="{{ $role->id }}" name="roleVal[{{ $role->id }}]">
+                                            {{ $role->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
+                            </div>
+                        </div>
+                        <div class="col-md-2 form-group">
+                            <button type="submit" class="btn btn-primary btn-block ">Add user</button>
                         </div>
                     </div>
 
 
-                    <div class="col-md-2 form-group">
-                        <button type="submit" class="btn btn-primary btn-block ">Add user</button>
-                    </div>
+
                 </div>
             </form>
         </div>
