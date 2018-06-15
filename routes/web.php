@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/', 'HomeController@index');
+    Route::get('/home', 'HomeController@index');
     Route::get('/my-profile', 'UserController@myProfile')->name('profile')->middleware("can:view-my-profile");
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
