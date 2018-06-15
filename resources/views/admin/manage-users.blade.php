@@ -77,7 +77,7 @@
             <h3 class="box-title">Add new user</h3>
         </div>
         <div class="box-body">
-            <em>Insert email and choose role. If email exists in database, the user will be promoted to selected
+            <em>Insert email and choose role. If email exists in database, the role will be added to the user.
                 role.</em>
             <form action="{{ url('admin/add-user') }}" method="POST">
                 {{ csrf_field() }}
