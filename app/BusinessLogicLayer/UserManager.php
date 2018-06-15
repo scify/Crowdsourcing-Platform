@@ -8,7 +8,6 @@ use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
-use Illuminate\Support\Facades\Auth;
 
 class UserManager
 {
