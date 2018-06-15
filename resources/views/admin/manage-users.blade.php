@@ -77,6 +77,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $viewModel->users->links() }}
         </div>
     </div>
 
