@@ -8,6 +8,8 @@ use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -36,8 +38,8 @@ class UserManager
         return $this->userRepository->find($userId);
     }
 
-    public function getManageUsersViewModel($paginationNumber) {
-        $users = $this->userRepository->getAllUsersWithTrashed($paginationNumber);
+    public function getManageUsersViewModel($paginationNumber, $filters = null) {
+        $users = $this->userRepository->getUsersWithTrashed($paginationNumber, $filters);
         $allRoles = $this->userRoleRepository->getAllUserRoles();
         return new ManageUsers($users, $allRoles);
     }
@@ -104,5 +106,13 @@ class UserManager
             }
         }
         $obj_user->save();
+    }
+
+    public function getAllUsersWithTrashed() {
+        return $this->userRepository->getUsersWithTrashed();
+    }
+
+    public function getUsersWithCriteria($paginationNum = null, $data) {
+        return $this->userRepository->getUsersWithTrashed($paginationNum, $data);
     }
 }

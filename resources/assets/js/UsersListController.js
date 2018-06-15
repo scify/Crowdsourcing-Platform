@@ -6,7 +6,6 @@ window.UsersListController.prototype = function () {
         pageNum = 1,
         searchBtnHandler = function () {
             $("#searchBtn").on("click", function () {
-                usersCriteria.email = $('input[name=mentorName]').val();
                 getUsersByFilters.call(this);
             });
         },
@@ -14,6 +13,7 @@ window.UsersListController.prototype = function () {
             // button pressed that triggered this function
             var self = this;
             usersCriteria.page = pageNum;
+            usersCriteria.email = $('input[name=email]').val();
             $.ajax({
                 method: "GET",
                 url: $(".filtersContainer").data("url"),
