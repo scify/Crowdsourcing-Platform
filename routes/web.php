@@ -16,11 +16,12 @@ Auth::routes();
 Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/my-profile', 'UserController@myProfile')->name('profile')->middleware("can:view-my-profile");
-    Route::get("/admin/manage-users", "CmsAdminController@manageUsers")->middleware("can:manage-cms");
-    Route::get("/admin/edit-user/{id}", "CmsAdminController@cmsEditUser")->middleware("can:manage-cms");
-    Route::post("/admin/invite-user", "CmsAdminController@inviteUserToCms")->middleware("can:manage-cms");
-    Route::post("admin/update-user", "CmsAdminController@updateUserRoles")->middleware("can:manage-cms");
+    Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
+    Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
+    Route::post("/admin/invite-user", "AdminController@inviteUserToCms")->middleware("can:manage-users");
+    Route::post("admin/update-user", "AdminController@updateUserRoles")->middleware("can:manage-platform");
     Route::post('/user/update', 'UserController@patch')->name('updateUser')->middleware("can:view-my-profile");
+    Route::post('/user/disable', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
 });
 
 
