@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'CpinNG'),
+    'name' => env('APP_NAME', 'Crowdsourcing_Platform'),
 
     /*
     |--------------------------------------------------------------------------

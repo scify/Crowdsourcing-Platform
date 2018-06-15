@@ -38,8 +38,8 @@ to link this folder with the public directory
 
 ##Apache configuration:
 
-The following assumes that the website will be rendered under cpinng.dev url.
-You can edit the /etc/hosts/ file and add a record  ```127.0.0.1       cpinng.dev```
+The following assumes that the website will be rendered under dev.ecas url.
+You can edit the /etc/hosts/ file and add a record  ```127.0.0.1       dev.ecas```
 
 
 ```
