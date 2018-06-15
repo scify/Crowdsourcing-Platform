@@ -38,11 +38,14 @@ class AdminController extends Controller {
         $result = $this->userManager->addUserToPlatform($request->email, $request->name, $request->surname, $request->password, $request->roleselect);
         switch ($result) {
             case "__USER_UPDATED":
-                return redirect()->back()->with('user_message_success', 'User exists in platform. Their roles were updated.');
+                session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.');
+                break;
             case "__USER_ADDED":
-                return redirect()->back()->with('user_message_success', 'User has been added to the platform.');
+                session()->flash('flash_message_success', 'User has been added to the platform.');
+                break;
             default:
                 throw new HttpException("Not a valid request");
         }
+        return back();
     }
 }

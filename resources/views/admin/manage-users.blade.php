@@ -120,19 +120,4 @@
             </form>
         </div>
     </div>
-    @if(session()->has('user_message_success'))
-        <div class="alert alert-success">
-            {{ session()->get('user_message_success') }}
-        </div>
-    @endif
-    @if(session()->has('user_message_warning'))
-        <div class="alert alert-warning">
-            {{ session()->get('user_message_warning') }}
-        </div>
-    @endif
-    @if(session()->has('user_message_danger'))
-        <div class="alert alert-danger">
-            {{ session()->get('user_message_danger') }}
-        </div>
-    @endif
 @stop

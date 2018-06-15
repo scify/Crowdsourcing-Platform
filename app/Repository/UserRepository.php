@@ -51,12 +51,10 @@ class UserRepository extends Repository
     {
         $userRoles = UserRole::where('user_id', $userId)->get();
         foreach ($userRoles as $userRole) {
-            // content manager or registered user
-            if (in_array($userRole->role->id, [2, 3]) !== false)
-                $userRole->delete();
+            $userRole->delete();
         }
-        if ($roleSelect)
-            UserRole::create(['user_id' => $userId, 'role_id' => $roleSelect]);
+        foreach ($roleSelect as $roleId)
+            UserRole::create(['user_id' => $userId, 'role_id' => $roleId]);
     }
 
 
