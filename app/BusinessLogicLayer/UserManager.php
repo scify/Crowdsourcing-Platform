@@ -37,7 +37,7 @@ class UserManager
     }
 
     public function getManageUsersViewModel() {
-        $users = $this->userRepository->getAllUsers();
+        $users = $this->userRepository->getAllUsersWithTrashed();
         $allRoles = $this->userRoleRepository->getAllUserRoles();
         return new ManageUsers($users, $allRoles);
     }
@@ -55,8 +55,13 @@ class UserManager
     }
 
     public function deactivateUser($id) {
-        $user = $this->userRepository->getUser($id);
+        $user = $this->userRepository->getUserWithTrashed($id);
         $this->userRepository->softDeleteUser($user);
+    }
+
+    public function reactivateUser($id) {
+        $user = $this->userRepository->getUserWithTrashed($id);
+        $this->userRepository->reActivateUser($user);
     }
 
     public function addUserToPlatform($email, $name, $surname, $password, $roleselect) {

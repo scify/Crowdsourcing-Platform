@@ -46,4 +46,14 @@ class UserController extends Controller
         }
         return back();
     }
+
+    public function restore(Request $request) {
+        try {
+            $this->userManager->reactivateUser($request->id);
+            session()->flash('flash_message_success', 'User restored.');
+        } catch (\Exception $e) {
+            session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
+        }
+        return back();
+    }
 }
