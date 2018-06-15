@@ -86,8 +86,10 @@ class UserRepository extends Repository
         return User::all();
     }
 
-    public function getAllUsersWithTrashed($paginationNumber = null) {
+    public function getUsersWithTrashed($paginationNumber = null, $filters = null) {
         $query = User::withTrashed();
+        if(isset($filters['email']))
+            $query = $query->where('email', 'like', '%' . $filters['email'] . '%');
         if($paginationNumber)
             return $query->paginate($paginationNumber);
         return $query->get();

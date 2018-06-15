@@ -3,25 +3,23 @@
         <div class="panel-title">
             <h4>FILTERS</h4>
         </div>
-    </div><!--.panel-heading-->
+    </div>
     <div class="panel-body filtersContainer noInputStyles" id="mentorsFilters" data-url="{{ route('filterUsers') }}">
         <div class="row">
-            <div class="col-md-2 filterName">Name</div><!--.col-md-3-->
-            <div class="col-md-6">
+            <div class="col-md-1 filterName">Email</div><!--.col-md-3-->
+            <div class="col-md-4">
                 <div class="inputer">
                     <div class="input-wrapper">
-                        <input name="mentorName" class="form-control" placeholder="Mentor name" type="text" id="mentorName">
+                        <input name="email" class="form-control" placeholder="User name" type="email" id="userEmail">
                     </div>
                 </div>
-            </div><!--.col-md-6-->
+            </div>
         </div>
-        <div class="form-buttons">
-            <div class="row">
-                <div class="col-md-offset-3 col-md-9">
-                    <button id="searchBtn" class="searchBtn btn btn-primary btn-ripple margin-right-10">
-                        Search <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </div>
+        <div class="row">
+            <div class="col-md-2 form-buttons margin-top">
+                <button id="searchBtn" class="searchBtn btn btn-primary btn-ripple margin-right-10">
+                    Search <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </div>

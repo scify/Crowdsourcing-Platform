@@ -60,9 +60,9 @@ class UserController extends Controller
 
     public function showUsersByCriteria(Request $request) {
         $input = $request->all();
-
         try {
-            $users = $this->userManager->getManageUsersViewModel($input);
+            $users = $this->userManager->getUsersWithCriteria(2, $input);
+            $users->withPath('manage-users');
         }  catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('common.ajax_error_message', compact('errorMessage'))));
