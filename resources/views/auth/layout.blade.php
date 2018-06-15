@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.ico') }}"/>
-    <title>@yield('title_prefix', 'CPing') @yield('title_postfix', '')</title>
+    <title>@yield('title_prefix', env('APP_NAME')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
