@@ -56,11 +56,19 @@
                                     </div>
                                     <div class="col-sm-6">
                                         @if ($user->id != Auth::id())
-                                            <form class="form-disable" action="{{ url('user/disable') }}" method="POST">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="hidden" name="id" value="{{ $user->id }}">
-                                                <button type="submit" class="btn btn-block btn-danger">Deactivate user</button>
-                                            </form>
+                                            @if(!$user->trashed())
+                                                <form class="form-disable" action="{{ url('user/delete') }}" method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="id" value="{{ $user->id }}">
+                                                    <button type="submit" class="btn btn-block btn-danger">Deactivate user</button>
+                                                </form>
+                                            @else
+                                                <form class="form-disable" action="{{ url('user/restore') }}" method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="id" value="{{ $user->id }}">
+                                                    <button type="submit" class="btn btn-block btn-success">Reactivate user</button>
+                                                </form>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>
