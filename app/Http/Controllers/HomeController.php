@@ -25,12 +25,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        if ($this->userManager->userIsPlatformAdmin(Auth::user()))
-            return redirect("/platform-admin/manage-payments");
-        else
-            return redirect("/my-profile");
-
+    public function index() {
+        return redirect("/my-profile");
     }
 }
