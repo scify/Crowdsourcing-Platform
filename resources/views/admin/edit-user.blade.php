@@ -44,7 +44,7 @@
 
                         <div class="form-group">
                             <label>User roles</label>
-                            <select class="form-control" name="roleselect[]" multiple>
+                            <select class="form-control" name="roleselect[]">
                                 @foreach ($viewModel->allRoles as $role)
                                     <option
                                             @if ($viewModel->userRoleIds->contains($role->id))
