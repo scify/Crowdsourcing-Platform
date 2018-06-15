@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\UserManager;
-use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -24,10 +22,11 @@ class UserController extends Controller
     }
 
     public function patch(Request $request) {
-        $this->validate($request, [
-            'password' => 'nullable|string|min:6|confirmed',
-            'current_password' => 'required_with:password|string|min:6'
-        ]);
+        if($request->password)
+            $this->validate($request, [
+                'password' => 'required|string|min:6|confirmed',
+                'current_password' => 'required|string|min:6'
+            ]);
         $data = $request->all();
         try {
             $this->userManager->updateUser($data);
