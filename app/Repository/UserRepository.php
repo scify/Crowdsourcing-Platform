@@ -86,8 +86,11 @@ class UserRepository extends Repository
         return User::all();
     }
 
-    public function getAllUsersWithTrashed() {
-        return User::withTrashed()->get();
+    public function getAllUsersWithTrashed($paginationNumber = null) {
+        $query = User::withTrashed();
+        if($paginationNumber)
+            return $query->paginate($paginationNumber);
+        return $query->get();
     }
 
     public function reActivateUser($user) {

@@ -36,8 +36,8 @@ class UserManager
         return $this->userRepository->find($userId);
     }
 
-    public function getManageUsersViewModel() {
-        $users = $this->userRepository->getAllUsersWithTrashed();
+    public function getManageUsersViewModel($paginationNumber) {
+        $users = $this->userRepository->getAllUsersWithTrashed($paginationNumber);
         $allRoles = $this->userRoleRepository->getAllUserRoles();
         return new ManageUsers($users, $allRoles);
     }
