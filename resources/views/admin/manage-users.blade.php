@@ -25,39 +25,40 @@
                         Email
                     </th>
                     <th>
-                        Role
+                        Roles
                     </th>
                     <th>
                         Action
                     </th>
                 </tr>
-                @foreach ($viewModel->userRolesList as $userRole)
-                    @if($userRole->user)
+                @foreach ($viewModel->users as $user)
                         <tr>
                             <td>
-                                {{ $userRole->user->name }}
+                                {{ $user->name }}
                             </td>
                             <td>
-                                {{ $userRole->user->surname }}
+                                {{ $user->surname }}
                             </td>
                             <td>
-                                {{ $userRole->user->email }}
+                                {{ $user->email }}
                             </td>
                             <td>
-                                {{ $userRole->role->name }}
+                                @foreach($user->roles as $role)
+                                    {{ $role->name }}@if(!$loop->last), @endif
+                                @endforeach
                             </td>
                             <td>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <form action="{{ url('admin/edit-user') . '/' . $userRole->user->id }}" method="GET">
+                                        <form action="{{ url('admin/edit-user') . '/' . $user->id }}" method="GET">
                                             <button type="submit" class="btn btn-block btn-primary">Edit user</button>
                                         </form>
                                     </div>
                                     <div class="col-sm-6">
-                                        @if ($userRole->user->id != Auth::id())
+                                        @if ($user->id != Auth::id())
                                             <form class="form-disable" action="{{ url('user/disable') }}" method="POST">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="hidden" name="id" value="{{ $userRole->user->id }}">
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
                                                 <button type="submit" class="btn btn-block btn-danger">Deactivate user</button>
                                             </form>
                                         @endif
@@ -65,7 +66,6 @@
                                 </div>
                             </td>
                         </tr>
-                    @endif
                 @endforeach
                 </tbody>
             </table>
@@ -79,24 +79,39 @@
         <div class="box-body">
             <em>Insert email and choose role. If email exists in database, the user will be promoted to selected
                 role.</em>
-            <form action="{{ url('admin/invite-user') }}" method="POST">
+            <form action="{{ url('admin/add-user') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-3 form-group">
-                        <input id="email" type="email" class="form-control" name="email" required autofocus
-                               placeholder="Email">
-                    </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-6">
+                        <div class="col-md-12 form-group">
+                            <input id="email" type="email" class="form-control" name="email" required autofocus
+                                   placeholder="Email">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input id="name" type="text" class="form-control" name="name" required autofocus
+                                   placeholder="Name">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input id="surname" type="text" class="form-control" name="surname" required autofocus
+                                   placeholder="Surname">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input id="password" type="password" class="form-control" name="password" required autofocus
+                                   placeholder="Password">
+                        </div>
+                        <div class="col-md-6 form-group">
 
-                        <select class="form-control" name="roleselect">
-                            @foreach ($viewModel->allRoles as $role)
-                                <option value="{{ $role->id }}" name="roleVal[{{ $role->id }}]">
-                                    {{ $role->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                            <select class="form-control" name="roleselect">
+                                @foreach ($viewModel->allRoles as $role)
+                                    <option value="{{ $role->id }}" name="roleVal[{{ $role->id }}]">
+                                        {{ $role->name }}
+                                    </option>
+                                @endforeach
+                            </select>
 
+                        </div>
                     </div>
+
 
                     <div class="col-md-2 form-group">
                         <button type="submit" class="btn btn-primary btn-block ">Add user</button>
