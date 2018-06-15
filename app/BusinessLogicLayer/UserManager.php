@@ -8,9 +8,9 @@ use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
-use HttpException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserManager
 {
@@ -95,7 +95,7 @@ class UserManager
             if(Hash::check($data['current_password'], $current_password)) {
                 $obj_user->password = Hash::make($data['password']);
             } else {
-                throw new HttpException("Current Password Incorrect");
+                throw new HttpException(500, "Current Password Incorrect.");
             }
         }
         $obj_user->save();
