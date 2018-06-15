@@ -21,9 +21,12 @@ class UserRepository extends Repository
         return User::class;
     }
 
-    function getUser($id)
-    {
+    function getUser($id) {
         return $this->getModelInstance()->find($id);
+    }
+
+    function getUserWithTrashed($id) {
+        return User::withTrashed()->find($id);
     }
 
     function getSingleUserRole($id)
@@ -81,5 +84,13 @@ class UserRepository extends Repository
 
     public function getAllUsers() {
         return User::all();
+    }
+
+    public function getAllUsersWithTrashed() {
+        return User::withTrashed()->get();
+    }
+
+    public function reActivateUser($user) {
+        $user->restore();
     }
 }

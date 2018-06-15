@@ -21,7 +21,8 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post("/admin/add-user", "AdminController@addUserToPlatform")->middleware("can:manage-users");
     Route::post("admin/update-user", "AdminController@updateUserRoles")->middleware("can:manage-platform");
     Route::post('/user/update', 'UserController@patch')->name('updateUser')->middleware("can:view-my-profile");
-    Route::post('/user/disable', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
+    Route::post('/user/delete', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
+    Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
 });
 
 
