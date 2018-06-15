@@ -41,4 +41,14 @@ class UserController extends Controller
         }
         return back();
     }
+
+    public function delete(Request $request) {
+        try {
+            $this->userManager->deactivateUser($request->id);
+            session()->flash('flash_message_success', 'User deleted.');
+        } catch (\Exception $e) {
+            session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
+        }
+        return back();
+    }
 }

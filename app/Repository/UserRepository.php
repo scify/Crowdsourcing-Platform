@@ -21,7 +21,7 @@ class UserRepository extends Repository
         return User::class;
     }
 
-    function getSingleUserInfo($id)
+    function getUser($id)
     {
         return $this->getModelInstance()->find($id);
     }
@@ -36,12 +36,7 @@ class UserRepository extends Repository
         return $this->getModelInstance()->where('email', $email)->first();
     }
 
-    function inviteUserToCms($userId, $roleSelect, $cmsId)
-    {
-        $this->updateUserRolesForCMS($userId, $roleSelect, $cmsId);
-    }
-
-    function updateUser($id, $name, $surname, $roleselect, $email, $cms_id)
+    function updateUser($id, $name, $surname, $roleselect, $email)
     {
         $user = $this->getModelInstance()->find($id);
         $user->name = $name;
@@ -49,19 +44,19 @@ class UserRepository extends Repository
         $user->email = $email;
         $user->save();
 
-        $this->updateUserRolesForCMS($id, $roleselect, $cms_id);
+        $this->updateUserRolesForCMS($id, $roleselect);
     }
 
-    function updateUserRolesForCMS($userId, $roleSelect, $cmsId)
+    function updateUserRolesForCMS($userId, $roleSelect)
     {
-        $userRolesForCurrentCms = UserRole::where('user_id', $userId)->where('cms_id', $cmsId)->get();
-        foreach ($userRolesForCurrentCms as $userRole) {
-            // chief or publisher
+        $userRoles = UserRole::where('user_id', $userId)->get();
+        foreach ($userRoles as $userRole) {
+            // content manager or registered user
             if (in_array($userRole->role->id, [2, 3]) !== false)
                 $userRole->delete();
         }
         if ($roleSelect)
-            UserRole::create(['user_id' => $userId, 'cms_id' => $cmsId, 'role_id' => $roleSelect]);
+            UserRole::create(['user_id' => $userId, 'role_id' => $roleSelect]);
     }
 
 
@@ -78,4 +73,11 @@ class UserRepository extends Repository
     }
 
 
+    function getAllUserRoles() {
+        return UserRole::with('user')->with('role')->get();
+    }
+
+    public function softDeleteUser(User $user) {
+        $user->delete();
+    }
 }

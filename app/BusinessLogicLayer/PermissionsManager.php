@@ -24,6 +24,9 @@ class PermissionsManager
             return $this->userHasPermission($user,  'manage-platform');
         });
 
+        Gate::define('manage-users', function ($user) {
+            return $this->userHasPermission($user,  'manage-users');
+        });
 
         Gate::define('delete-article', function ($user, $id) {
 //            $article = $this->articleRepository->find($id);
@@ -66,6 +69,8 @@ class PermissionsManager
             case "view-my-profile":
                 return in_array($roleId, [self::ADMIN, self::CONTENT_MANAGER, self::REGISTERED_USER]);
             case "manage-platform":
+                return in_array($roleId, [self::ADMIN]);
+            case "manage-users":
                 return in_array($roleId, [self::ADMIN]);
             default:
                 throw new AccessDeniedException("Could not verify ability " . $ability . " for role " . $roleId);
