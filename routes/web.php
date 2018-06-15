@@ -18,7 +18,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/my-profile', 'UserController@myProfile')->name('profile')->middleware("can:view-my-profile");
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
-    Route::post("/admin/invite-user", "AdminController@inviteUserToCms")->middleware("can:manage-users");
+    Route::post("/admin/add-user", "AdminController@addUserToPlatform")->middleware("can:manage-users");
     Route::post("admin/update-user", "AdminController@updateUserRoles")->middleware("can:manage-platform");
     Route::post('/user/update', 'UserController@patch')->name('updateUser')->middleware("can:view-my-profile");
     Route::post('/user/disable', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");

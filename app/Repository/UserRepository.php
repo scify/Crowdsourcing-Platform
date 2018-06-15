@@ -44,10 +44,10 @@ class UserRepository extends Repository
         $user->email = $email;
         $user->save();
 
-        $this->updateUserRolesForCMS($id, $roleselect);
+        $this->updateUserRoles($id, $roleselect);
     }
 
-    function updateUserRolesForCMS($userId, $roleSelect)
+    function updateUserRoles($userId, $roleSelect)
     {
         $userRoles = UserRole::where('user_id', $userId)->get();
         foreach ($userRoles as $userRole) {
@@ -79,5 +79,9 @@ class UserRepository extends Repository
 
     public function softDeleteUser(User $user) {
         $user->delete();
+    }
+
+    public function getAllUsers() {
+        return User::all();
     }
 }

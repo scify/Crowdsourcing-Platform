@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\UserManager;
+use HttpException;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
@@ -30,5 +31,18 @@ class AdminController extends Controller {
     {
         $this->userManager->updateUserRoles($request->userId, $request->roleselect);
         return redirect('/admin/manage-users');
+    }
+
+    public function addUserToPlatform(Request $request)
+    {
+        $result = $this->userManager->addUserToPlatform($request->email, $request->name, $request->surname, $request->password, $request->roleselect);
+        switch ($result) {
+            case "__USER_UPDATED":
+                return redirect()->back()->with('user_message_success', 'User exists in platform. Their roles were updated.');
+            case "__USER_ADDED":
+                return redirect()->back()->with('user_message_success', 'User has been added to the platform.');
+            default:
+                throw new HttpException("Not a valid request");
+        }
     }
 }
