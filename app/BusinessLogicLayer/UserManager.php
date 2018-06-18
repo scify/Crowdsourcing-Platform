@@ -8,8 +8,6 @@ use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -18,6 +16,7 @@ class UserManager
 {
     private $userRepository;
     private $userRoleRepository;
+    public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository, UserRoleRepository $userRoleRepository) {
         $this->userRepository = $userRepository;

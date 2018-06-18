@@ -16,7 +16,7 @@ class AdminController extends Controller {
     }
 
     public function manageUsers() {
-        $viewModel = $this->userManager->getManageUsersViewModel(10);
+        $viewModel = $this->userManager->getManageUsersViewModel(UserManager::$USERS_PER_PAGE);
         return view('admin.manage-users', ['viewModel' => $viewModel]);
     }
 
