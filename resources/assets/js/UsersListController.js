@@ -9,9 +9,19 @@ window.UsersListController.prototype = function () {
                 getUsersByFilters.call(this);
             });
         },
+        paginateUsersBtnHandler = function () {
+            $("body").on("click", "#usersList .pagination a", function (e) {
+                e.preventDefault();
+                pageNum = $(this).attr("href").replace('#?page=', '');
+                console.log(pageNum);
+                if(!$(this).parent().hasClass("active")) {
+                    $("#usersFilters").find("#searchBtn").trigger("click");
+                }
+            });
+        },
         getUsersByFilters = function () {
             // button pressed that triggered this function
-            var self = this;
+            let self = this;
             usersCriteria.page = pageNum;
             usersCriteria.email = $('input[name=email]').val();
             $.ajax({
@@ -43,9 +53,9 @@ window.UsersListController.prototype = function () {
             });
         },
         parseSuccessData = function(response) {
-            var responseObj = JSON.parse(response);
+            let responseObj = JSON.parse(response);
             //if operation was unsuccessful
-            if (responseObj.status == 2) {
+            if (responseObj.status === 2) {
                 $(".loader").addClass('hidden');
                 $("#errorMsg").removeClass('hidden');
                 $("#errorMsg").html(responseObj.data);
@@ -59,6 +69,7 @@ window.UsersListController.prototype = function () {
         },
         init = function (currentRouteName) {
             searchBtnHandler();
+            paginateUsersBtnHandler();
         };
         return {
             init: init
