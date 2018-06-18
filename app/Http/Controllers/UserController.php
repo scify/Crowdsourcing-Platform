@@ -61,7 +61,7 @@ class UserController extends Controller
     public function showUsersByCriteria(Request $request) {
         $input = $request->all();
         try {
-            $users = $this->userManager->getUsersWithCriteria(2, $input);
+            $users = $this->userManager->getUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
             $users->setPath('#');
         }  catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
