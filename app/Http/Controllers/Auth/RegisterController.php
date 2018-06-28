@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\PermissionsManager;
+use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\UserRoleManager;
+use App\BusinessLogicLayer\UserRoles;
 use App\Models\Category;
 use App\Models\CMS;
 use App\Models\User;
@@ -33,15 +36,13 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    private $userRoleManager;
+    private $userManager;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+    public function __construct(UserRoleManager $userRoleManager, UserManager $userManager) {
         $this->middleware('guest');
+        $this->userRoleManager = $userRoleManager;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -66,23 +67,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
-        $user = User::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-        $this->storeUserRole($user);
+    protected function create(array $data) {
+        $user = $this->userManager->createUser($data);
+        $this->userRoleManager->assignRegisteredUserRoleTo($user);
         return $user;
-    }
-
-    private function storeUserRole($user) {
-
-        $userRole = new UserRole;
-        $userRole->user_id = $user->id;
-        $userRole->role_id = PermissionsManager::REGISTERED_USER;
-        $userRole->save();
     }
 }

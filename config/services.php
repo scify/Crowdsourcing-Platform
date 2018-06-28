@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://dev.ecas/login/facebook/callback',
+        'redirect' => 'https://dev.ecas/login/social/facebook/callback',
     ],
 
 ];

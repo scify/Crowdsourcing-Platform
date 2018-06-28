@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function __construct(UserManager $userManager)
     {
-        $this->middleware('auth');
         $this->userManager = $userManager;
     }
 
@@ -26,6 +25,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return redirect("/my-profile");
+        return view('home.home');
     }
 }

@@ -25,4 +25,13 @@ class UserRoleRepository extends Repository
     function getAllUserRoles() {
         return UserRoleLookup::all();
     }
+
+    public function assignRoleToUser($userId, $roleId) {
+        $userRole = new UserRole;
+        $userRole->user_id = $userId;
+        $userRole->role_id = $roleId;
+        $userRole->save();
+
+        return $userRole;
+    }
 }
