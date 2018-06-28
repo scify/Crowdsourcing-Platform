@@ -50,7 +50,7 @@ class UserRepository extends Repository
         $this->updateUserRoles($id, $roleselect);
     }
 
-    function updateUserRoles($userId, $roleSelect)
+    function updateUserRoles($userId, array $roleSelect)
     {
         $userRoles = UserRole::where('user_id', $userId)->get();
         foreach ($userRoles as $userRole) {

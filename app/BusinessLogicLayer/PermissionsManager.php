@@ -9,11 +9,6 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 class PermissionsManager
 {
 
-    //ATTENTION: these values match with the db values defined in database\seeds\UsersRoles.php
-    const ADMIN = 1;
-    const CONTENT_MANAGER = 2;
-    const REGISTERED_USER = 3;
-
     public function registerUserPolicies()
     {
         Gate::define('view-my-profile', function ($user) {
@@ -67,11 +62,11 @@ class PermissionsManager
     {
         switch ($ability) {
             case "view-my-profile":
-                return in_array($roleId, [self::ADMIN, self::CONTENT_MANAGER, self::REGISTERED_USER]);
+                return in_array($roleId, [UserRoles::ADMIN, UserRoles::CONTENT_MANAGER, UserRoles::REGISTERED_USER]);
             case "manage-platform":
-                return in_array($roleId, [self::ADMIN]);
+                return in_array($roleId, [UserRoles::ADMIN]);
             case "manage-users":
-                return in_array($roleId, [self::ADMIN]);
+                return in_array($roleId, [UserRoles::ADMIN]);
             default:
                 throw new AccessDeniedException("Could not verify ability " . $ability . " for role " . $roleId);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\UserActionResponses;
 use App\BusinessLogicLayer\UserManager;
 use HttpException;
 use Illuminate\Http\Request;
@@ -34,12 +35,12 @@ class AdminController extends Controller {
 
     public function addUserToPlatform(Request $request)
     {
-        $result = $this->userManager->addUserToPlatform($request->email, $request->name, $request->surname, $request->password, $request->roleselect);
-        switch ($result) {
-            case "__USER_UPDATED":
+        $result = $this->userManager->getOrAddUserToPlatform($request->email, $request->name, $request->surname, $request->password, $request->roleselect);
+        switch ($result->status) {
+            case UserActionResponses::USER_UPDATED:
                 session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.');
                 break;
-            case "__USER_ADDED":
+            case UserActionResponses::USER_CREATED:
                 session()->flash('flash_message_success', 'User has been added to the platform.');
                 break;
             default:

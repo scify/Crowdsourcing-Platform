@@ -9,6 +9,7 @@ use App\Models\ViewModels\UserProfile;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -65,14 +66,13 @@ class UserManager
         $this->userRepository->reActivateUser($user);
     }
 
-    public function addUserToPlatform($email, $name, $surname, $password, $roleselect) {
+    public function getOrAddUserToPlatform($email, $name, $surname, $password, $roleselect) {
         $emailCheck = $this->userRepository->getUserByEmail($email);
-
         // Check if email exists in db
         if ($emailCheck) {
             // If email exists, update roles
              $this->userRepository->updateUserRoles($emailCheck->id, $roleselect);
-            return "__USER_UPDATED";
+            return new ActionResponse(UserActionResponses::USER_UPDATED, $emailCheck);
         } else {
             // If user email does not exist in db, notify for registration.
             $user = User::create([
@@ -83,7 +83,7 @@ class UserManager
             ]);
             $user->save();
             $this->userRepository->updateUserRoles($user->id, $roleselect);
-            return "__USER_ADDED";
+            return new ActionResponse(UserActionResponses::USER_CREATED, $user);
         }
     }
 
@@ -113,5 +113,24 @@ class UserManager
 
     public function getUsersWithCriteria($paginationNum = null, $data) {
         return $this->userRepository->getUsersWithTrashed($paginationNum, $data);
+    }
+
+    public function handleSocialLoginUser($socialUser) {
+        DB::beginTransaction();
+        $result = $this->getOrAddUserToPlatform($socialUser->email, $socialUser->name, null, md5(rand(1, 10000)), [UserRoles::REGISTERED_USER]);
+        if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
+            $user = $result->data;
+            auth()->login($user);
+            DB::commit();
+            return $user;
+        } else {
+            DB::rollBack();
+            throw new \Exception($result->status);
+        }
+    }
+
+    public function createUser(array $data) {
+        $data['password'] = bcrypt($data['password']);
+        return $this->userRepository->create($data);
     }
 }
