@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     {{--Loading summernote CSS via CDN because webpack does not seem to get it working...--}}
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
     @stack('css')
@@ -27,9 +27,9 @@
 <div class="wrapper">
 
 
-
-    @include("layouts.menu")
-
+    @if(Auth::check())
+        @include("layouts.menu")
+    @endif
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
