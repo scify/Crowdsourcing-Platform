@@ -86,9 +86,11 @@ sudo nano /etc/hosts
 
 ##Social Login - Sign Up with Socialite
 This app uses [Socialite Laravel Plugin](https://laravel.com/docs/5.6/socialite) to handle social login.
+
 In order to get it working in your development environment, you need to make sure that you have API keys and secrets for 
 Facebook and Twitter (guides [here](https://appdividend.com/2017/07/12/laravel-facebook-login/) and [here](https://appdividend.com/2017/07/21/laravel-5-twitter-login/)),
-and that you can access https://dev.ecas/ (notice the https) on your machine.
+and that you can access [https://dev.ecas/](https://dev.ecas/) (notice the https) on your machine.
+
 A guide for enabling https on your local machine can be found [here](https://deliciousbrains.com/https-locally-without-browser-privacy-errors/).
 
 Basically, you need to run 
