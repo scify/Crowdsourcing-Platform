@@ -83,6 +83,34 @@ sudo nano /etc/hosts
 127.0.0.1       dev.ecas
 
 ```
+
+##Social Login - Sign Up with Socialite
+This app uses [Socialite Laravel Plugin](https://laravel.com/docs/5.6/socialite) to handle social login.
+In order to get it working in your development environment, you need to make sure that you have API keys and secrets for Facebook and Twitter,
+and that you can access https://dev.ecas/ (notice the https) on your machine.
+A guide for enabling https on your local machine can be found [here](https://deliciousbrains.com/https-locally-without-browser-privacy-errors/).
+
+Basically, you need to run 
+```bash
+openssl req -new -sha256 -newkey rsa:2048 -nodes \
+-keyout dev.ecas.key -x509 -days 365 \
+-out dev.ecas.crt
+```
+
+And then reference the 2 files generated in the .conf file of the application (located in `/etc/apache2/sites-available` for Apache).
+
+```bash
+SSLEngine on
+SSLCertificateFile "/path/to/dev.ecas.crt"
+SSLCertificateKeyFile "/path/to/dev.ecas.key"
+```
+
+Also, make sure to restart Apache, by running
+
+```bash
+sudo service apache2 restart
+```
+
 ##Start web server
 Start web server
 ```
