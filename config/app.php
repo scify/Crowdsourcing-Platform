@@ -188,7 +188,8 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         //For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        \App\Providers\ConfigServiceProvider::class
     ],
 
     /*
