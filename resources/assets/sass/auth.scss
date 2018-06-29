@@ -1,4 +1,24 @@
+.socialSignIn {
+  i {
+    font-size: 50px;
+  }
+}
 
+.socialSignInContainer {
+  margin-top: 10px;
+  .title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .fa-facebook-square {
+    color: #3B5998;
+  }
+
+  .fa-twitter-square {
+    color: #1DA1F2;
+  }
+}
 
 .account-type-btn {
   padding: 50px 25px;
