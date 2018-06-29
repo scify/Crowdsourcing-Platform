@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Project extends Model
+class CrowdSourcingProject extends Model
 {
     use SoftDeletes;
 
@@ -14,7 +14,7 @@ class Project extends Model
      *
      * @var string
      */
-    protected $table = 'projects';
+    protected $table = 'crowd_sourcing_projects';
 
     /**
      * The attributes that are mass assignable.

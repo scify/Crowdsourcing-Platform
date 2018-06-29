@@ -4,9 +4,7 @@ namespace App\Repository;
 
 
 use App\Models\User;
-use App\Models\UserLocation;
 use App\Models\UserRole;
-use App\Models\UserRoleLookup;
 
 class UserRepository extends Repository
 {
