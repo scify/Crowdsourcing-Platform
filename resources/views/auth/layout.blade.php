@@ -6,10 +6,11 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.ico') }}"/>
     <title>@yield('title_prefix', env('APP_NAME')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('dist/css/auth.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/register.css') }}">
     @stack('css')
 
     <!--[if lt IE 9]>

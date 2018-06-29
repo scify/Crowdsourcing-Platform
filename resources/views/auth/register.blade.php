@@ -1,9 +1,5 @@
 @extends('auth.layout')
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/register.css') }}">
-@endpush
-
 @section('auth-form')
     <div class="form-wrapper">
         <p class="welcome-msg">Welcome!</p>
@@ -14,6 +10,7 @@
             >{{ trans('adminlte::adminlte.register') }}</button>
         </form>
     </div>
+    @include('auth.social-sign-in')
     <div class="auth-links">
         <a href="{{ url(config('adminlte.login_url', 'login')) }}"
            class="text-center">{{ trans('adminlte::adminlte.i_already_have_a_membership') }}</a>
