@@ -19,21 +19,21 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Platform Admin',
                 'surname' => '',
                 'email' => 'platform-admin@crowd.com',
-                'password' => bcrypt('test123')
+                'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED '))
             ),
             array(
                 'id' => 2,
                 'name' => 'Content Manager',
                 'surname' => '',
                 'email' => 'content-manager@crowd.com',
-                'password' => bcrypt('test123')
+                'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED '))
             ),
             array(
                 'id' => 3,
                 'name' => 'Registered User',
                 'surname' => '',
                 'email' => 'user@crowd.com',
-                'password' => bcrypt('test123')
+                'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED '))
             ),
         ));
     }
