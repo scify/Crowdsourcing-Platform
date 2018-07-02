@@ -72,8 +72,8 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> {{ env("APP_VERSION")}}
         </div>
-        <strong>Copyright &copy; {{ date("Y") }} <a target="_blank" href="http://www.enikos.gr">Enikos.gr</a></strong>
-        All rights reserved.
+        <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
+
     </footer>
     @include("layouts.control-sidebar")
 
