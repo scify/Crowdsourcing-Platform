@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DefaultProjectSeeder extends Seeder
 {
@@ -11,8 +12,7 @@ class DefaultProjectSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('projects')->delete();
-        DB::table('projects')->insert(array(
+        DB::table('crowd_sourcing_projects')->insert(array(
             array('id' => 1,
                 'name' => 'FAIR EU',
                 'slug' => 'fair-eu',
