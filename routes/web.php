@@ -29,7 +29,10 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/user/delete', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
     Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
+    Route::get('/project/{id}/edit', 'CrowdSourcingProjectController@edit')->name('editProject');
+    Route::get("/admin/manage-projects", "CrowdSourcingProjectController@showProjectsListPage")->middleware("can:manage-users");
 });
+
 
 
 
