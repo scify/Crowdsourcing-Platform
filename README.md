@@ -21,7 +21,6 @@ Then run ```php artisan migrate``` to create the DB schema and
 ```
 composer install
 
-composer update
 ```
 
 3. Install front-end dependencies
@@ -39,7 +38,10 @@ to link this folder with the public directory
 ##Apache configuration:
 
 The following assumes that the website will be rendered under dev.ecas url.
-You can edit the /etc/hosts/ file and add a record  ```127.0.0.1       dev.ecas```
+You can edit the /etc/hosts/ file and add a record  
+```
+127.0.0.1  dev.ecas
+```
 
 
 ```
@@ -64,9 +66,9 @@ Make the symbolic link:
 ```
 % cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/ecas.conf
 ```
-Enable mod_rewrite and restart apache:
+Enable mod_rewrite, mod_ssl and restart apache:
 ```
-% sudo a2enmod rewrite && sudo service apache2 restart
+% sudo a2enmod rewrite && sudo a2enmod ssl && sudo service apache2 restart
 ```
 Fix permissions for storage directory:
 ```
@@ -100,31 +102,38 @@ openssl req -new -sha256 -newkey rsa:2048 -nodes \
 -out dev.ecas.crt
 ```
 
-And then reference the 2 files generated in the .conf file of the application (located in `/etc/apache2/sites-available` for Apache).
+And then reference the 2 files generated in the ecas.conf file of the application.
+Make sure you change the port to 443 as shown below:
 
-```bash
-SSLEngine on
-SSLCertificateFile "/path/to/dev.ecas.crt"
-SSLCertificateKeyFile "/path/to/dev.ecas.key"
+
 ```
+% sudo touch /etc/apache2/sites-available/ecas.conf
+% sudo nano /etc/apache2/sites-available/ecas.conf
+<VirtualHost *:443>
+	SSLEngine on
+	SSLCertificateFile "/etc/apache2/sites-available/dev.ecas.crt"
+	SSLCertificateKeyFile "/etc/apache2/sites-available/dev.ecas.key"
+
+        ServerName dev.ecas
+        ServerAlias dev.ecas
+        DocumentRoot "/home/alex/Projects/crowdsourcing-platform-backend/public"
+        <Directory "/home/alex/Projects/crowdsourcing-platform-backend/public">
+            Require all granted
+            AllowOverride all
+        </Directory>
+       
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+
 
 Also, make sure to restart Apache, by running
 
 ```bash
 sudo service apache2 restart
 ```
-
-##Start web server
-Start web server
-```
-% php artisan serve
-```
-and navigate to localhost:8000.
-
-
-## Deploying
-You can run either  ```php artisan serve``` or set up a symbolic link to ```/path/to/project/public``` directory and navigate to http://localhost/{yourLinkName}
-
 
 ## Related HTML Template
 This project uses the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2.html) template. 

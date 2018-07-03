@@ -17,4 +17,4 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .version();
 
 // move sweetalert.css to public/dist/css
-mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
+// mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
