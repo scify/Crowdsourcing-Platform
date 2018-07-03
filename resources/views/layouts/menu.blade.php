@@ -18,8 +18,7 @@
                 <li class="{{ UrlMatchesMenuItem("my-profile")}}">
                     <a href="{{url("my-profile")}}">
                         <i class="fa fa-user"></i> <span>My profile</span>
-                        <span class="pull-right-container">
-                </span>
+                        <span class="pull-right-container"></span>
                     </a>
                 </li>
             @endcan
@@ -34,9 +33,16 @@
                         <li class="{{UrlMatchesMenuItem("admin/manage-users")}}">
                             <a href="{{ url("admin/manage-users") }}"><i
                                         class="fa fa-users"></i> Manage Users</a></li>
+                        @can("manage-crowd-sourcing-projects")
+                            <li class="{{UrlMatchesMenuItem("admin/manage-projects")}}">
+                                <a href="{{ url("admin/manage-projects") }}"><i
+                                            class="fas fa-list-ul"></i> Manage Projects</a></li>
+                        @endcan
                     </ul>
                 </li>
+
             @endcan
+
         </ul>
     </section>
     <!-- /.sidebar -->
