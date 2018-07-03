@@ -22,7 +22,8 @@ class DefaultProjectSeeder extends Seeder
                 'label1' => '',
                 'label2' => '',
                 'description' => '',
-                'user_creator_id' => 1
+                'user_creator_id' => 1,
+                'language_id' => 6
             ),
         ));
     }

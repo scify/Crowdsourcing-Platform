@@ -15,6 +15,7 @@ class DatabaseSeederRunOnEmptyDB extends Seeder
             UserRoleLkpTableSeeder::class,
             UsersTableSeeder::class,
             UserRolesTableSeeder::class,
+            LanguagesLkpTableSeeder::class,
             DefaultProjectSeeder::class
         ]);
     }
