@@ -8,12 +8,9 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     {{--Loading summernote CSS via CDN because webpack does not seem to get it working...--}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
+    {{--<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">--}}
     @stack('css')
 
     <!--[if lt IE 9]>
@@ -40,8 +37,6 @@
                 <li class="active"> {{ isset($pageTitle) ? $pageTitle : ''}}</li>
             </ol>--}}
         </section>
-
-
         <section class="content">
             @if(session('flash_message_success'))
                 <div class="alert alert-success alert-dismissable">
@@ -66,14 +61,12 @@
             @endif
             @yield('content')
         </section>
-
     </div>
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> {{ env("APP_VERSION")}}
         </div>
-        <strong>Copyright &copy; {{ date("Y") }} <a target="_blank" href="http://www.enikos.gr">Enikos.gr</a></strong>
-        All rights reserved.
+        <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
     </footer>
     @include("layouts.control-sidebar")
 
