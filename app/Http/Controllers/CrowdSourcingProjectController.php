@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class CrowdSourcingProjectController extends Controller
 {
+
+    private $crowdSourcingProjectManager;
+
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +65,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -80,5 +89,10 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showProjectsListPage() {
+        $viewModel = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjectsViewModels();
+        return view('crowd-sourcing-projects.list', compact('viewModel'));
     }
 }
