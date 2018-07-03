@@ -66,9 +66,9 @@ Make the symbolic link:
 ```
 % cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/ecas.conf
 ```
-Enable mod_rewrite and restart apache:
+Enable mod_rewrite, mod_ssl and restart apache:
 ```
-% sudo a2enmod rewrite && sudo service apache2 restart
+% sudo a2enmod rewrite && sudo a2enmod ssl && sudo service apache2 restart
 ```
 Fix permissions for storage directory:
 ```
