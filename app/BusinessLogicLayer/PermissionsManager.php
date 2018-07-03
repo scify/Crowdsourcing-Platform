@@ -23,6 +23,10 @@ class PermissionsManager
             return $this->userHasPermission($user,  'manage-users');
         });
 
+        Gate::define('manage-crowd-sourcing-projects', function ($user) {
+            return $this->userHasPermission($user,  'manage-crowd-sourcing-projects');
+        });
+
         Gate::define('delete-article', function ($user, $id) {
 //            $article = $this->articleRepository->find($id);
 //            // if user is journalist, check whether they are the creator of the article
@@ -66,6 +70,8 @@ class PermissionsManager
             case "manage-platform":
                 return in_array($roleId, [UserRoles::ADMIN]);
             case "manage-users":
+                return in_array($roleId, [UserRoles::ADMIN]);
+            case "manage-crowd-sourcing-projects":
                 return in_array($roleId, [UserRoles::ADMIN]);
             default:
                 throw new AccessDeniedException("Could not verify ability " . $ability . " for role " . $roleId);
