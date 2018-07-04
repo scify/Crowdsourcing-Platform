@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', Arial, Sans-Serif !important;
+  color: #076ec1;
+}
+
+body {
+  p {
+    color: #666666;
+  }
+  a {
+    color: #2ea3f2;
+  }
+}
+
+.navbar-default {
+  background-color: #fff;
+  .navbar-brand {
+    height: auto;
+    img {
+      height: 50px;
+    }
+  }
+  .navbar-toggle {
+    margin: 15px;
+  }
+  .navbar-collapse {
+    margin: 15px 0;
+    &.collapse.in, &.collapsing {
+      float: unset !important;
+    }
+  }
+}
+
+.image-with-text-wrapper {
+  height: 650px;
+  background-size: cover;
+  background-position: center;
+  .gray-filter {
+    z-index: 1000;
+    background-color: black;
+    opacity: 0.3;
+    height: inherit;
+    margin: 0 -15px;
+  }
+  .text {
+    position: relative;
+    z-index: 1001;
+    margin-top: -420px;
+    color: white;
+    h2 {
+      font-size: xx-large;
+      font-weight: bold;
+    }
+  }
+}
+
+section {
+  padding-top: 80px;
+  &:nth-child(even) {
+    background-color: #f7f7f9;
+    margin: 0 -15px;
+  }
+  h2 {
+    text-align: center;
+  }
+  .content-container {
+    padding: 100px 150px;
+    @media screen and (max-width: 767px) {
+      padding: 50px 0;
+    }
+  }
+  p {
+    font-size: larger;
+  }
+}
+
+#motto {
+  h2 {
+    color: white;
+  }
+  .btn {
+    font-size: large;
+    margin-top: 20px;
+  }
+}
+
+.divider {
+  border-bottom: 1px solid gray;
+  width: 35%;
+  margin: auto;
+}
+
+footer .row {
+  background-color: #99aec1;
+  color: #000 !important;
+  padding-top: 60px;
+  padding-bottom: 10px;
+  p {
+    color: #000;
+  }
+  a {
+    font-weight: bold;
+    color: #000;
+  }
+  @media screen and (max-width: 767px) {
+    text-align: center;
+  }
+}
