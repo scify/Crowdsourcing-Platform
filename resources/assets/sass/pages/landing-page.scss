@@ -54,6 +54,38 @@ body {
       font-weight: bold;
     }
   }
+  .call-to-action {
+    margin-top: 20px;
+    text-align: center;
+    a {
+      padding: .3em 1em;
+      border: 2px solid white;
+      border-radius: 3px;
+      background-color: transparent;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.7em;
+      color: white;
+      transition: all .2s;
+      i {
+        display: none;
+        position: relative;
+        left: 20px;
+        bottom: 2px;
+        top: 2px;
+        font-size: 30px;
+      }
+      &:hover {
+        padding: .3em 2em .3em .7em;
+        background-color: rgba(255, 255, 255, .2);
+        border: 2px solid transparent;
+        i {
+          display: inline-block;
+          transition: all 5s;
+        }
+      }
+    }
+  }
 }
 
 section {
