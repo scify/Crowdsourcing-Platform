@@ -140,3 +140,8 @@ This project uses the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2
 More specifically, it makes use of [Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE)
 for easier integration.
 
+
+##How to debug
+- Install and configure Xdebug on your machine
+- At Chrome install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
+- At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"
