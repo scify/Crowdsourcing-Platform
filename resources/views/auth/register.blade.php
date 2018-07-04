@@ -2,7 +2,7 @@
 
 @section('auth-form')
     <div class="form-wrapper">
-        <p class="welcome-msg">Welcome!</p>
+        <p class="welcome-msg">Create your account</p>
         <form action="{{ url(config('adminlte.register_url', 'register')) }}" method="post">
             @include('auth.partials.register_form')
             <button type="submit"
