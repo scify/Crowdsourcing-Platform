@@ -1,14 +1,50 @@
+
+@import url("../../../public/vendor/adminlte/css/auth.css");
+
+
+body,html {
+  height:100% !important;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.login-page, .register-page {
+  background-image: url("../images/active_participation.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.login-box, .register-box
+{
+  padding-top:7%;
+  margin-top:0;
+  margin-bottom:0;
+  margin-left:auto;
+  margin-right:auto;
+  width:500px;
+}
+.login-box-msg, .register-box-msg
+{
+  text-align: left;
+  padding:0 20px 20px 0px;
+}
 .socialSignIn {
   i {
     font-size: 50px;
   }
 }
 
+.form-wrapper, .socialSignInContainer,.auth-links,.reset{
+  padding: 25px;
+  padding-bottom: 0;
+}
+
+
 .socialSignInContainer {
-  margin-top: 10px;
+  padding-top:0;
   .title {
-    text-align: center;
-    margin-bottom: 10px;
+    text-align: left;
+    margin-top: 13px;
   }
 
   .fa-facebook-square {
@@ -30,20 +66,25 @@
   }
 }
 
+
 .form-wrapper {
-  background-color: lightgray;
-  padding: 25px;
-  .welcome-msg {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 25px;
-  }
   button[type="submit"] {
     margin-bottom: 25px;
   }
 }
 
 .auth-links {
-  text-align: center;
+  text-align: left;
+}
+
+.login-box-body, .register-box-body
+{
+  color:black;
+  background-color:rgba(255,255,255,0.95);
+  border-radius:10px;
+  h1 {
+    text-align:center;
+    font-size:26px;
+    padding-bottom:0;
+  }
 }
