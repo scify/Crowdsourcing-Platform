@@ -31,7 +31,7 @@
     </div>
 </div>
 
-@include("layouts.footer-scripts")
+@include("partials.footer-scripts")
 
 @stack('scripts')
 

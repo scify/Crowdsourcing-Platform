@@ -26,7 +26,7 @@
 
 
     @if(Auth::check())
-        @include("layouts.menu")
+        @include("loggedin-environment.partials.menu")
     @endif
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -68,12 +68,12 @@
         </div>
         <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
     </footer>
-    @include("layouts.control-sidebar")
+    @include("loggedin-environment.partials.control-sidebar")
 
 </div>
 
 
-@include("layouts.footer-scripts")
+@include("partials.footer-scripts")
 
 </body>
 </html>

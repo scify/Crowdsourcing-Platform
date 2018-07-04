@@ -44,7 +44,7 @@
                 </div>
             </form>
         </div>
-        @include('auth.social-sign-in')
+        @include('auth.partials.social-sign-in')
         <div class="auth-links">
             <a href="{{ url(config('adminlte.register_url', 'register')) }}"
                class="text-center"
