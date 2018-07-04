@@ -1,4 +1,4 @@
-@extends('layouts.main-layout')
+@extends('loggedin-environment.layout')
 @section('title', 'home')
 @section('content-header')
     <h1>Edit User</h1>
