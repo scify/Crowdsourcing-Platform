@@ -25,7 +25,7 @@
     </div>
 
     <div class="login-box-body">
-        <h1>Help us define our future!</h1>
+        <h1>Let's define our future!</h1>
         @yield('auth-form')
     </div>
 </div>
