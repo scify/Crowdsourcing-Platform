@@ -6,7 +6,7 @@
         <!-- logo for regular state and mobile devices -->
             <span class="logo-lg">Crowdsourcing Platform</span></span>
     </span>
-    @include("layouts.header-controls")
+    @include("loggedin-environment.partials.header-controls")
 </header>
 
 <aside class="main-sidebar">

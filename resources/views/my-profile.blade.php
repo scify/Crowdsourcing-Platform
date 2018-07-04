@@ -1,4 +1,4 @@
-@extends('layouts.main-layout')
+@extends('loggedin-environment.layout')
 
 @section('content-header')
     <h1>My profile</h1>

@@ -1,4 +1,4 @@
-@extends('layouts.main-layout')
+@extends('loggedin-environment.layout')
 
 @section('title', 'home')
 
@@ -13,8 +13,8 @@
         </div>
         <div class="box-body">
             <div id="allUsers">
-                @include('admin.user-filters')
-                @include('admin.users-list', ['users' => $viewModel->users])
+                @include('admin.partials.user-filters')
+                @include('admin.partials.users-list', ['users' => $viewModel->users])
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <h3 class="box-title">Add new user</h3>
         </div>
         <div class="box-body">
-            @include('admin.new-user-form', ['roles' => $viewModel->allRoles])
+            @include('admin.partials.new-user-form', ['roles' => $viewModel->allRoles])
         </div>
     </div>
 @stop

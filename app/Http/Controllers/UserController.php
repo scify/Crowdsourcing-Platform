@@ -19,59 +19,47 @@ class UserController extends Controller
     public function myProfile()
     {
         $userViewModel = $this->userManager->getMyProfileData(Auth::user());
-        return view('home.my-profile', ['viewModel' => $userViewModel]);
+        return view('my-profile', ['viewModel' => $userViewModel]);
     }
 
-    public function patch(Request $request) {
-        if($request->password)
+    public function patch(Request $request)
+    {
+        if ($request->password)
             $this->validate($request, [
                 'password' => 'required|string|min:6|confirmed',
                 'current_password' => 'required|string|min:6'
             ]);
         $data = $request->all();
-        try {
-            $this->userManager->updateUser($data);
-            session()->flash('flash_message_success', 'Profile updated.');
-        } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
-        }
+
+        $this->userManager->updateUser($data);
+        session()->flash('flash_message_success', 'Profile updated.');
         return back();
     }
 
-    public function delete(Request $request) {
-        try {
-            $this->userManager->deactivateUser($request->id);
-            session()->flash('flash_message_success', 'User deleted.');
-        } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
-        }
+    public function delete(Request $request)
+    {
+        $this->userManager->deactivateUser($request->id);
+        session()->flash('flash_message_success', 'User deleted.');
         return back();
     }
 
-    public function restore(Request $request) {
-        try {
-            $this->userManager->reactivateUser($request->id);
-            session()->flash('flash_message_success', 'User restored.');
-        } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
-        }
+    public function restore(Request $request)
+    {
+        $this->userManager->reactivateUser($request->id);
+        session()->flash('flash_message_success', 'User restored.');
         return back();
     }
 
-    public function showUsersByCriteria(Request $request) {
+    public function showUsersByCriteria(Request $request)
+    {
         $input = $request->all();
-        try {
-            $users = $this->userManager->getUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
-            $users->setPath('#');
-        }  catch (\Exception $e) {
-            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('common.ajax_error_message', compact('errorMessage'))));
-        }
-        if($users->count() == 0) {
+        $users = $this->userManager->getUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
+        $users->setPath('#');
+        if ($users->count() == 0) {
             $errorMessage = "No Users found";
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('common.ajax_error_message', compact('errorMessage'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String)view('partials.ajax_error_message', compact('errorMessage'))));
         } else {
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) view('admin.users-list', compact('users'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String)view('admin.partials.users-list', compact('users'))));
         }
     }
 }
