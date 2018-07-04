@@ -8,9 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/auth.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/register.css') }}">
     @stack('css')
 
     <!--[if lt IE 9]>
@@ -23,10 +21,11 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! '<b>Crowdsourcing Platform</b>' !!}</a>
+        {{--<a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! '<b>Crowdsourcing Platform</b>' !!}</a>--}}
     </div>
 
     <div class="login-box-body">
+        <h1>Help us define our future!</h1>
         @yield('auth-form')
     </div>
 </div>

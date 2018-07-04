@@ -48,7 +48,7 @@
         <div class="auth-links">
             <a href="{{ url(config('adminlte.register_url', 'register')) }}"
                class="text-center"
-            >I don't have an account</a>
+            >I want to register</a>
             <br>
             <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
                class="text-center"

@@ -1,7 +1,7 @@
 @extends('auth.layout')
 
 @section('auth-form')
-    <div class="login-box-body">
+    <div class="reset">
         <p class="login-box-msg">{{ trans('adminlte::adminlte.password_reset_message') }}</p>
         @if (session('status'))
             <div class="alert alert-success">
