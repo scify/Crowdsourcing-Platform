@@ -68,15 +68,16 @@
                             </div>
                             <span class="form-control-feedback"></span>
 
-                            {{--<label class="col-sm-12 control-label">Questionnaire Section</label>--}}
-                            {{--<div class="col-sm-12">--}}
-                                {{--<div class="form-group has-feedback">--}}
-                                    {{--<textarea id="questionnaire" class="form-control summernote" name="questionnaire"--}}
-                                              {{--required--}}
-                                              {{--placeholder="Questionnaire Section">{{ $project->questionnaire }}</textarea>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<span class="form-control-feedback"></span>--}}
+                            {{--TODO: remove--}}
+                            <label class="col-sm-12 control-label hide">Questionnaire Section</label>
+                            <div class="col-sm-12 hide">
+                                <div class="form-group has-feedback">
+                                    <textarea id="questionnaire" class="form-control summernote" name="questionnaire"
+                                              required
+                                              placeholder="Questionnaire Section">{{ $project->questionnaire }}</textarea>
+                                </div>
+                            </div>
+                            <span class="form-control-feedback hide"></span>
 
                             <label class="col-sm-12 control-label">Footer Section</label>
                             <div class="col-sm-12">
