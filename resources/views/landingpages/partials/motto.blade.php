@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 image-with-text-wrapper"
-         style="background-image: url({{asset('images/background-cover.jpg')}});">
+         style="background-image: url({{asset($project->img_path)}});">
         <div class="gray-filter"></div>
         <div class="text">
             <h2>{{$project->motto}}</h2>
