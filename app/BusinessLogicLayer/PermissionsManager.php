@@ -72,7 +72,7 @@ class PermissionsManager
             case "manage-users":
                 return in_array($roleId, [UserRoles::ADMIN]);
             case "manage-crowd-sourcing-projects":
-                return in_array($roleId, [UserRoles::ADMIN]);
+                return in_array($roleId, [UserRoles::ADMIN, UserRoles::CONTENT_MANAGER]);
             default:
                 throw new AccessDeniedException("Could not verify ability " . $ability . " for role " . $roleId);
         }
