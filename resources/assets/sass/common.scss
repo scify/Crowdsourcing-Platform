@@ -122,7 +122,7 @@ $header-height: 70px;
 }
 .skin-white {
   .wrapper,.main-sidebar ,.left-side{
-    background-color:$color-navbar;
+    background-color:$bg-color-navbar;
   }
   .content-header,.content,.main-footer{
     padding-left:25px;
@@ -197,7 +197,7 @@ $header-height: 70px;
   .sidebar-menu > li:hover > a,
   .sidebar-menu > li.active > a,
   .sidebar-menu > li.menu-open > a{
-    background-color:$color-navbar;
+    background-color:$bg-color-navbar;
   }
 
   &.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
@@ -206,7 +206,7 @@ $header-height: 70px;
   }
 
   .sidebar-menu > li.header{
-    color: #4b646f;
+    color:rgba($color-navbar-head,.6);
     background: #1a2226;
   }
 }
