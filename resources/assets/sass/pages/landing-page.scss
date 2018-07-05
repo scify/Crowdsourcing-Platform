@@ -100,14 +100,14 @@ section {
     text-align: center;
   }
   .content-container {
-    padding: 100px 150px;
+    padding: 70px 150px;
+    font-size: 25px;
+    font-weight:300;
     @media screen and (max-width: 767px) {
       padding: 50px 0;
     }
   }
-  p {
-    font-size: 20px;
-  }
+
 }
 
 #motto {
