@@ -11,56 +11,46 @@
 
 <aside class="main-sidebar">
     <section class="sidebar">
-
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-
             <li class="{{ UrlMatchesMenuItem("fair-eu")}}">
                 <a href="/fair-eu">
                     <i class="fa fa-globe"></i> <span>Fair EU</span>
-                    <span class="pull-right-container"></span>
                 </a>
             </li>
-
-
             <li class="{{ UrlMatchesMenuItem("my-profile")}}">
                 <a href="{{url("my-profile")}}">
                     <i class="fa fa-dashboard"></i> <span>My dashboard</span>
-                    <span class="pull-right-container"></span>
+
                 </a>
             </li>
-
-
             <li class="{{ UrlMatchesMenuItem("contribute")}}">
                 <a href="{{url("contribute")}}">
                     <i class="fa fa-users"></i> <span>Contribute</span>
-                    <span class="pull-right-container"></span>
                 </a>
             </li>
-
-
             @can("manage-crowd-sourcing-projects")
                 <li class="header">CONTENT MANAGEMENT</li>
 
                 <li class="{{UrlMatchesMenuItem("project/1/edit")}}">
-                    <a href="{{ route('editProject', ['id' => 1]) }}"><i class="fa fa-file "></i>Edit Fair EU Page</a>
+                    <a href="{{ route('editProject', ['id' => 1]) }}"><i class="fa fa-file "></i><span>Edit Fair EU Page</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
-                    <a href="{{ route('manageQuestionnaire', ['id' => 1]) }}"><i class="fa fa-question-circle "></i>Manage
-                        Questionnaire</a>
+                    <a href="{{ route('manageQuestionnaire', ['id' => 1]) }}"><i class="fa fa-question-circle "></i>
+                        <span>Manage
+                            Questionnaire</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/reports")}}">
-                    <a href="{{ route('reports', ['id' => 1]) }}"><i class="fa fa-line-chart"></i>Reports</a>
+                    <a href="{{ route('reports', ['id' => 1]) }}"><i class="fa fa-line-chart"></i><span>Reports</span></a>
                 </li>
 
             @endcan
-
             @can("manage-users")
                 <li class="header">PLATFORM MANAGEMENT</li>
 
                 <li class="{{UrlMatchesMenuItem("admin/manage-users")}}">
                     <a href="{{ url("admin/manage-users") }}"><i
-                                class="fa fa-users"></i>Manage Users</a>
+                                class="fa fa-users"></i><span>Manage Users</span></a>
                 </li>
                 {{-- <li class="treeview {{ UrlMatchesMenuItem("admin*") }} ">
                      <a href="javascript:void(0)">
@@ -75,9 +65,6 @@
                      </ul>
                  </li>--}}
             @endcan
-
-
         </ul>
     </section>
-    <!-- /.sidebar -->
 </aside>
