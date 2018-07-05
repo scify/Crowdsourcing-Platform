@@ -44,12 +44,12 @@ class CrowdSourcingProjectManager
         unset($attributes['_token']);
         if (isset($attributes['logo'])) {
             $path = $attributes['logo']->store('project_' . $id, 'projects');
-            $attributes['logo_path'] = Storage::disk('projects')->path($path);
+            $attributes['logo_path'] = '/storage/projects/' . $path;
             unset($attributes['logo']);
         }
         if (isset($attributes['img'])) {
             $path = $attributes['img']->store('project_' . $id, 'projects');
-            $attributes['img_path'] = Storage::disk('projects')->path($path);
+            $attributes['img_path'] = '/storage/projects/' . $path;
             unset($attributes['img']);
         }
         $this->crowdSourcingProjectRepository->update($attributes, $id);
