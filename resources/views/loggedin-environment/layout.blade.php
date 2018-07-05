@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     {{--Loading summernote CSS via CDN because webpack does not seem to get it working...--}}
-    {{--<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     @stack('css')
 
     <!--[if lt IE 9]>

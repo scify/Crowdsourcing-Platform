@@ -11,8 +11,10 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .sass('resources/assets/sass/pages/my-profile.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/projects-list.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/landing-page.scss', 'public/dist/css')
+    .sass('resources/assets/sass/pages/edit-project.scss', 'public/dist/css')
     .extract([
-        'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert', 'select2' , 'bootstrap', 'jquery-toast-plugin'
+        'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert', 'select2' , 'bootstrap', 'jquery-toast-plugin',
+        'summernote'
     ])
     .sourceMaps()
     .version();

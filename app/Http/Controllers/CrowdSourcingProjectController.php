@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\LanguageManager;
 use Illuminate\Http\Request;
 
 class CrowdSourcingProjectController extends Controller
 {
 
     private $crowdSourcingProjectManager;
+    private $languageManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager)
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager, LanguageManager $languageManager)
     {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->languageManager = $languageManager;
     }
 
 
@@ -67,7 +70,8 @@ class CrowdSourcingProjectController extends Controller
     public function edit($id)
     {
         $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($id);
-        return view('edit-project')->with(['project' => $project]);
+        $languages = $this->languageManager->getAllLanguages();
+        return view('edit-project')->with(['project' => $project, 'languages' => $languages]);
     }
 
     /**
@@ -79,7 +83,16 @@ class CrowdSourcingProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'motto' => 'required|string',
+            'about' => 'required|string',
+            'questionnaire' => 'required|string',
+            'footer' => 'required|string',
+            'language_id' => 'required|numeric|exists:languages_lkp,id'
+        ]);
+        $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $request->all());
+        return redirect()->back();
     }
 
     /**
