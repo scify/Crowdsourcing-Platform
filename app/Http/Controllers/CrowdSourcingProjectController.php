@@ -66,7 +66,8 @@ class CrowdSourcingProjectController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($id);
+        return view('edit-project')->with(['project' => $project]);
     }
 
     /**
@@ -94,7 +95,7 @@ class CrowdSourcingProjectController extends Controller
 
     public function showLandingPage()
     {
-        $project = $this->crowdSourcingProjectManager->getDefaultCrowdSourcingProject();
+        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject(1);
         return view('landingpages.layout')->with(['project' => $project]);
     }
 }
