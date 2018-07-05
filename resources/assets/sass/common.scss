@@ -19,6 +19,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Open Sans', sans-serif;
 }
 
+.btn-primary{
+  background-color:$color-blue1;
+  border:none;
+}
+.box.box-info{
+  border-top-color:$color-blue2;
+}
 .main-header .logo {
   height: 53px;
 }
@@ -101,10 +108,7 @@ $header-height: 70px;
 .main-header .sidebar-toggle, .navbar-nav > li > a {
   padding: 25px;
 }
-$color:#004F9F;
-$color2:#FFDE17;
-$color3:#004F9F;
-$color4:#666;
+
 
 
 
