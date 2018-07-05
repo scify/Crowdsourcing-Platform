@@ -2,9 +2,9 @@
     <!-- Logo -->
     <span class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini">CsP</span>
+            <span class="logo-mini"><img style="" src="{{asset("images/ecas_logo_200.png")}}"></span>
         <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg">Crowdsourcing Platform</span></span>
+            <span class="logo-lg"><img src="{{asset("images/ecas_logo_200.png")}}"></span></span>
     </span>
     @include("loggedin-environment.partials.header-controls")
 </header>

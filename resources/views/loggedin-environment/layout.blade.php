@@ -20,7 +20,7 @@
     <![endif]-->
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini @yield('body_class')">
+<body class="hold-transition  skin-white sidebar-mini @yield('body_class')">
 
 <div class="wrapper">
 
