@@ -38,13 +38,13 @@
                 <div class="collapse navbar-collapse pull-right" id="top-menu-content">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#about">About</a>
+                            <a href="#about">ABOUT</a>
                         </li>
                         @if (Auth::check())
                             <li>
                                 <a href="/login">DASHBOARD</a>
                             </li>
-                            @else
+                        @else
                             <li>
                                 <a href="/login">LOGIN</a>
                             </li>
@@ -70,20 +70,7 @@
 <footer>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <p style="font-size: 12px;">© FAIR EU 2018&nbsp;|&nbsp;
-                <a href="https://faireu.ecas.org/terms-of-use/" target="_blank" title="Read more">Terms of use</a>&nbsp;|&nbsp;
-                <a href="https://faireu.ecas.org/privacy-policy/" target="_blank" title="Read more">Privacy Policy</a>&nbsp;|&nbsp;
-                <a href="https://faireu.ecas.org/cookie-policy/" target="_blank" title="Read more">Cookie Policy</a>
-            </p>
-            <p style="font-size:13px; line-height:20px;"><img
-                        src="https://faireu.ecas.org/wp-content/uploads/2018/02/big-eu-flag.png" alt=""
-                        style="width:120px; float:left; margin:5px 30px 0 0;">
-                Project Co-funded by the JUSTICE, EQUALITY AND CITIZENSHIP PROGRAMME (2014-2020) OF THE EUROPEAN
-                UNION.<br>
-                The content of this website represents the views of the author only and is his/her sole responsibility.
-                The European Commission does not accept any responsibility for use that may be made of the information
-                it contains.
-            </p>
+            {!! $project->footer !!}
         </div>
     </div>
 </footer>
