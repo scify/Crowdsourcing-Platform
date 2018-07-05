@@ -172,17 +172,12 @@ $header-height: 70px;
       font-size:16px;
     }
   }
-
-
-
   .main-footer{
     font-size:12px;
   }
   .sidebar a{
     color:#b8c7ce;
   }
-
-
   .sidebar-menu  > li {
     a{
       font-size:16px;
@@ -192,13 +187,9 @@ $header-height: 70px;
       font-size:14px;
     }
   }
-
-
-  .active .sidebar-menu > li  a {
+  .sidebar-menu .active a {
     color:white;
   }
-
-
   .sidebar-menu > li.header{
     color: #4b646f;
     background: #1a2226;
