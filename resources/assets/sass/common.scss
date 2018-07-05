@@ -194,6 +194,17 @@ $header-height: 70px;
     color:white;
     border-left-color:white;
   }
+  .sidebar-menu > li:hover > a,
+  .sidebar-menu > li.active > a,
+  .sidebar-menu > li.menu-open > a{
+    background-color:$color-navbar;
+  }
+
+  &.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right),
+  &.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
+    width:250px;
+  }
+
   .sidebar-menu > li.header{
     color: #4b646f;
     background: #1a2226;
