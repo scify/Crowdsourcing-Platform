@@ -21,6 +21,11 @@ class UserController extends Controller
         return redirect('/my-profile');
     }
 
+    public function contribute()
+    {
+        return view("contribute");
+    }
+
     public function myProfile()
     {
         $userViewModel = $this->userManager->getMyProfileData(Auth::user());
