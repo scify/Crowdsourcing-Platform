@@ -20,14 +20,14 @@ Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProvide
 Route::get('/fair-eu', 'CrowdSourcingProjectController@showLandingPage');
 
 Route::group([ 'middleware' => 'auth' ], function () {
-    Route::get('/', 'UserController@home')->middleware("can:view-my-profile");
-    Route::get('/my-profile', 'UserController@myProfile')->name('profile')->middleware("can:view-my-profile");
-    Route::get('/contribute', 'UserController@contribute')->name('contribute')->middleware("can:view-my-contribution");
+    Route::get('/', 'UserController@home');
+    Route::get('/my-profile', 'UserController@myProfile')->name('profile');
+    Route::get('/contribute', 'UserController@contribute')->name('contribute');
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
     Route::post("/admin/add-user", "AdminController@addUserToPlatform")->middleware("can:manage-users");
     Route::post("admin/update-user", "AdminController@updateUserRoles")->middleware("can:manage-platform");
-    Route::post('/user/update', 'UserController@patch')->name('updateUser')->middleware("can:view-my-profile");
+    Route::post('/user/update', 'UserController@patch')->name('updateUser');
     Route::post('/user/delete', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
     Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
