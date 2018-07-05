@@ -33,14 +33,15 @@
                         <li class="{{UrlMatchesMenuItem("admin/manage-users")}}">
                             <a href="{{ url("admin/manage-users") }}"><i
                                         class="fa fa-users"></i> Manage Users</a></li>
-                        @can("manage-crowd-sourcing-projects")
-                            <li class="{{UrlMatchesMenuItem("admin/manage-projects")}}">
-                                <a href="{{ url("admin/manage-projects") }}"><i
-                                            class="fas fa-list-ul"></i> Manage Projects</a></li>
-                        @endcan
                     </ul>
                 </li>
-
+            @endcan
+            @can("manage-crowd-sourcing-projects")
+                <li class="{{UrlMatchesMenuItem("project/*")}}">
+                    <a href="{{ route('editProject', ['id' => 1]) }}">
+                        <i class="fa fa-folder-open"></i> Fair EU Projects
+                    </a>
+                </li>
             @endcan
 
         </ul>
