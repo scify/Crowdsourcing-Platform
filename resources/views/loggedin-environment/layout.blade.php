@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.ico') }}"/>
     <title>@yield('title_prefix', env('APP_NAME')) @yield('title_postfix', '')</title>
+
+    <link rel="shortcut icon" href="https://ecas.org/wp-content/uploads/2015/05/favicon_32.png">
+    <link rel="apple-touch-icon-precomposed" href="https://ecas.org/wp-content/uploads/2015/05/favicon_57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://ecas.org/wp-content/uploads/2015/05/favicon_76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://ecas.org/wp-content/uploads/2015/05/favicon_120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://ecas.org/wp-content/uploads/2015/05/favicon_152.png">
+
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     {{--Loading summernote CSS via CDN because webpack does not seem to get it working...--}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
