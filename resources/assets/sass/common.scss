@@ -187,8 +187,12 @@ $header-height: 70px;
       font-size:14px;
     }
   }
+  .sidebar-menu > li > a{
+    border-left: 3px solid transparent;
+  }
   .sidebar-menu .active a {
     color:white;
+    border-left-color:white;
   }
   .sidebar-menu > li.header{
     color: #4b646f;
