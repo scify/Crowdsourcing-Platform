@@ -171,6 +171,9 @@ $header-height: 70px;
       color:#b8c7ce;
       font-size:16px;
     }
+    .active .sidebar a {
+      color:white;
+    }
 
 
   }
@@ -183,6 +186,7 @@ $header-height: 70px;
   .sidebar a{
     color:#b8c7ce;
   }
+
 
   .sidebar-menu  > li {
     a{
