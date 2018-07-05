@@ -22,11 +22,38 @@
                     </a>
                 </li>
             @endcan
+
+            @can("manage-crowd-sourcing-projects")
+                <li class="{{UrlMatchesMenuItem("project/*")}}">
+
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-folder-open"></i>
+                        <span>Fair EU</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{UrlMatchesMenuItem("fair-eu")}}">
+                            <a href="/fair-eu" target="_blank">
+                                <i class="fa fa-globe"></i>Public Page</a>
+                        </li>
+                        <li class="{{UrlMatchesMenuItem("project/1/edit")}}">
+                            <a href="{{ route('editProject', ['id' => 1]) }}"><i class="fa fa-file "></i>Edit Public Page</a>
+                        </li>
+                        <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
+                            <a href="{{ route('manageQuestionnaire', ['id' => 1]) }}"><i class="fa fa-question-circle "></i>Manage Questionnaire</a>
+                        </li>
+                        <li class="{{UrlMatchesMenuItem("project/1/reports")}}">
+                            <a href="{{ route('reports', ['id' => 1]) }}"><i class="fa fa-line-chart"></i>Reports</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+
             @can("manage-users")
                 <li class="treeview {{ UrlMatchesMenuItem("admin*") }} ">
                     <a href="javascript:void(0)">
                         <i class="fa fa-wrench"></i>
-                        <span>Platform Admin</span>
+                        <span>Administration</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
@@ -36,13 +63,7 @@
                     </ul>
                 </li>
             @endcan
-            @can("manage-crowd-sourcing-projects")
-                <li class="{{UrlMatchesMenuItem("project/*")}}">
-                    <a href="{{ route('editProject', ['id' => 1]) }}">
-                        <i class="fa fa-folder-open"></i> Fair EU Projects
-                    </a>
-                </li>
-            @endcan
+
 
         </ul>
     </section>
