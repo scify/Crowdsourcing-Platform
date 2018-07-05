@@ -89,9 +89,11 @@ body {
 }
 
 section {
-  padding-top: 80px;
+  &:first-of-type {
+    padding-top: 80px;
+  }
   &:nth-child(even) {
-    background-color: #f7f7f9;
+    background-color: #f3fafe;
     margin: 0 -15px;
   }
   h2 {
@@ -104,7 +106,7 @@ section {
     }
   }
   p {
-    font-size: larger;
+    font-size: 20px;
   }
 }
 
