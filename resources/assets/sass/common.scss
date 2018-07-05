@@ -169,10 +169,13 @@ $header-height: 70px;
 
     .sidebar a{
       color:#b8c7ce;
+      font-size:16px;
     }
 
 
   }
+
+
 
   .main-footer{
     font-size:12px;
@@ -180,6 +183,18 @@ $header-height: 70px;
   .sidebar a{
     color:#b8c7ce;
   }
+
+  .sidebar-menu  > li {
+    a{
+      font-size:16px;
+    }
+
+    .treeview-menu a{
+      font-size:14px;
+    }
+  }
+
+
   .sidebar-menu > li.header{
     color: #4b646f;
     background: #1a2226;
