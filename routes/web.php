@@ -16,15 +16,13 @@ Auth::routes();
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('facebookLogin');
 
-// TODO: change "fair-eu" to make it using project slug from db?
-Route::get('/', function() {
-    return redirect('/fair-eu');
-});
+
 Route::get('/fair-eu', 'CrowdSourcingProjectController@showLandingPage');
 
 Route::get('/home', 'HomeController@index');
 
 Route::group([ 'middleware' => 'auth' ], function () {
+    Route::get('/', 'UserController@myProfile')->middleware("can:view-my-profile");
     Route::get('/my-profile', 'UserController@myProfile')->name('profile')->middleware("can:view-my-profile");
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");

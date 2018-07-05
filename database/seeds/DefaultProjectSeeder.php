@@ -23,23 +23,8 @@ class DefaultProjectSeeder extends Seeder
                 'description' => '',
                 'about' => '<p>
                 Et qui consequuntur voluptas aliquid est. Nisi esse delectus laborum beatae iusto corrupti quia et.
-                Omnis minima est eaque aut rerum mollitia.
-            </p>
-            <p>
-                Autem voluptatem adipisci modi. Nemo rerum natus id laudantium. Atque recusandae qui qui et voluptas
-                quis. Et sit quia dolores magni eligendi sequi.
-            </p>
-            <p>
-                Quod voluptates aut veritatis debitis. Error ut repellendus tempora ullam at consequatur sit. Corporis
-                qui delectus saepe facere quaerat. Eius quo pariatur omnis eius cum dicta cumque. Quo nihil neque quia.
-                Quibusdam ea non facilis harum.
-            </p>
-            <p>
-                Modi ut explicabo tenetur nostrum. Eveniet quis culpa perferendis. Sit nihil quod harum autem quia
-                cumque soluta rerum. Ratione sit et sed quod quia modi dolores. Exercitationem fuga consectetur est.
-            </p>
-            <p>
-                Corporis reprehenderit qui nobis maiores quibusdam voluptatum at sit. Deleniti et quia possimus. Amet
+                Omnis minima est eaque aut rerum mollitia.Autem voluptatem adipisci modi. Nemo rerum natus id laudantium. Atque recusandae qui qui et voluptas
+                quis. Et sit quia dolores magni eligendi sequi.Corporis reprehenderit qui nobis maiores quibusdam voluptatum at sit. Deleniti et quia possimus. Amet
                 quasi aut totam molestias inventore veniam.
             </p>',
                 'questionnaire' => '<div class="row">
@@ -49,11 +34,11 @@ class DefaultProjectSeeder extends Seeder
                         <div class="questionnaire-title"
                              style="background-color: #ced8e1; color: black; font-weight: 600;
                              border-bottom: 1px solid #99aec1; text-align: center; padding: 10px;">
-                            Questionnaire
+                            Under construction
                         </div>
                         <div class="questionnaire-content"
                              style="padding-top: 180px; font-style: italic; text-align: center;">
-                            <p style="font-size: 14px !important;">Under construction</p>
+                            <p style="font-size: 14px !important;">Call to actions to start answering the questionnaire will be displayed here</p>
                         </div>
                     </div>
                 </div>
@@ -63,18 +48,15 @@ class DefaultProjectSeeder extends Seeder
                         <div class="questionnaire-title"
                              style="background-color: #ced8e1; color: black; font-weight: 600;
                              border-bottom: 1px solid #99aec1; text-align: center; padding: 10px;">
-                            Gamification Badges
+                            Under construction
                         </div>
                         <div class="gamification-content">
-                            <img src="images/badges/award.png" style="height: 50px; margin: 10px;">
-                            <img src="images/badges/certificate.png" style="height: 50px; margin: 10px;">
-                            <img src="images/badges/cup.png" style="height: 50px; margin: 10px;">
                         </div>
                         <div class="gamification-overlay"
                              style="position: absolute; top: 41px; left: 16px; right: 16px; bottom: 1px; background-color: rgba(100,100,100,0.1);">
                         </div>
                         <p style="font-size: 14px !important; text-align: center; font-style: italic; padding-top: 20px;">
-                            Under construction
+                           gamificiation elements will be displayed here
                         </p>
                     </div>
                 </div>
