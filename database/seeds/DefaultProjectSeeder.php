@@ -34,7 +34,7 @@ class DefaultProjectSeeder extends Seeder
                         <div class="questionnaire-title"
                              style="background-color: #ced8e1; color: black; font-weight: 600;
                              border-bottom: 1px solid #99aec1; text-align: center; padding: 10px;">
-                            Under construction
+                            <p style="font-size: 16px; margin: 0;">Under construction</p>
                         </div>
                         <div class="questionnaire-content"
                              style="padding-top: 180px; font-style: italic; text-align: center;">
@@ -45,18 +45,15 @@ class DefaultProjectSeeder extends Seeder
                 <div class="col-md-6">
                     <div class="gamification-wrapper"
                          style="border: 1px solid #99aec1; height: 250px; background-color: white;">
-                        <div class="questionnaire-title"
+                        <div class="gamification-title"
                              style="background-color: #ced8e1; color: black; font-weight: 600;
                              border-bottom: 1px solid #99aec1; text-align: center; padding: 10px;">
-                            Under construction
+                            <p style="font-size: 16px; margin: 0;">Under construction</p>
                         </div>
                         <div class="gamification-content">
                         </div>
-                        <div class="gamification-overlay"
-                             style="position: absolute; top: 41px; left: 16px; right: 16px; bottom: 1px; background-color: rgba(100,100,100,0.1);">
-                        </div>
                         <p style="font-size: 14px !important; text-align: center; font-style: italic; padding-top: 20px;">
-                           gamificiation elements will be displayed here
+                           Gamification elements will be displayed here
                         </p>
                     </div>
                 </div>

@@ -43,7 +43,7 @@ require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
     var initializeSummernote = function() {
         $('.summernote').summernote({
             tabsize: 2,
-            height: 500
+            height: 300
         });
     };
 
