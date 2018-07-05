@@ -91,7 +91,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>
