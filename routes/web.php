@@ -22,6 +22,7 @@ Route::get('/fair-eu', 'CrowdSourcingProjectController@showLandingPage');
 Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/', 'UserController@home')->middleware("can:view-my-profile");
     Route::get('/my-profile', 'UserController@myProfile')->name('profile')->middleware("can:view-my-profile");
+    Route::get('/contribute', 'UserController@contribute')->name('contribute')->middleware("can:view-my-contribution");
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
     Route::post("/admin/add-user", "AdminController@addUserToPlatform")->middleware("can:manage-users");
