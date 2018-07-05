@@ -15,6 +15,16 @@ class PermissionsManager
             return $this->userHasPermission($user, 'view-my-profile');
         });
 
+        Gate::define('view-fair-eu-landing-page', function ($user) {
+            return $this->userHasPermission($user, 'view-my-profile');
+        });
+
+
+        Gate::define('view-my-contribution', function ($user) {
+            return $this->userHasPermission($user, 'view-my-contribution');
+        });
+
+
         Gate::define('manage-platform', function ($user) {
             return $this->userHasPermission($user,  'manage-platform');
         });
@@ -65,6 +75,10 @@ class PermissionsManager
     private function roleHasAccessToAbility($roleId, $ability)
     {
         switch ($ability) {
+            case "view-fair-eu-landing-page":
+                return in_array($roleId, [UserRoles::REGISTERED_USER]);
+            case "view-my-contribution":
+                return in_array($roleId, [UserRoles::ADMIN, UserRoles::CONTENT_MANAGER, UserRoles::REGISTERED_USER]);
             case "view-my-profile":
                 return in_array($roleId, [UserRoles::ADMIN, UserRoles::CONTENT_MANAGER, UserRoles::REGISTERED_USER]);
             case "manage-platform":

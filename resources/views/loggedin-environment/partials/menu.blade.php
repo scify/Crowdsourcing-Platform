@@ -14,14 +14,36 @@
 
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            @can("view-my-profile")
-                <li class="{{ UrlMatchesMenuItem("my-profile")}}">
-                    <a href="{{url("my-profile")}}">
-                        <i class="fa fa-user"></i> <span>My profile</span>
+            @can("view-fair-eu-landing-page")
+                <li class="{{ UrlMatchesMenuItem("fair-eu")}}">
+                    <a href="/fair-eu">
+                        <i class="fa fa-globe"></i> <span>Fair EU</span>
                         <span class="pull-right-container"></span>
                     </a>
                 </li>
             @endcan
+
+            @can("view-my-profile")
+                <li class="{{ UrlMatchesMenuItem("my-profile")}}">
+                    <a href="{{url("my-profile")}}">
+                        <i class="fa fa-dashboard"></i> <span>My dashboard</span>
+                        <span class="pull-right-container"></span>
+                    </a>
+                </li>
+            @endcan
+
+            @can("view-my-contribution")
+                <li class="{{ UrlMatchesMenuItem("contribute")}}">
+                    <a href="{{url("contribute")}}">
+                        <i class="fa fa-users"></i> <span>Contribute</span>
+                        <span class="pull-right-container"></span>
+                    </a>
+                </li>
+            @endcan
+
+
+
+
 
             @can("manage-crowd-sourcing-projects")
                 <li class="{{UrlMatchesMenuItem("project/*")}}">
