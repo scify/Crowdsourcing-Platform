@@ -13,6 +13,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://ecas.org/wp-content/uploads/2015/05/favicon_120.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://ecas.org/wp-content/uploads/2015/05/favicon_152.png">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
+
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/auth.css') }}">
     @stack('css')
