@@ -16,9 +16,6 @@ Auth::routes();
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('facebookLogin');
 
-
-Route::get('/fair-eu', 'CrowdSourcingProjectController@showLandingPage');
-
 Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/', 'UserController@home');
     Route::get('/my-profile', 'UserController@myProfile')->name('profile');
@@ -37,6 +34,6 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/project/{id}/reports', 'CrowdSourcingProjectController@viewReports')->name('reports')->middleware("can:manage-crowd-sourcing-projects");
 });
 
-
+Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage');
 
 
