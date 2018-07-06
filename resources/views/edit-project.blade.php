@@ -109,5 +109,4 @@
 @stop
 
 @push('scripts')
-    <script src="{{ mix('dist/js/myProfile.js')}}?{{env("APP_VERSION")}}"></script>
 @endpush
