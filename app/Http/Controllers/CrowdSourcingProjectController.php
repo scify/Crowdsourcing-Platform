@@ -61,7 +61,6 @@ class CrowdSourcingProjectController extends Controller
             'name' => 'required|string',
             'motto' => 'required|string',
             'about' => 'required|string',
-            'questionnaire' => 'required|string',
             'footer' => 'required|string',
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
