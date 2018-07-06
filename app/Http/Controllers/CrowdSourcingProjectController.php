@@ -35,9 +35,6 @@ class CrowdSourcingProjectController extends Controller
     }
 
 
-
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,9 +70,11 @@ class CrowdSourcingProjectController extends Controller
     }
 
 
-    public function showLandingPage()
+    public function showLandingPage($project_slug)
     {
-        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject(1);
-        return view('landingpages.layout')->with(['project' => $project]);
+        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($project_slug);
+        if ($project)
+            return view('landingpages.layout')->with(['project' => $project]);
+        abort(404);
     }
 }
