@@ -33,7 +33,8 @@
                 <li class="header">CONTENT MANAGEMENT</li>
 
                 <li class="{{UrlMatchesMenuItem("project/1/edit")}}">
-                    <a href="{{ route('editProject', ['id' => 1]) }}"><i class="fa fa-file "></i><span>Edit Fair EU Page</span></a>
+                    <a href="{{ route('editProject', ['id' => 1]) }}"><i
+                                class="fa fa-file "></i><span>Edit Fair EU Page</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
                     <a href="{{ route('manageQuestionnaire', ['id' => 1]) }}"><i class="fa fa-question-circle "></i>
@@ -41,9 +42,9 @@
                             Questionnaire</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/reports")}}">
-                    <a href="{{ route('reports', ['id' => 1]) }}"><i class="fa fa-line-chart"></i><span>Reports</span></a>
+                    <a href="{{ route('reports', ['id' => 1]) }}"><i
+                                class="fa fa-line-chart"></i><span>Reports</span></a>
                 </li>
-
             @endcan
             @can("manage-users")
                 <li class="header">PLATFORM MANAGEMENT</li>

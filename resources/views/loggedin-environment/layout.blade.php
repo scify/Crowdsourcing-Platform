@@ -8,17 +8,22 @@
 
     <link rel="shortcut icon" href="https://ecas.org/wp-content/uploads/2015/05/favicon_32.png">
     <link rel="apple-touch-icon-precomposed" href="https://ecas.org/wp-content/uploads/2015/05/favicon_57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://ecas.org/wp-content/uploads/2015/05/favicon_76.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://ecas.org/wp-content/uploads/2015/05/favicon_120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://ecas.org/wp-content/uploads/2015/05/favicon_152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+          href="https://ecas.org/wp-content/uploads/2015/05/favicon_76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+          href="https://ecas.org/wp-content/uploads/2015/05/favicon_120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="https://ecas.org/wp-content/uploads/2015/05/favicon_152.png">
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     {{--Loading summernote CSS via CDN because webpack does not seem to get it working...--}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <link href="{{asset('dist/css/select2.min.css')}}" rel="stylesheet">
     @stack('css')
 
     <!--[if lt IE 9]>
@@ -40,10 +45,10 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             @yield("content-header")
-           {{-- <ol class="breadcrumb">
-                <li><a href="{{ url("/") }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                <li class="active"> {{ isset($pageTitle) ? $pageTitle : ''}}</li>
-            </ol>--}}
+            {{-- <ol class="breadcrumb">
+                 <li><a href="{{ url("/") }}"><i class="fa fa-dashboard"></i>Home</a></li>
+                 <li class="active"> {{ isset($pageTitle) ? $pageTitle : ''}}</li>
+             </ol>--}}
         </section>
         <section class="content">
             @if(session('flash_message_success'))
