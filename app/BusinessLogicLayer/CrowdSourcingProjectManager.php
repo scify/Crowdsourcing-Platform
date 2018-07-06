@@ -39,6 +39,10 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->find($id);
     }
 
+    public function getCrowdSourcingProjectBySlug($project_slug) {
+        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+    }
+
     public function updateCrowdSourcingProject($id, $attributes)
     {
         unset($attributes['_token']);
