@@ -1,7 +1,7 @@
-window.wa ={};
+window.wa = {};
 window.wa.enums = {};
 window.swal = require('bootstrap-sweetalert');
-require('datatables.net-bs' );
+require('datatables.net-bs');
 require('datatables.net-buttons');
 require("icheck");
 
@@ -14,15 +14,15 @@ require("bootstrap");
 require("fastclick");
 require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
 
-(function(){
+(function () {
 
-    Number.prototype.round = function(places) {
-        return +(Math.round(this + "e+" + places)  + "e-" + places);
-    }
+    Number.prototype.round = function (places) {
+        return +(Math.round(this + "e+" + places) + "e-" + places);
+    };
 
-    window.wa.roundNumber = function(num, places) {
-        return +(Math.round(parseFloat(num) + "e+" + places)  + "e-" + places);
-    }
+    window.wa.roundNumber = function (num, places) {
+        return +(Math.round(parseFloat(num) + "e+" + places) + "e-" + places);
+    };
 
     $.ajaxSetup({
         headers: {
@@ -30,37 +30,35 @@ require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
         }
     });
 
-    var initializeIcheck = function(){
-        $('input').iCheck({
+    let initializeIcheck = function () {
+        $('.icheck-input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
-
-
     };
 
-    var initializeSummernote = function() {
+    let initializeSummernote = function () {
         $('.summernote').summernote({
             tabsize: 2,
             height: 300
         });
     };
 
-    var closeDismissableAlerts = function() {
-        setTimeout(function(){
+    let closeDismissableAlerts = function () {
+        setTimeout(function () {
             /*Close any flash message after some time*/
-            $(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function(){
+            $(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function () {
                 $(".alert-dismissable").alert('close');
             });
         }, 3000);
     };
 
-    $(function(){
+    $(function () {
         initializeIcheck();
         initializeSummernote();
         closeDismissableAlerts();
-        $("#log-out").click(function(e){
+        $("#log-out").click(function (e) {
             e.preventDefault();
             $("#logout-form").submit();
         })

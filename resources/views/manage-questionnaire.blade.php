@@ -15,7 +15,9 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Under construction</h3>
                 </div>
-
+                <div class="box-body">
+                    <a href="{{route("create-questionnaire")}}"><i class="fa fa-plus"></i> Create new questionnaire</a>
+                </div>
             </div>
         </div>
     </div>
