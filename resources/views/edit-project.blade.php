@@ -20,7 +20,8 @@
                     <div class="box-body">
                         <div class="row">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="id" value="{{ $project->id }}">
+                            {{--English by default--}}
+                            <input type="hidden" name="language_id" value="6">
 
                             <label class="col-sm-12 control-label">Project Name</label>
                             <div class="col-sm-12">
@@ -43,21 +44,6 @@
                             </div>
                             <span class="form-control-feedback"></span>
 
-                            <label class="col-sm-12 control-label">Project Language</label>
-                            <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                    <select id="language" class="form-control" name="language_id"
-                                            required>
-                                        @foreach($languages as $language)
-                                            <option value="{{ $language->id }}" {{ $language->id === $project->language_id ? 'selected' : '' }}>
-                                                {{ $language->language_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <span class="form-control-feedback"></span>
-
                             <label class="col-sm-12 control-label">About Text</label>
                             <div class="col-sm-12">
                                 <div class="form-group has-feedback">
@@ -67,17 +53,6 @@
                                 </div>
                             </div>
                             <span class="form-control-feedback"></span>
-
-                            {{--TODO: remove--}}
-                            <label class="col-sm-12 control-label hide">Questionnaire Section</label>
-                            <div class="col-sm-12 hide">
-                                <div class="form-group has-feedback">
-                                    <textarea id="questionnaire" class="form-control summernote" name="questionnaire"
-                                              required
-                                              placeholder="Questionnaire Section">{{ $project->questionnaire }}</textarea>
-                                </div>
-                            </div>
-                            <span class="form-control-feedback hide"></span>
 
                             <label class="col-sm-12 control-label">Footer Section</label>
                             <div class="col-sm-12">
@@ -91,7 +66,14 @@
 
                             <label class="col-sm-12 control-label">Project Logo</label>
                             <div class="col-sm-12">
+                                <div class="image-preview-container">
+                                    <img class="selected-image-preview" src="{{asset($project->logo_path)}}"
+                                         alt="Selected logo image">
+                                </div>
                                 <div class="form-group has-feedback input-file-wrapper">
+                                    <small>In order to update the currently selected image, please choose a new image by
+                                        clicking the button below.
+                                    </small>
                                     <input type="file" name="logo" accept="image/*">
                                 </div>
                             </div>
@@ -99,7 +81,14 @@
 
                             <label class="col-sm-12 control-label">Motto Background Image</label>
                             <div class="col-sm-12">
+                                <div class="image-preview-container">
+                                    <img class="selected-image-preview" src="{{asset($project->img_path)}}"
+                                         alt="Selected motto background image">
+                                </div>
                                 <div class="form-group has-feedback input-file-wrapper">
+                                    <small>In order to update the currently selected image, please choose a new image by
+                                        clicking the button below.
+                                    </small>
                                     <input type="file" name="img" accept="image/*">
                                 </div>
                             </div>
