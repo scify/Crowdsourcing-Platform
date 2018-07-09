@@ -9,10 +9,29 @@
 namespace App\Http\Controllers;
 
 
+use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\QuestionnaireManager;
+use Illuminate\Http\Request;
+
 class QuestionnaireController extends Controller
 {
+    private $questionnaireManager;
+    private $languageManager;
+
+    public function __construct(QuestionnaireManager $questionnaireManager, LanguageManager $languageManager)
+    {
+        $this->questionnaireManager = $questionnaireManager;
+        $this->languageManager = $languageManager;
+    }
+
     public function createQuestionnaire()
     {
-        return view('create-questionnaire');
+        $languages = $this->languageManager->getAllLanguages();
+        return view('create-questionnaire')->with(['languages' => $languages]);
+    }
+
+    public function storeQuestionnaire(Request $request)
+    {
+        $this->questionnaireManager->createNewQuestionnaire($request->all());
     }
 }

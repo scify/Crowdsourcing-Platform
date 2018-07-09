@@ -10,12 +10,10 @@ class CrowdSourcingProjectController extends Controller
 {
 
     private $crowdSourcingProjectManager;
-    private $languageManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager, LanguageManager $languageManager)
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager)
     {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->languageManager = $languageManager;
     }
 
 
@@ -44,8 +42,7 @@ class CrowdSourcingProjectController extends Controller
     public function edit($id)
     {
         $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($id);
-        $languages = $this->languageManager->getAllLanguages();
-        return view('edit-project')->with(['project' => $project, 'languages' => $languages]);
+        return view('edit-project')->with(['project' => $project]);
     }
 
     /**
