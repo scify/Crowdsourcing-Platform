@@ -22,6 +22,8 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
 
 // move sweetalert.css to public/dist/css
 // mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
-//
+
 // move select2.min.css to public/dist/css
 mix.copy(['node_modules/select2/dist/css/select2.min.css'], 'public/dist/css/select2.min.css');
+// move surveyjs files to public/dist/css
+mix.copy(['resources/assets/plugins/surveyjs-1.0.30/*'], 'public/dist/css/');
