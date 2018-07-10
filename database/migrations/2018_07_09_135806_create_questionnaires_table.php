@@ -15,9 +15,11 @@ class CreateQuestionnairesTable extends Migration
     {
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('project_id');
             $table->unsignedInteger('default_language_id');
             $table->string('title', 250);
             $table->longText('questionnaire_json');
+            $table->foreign('project_id')->references('id')->on('crowd_sourcing_projects');
             $table->foreign('default_language_id')->references('id')->on('languages_lkp');
             $table->timestamps();
         });
