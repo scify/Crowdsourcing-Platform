@@ -10,6 +10,7 @@ namespace App\DataAccessLayer;
 
 
 use App\Models\Questionnaire;
+use App\Models\QuestionnaireHtml;
 use App\Models\QuestionnaireLanguage;
 use App\Models\QuestionnairePossibleAnswer;
 use App\Models\QuestionnaireQuestion;
@@ -44,6 +45,15 @@ class QuestionnaireStorageManager
         $question->type = $questionType;
         $question->save();
         return $question;
+    }
+
+    public function saveNewHtmlElement($questionId, $html)
+    {
+        $questionnaireHtml = new QuestionnaireHtml();
+        $questionnaireHtml->question_id = $questionId;
+        $questionnaireHtml->html = $html;
+        $questionnaireHtml->save();
+        return $questionnaireHtml;
     }
 
     public function saveNewAnswer($questionId, $answer)
