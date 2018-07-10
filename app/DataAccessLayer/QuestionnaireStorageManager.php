@@ -16,11 +16,12 @@ use App\Models\QuestionnaireQuestion;
 
 class QuestionnaireStorageManager
 {
-    public function saveNewQuestionnaire($title, $languageId, $questionnaireJson)
+    public function saveNewQuestionnaire($title, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire = new Questionnaire();
         $questionnaire->title = $title;
         $questionnaire->default_language_id = $languageId;
+        $questionnaire->project_id = $projectId;
         $questionnaire->questionnaire_json = $questionnaireJson;
         $questionnaire->save();
         return $questionnaire;

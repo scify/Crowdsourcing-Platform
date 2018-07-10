@@ -23,7 +23,7 @@ class QuestionnaireManager
     public function createNewQuestionnaire($data)
     {
         $questionnaire = $this->questionnaireStorageManager->saveNewQuestionnaire(
-            $data['title'], $data['language'], $data['content']
+            $data['title'], $data['language'], $data['project'], $data['content']
         );
         $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaire->id, $data['language']);
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);

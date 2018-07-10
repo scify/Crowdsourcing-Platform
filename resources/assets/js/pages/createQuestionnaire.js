@@ -23,6 +23,7 @@ let SurveyEditor = require('surveyjs-editor');
     let saveQuestionnaire = function () {
         let self = $(this);
         let title = $('#title').val().trim();
+        let project = $('#project-id').val();
         let language = $('#language').val();
         let content = editor.text;
         if (title === '')
@@ -37,7 +38,7 @@ let SurveyEditor = require('surveyjs-editor');
             $.ajax({
                 method: 'post',
                 url: self.data('url'),
-                data: {title, language, content},
+                data: {title, language, project, content},
                 success: function (response) {
                     if (response.status === '__SUCCESS') {
                         swal({
