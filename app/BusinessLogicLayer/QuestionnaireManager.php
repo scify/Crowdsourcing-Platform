@@ -29,7 +29,10 @@ class QuestionnaireManager
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
-            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireLanguage->id, $questionTitle, $question->type);
+            $questionType = $question->type;
+            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireLanguage->id, $questionTitle, $questionType);
+            if ($questionType === 'html')
+                $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
         }
     }
@@ -39,7 +42,8 @@ class QuestionnaireManager
         $questionnaire = json_decode($content);
         $allQuestions = [];
         foreach ($questionnaire->pages as $page) {
-            $allQuestions = array_merge($allQuestions, $page->elements);
+            if (isset($page->elements))
+                $allQuestions = array_merge($allQuestions, $page->elements);
         }
         return $allQuestions;
     }
