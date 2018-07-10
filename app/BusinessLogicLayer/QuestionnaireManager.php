@@ -9,7 +9,6 @@
 namespace App\BusinessLogicLayer;
 
 
-
 use App\DataAccessLayer\QuestionnaireStorageManager;
 
 class QuestionnaireManager
@@ -23,19 +22,37 @@ class QuestionnaireManager
 
     public function createNewQuestionnaire($data)
     {
-        $questions = $this->extractDataFromQuestionnaireJson($data['content']);
-        $questionnaire = $this->questionnaireStorageManager->createNewQuestionnaire(
+        $questionnaire = $this->questionnaireStorageManager->saveNewQuestionnaire(
             $data['title'], $data['language'], $data['content']
         );
-        $questionnaireLanguage = $this->questionnaireStorageManager->addNewQuestionnaireLanguage($questionnaire->id, $data['language']);
+        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaire->id, $data['language']);
+        $questions = $this->extractDataFromQuestionnaireJson($data['content']);
+        foreach ($questions as $question) {
+            $questionTitle = isset($question->title) ? $question->title : $question->name;
+            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireLanguage->id, $questionTitle, $question->type);
+            $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
+        }
     }
 
-    private function extractDataFromQuestionnaireJson($content) {
+    private function extractDataFromQuestionnaireJson($content)
+    {
         $questionnaire = json_decode($content);
         $allQuestions = [];
         foreach ($questionnaire->pages as $page) {
             $allQuestions = array_merge($allQuestions, $page->elements);
         }
         return $allQuestions;
+    }
+
+    private function storeAllAnswers($question, $questionId, array $fieldNames)
+    {
+        foreach ($fieldNames as $fieldName) {
+            if (isset($question->$fieldName)) {
+                foreach ($question->$fieldName as $temp) {
+                    $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
+                    $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer);
+                }
+            }
+        }
     }
 }

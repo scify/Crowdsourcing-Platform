@@ -47,7 +47,7 @@ let SurveyEditor = require('surveyjs-editor');
                             confirmButtonClass: "btn-success",
                             confirmButtonText: "OK",
                         }, function () {
-                            window.href = response.redirect_url;
+                            window.location = response.redirect_url;
                         });
                     } else {
                         swal({
