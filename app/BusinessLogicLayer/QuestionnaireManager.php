@@ -10,18 +10,34 @@ namespace App\BusinessLogicLayer;
 
 
 use App\DataAccessLayer\QuestionnaireStorageManager;
+use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 
 class QuestionnaireManager
 {
     private $questionnaireStorageManager;
+    private $languageManager;
 
-    public function __construct(QuestionnaireStorageManager $questionnaireStorageManager)
+    public function __construct(QuestionnaireStorageManager $questionnaireStorageManager, LanguageManager $languageManager)
     {
         $this->questionnaireStorageManager = $questionnaireStorageManager;
+        $this->languageManager = $languageManager;
     }
 
-    public function getAllQuestionnairesForProjectViewModel($projectId) {
+    public function getCreateEditQuestionnaireViewModel($id)
+    {
+        $questionnaire = null;
+        $title = "Create Questionnaire";
+        if (!is_null($id)) {
+            $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($id);
+            $title = "Edit Questionnaire";
+        }
+        $languages = $this->languageManager->getAllLanguages();
+        return new CreateEditQuestionnaire($questionnaire, $languages, $title);
+    }
+
+    public function getAllQuestionnairesForProjectViewModel($projectId)
+    {
         $questionnaires = $this->questionnaireStorageManager->getAllQuestionnairesForProjectWithTranslations($projectId);
         $availableStatuses = $this->questionnaireStorageManager->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses);

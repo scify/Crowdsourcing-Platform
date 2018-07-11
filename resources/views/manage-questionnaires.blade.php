@@ -41,6 +41,9 @@
                                 </td>
                                 <td>
                                     <div>
+                                        <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}">Edit questionnaire</a>
+                                    </div>
+                                    <div>
                                         <a href="javascript:void(0)" class="change-status" data-toggle="modal"
                                            data-target="#changeStatusModal">Change status</a>
                                     </div>

@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\DB;
 
 class QuestionnaireStorageManager
 {
+    public function findQuestionnaire($id)
+    {
+        return Questionnaire::findOrFail($id);
+    }
+
     public function getAllQuestionnairesForProjectWithTranslations($projectId)
     {
         $questionnaires = DB::table('questionnaires as q')

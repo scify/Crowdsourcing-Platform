@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>Create Questionnaire</h1>
+    <h1>{{$viewModel->title}}</h1>
 @stop
 
 @push('css')
@@ -25,7 +25,8 @@
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <input type="text" class="form-control" name="title" id="title"
-                                   placeholder="Insert questionnaire's title">
+                                   placeholder="Insert questionnaire's title"
+                                   value="{{$viewModel->questionnaire ? $viewModel->questionnaire->title : ''}}">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -35,8 +36,11 @@
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             {{--English by default--}}
                             <select name="language_id" id="language" style="width: 100%;">
-                                @foreach($languages as $language)
-                                    <option value="{{$language->id}}" @if($language->language_name === 'English') selected @endif>
+                                @foreach($viewModel->languages as $language)
+                                    <option value="{{$language->id}}"
+                                            {{$viewModel->questionnaire ?
+                                                ($viewModel->questionnaire->default_language_id == $language->id ? 'selected' : '')
+                                              : ($language->language_name === 'English' ? 'selected' : '')}}>
                                         {{$language->language_name}}
                                     </option>
                                 @endforeach
@@ -45,8 +49,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 editor-wrapper">
-                            <em>Use the editor below to create a new questionnaire.</em>
-                            <div id="questionnaire-editor"></div>
+                            <em>Use the editor below to modify your questionnaire.</em>
+                            <div id="questionnaire-editor" data-json="{{$viewModel->questionnaire ? $viewModel->questionnaire->questionnaire_json : ''}}"></div>
                         </div>
                     </div>
                 </div>

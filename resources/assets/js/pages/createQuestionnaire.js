@@ -16,6 +16,9 @@ let SurveyEditor = require('surveyjs-editor');
             questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "rating", "html", "comment"]
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
+        let json = $("#questionnaire-editor").data('json');
+        if (json !== '')
+            editor.text = JSON.stringify(json);
     };
 
     let initLanguagesSelect2 = function () {
