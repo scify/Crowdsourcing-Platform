@@ -16,17 +16,6 @@ class CrowdSourcingProjectController extends Controller
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function manageQuestionnaire($id)
-    {
-        return view("manage-questionnaire");
-    }
-
     public function viewReports($id)
     {
         return view("reports");

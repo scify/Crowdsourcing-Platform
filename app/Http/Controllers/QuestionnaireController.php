@@ -24,6 +24,18 @@ class QuestionnaireController extends Controller
         $this->languageManager = $languageManager;
     }
 
+    public function manageQuestionnaires($id)
+    {
+        $questionnairesViewModel = $this->questionnaireManager->getAllQuestionnairesForProjectViewModel($id);
+        return view("manage-questionnaires")->with(['viewModel' => $questionnairesViewModel]);
+    }
+
+    public function saveQuestionnaireStatus(Request $request)
+    {
+        $this->questionnaireManager->updateQuestionnaireStatus($request->questionnaire_id, $request->status_id, $request->comments);
+        return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
+    }
+
     public function createQuestionnaire()
     {
         $languages = $this->languageManager->getAllLanguages();
