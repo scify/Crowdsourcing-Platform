@@ -8,20 +8,16 @@
 
 namespace App\Http\Controllers;
 
-
-use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\QuestionnaireManager;
 use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller
 {
     private $questionnaireManager;
-    private $languageManager;
 
-    public function __construct(QuestionnaireManager $questionnaireManager, LanguageManager $languageManager)
+    public function __construct(QuestionnaireManager $questionnaireManager)
     {
         $this->questionnaireManager = $questionnaireManager;
-        $this->languageManager = $languageManager;
     }
 
     public function manageQuestionnaires($id)
@@ -38,13 +34,19 @@ class QuestionnaireController extends Controller
 
     public function createQuestionnaire()
     {
-        $languages = $this->languageManager->getAllLanguages();
-        return view('create-questionnaire')->with(['languages' => $languages]);
+        $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel(null);
+        return view('create-edit-questionnaire')->with(['viewModel' => $viewModel]);
     }
 
     public function storeQuestionnaire(Request $request)
     {
         $this->questionnaireManager->createNewQuestionnaire($request->all());
         return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/1/questionnaires')]);
+    }
+
+    public function editQuestionnaire($id)
+    {
+        $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel($id);
+        return view('create-edit-questionnaire')->with(['viewModel' => $viewModel]);
     }
 }
