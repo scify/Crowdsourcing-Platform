@@ -85,6 +85,7 @@
 
 </div>
 
+@stack("modals")
 
 @include("partials.footer-scripts")
 
