@@ -30,10 +30,11 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
     Route::get('/project/{id}/edit', 'CrowdSourcingProjectController@edit')->name('editProject')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/project/{id}/update', 'CrowdSourcingProjectController@update')->name('updateProject')->middleware("can:manage-crowd-sourcing-projects");
-    Route::get('/project/{id}/questionnaire', 'CrowdSourcingProjectController@manageQuestionnaire')->name('manageQuestionnaire')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('/project/{id}/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('manageQuestionnaires')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/project/{id}/reports', 'CrowdSourcingProjectController@viewReports')->name('reports')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaire/new', 'QuestionnaireController@createQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/new', 'QuestionnaireController@storeQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
 });
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage');

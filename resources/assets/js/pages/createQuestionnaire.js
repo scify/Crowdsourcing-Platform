@@ -4,6 +4,7 @@ let SurveyEditor = require('surveyjs-editor');
     let editor;
 
     let initQuestionnaireEditor = function () {
+        // documentation may be found here: https://surveyjs.io/Documentation/Builder
         SurveyEditor.StylesManager.applyTheme("darkblue");
         let editorOptions = {
             generateValidJSON: true,
@@ -11,7 +12,8 @@ let SurveyEditor = require('surveyjs-editor');
             showTestSurveyTab: false,
             showEmbededSurveyTab: false,
             showPropertyGrid: false,
-            toolbarItems: {visible: false}
+            toolbarItems: {visible: false},
+            questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "rating", "html", "comment"]
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
     };

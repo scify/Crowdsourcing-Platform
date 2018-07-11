@@ -44,11 +44,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 editor-wrapper">
                             <em>Use the editor below to create a new questionnaire.</em>
+                            <div id="questionnaire-editor"></div>
                         </div>
                     </div>
-                    <div id="questionnaire-editor"></div>
                 </div>
                 <div class="box-footer">
                     <div class="row">

@@ -37,9 +37,8 @@
                                 class="fa fa-file "></i><span>Edit Fair EU Page</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
-                    <a href="{{ route('manageQuestionnaire', ['id' => 1]) }}"><i class="fa fa-question-circle "></i>
-                        <span>Manage
-                            Questionnaire</span></a>
+                    <a href="{{ route('manageQuestionnaires', ['id' => 1]) }}"><i class="fa fa-question-circle "></i><span>Manage
+                            Questionnaires</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/reports")}}">
                     <a href="{{ route('reports', ['id' => 1]) }}"><i

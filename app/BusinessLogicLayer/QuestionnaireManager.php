@@ -10,6 +10,7 @@ namespace App\BusinessLogicLayer;
 
 
 use App\DataAccessLayer\QuestionnaireStorageManager;
+use App\Models\ViewModels\ManageQuestionnaires;
 
 class QuestionnaireManager
 {
@@ -18,6 +19,18 @@ class QuestionnaireManager
     public function __construct(QuestionnaireStorageManager $questionnaireStorageManager)
     {
         $this->questionnaireStorageManager = $questionnaireStorageManager;
+    }
+
+    public function getAllQuestionnairesForProjectViewModel($projectId) {
+        $questionnaires = $this->questionnaireStorageManager->getAllQuestionnairesForProjectWithTranslations($projectId);
+        $availableStatuses = $this->questionnaireStorageManager->getAllQuestionnaireStatuses();
+        return new ManageQuestionnaires($questionnaires, $availableStatuses);
+    }
+
+    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments)
+    {
+        $comments = is_null($comments) ? "" : $comments;
+        $this->questionnaireStorageManager->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
     }
 
     public function createNewQuestionnaire($data)

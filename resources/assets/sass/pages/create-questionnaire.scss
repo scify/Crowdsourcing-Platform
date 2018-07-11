@@ -1,5 +1,14 @@
-#questionnaire-editor {
-  .svd_commercial_container, .navbar-default, #svd-survey-settings {
-    display: none;
+.editor-wrapper {
+  margin-top: 50px;
+  #questionnaire-editor {
+    .svd_commercial_container, .navbar-default, #svd-survey-settings {
+      display: none;
+    }
+    .svd_container .svd-dark-border-color {
+      color: #333;
+    }
+    #surveyquestioneditorwindow {
+      position: absolute !important;
+    }
   }
 }
