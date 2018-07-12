@@ -54,12 +54,24 @@ class QuestionnaireManager
         $questionnaire = $this->questionnaireStorageManager->saveNewQuestionnaire(
             $data['title'], $data['language'], $data['project'], $data['content']
         );
-        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaire->id, $data['language']);
+        $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
+    }
+
+    public function updateQuestionnaire($id, $data)
+    {
+        $this->questionnaireStorageManager->updateQuestionnaire($id, $data['title'], $data['language'],
+            $data['project'], $data['content']);
+        $this->storeToAllQuestionnaireRelatedTables($id, $data);
+    }
+
+    private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
+    {
+//        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaireId, $data['language']);
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
             $questionType = $question->type;
-            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireLanguage->id, $questionTitle, $questionType);
+            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType);
             if ($questionType === 'html')
                 $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);

@@ -49,4 +49,10 @@ class QuestionnaireController extends Controller
         $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel($id);
         return view('create-edit-questionnaire')->with(['viewModel' => $viewModel]);
     }
+
+    public function updateQuestionnaire(Request $request, $id)
+    {
+        $this->questionnaireManager->updateQuestionnaire($id, $request->all());
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/1/questionnaires')]);
+    }
 }

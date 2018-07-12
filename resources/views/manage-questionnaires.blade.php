@@ -32,7 +32,10 @@
                                 data-status="{{$questionnaire->status_id}}">
                                 <td>{{$questionnaire->id}}</td>
                                 <td>{{$questionnaire->title}}</td>
-                                <td>{{implode(', ', $questionnaire->languages)}}</td>
+                                <td>
+                                    <b>{{$questionnaire->default_language_name}}</b>{{count($questionnaire->languages) > 0 ? ', ' : ''}}
+                                    {{implode(', ', $questionnaire->languages)}}
+                                </td>
                                 <td>
                                     <span class="label {{$questionnaire->status_css_class}}"
                                           title="{{$questionnaire->status_description}}">
