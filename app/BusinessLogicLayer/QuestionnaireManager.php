@@ -61,7 +61,7 @@ class QuestionnaireManager
     {
         $this->questionnaireStorageManager->updateQuestionnaire($id, $data['title'], $data['language'],
             $data['project'], $data['content']);
-        $this->storeToAllQuestionnaireRelatedTables($id, $data);
+        $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
@@ -76,6 +76,13 @@ class QuestionnaireManager
                 $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
         }
+    }
+
+    private function updateAllQuestionnaireRelatedTables($questionnaireId, $data)
+    {
+//        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaireId, $data['language']);
+        $questions = $this->extractDataFromQuestionnaireJson($data['content']);
+        $this->questionnaireStorageManager->updateAllQuestionnaireRelatedTables($questionnaireId, $questions);
     }
 
     private function extractDataFromQuestionnaireJson($content)

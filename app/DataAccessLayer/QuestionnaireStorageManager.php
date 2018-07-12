@@ -62,11 +62,35 @@ class QuestionnaireStorageManager
     {
         $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            $this->deleteAllQuestionnaireRelatedData($questionnaireId);
             $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson);
             return $questionnaire;
         });
         return $questionnaire;
+    }
+
+    public function updateAllQuestionnaireRelatedTables($questionnaireId, $questions)
+    {
+        DB::transaction(function () use ($questionnaireId, $questions) {
+            $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+            $questionsFromDBLength = $questionsFromDB->count();
+            $newQuestionsCounter = 0;
+            foreach ($questions as $question) {
+                $questionTitle = isset($question->title) ? $question->title : $question->name;
+                $questionType = $question->type;
+                if ($newQuestionsCounter >= $questionsFromDBLength)
+                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType);
+                else
+                    $storedQuestion = $this->storeQuestion($questionsFromDB->get($newQuestionsCounter), $questionTitle, $questionType);
+                $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
+                $this->updateAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
+                $newQuestionsCounter++;
+            }
+            if ($newQuestionsCounter < $questionsFromDBLength) {
+                for ($key = $newQuestionsCounter; $key < $questionsFromDBLength; $key++) {
+                    $this->deleteQuestion($questionsFromDB->get($key)->id);
+                }
+            }
+        });
     }
 
     public function saveNewQuestionnaireLanguage($questionnaireId, $languageId)
@@ -82,28 +106,21 @@ class QuestionnaireStorageManager
     {
         $question = new QuestionnaireQuestion();
         $question->questionnaire_id = $questionnaireId;
-        $question->question = $questionTitle;
-        $question->type = $questionType;
-        $question->save();
-        return $question;
+        return $this->storeQuestion($question, $questionTitle, $questionType);
     }
 
     public function saveNewHtmlElement($questionId, $html)
     {
         $questionnaireHtml = new QuestionnaireHtml();
         $questionnaireHtml->question_id = $questionId;
-        $questionnaireHtml->html = $html;
-        $questionnaireHtml->save();
-        return $questionnaireHtml;
+        return $this->storeHtmlElement($questionnaireHtml, $html);
     }
 
     public function saveNewAnswer($questionId, $answer)
     {
         $questionnaireAnswer = new QuestionnairePossibleAnswer();
         $questionnaireAnswer->question_id = $questionId;
-        $questionnaireAnswer->answer = $answer;
-        $questionnaireAnswer->save();
-        return $questionnaireAnswer;
+        return $this->storeAnswer($questionnaireAnswer, $answer);
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments)
@@ -136,23 +153,90 @@ class QuestionnaireStorageManager
         return $questionnaire;
     }
 
-    private function deleteAllQuestionnaireRelatedData($questionnaireId)
+    private function getQuestionsForQuestionnaire($questionnaireId)
     {
-        $questionnaireLanguage = QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->first();
-        $questionnaireQuestions = QuestionnaireQuestion::where('questionnaire_language_id', $questionnaireLanguage->id)->get();
-        foreach ($questionnaireQuestions as $question) {
-            if ($question->type === 'html') {
-                $questionnaireHtml = QuestionnaireHtml::where('question_id', $question->id)->first();
-                if ($questionnaireHtml)
-                    $questionnaireHtml->delete();
-            } else {
-                $questionnaireAnswers = QuestionnairePossibleAnswer::where('question_id', $question->id)->get();
-                foreach ($questionnaireAnswers as $answer) {
-                    $answer->delete();
+        return QuestionnaireQuestion::where('questionnaire_id', $questionnaireId)->get();
+    }
+
+    private function storeQuestion($question, $questionTitle, $questionType)
+    {
+        $question->question = $questionTitle;
+        $question->type = $questionType;
+        $question->save();
+        return $question;
+    }
+
+    private function updateHtmlElement($questionId, $question, $questionType)
+    {
+        $questionnaireHtml = $this->getQuestionnaireHtmlForQuestion($questionId);
+        if ($questionnaireHtml) {
+            if ($questionType === 'html')
+                $this->storeHtmlElement($questionnaireHtml, $question->html);
+            else
+                $questionnaireHtml->delete();
+        } else {
+            if ($questionType === 'html')
+                $this->saveNewHtmlElement($questionId, $question->html);
+        }
+    }
+
+    private function getQuestionnaireHtmlForQuestion($questionId)
+    {
+        return QuestionnaireHtml::where('question_id', $questionId)->first();
+    }
+
+    private function storeHtmlElement($questionnaireHtml, $html)
+    {
+        $questionnaireHtml->html = $html;
+        $questionnaireHtml->save();
+        return $questionnaireHtml;
+    }
+
+    private function updateAllAnswers($question, $questionId, array $fieldNames)
+    {
+        $answersFromDB = $this->getAllPossibleAnswersForQuestion($questionId);
+        $answersFromDBLength = $answersFromDB->count();
+        $newAnswersCount = 0;
+        foreach ($fieldNames as $fieldName) {
+            if (isset($question->$fieldName)) {
+                foreach ($question->$fieldName as $temp) {
+                    $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
+                    if ($newAnswersCount >= $answersFromDBLength)
+                        $this->saveNewAnswer($questionId, $answer);
+                    else
+                        $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer);
+                    $newAnswersCount++;
                 }
             }
-            $question->delete();
         }
-        $questionnaireLanguage->delete();
+        if ($newAnswersCount < $answersFromDBLength) {
+            for ($key = $newAnswersCount; $key < $answersFromDBLength; $key++) {
+                $this->deleteAnswer($answersFromDB->get($key)->id);
+            }
+        }
+    }
+
+    private function getAllPossibleAnswersForQuestion($questionId)
+    {
+        return QuestionnairePossibleAnswer::where('question_id', $questionId)->get();
+    }
+
+    private function storeAnswer($questionnaireAnswer, $answer)
+    {
+        $questionnaireAnswer->answer = $answer;
+        $questionnaireAnswer->save();
+        return $questionnaireAnswer;
+    }
+
+    private function deleteAnswer($answerId)
+    {
+        $answer = QuestionnairePossibleAnswer::findOrFail($answerId);
+        $answer->delete();
+    }
+
+    private function deleteQuestion($questionId)
+    {
+        $question = QuestionnaireQuestion::findOrFail($questionId);
+        $question->delete();
     }
 }
