@@ -29,7 +29,8 @@ class ManageQuestionnaires
             $questionnaireIsAlreadyPushed = false;
             $languages = [];
             foreach ($questionnaireGroup as $questionnaire) {
-                array_push($languages, $questionnaire->language_name);
+                if (!is_null($questionnaire->language_name))
+                    array_push($languages, $questionnaire->language_name);
                 if (!$questionnaireIsAlreadyPushed) {
                     unset($questionnaire->language_id);
                     unset($questionnaire->language_name);

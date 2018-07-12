@@ -1,3 +1,13 @@
+@import "../_variables.scss";
+
+.warning-wrapper {
+  font-weight: bold;
+  margin-bottom: 20px;
+  .glyphicon-alert {
+    color: $brand-danger;
+  }
+}
+
 .editor-wrapper {
   margin-top: 50px;
   #questionnaire-editor {
