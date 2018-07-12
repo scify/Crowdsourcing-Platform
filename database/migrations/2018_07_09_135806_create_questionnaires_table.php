@@ -22,6 +22,7 @@ class CreateQuestionnairesTable extends Migration
             $table->foreign('project_id')->references('id')->on('crowd_sourcing_projects');
             $table->foreign('default_language_id')->references('id')->on('languages_lkp');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
