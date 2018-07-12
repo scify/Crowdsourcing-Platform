@@ -28,15 +28,15 @@ class QuestionnaireStorageManager
     public function getAllQuestionnairesForProjectWithTranslations($projectId)
     {
         $questionnaires = DB::table('questionnaires as q')
-            ->join('questionnaire_languages as ql', 'ql.questionnaire_id', '=', 'q.id')
-            ->join('languages_lkp as ll', 'll.id', '=', 'ql.language_id')
+            ->leftJoin('questionnaire_languages as ql', 'ql.questionnaire_id', '=', 'q.id')
+            ->leftJoin('languages_lkp as ll', 'll.id', '=', 'ql.language_id')
+            ->join('languages_lkp as dl', 'dl.id', '=', 'q.default_language_id')
             ->join('questionnaire_statuses_lkp as qsl', 'qsl.id', '=', 'q.status_id')
             ->where('q.project_id', $projectId)
             ->whereNull('q.deleted_at')
-            ->whereNull('ql.deleted_at')
             ->orderBy('q.updated_at')
             ->select('q.*', 'll.id as language_id', 'll.language_name', 'qsl.title as status_title',
-                'qsl.description as status_description')
+                'qsl.description as status_description', 'dl.language_name as default_language_name')
             ->get();
         return $questionnaires->groupBy('id');
     }
@@ -48,15 +48,22 @@ class QuestionnaireStorageManager
 
     public function saveNewQuestionnaire($title, $languageId, $projectId, $questionnaireJson)
     {
-        $questionnaire = DB::transaction(function() use($title, $languageId, $projectId, $questionnaireJson){
+        $questionnaire = DB::transaction(function () use ($title, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = new Questionnaire();
-            $questionnaire->title = $title;
-            $questionnaire->default_language_id = $languageId;
-            $questionnaire->project_id = $projectId;
-            $questionnaire->questionnaire_json = $questionnaireJson;
-            $questionnaire->save();
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
+            return $questionnaire;
+        });
+        return $questionnaire;
+    }
+
+    public function updateQuestionnaire($questionnaireId, $title, $languageId, $projectId, $questionnaireJson)
+    {
+        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $languageId, $projectId, $questionnaireJson) {
+            $questionnaire = Questionnaire::findOrFail($questionnaireId);
+            $this->deleteAllQuestionnaireRelatedData($questionnaireId);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson);
             return $questionnaire;
         });
         return $questionnaire;
@@ -71,10 +78,10 @@ class QuestionnaireStorageManager
         return $questionnaireLanguage;
     }
 
-    public function saveNewQuestion($questionnaireLanguageId, $questionTitle, $questionType)
+    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType)
     {
         $question = new QuestionnaireQuestion();
-        $question->questionnaire_language_id = $questionnaireLanguageId;
+        $question->questionnaire_id = $questionnaireId;
         $question->question = $questionTitle;
         $question->type = $questionType;
         $question->save();
@@ -117,5 +124,35 @@ class QuestionnaireStorageManager
         $questionnaireStatusHistory->comments = $comments;
         $questionnaireStatusHistory->save();
         return $questionnaireStatusHistory;
+    }
+
+    private function storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson)
+    {
+        $questionnaire->title = $title;
+        $questionnaire->default_language_id = $languageId;
+        $questionnaire->project_id = $projectId;
+        $questionnaire->questionnaire_json = $questionnaireJson;
+        $questionnaire->save();
+        return $questionnaire;
+    }
+
+    private function deleteAllQuestionnaireRelatedData($questionnaireId)
+    {
+        $questionnaireLanguage = QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->first();
+        $questionnaireQuestions = QuestionnaireQuestion::where('questionnaire_language_id', $questionnaireLanguage->id)->get();
+        foreach ($questionnaireQuestions as $question) {
+            if ($question->type === 'html') {
+                $questionnaireHtml = QuestionnaireHtml::where('question_id', $question->id)->first();
+                if ($questionnaireHtml)
+                    $questionnaireHtml->delete();
+            } else {
+                $questionnaireAnswers = QuestionnairePossibleAnswer::where('question_id', $question->id)->get();
+                foreach ($questionnaireAnswers as $answer) {
+                    $answer->delete();
+                }
+            }
+            $question->delete();
+        }
+        $questionnaireLanguage->delete();
     }
 }

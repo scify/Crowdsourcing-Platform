@@ -18,6 +18,19 @@
                     Questionnaire Info
                 </div>
                 <div class="box-body">
+                    @if($viewModel->questionnaire)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="warning-wrapper">
+                                    <i class="glyphicon glyphicon-alert"></i>
+                                    Please notice, that if you click on the button "Save" below, your questionnaire's
+                                    translations will not be synchronized with the latest questionnaire's changes. You
+                                    need to revisit the translations to make sure that it will be correctly displayed
+                                    in different languages.
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <div class="row form-group">
                         <input type="hidden" id="project-id" name="project_id" value="1">
                         <div class="col-md-2 col-sm-3 col-xs-12">
@@ -49,8 +62,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 editor-wrapper">
-                            <em>Use the editor below to modify your questionnaire.</em>
-                            <div id="questionnaire-editor" data-json="{{$viewModel->questionnaire ? $viewModel->questionnaire->questionnaire_json : ''}}"></div>
+                            <em>Use the editor below to {{ $viewModel->questionnaire ? 'modify' : 'create' }} your
+                                questionnaire.</em>
+                            <div id="questionnaire-editor"
+                                 data-json="{{$viewModel->questionnaire ? $viewModel->questionnaire->questionnaire_json : ''}}"></div>
                         </div>
                     </div>
                 </div>
