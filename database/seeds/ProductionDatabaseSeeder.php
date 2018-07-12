@@ -17,8 +17,8 @@ class ProductionDatabaseSeeder extends Seeder
             UserRolesTableSeeder::class,
             LanguagesLkpTableSeeder::class,
             DefaultProjectSeeder::class,
-            QuestionnairesSeeder::class,
             QuestionnaireStatusesLkpTableSeeder::class,
+            QuestionnairesSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class
         ]);
     }

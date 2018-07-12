@@ -20,6 +20,7 @@ class CreateQuestionnaireQuestionsTable extends Migration
             $table->string('type', 20);
             $table->foreign('questionnaire_language_id')->references('id')->on('questionnaire_languages');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

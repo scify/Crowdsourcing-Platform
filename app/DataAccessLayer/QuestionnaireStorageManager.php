@@ -32,6 +32,8 @@ class QuestionnaireStorageManager
             ->join('languages_lkp as ll', 'll.id', '=', 'ql.language_id')
             ->join('questionnaire_statuses_lkp as qsl', 'qsl.id', '=', 'q.status_id')
             ->where('q.project_id', $projectId)
+            ->whereNull('q.deleted_at')
+            ->whereNull('ql.deleted_at')
             ->orderBy('q.updated_at')
             ->select('q.*', 'll.id as language_id', 'll.language_name', 'qsl.title as status_title',
                 'qsl.description as status_description')
