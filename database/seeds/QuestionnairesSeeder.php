@@ -22,6 +22,7 @@ class QuestionnairesSeeder extends Seeder
         DB::table('questionnaires')->insert([[
             'id' => 1,
             'project_id' => 1,
+            'status_id' => 1,
             'default_language_id' => 6,
             'title' => 'Fair EU',
             'questionnaire_json' => '{

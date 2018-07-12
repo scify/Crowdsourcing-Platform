@@ -19,6 +19,7 @@ class CreateQuestionnairePossibleAnswersTable extends Migration
             $table->string('answer', 500);
             $table->foreign('question_id')->references('id')->on('questionnaire_questions');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

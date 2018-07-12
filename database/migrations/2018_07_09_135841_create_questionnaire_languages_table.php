@@ -20,6 +20,7 @@ class CreateQuestionnaireLanguagesTable extends Migration
             $table->foreign('questionnaire_id')->references('id')->on('questionnaires');
             $table->foreign('language_id')->references('id')->on('languages_lkp');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
