@@ -104,7 +104,7 @@ section {
   .content-container {
     padding: 70px 150px;
     font-size: 25px;
-    font-weight:300;
+    font-weight: 300;
     @media screen and (max-width: 767px) {
       padding: 50px 0;
     }
@@ -119,6 +119,81 @@ section {
   .btn {
     font-size: large;
     margin-top: 20px;
+  }
+}
+
+#questionnaire-modal {
+  .modal-title {
+    font-weight: bold;
+    text-align: center;
+  }
+  .sv_row {
+    padding: 50px 25px;
+    h5 {
+      font-size: 18px;
+    }
+    input[type="text"], textarea {
+      border: 1px solid #ccc;
+      width: 100%;
+      padding: 5px 10px;
+      height: unset;
+      &:focus {
+        border-color: #999;
+      }
+    }
+    .sv_q_rating {
+      text-align: center;
+      .sv_q_rating_item {
+        cursor: pointer;
+        &.active {
+          .sv_q_rating_item_text {
+            background-color: #076ec1;
+            border-radius: 50%;
+            padding: 5px;
+            display: inline-block;
+          }
+        }
+        .sv_q_rating_item_text {
+          padding-top: 5px;
+          width: 30px;
+          height: 30px;
+          border: none !important;
+          line-height: 1.5em;
+          font-weight: bold;
+          margin: 0 10px;
+        }
+      }
+      .sv_q_rating_min_text {
+        font-weight: normal;
+        font-size: smaller;
+        margin-right: 20px;
+      }
+      .sv_q_rating_max_text {
+        font-weight: normal;
+        font-size: smaller;
+        margin-left: 20px;
+      }
+    }
+  }
+  .sv_body {
+    border: none;
+  }
+  .sv_nav {
+    text-align: center;
+    padding: 30px 0;
+    .sv_complete_btn, .sv_prev_btn, .sv_next_btn {
+      padding: 10px 20px;
+      border: none;
+      background-color: #076ec1;
+      color: white;
+      margin: 0 5px;
+      &:focus, &:hover {
+        opacity: 0.8;
+      }
+    }
+    .sv_prev_btn, .sv_next_btn {
+      background-color: #67b8f9;
+    }
   }
 }
 

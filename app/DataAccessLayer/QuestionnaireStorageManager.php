@@ -34,7 +34,7 @@ class QuestionnaireStorageManager
             ->join('questionnaire_statuses_lkp as qsl', 'qsl.id', '=', 'q.status_id')
             ->where('q.project_id', $projectId)
             ->whereNull('q.deleted_at')
-            ->orderBy('q.updated_at')
+            ->orderBy('q.updated_at', 'desc')
             ->select('q.*', 'll.id as language_id', 'll.language_name', 'qsl.title as status_title',
                 'qsl.description as status_description', 'dl.language_name as default_language_name')
             ->get();
@@ -46,11 +46,17 @@ class QuestionnaireStorageManager
         return QuestionnaireStatus::all();
     }
 
-    public function saveNewQuestionnaire($title, $languageId, $projectId, $questionnaireJson)
+    public function getActiveQuestionnaireForProject($projectId)
     {
-        $questionnaire = DB::transaction(function () use ($title, $languageId, $projectId, $questionnaireJson) {
+        // status 'Published'
+        return Questionnaire::where('project_id', $projectId)->where('status_id', 2)->first();
+    }
+
+    public function saveNewQuestionnaire($title, $description, $languageId, $projectId, $questionnaireJson)
+    {
+        $questionnaire = DB::transaction(function () use ($title, $description, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,  $languageId, $projectId, $questionnaireJson);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
             return $questionnaire;
@@ -58,11 +64,11 @@ class QuestionnaireStorageManager
         return $questionnaire;
     }
 
-    public function updateQuestionnaire($questionnaireId, $title, $languageId, $projectId, $questionnaireJson)
+    public function updateQuestionnaire($questionnaireId, $title, $description, $languageId, $projectId, $questionnaireJson)
     {
-        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $languageId, $projectId, $questionnaireJson) {
+        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $description, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson);
             return $questionnaire;
         });
         return $questionnaire;
@@ -143,9 +149,10 @@ class QuestionnaireStorageManager
         return $questionnaireStatusHistory;
     }
 
-    private function storeQuestionnaire($questionnaire, $title, $languageId, $projectId, $questionnaireJson)
+    private function storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire->title = $title;
+        $questionnaire->description = $description;
         $questionnaire->default_language_id = $languageId;
         $questionnaire->project_id = $projectId;
         $questionnaire->questionnaire_json = $questionnaireJson;

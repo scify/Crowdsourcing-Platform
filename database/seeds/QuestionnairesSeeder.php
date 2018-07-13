@@ -22,9 +22,10 @@ class QuestionnairesSeeder extends Seeder
         DB::table('questionnaires')->insert([[
             'id' => 1,
             'project_id' => 1,
-            'status_id' => 1,
+            'status_id' => 2,
             'default_language_id' => 6,
             'title' => 'Fair EU',
+            'description' => 'Help us tackle the obstacles of low political participation levels, by responding to this questionnaire.',
             'questionnaire_json' => '{
     "pages": [
         {
@@ -360,8 +361,8 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you believe that obstacles/problems encountered by the EU citizens in host Member States may contribute to their decisions not to participate in the municipal elections?",
-                    "minRateDescription": "I strongly agree",
-                    "maxRateDescription": "I strongly disagree"
+                    "minRateDescription": "I strongly disagree",
+                    "maxRateDescription": "I strongly agree"
                 },
                 {
                     "type": "radiogroup",
@@ -473,8 +474,8 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you agree with the following statement? Mobile EU Citizens who feel more integrated in their host Member State are more likely to participate in municipal elections.",
-                    "minRateDescription": "I strongly agree",
-                    "maxRateDescription": "I strongly disagree"
+                    "minRateDescription": "I strongly disagree",
+                    "maxRateDescription": "I strongly agree"
                 },
                 {
                     "type": "rating",
@@ -482,8 +483,8 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you agree with the following statement? Political participation of mobile EU citizens would allow them to better defend their interests in their host country.",
-                    "minRateDescription": "I strongly agree",
-                    "maxRateDescription": "I strongly disagree"
+                    "minRateDescription": "I strongly disagree",
+                    "maxRateDescription": "I strongly agree"
                 },
                 {
                     "type": "rating",
@@ -491,8 +492,8 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you believe that expats-friendly information campaigns would increase political participation of EU citizens in their country of residence?",
-                    "minRateDescription": "I strongly agree",
-                    "maxRateDescription": "I strongly disagree"
+                    "minRateDescription": "I strongly disagree",
+                    "maxRateDescription": "I strongly agree"
                 },
                 {
                     "type": "comment",
