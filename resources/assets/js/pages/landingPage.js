@@ -9,13 +9,12 @@ let Survey = require('survey-jquery');
             Survey.StylesManager.applyTheme("darkblue");
             Survey.surveyStrings.emptySurvey = "There is not currently an active survey.";
             Survey.surveyStrings.loadingSurvey = "Please wait. The survey is loading…";
-            let survey = new Survey.Model(json);
+            let survey = new Survey.Survey(JSON.stringify(json), wrapperId);
             survey
                 .onComplete
                 .add(function (result) {
                     console.log("result: ", JSON.stringify(result.data));
                 });
-            new Survey.Survey(JSON.stringify(json), wrapperId);
         }
     };
 
