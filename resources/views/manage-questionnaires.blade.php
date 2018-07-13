@@ -38,9 +38,7 @@
                                 </td>
                                 <td>
                                     <span class="label {{$questionnaire->status_css_class}}"
-                                          title="{{$questionnaire->status_description}}">
-                                        {{$questionnaire->status_title}}
-                                    </span>
+                                          title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                 </td>
                                 <td>
                                     <div>

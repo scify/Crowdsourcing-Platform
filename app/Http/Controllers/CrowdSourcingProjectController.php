@@ -57,9 +57,9 @@ class CrowdSourcingProjectController extends Controller
 
     public function showLandingPage($project_slug)
     {
-        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($project_slug);
-        if ($project)
-            return view('landingpages.layout')->with(['project' => $project]);
+        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($project_slug);
+        if ($viewModel->project)
+            return view('landingpages.layout')->with(['viewModel' => $viewModel]);
         abort(404);
     }
 }
