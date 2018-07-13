@@ -228,9 +228,9 @@ class QuestionnairesSeeder extends Seeder
                     "type": "checkbox",
                     "name": "question12",
                     "visible": false,
-                    "visibleIf": "{question1} notempty and {question11} <> [\"item1\"]",
+                    "visibleIf": "{question1} notempty and {question11} notcontains \"item1\"",
                     "title": "Why did you decide not to participate in the elections to the EU Parliament in your host Member State: (multiple answers possible)",
-                    "enableIf": "{question11} <> [\"item1\"]",
+                    "enableIf": "{question11} notcontains \"item1\"",
                     "hasOther": true,
                     "choices": [
                         {
@@ -267,9 +267,9 @@ class QuestionnairesSeeder extends Seeder
                     "type": "checkbox",
                     "name": "question13",
                     "visible": false,
-                    "visibleIf": "{question1} notempty and {question11} <> [\"item2\"]",
+                    "visibleIf": "{question1} notempty and {question11} notcontains \"item2\"",
                     "title": "Why did you decide not to participate in the municipal elections in your host Member State: (multiple answers possible)",
-                    "enableIf": "{question11} <> [\"item2\"]",
+                    "enableIf": "{question11} notcontains \"item2\"",
                     "hasOther": true,
                     "choices": [
                         {
