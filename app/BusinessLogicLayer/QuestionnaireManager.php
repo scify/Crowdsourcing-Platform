@@ -52,15 +52,15 @@ class QuestionnaireManager
     public function createNewQuestionnaire($data)
     {
         $questionnaire = $this->questionnaireStorageManager->saveNewQuestionnaire(
-            $data['title'], $data['language'], $data['project'], $data['content']
+            $data['title'], $data['description'], $data['language'], $data['project'], $data['content']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
 
     public function updateQuestionnaire($id, $data)
     {
-        $this->questionnaireStorageManager->updateQuestionnaire($id, $data['title'], $data['language'],
-            $data['project'], $data['content']);
+        $this->questionnaireStorageManager->updateQuestionnaire($id, $data['title'], $data['description'],
+            $data['language'], $data['project'], $data['content']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 

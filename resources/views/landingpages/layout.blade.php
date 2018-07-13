@@ -4,21 +4,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.ico') }}"/>
-    <title>@yield('title_prefix', $project->name) @yield('title_postfix', '')</title>
+    <title>@yield('title_prefix', $viewModel->project->name) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
+    <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}">
 
     <link rel="shortcut icon" href="https://ecas.org/wp-content/uploads/2015/05/favicon_32.png">
     <link rel="apple-touch-icon-precomposed" href="https://ecas.org/wp-content/uploads/2015/05/favicon_57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://ecas.org/wp-content/uploads/2015/05/favicon_76.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://ecas.org/wp-content/uploads/2015/05/favicon_120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://ecas.org/wp-content/uploads/2015/05/favicon_152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+          href="https://ecas.org/wp-content/uploads/2015/05/favicon_76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+          href="https://ecas.org/wp-content/uploads/2015/05/favicon_120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="https://ecas.org/wp-content/uploads/2015/05/favicon_152.png">
 
 
     <!--[if lt IE 9]>
@@ -34,7 +39,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
-                        <img alt="{{$project->name}}" src="{{asset($project->logo_path)}}">
+                        <img alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#top-menu-content">
@@ -79,10 +84,11 @@
 <footer>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            {!! $project->footer !!}
+            {!! $viewModel->project->footer !!}
         </div>
     </div>
 </footer>
 @include('partials.footer-scripts')
+<script src="{{asset('dist/js/landingPage.js')}}"></script>
 </body>
 </html>

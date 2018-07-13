@@ -44,6 +44,14 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 col-sm-3 col-xs-12">
+                            <label for="description">Description - Motto</label>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <textarea class="form-control" name="description" id="description" placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 col-sm-3 col-xs-12">
                             <label for="language">Default Language</label>
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">

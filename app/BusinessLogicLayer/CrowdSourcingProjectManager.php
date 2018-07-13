@@ -2,22 +2,25 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\Models\ViewModels\CrowdSourcingProject;
-use App\Models\ViewModels\CrowdSourcingProjects;
+use App\DataAccessLayer\QuestionnaireStorageManager;
+use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Repository\CrowdSourcingProjectRepository;
-use Illuminate\Support\Facades\Storage;
 
 class CrowdSourcingProjectManager
 {
     private $crowdSourcingProjectRepository;
+    private $questionnaireStorageManager;
 
     /**
      * CrowdSourcingProjectManager constructor.
-     * @param $crowdSourcingProjectRepository
+     * @param CrowdSourcingProjectRepository $crowdSourcingProjectRepository
+     * @param QuestionnaireStorageManager $questionnaireStorageManager
      */
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository)
+    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
+                                QuestionnaireStorageManager $questionnaireStorageManager)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
+        $this->questionnaireStorageManager = $questionnaireStorageManager;
     }
 
     public function getAllCrowdSourcingProjects()
@@ -25,14 +28,14 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->all();
     }
 
-    public function getAllCrowdSourcingProjectsViewModels()
-    {
-        $projects = $this->crowdSourcingProjectRepository->all();
-        $projectsViewModel = $projects->map(function ($article) {
-            return new CrowdSourcingProject($article);
-        });
-        return new CrowdSourcingProjects($projectsViewModel);
-    }
+//    public function getAllCrowdSourcingProjectsViewModels()
+//    {
+//        $projects = $this->crowdSourcingProjectRepository->all();
+//        $projectsViewModel = $projects->map(function ($project) {
+//            return new CrowdSourcingProject($project);
+//        });
+//        return new CrowdSourcingProjects($projectsViewModel);
+//    }
 
     public function getCrowdSourcingProject($id)
     {
@@ -41,6 +44,14 @@ class CrowdSourcingProjectManager
 
     public function getCrowdSourcingProjectBySlug($project_slug) {
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+    }
+
+    public function getCrowdSourcingProjectViewModelForLandingPage($project_slug) {
+        $project = $this->getCrowdSourcingProjectBySlug($project_slug);
+        $questionnaire = null;
+        if ($project)
+            $questionnaire = $this->questionnaireStorageManager->getActiveQuestionnaireForProject($project->id);
+        return new CrowdSourcingProjectForLandingPage($project, $questionnaire);
     }
 
     public function updateCrowdSourcingProject($id, $attributes)
