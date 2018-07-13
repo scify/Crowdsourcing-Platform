@@ -15,12 +15,14 @@
                                 <p style="font-size: 18px; text-align: center;">{{$viewModel->questionnaire->description}}</p>
                                 @if(\Auth::user())
                                     <a href="javascript:void(0)" class="btn btn-block btn-primary" style="width: 250px;
-                                        margin: 20px auto 0;" data-toggle="modal" data-target="#questionnaire-modal">Take questionnaire</a>
+                                        margin: 20px auto 0;" data-toggle="modal" data-target="#questionnaire-modal">Take
+                                        questionnaire</a>
                                 @else
-                                    <a href="/login" class="btn btn-block btn-primary" style="width: 250px; margin: 20px auto 0;">Login</a>
+                                    <a href="/login" class="btn btn-block btn-primary"
+                                       style="width: 250px; margin: 20px auto 0;">Login</a>
                                 @endif
                             @else
-                                <i style="font-size: 18px; text-align: center;">No active questionnaire found.</i>
+                                <p style="font-size: 18px; text-align: center; font-style: italic;">No active questionnaire found.</p>
                             @endif
                         </div>
                     </div>
@@ -44,20 +46,24 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="questionnaire-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{$viewModel->questionnaire->title}}</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="questionnaire-display-section" data-content="{{$viewModel->questionnaire->questionnaire_json}}"></div>
+@if($viewModel->questionnaire)
+    <div class="modal fade" id="questionnaire-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{$viewModel->questionnaire->title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="questionnaire-display-section"
+                                 data-content="{{$viewModel->questionnaire->questionnaire_json}}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endif
