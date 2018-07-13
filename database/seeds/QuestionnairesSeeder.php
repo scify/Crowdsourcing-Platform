@@ -35,6 +35,7 @@ class QuestionnairesSeeder extends Seeder
                     "type": "radiogroup",
                     "name": "question1",
                     "title": "Are you familiar with the term \"Citizen of the European Union\" and the rights this status confers?",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -64,7 +65,8 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Country of residence",
-                    "enableIf": "{question1} notempty"
+                    "enableIf": "{question1} notempty",
+                    "isRequired": true
                 },
                 {
                     "type": "radiogroup",
@@ -72,6 +74,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "title": "How long have you been residing in your current host Member State?",
                     "enableIf": "{question1} notempty",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -93,6 +96,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "What is your employment status?",
+                    "isRequired": true,
                     "hasOther": true,
                     "choices": [
                         {
@@ -123,6 +127,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Gender",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -141,6 +146,7 @@ class QuestionnairesSeeder extends Seeder
                     "visibleIf": "{question1} notempty",
                     "title": "Age",
                     "enableIf": "{question1} notempty",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -202,6 +208,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "When residing in your host Member State, have you participated in: (multiple answers possible)",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -221,7 +228,7 @@ class QuestionnairesSeeder extends Seeder
                     "type": "checkbox",
                     "name": "question12",
                     "visible": false,
-                    "visibleIf": "{question1} notempty",
+                    "visibleIf": "{question1} notempty and {question11} <> [\"item1\"]",
                     "title": "Why did you decide not to participate in the elections to the EU Parliament in your host Member State: (multiple answers possible)",
                     "enableIf": "{question11} <> [\"item1\"]",
                     "hasOther": true,
@@ -260,7 +267,7 @@ class QuestionnairesSeeder extends Seeder
                     "type": "checkbox",
                     "name": "question13",
                     "visible": false,
-                    "visibleIf": "{question1} notempty",
+                    "visibleIf": "{question1} notempty and {question11} <> [\"item2\"]",
                     "title": "Why did you decide not to participate in the municipal elections in your host Member State: (multiple answers possible)",
                     "enableIf": "{question11} <> [\"item2\"]",
                     "hasOther": true,
@@ -305,6 +312,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Did you encounter any obstacles during the electoral registration process in your host Member State:",
+                    "isRequired": true,
                     "hasOther": true,
                     "choices": [
                         {
@@ -335,6 +343,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "As an EU national residing in a host EU Member State, have you ever been refused registration for municipal or European Parliament elections on the grounds of?",
+                    "isRequired": true,
                     "hasOther": true,
                     "choices": [
                         {
@@ -361,6 +370,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you believe that obstacles/problems encountered by the EU citizens in host Member States may contribute to their decisions not to participate in the municipal elections?",
+                    "isRequired": true,
                     "minRateDescription": "I strongly disagree",
                     "maxRateDescription": "I strongly agree"
                 },
@@ -370,6 +380,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Are you planning to participate in the next European Parliament elections in May 2019?",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -393,9 +404,9 @@ class QuestionnairesSeeder extends Seeder
                     "type": "comment",
                     "name": "question18",
                     "visible": false,
-                    "visibleIf": "{question1} notempty",
+                    "visibleIf": "{question1} notempty and {question17} = \"item3\"",
                     "title": "Please explain why you are not going to vote",
-                    "enableIf": "{question17} <> \"item3\""
+                    "enableIf": "{question17} = \"item3\""
                 },
                 {
                     "type": "checkbox",
@@ -445,6 +456,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Which in your opinion is the most important indicator of EU citizens’ integration in host countries?",
+                    "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
@@ -474,6 +486,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you agree with the following statement? Mobile EU Citizens who feel more integrated in their host Member State are more likely to participate in municipal elections.",
+                    "isRequired": true,
                     "minRateDescription": "I strongly disagree",
                     "maxRateDescription": "I strongly agree"
                 },
@@ -483,6 +496,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you agree with the following statement? Political participation of mobile EU citizens would allow them to better defend their interests in their host country.",
+                    "isRequired": true,
                     "minRateDescription": "I strongly disagree",
                     "maxRateDescription": "I strongly agree"
                 },
@@ -492,6 +506,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Do you believe that expats-friendly information campaigns would increase political participation of EU citizens in their country of residence?",
+                    "isRequired": true,
                     "minRateDescription": "I strongly disagree",
                     "maxRateDescription": "I strongly agree"
                 },
