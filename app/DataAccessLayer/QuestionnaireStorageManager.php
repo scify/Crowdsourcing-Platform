@@ -122,11 +122,11 @@ class QuestionnaireStorageManager
         return $this->storeHtmlElement($questionnaireHtml, $html);
     }
 
-    public function saveNewAnswer($questionId, $answer)
+    public function saveNewAnswer($questionId, $answer, $value)
     {
         $questionnaireAnswer = new QuestionnairePossibleAnswer();
         $questionnaireAnswer->question_id = $questionId;
-        return $this->storeAnswer($questionnaireAnswer, $answer);
+        return $this->storeAnswer($questionnaireAnswer, $answer, $value);
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments)
@@ -208,10 +208,11 @@ class QuestionnaireStorageManager
             if (isset($question->$fieldName)) {
                 foreach ($question->$fieldName as $temp) {
                     $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
+                    $value = isset($temp->value) ? $temp->value : $temp;
                     if ($newAnswersCount >= $answersFromDBLength)
-                        $this->saveNewAnswer($questionId, $answer);
+                        $this->saveNewAnswer($questionId, $answer, $value);
                     else
-                        $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer);
+                        $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer, $value);
                     $newAnswersCount++;
                 }
             }
@@ -228,9 +229,10 @@ class QuestionnaireStorageManager
         return QuestionnairePossibleAnswer::where('question_id', $questionId)->get();
     }
 
-    private function storeAnswer($questionnaireAnswer, $answer)
+    private function storeAnswer($questionnaireAnswer, $answer, $value)
     {
         $questionnaireAnswer->answer = $answer;
+        $questionnaireAnswer->value = $value;
         $questionnaireAnswer->save();
         return $questionnaireAnswer;
     }

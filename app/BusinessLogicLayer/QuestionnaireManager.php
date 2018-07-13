@@ -102,7 +102,8 @@ class QuestionnaireManager
             if (isset($question->$fieldName)) {
                 foreach ($question->$fieldName as $temp) {
                     $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
-                    $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer);
+                    $value = isset($temp->value) ? $temp->value : $temp;
+                    $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value);
                 }
             }
         }
