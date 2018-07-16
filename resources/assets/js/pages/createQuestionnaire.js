@@ -21,6 +21,24 @@ let SurveyEditor = require('surveyjs-editor');
             editor.text = JSON.stringify(json);
     };
 
+    let disableNameInputField = function () {
+        $('#surveyquestioneditorwindow input').first().attr('disabled', 'disabled');
+        $('#surveyquestioneditorwindow .form-group').first().css('display', 'none');
+    };
+
+    let disableNameInputForChoices = function () {
+        if ($(this).find('span').html().trim() === 'Choices') {
+            $('#surveyquestioneditorwindow .svd_items_table tr').each(function () {
+                $($(this).find('td').get(1)).find('input').attr('disabled', 'disabled');
+            });
+        }
+    };
+
+    let disableNameInputForNewChoice = function () {
+        let header = $(this).closest('.svd-accordion-tab-content').prev();
+        disableNameInputForChoices.call(header);
+    };
+
     let initLanguagesSelect2 = function () {
         $('#language').select2();
     };
@@ -81,6 +99,10 @@ let SurveyEditor = require('surveyjs-editor');
 
     let initEvents = function () {
         $("#save").click(saveQuestionnaire);
+        let body = $("body");
+        body.on('click', '.svda_question_action[title="Edit"]', disableNameInputField);
+        body.on('click', '.svd-accordion-tab-header', disableNameInputForChoices);
+        body.on('click', 'input[value="Add New"]', disableNameInputForNewChoice);
     };
 
     let init = function () {

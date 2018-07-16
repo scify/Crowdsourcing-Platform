@@ -12,6 +12,7 @@ namespace App\BusinessLogicLayer;
 use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireManager
 {
@@ -64,6 +65,13 @@ class QuestionnaireManager
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
+    public function storeQuestionnaireResponse($data)
+    {
+        $response = json_decode($data['response']);
+        $userId = Auth::id();
+        $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $userId, $data['response']);
+    }
+
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
     {
 //        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaireId, $data['language']);
@@ -71,7 +79,7 @@ class QuestionnaireManager
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
             $questionType = $question->type;
-            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType);
+            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name);
             if ($questionType === 'html')
                 $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
