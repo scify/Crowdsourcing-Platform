@@ -14,8 +14,11 @@
                             @if($viewModel->questionnaire)
                                 <p style="font-size: 18px; text-align: center;">{{$viewModel->questionnaire->description}}</p>
                                 @if(\Auth::user())
-                                    <a href="javascript:void(0)" class="btn btn-block btn-primary" style="width: 250px;
-                                        margin: 20px auto 0;" data-toggle="modal" data-target="#questionnaire-modal">Take
+                                    <a id="respond-questionnaire-btn" href="javascript:void(0)" class="btn btn-block btn-primary" style="width: 250px;
+                                        margin: 20px auto 0;"
+                                       data-questionnaire-id="{{$viewModel->questionnaire->id}}"
+                                       data-url="{{route('respond-questionnaire')}}"
+                                       data-toggle="modal" data-target="#questionnaire-modal">Take
                                         questionnaire</a>
                                 @else
                                     <a href="/login" class="btn btn-block btn-primary"
