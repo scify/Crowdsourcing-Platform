@@ -37,6 +37,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/questionnaire/{id}/edit', 'QuestionnaireController@editQuestionnaire')->name('edit-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/{id}/edit', 'QuestionnaireController@updateQuestionnaire')->name('edit-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('/questionnaire/respond', 'QuestionnaireController@storeQuestionnaireResponse')->name('respond-questionnaire');
 });
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage');

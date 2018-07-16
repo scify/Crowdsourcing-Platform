@@ -13,7 +13,24 @@ let Survey = require('survey-jquery');
             survey
                 .onComplete
                 .add(function (result) {
-                    console.log("result: ", JSON.stringify(result.data));
+                    let button = $('#respond-questionnaire-btn');
+                    let response = JSON.stringify(result.data);
+                    let questionnaire_id = button.data('questionnaire-id');
+                    let url = button.data('url');
+                    $.ajax({
+                        method: 'post',
+                        data: {questionnaire_id, response},
+                        url: url,
+                        beforeSend: function () {
+
+                        },
+                        success: function (response) {
+
+                        },
+                        error: function () {
+
+                        }
+                    });
                 });
         }
     };

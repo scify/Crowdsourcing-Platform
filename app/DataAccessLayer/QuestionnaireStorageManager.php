@@ -14,6 +14,9 @@ use App\Models\QuestionnaireHtml;
 use App\Models\QuestionnaireLanguage;
 use App\Models\QuestionnairePossibleAnswer;
 use App\Models\QuestionnaireQuestion;
+use App\Models\QuestionnaireResponse;
+use App\Models\QuestionnaireResponseAnswer;
+use App\Models\QuestionnaireResponseAnswerText;
 use App\Models\QuestionnaireStatus;
 use App\Models\QuestionnaireStatusHistory;
 use Illuminate\Support\Facades\DB;
@@ -56,7 +59,7 @@ class QuestionnaireStorageManager
     {
         $questionnaire = DB::transaction(function () use ($title, $description, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,  $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
             return $questionnaire;
@@ -84,9 +87,9 @@ class QuestionnaireStorageManager
                 $questionTitle = isset($question->title) ? $question->title : $question->name;
                 $questionType = $question->type;
                 if ($newQuestionsCounter >= $questionsFromDBLength)
-                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType);
+                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name);
                 else
-                    $storedQuestion = $this->storeQuestion($questionsFromDB->get($newQuestionsCounter), $questionTitle, $questionType);
+                    $storedQuestion = $this->storeQuestion($questionsFromDB->get($newQuestionsCounter), $questionTitle, $questionType, $question->name);
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
                 $this->updateAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
                 $newQuestionsCounter++;
@@ -108,11 +111,11 @@ class QuestionnaireStorageManager
         return $questionnaireLanguage;
     }
 
-    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType)
+    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName)
     {
         $question = new QuestionnaireQuestion();
         $question->questionnaire_id = $questionnaireId;
-        return $this->storeQuestion($question, $questionTitle, $questionType);
+        return $this->storeQuestion($question, $questionTitle, $questionType, $questionName);
     }
 
     public function saveNewHtmlElement($questionId, $html)
@@ -149,6 +152,31 @@ class QuestionnaireStorageManager
         return $questionnaireStatusHistory;
     }
 
+    public function saveNewQuestionnaireResponse($questionnaireId, $response, $userId, $responseJson)
+    {
+        return DB::transaction(function () use ($questionnaireId, $response, $userId, $responseJson) {
+            $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+            $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson);
+            foreach ($response as $question => $answer) {
+                if (strpos($question, '-Comment') === false) {
+                    $foundQuestionFromDB = $questionsFromDB->where('name', $question)->first();
+                    $possibleAnswers = QuestionnairePossibleAnswer::where('question_id', $foundQuestionFromDB->id)->get();
+                    if (!is_array($answer))
+                        $answer = [$answer];
+                    foreach ($answer as $tempAnswer) {
+                        $foundAnswerFromDB = $possibleAnswers->where('value', $tempAnswer)->first();
+                        $commentFieldName = $question . '-Comment';
+                        $this->storeQuestionnaireResponseAnswer($questionnaireResponse, $foundQuestionFromDB,
+                            $foundAnswerFromDB, $tempAnswer,
+                            (isset($response->$commentFieldName) ? $response->$commentFieldName : null)
+                        );
+                    }
+                }
+            }
+            return $questionnaireResponse;
+        });
+    }
+
     private function storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire->title = $title;
@@ -165,9 +193,10 @@ class QuestionnaireStorageManager
         return QuestionnaireQuestion::where('questionnaire_id', $questionnaireId)->get();
     }
 
-    private function storeQuestion($question, $questionTitle, $questionType)
+    private function storeQuestion($question, $questionTitle, $questionType, $questionName)
     {
         $question->question = $questionTitle;
+        $question->name = $questionName;
         $question->type = $questionType;
         $question->save();
         return $question;
@@ -247,5 +276,40 @@ class QuestionnaireStorageManager
     {
         $question = QuestionnaireQuestion::findOrFail($questionId);
         $question->delete();
+    }
+
+    private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson)
+    {
+        $questionnaireResponse = new QuestionnaireResponse();
+        $questionnaireResponse->questionnaire_id = $questionnaireId;
+        $questionnaireResponse->user_id = $userId;
+        $questionnaireResponse->response_json = $responseJson;
+        $questionnaireResponse->save();
+        return $questionnaireResponse;
+    }
+
+    private function storeQuestionnaireResponseAnswer($questionnaireResponse, $foundQuestionFromDB, $foundAnswerFromDB, $answer, $comment)
+    {
+        $responseAnswer = new QuestionnaireResponseAnswer();
+        $responseAnswer->questionnaire_response_id = $questionnaireResponse->id;
+        $responseAnswer->question_id = $foundQuestionFromDB->id;
+        if (is_null($foundAnswerFromDB)) {
+            $responseAnswer->save();
+            $answerText = new QuestionnaireResponseAnswerText();
+            $answerText->questionnaire_response_answer_id = $responseAnswer->id;
+            // if value is "Other", then there will be a key containing the answer in the $response array,
+            // for example: if user gives to question1 the answer "other", a key $question1-Comment
+            // should exist inside the $response array that will contain the answer written by user
+            if (!is_null($comment)) {
+                $answerText->answer = $comment;
+            } else {
+                $answerText->answer = $answer;
+            }
+            $answerText->save();
+        } else {
+            $responseAnswer->answer_id = $foundAnswerFromDB->id;
+            $responseAnswer->save();
+        }
+        return $responseAnswer;
     }
 }
