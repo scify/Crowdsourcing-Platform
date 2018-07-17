@@ -14,7 +14,7 @@
                             @if($viewModel->questionnaire)
                                 @if($viewModel->questionnaireResponse)
                                     <p style="font-size: 18px; text-align: center; font-style: italic;">
-                                        You have already took the questionnaire with title
+                                        You have already taken the questionnaire with title
                                         "{{$viewModel->questionnaire->title}}".
                                     </p>
                                 @else

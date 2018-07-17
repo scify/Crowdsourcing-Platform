@@ -42,11 +42,14 @@
                                 </td>
                                 <td>
                                     <div>
-                                        <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}">Edit questionnaire</a>
+                                        <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-pencil"></i> Edit questionnaire</a>
+                                    </div>
+                                    <div>
+                                        <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
                                     </div>
                                     <div>
                                         <a href="javascript:void(0)" class="change-status" data-toggle="modal"
-                                           data-target="#changeStatusModal">Change status</a>
+                                           data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
                                     </div>
                                 </td>
                             </tr>

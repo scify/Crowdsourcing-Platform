@@ -12,6 +12,7 @@ namespace App\BusinessLogicLayer;
 use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
+use App\Models\ViewModels\QuestionnaireTranslation;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireManager
@@ -39,7 +40,7 @@ class QuestionnaireManager
 
     public function getAllQuestionnairesForProjectViewModel($projectId)
     {
-        $questionnaires = $this->questionnaireStorageManager->getAllQuestionnairesForProjectWithTranslations($projectId);
+        $questionnaires = $this->questionnaireStorageManager->getAllQuestionnairesForProjectWithAvailableTranslations($projectId);
         $availableStatuses = $this->questionnaireStorageManager->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
@@ -70,6 +71,16 @@ class QuestionnaireManager
         $response = json_decode($data['response']);
         $userId = Auth::id();
         $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $userId, $data['response']);
+    }
+
+    public function getTranslateQuestionnaireViewModel($questionnaireId)
+    {
+        $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($questionnaireId);
+        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
+        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
+        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
+        $questionnaireTranslations = $this->questionnaireStorageManager->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
+        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaire, $allLanguages, $defaultLanguage[0]);
     }
 
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
@@ -115,5 +126,14 @@ class QuestionnaireManager
                 }
             }
         }
+    }
+
+    private function transformAllLanguagesToArray($allLanguages)
+    {
+        $result = [];
+        foreach ($allLanguages as $language) {
+            array_push($result, $language[0]);
+        }
+        return $result;
     }
 }
