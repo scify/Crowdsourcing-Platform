@@ -49,9 +49,12 @@ class CrowdSourcingProjectManager
     public function getCrowdSourcingProjectViewModelForLandingPage($project_slug) {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $questionnaire = null;
+        $questionnaireResponse = null;
         if ($project)
             $questionnaire = $this->questionnaireStorageManager->getActiveQuestionnaireForProject($project->id);
-        return new CrowdSourcingProjectForLandingPage($project, $questionnaire);
+        if ($questionnaire)
+            $questionnaireResponse =  $this->questionnaireStorageManager->getResponseForQuestionnaire($questionnaire->id);
+        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $questionnaireResponse);
     }
 
     public function updateCrowdSourcingProject($id, $attributes)

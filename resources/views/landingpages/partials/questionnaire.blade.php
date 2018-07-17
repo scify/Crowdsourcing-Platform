@@ -12,20 +12,31 @@
                         </div>
                         <div class="questionnaire-content" style="padding: 100px 10px;">
                             @if($viewModel->questionnaire)
-                                <p style="font-size: 18px; text-align: center;">{{$viewModel->questionnaire->description}}</p>
-                                @if(\Auth::user())
-                                    <a id="respond-questionnaire-btn" href="javascript:void(0)" class="btn btn-block btn-primary" style="width: 250px;
-                                        margin: 20px auto 0;"
-                                       data-questionnaire-id="{{$viewModel->questionnaire->id}}"
-                                       data-url="{{route('respond-questionnaire')}}"
-                                       data-toggle="modal" data-target="#questionnaire-modal">Take
-                                        questionnaire</a>
+                                @if($viewModel->questionnaireResponse)
+                                    <p style="font-size: 18px; text-align: center; font-style: italic;">
+                                        You have already took the questionnaire with title
+                                        "{{$viewModel->questionnaire->title}}".
+                                    </p>
                                 @else
-                                    <a href="/login" class="btn btn-block btn-primary"
-                                       style="width: 250px; margin: 20px auto 0;">Login</a>
+                                    <p style="font-size: 18px; text-align: center;">{{$viewModel->questionnaire->description}}</p>
+                                    @if(\Auth::user())
+                                        <a id="respond-questionnaire-btn" href="javascript:void(0)"
+                                           class="btn btn-block btn-primary"
+                                           style="width: 250px; margin: 20px auto 0;"
+                                           data-questionnaire-id="{{$viewModel->questionnaire->id}}"
+                                           data-url="{{route('respond-questionnaire')}}"
+                                           data-toggle="modal" data-target="#questionnaire-modal">
+                                            Take questionnaire
+                                        </a>
+                                    @else
+                                        <a href="/login" class="btn btn-block btn-primary"
+                                           style="width: 250px; margin: 20px auto 0;">Login</a>
+                                    @endif
                                 @endif
                             @else
-                                <p style="font-size: 18px; text-align: center; font-style: italic;">No active questionnaire found.</p>
+                                <p style="font-size: 18px; text-align: center; font-style: italic;">
+                                    No active questionnaire found.
+                                </p>
                             @endif
                         </div>
                     </div>
