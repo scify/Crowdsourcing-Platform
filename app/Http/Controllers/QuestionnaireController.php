@@ -61,4 +61,10 @@ class QuestionnaireController extends Controller
         $this->questionnaireManager->storeQuestionnaireResponse($request->all());
         return response()->json(['status' => '__SUCCESS']);
     }
+
+    public function translateQuestionnaire($id)
+    {
+        $viewModel = $this->questionnaireManager->getTranslateQuestionnaireViewModel($id);
+        return view('translate-questionnaire')->with(['viewModel' => $viewModel]);
+    }
 }

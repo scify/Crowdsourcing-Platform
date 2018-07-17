@@ -21,14 +21,9 @@ let Survey = require('survey-jquery');
                         method: 'post',
                         data: {questionnaire_id, response},
                         url: url,
-                        beforeSend: function () {
-
-                        },
-                        success: function (response) {
-
-                        },
-                        error: function () {
-
+                        success: function(response){
+                            $(".questionnaire-content p").css("font-style", "italic").html("Thank you for completing the survey!");
+                            $(".questionnaire-content a").remove();
                         }
                     });
                 });
