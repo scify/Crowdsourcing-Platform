@@ -13,10 +13,12 @@ class CrowdSourcingProjectForLandingPage
 {
     public $project;
     public $questionnaire;
+    public $questionnaireResponse;
 
-    public function __construct($project, $questionnaire)
+    public function __construct($project, $questionnaire, $questionnaireResponse)
     {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
+        $this->questionnaireResponse = $questionnaireResponse;
     }
 }

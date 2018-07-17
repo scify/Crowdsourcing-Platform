@@ -55,6 +55,11 @@ class QuestionnaireStorageManager
         return Questionnaire::where('project_id', $projectId)->where('status_id', 2)->first();
     }
 
+    public function getResponseForQuestionnaire($questionnaireId)
+    {
+        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->first();
+    }
+
     public function saveNewQuestionnaire($title, $description, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire = DB::transaction(function () use ($title, $description, $languageId, $projectId, $questionnaireJson) {
