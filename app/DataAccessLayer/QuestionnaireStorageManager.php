@@ -28,7 +28,12 @@ class QuestionnaireStorageManager
         return Questionnaire::findOrFail($id);
     }
 
-    public function getAllQuestionnairesForProjectWithTranslations($projectId)
+    public function getQuestionnaireAvailableLanguages($questionnaireId)
+    {
+        return QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->get();
+    }
+
+    public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId)
     {
         $questionnaires = DB::table('questionnaires as q')
             ->leftJoin('questionnaire_languages as ql', 'ql.questionnaire_id', '=', 'q.id')
@@ -37,11 +42,43 @@ class QuestionnaireStorageManager
             ->join('questionnaire_statuses_lkp as qsl', 'qsl.id', '=', 'q.status_id')
             ->where('q.project_id', $projectId)
             ->whereNull('q.deleted_at')
+            ->whereNull('ql.deleted_at')
             ->orderBy('q.updated_at', 'desc')
             ->select('q.*', 'll.id as language_id', 'll.language_name', 'qsl.title as status_title',
                 'qsl.description as status_description', 'dl.language_name as default_language_name')
             ->get();
         return $questionnaires->groupBy('id');
+    }
+
+    public function getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId)
+    {
+        $questionnaireTranslations = DB::table('questionnaire_questions as qq')
+            ->leftJoin('questionnaire_possible_answers as qpa', 'qq.id', '=', 'qpa.question_id')
+            ->leftJoin('questionnaire_html as qh', 'qq.id', '=', 'qh.question_id')
+            ->leftJoin('questionnaire_translation_questions as qtq', 'qq.id', '=', 'qtq.question_id')
+            ->leftJoin('questionnaire_languages as ql', 'qtq.questionnaire_language_id', '=','ql.id')
+            ->leftJoin('questionnaire_translation_possible_answers as qta', 'ql.id', '=', 'qta.questionnaire_language_id')
+            ->leftJoin('questionnaire_translation_html as qth', 'ql.id', '=', 'qth.questionnaire_language_id')
+            ->leftJoin('languages_lkp as ll', 'ql.language_id', '=', 'll.id')
+            ->where('qq.questionnaire_id', $questionnaireId)
+            ->whereNull('qq.deleted_at')
+            ->whereNull('qpa.deleted_at')
+            ->whereNull('qh.deleted_at')
+            ->whereNull('qtq.deleted_at')
+            ->whereNull('ql.deleted_at')
+            ->whereNull('qta.deleted_at')
+            ->whereNull('qth.deleted_at')
+            ->orderBy('ql.id')
+            ->orderBy('qq.id')
+            ->select('qq.id', 'qq.question', 'qpa.answer', 'qh.html', 'll.language_name', 'qtq.translation as translated_question',
+                'qta.translation as translated_answer', 'qth.translation as translated_html')
+            ->get();
+        $temp = $questionnaireTranslations->groupBy('language_name');
+        $result = collect([]);
+        foreach ($temp as $key => $t) {
+            $result->put($key, $t->groupBy('id'));
+        }
+        return $result;
     }
 
     public function getAllQuestionnaireStatuses()
