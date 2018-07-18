@@ -70,13 +70,14 @@ class QuestionnaireStorageManager
             ->whereNull('qth.deleted_at')
             ->orderBy('ql.id')
             ->orderBy('qq.id')
-            ->select('qq.id', 'qq.question', 'qpa.answer', 'qh.html', 'll.language_name', 'qtq.translation as translated_question',
+            ->select('qq.id as question_id', 'qq.question', 'qpa.id as answer_id', 'qpa.answer', 'qh.id as html_id',
+                'qh.html', 'll.language_name', 'qtq.translation as translated_question',
                 'qta.translation as translated_answer', 'qth.translation as translated_html')
             ->get();
         $temp = $questionnaireTranslations->groupBy('language_name');
         $result = collect([]);
         foreach ($temp as $key => $t) {
-            $result->put($key, $t->groupBy('id'));
+            $result->put($key, $t->groupBy('question_id'));
         }
         return $result;
     }
