@@ -32,14 +32,15 @@
                             <div class="languages-wrapper"></div>
                         </div>
                         <div class="col-md-12">
-                            <div class="translation-wrapper"></div>
+                            <div class="translation-wrapper"
+                                 data-translations="{{$viewModel->questionnaireTranslations}}"></div>
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     <div class="row">
                         <div class="col-md-2 col-md-offset-10">
-                            <button type="submit" class="btn btn-block btn-primary">Save</button>
+                            <a class="btn btn-block btn-primary save-translations">Save</a>
                         </div>
                     </div>
                 </div>

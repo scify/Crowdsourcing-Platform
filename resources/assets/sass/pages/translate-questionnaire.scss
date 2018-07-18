@@ -7,14 +7,39 @@
   background-color: #c7e0ec;
   padding: 20px;
   border: 1px solid #3a87ad;
-  a {
+  a.lang-selector {
     width: 200px;
     display: inline-block;
     margin: 5px !important;
+    &.btn-info {
+      font-weight: bold;
+    }
   }
 }
 
 .translation-wrapper {
   border: 1px solid #3a87ad;
   border-top: none;
+  .translation-item {
+    display: table;
+    width: 100%;
+    .table-row {
+      display: table-row;
+      &:nth-child(even) {
+        background-color: #edf5f9;
+      }
+      &:nth-child(odd) {
+        background-color: white;
+      }
+      .table-cell {
+        padding: 20px;
+        display: table-cell;
+        width: 50%;
+        vertical-align: middle;
+        textarea {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
