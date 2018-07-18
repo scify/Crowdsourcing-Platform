@@ -1,6 +1,5 @@
-window.translationsData;
-
 (function () {
+    let translationsData;
 
     let selectLanguage = function (selectedLangVal) {
         let languagesWrapper = $(".languages-wrapper");
@@ -69,9 +68,52 @@ window.translationsData;
         translationsData = $(".translation-wrapper").data("translations");
     };
 
+    let saveTranslations = function () {
+        let self = $(this);
+        let translations = {};
+        $(".translation-item").each(function () {
+            let langId = $(this).data("lang-id");
+            let translationTexts = [];
+            $(this).find("textarea").each(function () {
+                let nameFromTextArea = $(this).attr("name").split("-");
+                let type = nameFromTextArea[0];
+                let id = nameFromTextArea[1];
+                let value = $(this).val();
+                translationTexts.push({id, type, value});
+            });
+            translations[langId] = {translations: translationTexts};
+        });
+        $.ajax({
+            method: 'post',
+            url: self.data('url'),
+            data: {translations: translations},
+            success: function (response) {
+                swal({
+                    title: "Success!",
+                    text: "The translations have been successfully stored.",
+                    type: "success",
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "OK",
+                }, function () {
+                    window.location = response.redirect_url;
+                });
+            },
+            error: function () {
+                swal({
+                    title: "Oops!",
+                    text: "An error occurred, please try again later.",
+                    type: "error",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+            }
+        });
+    };
+
     let initEvents = function () {
         let body = $("body");
         body.on("click", ".lang-selector", changeLanguageViaTabClick);
+        body.on("click", ".save-translations", saveTranslations);
         let modal = $("#add-new-lang-modal");
         modal.find('a').on('click', addNewLanguageForQuestionnaire);
     };
