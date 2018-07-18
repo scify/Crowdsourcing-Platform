@@ -19,6 +19,9 @@ use App\Models\QuestionnaireResponseAnswer;
 use App\Models\QuestionnaireResponseAnswerText;
 use App\Models\QuestionnaireStatus;
 use App\Models\QuestionnaireStatusHistory;
+use App\Models\QuestionnaireTranslationHtml;
+use App\Models\QuestionnaireTranslationPossibleAnswer;
+use App\Models\QuestionnaireTranslationQuestion;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireStorageManager
@@ -56,7 +59,7 @@ class QuestionnaireStorageManager
             ->leftJoin('questionnaire_possible_answers as qpa', 'qq.id', '=', 'qpa.question_id')
             ->leftJoin('questionnaire_html as qh', 'qq.id', '=', 'qh.question_id')
             ->leftJoin('questionnaire_translation_questions as qtq', 'qq.id', '=', 'qtq.question_id')
-            ->leftJoin('questionnaire_languages as ql', 'qtq.questionnaire_language_id', '=','ql.id')
+            ->leftJoin('questionnaire_languages as ql', 'qtq.questionnaire_language_id', '=', 'ql.id')
             ->leftJoin('questionnaire_translation_possible_answers as qta', 'ql.id', '=', 'qta.questionnaire_language_id')
             ->leftJoin('questionnaire_translation_html as qth', 'ql.id', '=', 'qth.questionnaire_language_id')
             ->leftJoin('languages_lkp as ll', 'ql.language_id', '=', 'll.id')
@@ -220,6 +223,43 @@ class QuestionnaireStorageManager
         });
     }
 
+    public function storeQuestionnaireTranslations($questionnaireId, $translations)
+    {
+        DB::transaction(function () use ($questionnaireId, $translations) {
+            $allTranslations = [];
+            $questionnaireLanguages = $this->getQuestionnaireAvailableLanguages($questionnaireId);
+            foreach ($translations as $languageId => $languageWithTranslations) {
+                $questionnaireLanguage = $questionnaireLanguages->where('language_id', $languageId)->first();
+                if (is_null($questionnaireLanguage)) {
+                    $questionnaireLanguage = new QuestionnaireLanguage();
+                    $questionnaireLanguage->questionnaire_id = $questionnaireId;
+                    $questionnaireLanguage->language_id = $languageId;
+                    $questionnaireLanguage->save();
+                } else {
+                    $this->removeTranslationsForQuestionnaireLanguage($questionnaireLanguage->id);
+                }
+                foreach ($languageWithTranslations as $translations) {
+                    foreach ($translations as $translation) {
+                        array_push($allTranslations, (object)[
+                            'questionnaire_language_id' => $questionnaireLanguage->id,
+                            'id' => $translation['id'],
+                            'type' => $translation['type'],
+                            'translation' => $translation['value']
+                        ]);
+                    }
+                }
+            }
+            $allTranslations = collect($allTranslations);
+            $allTranslations = $allTranslations->groupBy('type');
+            if ($allTranslations->has('question'))
+                $this->storeAllQuestionsTranslations($allTranslations->get('question'));
+            if ($allTranslations->has('answer'))
+                $this->storeAllAnswersTranslations($allTranslations->get('answer'));
+            if ($allTranslations->has('html'))
+                $this->storeAllHtmlTranslations($allTranslations->get('html'));
+        });
+    }
+
     private function storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire->title = $title;
@@ -354,5 +394,63 @@ class QuestionnaireStorageManager
             $responseAnswer->save();
         }
         return $responseAnswer;
+    }
+
+    private function storeAllQuestionsTranslations($translations)
+    {
+        foreach ($translations as $translation) {
+            $this->storeQuestionTranslation($translation);
+        }
+    }
+
+    private function storeQuestionTranslation($translation)
+    {
+        $questionTranslation = new QuestionnaireTranslationQuestion();
+        $questionTranslation->questionnaire_language_id = $translation->questionnaire_language_id;
+        $questionTranslation->question_id = $translation->id;
+        $questionTranslation->translation = $translation->translation;
+        $questionTranslation->save();
+        return $questionTranslation;
+    }
+
+    private function storeAllAnswersTranslations($translations)
+    {
+        foreach ($translations as $translation) {
+            $this->storeAnswerTranslation($translation);
+        }
+    }
+
+    private function storeAnswerTranslation($translation)
+    {
+        $answerTranslation = new QuestionnaireTranslationPossibleAnswer();
+        $answerTranslation->questionnaire_language_id = $translation->questionnaire_language_id;
+        $answerTranslation->possible_answer_id = $translation->id;
+        $answerTranslation->translation = $translation->translation;
+        $answerTranslation->save();
+        return $answerTranslation;
+    }
+
+    private function storeAllHtmlTranslations($translations)
+    {
+        foreach ($translations as $translation) {
+            $this->storeHtmlTranslation($translation);
+        }
+    }
+
+    private function storeHtmlTranslation($translation)
+    {
+        $htmlTranslation = new QuestionnaireTranslationHtml();
+        $htmlTranslation->questionnaire_language_id = $translation->questionnaire_language_id;
+        $htmlTranslation->html_id = $translation->id;
+        $htmlTranslation->translation = $translation->translation;
+        $htmlTranslation->save();
+        return $htmlTranslation;
+    }
+
+    private function removeTranslationsForQuestionnaireLanguage($questionnaireLanguageId)
+    {
+        QuestionnaireTranslationQuestion::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
+        QuestionnaireTranslationAnswer::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
+        QuestionnaireTranslationHtml::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
     }
 }

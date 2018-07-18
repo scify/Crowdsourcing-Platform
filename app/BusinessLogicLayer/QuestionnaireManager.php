@@ -83,6 +83,10 @@ class QuestionnaireManager
         return new QuestionnaireTranslation($questionnaireTranslations, $questionnaire, $allLanguages, $defaultLanguage[0]);
     }
 
+    public function storeQuestionnaireTranslations($questionnaireId, $translations) {
+        $this->questionnaireStorageManager->storeQuestionnaireTranslations($questionnaireId, $translations);
+    }
+
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
     {
 //        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaireId, $data['language']);

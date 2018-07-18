@@ -40,7 +40,8 @@
                 <div class="box-footer">
                     <div class="row">
                         <div class="col-md-2 col-md-offset-10">
-                            <a class="btn btn-block btn-primary save-translations">Save</a>
+                            <a class="btn btn-block btn-primary save-translations"
+                               data-url="{{route('translate-questionnaire', ['id' => $viewModel->questionnaire->id])}}">Save</a>
                         </div>
                     </div>
                 </div>

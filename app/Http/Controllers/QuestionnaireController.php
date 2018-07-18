@@ -67,4 +67,10 @@ class QuestionnaireController extends Controller
         $viewModel = $this->questionnaireManager->getTranslateQuestionnaireViewModel($id);
         return view('translate-questionnaire')->with(['viewModel' => $viewModel]);
     }
+
+    public function storeQuestionnaireTranslations(Request $request, $id)
+    {
+        $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
+        return response()->json(['status' => '__SUCCESS']);
+    }
 }
