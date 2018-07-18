@@ -36,6 +36,9 @@
         display: table-cell;
         width: 50%;
         vertical-align: middle;
+        &:first-child {
+          border-right: 1px solid #3a87ad;
+        }
         textarea {
           width: 100%;
         }
