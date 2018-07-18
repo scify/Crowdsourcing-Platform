@@ -60,8 +60,14 @@ class QuestionnaireStorageManager
             ->leftJoin('questionnaire_html as qh', 'qq.id', '=', 'qh.question_id')
             ->leftJoin('questionnaire_translation_questions as qtq', 'qq.id', '=', 'qtq.question_id')
             ->leftJoin('questionnaire_languages as ql', 'qtq.questionnaire_language_id', '=', 'ql.id')
-            ->leftJoin('questionnaire_translation_possible_answers as qta', 'ql.id', '=', 'qta.questionnaire_language_id')
-            ->leftJoin('questionnaire_translation_html as qth', 'ql.id', '=', 'qth.questionnaire_language_id')
+            ->leftJoin('questionnaire_translation_possible_answers as qta', function ($join) {
+                $join->on('ql.id', '=', 'qta.questionnaire_language_id');
+                $join->on('qpa.id', '=', 'qta.possible_answer_id');
+            })
+            ->leftJoin('questionnaire_translation_html as qth', function ($join) {
+                $join->on('ql.id', '=', 'qth.questionnaire_language_id');
+                $join->on('qh.id', '=', 'qth.html_id');
+            })
             ->leftJoin('languages_lkp as ll', 'ql.language_id', '=', 'll.id')
             ->where('qq.questionnaire_id', $questionnaireId)
             ->whereNull('qq.deleted_at')
@@ -74,7 +80,7 @@ class QuestionnaireStorageManager
             ->orderBy('ql.id')
             ->orderBy('qq.id')
             ->select('qq.id as question_id', 'qq.question', 'qpa.id as answer_id', 'qpa.answer', 'qh.id as html_id',
-                'qh.html', 'll.language_name', 'qtq.translation as translated_question',
+                'qh.html', 'll.id as language_id', 'll.language_name', 'qtq.translation as translated_question',
                 'qta.translation as translated_answer', 'qth.translation as translated_html')
             ->get();
         $temp = $questionnaireTranslations->groupBy('language_name');
