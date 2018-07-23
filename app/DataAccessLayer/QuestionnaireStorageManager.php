@@ -456,7 +456,7 @@ class QuestionnaireStorageManager
     private function removeTranslationsForQuestionnaireLanguage($questionnaireLanguageId)
     {
         QuestionnaireTranslationQuestion::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
-        QuestionnaireTranslationAnswer::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
+        QuestionnaireTranslationPossibleAnswer::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
         QuestionnaireTranslationHtml::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
     }
 }
