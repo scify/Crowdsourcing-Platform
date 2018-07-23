@@ -13,6 +13,7 @@ let SurveyEditor = require('surveyjs-editor');
             showEmbededSurveyTab: false,
             showPropertyGrid: false,
             toolbarItems: {visible: false},
+            showPagesToolbox: false,
             questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "rating", "html", "comment"]
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
