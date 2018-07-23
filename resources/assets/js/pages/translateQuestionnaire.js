@@ -27,20 +27,20 @@
                 let obj = translationsData[languageKey][properties[i]][j];
                 if (j === 0 && obj.html === null) {
                     string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". " + obj.question + "</b></div><div class='table-cell'>" +
-                        "<textarea class='form-control' name='question-" + obj.question_id + "'>" +
-                        (isAlreadyTranslated ? obj.translated_question : obj.question) + "</textarea>" +
+                        "<textarea class='form-control' name='question-" + obj.question_id + "' data-name='" + obj.question_name + "'>" +
+                        (isAlreadyTranslated && obj.translated_question ? obj.translated_question : obj.question) + "</textarea>" +
                         "</div></div>";
                 }
                 if (obj.answer !== null) {
                     string += "<div class='table-row'><div class='table-cell'><b style='margin-left: 30px; display: block;'>" + obj.answer + "</b></div><div class='table-cell'>" +
-                        "<textarea class='form-control' name='answer-" + obj.answer_id + "'>" +
-                        (isAlreadyTranslated ? obj.translated_answer : obj.answer) + "</textarea>" +
+                        "<textarea class='form-control' name='answer-" + obj.answer_id + "' data-name='" + obj.question_name + "' data-value='" + obj.answer_value + "'>" +
+                        (isAlreadyTranslated && obj.translated_answer ? obj.translated_answer : obj.answer) + "</textarea>" +
                         "</div></div>";
                 }
                 if (obj.html !== null) {
                     string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". " + obj.html + "</b></div><div class='table-cell'>" +
-                        "<textarea class='form-control' name='html-" + obj.html_id + "'>" +
-                        (isAlreadyTranslated ? obj.translated_html : obj.html) + "</textarea>" +
+                        "<textarea class='form-control' name='html-" + obj.html_id + "' data-name='" + obj.question_name + "'>" +
+                        (isAlreadyTranslated && obj.translated_html ? obj.translated_html : obj.html) + "</textarea>" +
                         "</div></div>";
                 }
             }
@@ -86,8 +86,10 @@
                 let nameFromTextArea = $(this).attr("name").split("-");
                 let type = nameFromTextArea[0];
                 let id = nameFromTextArea[1];
-                let value = $(this).val();
-                translationTexts.push({id, type, value});
+                let value = $(this).data("value");
+                let translation = $(this).val();
+                let name = $(this).data("name");
+                translationTexts.push({id, type, value, name, translation});
             });
             translations[langId] = {translations: translationTexts};
         });
