@@ -9,6 +9,7 @@
 namespace App\DataAccessLayer;
 
 
+use App\Models\Language;
 use App\Models\Questionnaire;
 use App\Models\QuestionnaireHtml;
 use App\Models\QuestionnaireLanguage;
@@ -79,7 +80,8 @@ class QuestionnaireStorageManager
             ->whereNull('qth.deleted_at')
             ->orderBy('ql.id')
             ->orderBy('qq.id')
-            ->select('qq.id as question_id', 'qq.question', 'qpa.id as answer_id', 'qpa.answer', 'qh.id as html_id',
+            ->select('qq.id as question_id', 'qq.question', 'qq.name as question_name', 'qpa.id as answer_id',
+                'qpa.answer', 'qpa.value as answer_value', 'qh.id as html_id',
                 'qh.html', 'll.id as language_id', 'll.language_name', 'qtq.translation as translated_question',
                 'qta.translation as translated_answer', 'qth.translation as translated_html')
             ->get();
@@ -236,6 +238,8 @@ class QuestionnaireStorageManager
             $questionnaireLanguages = $this->getQuestionnaireAvailableLanguages($questionnaireId);
             foreach ($translations as $languageId => $languageWithTranslations) {
                 $questionnaireLanguage = $questionnaireLanguages->where('language_id', $languageId)->first();
+                $language = Language::findOrFail($languageId);
+                $languageCode = $language->language_code;
                 if (is_null($questionnaireLanguage)) {
                     $questionnaireLanguage = new QuestionnaireLanguage();
                     $questionnaireLanguage->questionnaire_id = $questionnaireId;
@@ -250,12 +254,16 @@ class QuestionnaireStorageManager
                             'questionnaire_language_id' => $questionnaireLanguage->id,
                             'id' => $translation['id'],
                             'type' => $translation['type'],
-                            'translation' => $translation['value']
+                            'translation' => $translation['translation'],
+                            'name' => $translation['name'],
+                            'value' => isset($translation['value']) ? $translation['value'] : null,
+                            'language_code' => $languageCode
                         ]);
                     }
                 }
             }
             $allTranslations = collect($allTranslations);
+            $this->storeQuestionnaireJsonWithTranslations($questionnaireId, $allTranslations);
             $allTranslations = $allTranslations->groupBy('type');
             if ($allTranslations->has('question'))
                 $this->storeAllQuestionsTranslations($allTranslations->get('question'));
@@ -458,5 +466,85 @@ class QuestionnaireStorageManager
         QuestionnaireTranslationQuestion::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
         QuestionnaireTranslationPossibleAnswer::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
         QuestionnaireTranslationHtml::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
+    }
+
+    private function storeQuestionnaireJsonWithTranslations($questionnaireId, $allTranslations)
+    {
+        $questionnaire = Questionnaire::findOrFail($questionnaireId);
+        $json = json_decode($questionnaire->questionnaire_json);
+        $elements = [];
+        if (isset($json->pages) && isset($json->pages[0]) && isset($json->pages[0]->elements)) {
+            foreach ($json->pages[0]->elements as $element) {
+                $relatedTranslations = $allTranslations->where('name', $element->name);
+                $questionTranslations = $relatedTranslations->where('type', 'question');
+                $element->title = $this->setQuestionnaireJsonTitleWithTranslations($questionTranslations, $element);
+                if (isset($element->choices)) {
+                    $answerTranslations = $relatedTranslations->where('type', 'answer');
+                    $element->choices = $this->setQuestionnaireJsonChoicesWithTranslations($answerTranslations, $element);
+                }
+                if (isset($element->html)) {
+                    $htmlTranslations = $relatedTranslations->where('type', 'html');
+                    $element->html = $this->setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element);
+                }
+                array_push($elements, $element);
+            }
+        }
+        $newJson = new \stdClass();
+        $newJson->pages = ['elements' => $elements];
+        $questionnaire->questionnaire_json = json_encode($newJson);
+        $questionnaire->save();
+    }
+
+    private function setQuestionnaireJsonTitleWithTranslations($questionTranslations, $element)
+    {
+        if (isset($element->title)) {
+            if (isset($element->title->default)) // if title translations already exist
+                $defaultTitle = $element->title->default;
+            else
+                $defaultTitle = $element->title;
+        } else { // if title property does not exist in element
+            $defaultTitle = $element->name;
+        }
+        $temp = $this->setAllTranslationsForAQuestionnaireString($defaultTitle, $questionTranslations);
+        return (object)$temp;
+    }
+
+    private function setQuestionnaireJsonChoicesWithTranslations($answerTranslations, $element)
+    {
+        $choices = [];
+        foreach ($element->choices as $choice) {
+            if (isset($choice->text)) {
+                if (isset($choice->text->default)) // if translations already exist
+                    $defaultChoice = $choice->text->default;
+                else
+                    $defaultChoice = $choice->text;
+            } else {
+                $defaultChoice = $choice;
+            }
+            if (isset($choice->value))
+                $choiceValue = $choice->value;
+            else
+                $choiceValue = $choice;
+            $answers = $answerTranslations->where('value', $choiceValue);
+            $temp = $this->setAllTranslationsForAQuestionnaireString($defaultChoice, $answers);
+            array_push($choices, $temp);
+        }
+        return $choices;
+    }
+
+    private function setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element)
+    {
+        $temp = $this->setAllTranslationsForAQuestionnaireString($element->html, $htmlTranslations);
+        return (object)$temp;
+    }
+
+    private function setAllTranslationsForAQuestionnaireString($defaultLanguageValue, $translations)
+    {
+        $temp = ['default' => $defaultLanguageValue];
+        foreach ($translations as $translation) {
+            $langCode = $translation->language_code;
+            $temp[$langCode] = $translation->translation;
+        }
+        return $temp;
     }
 }
