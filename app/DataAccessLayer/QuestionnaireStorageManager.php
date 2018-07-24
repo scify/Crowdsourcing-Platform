@@ -60,14 +60,13 @@ class QuestionnaireStorageManager
             ->leftJoin('questionnaire_possible_answers as qpa', 'qq.id', '=', 'qpa.question_id')
             ->leftJoin('questionnaire_html as qh', 'qq.id', '=', 'qh.question_id')
             ->leftJoin('questionnaire_translation_questions as qtq', 'qq.id', '=', 'qtq.question_id')
-            ->leftJoin('questionnaire_languages as ql', 'qtq.questionnaire_language_id', '=', 'ql.id')
+            ->leftJoin('questionnaire_translation_html as qth','qh.id', '=', 'qth.html_id')
+            ->leftJoin('questionnaire_languages as ql', function ($join) {
+                $join->on('qtq.questionnaire_language_id', '=', 'ql.id')->orOn('qth.questionnaire_language_id', '=', 'ql.id');
+            })
             ->leftJoin('questionnaire_translation_possible_answers as qta', function ($join) {
                 $join->on('ql.id', '=', 'qta.questionnaire_language_id');
                 $join->on('qpa.id', '=', 'qta.possible_answer_id');
-            })
-            ->leftJoin('questionnaire_translation_html as qth', function ($join) {
-                $join->on('ql.id', '=', 'qth.questionnaire_language_id');
-                $join->on('qh.id', '=', 'qth.html_id');
             })
             ->leftJoin('languages_lkp as ll', 'ql.language_id', '=', 'll.id')
             ->where('qq.questionnaire_id', $questionnaireId)
