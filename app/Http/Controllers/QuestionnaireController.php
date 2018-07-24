@@ -71,6 +71,6 @@ class QuestionnaireController extends Controller
     public function storeQuestionnaireTranslations(Request $request, $id)
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
-        return response()->json(['status' => '__SUCCESS']);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/1/questionnaires')]);
     }
 }

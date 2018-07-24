@@ -138,7 +138,8 @@ class QuestionnaireStorageManager
             $questionsFromDBLength = $questionsFromDB->count();
             $newQuestionsCounter = 0;
             foreach ($questions as $question) {
-                $questionTitle = isset($question->title) ? $question->title : $question->name;
+                $questionTitle = isset($question->title) ?
+                    (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
                 $questionType = $question->type;
                 if ($newQuestionsCounter >= $questionsFromDBLength)
                     $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name);
@@ -304,12 +305,12 @@ class QuestionnaireStorageManager
         $questionnaireHtml = $this->getQuestionnaireHtmlForQuestion($questionId);
         if ($questionnaireHtml) {
             if ($questionType === 'html')
-                $this->storeHtmlElement($questionnaireHtml, $question->html);
+                $this->storeHtmlElement($questionnaireHtml, (isset($question->html->default) ? $question->html->default : $question->html));
             else
                 $questionnaireHtml->delete();
         } else {
             if ($questionType === 'html')
-                $this->saveNewHtmlElement($questionId, $question->html);
+                $this->saveNewHtmlElement($questionId, (isset($question->html->default) ? $question->html->default : $question->html));
         }
     }
 
@@ -333,7 +334,8 @@ class QuestionnaireStorageManager
         foreach ($fieldNames as $fieldName) {
             if (isset($question->$fieldName)) {
                 foreach ($question->$fieldName as $temp) {
-                    $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
+                    $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ?
+                        (isset($temp->text->default) ? $temp->text->default : $temp->text) : $temp);
                     $value = isset($temp->value) ? $temp->value : $temp;
                     if ($newAnswersCount >= $answersFromDBLength)
                         $this->saveNewAnswer($questionId, $answer, $value);
@@ -489,9 +491,7 @@ class QuestionnaireStorageManager
                 array_push($elements, $element);
             }
         }
-        $newJson = new \stdClass();
-        $newJson->pages = ['elements' => $elements];
-        $questionnaire->questionnaire_json = json_encode($newJson);
+        $questionnaire->questionnaire_json = '{"pages": [{"name": "page1", "elements": ' . json_encode($elements) . '}]}';
         $questionnaire->save();
     }
 
@@ -526,7 +526,7 @@ class QuestionnaireStorageManager
             else
                 $choiceValue = $choice;
             $answers = $answerTranslations->where('value', $choiceValue);
-            $temp = $this->setAllTranslationsForAQuestionnaireString($defaultChoice, $answers);
+            $temp = ['value' => $choiceValue, 'text' => $this->setAllTranslationsForAQuestionnaireString($defaultChoice, $answers)];
             array_push($choices, $temp);
         }
         return $choices;
@@ -534,7 +534,8 @@ class QuestionnaireStorageManager
 
     private function setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element)
     {
-        $temp = $this->setAllTranslationsForAQuestionnaireString($element->html, $htmlTranslations);
+        $temp = $this->setAllTranslationsForAQuestionnaireString(
+            (isset($element->html->default) ? $element->html->default : $element->html), $htmlTranslations);
         return (object)$temp;
     }
 
