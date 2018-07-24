@@ -100,7 +100,6 @@ class QuestionnaireManager
 
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
     {
-//        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaireId, $data['language']);
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
@@ -108,13 +107,12 @@ class QuestionnaireManager
             $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name);
             if ($questionType === 'html')
                 $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
-            $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items']);
+            $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items', 'minRateDescription', 'maxRateDescription']);
         }
     }
 
     private function updateAllQuestionnaireRelatedTables($questionnaireId, $data)
     {
-//        $questionnaireLanguage = $this->questionnaireStorageManager->saveNewQuestionnaireLanguage($questionnaireId, $data['language']);
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
         $this->questionnaireStorageManager->updateAllQuestionnaireRelatedTables($questionnaireId, $questions);
     }
@@ -134,10 +132,16 @@ class QuestionnaireManager
     {
         foreach ($fieldNames as $fieldName) {
             if (isset($question->$fieldName)) {
-                foreach ($question->$fieldName as $temp) {
-                    $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
-                    $value = isset($temp->value) ? $temp->value : $temp;
+                if (in_array($fieldName, ['minRateDescription', 'maxRateDescription'])) {
+                    $answer = $question->$fieldName;
+                    $value = null;
                     $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value);
+                } else {
+                    foreach ($question->$fieldName as $temp) {
+                        $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
+                        $value = isset($temp->value) ? $temp->value : $temp;
+                        $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value);
+                    }
                 }
             }
         }
