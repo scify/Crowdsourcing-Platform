@@ -6,7 +6,7 @@
             <h2>{{$viewModel->project->motto}}</h2>
             <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3 call-to-action">
                 <a href="#questionnaire">
-                    Take action <i class="fa fa-angle-right"></i>
+                    Speak up <i class="fa fa-angle-right"></i>
                 </a>
             </div>
         </div>
