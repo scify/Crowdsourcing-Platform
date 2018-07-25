@@ -103,9 +103,14 @@ class QuestionnaireStorageManager
         return Questionnaire::where('project_id', $projectId)->where('status_id', 2)->first();
     }
 
-    public function getResponseForQuestionnaire($questionnaireId)
+    public function getUserResponseForQuestionnaire($questionnaireId, $userId)
     {
-        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->first();
+        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->where('user_id', $userId)->first();
+    }
+
+    public function getAllResponsesForQuestionnaire($questionnaireId)
+    {
+        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->orderBy('created_at', 'desc')->with('user')->get();
     }
 
     public function saveNewQuestionnaire($title, $description, $goal, $languageId, $projectId, $questionnaireJson)
