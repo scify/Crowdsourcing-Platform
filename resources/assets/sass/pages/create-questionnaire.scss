@@ -20,6 +20,9 @@
     }
     #surveyquestioneditorwindow {
       position: absolute !important;
+      .modal-body {
+        max-height: 550px;
+      }
     }
   }
 }
