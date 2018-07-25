@@ -22,8 +22,8 @@ let Survey = require('survey-jquery');
                         data: {questionnaire_id, response},
                         url: url,
                         success: function(response){
-                            $(".questionnaire-content p").css("font-style", "italic").html("Thank you for completing the survey!");
-                            $(".questionnaire-content a").remove();
+                            $(".questionnaire-content").html("<p style='font-style: italic; text-align: center; font-size: 18px;'>" +
+                                "Thank you for completing the survey!</p>");
                         }
                     });
                 });

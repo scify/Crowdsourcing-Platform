@@ -5,6 +5,7 @@ namespace App\BusinessLogicLayer;
 use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Repository\CrowdSourcingProjectRepository;
+use Illuminate\Support\Facades\Auth;
 
 class CrowdSourcingProjectManager
 {
@@ -49,12 +50,15 @@ class CrowdSourcingProjectManager
     public function getCrowdSourcingProjectViewModelForLandingPage($project_slug) {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $questionnaire = null;
-        $questionnaireResponse = null;
+        $userResponse = null;
+        $allResponses = collect([]);
         if ($project)
             $questionnaire = $this->questionnaireStorageManager->getActiveQuestionnaireForProject($project->id);
-        if ($questionnaire)
-            $questionnaireResponse =  $this->questionnaireStorageManager->getResponseForQuestionnaire($questionnaire->id);
-        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $questionnaireResponse);
+        if ($questionnaire) {
+            $userResponse = $this->questionnaireStorageManager->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
+            $allResponses = $this->questionnaireStorageManager->getAllResponsesForQuestionnaire($questionnaire->id);
+        }
+        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $userResponse, $allResponses);
     }
 
     public function updateCrowdSourcingProject($id, $attributes)
