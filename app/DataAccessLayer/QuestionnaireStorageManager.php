@@ -108,11 +108,11 @@ class QuestionnaireStorageManager
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->first();
     }
 
-    public function saveNewQuestionnaire($title, $description, $languageId, $projectId, $questionnaireJson)
+    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $projectId, $questionnaireJson)
     {
-        $questionnaire = DB::transaction(function () use ($title, $description, $languageId, $projectId, $questionnaireJson) {
+        $questionnaire = DB::transaction(function () use ($title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
             return $questionnaire;
@@ -120,11 +120,11 @@ class QuestionnaireStorageManager
         return $questionnaire;
     }
 
-    public function updateQuestionnaire($questionnaireId, $title, $description, $languageId, $projectId, $questionnaireJson)
+    public function updateQuestionnaire($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson)
     {
-        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $description, $languageId, $projectId, $questionnaireJson) {
+        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson);
             return $questionnaire;
         });
         return $questionnaire;
@@ -274,10 +274,11 @@ class QuestionnaireStorageManager
         });
     }
 
-    private function storeQuestionnaire($questionnaire, $title, $description, $languageId, $projectId, $questionnaireJson)
+    private function storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire->title = $title;
         $questionnaire->description = $description;
+        $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         $questionnaire->project_id = $projectId;
         $questionnaire->questionnaire_json = $questionnaireJson;

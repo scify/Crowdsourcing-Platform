@@ -27,6 +27,7 @@ class DefaultProjectSeeder extends Seeder
                 quis. Et sit quia dolores magni eligendi sequi.Corporis reprehenderit qui nobis maiores quibusdam voluptatum at sit. Deleniti et quia possimus. Amet
                 quasi aut totam molestias inventore veniam.
             </p>',
+                'questionnaire_section_title' => 'Break the barriers in free movement in Europe.',
                 'footer' => '<p style="font-size: 12px;">© FAIR EU 2018&nbsp;|&nbsp;
                 <a href="https://faireu.ecas.org/terms-of-use/" target="_blank" title="Read more">Terms of use</a>&nbsp;|&nbsp;
                 <a href="https://faireu.ecas.org/privacy-policy/" target="_blank" title="Read more">Privacy Policy</a>&nbsp;|&nbsp;

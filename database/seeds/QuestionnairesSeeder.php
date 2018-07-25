@@ -24,8 +24,11 @@ class QuestionnairesSeeder extends Seeder
             'project_id' => 1,
             'status_id' => 2,
             'default_language_id' => 6,
-            'title' => 'Fair EU',
-            'description' => 'Help us tackle the obstacles of low political participation levels, by responding to this questionnaire.',
+            'title' => 'Phase 1: Know your enemy',
+            'description' => '<p>What obstacles did you face when working / moving in Europe?</p>
+<p>What are the things that troubled you?</p>
+<p>Speak up! It\'ll take just 10 minutes.</p>',
+            'goal' => 500,
             'questionnaire_json' => '{
     "pages": [
         {
