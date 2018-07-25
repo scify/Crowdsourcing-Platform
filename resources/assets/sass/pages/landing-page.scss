@@ -96,14 +96,17 @@ section {
   }
   &:nth-child(even) {
     background-color: #f3fafe;
-    margin: 0 -15px;
+
+  }
+  &{
+  margin: 0 -15px;
   }
   h2 {
     text-align: center;
   }
   .content-container {
-    padding: 70px 150px;
-    font-size: 25px;
+    padding: 100px 150px;
+    font-size: 23px;
     font-weight: 300;
     @media screen and (max-width: 767px) {
       padding: 50px 0;
@@ -123,10 +126,27 @@ section {
 }
 
 #questionnaire {
+
+  background-image: url(https://images.typeform.com/images/EG4U2zJR3Yvh);
+  background-size: cover;
+
+
+  #questionnaire-wrapper
+  {
+    padding: 140px 150px;
+  }
+
+  #respond-questionnaire-btn{
+    font-size:26px;
+     padding:10px 20px;
+  }
   .questionnaire-section-title {
-    font-size: 25px;
-    margin: 20px 0 50px;
+    font-size: 43px;
     text-align: center;
+    width: 500px;
+    margin-bottom: 50px;
+    margin-left:auto;
+    margin-right:auto;
   }
   .wrapper-box {
     border: 1px solid #99aec1;
@@ -144,70 +164,8 @@ section {
       }
     }
   }
-  .questionnaire-wrapper {
-    .questionnaire-content {
-      padding: 100px 10px;
-      .already-responded-msg {
-        font-size: 18px;
-        text-align: center;
-        font-style: italic;
-      }
-      .questionnaire-description {
-        font-size: 18px;
-        text-align: center;
-      }
-      #respond-questionnaire-btn, .login-btn {
-        width: 200px;
-        margin: 20px auto 0;
-      }
-      .no-active-questionnaire-msg {
-        font-size: 18px;
-        text-align: center;
-        font-style: italic;
-      }
-    }
-  }
-  .gamification-wrapper {
-    .gamification-content {
-      font-size: 18px;
-      padding: 15px;
-      .progress-container {
-        font-size: 60%;
-        font-weight: bold;
-        .progress {
-          width: 100%;
-        }
-      }
-      .number {
-        color: #004F9F;
-        font-weight: bold;
-        width: 100px;
-        text-align: right;
-        display: inline-block;
-      }
-    }
-  }
-  .activity-container {
-    margin-top: 50px;
-    .activity-content {
-      height: 200px;
-      max-height: 200px;
-      overflow-y: auto;
-      .activity-item {
-        padding: 5px 15px;
-        font-size: 16px;
-        &:nth-child(even) {
-          background-color: #eef1f4;
-        }
-      }
-      .no-activity-found-msg {
-        font-style: italic;
-        text-align: center;
-        margin-top: 80px;
-        font-size: 18px;
-      }
-    }
-  }
+
+
 }
 
 #questionnaire-modal {
@@ -291,7 +249,8 @@ section {
   margin: auto;
 }
 
-footer .row {
+footer {
+  margin: 0 -15px;
   background-color: #99aec1;
   color: #000 !important;
   padding-top: 60px;
@@ -307,3 +266,76 @@ footer .row {
     text-align: center;
   }
 }
+
+
+#collective-goal{
+
+ .container{
+   max-width:840px;
+ }
+  padding-bottom:50px;
+
+  .info {
+    font-size: 30px;
+    padding: 33px;
+  }
+  .progress{
+    max-width:400px;
+
+    background-color:fuchsia;
+    margin:auto;
+    .progress-bar{
+      background-color:blue;
+    }
+  }
+
+  .gamification-wrapper {
+    .gamification-content {
+      font-size: 18px;
+      padding: 15px;
+
+      .number {
+        color: #004F9F;
+        font-weight: bold;
+        width: 100px;
+        text-align: right;
+        display: inline-block;
+      }
+    }
+  }
+
+  .progress-container {
+    position:relative;
+  }
+  .activity-container {
+
+    margin-top: 50px;
+    .activity-content {
+
+      height: 200px;
+      max-height: 200px;
+      overflow-y: auto;
+      .activity-item {
+        padding: 5px 15px;
+
+        &:nth-child(even) {
+          background-color: #eef1f4;
+        }
+      }
+      .no-activity-found-msg {
+        font-style: italic;
+        text-align: center;
+        margin-top: 80px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .activity-title{
+    margin-bottom:10px;
+  }
+
+}
+
+
+
