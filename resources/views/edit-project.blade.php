@@ -54,6 +54,18 @@
                             </div>
                             <span class="form-control-feedback"></span>
 
+                            <label class="col-sm-12 control-label">Questionnaire Section Title</label>
+                            <div class="col-sm-12">
+                                <div class="form-group has-feedback">
+                                    <input id="questionnaire-section-title" type="text" class="form-control"
+                                           name="questionnaire_section_title"
+                                           value="{{ $project->questionnaire_section_title  }}"
+                                           required
+                                           placeholder="Questionnaire Section Title">
+                                </div>
+                            </div>
+                            <span class="form-control-feedback"></span>
+
                             <label class="col-sm-12 control-label">Footer Section</label>
                             <div class="col-sm-12">
                                 <div class="form-group has-feedback">
