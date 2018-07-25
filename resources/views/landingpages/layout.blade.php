@@ -83,14 +83,22 @@
 <section id="about">
     @include('landingpages.partials.about')
 </section>
+
 <section id="questionnaire">
     @include('landingpages.partials.questionnaire')
 </section>
+
+@if($viewModel->questionnaire)
+<section id="collective-goal">
+    @include("landingpages.partials.goal-and-activity")
+</section>
+@endif
+
 <footer>
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+    <div class="container">
+
             {!! $viewModel->project->footer !!}
-        </div>
+
     </div>
 </footer>
 @include('partials.footer-scripts')
