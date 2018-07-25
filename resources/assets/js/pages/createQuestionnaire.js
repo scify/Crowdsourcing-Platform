@@ -48,6 +48,7 @@ let SurveyEditor = require('surveyjs-editor');
         let self = $(this);
         let title = $('#title').val().trim();
         let description = $('#description').val().trim();
+        let goal = $('#goal').val().trim();
         let project = $('#project-id').val();
         let language = $('#language').val();
         let content = editor.text;
@@ -63,7 +64,7 @@ let SurveyEditor = require('surveyjs-editor');
             $.ajax({
                 method: 'post',
                 url: self.data('url'),
-                data: {title, description, language, project, content},
+                data: {title, description, goal, language, project, content},
                 success: function (response) {
                     if (response.status === '__SUCCESS') {
                         swal({

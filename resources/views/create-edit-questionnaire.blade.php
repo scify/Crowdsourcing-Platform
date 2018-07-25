@@ -47,7 +47,18 @@
                             <label for="description">Description - Motto</label>
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
-                            <textarea class="form-control" name="description" id="description" placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
+                            <textarea class="form-control summernote" name="description" id="description"
+                                      placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 col-sm-3 col-xs-12">
+                            <label for="goal">Responses Goal</label>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <input type="number" class="form-control" name="goal" id="goal"
+                                   placeholder="Insert questionnaire's goal"
+                                   value="{{$viewModel->questionnaire ? $viewModel->questionnaire->goal : ''}}">
                         </div>
                     </div>
                     <div class="row form-group">
