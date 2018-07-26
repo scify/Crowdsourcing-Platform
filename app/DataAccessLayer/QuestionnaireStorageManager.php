@@ -60,7 +60,7 @@ class QuestionnaireStorageManager
             ->leftJoin('questionnaire_possible_answers as qpa', 'qq.id', '=', 'qpa.question_id')
             ->leftJoin('questionnaire_html as qh', 'qq.id', '=', 'qh.question_id')
             ->leftJoin('questionnaire_translation_questions as qtq', 'qq.id', '=', 'qtq.question_id')
-            ->leftJoin('questionnaire_translation_html as qth','qh.id', '=', 'qth.html_id')
+            ->leftJoin('questionnaire_translation_html as qth', 'qh.id', '=', 'qth.html_id')
             ->leftJoin('questionnaire_languages as ql', function ($join) {
                 $join->on('qtq.questionnaire_language_id', '=', 'ql.id')->orOn('qth.questionnaire_language_id', '=', 'ql.id');
             })
@@ -137,8 +137,8 @@ class QuestionnaireStorageManager
 
     public function updateAllQuestionnaireRelatedTables($questionnaireId, $questions)
     {
-        DB::transaction(function () use ($questionnaireId, $questions) {
-            $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+        $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+        DB::transaction(function () use ($questionnaireId, $questions, $questionsFromDB) {
             $questionsFromDBLength = $questionsFromDB->count();
             $newQuestionsCounter = 0;
             foreach ($questions as $question) {
@@ -311,8 +311,10 @@ class QuestionnaireStorageManager
         if ($questionnaireHtml) {
             if ($questionType === 'html')
                 $this->storeHtmlElement($questionnaireHtml, (isset($question->html->default) ? $question->html->default : $question->html));
-            else
+            else {
                 $questionnaireHtml->delete();
+                $this->deleteHtmlTranslations($questionnaireHtml->id);
+            }
         } else {
             if ($questionType === 'html')
                 $this->saveNewHtmlElement($questionId, (isset($question->html->default) ? $question->html->default : $question->html));
@@ -384,12 +386,14 @@ class QuestionnaireStorageManager
     {
         $answer = QuestionnairePossibleAnswer::findOrFail($answerId);
         $answer->delete();
+        $this->deleteAnswerTranslations($answerId);
     }
 
     private function deleteQuestion($questionId)
     {
         $question = QuestionnaireQuestion::findOrFail($questionId);
         $question->delete();
+        $this->deleteQuestionTranslations($questionId);
     }
 
     private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson)
@@ -576,5 +580,20 @@ class QuestionnaireStorageManager
             $temp[$langCode] = $translation->translation;
         }
         return $temp;
+    }
+
+    private function deleteAnswerTranslations($answerId)
+    {
+        QuestionnaireTranslationPossibleAnswer::where('possible_answer_id', $answerId)->delete();
+    }
+
+    private function deleteQuestionTranslations($questionId)
+    {
+        QuestionnaireTranslationQuestion::where('question_id', $questionId)->delete();
+    }
+
+    private function deleteHtmlTranslations($htmlId)
+    {
+        QuestionnaireTranslationHtml::where('html_id', $htmlId)->delete();
     }
 }
