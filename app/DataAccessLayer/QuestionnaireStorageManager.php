@@ -146,7 +146,7 @@ class QuestionnaireStorageManager
                     (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
                 $questionType = $question->type;
                 if ($newQuestionsCounter >= $questionsFromDBLength)
-                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name);
+                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->valueName);
                 else
                     $storedQuestion = $this->storeQuestion($questionsFromDB->get($newQuestionsCounter), $questionTitle, $questionType, $question->name);
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
@@ -170,10 +170,11 @@ class QuestionnaireStorageManager
         return $questionnaireLanguage;
     }
 
-    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName)
+    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionValueName)
     {
         $question = new QuestionnaireQuestion();
         $question->questionnaire_id = $questionnaireId;
+        $question->guid = $questionValueName;
         return $this->storeQuestion($question, $questionTitle, $questionType, $questionName);
     }
 
@@ -184,10 +185,11 @@ class QuestionnaireStorageManager
         return $this->storeHtmlElement($questionnaireHtml, $html);
     }
 
-    public function saveNewAnswer($questionId, $answer, $value)
+    public function saveNewAnswer($questionId, $answer, $value, $valueName)
     {
         $questionnaireAnswer = new QuestionnairePossibleAnswer();
         $questionnaireAnswer->question_id = $questionId;
+        $questionnaireAnswer->guid = $valueName;
         return $this->storeAnswer($questionnaireAnswer, $answer, $value);
     }
 
