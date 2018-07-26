@@ -104,7 +104,7 @@ class QuestionnaireManager
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
             $questionType = $question->type;
-            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name);
+            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->valueName);
             if ($questionType === 'html')
                 $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items', 'minRateDescription', 'maxRateDescription']);
@@ -140,7 +140,7 @@ class QuestionnaireManager
                     foreach ($question->$fieldName as $temp) {
                         $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
                         $value = isset($temp->value) ? $temp->value : $temp;
-                        $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value);
+                        $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value, $temp->valueName);
                     }
                 }
             }

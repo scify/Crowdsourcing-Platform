@@ -14,12 +14,16 @@ let SurveyEditor = require('surveyjs-editor');
             showPropertyGrid: false,
             toolbarItems: {visible: false},
             showPagesToolbox: false,
-            questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "rating", "html", "comment"]
+            questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "html", "comment"]
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
         let json = $("#questionnaire-editor").data('json');
         if (json !== '')
             editor.text = JSON.stringify(json);
+        // disable "Fast Entry" for choices
+        editor.onSetPropertyEditorOptions.add(function (survey, options) {
+            options.editorOptions.showTextView = false;
+        });
     };
 
     let disableNameInputField = function () {
@@ -44,6 +48,36 @@ let SurveyEditor = require('surveyjs-editor');
         $('#language').select2();
     };
 
+    let getGuid = function () {
+        let S4 = function () {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        };
+        return (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    };
+
+    let addGuidsToContent = function (content) {
+        let json = JSON.parse(content);
+        let questions = json.pages[0].elements;
+        for (let i = 0; i < questions.length; i++) {
+            if (!questions[i].valueName)
+                questions[i].valueName = getGuid();
+            if (questions[i].choices) {
+                let answers = json.pages[0].elements[i].choices;
+                for (let j = 0; j < answers.length; j++) {
+                    if (!answers[j].text) {
+                        let originalValue = answers[j];
+                        answers[j] = {};
+                        answers[j].text = originalValue;
+                        answers[j].value = originalValue;
+                    }
+                    if (!answers[j].valueName)
+                        answers[j].valueName = getGuid();
+                }
+            }
+        }
+        return JSON.stringify(json);
+    };
+
     let saveQuestionnaire = function () {
         let self = $(this);
         let title = $('#title').val().trim();
@@ -52,6 +86,7 @@ let SurveyEditor = require('surveyjs-editor');
         let project = $('#project-id').val();
         let language = $('#language').val();
         let content = editor.text;
+        content = addGuidsToContent(content);
         if (title === '')
             swal({
                 title: "Oops!",
