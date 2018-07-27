@@ -139,24 +139,28 @@ class QuestionnaireStorageManager
     {
         $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
         DB::transaction(function () use ($questionnaireId, $questions, $questionsFromDB) {
-            $questionsFromDBLength = $questionsFromDB->count();
-            $newQuestionsCounter = 0;
+            $guidsUsed = [];
             foreach ($questions as $question) {
                 $questionTitle = isset($question->title) ?
                     (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
                 $questionType = $question->type;
-                if ($newQuestionsCounter >= $questionsFromDBLength)
-                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->valueName);
+                $guid = $question->valueName;
+                array_push($guidsUsed, $guid);
+                $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
+                if ($questionFoundInDB)
+                    $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name);
                 else
-                    $storedQuestion = $this->storeQuestion($questionsFromDB->get($newQuestionsCounter), $questionTitle, $questionType, $question->name);
+                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid);
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
                 $this->updateAllAnswers($question, $storedQuestion->id);
-                $newQuestionsCounter++;
             }
-            if ($newQuestionsCounter < $questionsFromDBLength) {
-                for ($key = $newQuestionsCounter; $key < $questionsFromDBLength; $key++) {
-                    $this->deleteQuestion($questionsFromDB->get($key)->id);
-                }
+            $questionsFromDBToBeDeleted = $questionsFromDB->whereNotIn('guid', $guidsUsed);
+            if ($questionsFromDBToBeDeleted->count() > 0) {
+                $answersToBeDeletedBecauseQuestionsAreBeingDeleted = QuestionnairePossibleAnswer::whereIn(
+                    'question_id', $questionsFromDBToBeDeleted->pluck('id')->toArray()
+                )->get();
+                $this->deleteAnswers($answersToBeDeletedBecauseQuestionsAreBeingDeleted);
+                $this->deleteQuestions($questionsFromDBToBeDeleted);
             }
         });
     }
@@ -338,25 +342,24 @@ class QuestionnaireStorageManager
     private function updateAllAnswers($question, $questionId)
     {
         $answersFromDB = $this->getAllPossibleAnswersForQuestion($questionId);
-        $answersFromDBLength = $answersFromDB->count();
-        $newAnswersCount = 0;
+        $guidsUsed = [];
         if (isset($question->choices)) {
             foreach ($question->choices as $temp) {
                 $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ?
                     (isset($temp->text->default) ? $temp->text->default : $temp->text) : $temp);
                 $value = isset($temp->value) ? $temp->value : $temp;
-                if ($newAnswersCount >= $answersFromDBLength)
-                    $this->saveNewAnswer($questionId, $answer, $value, $temp->valueName);
+                $guid = $temp->valueName;
+                array_push($guidsUsed, $guid);
+                $answerFoundInDB = $answersFromDB->where('guid', $guid)->first();
+                if ($answerFoundInDB)
+                    $this->storeAnswer($answerFoundInDB, $answer, $value);
                 else
-                    $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer, $value);
-                $newAnswersCount++;
+                    $this->saveNewAnswer($questionId, $answer, $value, $guid);
             }
         }
-        if ($newAnswersCount < $answersFromDBLength) {
-            for ($key = $newAnswersCount; $key < $answersFromDBLength; $key++) {
-                $this->deleteAnswer($answersFromDB->get($key)->id);
-            }
-        }
+        $answersFromDBToBeDeleted = $answersFromDB->whereNotIn('guid', $guidsUsed);
+        if ($answersFromDBToBeDeleted->count() > 0)
+            $this->deleteAnswers($answersFromDBToBeDeleted);
     }
 
     private function getAllPossibleAnswersForQuestion($questionId)
@@ -372,18 +375,20 @@ class QuestionnaireStorageManager
         return $questionnaireAnswer;
     }
 
-    private function deleteAnswer($answerId)
+    private function deleteAnswers($answers)
     {
-        $answer = QuestionnairePossibleAnswer::findOrFail($answerId);
-        $answer->delete();
-        $this->deleteAnswerTranslations($answerId);
+        foreach ($answers as $answer) {
+            QuestionnairePossibleAnswer::where('id', $answer->id)->delete();
+            $this->deleteAnswerTranslations($answer->id);
+        }
     }
 
-    private function deleteQuestion($questionId)
+    private function deleteQuestions($questions)
     {
-        $question = QuestionnaireQuestion::findOrFail($questionId);
-        $question->delete();
-        $this->deleteQuestionTranslations($questionId);
+        foreach ($questions as $question) {
+            QuestionnaireQuestion::where('id', $question->id)->delete();
+            $this->deleteQuestionTranslations($question->id);
+        }
     }
 
     private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson)
@@ -534,8 +539,11 @@ class QuestionnaireStorageManager
                 $choiceValue = $choice->value;
             else
                 $choiceValue = $choice;
+            $valueName = $choice->valueName;
             $answers = $answerTranslations->where('value', $choiceValue);
-            $temp = ['value' => $choiceValue, 'text' => $this->setAllTranslationsForAQuestionnaireString($defaultChoice, $answers)];
+            $temp = ['value' => $choiceValue, 'text' => $this->setAllTranslationsForAQuestionnaireString($defaultChoice, $answers),
+                'valueName' => $valueName
+            ];
             array_push($choices, $temp);
         }
         return $choices;
