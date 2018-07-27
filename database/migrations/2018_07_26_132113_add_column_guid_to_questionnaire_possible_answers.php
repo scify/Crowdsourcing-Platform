@@ -14,7 +14,8 @@ class AddColumnGuidToQuestionnairePossibleAnswers extends Migration
     public function up()
     {
         Schema::table('questionnaire_possible_answers', function (Blueprint $table) {
-            $table->string('guid', 40)->after('question_id');;
+            $table->string('guid', 40)->after('question_id');
+            $table->index('guid');
         });
     }
 
