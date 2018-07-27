@@ -224,7 +224,7 @@ class QuestionnaireStorageManager
             $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson);
             foreach ($response as $question => $answer) {
                 if (strpos($question, '-Comment') === false) {
-                    $foundQuestionFromDB = $questionsFromDB->where('name', $question)->first();
+                    $foundQuestionFromDB = $questionsFromDB->where('guid', $question)->first();
                     $possibleAnswers = QuestionnairePossibleAnswer::where('question_id', $foundQuestionFromDB->id)->get();
                     if (!is_array($answer))
                         $answer = [$answer];
@@ -345,8 +345,8 @@ class QuestionnaireStorageManager
         $guidsUsed = [];
         if (isset($question->choices)) {
             foreach ($question->choices as $temp) {
-                $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ?
-                    (isset($temp->text->default) ? $temp->text->default : $temp->text) : $temp);
+                $answer = isset($temp->text) ? (isset($temp->text->default) ? $temp->text->default : $temp->text) :
+                    (isset($temp->name) ? $temp->name : $temp);
                 $value = isset($temp->value) ? $temp->value : $temp;
                 $guid = $temp->valueName;
                 array_push($guidsUsed, $guid);
