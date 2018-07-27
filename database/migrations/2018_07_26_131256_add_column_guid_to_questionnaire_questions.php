@@ -15,6 +15,7 @@ class AddColumnGuidToQuestionnaireQuestions extends Migration
     {
         Schema::table('questionnaire_questions', function (Blueprint $table) {
             $table->string('guid', 40)->after('questionnaire_id');
+            $table->index('guid');
         });
     }
 
