@@ -215,8 +215,8 @@ class QuestionnaireStorageManager
 
     public function saveNewQuestionnaireResponse($questionnaireId, $response, $userId, $responseJson)
     {
-        return DB::transaction(function () use ($questionnaireId, $response, $userId, $responseJson) {
-            $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+        $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+        return DB::transaction(function () use ($questionnaireId, $response, $userId, $responseJson, $questionsFromDB) {
             $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson);
             foreach ($response as $question => $answer) {
                 if (strpos($question, '-Comment') === false) {
@@ -240,9 +240,9 @@ class QuestionnaireStorageManager
 
     public function storeQuestionnaireTranslations($questionnaireId, $translations)
     {
-        DB::transaction(function () use ($questionnaireId, $translations) {
+        $questionnaireLanguages = $this->getQuestionnaireAvailableLanguages($questionnaireId);
+        DB::transaction(function () use ($questionnaireId, $translations, $questionnaireLanguages) {
             $allTranslations = [];
-            $questionnaireLanguages = $this->getQuestionnaireAvailableLanguages($questionnaireId);
             foreach ($translations as $languageId => $languageWithTranslations) {
                 $questionnaireLanguage = $questionnaireLanguages->where('language_id', $languageId)->first();
                 $language = Language::findOrFail($languageId);
