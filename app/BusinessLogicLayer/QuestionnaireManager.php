@@ -107,7 +107,7 @@ class QuestionnaireManager
             $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->valueName);
             if ($questionType === 'html')
                 $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
-            $this->storeAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items', 'minRateDescription', 'maxRateDescription']);
+            $this->storeAllAnswers($question, $storedQuestion->id);
         }
     }
 
@@ -128,21 +128,13 @@ class QuestionnaireManager
         return $allQuestions;
     }
 
-    private function storeAllAnswers($question, $questionId, array $fieldNames)
+    private function storeAllAnswers($question, $questionId)
     {
-        foreach ($fieldNames as $fieldName) {
-            if (isset($question->$fieldName)) {
-                if (in_array($fieldName, ['minRateDescription', 'maxRateDescription'])) {
-                    $answer = $question->$fieldName;
-                    $value = null;
-                    $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value);
-                } else {
-                    foreach ($question->$fieldName as $temp) {
-                        $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
-                        $value = isset($temp->value) ? $temp->value : $temp;
-                        $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value, $temp->valueName);
-                    }
-                }
+        if (isset($question->choices)) {
+            foreach ($question->choices as $temp) {
+                $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
+                $value = isset($temp->value) ? $temp->value : $temp;
+                $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value, $temp->valueName);
             }
         }
     }

@@ -150,7 +150,7 @@ class QuestionnaireStorageManager
                 else
                     $storedQuestion = $this->storeQuestion($questionsFromDB->get($newQuestionsCounter), $questionTitle, $questionType, $question->name);
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
-                $this->updateAllAnswers($question, $storedQuestion->id, ['rows', 'columns', 'choices', 'items', 'minRateDescription', 'maxRateDescription']);
+                $this->updateAllAnswers($question, $storedQuestion->id);
                 $newQuestionsCounter++;
             }
             if ($newQuestionsCounter < $questionsFromDBLength) {
@@ -335,33 +335,21 @@ class QuestionnaireStorageManager
         return $questionnaireHtml;
     }
 
-    private function updateAllAnswers($question, $questionId, array $fieldNames)
+    private function updateAllAnswers($question, $questionId)
     {
         $answersFromDB = $this->getAllPossibleAnswersForQuestion($questionId);
         $answersFromDBLength = $answersFromDB->count();
         $newAnswersCount = 0;
-        foreach ($fieldNames as $fieldName) {
-            if (isset($question->$fieldName)) {
-                if (in_array($fieldName, ['minRateDescription', 'maxRateDescription'])) {
-                    $answer = isset($question->$fieldName->default) ? $question->$fieldName->default : $question->$fieldName;
-                    $value = null;
-                    if ($newAnswersCount >= $answersFromDBLength)
-                        $this->saveNewAnswer($questionId, $answer, $value);
-                    else
-                        $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer, $value);
-                    $newAnswersCount++;
-                } else {
-                    foreach ($question->$fieldName as $temp) {
-                        $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ?
-                            (isset($temp->text->default) ? $temp->text->default : $temp->text) : $temp);
-                        $value = isset($temp->value) ? $temp->value : $temp;
-                        if ($newAnswersCount >= $answersFromDBLength)
-                            $this->saveNewAnswer($questionId, $answer, $value);
-                        else
-                            $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer, $value);
-                        $newAnswersCount++;
-                    }
-                }
+        if (isset($question->choices)) {
+            foreach ($question->choices as $temp) {
+                $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ?
+                    (isset($temp->text->default) ? $temp->text->default : $temp->text) : $temp);
+                $value = isset($temp->value) ? $temp->value : $temp;
+                if ($newAnswersCount >= $answersFromDBLength)
+                    $this->saveNewAnswer($questionId, $answer, $value, $temp->valueName);
+                else
+                    $this->storeAnswer($answersFromDB->get($newAnswersCount), $answer, $value);
+                $newAnswersCount++;
             }
         }
         if ($newAnswersCount < $answersFromDBLength) {
@@ -505,14 +493,6 @@ class QuestionnaireStorageManager
                     $answerTranslations = $relatedTranslations->where('type', 'answer');
                     $element->choices = $this->setQuestionnaireJsonChoicesWithTranslations($answerTranslations, $element);
                 }
-                if (isset($element->minRateDescription)) {
-                    $answerTranslations = $relatedTranslations->where('type', 'answer');
-                    $element->minRateDescription = $this->setQuestionnaireJsonRatingDescriptionWithTranslations($answerTranslations, $element, 'minRateDescription');
-                }
-                if (isset($element->maxRateDescription)) {
-                    $answerTranslations = $relatedTranslations->where('type', 'answer');
-                    $element->maxRateDescription = $this->setQuestionnaireJsonRatingDescriptionWithTranslations($answerTranslations, $element, 'maxRateDescription');
-                }
                 if (isset($element->html)) {
                     $htmlTranslations = $relatedTranslations->where('type', 'html');
                     $element->html = $this->setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element);
@@ -559,12 +539,6 @@ class QuestionnaireStorageManager
             array_push($choices, $temp);
         }
         return $choices;
-    }
-
-    private function setQuestionnaireJsonRatingDescriptionWithTranslations($answerTranslations, $element, $fieldName)
-    {
-        $defaultValue = (isset($element->$fieldName->default) ? $element->$fieldName->default : $element->$fieldName);
-        return $this->setAllTranslationsForAQuestionnaireString($defaultValue, $answerTranslations);
     }
 
     private function setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element)
