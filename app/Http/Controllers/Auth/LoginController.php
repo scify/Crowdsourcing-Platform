@@ -69,4 +69,16 @@ class LoginController extends Controller
         session()->flash('flash_message_success', 'Welcome, ' . $user->nickname . '!');
         return $this->authenticated($request,$user);
     }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/fair-eu');
+    }
+
+
+
 }

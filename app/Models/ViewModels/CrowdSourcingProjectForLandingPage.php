@@ -19,8 +19,14 @@ class CrowdSourcingProjectForLandingPage
     public $totalResponses;
     public $responsesNeededToReachGoal = 0;
     public $targetAchievedPercentage = 0;
+    public $openQuestionnaireWhenPageLoads = false;
 
-    public function __construct($project, $questionnaire, $userResponse, $allResponses, $allLanguagesForQuestionnaire)
+    public function __construct($project, $questionnaire,
+                                $userResponse,
+                                $allResponses,
+                                $allLanguagesForQuestionnaire,
+                                $openQuestionnaireWhenPageLoads
+                                )
     {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
@@ -32,5 +38,6 @@ class CrowdSourcingProjectForLandingPage
             $this->responsesNeededToReachGoal = $questionnaire->goal - $this->totalResponses;
             $this->targetAchievedPercentage = round($this->totalResponses / $questionnaire->goal * 100, 1);
         }
+        $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
     }
 }
