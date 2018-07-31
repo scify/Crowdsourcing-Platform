@@ -15,16 +15,18 @@ class CrowdSourcingProjectForLandingPage
     public $questionnaire;
     public $userResponse;
     public $allResponses;
+    public $allLanguagesForQuestionnaire;
     public $totalResponses;
     public $responsesNeededToReachGoal = 0;
     public $targetAchievedPercentage = 0;
 
-    public function __construct($project, $questionnaire, $userResponse, $allResponses)
+    public function __construct($project, $questionnaire, $userResponse, $allResponses, $allLanguagesForQuestionnaire)
     {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
         $this->userResponse = $userResponse;
         $this->allResponses = $allResponses;
+        $this->allLanguagesForQuestionnaire = $allLanguagesForQuestionnaire;
         $this->totalResponses = $allResponses->count();
         if ($questionnaire) {
             $this->responsesNeededToReachGoal = $questionnaire->goal - $this->totalResponses;

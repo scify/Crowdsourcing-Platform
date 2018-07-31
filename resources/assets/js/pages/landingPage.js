@@ -2,6 +2,8 @@ let Survey = require('survey-jquery');
 let ProgressBar =require('progressbar.js');
 
 (function () {
+    let survey;
+
     let displayQuestionnaire = function () {
         let wrapperId = 'questionnaire-display-section';
         let wrapper = $('#' + wrapperId);
@@ -10,7 +12,7 @@ let ProgressBar =require('progressbar.js');
             Survey.StylesManager.applyTheme("darkblue");
             Survey.surveyStrings.emptySurvey = "There is not currently an active survey.";
             Survey.surveyStrings.loadingSurvey = "Please wait. The survey is loading…";
-            let survey = new Survey.Survey(JSON.stringify(json), wrapperId);
+            survey = new Survey.Survey(JSON.stringify(json), wrapperId);
             survey
                 .onComplete
                 .add(function (result) {
@@ -64,10 +66,21 @@ let ProgressBar =require('progressbar.js');
         bar.text.style.fontSize = '2rem';
         bar.animate($("#progress-bar-circle").data("target")/100);  // Number from 0.0 to 1.0
 
-    }
+    };
+
+    let displayTranslation = function () {
+        survey.locale = $(this).val();
+        survey.render();
+    };
+
+    let initEvents = function () {
+        $('#questionnaire-lang-selector').on('change', displayTranslation);
+    };
+
     let init = function () {
         displayQuestionnaire();
         displayProgressBar();
+        initEvents();
     };
 
     init();

@@ -18,4 +18,9 @@ class QuestionnaireLanguage extends Model
 
     protected $table = 'questionnaire_languages';
     protected $dates = ['deleted_at'];
+
+    public function language()
+    {
+        return $this->hasOne(Language::class, 'id', 'language_id');
+    }
 }

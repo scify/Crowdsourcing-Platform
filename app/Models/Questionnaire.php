@@ -18,4 +18,9 @@ class Questionnaire extends Model
 
     protected $table = 'questionnaires';
     protected $dates = ['deleted_at'];
+
+    public function defaultLanguage()
+    {
+        return $this->hasOne(Language::class, 'id', 'default_language_id');
+    }
 }
