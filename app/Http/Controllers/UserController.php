@@ -32,6 +32,12 @@ class UserController extends Controller
         return view('my-profile', ['viewModel' => $userViewModel]);
     }
 
+    public function myAccount()
+    {
+        $userViewModel = $this->userManager->getMyProfileData(Auth::user());
+        return view('my-account', ['viewModel' => $userViewModel]);
+    }
+
     public function patch(Request $request)
     {
         if ($request->password)

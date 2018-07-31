@@ -205,16 +205,19 @@
             --}}
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {{--<img src="{{ Auth::user()->avatar}}" class="user-image" alt="{{Auth::user()->name}}">--}}
-                    <span class="hidden-xs">{{Auth::user()->name}}</span>
+                    @if (Auth::user()->avatar)
+                        <img src="{{ Auth::user()->avatar}}" class="user-image" >
+                    @endif
+                    <span class="hidden-xs">{{Auth::user()->nickname}}</span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header">
-                        {{--<img src="{{Auth::user()->avatar}}" class="img-circle" alt="{{Auth::user()->name}}">--}}
-
+                        @if (Auth::user()->avatar)
+                        <img src="{{Auth::user()->avatar}}" class="img-circle"">
+                        @endif
                         <p>
-                            {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                            {{ Auth::user()->name }} {{ Auth::user()->nickname }}
                             <small>Member since   {{ Auth::user()->created_at }}</small>
                         </p>
                     </li>

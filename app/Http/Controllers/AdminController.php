@@ -35,7 +35,8 @@ class AdminController extends Controller {
 
     public function addUserToPlatform(Request $request)
     {
-        $result = $this->userManager->getOrAddUserToPlatform($request->email, $request->name, $request->surname, $request->password, $request->roleselect);
+        $result = $this->userManager->getOrAddUserToPlatform($request->email, $request->nickname,
+                                        $request->password, $request->roleselect);
         switch ($result->status) {
             case UserActionResponses::USER_UPDATED:
                 session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.');

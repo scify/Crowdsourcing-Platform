@@ -1,21 +1,11 @@
 {!! csrf_field() !!}
-<div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
-    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
-           placeholder="Name">
+<div class="form-group has-feedback {{ $errors->has('nickname') ? 'has-error' : '' }}">
+    <input type="text" name="nickname" class="form-control" value="{{ old('nickname') }}"
+           placeholder="Nickname">
     <span class="glyphicon glyphicon-user form-control-feedback"></span>
-    @if ($errors->has('name'))
+    @if ($errors->has('nickname'))
         <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-    @endif
-</div>
-<div class="form-group has-feedback {{ $errors->has('surname') ? 'has-error' : '' }}">
-    <input type="text" name="surname" class="form-control" value="{{ old('surname') }}"
-           placeholder="Surname">
-    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-    @if ($errors->has('surname'))
-        <span class="help-block">
-                            <strong>{{ $errors->first('surname') }}</strong>
+                            <strong>{{ $errors->first('nickname') }}</strong>
                         </span>
     @endif
 </div>

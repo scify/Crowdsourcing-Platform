@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoles;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -38,15 +39,16 @@ class LoginController extends Controller
     }
 
 
-    public function redirectToProvider($driver) {
+    public function redirectToProvider( $driver) {
+        //todo:
         return Socialite::driver($driver)->redirect();
     }
 
-    public function handleProviderCallback($driver) {
+    public function handleProviderCallback(Request $request, $driver) {
         $socialUser = Socialite::driver($driver)->user();
         try {
             $user = $this->userManager->handleSocialLoginUser($socialUser);
-            session()->flash('flash_message_success', 'Welcome, ' . $user->name . '!');
+            session()->flash('flash_message_success', 'Welcome, ' . $user->nickname . '!');
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
         }

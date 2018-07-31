@@ -16,22 +16,19 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(array(
             array(
                 'id' => 1,
-                'name' => 'Platform Admin',
-                'surname' => '',
+                'nickname' => 'Platform Admin',
                 'email' => 'platform-admin@crowd.com',
                 'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'))
             ),
             array(
                 'id' => 2,
-                'name' => 'Content Manager',
-                'surname' => '',
+                'nickname' => 'Content Manager',
                 'email' => 'content-manager@crowd.com',
                 'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'))
             ),
             array(
                 'id' => 3,
-                'name' => 'Registered User',
-                'surname' => '',
+                'nickname' => 'Registered User',
                 'email' => 'user@crowd.com',
                 'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'))
             ),

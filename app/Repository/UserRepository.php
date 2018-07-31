@@ -37,11 +37,10 @@ class UserRepository extends Repository
         return $this->getModelInstance()->where('email', $email)->first();
     }
 
-    function updateUser($id, $name, $surname, $roleselect, $email)
+    function updateUser($id, $nickname, $roleselect, $email)
     {
         $user = $this->getModelInstance()->find($id);
-        $user->name = $name;
-        $user->surname = $surname;
+        $user->nickname= $nickname;
         $user->email = $email;
         $user->save();
 
