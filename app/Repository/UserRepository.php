@@ -53,8 +53,14 @@ class UserRepository extends Repository
         foreach ($userRoles as $userRole) {
             $userRole->delete();
         }
-        foreach ($roleSelect as $roleId)
-            UserRole::create(['user_id' => $userId, 'role_id' => $roleId]);
+        if ($roleSelect[0]==null ){
+            UserRole::create(['user_id' => $userId, 'role_id' => 3]); //registered user
+        }
+        else{
+            foreach ($roleSelect as $roleId)
+                UserRole::create(['user_id' => $userId, 'role_id' => $roleId]);
+        }
+
     }
 
 
@@ -83,10 +89,16 @@ class UserRepository extends Repository
         return User::all();
     }
 
-    public function getUsersWithTrashed($paginationNumber = null, $filters = null) {
-        $query = User::withTrashed();
+    public function getPlatformUsers($paginationNumber, $filters) {
+        $query = User::withTrashed()->with("userRoles");
+
         if(isset($filters['email']))
             $query = $query->where('email', 'like', '%' . $filters['email'] . '%');
+
+        $query->whereHas("userRoles",function($userRoleQuery){
+            $userRoleQuery->whereIn("role_id",[1,2]); //platform admin and content manager
+        });
+
         if($paginationNumber)
             return $query->paginate($paginationNumber);
         return $query->get();

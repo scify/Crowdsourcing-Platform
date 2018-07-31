@@ -17,7 +17,7 @@ class AdminController extends Controller {
     }
 
     public function manageUsers() {
-        $viewModel = $this->userManager->getManageUsersViewModel(UserManager::$USERS_PER_PAGE);
+        $viewModel = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
         return view('admin.manage-users', ['viewModel' => $viewModel]);
     }
 
@@ -35,8 +35,11 @@ class AdminController extends Controller {
 
     public function addUserToPlatform(Request $request)
     {
-        $result = $this->userManager->getOrAddUserToPlatform($request->email, $request->nickname,
-                                        $request->password, $request->roleselect);
+        $result = $this->userManager->getOrAddUserToPlatform($request->email,
+                                                                $request->nickname,
+                                                                null,
+                                                                $request->password,
+                                                                [$request->roleselect]);
         switch ($result->status) {
             case UserActionResponses::USER_UPDATED:
                 session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.');
