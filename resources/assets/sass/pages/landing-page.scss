@@ -354,4 +354,11 @@ footer {
 }
 
 
-
+.dropdown.user{
+  span{
+    text-transform: uppercase;
+  }
+}
+.navbar-nav > .user-menu > .dropdown-menu{
+  width:100%;
+}
