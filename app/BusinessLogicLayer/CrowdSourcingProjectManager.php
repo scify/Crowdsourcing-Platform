@@ -47,7 +47,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($project_slug) {
+    public function getCrowdSourcingProjectViewModelForLandingPage($openQuestionnaireWhenPageLoads,$project_slug) {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $questionnaire = null;
         $userResponse = null;
@@ -60,7 +60,7 @@ class CrowdSourcingProjectManager
             $allResponses = $this->questionnaireStorageManager->getAllResponsesForQuestionnaire($questionnaire->id);
             $allLanguagesForQuestionnaire = $this->questionnaireStorageManager->getAvailableLanguagesForQuestionnaire($questionnaire);
         }
-        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $userResponse, $allResponses, $allLanguagesForQuestionnaire);
+        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $userResponse, $allResponses, $allLanguagesForQuestionnaire,$openQuestionnaireWhenPageLoads);
     }
 
     public function updateCrowdSourcingProject($id, $attributes)

@@ -1,5 +1,5 @@
 let Survey = require('survey-jquery');
-let ProgressBar =require('progressbar.js');
+let ProgressBar = require('progressbar.js');
 
 (function () {
     let survey;
@@ -24,7 +24,7 @@ let ProgressBar =require('progressbar.js');
                         method: 'post',
                         data: {questionnaire_id, response},
                         url: url,
-                        success: function(response){
+                        success: function (response) {
                             $(".questionnaire-content").html("<p style='font-style: italic; text-align: center; font-size: 18px;'>" +
                                 "Thank you for completing the survey!</p>");
                         }
@@ -33,7 +33,7 @@ let ProgressBar =require('progressbar.js');
         }
     };
 
-    let displayProgressBar = function(){
+    let displayProgressBar = function () {
 
         var bar = new ProgressBar.Circle($("#progress-bar-circle")[0], {
             color: '#0063aa',
@@ -46,10 +46,10 @@ let ProgressBar =require('progressbar.js');
             text: {
                 autoStyleContainer: false
             },
-            from: { color: '#008AE5', width: 2},
-            to: { color: '#008AE5', width: 4 },
+            from: {color: '#008AE5', width: 2},
+            to: {color: '#008AE5', width: 4},
             // Set default step function for all animate calls
-            step: function(state, circle) {
+            step: function (state, circle) {
                 circle.path.setAttribute('stroke', state.color);
                 circle.path.setAttribute('stroke-width', state.width);
 
@@ -64,7 +64,7 @@ let ProgressBar =require('progressbar.js');
         });
 
         bar.text.style.fontSize = '2rem';
-        bar.animate($("#progress-bar-circle").data("target")/100);  // Number from 0.0 to 1.0
+        bar.animate($("#progress-bar-circle").data("target") / 100);  // Number from 0.0 to 1.0
 
     };
 
@@ -76,11 +76,16 @@ let ProgressBar =require('progressbar.js');
     let initEvents = function () {
         $('#questionnaire-lang-selector').on('change', displayTranslation);
     };
+    let openQuestionnaireIfNeeded = function () {
+        if ($(".respond-questionnaire").first().data("open-on-load") == 1)
+            $(".respond-questionnaire").first().trigger("click");
 
+    }
     let init = function () {
         displayQuestionnaire();
         displayProgressBar();
         initEvents();
+        openQuestionnaireIfNeeded();
     };
 
     init();
