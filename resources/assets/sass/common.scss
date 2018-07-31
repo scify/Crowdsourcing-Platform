@@ -210,3 +210,13 @@ $header-height: 70px;
     background: #1a2226;
   }
 }
+
+
+.dropdown.user{
+  span{
+    text-transform: uppercase;
+  }
+}
+.navbar-nav > .user-menu > .dropdown-menu{
+  width:100%;
+}
