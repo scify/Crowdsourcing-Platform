@@ -66,7 +66,7 @@ class UserManager
         $this->userRepository->reActivateUser($user);
     }
 
-    public function getOrAddUserToPlatform($email, $name, $surname, $password, $roleselect) {
+    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect) {
         $emailCheck = $this->userRepository->getUserByEmail($email);
         // Check if email exists in db
         if ($emailCheck) {
@@ -76,10 +76,10 @@ class UserManager
         } else {
             // If user email does not exist in db, notify for registration.
             $user = User::create([
-                'name' => $name,
-                'surname' => $surname,
+                'nickname' => $nickname,
                 'email' => $email,
-                'password' => bcrypt($password),
+                'avatar' => $avatar,
+                'password' => $password!=null?bcrypt($password):null,
             ]);
             $user->save();
             $this->userRepository->updateUserRoles($user->id, $roleselect);
@@ -94,10 +94,9 @@ class UserManager
     public function updateUser($data) {
         $user_id = Auth::User()->id;
         $obj_user = User::find($user_id);
-        $obj_user->name = $data['name'];
-        $obj_user->surname = $data['surname'];
+        $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
-        if($data['password']) {
+        if($data['password'] && $current_password!=null) {
             if(Hash::check($data['current_password'], $current_password)) {
                 $obj_user->password = Hash::make($data['password']);
             } else {
@@ -116,15 +115,17 @@ class UserManager
     }
 
     public function handleSocialLoginUser($socialUser) {
-        DB::beginTransaction();
-        $result = $this->getOrAddUserToPlatform($socialUser->email, $socialUser->name, null, md5(rand(1, 10000)), [UserRoles::REGISTERED_USER]);
+
+        $result = $this->getOrAddUserToPlatform($socialUser->email,
+            $socialUser->name,
+            $socialUser->avatar,
+            null,
+            [UserRoles::REGISTERED_USER]);
         if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
             $user = $result->data;
             auth()->login($user);
-            DB::commit();
             return $user;
         } else {
-            DB::rollBack();
             throw new \Exception($result->status);
         }
     }
