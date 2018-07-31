@@ -5,23 +5,23 @@
             <div class="questionnaire-description">{!! $viewModel->questionnaire->description !!}</div>
             @if(\Auth::user())
                 <a id="respond-questionnaire-btn" href="javascript:void(0)"
-                   class="btn btn-primary"
+                   class="btn btn-primary respond-questionnaire"
                    data-questionnaire-id="{{$viewModel->questionnaire->id}}"
                    data-url="{{route('respond-questionnaire')}}"
                    data-toggle="modal" data-target="#questionnaire-modal">
                     Speak up
                 </a>
             @else
-                <a href="/login" class="btn btn-primary ">Login</a>
+                <a href="/login?submitQuestionnaire=1&redirectTo={{$viewModel->project->slug}}" class="btn btn-primary respond-questionnaire">Speak up</a>
             @endif
         @endif
 
     </div>
 
 @else
-    <p class="no-active-questionnaire-msg">
-        No active questionnaire found.
-    </p>
+    <div id="questionnaire-wrapper" class="text-center content-container ">
+        <h3 class="questionnaire-section-title">No active questionnaires</h3>
+    </div>
 @endif
 
 
