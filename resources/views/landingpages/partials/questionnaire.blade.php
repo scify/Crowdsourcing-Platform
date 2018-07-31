@@ -12,7 +12,7 @@
                     Speak up
                 </a>
             @else
-                <a href="/login?submitQuestionnaire=1&redirectTo={{$viewModel->project->slug}}" class="btn btn-primary respond-questionnaire">Speak up</a>
+                <a href="/login?submitQuestionnaire=1&redirectTo={{urlencode($viewModel->project->slug."?open=1")}}" class="btn btn-primary respond-questionnaire">Speak up</a>
             @endif
         @endif
 
