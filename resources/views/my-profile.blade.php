@@ -19,7 +19,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                           [todo:put some introductory text here]
+                           [todo:put some introductory text here, this is generic and relates to the crowdsourcing platform]
                         </div>
                     </div>
                 </div>
