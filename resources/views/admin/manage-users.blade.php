@@ -9,7 +9,7 @@
 @section('content')
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Edit roles for users</h3>
+            <h3 class="box-title">Edit platform users</h3>
         </div>
         <div class="box-body">
             <div id="allUsers">
