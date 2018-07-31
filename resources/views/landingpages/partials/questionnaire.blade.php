@@ -4,7 +4,7 @@
         @if(!$viewModel->userResponse)
             <div class="questionnaire-description">{!! $viewModel->questionnaire->description !!}</div>
             @if(\Auth::user())
-                <a id="respond-questionnaire-btn" href="javascript:void(0)"
+                <a  href="javascript:void(0)"
                    class="btn btn-primary respond-questionnaire"
                    data-questionnaire-id="{{$viewModel->questionnaire->id}}"
                    data-url="{{route('respond-questionnaire')}}"
