@@ -26,11 +26,11 @@
             </li>
 
 
-            <li class="{{ UrlMatchesMenuItem("contribute")}}">
+          {{--  <li class="{{ UrlMatchesMenuItem("contribute")}}">
                 <a href="{{url("contribute")}}">
                     <i class="fa fa-users"></i> <span>Contribute</span>
                 </a>
-            </li>
+            </li>--}}
 
             <li class="{{ UrlMatchesMenuItem("my-account")}}">
                 <a href="{{url("my-account")}}">
