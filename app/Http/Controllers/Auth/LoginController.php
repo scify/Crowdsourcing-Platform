@@ -59,7 +59,6 @@ class LoginController extends Controller
 
     public function redirectToProvider($driver)
     {
-        //todo:
         return Socialite::driver($driver)->redirect();
     }
 
