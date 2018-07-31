@@ -12,7 +12,7 @@
         <div class="form-wrapper">
             <p class="login-box-msg">
                 @if ($displayQuestionnaireLabels)
-                    In order to avoid duplicate submissions, only logged-in users can answer the questionnaire. Please login to continue
+                    In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue
                     @else
                     {{ trans('adminlte::adminlte.login_message') }}
                     @endif
