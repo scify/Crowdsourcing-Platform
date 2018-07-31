@@ -84,7 +84,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row hide">
                             <div class="col-md-12 form-group">
                                 <textarea name="comments" id="comments" class="form-control" cols="30"
                                           rows="5"></textarea>
