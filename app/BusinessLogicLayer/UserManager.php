@@ -38,9 +38,9 @@ class UserManager
         return $this->userRepository->find($userId);
     }
 
-    public function getManageUsersViewModel($paginationNumber, $filters = null) {
-        $users = $this->userRepository->getUsersWithTrashed($paginationNumber, $filters);
-        $allRoles = $this->userRoleRepository->getAllUserRoles();
+    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null) {
+        $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters,true);
+        $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
         return new ManageUsers($users, $allRoles);
     }
 
@@ -48,7 +48,7 @@ class UserManager
     {
         $user = $this->userRepository->getUser($id);
         $userRoleIds = $user->roles->pluck('id');
-        $allRoles = $this->userRoleRepository->getAllUserRoles();
+        $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
         return new EditUser($user, $userRoleIds, $allRoles);
     }
 
@@ -106,12 +106,9 @@ class UserManager
         $obj_user->save();
     }
 
-    public function getAllUsersWithTrashed() {
-        return $this->userRepository->getUsersWithTrashed();
-    }
 
-    public function getUsersWithCriteria($paginationNum = null, $data) {
-        return $this->userRepository->getUsersWithTrashed($paginationNum, $data);
+    public function getPlatformAdminUsersWithCriteria($paginationNum = null, $data) {
+        return $this->userRepository->getPlatformUsers($paginationNum, $data,true);
     }
 
     public function handleSocialLoginUser($socialUser) {
