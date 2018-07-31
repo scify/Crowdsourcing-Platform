@@ -33,7 +33,8 @@
                         </div>
                         <div class="col-md-12">
                             <div class="translation-wrapper"
-                                 data-translations="{{$viewModel->questionnaireTranslations}}"></div>
+                                 data-translations="{{$viewModel->questionnaireTranslations}}"
+                                 data-url="{{route('automatic-translation')}}"></div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                         <label for="language-to-translate">Available languages:</label>
                         <select class="form-control" name="language" id="language-to-translate">
                             @foreach($viewModel->allLanguages as $language)
-                                <option value="{{$language->id}}">{{$language->language_name}}</option>
+                                <option value="{{$language->id}}" data-lang-code="{{$language->language_code}}">{{$language->language_name}}</option>
                             @endforeach
                         </select>
                     </div>
