@@ -1,6 +1,7 @@
 @extends('auth.layout')
 
 @section('auth-form')
+    <h1>Let's define our future!</h1>
     <div class="form-wrapper">
         <p class="welcome-msg">Create your account</p>
         <form action="{{ url(config('adminlte.register_url', 'register')) }}" method="post">
