@@ -70,6 +70,15 @@ class LoginController extends Controller
         return $this->authenticated($request,$user);
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/fair-eu');
+    }
+
 
 
 }
