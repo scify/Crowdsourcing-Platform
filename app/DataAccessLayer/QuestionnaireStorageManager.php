@@ -154,7 +154,7 @@ class QuestionnaireStorageManager
                 $questionTitle = isset($question->title) ?
                     (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
                 $questionType = $question->type;
-                $guid = $question->valueName;
+                $guid = $question->guid;
                 array_push($guidsUsed, $guid);
                 $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
                 if ($questionFoundInDB)
@@ -184,11 +184,11 @@ class QuestionnaireStorageManager
         return $questionnaireLanguage;
     }
 
-    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionValueName)
+    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionguid)
     {
         $question = new QuestionnaireQuestion();
         $question->questionnaire_id = $questionnaireId;
-        $question->guid = $questionValueName;
+        $question->guid = $questionguid;
         return $this->storeQuestion($question, $questionTitle, $questionType, $questionName);
     }
 
@@ -199,11 +199,11 @@ class QuestionnaireStorageManager
         return $this->storeHtmlElement($questionnaireHtml, $html);
     }
 
-    public function saveNewAnswer($questionId, $answer, $value, $valueName)
+    public function saveNewAnswer($questionId, $answer, $value, $guid)
     {
         $questionnaireAnswer = new QuestionnairePossibleAnswer();
         $questionnaireAnswer->question_id = $questionId;
-        $questionnaireAnswer->guid = $valueName;
+        $questionnaireAnswer->guid = $guid;
         return $this->storeAnswer($questionnaireAnswer, $answer, $value);
     }
 
@@ -234,7 +234,7 @@ class QuestionnaireStorageManager
             $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson);
             foreach ($response as $question => $answer) {
                 if (strpos($question, '-Comment') === false) {
-                    $foundQuestionFromDB = $questionsFromDB->where('guid', $question)->first();
+                    $foundQuestionFromDB = $questionsFromDB->where('name', $question)->first();
                     $possibleAnswers = QuestionnairePossibleAnswer::where('question_id', $foundQuestionFromDB->id)->get();
                     if (!is_array($answer))
                         $answer = [$answer];
@@ -358,7 +358,7 @@ class QuestionnaireStorageManager
                 $answer = isset($temp->text) ? (isset($temp->text->default) ? $temp->text->default : $temp->text) :
                     (isset($temp->name) ? $temp->name : $temp);
                 $value = isset($temp->value) ? $temp->value : $temp;
-                $guid = $temp->valueName;
+                $guid = $temp->guid;
                 array_push($guidsUsed, $guid);
                 $answerFoundInDB = $answersFromDB->where('guid', $guid)->first();
                 if ($answerFoundInDB)
@@ -549,10 +549,10 @@ class QuestionnaireStorageManager
                 $choiceValue = $choice->value;
             else
                 $choiceValue = $choice;
-            $valueName = $choice->valueName;
+            $guid = $choice->guid;
             $answers = $answerTranslations->where('value', $choiceValue);
             $temp = ['value' => $choiceValue, 'text' => $this->setAllTranslationsForAQuestionnaireString($defaultChoice, $answers),
-                'valueName' => $valueName
+                'guid' => $guid
             ];
             array_push($choices, $temp);
         }

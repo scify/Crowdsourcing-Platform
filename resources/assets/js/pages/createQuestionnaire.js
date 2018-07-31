@@ -59,8 +59,8 @@ let SurveyEditor = require('surveyjs-editor');
         let json = JSON.parse(content);
         let questions = json.pages[0].elements;
         for (let i = 0; i < questions.length; i++) {
-            if (!questions[i].valueName)
-                questions[i].valueName = getGuid();
+            if (!questions[i].guid)
+                questions[i].guid = getGuid();
             if (questions[i].choices) {
                 let answers = json.pages[0].elements[i].choices;
                 for (let j = 0; j < answers.length; j++) {
@@ -70,8 +70,8 @@ let SurveyEditor = require('surveyjs-editor');
                         answers[j].text = originalValue;
                         answers[j].value = originalValue;
                     }
-                    if (!answers[j].valueName)
-                        answers[j].valueName = getGuid();
+                    if (!answers[j].guid)
+                        answers[j].guid = getGuid();
                 }
             }
         }
