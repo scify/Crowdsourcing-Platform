@@ -12,32 +12,31 @@
             <div class="col-md-6">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Edit user {{ $viewModel->user->name . " " . $viewModel->user->surname }}</h3>
+                        <h3 class="box-title">Edit user {{ $viewModel->user->nickname }}</h3>
                     </div>
                     <div class="box-body">
                         <div class="form-group has-feedback">
-                            <label>User name</label>
-                            <input id="name" type="text" class="form-control" name="name" value="{{ $viewModel->user->name  }}"
+                            <label>Email</label>
+                            <input id="email" type="text" class="form-control" name="email" value="{{ $viewModel->user->email }}"
                                    required
-                                   autofocus
-                                   placeholder="Name" readonly>
-                            <span class="form-control-feedback"></span>
-                            @if ($errors->has('name'))
+                                   autofocus placeholder="Email" readonly>
+                            @if ($errors->has('email'))
                                 <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->first('email') }}</strong>
                         </span>
                             @endif
                         </div>
 
                         <div class="form-group has-feedback">
-                            <label>Surname</label>
-                            <input id="surname" type="text" class="form-control" name="surname"
-                                   value="{{ $viewModel->user->surname}}"
+                            <label>Nickname</label>
+                            <input id="nickname" type="text" class="form-control" name="nickname" value="{{ $viewModel->user->nickname  }}"
                                    required
-                                   autofocus placeholder="Surname" readonly>
-                            @if ($errors->has('surname'))
+                                   autofocus
+                                   placeholder="Nickname" readonly>
+                            <span class="form-control-feedback"></span>
+                            @if ($errors->has('nickname'))
                                 <span class="help-block">
-                            <strong>{{ $errors->first('surname') }}</strong>
+                            <strong>{{ $errors->first('nickname') }}</strong>
                         </span>
                             @endif
                         </div>
@@ -59,17 +58,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group has-feedback">
-                            <label>Email</label>
-                            <input id="email" type="text" class="form-control" name="email" value="{{ $viewModel->user->email }}"
-                                   required
-                                   autofocus placeholder="Email" readonly>
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                            @endif
-                        </div>
+
                     </div>
                 </div>
             </div>

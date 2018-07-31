@@ -69,7 +69,7 @@ class UserController extends Controller
     public function showUsersByCriteria(Request $request)
     {
         $input = $request->all();
-        $users = $this->userManager->getUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
+        $users = $this->userManager->getPlatformAdminUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
         $users->setPath('#');
         if ($users->count() == 0) {
             $errorMessage = "No Users found";

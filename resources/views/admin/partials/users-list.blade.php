@@ -25,8 +25,6 @@
                         @endif
                 </td>
                 <td>
-                </td>
-                <td>
                     {{ $user->email }}
                 </td>
                 <td>
