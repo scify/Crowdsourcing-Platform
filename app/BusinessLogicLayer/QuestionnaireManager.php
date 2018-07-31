@@ -13,17 +13,20 @@ use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
+use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireManager
 {
     private $questionnaireStorageManager;
     private $languageManager;
+    private $translator;
 
-    public function __construct(QuestionnaireStorageManager $questionnaireStorageManager, LanguageManager $languageManager)
+    public function __construct(QuestionnaireStorageManager $questionnaireStorageManager, LanguageManager $languageManager, Translator $translator)
     {
         $this->questionnaireStorageManager = $questionnaireStorageManager;
         $this->languageManager = $languageManager;
+        $this->translator = $translator;
     }
 
     public function getCreateEditQuestionnaireViewModel($id)
@@ -71,6 +74,15 @@ class QuestionnaireManager
         $response = json_decode($data['response']);
         $userId = Auth::id();
         $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $userId, $data['response']);
+    }
+
+    public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
+    {
+        $translations = [];
+        $translatedTexts = $this->translator->translateTexts($texts, $languageCodeToTranslateTo);
+        foreach ($ids as $key => $id)
+            $translations[$id] = $translatedTexts[$key];
+        return $translations;
     }
 
     public function getTranslateQuestionnaireViewModel($questionnaireId)

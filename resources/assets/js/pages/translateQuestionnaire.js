@@ -14,8 +14,8 @@
         }
     };
 
-    let addNewTranslationItemInTranslationWrapperList = function (selectedLangVal, isAlreadyTranslated, languageName) {
-        let string = "<div class='translation-item hide' data-lang-id='" + selectedLangVal + "'>";
+    let addNewTranslationItemInTranslationWrapperList = function (selectedLangVal, selectedLangCode, isAlreadyTranslated, languageName) {
+        let string = "<div class='translation-item hide' data-lang-id='" + selectedLangVal + "' data-lang-code='" + selectedLangCode + "'>";
         let languageKey;
         if (isAlreadyTranslated && languageName)
             languageKey = languageName;
@@ -26,19 +26,19 @@
             for (let j = 0; j < translationsData[languageKey][properties[i]].length; j++) {
                 let obj = translationsData[languageKey][properties[i]][j];
                 if (j === 0 && obj.html === null) {
-                    string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". " + obj.question + "</b></div><div class='table-cell'>" +
+                    string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". <span class='to-translate'>" + obj.question + "</span></b></div><div class='table-cell'>" +
                         "<textarea class='form-control' name='question-" + obj.question_id + "' data-name='" + obj.question_name + "'>" +
                         (isAlreadyTranslated && obj.translated_question ? obj.translated_question : obj.question) + "</textarea>" +
                         "</div></div>";
                 }
                 if (obj.answer !== null) {
-                    string += "<div class='table-row'><div class='table-cell'><b style='margin-left: 30px; display: block;'>" + obj.answer + "</b></div><div class='table-cell'>" +
+                    string += "<div class='table-row'><div class='table-cell'><b style='margin-left: 30px; display: block;'><span class='to-translate'>" + obj.answer + "</span></b></div><div class='table-cell'>" +
                         "<textarea class='form-control' name='answer-" + obj.answer_id + "' data-name='" + obj.question_name + "' data-value='" + obj.answer_value + "'>" +
                         (isAlreadyTranslated && obj.translated_answer ? obj.translated_answer : obj.answer) + "</textarea>" +
                         "</div></div>";
                 }
                 if (obj.html !== null) {
-                    string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". " + obj.html + "</b></div><div class='table-cell'>" +
+                    string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". <span class='to-translate'>" + obj.html + "</span></b></div><div class='table-cell'>" +
                         "<textarea class='form-control' name='html-" + obj.html_id + "' data-name='" + obj.question_name + "'>" +
                         (isAlreadyTranslated && obj.translated_html ? obj.translated_html : obj.html) + "</textarea>" +
                         "</div></div>";
@@ -52,28 +52,70 @@
     let addNewLanguageTabAndWrapper = function (selectedLangVal, isAlreadyTranslated, languageName) {
         let languagesWrapper = $(".languages-wrapper");
         let selectedLang = $("#language-to-translate").find("option[value='" + selectedLangVal + "']").html();
+        let selectedLangCode = $("#language-to-translate").find("option[value='" + selectedLangVal + "']").data('lang-code');
         languagesWrapper.append("<a href='javascript:void(0)' class='btn btn-block btn-default lang-selector' " +
             "data-lang-id='" + selectedLangVal + "'>" + selectedLang + "</a>");
         languagesWrapper.closest(".row").removeClass("hide");
-        addNewTranslationItemInTranslationWrapperList(selectedLangVal, isAlreadyTranslated, languageName);
+        addNewTranslationItemInTranslationWrapperList(selectedLangVal, selectedLangCode, isAlreadyTranslated, languageName);
     };
 
     let addNewLanguageForQuestionnaire = function () {
         let languageToTranslateSelect = $("#language-to-translate");
         let selectedLangVal = languageToTranslateSelect.val();
+        let isNewLangAdded = false;
         if ($(".lang-selector[data-lang-id='" + selectedLangVal + "']").length === 0) {
             addNewLanguageTabAndWrapper(selectedLangVal);
+            isNewLangAdded = true;
         }
         selectLanguage(selectedLangVal);
-        $(this).closest('.modal').modal('hide');
+        if (isNewLangAdded)
+            autotranslateData();
+        else
+            $(this).closest('.modal').modal('hide');
     };
 
     let changeLanguageViaTabClick = function () {
         selectLanguage($(this).data("lang-id"));
     };
 
-    let readTranslationData = function () {
-        translationsData = $(".translation-wrapper").data("translations");
+    let autotranslateData = function () {
+        let modal = $("#add-new-lang-modal");
+        let translationItem = $(".translation-item:visible");
+        let languageCodeToTranslateTo = translationItem.data('lang-code');
+        let ids = [];
+        let texts = [];
+        translationItem.find('.table-row').each(function () {
+            let cells = $(this).find('.table-cell');
+            texts.push($(cells[0]).find('.to-translate').html());
+            ids.push($(cells[1]).find('textarea').attr('name'));
+        });
+        $.ajax({
+            method: 'post',
+            url: $(".translation-wrapper").data("url"),
+            data: {languageCodeToTranslateTo, ids, texts},
+            beforeSend: function () {
+                modal.addClass("loading");
+            },
+            success: function (response) {
+                for (let i = 0; i < ids.length; i++) {
+                    let key = ids[i];
+                    translationItem.find("textarea[name='" + key + "']").text(response.translations[key].text);
+                }
+            },
+            error: function () {
+                swal({
+                    title: "Oops!",
+                    text: "An error occurred, translations could not be autogenerated.",
+                    type: "error",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+            },
+            complete: function () {
+                modal.removeClass("loading");
+                modal.modal('hide');
+            }
+        });
     };
 
     let saveTranslations = function () {
@@ -118,6 +160,10 @@
                 });
             }
         });
+    };
+
+    let readTranslationData = function () {
+        translationsData = $(".translation-wrapper").data("translations");
     };
 
     let fillTranslationsTableFromData = function () {
