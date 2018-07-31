@@ -3,10 +3,7 @@
         <tbody>
         <tr>
             <th>
-                Name
-            </th>
-            <th>
-                Surname
+                Nickname
             </th>
             <th>
                 Email
@@ -21,10 +18,13 @@
         @foreach ($users as $user)
             <tr>
                 <td>
-                    {{ $user->name }}
+
+                   {{ $user->nickname }}
+                    @if ($user->avatat)
+                        <img src="{{$user->avatar}}"/>
+                        @endif
                 </td>
                 <td>
-                    {{ $user->surname }}
                 </td>
                 <td>
                     {{ $user->email }}
