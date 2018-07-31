@@ -81,7 +81,7 @@ class QuestionnaireManager
         $translations = [];
         $translatedTexts = $this->translator->translateTexts($texts, $languageCodeToTranslateTo);
         foreach ($ids as $key => $id)
-            $translations[$id] = $translatedTexts[$key];
+            $translations[$id] = str_replace('&quot;', '"', $translatedTexts[$key]);
         return $translations;
     }
 
