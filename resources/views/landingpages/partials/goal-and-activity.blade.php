@@ -2,12 +2,12 @@
 
     <div class="goal-title">
         {{-- todo:  If 0 responses , or if target achieved display different messages --}}
-        <h2 class="info"><span class="number">{{$viewModel->totalResponses}}</span> people spoke up so far.
+        <h2 class="info">
             @if ($viewModel->totalResponses==0)
-                Be the first!
+                Zero people spoke up so far. Be the first!
             @else
-                Let's get
-                to {{$viewModel->questionnaire->goal}}!
+                <span class="number">{{$viewModel->totalResponses}}</span>
+                Let's get to {{$viewModel->questionnaire->goal}}!
             @endif
 
         </h2>
