@@ -28,12 +28,8 @@
                     Data for new user (if the email does not exist in the database, a new user will be created):
                 </em>
                 <div class="form-group margin-top">
-                    <input id="name" type="text" class="form-control" name="name" required autofocus
-                           placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <input id="surname" type="text" class="form-control" name="surname" required autofocus
-                           placeholder="Surname">
+                    <input id="name" type="text" class="form-control" name="nickname" required autofocus
+                           placeholder="Full name">
                 </div>
                 <div class="form-group">
                     <input id="password" type="password" class="form-control" name="password" required autofocus
