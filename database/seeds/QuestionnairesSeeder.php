@@ -36,18 +36,18 @@ class QuestionnairesSeeder extends Seeder
                     "type": "radiogroup",
                     "name": "question1",
                     "title": "Are you familiar with the term \"Citizen of the European Union\" and the rights this status confers?",
-                    "valueName": "28087674-b577-408f-950d-39dc599713c2",
+                    "guid": "28087674-b577-408f-950d-39dc599713c2",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Yes",
-                            "valueName": "48b6bcaf-c306-49e0-cce9-16fc1d7832b1"
+                            "guid": "48b6bcaf-c306-49e0-cce9-16fc1d7832b1"
                         },
                         {
                             "value": "item2",
                             "text": "No",
-                            "valueName": "60bbf0a6-9b35-4629-bb7e-f7464337427e"
+                            "guid": "60bbf0a6-9b35-4629-bb7e-f7464337427e"
                         }
                     ]
                 },
@@ -56,14 +56,14 @@ class QuestionnairesSeeder extends Seeder
                     "name": "question2",
                     "visibleIf": "{question1} = \"item1\"",
                     "html": "<p>That’s great! It means that you know that EU citizens not only are allowed to move freely within the EU for work, studies, travel or joining their family members, but also have the right to vote and stand as candidates in municipal and European Parliament elections regardless of whether they are nationals of the EU country in which they reside. </p><p>This questionnaire, developed in the framework of the FAIR EU project (link to the project) aims at crowdsourcing EU citizens’ experience and opinion regarding the challenges to free movement and political participation.</p><p>Answering this questionnaire will take about 10 minutes. Your feedback will be invaluable in helping us to understand what obstacles EU citizens encounter when moving to or residing in an EU Member States other than their own, and being politically active.</p>",
-                    "valueName": "20fc8927-9f71-4330-22d7-61465ad2a251"
+                    "guid": "20fc8927-9f71-4330-22d7-61465ad2a251"
                 },
                 {
                     "type": "html",
                     "name": "question3",
                     "visibleIf": "{question1} = \"item2\"",
                     "html": "<p>EU citizenship is at the heart of the European integration project. Citizenship of the European Union was established with the Maastricht treaty in 1993. It is supplementary to national citizenship and confers on every national of an EU country a set of rights, such as the right to move and reside freely within the EU, as well as the right to vote and stand as a candidate in European and local elections.</p><p>This questionnaire, developed in the framework of the FAIR EU project (link to the project) aims at crowdsourcing EU citizens’ experience and opinion regarding the challenges to free movement and political participation.</p><p>Answering this questionnaire will take about 10 minutes. Your feedback will be invaluable in helping us to understand what obstacles EU citizens encounter when moving to or residing in the EU Member States other than their own, and being politically active.</p>",
-                    "valueName": "fc2ca61c-ecb1-4c0c-6668-94e59e194537"
+                    "guid": "fc2ca61c-ecb1-4c0c-6668-94e59e194537"
                 },
                 {
                     "type": "text",
@@ -71,7 +71,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Country of residence",
-                    "valueName": "a421e0df-62a0-486f-8e5a-a9aa64d12912",
+                    "guid": "a421e0df-62a0-486f-8e5a-a9aa64d12912",
                     "enableIf": "{question1} notempty",
                     "isRequired": true
                 },
@@ -80,24 +80,24 @@ class QuestionnairesSeeder extends Seeder
                     "name": "question5",
                     "visible": false,
                     "title": "How long have you been residing in your current host Member State?",
-                    "valueName": "a4fef8e0-5e09-458c-1a82-c9ea09e80f37",
+                    "guid": "a4fef8e0-5e09-458c-1a82-c9ea09e80f37",
                     "enableIf": "{question1} notempty",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Less than 3 months",
-                            "valueName": "a0f79398-e848-494d-cb5d-0da38d85c640"
+                            "guid": "a0f79398-e848-494d-cb5d-0da38d85c640"
                         },
                         {
                             "value": "item2",
                             "text": "More than 3 months but less than 5 years",
-                            "valueName": "07e1fb9b-7c5e-4d57-af8c-4a37cebf50d8"
+                            "guid": "07e1fb9b-7c5e-4d57-af8c-4a37cebf50d8"
                         },
                         {
                             "value": "item3",
                             "text": "5 years and more",
-                            "valueName": "f23cf260-54ee-40d1-e9cc-2afda5dd61ed"
+                            "guid": "f23cf260-54ee-40d1-e9cc-2afda5dd61ed"
                         }
                     ]
                 },
@@ -107,34 +107,34 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "What is your employment status?",
-                    "valueName": "912c7071-9ccf-467c-7c78-3799b45a2c00",
+                    "guid": "912c7071-9ccf-467c-7c78-3799b45a2c00",
                     "isRequired": true,
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Employee",
-                            "valueName": "1269ad6b-e074-41e1-4ef6-12ddc649ad0f"
+                            "guid": "1269ad6b-e074-41e1-4ef6-12ddc649ad0f"
                         },
                         {
                             "value": "item2",
                             "text": "Self-employed",
-                            "valueName": "b595996f-b405-43d9-8e41-f2cb8cb7dab2"
+                            "guid": "b595996f-b405-43d9-8e41-f2cb8cb7dab2"
                         },
                         {
                             "value": "item3",
                             "text": "Unemployed",
-                            "valueName": "3e4ee82c-a11d-4cd0-7b01-4901b8ced26b"
+                            "guid": "3e4ee82c-a11d-4cd0-7b01-4901b8ced26b"
                         },
                         {
                             "value": "item4",
                             "text": "Student",
-                            "valueName": "d2824755-9013-491a-1fd8-1a3993568ce0"
+                            "guid": "d2824755-9013-491a-1fd8-1a3993568ce0"
                         },
                         {
                             "value": "item5",
                             "text": "Pensioner",
-                            "valueName": "acfda878-90a5-4ecc-de99-c08c2b6d548e"
+                            "guid": "acfda878-90a5-4ecc-de99-c08c2b6d548e"
                         }
                     ]
                 },
@@ -144,18 +144,18 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Gender",
-                    "valueName": "a646030e-be12-419d-b26b-50ef5c5823ec",
+                    "guid": "a646030e-be12-419d-b26b-50ef5c5823ec",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Female",
-                            "valueName": "de148768-a187-4f51-825a-b0a6a2ba7845"
+                            "guid": "de148768-a187-4f51-825a-b0a6a2ba7845"
                         },
                         {
                             "value": "item2",
                             "text": "Male",
-                            "valueName": "7d150aba-4329-4356-6ebe-540ea587145b"
+                            "guid": "7d150aba-4329-4356-6ebe-540ea587145b"
                         }
                     ]
                 },
@@ -165,29 +165,29 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Age",
-                    "valueName": "7be58065-5f4f-4045-9f0a-c8819d4d6e30",
+                    "guid": "7be58065-5f4f-4045-9f0a-c8819d4d6e30",
                     "enableIf": "{question1} notempty",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "0-25",
-                            "valueName": "33664a53-c923-4659-02b6-63c871d630f1"
+                            "guid": "33664a53-c923-4659-02b6-63c871d630f1"
                         },
                         {
                             "value": "item2",
                             "text": "26-40",
-                            "valueName": "8c986a2f-c03c-4782-54a5-910687eba99b"
+                            "guid": "8c986a2f-c03c-4782-54a5-910687eba99b"
                         },
                         {
                             "value": "item3",
                             "text": "41-60",
-                            "valueName": "5f3844b6-60cd-43d4-bd40-840bf66dc2b7"
+                            "guid": "5f3844b6-60cd-43d4-bd40-840bf66dc2b7"
                         },
                         {
                             "value": "item4",
                             "text": "More than 60",
-                            "valueName": "f36ce255-f697-45b4-828f-0c71150d5bf4"
+                            "guid": "f36ce255-f697-45b4-828f-0c71150d5bf4"
                         }
                     ]
                 },
@@ -197,33 +197,33 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Have you encountered any obstacles when? (multiple answers possible)",
-                    "valueName": "e31e0668-c828-4202-0a65-2c12de1b4b44",
+                    "guid": "e31e0668-c828-4202-0a65-2c12de1b4b44",
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Trying to enter the host Member State (these can include: over-scrutiny of identity documents, non-recognition of a national identity document, denial of access)",
-                            "valueName": "9d8b970c-9a27-4024-266b-11410e898084"
+                            "guid": "9d8b970c-9a27-4024-266b-11410e898084"
                         },
                         {
                             "value": "item2",
                             "text": "Requesting residence documents (these can include: lengthy appointments, excessive requirements to prove the possession of sufficient resources)",
-                            "valueName": "041a393c-d4c8-4fd2-373d-5063565f6391"
+                            "guid": "041a393c-d4c8-4fd2-373d-5063565f6391"
                         },
                         {
                             "value": "item3",
                             "text": "Requesting permanent residence documents (these can include: excessive requirements to prove the duration and continuity of residence, e.g. proof of sufficient resources, confirmation of having paid social security contributions, knowledge of the local language and culture, etc.)",
-                            "valueName": "e90e383a-0ef1-4e3e-6c16-ff5272960e10"
+                            "guid": "e90e383a-0ef1-4e3e-6c16-ff5272960e10"
                         },
                         {
                             "value": "item4",
                             "text": "Accessing job market (these can include: difficulties in signing job contract as a result of not being able to receive required residency documents, discrimination on the basis of your nationality)",
-                            "valueName": "d4685f6a-47e3-4639-0674-b0e2972c00f3"
+                            "guid": "d4685f6a-47e3-4639-0674-b0e2972c00f3"
                         },
                         {
                             "value": "item5",
                             "text": "I have not encountered any obstacles",
-                            "valueName": "ce2335bc-a3e0-42a4-c15c-ff3e46f591cc"
+                            "guid": "ce2335bc-a3e0-42a4-c15c-ff3e46f591cc"
                         }
                     ]
                 },
@@ -232,7 +232,7 @@ class QuestionnairesSeeder extends Seeder
                     "name": "question10",
                     "visibleIf": "{question1} notempty",
                     "html": "<p>Please provide more details on the obstacles faced in your host Member State</p>",
-                    "valueName": "7707dff7-3db8-4795-e2b9-2e8cd5860d1a"
+                    "guid": "7707dff7-3db8-4795-e2b9-2e8cd5860d1a"
                 },
                 {
                     "type": "checkbox",
@@ -240,23 +240,23 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "When residing in your host Member State, have you participated in: (multiple answers possible)",
-                    "valueName": "3661aabb-d4eb-4041-c46b-6023278649ad",
+                    "guid": "3661aabb-d4eb-4041-c46b-6023278649ad",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "European Parliament elections",
-                            "valueName": "4753b637-f325-47a4-e181-e3939f55c830"
+                            "guid": "4753b637-f325-47a4-e181-e3939f55c830"
                         },
                         {
                             "value": "item2",
                             "text": "Municipal elections (as a voter and/or a candidate)",
-                            "valueName": "db25355c-bab7-4f7a-5860-eb2c5b43e062"
+                            "guid": "db25355c-bab7-4f7a-5860-eb2c5b43e062"
                         },
                         {
                             "value": "item3",
                             "text": "I have never participated in either EP or municipal elections",
-                            "valueName": "b60cbf8e-74ba-42e5-9e54-1cf3fcbd4a55"
+                            "guid": "b60cbf8e-74ba-42e5-9e54-1cf3fcbd4a55"
                         }
                     ]
                 },
@@ -266,44 +266,44 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty and {question11} notcontains \"item1\"",
                     "title": "Why did you decide not to participate in the elections to the EU Parliament in your host Member State: (multiple answers possible)",
-                    "valueName": "66c1f426-db7a-48a7-4e71-4536c15c10dc",
+                    "guid": "66c1f426-db7a-48a7-4e71-4536c15c10dc",
                     "enableIf": "{question11} notcontains \"item1\"",
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "I was not aware of my right to participate",
-                            "valueName": "da1f4f4a-2c9d-4388-f86c-220e47b3b5e7"
+                            "guid": "da1f4f4a-2c9d-4388-f86c-220e47b3b5e7"
                         },
                         {
                             "value": "item2",
                             "text": "I encountered difficulties in the registration process",
-                            "valueName": "aed9dd17-5fe8-4762-2ece-467192d85930"
+                            "guid": "aed9dd17-5fe8-4762-2ece-467192d85930"
                         },
                         {
                             "value": "item3",
                             "text": "I missed the registration deadline",
-                            "valueName": "6cf610e7-2c59-41c9-255e-ce725b2d95ee"
+                            "guid": "6cf610e7-2c59-41c9-255e-ce725b2d95ee"
                         },
                         {
                             "value": "item4",
                             "text": "I am not interested in politics and I do not vote",
-                            "valueName": "ac5d007f-f319-4109-6139-ac2c7545dadd"
+                            "guid": "ac5d007f-f319-4109-6139-ac2c7545dadd"
                         },
                         {
                             "value": "item5",
                             "text": "I do not believe my vote would have any impact on the final election result",
-                            "valueName": "f79d25b5-cdf8-4110-0055-112320cd64c2"
+                            "guid": "f79d25b5-cdf8-4110-0055-112320cd64c2"
                         },
                         {
                             "value": "item6",
                             "text": "I do not vote but I engage in alternative political and civic activities",
-                            "valueName": "3edf3793-ac59-4d12-9b12-55149c56d61b"
+                            "guid": "3edf3793-ac59-4d12-9b12-55149c56d61b"
                         },
                         {
                             "value": "item7",
                             "text": "I participated in the elections to the European Parliament in my home country",
-                            "valueName": "793f54a6-3bb0-43fd-9552-0732b9e3a24d"
+                            "guid": "793f54a6-3bb0-43fd-9552-0732b9e3a24d"
                         }
                     ]
                 },
@@ -313,49 +313,49 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty and {question11} notcontains \"item2\"",
                     "title": "Why did you decide not to participate in the municipal elections in your host Member State: (multiple answers possible)",
-                    "valueName": "89a986c5-a7d4-4a58-3fe6-fe4d16a65100",
+                    "guid": "89a986c5-a7d4-4a58-3fe6-fe4d16a65100",
                     "enableIf": "{question11} notcontains \"item2\"",
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "I was not allowed to participate (please explain the reasons given by the public administration)",
-                            "valueName": "e5ec7049-114b-4dd6-a64b-7d56630b9396"
+                            "guid": "e5ec7049-114b-4dd6-a64b-7d56630b9396"
                         },
                         {
                             "value": "item2",
                             "text": "I was not aware of my right to participate",
-                            "valueName": "2091daa1-008c-42f9-d178-9d38edbd7f10"
+                            "guid": "2091daa1-008c-42f9-d178-9d38edbd7f10"
                         },
                         {
                             "value": "item3",
                             "text": "I encountered difficulties in the registration process",
-                            "valueName": "df17a845-6dd3-46f5-ef53-44004945d32f"
+                            "guid": "df17a845-6dd3-46f5-ef53-44004945d32f"
                         },
                         {
                             "value": "item4",
                             "text": "I missed the registration deadline",
-                            "valueName": "1c9eb4f0-9444-41c5-2953-2aa0dabaf174"
+                            "guid": "1c9eb4f0-9444-41c5-2953-2aa0dabaf174"
                         },
                         {
                             "value": "item5",
                             "text": "I am not interested in politics and I do not vote",
-                            "valueName": "239cdfe0-e55c-4d7e-0275-db719cc91826"
+                            "guid": "239cdfe0-e55c-4d7e-0275-db719cc91826"
                         },
                         {
                             "value": "item6",
                             "text": "I do not have enough knowledge of the local political system",
-                            "valueName": "c0d59d42-37e8-40d2-5741-be692d8d3819"
+                            "guid": "c0d59d42-37e8-40d2-5741-be692d8d3819"
                         },
                         {
                             "value": "item7",
                             "text": "I do not believe my vote would have any impact on the final election result",
-                            "valueName": "19e001e9-d732-45e7-f3cf-b79c828ba08c"
+                            "guid": "19e001e9-d732-45e7-f3cf-b79c828ba08c"
                         },
                         {
                             "value": "item8",
                             "text": "I do not vote but I engage in alternative political and civic activities (please specify below)",
-                            "valueName": "36ee4c5a-552e-4a1c-a3da-5515845a5ee5"
+                            "guid": "36ee4c5a-552e-4a1c-a3da-5515845a5ee5"
                         }
                     ]
                 },
@@ -365,34 +365,34 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Did you encounter any obstacles during the electoral registration process in your host Member State:",
-                    "valueName": "6d973c22-c22f-48e3-8f40-23a39814b602",
+                    "guid": "6d973c22-c22f-48e3-8f40-23a39814b602",
                     "isRequired": true,
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "I did not receive correct or clear information on the procedures",
-                            "valueName": "efb631fb-288c-49ff-41dc-53849a3c524c"
+                            "guid": "efb631fb-288c-49ff-41dc-53849a3c524c"
                         },
                         {
                             "value": "item2",
                             "text": "I experienced problems with local authorities based on my nationality",
-                            "valueName": "ffa451b0-1e7b-450e-2584-5b9ae83de8d9"
+                            "guid": "ffa451b0-1e7b-450e-2584-5b9ae83de8d9"
                         },
                         {
                             "value": "item3",
                             "text": "Administrative procedures were lengthy and cumbersome",
-                            "valueName": "3feb44b2-8e16-4568-3749-3a30403153c3"
+                            "guid": "3feb44b2-8e16-4568-3749-3a30403153c3"
                         },
                         {
                             "value": "item4",
                             "text": "I have never made an attempt to register on the electoral roll",
-                            "valueName": "c7b78f7b-2882-408f-7117-624e67bc797a"
+                            "guid": "c7b78f7b-2882-408f-7117-624e67bc797a"
                         },
                         {
                             "value": "item5",
                             "text": "None",
-                            "valueName": "91ac133c-3e23-4aba-fb5c-a67ace9d6ee0"
+                            "guid": "91ac133c-3e23-4aba-fb5c-a67ace9d6ee0"
                         }
                     ]
                 },
@@ -402,29 +402,29 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "As an EU national residing in a host EU Member State, have you ever been refused registration for municipal or European Parliament elections on the grounds of?",
-                    "valueName": "d361ab0a-775c-46ad-f40f-67be3709b229",
+                    "guid": "d361ab0a-775c-46ad-f40f-67be3709b229",
                     "isRequired": true,
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Not having your national ID document recognized",
-                            "valueName": "c6ad7da2-0a8f-4fa5-25ec-9d31e90bcb58"
+                            "guid": "c6ad7da2-0a8f-4fa5-25ec-9d31e90bcb58"
                         },
                         {
                             "value": "item2",
                             "text": "Not having permanent residence",
-                            "valueName": "6776d4d0-723b-4cf7-1f07-25330564aa51"
+                            "guid": "6776d4d0-723b-4cf7-1f07-25330564aa51"
                         },
                         {
                             "value": "item3",
                             "text": "Not having a nationality of the country where you reside",
-                            "valueName": "4c2bd934-891e-44fa-eadf-e16d71d29902"
+                            "guid": "4c2bd934-891e-44fa-eadf-e16d71d29902"
                         },
                         {
                             "value": "item4",
                             "text": "I have never encountered such an issue",
-                            "valueName": "07ec15ef-44e5-49dc-2097-ce64690f604b"
+                            "guid": "07ec15ef-44e5-49dc-2097-ce64690f604b"
                         }
                     ]
                 },
@@ -439,30 +439,30 @@ class QuestionnairesSeeder extends Seeder
                         {
                             "value": "item1",
                             "text": "I strongly agree",
-                            "valueName": "cee8f784-4869-4ef6-7c23-82bcc9436182"
+                            "guid": "cee8f784-4869-4ef6-7c23-82bcc9436182"
                         },
                         {
                             "value": "item2",
                             "text": "I agree",
-                            "valueName": "9e8e1a7e-c9de-4972-6f30-b1d1aca5daa0"
+                            "guid": "9e8e1a7e-c9de-4972-6f30-b1d1aca5daa0"
                         },
                         {
                             "value": "item3",
                             "text": "I neither agree nor disagree",
-                            "valueName": "bf5c33a9-6f36-46d4-2bec-df4da01627e0"
+                            "guid": "bf5c33a9-6f36-46d4-2bec-df4da01627e0"
                         },
                         {
                             "value": "item4",
                             "text": "I disagree",
-                            "valueName": "8b8f0dad-8aa5-4e35-6ffb-5bae889263d3"
+                            "guid": "8b8f0dad-8aa5-4e35-6ffb-5bae889263d3"
                         },
                         {
                             "value": "item5",
                             "text": "I strongly disagree",
-                            "valueName": "e3f1aeb8-40fc-4834-c723-4770b66d5d7e"
+                            "guid": "e3f1aeb8-40fc-4834-c723-4770b66d5d7e"
                         }
                     ],
-                    "valueName": "d51c0e60-130c-4ae9-964c-7c75126466f6"
+                    "guid": "d51c0e60-130c-4ae9-964c-7c75126466f6"
                 },
                 {
                     "type": "radiogroup",
@@ -470,28 +470,28 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Are you planning to participate in the next European Parliament elections in May 2019?",
-                    "valueName": "9ecd8358-2bf2-4148-6f16-29356238afad",
+                    "guid": "9ecd8358-2bf2-4148-6f16-29356238afad",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Yes, in my home country",
-                            "valueName": "2141d5fe-5776-4f77-8cfe-c61fdd282741"
+                            "guid": "2141d5fe-5776-4f77-8cfe-c61fdd282741"
                         },
                         {
                             "value": "item2",
                             "text": "Yes, in the EU Member State where I am currently residing",
-                            "valueName": "9dbe0d44-b259-48b1-b248-5aa3ed2eba80"
+                            "guid": "9dbe0d44-b259-48b1-b248-5aa3ed2eba80"
                         },
                         {
                             "value": "item3",
                             "text": "No",
-                            "valueName": "063ff8a8-33bc-4ad9-6131-a9d1555abbee"
+                            "guid": "063ff8a8-33bc-4ad9-6131-a9d1555abbee"
                         },
                         {
                             "value": "item4",
                             "text": "I do not know",
-                            "valueName": "e7099d6c-0ba0-46f4-1fbb-a3a834c61782"
+                            "guid": "e7099d6c-0ba0-46f4-1fbb-a3a834c61782"
                         }
                     ]
                 },
@@ -501,7 +501,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty and {question17} = \"item3\"",
                     "title": "Please explain why you are not going to vote",
-                    "valueName": "d6106f94-7227-4381-ab1a-ebbac22699af",
+                    "guid": "d6106f94-7227-4381-ab1a-ebbac22699af",
                     "enableIf": "{question17} = \"item3\""
                 },
                 {
@@ -510,48 +510,48 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Have you ever participated in the following non-electoral political and/or civic activities? (multiple options possible)",
-                    "valueName": "6d975931-a6fb-4331-df3e-9d84b7f61fc6",
+                    "guid": "6d975931-a6fb-4331-df3e-9d84b7f61fc6",
                     "hasOther": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Demonstrations",
-                            "valueName": "08109ed8-6519-43d2-9957-9bd19c3f7007"
+                            "guid": "08109ed8-6519-43d2-9957-9bd19c3f7007"
                         },
                         {
                             "value": "item2",
                             "text": "Signing petitions",
-                            "valueName": "12b6b809-66ea-43f5-d7b5-54d0018ebc7c"
+                            "guid": "12b6b809-66ea-43f5-d7b5-54d0018ebc7c"
                         },
                         {
                             "value": "item3",
                             "text": "Public meetings",
-                            "valueName": "9f6bd44c-f6f6-4b6a-1c61-d591c3171526"
+                            "guid": "9f6bd44c-f6f6-4b6a-1c61-d591c3171526"
                         },
                         {
                             "value": "item4",
                             "text": "Volunteering",
-                            "valueName": "d8061e55-31eb-4a8a-3cdf-b2e902df6945"
+                            "guid": "d8061e55-31eb-4a8a-3cdf-b2e902df6945"
                         },
                         {
                             "value": "item5",
                             "text": "Public consultations",
-                            "valueName": "5c28e886-01b4-4a9a-eabc-4a87d45d367f"
+                            "guid": "5c28e886-01b4-4a9a-eabc-4a87d45d367f"
                         },
                         {
                             "value": "item6",
                             "text": "Membership of a political association/party",
-                            "valueName": "98a40015-9a8e-4045-eb45-52c61333c7e8"
+                            "guid": "98a40015-9a8e-4045-eb45-52c61333c7e8"
                         },
                         {
                             "value": "item7",
                             "text": "Membership of a non-political association",
-                            "valueName": "7ffbec7b-e032-4769-5f93-f2a1135ec422"
+                            "guid": "7ffbec7b-e032-4769-5f93-f2a1135ec422"
                         },
                         {
                             "value": "item8",
                             "text": "I have never participated in non-electoral political and/or civic activities",
-                            "valueName": "a9da128c-a09f-4e2c-e050-37c7d2919afe"
+                            "guid": "a9da128c-a09f-4e2c-e050-37c7d2919afe"
                         }
                     ]
                 },
@@ -561,33 +561,33 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Which in your opinion is the most important indicator of EU citizens’ integration in host countries?",
-                    "valueName": "a7ba5aa3-ccba-416f-88cd-12f723d72df2",
+                    "guid": "a7ba5aa3-ccba-416f-88cd-12f723d72df2",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "item1",
                             "text": "Knowledge of the local language and culture",
-                            "valueName": "4447f644-f608-4fef-bbae-1f6685485af5"
+                            "guid": "4447f644-f608-4fef-bbae-1f6685485af5"
                         },
                         {
                             "value": "item2",
                             "text": "Participation in the labour market",
-                            "valueName": "5fa884e1-d76a-4809-3a2c-362a502e9ba7"
+                            "guid": "5fa884e1-d76a-4809-3a2c-362a502e9ba7"
                         },
                         {
                             "value": "item3",
                             "text": "Understanding of local politics",
-                            "valueName": "53295640-29e0-4356-4180-dbfdc8f29100"
+                            "guid": "53295640-29e0-4356-4180-dbfdc8f29100"
                         },
                         {
                             "value": "item4",
                             "text": "Participation in municipal elections",
-                            "valueName": "8151cf2b-682f-4add-3b52-4f4e3f954e58"
+                            "guid": "8151cf2b-682f-4add-3b52-4f4e3f954e58"
                         },
                         {
                             "value": "item5",
                             "text": "Involvement in the issues relevant to the local community (e.g. signing petitions, participation in the local commissions, neighbours councils)",
-                            "valueName": "8c631c06-d733-4ec9-8648-d721354b28ec"
+                            "guid": "8c631c06-d733-4ec9-8648-d721354b28ec"
                         }
                     ]
                 },
@@ -602,30 +602,30 @@ class QuestionnairesSeeder extends Seeder
                         {
                             "value": "item1",
                             "text": "I strongly agree",
-                            "valueName": "3d70a41f-6a20-48e7-7bc9-025363552952"
+                            "guid": "3d70a41f-6a20-48e7-7bc9-025363552952"
                         },
                         {
                             "value": "item2",
                             "text": "I agree",
-                            "valueName": "45f18bde-6c76-44ad-a8c5-41326ace47ba"
+                            "guid": "45f18bde-6c76-44ad-a8c5-41326ace47ba"
                         },
                         {
                             "value": "item3",
                             "text": "I neither agree nor disagree",
-                            "valueName": "51aeb713-b3ec-4675-b0ee-d90c1947209a"
+                            "guid": "51aeb713-b3ec-4675-b0ee-d90c1947209a"
                         },
                         {
                             "value": "item4",
                             "text": "I disagree",
-                            "valueName": "2ab4d871-055b-4d2a-c42c-bb3a5a5e52c4"
+                            "guid": "2ab4d871-055b-4d2a-c42c-bb3a5a5e52c4"
                         },
                         {
                             "value": "item5",
                             "text": "I strongly disagree",
-                            "valueName": "a332b067-8a8f-4f25-3559-61e75bb65c2f"
+                            "guid": "a332b067-8a8f-4f25-3559-61e75bb65c2f"
                         }
                     ],
-                    "valueName": "1012c7ec-c116-4ac9-b119-7a030ea0c50b"
+                    "guid": "1012c7ec-c116-4ac9-b119-7a030ea0c50b"
                 },
                 {
                     "type": "radiogroup",
@@ -638,30 +638,30 @@ class QuestionnairesSeeder extends Seeder
                         {
                             "value": "item1",
                             "text": "I strongly agree",
-                            "valueName": "4d64bf79-b693-4bc1-c934-00b70f9c4f30"
+                            "guid": "4d64bf79-b693-4bc1-c934-00b70f9c4f30"
                         },
                         {
                             "value": "item2",
                             "text": "I agree",
-                            "valueName": "4312bb54-9ac6-440a-bd2d-cae0536051df"
+                            "guid": "4312bb54-9ac6-440a-bd2d-cae0536051df"
                         },
                         {
                             "value": "item3",
                             "text": "I neither agree nor disagree",
-                            "valueName": "a231f1ff-b1cd-45cc-e014-2ea8334cb54b"
+                            "guid": "a231f1ff-b1cd-45cc-e014-2ea8334cb54b"
                         },
                         {
                             "value": "item4",
                             "text": "I disagree",
-                            "valueName": "81a6a212-b9ac-4d2f-95f5-d23edaf280ae"
+                            "guid": "81a6a212-b9ac-4d2f-95f5-d23edaf280ae"
                         },
                         {
                             "value": "item5",
                             "text": "I strongly disagree",
-                            "valueName": "05f24856-8c46-4e0d-46a2-3c7040fc809e"
+                            "guid": "05f24856-8c46-4e0d-46a2-3c7040fc809e"
                         }
                     ],
-                    "valueName": "cd46991d-3863-44ed-d3db-ed56b9341fe6"
+                    "guid": "cd46991d-3863-44ed-d3db-ed56b9341fe6"
                 },
                 {
                     "type": "radiogroup",
@@ -674,30 +674,30 @@ class QuestionnairesSeeder extends Seeder
                         {
                             "value": "item1",
                             "text": "I strongly agree",
-                            "valueName": "6178e896-0c63-4257-b2df-f07f5df298c1"
+                            "guid": "6178e896-0c63-4257-b2df-f07f5df298c1"
                         },
                         {
                             "value": "item2",
                             "text": "I agree",
-                            "valueName": "4638248a-cafc-4b9c-5cf0-5639f3a964ff"
+                            "guid": "4638248a-cafc-4b9c-5cf0-5639f3a964ff"
                         },
                         {
                             "value": "item3",
                             "text": "I neither agree nor disagree",
-                            "valueName": "7371e782-3a77-49c4-e5c5-b216e1b3a22b"
+                            "guid": "7371e782-3a77-49c4-e5c5-b216e1b3a22b"
                         },
                         {
                             "value": "item4",
                             "text": "I disagree",
-                            "valueName": "bb275ecd-5afc-406f-fe07-1d681cacbe20"
+                            "guid": "bb275ecd-5afc-406f-fe07-1d681cacbe20"
                         },
                         {
                             "value": "item5",
                             "text": "I strongly disagree",
-                            "valueName": "a9d3762b-e0f5-44d6-445e-b229b795c692"
+                            "guid": "a9d3762b-e0f5-44d6-445e-b229b795c692"
                         }
                     ],
-                    "valueName": "0bdde0ac-19f4-4b97-dfaf-298f8b7ff031"
+                    "guid": "0bdde0ac-19f4-4b97-dfaf-298f8b7ff031"
                 },
                 {
                     "type": "comment",
@@ -705,7 +705,7 @@ class QuestionnairesSeeder extends Seeder
                     "visible": false,
                     "visibleIf": "{question1} notempty",
                     "title": "Please share with us any good practices from your host Member State that helped to improve political participation of mobile EU citizens.",
-                    "valueName": "ea1ee0cc-c7d9-4c57-48fe-42d66bee3989"
+                    "guid": "ea1ee0cc-c7d9-4c57-48fe-42d66bee3989"
                 }
             ]
         }
