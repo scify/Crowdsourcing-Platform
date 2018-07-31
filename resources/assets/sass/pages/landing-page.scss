@@ -241,6 +241,15 @@ section {
       background-color: #67b8f9;
     }
   }
+  #lang-selector {
+    background-color: #c7e0ec;
+    margin-top: -15px;
+    padding: 15px;
+    color: rgb(74, 74, 74);
+    label[for="questionnaire-lang-selector"] {
+      margin: 8px 0;
+    }
+  }
 }
 
 .divider {
