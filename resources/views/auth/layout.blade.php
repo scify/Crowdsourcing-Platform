@@ -33,7 +33,6 @@
     </div>
 
     <div class="login-box-body">
-        <h1>Let's define our future!</h1>
         @yield('auth-form')
     </div>
 </div>

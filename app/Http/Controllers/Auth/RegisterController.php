@@ -11,6 +11,7 @@ use App\Models\CMS;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\UserRole;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Validation\Rule;
@@ -70,5 +71,15 @@ class RegisterController extends Controller
         $user = $this->userManager->createUser($data);
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
         return $user;
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        //same code with Login controller authenticated method
+        $redirectToOverrideUrl = session("redirectTo");
+        if ($redirectToOverrideUrl)
+            return redirect($redirectToOverrideUrl);
+        else
+            return redirect($this->redirectTo);
     }
 }
