@@ -24,9 +24,23 @@ let ProgressBar =require('progressbar.js');
                         method: 'post',
                         data: {questionnaire_id, response},
                         url: url,
+                        beforeSend: function() {
+                            $("#questionnaire-modal").addClass("loading");
+                        },
                         success: function(response){
-                            $(".questionnaire-content").html("<p style='font-style: italic; text-align: center; font-size: 18px;'>" +
-                                "Thank you for completing the survey!</p>");
+                            $("#questionnaire-modal").removeClass('loading');
+                            swal({
+                                title: "Success!",
+                                text: "Your response has been successfully stored.",
+                                type: "success",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "OK",
+                            }, function () {
+                                let split = window.location.toString().split("#");
+                                window.location = split[0] + "#questionnaire";
+                                $("#questionnaire-modal").modal('hide');
+                                window.location.reload();
+                            });
                         }
                     });
                 });
