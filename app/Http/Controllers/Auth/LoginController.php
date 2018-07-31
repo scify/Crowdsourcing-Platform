@@ -66,7 +66,6 @@ class LoginController extends Controller
     {
         $socialUser = Socialite::driver($driver)->user();
         $user = $this->userManager->handleSocialLoginUser($socialUser);
-        session()->flash('flash_message_success', 'Welcome, ' . $user->nickname . '!');
         return $this->authenticated($request,$user);
     }
 
