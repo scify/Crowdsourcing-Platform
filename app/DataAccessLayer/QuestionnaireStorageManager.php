@@ -113,6 +113,16 @@ class QuestionnaireStorageManager
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->orderBy('created_at', 'desc')->with('user')->get();
     }
 
+    public function getAvailableLanguagesForQuestionnaire($questionnaire)
+    {
+        $availableLanguages = [$questionnaire->defaultLanguage];
+        $questionnaireLanguages = QuestionnaireLanguage::where('questionnaire_id', $questionnaire->id)->with('language')->get();
+        foreach ($questionnaireLanguages as $ql) {
+            array_push($availableLanguages, $ql->language);
+        }
+        return collect($availableLanguages);
+    }
+
     public function saveNewQuestionnaire($title, $description, $goal, $languageId, $projectId, $questionnaireJson)
     {
         $questionnaire = DB::transaction(function () use ($title, $description, $goal, $languageId, $projectId, $questionnaireJson) {

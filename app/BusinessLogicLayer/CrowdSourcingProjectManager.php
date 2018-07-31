@@ -52,13 +52,15 @@ class CrowdSourcingProjectManager
         $questionnaire = null;
         $userResponse = null;
         $allResponses = collect([]);
+        $allLanguagesForQuestionnaire = collect([]);
         if ($project)
             $questionnaire = $this->questionnaireStorageManager->getActiveQuestionnaireForProject($project->id);
         if ($questionnaire) {
             $userResponse = $this->questionnaireStorageManager->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             $allResponses = $this->questionnaireStorageManager->getAllResponsesForQuestionnaire($questionnaire->id);
+            $allLanguagesForQuestionnaire = $this->questionnaireStorageManager->getAvailableLanguagesForQuestionnaire($questionnaire);
         }
-        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $userResponse, $allResponses);
+        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $userResponse, $allResponses, $allLanguagesForQuestionnaire);
     }
 
     public function updateCrowdSourcingProject($id, $attributes)
