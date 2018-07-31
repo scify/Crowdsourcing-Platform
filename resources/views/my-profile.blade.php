@@ -32,6 +32,22 @@
         <div class="col-md-6 col-xs-12">
             <div class="box box-success">
                 <div class="box-header with-border">
+                    <h3 class="box-title">My contribution</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            You haven't responsed so far [todo: display a list of pending projects here]
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
                     <h3 class="box-title">Gamification Elements</h3>
                 </div>
                 <div class="box-body">
