@@ -69,4 +69,7 @@ class LoginController extends Controller
         session()->flash('flash_message_success', 'Welcome, ' . $user->nickname . '!');
         return $this->authenticated($request,$user);
     }
+
+
+
 }

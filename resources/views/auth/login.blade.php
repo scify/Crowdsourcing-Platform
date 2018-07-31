@@ -2,7 +2,7 @@
 
 @section('auth-form')
     <h1>
-        @if (isset($displayQuestionnaireLabels))
+        @if ($displayQuestionnaireLabels)
             You're one step away!
         @else
             Let's define our future!
@@ -11,7 +11,7 @@
     <div class="logIn">
         <div class="form-wrapper">
             <p class="login-box-msg">
-                @if (isset($displayQuestionnaireLabels))
+                @if ($displayQuestionnaireLabels)
                     In order to avoid duplicate submissions, only logged-in users can answer the questionnaire. Please login to continue
                     @else
                     {{ trans('adminlte::adminlte.login_message') }}
