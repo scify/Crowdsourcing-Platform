@@ -24,10 +24,8 @@ class QuestionnairesSeeder extends Seeder
             'project_id' => 1,
             'status_id' => 2,
             'default_language_id' => 6,
-            'title' => 'Phase 1: Know your enemy',
-            'description' => '<p>What obstacles did you face when working / moving in Europe?</p>
-<p>What are the things that troubled you?</p>
-<p>Speak up! It\'ll take just 10 minutes.</p>',
+            'title' => 'Break the barriers in free movement in Europe.',
+            'description' => '<p>What obstacles did you face when working / moving in Europe?</p>',
             'goal' => 500,
             'questionnaire_json' => '{
     "pages": [
