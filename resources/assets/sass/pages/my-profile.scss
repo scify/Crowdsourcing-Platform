@@ -16,3 +16,15 @@
   margin: 10px auto 0;
   width: 200px;
 }
+
+#awards{
+  img{
+    filter:grayscale(100%);
+    width:100px;
+  }
+
+  img:hover{
+    filter:grayscale(0);
+  }
+
+}

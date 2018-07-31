@@ -13,11 +13,6 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="{{ UrlMatchesMenuItem("fair-eu")}}">
-                <a href="/fair-eu">
-                    <i class="fa fa-globe"></i> <span>Fair EU</span>
-                </a>
-            </li>
             <li class="{{ UrlMatchesMenuItem("my-profile")}}">
                 <a href="{{url("my-profile")}}">
                     <i class="fa fa-dashboard"></i> <span>My dashboard</span>
