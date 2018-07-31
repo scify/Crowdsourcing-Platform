@@ -16,7 +16,7 @@ let ProgressBar =require('progressbar.js');
             survey
                 .onComplete
                 .add(function (result) {
-                    let button = $('#respond-questionnaire-btn');
+                    let button = $('.respond-questionnaire').first();
                     let response = JSON.stringify(result.data);
                     let questionnaire_id = button.data('questionnaire-id');
                     let url = button.data('url');

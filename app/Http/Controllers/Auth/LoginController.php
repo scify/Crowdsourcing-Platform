@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\UserRoles;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -33,25 +34,39 @@ class LoginController extends Controller
 
     private $userManager;
 
-    public function __construct(UserManager $userManager) {
+
+    public function __construct(UserManager $userManager)
+    {
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
     }
 
+    public function showLoginForm(Request $request)
+    {
+        $request->session()->put("redirectTo", $request->redirectTo);
+        return view('auth.login')->with("displayQuestionnaireLabels", $request->submitQuestionnaire != null);
+    }
 
-    public function redirectToProvider( $driver) {
-        //todo:
+    protected function authenticated(Request $request, $user)
+    {
+        $redirectToOverrideUrl = session("redirectTo");
+        if ($redirectToOverrideUrl)
+            return redirect($redirectToOverrideUrl);
+        else
+            return redirect($this->redirectTo);
+    }
+
+
+    public function redirectToProvider($driver)
+    {
         return Socialite::driver($driver)->redirect();
     }
 
-    public function handleProviderCallback(Request $request, $driver) {
+    public function handleProviderCallback(Request $request, $driver)
+    {
         $socialUser = Socialite::driver($driver)->user();
-        try {
-            $user = $this->userManager->handleSocialLoginUser($socialUser);
-            session()->flash('flash_message_success', 'Welcome, ' . $user->nickname . '!');
-        } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getMessage());
-        }
-        return redirect('/');
+        $user = $this->userManager->handleSocialLoginUser($socialUser);
+        session()->flash('flash_message_success', 'Welcome, ' . $user->nickname . '!');
+        return $this->authenticated($request,$user);
     }
 }

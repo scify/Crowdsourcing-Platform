@@ -3,25 +3,15 @@
         <h3 class="questionnaire-section-title">{{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}</h3>
         @if(!$viewModel->userResponse)
             <div class="questionnaire-description">{!! $viewModel->questionnaire->description !!}</div>
-            @if(\Auth::user())
-                <a id="respond-questionnaire-btn" href="javascript:void(0)"
-                   class="btn btn-primary"
-                   data-questionnaire-id="{{$viewModel->questionnaire->id}}"
-                   data-url="{{route('respond-questionnaire')}}"
-                   data-toggle="modal" data-target="#questionnaire-modal">
-                    Speak up
-                </a>
-            @else
-                <a href="/login" class="btn btn-primary ">Login</a>
-            @endif
+            @include("landingpages.partials.open-questionnaire-button")
         @endif
 
     </div>
 
 @else
-    <p class="no-active-questionnaire-msg">
-        No active questionnaire found.
-    </p>
+    <div id="questionnaire-wrapper" class="text-center content-container ">
+        <h3 class="questionnaire-section-title">No active questionnaires</h3>
+    </div>
 @endif
 
 
