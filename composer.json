@@ -10,6 +10,7 @@
         "cocur/slugify": "^3.1",
         "doctrine/dbal": "2.6.*",
         "fideloper/proxy": "~3.3",
+        "google/cloud-translate": "^1.2",
         "intervention/image": "^2.4",
         "jeroennoten/laravel-adminlte": "^1.23",
         "laravel/framework": "5.5.*",
