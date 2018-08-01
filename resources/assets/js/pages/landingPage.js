@@ -45,6 +45,7 @@ let ProgressBar = require('progressbar.js');
                     });
                 });
         }
+        displayTranslation.apply($('#questionnaire-lang-selector'));
     };
 
     let displayProgressBar = function () {
