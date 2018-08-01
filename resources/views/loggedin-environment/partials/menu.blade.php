@@ -15,7 +15,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="{{ UrlMatchesMenuItem("my-profile")}}">
                 <a href="{{url("my-profile")}}">
-                    <i class="fa fa-dashboard"></i> <span>My dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>My Dashboard</span>
 
                 </a>
             </li>

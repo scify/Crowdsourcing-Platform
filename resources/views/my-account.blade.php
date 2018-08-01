@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>My account</h1>
+    <h1>My Account</h1>
 @stop
 
 @push('css')
