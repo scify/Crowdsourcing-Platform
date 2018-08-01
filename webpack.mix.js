@@ -19,6 +19,7 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .sass('resources/assets/sass/pages/create-questionnaire.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/manage-questionnaires.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/translate-questionnaire.scss', 'public/dist/css')
+    .sass('resources/assets/sass/pages/crowdsourcing-landingpage.scss', 'public/dist/css')
     .extract([
         'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert', 'select2', 'bootstrap', 'jquery-toast-plugin'
     ])
