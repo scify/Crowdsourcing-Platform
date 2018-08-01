@@ -107,7 +107,7 @@ class QuestionnaireManager
 
     public function storeQuestionnaireTranslations($questionnaireId, $translations)
     {
-        $this->questionnaireStorageManager->storeQuestionnaireTranslations($questionnaireId, $translations);
+        $this->questionnaireStorageManager->storeQuestionnaireTranslations($questionnaireId, json_decode($translations));
     }
 
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
