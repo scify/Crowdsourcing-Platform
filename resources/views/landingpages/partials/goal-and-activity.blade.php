@@ -6,7 +6,7 @@
             @if ($viewModel->totalResponses==0)
                 Zero people spoke up so far. Be the first!
             @else
-                <span class="number">{{$viewModel->totalResponses}}</span>
+                <span class="number">{{$viewModel->totalResponses}}</span> people spoke up so far.
                 Let's get to {{$viewModel->questionnaire->goal}}!
             @endif
 
@@ -27,7 +27,7 @@
                     @foreach($viewModel->allResponses as $response)
                         <div class="activity-item">
                             <img height="30" class="img-circle"
-                                 src="https://www.gravatar.com/avatar/{{ md5($response->user->email) }}"> {{$response->user->name}}
+                                 src="https://www.gravatar.com/avatar/{{ md5($response->user->email) }}"> {{$response->user->nickname}}
                             responded at {{$response->created_at->toDayDateTimeString()}}
                         </div>
                     @endforeach
