@@ -69,7 +69,7 @@ let ProgressBar = require('progressbar.js');
 
                 var value = Math.round(circle.value() * 100);
                 if (value === 0) {
-                    circle.setText('0 %');
+                    circle.setText('0%');
                 } else {
                     circle.setText(value + "%");
                 }
