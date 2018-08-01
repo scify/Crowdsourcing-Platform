@@ -138,7 +138,7 @@
         $.ajax({
             method: 'post',
             url: self.data('url'),
-            data: {translations: translations},
+            data: {translations: JSON.stringify(translations)},
             success: function (response) {
                 swal({
                     title: "Success!",

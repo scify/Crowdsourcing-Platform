@@ -257,6 +257,8 @@ class QuestionnaireStorageManager
         $questionnaireLanguages = $this->getQuestionnaireAvailableLanguages($questionnaireId);
         DB::transaction(function () use ($questionnaireId, $translations, $questionnaireLanguages) {
             $allTranslations = [];
+            // convert stdClass created by json_decode to array
+            $translations = get_object_vars($translations);
             foreach ($translations as $languageId => $languageWithTranslations) {
                 $questionnaireLanguage = $questionnaireLanguages->where('language_id', $languageId)->first();
                 $language = Language::findOrFail($languageId);
@@ -273,11 +275,11 @@ class QuestionnaireStorageManager
                     foreach ($translations as $translation) {
                         array_push($allTranslations, (object)[
                             'questionnaire_language_id' => $questionnaireLanguage->id,
-                            'id' => $translation['id'],
-                            'type' => $translation['type'],
-                            'translation' => $translation['translation'],
-                            'name' => $translation['name'],
-                            'value' => isset($translation['value']) ? $translation['value'] : null,
+                            'id' => $translation->id,
+                            'type' => $translation->type,
+                            'translation' => $translation->translation,
+                            'name' => $translation->name,
+                            'value' => isset($translation->value) ? $translation->value : null,
                             'language_code' => $languageCode
                         ]);
                     }
