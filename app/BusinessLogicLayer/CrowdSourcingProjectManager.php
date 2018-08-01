@@ -57,10 +57,16 @@ class CrowdSourcingProjectManager
             $questionnaire = $this->questionnaireStorageManager->getActiveQuestionnaireForProject($project->id);
         if ($questionnaire) {
             $userResponse = $this->questionnaireStorageManager->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
+            if ($userResponse!=null)
+                $openQuestionnaireWhenPageLoads = false; //user has already responded
             $allResponses = $this->questionnaireStorageManager->getAllResponsesForQuestionnaire($questionnaire->id);
             $allLanguagesForQuestionnaire = $this->questionnaireStorageManager->getAvailableLanguagesForQuestionnaire($questionnaire);
         }
-        return new CrowdSourcingProjectForLandingPage($project, $questionnaire, $userResponse, $allResponses, $allLanguagesForQuestionnaire,$openQuestionnaireWhenPageLoads);
+        return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
+            $userResponse,
+            $allResponses,
+            $allLanguagesForQuestionnaire,
+            $openQuestionnaireWhenPageLoads);
     }
 
     public function updateCrowdSourcingProject($id, $attributes)
