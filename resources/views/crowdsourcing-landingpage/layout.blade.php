@@ -53,13 +53,16 @@
                 <div class="collapse navbar-collapse pull-right" id="top-menu-content">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#features">Features</a>
+                            <a href="#features">FEATURES</a>
                         </li>
                         <li>
-                            <a href="/login">Login</a>
+                            <a href="#projects">PROJECTS</a>
                         </li>
                         <li>
-                            <a href="/register">Register</a>
+                            <a href="/login">LOGIN</a>
+                        </li>
+                        <li>
+                            <a href="/register">REGISTER</a>
                         </li>
                     </ul>
                 </div>
@@ -70,9 +73,12 @@
 <section id="motto">
     @include('crowdsourcing-landingpage.partials.motto')
 </section>
-{{--<section id="features">--}}
-    {{--@include('landing-page.partials.features')--}}
-{{--</section>--}}
+<section id="features">
+    @include('crowdsourcing-landingpage.partials.features')
+</section>
+<section id="projects">
+    @include('crowdsourcing-landingpage.partials.projects')
+</section>
 <footer>
     <div class="row" id="sitemap">
         <div class="col-sm-2 col-sm-offset-3">
@@ -80,6 +86,9 @@
                 <h3>ECAS Crowdsourcing Platform</h3>
                 <div>
                     <a href="#features">Features</a>
+                </div>
+                <div>
+                    <a href="#projects">Projects</a>
                 </div>
                 <div>
                     <a href="/login">Login</a>
@@ -96,14 +105,30 @@
             <div class="footer-grp">
                 <h3>Get in touch</h3>
                 <div>
-                    Phone:  +32 (0) 2 548 04 90
+                    <b>Phone:</b> +32 (0) 2 548 04 90
                 </div>
                 <div>
-                    E-mail: info(at)ecas.org
+                    <b>E-mail:</b> info(at)ecas.org
                 </div>
-                <div>
+                <div class="social-media">
                     <a href="https://www.facebook.com/pages/European-Citizen-Action-Service-ECAS/115314481819170?ref=hl"
-                       target="_blank">Facebook</a>
+                       title="Facebook" class="social-btn facebook" target="_blank"><span class="fa fa-facebook"></span>
+                    </a>
+                    <a href="https://plus.google.com/u/1/103643749839893160342" title="GooglePlus"
+                       class="social-btn google-plus" target="_blank"><span class="fa fa-google-plus"></span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/ecas-europe" title="LinkedIn" class="social-btn linkedin"
+                       target="_blank"><span class="fa fa-linkedin"></span>
+                    </a>
+                    <a href="https://twitter.com/ecas_europe" title="Twitter" class="social-btn twitter"
+                       target="_blank"><span class="fa fa-twitter"></span>
+                    </a>
+                    <a href="https://www.youtube.com/user/ECASBrussels/featured" title="Youtube"
+                       class="social-btn youtube" target="_blank"><span class="fa fa-youtube-play"></span>
+                    </a>
+                    <a href="https://ecas.org/feed/" title="RSS" class="social-btn rss" target="_blank"><span
+                                class="fa fa-rss"></span>
+                    </a>
                 </div>
             </div>
             <div class="footer-grp">
@@ -121,7 +146,7 @@
         <div class="col-md-12">
             <div class="lower-footer">
                 Copyright &copy; {{ date("Y") }} <a target=" _blank"
-                                                            href="https://ecas.org">ECAS.org</a>
+                                                    href="https://ecas.org">ECAS.org</a>
                 All rights reserved.
             </div>
         </div>

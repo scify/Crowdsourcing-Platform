@@ -78,7 +78,7 @@ body {
         font-size: 30px;
       }
       &:hover {
-       /* padding: .3em 2em .3em .7em;*/
+        /* padding: .3em 2em .3em .7em;*/
         background-color: rgba(255, 255, 255, .2);
         border: 2px solid transparent;
         i {
@@ -98,8 +98,8 @@ section {
     background-color: #f3fafe;
 
   }
-  &{
-  margin: 0 -15px;
+  & {
+    margin: 0 -15px;
   }
   h2 {
     text-align: center;
@@ -129,24 +129,22 @@ section {
   background-image: url(https://images.typeform.com/images/EG4U2zJR3Yvh);
   background-size: cover;
 
-
-  #questionnaire-wrapper
-  {
+  #questionnaire-wrapper {
     padding: 140px 150px;
   }
 
-  .respond-questionnaire{
-    font-size:26px;
-     padding:10px 20px;
-    margin-top:40px;
+  .respond-questionnaire {
+    font-size: 26px;
+    padding: 10px 20px;
+    margin-top: 40px;
   }
   .questionnaire-section-title {
     font-size: 43px;
     text-align: center;
     width: 500px;
     margin-bottom: 50px;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   .wrapper-box {
     border: 1px solid #99aec1;
@@ -165,22 +163,21 @@ section {
     }
   }
 
-
 }
 
 #questionnaire-modal {
   .modal-title {
     font-weight: normal;
     text-align: center;
-    font-size:25px;
-    padding-top:10px;
-    padding-bottom:20px;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 20px;
   }
   .sv_row {
-    padding: 10px 25px 20px ;
+    padding: 10px 25px 20px;
     h5 {
       font-size: 18px;
-      font-weight:normal;
+      font-weight: normal;
     }
     input[type="text"], textarea {
       border: 1px solid #ccc;
@@ -191,8 +188,8 @@ section {
         border-color: #999;
       }
     }
-    label{
-      font-weight:normal;
+    label {
+      font-weight: normal;
     }
     .sv_q_rating {
       text-align: center;
@@ -277,31 +274,33 @@ footer {
   a {
     font-weight: bold;
     color: #000;
+    &:hover, &:focus {
+      color: #23527c;
+    }
   }
   @media screen and (max-width: 767px) {
     text-align: center;
   }
 }
 
+#collective-goal {
 
-#collective-goal{
-
- .container{
-   max-width:840px;
- }
-  padding-bottom:50px;
+  .container {
+    max-width: 840px;
+  }
+  padding-bottom: 50px;
 
   .info {
     font-size: 30px;
     padding: 33px;
   }
-  .progress{
-    max-width:400px;
+  .progress {
+    max-width: 400px;
 
-    background-color:fuchsia;
-    margin:auto;
-    .progress-bar{
-      background-color:blue;
+    background-color: fuchsia;
+    margin: auto;
+    .progress-bar {
+      background-color: blue;
     }
   }
 
@@ -321,7 +320,7 @@ footer {
   }
 
   .progress-container {
-    position:relative;
+    position: relative;
   }
   .activity-container {
 
@@ -347,8 +346,8 @@ footer {
     }
   }
 
-  .activity-title{
-    margin-bottom:10px;
+  .activity-title {
+    margin-bottom: 10px;
   }
 
 }
