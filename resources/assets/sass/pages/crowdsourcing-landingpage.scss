@@ -1,6 +1,217 @@
+$colorForTabs: #076ec1;
+
+section {
+  h2 {
+    font-size: 28px;
+    margin-top: 100px;
+    @media screen and (max-width: 950px) {
+      padding: 0 15px;
+    }
+  }
+  p {
+    font-size: 20px;
+    @media screen and (max-width: 950px) {
+      padding: 0 15px;
+    }
+  }
+}
+
+.image-with-text-wrapper {
+  .text {
+    margin-top: -520px;
+  }
+  .call-to-action {
+    a {
+      padding: 5px 15px;
+    }
+  }
+}
+
+#features {
+  #features-nav {
+    margin: 50px auto;
+    & > li + li {
+      margin-left: 5px;
+    }
+    li {
+      float: unset;
+      display: inline-block;
+      border: 1px solid $colorForTabs;
+      background-color: white;
+      margin-bottom: 5px;
+      a {
+        color: $colorForTabs;
+        border: none !important;
+        font-size: 16px;
+        &:hover, &:focus {
+          color: $colorForTabs;
+        }
+      }
+      &.active {
+        border: 1px solid $colorForTabs;
+        background-color: $colorForTabs;
+        a {
+          background-color: $colorForTabs;
+          color: white !important;
+        }
+      }
+    }
+  }
+  .features-wrapper {
+    padding: 30px 0;
+    max-width: 800px;
+    margin: auto;
+    h3 {
+      text-align: center;
+      color: gray;
+      font-size: medium;
+    }
+    .features-list {
+      .feature {
+        display: table;
+        padding: 15px 0;
+        @media screen and (max-width: 950px) {
+          display: block;
+        }
+        img {
+          display: table-cell;
+          width: 300px;
+          max-height: 200px;
+          border: 1px solid lightgray;
+          @media screen and (max-width: 950px) {
+            display: block;
+          }
+        }
+        p {
+          vertical-align: middle;
+          &.small-screens {
+            display: none;
+          }
+          &.large-screens {
+            display: table-cell;
+          }
+          @media screen and (max-width: 950px) {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 100px;
+            &.large-screens {
+              display: none;
+            }
+            &.small-screens {
+              display: block;
+            }
+          }
+        }
+        &.img-left {
+          img {
+            margin-right: 15px;
+            @media screen and (max-width: 950px) {
+              margin: 0 auto;
+            }
+          }
+        }
+        &.img-right {
+          img {
+            margin-left: 15px;
+            @media screen and (max-width: 950px) {
+              margin: 0 auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#projects {
+  .projects-container {
+    margin-top: 100px;
+    .project-wrapper {
+      border: 1px solid #efefef;
+      background-color: #fff;
+      margin-bottom: 30px;
+      transition-duration: 1s;
+      &:hover {
+        .project-logo {
+          filter: grayscale(0%);
+          transition-duration: 1s;
+        }
+      }
+      .project-logo {
+        text-align: center;
+        padding: 15px;
+        filter: grayscale(100%);
+        img {
+          height: 100px;
+        }
+      }
+      .project-info {
+        padding: 15px;
+        display: block;
+        p {
+          overflow: hidden;
+          height: 150px;
+          max-height: 150px;
+        }
+      }
+      .project-visit-btn {
+        padding: 0 15px 15px;
+        a {
+          width: 200px;
+          padding: 15px;
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+
 footer {
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  .social-media {
+    font-size: 14px;
+    margin-top: 20px;
+    .social-btn {
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      border-radius: 3px;
+      color: white;
+      text-align: center;
+      display: inline-block;
+      margin-bottom: 5px;
+      &.facebook {
+        background-color: #3b5998;
+      }
+      &.google-plus {
+        background-color: #dd4b39;
+      }
+      &.linkedin {
+        background-color: #4875B4;
+      }
+      &.twitter {
+        background-color: #00aced;
+      }
+      &.youtube {
+        background-color: #C4302B;
+      }
+      &.rss {
+        background-color: #FF7900;
+      }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  .footer-grp {
+    margin-bottom: 50px;
+  }
   .footer-logo {
     width: 100%;
+    max-width: 400px;
   }
   .lower-footer {
     text-align: center;
