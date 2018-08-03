@@ -7,8 +7,32 @@
     <title>@yield('title_prefix', $viewModel->project->name) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="canonical" href="{{url('/')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy, {{$viewModel->project->name}}" >
+    <meta name="description" content="{{$viewModel->project->motto}}">
+    <!--FACEBOOK-->
+    <meta property="og:title" content="" >
+    <meta property="og:site_name" content="{{$viewModel->project->name}}">
+    <meta property="og:url" content="{{url($viewModel->project->slug)}}" >
+    <meta property="og:description" content="{{strip_tags($viewModel->project->about)}}" >
+    <meta property="og:image" content="{{asset($viewModel->project->img_path)}}" >
+    <meta property="og:type" content="website" >
+    <meta property="og:locale" content="en-US" >
+    <!--TWITTER-->
+    <meta property="twitter:card" content="summary" >
+    <meta property="twitter:title" content="{{$viewModel->project->motto}}" >
+    <meta property="twitter:description" content="{{strip_tags($viewModel->project->about)}}" >
+    <meta property="twitter:creator" content="ecas_europe" >
+    <meta property="twitter:url" content="{{url($viewModel->project->slug)}}" >
+    <meta property="twitter:image" content="{{asset($viewModel->project->img_path)}}" >
+    <meta property="twitter:image:alt" content="crowdsourcing" >
+    <!--GOOGLE+-->
+    <link rel="author" href="https://plus.google.com/u/0/+ECASBrussels">
+
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
@@ -69,7 +93,7 @@
                                     <!-- User image -->
                                     <li class="user-header">
                                         @if (Auth::user()->avatar)
-                                            <img src="{{Auth::user()->avatar}}" class="img-circle"">
+                                            <img src="{{Auth::user()->avatar}}" class="img-circle">
                                         @endif
                                         <p>
                                             {{ Auth::user()->name }} {{ Auth::user()->nickname }}
