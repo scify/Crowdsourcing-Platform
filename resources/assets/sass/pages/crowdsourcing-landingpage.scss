@@ -1,5 +1,32 @@
 $colorForTabs: #076ec1;
 
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 1em;
+    bottom: 0;
+    background: $bgColor;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
+
 section {
   h2 {
     font-size: 28px;
@@ -130,28 +157,19 @@ section {
       border: 1px solid #efefef;
       background-color: #fff;
       margin-bottom: 30px;
-      transition-duration: 1s;
-      &:hover {
-        .project-logo {
-          filter: grayscale(0%);
-          transition-duration: 1s;
-        }
-      }
       .project-logo {
         text-align: center;
         padding: 15px;
-        filter: grayscale(100%);
         img {
           height: 100px;
+          max-width: 100%;
         }
       }
       .project-info {
         padding: 15px;
         display: block;
         p {
-          overflow: hidden;
-          height: 150px;
-          max-height: 150px;
+          @include multiLineEllipsis($lineHeight: 1.4em, $lineCount: 5, $bgColor: white);
         }
       }
       .project-visit-btn {
