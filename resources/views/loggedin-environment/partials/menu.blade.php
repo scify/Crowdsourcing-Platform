@@ -21,11 +21,11 @@
             </li>
 
 
-          {{--  <li class="{{ UrlMatchesMenuItem("contribute")}}">
-                <a href="{{url("contribute")}}">
-                    <i class="fa fa-users"></i> <span>Contribute</span>
-                </a>
-            </li>--}}
+            {{--  <li class="{{ UrlMatchesMenuItem("contribute")}}">
+                  <a href="{{url("contribute")}}">
+                      <i class="fa fa-users"></i> <span>Contribute</span>
+                  </a>
+              </li>--}}
 
             <li class="{{ UrlMatchesMenuItem("my-account")}}">
                 <a href="{{url("my-account")}}">
@@ -42,12 +42,21 @@
                                 class="fa fa-file "></i><span>Edit Fair EU Page</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
-                    <a href="{{ route('manageQuestionnaires', ['id' => 1]) }}"><i class="fa fa-question-circle "></i><span>Manage
+                    <a href="{{ route('manageQuestionnaires', ['id' => 1]) }}"><i
+                                class="fa fa-question-circle "></i><span>Manage
                             Questionnaires</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/reports")}}">
                     <a href="{{ route('reports', ['id' => 1]) }}"><i
                                 class="fa fa-line-chart"></i><span>Reports</span></a>
+                </li>
+            @endcan
+            @can("manage-platform")
+                <li class="header">COMMUNICATION MANAGEMENT</li>
+
+                <li class="{{UrlMatchesMenuItem("communication/mailchimp")}}">
+                    <a href="{{ route('mailchimp-integration') }}"><i
+                                class="fa fa-envelope"></i><span>MailChimp Integration</span></a>
                 </li>
             @endcan
             @can("manage-users")
