@@ -7,8 +7,31 @@
     <title>@yield('title_prefix', 'ECAS Crowdsourcing Platform') @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="canonical" href="{{url('/')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy" >
+    <meta name="description" content="Increasing citizens' democratic participation in the EU.">
+    <!--FACEBOOK-->
+    <meta property="og:title" content="Towards a crowdsourcing pilot at the EU level: Taking decisions with citizens and not for them" >
+    <meta property="og:site_name" content="ECAS Crowdsourcing Platform">
+    <meta property="og:url" content="{{url('/')}}" >
+    <meta property="og:description" content="Increasing citizens' democratic participation in the EU." >
+    <meta property="og:image" content="{{asset('images/active_participation.png')}}" >
+    <meta property="og:type" content="website" >
+    <meta property="og:locale" content="en-US" >
+    <!--TWITTER-->
+    <meta property="twitter:card" content="summary" >
+    <meta property="twitter:title" content="Towards a crowdsourcing pilot at the EU level: Taking decisions with citizens and not for them" >
+    <meta property="twitter:description" content="ECAS believes in an inclusive, transparent, citizen-centric and democratic European Union in which citizens’ rights are at the heart of decision making at all levels and in which citizens are informed, consulted and actively participate." >
+    <meta property="twitter:creator" content="ecas_europe" >
+    <meta property="twitter:url" content="{{url('/')}}" >
+    <meta property="twitter:image" content="{{asset('images/active_participation.png')}}" >
+    <meta property="twitter:image:alt" content="people actively participating" >
+    <!--GOOGLE+-->
+    <link rel="author" href="https://plus.google.com/u/0/+ECASBrussels">
 
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
@@ -139,7 +162,7 @@
             </div>
         </div>
         <div class="col-sm-2">
-            <img class="footer-logo" src="{{asset('images/ecas_logo.png')}}" alt="ecas logo">
+            <a href="https://ecas.org" target="_blank"><img class="footer-logo" src="{{asset('images/ecas_logo.png')}}" alt="ecas logo"></a>
         </div>
     </div>
     <div class="row">
