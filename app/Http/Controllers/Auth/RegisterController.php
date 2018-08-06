@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\PermissionsManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
-use App\BusinessLogicLayer\UserRoles;
-use App\Models\Category;
-use App\Models\CMS;
-use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Models\UserRole;
-use Illuminate\Support\Facades\Request;
+use App\Utils\MailChimpAdaptor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -39,11 +33,13 @@ class RegisterController extends Controller
     protected $redirectTo = '/my-profile';
     private $userRoleManager;
     private $userManager;
+    private $mailChimpManager;
 
-    public function __construct(UserRoleManager $userRoleManager, UserManager $userManager) {
+    public function __construct(UserRoleManager $userRoleManager, UserManager $userManager, MailChimpAdaptor $mailChimpManager) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
         $this->userManager = $userManager;
+        $this->mailChimpManager = $mailChimpManager;
     }
 
     /**
@@ -75,6 +71,7 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
+        $this->mailChimpManager->subscribe($user->email, 'registered_users');
         //same code with Login controller authenticated method
         $redirectToOverrideUrl = session("redirectTo");
         if ($redirectToOverrideUrl)
