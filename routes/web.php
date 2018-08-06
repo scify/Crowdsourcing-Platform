@@ -42,7 +42,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/questionnaire/respond', 'QuestionnaireController@storeQuestionnaireResponse')->name('respond-questionnaire');
     Route::post('automatic-translation', 'QuestionnaireController@getAutomaticTranslations')->name('automatic-translation');
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
-    Route::post('/communication/mailchimp', 'CommunicationController@postMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
+    Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage');

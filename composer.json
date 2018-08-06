@@ -16,7 +16,8 @@
         "laravel/framework": "5.5.*",
         "laravel/passport": "~4.0",
         "laravel/socialite": "^3.0",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "spatie/laravel-newsletter": "^4.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
