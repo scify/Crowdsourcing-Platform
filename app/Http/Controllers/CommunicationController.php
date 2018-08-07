@@ -39,4 +39,14 @@ class CommunicationController extends Controller
         );
         return redirect()->back()->with('flash_message_success', 'Lists IDs were successfully stored.');
     }
+
+    public function signUpForNewsletter(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'required|string|max:100',
+            'email' => 'required|email|max:100'
+        ]);
+        $this->communicationManager->signUpForNewsletter($request->first_name, $request->email);
+        return response()->json(['status' => '__SUCCESS']);
+    }
 }
