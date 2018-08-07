@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import "../_variables.scss";
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', Arial, Sans-Serif !important;
@@ -352,3 +353,71 @@ footer {
 
 }
 
+#newsletter {
+  h2 {
+    font-size: 28px;
+    margin-top: 100px;
+  }
+  .content-container {
+    padding-top: 50px;
+    .sign-up {
+      margin-top: 50px;
+      input, .btn {
+        font-size: 25px;
+        height: auto;
+      }
+      .btn {
+        padding: 7px 12px;
+      }
+    }
+    .newsletter-msg {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+      .subscription-success-msg {
+        color: #00a65a;
+        display: none;
+      }
+      .subscription-error-msg {
+        color: #dd4b39;
+        display: none;
+      }
+      &.success {
+        display: block;
+        .subscription-success-msg {
+          display: block;
+        }
+        .subscription-error-msg {
+          display: none;
+        }
+      }
+      &.error {
+        display: block;
+        .subscription-success-msg {
+          display: none;
+        }
+        .subscription-error-msg {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.loader-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2000;
+}
+
+.loader-wrapper img {
+  width: 10%;
+  top: 40%;
+  left: 45%;
+  position: relative;
+}
