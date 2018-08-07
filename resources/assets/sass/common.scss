@@ -220,3 +220,18 @@ $header-height: 70px;
 .navbar-nav > .user-menu > .dropdown-menu{
   width:100%;
 }
+
+.gamification-badge {
+  &.copper {
+    -webkit-filter: sepia(70%) saturate(10) hue-rotate(330deg);
+    filter: sepia(70%) saturate(10) hue-rotate(330deg);
+  }
+  &.silver {
+    -webkit-filter: grayscale(80%);
+    filter: grayscale(80%);
+  }
+  &.gold {
+    -webkit-filter: none;
+    filter: none;
+  }
+}
