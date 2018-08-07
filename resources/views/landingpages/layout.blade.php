@@ -147,6 +147,9 @@
 </section>
 @endif
 
+<section id="newsletter">
+    @include('partials.signup_to_newsletter')
+</section>
 <footer>
     <div class="container">
 
@@ -154,6 +157,9 @@
 
     </div>
 </footer>
+<div class="loader-wrapper hidden">
+    <img src="{{asset('images/loading.gif')}}" alt="loading image">
+</div>
 @include('partials.footer-scripts')
 <script src="{{asset('dist/js/landingPage.js')}}"></script>
 </body>

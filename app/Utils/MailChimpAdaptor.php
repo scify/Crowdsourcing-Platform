@@ -34,10 +34,13 @@ class MailChimpAdaptor
         $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
     }
 
-    public function subscribe($email, $listName)
+    public function subscribe($email, $listName, $firstName = null)
     {
+        $mergeFields = [];
+        if ($firstName)
+            $mergeFields['FNAME'] = $firstName;
         if (!$this->newsletterManager->isSubscribed($email, $listName))
-            $this->newsletterManager->subscribeOrUpdate($email, [], $listName);
+            $this->newsletterManager->subscribeOrUpdate($email, $mergeFields, $listName);
     }
 
     private function generateNewsletterListConfiguration($newsletterListId, $registeredUsersListId)

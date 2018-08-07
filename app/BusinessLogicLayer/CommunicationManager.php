@@ -34,4 +34,9 @@ class CommunicationManager
     {
         $this->mailChimpListRepository->storeMailChimpListIds($newsletter, $registeredUsers);
     }
+
+    public function signUpForNewsletter($firstName, $email)
+    {
+        $this->mailChimpManager->subscribe($email, 'newsletter', $firstName);
+    }
 }

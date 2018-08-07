@@ -93,6 +93,12 @@
         </nav>
     </div>
 </div>
+@if(session('flash_message_success'))
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
+    </div>
+@endif
 <section id="motto">
     @include('crowdsourcing-landingpage.partials.motto')
 </section>
@@ -101,6 +107,9 @@
 </section>
 <section id="projects">
     @include('crowdsourcing-landingpage.partials.projects')
+</section>
+<section id="newsletter">
+    @include('partials.signup_to_newsletter')
 </section>
 <footer>
     <div class="row" id="sitemap">
