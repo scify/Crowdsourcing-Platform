@@ -113,10 +113,8 @@ class QuestionnaireStorageManager
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->orderBy('created_at', 'desc')->with('user')->get();
     }
 
-    // TODO: we need to specify the crowdsourcing project! (it is used in the contributor badge calculation after a response,
-    // so we need to know exactly how many responses the user has submitted to the specific project and not in general)
-    public function getAllResponsesGivenByUser($userId) {
-        return QuestionnaireResponse::where('user_id', $userId)->get();
+    public function getAllResponsesGivenByUser($userId, $projectId) {
+        return QuestionnaireResponse::join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('q.project_id', $projectId)->where('user_id', $userId)->get();
     }
 
     public function getAvailableLanguagesForQuestionnaire($questionnaire)
