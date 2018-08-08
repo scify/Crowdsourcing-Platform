@@ -13,6 +13,7 @@ use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
+use App\Notifications\QuestionnaireResponded;
 use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,8 +73,12 @@ class QuestionnaireManager
     public function storeQuestionnaireResponse($data)
     {
         $response = json_decode($data['response']);
-        $userId = Auth::id();
-        $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $userId, $data['response']);
+        $user = Auth::user();
+        $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($data['questionnaire_id']);
+        $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
+        $badge = $this->getNewContributorBadgeForLoggedInUser();
+        $user->notify(new QuestionnaireResponded($questionnaire, $badge->badgeName));
+        return $badge->html;
     }
 
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
@@ -158,5 +163,64 @@ class QuestionnaireManager
             array_push($result, $language[0]);
         }
         return $result;
+    }
+
+    private function getNewContributorBadgeForLoggedInUser()
+    {
+        $responses = $this->questionnaireStorageManager->getAllResponsesGivenByUser(Auth::id());
+        switch ($responses->count()) {
+            case 1:
+                return (object)[
+                    'badgeName' => 'Bronze Contributor (Level 1)',
+                    'html' =>
+                        '<p>This is your first questionnaire!</p><p>The Bronze Contributor badge now belongs to you!</p>
+                        <img class="gamification-badge bronze" src="' . asset('images/badges/cup.png') . '">
+                        <p>Bronze Contributor <span class="level">(Level 1)</span></p>'
+                ];
+            case 2:
+                return (object)[
+                    'badgeName' => 'Silver Contributor (Level 2)',
+                    'html' =>
+                        '<p>This is your second questionnaire!</p><p>The Silver Contributor badge now belongs to you!</p>
+                        <img class="gamification-badge silver" src="' . asset('images/badges/cup.png') . '">
+                        <p>Silver Contributor <span class="level">(Level 2)</span></p>'
+                ];
+            case 3:
+                return (object)[
+                    'badgeName' => null,
+                    'html' =>
+                        '<p>This is your third questionnaire!</p>
+                        <img src="' . asset('images/badges/like.png') . '"><p>Three more left to unlock the Gold Contributor badge!</p>'
+                    ];
+            case 4:
+                return (object)[
+                    'badgeName' => null,
+                    'html' =>
+                        '<p>This is your 4th questionnaire!</p><img src="' . asset('images/badges/like.png') . '">
+                        <p>Two more left to unlock the Gold Contributor badge!</p>'
+                ];
+            case 5:
+                return (object)[
+                    'badgeName' => null,
+                    'html' =>
+                        '<p>This is your 5th questionnaire!</p><img src="' . asset('images/badges/like.png') . '">
+                        <p>One more left to unlock the Gold Contributor badge!</p><p>Do not give up, you are this close!</p>'
+                    ];
+            case 6:
+                return (object)[
+                    'badgeName' => 'Gold Contributor (Level 3)',
+                    'html' =>
+                        '<p>Congratulations!</p><p>You have unlocked the Gold Contributor badge!</p>
+                        <img class="gamification-badge gold" src="' . asset('images/badges/cup.png') . '">
+                        <p>Gold Contributor <span class="level">(Level 3)</span></p>'
+                    ];
+            default:
+                return (object)[
+                        'badgeName' => null,
+                        'html' =>
+                            '<p>This is your ' . $responses->count() . 'th questionnaire!</p>
+                            <img src="' . asset('images/badges/like.png') . '"><p>Keep up the good work!</p>'
+                ];
+        }
     }
 }

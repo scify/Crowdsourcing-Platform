@@ -16,6 +16,8 @@ let ProgressBar = require('progressbar.js');
             survey
                 .onComplete
                 .add(function (result) {
+                    $(".loader-wrapper").removeClass('hidden');
+                    $("#questionnaire-modal").modal('hide');
                     let button = $('.respond-questionnaire').first();
                     let response = JSON.stringify(result.data);
                     let questionnaire_id = button.data('questionnaire-id');
@@ -24,23 +26,13 @@ let ProgressBar = require('progressbar.js');
                         method: 'post',
                         data: {questionnaire_id, response},
                         url: url,
-                        beforeSend: function () {
-                            $("#questionnaire-modal").addClass("loading");
-                        },
                         success: function (response) {
-                            $("#questionnaire-modal").removeClass('loading');
-                            swal({
-                                title: "Success!",
-                                text: "Your response has been successfully stored.",
-                                type: "success",
-                                confirmButtonClass: "btn-success",
-                                confirmButtonText: "OK",
-                            }, function () {
-                                let split = window.location.toString().split("#");
-                                window.location = split[0] + "#questionnaire";
-                                $("#questionnaire-modal").modal('hide');
-                                window.location.reload();
-                            });
+                            $(".loader-wrapper").addClass('hidden');
+                            let questionnaireResponded = $("#questionnaire-responded");
+                            // add badge fetched from response to the appropriate container
+                            if (response.badge)
+                                questionnaireResponded.find('.badge-container').html(response.badge);
+                            questionnaireResponded.modal({backdrop: 'static'});
                         }
                     });
                 });
@@ -50,7 +42,8 @@ let ProgressBar = require('progressbar.js');
 
     let displayProgressBar = function () {
 
-        var bar = new ProgressBar.Circle($("#progress-bar-circle")[0], {
+        let progressBar = $("#progress-bar-circle");
+        let bar = new ProgressBar.Circle(progressBar[0], {
             color: '#0063aa',
             // This has to be the same size as the maximum width to
             // prevent clipping
@@ -68,7 +61,7 @@ let ProgressBar = require('progressbar.js');
                 circle.path.setAttribute('stroke', state.color);
                 circle.path.setAttribute('stroke-width', state.width);
 
-                var value = Math.round(circle.value() * 100);
+                let value = Math.round(circle.value() * 100);
                 if (value === 0) {
                     circle.setText('0%');
                 } else {
@@ -79,7 +72,7 @@ let ProgressBar = require('progressbar.js');
         });
 
         bar.text.style.fontSize = '2rem';
-        bar.animate($("#progress-bar-circle").data("target") / 100);  // Number from 0.0 to 1.0
+        bar.animate(progressBar.data("target") / 100);  // Number from 0.0 to 1.0
 
     };
 
@@ -88,14 +81,24 @@ let ProgressBar = require('progressbar.js');
         survey.render();
     };
 
+    let refreshPageToTheQuestionnaireSection = function () {
+        let split = window.location.toString().split("#");
+        window.location = split[0] + "#questionnaire";
+        window.location.reload();
+    };
+
     let initEvents = function () {
         $('#questionnaire-lang-selector').on('change', displayTranslation);
+        $('#questionnaire-responded').find('.refresh-page').on('click', refreshPageToTheQuestionnaireSection);
     };
-    let openQuestionnaireIfNeeded = function () {
-        if ($(".respond-questionnaire").first().data("open-on-load") == 1)
-            $(".respond-questionnaire").first().trigger("click");
 
-    }
+    let openQuestionnaireIfNeeded = function () {
+        let respondQuestionnaire = $(".respond-questionnaire");
+        if (respondQuestionnaire.first().data("open-on-load") === 1)
+            respondQuestionnaire.first().trigger("click");
+
+    };
+
     let init = function () {
         displayQuestionnaire();
         displayProgressBar();

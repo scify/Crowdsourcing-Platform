@@ -58,8 +58,8 @@ class QuestionnaireController extends Controller
 
     public function storeQuestionnaireResponse(Request $request)
     {
-        $this->questionnaireManager->storeQuestionnaireResponse($request->all());
-        return response()->json(['status' => '__SUCCESS']);
+        $badge = $this->questionnaireManager->storeQuestionnaireResponse($request->all());
+        return response()->json(['status' => '__SUCCESS', 'badge' => $badge]);
     }
 
     public function translateQuestionnaire($id)
