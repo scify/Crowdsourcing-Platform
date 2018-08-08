@@ -257,6 +257,44 @@ section {
   }
 }
 
+#questionnaire-responded {
+  .modal-title {
+    font-weight: normal;
+    text-align: center;
+    font-size: 25px;
+  }
+  .modal-body {
+    p {
+      text-align: center;
+      font-size: 20px;
+    }
+    .badge-container {
+      background-color: lightblue;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-bottom: -15px;
+      margin-top: -15px;
+      p {
+        font-weight: bold;
+        .level {
+          font-weight: normal;
+        }
+      }
+      img {
+        width: 250px;
+        margin: 50px auto;
+        display: block;
+      }
+    }
+  }
+  .modal-footer {
+    .refresh-page {
+      max-width: 100px;
+      margin: auto;
+    }
+  }
+}
+
 .divider {
   border-bottom: 1px solid gray;
   width: 35%;
