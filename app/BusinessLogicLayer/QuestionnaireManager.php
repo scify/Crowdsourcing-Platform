@@ -76,7 +76,7 @@ class QuestionnaireManager
         $user = Auth::user();
         $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($data['questionnaire_id']);
         $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
-        $badge = $this->getNewContributorBadgeForLoggedInUser();
+        $badge = $this->getNewContributorBadgeForLoggedInUser($questionnaire->project_id);
         $user->notify(new QuestionnaireResponded($questionnaire, $badge->badgeName));
         return $badge->html;
     }
@@ -165,9 +165,9 @@ class QuestionnaireManager
         return $result;
     }
 
-    private function getNewContributorBadgeForLoggedInUser()
+    private function getNewContributorBadgeForLoggedInUser($projectId)
     {
-        $responses = $this->questionnaireStorageManager->getAllResponsesGivenByUser(Auth::id());
+        $responses = $this->questionnaireStorageManager->getAllResponsesGivenByUser(Auth::id(), $projectId);
         switch ($responses->count()) {
             case 1:
                 return (object)[
