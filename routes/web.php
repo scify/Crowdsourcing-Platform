@@ -19,7 +19,7 @@ Route::get('/', 'HomeController@index');
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
 Route::group([ 'middleware' => 'auth' ], function () {
-    Route::get('/my-profile', 'UserController@myProfile')->name('profile');
+    Route::get('/my-dashboard', 'UserController@myDashboard')->name('dashboard');
     Route::get('/my-account', 'UserController@myAccount')->name('my-account');
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
