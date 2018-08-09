@@ -24,7 +24,7 @@ class QuestionnairesSeeder extends Seeder
             'project_id' => 1,
             'status_id' => 2,
             'default_language_id' => 6,
-            'title' => 'Break the barriers in free movement in Europe.',
+            'title' => 'Break the barriers in free movement in Europe',
             'description' => '<p>What obstacles did you face when working / moving in Europe?</p>',
             'goal' => 500,
             'questionnaire_json' => '{
