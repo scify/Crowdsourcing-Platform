@@ -13,8 +13,8 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="{{ UrlMatchesMenuItem("my-profile")}}">
-                <a href="{{url("my-profile")}}">
+            <li class="{{ UrlMatchesMenuItem("my-dashboard")}}">
+                <a href="{{url("my-dashboard")}}">
                     <i class="fa fa-dashboard"></i> <span>My Dashboard</span>
 
                 </a>
