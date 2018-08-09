@@ -21,17 +21,15 @@ class UserController extends Controller
         return redirect('/my-dashboard');
     }
 
-
-
     public function myDashboard()
     {
-        $userViewModel = $this->userManager->getMyProfileData(Auth::user());
-        return view('my-dashboard', ['viewModel' => $userViewModel]);
+        $badgesViewModel = $this->userManager->getDashboardData();
+        return view('my-dashboard', ['viewModel' => $badgesViewModel]);
     }
 
     public function myAccount()
     {
-        $userViewModel = $this->userManager->getMyProfileData(Auth::user());
+        $userViewModel = $this->userManager->getUserProfile(Auth::user());
         return view('my-account', ['viewModel' => $userViewModel]);
     }
 

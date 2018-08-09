@@ -49,6 +49,10 @@ class QuestionnaireManager
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
+    public function getResponsesGivenByUserForProject($userId, $projectId) {
+        return $this->questionnaireStorageManager->getAllResponsesGivenByUser($userId, $projectId);
+    }
+
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments)
     {
         $comments = is_null($comments) ? "" : $comments;
@@ -167,7 +171,7 @@ class QuestionnaireManager
 
     private function getNewContributorBadgeForLoggedInUser($projectId)
     {
-        $responses = $this->questionnaireStorageManager->getAllResponsesGivenByUser(Auth::id(), $projectId);
+        $responses = $this->getResponsesGivenByUserForProject(Auth::id(), $projectId);
         // the badgeName is used for the email we send to the user to let him/her know about the badge (s)he won,
         // and the html is displayed in the modal right after (s)he responds to a questionnaire
         switch ($responses->count()) {
@@ -176,7 +180,7 @@ class QuestionnaireManager
                     'badgeName' => 'Bronze Contributor (Level 1)',
                     'html' =>
                         '<p>This is your first questionnaire!</p><p>The Bronze Contributor badge now belongs to you!</p>
-                        <img class="gamification-badge bronze" src="' . asset('images/badges/cup.png') . '">
+                        <img class="gamification-badge bronze" src="' . asset('images/badges/contributor.png') . '">
                         <p>Bronze Contributor <span class="level">(Level 1)</span></p>'
                 ];
             case 2:
@@ -184,7 +188,7 @@ class QuestionnaireManager
                     'badgeName' => 'Silver Contributor (Level 2)',
                     'html' =>
                         '<p>This is your second questionnaire!</p><p>The Silver Contributor badge now belongs to you!</p>
-                        <img class="gamification-badge silver" src="' . asset('images/badges/cup.png') . '">
+                        <img class="gamification-badge silver" src="' . asset('images/badges/contributor.png') . '">
                         <p>Silver Contributor <span class="level">(Level 2)</span></p>'
                 ];
             case 3:
@@ -213,7 +217,7 @@ class QuestionnaireManager
                     'badgeName' => 'Gold Contributor (Level 3)',
                     'html' =>
                         '<p>Congratulations!</p><p>You have unlocked the Gold Contributor badge!</p>
-                        <img class="gamification-badge gold" src="' . asset('images/badges/cup.png') . '">
+                        <img class="gamification-badge gold" src="' . asset('images/badges/contributor.png') . '">
                         <p>Gold Contributor <span class="level">(Level 3)</span></p>'
                     ];
             default:
