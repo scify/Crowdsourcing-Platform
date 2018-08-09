@@ -168,6 +168,8 @@ class QuestionnaireManager
     private function getNewContributorBadgeForLoggedInUser($projectId)
     {
         $responses = $this->questionnaireStorageManager->getAllResponsesGivenByUser(Auth::id(), $projectId);
+        // the bageName is used for the email we send to the user to let him/her know about the badge (s)he won,
+        // and the html is displayed in the modal right after (s)he responds to a questionnaire
         switch ($responses->count()) {
             case 1:
                 return (object)[
