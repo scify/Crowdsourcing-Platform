@@ -18,15 +18,15 @@ class UserController extends Controller
 
     public function home()
     {
-        return redirect('/my-profile');
+        return redirect('/my-dashboard');
     }
 
 
 
-    public function myProfile()
+    public function myDashboard()
     {
         $userViewModel = $this->userManager->getMyProfileData(Auth::user());
-        return view('my-profile', ['viewModel' => $userViewModel]);
+        return view('my-dashboard', ['viewModel' => $userViewModel]);
     }
 
     public function myAccount()

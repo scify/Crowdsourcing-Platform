@@ -5,7 +5,7 @@
 @stop
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/my-profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/my-dashboard.css') }}">
 @endpush
 
 @section('content')

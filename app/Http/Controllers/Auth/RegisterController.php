@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/my-profile';
+    protected $redirectTo = '/my-dashboard';
     private $userRoleManager;
     private $userManager;
     private $mailChimpManager;

@@ -80,7 +80,7 @@
                         </li>
                         @if (Auth::check())
                             <li>
-                                <a href="/login">DASHBOARD</a>
+                                <a href="/my-dashboard">DASHBOARD</a>
                             </li>
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

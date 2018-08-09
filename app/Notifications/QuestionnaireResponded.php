@@ -56,7 +56,7 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
         } else {
             $message->line('Visit your Dashboard, to see what\'s next.');
         }
-        $message->action('Go to Dashboard', url('/my-profile'))
+        $message->action('Go to Dashboard', url('/my-dashboard'))
             ->line('Thank you for using our application!');
         return $message;
     }
