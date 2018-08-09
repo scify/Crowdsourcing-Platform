@@ -17,14 +17,26 @@
   width: 200px;
 }
 
-#awards{
-  img{
-    filter:grayscale(100%);
-    width:100px;
+#awards {
+  .badges-container {
+    min-height: 250px;
+    margin: 30px auto;
+    a.to-do-next {
+      img {
+        filter: grayscale(100%);
+        width: 100px;
+      }
+      &:hover {
+        img {
+          filter: grayscale(0);
+        }
+      }
+    }
+    .single-badge {
+      margin-bottom: 30px;
+      .gamification-badge {
+        max-width: 100%;
+      }
+    }
   }
-
-  img:hover{
-    filter:grayscale(0);
-  }
-
 }
