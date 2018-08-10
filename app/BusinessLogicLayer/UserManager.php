@@ -2,15 +2,17 @@
 
 namespace App\BusinessLogicLayer;
 
+use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\User;
+use App\Models\ViewModels\DashboardInfo;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
+use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -19,17 +21,20 @@ class UserManager
     private $userRepository;
     private $userRoleRepository;
     private $questionnaireManager;
+    private $projectRepository;
     private $mailChimpManager;
     public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
                                 QuestionnaireManager $questionnaireManager,
+                                CrowdSourcingProjectRepository $projectRepository,
                                 MailChimpAdaptor $mailChimpManager)
     {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->questionnaireManager = $questionnaireManager;
+        $this->projectRepository = $projectRepository;
         $this->mailChimpManager = $mailChimpManager;
     }
 
@@ -45,7 +50,10 @@ class UserManager
 
     public function getDashboardData()
     {
-        return $this->calculateBadgesForLoggedInUser();
+        $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
+        $responses = $this->questionnaireManager->getResponsesGivenByUserForProject(Auth::id(), 1); // TODO: use correct project id
+        $badges = $this->calculateBadgesForLoggedInUser();
+        return new DashboardInfo($projects, $responses, $badges);
     }
 
     public function getUser($userId)
@@ -181,10 +189,10 @@ class UserManager
             $shouldAddListOfQuestionnaireTitles = true;
         }
         if ($shouldAddListOfQuestionnaireTitles) {
-            $temp .= '<ul>{{2}}</ul>';
+            $temp .= '<ul style=\'margin: 0; padding: 0;\'>{{2}}</ul>';
             $titlesNormalized = '';
             foreach ($questionnaireTitles as $title) {
-                $titlesNormalized .= '<li>' . $title . '</li>';
+                $titlesNormalized .= '<li style=\'margin: 0; padding: 0;\'>' . $title . '</li>';
             }
             $temp = str_replace('{{2}}', $titlesNormalized, $temp);
         }
