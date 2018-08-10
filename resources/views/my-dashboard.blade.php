@@ -79,7 +79,7 @@
                                 {{--TODO: this is not correct, we need to change it to whatever gamification challenge we need to propose to the user--}}
                                 <a href="/fair-eu?open=1" class="to-do-next">Respond to FAIR-EU questionnaire <br> and
                                     gain
-                                    the Influencer award
+                                    the Contributor award
                                     <br>
                                     <br>
                                     <img src="{{asset("images/badges/award.png")}}">
