@@ -6,13 +6,13 @@
                 it is most
                 needed!</p>
             <div class="sign-up row" data-url="{{route('newsletter')}}">
-                <div class="col-md-2 col-md-offset-3">
+                <div class="col-md-2 col-md-offset-3 col-xs-10 col-xs-offset-1">
                     <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-xs-10 col-xs-offset-1">
                     <input type="email" class="form-control" name="email" placeholder="Email" required>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-xs-10 col-xs-offset-1">
                     <a class="btn btn-block btn-primary signup-btn">Sign up!</a>
                 </div>
             </div>
