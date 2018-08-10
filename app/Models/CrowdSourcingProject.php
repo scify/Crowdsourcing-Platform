@@ -22,10 +22,17 @@ class CrowdSourcingProject extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'motto', 'label1', 'label2', 'description', 'img_path', 'user_creator_id'
+        'name', 'slug', 'motto', 'description', 'about', 'questionnaire_section_title', 'footer', 'img_path',
+        'logo_path', 'user_creator_id', 'language_id'
     ];
 
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
+    }
+
+    public function questionnaires()
+    {
+        return $this->hasMany(Questionnaire::class, 'project_id', 'id');
     }
 }

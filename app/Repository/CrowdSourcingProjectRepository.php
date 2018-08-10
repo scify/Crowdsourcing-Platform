@@ -5,7 +5,8 @@ namespace App\Repository;
 
 use App\Models\CrowdSourcingProject;
 
-class CrowdSourcingProjectRepository extends Repository {
+class CrowdSourcingProjectRepository extends Repository
+{
 
     /**
      * Specify Model class name
@@ -17,4 +18,8 @@ class CrowdSourcingProjectRepository extends Repository {
         return CrowdSourcingProject::class;
     }
 
+    public function getProjectWithStatusAndQuestionnaires()
+    {
+        return $this->getModelInstance()->with('questionnaires')->with('questionnaires.statusHistory')->with('questionnaires.statusHistory.status')->get();
+    }
 }

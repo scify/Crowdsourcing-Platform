@@ -14,4 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 class QuestionnaireStatusHistory extends Model
 {
     protected $table = 'questionnaire_status_history';
+
+    public function status()
+    {
+        return $this->hasOne(QuestionnaireStatus::class, 'id', 'status_id');
+    }
 }
