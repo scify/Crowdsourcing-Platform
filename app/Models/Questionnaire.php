@@ -23,4 +23,14 @@ class Questionnaire extends Model
     {
         return $this->hasOne(Language::class, 'id', 'default_language_id');
     }
+
+    public function project()
+    {
+        return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');
+    }
+
+    public function statusHistory()
+    {
+        return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
+    }
 }

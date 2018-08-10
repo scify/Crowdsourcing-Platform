@@ -41,14 +41,22 @@
                                     <th>Status</th>
                                     <th>You can help by:</th>
                                 </tr>
-                                <tr>
-                                    <td style="padding-top:15px"><a href="/fair-eu"> <img height="30" alt="FAIR EU"
-                                                                                          src="https://dev.ecas/images/default-project/fair-eu.png"></a>
-                                    </td>
-                                    <td style="padding-top:15px;">In progress</td>
-                                    <td style="padding-top:15px;margin-right:100px;"><a href="/fair-eu?open=1">Responding
-                                            to a questionnaire</a></td>
-                                </tr>
+                                @if($viewModel->projects->count() === 0)
+                                    <tr>
+                                        <td colspan="3" class="no-projects-found">No projects found!
+                                        </td>
+                                    </tr>
+                                @else
+                                    @foreach($viewModel->projects as $project)
+                                    <tr>
+                                        <td style="padding-top:15px"><a href="{{$project->slug}}"> <img height="30" alt="{{$project->name}}"
+                                                                                              src="{{asset($project->logo_path)}}"></a>
+                                        </td>
+                                        <td style="padding-top:15px;">{{$project->status}}</td>
+                                        <td style="padding-top:15px;margin-right:100px;">{!! $project->help_by !!}</td>
+                                    </tr>
+                            @endforeach
+                                @endif
                             </table>
                         </div>
                     </div>
@@ -58,16 +66,17 @@
         <div id="awards" class="col-md-6 col-xs-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    @if($viewModel->count() === 0)
+                    @if($viewModel->badges->count() === 0)
                         <h3 class="box-title">You don't have any awards assigned. That's a pity!</h3>
                     @else
-                        <h3 class="box-title">You have unlocked {{$viewModel->count()}} award(s) so far</h3>
+                        <h3 class="box-title">You have unlocked {{$viewModel->badges->count()}} award(s) so far</h3>
                     @endif
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12 text-center badges-container">
-                            @if($viewModel->count() === 0)
+                            @if($viewModel->badges->count() === 0)
+                                {{--TODO: this is not correct, we need to change it to whatever gamification challenge we need to propose to the user--}}
                                 <a href="/fair-eu?open=1" class="to-do-next">Respond to FAIR-EU questionnaire <br> and
                                     gain
                                     the Influencer award
@@ -76,7 +85,7 @@
                                     <img src="{{asset("images/badges/award.png")}}">
                                 </a>
                             @else
-                                @foreach($viewModel as $badge)
+                                @foreach($viewModel->badges as $badge)
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 single-badge">{!! $badge !!}</div>
                                 @endforeach
                             @endif
