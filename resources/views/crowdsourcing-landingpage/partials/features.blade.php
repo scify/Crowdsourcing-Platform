@@ -2,20 +2,39 @@
     <div class="col-md-12">
         <h2>Features</h2>
         <div class="content-container">
-            <p>ECAS believes in an inclusive, transparent, citizen-centric and democratic European Union in which
-                citizens’
-                rights are at the heart of decision making at all levels and in which citizens are informed, consulted
-                and
-                actively participate.</p>
-            <p>Particularly, with our crowdsourcing platform we aim at developing and supporting mechanisms to increase
-                citizens' democratic participation in, and engagement with, the EU.</p>
+            <p>Who we are: The European Citizen Action Service (ECAS) is an international,
+                Brussels-based non-profit organisation with a pan-European membership and 27 years of experience in empowering citizens.
+                ECAS believes in an inclusive, transparent, citizen-centric and democratic European Union in which citizens’
+                rights are at the heart of decision making at all levels and in which citizens are informed, consulted and can actively participate.
+                <br><br><br>
+                Our Crowdsourcing: Crowdsourcing is a way of solving problems and producing new ideas by connecting online with
+                people that you otherwise wouldn’t reach, giving citizens’ the opportunity to learn from others, collaborate
+                and participate in the decision-making.
+            </p>
+            <br><br>
+            <p class="text-center margin-bottom">With our ECAS crowdsourcing platform we aim at:</p>
+            <div class="featuresListContainer">
+                <ul class="featuresList">
+                    <li>
+                        <p>encouraging citizens to speak up on issues directly affecting them</p>
+                    </li>
+                    <li>
+                        <p>increasing citizens' democratic participation in political life</p>
+                    </li>
+                    <li>
+                        <p>stimulating citizens' engagement with the EU</p>
+                    </li>
+                    <li>
+                        <p>improving citizens‘ understanding of EU policy-making processes</p>
+                    </li>
+                </ul>
+            </div>
             <div class="text-center">
                 <ul id="features-nav" class="nav nav-pills" role="tablist">
                     <li role="presentation" class="active"><a href="#citizens" aria-controls="citizens" role="tab"
                                                               data-toggle="tab">FOR CITIZENS</a></li>
                     <li role="presentation"><a href="#managers" aria-controls="managers" role="tab"
-                                               data-toggle="tab">FOR
-                            CONTENT MANAGERS</a></li>
+                                               data-toggle="tab">OPEN-SOURCE PLATFORM</a></li>
                 </ul>
             </div>
             <div class="tab-content">
@@ -29,16 +48,17 @@
                                     providing your own input.</p>
                             </div>
                             <div class="feature img-right">
-                                <p class="large-screens"><b>Feel the impact</b> of your contribution, after the
+                                <p class="large-screens"><b>Check the impact</b> of your contribution, after the
                                     citizens' opinions transform into a publicly available report.</p>
                                 <img src="{{asset('images/landing-page/features/impact.jpg')}}" alt="impact">
-                                <p class="small-screens"><b>Feel the impact</b> of your contribution, after the
+                                <p class="small-screens"><b>Check the impact</b> of your contribution, after the
                                     citizens' opinions transform into a publicly available report.</p>
                             </div>
                             <div class="feature img-left">
                                 <img src="{{asset('images/landing-page/features/keep-track.jpg')}}" alt="keep track">
-                                <p class="large-screens small-screens"><b>Keep track</b> of your responses and all the
-                                    available activities that are happening right now and need your participation.</p>
+                                <p class="large-screens small-screens"><b>Keep track</b> of your responses and
+                                    stay informed about other active projects.
+                                </p>
                             </div>
                             <div class="feature img-right">
                                 <p class="large-screens"><b>Invite your friends</b> to contribute to projects that
