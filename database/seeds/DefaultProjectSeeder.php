@@ -19,13 +19,13 @@ class DefaultProjectSeeder extends Seeder
                 'slug' => 'fair-eu',
                 'logo_path' => '/images/default-project/fair-eu.png',
                 'img_path' => '/images/default-project/fair-eu-bg.png',
-                'motto' => 'Help us tackle the obstacles of low political participation levels',
+                'motto' => 'Please share with us your opinion on obstacles to free movement and <br>political participation in the EU. Your voice matters!',
                 'description' => '',
                 'about' => '<p>The FAIR EU (Fostering Awareness, Inclusion and Recognition of EU Mobile Citizens’ Political Rights)
                 project aims to foster the successful inclusion of EU mobile citizens in their host EU country’s civic
                 and political life through the provision of a holistic approach to tackling obstacles they face when
-                exercising their rights.</p>',
-                'questionnaire_section_title' => 'Break the barriers in free movement in Europe.',
+                exercising their rights. <a href="https://ecas.org/projects/fair-eu/">Learn more about our project.</a></p>',
+                'questionnaire_section_title' => 'Break the barriers to free movement and active political participation in the EU!',
                 'footer' => '<p style="font-size: 12px;">© FAIR EU 2018&nbsp;|&nbsp;
                 <a href="https://faireu.ecas.org/terms-of-use/" target="_blank" title="Read more">Terms of use</a>&nbsp;|&nbsp;
                 <a href="https://faireu.ecas.org/privacy-policy/" target="_blank" title="Read more">Privacy Policy</a>&nbsp;|&nbsp;
