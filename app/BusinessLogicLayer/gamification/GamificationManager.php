@@ -33,6 +33,7 @@ class GamificationManager {
             $this->getBadgeWithLevelViewModelForUser($infuencerBadge, $userId),
             $this->getBadgeWithLevelViewModelForUser($persuaderBadge, $userId)
         ]);
+
         return new GamificationBadgesWithLevels($badgesWithLevelsCollection, $this->calculateTotalGamificationPoints($badgesWithLevelsCollection));
     }
 
@@ -48,7 +49,27 @@ class GamificationManager {
         $badgeName = $gamificationBadge->getBadgeName();
         $badgeImageName = $gamificationBadge->getBadgeImageName();
         $level = $gamificationBadge->getLevel($userId);
-        $badgeMessage = $gamificationBadge->getBadgeMessageForLevel($level);
+        $badgeMessage = $gamificationBadge->getBadgeMessageForLevel($gamificationBadge->getNumberOfActionsPerformed($userId), $level);
         return new GamificationBadgeLevel($badgeName, $level, $badgeMessage, $badgeImageName);
+    }
+
+    public function contributorBadgeExistsInBadges(Collection $badges) {
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID);
+    }
+
+    public function influencerBadgeExistsInBadges(Collection $badges) {
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
+    }
+
+    public function persuaderBadgeExistsInBadges(Collection $badges) {
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::PERSUADER_BADGE_ID);
+    }
+
+    public function badgeExistsInBadges(Collection $badges, $badgeId) {
+        foreach ($badges as $badge) {
+            if($badge->badgeId == $badgeId)
+                return true;
+        }
+        return false;
     }
 }
