@@ -11,6 +11,7 @@ class CrowdSourcingProjectManager
 {
     private $crowdSourcingProjectRepository;
     private $questionnaireRepository;
+    const DEFAULT_PROJECT_ID = 1;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository)
@@ -69,5 +70,9 @@ class CrowdSourcingProjectManager
             unset($attributes['img']);
         }
         $this->crowdSourcingProjectRepository->update($attributes, $id);
+    }
+
+    public function projectHasActiveQuestionnaire($projectId) {
+        return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId) !== null;
     }
 }

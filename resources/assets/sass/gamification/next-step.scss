@@ -1,0 +1,15 @@
+@import "../variables";
+
+.nextStepContainer {
+  height: 200px;
+  margin-top: 30px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  .nextStepImg {
+    margin-top: 15px;
+    height: 70px;
+  }
+}

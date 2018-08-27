@@ -9,9 +9,10 @@ class ContributorBadgeManager extends GamificationBadge {
     
     private $questionnaireRepository;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository) {
+    public function __construct(QuestionnaireRepository $questionnaireRepository, int $userId) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
+        $this->numberOfActionsPerformed = $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count();
     }
 
     public function getBadgeMessageForLevel(int $level) {
@@ -19,8 +20,6 @@ class ContributorBadgeManager extends GamificationBadge {
     }
 
     public function getNumberOfActionsPerformed(int $userId) {
-        if($this->numberOfActionsPerformed == -1)
-            $this->numberOfActionsPerformed = $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count();
         return $this->numberOfActionsPerformed;
     }
 

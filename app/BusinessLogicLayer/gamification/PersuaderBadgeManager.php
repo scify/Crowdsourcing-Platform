@@ -9,10 +9,11 @@ class PersuaderBadgeManager extends GamificationBadge {
 
     private $questionnaireResponseReferralManager;
 
-    public function __construct(QuestionnaireResponseReferralManager $questionnaireResponseReferralManager) {
+    public function __construct(QuestionnaireResponseReferralManager $questionnaireResponseReferralManager, int $userId) {
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->pointsPerAction = 5;
         $this->badgeID = GamificationBadgeIdsEnum::PERSUADER_BADGE_ID;
+        $this->numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
     }
 
     public function getBadgeMessageForLevel(int $level) {
@@ -20,8 +21,6 @@ class PersuaderBadgeManager extends GamificationBadge {
     }
 
     public function getNumberOfActionsPerformed(int $userId) {
-        if($this->numberOfActionsPerformed == -1)
-            $this->numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
         return $this->numberOfActionsPerformed;
     }
 
