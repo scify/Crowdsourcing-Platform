@@ -12,11 +12,6 @@ class CrowdSourcingProjectManager
     private $crowdSourcingProjectRepository;
     private $questionnaireRepository;
 
-    /**
-     * CrowdSourcingProjectManager constructor.
-     * @param CrowdSourcingProjectRepository $crowdSourcingProjectRepository
-     * @param QuestionnaireRepository $questionnaireRepository
-     */
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository)
     {
@@ -28,15 +23,6 @@ class CrowdSourcingProjectManager
     {
         return $this->crowdSourcingProjectRepository->all();
     }
-
-//    public function getAllCrowdSourcingProjectsViewModels()
-//    {
-//        $projects = $this->crowdSourcingProjectRepository->all();
-//        $projectsViewModel = $projects->map(function ($project) {
-//            return new CrowdSourcingProject($project);
-//        });
-//        return new CrowdSourcingProjects($projectsViewModel);
-//    }
 
     public function getCrowdSourcingProject($id)
     {
