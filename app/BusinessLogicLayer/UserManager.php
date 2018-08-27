@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogicLayer;
 
+use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\Models\User;
 use App\Models\ViewModels\DashboardInfo;
 use App\Models\ViewModels\EditUser;
@@ -22,19 +23,20 @@ class UserManager
     private $questionnaireManager;
     private $projectRepository;
     private $mailChimpManager;
+    private $gamificationManager;
     public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
                                 QuestionnaireManager $questionnaireManager,
                                 CrowdSourcingProjectRepository $projectRepository,
-                                MailChimpAdaptor $mailChimpManager)
-    {
+                                MailChimpAdaptor $mailChimpManager, GamificationManager $gamificationManager) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->questionnaireManager = $questionnaireManager;
         $this->projectRepository = $projectRepository;
         $this->mailChimpManager = $mailChimpManager;
+        $this->gamificationManager = $gamificationManager;
     }
 
     function userIsPlatformAdmin($user)
@@ -50,9 +52,9 @@ class UserManager
     public function getDashboardData()
     {
         $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
-        $responses = $this->questionnaireManager->getResponsesGivenByUserForProject(Auth::id(), 1); // TODO: use correct project id
-        $badges = $this->calculateBadgesForLoggedInUser();
-        return new DashboardInfo($projects, $responses, $badges);
+        $responses = $this->questionnaireManager->getResponsesGivenByUser(Auth::id());
+        $gamificationBadgesViewModel = $this->gamificationManager->getGamificationLevelsViewModelForUser(Auth::id());
+        return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel);
     }
 
     public function getUser($userId)
@@ -164,72 +166,5 @@ class UserManager
     {
         $data['password'] = bcrypt($data['password']);
         return $this->userRepository->create($data);
-    }
-
-    private function generateContributorBadgeTooltipContent($questionnaireTitles)
-    {
-        $numberOfRespondedQuestionnaires = count($questionnaireTitles);
-        $tooltipContentTemplate = '<p>You unlocked <b>{{0}}</b> badge because you responded 
-                        to {{1}} questionnaire';
-        $shouldAddListOfQuestionnaireTitles = false;
-        if ($numberOfRespondedQuestionnaires === 1) {
-            $temp = str_replace('{{0}}', 'Bronze Contributor (Level 1)', $tooltipContentTemplate);
-            $temp = str_replace('{{1}}', 'your first', $temp);
-            $temp = $temp . ' with title \'' . $questionnaireTitles[0] . '\'';
-        } else if ($numberOfRespondedQuestionnaires === 2) {
-            $temp = str_replace('{{0}}', 'Silver Contributor (Level 2)', $tooltipContentTemplate);
-            $temp = str_replace('{{1}}', 'two', $temp);
-            $temp = $temp . 's:';
-            $shouldAddListOfQuestionnaireTitles = true;
-        } else {
-            $temp = str_replace('{{0}}', 'Gold Contributor (Level 3)', $tooltipContentTemplate);
-            $temp = str_replace('{{1}}', 'six', $temp);
-            $temp = $temp . 's:';
-            $shouldAddListOfQuestionnaireTitles = true;
-        }
-        if ($shouldAddListOfQuestionnaireTitles) {
-            $temp .= '<ul style=\'margin: 0; padding: 0;\'>{{2}}</ul>';
-            $titlesNormalized = '';
-            foreach ($questionnaireTitles as $title) {
-                $titlesNormalized .= '<li style=\'margin: 0; padding: 0;\'>' . $title . '</li>';
-            }
-            $temp = str_replace('{{2}}', $titlesNormalized, $temp);
-        }
-        return $temp;
-    }
-
-    private function calculateBadgesForLoggedInUser()
-    {
-        // TODO: calculate badges for Influencers and Persuaders, as well
-        $badges = [];
-        $questionnairesTitles = [];
-        $responses = $this->questionnaireManager->getResponsesGivenByUserForProject(Auth::id(), 1); // project 1 is 'Fair EU'
-        foreach ($responses as $response) {
-            array_push($questionnairesTitles, $response->title);
-            switch (count($questionnairesTitles)) {
-                case 1:
-                    $tooltipContent = $this->generateContributorBadgeTooltipContent($questionnairesTitles);
-                    array_push($badges, '<img class="gamification-badge bronze" 
-                        src="' . asset('images/badges/contributor.png') . '" data-html="true" data-toggle="tooltip" 
-                        title="' . $tooltipContent . '">'
-                    );
-                    break;
-                case 2:
-                    $tooltipContent = $this->generateContributorBadgeTooltipContent($questionnairesTitles);
-                    array_push($badges, '<img class="gamification-badge silver" 
-                        src="' . asset('images/badges/contributor.png') . '" data-html="true" data-toggle="tooltip" 
-                        title="' . $tooltipContent . '">'
-                    );
-                    break;
-                case 6:
-                    $tooltipContent = $this->generateContributorBadgeTooltipContent($questionnairesTitles);
-                    array_push($badges, '<img class="gamification-badge gold" 
-                        src="' . asset('images/badges/contributor.png') . '" data-html="true" data-toggle="tooltip" 
-                        title="' . $tooltipContent . '">'
-                    );
-                    break;
-            }
-        }
-        return collect($badges);
     }
 }
