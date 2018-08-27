@@ -8,24 +8,23 @@
 
 namespace App\BusinessLogicLayer;
 
-
-use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Notifications\QuestionnaireResponded;
+use App\Repository\QuestionnaireRepository;
 use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireManager
 {
-    private $questionnaireStorageManager;
+    private $questionnaireRepository;
     private $languageManager;
     private $translator;
 
-    public function __construct(QuestionnaireStorageManager $questionnaireStorageManager, LanguageManager $languageManager, Translator $translator)
+    public function __construct(QuestionnaireRepository $questionnaireRepository, LanguageManager $languageManager, Translator $translator)
     {
-        $this->questionnaireStorageManager = $questionnaireStorageManager;
+        $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
     }
@@ -35,7 +34,7 @@ class QuestionnaireManager
         $questionnaire = null;
         $title = "Create Questionnaire";
         if (!is_null($id)) {
-            $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($id);
+            $questionnaire = $this->questionnaireRepository->findQuestionnaire($id);
             $title = "Edit Questionnaire";
         }
         $languages = $this->languageManager->getAllLanguages();
@@ -44,24 +43,28 @@ class QuestionnaireManager
 
     public function getAllQuestionnairesForProjectViewModel($projectId)
     {
-        $questionnaires = $this->questionnaireStorageManager->getAllQuestionnairesForProjectWithAvailableTranslations($projectId);
-        $availableStatuses = $this->questionnaireStorageManager->getAllQuestionnaireStatuses();
+        $questionnaires = $this->questionnaireRepository->getAllQuestionnairesForProjectWithAvailableTranslations($projectId);
+        $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
     public function getResponsesGivenByUserForProject($userId, $projectId) {
-        return $this->questionnaireStorageManager->getAllResponsesGivenByUser($userId, $projectId);
+        return $this->questionnaireRepository->getAllResponsesGivenByUserForProject($userId, $projectId);
+    }
+
+    public function getResponsesGivenByUser($userId) {
+        return $this->questionnaireRepository->getAllResponsesGivenByUser($userId);
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments)
     {
         $comments = is_null($comments) ? "" : $comments;
-        $this->questionnaireStorageManager->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
+        $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
     }
 
     public function createNewQuestionnaire($data)
     {
-        $questionnaire = $this->questionnaireStorageManager->saveNewQuestionnaire(
+        $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
             $data['title'], $data['description'], $data['goal'], $data['language'], $data['project'], $data['content']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
@@ -69,7 +72,7 @@ class QuestionnaireManager
 
     public function updateQuestionnaire($id, $data)
     {
-        $this->questionnaireStorageManager->updateQuestionnaire($id, $data['title'], $data['description'],
+        $this->questionnaireRepository->updateQuestionnaire($id, $data['title'], $data['description'],
             $data['goal'], $data['language'], $data['project'], $data['content']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
@@ -78,8 +81,8 @@ class QuestionnaireManager
     {
         $response = json_decode($data['response']);
         $user = Auth::user();
-        $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($data['questionnaire_id']);
-        $this->questionnaireStorageManager->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
+        $questionnaire = $this->questionnaireRepository->findQuestionnaire($data['questionnaire_id']);
+        $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
         $badge = $this->getNewContributorBadgeForLoggedInUser($questionnaire->project_id);
         $user->notify(new QuestionnaireResponded($questionnaire, $badge->badgeName));
         return $badge->html;
@@ -96,11 +99,11 @@ class QuestionnaireManager
 
     public function getTranslateQuestionnaireViewModel($questionnaireId)
     {
-        $questionnaire = $this->questionnaireStorageManager->findQuestionnaire($questionnaireId);
+        $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
         $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
         $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
         $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
-        $questionnaireTranslations = $this->questionnaireStorageManager->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
+        $questionnaireTranslations = $this->questionnaireRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
         // if default value translation is set and there are some translations but not for all questions/answers/html,
         // we need to pass all the not translated strings to the other languages, so that they will be available for translation
         if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
@@ -116,7 +119,7 @@ class QuestionnaireManager
 
     public function storeQuestionnaireTranslations($questionnaireId, $translations)
     {
-        $this->questionnaireStorageManager->storeQuestionnaireTranslations($questionnaireId, json_decode($translations));
+        $this->questionnaireRepository->storeQuestionnaireTranslations($questionnaireId, json_decode($translations));
     }
 
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
@@ -125,9 +128,9 @@ class QuestionnaireManager
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
             $questionType = $question->type;
-            $storedQuestion = $this->questionnaireStorageManager->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->guid);
+            $storedQuestion = $this->questionnaireRepository->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->guid);
             if ($questionType === 'html')
-                $this->questionnaireStorageManager->saveNewHtmlElement($storedQuestion->id, $question->html);
+                $this->questionnaireRepository->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id);
         }
     }
@@ -135,7 +138,7 @@ class QuestionnaireManager
     private function updateAllQuestionnaireRelatedTables($questionnaireId, $data)
     {
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
-        $this->questionnaireStorageManager->updateAllQuestionnaireRelatedTables($questionnaireId, $questions);
+        $this->questionnaireRepository->updateAllQuestionnaireRelatedTables($questionnaireId, $questions);
     }
 
     private function extractDataFromQuestionnaireJson($content)
@@ -155,7 +158,7 @@ class QuestionnaireManager
             foreach ($question->choices as $temp) {
                 $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
                 $value = isset($temp->value) ? $temp->value : $temp;
-                $this->questionnaireStorageManager->saveNewAnswer($questionId, $answer, $value, $temp->guid);
+                $this->questionnaireRepository->saveNewAnswer($questionId, $answer, $value, $temp->guid);
             }
         }
     }

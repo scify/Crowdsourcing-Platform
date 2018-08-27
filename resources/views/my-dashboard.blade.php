@@ -66,31 +66,24 @@
         <div id="awards" class="col-md-6 col-xs-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    @if($viewModel->badges->count() === 0)
-                        <h3 class="box-title">You don't have any awards assigned. That's a pity!</h3>
-                    @else
-                        <h3 class="box-title">You have unlocked {{$viewModel->badges->count()}} award(s) so far</h3>
-                    @endif
+                    <h3 class="box-title">You have been awarded <span class="points">{{$viewModel->badgesVM->totalPoints}}</span> points so far</h3>
                 </div>
                 <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12 text-center badges-container">
-                            @if($viewModel->badges->count() === 0)
-                                {{--TODO: this is not correct, we need to change it to whatever gamification challenge we need to propose to the user--}}
-                                <a href="/fair-eu?open=1" class="to-do-next">Respond to FAIR-EU questionnaire <br> and
-                                    gain
-                                    the Contributor award
-                                    <br>
-                                    <br>
-                                    <img src="{{asset("images/badges/award.png")}}">
-                                </a>
-                            @else
-                                @foreach($viewModel->badges as $badge)
-                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 single-badge">{!! $badge !!}</div>
-                                @endforeach
-                            @endif
+                        <div class="text-center badges-container">
+                            @foreach($viewModel->badgesVM->badgesWithLevelsList as $badge)
+                                <div class="row gamification-badge">
+                                    <div class="col-sm-2 badgeImg">
+                                        <img class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <p class="align-middle">{{ $badge->badgeName }}: <span class="points">{{ $badge->level }}</span> point{{$badge->level != 1 ? 's' :''}}</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <p>{{ $badge->badgeMessage }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

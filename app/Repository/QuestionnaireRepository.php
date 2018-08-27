@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/9/18
- * Time: 5:31 PM
- */
 
-namespace App\DataAccessLayer;
+namespace App\Repository;
 
 
 use App\Models\Language;
@@ -25,7 +19,7 @@ use App\Models\QuestionnaireTranslationPossibleAnswer;
 use App\Models\QuestionnaireTranslationQuestion;
 use Illuminate\Support\Facades\DB;
 
-class QuestionnaireStorageManager
+class QuestionnaireRepository
 {
     public function findQuestionnaire($id)
     {
@@ -113,8 +107,12 @@ class QuestionnaireStorageManager
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->orderBy('created_at', 'desc')->with('user')->get();
     }
 
-    public function getAllResponsesGivenByUser($userId, $projectId) {
+    public function getAllResponsesGivenByUserForProject($userId, $projectId) {
         return QuestionnaireResponse::join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('q.project_id', $projectId)->where('user_id', $userId)->get();
+    }
+
+    public function getAllResponsesGivenByUser($userId) {
+        return QuestionnaireResponse::join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('user_id', $userId)->get();
     }
 
     public function getAvailableLanguagesForQuestionnaire($questionnaire)

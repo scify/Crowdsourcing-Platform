@@ -1,3 +1,6 @@
+@import "../variables";
+
+
 .details-table {
   display: table;
   div {
@@ -46,4 +49,29 @@
   padding: 10px;
   font-style: italic;
   background: lightgray;
+}
+
+.gamification-badge {
+  .badgeImg {
+    height: 100%;
+  }
+  margin-bottom: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  height: 120px;
+  padding: 12px;
+  border: 2px solid $indigo;
+  border-radius: 10px;
+
+  p {
+    line-height: 96px;
+    text-align: center;
+  }
+
+
+}
+
+.points {
+  font-weight: bold;
+  font-size: x-large;
 }
