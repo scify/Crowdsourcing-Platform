@@ -64,28 +64,7 @@
             </div>
         </div>
         <div id="awards" class="col-md-6 col-xs-12">
-            <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">You have been awarded <span class="points">{{$viewModel->badgesVM->totalPoints}}</span> points so far</h3>
-                </div>
-                <div class="box-body">
-                        <div class="text-center badges-container">
-                            @foreach($viewModel->badgesVM->badgesWithLevelsList as $badge)
-                                <div class="row gamification-badge">
-                                    <div class="col-sm-2 badgeImg">
-                                        <img class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <p class="align-middle">{{ $badge->badgeName }}: <span class="points">{{ $badge->level }}</span> point{{$badge->level != 1 ? 's' :''}}</p>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <p>{{ $badge->badgeMessage }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                </div>
-            </div>
+            @include('gamification.user-badges', ['badgesVM' => $viewModel->badgesVM])
         </div>
     </div>
 @stop

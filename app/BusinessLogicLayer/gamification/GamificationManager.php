@@ -27,6 +27,7 @@ class GamificationManager {
         $contributorBadge = new ContributorBadgeManager($this->questionnaireRepository);
         $infuencerBadge = new InfluencerBadgeManager($this->questionnaireShareManager);
         $persuaderBadge = new PersuaderBadgeManager($this->questionnaireResponseReferralManager);
+
         $badgesWithLevelsCollection = new Collection([
             $this->getBadgeWithLevelViewModelForUser($contributorBadge, $userId),
             $this->getBadgeWithLevelViewModelForUser($infuencerBadge, $userId),
