@@ -51,10 +51,13 @@ class UserManager
 
     public function getDashboardData()
     {
+        $userId = Auth::id();
         $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
         $responses = $this->questionnaireManager->getResponsesGivenByUser(Auth::id());
-        $gamificationBadgesViewModel = $this->gamificationManager->getGamificationLevelsViewModelForUser(Auth::id());
-        return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel);
+        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($userId);
+        $gamificationBadgesViewModel = $this->gamificationManager->getGamificationLevelsViewModelForUser($userId, $gamificationBadgesForUser);
+        $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($userId, $gamificationBadgesForUser);
+        return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel, $gamificationNextStepViewModel);
     }
 
     public function getUser($userId)
