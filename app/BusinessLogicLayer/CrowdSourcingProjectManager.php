@@ -2,26 +2,26 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\DataAccessLayer\QuestionnaireStorageManager;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Repository\CrowdSourcingProjectRepository;
+use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Facades\Auth;
 
 class CrowdSourcingProjectManager
 {
     private $crowdSourcingProjectRepository;
-    private $questionnaireStorageManager;
+    private $questionnaireRepository;
 
     /**
      * CrowdSourcingProjectManager constructor.
      * @param CrowdSourcingProjectRepository $crowdSourcingProjectRepository
-     * @param QuestionnaireStorageManager $questionnaireStorageManager
+     * @param QuestionnaireRepository $questionnaireRepository
      */
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-                                QuestionnaireStorageManager $questionnaireStorageManager)
+                                QuestionnaireRepository $questionnaireRepository)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
-        $this->questionnaireStorageManager = $questionnaireStorageManager;
+        $this->questionnaireRepository = $questionnaireRepository;
     }
 
     public function getAllCrowdSourcingProjects()
@@ -54,13 +54,13 @@ class CrowdSourcingProjectManager
         $allResponses = collect([]);
         $allLanguagesForQuestionnaire = collect([]);
         if ($project)
-            $questionnaire = $this->questionnaireStorageManager->getActiveQuestionnaireForProject($project->id);
+            $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id);
         if ($questionnaire) {
-            $userResponse = $this->questionnaireStorageManager->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
+            $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             if ($userResponse!=null)
                 $openQuestionnaireWhenPageLoads = false; //user has already responded
-            $allResponses = $this->questionnaireStorageManager->getAllResponsesForQuestionnaire($questionnaire->id);
-            $allLanguagesForQuestionnaire = $this->questionnaireStorageManager->getAvailableLanguagesForQuestionnaire($questionnaire);
+            $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
+            $allLanguagesForQuestionnaire = $this->questionnaireRepository->getAvailableLanguagesForQuestionnaire($questionnaire);
         }
         return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
             $userResponse,

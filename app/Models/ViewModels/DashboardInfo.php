@@ -12,12 +12,12 @@ namespace App\Models\ViewModels;
 class DashboardInfo
 {
     public $projects;
-    public $badges;
+    public $badgesVM;
 
-    public function __construct($projects, $responses, $badges)
+    public function __construct($projects, $responses, GamificationBadgesWithLevels $badgesVM)
     {
         $this->projects = $this->formatProjectsInfoForDashboardDisplay($projects, $responses);
-        $this->badges = $badges;
+        $this->badgesVM = $badgesVM;
     }
 
     private function calculateDashboardHelpBySectionText($temp, $questionnaire, $responses)
