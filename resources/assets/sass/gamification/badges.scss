@@ -1,4 +1,4 @@
-@import "_variables.scss";
+@import "../variables";
 
 .badges-container {
   margin-left: auto;
@@ -67,5 +67,5 @@
 
 .inactiveBadge {
   background-color: grey !important;
-  opacity: 0.2;
+  opacity: 0.3;
 }

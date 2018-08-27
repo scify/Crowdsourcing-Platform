@@ -6,14 +6,12 @@ use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 
 class InfluencerBadgeManager extends GamificationBadge {
 
-    const CONTRIBUTOR_LOW_LEVEL = 0;
-    const CONTRIBUTOR_MID_LEVEL = 5;
-    const CONTRIBUTOR_HIGH_LEVEL = 10;
     private $questionnaireShareManager;
 
-    public function __construct(UserQuestionnaireShareManager $questionnaireShareManager) {
+    public function __construct(UserQuestionnaireShareManager $questionnaireShareManager, $userId) {
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
+        $this->numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
     }
 
     public function getBadgeMessageForLevel(int $level) {
@@ -21,8 +19,6 @@ class InfluencerBadgeManager extends GamificationBadge {
     }
 
     public function getNumberOfActionsPerformed(int $userId) {
-        if($this->numberOfActionsPerformed == -1)
-            $this->numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
         return $this->numberOfActionsPerformed;
     }
 

@@ -13,11 +13,13 @@ class DashboardInfo
 {
     public $projects;
     public $badgesVM;
+    public $gamificationNextStepVM;
 
-    public function __construct($projects, $responses, GamificationBadgesWithLevels $badgesVM)
+    public function __construct($projects, $responses, GamificationBadgesWithLevels $badgesVM, GamificationNextStep $gamificationNextStepViewModel)
     {
         $this->projects = $this->formatProjectsInfoForDashboardDisplay($projects, $responses);
         $this->badgesVM = $badgesVM;
+        $this->gamificationNextStepVM = $gamificationNextStepViewModel;
     }
 
     private function calculateDashboardHelpBySectionText($temp, $questionnaire, $responses)

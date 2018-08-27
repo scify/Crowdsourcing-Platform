@@ -2,10 +2,12 @@
 
 namespace App\BusinessLogicLayer\gamification;
 
+use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\GamificationBadgeLevel;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
+use App\Models\ViewModels\GamificationNextStep;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
 
@@ -14,26 +16,34 @@ class GamificationManager {
     private $questionnaireRepository;
     private $questionnaireShareManager;
     private $questionnaireResponseReferralManager;
+    private $crowdSourcingProjectManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
+                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 QuestionnaireResponseReferralManager $questionnaireResponseReferralManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
-    public function getGamificationLevelsViewModelForUser(int $userId) {
-        $contributorBadge = new ContributorBadgeManager($this->questionnaireRepository);
-        $infuencerBadge = new InfluencerBadgeManager($this->questionnaireShareManager);
-        $persuaderBadge = new PersuaderBadgeManager($this->questionnaireResponseReferralManager);
-
-        $badgesWithLevelsCollection = new Collection([
-            $this->getBadgeWithLevelViewModelForUser($contributorBadge, $userId),
-            $this->getBadgeWithLevelViewModelForUser($infuencerBadge, $userId),
-            $this->getBadgeWithLevelViewModelForUser($persuaderBadge, $userId)
+    public function getGamificationBadgesForUser(int $userId) {
+        $contributorBadge = new ContributorBadgeManager($this->questionnaireRepository, $userId);
+        $infuencerBadge = new InfluencerBadgeManager($this->questionnaireShareManager, $userId);
+        $persuaderBadge = new PersuaderBadgeManager($this->questionnaireResponseReferralManager, $userId);
+        return new Collection([
+            $contributorBadge,
+            $infuencerBadge,
+            $persuaderBadge
         ]);
+    }
 
+    public function getGamificationLevelsViewModelForUser(int $userId, Collection $badges) {
+        $badgesWithLevelsCollection = new Collection();
+        foreach ($badges as $badge) {
+            $badgesWithLevelsCollection->push($this->getBadgeWithLevelViewModelForUser($badge, $userId));
+        }
         return new GamificationBadgesWithLevels($badgesWithLevelsCollection, $this->calculateTotalGamificationPoints($badgesWithLevelsCollection));
     }
 
@@ -49,7 +59,7 @@ class GamificationManager {
         $badgeName = $gamificationBadge->getBadgeName();
         $badgeImageName = $gamificationBadge->getBadgeImageName();
         $level = $gamificationBadge->getLevel($userId);
-        $badgeMessage = $gamificationBadge->getBadgeMessageForLevel($gamificationBadge->getNumberOfActionsPerformed($userId), $level);
+        $badgeMessage = $gamificationBadge->getBadgeMessageForLevel($level);
         return new GamificationBadgeLevel($badgeName, $level, $badgeMessage, $badgeImageName);
     }
 
@@ -71,5 +81,16 @@ class GamificationManager {
                 return true;
         }
         return false;
+    }
+
+    public function getGamificationNextStepViewModel($userId, $unlockedBadges) {
+        if(!$this->crowdSourcingProjectManager->projectHasActiveQuestionnaire(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID)) {
+
+        }
+        $title = 'This project does not have an active Questionnaire yet.';
+        $subtitle = 'Wait for a questionnaire to be posted and contribute your answer!';
+        $imgFileName = 'contributor.png';
+
+        return new GamificationNextStep($title, $subtitle, $imgFileName);
     }
 }
