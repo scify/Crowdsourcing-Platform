@@ -1,0 +1,71 @@
+@import "_variables.scss";
+
+.badges-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  a.to-do-next {
+    img {
+      filter: grayscale(100%);
+      width: 100px;
+    }
+    &:hover {
+      img {
+        filter: grayscale(0);
+      }
+    }
+  }
+  .single-badge {
+    margin-bottom: 30px;
+    .gamification-badge {
+      max-width: 100%;
+    }
+  }
+}
+
+.badgeContainer {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.no-projects-found {
+  text-align: center;
+  padding: 10px;
+  font-style: italic;
+  background: lightgray;
+}
+
+.gamification-badge {
+  .badgeImg {
+    height: 80px;
+  }
+  height: 200px;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+.badgeContainer:first-child .gamification-badge {
+  background-color: $indigo;
+}
+
+.badgeContainer:nth-child(2) .gamification-badge {
+  background-color: $green;
+}
+
+.badgeContainer:nth-child(3) .gamification-badge {
+  background-color: $red;
+}
+
+.points {
+  font-weight: bold;
+}
+
+.numOfBadges {
+  font-weight: bold;
+}
+
+.inactiveBadge {
+  background-color: grey !important;
+  opacity: 0.2;
+}
