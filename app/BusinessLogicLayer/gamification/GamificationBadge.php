@@ -2,9 +2,6 @@
 
 namespace App\BusinessLogicLayer\gamification;
 
-
-use App\Models\ViewModels\GamificationBadgeLevel;
-
 abstract class GamificationBadge {
 
     protected $pointsPerAction = 1;
