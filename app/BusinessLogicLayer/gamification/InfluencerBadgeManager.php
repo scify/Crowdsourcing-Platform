@@ -13,25 +13,17 @@ class InfluencerBadgeManager extends GamificationBadge {
 
     public function __construct(UserQuestionnaireShareManager $questionnaireShareManager) {
         $this->questionnaireShareManager = $questionnaireShareManager;
+        $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
     }
 
     public function getBadgeMessageForLevel(int $level) {
-        switch ($level) {
-            case $level == self::CONTRIBUTOR_LOW_LEVEL:
-                return "You are in lower level";
-            case $level <= self::CONTRIBUTOR_MID_LEVEL:
-                return "You are in mid level";
-            case $level <= self::CONTRIBUTOR_HIGH_LEVEL:
-                return "You are in high level";
-            case $level > self::CONTRIBUTOR_HIGH_LEVEL:
-                return "You are in highest level";
-            default:
-                throw new \Exception("Unsupported gamification level: " . $level);
-        }
+        return 'You have shared ' . $this->numberOfActionsPerformed . ' questionnaires';
     }
 
     public function getNumberOfActionsPerformed(int $userId) {
-        return $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
+        if($this->numberOfActionsPerformed == -1)
+            $this->numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
+        return $this->numberOfActionsPerformed;
     }
 
     public function getBadgeName() {

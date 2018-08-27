@@ -5,6 +5,8 @@ namespace App\BusinessLogicLayer\gamification;
 abstract class GamificationBadge {
 
     protected $pointsPerAction = 1;
+    public $badgeID;
+    protected $numberOfActionsPerformed = -1;
 
     abstract public function getBadgeMessageForLevel(int $level);
 
