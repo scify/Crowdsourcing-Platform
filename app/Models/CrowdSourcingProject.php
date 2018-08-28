@@ -22,7 +22,7 @@ class CrowdSourcingProject extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'motto', 'description', 'about', 'questionnaire_section_title', 'footer', 'img_path',
+        'name', 'slug', 'motto', 'description', 'about',  'footer', 'img_path',
         'logo_path', 'user_creator_id', 'language_id'
     ];
 
