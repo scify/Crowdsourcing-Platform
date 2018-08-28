@@ -76,7 +76,7 @@
                 <div class="collapse navbar-collapse pull-right" id="top-menu-content">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#features">FEATURES</a>
+                            <a href="#about">ABOUT</a>
                         </li>
                         <li>
                             <a href="#projects">WHAT ARE WE CROWDSOURCING?</a>
@@ -117,7 +117,7 @@
             <div class="footer-grp">
                 <h3>ECAS Crowdsourcing Platform</h3>
                 <div>
-                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
                 </div>
                 <div>
                     <a href="#projects">What are we crowdsourcing?</a>
