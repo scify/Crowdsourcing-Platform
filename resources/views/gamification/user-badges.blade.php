@@ -11,8 +11,9 @@
     <div class="box-body">
         <div class="text-center badges-container row">
             @foreach($badgesVM->badgesWithLevelsList as $badge)
-                <div class="col-sm-4 badgeContainer">
-                    <div class="col-sm-12 gamification-badge {{ $badge->level == 0 ? 'inactiveBadge' : '' }}">
+                <div class="col-sm-4 badgeContainer" data-toggle="tooltip"
+                     title="{{ $badge->statusMessage }}">
+                    <div class="col-sm-12 gamification-badge {{ $badge->level == 0 ? 'locked' : 'unlocked' }}">
                         <div class="col-sm-12 badgeImg">
                             <img class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
                         </div>
