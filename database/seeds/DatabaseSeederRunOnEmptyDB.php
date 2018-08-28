@@ -20,7 +20,8 @@ class DatabaseSeederRunOnEmptyDB extends Seeder
             QuestionnaireStatusesLkpTableSeeder::class,
             QuestionnairesSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
-            MailChimpListsTableSeeder::class
+            MailChimpListsTableSeeder::class,
+            LanguagesLkpTableSeeder02::class
         ]);
     }
 }
