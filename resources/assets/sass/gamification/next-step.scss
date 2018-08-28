@@ -1,19 +1,22 @@
 @import "../variables";
 
 .nextStepContainer {
-  margin-top: 30px;
   width: 70%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 
   .nextStepImg {
-    margin-top: 15px;
+    margin: 20px auto;
     height: 70px;
   }
 
   .nextStepActionBtn {
     margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .title {
     margin-bottom: 20px;
   }
 }

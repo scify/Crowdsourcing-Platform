@@ -6,3 +6,6 @@
          data-target="{{$projectGoalVM->targetAchievedPercentage}}">
     </div>
 </div>
+@push('scripts')
+    <script src="{{ mix('dist/js/projectGoal.js')}}?{{env("APP_VERSION")}}"></script>
+@endpush
