@@ -1,20 +1,25 @@
 @import "../variables";
 
-.details-table {
-  display: table;
-  div {
-    display: table-row;
-    span {
-      display: table-cell;
-      &:first-child {
-        font-weight: bold;
-        padding-right: 20px;
-      }
-    }
-  }
+.projects {
+  padding-left: 0;
 }
 
 .location-btn {
   margin: 10px auto 0;
   width: 200px;
+}
+
+@media only screen and (min-width : 480px) {
+  .gamification-box {
+    .box-body {
+      height: 300px;
+      position: relative;
+    }
+
+    .badges-container {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 }
