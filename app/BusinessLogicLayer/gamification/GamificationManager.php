@@ -95,7 +95,12 @@ class GamificationManager {
             $title = 'This project does not have an active Questionnaire yet.';
             $subtitle = 'Wait for a questionnaire to be posted and contribute your answer!';
             $imgFileName = 'contributor.png';
-            return new GamificationNextStep($this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID), $title, $subtitle, $imgFileName);
+            return new GamificationNextStep(
+                $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
+                $title,
+                $subtitle,
+                $imgFileName,
+                false);
         } else {
             return $this->getGamificationNextStepViewModelForBadges($unlockedBadges);
         }
@@ -140,6 +145,11 @@ class GamificationManager {
             $imgFileName = 'contributor.png';
         }
 
-        return new GamificationNextStep($this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID), $title, $subtitle, $imgFileName);
+        return new GamificationNextStep(
+            $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
+            $title,
+            $subtitle,
+            $imgFileName,
+            true);
     }
 }
