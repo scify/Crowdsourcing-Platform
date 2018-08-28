@@ -20,7 +20,7 @@
                         <div class="col-sm-12">
                             <h4 class="align-middle badgeName">{{ $badge->badgeName }}</h4>
                             @if($badge->level)
-                                <h6 class="align-middle badgeLevel"><span class="points">{{ $badge->level }}</span> point{{$badge->level != 1 ? 's' :''}}</h6>
+                                <h6 class="align-middle badgeLevel">Level: <span class="points">{{ $badge->level }}</span></h6>
                                 <h5 class="align-middle badgeMessage">{{ $badge->badgeMessage }}</h5>
                             @endif
                         </div>
