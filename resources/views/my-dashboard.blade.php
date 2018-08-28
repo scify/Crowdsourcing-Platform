@@ -39,7 +39,6 @@
                                 <tr>
                                     <th>Project</th>
                                     <th>Status</th>
-                                    <th>You can help by:</th>
                                 </tr>
                                 @if($viewModel->projects->count() === 0)
                                     <tr>
@@ -53,7 +52,6 @@
                                                                                               src="{{asset($project->logo_path)}}"></a>
                                         </td>
                                         <td style="padding-top:15px;">{{$project->status}}</td>
-                                        <td style="padding-top:15px;margin-right:100px;">{!! $project->help_by !!}</td>
                                     </tr>
                             @endforeach
                                 @endif
@@ -65,6 +63,11 @@
         </div>
         <div id="awards" class="col-md-6 col-xs-12">
             @include('gamification.user-badges', ['badgesVM' => $viewModel->badgesVM])
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @include('gamification.next-step', ['nextStepVM' => $viewModel->gamificationNextStepVM])
         </div>
     </div>
 @stop

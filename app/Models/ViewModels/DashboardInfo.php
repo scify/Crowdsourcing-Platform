@@ -45,10 +45,10 @@ class DashboardInfo
                 $lastStatusHistoryItem = end($statusHistory);
                 $status = (object)$lastStatusHistoryItem['status'];
                 $temp->status = $status->title;
-                if ($status->id === 2) { // questionnaire is published (HINT: we assume that only one questionnaire could be published at all times!)
-                    $temp->help_by = $this->calculateDashboardHelpBySectionText($temp, $questionnaire, $responses);
-                    break;
-                }
+//                if ($status->id === 2) { // questionnaire is published (HINT: we assume that only one questionnaire could be published at all times!)
+//                    $temp->help_by = $this->calculateDashboardHelpBySectionText($temp, $questionnaire, $responses);
+//                    break;
+//                }
             }
             $results->push($temp);
         }
