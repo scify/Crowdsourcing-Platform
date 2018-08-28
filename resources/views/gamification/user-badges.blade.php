@@ -27,8 +27,5 @@
                 </div>
             @endforeach
         </div>
-        <div class="margin-top">
-            @include('gamification.next-step', ['nextStepVM' => $viewModel->gamificationNextStepVM])
-        </div>
     </div>
 </div>
