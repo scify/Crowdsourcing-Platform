@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
     <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/crowdsourcing-landingpage.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
+    <link rel="stylesheet" href="{{ asset('dist/css/crowdsourcing-landingpage.css') }}?{{env("APP_VERSION")}}">
 
     <link rel="shortcut icon" href="https://ecas.org/wp-content/uploads/2015/05/favicon_32.png">
     <link rel="apple-touch-icon-precomposed" href="https://ecas.org/wp-content/uploads/2015/05/favicon_57.png">
