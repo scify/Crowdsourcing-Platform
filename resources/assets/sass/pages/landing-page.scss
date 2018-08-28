@@ -6,6 +6,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #076ec1;
 }
 
+#project-moto{
+  font-size: 34px;
+  color: White;
+  text-align: center;
+  max-width: 60%;
+  margin: auto;
+}
+
 body {
   p {
     color: #666666;
@@ -134,7 +142,7 @@ section {
 
 #questionnaire {
 
-  background-image: url(https://images.typeform.com/images/EG4U2zJR3Yvh);
+  background-image: url(../../images/bgsectionnaire.png);
   background-size: cover;
 
   #questionnaire-wrapper {
