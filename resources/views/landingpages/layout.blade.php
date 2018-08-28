@@ -142,9 +142,9 @@
 </section>
 
 @if($viewModel->questionnaire)
-<section id="collective-goal">
-    @include("landingpages.partials.goal-and-activity")
-</section>
+    <section id="collective-goal">
+        @include("landingpages.partials.goal-and-activity")
+    </section>
 @endif
 
 <section id="newsletter">
