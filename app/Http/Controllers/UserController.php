@@ -23,8 +23,8 @@ class UserController extends Controller
 
     public function myDashboard()
     {
-        $badgesViewModel = $this->userManager->getDashboardData();
-        return view('my-dashboard', ['viewModel' => $badgesViewModel]);
+        $dashboardViewModel = $this->userManager->getDashboardData();
+        return view('my-dashboard', ['viewModel' => $dashboardViewModel]);
     }
 
     public function myAccount()

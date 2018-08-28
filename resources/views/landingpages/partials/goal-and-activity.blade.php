@@ -35,16 +35,10 @@
             @endif
 
         </div>
-        <div class="col-xs-3 text-center">
-            <div class="activity-title wrapper-title">
-                <p>Target: {{$viewModel->questionnaire->goal}} responses</p>
+        @if($viewModel->projectGoalVM)
+            <div class="col-xs-3 text-center">
+                @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
             </div>
-            <div class="progress-container">
-                <div id="progress-bar-circle"
-                     data-target="{{$viewModel->targetAchievedPercentage}}">
-                </div>
-            </div>
-
-        </div>
+        @endif
     </div>
 </div>
