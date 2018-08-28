@@ -26,6 +26,8 @@
 .badgeContainer {
   padding-left: 2%;
   padding-right: 2%;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .no-projects-found {
@@ -68,4 +70,10 @@
 .inactiveBadge {
   background-color: grey !important;
   opacity: 0.3;
+}
+
+@media only screen and (max-width : 480px) {
+  .badgeContainer {
+    margin-bottom: 15px;
+  }
 }
