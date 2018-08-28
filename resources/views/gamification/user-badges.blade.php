@@ -18,8 +18,8 @@
                             <img class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
                         </div>
                         <div class="col-sm-12">
+                            <h4 class="align-middle badgeName">{{ $badge->badgeName }}</h4>
                             @if($badge->level)
-                                <h4 class="align-middle badgeName">{{ $badge->badgeName }}</h4>
                                 <h6 class="align-middle badgeLevel"><span class="points">{{ $badge->level }}</span> point{{$badge->level != 1 ? 's' :''}}</h6>
                                 <h5 class="align-middle badgeMessage">{{ $badge->badgeMessage }}</h5>
                             @endif
