@@ -25,6 +25,10 @@
   .locked {
     background-color: #CECECE !important;
     opacity: 0.3;
+
+    .badgeName {
+      color: #424242;
+    }
   }
 
   .unlocked {
