@@ -25,7 +25,7 @@ abstract class GamificationBadge {
 
     abstract protected function getBadgeMessageForLevel();
 
-    protected function calculateLevel() {
+    private function calculateLevel() {
         return $this->numberOfActionsPerformed * $this->pointsPerAction;
     }
 
