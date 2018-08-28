@@ -3,6 +3,7 @@
 namespace App\BusinessLogicLayer;
 
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
+use App\Models\ViewModels\CrowdSourcingProjectGoal;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($openQuestionnaireWhenPageLoads,$project_slug) {
+    public function getCrowdSourcingProjectViewModelForLandingPage($openQuestionnaireWhenPageLoads, $project_slug) {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $questionnaire = null;
         $userResponse = null;
@@ -49,11 +50,27 @@ class CrowdSourcingProjectManager
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
             $allLanguagesForQuestionnaire = $this->questionnaireRepository->getAvailableLanguagesForQuestionnaire($questionnaire);
         }
+
+        $projectGoalVM = $this->getCrowdSourcingProjectGoalViewModel($project->id);
         return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
             $userResponse,
             $allResponses,
             $allLanguagesForQuestionnaire,
-            $openQuestionnaireWhenPageLoads);
+            $openQuestionnaireWhenPageLoads,
+            $projectGoalVM);
+    }
+
+    public function getCrowdSourcingProjectGoalViewModel($projectId) {
+        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId);
+        if(!$questionnaire)
+            return null;
+
+        $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
+        $responsesNeededToReachGoal = $questionnaire->goal - $allResponses->count();
+        $targetAchievedPercentage = round($allResponses->count() / $questionnaire->goal * 100, 1);
+        $goal = $questionnaire->goal;
+
+        return new CrowdSourcingProjectGoal($responsesNeededToReachGoal, $targetAchievedPercentage, $goal);
     }
 
 

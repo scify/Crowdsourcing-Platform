@@ -24,12 +24,14 @@ class UserManager
     private $projectRepository;
     private $mailChimpManager;
     private $gamificationManager;
+    private $crowdSourcingProjectManager;
     public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
                                 QuestionnaireManager $questionnaireManager,
                                 CrowdSourcingProjectRepository $projectRepository,
+                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 MailChimpAdaptor $mailChimpManager, GamificationManager $gamificationManager) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
@@ -37,6 +39,7 @@ class UserManager
         $this->projectRepository = $projectRepository;
         $this->mailChimpManager = $mailChimpManager;
         $this->gamificationManager = $gamificationManager;
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
     function userIsPlatformAdmin($user)
@@ -57,7 +60,8 @@ class UserManager
         $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($userId);
         $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
         $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
-        return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel, $gamificationNextStepViewModel);
+        $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
+        return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
     }
 
     public function getUser($userId)
