@@ -35,7 +35,7 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
 
                                 @if($viewModel->projects->count() === 0)
 
@@ -47,6 +47,11 @@
                                                                                                          src="{{asset($project->logo_path)}}"></a>
                                         </div>
                                     @endforeach
+                                @endif
+                            </div>
+                            <div class="col-md-4">
+                                @if($viewModel->projectGoalVM)
+                                    @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
                                 @endif
                             </div>
                         </div>
