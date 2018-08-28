@@ -76,7 +76,10 @@
                 <div class="collapse navbar-collapse pull-right" id="top-menu-content">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#about">ABOUT</a>
+                            <a href="#about">ABOUT US</a>
+                        </li>
+                        <li>
+                            <a href="#features">FEATURES</a>
                         </li>
                         <li>
                             <a href="#projects">WHAT ARE WE CROWDSOURCING?</a>
@@ -102,6 +105,9 @@
 <section id="motto">
     @include('crowdsourcing-landingpage.partials.motto')
 </section>
+<section id="about">
+    @include('crowdsourcing-landingpage.partials.about-us')
+</section>
 <section id="features">
     @include('crowdsourcing-landingpage.partials.features')
 </section>
@@ -120,6 +126,9 @@
                     <a href="#about">About</a>
                 </div>
                 <div>
+                    <a href="#features">Features</a>
+                </div>
+                <div>
                     <a href="#projects">What are we crowdsourcing?</a>
                 </div>
                 <div>
@@ -131,6 +140,7 @@
                 <div>
                     <a href="https://ecas.org/about-us/" target="_blank">About us</a>
                 </div>
+                <div> <a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a></div>
             </div>
         </div>
         <div class="col-sm-2">
@@ -161,12 +171,7 @@
                     <a href="https://ecas.org/feed/" title="RSS" class="social-btn rss" target="_blank"><span
                                 class="fa fa-rss"></span>
                     </a>
-                </div>
-            </div>
-            <div class="footer-grp">
-                <h3>Support</h3>
-                <div>
-                    <a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a>
+
                 </div>
             </div>
         </div>
