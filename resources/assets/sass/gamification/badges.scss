@@ -21,6 +21,24 @@
       max-width: 100%;
     }
   }
+
+  .locked {
+    background-color: #CECECE !important;
+    opacity: 0.3;
+
+    .badgeName {
+      color: #424242;
+    }
+  }
+
+  .unlocked {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .unlocked:hover {
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.3);
+  }
 }
 
 .badgeContainer {
@@ -65,11 +83,6 @@
 
 .numOfBadges {
   font-weight: bold;
-}
-
-.inactiveBadge {
-  background-color: grey !important;
-  opacity: 0.3;
 }
 
 @media only screen and (max-width : 480px) {
