@@ -13,7 +13,7 @@
         <div class="col-md-12">
                 <div class="box box-success">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Active Projects</h3>
+                        <h3 class="box-title">Project Goal</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
