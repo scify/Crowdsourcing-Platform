@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Features</h2>
+        <h2>About</h2>
         <div class="content-container">
             <p>Who we are: The European Citizen Action Service (ECAS) is an international,
                 Brussels-based non-profit organisation with a pan-European membership and 27 years of experience in empowering citizens.
                 ECAS believes in an inclusive, transparent, citizen-centric and democratic European Union in which citizens’
                 rights are at the heart of decision making at all levels and in which citizens are informed, consulted and can actively participate.
-                <br><br><br>
+                <br>
                 Our Crowdsourcing: Crowdsourcing is a way of solving problems and producing new ideas by connecting online with
                 people that you otherwise wouldn’t reach, giving citizens’ the opportunity to learn from others, collaborate
                 and participate in the decision-making.
