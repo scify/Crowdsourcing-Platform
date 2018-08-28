@@ -56,6 +56,7 @@ class CrowdSourcingProjectManager
             $openQuestionnaireWhenPageLoads);
     }
 
+
     public function updateCrowdSourcingProject($id, $attributes)
     {
         unset($attributes['_token']);

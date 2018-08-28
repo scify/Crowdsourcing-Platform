@@ -55,8 +55,8 @@ class UserManager
         $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
         $responses = $this->questionnaireManager->getResponsesGivenByUser(Auth::id());
         $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($userId);
-        $gamificationBadgesViewModel = $this->gamificationManager->getGamificationLevelsViewModelForUser($userId, $gamificationBadgesForUser);
-        $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($userId, $gamificationBadgesForUser);
+        $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
+        $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
         return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel, $gamificationNextStepViewModel);
     }
 
