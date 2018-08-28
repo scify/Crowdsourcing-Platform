@@ -60,7 +60,8 @@ class GamificationManager {
         $badgeImageName = $gamificationBadge->imageFileName;
         $level = $gamificationBadge->level;
         $badgeMessage = $gamificationBadge->messageForLevel;
-        return new GamificationBadgeLevel($badgeName, $level, $badgeMessage, $badgeImageName);
+        $statusMessage = $gamificationBadge->statusMessage;
+        return new GamificationBadgeLevel($badgeName, $level, $badgeMessage, $badgeImageName, $statusMessage);
     }
 
     public function contributorBadgeExistsInBadges(Collection $badges) {
