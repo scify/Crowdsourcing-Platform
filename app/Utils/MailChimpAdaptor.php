@@ -17,6 +17,7 @@ use Spatie\Newsletter\NewsletterListCollection;
 class MailChimpAdaptor
 {
     private $newsletterManager;
+    private $mailChimpListRepository;
 
     /**
      * MailChimpAdaptor constructor.
@@ -25,17 +26,19 @@ class MailChimpAdaptor
      */
     public function __construct(MailChimpListRepository $mailChimpListRepository)
     {
-        $mailChimpLists = $mailChimpListRepository->all();
+        $this->mailChimpListRepository = $mailChimpListRepository;
+    }
+
+    public function subscribe($email, $listName, $firstName = null)
+    {
+        $mailChimpLists = $this->mailChimpListRepository->all();
         if ($mailChimpLists->count() !== 2)
             return new \Exception('MailChimp list IDs were not configured in the appropriate DB table. Please run the appropriate seeder before trying again.');
         $newsletterListId = $mailChimpLists->where('list_name', 'Newsletter')->first()->list_id;
         $registeredUsersListId = $mailChimpLists->where('list_name', 'Registered Users')->first()->list_id;
         $config = $this->generateNewsletterListConfiguration($newsletterListId, $registeredUsersListId);
         $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
-    }
 
-    public function subscribe($email, $listName, $firstName = null)
-    {
         $mergeFields = [];
         if ($firstName)
             $mergeFields['FNAME'] = $firstName;
