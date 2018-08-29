@@ -8,6 +8,7 @@ use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\GamificationBadgeLevel;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationNextStep;
+use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
 
@@ -30,8 +31,8 @@ class GamificationManager {
 
     public function getGamificationBadgesForUser(int $userId) {
         $contributorBadge = new ContributorBadge($this->questionnaireRepository, $userId);
-        $infuencerBadge = new InfluencerBadge($this->questionnaireShareManager, $userId);
-        $persuaderBadge = new PersuaderBadge($this->questionnaireResponseReferralManager, $userId);
+        $infuencerBadge = new CommunicatorBadge($this->questionnaireShareManager, $userId);
+        $persuaderBadge = new InfluencerBadge($this->questionnaireResponseReferralManager, $userId);
         return new Collection([
             $contributorBadge,
             $infuencerBadge,
@@ -69,11 +70,11 @@ class GamificationManager {
     }
 
     public function influencerBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID);
     }
 
     public function persuaderBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::PERSUADER_BADGE_ID);
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
     }
 
     public function badgeExistsInBadges(Collection $badges, $badgeId) {
@@ -100,7 +101,8 @@ class GamificationManager {
                 $title,
                 $subtitle,
                 $imgFileName,
-                false);
+                false,
+                null);
         } else {
             return $this->getGamificationNextStepViewModelForBadges($unlockedBadges);
         }
@@ -131,13 +133,13 @@ class GamificationManager {
                     $imgFileName = 'persuader.png';
                 } else {
                     $title = 'We are waiting for response!';
-                    $subtitle = 'Once we receive a response, you will get the "Persuader" badge.';
-                    $imgFileName = 'persuader.png';
+                    $subtitle = 'Once we receive a response, you will get the "Influencer" badge.';
+                    $imgFileName = 'influencer.png';
                 }
             } else {
                 $title = 'Thank you for your contribution to the Questionnaire!';
-                $subtitle = 'Invite users to answer by sharing the Questionnaire to Facebook to get the "Influencer" badge.';
-                $imgFileName = 'influencer.png';
+                $subtitle = 'Invite users to answer by sharing the Questionnaire to Facebook to get the "Communicator" badge.';
+                $imgFileName = 'communicator.png';
             }
         } else {
             $title = 'This project has an active Questionnaire!';
@@ -145,11 +147,14 @@ class GamificationManager {
             $imgFileName = 'contributor.png';
         }
 
+        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
+        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
         return new GamificationNextStep(
             $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
             $title,
             $subtitle,
             $imgFileName,
-            true);
+            true,
+            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()));
     }
 }

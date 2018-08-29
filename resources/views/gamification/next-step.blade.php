@@ -17,7 +17,7 @@
     {{--@endif--}}
     @if($nextStepVM->projectHasActiveQuestionnaire)
         <div class="col-md-12">
-            @include('questionnaire.social-share')
+            @include('questionnaire.social-share', ['viewModel' => $nextStepVM->socialShareVM])
         </div>
     @endif
 </div>

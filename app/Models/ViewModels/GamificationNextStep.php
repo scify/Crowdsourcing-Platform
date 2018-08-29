@@ -10,13 +10,15 @@ class GamificationNextStep {
     public $imgFileName;
     public $project;
     public $projectHasActiveQuestionnaire;
+    public $socialShareVM;
 
-    public function __construct($project, $title, $subtitle, $imgFileName, $projectHasActiveQuestionnaire) {
+    public function __construct($project, $title, $subtitle, $imgFileName, $projectHasActiveQuestionnaire, $socialShareVM) {
         $this->project = $project;
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->imgFileName = $imgFileName;
         $this->projectHasActiveQuestionnaire = $projectHasActiveQuestionnaire;
+        $this->socialShareVM = $socialShareVM;
     }
 
 
