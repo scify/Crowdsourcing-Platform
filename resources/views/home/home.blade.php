@@ -206,5 +206,8 @@
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 @include('partials.footer-scripts')
+
+<script src="{{ mix('dist/js/home.js') }}?{{ env("APP_VERSION") }}"></script>
+
 </body>
 </html>
