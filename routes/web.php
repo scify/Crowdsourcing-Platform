@@ -41,6 +41,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/questionnaire/{id}/translate', 'QuestionnaireController@storeQuestionnaireTranslations')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/respond', 'QuestionnaireController@storeQuestionnaireResponse')->name('respond-questionnaire');
+//    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
     Route::post('automatic-translation', 'QuestionnaireController@getAutomaticTranslations')->name('automatic-translation');
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
