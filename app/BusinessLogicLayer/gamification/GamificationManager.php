@@ -31,8 +31,8 @@ class GamificationManager {
 
     public function getGamificationBadgesForUser(int $userId) {
         $contributorBadge = new ContributorBadge($this->questionnaireRepository, $userId);
-        $infuencerBadge = new InfluencerBadge($this->questionnaireShareManager, $userId);
-        $persuaderBadge = new PersuaderBadge($this->questionnaireResponseReferralManager, $userId);
+        $infuencerBadge = new CommunicatorBadge($this->questionnaireShareManager, $userId);
+        $persuaderBadge = new InfluencerBadge($this->questionnaireResponseReferralManager, $userId);
         return new Collection([
             $contributorBadge,
             $infuencerBadge,
@@ -70,11 +70,11 @@ class GamificationManager {
     }
 
     public function influencerBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID);
     }
 
     public function persuaderBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::PERSUADER_BADGE_ID);
+        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
     }
 
     public function badgeExistsInBadges(Collection $badges, $badgeId) {
