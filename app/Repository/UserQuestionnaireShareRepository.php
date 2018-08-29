@@ -20,4 +20,8 @@ class UserQuestionnaireShareRepository extends Repository {
     {
         return $this->getModelInstance()->where('user_id', $userId)->get();
     }
+
+    public function questionnaireShareExists($questionnaireId, $userId) {
+        return UserQuestionnaireShare::where(['questionnaire_id' => $questionnaireId, 'user_id' => $userId])->exists();
+    }
 }
