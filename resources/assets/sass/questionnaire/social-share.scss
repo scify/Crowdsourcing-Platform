@@ -16,4 +16,14 @@
     color: #1DA1F2;
     border-color: #1DA1F2;
   }
+
+  .share-success {
+    margin-top: 20px;
+    font-size: large;
+
+    .close {
+      color: white !important;
+      opacity: 0.8;
+    }
+  }
 }
