@@ -130,7 +130,7 @@ class GamificationManager {
                 if($this->persuaderBadgeExistsInBadges($unlockedBadges)) {
                     $title = 'Thank you for sharing the Questionnaire!';
                     $subtitle = 'Keep inviting people to contribute by sharing the Questionnaire to Facebook to score more points!';
-                    $imgFileName = 'persuader.png';
+                    $imgFileName = 'influencer.png';
                 } else {
                     $title = 'We are waiting for response!';
                     $subtitle = 'Once we receive a response, you will get the "Influencer" badge.';
