@@ -24,5 +24,8 @@ class QuestionnaireSocialShareButtons {
         $this->referrerId = $referrerId;
     }
 
+    public function getSocialShareURL() {
+        return url('/' . $this->project->slug) . urlencode('?open=1&referrerId=' . $this->referrerId . '&questionnaireId=' . $this->questionnaire->id);
+    }
 
 }
