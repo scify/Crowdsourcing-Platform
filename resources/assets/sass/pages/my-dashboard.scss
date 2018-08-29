@@ -14,6 +14,7 @@
     .box-body {
       height: 300px;
       position: relative;
+      padding: 20px;
     }
 
     .badges-container {
@@ -28,4 +29,13 @@
 .progress-container {
   margin: 20px auto;
   float: none !important;
+}
+
+.col-main {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.col-main:first-child {
+  border-right: 1px solid #BDBDBD;
 }

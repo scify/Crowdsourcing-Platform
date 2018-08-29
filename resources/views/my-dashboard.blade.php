@@ -17,7 +17,7 @@
                     </div>
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-6 text-center">
+                            <div class="col-md-6 text-center col-main">
                                 @if($viewModel->projects->count() === 0)
                                     <div class="no-projects-found">There are currently no active projects.
                                     </div>
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-main">
                                 @include('gamification.next-step', ['nextStepVM' => $viewModel->gamificationNextStepVM])
                             </div>
                         </div>
@@ -47,7 +47,7 @@
     </div>
     <div class="row gamification-box">
         <div class="col-md-12" style="position: relative">
-        <div class="col-md-6" style="margin: 10px auto; float: none !important;">
+        <div class="col-md-7" style="margin: 10px auto; float: none !important;">
             <div id="awards">
                 @include('gamification.user-badges', ['badgesVM' => $viewModel->badgesVM])
             </div>
