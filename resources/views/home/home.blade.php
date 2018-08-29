@@ -84,12 +84,7 @@
                         <li>
                             <a href="#projects">WHAT ARE WE CROWDSOURCING?</a>
                         </li>
-                        <li>
-                            <a href="/login">LOGIN</a>
-                        </li>
-                        <li>
-                            <a href="/register">REGISTER</a>
-                        </li>
+                        @include("partials.login-menu-options")
                     </ul>
                 </div>
             </div>
