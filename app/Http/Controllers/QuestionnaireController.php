@@ -9,15 +9,18 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\QuestionnaireManager;
+use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller
 {
     private $questionnaireManager;
+    private $questionnaireShareManager;
 
-    public function __construct(QuestionnaireManager $questionnaireManager)
+    public function __construct(QuestionnaireManager $questionnaireManager, UserQuestionnaireShareManager $questionnaireShareManager)
     {
         $this->questionnaireManager = $questionnaireManager;
+        $this->questionnaireShareManager = $questionnaireShareManager;
     }
 
     public function manageQuestionnaires($id)
@@ -79,5 +82,13 @@ class QuestionnaireController extends Controller
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
         return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/1/questionnaires')]);
+    }
+
+    public function storeQuestionnaireShare(Request $request) {
+        $userId = \Auth::id();
+        $values = $request->all();
+        $questionnaireId = $values['questionnaire-id'];
+        $this->questionnaireShareManager->createQuestionnaireShare($userId, $questionnaireId);
+        return response()->json(['status' => '__SUCCESS']);
     }
 }

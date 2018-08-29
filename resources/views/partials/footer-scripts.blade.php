@@ -8,5 +8,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="{{ mix('dist/js/common.js')}}?{{env("APP_VERSION")}}"></script> {{-- our application common code --}}
-
 @stack('scripts')

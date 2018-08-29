@@ -16,4 +16,8 @@ class UserQuestionnaireShareManager {
     public function getQuestionnairesSharedByUser($userId) {
         return $this->questionnaireShareRepository->getUserQuestionnaireSharesForUser($userId);
     }
+
+    public function createQuestionnaireShare(int $userId, $questionnaireId) {
+        return $this->questionnaireShareRepository->create(['user_id' => $userId, 'questionnaire_id' => $questionnaireId]);
+    }
 }
