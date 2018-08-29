@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
 
 class CrowdSourcingProjectController extends Controller
 {
 
     private $crowdSourcingProjectManager;
+    private $questionnaireShareManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager)
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager, UserQuestionnaireShareManager $questionnaireShareManager)
     {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->questionnaireShareManager = $questionnaireShareManager;
     }
 
     public function viewReports($id)
@@ -58,6 +61,7 @@ class CrowdSourcingProjectController extends Controller
     public function showLandingPage(Request $request, $project_slug)
     {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->open ==1, $project_slug);
+        $this->questionnaireShareManager->handleQuestionnaireShare($request->all());
         if ($viewModel->project)
             return view('landingpages.layout')->with(['viewModel' => $viewModel]);
         abort(404);

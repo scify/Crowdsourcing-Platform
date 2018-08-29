@@ -9,16 +9,30 @@
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-4 align-right">
-            <button type="button"
-                    data-href="{{ url('/' . $viewModel->project->slug) }}"
-                    data-layout="button_count"
-                    class="fb-share-button facebook btn btn-lg btn-default">
+            <a target="_blank"
+               href="https://www.facebook.com/sharer/sharer.php?u={{ $viewModel->getSocialShareURL() }}"
+                    class="social-share-button fb-share-button facebook btn btn-lg btn-default">
                 <i class="fa fa-facebook" aria-hidden="true"></i>Facebook
-            </button>
+            </a>
         </div>
         <div class="col-md-4 align-left">
-            <button type="button" class="twitter btn btn-lg btn-default"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</button>
+            <a target="_blank" href="https://twitter.com/share?url={{ $viewModel->getSocialShareURL() }}"
+               class="social-share-button twitter-share-button twitter btn btn-lg btn-default">
+                <i class="fa fa-twitter" aria-hidden="true"></i>Twitter
+            </a>
         </div>
         <div class="col-md-2"></div>
     </div>
+
+    <div class="col-md-12 share-success hidden">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            Thank you for sharing the Questionnaire! <br>
+            You will soon receive an e-mail with your badge!
+        </div>
+    </div>
 </div>
+
+@push('scripts')
+    <script src="{{ mix('dist/js/questionnaireSocialShare.js')}}?{{env("APP_VERSION")}}"></script>
+@endpush
