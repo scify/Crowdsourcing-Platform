@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
     <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
-    <link rel="stylesheet" href="{{ asset('dist/css/crowdsourcing-landingpage.css') }}?{{env("APP_VERSION")}}">
+    <link rel="stylesheet" href="{{ asset('dist/css/home.css') }}?{{env("APP_VERSION")}}">
 
     <link rel="shortcut icon" href="https://ecas.org/wp-content/uploads/2015/05/favicon_32.png">
     <link rel="apple-touch-icon-precomposed" href="https://ecas.org/wp-content/uploads/2015/05/favicon_57.png">
@@ -103,16 +103,16 @@
     </div>
 @endif
 <section id="motto">
-    @include('crowdsourcing-landingpage.partials.motto')
+    @include('home.partials.motto')
 </section>
 <section id="about">
-    @include('crowdsourcing-landingpage.partials.about-us')
+    @include('home.partials.about-us')
 </section>
 <section id="features">
-    @include('crowdsourcing-landingpage.partials.features')
+    @include('home.partials.features')
 </section>
 <section id="projects">
-    @include('crowdsourcing-landingpage.partials.projects')
+    @include('home.partials.projects')
 </section>
 <section id="newsletter">
     @include('partials.signup_to_newsletter')
@@ -206,5 +206,8 @@
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 @include('partials.footer-scripts')
+
+<script src="{{ mix('dist/js/home.js') }}?{{ env("APP_VERSION") }}"></script>
+
 </body>
 </html>
