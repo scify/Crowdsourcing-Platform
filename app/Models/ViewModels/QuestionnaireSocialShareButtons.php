@@ -8,15 +8,18 @@ use App\Models\Questionnaire;
 class QuestionnaireSocialShareButtons {
 
     public $questionnaire;
+    public $project;
     public $referrerId;
 
     /**
      * QuestionnaireSocialShareButtons constructor.
+     * @param $project \App\Models\CrowdSourcingProject the project the questionnaire belongs to
      * @param $questionnaire Questionnaire the questionnaire to be shared
      * @param $referrerId int (optional) the id of the user that will share
      * the questionnaire
      */
-    public function __construct($questionnaire, $referrerId = null) {
+    public function __construct($project, $questionnaire, $referrerId = null) {
+        $this->project = $project;
         $this->questionnaire = $questionnaire;
         $this->referrerId = $referrerId;
     }
