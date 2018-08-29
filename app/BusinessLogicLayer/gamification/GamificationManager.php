@@ -8,6 +8,7 @@ use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\GamificationBadgeLevel;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationNextStep;
+use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
 
@@ -100,7 +101,8 @@ class GamificationManager {
                 $title,
                 $subtitle,
                 $imgFileName,
-                false);
+                false,
+                null);
         } else {
             return $this->getGamificationNextStepViewModelForBadges($unlockedBadges);
         }
@@ -145,11 +147,14 @@ class GamificationManager {
             $imgFileName = 'contributor.png';
         }
 
+        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
+        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
         return new GamificationNextStep(
             $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
             $title,
             $subtitle,
             $imgFileName,
-            true);
+            true,
+            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()));
     }
 }
