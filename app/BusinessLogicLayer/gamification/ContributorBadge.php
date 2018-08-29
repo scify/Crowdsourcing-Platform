@@ -14,7 +14,7 @@ class ContributorBadge extends GamificationBadge {
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
         parent::__construct("Contributor",
             "contributor.png",
-            "Contribute your answer to a questionnaire to get this badge.",
+            "Gain this badge, by answering to a questionnaire!",
             $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count());
     }
 
