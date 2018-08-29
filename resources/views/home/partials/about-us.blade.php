@@ -14,13 +14,12 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <h2 class="text-center">Our Crowdsourcing</h2>
+                    <h2 class="text-center">Crowdsourcing</h2>
                     <p>
-                        Crowdsourcing is a way of solving problemsand producing new ideas
+                        Crowdsourcing is a way of solving problems and producing new ideas
                         by connecting online with
                         people that you otherwise wouldn’t reach, giving citizens’ the <strong>opportunity to learn from others,
-                        collaborate
-                            and participate in the decision-making.</strong>
+                        collaborate and participate in the decision-making.</strong>
                     </p>
 
                 </div>
