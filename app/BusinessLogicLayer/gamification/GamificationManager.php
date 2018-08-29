@@ -133,13 +133,13 @@ class GamificationManager {
                     $imgFileName = 'persuader.png';
                 } else {
                     $title = 'We are waiting for response!';
-                    $subtitle = 'Once we receive a response, you will get the "Persuader" badge.';
-                    $imgFileName = 'persuader.png';
+                    $subtitle = 'Once we receive a response, you will get the "Influencer" badge.';
+                    $imgFileName = 'influencer.png';
                 }
             } else {
                 $title = 'Thank you for your contribution to the Questionnaire!';
-                $subtitle = 'Invite users to answer by sharing the Questionnaire to Facebook to get the "Influencer" badge.';
-                $imgFileName = 'influencer.png';
+                $subtitle = 'Invite users to answer by sharing the Questionnaire to Facebook to get the "Communicator" badge.';
+                $imgFileName = 'communicator.png';
             }
         } else {
             $title = 'This project has an active Questionnaire!';
