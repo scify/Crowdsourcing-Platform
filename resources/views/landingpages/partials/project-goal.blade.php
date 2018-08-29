@@ -1,5 +1,5 @@
 <div class="activity-title wrapper-title">
-    <p> 495 answers needed to reach our goal {{--Target: {{$projectGoalVM->goal}} responses--}}</p>
+    <p> 495 answers left to reach our goal {{--Target: {{$projectGoalVM->goal}} responses--}}</p>
 </div>
 <div class="progress-container">
     <div id="progress-bar-circle"

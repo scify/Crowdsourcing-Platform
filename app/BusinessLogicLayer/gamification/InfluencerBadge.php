@@ -16,7 +16,7 @@ class InfluencerBadge extends GamificationBadge {
         $numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
         parent::__construct("Influencer",
             "influencer.png",
-            "When someone clicks on your shared questionnaire and answers, you will get this badge",
+            "In order to gain this badge, people have to respond to your social posts and contribute!",
             $numberOfActionsPerformed, $userId, $pointsPerAction);
     }
 
