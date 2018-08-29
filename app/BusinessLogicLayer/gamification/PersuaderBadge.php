@@ -14,7 +14,7 @@ class PersuaderBadge extends GamificationBadge {
         $pointsPerAction = 5;
         $this->badgeID = GamificationBadgeIdsEnum::PERSUADER_BADGE_ID;
         $numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
-        parent::__construct("Persuader",
+        parent::__construct("Influencer",
             "persuader.png",
             "When someone clicks on your shared questionnaire and answers, you will get this badge",
             $numberOfActionsPerformed, $userId, $pointsPerAction);
