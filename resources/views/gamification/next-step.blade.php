@@ -15,7 +15,9 @@
             {{--<a href="{{url("/" . $nextStepVM->project->slug . "#questionnaire")}}" class="btn btn-primary btn-lg nextStepActionBtn">Go to the Questionnaire</a>--}}
         {{--</div>--}}
     {{--@endif--}}
-    <div class="col-md-12">
-        @include('questionnaire.social-share')
-    </div>
+    @if($nextStepVM->projectHasActiveQuestionnaire)
+        <div class="col-md-12">
+            @include('questionnaire.social-share')
+        </div>
+    @endif
 </div>
