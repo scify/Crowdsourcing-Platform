@@ -12,9 +12,9 @@ class InfluencerBadge extends GamificationBadge {
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
         $numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
-        parent::__construct("Influencer",
+        parent::__construct("Communicator",
             "influencer.png",
-            "Share the questionnaire to Facebook to get this badge",
+            "Gain this badge, by inviting more people to participate. Share to Facebook and Twitter!",
             $numberOfActionsPerformed, $userId);
     }
 
