@@ -9,7 +9,12 @@
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-4 align-right">
-            <button type="button" class="facebook btn btn-lg btn-default"><i class="fa fa-facebook" aria-hidden="true"></i>Facebook</button>
+            <button type="button"
+                    data-href="{{ url('/' . $viewModel->project->slug) }}"
+                    data-layout="button_count"
+                    class="fb-share-button facebook btn btn-lg btn-default">
+                <i class="fa fa-facebook" aria-hidden="true"></i>Facebook
+            </button>
         </div>
         <div class="col-md-4 align-left">
             <button type="button" class="twitter btn btn-lg btn-default"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</button>
