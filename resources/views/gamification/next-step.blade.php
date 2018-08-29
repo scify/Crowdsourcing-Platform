@@ -10,9 +10,12 @@
             <img class="nextStepImg" src="{{asset("images/badges/" . $nextStepVM->imgFileName)}}">
         </div>
     </div>
-    @if($nextStepVM->projectHasActiveQuestionnaire)
-        <div class="col-md-12">
-            <a href="{{url("/" . $nextStepVM->project->slug . "#questionnaire")}}" class="btn btn-primary btn-lg nextStepActionBtn">Go to the Questionnaire</a>
-        </div>
-    @endif
+    {{--@if($nextStepVM->projectHasActiveQuestionnaire)--}}
+        {{--<div class="col-md-12">--}}
+            {{--<a href="{{url("/" . $nextStepVM->project->slug . "#questionnaire")}}" class="btn btn-primary btn-lg nextStepActionBtn">Go to the Questionnaire</a>--}}
+        {{--</div>--}}
+    {{--@endif--}}
+    <div class="col-md-12">
+        @include('questionnaire.social-share')
+    </div>
 </div>
