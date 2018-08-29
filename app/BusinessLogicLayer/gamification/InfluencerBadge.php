@@ -2,23 +2,25 @@
 
 namespace App\BusinessLogicLayer\gamification;
 
-use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+
+use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
 
 class InfluencerBadge extends GamificationBadge {
 
-    private $questionnaireShareManager;
+    private $questionnaireResponseReferralManager;
 
-    public function __construct(UserQuestionnaireShareManager $questionnaireShareManager, $userId) {
-        $this->questionnaireShareManager = $questionnaireShareManager;
+    public function __construct(QuestionnaireResponseReferralManager $questionnaireResponseReferralManager, int $userId) {
+        $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
+        $pointsPerAction = 5;
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
-        $numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
-        parent::__construct("Communicator",
+        $numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
+        parent::__construct("Influencer",
             "influencer.png",
-            "Gain this badge, by inviting more people to participate. Share to Facebook and Twitter!",
-            $numberOfActionsPerformed, $userId);
+            "When someone clicks on your shared questionnaire and answers, you will get this badge",
+            $numberOfActionsPerformed, $userId, $pointsPerAction);
     }
 
-    protected function getBadgeMessageForLevel() {
-        return 'You have shared ' . $this->numberOfActionsPerformed . ' questionnaires';
+    public function getBadgeMessageForLevel() {
+        return 'You have invited ' . $this->numberOfActionsPerformed . ' people to answer';
     }
 }
