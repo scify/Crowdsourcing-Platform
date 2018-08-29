@@ -23,6 +23,6 @@ class HomeController extends Controller
     public function index()
     {
         $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjects();
-        return view('crowdsourcing-landingpage.layout')->with(['projects' => $projects]);
+        return view('home.home')->with(['projects' => $projects]);
     }
 }

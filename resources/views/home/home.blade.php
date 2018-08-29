@@ -103,16 +103,16 @@
     </div>
 @endif
 <section id="motto">
-    @include('crowdsourcing-landingpage.partials.motto')
+    @include('home.partials.motto')
 </section>
 <section id="about">
-    @include('crowdsourcing-landingpage.partials.about-us')
+    @include('home.partials.about-us')
 </section>
 <section id="features">
-    @include('crowdsourcing-landingpage.partials.features')
+    @include('home.partials.features')
 </section>
 <section id="projects">
-    @include('crowdsourcing-landingpage.partials.projects')
+    @include('home.partials.projects')
 </section>
 <section id="newsletter">
     @include('partials.signup_to_newsletter')
