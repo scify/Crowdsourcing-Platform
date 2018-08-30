@@ -52,10 +52,10 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
             ->line('Thank you for responding to our questionnaire with title "' . $this->questionnaire->title . '". It means a lot!');
         if ($this->badge) {
             $message
-                ->line($this->badge->getEmailBody())
-                ->line('To see the new badge, visit your Dashboard.');
+                ->line($this->badge->getEmailBody());
         }
-        $message->line('Visit your Dashboard, to see what\'s next.');
+        $message->line('<p style="text-align: center"><b>Are you ready for the next badge?</b>
+                            <br>Visit your dashboard to see next actions and unlock new badges</p>');
         $message->action('Go to Dashboard', url('/my-dashboard'))
             ->line('Thank you for using our application!');
         return $message;
