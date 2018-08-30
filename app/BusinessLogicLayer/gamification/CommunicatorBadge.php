@@ -23,16 +23,6 @@ class CommunicatorBadge extends GamificationBadge {
         return 'You have shared ' . $this->numberOfActionsPerformed . ' questionnaires';
     }
 
-    public function getHTMLForCompletedAction() {
-        return (object)[
-            'badgeName' => 'Communicator (Level ' . $this->level . ')',
-            'html' =>
-                '<p>Thank you for inviting users to contribute!</p><p>The Communicator badge now belongs to you!</p>
-                        <img class="gamification-badge" src="' . asset('images/badges/communicator.png') . '">
-                        <p>Communicator <span class="level">(Level ' . $this->level . ')</span></p>'
-        ];
-    }
-
     public function getEmailBody() {
         // TODO: Implement getEmailBody() method.
     }

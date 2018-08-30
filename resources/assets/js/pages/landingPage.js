@@ -31,8 +31,8 @@ let ProgressBar = require('progressbar.js');
                             $(".loader-wrapper").addClass('hidden');
                             let questionnaireResponded = $("#questionnaire-responded");
                             // add badge fetched from response to the appropriate container
-                            if (response.badge)
-                                questionnaireResponded.find('.badge-container').html(response.badge.html);
+                            if (response.status === "__SUCCESS" && response.badgeHTML)
+                                questionnaireResponded.find('.badge-container').html(response.badgeHTML);
                             questionnaireResponded.modal({backdrop: 'static'});
                         }
                     });
