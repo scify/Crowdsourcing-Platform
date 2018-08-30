@@ -112,6 +112,12 @@
 
     </div>
 </footer>
+
+<div id="pyro" class="">
+    <div class="before"></div>
+    <div class="after"></div>
+</div>
+
 <div class="loader-wrapper hidden">
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>

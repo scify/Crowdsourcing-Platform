@@ -34,6 +34,7 @@ let ProgressBar = require('progressbar.js');
                             if (response.status === "__SUCCESS" && response.badgeHTML)
                                 questionnaireResponded.find('.badge-container').html(response.badgeHTML);
                             questionnaireResponded.modal({backdrop: 'static'});
+                            $("#pyro").addClass("pyro-on");
                         }
                     });
                 });
