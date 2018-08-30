@@ -102,7 +102,8 @@ class GamificationManager {
                 $subtitle,
                 $imgFileName,
                 false,
-                null);
+                null,
+                false);
         } else {
             return $this->getGamificationNextStepViewModelForBadges($unlockedBadges);
         }
@@ -155,6 +156,13 @@ class GamificationManager {
             $subtitle,
             $imgFileName,
             true,
-            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()));
+            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()),
+            $this->crowdSourcingProjectManager->userHasAlreadyAnsweredTheActiveQuestionnaire(\Auth::id())
+            );
+    }
+
+    public function getContributorBadgeAfterActionForUser($userId, $projectId) {
+        $contributorBadge = new ContributorBadge($this->questionnaireRepository, $userId);
+        return $contributorBadge->getHTMLForCompletedAction();
     }
 }
