@@ -25,6 +25,7 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
 
 mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/gamification/badges.scss', 'public/dist/css')
+    .sass('resources/assets/sass/gamification/badge-single.scss', 'public/dist/css')
     .sass('resources/assets/sass/gamification/next-step.scss', 'public/dist/css')
     .sass('resources/assets/sass/questionnaire/social-share.scss', 'public/dist/css')
     .sass('resources/assets/sass/auth.scss', 'public/dist/css')
