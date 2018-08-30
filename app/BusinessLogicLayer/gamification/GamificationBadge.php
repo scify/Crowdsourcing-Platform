@@ -12,6 +12,7 @@ abstract class GamificationBadge {
     public $messageForLevel;
     public $imageFileName;
     public $statusMessage;
+    // an HTML snippet to show after a badge action has been completed
 
     public function __construct($name, $imageFileName, $requiredActionMessage, $numberOfActionsPerformed, $pointsPerAction = 1) {
         $this->name = $name;
@@ -24,6 +25,8 @@ abstract class GamificationBadge {
     }
 
     abstract protected function getBadgeMessageForLevel();
+
+    abstract public function getHTMLForCompletedAction();
 
     private function calculateLevel() {
         return $this->numberOfActionsPerformed * $this->pointsPerAction;
