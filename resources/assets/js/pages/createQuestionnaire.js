@@ -1,15 +1,26 @@
-let SurveyEditor = require('surveyjs-editor');
+/*
+
+*/
+
 
 (function () {
     let editor;
 
     let initQuestionnaireEditor = function () {
         // documentation may be found here: https://surveyjs.io/Documentation/Builder
+        //add a  guid property to the survey object, this matches the database field that uniquely identifies the question
+        Survey
+            .JsonObject
+            .metaData
+            .addProperty("questionbase", {
+                name: "guid:string"
+            });
+
         SurveyEditor.StylesManager.applyTheme("darkblue");
         let editorOptions = {
             generateValidJSON: true,
             showJSONEditorTab: false,
-            showTestSurveyTab: false,
+            showTestSurveyTab: true,
             showEmbededSurveyTab: false,
             showPropertyGrid: false,
             toolbarItems: {visible: false},
@@ -18,11 +29,12 @@ let SurveyEditor = require('surveyjs-editor');
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
         let json = $("#questionnaire-editor").data('json');
+
         if (json !== '')
             editor.text = JSON.stringify(json);
         // disable "Fast Entry" for choices
         editor.onSetPropertyEditorOptions.add(function (survey, options) {
-            options.editorOptions.showTextView = false;
+             options.editorOptions.showTextView = false;
         });
     };
 
@@ -58,9 +70,13 @@ let SurveyEditor = require('surveyjs-editor');
     let addGuidsToContent = function (content) {
         let json = JSON.parse(content);
         let questions = json.pages[0].elements;
+        console.log(json);
         for (let i = 0; i < questions.length; i++) {
-            if (!questions[i].guid)
+            if (!questions[i].guid) {
+
                 questions[i].guid = getGuid();
+            }
+
             if (questions[i].choices) {
                 let answers = json.pages[0].elements[i].choices;
                 for (let j = 0; j < answers.length; j++) {
@@ -70,8 +86,10 @@ let SurveyEditor = require('surveyjs-editor');
                         answers[j].text = originalValue;
                         answers[j].value = originalValue;
                     }
-                    if (!answers[j].guid)
+                    if (!answers[j].guid) {
                         answers[j].guid = getGuid();
+                    }
+
                 }
             }
         }
@@ -97,40 +115,40 @@ let SurveyEditor = require('surveyjs-editor');
             });
         else {
             $.ajax({
-                method: 'post',
-                url: self.data('url'),
-                data: {title, description, goal, language, project, content},
-                success: function (response) {
-                    if (response.status === '__SUCCESS') {
-                        swal({
-                            title: "Success!",
-                            text: "The questionnaire has been successfully stored.",
-                            type: "success",
-                            confirmButtonClass: "btn-success",
-                            confirmButtonText: "OK",
-                        }, function () {
-                            window.location = response.redirect_url;
-                        });
-                    } else {
-                        swal({
-                            title: "Oops!",
-                            text: "An error occurred, please try again later.",
-                            type: "error",
-                            confirmButtonClass: "btn-danger",
-                            confirmButtonText: "OK",
-                        });
-                    }
-                },
-                error: function () {
-                    swal({
-                        title: "Oops!",
-                        text: "An error occurred, please try again later.",
-                        type: "error",
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "OK",
-                    });
-                }
-            });
+                 method: 'post',
+                 url: self.data('url'),
+                 data: {title, description, goal, language, project, content},
+                 success: function (response) {
+                     if (response.status === '__SUCCESS') {
+                         swal({
+                             title: "Success!",
+                             text: "The questionnaire has been successfully stored.",
+                             type: "success",
+                             confirmButtonClass: "btn-success",
+                             confirmButtonText: "OK",
+                         }, function () {
+                             window.location = response.redirect_url;
+                         });
+                     } else {
+                         swal({
+                             title: "Oops!",
+                             text: "An error occurred, please try again later.",
+                             type: "error",
+                             confirmButtonClass: "btn-danger",
+                             confirmButtonText: "OK",
+                         });
+                     }
+                 },
+                 error: function () {
+                     swal({
+                         title: "Oops!",
+                         text: "An error occurred, please try again later.",
+                         type: "error",
+                         confirmButtonClass: "btn-danger",
+                         confirmButtonText: "OK",
+                     });
+                 }
+             });
         }
     };
 
