@@ -23,4 +23,14 @@ class InfluencerBadge extends GamificationBadge {
     public function getBadgeMessageForLevel() {
         return 'You have invited ' . $this->numberOfActionsPerformed . ' people to answer';
     }
+
+    public function getHTMLForCompletedAction() {
+        return (object)[
+            'badgeName' => 'Influencer (Level ' . $this->level . ')',
+            'html' =>
+                '<p>Thank you for inviting users to contribute!</p><p>The Influencer badge now belongs to you!</p>
+                        <img class="gamification-badge" src="' . asset('images/badges/influencer.png') . '">
+                        <p>Influencer <span class="level">(Level ' . $this->level . ')</span></p>'
+        ];
+    }
 }

@@ -93,4 +93,12 @@ class CrowdSourcingProjectManager
     public function projectHasActiveQuestionnaire($projectId) {
         return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId) !== null;
     }
+
+    public function userHasAlreadyAnsweredTheActiveQuestionnaire($userId, $projectId = self::DEFAULT_PROJECT_ID) {
+        $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId);
+        if(!$activeQuestionnaire)
+            return false;
+        $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($activeQuestionnaire->id, $userId);
+        return $userResponse !== null;
+    }
 }
