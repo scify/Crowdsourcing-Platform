@@ -12,6 +12,7 @@ class ContributorBadge extends GamificationBadge {
     public function __construct(QuestionnaireRepository $questionnaireRepository, int $userId) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
+        $this->color = '#3F51B5';
         parent::__construct("Contributor",
             "contributor.png",
             "Gain this badge, by answering to a questionnaire!",
@@ -22,13 +23,9 @@ class ContributorBadge extends GamificationBadge {
         return 'You have answered ' . $this->numberOfActionsPerformed . ' questionnaires';
     }
 
-    public function getHTMLForCompletedAction() {
-        return (object)[
-            'badgeName' => 'Contributor (Level ' . $this->level . ')',
-            'html' =>
-                '<p>Thank you for your contribution!</p><p>The Contributor badge now belongs to you!</p>
-                        <img class="gamification-badge" src="' . asset('images/badges/contributor.png') . '">
-                        <p>Contributor <span class="level">(Level ' . $this->level . ')</span></p>'
-            ];
+    public function getEmailBody() {
+        if($this->level == 1)
+            return 'You have also unlocked a new badge:';
+        return 'You are a Level <b>' . $this->level . '</b> Contributor! Keep Going!';
     }
 }
