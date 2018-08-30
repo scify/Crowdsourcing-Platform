@@ -47,7 +47,7 @@
                             <label for="description">Description - Motto</label>
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
-                            <textarea class="form-control summernote" name="description" id="description"
+                            <textarea class="form-control" name="description" id="description"
                                       placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
                         </div>
                     </div>
@@ -101,5 +101,11 @@
 @stop
 
 @push('scripts')
+
+    {{--todo: move to webpack--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.41/survey.ko.min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.41/surveyeditor.min.js"></script>
+
     <script src="{{asset('dist/js/createQuestionnaire.js')}}"></script>
 @endpush
