@@ -35,10 +35,10 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-    <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}?{{env("APP_VERSION")}}">
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
     <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
 
     <link rel="shortcut icon" href="https://ecas.org/wp-content/uploads/2015/05/favicon_32.png">
     <link rel="apple-touch-icon-precomposed" href="https://ecas.org/wp-content/uploads/2015/05/favicon_57.png">
@@ -122,6 +122,6 @@
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 @include('partials.footer-scripts')
-<script src="{{asset('dist/js/landingPage.js')}}"></script>
+<script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
 </body>
 </html>
