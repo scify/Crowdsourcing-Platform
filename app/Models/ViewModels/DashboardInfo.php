@@ -19,8 +19,8 @@ class DashboardInfo
     public function __construct($projects,
                                 $responses,
                                 GamificationBadgesWithLevels $badgesVM,
-                                GamificationNextStep $gamificationNextStepViewModel,
-                                CrowdSourcingProjectGoal $projectGoalVM) {
+                                $gamificationNextStepViewModel,
+                                $projectGoalVM) {
         $this->projects = $this->formatProjectsInfoForDashboardDisplay($projects, $responses);
         $this->badgesVM = $badgesVM;
         $this->gamificationNextStepVM = $gamificationNextStepViewModel;
