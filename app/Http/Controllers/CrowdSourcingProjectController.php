@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,14 @@ class CrowdSourcingProjectController extends Controller
 
     private $crowdSourcingProjectManager;
     private $questionnaireShareManager;
+    private $userManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager, UserQuestionnaireShareManager $questionnaireShareManager)
-    {
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
+                                UserQuestionnaireShareManager $questionnaireShareManager,
+                                UserManager $userManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
+        $this->userManager = $userManager;
     }
 
     public function viewReports($id)
@@ -58,11 +62,12 @@ class CrowdSourcingProjectController extends Controller
     }
 
 
-    public function showLandingPage(Request $request, $project_slug)
-    {
+    public function showLandingPage(Request $request, $project_slug) {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->open ==1, $project_slug);
         if(isset($request->questionnaireId) && isset($request->referrerId))
             $this->questionnaireShareManager->handleQuestionnaireShare($request->all());
+        if(isset($request->referrerId))
+            $this->userManager->setReferrerIdToWebSession($request->referrerId);
         if ($viewModel->project)
             return view('landingpages.layout')->with(['viewModel' => $viewModel]);
         abort(404);

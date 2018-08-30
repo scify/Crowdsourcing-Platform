@@ -25,6 +25,7 @@ class UserManager
     private $mailChimpManager;
     private $gamificationManager;
     private $crowdSourcingProjectManager;
+    private $webSessionManager;
     public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository,
@@ -32,7 +33,9 @@ class UserManager
                                 QuestionnaireManager $questionnaireManager,
                                 CrowdSourcingProjectRepository $projectRepository,
                                 CrowdSourcingProjectManager $crowdSourcingProjectManager,
-                                MailChimpAdaptor $mailChimpManager, GamificationManager $gamificationManager) {
+                                MailChimpAdaptor $mailChimpManager,
+                                GamificationManager $gamificationManager,
+                                WebSessionManager $webSessionManager) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->questionnaireManager = $questionnaireManager;
@@ -40,6 +43,7 @@ class UserManager
         $this->mailChimpManager = $mailChimpManager;
         $this->gamificationManager = $gamificationManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->webSessionManager = $webSessionManager;
     }
 
     function userIsPlatformAdmin($user)
@@ -173,5 +177,11 @@ class UserManager
     {
         $data['password'] = bcrypt($data['password']);
         return $this->userRepository->create($data);
+    }
+
+    public function setReferrerIdToWebSession($referrerId) {
+        $referrer = $this->getUser($referrerId);
+        if($referrer)
+            $this->webSessionManager->setReferrerId($referrerId);
     }
 }
