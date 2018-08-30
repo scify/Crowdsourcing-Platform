@@ -13,7 +13,9 @@ use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Notifications\QuestionnaireResponded;
+use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireRepository;
+use App\Repository\UserRepository;
 use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,15 +25,24 @@ class QuestionnaireManager
     private $languageManager;
     private $translator;
     private $gamificationManager;
+    private $webSessionManager;
+    private $questionnaireResponseReferralManager;
+    private $userRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
                                 Translator $translator,
-                                GamificationManager $gamificationManager) {
+                                GamificationManager $gamificationManager,
+                                WebSessionManager $webSessionManager,
+                                UserRepository $userRepository,
+                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
         $this->gamificationManager = $gamificationManager;
+        $this->webSessionManager = $webSessionManager;
+        $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
+        $this->userRepository = $userRepository;
     }
 
     public function getCreateEditQuestionnaireViewModel($id)
@@ -82,15 +93,24 @@ class QuestionnaireManager
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
-    public function storeQuestionnaireResponseAndGetBadge($data)
-    {
+    public function storeQuestionnaireResponseAndGetBadge($data) {
         $response = json_decode($data['response']);
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->findQuestionnaire($data['questionnaire_id']);
         $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
-        $badge = $this->getNewContributorBadgeForLoggedInUser($questionnaire->project_id);
-        $user->notify(new QuestionnaireResponded($questionnaire, $badge, $this->gamificationManager->getBadgeViewModel($badge)));
-        return $this->gamificationManager->getBadgeViewModel($badge);
+        $contributorBadge = $this->gamificationManager->getContributorBadgeForUser($user->id);
+        $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, $this->gamificationManager->getBadgeViewModel($contributorBadge)));
+        // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+        $referrerId = $this->webSessionManager->getReferredId();
+        if($referrerId) {
+            $referrer = $this->userRepository->getUser($referrerId);
+            if($referrer) {
+                $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
+                $influencerBadge = $this->gamificationManager->getInfluencerBadgeForUser($referrer->id);
+                $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, $this->gamificationManager->getBadgeViewModel($influencerBadge)));
+            }
+        }
+        return $this->gamificationManager->getBadgeViewModel($contributorBadge);
     }
 
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
@@ -175,9 +195,5 @@ class QuestionnaireManager
             array_push($result, $language[0]);
         }
         return $result;
-    }
-
-    private function getNewContributorBadgeForLoggedInUser($projectId) {
-        return $this->gamificationManager->getContributorBadgeForUser(Auth::id(), $projectId);
     }
 }

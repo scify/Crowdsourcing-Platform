@@ -26,6 +26,8 @@ class InfluencerBadge extends GamificationBadge {
     }
 
     public function getEmailBody() {
-        // TODO: Implement getEmailBody() method.
+        if($this->level == 1)
+            return 'You have also unlocked a new badge:';
+        return 'You are a Level <b>' . $this->level . '</b> Influencer! Keep Going!';
     }
 }
