@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\BusinessLogicLayer\gamification\GamificationBadge;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,18 +13,18 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
     use Queueable;
 
     private $questionnaire;
-    private $badgeName;
+    private $badge;
 
     /**
      * Create a new notification instance.
      *
      * @param $questionnaire
-     * @param $badgeName
+     * @param GamificationBadge $badge
      */
-    public function __construct($questionnaire, $badgeName)
+    public function __construct($questionnaire, GamificationBadge $badge)
     {
         $this->questionnaire = $questionnaire;
-        $this->badgeName = $badgeName;
+        $this->badge = $badge;
     }
 
     /**
@@ -49,13 +50,12 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
             ->subject('ECAS | Thank you for your contribution!')
             ->greeting('Hello!')
             ->line('Thank you for responding to our questionnaire with title "' . $this->questionnaire->title . '". It means a lot!');
-        if ($this->badgeName) {
+        if ($this->badge) {
             $message
-                ->line('You have also unlocked a new badge: "' . $this->badgeName . '". Impressive!')
+                ->line($this->badge->getEmailBody())
                 ->line('To see the new badge, visit your Dashboard.');
-        } else {
-            $message->line('Visit your Dashboard, to see what\'s next.');
         }
+        $message->line('Visit your Dashboard, to see what\'s next.');
         $message->action('Go to Dashboard', url('/my-dashboard'))
             ->line('Thank you for using our application!');
         return $message;

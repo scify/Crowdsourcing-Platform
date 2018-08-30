@@ -33,4 +33,8 @@ class InfluencerBadge extends GamificationBadge {
                         <p>Influencer <span class="level">(Level ' . $this->level . ')</span></p>'
         ];
     }
+
+    public function getEmailBody() {
+        // TODO: Implement getEmailBody() method.
+    }
 }

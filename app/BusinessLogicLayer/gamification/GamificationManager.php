@@ -161,8 +161,8 @@ class GamificationManager {
             );
     }
 
-    public function getContributorBadgeAfterActionForUser($userId, $projectId) {
+    public function getContributorBadgeForUser($userId, $projectId) {
         $contributorBadge = new ContributorBadge($this->questionnaireRepository, $userId);
-        return $contributorBadge->getHTMLForCompletedAction();
+        return $contributorBadge;
     }
 }
