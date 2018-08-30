@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\BusinessLogicLayer\gamification\GamificationBadge;
+use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,18 +14,14 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
     use Queueable;
 
     private $questionnaire;
-    private $badgeName;
+    private $badge;
+    private $badgeVM;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @param $questionnaire
-     * @param $badgeName
-     */
-    public function __construct($questionnaire, $badgeName)
+    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM)
     {
         $this->questionnaire = $questionnaire;
-        $this->badgeName = $badgeName;
+        $this->badge = $badge;
+        $this->badgeVM = $badgeVM;
     }
 
     /**
@@ -49,13 +47,12 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
             ->subject('ECAS | Thank you for your contribution!')
             ->greeting('Hello!')
             ->line('Thank you for responding to our questionnaire with title "' . $this->questionnaire->title . '". It means a lot!');
-        if ($this->badgeName) {
-            $message
-                ->line('You have also unlocked a new badge: "' . $this->badgeName . '". Impressive!')
-                ->line('To see the new badge, visit your Dashboard.');
-        } else {
-            $message->line('Visit your Dashboard, to see what\'s next.');
-        }
+
+        $message->line($this->badge->getEmailBody());
+        $badge = $this->badgeVM;
+        $message->line((String) view('gamification.badge-single', compact('badge')));
+        $message->line('<br><p style="text-align: center"><b>Are you ready for the next badge?</b>
+                            <br>Visit your dashboard to see next actions and unlock new badges</p>');
         $message->action('Go to Dashboard', url('/my-dashboard'))
             ->line('Thank you for using our application!');
         return $message;

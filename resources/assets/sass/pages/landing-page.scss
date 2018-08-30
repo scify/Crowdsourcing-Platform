@@ -2,7 +2,7 @@
 @import "../_variables.scss";
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Oswald', Arial, Sans-Serif !important;
+  font-family: 'Oswald', Arial, Sans-Serif;
   color: #076ec1;
 }
 
@@ -284,7 +284,6 @@ section {
       font-size: 20px;
     }
     .badge-container {
-      background-color: lightblue;
       padding-top: 30px;
       padding-bottom: 30px;
       margin-bottom: -15px;
@@ -297,7 +296,7 @@ section {
       }
       img {
         width: 250px;
-        margin: 50px auto;
+        margin: 10px auto;
         display: block;
       }
     }
@@ -306,6 +305,32 @@ section {
     .refresh-page {
       max-width: 100px;
       margin: auto;
+    }
+
+    .btn {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .gamification-badge {
+    padding-bottom: 20px;
+
+    .badgeName {
+      font-size: 200%;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .badgeLevel {
+      font-size: 140%;
+      font-family: 'Open Sans', sans-serif;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .badgeMessage {
+      font-size: 150%;
+      font-family: 'Open Sans', sans-serif;
     }
   }
 }

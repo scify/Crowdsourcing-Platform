@@ -5,7 +5,7 @@ namespace App\BusinessLogicLayer\gamification;
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
-use App\Models\ViewModels\GamificationBadgeLevel;
+use App\Models\ViewModels\GamificationBadgeVM;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
@@ -57,12 +57,7 @@ class GamificationManager {
     }
 
     public function getBadgeViewModel(GamificationBadge $gamificationBadge) {
-        $badgeName = $gamificationBadge->name;
-        $badgeImageName = $gamificationBadge->imageFileName;
-        $level = $gamificationBadge->level;
-        $badgeMessage = $gamificationBadge->messageForLevel;
-        $statusMessage = $gamificationBadge->statusMessage;
-        return new GamificationBadgeLevel($badgeName, $level, $badgeMessage, $badgeImageName, $statusMessage);
+        return new GamificationBadgeVM($gamificationBadge);
     }
 
     public function contributorBadgeExistsInBadges(Collection $badges) {
@@ -161,8 +156,8 @@ class GamificationManager {
             );
     }
 
-    public function getContributorBadgeAfterActionForUser($userId, $projectId) {
+    public function getContributorBadgeForUser($userId, $projectId) {
         $contributorBadge = new ContributorBadge($this->questionnaireRepository, $userId);
-        return $contributorBadge->getHTMLForCompletedAction();
+        return $contributorBadge;
     }
 }

@@ -13,6 +13,7 @@ class InfluencerBadge extends GamificationBadge {
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $pointsPerAction = 5;
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
+        $this->color = '#f44336';
         $numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
         parent::__construct("Influencer",
             "influencer.png",
@@ -24,13 +25,7 @@ class InfluencerBadge extends GamificationBadge {
         return 'You have invited ' . $this->numberOfActionsPerformed . ' people to answer';
     }
 
-    public function getHTMLForCompletedAction() {
-        return (object)[
-            'badgeName' => 'Influencer (Level ' . $this->level . ')',
-            'html' =>
-                '<p>Thank you for inviting users to contribute!</p><p>The Influencer badge now belongs to you!</p>
-                        <img class="gamification-badge" src="' . asset('images/badges/influencer.png') . '">
-                        <p>Influencer <span class="level">(Level ' . $this->level . ')</span></p>'
-        ];
+    public function getEmailBody() {
+        // TODO: Implement getEmailBody() method.
     }
 }
