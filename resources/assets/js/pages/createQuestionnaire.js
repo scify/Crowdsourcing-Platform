@@ -9,7 +9,7 @@ let SurveyEditor = require('surveyjs-editor');
         let editorOptions = {
             generateValidJSON: true,
             showJSONEditorTab: false,
-            showTestSurveyTab: false,
+            showTestSurveyTab: true,
             showEmbededSurveyTab: false,
             showPropertyGrid: false,
             toolbarItems: {visible: false},
@@ -58,9 +58,13 @@ let SurveyEditor = require('surveyjs-editor');
     let addGuidsToContent = function (content) {
         let json = JSON.parse(content);
         let questions = json.pages[0].elements;
+        console.log(json);
         for (let i = 0; i < questions.length; i++) {
-            if (!questions[i].guid)
-                questions[i].guid = getGuid();
+            if (!questions[i].guid){
+                console.log("adding guid to question");
+               // questions[i].guid = getGuid();
+            }
+
             if (questions[i].choices) {
                 let answers = json.pages[0].elements[i].choices;
                 for (let j = 0; j < answers.length; j++) {
@@ -70,8 +74,11 @@ let SurveyEditor = require('surveyjs-editor');
                         answers[j].text = originalValue;
                         answers[j].value = originalValue;
                     }
-                    if (!answers[j].guid)
-                        answers[j].guid = getGuid();
+                    if (!answers[j].guid){
+                        console.log("adding guid to answer");
+                       // answers[j].guid = getGuid();
+                    }
+
                 }
             }
         }
@@ -96,7 +103,7 @@ let SurveyEditor = require('surveyjs-editor');
                 confirmButtonText: "OK",
             });
         else {
-            $.ajax({
+           /* $.ajax({
                 method: 'post',
                 url: self.data('url'),
                 data: {title, description, goal, language, project, content},
@@ -130,7 +137,7 @@ let SurveyEditor = require('surveyjs-editor');
                         confirmButtonText: "OK",
                     });
                 }
-            });
+            });*/
         }
     };
 
