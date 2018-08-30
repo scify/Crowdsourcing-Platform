@@ -13,6 +13,7 @@ class InfluencerBadge extends GamificationBadge {
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $pointsPerAction = 5;
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
+        $this->color = '#f44336';
         $numberOfActionsPerformed = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
         parent::__construct("Influencer",
             "influencer.png",

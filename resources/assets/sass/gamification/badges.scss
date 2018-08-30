@@ -64,18 +64,6 @@
   color: white;
 }
 
-.badgeContainer:first-child .gamification-badge {
-  background-color: $indigo;
-}
-
-.badgeContainer:nth-child(2) .gamification-badge {
-  background-color: $green;
-}
-
-.badgeContainer:nth-child(3) .gamification-badge {
-  background-color: $red;
-}
-
 .points {
   font-weight: bold;
 }

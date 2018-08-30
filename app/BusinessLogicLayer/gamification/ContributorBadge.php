@@ -12,6 +12,7 @@ class ContributorBadge extends GamificationBadge {
     public function __construct(QuestionnaireRepository $questionnaireRepository, int $userId) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
+        $this->color = '#3F51B5';
         parent::__construct("Contributor",
             "contributor.png",
             "Gain this badge, by answering to a questionnaire!",
@@ -45,7 +46,7 @@ class ContributorBadge extends GamificationBadge {
                     <b style="text-align: center; font-size: 25px; margin-bottom: 30px;">' . $this->name . '</b><br><br><br>
                     <img style="height:150px" src="' . asset('images/badges/contributor.png') . '">
                     <br>
-                    <p style="margin-top: 30px; font-size: 18px;">Impressive!</p><br>
+                    <p style="margin-top: 30px; font-size: 18px; text-align: center;">Impressive!</p>
                     </div>
                     '
                 ;
