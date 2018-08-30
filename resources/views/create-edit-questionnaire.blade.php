@@ -47,7 +47,7 @@
                             <label for="description">Description - Motto</label>
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
-                            <textarea class="form-control summernote" name="description" id="description"
+                            <textarea class="form-control" name="description" id="description"
                                       placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
                         </div>
                     </div>
