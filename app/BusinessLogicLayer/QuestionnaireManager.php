@@ -82,15 +82,15 @@ class QuestionnaireManager
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
-    public function storeQuestionnaireResponse($data)
+    public function storeQuestionnaireResponseAndGetBadge($data)
     {
         $response = json_decode($data['response']);
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->findQuestionnaire($data['questionnaire_id']);
         $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
         $badge = $this->getNewContributorBadgeForLoggedInUser($questionnaire->project_id);
-        $user->notify(new QuestionnaireResponded($questionnaire, $badge));
-        return $badge->getHTMLForCompletedAction();
+        $user->notify(new QuestionnaireResponded($questionnaire, $badge, $this->gamificationManager->getBadgeViewModel($badge)));
+        return $this->gamificationManager->getBadgeViewModel($badge);
     }
 
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
