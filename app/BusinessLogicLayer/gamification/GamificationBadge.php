@@ -12,6 +12,7 @@ abstract class GamificationBadge {
     public $messageForLevel;
     public $imageFileName;
     public $statusMessage;
+    public $color;
     // an HTML snippet to show after a badge action has been completed
 
     public function __construct($name, $imageFileName, $requiredActionMessage, $numberOfActionsPerformed, $pointsPerAction = 1) {

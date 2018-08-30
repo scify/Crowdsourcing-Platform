@@ -11,6 +11,7 @@ class CommunicatorBadge extends GamificationBadge {
     public function __construct(UserQuestionnaireShareManager $questionnaireShareManager, $userId) {
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->badgeID = GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID;
+        $this->color = '#4CAF50';
         $numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
         parent::__construct("Communicator",
             "communicator.png",
