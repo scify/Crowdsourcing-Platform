@@ -21,4 +21,14 @@ class ContributorBadge extends GamificationBadge {
     protected function getBadgeMessageForLevel() {
         return 'You have answered ' . $this->numberOfActionsPerformed . ' questionnaires';
     }
+
+    public function getHTMLForCompletedAction() {
+        return (object)[
+            'badgeName' => 'Contributor (Level ' . $this->level . ')',
+            'html' =>
+                '<p>Thank you for your contribution!</p><p>The Contributor badge now belongs to you!</p>
+                        <img class="gamification-badge" src="' . asset('images/badges/contributor.png') . '">
+                        <p>Contributor <span class="level">(Level ' . $this->level . ')</span></p>'
+            ];
+    }
 }
