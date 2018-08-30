@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="javascript:void(0)" class="btn btn-block btn-primary refresh-page">Ok</a>
+                <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">Go to Dashboard</a>
             </div>
         </div>
     </div>

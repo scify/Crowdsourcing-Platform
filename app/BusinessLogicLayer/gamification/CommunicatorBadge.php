@@ -31,4 +31,8 @@ class CommunicatorBadge extends GamificationBadge {
                         <p>Communicator <span class="level">(Level ' . $this->level . ')</span></p>'
         ];
     }
+
+    public function getEmailBody() {
+        // TODO: Implement getEmailBody() method.
+    }
 }
