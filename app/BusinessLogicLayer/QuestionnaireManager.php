@@ -89,8 +89,8 @@ class QuestionnaireManager
         $questionnaire = $this->questionnaireRepository->findQuestionnaire($data['questionnaire_id']);
         $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
         $badge = $this->getNewContributorBadgeForLoggedInUser($questionnaire->project_id);
-        $user->notify(new QuestionnaireResponded($questionnaire, $badge->badgeName));
-        return $badge->html;
+        $user->notify(new QuestionnaireResponded($questionnaire, $badge));
+        return $badge->getHTMLForCompletedAction();
     }
 
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
@@ -178,6 +178,6 @@ class QuestionnaireManager
     }
 
     private function getNewContributorBadgeForLoggedInUser($projectId) {
-        return $this->gamificationManager->getContributorBadgeAfterActionForUser(Auth::id(), $projectId);
+        return $this->gamificationManager->getContributorBadgeForUser(Auth::id(), $projectId);
     }
 }

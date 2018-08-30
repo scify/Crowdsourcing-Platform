@@ -27,11 +27,12 @@ let ProgressBar = require('progressbar.js');
                         data: {questionnaire_id, response},
                         url: url,
                         success: function (response) {
+                            console.log(response);
                             $(".loader-wrapper").addClass('hidden');
                             let questionnaireResponded = $("#questionnaire-responded");
                             // add badge fetched from response to the appropriate container
                             if (response.badge)
-                                questionnaireResponded.find('.badge-container').html(response.badge);
+                                questionnaireResponded.find('.badge-container').html(response.badge.html);
                             questionnaireResponded.modal({backdrop: 'static'});
                         }
                     });
