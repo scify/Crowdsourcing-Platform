@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-4">
                     <h2 class="text-center">Our platform</h2>
-                   <p style="margin-bottom:0;"> With our ECAS crowdsourcing platform we aim at:</p>
+                    <p style="margin-bottom:0;"> With our <strong>ECAS crowdsourcing platform</strong> we aim at:</p>
                     <ul>
                         <li>
                             <p>&#10004; encouraging citizens to speak up on issues directly affecting them</p>
