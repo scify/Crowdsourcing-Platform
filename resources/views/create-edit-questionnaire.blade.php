@@ -101,5 +101,11 @@
 @stop
 
 @push('scripts')
+
+    {{--todo: move to webpack--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.41/survey.ko.min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.41/surveyeditor.min.js"></script>
+
     <script src="{{asset('dist/js/createQuestionnaire.js')}}"></script>
 @endpush
