@@ -34,10 +34,15 @@ class InfluencerBadge extends GamificationBadge {
     public function getNextStepMessage() {
         if(!$this->percentageForActiveQuestionnaire)
             $title = 'Zero people have responded to you call so far.<br>Write a compelling message and invite more friends!';
-        else if($this->percentageForActiveQuestionnaire < 2)
-            $title = 'Good job! ' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . ' have responded to your call so far.<br>Write a compelling message and invite more friends!';
-        else
-            $title = 'Wow, you are a true influencer!<br>' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . ' people have responded to your call so far. Write a compelling message and invite more friends!';
+        else if($this->percentageForActiveQuestionnaire < 2) {
+            $peopleStr = $this->numOfQuestionnaireReferralsForActiveQuestionnaire == 1 ? ' person has responded ' : ' people have responded ';
+            $title = 'Good job! ' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' to your call so far.<br>Write a compelling message and invite more friends!';
+        }
+        else {
+            $peopleStr = $this->numOfQuestionnaireReferralsForActiveQuestionnaire == 1 ? ' person has responded ' : ' people have responded ';
+            $title = 'Wow, you are a true influencer!<br>' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' people have responded to your call so far. Write a compelling message and invite more friends!';
+        }
+
         return $title;
     }
 }

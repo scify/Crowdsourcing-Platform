@@ -40,7 +40,7 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue
             $this->badgeVM,
             'Thank you for sharing!',
             'Hello!',
-            'Thank for sharing questionnaire "' . $this->questionnaire->title . '"!',
+            'Thank you for sharing the questionnaire<br>"' . $this->questionnaire->title . '"!',
             $this->badge->getEmailBody(),
             'Sharing is caring!',
             'Visit your dashboard to see what to do next');
