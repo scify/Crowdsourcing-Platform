@@ -22,7 +22,7 @@ class InfluencerBadge extends GamificationBadge {
     }
 
     public function getBadgeMessageForLevel() {
-        return $this->numberOfActionsPerformed . ' people have anwered to questionnaires you shared';
+        return $this->numberOfActionsPerformed . ' people responded to your call';
     }
 
     public function getEmailBody() {

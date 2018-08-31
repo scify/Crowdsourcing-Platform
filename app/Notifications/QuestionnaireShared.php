@@ -7,23 +7,19 @@ use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ReferredQuestionnaireAnswered extends BadgeActionOccured implements ShouldQueue
+class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue
 {
     use Queueable;
 
-    private $questionnaire;
-    private $badge;
-    private $badgeVM;
 
-    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM)
-    {
+    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
         parent::__construct($badgeVM,
-            'Thank you for your referral!',
-            'You are making an impact!',
-            'Someone answered to a questionnaire you shared!<br>"' . $questionnaire->title . '".<br>',
+            'Thank you for sharing!',
+            'Hello!',
+            'Thank for sharing questionnaire "' . $questionnaire->title . '"!',
             $badge->getEmailBody(),
-            'Are you ready for the next challenge?',
-            'Visit your dashboard and invite more friends'
+        'Sharing is caring!',
+        'Visit your dashboard to see what to do next'
         );
     }
 

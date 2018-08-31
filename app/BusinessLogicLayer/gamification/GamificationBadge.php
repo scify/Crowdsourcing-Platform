@@ -28,8 +28,6 @@ abstract class GamificationBadge {
 
     abstract public function getEmailBody();
 
-    abstract public function getNextStepMessage();
-
     private function calculateLevel() {
         return $this->numberOfActionsPerformed * $this->pointsPerAction;
     }
