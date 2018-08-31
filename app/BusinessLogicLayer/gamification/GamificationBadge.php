@@ -15,11 +15,10 @@ abstract class GamificationBadge {
     public $color;
     // an HTML snippet to show after a badge action has been completed
 
-    public function __construct($name, $imageFileName, $requiredActionMessage, $numberOfActionsPerformed, $pointsPerAction = 1) {
+    public function __construct($name, $imageFileName, $requiredActionMessage, $numberOfActionsPerformed) {
         $this->name = $name;
         $this->imageFileName = $imageFileName;
         $this->numberOfActionsPerformed = $numberOfActionsPerformed;
-        $this->pointsPerAction = $pointsPerAction;
         $this->level = $this->calculateLevel();
         $this->messageForLevel = $this->getBadgeMessageForLevel();
         $this->statusMessage = $this->calculateStatusMessage($requiredActionMessage);

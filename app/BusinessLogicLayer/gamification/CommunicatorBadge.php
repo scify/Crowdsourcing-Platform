@@ -16,7 +16,7 @@ class CommunicatorBadge extends GamificationBadge {
         parent::__construct("Communicator",
             "communicator.png",
             "Gain this badge, by inviting more people to participate. Share to Facebook and Twitter!",
-            $numberOfActionsPerformed, $userId);
+            $numberOfActionsPerformed);
     }
 
     protected function getBadgeMessageForLevel() {
