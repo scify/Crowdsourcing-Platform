@@ -5,23 +5,22 @@ namespace App\Notifications;
 use App\BusinessLogicLayer\gamification\GamificationBadge;
 use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 
-class QuestionnaireResponded extends Notification implements ShouldQueue
+class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
 {
     use Queueable;
 
-    private $questionnaire;
-    private $badge;
-    private $badgeVM;
 
-    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM)
-    {
-        $this->questionnaire = $questionnaire;
-        $this->badge = $badge;
-        $this->badgeVM = $badgeVM;
+    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
+        parent::__construct($badgeVM,
+            'Thank you for your contribution!',
+            'Hello!',
+            'Thank you for responding to our questionnaire with title "' . $questionnaire->title . '". It means a lot!',
+            $badge->getEmailBody(),
+        'Increase your impact',
+        'Visit your dashboard to invite your friends'
+        );
     }
 
     /**
@@ -43,19 +42,7 @@ class QuestionnaireResponded extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $message = (new MailMessage)
-            ->subject('ECAS | Thank you for your contribution!')
-            ->greeting('Hello!')
-            ->line('Thank you for responding to our questionnaire with title "' . $this->questionnaire->title . '". It means a lot!');
-
-        $message->line($this->badge->getEmailBody());
-        $badge = $this->badgeVM;
-        $message->line((String) view('gamification.badge-single', compact('badge')));
-        $message->line('<br><p style="text-align: center"><b>Are you ready for the next badge?</b>
-                            <br>Visit your dashboard to see next actions and unlock new badges</p>');
-        $message->action('Go to Dashboard', url('/my-dashboard'))
-            ->line('Thank you for using our application!');
-        return $message;
+        return parent::toMail($notifiable);
     }
 
     /**
