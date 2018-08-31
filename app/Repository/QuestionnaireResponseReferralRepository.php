@@ -16,4 +16,8 @@ class QuestionnaireResponseReferralRepository {
         $newQuestionnaireResponseReferral->save();
         return $newQuestionnaireResponseReferral;
     }
+
+    public function getQuestionnaireReferralsForUserForQuestionnaire(int $questionnaireId, int $userId) {
+        return QuestionnaireResponseReferral::where(['referrer_id' => $userId, 'questionnaire_id' => $questionnaireId])->get();
+    }
 }

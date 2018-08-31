@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
@@ -14,13 +14,15 @@ class CrowdSourcingProjectController extends Controller
     private $crowdSourcingProjectManager;
     private $questionnaireShareManager;
     private $userManager;
+    private $gamificationManager;
 
     public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                UserManager $userManager) {
+                                UserManager $userManager, GamificationManager $gamificationManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->userManager = $userManager;
+        $this->gamificationManager = $gamificationManager;
     }
 
     public function viewReports($id)
@@ -65,7 +67,7 @@ class CrowdSourcingProjectController extends Controller
     public function showLandingPage(Request $request, $project_slug) {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->open ==1, $project_slug);
         if(isset($request->questionnaireId) && isset($request->referrerId))
-            $this->questionnaireShareManager->handleQuestionnaireShare($request->all());
+            $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager);
         if(isset($request->referrerId))
             $this->userManager->setReferrerIdToWebSession($request->referrerId);
         if ($viewModel->project)
