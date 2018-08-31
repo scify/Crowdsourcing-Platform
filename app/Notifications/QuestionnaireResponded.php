@@ -11,16 +11,10 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
 {
     use Queueable;
 
-
     public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
-        parent::__construct($badgeVM,
-            'Thank you for your contribution!',
-            'Hello!',
-            'Thank you for responding to our questionnaire with title "' . $questionnaire->title . '". It means a lot!',
-            $badge->getEmailBody(),
-        'Increase your impact',
-        'Visit your dashboard to invite your friends'
-        );
+        $this->questionnaire = $questionnaire;
+        $this->badge = $badge;
+        $this->badgeVM = $badgeVM;
     }
 
     /**
@@ -42,7 +36,14 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return parent::toMail($notifiable);
+        return parent::objectToMail(
+            $this->badgeVM,
+            'Thank you for your contribution!',
+            'Hello!',
+            'Thank you for responding to our questionnaire with title "' . $this->questionnaire->title . '". It means a lot!',
+            $this->badge->getEmailBody(),
+            'Increase your impact',
+            'Visit your dashboard to invite your friends');
     }
 
     /**
