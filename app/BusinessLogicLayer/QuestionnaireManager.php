@@ -93,14 +93,22 @@ class QuestionnaireManager
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
-    public function storeQuestionnaireResponseAndGetBadge($data) {
+    public function storeQuestionnaireResponse($data) {
         $response = json_decode($data['response']);
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->findQuestionnaire($data['questionnaire_id']);
         $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
+        $this->awardContributorBadgeAndNotifyUser($questionnaire, $user);
+        // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+        $this->handleQuestionnaireReferrer($questionnaire, $user);
+    }
+
+    private function awardContributorBadgeAndNotifyUser($questionnaire, $user) {
         $contributorBadge = $this->gamificationManager->getContributorBadgeForUser($user->id);
         $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, $this->gamificationManager->getBadgeViewModel($contributorBadge)));
-        // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+    }
+
+    private function handleQuestionnaireReferrer($questionnaire, $user) {
         $referrerId = $this->webSessionManager->getReferredId();
         if($referrerId) {
             $referrer = $this->userRepository->getUser($referrerId);
@@ -110,7 +118,6 @@ class QuestionnaireManager
                 $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, $this->gamificationManager->getBadgeViewModel($influencerBadge)));
             }
         }
-        return $this->gamificationManager->getBadgeViewModel($contributorBadge);
     }
 
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
