@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\QuestionnaireManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
@@ -16,11 +17,15 @@ class QuestionnaireController extends Controller
 {
     private $questionnaireManager;
     private $questionnaireShareManager;
+    private $gamificationManager;
 
-    public function __construct(QuestionnaireManager $questionnaireManager, UserQuestionnaireShareManager $questionnaireShareManager)
+    public function __construct(QuestionnaireManager $questionnaireManager,
+                                UserQuestionnaireShareManager $questionnaireShareManager,
+                                GamificationManager $gamificationManager)
     {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
+        $this->gamificationManager = $gamificationManager;
     }
 
     public function manageQuestionnaires($id)
@@ -59,9 +64,9 @@ class QuestionnaireController extends Controller
         return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/1/questionnaires')]);
     }
 
-    public function storeQuestionnaireResponse(Request $request)
-    {
-        $badge = $this->questionnaireManager->storeQuestionnaireResponseAndGetBadge($request->all());
+    public function storeQuestionnaireResponse(Request $request) {
+        $this->questionnaireManager->storeQuestionnaireResponse($request->all());
+        $badge = $this->gamificationManager->getBadgeViewModel($this->gamificationManager->getContributorBadgeForUser(\Auth::id()));
         return response()->json(['status' => '__SUCCESS', 'badgeHTML' => (String) view('gamification.badge-single', compact('badge'))]);
     }
 
