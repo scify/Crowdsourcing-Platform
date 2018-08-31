@@ -34,10 +34,10 @@ class UserQuestionnaireShareManager {
         }
     }
 
-    private function createQuestionnaireShareForQuestionnaireIfNoneExists($questionnaire, $user, GamificationManager $gamificationManager) {
-        if(!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
-            $this->createQuestionnaireShare($user->id, $questionnaire->id);
-            $gamificationManager->notifyUserForCommunicatorBadge($questionnaire, $user);
+    private function createQuestionnaireShareForQuestionnaireIfNoneExists($questionnaire, $referrer, GamificationManager $gamificationManager) {
+        if(!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $referrer->id)) {
+            $this->createQuestionnaireShare($referrer->id, $questionnaire->id);
+            $gamificationManager->notifyUserForCommunicatorBadge($questionnaire, $referrer);
         }
     }
 }
