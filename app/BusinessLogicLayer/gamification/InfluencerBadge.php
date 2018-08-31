@@ -40,7 +40,7 @@ class InfluencerBadge extends GamificationBadge {
         }
         else {
             $peopleStr = $this->numOfQuestionnaireReferralsForActiveQuestionnaire == 1 ? ' person has responded ' : ' people have responded ';
-            $title = 'Wow, you are a true influencer!<br>' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' people have responded to your call so far. Write a compelling message and invite more friends!';
+            $title = 'Wow, you are a true influencer!<br>' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' to your call so far. Write a compelling message and invite more friends!';
         }
 
         return $title;
