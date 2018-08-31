@@ -66,7 +66,7 @@ class QuestionnaireController extends Controller
 
     public function storeQuestionnaireResponse(Request $request) {
         $this->questionnaireManager->storeQuestionnaireResponse($request->all());
-        $badge = $this->gamificationManager->getBadgeViewModel($this->gamificationManager->getContributorBadgeForUser(\Auth::id()));
+        $badge = $this->gamificationManager->getBadgeViewModel($this->gamificationManager->getContributorBadge(\Auth::id()));
         return response()->json(['status' => '__SUCCESS', 'badgeHTML' => (String) view('gamification.badge-single', compact('badge'))]);
     }
 

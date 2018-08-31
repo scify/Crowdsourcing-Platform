@@ -3,20 +3,16 @@
 namespace App\BusinessLogicLayer\gamification;
 
 
-use App\Repository\QuestionnaireRepository;
-
 class ContributorBadge extends GamificationBadge {
-    
-    private $questionnaireRepository;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository, int $userId) {
-        $this->questionnaireRepository = $questionnaireRepository;
+
+    public function __construct(int $allResponses) {
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
         $this->color = '#3F51B5';
         parent::__construct("Contributor",
             "contributor.png",
             "Gain this badge, by answering to a questionnaire!",
-            $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count());
+            $allResponses);
     }
 
     protected function getBadgeMessageForLevel() {
@@ -27,5 +23,9 @@ class ContributorBadge extends GamificationBadge {
         if($this->level == 1)
             return 'You have also unlocked a new badge:';
         return 'You are a Level <b>' . $this->level . '</b> Contributor! Keep Going!';
+    }
+
+    public function getNextStepMessage() {
+        return 'Tell us what you think<br>and get the "Contributor" badge!';
     }
 }

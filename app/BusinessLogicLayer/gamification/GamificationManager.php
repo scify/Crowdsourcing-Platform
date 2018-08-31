@@ -31,14 +31,10 @@ class GamificationManager {
     }
 
     public function getGamificationBadgesForUser(int $userId) {
-        $contributorBadge = new ContributorBadge($this->questionnaireRepository, $userId);
-        $infuencerBadge = new CommunicatorBadge($this->questionnaireShareManager, $userId);
-        $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
-        $persuaderBadge = new InfluencerBadge($this->questionnaireResponseReferralManager, $userId, $activeQuestionnaire);
         return new Collection([
-            $contributorBadge,
-            $infuencerBadge,
-            $persuaderBadge
+            $this->getContributorBadge($userId),
+            $this->getCommunicatorBadge($userId),
+            $this->getInfluencerBadge($userId)
         ]);
     }
 
@@ -62,19 +58,7 @@ class GamificationManager {
         return new GamificationBadgeVM($gamificationBadge);
     }
 
-    public function contributorBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID);
-    }
-
-    public function communicatorBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID);
-    }
-
-    public function influencerBadgeExistsInBadges(Collection $badges) {
-        return $this->badgeExistsInBadges($badges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
-    }
-
-    public function badgeExistsInBadges(Collection $badges, $badgeId) {
+    public function userHasAchievedBadge(Collection $badges, $badgeId) {
         foreach ($badges as $badge) {
             if($badge->badgeID == $badgeId && $badge->level > 0)
                 return true;
@@ -113,71 +97,52 @@ class GamificationManager {
     }
 
     private function getGamificationNextStepViewModelForBadges(Collection $unlockedBadges) {
-        /**
-         * if the user has the contributor badge
-         *      if the user has the influencer badge
-         *          if the user has the persuader badge
-         *              prompt the user to share again to increase their impact
-         *          else
-         *              prompt the user to share the questionnaire to get the persuader badge
-         *      else
-         *          prompt the user to share the questionnaire to get the influencer badge
-         *  else
-         *      prompt the user to answer to the questionnaire
-         *
-         */
-        $title = null;
-        $subtitle = null;
-        $imgFileName = null;
-        if($this->contributorBadgeExistsInBadges($unlockedBadges)) {
-            if($this->communicatorBadgeExistsInBadges($unlockedBadges)) {
-                if($this->influencerBadgeExistsInBadges($unlockedBadges)) {
-                    $influencerBadge = $this->getBadge($unlockedBadges, GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
-                    // if less than 2%
-                    if($influencerBadge->percentageForActiveQuestionnaire < 2)
-                        $title = 'Good job! ' . $influencerBadge->numberOfActionsPerformedForQuestionnaire . ' have responded to your call so far.<br>Write a compelling message and invite more friends!';
-                    else
-                        $title = 'Wow, you are a true influencer!<br>' . $influencerBadge->numberOfActionsPerformedForQuestionnaire . ' people have responded to your call so far. Write a compelling message and invite more friends!';
-                    $imgFileName = 'influencer.png';
-                } else {
-                    $title = 'Zero people have responded to you call so far.<br>Write a compelling message and invite more friends!';
-                    $imgFileName = 'influencer.png';
-                }
+
+        $badgeToShow = null;
+
+        if($this->userHasAchievedBadge($unlockedBadges, GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID)) {
+            if($this->userHasAchievedBadge($unlockedBadges, GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID)) {
+                $badgeToShow = $this->getBadge($unlockedBadges,GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID);
             } else {
-                $title = 'Invite your friends to answer and get the "Communicator" badge!';
-                $imgFileName = 'communicator.png';
+                $badgeToShow = $this->getBadge($unlockedBadges, GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID);
             }
         } else {
-            $title = 'Tell us what you think<br>and get the "Contributor" badge!';
-            $imgFileName = 'contributor.png';
+            $badgeToShow = $this->getBadge($unlockedBadges, GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID);
         }
 
         $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
         $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
         return new GamificationNextStep(
             $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
-            $title,
-            $imgFileName,
+            $badgeToShow->getNextStepMessage(),
+            $badgeToShow->imageFileName,
             true,
-            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()),
-            $this->crowdSourcingProjectManager->userHasAlreadyAnsweredTheActiveQuestionnaire(\Auth::id())
-            );
+            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()), $this->crowdSourcingProjectManager->userHasAlreadyAnsweredTheActiveQuestionnaire(\Auth::id()));
     }
 
-    public function getContributorBadgeForUser($userId) {
-        return new ContributorBadge($this->questionnaireRepository, $userId);
+    public function getContributorBadge($userId) {
+        $allResponses = $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count();
+        return new ContributorBadge($allResponses);
     }
 
-    public function getInfluencerBadgeForUser($userId, $questionnaire) {
-        return new InfluencerBadge($this->questionnaireResponseReferralManager, $userId, $questionnaire);
+    public function getInfluencerBadge($userId) {
+        $numberOfActionsPerformedForQuestionnaire = null;
+        $percentageForActiveQuestionnaire = null;
+        $totalQuestionnaireReferrals = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
+        $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
+        if($activeQuestionnaire) {
+            $numberOfActionsPerformedForQuestionnaire = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUserForQuestionnaire($activeQuestionnaire->id, $userId)->count();
+            $percentageForActiveQuestionnaire =  ($numberOfActionsPerformedForQuestionnaire / $activeQuestionnaire->goal) * 100;
+        }
+        return new InfluencerBadge($totalQuestionnaireReferrals, $numberOfActionsPerformedForQuestionnaire, $percentageForActiveQuestionnaire);
     }
 
-    public function getCommunicatorBadgeForUser($userId) {
-        return new CommunicatorBadge($this->questionnaireShareManager, $userId);
+    public function getCommunicatorBadge($userId) {
+        return new CommunicatorBadge($this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count(), $userId);
     }
 
     public function notifyUserForCommunicatorBadge($questionnaire, $user) {
-        $communicatorBadge = $this->getCommunicatorBadgeForUser($user->id);
+        $communicatorBadge = $this->getCommunicatorBadge($user->id);
         $user->notify(new ReferredQuestionnaireAnswered($questionnaire, $communicatorBadge, $this->getBadgeViewModel($communicatorBadge)));
     }
 }
