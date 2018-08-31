@@ -11,16 +11,10 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue
 {
     use Queueable;
 
-
     public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
-        parent::__construct($badgeVM,
-            'Thank you for sharing!',
-            'Hello!',
-            'Thank for sharing questionnaire "' . $questionnaire->title . '"!',
-            $badge->getEmailBody(),
-        'Sharing is caring!',
-        'Visit your dashboard to see what to do next'
-        );
+        $this->questionnaire = $questionnaire;
+        $this->badge = $badge;
+        $this->badgeVM = $badgeVM;
     }
 
     /**
@@ -42,7 +36,14 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return parent::toMail($notifiable);
+        return parent::objectToMail(
+            $this->badgeVM,
+            'Thank you for sharing!',
+            'Hello!',
+            'Thank for sharing questionnaire "' . $this->questionnaire->title . '"!',
+            $this->badge->getEmailBody(),
+            'Sharing is caring!',
+            'Visit your dashboard to see what to do next');
     }
 
     /**
