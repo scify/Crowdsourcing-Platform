@@ -10,6 +10,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <p class="dashboard-message">Visit your Dashboard to invite your friends</p>
                 <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">Go to Dashboard</a>
             </div>
         </div>
