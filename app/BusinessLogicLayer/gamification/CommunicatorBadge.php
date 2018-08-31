@@ -2,17 +2,13 @@
 
 namespace App\BusinessLogicLayer\gamification;
 
-use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 
 class CommunicatorBadge extends GamificationBadge {
 
-    private $questionnaireShareManager;
-
-    public function __construct(UserQuestionnaireShareManager $questionnaireShareManager, $userId) {
-        $this->questionnaireShareManager = $questionnaireShareManager;
+    public function __construct(int $questionnairesSharedByUser, $userId) {
         $this->badgeID = GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID;
         $this->color = '#4CAF50';
-        $numberOfActionsPerformed = $this->questionnaireShareManager->getQuestionnairesSharedByUser($userId)->count();
+        $numberOfActionsPerformed = $questionnairesSharedByUser;
         parent::__construct("Communicator",
             "communicator.png",
             "Gain this badge, by inviting more people to participate. Share to Facebook and Twitter!",
@@ -25,5 +21,9 @@ class CommunicatorBadge extends GamificationBadge {
 
     public function getEmailBody() {
         // TODO: Implement getEmailBody() method.
+    }
+
+    public function getNextStepMessage() {
+        return 'Invite your friends to answer and get the "Communicator" badge!';
     }
 }

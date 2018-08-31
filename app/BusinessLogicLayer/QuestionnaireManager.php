@@ -104,7 +104,7 @@ class QuestionnaireManager
     }
 
     private function awardContributorBadgeAndNotifyUser($questionnaire, $user) {
-        $contributorBadge = $this->gamificationManager->getContributorBadgeForUser($user->id);
+        $contributorBadge = $this->gamificationManager->getContributorBadge($user->id);
         $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, $this->gamificationManager->getBadgeViewModel($contributorBadge)));
     }
 
@@ -114,7 +114,7 @@ class QuestionnaireManager
             $referrer = $this->userRepository->getUser($referrerId);
             if($referrer) {
                 $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
-                $influencerBadge = $this->gamificationManager->getInfluencerBadgeForUser($referrer->id, $questionnaire);
+                $influencerBadge = $this->gamificationManager->getInfluencerBadge($referrer->id, $questionnaire);
                 $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, $this->gamificationManager->getBadgeViewModel($influencerBadge)));
             }
         }
