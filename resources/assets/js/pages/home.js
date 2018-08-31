@@ -1,6 +1,6 @@
 (function() {
 
-    $(document).on('click', '.nav a[href^="#"]', function (event) {
+    $(document).on('click', '#top-menu-content a[href^="#"]', function (event) {
         event.preventDefault();
 
         $('html, body').animate({
