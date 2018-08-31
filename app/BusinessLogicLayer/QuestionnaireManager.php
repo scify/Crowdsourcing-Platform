@@ -116,6 +116,7 @@ class QuestionnaireManager
                 $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
                 $influencerBadge = $this->gamificationManager->getInfluencerBadge($referrer->id, $questionnaire);
                 $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, $this->gamificationManager->getBadgeViewModel($influencerBadge)));
+                $this->webSessionManager->setReferrerId(null);
             }
         }
     }

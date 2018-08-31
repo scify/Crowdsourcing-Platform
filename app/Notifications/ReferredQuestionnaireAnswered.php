@@ -11,20 +11,10 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
 {
     use Queueable;
 
-    private $questionnaire;
-    private $badge;
-    private $badgeVM;
-
-    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM)
-    {
-        parent::__construct($badgeVM,
-            'Thank you for your referral!',
-            'You are making an impact!',
-            'Someone answered to a questionnaire you shared!<br>"' . $questionnaire->title . '".<br>',
-            $badge->getEmailBody(),
-            'Are you ready for the next challenge?',
-            'Visit your dashboard and invite more friends'
-        );
+    public function __construct($questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
+        $this->questionnaire = $questionnaire;
+        $this->badge = $badge;
+        $this->badgeVM = $badgeVM;
     }
 
     /**
@@ -46,7 +36,14 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
      */
     public function toMail($notifiable)
     {
-        return parent::toMail($notifiable);
+        return parent::objectToMail(
+            $this->badgeVM,
+            'Thank you for your referral!',
+            'You are making an impact!',
+            'Someone answered to a questionnaire you shared!<br>"' . $this->questionnaire->title . '".<br>',
+            $this->badge->getEmailBody(),
+            'Are you ready for the next challenge?',
+            'Visit your dashboard and invite more friends');
     }
 
     /**
