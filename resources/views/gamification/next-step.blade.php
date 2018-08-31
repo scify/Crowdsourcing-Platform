@@ -4,8 +4,7 @@
 
 <div class="row nextStepContainer">
     <div class="col-md-12">
-        <h4 class="title">What to do next?</h4>
-        <h5>{{ $nextStepVM->subtitle }}</h5>
+        <h4 class="title">{!! $nextStepVM->title !!}</h4>
         <div class="nextStepImgContainer">
             <img class="nextStepImg" src="{{asset("images/badges/" . $nextStepVM->imgFileName)}}">
         </div>
@@ -17,7 +16,7 @@
             </div>
         @else
             <div class="col-md-12">
-                <a href="{{url("/" . $nextStepVM->project->slug . "#questionnaire")}}" class="btn btn-primary btn-lg nextStepActionBtn">Speak up</a>
+                <a href="{{url("/" . $nextStepVM->project->slug . "?open=1")}}" class="btn btn-primary btn-lg nextStepActionBtn">Speak up</a>
             </div>
         @endif
     @endif
