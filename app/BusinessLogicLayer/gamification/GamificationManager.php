@@ -9,6 +9,7 @@ use App\Models\ViewModels\GamificationBadgeVM;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
+use App\Notifications\QuestionnaireShared;
 use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
@@ -143,6 +144,6 @@ class GamificationManager {
 
     public function notifyUserForCommunicatorBadge($questionnaire, $user) {
         $communicatorBadge = $this->getCommunicatorBadge($user->id);
-        $user->notify(new ReferredQuestionnaireAnswered($questionnaire, $communicatorBadge, $this->getBadgeViewModel($communicatorBadge)));
+        $user->notify(new QuestionnaireShared($questionnaire, $communicatorBadge, $this->getBadgeViewModel($communicatorBadge)));
     }
 }
