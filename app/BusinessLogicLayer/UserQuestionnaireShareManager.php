@@ -6,20 +6,16 @@ namespace App\BusinessLogicLayer;
 use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\UserQuestionnaireShareRepository;
-use App\Repository\UserRepository;
 
 class UserQuestionnaireShareManager {
 
     private $questionnaireShareRepository;
     private $questionnaireRepository;
-    private $userRepository;
 
     public function __construct(UserQuestionnaireShareRepository $questionnaireShareRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                UserRepository $userRepository) {
+                                QuestionnaireRepository $questionnaireRepository) {
         $this->questionnaireShareRepository = $questionnaireShareRepository;
         $this->questionnaireRepository = $questionnaireRepository;
-        $this->userRepository = $userRepository;
     }
 
     public function getQuestionnairesSharedByUser($userId) {
@@ -30,13 +26,11 @@ class UserQuestionnaireShareManager {
         return $this->questionnaireShareRepository->create(['user_id' => $userId, 'questionnaire_id' => $questionnaireId]);
     }
 
-    public function handleQuestionnaireShare(array $parameters, GamificationManager $gamificationManager) {
+    public function handleQuestionnaireShare(array $parameters, GamificationManager $gamificationManager, $referrer) {
         $questionnaireId = $parameters['questionnaireId'];
-        $userId = $parameters['referrerId'];
         $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
-        $user = $this->userRepository->find($userId);
-        if($questionnaire && $user) {
-            $this->createQuestionnaireShareForQuestionnaireIfNoneExists($questionnaire, $user, $gamificationManager);
+        if($questionnaire) {
+            $this->createQuestionnaireShareForQuestionnaireIfNoneExists($questionnaire, $referrer, $gamificationManager);
         }
     }
 
