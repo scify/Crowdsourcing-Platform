@@ -5,20 +5,11 @@ namespace App\Repository;
 
 use App\Models\UserQuestionnaireShare;
 
-class UserQuestionnaireShareRepository extends Repository {
-
-    /**
-     * Specify Model class name
-     *
-     * @return mixed
-     */
-    function getModelClassName() {
-        return UserQuestionnaireShare::class;
-    }
+class UserQuestionnaireShareRepository {
 
     function getUserQuestionnaireSharesForUser($userId)
     {
-        return $this->getModelInstance()->where('user_id', $userId)->get();
+        return UserQuestionnaireShare::where('user_id', $userId)->get();
     }
 
     public function questionnaireShareExists($questionnaireId, $userId) {
