@@ -127,12 +127,6 @@
                     <a href="#projects">What are we crowdsourcing?</a>
                 </div>
                 <div>
-                    <a href="/login">Login</a>
-                </div>
-                <div>
-                    <a href="/register">Register</a>
-                </div>
-                <div>
                     <a href="https://ecas.org/about-us/" target="_blank">About us</a>
                 </div>
                 <div> <a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a></div>
