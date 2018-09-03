@@ -7,6 +7,39 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string|null $nickname
+ * @property string|null $avatar
+ * @property string $email
+ * @property string|null $password
+ * @property string|null $remember_token
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserRoleLookup[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserRole[] $userRoles
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAvatar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereNickname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\User withoutTrashed()
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable, SoftDeletes;
@@ -29,10 +62,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function location()
-    {
-        return $this->hasOne(UserLocation::class, 'user_id', 'id');
-    }
+
 
     public function roles()
     {
@@ -45,33 +75,5 @@ class User extends Authenticatable
         return $this->hasMany(UserRole::class, 'user_id', 'id');
     }
 
-    public function collaborationRequests()
-    {
-        return $this->hasMany(CollaborationRequest::class, 'from_user_id', 'id');
-    }
 
-    public function collaborationResponses()
-    {
-        return $this->hasMany(CollaborationResponse::class, 'user_id', 'id');
-    }
-
-    public function articles()
-    {
-        return $this->hasMany(Article::class, 'last_edited_by_user_id', 'id');
-    }
-
-    public function articleActions()
-    {
-        return $this->hasMany(ArticleActionHistory::class, 'user_id', 'id');
-    }
-
-    public function articlePurchases()
-    {
-        return $this->hasMany(ArticlePurchase::class, 'purchased_by_user_id', 'id');
-    }
-
-    public function articlePurchasesOwned()
-    {
-        return $this->hasMany(ArticlePurchase::class, 'article_owner_user_id', 'id');
-    }
 }
