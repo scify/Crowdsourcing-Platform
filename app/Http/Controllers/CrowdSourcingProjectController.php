@@ -71,7 +71,7 @@ class CrowdSourcingProjectController extends Controller
         if(isset($request->referrerId))
             $this->userManager->setReferrerIdToWebSession($request->referrerId);
         if ($viewModel->project)
-            return view('landingpages.layout')->with(['viewModel' => $viewModel]);
+            return view('landingpages.home')->with(['viewModel' => $viewModel]);
         abort(404);
     }
 }

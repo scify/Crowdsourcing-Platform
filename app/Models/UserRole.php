@@ -5,6 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\UserRole
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $role_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \App\Models\UserRoleLookup $role
+ * @property-read \App\Models\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereRoleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole withoutTrashed()
+ * @mixin \Eloquent
+ */
 class UserRole extends Model
 {
     use SoftDeletes;
@@ -21,7 +45,7 @@ class UserRole extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'role_id', 'cms_id'
+        'user_id', 'role_id'
     ];
 
     public function user() {
@@ -32,7 +56,5 @@ class UserRole extends Model
         return $this->belongsTo(UserRoleLookup::class, 'role_id', 'id');
     }
 
-    public function cms() {
-        return $this->belongsTo(CMS::class, 'cms_id', 'id');
-    }
+
 }

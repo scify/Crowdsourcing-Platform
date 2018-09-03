@@ -43,8 +43,14 @@ let ProgressBar = require('progressbar.js');
     };
 
     let displayTranslation = function () {
+
         survey.locale = $(this).val();
         survey.render();
+
+       if ($(this).find("option:selected").data("machine-generated")==1)
+           $("#machine-translation-indicator").removeClass("hide");
+        else
+           $("#machine-translation-indicator").addClass("hide");
     };
 
     let refreshPageToTheQuestionnaireSection = function () {

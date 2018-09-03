@@ -117,10 +117,22 @@ class QuestionnaireRepository
 
     public function getAvailableLanguagesForQuestionnaire($questionnaire)
     {
-        $availableLanguages = [$questionnaire->defaultLanguage];
+        $availableLanguages = [
+            (object)  [
+            "language_code" =>$questionnaire->defaultLanguage->language_code,
+            "language_name" =>$questionnaire->defaultLanguage->language_name,
+            "default" =>true,
+            "machine_generated_translation" =>0 //default language is always created by the user, while designing the questionnaire
+            ]
+        ];
         $questionnaireLanguages = QuestionnaireLanguage::where('questionnaire_id', $questionnaire->id)->with('language')->get();
         foreach ($questionnaireLanguages as $ql) {
-            array_push($availableLanguages, $ql->language);
+            array_push($availableLanguages,
+                (object) [   "language_code" =>$ql->language->language_code,
+                    "language_name" =>$ql->language->language_name,
+                    "default" =>false,
+                    "machine_generated_translation" =>$ql->machine_generated_translation]
+                );
         }
         return collect($availableLanguages);
     }
