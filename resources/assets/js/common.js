@@ -1,8 +1,7 @@
 window.wa = {};
 window.wa.enums = {};
 window.swal = require('bootstrap-sweetalert');
-require('datatables.net-bs');
-require('datatables.net-buttons');
+
 require("icheck");
 
 //if jquery ui is loaded make sure it doesnt conflict with bootstrap button
@@ -10,7 +9,6 @@ require("icheck");
 
 //load dependencies for template
 require("bootstrap");
-// require("jquery-slimscroll");
 require("fastclick");
 require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
 
@@ -38,12 +36,7 @@ require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
         });
     };
 
-    let initializeSummernote = function () {
-        $('.summernote').summernote({
-            tabsize: 2,
-            height: 300
-        });
-    };
+
 
     let closeDismissableAlerts = function () {
         setTimeout(function () {
@@ -56,7 +49,6 @@ require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
 
     $(function () {
         initializeIcheck();
-        initializeSummernote();
         closeDismissableAlerts();
         $("#log-out").click(function (e) {
             e.preventDefault();

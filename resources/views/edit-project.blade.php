@@ -109,4 +109,5 @@
 @stop
 
 @push('scripts')
+    <script src="{{mix('dist/js/manageProject.js')}}"></script>
 @endpush
