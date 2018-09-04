@@ -33,12 +33,11 @@ class UserController extends Controller
         return view('my-account', ['viewModel' => $userViewModel]);
     }
 
-    public function patch(Request $request)
-    {
+    public function patch(Request $request) {
         if ($request->password)
             $this->validate($request, [
                 'password' => 'required|string|min:6|confirmed',
-                'current_password' => 'required|string|min:6'
+                'current_password' => 'sometimes|required|string|min:6'
             ]);
         $data = $request->all();
 
