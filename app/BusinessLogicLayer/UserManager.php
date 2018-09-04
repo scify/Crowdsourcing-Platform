@@ -137,13 +137,16 @@ class UserManager
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
-        if ($data['password'] && $current_password != null) {
+        if(!$current_password) {
+            $obj_user->password = Hash::make($data['password']);
+        } else {
             if (Hash::check($data['current_password'], $current_password)) {
                 $obj_user->password = Hash::make($data['password']);
             } else {
                 throw new HttpException(500, "Current Password Incorrect.");
             }
         }
+
         $obj_user->save();
     }
 
