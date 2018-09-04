@@ -16,7 +16,8 @@ class ContributorBadge extends GamificationBadge {
     }
 
     protected function getBadgeMessageForLevel() {
-        return 'You have answered ' . $this->numberOfActionsPerformed . ' questionnaire' . $this->numberOfActionsPerformed == 1 ? '' : 's';
+        $word = $this->numberOfActionsPerformed == 1 ? 'questionnaire' : 'questionnaires';
+        return 'You have answered ' . $this->numberOfActionsPerformed . ' ' . $word;
     }
 
     public function getEmailBody() {
