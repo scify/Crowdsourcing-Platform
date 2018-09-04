@@ -43,8 +43,8 @@ class UserRegistered extends Notification
         return (new MailMessage)
             ->subject('ECAS | Welcome!')
             ->greeting('Thanks for joining the ECAS Crowdsourcing Platform!')
-            ->line('<br><p style="text-align: center"><b>Are you ready to be a part of our community?</b><br></p>')
-            ->line('<br><p style="text-align: center"><b>Visit your dashboard to see what\'s next</b><br></p>')
+            ->line('<br><p style="text-align: center"><b>Are you ready to be a part of our community?</b></p>')
+            ->line('<br><p style="text-align: center"><b>Visit your dashboard to see what\'s next:</b><br></p>')
             ->action('Go to Dashboard', url('/my-dashboard'));
     }
 
