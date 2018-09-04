@@ -16,7 +16,7 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     protected function getBadgeMessageForLevel() {
-        return 'You have shared ' . $this->numberOfActionsPerformed . ' questionnaires';
+        return 'You have shared ' . $this->numberOfActionsPerformed . ' questionnaires' . $this->numberOfActionsPerformed == 1 ? '' : 's';
     }
 
     public function getEmailBody() {
@@ -26,6 +26,6 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     public function getNextStepMessage() {
-        return 'Invite your friends to answer and get the "Communicator" badge!';
+        return 'Invite your friends to answer, and get the "Communicator" badge!';
     }
 }

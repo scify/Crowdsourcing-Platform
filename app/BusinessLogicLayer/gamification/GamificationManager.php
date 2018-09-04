@@ -83,7 +83,7 @@ class GamificationManager {
          * else
          */
         if(!$this->crowdSourcingProjectManager->projectHasActiveQuestionnaire(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID)) {
-            $title = 'This project does not have an active Questionnaire yet.<br>Wait for a questionnaire to be posted and contribute your answer!';
+            $title = 'This project does not have an active Questionnaire yet.<br>Wait for a questionnaire to be posted, and contribute with your answers!';
             $imgFileName = 'contributor.png';
             return new GamificationNextStep(
                 $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),

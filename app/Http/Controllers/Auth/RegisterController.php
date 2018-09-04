@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;
@@ -35,12 +36,17 @@ class RegisterController extends Controller
     private $userRoleManager;
     private $userManager;
     private $mailChimpManager;
+    private $crowdSourcingProjectManager;
 
-    public function __construct(UserRoleManager $userRoleManager, UserManager $userManager, MailChimpAdaptor $mailChimpManager) {
+    public function __construct(UserRoleManager $userRoleManager,
+                                UserManager $userManager,
+                                MailChimpAdaptor $mailChimpManager,
+                                CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
         $this->userManager = $userManager;
         $this->mailChimpManager = $mailChimpManager;
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
     /**
@@ -67,7 +73,7 @@ class RegisterController extends Controller
     protected function create(array $data) {
         $user = $this->userManager->createUser($data);
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
-        $user->notify(new UserRegistered());
+        $user->notify(new UserRegistered($this->crowdSourcingProjectManager));
         return $user;
     }
 

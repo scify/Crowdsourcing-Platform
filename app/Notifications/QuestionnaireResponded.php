@@ -43,7 +43,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
             'Thank you for responding to our questionnaire with title "' . $this->questionnaire->title . '". It means a lot!',
             $this->badge->getEmailBody(),
             'Increase your impact',
-            'Visit your dashboard to invite your friends');
+            'Go to your dashboard, and invite your friends!');
     }
 
     /**
