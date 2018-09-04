@@ -14,10 +14,10 @@
     <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy, {{$viewModel->project->name}}" >
     <meta name="description" content="{{$viewModel->project->motto}}">
     <!--FACEBOOK-->
-    <meta property="og:title" content="EU mobile citizen?" >
-    <meta property="og:site_name" content="Crowdsourcing platform">
+    <meta property="og:title" content="ECAS Crowdsourcing Platform" >
+    <meta property="og:site_name" content="ECAS Crowdsourcing Platform">
     <meta property="og:url" content="{{url($viewModel->project->slug)}}" >
-    <meta property="og:description" content="Help us tackle the obstacles" >
+    <meta property="og:description" content="Are you an EU citizen living abroad? Take part in our questionnaire!" >
     <meta property="og:image" content="{{asset("images/active_participation.png")}}" >
     <meta property="og:type" content="website" >
     <meta property="og:locale" content="en-US" >
