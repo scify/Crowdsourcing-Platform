@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;
+use App\Notifications\UserRegistered;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +67,7 @@ class RegisterController extends Controller
     protected function create(array $data) {
         $user = $this->userManager->createUser($data);
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
+        $user->notify(new UserRegistered());
         return $user;
     }
 
