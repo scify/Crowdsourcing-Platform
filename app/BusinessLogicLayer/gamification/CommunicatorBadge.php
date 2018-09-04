@@ -16,7 +16,9 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     protected function getBadgeMessageForLevel() {
-        return 'You have shared ' . $this->numberOfActionsPerformed . ' questionnaires' . $this->numberOfActionsPerformed == 1 ? '' : 's';
+        $word = $this->numberOfActionsPerformed == 1 ? 'questionnaire' : 'questionnaires';
+
+        return 'You have shared ' . $this->numberOfActionsPerformed . ' ' . $word;
     }
 
     public function getEmailBody() {
