@@ -39,14 +39,15 @@
                                         <strong>{{ $errors->first('nickname') }}</strong>
                                     </span>
                             @endif
-
-                            <label for="current_password" class="col-sm-4 control-label">Current Password</label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="current_password"
-                                           name="current_password" placeholder="Current Password">
+                            @if($viewModel->user->password)
+                                <label for="current_password" class="col-sm-4 control-label">Current Password</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="current_password"
+                                               name="current_password" placeholder="Current Password">
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <label for="password" class="col-sm-4 control-label">New Password</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
