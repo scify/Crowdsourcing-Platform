@@ -22,7 +22,7 @@ class InfluencerBadge extends GamificationBadge {
     }
 
     public function getBadgeMessageForLevel() {
-        return $this->numberOfActionsPerformed . ' people responded to your call';
+        return $this->numberOfActionsPerformed . $this->numberOfActionsPerformed == 1 ? ' person' : ' people' .  ' responded to your call';
     }
 
     public function getEmailBody() {
@@ -33,7 +33,7 @@ class InfluencerBadge extends GamificationBadge {
 
     public function getNextStepMessage() {
         if(!$this->percentageForActiveQuestionnaire)
-            $title = 'Zero people have responded to you call so far.<br>Write a compelling message and invite more friends!';
+            $title = 'Zero people have responded to your call so far.<br>Write a compelling message and invite more friends!';
         else if($this->percentageForActiveQuestionnaire < 2) {
             $peopleStr = $this->numOfQuestionnaireReferralsForActiveQuestionnaire == 1 ? ' person has responded ' : ' people have responded ';
             $title = 'Good job! ' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' to your call so far.<br>Write a compelling message and invite more friends!';

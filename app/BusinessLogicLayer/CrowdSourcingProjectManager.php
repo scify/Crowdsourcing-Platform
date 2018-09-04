@@ -26,7 +26,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->all();
     }
 
-    public function getCrowdSourcingProject($id)
+    public function getCrowdSourcingProject($id = self::DEFAULT_PROJECT_ID)
     {
         return $this->crowdSourcingProjectRepository->find($id);
     }
@@ -90,8 +90,12 @@ class CrowdSourcingProjectManager
         $this->crowdSourcingProjectRepository->update($attributes, $id);
     }
 
-    public function projectHasActiveQuestionnaire($projectId) {
+    public function projectHasActiveQuestionnaire($projectId = self::DEFAULT_PROJECT_ID) {
         return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId) !== null;
+    }
+
+    public function getActiveQuestionnaireForProject($projectId = self::DEFAULT_PROJECT_ID) {
+        return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId);
     }
 
     public function userHasAlreadyAnsweredTheActiveQuestionnaire($userId, $projectId = self::DEFAULT_PROJECT_ID) {
