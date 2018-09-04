@@ -14,20 +14,20 @@
     <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy, {{$viewModel->project->name}}" >
     <meta name="description" content="{{$viewModel->project->motto}}">
     <!--FACEBOOK-->
-    <meta property="og:title" content="" >
-    <meta property="og:site_name" content="{{$viewModel->project->name}}">
+    <meta property="og:title" content="EU mobile citizen?" >
+    <meta property="og:site_name" content="Crowdsourcing platform">
     <meta property="og:url" content="{{url($viewModel->project->slug)}}" >
-    <meta property="og:description" content="{{strip_tags($viewModel->project->about)}}" >
-    <meta property="og:image" content="{{asset($viewModel->project->img_path)}}" >
+    <meta property="og:description" content="Help us tackle the obstacles" >
+    <meta property="og:image" content="{{asset("images/active_participation.png")}}" >
     <meta property="og:type" content="website" >
     <meta property="og:locale" content="en-US" >
     <!--TWITTER-->
     <meta property="twitter:card" content="summary" >
-    <meta property="twitter:title" content="{{$viewModel->project->motto}}" >
-    <meta property="twitter:description" content="{{strip_tags($viewModel->project->about)}}" >
+    <meta property="twitter:title" content="EU mobile citizen?" >
+    <meta property="twitter:description" content="Help us tackle the obstacles" >
     <meta property="twitter:creator" content="ecas_europe" >
     <meta property="twitter:url" content="{{url($viewModel->project->slug)}}" >
-    <meta property="twitter:image" content="{{asset($viewModel->project->img_path)}}" >
+    <meta property="twitter:image" content="{{asset("images/active_participation.png")}}" >
     <meta property="twitter:image:alt" content="crowdsourcing" >
     <!--GOOGLE+-->
     <link rel="author" href="https://plus.google.com/u/0/+ECASBrussels">
