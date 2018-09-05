@@ -16,8 +16,12 @@
                     <h3 class="box-title">All questionnaires</h3>
                 </div>
                 <div class="box-body">
-                    <a class="btn btn-block btn-primary new-questionnaire" href="{{route("create-questionnaire")}}"><i
-                                class="fa fa-plus"></i> Create new questionnaire</a>
+                    <div class="row margin-bottom">
+                        <div class="col-md-2">
+                            <a class="btn btn-block btn-primary new-questionnaire" href="{{route("create-questionnaire")}}"><i
+                                        class="fa fa-plus"></i> Create new questionnaire</a>
+                        </div>
+                    </div>
                     <table class="table table-striped">
                         <tbody>
                         <tr>
@@ -34,10 +38,10 @@
                                 <td>{{$questionnaire->title}}</td>
                                 <td>
                                     <b>{{$questionnaire->default_language_name}}</b>{{count($questionnaire->languages) > 0 ? ', ' : ''}}
-                                    {{implode(', ', $questionnaire->languages)}}
+                                    {{$questionnaire->languages}}
                                 </td>
                                 <td>
-                                    <span class="label {{$questionnaire->status_css_class}}"
+                                    <span class="label {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
                                           title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                 </td>
                                 <td>
