@@ -34,9 +34,7 @@ class MailChimpAdaptor
         $mailChimpLists = $this->mailChimpListRepository->all();
 
         $registeredUsersListId =  $mailChimpLists->where('id', "=",2)->first()->list_id;
-
-
-        $config = $this->generateNewsletterListConfiguration( "7e4cb2929e");
+        $config = $this->generateNewsletterListConfiguration( $registeredUsersListId);
         $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
 
         $mergeFields = [];
