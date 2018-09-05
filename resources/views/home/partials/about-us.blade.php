@@ -31,13 +31,13 @@
                             <p>&#10004; encouraging citizens to speak up on issues directly affecting them</p>
                         </li>
                         <li>
-                            <p>&#10004; increasing citizens' democratic participation in political life</p>
+                            <p>&#10004; increasing citizens democratic participation in political life</p>
                         </li>
                         <li>
-                            <p>&#10004; stimulating citizens' engagement with the EU</p>
+                            <p>&#10004; stimulating citizens engagement with the EU</p>
                         </li>
                         <li>
-                            <p>&#10004; improving citizens‘ understanding of EU policy-making processes</p>
+                            <p>&#10004; improving citizens understanding of EU policy-making processes</p>
                         </li>
                     </ul>
 
