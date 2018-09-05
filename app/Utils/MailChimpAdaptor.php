@@ -35,21 +35,23 @@ class MailChimpAdaptor
 
         $registeredUsersListId =  $mailChimpLists->where('id', "=",2)->first()->list_id;
 
-        $MailChimp = new MailChimp(env('MAILCHIMP_API_KEY'));
-        $MailChimp->post("lists/$registeredUsersListId/members", [
+      /*  $MailChimp = new MailChimp(env('MAILCHIMP_API_KEY'));
+        $result = $MailChimp->post("lists/$registeredUsersListId/members", [
             'email_address' => $email,
             'status'        => 'subscribed',
             'FNAME'      => $firstName
-        ]);
+        ]);*/
 
-       /* $config = $this->generateNewsletterListConfiguration( $registeredUsersListId);
+
+
+        $config = $this->generateNewsletterListConfiguration( $registeredUsersListId);
         $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
 
         $mergeFields = [];
         if ($firstName)
             $mergeFields['FNAME'] = $firstName;
         if (!$this->newsletterManager->isSubscribed($email, $listName))
-            $this->newsletterManager->subscribeOrUpdate($email, $mergeFields, $listName);*/
+            $this->newsletterManager->subscribeOrUpdate($email, $mergeFields, $listName);
     }
 
     private function generateNewsletterListConfiguration($registeredUsersListId)
