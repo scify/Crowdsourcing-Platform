@@ -9,20 +9,20 @@
 @endpush
 
 @section('content')
-    {{--<div class="row">--}}
-        {{--<div class="col-md-12 col-xs-12">--}}
-            {{--<div class="box box-info">--}}
-                {{--<div class="box-header with-border">--}}
-                    {{--<h3 class="box-title">Instructions</h3>--}}
-                {{--</div>--}}
-                {{--<div class="box-body">--}}
-                    {{--First, login to your MailChimp account <a href="https://login.mailchimp.com/" target="_blank">here</a>.--}}
-                    {{--Then, find your <b>Lists' IDs</b> by following the instructions provided by MailChimp--}}
-                    {{--<a href="https://mailchimp.com/help/find-your-list-id/" target="_blank">here</a>.--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Instructions</h3>
+                </div>
+                <div class="box-body">
+                    First, login to your MailChimp account <a href="https://login.mailchimp.com/" target="_blank">here</a>.
+                    Then, find your <b>Lists' IDs</b> by following the instructions provided by MailChimp
+                    <a href="https://mailchimp.com/help/find-your-list-id/" target="_blank">here</a>.
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="box box-success">
