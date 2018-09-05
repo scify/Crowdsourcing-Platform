@@ -25,13 +25,13 @@ require('datatables.net-buttons');
             destroy: true,
             "paging": true,
             "searching": true,
-            "info": false,
             "columns": [
                 { "width": "5%" },
+                { "width": "30%" },
+                { "width": "15%" },
                 { "width": "25%" },
-                { "width": "35%" },
                 { "width": "10%" },
-                { "width": "20%" }
+                { "width": "15%" }
             ]
         });
     };
