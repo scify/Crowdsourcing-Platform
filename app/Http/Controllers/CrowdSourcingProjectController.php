@@ -25,9 +25,11 @@ class CrowdSourcingProjectController extends Controller
         $this->gamificationManager = $gamificationManager;
     }
 
-    public function viewReports($id)
-    {
-        return view("reports");
+    public function viewReports($projectId, Request $request) {
+        $selectedProjectId = $projectId;
+        $selectedQuestionnaireId = $request->questionnaireId;
+        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectReportsViewModel($selectedProjectId, $selectedQuestionnaireId);
+        return view("crowdsourcing-project.reports", ['viewModel' => $viewModel]);
     }
 
 
