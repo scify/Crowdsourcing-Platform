@@ -11,12 +11,12 @@
     <link rel="canonical" href="{{url('/')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy" >
-    <meta name="description" content="Increasing citizens' democratic participation in the EU.">
+    <meta name="description" content="Increasing citizens democratic participation in the EU.">
     <!--FACEBOOK-->
     <meta property="og:title" content="Let's crowdsource! Taking decisions with citizens and not for them" >
     <meta property="og:site_name" content="ECAS Crowdsourcing Platform">
     <meta property="og:url" content="{{url('/')}}" >
-    <meta property="og:description" content="Increasing citizens' democratic participation in the EU." >
+    <meta property="og:description" content="Increasing citizens democratic participation in the EU." >
     <meta property="og:image" content="{{asset('images/active_participation.png')}}" >
     <meta property="og:type" content="website" >
     <meta property="og:locale" content="en-US" >

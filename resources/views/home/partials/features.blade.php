@@ -23,10 +23,10 @@
                             </div>
                             <div class="feature img-right">
                                 <p class="large-screens"><b>Check the impact</b> of your contribution, after the
-                                    citizens' opinions transform into a publicly available report.</p>
+                                    citizens opinions transform into a publicly available report.</p>
                                 <img src="{{asset('images/landing-page/features/impact.jpg')}}" alt="impact">
                                 <p class="small-screens"><b>Check the impact</b> of your contribution, after the
-                                    citizens' opinions transform into a publicly available report.</p>
+                                    citizens opinions transform into a publicly available report.</p>
                             </div>
                             <div class="feature img-left">
                                 <img src="{{asset('images/landing-page/features/keep-track.jpg')}}" alt="keep track">
