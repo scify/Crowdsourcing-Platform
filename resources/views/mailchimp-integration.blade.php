@@ -42,7 +42,7 @@
                                    {{--value="{{isset($viewModel) && isset($viewModel->newsletterList) ? $viewModel->newsletterList->list_id : ''}}">--}}
                         {{--</div>--}}
                         <div class="form-group">
-                            <label for="registered-users">Registered Users <a href="javascript:void(0)"
+                            <label for="registered-users">Newsletter for registered users <a href="javascript:void(0)"
                                                                               data-toggle="tooltip"
                                                                               title="All the registered users to the platform will be added to this list"><span
                                             class="fa fa-info-circle"></span></a></label>
