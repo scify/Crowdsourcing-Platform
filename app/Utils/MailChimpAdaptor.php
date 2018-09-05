@@ -32,11 +32,9 @@ class MailChimpAdaptor
     public function subscribe($email, $listName, $firstName = null)
     {
         $mailChimpLists = $this->mailChimpListRepository->all();
-        if ($mailChimpLists->count() !== 2)
-            return new \Exception('MailChimp list IDs were not configured in the appropriate DB table. Please run the appropriate seeder before trying again.');
-        $newsletterListId = $mailChimpLists->where('list_name', 'Newsletter')->first()->list_id;
-        $registeredUsersListId = $mailChimpLists->where('list_name', 'Registered Users')->first()->list_id;
-        $config = $this->generateNewsletterListConfiguration($newsletterListId, $registeredUsersListId);
+
+        $registeredUsersListId =  $mailChimpLists->where('id', "=",2)->first()->list_id;
+        $config = $this->generateNewsletterListConfiguration( $registeredUsersListId);
         $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
 
         $mergeFields = [];
@@ -46,12 +44,11 @@ class MailChimpAdaptor
             $this->newsletterManager->subscribeOrUpdate($email, $mergeFields, $listName);
     }
 
-    private function generateNewsletterListConfiguration($newsletterListId, $registeredUsersListId)
+    private function generateNewsletterListConfiguration($registeredUsersListId)
     {
         return [
-            'defaultListName' => 'newsletter',
+            'defaultListName' => 'registered_users',
             'lists' => [
-                'newsletter' => ['id' => $newsletterListId],
                 'registered_users' => ['id' => $registeredUsersListId]
             ]
         ];
