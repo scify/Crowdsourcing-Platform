@@ -29,27 +29,19 @@ class MailChimpAdaptor
         $this->mailChimpListRepository = $mailChimpListRepository;
     }
 
-    public function subscribe($email, $listName, $firstName = null)
+    public function subscribe($email, $listName, $name)
     {
         $mailChimpLists = $this->mailChimpListRepository->all();
 
         $registeredUsersListId =  $mailChimpLists->where('id', "=",2)->first()->list_id;
-
-       /* $MailChimp = new MailChimp(env('MAILCHIMP_API_KEY'));
-        $result = $MailChimp->post("lists/7e4cb2929e/members", [
-            'email_address' => $email,
-            'status'        => 'subscribed',
-            'FNAME'      => $firstName
-        ]);*/
-
 
 
         $config = $this->generateNewsletterListConfiguration( "7e4cb2929e");
         $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
 
         $mergeFields = [];
-        if ($firstName)
-            $mergeFields['FNAME'] = $firstName;
+        if ($name)
+            $mergeFields['FNAME'] = $name;
         if (!$this->newsletterManager->isSubscribed($email, $listName))
             $this->newsletterManager->subscribeOrUpdate($email, $mergeFields, $listName);
     }

@@ -79,7 +79,7 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        $this->mailChimpManager->subscribe($user->email, 'registered_users');
+        $this->mailChimpManager->subscribe($user->email, 'registered_users',$user->nickname);
         //same code with Login controller authenticated method
         $redirectToOverrideUrl = session("redirectTo");
         if ($redirectToOverrideUrl)
