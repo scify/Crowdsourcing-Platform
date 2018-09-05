@@ -18,7 +18,7 @@
                     <p>
                         Crowdsourcing is a way of solving problems and producing new ideas
                         by connecting online with
-                        people that you otherwise wouldn’t reach, giving citizens’ the <strong>opportunity to learn from others,
+                        people that you otherwise wouldn’t reach, giving citizens the <strong>opportunity to learn from others,
                         collaborate and participate in the decision-making.</strong>
                     </p>
 
