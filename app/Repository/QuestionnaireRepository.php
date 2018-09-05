@@ -98,6 +98,10 @@ class QuestionnaireRepository {
         return QuestionnaireStatus::all();
     }
 
+    public function getAllQuestionnaires() {
+        return Questionnaire::all();
+    }
+
     public function getActiveQuestionnaireForProject($projectId) {
         // status 'Published'
         return Questionnaire::where('project_id', $projectId)->where('status_id', 2)->first();
