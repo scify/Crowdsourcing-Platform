@@ -41,7 +41,8 @@
                                 <td>{{$questionnaire->title}}</td>
                                 <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
                                 <td>
-                                    <b>{{$questionnaire->default_language_name}}</b>{{count($questionnaire->languages) > 0 ? ', ' : ''}}
+                                    <b>{{$questionnaire->default_language_name}}</b>
+                                    {{--{{count($questionnaire->languages) > 0 ? ', ' : ''}}--}}
                                     {{$questionnaire->languages}}
                                 </td>
                                 <td>
