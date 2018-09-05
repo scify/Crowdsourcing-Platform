@@ -20,9 +20,9 @@
                     <div class="row">
                         <div class="col-md-5">
                             <p>Select Project:</p>
-                            <select class="form-control" name="projects">
+                            <select class="form-control" name="project_id">
                                 @foreach ($viewModel->allProjects as $project)
-                                    <option value="{{ $project->id }}" name="projectId">
+                                    <option value="{{ $project->id }}" >
                                         {{ $project->name }}
                                     </option>
                                 @endforeach
@@ -30,21 +30,23 @@
                         </div>
                         <div class="col-md-5">
                             <p>Select Questionnaire:</p>
-                            <select class="form-control" name="questionnaires">
+                            <select class="form-control" name="questionnaire_id">
                                 @foreach ($viewModel->allQuestionnaires as $questionnaire)
-                                    <option value="{{ $questionnaire->id }}" name="questionnaireId">
+                                    <option value="{{ $questionnaire->id }}">
                                         {{ $questionnaire->title }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-block btn-primary search-btn"><i
+                            <button id="searchBtn" class="btn btn-block btn-primary search-btn" data-url="{{ route('questionnaireReport') }}"><i
                                         class="fa fa-plus"></i> Search</button>
                         </div>
                     </div>
+                    <div id="errorMsg" class="alert alert-danger stickyAlert margin-top margin-bottom hidden" role="alert"></div>
+                    <div id="results"></div>
                 </div>
-                <div id="results"></div>
+
             </div>
         </div>
     </div>
