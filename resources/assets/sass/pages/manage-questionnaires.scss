@@ -1,4 +1,14 @@
-.new-questionnaire {
-  width: 250px;
-  margin: 0 0 45px;
+.manage-questionnaires {
+  .new-questionnaire {
+    width: 250px;
+    margin: 0 0 45px;
+  }
+
+  .action-btn {
+    margin-bottom: 7px;
+
+    .fa {
+      margin-right: 5px;
+    }
+  }
 }

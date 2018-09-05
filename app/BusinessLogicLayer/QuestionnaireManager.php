@@ -61,7 +61,7 @@ class QuestionnaireManager
     {
         $questionnaires = $this->questionnaireRepository->getAllQuestionnairesForProjectWithAvailableTranslations($projectId);
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
-        return new ManageQuestionnaires($questionnaires, $availableStatuses);
+        return new ManageQuestionnaires($questionnaires, $availableStatuses, $projectId);
     }
 
     public function getResponsesGivenByUserForProject($userId, $projectId) {
