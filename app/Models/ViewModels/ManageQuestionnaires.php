@@ -20,10 +20,12 @@ class ManageQuestionnaires
     ];
     public $questionnaires;
     public $statuses;
+    public $projectId;
 
-    public function __construct($questionnaires, $statuses) {
+    public function __construct($questionnaires, $statuses, $projectId) {
         $this->statuses = $statuses;
         $this->questionnaires = $questionnaires;
+        $this->projectId = $projectId;
     }
 
     public function setCssClassForStatus($status) {

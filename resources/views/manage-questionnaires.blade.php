@@ -9,7 +9,7 @@
 @endpush
 
 @section('content')
-    <div class="row">
+    <div class="row manage-questionnaires">
         <div class="col-md-12 col-xs-12">
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -22,20 +22,24 @@
                                         class="fa fa-plus"></i> Create new questionnaire</a>
                         </div>
                     </div>
-                    <table class="table table-striped">
-                        <tbody>
+                    <table class="table table-striped" id="questionnaires-table">
+                        <thead>
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Goal / Responses</th>
                             <th>Languages available</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         @foreach($viewModel->questionnaires as $questionnaire)
                             <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
                                 data-status="{{$questionnaire->status_id}}">
                                 <td>{{$questionnaire->id}}</td>
                                 <td>{{$questionnaire->title}}</td>
+                                <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
                                 <td>
                                     <b>{{$questionnaire->default_language_name}}</b>{{count($questionnaire->languages) > 0 ? ', ' : ''}}
                                     {{$questionnaire->languages}}
@@ -45,13 +49,16 @@
                                           title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                 </td>
                                 <td>
-                                    <div>
+                                    <div class="action-btn">
                                         <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-pencil"></i> Edit questionnaire</a>
                                     </div>
-                                    <div>
+                                    <div class="action-btn">
                                         <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
                                     </div>
-                                    <div>
+                                    <div class="action-btn">
+                                        <a href="{{route('reports', ['id' => $viewModel->projectId, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
+                                    </div>
+                                    <div class="action-btn">
                                         <a href="javascript:void(0)" class="change-status" data-toggle="modal"
                                            data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
                                     </div>
