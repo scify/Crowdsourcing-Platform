@@ -21,31 +21,12 @@ class ManageQuestionnaires
     public $questionnaires;
     public $statuses;
 
-    public function __construct($questionnaires, $statuses)
-    {
-        $temp = [];
+    public function __construct($questionnaires, $statuses) {
         $this->statuses = $statuses;
-        foreach ($questionnaires as $questionnaireGroup) {
-            $questionnaireIsAlreadyPushed = false;
-            $languages = [];
-            foreach ($questionnaireGroup as $questionnaire) {
-                if (!is_null($questionnaire->language_name))
-                    array_push($languages, $questionnaire->language_name);
-                if (!$questionnaireIsAlreadyPushed) {
-                    unset($questionnaire->language_id);
-                    unset($questionnaire->language_name);
-                    $questionnaire->status_css_class = $this->setCssClassForStatus($questionnaire->status_title);
-                    array_push($temp, $questionnaire);
-                }
-                $questionnaireIsAlreadyPushed = true;
-            }
-            $temp[count($temp) - 1]->languages = $languages;
-        }
-        $this->questionnaires = collect($temp);
+        $this->questionnaires = $questionnaires;
     }
 
-    private function setCssClassForStatus($status)
-    {
+    public function setCssClassForStatus($status) {
         return self::STATUSES_CSS_CLASSES[$status];
     }
 }

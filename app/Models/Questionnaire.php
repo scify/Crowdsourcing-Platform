@@ -68,4 +68,9 @@ class Questionnaire extends Model
     {
         return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
     }
+
+    public function responses()
+    {
+        return $this->hasMany(QuestionnaireResponse::class, 'questionnaire_id', 'id');
+    }
 }
