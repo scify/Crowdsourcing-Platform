@@ -28,7 +28,7 @@ class MailChimpListRepository extends Repository
     public function storeMailChimpListIds($newsletter, $registeredUsers)
     {
         DB::transaction(function () use ($newsletter, $registeredUsers) {
-            $this->update(['list_id' => $newsletter], 1); // Newsletter
+          /*  $this->update(['list_id' => $newsletter], 1); // Newsletter*/
             $this->update(['list_id' => $registeredUsers], 2); // Registered Users
         });
     }
