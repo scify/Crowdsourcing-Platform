@@ -9,20 +9,20 @@
 @endpush
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Instructions</h3>
-                </div>
-                <div class="box-body">
-                    First, login to your MailChimp account <a href="https://login.mailchimp.com/" target="_blank">here</a>.
-                    Then, find your <b>Lists' IDs</b> by following the instructions provided by MailChimp
-                    <a href="https://mailchimp.com/help/find-your-list-id/" target="_blank">here</a>.
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-12 col-xs-12">--}}
+            {{--<div class="box box-info">--}}
+                {{--<div class="box-header with-border">--}}
+                    {{--<h3 class="box-title">Instructions</h3>--}}
+                {{--</div>--}}
+                {{--<div class="box-body">--}}
+                    {{--First, login to your MailChimp account <a href="https://login.mailchimp.com/" target="_blank">here</a>.--}}
+                    {{--Then, find your <b>Lists' IDs</b> by following the instructions provided by MailChimp--}}
+                    {{--<a href="https://mailchimp.com/help/find-your-list-id/" target="_blank">here</a>.--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="box box-success">
@@ -33,14 +33,14 @@
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="box-body">
                         <p>Please provide the following MailChimp lists IDs (see instructions above).</p>
-                        <div class="form-group">
-                            <label for="newsletter">Newsletter <a href="javascript:void(0)" data-toggle="tooltip"
-                                                                  title="All mails subscribed to our newsletter via the landing pages will be added to this list"><span
-                                            class="fa fa-info-circle"></span></a></label>
-                            <input type="text" id="newsletter" class="form-control" name="newsletter"
-                                   placeholder="Insert the Newsletter's list ID"
-                                   value="{{isset($viewModel) && isset($viewModel->newsletterList) ? $viewModel->newsletterList->list_id : ''}}">
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-toggle="tooltip"--}}
+                                                                  {{--title="All mails subscribed to our newsletter via the landing pages will be added to this list"><span--}}
+                                            {{--class="fa fa-info-circle"></span></a></label>--}}
+                            {{--<input type="text" id="newsletter" class="form-control" name="newsletter"--}}
+                                   {{--placeholder="Insert the Newsletter's list ID"--}}
+                                   {{--value="{{isset($viewModel) && isset($viewModel->newsletterList) ? $viewModel->newsletterList->list_id : ''}}">--}}
+                        {{--</div>--}}
                         <div class="form-group">
                             <label for="registered-users">Registered Users <a href="javascript:void(0)"
                                                                               data-toggle="tooltip"

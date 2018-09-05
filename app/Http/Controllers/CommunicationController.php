@@ -30,7 +30,7 @@ class CommunicationController extends Controller
     public function storeMailChimpListsIds(Request $request)
     {
         $this->validate($request, [
-            'newsletter' => 'required|string|max:10',
+            'newsletter' => 'string|max:10',
             'registered_users' => 'required|string|max:10'
         ]);
         $this->communicationManager->storeMailChimpListIds(
