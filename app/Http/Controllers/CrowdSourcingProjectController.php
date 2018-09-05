@@ -29,7 +29,7 @@ class CrowdSourcingProjectController extends Controller
         $selectedProjectId = $projectId;
         $selectedQuestionnaireId = $request->questionnaireId;
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectReportsViewModel($selectedProjectId, $selectedQuestionnaireId);
-        return view("crowdsourcing-project.reports", ['viewModel' => $viewModel]);
+        return view("crowdsourcing-project.reports-with-filters", ['viewModel' => $viewModel]);
     }
 
 

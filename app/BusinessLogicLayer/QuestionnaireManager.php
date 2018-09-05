@@ -204,4 +204,8 @@ class QuestionnaireManager
         }
         return $result;
     }
+
+    public function getQuestionnaireReportViewModel(array $input) {
+        return "gdfg";
+    }
 }

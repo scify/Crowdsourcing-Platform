@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\QuestionnaireManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\Http\OperationResponse;
 use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller
@@ -95,5 +96,16 @@ class QuestionnaireController extends Controller
         $questionnaireId = $values['questionnaire-id'];
         $this->questionnaireShareManager->createQuestionnaireShare($userId, $questionnaireId);
         return response()->json(['status' => '__SUCCESS']);
+    }
+
+    public function showReportForQuestionnaire(Request $request) {
+        $input = $request->all();
+        try {
+            $reportViewModel = $this->questionnaireManager->getQuestionnaireReportViewModel($input);
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) view('report-for-questionnaire', compact('reportViewModel'))));
+        }  catch (\Exception $e) {
+            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
+        }
     }
 }
