@@ -44,18 +44,20 @@
                         </div>
                     </div>
                     <div id="errorMsg" class="alert alert-danger stickyAlert margin-top margin-bottom hidden" role="alert"></div>
-                    <div class="row loader-container hidden">
-                        <div class="col-md-12">
-                            <div class="loader">
-                                <i class="fa fa-refresh fa-spin"></i>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div id="results"></div>
+
+
                 </div>
 
             </div>
+            <div class="row loader-container hidden">
+                <div class="col-md-12">
+                    <div class="loader">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="results"></div>
         </div>
     </div>
 @stop
