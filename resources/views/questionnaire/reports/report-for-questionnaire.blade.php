@@ -1,25 +1,63 @@
-<div class="row">
-    <div class="col-md-12">
-        <table id="resultsTable">
-            <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Question</th>
-                    <th>Answer (color indicates answer entered by the respondent)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($reportViewModel->resultRows as $row)
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Respondents Report</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table id="usersTable">
+                    <thead>
                     <tr>
-                        <td>{{ $row->email }}</td>
-                        <td>{{ $row->nickname }}</td>
-                        <td>{{ $row->question }}</td>
-                        <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->answer ? $row->answer : $row->text_answer }}</td>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Question</th>
+                        <th>Answer (color indicates answer entered by the respondent)</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                    @foreach($reportViewModel->usersRows as $row)
+                        <tr>
+                            <td>{{ $row->email }}</td>
+                            <td>{{ $row->nickname }}</td>
+                            <td>{{ $row->question }}</td>
+                            <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->answer ? $row->answer : $row->text_answer }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Answers Report</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="answerStats">
+                    <table id="answersTable">
+                        <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer (color indicates answer entered by the respondent)</th>
+                            <th>Number of times</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($reportViewModel->answersRows as $row)
+                            <tr>
+                                <td>{{ $row->question }}</td>
+                                <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->answer ? $row->answer : $row->text_answer }}</td>
+                                <td>{{ $row->num_of_times }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @push('scripts')

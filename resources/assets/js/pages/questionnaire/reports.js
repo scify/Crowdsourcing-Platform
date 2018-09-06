@@ -54,8 +54,8 @@ require('datatables.net-buttons/js/buttons.html5');
     };
 
     let initializeDataTable = function () {
-        let table = $("#resultsTable");
-        table.DataTable({
+        let usersTable = $("#usersTable");
+        usersTable.DataTable({
             "paging": true,
             "searching": true,
             "pageLength": 15,
@@ -72,6 +72,27 @@ require('datatables.net-buttons/js/buttons.html5');
                 { "width": "10%" },
                 { "width": "50%" },
                 { "width": "30%" }
+            ],
+            "initComplete": function(settings, json) {}
+        });
+
+        let answersTable = $("#answersTable");
+        answersTable.DataTable({
+            "paging": true,
+            "searching": true,
+            "pageLength": 15,
+            "dom": 'Bfrtip',
+            "buttons": [
+                {
+                    extend: 'csvHtml5',
+                    text: 'Download as CSV'
+                }
+
+            ],
+            "columns": [
+                { "width": "45%" },
+                { "width": "45%" },
+                { "width": "10%" },
             ],
             "initComplete": function(settings, json) {}
         });

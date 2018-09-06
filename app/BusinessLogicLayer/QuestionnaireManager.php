@@ -224,7 +224,8 @@ class QuestionnaireManager
     }
 
     public function getQuestionnaireReportViewModel(array $input) {
-        $rows = $this->questionnaireReportRepository->getReportData($input['questionnaireId']);
-        return new QuestionnaireReportResults($rows);
+        $usersRows = $this->questionnaireReportRepository->getReportDataForUsers($input['questionnaireId']);
+        $answersRows = $this->questionnaireReportRepository->getReportDataForAnswers($input['questionnaireId']);
+        return new QuestionnaireReportResults($usersRows, $answersRows);
     }
 }
