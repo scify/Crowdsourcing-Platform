@@ -5,7 +5,7 @@ namespace App\Models\ViewModels;
 
 use Illuminate\Support\Collection;
 
-class CrowdSourcingProjectReport {
+class QuestionnaireReportFilters {
 
     public $selectedProjectId;
     public $selectedQuestionnaireId;
