@@ -46,3 +46,12 @@
     }
   }
 }
+
+.busy{
+  color:gray;
+  opacity:0.5;
+  cursor:wait;
+}
+.busy::after{
+  content:' processing...'
+}

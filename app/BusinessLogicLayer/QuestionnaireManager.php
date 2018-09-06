@@ -126,6 +126,9 @@ class QuestionnaireManager
         }
     }
 
+    public function getAutomaticTranslationForString($languageCodeToTranslateTo, $text){
+        return $this->translator->translateTexts([$text], $languageCodeToTranslateTo);
+    }
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
     {
         $translations = [];
