@@ -81,5 +81,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{asset('/dist/js/translateQuestionnaire.js')}}"></script>
+    <script src="{{mix('/dist/js/translateQuestionnaire.js')}}"></script>
 @endpush
