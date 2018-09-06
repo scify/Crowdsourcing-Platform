@@ -61,7 +61,11 @@ require('datatables.net-buttons/js/buttons.html5');
             "pageLength": 15,
             "dom": 'Bfrtip',
             "buttons": [
-                'csvHtml5'
+                {
+                    extend: 'csvHtml5',
+                    text: 'Download as CSV'
+                }
+
             ],
             "columns": [
                 { "width": "10%" },
