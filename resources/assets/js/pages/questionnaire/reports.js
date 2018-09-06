@@ -1,31 +1,15 @@
 require('datatables.net-bs');
 require('datatables.net-buttons');
+require('datatables.net-buttons/js/dataTables.buttons');
+require('datatables.net-buttons/js/buttons.html5');
 
 (function () {
-
-    let initializeDataTable = function () {
-        var container = $("#table1");
-
-        container.DataTable({
-
-            destroy: true,
-            "paging": true,
-            "searching": true,
-            "info": false,
-            dom: 'Bfrtip',
-            buttons: [
-              'excelHtml5',
-                'csvHtml5'
-            ]
-        });
-    };
 
     let searchBtnHandler = function () {
         $("#searchBtn").on("click", function () {
             let criteria = {};
             criteria.projectId = $('select[name=project_id]').val();
             criteria.questionnaireId = $('select[name=questionnaire_id]').val();
-            console.log(criteria);
             getReportsForCriteria(criteria);
         });
     };
@@ -37,21 +21,16 @@ require('datatables.net-buttons');
             cache: false,
             data: criteria,
             beforeSend: function () {
-                $('.box-body').first().append('<div class="refresh-container"><div class="loading-bar indeterminate"></div></div>');
+                $(".loader-container").removeClass('hidden');
+                $("#errorMsg").addClass('hidden');
             },
             success: function (response) {
                 parseSuccessData(response);
-                $('.refresh-container').fadeOut(500, function() {
-                    $('.refresh-container').remove();
-                });
+                $(".loader-container").addClass('hidden');
             },
             error: function (xhr, status, errorThrown) {
-                $('.refresh-container').fadeOut(500, function() {
-                    $('.refresh-container').remove();
-                });
-                console.log(xhr.responseText);
+                $(".loader-container").addClass('hidden');
                 $("#errorMsg").removeClass('hidden');
-                //The message added to Response object in Controller can be retrieved as following.
                 $("#errorMsg").html(errorThrown);
             }
         });
@@ -70,15 +49,39 @@ require('datatables.net-buttons');
             $("#errorMsg").addClass('hidden');
             $(".loader").addClass('hidden');
             $("#results").html(responseObj.data);
+            initializeDataTable();
         }
     };
 
+    let initializeDataTable = function () {
+        let table = $("#resultsTable");
+        table.DataTable({
+            "paging": true,
+            "searching": true,
+            "pageLength": 15,
+            "dom": 'Bfrtip',
+            "buttons": [
+                {
+                    extend: 'csvHtml5',
+                    text: 'Download as CSV'
+                }
+
+            ],
+            "columns": [
+                { "width": "10%" },
+                { "width": "10%" },
+                { "width": "50%" },
+                { "width": "30%" }
+            ],
+            "initComplete": function(settings, json) {}
+        });
+    };
+
     let init = function () {
-        initializeDataTable();
+        searchBtnHandler();
     };
 
     $(document).ready(function() {
         init();
-        searchBtnHandler();
     });
 })();

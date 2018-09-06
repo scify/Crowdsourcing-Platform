@@ -12,8 +12,10 @@ use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
+use App\Models\ViewModels\reports\QuestionnaireReportResults;
 use App\Notifications\QuestionnaireResponded;
 use App\Notifications\ReferredQuestionnaireAnswered;
+use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
@@ -28,6 +30,7 @@ class QuestionnaireManager
     private $webSessionManager;
     private $questionnaireResponseReferralManager;
     private $userRepository;
+    private $questionnaireReportRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -35,7 +38,8 @@ class QuestionnaireManager
                                 GamificationManager $gamificationManager,
                                 WebSessionManager $webSessionManager,
                                 UserRepository $userRepository,
-                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager) {
+                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
+                                QuestionnaireReportRepository $questionnaireReportRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -43,6 +47,7 @@ class QuestionnaireManager
         $this->webSessionManager = $webSessionManager;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->userRepository = $userRepository;
+        $this->questionnaireReportRepository = $questionnaireReportRepository;
     }
 
     public function getCreateEditQuestionnaireViewModel($id)
@@ -216,6 +221,7 @@ class QuestionnaireManager
     }
 
     public function getQuestionnaireReportViewModel(array $input) {
-        return "gdfg";
+        $rows = $this->questionnaireReportRepository->getReportData($input['questionnaireId']);
+        return new QuestionnaireReportResults($rows);
     }
 }
