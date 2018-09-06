@@ -1,5 +1,7 @@
 require('datatables.net-bs');
 require('datatables.net-buttons');
+require('datatables.net-buttons/js/dataTables.buttons');
+require('datatables.net-buttons/js/buttons.html5');
 
 (function () {
 
@@ -8,7 +10,6 @@ require('datatables.net-buttons');
             let criteria = {};
             criteria.projectId = $('select[name=project_id]').val();
             criteria.questionnaireId = $('select[name=questionnaire_id]').val();
-            console.log(criteria);
             getReportsForCriteria(criteria);
         });
     };
@@ -54,23 +55,21 @@ require('datatables.net-buttons');
 
     let initializeDataTable = function () {
         let table = $("#resultsTable");
-        console.log("here");
         table.DataTable({
             "paging": true,
             "searching": true,
             "pageLength": 15,
-            buttons: [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
+            "dom": 'Bfrtip',
+            "buttons": [
+                'csvHtml5'
             ],
             "columns": [
                 { "width": "10%" },
                 { "width": "10%" },
                 { "width": "50%" },
                 { "width": "30%" }
-            ]
+            ],
+            "initComplete": function(settings, json) {}
         });
     };
 

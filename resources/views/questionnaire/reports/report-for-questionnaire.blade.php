@@ -6,7 +6,7 @@
                     <th>Email</th>
                     <th>Name</th>
                     <th>Question</th>
-                    <th>Answer (color indicates answers entered by the respondent)</th>
+                    <th>Answer (color indicates answer entered by the respondent)</th>
                 </tr>
             </thead>
             <tbody>
