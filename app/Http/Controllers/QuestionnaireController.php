@@ -102,7 +102,9 @@ class QuestionnaireController extends Controller
         $input = $request->all();
         try {
             $reportViewModel = $this->questionnaireManager->getQuestionnaireReportViewModel($input);
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) view('report-for-questionnaire', compact('reportViewModel'))));
+            $view = view('questionnaire.reports.report-for-questionnaire', compact('reportViewModel'));
+            $view=$view->render();
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) $view));
         }  catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
