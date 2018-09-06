@@ -188,12 +188,22 @@ class QuestionnaireManager
     private function storeAllAnswers($question, $questionId)
     {
         if (isset($question->choices)) {
-            foreach ($question->choices as $temp) {
-                $answer = isset($temp->name) ? $temp->name : (isset($temp->text) ? $temp->text : $temp);
-                $value = isset($temp->value) ? $temp->value : $temp;
-                $this->questionnaireRepository->saveNewAnswer($questionId, $answer, $value, $temp->guid);
+            foreach ($question->choices as $choice) {
+
+                if (isset($choice->name))
+                    $answer = $choice->name;
+                else if (isset($choice->text))
+                    $answer  = $choice->text;
+                else
+                    $answer  = $choice;
+
+                $value = isset($choice->value) ? $choice->value : $choice;
+                $this->questionnaireRepository->saveNewAnswer($questionId, $answer, $value, $choice->guid);
             }
         }
+
+        if ($question->hasOther)
+            $this->questionnaireRepository->saveNewOtherAnswer($questionId, $question);
     }
 
     private function transformAllLanguagesToArray($allLanguages)
