@@ -4,7 +4,7 @@ namespace App\BusinessLogicLayer;
 
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectGoal;
-use App\Models\ViewModels\CrowdSourcingProjectReport;
+use App\Models\ViewModels\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Facades\Auth;
@@ -110,6 +110,6 @@ class CrowdSourcingProjectManager
     public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null) {
         $allProjects = $this->getAllCrowdSourcingProjects();
         $allQuestionnaires = $this->questionnaireRepository->getAllQuestionnaires();
-        return new CrowdSourcingProjectReport($allProjects, $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
+        return new QuestionnaireReportFilters($allProjects, $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 }
