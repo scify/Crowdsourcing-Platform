@@ -14,6 +14,8 @@
                         <th>Question text</th>
                         <th class="text-center">Answer id</th>
                         <th>Answer text (color indicates answer entered by the respondent)</th>
+                        <th>Answer automatic translation</th>
+                        <th>Answer initial language detected</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,6 +27,8 @@
                             <td>{{ $row->question }}</td>
                             <td class="text-center">{{ $row->answer_id }}</td>
                             <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->text_answer ? $row->text_answer : $row->answer }}</td>
+                            <td>{{ $row->answer_english_translation }}</td>
+                            <td>{{ $row->answer_initial_language_detected }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -48,6 +52,8 @@
                             <th>Question text</th>
                             <th>Answer id</th>
                             <th>Answer text (color indicates answer entered by the respondent)</th>
+                            <th>Answer automatic translation</th>
+                            <th>Answer initial language detected</th>
                             <th>Number of occurrences</th>
                         </tr>
                         </thead>
@@ -58,6 +64,8 @@
                                 <td>{{ $row->question }}</td>
                                 <td class="text-center">{{ $row->answer_id }}</td>
                                 <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->answer ? $row->answer : $row->text_answer }}</td>
+                                <td>{{ $row->answer_english_translation }}</td>
+                                <td>{{ $row->answer_initial_language_detected }}</td>
                                 <td>{{ $row->num_of_times }}</td>
                             </tr>
                         @endforeach

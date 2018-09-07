@@ -73,11 +73,13 @@ require('datatables.net-buttons/js/buttons.html5');
             ],
             "columns": [
                 { "width": "5%" },
-                { "width": "10%" },
                 { "width": "5%" },
-                { "width": "45%" },
-                { "width": "5%" },
-                { "width": "30%" }
+                { "width": "2%" },
+                { "width": "35%" },
+                { "width": "2%" },
+                { "width": "23%" },
+                { "width": "23%" },
+                { "width": "2%" },
             ],
             "initComplete": function(settings, json) {}
         });
@@ -96,11 +98,13 @@ require('datatables.net-buttons/js/buttons.html5');
 
             ],
             "columns": [
-                { "width": "5%" },
-                { "width": "40%" },
-                { "width": "5%" },
-                { "width": "40%" },
-                { "width": "10%" },
+                { "width": "2%" },
+                { "width": "34%" },
+                { "width": "2%" },
+                { "width": "29%" },
+                { "width": "29%" },
+                { "width": "2%" },
+                { "width": "2%" },
             ],
             "initComplete": function(settings, json) {}
         });

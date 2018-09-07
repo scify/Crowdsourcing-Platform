@@ -8,7 +8,8 @@ class QuestionnaireReportRepository {
 
     public function getReportDataForUsers($questionnaireId) {
         return DB::select('
-            select u.email, u.nickname,  qra.question_id, qra.answer_id, qpa.answer, qrat.answer as text_answer, qq.question
+            select u.email, u.nickname,  qra.question_id, qra.answer_id, qpa.answer, qrat.answer as text_answer, 
+            qrat.english_translation as answer_english_translation, qrat.initial_language_detected as answer_initial_language_detected, qq.question
             from questionnaire_responses as qr
 
                 inner join users as u on u.id = qr.user_id
@@ -25,7 +26,8 @@ class QuestionnaireReportRepository {
 
     public function getReportDataForAnswers($questionnaireId) {
         return DB::select('
-            select  qra.question_id, qra.answer_id, count(*) as num_of_times, qpa.answer, qrat.answer as text_answer, qq.question
+            select  qra.question_id, qra.answer_id, count(*) as num_of_times, qpa.answer, qrat.answer as text_answer,
+             qrat.english_translation as answer_english_translation, qrat.initial_language_detected as answer_initial_language_detected, qq.question
 
             from questionnaire_responses as qr
             
@@ -37,7 +39,7 @@ class QuestionnaireReportRepository {
             
             where qr.questionnaire_id = ' . $questionnaireId . ' and qr.deleted_at is null
             
-            group by qra.question_id, qra.answer_id, qpa.answer, qrat.answer, qq.question
+            group by qra.question_id, qra.answer_id, qpa.answer, qrat.answer, qq.question, qrat.english_translation, qrat.initial_language_detected
             order by qq.id, qpa.id;
         ');
     }
