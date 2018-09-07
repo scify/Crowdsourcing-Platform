@@ -22,6 +22,22 @@
                               novalidate>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+                            <label class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <div class="form-group has-feedback">
+                                    <input id="email" type="text" class="form-control" name="email"
+                                           value="{{ $viewModel->user->email  }}"
+                                           required
+                                           autofocus
+                                           placeholder="Name">
+                                </div>
+                            </div>
+                            <span class="form-control-feedback"></span>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
 
                             <label class="col-sm-4 control-label">Nickname</label>
                             <div class="col-sm-8">
