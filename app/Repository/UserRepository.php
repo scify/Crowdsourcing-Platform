@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-
 use App\Models\User;
 use App\Models\UserRole;
+
 
 class UserRepository extends Repository
 {
@@ -81,7 +81,15 @@ class UserRepository extends Repository
         return UserRole::with('user')->with('role')->get();
     }
 
+    public function anonymizeUser(User $user) {
+        $user->email = "anonymous_deleted_" . $user->id;
+        $user->save();
+        $user->delete();
+    }
+
     public function softDeleteUser(User $user) {
+        $user->email = $user->email . '_deleted_' . $user->id;
+        $user->save();
         $user->delete();
     }
 

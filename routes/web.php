@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('facebookLogin');
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
 Route::group([ 'middleware' => 'auth' ], function () {
@@ -27,6 +27,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post("admin/update-user", "AdminController@updateUserRoles")->middleware("can:manage-platform");
     Route::post('/user/update', 'UserController@patch')->name('updateUser');
     Route::post('/user/delete', 'UserController@delete')->name('deleteUser')->middleware("can:manage-users");
+    Route::post('/user/deactivate', 'UserController@deactivateLoggedInUser')->name('deactivateUser');
     Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
     Route::get('/project/{id}/edit', 'CrowdSourcingProjectController@edit')->name('editProject')->middleware("can:manage-crowd-sourcing-projects");
