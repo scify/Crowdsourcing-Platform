@@ -18,7 +18,7 @@ class QuestionnaireReportRepository {
                 left outer join questionnaire_possible_answers qpa on qpa.question_id = qq.id and qpa.id = qra.answer_id
                 left outer join questionnaire_response_answer_texts qrat on qrat.questionnaire_response_answer_id = qra.id
                 
-            where qr.questionnaire_id = ' . $questionnaireId . ' and qr.deleted_at is null and u.deleted_at is null
+            where qr.questionnaire_id = ' . $questionnaireId . ' and qr.deleted_at is null
             order by u.email, qq.id, qpa.id;
         ');
     }
