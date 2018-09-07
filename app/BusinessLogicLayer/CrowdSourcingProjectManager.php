@@ -4,7 +4,7 @@ namespace App\BusinessLogicLayer;
 
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectGoal;
-use App\Models\ViewModels\QuestionnaireReportFilters;
+use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Facades\Auth;
