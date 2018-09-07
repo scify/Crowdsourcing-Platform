@@ -60,6 +60,11 @@
 <div class="row">
     <div class="col-md-12">
         <nav class="navbar navbar-default navbar-fixed-top">
+            @if (App::environment('staging'))
+                <div class="staging-warning">
+                    <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
+                </div>
+            @endif
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">

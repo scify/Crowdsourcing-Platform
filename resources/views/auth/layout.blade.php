@@ -26,7 +26,11 @@
 
 </head>
 <body class="hold-transition register-page @yield('body_class')">
-
+@if (App::environment('staging'))
+    <div class="staging-warning">
+        <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
+    </div>
+@endif
 <div class="login-box">
     <div class="login-logo">
         {{--<a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! '<b>Crowdsourcing Platform</b>' !!}</a>--}}
