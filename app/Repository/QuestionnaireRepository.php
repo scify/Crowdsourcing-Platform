@@ -191,10 +191,16 @@ class QuestionnaireRepository
                 $guid = $question->guid;
                 array_push($guidsUsed, $guid);
                 $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
-                if ($questionFoundInDB)
-                    $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name);
-                else
-                    $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid);
+                try{
+                    if ($questionFoundInDB)
+                        $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name);
+                    else
+                        $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid);
+                }
+                catch (Exception $e){
+                    throw e;
+                }
+
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
                 $this->updateAllAnswers($question, $storedQuestion->id);
             }
@@ -234,7 +240,13 @@ class QuestionnaireRepository
     }
 
     private function getOtherAnswerTitle($question){
-        return isset($question->otherText) ? $question->otherText: "Other (please describe)";
+        if (isset($question->otherText) && is_string($question->otherText))
+            return $question->otherText;
+        else if (isset($question->otherText) && isset($question->otherText->default))
+            return $question->otherText->default;
+        else
+            return "Other (please describe)";
+
     }
     public function saveNewOtherAnswer($questionId, $question)
     {
