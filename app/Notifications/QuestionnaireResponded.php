@@ -44,7 +44,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
             .'<br><br>Thanks to your contribution we are one step closer to understanding the type of obstacles EU citizens encounter when moving within the EU and engaging in political life. ',
             $this->badge->getEmailBody(),
             'If you have any further questions, or would like more information about ECAS\' work in the field of EU Rights and Digital Democracy do not hesitate to <span style="text-decoration: underline">get in touch</span> with us or subscribe to our newsletter via our <a href="https://ecas.org/" target="_blank">website!</a>',
-            'Increase your impact',
+            'Increase your impact<br>',
             'Go to your dashboard, and invite your friends!',
             'Thank you once again!<br><br>The Crowdsourcing Team');
     }
