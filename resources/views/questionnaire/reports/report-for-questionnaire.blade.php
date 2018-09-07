@@ -10,8 +10,10 @@
                     <tr>
                         <th>Email</th>
                         <th>Name</th>
-                        <th>Question</th>
-                        <th>Answer (color indicates answer entered by the respondent)</th>
+                        <th class="text-center">Question id</th>
+                        <th>Question text</th>
+                        <th class="text-center">Answer id</th>
+                        <th>Answer text (color indicates answer entered by the respondent)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -19,8 +21,10 @@
                         <tr>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->nickname }}</td>
+                            <td class="text-center">{{ $row->question_id }}</td>
                             <td>{{ $row->question }}</td>
-                            <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->answer ? $row->answer : $row->text_answer }}</td>
+                            <td class="text-center">{{ $row->answer_id }}</td>
+                            <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->text_answer ? $row->text_answer : $row->answer }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -40,15 +44,19 @@
                     <table id="answersTable">
                         <thead>
                         <tr>
-                            <th>Question</th>
-                            <th>Answer (color indicates answer entered by the respondent)</th>
-                            <th>Number of times</th>
+                            <th>Question id</th>
+                            <th>Question text</th>
+                            <th>Answer id</th>
+                            <th>Answer text (color indicates answer entered by the respondent)</th>
+                            <th>Number of occurrences</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($reportViewModel->answersRows as $row)
                             <tr>
+                                <td class="text-center">{{ $row->question_id }}</td>
                                 <td>{{ $row->question }}</td>
+                                <td class="text-center">{{ $row->answer_id }}</td>
                                 <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->answer ? $row->answer : $row->text_answer }}</td>
                                 <td>{{ $row->num_of_times }}</td>
                             </tr>
