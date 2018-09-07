@@ -85,6 +85,7 @@ class UserRepository extends Repository
         $user->email = "anonymous_deleted_" . $user->id;
         $user->nickname = "anonymous_deleted_" . $user->id;
         $user->save();
+        $user->delete();
     }
 
     public function softDeleteUser(User $user) {
