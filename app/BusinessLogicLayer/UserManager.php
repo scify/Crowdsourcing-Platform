@@ -3,7 +3,6 @@
 namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\gamification\GamificationManager;
-use App\Models\User;
 use App\Models\ViewModels\DashboardInfo;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
@@ -97,6 +96,10 @@ class UserManager
     {
         $user = $this->userRepository->getUserWithTrashed($id);
         $this->userRepository->softDeleteUser($user);
+    }
+
+    public function anonymizeUser($user) {
+        $this->userRepository->anonymizeUser($user);
     }
 
     public function reactivateUser($id)
