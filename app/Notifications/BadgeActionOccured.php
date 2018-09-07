@@ -8,8 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class BadgeActionOccured extends Notification implements ShouldQueue
-{
+class BadgeActionOccured extends Notification implements ShouldQueue {
     use Queueable;
     protected $questionnaire;
     protected $badge;
@@ -21,27 +20,30 @@ class BadgeActionOccured extends Notification implements ShouldQueue
      * @param  mixed $notifiable
      * @return array
      */
-    public function via($notifiable)
-    {
+    public function via($notifiable) {
         return ['mail'];
     }
 
     public function objectToMail(GamificationBadgeVM $badge,
-                           $subject,
-                           $greeting,
-                           $title,
-                           $beforeBadge,
-                           $actionText,
-                           $actionText2)
-    {
+                                 $subject,
+                                 $greeting,
+                                 $title,
+                                 $beforeBadge,
+                                 $afterBadge,
+                                 $actionText,
+                                 $actionText2,
+                                 $salutation = null) {
         $message = (new MailMessage)
             ->subject('ECAS | ' . $subject)
             ->greeting($greeting)
             ->line($title);
 
         $message->line('<div style="text-align: center;"><br><b>' . $beforeBadge . '</b><br><br></div>');
-        $message->line((String) view('gamification.badge-single', compact('badge')));
+        $message->line((String)view('gamification.badge-single', compact('badge')));
+        $message->line('<br>' . $afterBadge);
         $message->line('<br><p style="text-align: center"><b>' . $actionText . '</b><br>' . $actionText2 . '</p>');
+        if($salutation)
+            $message->salutation($salutation);
         $message->action('Go to Dashboard', url('/my-dashboard'));
         return $message;
     }
@@ -52,8 +54,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue
      * @param  mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable) {
         return [
             //
         ];

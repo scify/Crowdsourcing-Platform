@@ -43,9 +43,9 @@
 
 {{-- Salutation --}}
 @if (! empty($salutation))
-{{ $salutation }}
+{!! $salutation !!}
 @else
-Regards,<br>the Crowdsourcing Team
+Regards,<br><br>The Crowdsourcing Team
 @endif
 
 {{-- Subcopy --}}
