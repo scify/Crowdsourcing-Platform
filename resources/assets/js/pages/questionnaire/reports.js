@@ -14,6 +14,10 @@ require('datatables.net-buttons/js/buttons.html5');
         });
     };
 
+    let triggerSearch = function () {
+        $("#searchBtn").trigger( "click" );
+    };
+
     let getReportsForCriteria = function(criteria) {
         $.ajax({
             method: "GET",
@@ -68,9 +72,11 @@ require('datatables.net-buttons/js/buttons.html5');
 
             ],
             "columns": [
+                { "width": "5%" },
                 { "width": "10%" },
-                { "width": "10%" },
-                { "width": "50%" },
+                { "width": "5%" },
+                { "width": "45%" },
+                { "width": "5%" },
                 { "width": "30%" }
             ],
             "initComplete": function(settings, json) {}
@@ -90,8 +96,10 @@ require('datatables.net-buttons/js/buttons.html5');
 
             ],
             "columns": [
-                { "width": "45%" },
-                { "width": "45%" },
+                { "width": "5%" },
+                { "width": "40%" },
+                { "width": "5%" },
+                { "width": "40%" },
                 { "width": "10%" },
             ],
             "initComplete": function(settings, json) {}
@@ -100,6 +108,7 @@ require('datatables.net-buttons/js/buttons.html5');
 
     let init = function () {
         searchBtnHandler();
+        triggerSearch();
     };
 
     $(document).ready(function() {
