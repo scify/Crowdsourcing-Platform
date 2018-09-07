@@ -84,6 +84,7 @@ class UserRepository extends Repository
     public function anonymizeUser(User $user) {
         $user->email = "anonymous_deleted_" . $user->id;
         $user->nickname = "anonymous_deleted_" . $user->id;
+        $user->avatar = null;
         $user->save();
         $user->delete();
     }
