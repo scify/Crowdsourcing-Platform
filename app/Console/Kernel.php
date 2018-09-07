@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        \Log::Info("Kernel scheduler: schedule() function called");
+        $schedule->command('translate:questionnaire_answer_texts')->hourly();
     }
 
     /**
