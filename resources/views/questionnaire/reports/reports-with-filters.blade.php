@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-2">
                             <button id="searchBtn" class="btn btn-block btn-primary search-btn" data-url="{{ route('questionnaireReport') }}"><i
-                                        class="fa fa-plus"></i> Search</button>
+                                        class="fa fa-plus margin-r-5"></i> View</button>
                         </div>
                     </div>
                     <div id="errorMsg" class="alert alert-danger stickyAlert margin-top margin-bottom hidden" role="alert"></div>

@@ -8,7 +8,7 @@ class QuestionnaireReportRepository {
 
     public function getReportDataForUsers($questionnaireId) {
         return DB::select('
-            select u.email, u.nickname, qra.answer_id, qpa.answer, qrat.answer as text_answer, qq.question
+            select u.email, u.nickname,  qra.question_id, qra.answer_id, qpa.answer, qrat.answer as text_answer, qq.question
             from questionnaire_responses as qr
 
                 inner join users as u on u.id = qr.user_id
