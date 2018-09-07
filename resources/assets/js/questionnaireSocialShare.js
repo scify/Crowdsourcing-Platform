@@ -2,8 +2,9 @@
 
     let socialShareHandler = function() {
         $("body").on("click", ".social-share-button", function (e) {
-            console.log("click");
-            $(".share-success").removeClass("hidden");
+            setTimeout(function(){
+                $(".share-success").removeClass("hidden");
+            }, 5000);
         });
     };
 
