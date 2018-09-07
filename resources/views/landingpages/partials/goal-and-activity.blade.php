@@ -25,13 +25,11 @@
                 </div>
                 <div class="activity-content">
                     @foreach($viewModel->allResponses as $response)
-                        @if($response->user)
-                            <div class="activity-item">
-                                <img height="30" class="img-circle"
-                                     src="https://www.gravatar.com/avatar/{{ md5($response->user->email) }}"> {{$response->user->nickname}}
-                                responded at {{$response->created_at->toDayDateTimeString()}}
-                            </div>
-                        @endif
+                        <div class="activity-item">
+                            <img height="30" class="img-circle"
+                                 src="https://www.gravatar.com/avatar/{{ md5($response->user->email) }}"> {{$response->user->nickname}}
+                            responded at {{$response->created_at->toDayDateTimeString()}}
+                        </div>
                     @endforeach
                 </div>
             @endif
