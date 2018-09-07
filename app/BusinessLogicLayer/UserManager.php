@@ -140,6 +140,7 @@ class UserManager
         $user_id = Auth::User()->id;
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
+        $obj_user->email = $data['email'];
         $current_password = $obj_user->password;
         if(!$current_password) {
             $obj_user->password = Hash::make($data['password']);
