@@ -77,6 +77,14 @@ class QuestionnaireController extends Controller
         return view('translate-questionnaire')->with(['viewModel' => $viewModel]);
     }
 
+    public function getAutomaticTranslationForString(Request $request)
+    {
+        $translation = $this->questionnaireManager->getAutomaticTranslationForString(
+                                    $request->languageCodeToTranslateTo,
+                                    $request->text);
+        return $translation;
+    }
+
     public function getAutomaticTranslations(Request $request)
     {
         $translations = $this->questionnaireManager->getAutomaticTranslations(
