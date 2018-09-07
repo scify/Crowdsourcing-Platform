@@ -42,6 +42,7 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
             'You are making an impact!',
             'Someone answered to a questionnaire you shared!<br>"' . $this->questionnaire->title . '".<br>',
             $this->badge->getEmailBody(),
+            '',
             'Increase your impact',
             'Visit your dashboard and invite more friends');
     }
