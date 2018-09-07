@@ -8,6 +8,7 @@ use App\Models\ViewModels\DashboardInfo;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
+use App\Notifications\UserRegistered;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
@@ -126,6 +127,7 @@ class UserManager
                 'password' => $password != null ? bcrypt($password) : null,
             ]);
             $user->save();
+            $user->notify(new UserRegistered($this->crowdSourcingProjectManager));
             $this->userRepository->updateUserRoles($user->id, $roleselect);
             return new ActionResponse(UserActionResponses::USER_CREATED, $user);
         }
