@@ -3,6 +3,7 @@
 namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\gamification\GamificationManager;
+use App\Models\User;
 use App\Models\ViewModels\DashboardInfo;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
