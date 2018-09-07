@@ -19,7 +19,7 @@ class QuestionnaireReportRepository {
                 left outer join questionnaire_response_answer_texts qrat on qrat.questionnaire_response_answer_id = qra.id
                 
             where qr.questionnaire_id = ' . $questionnaireId . ' and qr.deleted_at is null and u.deleted_at is null
-            order by u.email;
+            order by u.email, qq.id, qpa.id;
         ');
     }
 
@@ -38,7 +38,7 @@ class QuestionnaireReportRepository {
             where qr.questionnaire_id = ' . $questionnaireId . ' and qr.deleted_at is null
             
             group by qra.question_id, qra.answer_id, qpa.answer, qrat.answer, qq.question
-            order by qra.question_id, qra.answer_id;
+            order by qq.id, qpa.id;
         ');
     }
 }
