@@ -53,6 +53,12 @@ class UserController extends Controller
         return back();
     }
 
+    public function deactivateLoggedInUser() {
+        $this->userManager->anonymizeUser(Auth::user());
+        Auth::logout();
+        return redirect()->route('home');
+    }
+
     public function restore(Request $request)
     {
         $this->userManager->reactivateUser($request->id);
