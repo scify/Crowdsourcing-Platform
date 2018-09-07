@@ -34,7 +34,11 @@
 
 </head>
 <body class="hold-transition skin-white sidebar-mini @yield('body_class')">
-
+@if (App::environment('staging'))
+    <div class="staging-warning">
+        <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
+    </div>
+@endif
 <div class="wrapper">
     @if(Auth::check())
         @include("loggedin-environment.partials.menu")

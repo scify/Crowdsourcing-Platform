@@ -233,3 +233,16 @@ $header-height: 70px;
 .align-center {
   text-align: center;
 }
+
+.staging-warning {
+
+  background-color: #FFC107;
+
+  p {
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
