@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ViewModels;
+namespace App\Models\ViewModels\reports;
 
 
 use Illuminate\Support\Collection;
