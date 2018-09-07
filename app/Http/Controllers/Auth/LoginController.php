@@ -64,6 +64,8 @@ class LoginController extends Controller
 
     public function handleProviderCallback(Request $request, $driver)
     {
+        if(isset($request['denied']) || isset($request['error']))
+            return redirect()->route('home');
         $socialUser = Socialite::driver($driver)->user();
         $user = $this->userManager->handleSocialLoginUser($socialUser);
         return $this->authenticated($request,$user);
