@@ -29,18 +29,21 @@
                     string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". <span class='to-translate'>" + obj.question + "</span></b></div><div class='table-cell'>" +
                         "<textarea class='form-control' name='question-" + obj.question_id + "' data-name='" + obj.question_name + "'>" +
                         (isAlreadyTranslated && obj.translated_question ? obj.translated_question : obj.question) + "</textarea>" +
+                        "<a href='javascript:void(0)' class='refresh-translation-for-string'><i class='fa fa-refresh'></i></a>"+
                         "</div></div>";
                 }
                 if (obj.answer !== null) {
                     string += "<div class='table-row'><div class='table-cell'><b style='margin-left: 30px; display: block;'><span class='to-translate'>" + obj.answer + "</span></b></div><div class='table-cell'>" +
                         "<textarea class='form-control' name='answer-" + obj.answer_id + "' data-name='" + obj.question_name + "' data-value='" + obj.answer_value + "'>" +
                         (isAlreadyTranslated && obj.translated_answer ? obj.translated_answer : obj.answer) + "</textarea>" +
+                        "<a href='javascript:void(0)' class='refresh-translation-for-string'><i class='fa fa-refresh'></i></a>"+
                         "</div></div>";
                 }
                 if (obj.html !== null) {
                     string += "<div class='table-row'><div class='table-cell'><b>" + (i + 1) + ". <span class='to-translate'>" + obj.html + "</span></b></div><div class='table-cell'>" +
                         "<textarea class='form-control' name='html-" + obj.html_id + "' data-name='" + obj.question_name + "'>" +
                         (isAlreadyTranslated && obj.translated_html ? obj.translated_html : obj.html) + "</textarea>" +
+                        "<a href='javascript:void(0)' class='refresh-translation-for-string'><i class='fa fa-refresh'></i></a>"+
                         "</div></div>";
                 }
             }
@@ -120,6 +123,9 @@
 
     let saveTranslations = function () {
         let self = $(this);
+        if (self.hasClass("busy"))
+            return;
+
         let translations = {};
         $(".translation-item").each(function () {
             let langId = $(this).data("lang-id");
@@ -139,6 +145,12 @@
             method: 'post',
             url: self.data('url'),
             data: {translations: JSON.stringify(translations)},
+            beforeSend:function(){
+                self.addClass("busy");
+            },
+            complete:function(){
+                self.removeClass("busy");
+            },
             success: function (response) {
                 swal({
                     title: "Success!",
@@ -179,11 +191,56 @@
                 selectLanguage(selectedLangVal);
         }
     };
+    let refreshTranslationForSingleString= function(){
 
+        var button = $(this);
+        if (button.hasClass("busy"))
+            return; //cancel
+
+        var textArea = button.prev();
+        var textToTranslate = button.parent().prev().text();
+        var language = button.parents(".translation-item").data("lang-code");
+
+        $.ajax({
+            method: 'post',
+            url:"/automatic-translation-single-string",
+            data:"languageCodeToTranslateTo="+language+"&text="+textToTranslate ,
+            beforeSend:function(){
+                button.addClass("busy");
+            },
+            complete: function(){
+                button.removeClass("busy");
+            },
+            success: function (response) {
+                if (response.length>0)
+                    textArea.text(response[0].text);
+
+                else
+                    swal({
+                        title: "Could not fetch translation",
+                        type: "info",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+            },
+            error: function () {
+                swal({
+                    title: "Oops!",
+                    text: "An error occurred, please try again later.",
+                    type: "error",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+            }
+        });
+
+
+    }
     let initEvents = function () {
         let body = $("body");
         body.on("click", ".lang-selector", changeLanguageViaTabClick);
         body.on("click", ".save-translations", saveTranslations);
+        body.on("click", ".refresh-translation-for-string",refreshTranslationForSingleString);
         let modal = $("#add-new-lang-modal");
         modal.find('a').on('click', addNewLanguageForQuestionnaire);
     };
