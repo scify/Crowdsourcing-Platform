@@ -64,12 +64,11 @@ class UserManager
     {
         $user = Auth::user();
         $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
-        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser($user);
         $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($user->id);
         $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
         $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
         $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
-        return new DashboardInfo($projects, $responses, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
+        return new DashboardInfo($projects, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
     }
 
     public function getUser($userId)
