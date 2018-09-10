@@ -1,5 +1,18 @@
 @import "../variables";
 
-.my-questionnaire-responses {
 
+#questionnaireResponseModal {
+  .modal-header {
+    border: none;
+  }
+
+  .modal-body {
+    padding-top: 0;
+  }
+
+  .modal-footer {
+    .btn {
+      color: white;
+    }
+  }
 }
