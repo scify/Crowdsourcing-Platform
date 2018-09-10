@@ -17,14 +17,6 @@ window.QuestionnaireResponsesController.prototype = function() {
             "paging": true,
             "searching": true,
             "pageLength": 10,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'csvHtml5',
-                    text: 'Download as CSV'
-                }
-
-            ],
             "columns": [
                 { "width": "30%" },
                 { "width": "40%" },

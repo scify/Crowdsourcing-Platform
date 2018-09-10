@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Projects you have contributed to</h3>
+                    <h3 class="box-title">You have contributed to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
                 </div>
                 <div class="box-body">
                     @if($responses->isEmpty())
