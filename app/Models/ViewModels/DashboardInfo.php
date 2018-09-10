@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 8/9/18
- * Time: 4:40 PM
- */
 
 namespace App\Models\ViewModels;
 
@@ -15,10 +9,8 @@ class DashboardInfo
     public $badgesVM;
     public $gamificationNextStepVM;
     public $projectGoalVM;
-    public $questionnaireResponses;
 
     public function __construct($projects,
-                                $questionnaireResponses,
                                 GamificationBadgesWithLevels $badgesVM,
                                 $gamificationNextStepViewModel,
                                 $projectGoalVM) {
@@ -26,7 +18,6 @@ class DashboardInfo
         $this->badgesVM = $badgesVM;
         $this->gamificationNextStepVM = $gamificationNextStepViewModel;
         $this->projectGoalVM = $projectGoalVM;
-        $this->questionnaireResponses = $questionnaireResponses;
     }
 
     private function formatProjectsInfoForDashboardDisplay($projects)
