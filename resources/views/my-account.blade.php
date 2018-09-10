@@ -82,7 +82,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="box box-default">
+            <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">My Data</h3>
                 </div>
