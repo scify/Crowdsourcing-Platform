@@ -132,7 +132,7 @@ class QuestionnaireRepository
 
     public function getAllResponsesGivenByUser($userId)
     {
-        return QuestionnaireResponse::join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('user_id', $userId)->get();
+        return QuestionnaireResponse::select('questionnaire_responses.id as questionnaire_response_id','questionnaire_responses.*', 'q.*')->join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('user_id', $userId)->get();
     }
 
     public function getAvailableLanguagesForQuestionnaire($questionnaire)
