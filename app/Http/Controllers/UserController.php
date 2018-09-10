@@ -83,8 +83,8 @@ class UserController extends Controller
         }
     }
 
-    public function showUserContributions() {
+    public function showUserHistory() {
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
-        return view('my-contributions', ['responses' => $responses]);
+        return view('my-history', ['responses' => $responses]);
     }
 }

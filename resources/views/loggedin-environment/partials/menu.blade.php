@@ -20,13 +20,6 @@
                 </a>
             </li>
 
-
-            {{--  <li class="{{ UrlMatchesMenuItem("contribute")}}">
-                  <a href="{{url("contribute")}}">
-                      <i class="fa fa-users"></i> <span>Contribute</span>
-                  </a>
-              </li>--}}
-
             <li class="{{ UrlMatchesMenuItem("my-account")}}">
                 <a href="{{url("my-account")}}">
                     <i class="fa fa-user"></i> <span>My Account</span>
@@ -35,9 +28,9 @@
             </li>
 
             @if($userHasContributedToAProject)
-                <li class="{{ UrlMatchesMenuItem("myContributions")}}">
-                    <a href="{{route("myContributions")}}">
-                        <i class="fa fa-trophy"></i> <span>My Contributions</span>
+                <li class="{{ UrlMatchesMenuItem("myHistory")}}">
+                    <a href="{{route("myHistory")}}">
+                        <i class="fa fa-history"></i> <span>My History</span>
                     </a>
                 </li>
             @endif
