@@ -15,19 +15,21 @@ class DashboardInfo
     public $badgesVM;
     public $gamificationNextStepVM;
     public $projectGoalVM;
+    public $questionnaireResponses;
 
     public function __construct($projects,
-                                $responses,
+                                $questionnaireResponses,
                                 GamificationBadgesWithLevels $badgesVM,
                                 $gamificationNextStepViewModel,
                                 $projectGoalVM) {
-        $this->projects = $this->formatProjectsInfoForDashboardDisplay($projects, $responses);
+        $this->projects = $this->formatProjectsInfoForDashboardDisplay($projects);
         $this->badgesVM = $badgesVM;
         $this->gamificationNextStepVM = $gamificationNextStepViewModel;
         $this->projectGoalVM = $projectGoalVM;
+        $this->questionnaireResponses = $questionnaireResponses;
     }
 
-    private function formatProjectsInfoForDashboardDisplay($projects, $responses)
+    private function formatProjectsInfoForDashboardDisplay($projects)
     {
         $results = collect([]);
         foreach ($projects as $project) {
