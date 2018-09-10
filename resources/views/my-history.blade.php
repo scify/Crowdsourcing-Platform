@@ -26,19 +26,31 @@
                         <table id="responsesTable">
                             <thead>
                             <tr>
+                                <th>Project</th>
                                 <th>Questionnaire title</th>
                                 <th>Questionnaire description</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($responses as $response)
-                                <tr>
-                                    <td>{{ $response->title }}</td>
-                                    <td>{!! $response->description !!}</td>
-                                    <td><button class="btn btn-block btn-primary viewResponseBtn" data-responseid="{{ $response->questionnaire_response_id }}">View response</button></td>
-                                </tr>
-                            @endforeach
+                                @foreach($responses as $response)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ url('/' . $response->slug) }}">
+                                                <div class="row">
+                                                    <div class="col-md-12 margin-bottom">{{ $response->name }}</div>
+                                                    <div class="col-md-12">
+                                                        <img height="70" alt="{{$response->name}}"
+                                                             src="{{asset($response->logo_path)}}">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td>{{ $response->title }}</td>
+                                        <td>{!! $response->questionnaire_description !!}</td>
+                                        <td><button class="btn btn-block btn-primary viewResponseBtn" data-responseid="{{ $response->questionnaire_response_id }}">View response</button></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     @endif

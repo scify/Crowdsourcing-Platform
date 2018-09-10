@@ -69,10 +69,6 @@ class QuestionnaireManager
         return new ManageQuestionnaires($questionnaires, $availableStatuses, $projectId);
     }
 
-    public function getResponsesGivenByUserForProject($userId, $projectId) {
-        return $this->questionnaireRepository->getAllResponsesGivenByUserForProject($userId, $projectId);
-    }
-
     public function getResponsesGivenByUser($userId) {
         return $this->questionnaireRepository->getAllResponsesGivenByUser($userId);
     }
