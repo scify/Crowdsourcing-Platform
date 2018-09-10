@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\OperationResponse;
 use Auth;
@@ -10,10 +11,12 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     private $userManager;
+    private $questionnaireResponseManager;
 
-    public function __construct(UserManager $userManager)
+    public function __construct(UserManager $userManager, QuestionnaireResponseManager $questionnaireResponseManager)
     {
         $this->userManager = $userManager;
+        $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
     public function home()

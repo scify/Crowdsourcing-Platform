@@ -21,32 +21,4 @@
       font-size: 50px;
     }
   }
-
-  .dt-button {
-    color: #fff !important;
-    border-color: $button-border-color !important;
-    background: $button-background-color none !important;
-    display: inline-block !important;
-    padding: 6px 12px !important;
-    margin-bottom: 0 !important;
-    font-size: 14px !important;
-    font-weight: normal !important;
-    line-height: 1.42857143 !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    vertical-align: middle !important;
-    -ms-touch-action: manipulation !important;
-    touch-action: manipulation !important;
-    cursor: pointer !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    border: 1px solid transparent !important;
-    border-radius: 4px !important;
-  }
-
-  .dt-button:hover {
-    background-color: $button-background-color-hover !important;
-  }
 }

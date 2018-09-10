@@ -27,11 +27,13 @@ class UserManager
     private $gamificationManager;
     private $crowdSourcingProjectManager;
     private $webSessionManager;
+    private $questionnaireResponseManager;
     public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
                                 QuestionnaireManager $questionnaireManager,
+                                QuestionnaireResponseManager $questionnaireResponseManager,
                                 CrowdSourcingProjectRepository $projectRepository,
                                 CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 MailChimpAdaptor $mailChimpManager,
@@ -45,6 +47,7 @@ class UserManager
         $this->gamificationManager = $gamificationManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->webSessionManager = $webSessionManager;
+        $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
     function userIsPlatformAdmin($user)
@@ -59,10 +62,11 @@ class UserManager
 
     public function getDashboardData()
     {
-        $userId = Auth::id();
+        $user = Auth::user();
         $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
-        $responses = $this->questionnaireManager->getResponsesGivenByUser(Auth::id());
-        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($userId);
+        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser($user);
+        //dd($responses);
+        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($user->id);
         $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
         $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
         $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
