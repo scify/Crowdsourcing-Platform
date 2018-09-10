@@ -15,6 +15,6 @@ class MenuComposer {
 
     public function compose(View $view)
     {
-        $view->with('userHasContributedToAProject', $this->userManager->userHasContributedToAProject(\Auth::user()));
+        $view->with('userHasContributedToAProject', $this->userManager->userHasContributedToAProject(\Auth::id()));
     }
 }

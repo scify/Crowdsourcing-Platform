@@ -125,14 +125,14 @@ class QuestionnaireRepository
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->orderBy('created_at', 'desc')->with('user')->get();
     }
 
-    public function getAllResponsesGivenByUserForProject($userId, $projectId)
-    {
-        return QuestionnaireResponse::join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('q.project_id', $projectId)->where('user_id', $userId)->get();
-    }
-
     public function getAllResponsesGivenByUser($userId)
     {
-        return QuestionnaireResponse::select('questionnaire_responses.id as questionnaire_response_id','questionnaire_responses.*', 'q.*')->join('questionnaires as q', 'q.id', '=', 'questionnaire_id')->where('user_id', $userId)->get();
+        return QuestionnaireResponse::
+            select('questionnaire_responses.id as questionnaire_response_id','questionnaire_responses.*', 'q.description as questionnaire_description', 'q.*', 'csp.*')
+            ->join('questionnaires as q', 'q.id', '=', 'questionnaire_id')
+            ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'q.project_id')
+            ->where('user_id', $userId)
+            ->get();
     }
 
     public function getAvailableLanguagesForQuestionnaire($questionnaire)
@@ -689,5 +689,9 @@ class QuestionnaireRepository
     private function deleteHtmlTranslations($htmlId)
     {
         QuestionnaireTranslationHtml::where('html_id', $htmlId)->delete();
+    }
+
+    public function questionnaireResponsesForUserExists($userId) {
+        return QuestionnaireResponse::where(['user_id' => $userId])->exists();
     }
 }
