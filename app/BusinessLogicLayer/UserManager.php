@@ -197,7 +197,7 @@ class UserManager
             $this->webSessionManager->setReferrerId($referrerId);
     }
 
-    public function userHasContributedToAProject($user) {
-        return $this->questionnaireResponseManager->getQuestionnaireResponsesForUser($user)->isNotEmpty();
+    public function userHasContributedToAProject($userId) {
+        return $this->questionnaireResponseManager->questionnaireResponsesForUserExists($userId);
     }
 }

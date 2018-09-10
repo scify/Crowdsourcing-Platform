@@ -18,7 +18,8 @@ window.QuestionnaireResponsesController.prototype = function() {
             "searching": true,
             "pageLength": 10,
             "columns": [
-                { "width": "30%" },
+                { "width": "20%" },
+                { "width": "20%" },
                 { "width": "40%" },
                 { "width": "20%" },
             ],

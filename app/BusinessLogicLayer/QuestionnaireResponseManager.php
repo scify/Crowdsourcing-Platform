@@ -17,4 +17,8 @@ class QuestionnaireResponseManager {
     public function getQuestionnaireResponsesForUser(User $user) {
         return $this->questionnaireRepository->getAllResponsesGivenByUser($user->id);
     }
+
+    public function questionnaireResponsesForUserExists($userId) {
+        return $this->questionnaireRepository->questionnaireResponsesForUserExists($userId);
+    }
 }

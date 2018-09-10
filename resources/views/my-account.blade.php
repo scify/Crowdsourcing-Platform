@@ -93,14 +93,30 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="box box-danger">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">My Data</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="{{ route('downloadMyData') }}" data-toggle="modal">Download my data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Account Deactivation</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="#deactivationConfirmationModal" data-toggle="modal" class="btn btn-danger">Deactivate my account</a>
+                            <a href="#deactivationConfirmationModal" data-toggle="modal">Deactivate my account</a>
                         </div>
                     </div>
                 </div>

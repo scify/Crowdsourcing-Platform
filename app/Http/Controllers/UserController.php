@@ -87,4 +87,8 @@ class UserController extends Controller
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
         return view('my-history', ['responses' => $responses]);
     }
+
+    public function downloadUserData() {
+
+    }
 }
