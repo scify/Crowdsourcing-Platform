@@ -34,6 +34,12 @@
                 </a>
             </li>
 
+            <li class="{{ UrlMatchesMenuItem("myContributions")}}">
+                <a href="{{route("myContributions")}}">
+                    <i class="fa fa-trophy"></i> <span>My Contributions</span>
+                </a>
+            </li>
+
             @can("manage-crowd-sourcing-projects")
                 <li class="header">CONTENT MANAGEMENT</li>
 

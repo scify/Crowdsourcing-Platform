@@ -31,6 +31,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
     Route::get('/users/responses', 'UserController@showMyQuestionnaireResponses')->name('myQuestionnaireResponses');
+    Route::get('/users/contributions', 'UserController@showUserContributions')->name('myContributions');
     Route::get('/project/{id}/edit', 'CrowdSourcingProjectController@edit')->name('editProject')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/project/{id}/update', 'CrowdSourcingProjectController@update')->name('updateProject')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/project/{id}/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('manageQuestionnaires')->middleware("can:manage-crowd-sourcing-projects");

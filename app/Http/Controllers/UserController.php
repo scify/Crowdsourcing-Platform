@@ -82,4 +82,9 @@ class UserController extends Controller
             return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String)view('admin.partials.users-list', compact('users'))));
         }
     }
+
+    public function showUserContributions() {
+        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
+        return view('my-contributions', ['responses' => $responses]);
+    }
 }
