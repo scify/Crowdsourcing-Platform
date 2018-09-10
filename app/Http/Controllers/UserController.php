@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\UserManager;
 use App\Http\OperationResponse;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -88,6 +89,27 @@ class UserController extends Controller
     }
 
     public function downloadUserData() {
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=file" . time() .".csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
 
+        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
+        $columns = array('Project name', 'Questionnaire title', 'Questionnaire description', 'Questionnaire JSON', 'Response JSON');
+
+        $callback = function() use ($responses, $columns)
+        {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach($responses as $response) {
+                fputcsv($file, array($response->name, $response->title, $response->questionnaire_description, $response->questionnaire_json, $response->response_json));
+            }
+            fclose($file);
+        };
+        return Response::stream($callback, 200, $headers);
     }
 }
