@@ -24,21 +24,10 @@
 
                             <label class="col-sm-4 control-label">Email</label>
                             <div class="col-sm-8">
-                                <div class="form-group has-feedback">
-                                    <input id="email" type="text" class="form-control" name="email"
-                                           value="{{ $viewModel->user->email  }}"
-                                           required
-                                           autofocus
-                                           placeholder="Name">
+                                <div class="form-group">
+                                    <div>{{ $viewModel->user->email  }}</div>
                                 </div>
                             </div>
-                            <span class="form-control-feedback"></span>
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
-
                             <label class="col-sm-4 control-label">Nickname</label>
                             <div class="col-sm-8">
                                 <div class="form-group has-feedback">
@@ -100,7 +89,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="{{ route('downloadMyData') }}" data-toggle="modal">Download my data</a>
+                            <a href="{{ route('downloadMyData') }}" class="btn btn-primary" data-toggle="modal">Download my data</a>
                         </div>
                     </div>
                 </div>
