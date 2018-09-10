@@ -14,7 +14,9 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Using class based composers...
+        View::composer(
+            'loggedin-environment.partials.menu', 'App\ViewComposers\MenuComposer'
+        );
     }
 
     /**
