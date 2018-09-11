@@ -229,7 +229,7 @@ class QuestionnaireManager
         $answersRows = collect($this->questionnaireReportRepository->getReportDataForAnswers($questionnaireId));
         $answerTextRows = $this->questionnaireResponseAnswerRepository->getResponseTextDataForQuestionnaire($questionnaireId);
         foreach ($answersRows as $answersRow) {
-            $answersRow->answer_texts = collect($answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id));
+            $answersRow->answer_texts = $answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id);
         }
         dd($answersRows);
         return new QuestionnaireReportResults($usersRows, $answersRows);
