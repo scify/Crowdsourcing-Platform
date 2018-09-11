@@ -231,6 +231,7 @@ class QuestionnaireManager
         foreach ($answersRows as $answersRow) {
             $answersRow->answer_texts = collect($answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id));
         }
+        dd($answersRows);
         return new QuestionnaireReportResults($usersRows, $answersRows);
     }
 }
