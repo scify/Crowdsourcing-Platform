@@ -17,6 +17,7 @@ use App\Notifications\QuestionnaireResponded;
 use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
+use App\Repository\QuestionnaireResponseAnswerRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,7 @@ class QuestionnaireManager
     private $questionnaireResponseReferralManager;
     private $userRepository;
     private $questionnaireReportRepository;
+    private $questionnaireResponseAnswerRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -39,7 +41,8 @@ class QuestionnaireManager
                                 WebSessionManager $webSessionManager,
                                 UserRepository $userRepository,
                                 QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
-                                QuestionnaireReportRepository $questionnaireReportRepository) {
+                                QuestionnaireReportRepository $questionnaireReportRepository,
+                                QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -48,6 +51,7 @@ class QuestionnaireManager
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->userRepository = $userRepository;
         $this->questionnaireReportRepository = $questionnaireReportRepository;
+        $this->questionnaireResponseAnswerRepository = $questionnaireResponseAnswerRepository;
     }
 
     public function getCreateEditQuestionnaireViewModel($id)
@@ -220,8 +224,13 @@ class QuestionnaireManager
     }
 
     public function getQuestionnaireReportViewModel(array $input) {
-        $usersRows = $this->questionnaireReportRepository->getReportDataForUsers($input['questionnaireId']);
-        $answersRows = $this->questionnaireReportRepository->getReportDataForAnswers($input['questionnaireId']);
+        $questionnaireId = $input['questionnaireId'];
+        $usersRows = $this->questionnaireReportRepository->getReportDataForUsers($questionnaireId);
+        $answersRows = collect($this->questionnaireReportRepository->getReportDataForAnswers($questionnaireId));
+        $answerTextRows = $this->questionnaireResponseAnswerRepository->getResponseTextDataForQuestionnaire($questionnaireId);
+        foreach ($answersRows as $answersRow) {
+            $answersRow->answer_texts = $answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id);
+        }
         return new QuestionnaireReportResults($usersRows, $answersRows);
     }
 }
