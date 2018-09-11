@@ -5,6 +5,8 @@ require('datatables.net-buttons/js/buttons.html5');
 
 (function () {
 
+    let table;
+
     let searchBtnHandler = function () {
         $("#searchBtn").on("click", function () {
             let criteria = {};
@@ -16,6 +18,36 @@ require('datatables.net-buttons/js/buttons.html5');
 
     let triggerSearch = function () {
         $("#searchBtn").trigger( "click" );
+    };
+
+    let answersBtnHandler = function() {
+        $('body').on('click', '.more-btn', function (e) {
+            e.preventDefault();
+            let question = $(this).data('question');
+            let data = $(this).data('answers');
+            data = prepareDataForAnswersTable(data);
+            if(table)
+                table.destroy();
+            table = $('#answerTextsTable').DataTable( {
+                data: data,
+                columns: [
+                    { title: "Answer" },
+                    { title: "English automatic translation" },
+                    { title: "Initial language detected" }
+                ],
+                order: [[ 1, "desc" ]]
+            } );
+            $("#questionTitle").html(question);
+            $("#answersModal").modal();
+        });
+    };
+
+    let prepareDataForAnswersTable = function(data) {
+        let dataToShow = [];
+        for(let i = 0; i < data.length; i++) {
+            dataToShow.push([data[i].answer, data[i].english_translation, data[i].initial_language_detected]);
+        }
+        return dataToShow;
     };
 
     let getReportsForCriteria = function(criteria) {
@@ -35,7 +67,8 @@ require('datatables.net-buttons/js/buttons.html5');
             error: function (xhr, status, errorThrown) {
                 $(".loader-container").addClass('hidden');
                 $("#errorMsg").removeClass('hidden');
-                $("#errorMsg").html(errorThrown);
+                console.log(errorThrown);
+                $("#errorMsg").html("An error occurred");
             }
         });
     };
@@ -98,13 +131,11 @@ require('datatables.net-buttons/js/buttons.html5');
 
             ],
             "columns": [
-                { "width": "2%" },
-                { "width": "34%" },
-                { "width": "2%" },
-                { "width": "29%" },
-                { "width": "29%" },
-                { "width": "2%" },
-                { "width": "2%" },
+                { "width": "5%" },
+                { "width": "40%" },
+                { "width": "5%" },
+                { "width": "15%" },
+                { "width": "35%" },
             ],
             "initComplete": function(settings, json) {}
         });
@@ -112,6 +143,7 @@ require('datatables.net-buttons/js/buttons.html5');
 
     let init = function () {
         searchBtnHandler();
+        answersBtnHandler();
         triggerSearch();
     };
 
