@@ -42,7 +42,7 @@ class QuestionnaireRepository
                                 inner join questionnaire_statuses_lkp as qsl on qsl.id = q.status_id 
                                 left join (
                                     select questionnaire_id, count(*) as number_of_responses from questionnaire_responses qr 
-                                    inner join questionnaires q on qr.questionnaire_id = q.id where q.project_id= 1 
+                                    inner join questionnaires q on qr.questionnaire_id = q.id where q.project_id= " . $projectId . " 
                                     group by questionnaire_id
                                 ) 
                                 as responsesInfo 
