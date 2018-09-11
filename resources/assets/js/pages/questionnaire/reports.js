@@ -33,9 +33,9 @@ require('datatables.net-buttons/js/buttons.html5');
             table = $('#answerTextsTable').DataTable( {
                 data: data,
                 columns: [
-                    { title: "Answer" },
-                    { title: "English automatic translation" },
-                    { title: "Initial language detected" }
+                    { title: "Original answer", width: '45%' },
+                    { title: "English automatic translation", width: '45%' },
+                    { title: "Initial language detected", width: '10%' }
                 ],
                 order: [[ 1, "desc" ]]
             } );
