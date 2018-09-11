@@ -48,6 +48,12 @@ let ProgressBar = require('progressbar.js');
                         }
                     });
                 });
+
+            survey
+                .onRendered
+                .add(function () {
+                    $(".sv_complete_btn").after("<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>");
+                });
         }
         displayTranslation.apply($('#questionnaire-lang-selector'));
     };
