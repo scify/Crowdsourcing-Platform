@@ -25,7 +25,9 @@ require('datatables.net-buttons/js/buttons.html5');
             e.preventDefault();
             let question = $(this).data('question');
             let data = $(this).data('answers');
+            console.log(data);
             data = prepareDataForAnswersTable(data);
+            console.log(data);
             if(table)
                 table.destroy();
             table = $('#answerTextsTable').DataTable( {
