@@ -32,10 +32,6 @@
     </div>
 @endif
 <div class="login-box">
-    <div class="login-logo">
-        {{--<a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! '<b>Crowdsourcing Platform</b>' !!}</a>--}}
-    </div>
-
     <div class="login-box-body">
         @yield('auth-form')
     </div>
