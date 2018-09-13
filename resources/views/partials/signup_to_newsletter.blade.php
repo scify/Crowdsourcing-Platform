@@ -1,4 +1,4 @@
-<div class="row" id="newsletter" style="background-color: #f3fafe;">
+<div class="row" id="newsletter">
     <div class="col-md-12 no-padding">
         <h2>Newsletter</h2>
         <div class="content-container">

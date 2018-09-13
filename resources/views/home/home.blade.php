@@ -174,10 +174,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-sm-offset-3">
-            <p style="font-size:13px; line-height:20px;"><img
-                        src="https://faireu.ecas.org/wp-content/uploads/2018/02/big-eu-flag.png" alt=""
-                        style="width:120px; float:left; margin:5px 30px 0 0;">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3 eu-logo">
+            <img src="https://faireu.ecas.org/wp-content/uploads/2018/02/big-eu-flag.png" alt="">
+        </div>
+        <div class="col-sm-3">
+            <p style="font-size:13px; line-height:20px;">
                 Project Co-funded by the JUSTICE, EQUALITY AND CITIZENSHIP PROGRAMME (2014-2020) OF THE EUROPEAN
                 UNION.<br>
                 The content of this website represents the views of the author only and is his/her sole responsibility.
@@ -185,6 +187,7 @@
                 it contains.
             </p>
         </div>
+        <div class="col-sm-3"></div>
     </div>
     <div class="row">
         <div class="col-md-12">
