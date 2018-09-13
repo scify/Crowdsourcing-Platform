@@ -19,7 +19,7 @@
         <div class="text-center badges-container row">
 
             @foreach($badgesVM->badgesWithLevelsList as $badge)
-                <div class="col-sm-4 badgeContainer" data-toggle="tooltip"
+                <div class="col-md-4 badgeContainer" data-toggle="tooltip"
                      title="{{ $badge->statusMessage }}">
                     @include('gamification.badge-single', ['badge' => $badge])
                 </div>
