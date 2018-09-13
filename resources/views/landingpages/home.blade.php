@@ -8,27 +8,27 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="canonical" href="{{url('/')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy, {{$viewModel->project->name}}" >
+    <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy, {{$viewModel->project->name}}">
     <meta name="description" content="{{$viewModel->project->motto}}">
     <!--FACEBOOK-->
-    <meta property="og:title" content="Are you an EU citizen living abroad?" >
+    <meta property="og:title" content="Are you an EU citizen living abroad?">
     <meta property="og:site_name" content="ECAS Crowdsourcing Platform">
-    <meta property="og:url" content="{{url($viewModel->project->slug)}}" >
-    <meta property="og:description" content="Take part in our questionnaire!" >
-    <meta property="og:image" content="{{asset("images/default-project/social-bg-white.png")}}" >
-    <meta property="og:type" content="website" >
-    <meta property="og:locale" content="en-US" >
+    <meta property="og:url" content="{{url($viewModel->project->slug)}}">
+    <meta property="og:description" content="Take part in our questionnaire!">
+    <meta property="og:image" content="{{asset("images/default-project/social-bg-white.png")}}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en-US">
     <!--TWITTER-->
-    <meta property="twitter:card" content="summary" >
-    <meta property="twitter:title" content="Are you an EU citizen living abroad?" >
-    <meta property="twitter:description" content="Take part in our questionnaire!" >
-    <meta property="twitter:creator" content="ecas_europe" >
-    <meta property="twitter:url" content="{{url($viewModel->project->slug)}}" >
-    <meta property="twitter:image" content="{{asset("images/default-project/social-bg-white.png")}}" >
-    <meta property="twitter:image:alt" content="crowdsourcing" >
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Are you an EU citizen living abroad?">
+    <meta property="twitter:description" content="Take part in our questionnaire!">
+    <meta property="twitter:creator" content="ecas_europe">
+    <meta property="twitter:url" content="{{url($viewModel->project->slug)}}">
+    <meta property="twitter:image" content="{{asset("images/default-project/social-bg-white.png")}}">
+    <meta property="twitter:image:alt" content="crowdsourcing">
     <!--GOOGLE+-->
     <link rel="author" href="https://plus.google.com/u/0/+ECASBrussels">
 
@@ -56,77 +56,77 @@
     <![endif]-->
 
 </head>
-<body class="container-fluid">
-<div class="row">
-    <div class="col-md-12">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            @if (App::environment('staging'))
-                <div class="staging-warning">
-                    <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
+<body class="">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                @if (App::environment('staging'))
+                    <div class="staging-warning">
+                        <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
+                    </div>
+                @endif
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <img alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
+                        </a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#top-menu-content">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse pull-right" id="top-menu-content">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#about">ABOUT</a>
+                            </li>
+                            @include("partials.login-menu-options")
+                        </ul>
+                    </div>
                 </div>
-            @endif
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <img alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
-                    </a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#top-menu-content">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse pull-right" id="top-menu-content">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#about">ABOUT</a>
-                        </li>
-                        @include("partials.login-menu-options")
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </div>
-</div>
-<section id="motto">
-    @include('landingpages.partials.motto')
-</section>
-<section id="about">
-    @include('landingpages.partials.about')
-</section>
-
-<section id="questionnaire">
-    @include('landingpages.partials.questionnaire')
-</section>
-
-@if($viewModel->questionnaire)
-    <section id="collective-goal">
-        @include("landingpages.partials.goal-and-activity")
+    <section>
+        @include('landingpages.partials.motto')
     </section>
-@endif
+    <section>
+        @include('landingpages.partials.about')
+    </section>
 
-<section id="newsletter">
-    @include('partials.signup_to_newsletter')
-</section>
-<footer>
-    <div class="container">
+    <section>
+        @include('landingpages.partials.questionnaire')
+    </section>
+
+    @if($viewModel->questionnaire)
+        <section id="collective-goal">
+            @include("landingpages.partials.goal-and-activity")
+        </section>
+    @endif
+
+    <section>
+        @include('partials.signup_to_newsletter')
+    </section>
+    <footer>
+        <div class="container">
 
             {!! $viewModel->project->footer !!}
 
+        </div>
+    </footer>
+
+    <div id="pyro" class="">
+        <div class="before"></div>
+        <div class="after"></div>
     </div>
-</footer>
 
-<div id="pyro" class="">
-    <div class="before"></div>
-    <div class="after"></div>
-</div>
-
-<div class="loader-wrapper hidden">
-    <img src="{{asset('images/loading.gif')}}" alt="loading image">
-</div>
-@include('partials.footer-scripts')
-<script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
+    <div class="loader-wrapper hidden">
+        <img src="{{asset('images/loading.gif')}}" alt="loading image">
+    </div>
+    @include('partials.footer-scripts')
+    <script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
 </body>
 </html>
