@@ -1,6 +1,6 @@
 <div id="usersList">
-    <table id="userListTable" class="table table-hover">
-        <tbody>
+    <table id="userListTable" class="table table-hover" cellspacing="0" style="width: 100%;">
+        <thead>
         <tr>
             <th>
                 Nickname
@@ -15,14 +15,16 @@
                 Action
             </th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($users as $user)
             <tr>
                 <td>
 
-                   {{ $user->nickname }}
+                    {{ $user->nickname }}
                     @if ($user->avatat)
                         <img src="{{$user->avatar}}"/>
-                        @endif
+                    @endif
                 </td>
                 <td>
                     {{ $user->email }}

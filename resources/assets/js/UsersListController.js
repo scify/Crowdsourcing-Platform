@@ -1,3 +1,11 @@
+require('datatables.net-bs');
+require('datatables.net-buttons');
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs');
+require('datatables.net-buttons/js/dataTables.buttons');
+require('datatables.net-buttons/js/buttons.html5');
+require('datatables.net');
+
 window.UsersListController = function () {
 };
 
@@ -67,9 +75,29 @@ window.UsersListController.prototype = function () {
                 $("#usersList").html(responseObj.data);
             }
         },
+        initDataTables = function () {
+            let table = $("#userListTable");
+
+            table.DataTable({
+                destroy: true,
+                "paging": false,
+                "responsive": true,
+                "searching": false,
+                "columns": [
+                    { "width": "25%" },
+                    { "width": "25%" },
+                    { "width": "25%" },
+                    { "width": "25%" }
+                ]
+            });
+        },
         init = function (currentRouteName) {
-            searchBtnHandler();
-            paginateUsersBtnHandler();
+            $(document).ready(function() {
+                searchBtnHandler();
+                paginateUsersBtnHandler();
+                initDataTables();
+            });
+
         };
         return {
             init: init
