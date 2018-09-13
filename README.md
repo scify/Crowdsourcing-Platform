@@ -1,6 +1,13 @@
-# ECAS Crowdsourcing Web Application
+# Crowdsourcing Web Application
 
-Laravel 5.5 web application for the ECAS Crowdsourcing Platform project
+Laravel 5.5 web application for Crowdsourcing Projects and Questionnaires
+
+This project is used by the [European Citizen Action Service (ECAS)](https://ecas.org/) in order to facilitate
+questionnaires for the [FAIR EU](https://ecas.org/projects/fair-eu/) project.
+
+[Project URL](https://crowdsourcing.ecas.org/)
+
+#Installation Instructions:
 
 ##First time install (setup database and install dependencies)
 
