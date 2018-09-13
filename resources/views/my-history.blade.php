@@ -38,8 +38,8 @@
                                         <td>
                                             <a href="{{ url('/' . $response->slug) }}">
                                                 <div class="row">
-                                                    <div class="col-md-12 margin-bottom">{{ $response->name }}</div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-lg-12 margin-bottom">{{ $response->name }}</div>
+                                                    <div class="col-lg-12">
                                                         <img height="70" alt="{{$response->name}}"
                                                              src="{{asset($response->logo_path)}}">
                                                     </div>

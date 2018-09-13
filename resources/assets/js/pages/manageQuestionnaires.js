@@ -1,5 +1,10 @@
 require('datatables.net-bs');
 require('datatables.net-buttons');
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs');
+require('datatables.net-buttons/js/dataTables.buttons');
+require('datatables.net-buttons/js/buttons.html5');
+require('datatables.net');
 
 (function () {
     let updateFieldsInChangeStatusModal = function () {
@@ -24,6 +29,7 @@ require('datatables.net-buttons');
         table.DataTable({
             destroy: true,
             "paging": true,
+            "responsive": true,
             "searching": true,
             "columns": [
                 { "width": "5%" },
