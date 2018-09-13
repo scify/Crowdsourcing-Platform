@@ -60,7 +60,6 @@ body {
     background-color: black;
     opacity: 0.3;
     height: inherit;
-    margin: 0 -15px;
   }
   .text {
     position: relative;
@@ -114,9 +113,9 @@ section {
     background-color: #f3fafe;
 
   }
-  & {
-    margin: 0 -15px;
-  }
+  //& {
+  //  margin: 0 -15px;
+  //}
   h2 {
     text-align: center;
   }

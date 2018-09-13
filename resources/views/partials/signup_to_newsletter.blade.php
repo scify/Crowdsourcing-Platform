@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-12">
+<div class="row" id="newsletter" style="background-color: #f3fafe;">
+    <div class="col-md-12 no-padding">
         <h2>Newsletter</h2>
         <div class="content-container">
             <p class="text-center">Learn about all our new projects, get updates on active ones and contribute where
