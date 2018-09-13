@@ -179,7 +179,7 @@
             <img src="https://faireu.ecas.org/wp-content/uploads/2018/02/big-eu-flag.png" alt="">
         </div>
         <div class="col-sm-3">
-            <p style="font-size:13px; line-height:20px;">
+            <p style="font-size:13px; line-height:20px; text-align: justify;">
                 Project Co-funded by the JUSTICE, EQUALITY AND CITIZENSHIP PROGRAMME (2014-2020) OF THE EUROPEAN
                 UNION.<br>
                 The content of this website represents the views of the author only and is his/her sole responsibility.
