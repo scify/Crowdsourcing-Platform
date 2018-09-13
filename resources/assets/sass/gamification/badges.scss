@@ -14,10 +14,15 @@
       }
     }
   }
-  .single-badge {
-    margin-bottom: 30px;
-    .gamification-badge {
-      max-width: 100%;
+
+  .gamification-badge {
+    max-width: 100%;
+    height: 212px;
+  }
+
+  @media only screen and (max-width : 768px) {
+    gamification-badge {
+      height: auto;
     }
   }
 
