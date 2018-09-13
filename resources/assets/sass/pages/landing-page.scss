@@ -109,9 +109,8 @@ section {
   &:first-of-type {
     padding-top: 80px;
   }
-  &:nth-child(even) {
+  &:nth-child(even) .col-md-12{
     background-color: #f3fafe;
-
   }
   //& {
   //  margin: 0 -15px;
@@ -370,11 +369,20 @@ section {
 }
 
 footer {
-  margin: 0 -15px;
-  background-color: #99aec1;
+  .row {
+    background-color: #99aec1;
+  }
+
+  .row:first-child {
+    padding-top: 60px;
+  }
+
+  .row:last-child {
+    padding-bottom: 20px;
+  }
+
   color: #000 !important;
-  padding-top: 60px;
-  padding-bottom: 10px;
+
   p {
     color: #000;
   }
