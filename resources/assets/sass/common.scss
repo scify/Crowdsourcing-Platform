@@ -51,6 +51,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+@media only screen and (max-width : 768px) {
+  #userEmail {
+    margin-bottom: 15px;
+  }
+}
+
 .modal.loading {
   .modal-content:after {
     content: '';
