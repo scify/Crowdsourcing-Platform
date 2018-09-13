@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $questionnaire_id
  * @property string $guid
+ * @property int $order_id
  * @property string $name
  * @property string $question
  * @property string $type
