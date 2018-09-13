@@ -23,7 +23,7 @@
                     @if($responses->isEmpty())
                         <p class="warning">You haven't responded to any questionnaires, yet.</p>
                     @else
-                        <table id="responsesTable">
+                        <table id="responsesTable" cellspacing="0" style="width: 100%;">
                             <thead>
                             <tr>
                                 <th>Project</th>
