@@ -30,6 +30,27 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   height: 53px;
 }
 
+@media only screen and (max-width : 600px) {
+  .main-header {
+    display: inline-block;
+    width: 100%;
+    .logo {
+      float: right;
+      width: 50%;
+      text-align: right;
+    }
+
+    .navbar {
+      float: left;
+      width: 50%;
+    }
+  }
+
+  .content-header, .content, .main-footer {
+    padding-left: 15px !important;
+  }
+}
+
 .modal.loading {
   .modal-content:after {
     content: '';
