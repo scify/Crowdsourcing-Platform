@@ -61,6 +61,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+.eu-logo {
+  img {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
 .modal.loading {
   .modal-content:after {
     content: '';
