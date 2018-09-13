@@ -5,7 +5,7 @@
     <div class="box-body">
         <div class="row">
             <div class="col-md-12">
-                <table id="usersTable">
+                <table id="usersTable" cellspacing="0" style="width: 100%;">
                     <thead>
                     <tr>
                         <th>Email</th>
@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="answerStats">
-                    <table id="answersTable">
+                    <table id="answersTable" cellspacing="0" style="width: 100%;">
                         <thead>
                         <tr>
                             <th>Question id</th>
