@@ -7,9 +7,9 @@ questionnaires for the [FAIR EU](https://ecas.org/projects/fair-eu/) project.
 
 [Project URL](https://crowdsourcing.ecas.org/)
 
-#Installation Instructions:
+# Installation Instructions:
 
-##First time install (setup database and install dependencies)
+## First time install (setup database and install dependencies)
 
 0. Make sure php 7.1 (or newer) is installed.
 
@@ -42,7 +42,7 @@ php artisan storage:link
 ```
 to link this folder with the public directory
 
-##Apache configuration:
+## Apache configuration:
 
 The following assumes that the website will be rendered under dev.ecas url.
 You can edit the /etc/hosts/ file and add a record  
@@ -93,7 +93,7 @@ sudo nano /etc/hosts
 
 ```
 
-##Social Login - Sign Up with Socialite
+## Social Login - Sign Up with Socialite
 This app uses [Socialite Laravel Plugin](https://laravel.com/docs/5.6/socialite) to handle social login.
 
 In order to get it working in your development environment, you need to make sure that you have API keys and secrets for 
@@ -148,7 +148,7 @@ More specifically, it makes use of [Laravel-AdminLTE](https://github.com/jeroenn
 for easier integration.
 
 
-##How to debug
+## How to debug
 - Install and configure Xdebug on your machine
 - At Chrome install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
 - At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"
