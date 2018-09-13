@@ -12,7 +12,7 @@
 
         @else
             <div id="questionnaire-wrapper" class="text-center content-container ">
-                <h3 class="questionnaire-section-title">No active questionnaires</h3>
+                <h3 class="questionnaire-section-title">No active questionnaires<br><br>Our next questionnaire is on its way: stay tuned!</h3>
             </div>
         @endif
     </div>
