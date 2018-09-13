@@ -31,9 +31,7 @@
 @push('scripts')
     <script src="{{ mix('dist/js/UsersListController.js')}}?{{env("APP_VERSION")}}"></script>
     <script>
-        $( document ).ready(function() {
             let controller = new window.UsersListController();
             controller.init();
-        });
     </script>
 @endpush
