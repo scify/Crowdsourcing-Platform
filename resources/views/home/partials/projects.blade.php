@@ -7,7 +7,7 @@
                 Please visit a project's page and make an impact by answering just a couple of questions!</p>
             <div class="projects-container row">
                 @foreach($projects as $project)
-                    <div class="col-md-4 col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-0 col-md-offset-0">
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-sm-offset-0 col-md-offset-0" style="float: none; margin: 0 auto;">
                         <div class="project-wrapper">
                             <div class="project-logo">
                                 <img src="{{$project->logo_path}}" alt="">
