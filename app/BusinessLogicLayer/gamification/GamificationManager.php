@@ -131,6 +131,7 @@ class GamificationManager {
         $percentageForActiveQuestionnaire = null;
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
         $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
+        $numberOfActionsPerformedForQuestionnaire = 0;
         if($activeQuestionnaire) {
             $numberOfActionsPerformedForQuestionnaire = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUserForQuestionnaire($activeQuestionnaire->id, $userId)->count();
             $percentageForActiveQuestionnaire =  ($numberOfActionsPerformedForQuestionnaire / $activeQuestionnaire->goal) * 100;
