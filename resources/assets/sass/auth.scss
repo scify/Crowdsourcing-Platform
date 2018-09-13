@@ -3,6 +3,7 @@
 @import url("https://use.fontawesome.com/releases/v5.1.0/css/all.css");
 
 body,html {
+  height:100% !important;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -26,7 +27,7 @@ body,html {
 
 @media only screen and (max-width : 768px) {
   .login-box, .register-box {
-    padding-top: 0;
+    padding-top: 5%;
   }
 }
 
