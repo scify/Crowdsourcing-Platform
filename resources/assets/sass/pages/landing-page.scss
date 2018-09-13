@@ -121,12 +121,9 @@ section {
     text-align: center;
   }
   .content-container {
-    padding: 100px 150px;
+    padding: 100px 10%;
     font-size: 23px;
     font-weight: 300;
-    @media screen and (max-width: 767px) {
-      padding: 50px 0;
-    }
   }
 
 }
@@ -151,7 +148,7 @@ section {
   }
 
   #questionnaire-wrapper {
-    padding: 140px 150px;
+    padding: 140px 15%;
   }
 
   .questionnaire-description{
@@ -166,7 +163,6 @@ section {
   .questionnaire-section-title {
     font-size: 43px;
     text-align: center;
-    width: 500px;
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
