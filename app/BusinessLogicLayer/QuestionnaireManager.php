@@ -166,13 +166,15 @@ class QuestionnaireManager
     private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
     {
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
+        $index = 1;
         foreach ($questions as $question) {
             $questionTitle = isset($question->title) ? $question->title : $question->name;
             $questionType = $question->type;
-            $storedQuestion = $this->questionnaireRepository->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->guid);
+            $storedQuestion = $this->questionnaireRepository->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $question->guid, $index);
             if ($questionType === 'html')
                 $this->questionnaireRepository->saveNewHtmlElement($storedQuestion->id, $question->html);
             $this->storeAllAnswers($question, $storedQuestion->id);
+            $index++;
         }
     }
 

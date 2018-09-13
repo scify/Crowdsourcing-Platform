@@ -184,6 +184,7 @@ class QuestionnaireRepository
         $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
         DB::transaction(function () use ($questionnaireId, $questions, $questionsFromDB) {
             $guidsUsed = [];
+            $index = 1;
             foreach ($questions as $question) {
                 $questionTitle = isset($question->title) ?
                     (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
@@ -193,9 +194,9 @@ class QuestionnaireRepository
                 $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
                 try{
                     if ($questionFoundInDB)
-                        $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name);
+                        $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name, $index);
                     else
-                        $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid);
+                        $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid, $index);
                 }
                 catch (Exception $e){
                     throw e;
@@ -203,6 +204,7 @@ class QuestionnaireRepository
 
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
                 $this->updateAllAnswers($question, $storedQuestion->id);
+                $index++;
             }
             $questionsFromDBToBeDeleted = $questionsFromDB->whereNotIn('guid', $guidsUsed);
             if ($questionsFromDBToBeDeleted->count() > 0) {
@@ -224,12 +226,13 @@ class QuestionnaireRepository
         return $questionnaireLanguage;
     }
 
-    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionguid)
+    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionguid, $orderId)
     {
         $question = new QuestionnaireQuestion();
         $question->questionnaire_id = $questionnaireId;
         $question->guid = $questionguid;
-        return $this->storeQuestion($question, $questionTitle, $questionType, $questionName);
+        $question->order_id = $orderId;
+        return $this->storeQuestion($question, $questionTitle, $questionType, $questionName, $orderId);
     }
 
     public function saveNewHtmlElement($questionId, $html)
@@ -386,11 +389,12 @@ class QuestionnaireRepository
         return QuestionnaireQuestion::where('questionnaire_id', $questionnaireId)->get();
     }
 
-    private function storeQuestion($question, $questionTitle, $questionType, $questionName)
+    private function storeQuestion(QuestionnaireQuestion $question, $questionTitle, $questionType, $questionName, $index)
     {
         $question->question = $questionTitle;
         $question->name = $questionName;
         $question->type = $questionType;
+        $question->order_id = $index;
         $question->save();
         return $question;
     }
