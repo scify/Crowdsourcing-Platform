@@ -46,12 +46,10 @@
 
     </div>
     <div class="row gamification-box">
-        <div class="col-md-12" style="position: relative">
-        <div class="col-md-7" style="margin: 10px auto; float: none !important;">
+        <div class="col-lg-7" style="margin: 10px auto; float: none !important;">
             <div id="awards">
                 @include('gamification.user-badges', ['badgesVM' => $viewModel->badgesVM])
             </div>
-        </div>
         </div>
     </div>
 @stop
