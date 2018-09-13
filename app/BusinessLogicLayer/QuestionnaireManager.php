@@ -212,7 +212,7 @@ class QuestionnaireManager
             }
         }
 
-        if ($question->hasOther)
+        if (isset($question->hasOther) && $question->hasOther)
             $this->questionnaireRepository->saveNewOtherAnswer($questionId, $question);
     }
 
