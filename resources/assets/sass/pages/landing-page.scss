@@ -109,7 +109,7 @@ section {
   &:first-of-type {
     padding-top: 80px;
   }
-  &:nth-child(even) .col-md-12{
+  &:nth-child(even) .row{
     background-color: #f3fafe;
   }
   //& {
@@ -119,7 +119,7 @@ section {
     text-align: center;
   }
   .content-container {
-    padding: 100px 10%;
+    padding: 100px 5%;
     font-size: 23px;
     font-weight: 300;
   }
