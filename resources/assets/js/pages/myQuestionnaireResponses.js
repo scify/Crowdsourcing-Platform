@@ -1,5 +1,7 @@
 require('datatables.net-bs');
 require('datatables.net-buttons');
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs');
 require('datatables.net-buttons/js/dataTables.buttons');
 require('datatables.net-buttons/js/buttons.html5');
 let Survey = require('survey-jquery');
@@ -16,6 +18,7 @@ window.QuestionnaireResponsesController.prototype = function() {
         usersTable.DataTable({
             "paging": true,
             "searching": true,
+            "responsive": true,
             "pageLength": 10,
             "columns": [
                 { "width": "20%" },

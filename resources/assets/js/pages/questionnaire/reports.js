@@ -1,5 +1,7 @@
 require('datatables.net-bs');
 require('datatables.net-buttons');
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs');
 require('datatables.net-buttons/js/dataTables.buttons');
 require('datatables.net-buttons/js/buttons.html5');
 
@@ -32,6 +34,7 @@ require('datatables.net-buttons/js/buttons.html5');
                 table.destroy();
             table = $('#answerTextsTable').DataTable( {
                 data: data,
+                responsive: true,
                 columns: [
                     { title: "Original answer", width: '45%' },
                     { title: "English automatic translation", width: '45%' },
@@ -97,6 +100,7 @@ require('datatables.net-buttons/js/buttons.html5');
         usersTable.DataTable({
             "paging": true,
             "searching": true,
+            "responsive": true,
             "pageLength": 15,
             "dom": 'Bfrtip',
             "buttons": [
@@ -123,6 +127,7 @@ require('datatables.net-buttons/js/buttons.html5');
         answersTable.DataTable({
             "paging": true,
             "searching": true,
+            "responsive": true,
             "pageLength": 15,
             "dom": 'Bfrtip',
             "buttons": [
