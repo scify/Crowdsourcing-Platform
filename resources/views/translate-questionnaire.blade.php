@@ -66,7 +66,7 @@
                         <label for="language-to-translate">Available languages:</label>
                         <select class="form-control" name="language" id="language-to-translate">
                             @foreach($viewModel->allLanguages as $language)
-                                <option value="{{$language->id}}" data-lang-code="{{$language->language_code}}">{{$language->language_name}}</option>
+                                <option {{ $viewModel->getDisabledAttribute($language) }} value="{{$language->id}}" data-lang-code="{{$language->language_code}}">{{$language->language_name}}</option>
                             @endforeach
                         </select>
                     </div>
