@@ -7,13 +7,26 @@
   background-color: #c7e0ec;
   padding: 20px;
   border: 1px solid #3a87ad;
-  a.lang-selector {
-    width: 200px;
-    display: inline-block;
+
+  .btn-group {
     margin: 5px !important;
+
+  }
+
+  .lang-selector {
+
+    display: inline-block;
+    width: 200px;
     &.btn-info {
       font-weight: bold;
     }
+  }
+
+  .fa {
+    margin-right: 5px;
+  }
+  .title {
+    margin-right: 10px;
   }
 }
 
