@@ -25,4 +25,11 @@ class QuestionnaireTranslation
         $this->defaultLanguage = $defaultLanguage;
         $this->questionnaireLanguages = $questionnaireLanguages;
     }
+
+    public function getDisabledAttribute($language) {
+        foreach ($this->questionnaireLanguages as $questionnaireLanguage)
+            if($questionnaireLanguage->language->id == $language->id)
+                return 'disabled';
+        return '';
+    }
 }
