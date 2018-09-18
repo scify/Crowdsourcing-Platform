@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\DB;
 class QuestionnaireTranslationRepository {
 
     public function deleteQuestionnaireTranslation(QuestionnaireLanguage $questionnaireLanguage) {
+        DB::transaction(function () use ($questionnaireLanguage) {
+
+            DB::delete('delete from questionnaire_translation_html where questionnaire_language_id = ' . $questionnaireLanguage->id);
+
+            DB::delete('delete from questionnaire_translation_questions where questionnaire_language_id = ' . $questionnaireLanguage->id);
+
+            DB::delete('delete from questionnaire_translation_possible_answers where questionnaire_language_id = ' . $questionnaireLanguage->id);
+
+            DB::delete('delete from questionnaire_languages where id = ' . $questionnaireLanguage->id);
+
+        });
     }
 
     public function deleteHtmlTranslations($htmlId)
