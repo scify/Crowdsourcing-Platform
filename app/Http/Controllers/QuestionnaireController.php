@@ -92,6 +92,16 @@ class QuestionnaireController extends Controller
         return response()->json(['status' => '__SUCCESS', 'translations' => $translations]);
     }
 
+    public function markTranslation(Request $request) {
+        try {
+            $this->questionnaireManager->markQuestionnaireTranslation($request->questionnaire_id, $request->lang_id, $request->mark_human);
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
+        } catch (\Exception $e) {
+            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
+        }
+    }
+
     public function storeQuestionnaireTranslations(Request $request, $id)
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);

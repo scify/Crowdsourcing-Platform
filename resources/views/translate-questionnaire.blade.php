@@ -29,7 +29,9 @@
                     </div>
                     <div class="row {{$viewModel->questionnaireTranslations->count() <= 1 ? 'hide' : ''}}">
                         <div class="col-md-12">
-                            <div class="languages-wrapper"></div>
+                            <div class="languages-wrapper"
+                                 data-questionnaire-id="{{ $viewModel->questionnaire->id }}"
+                                 data-mark-translation-url="{{ route('mark-translation') }}"></div>
                         </div>
                         <div class="col-md-12">
                             <div class="translation-wrapper"

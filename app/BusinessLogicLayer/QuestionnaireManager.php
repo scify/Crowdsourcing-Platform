@@ -21,6 +21,8 @@ use App\Repository\QuestionnaireResponseAnswerRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
+use JsonSchema\Exception\ResourceNotFoundException;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 class QuestionnaireManager
 {
@@ -234,5 +236,13 @@ class QuestionnaireManager
         foreach ($answersRows as $answersRow)
             $answersRow->answer_texts = $answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id)->values();
         return new QuestionnaireReportResults($usersRows, $answersRows);
+    }
+
+    public function markQuestionnaireTranslation(int $questionnaireId, int $langId, bool $markHuman) {
+        $questionnaireLanguage = $this->questionnaireRepository->getQuestionnaireLanguage($questionnaireId, $langId);
+        if(!$questionnaireLanguage)
+            throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $langId);
+        $questionnaireLanguage->machine_generated_translation = !$markHuman;
+        $questionnaireLanguage->save();
     }
 }

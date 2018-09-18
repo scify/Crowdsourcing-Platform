@@ -31,6 +31,11 @@ class QuestionnaireRepository
         return QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->with('language')->get();
     }
 
+    public function getQuestionnaireLanguage($questionnaireId, $langId)
+    {
+        return QuestionnaireLanguage::where(['questionnaire_id' => $questionnaireId, 'language_id' => $langId])->first();
+    }
+
     public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId)
     {
         $questionnaires = DB::
