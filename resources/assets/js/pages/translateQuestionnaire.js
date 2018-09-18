@@ -81,7 +81,7 @@
             '  <ul class="dropdown-menu lang-data" data-lang-id="' + selectedLangVal + '">' +
             '    <li>' + translationMarkBtn + '</li>' +
             '    <li role="separator" class="divider"></li>' +
-            '    <li><a class="remove-lang" href="#">Remove Language</a></li>' +
+            '    <li><a class="delete-translation" href="#">Remove Language</a></li>' +
             '  </ul>' +
             '</div>';
 
@@ -236,6 +236,59 @@
         });
     };
 
+    let deleteTranslationHandler = function() {
+        swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this translation.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                deleteTranslation();
+            });
+    };
+
+    let deleteTranslation = function() {
+        let self = $(this);
+        if (self.hasClass("busy"))
+            return;
+        const parent = $(this).parents(".lang-data");
+        const outerParent = $(this).parents(".languages-wrapper");
+
+        const langId = parent.data("lang-id");
+        const questionnaireId = outerParent.data("questionnaire-id");
+
+        const data = {lang_id: langId, questionnaire_id: questionnaireId};
+        const url = outerParent.data("delete-translation-url");
+        $.ajax({
+            method: 'post',
+            url: url,
+            data: data,
+            beforeSend:function(){
+                self.addClass("busy");
+            },
+            complete:function(){
+                self.removeClass("busy");
+            },
+            success: function (responseStr) {
+                let response = JSON.parse(responseStr);
+                if(response.status) {
+                    showSuccessAlert("The translation has been successfully deleted.", function () {
+                        window.location.reload();
+                    });
+                } else {
+                    showErrorAlert();
+                }
+            },
+            error: function (error) {
+                showErrorAlert();
+            }
+        });
+    };
+
     let showSuccessAlert = function(title, _callback) {
         swal({
             title: "Success!",
@@ -328,6 +381,7 @@
         body.on("click", ".save-translations", saveTranslations);
         body.on("click", ".refresh-translation-for-string",refreshTranslationForSingleString);
         body.on("click", ".mark-lang", markLanguageAs);
+        body.on("click", ".delete-translation", deleteTranslationHandler);
         let modal = $("#add-new-lang-modal");
         modal.find('a').on('click', addNewLanguageForQuestionnaire);
     };
