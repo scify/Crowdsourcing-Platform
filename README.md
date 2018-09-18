@@ -1,6 +1,6 @@
 # Crowdsourcing Web Application
 
-Laravel 5.5 web application for Crowdsourcing Projects and Questionnaires
+Laravel 5.7 web application for Crowdsourcing Projects and Questionnaires
 
 This project is used by the [European Citizen Action Service (ECAS)](https://ecas.org/) in order to facilitate
 questionnaires for the [FAIR EU](https://ecas.org/projects/fair-eu/) project.
@@ -11,7 +11,7 @@ questionnaires for the [FAIR EU](https://ecas.org/projects/fair-eu/) project.
 
 ## First time install (setup database and install dependencies)
 
-0. Make sure php 7.1 (or newer) is installed.
+0. Make sure php 7.1.3 (or newer) is installed.
 
 Install graphics library 
 
