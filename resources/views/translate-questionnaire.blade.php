@@ -31,7 +31,8 @@
                         <div class="col-md-12">
                             <div class="languages-wrapper"
                                  data-questionnaire-id="{{ $viewModel->questionnaire->id }}"
-                                 data-mark-translation-url="{{ route('mark-translation') }}"></div>
+                                 data-mark-translation-url="{{ route('mark-translation') }}"
+                                 data-delete-translation-url="{{ route('delete-translation') }}"></div>
                         </div>
                         <div class="col-md-12">
                             <div class="translation-wrapper"
