@@ -255,6 +255,6 @@ class QuestionnaireManager
         if(!$questionnaireLanguage)
             throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $langId);
         //TODO alter translation JSON
-        $this->questionnaireRepository->deleteQuestionnaireTranslation($questionnaireLanguage);
+        $this->questionnaireTranslationRepository->deleteQuestionnaireTranslation($questionnaireLanguage);
     }
 }
