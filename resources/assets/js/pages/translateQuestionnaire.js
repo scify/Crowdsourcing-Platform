@@ -60,13 +60,30 @@
         const questionnaireLanguage = getQuestionnaireLanguageFromLangCode(selectedLangCode);
         let tooltip = "";
         let warning = "";
+        let translationMarkBtn = "";
 
-        if(questionnaireLanguage && questionnaireLanguage.machine_generated_translation) {
-            tooltip = 'data-toggle="tooltip" title="Translated by Google"';
-            warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
-        }
-        let languageButton = "<a href='javascript:void(0)' class='btn btn-block btn-default lang-selector' " +
-            "data-lang-id='" + selectedLangVal + "'" + tooltip + ">" + warning + " " + selectedLang + "</a>";
+        if(questionnaireLanguage)
+            if( questionnaireLanguage.machine_generated_translation) {
+                tooltip = 'data-toggle="tooltip" title="Translated by Google"';
+                warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
+                translationMarkBtn = '<a class="mark-lang" data-mark-human="1" href="#">Mark as human approved</a>';
+            } else {
+                translationMarkBtn = '<a class="mark-lang" data-mark-human="0" href="#">Mark as Translated by Google</a>'
+            }
+
+        let languageButton = '<div class="btn-group">' +
+            '  <button data-lang-id="' + selectedLangVal + '" ' + tooltip + ' type="button" class="btn  btn-block btn-default lang-selector">' +
+                warning + ' ' + '<span class="title">' + selectedLang +'</span>' + '</button>' +
+            '  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+            '    <span class="caret"></span>' +
+            '    <span class="sr-only">Toggle Dropdown</span>' +
+            '  </button>' +
+            '  <ul class="dropdown-menu lang-data" data-lang-id="' + selectedLangVal + '">' +
+            '    <li>' + translationMarkBtn + '</li>' +
+            '    <li role="separator" class="divider"></li>' +
+            '    <li><a class="remove-lang" href="#">Remove Language</a></li>' +
+            '  </ul>' +
+            '</div>';
 
         languagesWrapper.append(languageButton);
         languagesWrapper.closest(".row").removeClass("hide");
@@ -192,6 +209,18 @@
         });
     };
 
+    let markLanguageAs = function() {
+        let self = $(this);
+        if (self.hasClass("busy"))
+            return;
+
+        let markAsHuman = parseInt($(this).data("mark-human"));
+        let langId = $(this).parents(".lang-data").data("lang-id");
+
+        console.log(markAsHuman);
+        console.log(langId);
+    };
+
     let readDOMData = function () {
         const element = $(".translation-wrapper");
         translationsData = element.data("translations");
@@ -262,6 +291,7 @@
         body.on("click", ".lang-selector", changeLanguageViaTabClick);
         body.on("click", ".save-translations", saveTranslations);
         body.on("click", ".refresh-translation-for-string",refreshTranslationForSingleString);
+        body.on("click", ".mark-lang", markLanguageAs);
         let modal = $("#add-new-lang-modal");
         modal.find('a').on('click', addNewLanguageForQuestionnaire);
     };
