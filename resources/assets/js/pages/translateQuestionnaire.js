@@ -187,24 +187,12 @@
                 self.removeClass("busy");
             },
             success: function (response) {
-                swal({
-                    title: "Success!",
-                    text: "The translations have been successfully stored.",
-                    type: "success",
-                    confirmButtonClass: "btn-success",
-                    confirmButtonText: "OK",
-                }, function () {
+                showSuccessAlert("The translations have been successfully stored.", function () {
                     window.location = response.redirect_url;
                 });
             },
             error: function () {
-                swal({
-                    title: "Oops!",
-                    text: "An error occurred, please try again later.",
-                    type: "error",
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "OK",
-                });
+                showErrorAlert();
             }
         });
     };
@@ -213,12 +201,61 @@
         let self = $(this);
         if (self.hasClass("busy"))
             return;
+        const parent = $(this).parents(".lang-data");
+        const outerParent = $(this).parents(".languages-wrapper");
 
-        let markAsHuman = parseInt($(this).data("mark-human"));
-        let langId = $(this).parents(".lang-data").data("lang-id");
+        const markAsHuman = parseInt($(this).data("mark-human"));
+        const langId = parent.data("lang-id");
+        const questionnaireId = outerParent.data("questionnaire-id");
 
-        console.log(markAsHuman);
-        console.log(langId);
+        const data = {mark_human: markAsHuman, lang_id: langId, questionnaire_id: questionnaireId};
+        const url = outerParent.data("mark-translation-url");
+        $.ajax({
+            method: 'post',
+            url: url,
+            data: data,
+            beforeSend:function(){
+                self.addClass("busy");
+            },
+            complete:function(){
+                self.removeClass("busy");
+            },
+            success: function (responseStr) {
+                let response = JSON.parse(responseStr);
+                if(response.status) {
+                    showSuccessAlert("The translation has been successfully updated.", function () {
+                        window.location.reload();
+                    });
+                } else {
+                    showErrorAlert();
+                }
+            },
+            error: function (error) {
+                showErrorAlert();
+            }
+        });
+    };
+
+    let showSuccessAlert = function(title, _callback) {
+        swal({
+            title: "Success!",
+            text: title,
+            type: "success",
+            confirmButtonClass: "btn-success",
+            confirmButtonText: "OK",
+        }, function () {
+            _callback();
+        });
+    };
+
+    let showErrorAlert = function(title) {
+        swal({
+            title: "Oops!",
+            text: title ? title : "An error occurred, please try again later.",
+            type: "error",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "OK",
+        });
     };
 
     let readDOMData = function () {
@@ -233,7 +270,6 @@
             if (translationsData.hasOwnProperty(prop) && prop !== "")
                 languages.push(prop);
         }
-        console.log(translationsData);
         for (let i = 0; i < languages.length; i++) {
             let selectedLangVal = translationsData[languages[i]][Object.keys(translationsData[languages[i]])[0]][0].language_id;
             addNewLanguageTabAndWrapper(selectedLangVal, true, languages[i]);
