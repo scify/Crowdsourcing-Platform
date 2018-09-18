@@ -102,6 +102,16 @@ class QuestionnaireController extends Controller
         }
     }
 
+    public function deleteTranslation(Request $request) {
+        try {
+            $this->questionnaireManager->deleteQuestionnaireTranslation($request->questionnaire_id, $request->lang_id);
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
+        } catch (\Exception $e) {
+            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
+        }
+    }
+
     public function storeQuestionnaireTranslations(Request $request, $id)
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
