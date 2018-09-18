@@ -61,7 +61,7 @@
         let tooltip = "";
         let warning = "";
 
-        if(questionnaireLanguage.machine_generated_translation) {
+        if(questionnaireLanguage && questionnaireLanguage.machine_generated_translation) {
             tooltip = 'data-toggle="tooltip" title="Translated by Google"';
             warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
         }
