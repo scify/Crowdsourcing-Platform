@@ -237,6 +237,7 @@
     };
 
     let deleteTranslationHandler = function() {
+        let self = $(this);
         swal({
                 title: "Are you sure?",
                 text: "Your will not be able to recover this translation.",
@@ -247,31 +248,32 @@
                 closeOnConfirm: false
             },
             function(){
-                deleteTranslation();
+                deleteTranslation(self);
             });
     };
 
-    let deleteTranslation = function() {
-        let self = $(this);
-        if (self.hasClass("busy"))
+    let deleteTranslation = function(element) {
+        if (element.hasClass("busy"))
             return;
-        const parent = $(this).parents(".lang-data");
-        const outerParent = $(this).parents(".languages-wrapper");
+        const parent = element.parents(".lang-data");
+        const outerParent = element.parents(".languages-wrapper");
 
         const langId = parent.data("lang-id");
         const questionnaireId = outerParent.data("questionnaire-id");
 
         const data = {lang_id: langId, questionnaire_id: questionnaireId};
         const url = outerParent.data("delete-translation-url");
+        console.log(data);
+        console.log(url);
         $.ajax({
             method: 'post',
             url: url,
             data: data,
             beforeSend:function(){
-                self.addClass("busy");
+                element.addClass("busy");
             },
             complete:function(){
-                self.removeClass("busy");
+                element.removeClass("busy");
             },
             success: function (responseStr) {
                 let response = JSON.parse(responseStr);

@@ -245,4 +245,8 @@ class QuestionnaireManager
         $questionnaireLanguage->machine_generated_translation = !$markHuman;
         $questionnaireLanguage->save();
     }
+
+    public function deleteQuestionnaireTranslation($questionnaire_id, $lang_id) {
+        
+    }
 }
