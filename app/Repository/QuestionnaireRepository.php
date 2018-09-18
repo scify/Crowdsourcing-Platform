@@ -28,7 +28,7 @@ class QuestionnaireRepository
 
     public function getQuestionnaireAvailableLanguages($questionnaireId)
     {
-        return QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->get();
+        return QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->with('language')->get();
     }
 
     public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId)

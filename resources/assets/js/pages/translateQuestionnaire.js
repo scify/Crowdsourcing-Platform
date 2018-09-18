@@ -1,5 +1,6 @@
 (function () {
     let translationsData;
+    let languagesData;
 
     let selectLanguage = function (selectedLangVal) {
         let languagesWrapper = $(".languages-wrapper");
@@ -56,10 +57,27 @@
         let languagesWrapper = $(".languages-wrapper");
         let selectedLang = $("#language-to-translate").find("option[value='" + selectedLangVal + "']").html();
         let selectedLangCode = $("#language-to-translate").find("option[value='" + selectedLangVal + "']").data('lang-code');
-        languagesWrapper.append("<a href='javascript:void(0)' class='btn btn-block btn-default lang-selector' " +
-            "data-lang-id='" + selectedLangVal + "'>" + selectedLang + "</a>");
+        const questionnaireLanguage = getQuestionnaireLanguageFromLangCode(selectedLangCode);
+        let tooltip = "";
+        let warning = "";
+
+        if(questionnaireLanguage.machine_generated_translation) {
+            tooltip = 'data-toggle="tooltip" title="Translated by Google"';
+            warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
+        }
+        let languageButton = "<a href='javascript:void(0)' class='btn btn-block btn-default lang-selector' " +
+            "data-lang-id='" + selectedLangVal + "'" + tooltip + ">" + warning + " " + selectedLang + "</a>";
+
+        languagesWrapper.append(languageButton);
         languagesWrapper.closest(".row").removeClass("hide");
         addNewTranslationItemInTranslationWrapperList(selectedLangVal, selectedLangCode, isAlreadyTranslated, languageName);
+    };
+
+    let getQuestionnaireLanguageFromLangCode = function (selectedLangCode) {
+        for(let i = 0; i <languagesData.length; i++) {
+            if(languagesData[i].language.language_code === selectedLangCode)
+                return languagesData[i];
+        }
     };
 
     let addNewLanguageForQuestionnaire = function () {
@@ -174,8 +192,10 @@
         });
     };
 
-    let readTranslationData = function () {
-        translationsData = $(".translation-wrapper").data("translations");
+    let readDOMData = function () {
+        const element = $(".translation-wrapper");
+        translationsData = element.data("translations");
+        languagesData = element.data("languages");
     };
 
     let fillTranslationsTableFromData = function () {
@@ -184,6 +204,7 @@
             if (translationsData.hasOwnProperty(prop) && prop !== "")
                 languages.push(prop);
         }
+        console.log(translationsData);
         for (let i = 0; i < languages.length; i++) {
             let selectedLangVal = translationsData[languages[i]][Object.keys(translationsData[languages[i]])[0]][0].language_id;
             addNewLanguageTabAndWrapper(selectedLangVal, true, languages[i]);
@@ -247,7 +268,7 @@
 
     let init = function () {
         initEvents();
-        readTranslationData();
+        readDOMData();
         fillTranslationsTableFromData();
     };
 

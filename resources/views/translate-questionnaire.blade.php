@@ -34,6 +34,7 @@
                         <div class="col-md-12">
                             <div class="translation-wrapper"
                                  data-translations="{{$viewModel->questionnaireTranslations}}"
+                                 data-languages="{{$viewModel->questionnaireLanguages}}"
                                  data-url="{{route('automatic-translation')}}"></div>
                         </div>
                     </div>
