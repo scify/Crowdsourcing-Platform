@@ -11,4 +11,6 @@ return array(
 
     // Capture default user context
     'user_context' => false,
+
+    'release' => env("APP_VERSION")
 );
