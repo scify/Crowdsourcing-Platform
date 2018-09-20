@@ -24,4 +24,8 @@ class LanguageManager
     {
         return $this->languageRepository->all();
     }
+
+    public function getLanguage($id) {
+        return $this->languageRepository->find($id);
+    }
 }

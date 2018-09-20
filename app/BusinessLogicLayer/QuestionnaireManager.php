@@ -9,6 +9,8 @@
 namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\gamification\GamificationManager;
+use App\Models\Language;
+use App\Models\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
@@ -254,7 +256,24 @@ class QuestionnaireManager
         $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $langId);
         if(!$questionnaireLanguage)
             throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $langId);
-        //TODO alter translation JSON
+        $this->deleteTranslatedQuestionTitles($this->questionnaireRepository->findQuestionnaire($questionnaireId), $this->languageManager->getLanguage($langId));
         $this->questionnaireTranslationRepository->deleteQuestionnaireTranslation($questionnaireLanguage);
+    }
+
+    private function deleteTranslatedQuestionTitles(Questionnaire $questionnaire, Language $language) {
+        $questionnaireJSONObj = json_decode($questionnaire->questionnaire_json);
+        foreach ($questionnaireJSONObj->pages as $page) {
+            if (isset($page->elements))
+                foreach ($page->elements as $question) {
+                    if (isset($question->title->{$language->language_code}))
+                        unset($question->title->{$language->language_code});
+                    if (isset($question->choices))
+                        foreach($question->choices as $choice)
+                        if (isset($choice->text->{$language->language_code}))
+                            unset($choice->text->{$language->language_code});
+                }
+        }
+        $questionnaire->questionnaire_json = json_encode($questionnaireJSONObj);
+        $questionnaire->save();
     }
 }
