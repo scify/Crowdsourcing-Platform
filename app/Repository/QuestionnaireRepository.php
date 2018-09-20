@@ -302,7 +302,7 @@ class QuestionnaireRepository
             array_push($guidsUsed, "other");
             $answerFoundInDB = $answersFromDB->where('guid',"=", "other")->first();
             if ($answerFoundInDB)
-                $this->storeAnswer($answerFoundInDB,$this->getOtherAnswerTitle($question), "other");
+                $this->storeAnswer($answerFoundInDB,$this->questionnaireTranslationRepository->getOtherAnswerTitle($question), "other");
             else
                 $this->saveNewOtherAnswer($questionId,$question);
         }
