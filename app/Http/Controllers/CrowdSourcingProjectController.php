@@ -7,6 +7,8 @@ use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use JsonSchema\Exception\ResourceNotFoundException;
 
 class CrowdSourcingProjectController extends Controller
 {
@@ -67,13 +69,16 @@ class CrowdSourcingProjectController extends Controller
 
 
     public function showLandingPage(Request $request, $project_slug) {
-        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->open ==1, $project_slug);
-        if(isset($request->questionnaireId) && isset($request->referrerId))
-            $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager, $this->userManager->getUser($request->referrerId));
-        if(isset($request->referrerId))
-            $this->userManager->setReferrerIdToWebSession($request->referrerId);
-        if ($viewModel->project)
+        try {
+            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->open == 1, $project_slug);
+            if (isset($request->questionnaireId) && isset($request->referrerId))
+                $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager, $this->userManager->getUser($request->referrerId));
+            if (isset($request->referrerId))
+                $this->userManager->setReferrerIdToWebSession($request->referrerId);
             return view('landingpages.home')->with(['viewModel' => $viewModel]);
-        abort(404);
+        } catch (ResourceNotFoundException $e) {
+            Log::error($e);
+            abort(404);
+        }
     }
 }

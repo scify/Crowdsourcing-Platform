@@ -9,6 +9,7 @@ use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use Illuminate\Support\Facades\Auth;
+use JsonSchema\Exception\ResourceNotFoundException;
 
 class CrowdSourcingProjectManager
 {
@@ -42,12 +43,15 @@ class CrowdSourcingProjectManager
 
     public function getCrowdSourcingProjectViewModelForLandingPage($openQuestionnaireWhenPageLoads, $project_slug) {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
+        if(!$project)
+            throw new ResourceNotFoundException("Project not found");
+
         $questionnaire = null;
         $userResponse = null;
         $allResponses = collect([]);
         $allLanguagesForQuestionnaire = collect([]);
-        if ($project)
-            $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id);
+
+        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id);
         if ($questionnaire) {
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             if ($userResponse!=null)
