@@ -269,8 +269,8 @@ class QuestionnaireManager
                         unset($question->title->{$language->language_code});
                     if (isset($question->choices))
                         foreach($question->choices as $choice)
-                        if (isset($choice->text->{$language->language_code}))
-                            unset($choice->text->{$language->language_code});
+                            if (isset($choice->text->{$language->language_code}))
+                                unset($choice->text->{$language->language_code});
                     if (isset($question->otherText))
                         if (isset($question->otherText->{$language->language_code}))
                             unset($question->otherText->{$language->language_code});
