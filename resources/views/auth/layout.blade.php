@@ -25,7 +25,7 @@
     <![endif]-->
 
 </head>
-<body class="hold-transition register-page @yield('body_class')">
+<body class="hold-transition background-page @yield('body_class')">
 @if (App::environment('staging'))
     <div class="staging-warning">
         <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
