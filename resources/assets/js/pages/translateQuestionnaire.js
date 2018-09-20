@@ -222,7 +222,7 @@
             },
             success: function (responseStr) {
                 let response = JSON.parse(responseStr);
-                if(response.status) {
+                if(response.status === 1) {
                     showSuccessAlert("The translation has been successfully updated.", function () {
                         window.location.reload();
                     });
@@ -257,14 +257,11 @@
             return;
         const parent = element.parents(".lang-data");
         const outerParent = element.parents(".languages-wrapper");
-
         const langId = parent.data("lang-id");
         const questionnaireId = outerParent.data("questionnaire-id");
-
         const data = {lang_id: langId, questionnaire_id: questionnaireId};
         const url = outerParent.data("delete-translation-url");
-        console.log(data);
-        console.log(url);
+
         $.ajax({
             method: 'post',
             url: url,
@@ -277,7 +274,7 @@
             },
             success: function (responseStr) {
                 let response = JSON.parse(responseStr);
-                if(response.status) {
+                if(response.status === 1) {
                     showSuccessAlert("The translation has been successfully deleted.", function () {
                         window.location.reload();
                     });
