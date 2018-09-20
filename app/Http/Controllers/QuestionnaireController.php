@@ -13,6 +13,8 @@ use App\BusinessLogicLayer\QuestionnaireManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 class QuestionnaireController extends Controller
 {
@@ -98,6 +100,7 @@ class QuestionnaireController extends Controller
             return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
         } catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            Log::error($e);
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
         }
     }
@@ -108,6 +111,7 @@ class QuestionnaireController extends Controller
             return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
         } catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            Log::error($e);
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
         }
     }
@@ -135,6 +139,7 @@ class QuestionnaireController extends Controller
             return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) $view));
         }  catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            Log::error($e);
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
         }
     }
