@@ -271,6 +271,12 @@ class QuestionnaireManager
                         foreach($question->choices as $choice)
                         if (isset($choice->text->{$language->language_code}))
                             unset($choice->text->{$language->language_code});
+                    if (isset($question->otherText))
+                        if (isset($question->otherText->{$language->language_code}))
+                            unset($question->otherText->{$language->language_code});
+                    if (isset($question->html))
+                        if (isset($question->html->{$language->language_code}))
+                            unset($question->html->{$language->language_code});
                 }
         }
         $questionnaire->questionnaire_json = json_encode($questionnaireJSONObj);
