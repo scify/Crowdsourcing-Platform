@@ -1,5 +1,9 @@
 # Crowdsourcing Web Application
 
+[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/dwyl/goodparts "JavaScript The Good Parts")
+[![HitCount](http://hits.dwyl.io/scify/Crowdsourcing-Platform.svg)](http://hits.dwyl.io/scify/Crowdsourcing-Platform)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
 Laravel 5.7 web application for Crowdsourcing Projects and Questionnaires
 
 This project is used by the [European Citizen Action Service (ECAS)](https://ecas.org/) in order to facilitate
