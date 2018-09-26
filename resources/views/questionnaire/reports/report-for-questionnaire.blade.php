@@ -52,6 +52,7 @@
                             <th>Question text</th>
                             <th>Answer id</th>
                             <th>Number of responses</th>
+                            <th>Action</th>
                             <th>Answer text</th>
                         </tr>
                         </thead>
@@ -63,8 +64,13 @@
                                 <td>{{ $row->answer_id }}</td>
                                 <td>
                                     {{ $row->num_of_responses }}
+                                </td>
+                                <td>
                                     @if(!$row->answer_texts->isEmpty())
-                                        <a data-question="{{ $row->question }}" data-answers="{{$row->answer_texts->toJson()}}" href="#" class="more-btn">(click here to view)</a>
+                                        <a data-question="{{ $row->question }}" data-answers="{{$row->answer_texts->toJson()}}" href="#"
+                                           class="btn btn-primary more-btn">
+                                            View
+                                        </a>
                                     @endif
                                 </td>
                                 <td>{{ $row->answer }}</td>
