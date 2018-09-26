@@ -106,7 +106,8 @@ require('datatables.net-buttons/js/buttons.html5');
             "buttons": [
                 {
                     extend: 'csvHtml5',
-                    text: 'Download as CSV'
+                    text: 'Download as CSV',
+                    filename: 'Respondents_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime()
                 }
 
             ],
@@ -133,7 +134,8 @@ require('datatables.net-buttons/js/buttons.html5');
             "buttons": [
                 {
                     extend: 'csvHtml5',
-                    text: 'Download as CSV'
+                    text: 'Download as CSV',
+                    filename: 'Answers_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime()
                 }
 
             ],
