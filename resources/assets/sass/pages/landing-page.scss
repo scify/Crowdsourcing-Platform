@@ -451,6 +451,13 @@ footer {
       .activity-item {
         padding: 5px 15px;
 
+        .user-icon {
+          color: $brand-primary;
+          margin-right: 5px;
+          font-size: xx-large;
+          vertical-align: middle;
+        }
+
         &:nth-child(even) {
           background-color: #eef1f4;
         }
