@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/errors.css') }}">
+    @if (App::environment('production'))
+        @include('analytics')
+    @endif
 </head>
 <body class="hold-transition background-page @yield('body_class')">
 @if (App::environment('staging'))
