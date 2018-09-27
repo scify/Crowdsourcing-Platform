@@ -137,6 +137,7 @@
                     <a href="https://ecas.org/about-us/" target="_blank">About us</a>
                 </div>
                 <div> <a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a></div>
+                <div> <a href="https://github.com/scify/Crowdsourcing-Platform" target="_blank">Github</a></div>
             </div>
         </div>
         <div class="col-sm-2">
@@ -196,7 +197,7 @@
             <div class="lower-footer">
                 Copyright &copy; {{ date("Y") }} <a target=" _blank"
                                                     href="https://ecas.org">ECAS.org</a>
-                All rights reserved.
+                All rights reserved. | Version {{ env("APP_VERSION")}}
             </div>
         </div>
     </div>
