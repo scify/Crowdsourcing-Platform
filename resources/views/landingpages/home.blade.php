@@ -58,7 +58,7 @@
         @include('analytics')
     @endif
 </head>
-<body class="">
+<body class="project-landing-page">
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-default navbar-fixed-top">
