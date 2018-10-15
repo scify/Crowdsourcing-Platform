@@ -77,7 +77,6 @@ class CrowdSourcingProjectController extends Controller
                 $this->userManager->setReferrerIdToWebSession($request->referrerId);
             return view('landingpages.home')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
-            Log::error($e);
             abort(404);
         }
     }
