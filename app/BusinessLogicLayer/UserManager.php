@@ -15,10 +15,10 @@ use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class UserManager
-{
+class UserManager {
     private $userRepository;
     private $userRoleRepository;
     private $questionnaireManager;
@@ -50,18 +50,15 @@ class UserManager
         $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
-    function userIsPlatformAdmin($user)
-    {
+    function userIsPlatformAdmin($user) {
         return $this->userRepository->userIsPlatformAdmin($user);
     }
 
-    public function getUserProfile($user)
-    {
+    public function getUserProfile($user) {
         return new UserProfile($user);
     }
 
-    public function getDashboardData()
-    {
+    public function getDashboardData() {
         $user = Auth::user();
         $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
         $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($user->id);
@@ -71,33 +68,28 @@ class UserManager
         return new DashboardInfo($projects, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
     }
 
-    public function getUser($userId)
-    {
+    public function getUser($userId) {
         return $this->userRepository->find($userId);
     }
 
-    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null)
-    {
+    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null) {
         $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters, true);
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
         return new ManageUsers($users, $allRoles);
     }
 
-    public function getEditUserViewModel($id)
-    {
+    public function getEditUserViewModel($id) {
         $user = $this->userRepository->getUser($id);
         $userRoleIds = $user->roles->pluck('id');
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
         return new EditUser($user, $userRoleIds, $allRoles);
     }
 
-    public function updateUserRoles($userId, $roleSelect)
-    {
+    public function updateUserRoles($userId, $roleSelect) {
         $this->userRepository->updateUserRoles($userId, $roleSelect);
     }
 
-    public function deactivateUser($id)
-    {
+    public function deactivateUser($id) {
         $user = $this->userRepository->getUserWithTrashed($id);
         $this->userRepository->softDeleteUser($user);
     }
@@ -106,14 +98,12 @@ class UserManager
         $this->userRepository->anonymizeUser($user);
     }
 
-    public function reactivateUser($id)
-    {
+    public function reactivateUser($id) {
         $user = $this->userRepository->getUserWithTrashed($id);
         $this->userRepository->reActivateUser($user);
     }
 
-    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect)
-    {
+    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect) {
         $emailCheck = $this->userRepository->getUserByEmail($email);
         // Check if email exists in db
         if ($emailCheck) {
@@ -129,7 +119,11 @@ class UserManager
                 'password' => $password != null ? bcrypt($password) : null,
             ]);
             $user->save();
-            $user->notify(new UserRegistered($this->crowdSourcingProjectManager));
+            try {
+                $user->notify(new UserRegistered($this->crowdSourcingProjectManager));
+            } catch (\Exception $e) {
+                Log::error($e);
+            }
             $this->userRepository->updateUserRoles($user->id, $roleselect);
             return new ActionResponse(UserActionResponses::USER_CREATED, $user);
         }
@@ -139,13 +133,12 @@ class UserManager
      * @param $data array the form data array
      * @throws HttpException
      */
-    public function updateUser($data)
-    {
+    public function updateUser($data) {
         $user_id = Auth::User()->id;
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
-        if(!$current_password) {
+        if (!$current_password) {
             $obj_user->password = Hash::make($data['password']);
         } else {
             if (Hash::check($data['current_password'], $current_password)) {
@@ -159,13 +152,11 @@ class UserManager
     }
 
 
-    public function getPlatformAdminUsersWithCriteria($paginationNum = null, $data)
-    {
+    public function getPlatformAdminUsersWithCriteria($paginationNum = null, $data) {
         return $this->userRepository->getPlatformUsers($paginationNum, $data, true);
     }
 
-    public function handleSocialLoginUser($socialUser)
-    {
+    public function handleSocialLoginUser($socialUser) {
 
         $result = $this->getOrAddUserToPlatform($socialUser->email,
             $socialUser->name,
@@ -184,15 +175,14 @@ class UserManager
         }
     }
 
-    public function createUser(array $data)
-    {
+    public function createUser(array $data) {
         $data['password'] = bcrypt($data['password']);
         return $this->userRepository->create($data);
     }
 
     public function setReferrerIdToWebSession($referrerId) {
         $referrer = $this->getUser($referrerId);
-        if($referrer)
+        if ($referrer)
             $this->webSessionManager->setReferrerId($referrerId);
     }
 

@@ -7,7 +7,6 @@ use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 class CrowdSourcingProjectController extends Controller

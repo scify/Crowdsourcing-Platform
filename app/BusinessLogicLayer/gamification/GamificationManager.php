@@ -13,6 +13,7 @@ use App\Notifications\QuestionnaireShared;
 use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class GamificationManager {
 
@@ -145,6 +146,10 @@ class GamificationManager {
 
     public function notifyUserForCommunicatorBadge($questionnaire, $user) {
         $communicatorBadge = $this->getCommunicatorBadge($user->id);
-        $user->notify(new QuestionnaireShared($questionnaire, $communicatorBadge, $this->getBadgeViewModel($communicatorBadge)));
+        try {
+            $user->notify(new QuestionnaireShared($questionnaire, $communicatorBadge, $this->getBadgeViewModel($communicatorBadge)));
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
     }
 }

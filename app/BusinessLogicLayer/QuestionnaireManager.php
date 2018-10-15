@@ -24,11 +24,10 @@ use App\Repository\QuestionnaireTranslationRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use JsonSchema\Exception\ResourceNotFoundException;
-use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
-class QuestionnaireManager
-{
+class QuestionnaireManager {
     private $questionnaireRepository;
     private $languageManager;
     private $translator;
@@ -62,8 +61,7 @@ class QuestionnaireManager
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
     }
 
-    public function getCreateEditQuestionnaireViewModel($id)
-    {
+    public function getCreateEditQuestionnaireViewModel($id) {
         $questionnaire = null;
         $title = "Create Questionnaire";
         if (!is_null($id)) {
@@ -74,8 +72,7 @@ class QuestionnaireManager
         return new CreateEditQuestionnaire($questionnaire, $languages, $title);
     }
 
-    public function getAllQuestionnairesForProjectViewModel($projectId)
-    {
+    public function getAllQuestionnairesForProjectViewModel($projectId) {
         $questionnaires = $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($projectId);
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses, $projectId);
@@ -85,22 +82,19 @@ class QuestionnaireManager
         return $this->questionnaireRepository->getAllResponsesGivenByUser($userId);
     }
 
-    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments)
-    {
+    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
         $comments = is_null($comments) ? "" : $comments;
         $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
     }
 
-    public function createNewQuestionnaire($data)
-    {
+    public function createNewQuestionnaire($data) {
         $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
             $data['title'], $data['description'], $data['goal'], $data['language'], $data['project'], $data['content']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
 
-    public function updateQuestionnaire($id, $data)
-    {
+    public function updateQuestionnaire($id, $data) {
         $this->questionnaireRepository->updateQuestionnaire($id, $data['title'], $data['description'],
             $data['goal'], $data['language'], $data['project'], $data['content']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
@@ -118,14 +112,18 @@ class QuestionnaireManager
 
     private function awardContributorBadgeAndNotifyUser($questionnaire, $user) {
         $contributorBadge = $this->gamificationManager->getContributorBadge($user->id);
-        $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, $this->gamificationManager->getBadgeViewModel($contributorBadge)));
+        try {
+            $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, $this->gamificationManager->getBadgeViewModel($contributorBadge)));
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
     }
 
     private function handleQuestionnaireReferrer($questionnaire, $user) {
         $referrerId = $this->webSessionManager->getReferredId();
-        if($referrerId) {
+        if ($referrerId) {
             $referrer = $this->userRepository->getUser($referrerId);
-            if($referrer) {
+            if ($referrer) {
                 $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
                 $influencerBadge = $this->gamificationManager->getInfluencerBadge($referrer->id, $questionnaire);
                 $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, $this->gamificationManager->getBadgeViewModel($influencerBadge)));
@@ -134,11 +132,11 @@ class QuestionnaireManager
         }
     }
 
-    public function getAutomaticTranslationForString($languageCodeToTranslateTo, $text){
+    public function getAutomaticTranslationForString($languageCodeToTranslateTo, $text) {
         return $this->translator->translateTexts([$text], $languageCodeToTranslateTo);
     }
-    public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts)
-    {
+
+    public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts) {
         $translations = [];
         $translatedTexts = $this->translator->translateTexts($texts, $languageCodeToTranslateTo);
         foreach ($ids as $key => $id)
@@ -146,8 +144,7 @@ class QuestionnaireManager
         return $translations;
     }
 
-    public function getTranslateQuestionnaireViewModel($questionnaireId)
-    {
+    public function getTranslateQuestionnaireViewModel($questionnaireId) {
         $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
         $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
         $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
@@ -167,13 +164,11 @@ class QuestionnaireManager
         return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
     }
 
-    public function storeQuestionnaireTranslations($questionnaireId, $translations)
-    {
+    public function storeQuestionnaireTranslations($questionnaireId, $translations) {
         $this->questionnaireTranslationRepository->storeQuestionnaireTranslations($questionnaireId, json_decode($translations));
     }
 
-    private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data)
-    {
+    private function storeToAllQuestionnaireRelatedTables($questionnaireId, $data) {
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
         $index = 1;
         foreach ($questions as $question) {
@@ -187,14 +182,12 @@ class QuestionnaireManager
         }
     }
 
-    private function updateAllQuestionnaireRelatedTables($questionnaireId, $data)
-    {
+    private function updateAllQuestionnaireRelatedTables($questionnaireId, $data) {
         $questions = $this->extractDataFromQuestionnaireJson($data['content']);
         $this->questionnaireRepository->updateAllQuestionnaireRelatedTables($questionnaireId, $questions);
     }
 
-    private function extractDataFromQuestionnaireJson($content)
-    {
+    private function extractDataFromQuestionnaireJson($content) {
         $questionnaire = json_decode($content);
         $allQuestions = [];
         foreach ($questionnaire->pages as $page) {
@@ -204,17 +197,16 @@ class QuestionnaireManager
         return $allQuestions;
     }
 
-    private function storeAllAnswers($question, $questionId)
-    {
+    private function storeAllAnswers($question, $questionId) {
         if (isset($question->choices)) {
             foreach ($question->choices as $choice) {
 
                 if (isset($choice->name))
                     $answer = $choice->name;
                 else if (isset($choice->text))
-                    $answer  = $choice->text;
+                    $answer = $choice->text;
                 else
-                    $answer  = $choice;
+                    $answer = $choice;
 
                 $value = isset($choice->value) ? $choice->value : $choice;
                 $this->questionnaireRepository->saveNewAnswer($questionId, $answer, $value, $choice->guid);
@@ -225,8 +217,7 @@ class QuestionnaireManager
             $this->questionnaireRepository->saveNewOtherAnswer($questionId, $question);
     }
 
-    private function transformAllLanguagesToArray($allLanguages)
-    {
+    private function transformAllLanguagesToArray($allLanguages) {
         $result = [];
         foreach ($allLanguages as $language) {
             array_push($result, $language[0]);
@@ -246,7 +237,7 @@ class QuestionnaireManager
 
     public function markQuestionnaireTranslation(int $questionnaireId, int $langId, bool $markHuman) {
         $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $langId);
-        if(!$questionnaireLanguage)
+        if (!$questionnaireLanguage)
             throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $langId);
         $questionnaireLanguage->machine_generated_translation = !$markHuman;
         $questionnaireLanguage->save();
@@ -254,7 +245,7 @@ class QuestionnaireManager
 
     public function deleteQuestionnaireTranslation($questionnaireId, $langId) {
         $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $langId);
-        if(!$questionnaireLanguage)
+        if (!$questionnaireLanguage)
             throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $langId);
         $this->deleteTranslatedQuestionTitles($this->questionnaireRepository->findQuestionnaire($questionnaireId), $this->languageManager->getLanguage($langId));
         $this->questionnaireTranslationRepository->deleteQuestionnaireTranslation($questionnaireLanguage);
@@ -268,7 +259,7 @@ class QuestionnaireManager
                     if (isset($question->title->{$language->language_code}))
                         unset($question->title->{$language->language_code});
                     if (isset($question->choices))
-                        foreach($question->choices as $choice)
+                        foreach ($question->choices as $choice)
                             if (isset($choice->text->{$language->language_code}))
                                 unset($choice->text->{$language->language_code});
                     if (isset($question->otherText))
