@@ -14,7 +14,7 @@ class MakeEnglishTranslationColumnText extends Migration
     public function up()
     {
         Schema::table('questionnaire_response_answer_texts', function (Blueprint  $table) {
-            $table->text('english_translation')->change();
+            $table->longText('english_translation')->change();
         });
     }
 
