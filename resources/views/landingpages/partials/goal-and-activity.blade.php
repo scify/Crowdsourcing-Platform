@@ -14,33 +14,39 @@
     </div>
 
     <div class="row activity-container wrapper-box">
-        <div class="col-xs-9">
-            @if ($viewModel->totalResponses ==0)
-                <p class="no-activity-found-msg">
-                    No recent activity found
-                </p>
-            @elseif ($viewModel->totalResponses > 0)
-                <div class="activity-title wrapper-title">
-                    <p>Latest contributors</p>
-                </div>
-                <div class="activity-content">
-                    @foreach($viewModel->allResponses as $response)
-                        @if($response->user)
-                            <div class="activity-item">
-                                {{--<img height="30" class="img-circle"--}}
-                                     {{--src="https://www.gravatar.com/avatar/{{ md5($response->user->email) }}"> --}}
-                                <i class="fa fa-user-circle user-icon" aria-hidden="true"></i>
-                                {{$response->user->nickname}}
-                                responded at {{$response->created_at->toDayDateTimeString()}}
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            @endif
+        @can("manage-platform")
+            <div class="col-xs-9">
+                @if ($viewModel->totalResponses ==0)
+                    <p class="no-activity-found-msg">
+                        No recent activity found
+                    </p>
+                @elseif ($viewModel->totalResponses > 0)
+                    <div class="activity-title wrapper-title">
+                        <p>Latest contributors</p>
+                    </div>
+                    <div class="activity-content">
+                        @foreach($viewModel->allResponses as $response)
+                            @if($response->user)
+                                <div class="activity-item">
+                                    {{--<img height="30" class="img-circle"--}}
+                                    {{--src="https://www.gravatar.com/avatar/{{ md5($response->user->email) }}"> --}}
+                                    <i class="fa fa-user-circle user-icon" aria-hidden="true"></i>
+                                    {{$response->user->nickname}}
+                                    responded at {{$response->created_at->toDayDateTimeString()}}
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
 
-        </div>
+            </div>
+        @endcan
+        <?php $class = 'center' ?>
+        @can("manage-platform")
+            <?php $class = '' ?>
+        @endcan
         @if($viewModel->projectGoalVM)
-            <div class="col-xs-3 text-center">
+            <div class="col-xs-3 text-center {{ $class }}">
                 @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
             </div>
         @endif
