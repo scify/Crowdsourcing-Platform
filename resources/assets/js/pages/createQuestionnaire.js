@@ -107,9 +107,9 @@
         content = addGuidsToContent(content);
         if (title === '' || description==='' || goal==='')
             swal({
-                title: "Oops!",
+                title: "Fields Missing!",
                 text: "Please provide a title, description and goal.",
-                type: "error",
+                type: "warning",
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "OK",
             });
