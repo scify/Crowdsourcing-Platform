@@ -13,6 +13,8 @@ use App\BusinessLogicLayer\QuestionnaireManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 class QuestionnaireController extends Controller
 {
@@ -92,6 +94,28 @@ class QuestionnaireController extends Controller
         return response()->json(['status' => '__SUCCESS', 'translations' => $translations]);
     }
 
+    public function markTranslation(Request $request) {
+        try {
+            $this->questionnaireManager->markQuestionnaireTranslation($request->questionnaire_id, $request->lang_id, $request->mark_human);
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
+        } catch (\Exception $e) {
+            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            Log::error($e);
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
+        }
+    }
+
+    public function deleteTranslation(Request $request) {
+        try {
+            $this->questionnaireManager->deleteQuestionnaireTranslation($request->questionnaire_id, $request->lang_id);
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
+        } catch (\Exception $e) {
+            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            Log::error($e);
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
+        }
+    }
+
     public function storeQuestionnaireTranslations(Request $request, $id)
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
@@ -115,6 +139,7 @@ class QuestionnaireController extends Controller
             return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) $view));
         }  catch (\Exception $e) {
             $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+            Log::error($e);
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
         }
     }

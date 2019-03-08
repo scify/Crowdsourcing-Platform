@@ -29,11 +29,15 @@
                     </div>
                     <div class="row {{$viewModel->questionnaireTranslations->count() <= 1 ? 'hide' : ''}}">
                         <div class="col-md-12">
-                            <div class="languages-wrapper"></div>
+                            <div class="languages-wrapper"
+                                 data-questionnaire-id="{{ $viewModel->questionnaire->id }}"
+                                 data-mark-translation-url="{{ route('mark-translation') }}"
+                                 data-delete-translation-url="{{ route('delete-translation') }}"></div>
                         </div>
                         <div class="col-md-12">
                             <div class="translation-wrapper"
                                  data-translations="{{$viewModel->questionnaireTranslations}}"
+                                 data-languages="{{$viewModel->questionnaireLanguages}}"
                                  data-url="{{route('automatic-translation')}}"></div>
                         </div>
                     </div>
@@ -65,7 +69,7 @@
                         <label for="language-to-translate">Available languages:</label>
                         <select class="form-control" name="language" id="language-to-translate">
                             @foreach($viewModel->allLanguages as $language)
-                                <option value="{{$language->id}}" data-lang-code="{{$language->language_code}}">{{$language->language_name}}</option>
+                                <option {{ $viewModel->getDisabledAttribute($language) }} value="{{$language->id}}" data-lang-code="{{$language->language_code}}">{{$language->language_name}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -37,6 +37,7 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/gamification/next-step.scss', 'public/dist/css')
     .sass('resources/assets/sass/questionnaire/social-share.scss', 'public/dist/css')
     .sass('resources/assets/sass/auth.scss', 'public/dist/css')
+    .sass('resources/assets/sass/errors.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/crowdsourcing-project/reports.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/my-dashboard.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/my-questionnaire-responses.scss', 'public/dist/css')
@@ -54,7 +55,7 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .version();
 
 // move sweetalert.css to public/dist/css
-// mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
+ mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
 
 // move select2.min.css to public/dist/css
 mix.copy(['node_modules/select2/dist/css/select2.min.css'], 'public/dist/css/select2.min.css');

@@ -19,6 +19,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Open Sans', sans-serif;
 }
 
+.background-page {
+  background: url("../images/active_participation.png") no-repeat;
+  background-size: cover;
+
+}
+
 .btn-primary{
   background-color:$color-blue1;
   border:none;
@@ -323,4 +329,9 @@ $header-height: 70px;
   text-align: left;
   font-size: small;
   color: #9E9E9E;
+}
+
+.center {
+  float: none;
+  margin: 0 auto;
 }

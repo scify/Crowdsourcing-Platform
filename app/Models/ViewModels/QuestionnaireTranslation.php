@@ -15,12 +15,21 @@ class QuestionnaireTranslation
     public $questionnaire;
     public $allLanguages;
     public $defaultLanguage;
+    public $questionnaireLanguages;
 
-    public function __construct($questionnaireTranslations, $questionnaire, $allLanguages, $defaultLanguage)
+    public function __construct($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage)
     {
         $this->questionnaireTranslations = $questionnaireTranslations;
         $this->questionnaire = $questionnaire;
         $this->allLanguages = $allLanguages;
         $this->defaultLanguage = $defaultLanguage;
+        $this->questionnaireLanguages = $questionnaireLanguages;
+    }
+
+    public function getDisabledAttribute($language) {
+        foreach ($this->questionnaireLanguages as $questionnaireLanguage)
+            if($questionnaireLanguage->language->id == $language->id)
+                return 'disabled';
+        return '';
     }
 }

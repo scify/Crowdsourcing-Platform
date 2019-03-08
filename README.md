@@ -1,17 +1,26 @@
 # Crowdsourcing Web Application
 
-Laravel 5.5 web application for Crowdsourcing Projects and Questionnaires
+[![dependencies Status](https://david-dm.org/scify/Crowdsourcing-Platform/status.svg)](https://david-dm.org/scify/Crowdsourcing-Platform)
+[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/dwyl/goodparts "JavaScript The Good Parts")
+[![HitCount](http://hits.dwyl.io/scify/Crowdsourcing-Platform.svg)](http://hits.dwyl.io/scify/Crowdsourcing-Platform)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.ecas.org/)
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
+
+Laravel 5.7 web application for Crowdsourcing Projects and Questionnaires
 
 This project is used by the [European Citizen Action Service (ECAS)](https://ecas.org/) in order to facilitate
 questionnaires for the [FAIR EU](https://ecas.org/projects/fair-eu/) project.
 
 [Project URL](https://crowdsourcing.ecas.org/)
 
-#Installation Instructions:
+# Installation Instructions:
 
-##First time install (setup database and install dependencies)
+## First time install (setup database and install dependencies)
 
-0. Make sure php 7.1 (or newer) is installed.
+0. Make sure php 7.1.3 (or newer) is installed.
 
 Install graphics library 
 
@@ -42,7 +51,7 @@ php artisan storage:link
 ```
 to link this folder with the public directory
 
-##Apache configuration:
+## Apache configuration:
 
 The following assumes that the website will be rendered under dev.ecas url.
 You can edit the /etc/hosts/ file and add a record  
@@ -93,7 +102,7 @@ sudo nano /etc/hosts
 
 ```
 
-##Social Login - Sign Up with Socialite
+## Social Login - Sign Up with Socialite
 This app uses [Socialite Laravel Plugin](https://laravel.com/docs/5.6/socialite) to handle social login.
 
 In order to get it working in your development environment, you need to make sure that you have API keys and secrets for 
@@ -148,7 +157,7 @@ More specifically, it makes use of [Laravel-AdminLTE](https://github.com/jeroenn
 for easier integration.
 
 
-##How to debug
+## How to debug
 - Install and configure Xdebug on your machine
 - At Chrome install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
 - At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"

@@ -106,7 +106,8 @@ require('datatables.net-buttons/js/buttons.html5');
             "buttons": [
                 {
                     extend: 'csvHtml5',
-                    text: 'Download as CSV'
+                    text: 'Download as CSV',
+                    filename: 'Respondents_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime()
                 }
 
             ],
@@ -133,7 +134,11 @@ require('datatables.net-buttons/js/buttons.html5');
             "buttons": [
                 {
                     extend: 'csvHtml5',
-                    text: 'Download as CSV'
+                    text: 'Download as CSV',
+                    filename: 'Answers_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime(),
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 3, 5 ]
+                    }
                 }
 
             ],
@@ -141,8 +146,9 @@ require('datatables.net-buttons/js/buttons.html5');
                 { "width": "5%" },
                 { "width": "40%" },
                 { "width": "5%" },
-                { "width": "15%" },
-                { "width": "35%" },
+                { "width": "5%" },
+                { "width": "10%" },
+                { "width": "30%" },
             ],
             "initComplete": function(settings, json) {}
         });
