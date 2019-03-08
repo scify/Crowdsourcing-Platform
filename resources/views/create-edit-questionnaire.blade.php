@@ -48,6 +48,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <textarea class="form-control" name="description" id="description"
+                                      required
                                       placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
                         </div>
                     </div>
@@ -57,6 +58,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <input type="number" class="form-control" name="goal" id="goal"
+                                   required
                                    placeholder="Insert questionnaire's goal"
                                    value="{{$viewModel->questionnaire ? $viewModel->questionnaire->goal : ''}}">
                         </div>
