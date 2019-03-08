@@ -105,10 +105,10 @@
         let language = $('#language').val();
         let content = editor.text;
         content = addGuidsToContent(content);
-        if (title === '')
+        if (title === '' || description==='' || goal==='')
             swal({
                 title: "Oops!",
-                text: "The title is required.",
+                text: "Please provide a title, description and goal.",
                 type: "error",
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "OK",
