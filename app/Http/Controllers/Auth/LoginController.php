@@ -77,7 +77,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect('/fair-eu');
+        return redirect('/' . config('app.project_slug'));
     }
 
 

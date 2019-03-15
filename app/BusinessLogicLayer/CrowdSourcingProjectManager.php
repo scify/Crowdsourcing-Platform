@@ -11,12 +11,14 @@ use App\Repository\QuestionnaireTranslationRepository;
 use Illuminate\Support\Facades\Auth;
 use JsonSchema\Exception\ResourceNotFoundException;
 
+define('DEFAULT_PROJECT_ID', config('app.project_id'));
+
 class CrowdSourcingProjectManager
 {
     private $crowdSourcingProjectRepository;
     private $questionnaireRepository;
     private $questionnaireTranslationRepository;
-    const DEFAULT_PROJECT_ID = 1;
+    const DEFAULT_PROJECT_ID = DEFAULT_PROJECT_ID;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
@@ -119,5 +121,9 @@ class CrowdSourcingProjectManager
         $allProjects = $this->getAllCrowdSourcingProjects();
         $allQuestionnaires = $this->questionnaireRepository->getAllQuestionnaires();
         return new QuestionnaireReportFilters($allProjects, $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
+    }
+
+    public function getDefaultCrowdsourcingProject() {
+        return $this->getCrowdSourcingProject(self::DEFAULT_PROJECT_ID);
     }
 }

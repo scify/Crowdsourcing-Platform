@@ -2,9 +2,9 @@
     <!-- Logo -->
     <span class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><a href="/"><img style="" src="{{asset("images/ecas_logo_200.png")}}"></a></span>
+            <span class="logo-mini"><a href="/"><img style="" src="{{ asset('images/projects/' . config('app.project_slug') . '/logo_50.png') }}"></a></span>
         <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><a href="/"><img src="{{asset("images/ecas_logo_200.png")}}"></a></span></span>
+            <span class="logo-lg"><a href="/"><img src="{{ asset('images/projects/' . config('app.project_slug') . '/logo_50.png') }}"></a></span></span>
     </span>
     @include("loggedin-environment.partials.header-controls")
 </header>
@@ -39,7 +39,7 @@
 
                 <li class="{{UrlMatchesMenuItem("project/1/edit")}}">
                     <a href="{{ route('editProject', ['id' => 1]) }}"><i
-                                class="fa fa-file "></i><span>Edit Fair EU Page</span></a>
+                                class="fa fa-file "></i><span>Edit {{ $defaultProject->name }} Page</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
                     <a href="{{ route('manageQuestionnaires', ['id' => 1]) }}"><i

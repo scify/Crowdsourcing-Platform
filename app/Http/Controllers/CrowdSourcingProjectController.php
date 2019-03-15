@@ -74,7 +74,7 @@ class CrowdSourcingProjectController extends Controller
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager, $this->userManager->getUser($request->referrerId));
             if (isset($request->referrerId))
                 $this->userManager->setReferrerIdToWebSession($request->referrerId);
-            return view('landingpages.home')->with(['viewModel' => $viewModel]);
+            return view('landingpages.layout')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
             abort(404);
         }

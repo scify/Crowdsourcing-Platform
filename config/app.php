@@ -113,6 +113,10 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'project_slug' => env('PROJECT_SLUG'),
+    'project_id' => env('PROJECT_ID'),
+    'version' => env('APP_VERSION'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

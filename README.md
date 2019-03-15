@@ -11,10 +11,7 @@
 
 Laravel 5.7 web application for Crowdsourcing Projects and Questionnaires
 
-This project is used by the [European Citizen Action Service (ECAS)](https://ecas.org/) in order to facilitate
-questionnaires for the [FAIR EU](https://ecas.org/projects/fair-eu/) project.
-
-[Project URL](https://crowdsourcing.ecas.org/)
+[Project URL](https://crowdsourcing.scify.org/)
 
 # Installation Instructions:
 
@@ -53,12 +50,6 @@ to link this folder with the public directory
 
 ## Apache configuration:
 
-The following assumes that the website will be rendered under dev.ecas url.
-You can edit the /etc/hosts/ file and add a record  
-```
-127.0.0.1  dev.ecas
-```
-
 
 ```
 % sudo touch /etc/apache2/sites-available/ecas.conf
@@ -95,7 +86,7 @@ find . -type f -exec chmod 664 {} \;
 find . -type d -exec chmod 775 {} \;
 ```
 
-Change host file so ecas.dev points to to localhost 
+Change hosts file so ecas.dev points to to localhost 
 ```$xslt
 sudo nano /etc/hosts
 127.0.0.1       dev.ecas
@@ -132,8 +123,8 @@ Make sure you change the port to 443 as shown below:
 
         ServerName dev.ecas
         ServerAlias dev.ecas
-        DocumentRoot "/home/alex/Projects/crowdsourcing-platform-backend/public"
-        <Directory "/home/alex/Projects/crowdsourcing-platform-backend/public">
+        DocumentRoot "/home/path/to/project/public"
+        <Directory "/home/path/to/project/public">
             Require all granted
             AllowOverride all
         </Directory>
