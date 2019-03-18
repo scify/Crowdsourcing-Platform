@@ -18,20 +18,19 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-6 text-center col-main">
-                                @if($viewModel->projects->count() === 0)
+                                @if(!$viewModel->project === 0)
                                     <div class="no-projects-found">There are currently no active projects.
                                     </div>
                                 @else
-                                    @foreach($viewModel->projects as $project)
-                                        <div style="padding-top:15px"><a href="{{$project->slug}}"> <img height="70" alt="{{$project->name}}"
-                                                                                                         src="{{asset($project->logo_path)}}"></a>
-                                        </div>
-                                    @endforeach
+
+                                    <div style="padding-top:15px"><a href="{{$viewModel->project->slug}}"> <img height="70" alt="{{$viewModel->project->name}}"
+                                                                                                     src="{{asset($viewModel->project->logo_path)}}"></a>
+                                    </div>
                                 @endif
                                 <div class="row">
                                     <div class="col-xs-3 progress-container">
                                         @if($viewModel->projectGoalVM)
-                                            @include('landingpages.partials.' . config("app.project_slug") . '.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
+                                            @include('landingpages.partials.' . config('app.project_resources_dir') . '.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
                                         @endif
                                     </div>
                                 </div>

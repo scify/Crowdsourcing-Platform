@@ -53,13 +53,13 @@ class CrowdSourcingProjectManager
         $allResponses = collect([]);
         $allLanguagesForQuestionnaire = collect([]);
 
-        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id);
+        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id, Auth::id());
         if ($questionnaire) {
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
-            if ($userResponse!=null)
-                $openQuestionnaireWhenPageLoads = false; //user has already responded
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
             $allLanguagesForQuestionnaire = $this->questionnaireTranslationRepository->getAvailableLanguagesForQuestionnaire($questionnaire);
+            if ($userResponse!=null)
+                $openQuestionnaireWhenPageLoads = false; //user has already responded
         }
 
         $projectGoalVM = $this->getCrowdSourcingProjectGoalViewModel($project->id);
@@ -72,7 +72,7 @@ class CrowdSourcingProjectManager
     }
 
     public function getCrowdSourcingProjectGoalViewModel($projectId) {
-        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId);
+        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, Auth::id());
         if(!$questionnaire)
             return null;
 
@@ -101,20 +101,8 @@ class CrowdSourcingProjectManager
         $this->crowdSourcingProjectRepository->update($attributes, $id);
     }
 
-    public function projectHasActiveQuestionnaire($projectId = self::DEFAULT_PROJECT_ID) {
-        return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId) !== null;
-    }
-
     public function getActiveQuestionnaireForProject($projectId = self::DEFAULT_PROJECT_ID) {
-        return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId);
-    }
-
-    public function userHasAlreadyAnsweredTheActiveQuestionnaire($userId, $projectId = self::DEFAULT_PROJECT_ID) {
-        $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId);
-        if(!$activeQuestionnaire)
-            return false;
-        $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($activeQuestionnaire->id, $userId);
-        return $userResponse !== null;
+        return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, Auth::id());
     }
 
     public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null) {

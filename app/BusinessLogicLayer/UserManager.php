@@ -58,14 +58,13 @@ class UserManager {
         return new UserProfile($user);
     }
 
-    public function getDashboardData() {
-        $user = Auth::user();
-        $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
-        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($user->id);
+    public function getDashboardViewModel() {
+        $project = $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject();
+        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser(Auth::id());
         $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
         $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
-        $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
-        return new DashboardInfo($projects, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
+        $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel($project->id);
+        return new DashboardInfo($project, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
     }
 
     public function getUser($userId) {
