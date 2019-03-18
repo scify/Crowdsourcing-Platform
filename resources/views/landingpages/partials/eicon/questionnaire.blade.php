@@ -5,7 +5,7 @@
                 <h3 class="questionnaire-section-title">{{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}</h3>
                 @if(!$viewModel->userResponse)
                     <div class="questionnaire-description">{!! $viewModel->questionnaire->description !!}</div>
-                    @include("landingpages.partials.open-questionnaire-button")
+                    @include("landingpages.partials.eicon.open-questionnaire-button")
                 @endif
 
             </div>

@@ -32,7 +32,6 @@
                         </div>
                     @endif
                     <div class="row form-group">
-                        <input type="hidden" id="project-id" name="project_id" value="1">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <label for="title">Questionnaire's Title</label>
                         </div>

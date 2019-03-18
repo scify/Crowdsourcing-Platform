@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-xs-3 progress-container">
                                         @if($viewModel->projectGoalVM)
-                                            @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
+                                            @include('landingpages.partials.' . config("app.project_slug") . '.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
                                         @endif
                                     </div>
                                 </div>

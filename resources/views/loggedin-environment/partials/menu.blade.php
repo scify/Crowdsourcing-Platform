@@ -1,3 +1,5 @@
+@inject('CrowdSourcingProjectManager', 'App\BusinessLogicLayer\CrowdSourcingProjectManager')
+
 <header class="main-header">
     <!-- Logo -->
     <span class="logo">
@@ -37,17 +39,17 @@
             @can("manage-crowd-sourcing-projects")
                 <li class="header">CONTENT MANAGEMENT</li>
 
-                <li class="{{UrlMatchesMenuItem("project/1/edit")}}">
-                    <a href="{{ route('editProject', ['id' => 1]) }}"><i
+                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/edit")}}">
+                    <a href="{{ route('editProject', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
                                 class="fa fa-file "></i><span>Edit {{ $defaultProject->name }} Page</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/1/questionnaire")}}">
-                    <a href="{{ route('manageQuestionnaires', ['id' => 1]) }}"><i
+                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/questionnaire")}}">
+                    <a href="{{ route('manageQuestionnaires', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
                                 class="fa fa-question-circle "></i><span>Manage
                             Questionnaires</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/1/reports")}}">
-                    <a href="{{ route('reports', ['id' => 1]) }}"><i
+                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/reports")}}">
+                    <a href="{{ route('reports', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
                                 class="fa fa-line-chart"></i><span>Reports</span></a>
                 </li>
             @endcan

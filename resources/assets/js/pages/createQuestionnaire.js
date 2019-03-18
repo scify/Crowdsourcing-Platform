@@ -101,7 +101,6 @@
         let title = $('#title').val().trim();
         let description = $('#description').val().trim();
         let goal = $('#goal').val().trim();
-        let project = $('#project-id').val();
         let language = $('#language').val();
         let content = editor.text;
         content = addGuidsToContent(content);
@@ -117,7 +116,7 @@
             $.ajax({
                  method: 'post',
                  url: self.data('url'),
-                 data: {title, description, goal, language, project, content},
+                 data: {title, description, goal, language, content},
                  success: function (response) {
                      if (response.status === '__SUCCESS') {
                          swal({
