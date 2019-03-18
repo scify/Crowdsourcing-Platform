@@ -115,6 +115,7 @@ return [
 
     'project_resources_dir' => env('PROJECT_RESOURCES_DIR'),
     'project_id' => env('PROJECT_ID'),
+    'project_email_title' => env('PROJECT_EMAIL_TITLE'),
     'version' => env('APP_VERSION'),
 
     /*

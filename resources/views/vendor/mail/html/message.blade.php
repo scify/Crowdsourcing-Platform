@@ -2,7 +2,7 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            ECAS Crowdsourcing Platform
+            {{ config('app.project_email_title') }}
         @endcomponent
     @endslot
 
@@ -21,7 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            &copy; {{ date('Y') }} ECAS Crowdsourcing Platform. All rights reserved.
+            &copy; {{ date('Y') }} {{ config('app.project_email_title') }}. All rights reserved.
         @endcomponent
     @endslot
 @endcomponent

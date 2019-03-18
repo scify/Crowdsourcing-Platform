@@ -39,8 +39,8 @@ class UserRegistered extends Notification
         $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject();
 
         $message = (new MailMessage)
-            ->subject('ECAS | Welcome!')
-            ->greeting('Thanks for joining the ECAS Crowdsourcing Platform!')
+            ->subject('Crowdsourcing Platform | Welcome!')
+            ->greeting('Thanks for joining the Crowdsourcing Platform!')
             ->line('<div style="text-align:center; height: 200px;"><img class="badgeImg" style="height: 200px; margin-bottom: 0;" src=' . asset("images/active_participation.png") . '></div>');
         if($activeQuestionnaire) {
             $message->line('<br><p style="text-align: center; margin-bottom: 5px"><b>Are you ready to make an impact?</b></p>');
