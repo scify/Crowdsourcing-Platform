@@ -4,9 +4,9 @@
     <!-- Logo -->
     <span class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><a href="/"><img style="" src="{{ asset('images/projects/' . config('app.project_slug') . '/logo_50.png') }}"></a></span>
+            <span class="logo-mini"><a href="/"><img style="" src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span>
         <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><a href="/"><img src="{{ asset('images/projects/' . config('app.project_slug') . '/logo_50.png') }}"></a></span></span>
+            <span class="logo-lg"><a href="/"><img src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span></span>
     </span>
     @include("loggedin-environment.partials.header-controls")
 </header>

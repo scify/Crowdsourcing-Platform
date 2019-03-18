@@ -82,19 +82,19 @@
     </div>
 </div>
 <section>
-    @include('landingpages.partials.' . config('app.project_slug') . '.motto')
+    @include('landingpages.partials.' . config('app.project_resources_dir') . '.motto')
 </section>
 <section>
-    @include('landingpages.partials.' . config('app.project_slug') . '.about')
+    @include('landingpages.partials.' . config('app.project_resources_dir') . '.about')
 </section>
 
 <section>
-    @include('landingpages.partials.' . config('app.project_slug') . '.questionnaire')
+    @include('landingpages.partials.' . config('app.project_resources_dir') . '.questionnaire')
 </section>
 
 @if($viewModel->questionnaire)
     <section id="collective-goal">
-        @include('landingpages.partials.' . config('app.project_slug') . '.goal-and-activity')
+        @include('landingpages.partials.' . config('app.project_resources_dir') . '.goal-and-activity')
     </section>
 @endif
 

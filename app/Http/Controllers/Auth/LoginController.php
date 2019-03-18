@@ -77,7 +77,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect('/' . config('app.project_slug'));
+        return redirect('/' . config('app.project_resources_dir'));
     }
 
 

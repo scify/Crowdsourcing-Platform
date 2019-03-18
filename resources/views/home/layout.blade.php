@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="canonical" href="{{url('/')}}">
-    @include('home.partials.' . config('app.project_slug') . '.head-meta')
+    @include('home.partials.' . config('app.project_resources_dir') . '.head-meta')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
@@ -30,7 +30,7 @@
 <body class="container-fluid">
 <div class="row">
     <div class="col-md-12">
-        @include('home.partials.' . config('app.project_slug') . '.navbar')
+        @include('home.partials.' . config('app.project_resources_dir') . '.navbar')
     </div>
 </div>
 @if(session('flash_message_success'))
@@ -40,19 +40,19 @@
     </div>
 @endif
 <section id="motto">
-    @include('home.partials.' . config('app.project_slug') . '.motto')
+    @include('home.partials.' . config('app.project_resources_dir') . '.motto')
 </section>
 <section id="about">
-    @include('home.partials.' . config('app.project_slug') . '.about-us')
+    @include('home.partials.' . config('app.project_resources_dir') . '.about-us')
 </section>
 <section id="features">
-    @include('home.partials.' . config('app.project_slug') . '.features')
+    @include('home.partials.' . config('app.project_resources_dir') . '.features')
 </section>
 <section id="projects">
-    @include('home.partials.' . config('app.project_slug') . '.projects')
+    @include('home.partials.' . config('app.project_resources_dir') . '.projects')
 </section>
 <footer>
-    @include('home.partials.' . config('app.project_slug') . '.footer')
+    @include('home.partials.' . config('app.project_resources_dir') . '.footer')
 </footer>
 <div class="loader-wrapper hidden">
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
