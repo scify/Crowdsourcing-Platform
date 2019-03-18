@@ -11,7 +11,6 @@ use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Notifications\QuestionnaireShared;
-use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
