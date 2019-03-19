@@ -3,6 +3,17 @@
         <div class="content-container">
             <div class="row">
                 <div class="col-md-4">
+                    <h2 class="text-center">The mission</h2>
+                    <p>
+
+                        EICON is an Erasmus+ funded project. Its main objective is to support organisations / institutions providing
+                        Vocational Education and Training (VET) to become more inclusive using Information and Communication Technologies (ICT).
+                        We will create real-world, practice-oriented recommendations by crowdsourcing expertise from practitioners from
+                        all over Europe and we will publicly share the knowledge gained.
+
+                    </p>
+                </div>
+                <div class="col-md-4">
                     <h2 class="text-center">Who we are</h2>
                     <p>
                         Six partners from Germany, Portugal, Greece, Sweden and Finland have joined forces to elaborate practice-oriented
@@ -13,32 +24,29 @@
                         and individuals <strong>(EPISTIMI GIA SENA ASTIKI MI KERDOSKOPIKI ETAIRIA (EL)</strong>) and that support organisations in complex change
                         processes <strong>(Institut für Technologie und Arbeit – ITA (DE)</strong>; project coordinator).
                     </p>
-                </div>
-                <div class="col-md-4">
-                    <h2 class="text-center">Crowdsourcing</h2>
-                    <p>
-                        Crowdsourcing is a way of solving problems and producing new ideas
-                        by connecting online with
-                        people that you otherwise wouldn’t reach, giving citizens the <strong>opportunity to learn from others,
-                        collaborate and participate in the decision-making.</strong>
-                    </p>
 
                 </div>
                 <div class="col-md-4">
-                    <h2 class="text-center">Our platform</h2>
-                    <p style="margin-bottom:0;"> With our <strong>EICON crowdsourcing platform</strong> we aim at:</p>
+                    <h2 class="text-center">Crowdsourcing expertise</h2>
+                    <p style="margin-bottom:0;">
+                        Crowdsourcing is a way of solving problems and producing new ideas by connecting online with people
+                        that you otherwise wouldn’t reach, giving citizens/experts the opportunity to learn from others,
+                        collaborate and participate in the decision-making process.
+                        We created a platform where experts and practitioners can share their expertise, co-creating value
+                        and the knowledge gained. The platform:
+                    </p>
                     <ul>
                         <li>
-                            <p>&#10004; encouraging experts to speak up on issues directly affecting VET</p>
+                            <p>&#10004; allows experts to speak up and provide insights</p>
                         </li>
                         <li>
-                            <p>&#10004; increasing citizens democratic participation in political life</p>
+                            <p>&#10004; encourages participants to invite more experts</p>
                         </li>
                         <li>
-                            <p>&#10004; stimulating citizens engagement with the EU</p>
+                            <p>&#10004; gives you feedback on your real impact</p>
                         </li>
                         <li>
-                            <p>&#10004; improving citizens understanding of EU policy-making processes</p>
+                            <p>&#10004; creates value for all</p>
                         </li>
                     </ul>
 

@@ -4,17 +4,32 @@
         <h2>What are we crowdsourcing?</h2>
         <div class="content-container">
             <p style="margin-bottom: 20px">
-                EICON has chosen a participatory approach to involve a wider audience in the creation of results:
+                How can Information and Communication Technology make VET more inclusive?
+                We are focusing on 7 thematic areas:
             </p>
                 <ol style="margin-bottom: 20px">
-                    <li>Partners develop draft results</li>
-                    <li>You can comment, revise, add points relevant from your point of view</li>
-                    <li>EICON consolidates the results</li>
-                    <li>Results are published at the website</li>
+                    <li>Pedagogy & teaching / learning approaches</li>
+                    <li>Technology & infrastructure</li>
+                    <li>Establishing & maintaining links to employment / labour market</li>
+                    <li>Stakeholder involvement, collaboration & partnerships</li>
+                    <li>Leadership</li>
+                    <li>Transition & target scenarios for VET organisations</li>
+                    <li>Continuous improvement process</li>
                 </ol>
-                For each of the seven topics that the project will focus upon, this procedure will be applied.<br>
-                So there will be plenty of opportunities for you to contribute and shape the results such that they fit better your every
-                day needs and requirements.
+            Our work is being published for a certain time on the crowdsourcing platform to collect further ideas,
+            comments or suggested changes from a wider audience in Europe.
+
+            <br>
+            <br>
+            So we are bringing practitioners’ views in, to combine them with theory and research results.
+            At the end, we will publicly share the knowledge gained!
+
+            <br>
+            <br>
+
+            The future is being created now. By us all.
+            Join the discussion now and invite whom you value most to contribute, too.
+
 
             <div class="projects-container row">
                 <div class="col-md-5 col-sm-6 col-xs-12 col-sm-offset-0 col-md-offset-0" style="float: none; margin: 0 auto;">
