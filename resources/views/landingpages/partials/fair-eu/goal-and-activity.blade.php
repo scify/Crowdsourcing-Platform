@@ -51,3 +51,6 @@
         @endif
     </div>
 </div>
+<section>
+    @include('partials.signup_to_newsletter')
+</section>

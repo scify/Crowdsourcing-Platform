@@ -127,10 +127,15 @@ section {
   }
   .content-container {
     padding: 100px 5%;
-    font-size: 23px;
-    font-weight: 300;
+    font-size: 20px;
   }
 
+}
+
+ol {
+  li {
+    margin-bottom: 10px;
+  }
 }
 
 #motto {
@@ -159,6 +164,7 @@ section {
   .questionnaire-description{
     max-width:1000px;
     margin:auto;
+    text-align: justify;
   }
   .respond-questionnaire {
     font-size: 26px;

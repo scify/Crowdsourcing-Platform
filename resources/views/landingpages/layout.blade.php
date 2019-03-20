@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
     <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
-
+    <link rel="stylesheet" href="{{ asset('dist/css/home.css') }}?{{env("APP_VERSION")}}">
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -50,35 +50,7 @@
 <body class="project-landing-page">
 <div class="row">
     <div class="col-md-12">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            @if (App::environment('staging'))
-                <div class="staging-warning">
-                    <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
-                </div>
-            @endif
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <img alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
-                    </a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#top-menu-content">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse pull-right" id="top-menu-content">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#about">ABOUT</a>
-                        </li>
-                        @include("partials.login-menu-options")
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        @include('landingpages.partials.' . config('app.project_resources_dir') . '.navbar')
     </div>
 </div>
 <section>
@@ -87,7 +59,6 @@
 <section>
     @include('landingpages.partials.' . config('app.project_resources_dir') . '.about')
 </section>
-
 <section>
     @include('landingpages.partials.' . config('app.project_resources_dir') . '.questionnaire')
 </section>
@@ -97,10 +68,6 @@
         @include('landingpages.partials.' . config('app.project_resources_dir') . '.goal-and-activity')
     </section>
 @endif
-
-<section>
-    @include('partials.signup_to_newsletter')
-</section>
 <footer>
     <div class="container">
 
