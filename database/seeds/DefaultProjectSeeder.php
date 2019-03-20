@@ -75,8 +75,8 @@ class DefaultProjectSeeder extends Seeder
                 'name' => 'EICON Public Consultation',
                 'slug' => 'eicon',
                 'logo_path' => '/images/projects/eicon/logo.png',
-                'img_path' => '/images/projects/eicon/logo-bg.png',
-                'motto' => 'Enhancing inclusion capacity of educational organisations / institutions providing VET <br>with information and communication technologies (ICT)',
+                'img_path' => '/images/projects/eicon/active-participation.png',
+                'motto' => 'The future is being created now. By us all.<br>So let’s use human-centred tech to make education more inclusive We are planning with teachers, and not for them',
                 'description' => '',
                 'about' => '<p>EICON’s main objective is to support organisations / institutions providing Vocational Education and Training (VET) 
                             to become more inclusive. In particular, the aim is to put the organisations as a whole in the focus, and not just education and training practice. 
