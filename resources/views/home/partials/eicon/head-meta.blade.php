@@ -17,3 +17,4 @@
 <meta property="twitter:url" content="{{url('/')}}" >
 <meta property="twitter:image" content="{{asset('images/active_participation.png')}}" >
 <meta property="twitter:image:alt" content="people actively participating" >
+<script>window.location = "/eicon";</script>
