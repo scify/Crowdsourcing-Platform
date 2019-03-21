@@ -75,7 +75,7 @@ class DefaultProjectSeeder extends Seeder
                 'name' => 'EICON Public Consultation',
                 'slug' => 'eicon',
                 'logo_path' => '/images/projects/eicon/logo.png',
-                'img_path' => '/images/projects/eicon/active-participation.png',
+                'img_path' => '/images/projects/eicon/active_participation.png',
                 'motto' => 'The future is being created now. By us all.<br>So let’s use human-centred tech to make education more inclusive We are planning with teachers, and not for them',
                 'description' => '',
                 'about' => '<p>EICON’s main objective is to support organisations / institutions providing Vocational Education and Training (VET) 

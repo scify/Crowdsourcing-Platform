@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\DB;
  * Date: 7/10/18
  * Time: 4:21 PM
  */
-class QuestionnairesSeeder extends Seeder
-{
-    public function run()
-    {
+class QuestionnairesSeeder extends Seeder {
+    public function run() {
         DB::table('questionnaire_html')->delete();
         DB::table('questionnaire_possible_answers')->delete();
         DB::table('questionnaire_questions')->delete();
         DB::table('questionnaire_languages')->delete();
         DB::table('questionnaires')->delete();
+
+
         DB::table('questionnaires')->insert([[
             'id' => 1,
             'project_id' => 1,
@@ -830,5 +830,526 @@ class QuestionnairesSeeder extends Seeder
             ['id' => 2, 'question_id' => 3, 'html' => "<p>EU citizenship is at the heart of the European integration project. Citizenship of the European Union was established with the Maastricht treaty in 1993. It is supplementary to national citizenship and confers on every national of an EU country a set of rights, such as the right to move and reside freely within the EU, as well as the right to vote and stand as a candidate in European and local elections.</p><p>This questionnaire, developed in the framework of the FAIR EU project (link to the project) aims at crowdsourcing EU citizens’ experience and opinion regarding the challenges to free movement and political participation.</p><p>Answering this questionnaire will take about 10 minutes. Your feedback will be invaluable in helping us to understand what obstacles EU citizens encounter when moving to or residing in the EU Member States other than their own, and being politically active.</p>", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['id' => 3, 'question_id' => 10, 'html' => "<p>Please provide more details on the obstacles faced in your host Member State</p>", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
+
+
+        DB::table('questionnaires')->insert([[
+                    'id' => 2,
+                    'project_id' => 3,
+                    'status_id' => 2,
+                    'default_language_id' => 6,
+                    'title' => 'ICT for inclusive Pedagogy & Teaching',
+                    'description' => 'What is the potential of ICT for inclusive Pedagogy & Teaching? Our preliminary results are now open for your insights. The consultation process has two parts.
+                                    <br><br>
+                                    <b>1st part - Your expert/practitioner profile:</b> Describe your background and experiences with ICT in practice. (Once you do this, you do not need to fill it in again; next time you contribute can just log in)
+                                    <br>
+                                    <b>2nd part - Your voice:</b> See our preliminary results and amend, change or revise the text from your experience. Please do also add your own examples of use of ICT that have been successful in the area of Vocational Education and Training.',
+                    'goal' => 30,
+                    'questionnaire_json' => '{  
+           "pages":[  
+              {  
+                 "name":"page1",
+                 "elements":[  
+                    {  
+                       "type":"html",
+                       "name":"question1",
+                       "guid":"b4897c7b-87a8-4fa0-b862-d003d744d5cb",
+                       "html":"<h2>Part 1: Short survey</h2>"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question2",
+                       "guid":"4dc86ae1-76e8-458f-722b-93edbdd0abfb",
+                       "title":"Which types of diverse support needs for learning do you have to handle in your teaching?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question3",
+                       "guid":"55998ec9-805f-42e6-8fc5-80389ecabc34",
+                       "title":"What are your most important objectives to use ICT in your teaching, and why?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question4",
+                       "guid":"728b8187-72d5-441f-4266-5c1d183140ed",
+                       "title":"Which limiting factors have you experienced concerning using ICT in teaching?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question5",
+                       "guid":"c7be96bd-edb6-493d-ade6-2e20b240d83b",
+                       "title":"What are your most important reasons not to use ICT in your teaching, and why?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question6",
+                       "guid":"daf6b6f8-7989-46d6-b36d-fc2f335f7d74",
+                       "title":"Which obstacles and constraints do you encounter or think upon regarding the use of ICT in teaching?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question7",
+                       "guid":"0d13d4ac-f251-4fb5-5cc3-d9f2e178f243",
+                       "title":"What are you missing to be able to use ICT in teaching?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question8",
+                       "guid":"8d6878d5-d10c-47f1-515a-addf1e3eaa6d",
+                       "title":"In which way does ICT help out to minimise the ‘differences’ between your students / learners?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question9",
+                       "guid":"0e098756-ff27-4443-1fee-cab9afcb1031",
+                       "title":"What is the expected outcome for students when ICT is used in your teaching,  and how do you find out?",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question10",
+                       "guid":"86bd208f-4e85-418f-1fac-7c7c63cb19e3",
+                       "title":"Anything else you want to add here?"
+                    },
+                    {  
+                       "type":"html",
+                       "name":"question11",
+                       "guid":"d5eb99ec-72d1-401b-97c5-0d3d9e8944aa",
+                       "html":"<h4>As to better understand your background and your context from which you answered the questions above, please allow us to ask some further questions regarding you. (If you want to be involved in future EICON surveys on the other thematic areas, please first register at this platform and create an account that you can use in the future; then you do not need to fill this data in for each survey, rather it is saved with your profile).</h4>"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question12",
+                       "guid":"c311c515-1611-4d3b-1a28-e5e94fac2a71",
+                       "title":"In which type of educational organisation are you working? ",
+                       "isRequired":true,
+                       "placeHolder":"(please let us know the type of organisation both in your native language and ideally also in English if possible)"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question13",
+                       "guid":"6df1666d-682f-40b7-48b7-1017598a6bc4",
+                       "title":"What is your role and education?",
+                       "isRequired":true,
+                       "placeHolder":"(roles: e.g. teacher, support / assistant teacher, trainer, instructor etc.)"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question14",
+                       "guid":"0df503e2-71af-4aac-b5cc-24bd90f3d298",
+                       "title":"For how long have you approximately been working in this role?",
+                       "isRequired":true,
+                       "inputType":"number",
+                       "placeHolder":"(in years)"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question15",
+                       "guid":"4639a0b5-ab1e-417e-3847-e26e75db190b",
+                       "title":"Please describe shortly the ICT equipment and organization of ICT at your workplace",
+                       "isRequired":true
+                    },
+                    {  
+                       "type":"html",
+                       "name":"question18",
+                       "guid":"ad277ad4-fa74-4f20-c48a-18c2d9e92ffd",
+                       "html":"<h4>How proficient are you with regard to using information and communication technology (ICT) with regard to:</h4>"
+                    },
+                    {  
+                       "type":"dropdown",
+                       "name":"question17",
+                       "guid":"0edcad79-8cc7-44e7-90fe-5585e7501764",
+                       "title":"... professional engagement?",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"awareness, uncertainty, basic use",
+                             "guid":"3d9fff03-b40a-4cd3-3fe0-09e2e15f6cb5"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"exploring digital options",
+                             "guid":"d0941512-a41e-4d4e-3c58-481ef762d5c1"
+                          },
+                          {  
+                             "value":"item3",
+                             "text":"expanding professional practice",
+                             "guid":"13e3d305-8cd2-4f8e-5dce-c700024d2cd6"
+                          },
+                          {  
+                             "value":"item4",
+                             "text":"enhancing professional practice",
+                             "guid":"ed69f1d0-f131-4afc-0ac4-502bfaa32a34"
+                          },
+                          {  
+                             "value":"item5",
+                             "text":"discussing and renewing professional practice",
+                             "guid":"42115332-8be2-4b52-0873-21dcfb67aa58"
+                          },
+                          {  
+                             "value":"item6",
+                             "text":"innovating professional practice",
+                             "guid":"9f751f33-0db7-4a68-729b-b96e8faa3536"
+                          }
+                       ]
+                    },
+                    {  
+                       "type":"dropdown",
+                       "name":"question19",
+                       "guid":"67d1ba8f-bcc3-4618-d288-c0092e298e85",
+                       "title":"... digital resources?",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"awareness, uncertainty, basic use",
+                             "guid":"489718f9-09b9-4667-a202-8095874fa611"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"exploring digital resources",
+                             "guid":"df81a9f2-1ad9-4ebd-6fef-c17594270ed4"
+                          },
+                          {  
+                             "value":"item3",
+                             "text":"fitting digital resources to the learning context",
+                             "guid":"7c020161-55fa-4c9c-b254-68f508318295"
+                          },
+                          {  
+                             "value":"item4",
+                             "text":"strategically using interactive resources",
+                             "guid":"0bb87c25-b8a7-43a7-2b9b-976816d95052"
+                          },
+                          {  
+                             "value":"item5",
+                             "text":"comprehensively using advanced strategies & resources",
+                             "guid":"7e44cd17-5c9e-4bf4-9859-082fc5f8fa14"
+                          },
+                          {  
+                             "value":"item6",
+                             "text":"promoting the use of digital resources",
+                             "guid":"8d54e9d2-470c-41cb-b9ba-fc575ba331fd"
+                          }
+                       ]
+                    },
+                    {  
+                       "type":"dropdown",
+                       "name":"question16",
+                       "guid":"ac6d9e3b-d9d8-4517-4a51-819431fe5de5",
+                       "title":"... teaching and learning?",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"awareness, uncertainty, basic use",
+                             "guid":"e53edaaa-5e3e-4f66-a825-feb427bc4a98"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"exploring digital teaching & learning strategies",
+                             "guid":"a775d447-60de-4c58-858f-6f461e2bee3d"
+                          },
+                          {  
+                             "value":"item3",
+                             "text":"meaningfully integrating digital technologies",
+                             "guid":"71f988d8-128c-4238-208f-baf644b74ed2"
+                          },
+                          {  
+                             "value":"item4",
+                             "text":"enhancing teaching & learning activities",
+                             "guid":"6ce7976d-9036-4718-f033-4cfed1e84c0a"
+                          },
+                          {  
+                             "value":"item5",
+                             "text":"strategically & purposefully renewing teaching practice",
+                             "guid":"8c5baef8-d922-4863-385b-0ec66524a62d"
+                          },
+                          {  
+                             "value":"item6",
+                             "text":"innovating teaching",
+                             "guid":"1c4cd40b-b66c-46df-bc40-16f4061f306e"
+                          }
+                       ]
+                    },
+                    {  
+                       "type":"dropdown",
+                       "name":"question20",
+                       "title":"... assessment?",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"awareness, uncertainty, basic use",
+                             "guid":"833b1053-f23f-497b-c7ad-566f1fe9c1dc"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"exploring digital assessment strategies",
+                             "guid":"6176e187-0b6d-4f12-54fa-35c641e1c966"
+                          },
+                          {  
+                             "value":"item3",
+                             "text":"enhancing traditional assessment approaches",
+                             "guid":"30dd2519-2428-4b7a-c4f7-4eb514f6ae0e"
+                          },
+                          {  
+                             "value":"item4",
+                             "text":"strategic and effective use of digital assessment",
+                             "guid":"cf2debb7-bffa-44e2-b66d-d8ac442bd9a5"
+                          },
+                          {  
+                             "value":"item5",
+                             "text":"critically reflecting on digital assessment strategies",
+                             "guid":"7d84344a-07f0-41d5-7adf-736e69e7ffa0"
+                          },
+                          {  
+                             "value":"item6",
+                             "text":"innovating assessment",
+                             "guid":"7abbb1f7-46e2-4671-faf8-e6165c2d4eef"
+                          }
+                       ],
+                       "guid":"ac76204e-493a-4712-0780-409e73c665db"
+                    },
+                    {  
+                       "type":"dropdown",
+                       "name":"question21",
+                       "title":"... empowering learners?",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"awareness, uncertainty, basic use",
+                             "guid":"b24d981e-1082-4759-5d91-acbc8e195035"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"exploring learner-centred strategies",
+                             "guid":"3d197f98-dde8-42cd-f8e2-645859147aa1"
+                          },
+                          {  
+                             "value":"item3",
+                             "text":"addressing learner empowerment",
+                             "guid":"4a019589-7405-4cdf-bc99-38345273edd6"
+                          },
+                          {  
+                             "value":"item4",
+                             "text":"strategically using a range of tools to empower",
+                             "guid":"30256845-a8fc-44be-d86d-6e95e42cea0b"
+                          },
+                          {  
+                             "value":"item5",
+                             "text":"holistically empowering learners",
+                             "guid":"81c4eb22-8a78-458e-fb9f-9d7f8b5566d2"
+                          },
+                          {  
+                             "value":"item6",
+                             "text":"innovating learner involvement",
+                             "guid":"87a87279-d84f-44a6-6ccf-9cf1433865e3"
+                          }
+                       ],
+                       "guid":"3156ae6e-aa0a-4108-fd69-69acf5702e51"
+                    },
+                    {  
+                       "type":"dropdown",
+                       "name":"question22",
+                       "title":"... facilitating learners’ digital competence?",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"awareness, uncertainty, basic use",
+                             "guid":"2d6be908-1eaa-4802-11b3-fb17c6906707"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"encouraging learners to use digital technologies",
+                             "guid":"ab5d84af-8004-4668-e5e7-0ca039534227"
+                          },
+                          {  
+                             "value":"item3",
+                             "text":"implementing activities to foster learners’ digital competence",
+                             "guid":"7e1ffbf8-3884-4eeb-8ef1-5f6bf0c8ea3a"
+                          },
+                          {  
+                             "value":"item4",
+                             "text":"strategically fostering learners’ digital competence",
+                             "guid":"bf2cfd9f-9e18-403c-f06b-053945eb3bba"
+                          },
+                          {  
+                             "value":"item5",
+                             "text":"comprehensively & critically fostering learners’ digital competence",
+                             "guid":"4fa0420b-0d97-460c-539a-62583198e286"
+                          },
+                          {  
+                             "value":"item6",
+                             "text":"using innovative formats to foster learners’ digital competence",
+                             "guid":"f086523d-617c-4da9-f405-ea16770821a6"
+                          }
+                       ],
+                       "guid":"db52d53b-119b-4dac-9a72-fa2c331f68f8"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question23",
+                       "title":"Do you / does your organization follow up on how the pupils have completed their education and, if so, how crucial have their knowledge about ICT contributed to employment? ",
+                       "isRequired":true,
+                       "guid":"df4bad22-2b44-41f1-53e4-98d85956017a"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question24",
+                       "title":"How do you handle the challenges in ICT use and gender?",
+                       "isRequired":true,
+                       "guid":"67440641-2721-4d40-654b-cabe5990de65"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question25",
+                       "title":"How do you “catch” (recognize and understand) the needs of your students / learners?",
+                       "isRequired":true,
+                       "guid":"82c24361-9628-48b9-fe80-c9ddf49a8401"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question26",
+                       "title":"Anything else you want to add?",
+                       "guid":"21858088-6362-423c-2d31-315a242512fb"
+                    },
+                    {  
+                       "type":"radiogroup",
+                       "name":"Your gender",
+                       "isRequired":true,
+                       "hasOther":true,
+                       "choices":[  
+                          {  
+                             "value":"item1",
+                             "text":"Male",
+                             "guid":"2eadabfd-253f-4f8b-54ec-c555405b50e7"
+                          },
+                          {  
+                             "value":"item2",
+                             "text":"Female",
+                             "guid":"2e8350ff-df05-4c43-28d5-092a634921c4"
+                          }
+                       ],
+                       "guid":"1741e679-e19b-42ca-3d1d-143761ca3e83"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question27",
+                       "title":"Your age",
+                       "isRequired":true,
+                       "inputType":"number",
+                       "guid":"22e87dd5-8b77-43fb-949d-1b19664e062b"
+                    },
+                    {  
+                       "type":"text",
+                       "name":"question28",
+                       "title":"Your country",
+                       "isRequired":true,
+                       "guid":"497dc861-87ee-434d-5a15-1feb13ef574b"
+                    }
+                 ]
+              }
+           ]
+        }']]);
+        DB::table('questionnaire_questions')->insert([
+            ['id' => 25, 'questionnaire_id' => 2, 'guid' => 'b4897c7b-87a8-4fa0-b862-d003d744d5cb', 'order_id' => 1, 'name' => 'question1', 'type' => 'html', 'question' => 'question1', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 26, 'questionnaire_id' => 2, 'guid' => '4dc86ae1-76e8-458f-722b-93edbdd0abfb', 'order_id' => 2, 'name' => 'question2', 'type' => 'text', 'question' => 'Which types of diverse support needs for learning do you have to handle in your teaching?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 27, 'questionnaire_id' => 2, 'guid' => '55998ec9-805f-42e6-8fc5-80389ecabc34', 'order_id' => 3, 'name' => 'question3', 'type' => 'text', 'question' => 'What are your most important objectives to use ICT in your teaching, and why?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 28, 'questionnaire_id' => 2, 'guid' => '728b8187-72d5-441f-4266-5c1d183140ed', 'order_id' => 4, 'name' => 'question4', 'type' => 'text', 'question' => 'Which limiting factors have you experienced concerning using ICT in teaching?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 29, 'questionnaire_id' => 2, 'guid' => 'c7be96bd-edb6-493d-ade6-2e20b240d83b', 'order_id' => 5, 'name' => 'question5', 'type' => 'text', 'question' => 'What are your most important reasons not to use ICT in your teaching, and why?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 30, 'questionnaire_id' => 2, 'guid' => 'daf6b6f8-7989-46d6-b36d-fc2f335f7d74', 'order_id' => 6, 'name' => 'question6', 'type' => 'text', 'question' => 'Which obstacles and constraints do you encounter or think upon regarding the use of ICT in teaching?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 31, 'questionnaire_id' => 2, 'guid' => '0d13d4ac-f251-4fb5-5cc3-d9f2e178f243', 'order_id' => 7, 'name' => 'question7', 'type' => 'text', 'question' => 'What are you missing to be able to use ICT in teaching?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 32, 'questionnaire_id' => 2, 'guid' => '8d6878d5-d10c-47f1-515a-addf1e3eaa6d', 'order_id' => 8, 'name' => 'question8', 'type' => 'text', 'question' => 'In which way does ICT help out to minimise the ‘differences’ between your students / learners?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 33, 'questionnaire_id' => 2, 'guid' => '0e098756-ff27-4443-1fee-cab9afcb1031', 'order_id' => 9, 'name' => 'question9', 'type' => 'text', 'question' => 'What is the expected outcome for students when ICT is used in your teaching,  and how do you find out?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 34, 'questionnaire_id' => 2, 'guid' => '86bd208f-4e85-418f-1fac-7c7c63cb19e3', 'order_id' => 10, 'name' => 'question10', 'type' => 'text', 'question' => 'Anything else you want to add here?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 35, 'questionnaire_id' => 2, 'guid' => 'd5eb99ec-72d1-401b-97c5-0d3d9e8944aa', 'order_id' => 11, 'name' => 'question11', 'type' => 'html', 'question' => 'question11', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 36, 'questionnaire_id' => 2, 'guid' => 'c311c515-1611-4d3b-1a28-e5e94fac2a71', 'order_id' => 12, 'name' => 'question12', 'type' => 'text', 'question' => 'In which type of educational organisation are you working?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 37, 'questionnaire_id' => 2, 'guid' => '6df1666d-682f-40b7-48b7-1017598a6bc4', 'order_id' => 13, 'name' => 'question13', 'type' => 'text', 'question' => 'What is your role and education?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 38, 'questionnaire_id' => 2, 'guid' => '0df503e2-71af-4aac-b5cc-24bd90f3d298', 'order_id' => 14, 'name' => 'question14', 'type' => 'text', 'question' => 'For how long have you approximately been working in this role?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 39, 'questionnaire_id' => 2, 'guid' => '4639a0b5-ab1e-417e-3847-e26e75db190b', 'order_id' => 15, 'name' => 'question15', 'type' => 'text', 'question' => 'Please describe shortly the ICT equipment and organization of ICT at your workplace', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 40, 'questionnaire_id' => 2, 'guid' => 'ad277ad4-fa74-4f20-c48a-18c2d9e92ffd', 'order_id' => 16, 'name' => 'question18', 'type' => 'html', 'question' => 'question18', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 41, 'questionnaire_id' => 2, 'guid' => '0edcad79-8cc7-44e7-90fe-5585e7501764', 'order_id' => 17, 'name' => 'question17', 'type' => 'dropdown', 'question' => '... professional engagement?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 42, 'questionnaire_id' => 2, 'guid' => '67d1ba8f-bcc3-4618-d288-c0092e298e85', 'order_id' => 18, 'name' => 'question19', 'type' => 'dropdown', 'question' => '... digital resources?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 43, 'questionnaire_id' => 2, 'guid' => 'ac6d9e3b-d9d8-4517-4a51-819431fe5de5', 'order_id' => 19, 'name' => 'question16', 'type' => 'dropdown', 'question' => '... teaching and learning?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 44, 'questionnaire_id' => 2, 'guid' => 'ac76204e-493a-4712-0780-409e73c665db', 'order_id' => 20, 'name' => 'question20', 'type' => 'dropdown', 'question' => '... assessment?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 45, 'questionnaire_id' => 2, 'guid' => '3156ae6e-aa0a-4108-fd69-69acf5702e51', 'order_id' => 21, 'name' => 'question21', 'type' => 'dropdown', 'question' => '... empowering learners?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 46, 'questionnaire_id' => 2, 'guid' => 'db52d53b-119b-4dac-9a72-fa2c331f68f8', 'order_id' => 22, 'name' => 'question22', 'type' => 'dropdown', 'question' => '... facilitating learners’ digital competence?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 47, 'questionnaire_id' => 2, 'guid' => 'df4bad22-2b44-41f1-53e4-98d85956017a', 'order_id' => 23, 'name' => 'question23', 'type' => 'text', 'question' => 'Do you / does your organization follow up on how the pupils have completed their education and, if so, how crucial have their knowledge about ICT contributed to employment?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 48, 'questionnaire_id' => 2, 'guid' => '67440641-2721-4d40-654b-cabe5990de65', 'order_id' => 24, 'name' => 'question24', 'type' => 'text', 'question' => 'How do you handle the challenges in ICT use and gender?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 49, 'questionnaire_id' => 2, 'guid' => '82c24361-9628-48b9-fe80-c9ddf49a8401', 'order_id' => 25, 'name' => 'question25', 'type' => 'text', 'question' => 'How do you “catch” (recognize and understand) the needs of your students / learners?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 50, 'questionnaire_id' => 2, 'guid' => '21858088-6362-423c-2d31-315a242512fb', 'order_id' => 26, 'name' => 'question26', 'type' => 'text', 'question' => 'Anything else you want to add?', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 51, 'questionnaire_id' => 2, 'guid' => '1741e679-e19b-42ca-3d1d-143761ca3e83', 'order_id' => 27, 'name' => 'Your gender', 'type' => 'radiogroup', 'question' => 'Your gender', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 52, 'questionnaire_id' => 2, 'guid' => '22e87dd5-8b77-43fb-949d-1b19664e062b', 'order_id' => 28, 'name' => 'question27', 'type' => 'text', 'question' => 'Your age', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 53, 'questionnaire_id' => 2, 'guid' => '497dc861-87ee-434d-5a15-1feb13ef574b', 'order_id' => 29, 'name' => 'question28', 'type' => 'text', 'question' => 'Your country', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+        ]);
+
+        DB::table('questionnaire_possible_answers')->insert([
+            ['id' => 86, 'question_id' => 41, 'guid' => '3d9fff03-b40a-4cd3-3fe0-09e2e15f6cb5', 'value' => 'item1', 'answer' => 'awareness, uncertainty, basic use', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 87, 'question_id' => 41, 'guid' => 'd0941512-a41e-4d4e-3c58-481ef762d5c1', 'value' => 'item2', 'answer' => 'exploring digital options', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 88, 'question_id' => 41, 'guid' => '13e3d305-8cd2-4f8e-5dce-c700024d2cd6', 'value' => 'item3', 'answer' => 'expanding professional practice', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 89, 'question_id' => 41, 'guid' => 'ed69f1d0-f131-4afc-0ac4-502bfaa32a34', 'value' => 'item4', 'answer' => 'enhancing professional practice', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 90, 'question_id' => 41, 'guid' => '42115332-8be2-4b52-0873-21dcfb67aa58', 'value' => 'item5', 'answer' => 'discussing and renewing professional practice', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 91, 'question_id' => 41, 'guid' => '9f751f33-0db7-4a68-729b-b96e8faa3536', 'value' => 'item6', 'answer' => 'innovating professional practice', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 92, 'question_id' => 41, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 93, 'question_id' => 42, 'guid' => '489718f9-09b9-4667-a202-8095874fa611', 'value' => 'item1', 'answer' => 'awareness, uncertainty, basic use', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 94, 'question_id' => 42, 'guid' => 'df81a9f2-1ad9-4ebd-6fef-c17594270ed4', 'value' => 'item2', 'answer' => 'exploring digital resources', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 95, 'question_id' => 42, 'guid' => '7c020161-55fa-4c9c-b254-68f508318295', 'value' => 'item3', 'answer' => 'fitting digital resources to the learning context', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 96, 'question_id' => 42, 'guid' => '0bb87c25-b8a7-43a7-2b9b-976816d95052', 'value' => 'item4', 'answer' => 'strategically using interactive resources', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 97, 'question_id' => 42, 'guid' => '7e44cd17-5c9e-4bf4-9859-082fc5f8fa14', 'value' => 'item5', 'answer' => 'strategically using interactive resources', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 98, 'question_id' => 42, 'guid' => '8d54e9d2-470c-41cb-b9ba-fc575ba331fd', 'value' => 'item6', 'answer' => 'promoting the use of digital resources', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 99, 'question_id' => 42, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 100, 'question_id' => 43, 'guid' => 'e53edaaa-5e3e-4f66-a825-feb427bc4a98', 'value' => 'item1', 'answer' => 'awareness, uncertainty, basic use', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 101, 'question_id' => 43, 'guid' => 'a775d447-60de-4c58-858f-6f461e2bee3d', 'value' => 'item2', 'answer' => 'exploring digital teaching & learning strategies', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 102, 'question_id' => 43, 'guid' => '71f988d8-128c-4238-208f-baf644b74ed2', 'value' => 'item3', 'answer' => 'meaningfully integrating digital technologies', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 103, 'question_id' => 43, 'guid' => '6ce7976d-9036-4718-f033-4cfed1e84c0a', 'value' => 'item4', 'answer' => 'enhancing teaching & learning activities', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 104, 'question_id' => 43, 'guid' => '8c5baef8-d922-4863-385b-0ec66524a62d', 'value' => 'item5', 'answer' => 'strategically & purposefully renewing teaching practice', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 105, 'question_id' => 43, 'guid' => '1c4cd40b-b66c-46df-bc40-16f4061f306e', 'value' => 'item6', 'answer' => 'innovating teaching', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 106, 'question_id' => 43, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 107, 'question_id' => 44, 'guid' => '833b1053-f23f-497b-c7ad-566f1fe9c1dc', 'value' => 'item1', 'answer' => 'awareness, uncertainty, basic use', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 108, 'question_id' => 44, 'guid' => '6176e187-0b6d-4f12-54fa-35c641e1c966', 'value' => 'item2', 'answer' => 'exploring digital assessment strategies', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 109, 'question_id' => 44, 'guid' => '30dd2519-2428-4b7a-c4f7-4eb514f6ae0e', 'value' => 'item3', 'answer' => 'enhancing traditional assessment approaches', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 110, 'question_id' => 44, 'guid' => 'cf2debb7-bffa-44e2-b66d-d8ac442bd9a5', 'value' => 'item4', 'answer' => 'strategic and effective use of digital assessment', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 111, 'question_id' => 44, 'guid' => '7d84344a-07f0-41d5-7adf-736e69e7ffa0', 'value' => 'item5', 'answer' => 'critically reflecting on digital assessment strategies', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 112, 'question_id' => 44, 'guid' => '7abbb1f7-46e2-4671-faf8-e6165c2d4eef', 'value' => 'item6', 'answer' => 'innovating assessment', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 113, 'question_id' => 44, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 114, 'question_id' => 45, 'guid' => 'b24d981e-1082-4759-5d91-acbc8e195035', 'value' => 'item1', 'answer' => 'awareness, uncertainty, basic use', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 115, 'question_id' => 45, 'guid' => '3d197f98-dde8-42cd-f8e2-645859147aa1', 'value' => 'item2', 'answer' => 'exploring learner-centred strategies', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 116, 'question_id' => 45, 'guid' => '4a019589-7405-4cdf-bc99-38345273edd6', 'value' => 'item3', 'answer' => 'addressing learner empowerment', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 117, 'question_id' => 45, 'guid' => '30256845-a8fc-44be-d86d-6e95e42cea0b', 'value' => 'item4', 'answer' => 'strategically using a range of tools to empower', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 118, 'question_id' => 45, 'guid' => '81c4eb22-8a78-458e-fb9f-9d7f8b5566d2', 'value' => 'item5', 'answer' => 'holistically empowering learners', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 119, 'question_id' => 45, 'guid' => '87a87279-d84f-44a6-6ccf-9cf1433865e3', 'value' => 'item6', 'answer' => 'innovating learner involvement', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 120, 'question_id' => 45, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 121, 'question_id' => 46, 'guid' => '2d6be908-1eaa-4802-11b3-fb17c6906707', 'value' => 'item1', 'answer' => 'awareness, uncertainty, basic use', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 122, 'question_id' => 46, 'guid' => 'ab5d84af-8004-4668-e5e7-0ca039534227', 'value' => 'item2', 'answer' => 'encouraging learners to use digital technologies', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 123, 'question_id' => 46, 'guid' => '7e1ffbf8-3884-4eeb-8ef1-5f6bf0c8ea3a', 'value' => 'item3', 'answer' => 'implementing activities to foster learners’ digital competence', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 124, 'question_id' => 46, 'guid' => 'bf2cfd9f-9e18-403c-f06b-053945eb3bba', 'value' => 'item4', 'answer' => 'strategically fostering learners’ digital competence', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 125, 'question_id' => 46, 'guid' => '4fa0420b-0d97-460c-539a-62583198e286', 'value' => 'item5', 'answer' => 'comprehensively & critically fostering learners’ digital competence', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 126, 'question_id' => 46, 'guid' => 'f086523d-617c-4da9-f405-ea16770821a6', 'value' => 'item6', 'answer' => 'using innovative formats to foster learners’ digital competence', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 127, 'question_id' => 46, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 128, 'question_id' => 51, 'guid' => '2eadabfd-253f-4f8b-54ec-c555405b50e7', 'value' => 'item1', 'answer' => 'Male', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 129, 'question_id' => 51, 'guid' => '2e8350ff-df05-4c43-28d5-092a634921c4', 'value' => 'item2', 'answer' => 'Female', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 130, 'question_id' => 51, 'guid' => 'other', 'value' => 'other', 'answer' => 'Other (please describe)', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+        ]);
+
+        DB::table('questionnaire_html')->insert([
+            ['id' => 4, 'question_id' => 25, 'html' => "<h2>Part 1: Short survey</h2>", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 5, 'question_id' => 35, 'html' => "<h4>As to better understand your background and your context from which you answered the questions above, please allow us to ask some further questions regarding you. (If you want to be involved in future EICON surveys on the other thematic areas, please first register at this platform and create an account that you can use in the future; then you do not need to fill this data in for each survey, rather it is saved with your profile).</h4>", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['id' => 6, 'question_id' => 40, 'html' => "<h4>How proficient are you with regard to using information and communication technology (ICT) with regard to:</h4>", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+            ]);
     }
 }

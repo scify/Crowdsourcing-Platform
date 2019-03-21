@@ -26,7 +26,7 @@ class AddOrderIdInQuestionnaireQuestionsTable extends Migration
     public function down()
     {
         Schema::table('questionnaire_questions', function (Blueprint $table) {
-            $table->integer('order_id');
+
         });
     }
 }
