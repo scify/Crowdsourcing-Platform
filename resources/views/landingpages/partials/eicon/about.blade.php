@@ -15,6 +15,7 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+            <h2>What are we crowdsourcing?</h2>
             <div class="content-container">
                 <p style="margin-bottom: 20px">
                     How can Information and Communication Technology make <b>VET</b> more inclusive?
@@ -43,7 +44,6 @@
                 The future is being created <b>now</b>. By us all.
                 <b>Join</b> the discussion now and <b>invite</b> whom you value most to <b>contribute</b>, too.
             </div>
-            <h2>What are we crowdsourcing?</h2>
         </div>
         <div class="col-md-2"></div>
     </div>
