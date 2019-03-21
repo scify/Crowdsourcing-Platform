@@ -53,6 +53,7 @@ let ProgressBar = require('progressbar.js');
                 .onRendered
                 .add(function () {
                     $(".sv_complete_btn").after("<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>");
+                    $('.sv_complete_btn').remove();
                 });
         }
         displayTranslation.apply($('#questionnaire-lang-selector'));
