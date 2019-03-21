@@ -11,7 +11,7 @@
                         We will create real-world, practice-oriented recommendations by crowdsourcing expertise from practitioners from
                         all over Europe and we will publicly share the knowledge gained.
                         <br>
-                        <a href="http://www.eicon-project.eu/about.html">Learn more about our project.</a>
+                        <a href="http://www.eicon-project.eu/about.html" target="_blank">Learn more about our project.</a>
 
                     </p>
                 </div>
