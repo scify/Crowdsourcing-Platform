@@ -52,6 +52,12 @@ section {
 
 }
 
+.description-container {
+  ul {
+    list-style: inherit;
+  }
+}
+
 .image-with-text-wrapper {
   .text {
     margin-top: -520px;

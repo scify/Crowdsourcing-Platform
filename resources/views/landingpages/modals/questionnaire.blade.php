@@ -7,7 +7,7 @@
                 <h4 class="modal-title">{{$viewModel->questionnaire->title}}</h4>
             </div>
             <div class="modal-body">
-                <div class="description-container container">
+                <div class="description-container" style="padding: 3px">
                     <div class="description">
                         {!! $viewModel->questionnaire->description !!}
                     </div>
