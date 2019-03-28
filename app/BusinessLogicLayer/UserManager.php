@@ -163,7 +163,7 @@ class UserManager {
             null,
             [UserRoles::REGISTERED_USER]);
         // write user to 'Registered Users' newsletter if logins for the first time
-        if ($result->status == UserActionResponses::USER_CREATED)
+        if ($result->status == UserActionResponses::USER_CREATED && env('MAILCHIMP_API_KEY'))
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
         if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
             $user = $result->data;

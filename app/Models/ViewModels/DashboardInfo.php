@@ -28,13 +28,6 @@ class DashboardInfo
             'logo_path' => $project->logo_path,
             'help_by' => '-'
         ];
-//        foreach ($project->questionnaires as $questionnaire) {
-//            $statusHistory = $questionnaire->statusHistory->toArray();
-//            $lastStatusHistoryItem = end($statusHistory);
-//            $status = (object)$lastStatusHistoryItem['status'];
-//            $temp->status = $status->title;
-//
-//        }
 
         return $temp;
     }
