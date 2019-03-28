@@ -98,7 +98,13 @@ class CrowdSourcingProjectManager
             $attributes['img_path'] = '/storage/projects/' . $path;
             unset($attributes['img']);
         }
-        $this->crowdSourcingProjectRepository->update($attributes, $id);
+        $this->crowdSourcingProjectRepository->update([
+            'name' => $attributes['name'],
+            'motto' => $attributes['motto'],
+            'about' => $attributes['about'],
+            'footer' => $attributes['footer'],
+            'language_id' => $attributes['language_id']
+        ], $id);
     }
 
     public function getActiveQuestionnaireForProject($projectId = self::DEFAULT_PROJECT_ID) {
