@@ -7,6 +7,11 @@
                 <h4 class="modal-title">{{$viewModel->questionnaire->title}}</h4>
             </div>
             <div class="modal-body">
+                <div class="description-container">
+                    <h5>
+                        {!! $viewModel->questionnaire->description !!}
+                    </h5>
+                </div>
                 @if($viewModel->allLanguagesForQuestionnaire->count() > 1)
                     <div id="lang-selector" class="row">
                         <div class="col-md-4 col-md-offset-2">
