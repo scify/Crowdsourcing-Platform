@@ -55,6 +55,10 @@ section {
 .description-container {
   ul {
     list-style: inherit;
+
+    li {
+      list-style-position: inside !important;
+    }
   }
 }
 
