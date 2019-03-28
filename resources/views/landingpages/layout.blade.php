@@ -48,43 +48,29 @@
     @endif
 </head>
 <body class="project-landing-page">
-<div class="row">
-    <div class="col-md-12">
-        @include('landingpages.partials.' . config('app.project_resources_dir') . '.navbar')
+    <div class="row">
+        <div class="col-md-12">
+            @include('landingpages.partials.' . config('app.project_resources_dir') . '.navbar')
+        </div>
     </div>
-</div>
-<section>
-    @include('landingpages.partials.' . config('app.project_resources_dir') . '.motto')
-</section>
-<section>
-    @include('landingpages.partials.' . config('app.project_resources_dir') . '.about')
-</section>
-<section>
-    @include('landingpages.partials.' . config('app.project_resources_dir') . '.questionnaire')
-</section>
+    @yield('content')
+    <footer>
+        <div class="container">
 
-@if($viewModel->questionnaire)
-    <section id="collective-goal">
-        @include('landingpages.partials.' . config('app.project_resources_dir') . '.goal-and-activity')
-    </section>
-@endif
-<footer>
-    <div class="container">
+            {!! $viewModel->project->footer !!}
 
-        {!! $viewModel->project->footer !!}
+        </div>
+    </footer>
 
+    <div id="pyro" class="">
+        <div class="before"></div>
+        <div class="after"></div>
     </div>
-</footer>
 
-<div id="pyro" class="">
-    <div class="before"></div>
-    <div class="after"></div>
-</div>
-
-<div class="loader-wrapper hidden">
-    <img src="{{asset('images/loading.gif')}}" alt="loading image">
-</div>
-@include('partials.footer-scripts')
-<script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
+    <div class="loader-wrapper hidden">
+        <img src="{{asset('images/loading.gif')}}" alt="loading image">
+    </div>
+    @include('partials.footer-scripts')
+    <script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
 </body>
 </html>
