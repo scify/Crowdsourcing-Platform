@@ -1,7 +1,7 @@
 <div class="row" id="questionnaire">
     <div class="col-md-12 no-padding">
         @if ($viewModel->questionnaire)
-            <div id="questionnaire-wrapper" class="text-center content-container ">
+            <div id="questionnaire-wrapper" class="text-center content-container" style="color: #666">
                 <h3 class="questionnaire-section-title">{{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}</h3>
                 @if(!$viewModel->userResponse)
                     <div class="questionnaire-description">{!! $viewModel->questionnaire->description !!}</div>
