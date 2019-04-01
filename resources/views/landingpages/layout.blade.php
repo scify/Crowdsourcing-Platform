@@ -71,6 +71,7 @@
         <img src="{{asset('images/loading.gif')}}" alt="loading image">
     </div>
     @include('partials.footer-scripts')
+    <script src="{{asset('dist/js/showdown.min.js')}}?{{env("APP_VERSION")}}"></script>
     <script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
 </body>
 </html>

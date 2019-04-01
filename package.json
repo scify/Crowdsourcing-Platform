@@ -44,6 +44,7 @@
     "pdfmake": "^0.1.38",
     "progressbar.js": "^1.0.1",
     "select2": "^4.0.5",
+    "showdown": "^1.9.0",
     "summernote": "^0.8.2",
     "survey-jquery": "^1.0.32",
     "surveyjs-editor": "^1.0.30"

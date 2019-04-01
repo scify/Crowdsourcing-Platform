@@ -59,5 +59,6 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
 
 // move select2.min.css to public/dist/css
 mix.copy(['node_modules/select2/dist/css/select2.min.css'], 'public/dist/css/select2.min.css');
+mix.copy(['node_modules/showdown/dist/*'], 'public/dist/js');
 // move surveyjs files to public/dist/css
 mix.copy(['resources/assets/plugins/surveyjs-1.0.30/*'], 'public/dist/css/');
