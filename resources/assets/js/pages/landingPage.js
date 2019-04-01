@@ -48,11 +48,11 @@ let ProgressBar = require('progressbar.js');
                         }
                     });
                 });
-            var converter = new showdown.Converter();
+            const converter = new showdown.Converter();
             survey
                 .onTextMarkdown
                 .add(function (survey, options) {
-                    //convert the mardown text to html
+                    //convert the markdown text to html
                     let str = converter.makeHtml(options.text);
                     //remove root paragraphs <p></p>
                     str = str.substring(3);
