@@ -55,6 +55,7 @@ let ProgressBar = require('progressbar.js');
                     //convert the markdown text to html
                     let str = converter.makeHtml(options.text);
                     //remove root paragraphs <p></p>
+                    console.log(str);
                     str = str.substring(3);
                     str = str.substring(0, str.length - 4);
                     //set html
