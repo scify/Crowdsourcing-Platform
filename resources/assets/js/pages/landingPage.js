@@ -49,6 +49,7 @@ let ProgressBar = require('progressbar.js');
                     });
                 });
             const converter = new showdown.Converter();
+            console.log("before convert");
             survey
                 .onTextMarkdown
                 .add(function (survey, options) {
