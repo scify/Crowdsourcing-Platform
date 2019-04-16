@@ -88,18 +88,20 @@ let ProgressBar = require('progressbar.js');
         let innerQuestionIndex = 0;
         questions.forEach(function (question) {
             console.log(question);
-            if (question.title) {
+            if (question.title && question.type !== "html") {
                 console.log(question.title.indexOf("Your comment on"));
-                if (question.type !== "html" && question.title.indexOf("Please share your ideas") === -1) {
-                    if (question.title.indexOf("Your comment on") !== -1) {
-                        innerQuestionIndex++;
-                        question.qnum = questionIndex + "." + innerQuestionIndex;
-                    } else {
-                        questionIndex++;
-                        question.qnum = questionIndex;
-                        innerQuestionIndex = 0;
-                    }
+
+                if (question.title.indexOf("Your comment on") !== -1) {
+                    innerQuestionIndex++;
+                    question.qnum = questionIndex + "." + innerQuestionIndex;
+                } else if (question.title.indexOf("Please share your ideas") === -1) {
+                    question.qnum = "";
+                } else {
+                    questionIndex++;
+                    question.qnum = questionIndex;
+                    innerQuestionIndex = 0;
                 }
+
             }
         });
         return questions;
