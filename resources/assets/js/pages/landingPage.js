@@ -54,7 +54,6 @@ let ProgressBar = require('progressbar.js');
                     });
                 });
             const converter = new showdown.Converter();
-            console.log("before convert");
             survey
                 .onTextMarkdown
                 .add(function (survey, options) {
@@ -87,6 +86,8 @@ let ProgressBar = require('progressbar.js');
         let questionIndex = 0;
         let innerQuestionIndex = 0;
         questions.forEach(function (question) {
+            if(!question.title)
+                question.title = question.name;
             if (question.title && question.type !== "html") {
                 if (question.title.indexOf("Your comment on") !== -1) {
                     innerQuestionIndex++;
