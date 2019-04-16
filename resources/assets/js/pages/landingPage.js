@@ -87,8 +87,9 @@ let ProgressBar = require('progressbar.js');
         let questionIndex = 0;
         let innerQuestionIndex = 0;
         questions.forEach(function(question){
-            if(question.type !== "html") {
-                if(question.type === "checkbox" && question.title.indexOf("Your comment on") !== -1) {
+            console.log(question.title.indexOf("Your comment on"));
+            if(question.type !== "html" && question.title.indexOf("Please share your ideas") === -1) {
+                if(question.title.indexOf("Your comment on") !== -1) {
                     innerQuestionIndex++;
                     question.qnum = questionIndex + "." + innerQuestionIndex;
                 } else {
