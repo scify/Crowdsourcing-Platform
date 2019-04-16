@@ -55,6 +55,18 @@ section {
 .sv_q_checkbox {
   p {
     font-size: 14px;
+    color: rgb(74, 74, 74);
+  }
+}
+
+.sv_q_checkbox.sv-q-col-1 {
+  .sv_q_checkbox_control_item {
+    float: left;
+    margin-top: 5px;
+  }
+
+  .sv_q_checkbox_control_label {
+    float: right;
   }
 }
 
