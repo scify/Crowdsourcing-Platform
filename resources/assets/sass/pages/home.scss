@@ -62,11 +62,17 @@ section {
 .sv_q_checkbox.sv-q-col-1 {
   .sv_q_checkbox_control_item {
     float: left;
-    margin-top: 5px;
+    margin-top: 5px !important;
+    width: 5%;
   }
 
   .sv_q_checkbox_control_label {
     float: right;
+    width: calc(95% - 0.55em);
+  }
+
+  .checkbox-material {
+    display: none;
   }
 }
 
