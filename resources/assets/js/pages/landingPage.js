@@ -23,7 +23,7 @@ let ProgressBar = require('progressbar.js');
             json.requiredText = "(*)";
             json.showQuestionNumbers = "off";
 
-            json.pages.forEach(function(page){
+            json.pages.forEach(function (page) {
                 page.elements = setQuestionNumbers(page.elements);
             });
 
@@ -79,23 +79,26 @@ let ProgressBar = require('progressbar.js');
         displayTranslation.apply($('#questionnaire-lang-selector'));
     };
 
-    let setQuestionNumbers = function(questions) {
+    let setQuestionNumbers = function (questions) {
         // we want to identify questions that are "included" in other questions
         // if the question is of type "checkbox" and has a certain string in it's title,
         // it means that it is included in another question.
         // so we should change it's index.
         let questionIndex = 0;
         let innerQuestionIndex = 0;
-        questions.forEach(function(question){
-            console.log(question.title.indexOf("Your comment on"));
-            if(question.type !== "html" && question.title.indexOf("Please share your ideas") === -1) {
-                if(question.title.indexOf("Your comment on") !== -1) {
-                    innerQuestionIndex++;
-                    question.qnum = questionIndex + "." + innerQuestionIndex;
-                } else {
-                    questionIndex++;
-                    question.qnum = questionIndex;
-                    innerQuestionIndex = 0;
+        questions.forEach(function (question) {
+            console.log(question);
+            if (question.title) {
+                console.log(question.title.indexOf("Your comment on"));
+                if (question.type !== "html" && question.title.indexOf("Please share your ideas") === -1) {
+                    if (question.title.indexOf("Your comment on") !== -1) {
+                        innerQuestionIndex++;
+                        question.qnum = questionIndex + "." + innerQuestionIndex;
+                    } else {
+                        questionIndex++;
+                        question.qnum = questionIndex;
+                        innerQuestionIndex = 0;
+                    }
                 }
             }
         });
@@ -107,10 +110,10 @@ let ProgressBar = require('progressbar.js');
         survey.locale = $(this).val();
         survey.render();
 
-       if ($(this).find("option:selected").data("machine-generated")==1)
-           $("#machine-translation-indicator").removeClass("hide");
+        if ($(this).find("option:selected").data("machine-generated") == 1)
+            $("#machine-translation-indicator").removeClass("hide");
         else
-           $("#machine-translation-indicator").addClass("hide");
+            $("#machine-translation-indicator").addClass("hide");
     };
 
     let refreshPageToTheQuestionnaireSection = function () {
