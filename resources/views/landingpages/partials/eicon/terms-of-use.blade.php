@@ -5,7 +5,7 @@
         <div class="row">
             <h1>Terms & Conditions - Privacy Policy</h1>
             <h2>1. Introduction</h2>
-            <h5>1.1</h5> We are committed to safeguarding the privacy of platform Memor-i Studio (Platform) users.
+            <h5>1.1</h5> We are committed to safeguarding the privacy of platform Crowd-sourcing Platform users.
             <h5>1.2</h5> This policy applies where we are acting as a data controller with respect to the personal data
             of our Platform users; in other words, where we determine the purposes and means of the processing of that
             personal data.
