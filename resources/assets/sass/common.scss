@@ -335,4 +335,11 @@ $header-height: 70px;
 
 .sv_q.sv_qstn h5 span {
   display: inline-block;
+  width: 100%;
+
+  p:first-child {
+    float: left;
+    margin-right: 10px;
+    color: #076ec1;
+  }
 }

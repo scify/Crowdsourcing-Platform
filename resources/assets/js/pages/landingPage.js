@@ -8,19 +8,24 @@ let ProgressBar = require('progressbar.js');
         let wrapperId = 'questionnaire-display-section';
         let wrapper = $('#' + wrapperId);
         if (wrapper.length > 0) {
+
             Survey.StylesManager.applyTheme("darkblue");
             Survey.surveyStrings.emptySurvey = "There is not currently an active survey.";
             Survey.surveyStrings.loadingSurvey = "Please wait. The survey is loading…";
 
+            Survey
+                .JsonObject
+                .metaData
+                .addProperty("questionbase", "qnum");
+
             let json = wrapper.data('content');
-            /*json.pages.forEach(function(page){
-                page.elements.forEach(function(question){
-                    if (question.hasOther)
-                    {
-                        question.otherText={default:"test", bg:"bulgarian other"};
-                    }
-                });
-            });*/
+            json.questionTitleTemplate = "{qnum}. {title}";
+            json.requiredText = "(*)";
+            json.showQuestionNumbers = "off";
+
+            json.pages.forEach(function(page){
+                page.elements = setQuestionNumbers(page.elements);
+            });
 
             survey = new Survey.Survey(JSON.stringify(json), wrapperId);
             survey
@@ -72,6 +77,28 @@ let ProgressBar = require('progressbar.js');
                 });
         }
         displayTranslation.apply($('#questionnaire-lang-selector'));
+    };
+
+    let setQuestionNumbers = function(questions) {
+        // we want to identify questions that are "included" in other questions
+        // if the question is of type "checkbox" and has a certain string in it's title,
+        // it means that it is included in another question.
+        // so we should change it's index.
+        let questionIndex = 0;
+        let innerQuestionIndex = 0;
+        questions.forEach(function(question){
+            if(question.type !== "html") {
+                if(question.type === "checkbox" && question.title.indexOf("Your comment on") !== -1) {
+                    innerQuestionIndex++;
+                    question.qnum = questionIndex + "." + innerQuestionIndex;
+                } else {
+                    questionIndex++;
+                    question.qnum = questionIndex;
+                    innerQuestionIndex = 0;
+                }
+            }
+        });
+        return questions;
     };
 
     let displayTranslation = function () {
