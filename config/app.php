@@ -114,6 +114,7 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'project_resources_dir' => env('PROJECT_RESOURCES_DIR'),
+    'google_translate_key' => env('GOOGLE_TRANSLATE_KEY'),
     'project_id' => env('PROJECT_ID'),
     'project_email_title' => env('PROJECT_EMAIL_TITLE'),
     'version' => env('APP_VERSION'),
