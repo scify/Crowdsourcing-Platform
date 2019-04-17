@@ -85,20 +85,26 @@ let ProgressBar = require('progressbar.js');
         // so we should change it's index.
         let questionIndex = 0;
         let innerQuestionIndex = 0;
+        // questions.forEach(function (question) {
+        //     if(!question.title)
+        //         question.title = question.name || "";
+        //     if (question.title && question.type !== "html") {
+        //         if (question.title.indexOf("Your comment on") !== -1) {
+        //             innerQuestionIndex++;
+        //             question.qnum = questionIndex + "." + innerQuestionIndex;
+        //         } else if (question.title.indexOf("Please share your ideas") !== -1) {
+        //             question.qnum = "";
+        //         } else {
+        //             questionIndex++;
+        //             question.qnum = questionIndex;
+        //             innerQuestionIndex = 0;
+        //         }
+        //     }
+        // });
         questions.forEach(function (question) {
-            if(!question.title)
-                question.title = question.name;
-            if (question.title && question.type !== "html") {
-                if (question.title.indexOf("Your comment on") !== -1) {
-                    innerQuestionIndex++;
-                    question.qnum = questionIndex + "." + innerQuestionIndex;
-                } else if (question.title.indexOf("Please share your ideas") !== -1) {
-                    question.qnum = "";
-                } else {
-                    questionIndex++;
-                    question.qnum = questionIndex;
-                    innerQuestionIndex = 0;
-                }
+            if (question.type !== "html") {
+                questionIndex++;
+                question.qnum = questionIndex;
             }
         });
         return questions;
