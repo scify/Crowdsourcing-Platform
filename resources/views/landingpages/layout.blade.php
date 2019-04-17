@@ -11,25 +11,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="canonical" href="{{url('/')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="ECAS, crowdsourcing, Europe, EU, democracy, {{$viewModel->project->name}}">
     <meta name="description" content="{{$viewModel->project->motto}}">
     <!--FACEBOOK-->
-    <meta property="og:title" content="Are you an EU citizen living abroad?">
-    <meta property="og:site_name" content="ECAS Crowdsourcing Platform">
     <meta property="og:url" content="{{url($viewModel->project->slug)}}">
     <meta property="og:description" content="Take part in our questionnaire!">
-    <meta property="og:image" content="{{asset("images/projects/demo/social-bg-white.png")}}">
+    <meta property="og:image" content="images/projects/{{config('app.project_resources_dir')}}/social-image.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en-US">
     <!--TWITTER-->
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="Are you an EU citizen living abroad?">
-    <meta property="twitter:description" content="Take part in our questionnaire!">
-    <meta property="twitter:creator" content="ecas_europe">
     <meta property="twitter:url" content="{{url($viewModel->project->slug)}}">
-    <meta property="twitter:image" content="{{asset("images/projects/demo/social-bg-white.png")}}">
+    <meta property="twitter:image" content="images/projects/{{config('app.project_resources_dir')}}/social-image.png">
     <meta property="twitter:image:alt" content="crowdsourcing">
-
+    @include('landingpages.partials.' . config('app.project_resources_dir') . '.header-meta')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
