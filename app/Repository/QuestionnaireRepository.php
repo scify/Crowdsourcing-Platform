@@ -127,7 +127,7 @@ class QuestionnaireRepository
                         $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid, $index);
                 }
                 catch (Exception $e){
-                    throw e;
+                    throw $e;
                 }
 
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
