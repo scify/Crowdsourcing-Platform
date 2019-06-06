@@ -84,30 +84,39 @@ let ProgressBar = require('progressbar.js');
         // it means that it is included in another question.
         // so we should change it's index.
         let questionIndex = 0;
+
         let innerQuestionIndex = 0;
-        // questions.forEach(function (question) {
-        //     if(!question.title)
-        //         question.title = question.name || "";
-        //     if (question.title && question.type !== "html") {
-        //         if (question.title.indexOf("Your comment on") !== -1) {
-        //             innerQuestionIndex++;
-        //             question.qnum = questionIndex + "." + innerQuestionIndex;
-        //         } else if (question.title.indexOf("Please share your ideas") !== -1) {
-        //             question.qnum = "";
-        //         } else {
-        //             questionIndex++;
-        //             question.qnum = questionIndex;
-        //             innerQuestionIndex = 0;
-        //         }
-        //     }
-        // });
+
         questions.forEach(function (question) {
-            if (question.type !== "html") {
-                questionIndex++;
-                question.qnum = questionIndex;
+            if (!questionIsInner(question)) {
+                innerQuestionIndex = 0;
+                if (questionShouldHaveNumbering(question)) {
+                    questionIndex++;
+                    question.qnum = questionIndex;
+                }
+            } else {
+                if(innerQuestionShouldHaveNumbering(question)) {
+                    innerQuestionIndex++;
+                    question.qnum = questionIndex + "." + innerQuestionIndex;
+                } else {
+                    question.qnum = "";
+                }
             }
+
         });
         return questions;
+    };
+
+    let questionIsInner = function (question) {
+        return question.visibleIf;
+    };
+
+    let questionShouldHaveNumbering = function (question) {
+        return !questionIsInner(question) && question.type !== 'html';
+    };
+
+    let innerQuestionShouldHaveNumbering = function (question) {
+        return question.title && question.title.default && question.title.default.indexOf("Please share your ideas") === -1;
     };
 
     let displayTranslation = function () {
