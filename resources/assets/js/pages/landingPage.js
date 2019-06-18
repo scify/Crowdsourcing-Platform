@@ -104,6 +104,8 @@ let ProgressBar = require('progressbar.js');
             }
 
         });
+
+        console.log(questions);
         return questions;
     };
 
