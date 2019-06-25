@@ -216,8 +216,8 @@ class QuestionnaireTranslationRepository {
 
     private function setQuestionnaireJsonTitleWithTranslations($questionTranslations, $element)
     {
-//        if($element->name == 'question2')
-//            $questionTranslations = $questionTranslations->where('id', 55);
+        if($element->name == 'question2')
+            $questionTranslations = $questionTranslations->where('id', 55);
         if (isset($element->title)) {
             if (isset($element->title->default)) // if title translations already exist
                 $defaultTitle = $element->title->default;
