@@ -19,7 +19,7 @@
                     <h2 class="text-center">Who we are</h2>
                     <p>
                         Six partners from Germany, Portugal, Greece, Sweden and Finland have joined forces to elaborate practice-oriented
-                        recommendations.<br><br> Partners come from organisations that provide VET (<strong>Invalidisäätiö - Keskuspuisto vocational college
+                        recommendations.<br><br> Partners come from organisations that provide VET (<strong>Invalidisäätiö - Vocational College Live
                             (FI)</strong> and <strong>Cooperativa para a Educação e Reabilitação de Cidadãos Inadaptados de Cascais – CERCICA (PT)</strong>),
                         that support organisations / institutions that provide VET <strong>(Specialpedagogiska skolmyndigheten – SPSM (SE)</strong> and
                         the <strong>National Ministry of Education, Research and Religious Affairs (EL)</strong>), that provide technology for VET organisations
