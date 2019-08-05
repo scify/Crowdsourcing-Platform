@@ -43,7 +43,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($openQuestionnaireWhenPageLoads, $project_slug) {
+    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug) {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         if(!$project)
             throw new ResourceNotFoundException("Project not found");
@@ -53,7 +53,11 @@ class CrowdSourcingProjectManager
         $allResponses = collect([]);
         $allLanguagesForQuestionnaire = collect([]);
 
-        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id, Auth::id());
+        if($questionnaireId)
+            $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
+        else
+            $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id, Auth::id());
+
         if ($questionnaire) {
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);

@@ -28,7 +28,7 @@ class HomeController extends Controller
     }
 
     public function termsAndPrivacyPage() {
-        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(false, $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject()->slug);
+        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(null,false, $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject()->slug);
 
         return view('landingpages.partials.' . config('app.project_resources_dir') . '.terms-of-use')->with(['viewModel' => $viewModel]);
     }
