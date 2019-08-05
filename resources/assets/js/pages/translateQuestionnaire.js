@@ -124,8 +124,10 @@
         let texts = [];
         translationItem.find('.table-row').each(function () {
             let cells = $(this).find('.table-cell');
-            texts.push($(cells[0]).find('.to-translate').html());
-            ids.push($(cells[1]).find('textarea').attr('name'));
+            if(shouldTranslateText(cells[0], texts)) {
+                texts.push($(cells[0]).find('.to-translate').html());
+                ids.push($(cells[1]).find('textarea').attr('name'));
+            }
         });
         console.log(texts);
         $.ajax({
@@ -155,6 +157,11 @@
                 modal.modal('hide');
             }
         });
+    };
+
+    let shouldTranslateText = function(text, texts) {
+        // avoid re-translation of texts
+        return !texts.includes(text);
     };
 
     let saveTranslations = function () {
