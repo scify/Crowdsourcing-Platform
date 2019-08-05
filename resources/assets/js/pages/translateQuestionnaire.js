@@ -161,7 +161,7 @@
 
     let shouldTranslateText = function(text, texts) {
         // avoid re-translation of texts
-        return !texts.includes(text);
+        return texts.length < 250;
     };
 
     let saveTranslations = function () {
