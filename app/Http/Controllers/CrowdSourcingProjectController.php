@@ -69,12 +69,13 @@ class CrowdSourcingProjectController extends Controller
 
     public function showLandingPage(Request $request, $project_slug) {
         try {
-            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->open == 1, $project_slug);
+            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
+                isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open == 1, $project_slug);
             if (isset($request->questionnaireId) && isset($request->referrerId))
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager, $this->userManager->getUser($request->referrerId));
             if (isset($request->referrerId))
                 $this->userManager->setReferrerIdToWebSession($request->referrerId);
-            return view('landingpages.home')->with(['viewModel' => $viewModel]);
+            return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
             abort(404);
         }

@@ -20,9 +20,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .background-page {
-  background: url("../images/active_participation.png") no-repeat;
   background-size: cover;
-
+  background-size: 100%;
 }
 
 .btn-primary{
@@ -135,11 +134,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .logo-lg {
   img {
-    height: 50px;
-    margin-top: 16px;
-
+    margin-top: 10px;
   }
-
 }
 
 $header-height: 70px;
@@ -159,8 +155,9 @@ $header-height: 70px;
   padding: 25px;
 }
 
-
-
+.navbar-brand {
+  padding: 5px;
+}
 
 .logo-mini img{
   width:50px;
@@ -335,3 +332,21 @@ $header-height: 70px;
   float: none;
   margin: 0 auto;
 }
+
+.sv_q.sv_qstn h5 span {
+  display: inline-block;
+  width: 100%;
+
+  p:first-child {
+    float: left;
+    margin-right: 10px;
+    color: #076ec1;
+  }
+}
+
+
+.sv_container li {
+  list-style-type: disc;
+}
+
+

@@ -58,14 +58,13 @@ class UserManager {
         return new UserProfile($user);
     }
 
-    public function getDashboardData() {
-        $user = Auth::user();
-        $projects = $this->projectRepository->getProjectWithStatusAndQuestionnaires();
-        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser($user->id);
+    public function getDashboardViewModel() {
+        $project = $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject();
+        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser(Auth::id());
         $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
         $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
-        $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
-        return new DashboardInfo($projects, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
+        $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel($project->id);
+        return new DashboardInfo($project, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
     }
 
     public function getUser($userId) {
@@ -164,7 +163,7 @@ class UserManager {
             null,
             [UserRoles::REGISTERED_USER]);
         // write user to 'Registered Users' newsletter if logins for the first time
-        if ($result->status == UserActionResponses::USER_CREATED)
+        if ($result->status == UserActionResponses::USER_CREATED && env('MAILCHIMP_API_KEY') !== '' || env('MAILCHIMP_API_KEY') !== null)
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
         if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
             $user = $result->data;

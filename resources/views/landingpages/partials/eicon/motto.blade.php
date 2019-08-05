@@ -6,7 +6,7 @@
             <h1 id="project-moto">{!! $viewModel->project->motto !!}</h1>
             <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3 call-to-action">
 
-                @include("landingpages.partials.open-questionnaire-button")
+                @include("landingpages.partials.eicon.open-questionnaire-button")
 
             </div>
         </div>

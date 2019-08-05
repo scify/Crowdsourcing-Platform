@@ -52,6 +52,47 @@ section {
 
 }
 
+.sv_q_checkbox {
+  p {
+    font-size: 14px;
+    color: rgb(74, 74, 74);
+  }
+}
+
+.sv_q_checkbox.sv-q-col-1 {
+  .sv_q_checkbox_control_item {
+    float: left;
+    margin-top: 5px !important;
+    //width: 5%;
+  }
+
+  .sv_q_checkbox_label {
+    width: 100%;
+
+    p {
+      width: 100%;
+    }
+  }
+
+  .sv_q_checkbox_control_label {
+    //width: calc(95% - 0.55em);
+  }
+
+  .checkbox-material {
+    display: none;
+  }
+}
+
+.description-container {
+  ul {
+    list-style: inherit;
+
+    li {
+      list-style-position: inside !important;
+    }
+  }
+}
+
 .image-with-text-wrapper {
   .text {
     margin-top: -520px;

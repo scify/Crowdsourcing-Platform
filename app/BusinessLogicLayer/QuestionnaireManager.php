@@ -89,14 +89,14 @@ class QuestionnaireManager {
 
     public function createNewQuestionnaire($data) {
         $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
-            $data['title'], $data['description'], $data['goal'], $data['language'], $data['project'], $data['content']
+            $data['title'], $data['description'], $data['goal'], $data['language'], CrowdSourcingProjectManager::DEFAULT_PROJECT_ID, $data['content']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
 
     public function updateQuestionnaire($id, $data) {
         $this->questionnaireRepository->updateQuestionnaire($id, $data['title'], $data['description'],
-            $data['goal'], $data['language'], $data['project'], $data['content']);
+            $data['goal'], $data['language'], CrowdSourcingProjectManager::DEFAULT_PROJECT_ID, $data['content']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 

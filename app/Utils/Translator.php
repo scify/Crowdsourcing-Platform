@@ -20,7 +20,7 @@ class Translator
      */
     public static function translateTexts(array $texts, $to)
     {
-        $translate = new TranslateClient(['key' => env('GOOGLE_TRANSLATE_KEY')]);
+        $translate = new TranslateClient(['key' => config('app.google_translate_key')]);
         $result = $translate->translateBatch($texts, [
             'target' => $to,
         ]);

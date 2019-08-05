@@ -8,19 +8,24 @@ let ProgressBar = require('progressbar.js');
         let wrapperId = 'questionnaire-display-section';
         let wrapper = $('#' + wrapperId);
         if (wrapper.length > 0) {
+
             Survey.StylesManager.applyTheme("darkblue");
             Survey.surveyStrings.emptySurvey = "There is not currently an active survey.";
             Survey.surveyStrings.loadingSurvey = "Please wait. The survey is loading…";
 
+            Survey
+                .JsonObject
+                .metaData
+                .addProperty("questionbase", "qnum");
+
             let json = wrapper.data('content');
-            /*json.pages.forEach(function(page){
-                page.elements.forEach(function(question){
-                    if (question.hasOther)
-                    {
-                        question.otherText={default:"test", bg:"bulgarian other"};
-                    }
-                });
-            });*/
+            json.questionTitleTemplate = "{qnum}. {title}";
+            json.requiredText = "(*)";
+            json.showQuestionNumbers = "off";
+
+            json.pages.forEach(function (page) {
+                page.elements = setQuestionNumbers(page.elements);
+            });
 
             survey = new Survey.Survey(JSON.stringify(json), wrapperId);
             survey
@@ -48,14 +53,72 @@ let ProgressBar = require('progressbar.js');
                         }
                     });
                 });
-
+            const converter = new showdown.Converter();
+            survey
+                .onTextMarkdown
+                .add(function (survey, options) {
+                    //convert the markdown text to html
+                    let str = converter.makeHtml(options.text);
+                    //remove root paragraphs <p></p>
+                    str = str.substring(0, str.length - 4);
+                    //set html
+                    options.html = str;
+                });
+            survey
+                .onProcessHtml
+                .add(function (survey, options) {
+                });
             survey
                 .onRendered
                 .add(function () {
                     $(".sv_complete_btn").after("<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>");
+                    // $('.sv_complete_btn').remove();
                 });
         }
         displayTranslation.apply($('#questionnaire-lang-selector'));
+    };
+
+    let setQuestionNumbers = function (questions) {
+        // we want to identify questions that are "included" in other questions
+        // if the question is of type "checkbox" and has a certain string in it's title,
+        // it means that it is included in another question.
+        // so we should change it's index.
+        let questionIndex = 0;
+
+        let innerQuestionIndex = 0;
+
+        questions.forEach(function (question) {
+            if (!questionIsInner(question)) {
+                innerQuestionIndex = 0;
+                if (questionShouldHaveNumbering(question)) {
+                    questionIndex++;
+                    question.qnum = questionIndex;
+                }
+            } else {
+                if(innerQuestionShouldHaveNumbering(question)) {
+                    innerQuestionIndex++;
+                    question.qnum = questionIndex + "." + innerQuestionIndex;
+                } else {
+                    question.qnum = "";
+                }
+            }
+
+        });
+
+        console.log(questions);
+        return questions;
+    };
+
+    let questionIsInner = function (question) {
+        return question.visibleIf;
+    };
+
+    let questionShouldHaveNumbering = function (question) {
+        return !questionIsInner(question) && question.type !== 'html';
+    };
+
+    let innerQuestionShouldHaveNumbering = function (question) {
+        return question.title && question.title.default && question.title.default.indexOf("Please share your ideas") === -1;
     };
 
     let displayTranslation = function () {
@@ -63,10 +126,10 @@ let ProgressBar = require('progressbar.js');
         survey.locale = $(this).val();
         survey.render();
 
-       if ($(this).find("option:selected").data("machine-generated")==1)
-           $("#machine-translation-indicator").removeClass("hide");
+        if ($(this).find("option:selected").data("machine-generated") == 1)
+            $("#machine-translation-indicator").removeClass("hide");
         else
-           $("#machine-translation-indicator").addClass("hide");
+            $("#machine-translation-indicator").addClass("hide");
     };
 
     let refreshPageToTheQuestionnaireSection = function () {

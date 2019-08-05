@@ -26,7 +26,7 @@ class MakeListIdNullableInMailChimpList extends Migration
     public function down()
     {
         Schema::table('mailchimp_lists', function ($table) {
-            $table->integer('list_id')->nullable(false)->change();
+            $table->string('list_id')->nullable(false)->change();
         });
     }
 }

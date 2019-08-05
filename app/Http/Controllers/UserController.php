@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public function myDashboard()
     {
-        $dashboardViewModel = $this->userManager->getDashboardData();
+        $dashboardViewModel = $this->userManager->getDashboardViewModel();
         return view('my-dashboard', ['viewModel' => $dashboardViewModel]);
     }
 

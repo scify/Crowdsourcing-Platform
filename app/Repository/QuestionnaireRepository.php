@@ -15,6 +15,7 @@ use App\Models\QuestionnaireStatusHistory;
 use App\Models\QuestionnaireTranslationPossibleAnswer;
 use App\Models\QuestionnaireTranslationQuestion;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireRepository
@@ -41,10 +42,27 @@ class QuestionnaireRepository
         return Questionnaire::all();
     }
 
-    public function getActiveQuestionnaireForProject($projectId)
+    public function getActiveQuestionnaireForProject($projectId, $userId)
     {
-        // status 'Published'
-        return Questionnaire::where('project_id', $projectId)->where('status_id', 2)->first();
+        // get all active questionnaires for this project, ordered by prerequisite_order and created_at
+        // for each questionnaire, if it is a prerequisite and has not been answered by the logged in user,
+        // return this questionnaire.
+        $questionnaires = $this->getActiveQuestionnairesForProject($projectId);
+        foreach ($questionnaires as $questionnaire) {
+            $response = $this->getUserResponseForQuestionnaire($questionnaire->id, $userId);
+            if(!$response) {
+                return $questionnaire;
+            }
+        }
+        return null;
+    }
+
+    public function getActiveQuestionnairesForProject(int $projectId) {
+        return Questionnaire::where('project_id', $projectId)
+            ->where('status_id', 2)
+            ->orderBy('prerequisite_order', 'ASC')
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 
     public function getUserResponseForQuestionnaire($questionnaireId, $userId)
@@ -109,7 +127,7 @@ class QuestionnaireRepository
                         $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid, $index);
                 }
                 catch (Exception $e){
-                    throw e;
+                    throw $e;
                 }
 
                 $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
@@ -388,4 +406,5 @@ class QuestionnaireRepository
     public function questionnaireResponsesForUserExists($userId) {
         return QuestionnaireResponse::where(['user_id' => $userId])->exists();
     }
+
 }

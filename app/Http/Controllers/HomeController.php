@@ -23,6 +23,13 @@ class HomeController extends Controller
     public function index()
     {
         $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjects();
-        return view('home.home')->with(['projects' => $projects]);
+        $defaultProject = $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject();
+        return view('home.layout')->with(['projects' => $projects, 'defaultProject' => $defaultProject]);
+    }
+
+    public function termsAndPrivacyPage() {
+        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(null,false, $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject()->slug);
+
+        return view('landingpages.partials.' . config('app.project_resources_dir') . '.terms-of-use')->with(['viewModel' => $viewModel]);
     }
 }

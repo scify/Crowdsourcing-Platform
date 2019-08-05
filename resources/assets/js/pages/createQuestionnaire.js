@@ -71,10 +71,19 @@
         let json = JSON.parse(content);
         let questions = json.pages[0].elements;
         console.log(json);
+        let alreadyUsedGuids = [];
+        let alreadyUsedAnswerGuids = [];
         for (let i = 0; i < questions.length; i++) {
             if (!questions[i].guid) {
-
                 questions[i].guid = getGuid();
+                alreadyUsedGuids.push(questions[i].guid );
+            }
+            else{
+                //bug fix: we may have 2 questions with the same guid (due to a copy paste). We dont want this
+                if (alreadyUsedGuids.includes(questions[i].guid)) {
+                    questions[i].guid = getGuid();
+                }
+                alreadyUsedGuids.push(questions[i].guid);
             }
 
             if (questions[i].choices) {
@@ -88,6 +97,12 @@
                     }
                     if (!answers[j].guid) {
                         answers[j].guid = getGuid();
+                        alreadyUsedAnswerGuids.push(answers[j].guid);
+                    } else {
+                        if (alreadyUsedAnswerGuids.includes(answers[j].guid)) {
+                            answers[j].guid = getGuid();
+                        }
+                        alreadyUsedAnswerGuids.push(answers[j].guid);
                     }
 
                 }
@@ -101,7 +116,6 @@
         let title = $('#title').val().trim();
         let description = $('#description').val().trim();
         let goal = $('#goal').val().trim();
-        let project = $('#project-id').val();
         let language = $('#language').val();
         let content = editor.text;
         content = addGuidsToContent(content);
@@ -117,7 +131,7 @@
             $.ajax({
                  method: 'post',
                  url: self.data('url'),
-                 data: {title, description, goal, language, project, content},
+                 data: {title, description, goal, language, content},
                  success: function (response) {
                      if (response.status === '__SUCCESS') {
                          swal({

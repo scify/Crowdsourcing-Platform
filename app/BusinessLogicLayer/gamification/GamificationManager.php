@@ -3,6 +3,7 @@
 namespace App\BusinessLogicLayer\gamification;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\QuestionnaireAnswerManager;
 use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\GamificationBadgeVM;
@@ -10,9 +11,9 @@ use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Notifications\QuestionnaireShared;
-use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireRepository;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class GamificationManager {
@@ -21,22 +22,25 @@ class GamificationManager {
     private $questionnaireShareManager;
     private $questionnaireResponseReferralManager;
     private $crowdSourcingProjectManager;
+    private $questionnaireAnswerManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
                                 CrowdSourcingProjectManager $crowdSourcingProjectManager,
-                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager) {
+                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
+                                QuestionnaireAnswerManager $questionnaireAnswerManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->questionnaireAnswerManager = $questionnaireAnswerManager;
     }
 
     public function getGamificationBadgesForUser(int $userId) {
         return new Collection([
             $this->getContributorBadge($userId),
             $this->getCommunicatorBadge($userId),
-            $this->getInfluencerBadge($userId)
+            $this->getInfluencerBadge($userId, $this->crowdSourcingProjectManager->getActiveQuestionnaireForProject())
         ]);
     }
 
@@ -78,16 +82,16 @@ class GamificationManager {
 
     public function getGamificationNextStepViewModel($unlockedBadges) {
         /**
-         * if the project does not have an active questionnaire, then prompt the user to wait for
+         * if the project does not have an active questionnaire that has not been answered by this user, then prompt the user to wait for
          * a questionnaire to be posted
          *
          * else
          */
-        if(!$this->crowdSourcingProjectManager->projectHasActiveQuestionnaire(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID)) {
+        if(!$this->crowdSourcingProjectManager->getActiveQuestionnaireForProject()) {
             $title = 'This project does not have an active Questionnaire yet.<br>Wait for a questionnaire to be posted, and contribute with your answers!';
             $imgFileName = 'contributor.png';
             return new GamificationNextStep(
-                $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
+                $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject(),
                 $title,
                 $imgFileName,
                 false,
@@ -112,14 +116,15 @@ class GamificationManager {
             $badgeToShow = $this->getBadge($unlockedBadges, GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID);
         }
 
-        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
-        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
+        $questionnaire = $this->crowdSourcingProjectManager->getActiveQuestionnaireForProject();
+        $project = $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject();
         return new GamificationNextStep(
-            $this->crowdSourcingProjectManager->getCrowdSourcingProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID),
+            $project,
             $badgeToShow->getNextStepMessage(),
             $badgeToShow->imageFileName,
             true,
-            new QuestionnaireSocialShareButtons($project, $questionnaire, \Auth::id()), $this->crowdSourcingProjectManager->userHasAlreadyAnsweredTheActiveQuestionnaire(\Auth::id()));
+            new QuestionnaireSocialShareButtons($project, $questionnaire, Auth::id()),
+            $this->questionnaireAnswerManager->userHasAlreadyAnsweredTheActiveQuestionnaire(Auth::id()));
     }
 
     public function getContributorBadge($userId) {
@@ -127,15 +132,14 @@ class GamificationManager {
         return new ContributorBadge($allResponses);
     }
 
-    public function getInfluencerBadge($userId) {
+    public function getInfluencerBadge($userId, $questionnaire) {
         $numberOfActionsPerformedForQuestionnaire = null;
         $percentageForActiveQuestionnaire = null;
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUser($userId)->count();
-        $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject(CrowdSourcingProjectManager::DEFAULT_PROJECT_ID);
         $numberOfActionsPerformedForQuestionnaire = 0;
-        if($activeQuestionnaire) {
-            $numberOfActionsPerformedForQuestionnaire = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUserForQuestionnaire($activeQuestionnaire->id, $userId)->count();
-            $percentageForActiveQuestionnaire =  ($numberOfActionsPerformedForQuestionnaire / $activeQuestionnaire->goal) * 100;
+        if($questionnaire) {
+            $numberOfActionsPerformedForQuestionnaire = $this->questionnaireResponseReferralManager->getQuestionnaireReferralsForUserForQuestionnaire($questionnaire->id, $userId)->count();
+            $percentageForActiveQuestionnaire =  ($numberOfActionsPerformedForQuestionnaire / $questionnaire->goal) * 100;
         }
         return new InfluencerBadge($totalQuestionnaireReferrals, $numberOfActionsPerformedForQuestionnaire, $percentageForActiveQuestionnaire);
     }
