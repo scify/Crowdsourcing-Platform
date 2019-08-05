@@ -124,7 +124,7 @@
         let texts = [];
         translationItem.find('.table-row').each(function () {
             let cells = $(this).find('.table-cell');
-            if(shouldTranslateText(cells[0], texts)) {
+            if(shouldTranslateText($(cells[0]).find('.to-translate').html(), texts)) {
                 texts.push($(cells[0]).find('.to-translate').html());
                 ids.push($(cells[1]).find('textarea').attr('name'));
             }
