@@ -124,12 +124,21 @@
         let texts = [];
         translationItem.find('.table-row').each(function () {
             let cells = $(this).find('.table-cell');
-            if(shouldTranslateText($(cells[0]).find('.to-translate').html(), texts)) {
-                texts.push($(cells[0]).find('.to-translate').html());
-                ids.push($(cells[1]).find('textarea').attr('name'));
-            }
+            texts.push($(cells[0]).find('.to-translate').html());
+            ids.push($(cells[1]).find('textarea').attr('name'));
         });
         console.log(texts);
+
+        let i, j, tempTexts, tempIds, chunk = 100;
+
+        for (i = 0 , j = texts.length ; i < j ; i += chunk) {
+            tempTexts = texts.slice(i,i+chunk);
+            tempIds = ids.slice(i,i+chunk);
+            translateTextsInChunks(modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
+        }
+    };
+
+    let translateTextsInChunks = function(modal, translationItem, languageCodeToTranslateTo, ids, texts) {
         $.ajax({
             method: 'post',
             url: $(".translation-wrapper").data("url"),
@@ -157,11 +166,6 @@
                 modal.modal('hide');
             }
         });
-    };
-
-    let shouldTranslateText = function(text, texts) {
-        // avoid re-translation of texts
-        return texts.length < 250;
     };
 
     let saveTranslations = function () {
