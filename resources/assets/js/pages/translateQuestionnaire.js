@@ -127,6 +127,7 @@
             texts.push($(cells[0]).find('.to-translate').html());
             ids.push($(cells[1]).find('textarea').attr('name'));
         });
+        console.log(texts);
         $.ajax({
             method: 'post',
             url: $(".translation-wrapper").data("url"),
