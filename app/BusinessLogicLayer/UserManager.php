@@ -156,7 +156,10 @@ class UserManager {
     }
 
     public function handleSocialLoginUser($socialUser) {
-
+        // Facebook might not return email (if the user has signed up using phone for example).
+        // In that case, we should use another field that is always present.
+        if(!$socialUser->email)
+            $socialUser->email = $socialUser->id . '@crowdsourcing.org';
         $result = $this->getOrAddUserToPlatform($socialUser->email,
             $socialUser->name,
             $socialUser->avatar,
