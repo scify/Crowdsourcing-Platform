@@ -54,6 +54,7 @@ class QuestionnaireTranslationRepository {
                                 left join (
                                     select questionnaire_id, count(*) as number_of_responses from questionnaire_responses qr 
                                     inner join questionnaires q on qr.questionnaire_id = q.id where q.project_id= " . $projectId . " 
+                                    and qr.deleted_at is null
                                     group by questionnaire_id
                                 ) 
                                 as responsesInfo 
