@@ -58,4 +58,13 @@ class QuestionnaireReportRepository {
                 order by qq.order_id, qpa.id
         ');
     }
+
+    public function getRespondentsData($questionnaireId) {
+        return DB::select('
+             select questionnaire_responses.id, questionnaire_id, 
+             users.email, questionnaire_responses.deleted_at, users.deleted_at, questionnaire_responses.updated_at as answered_at
+             from questionnaire_responses inner join users on users.id=questionnaire_responses.user_id
+             where questionnaire_responses.questionnaire_id = ' . $questionnaireId . ' and questionnaire_responses.deleted_at is null and users.deleted_at is null;
+        ');
+    }
 }

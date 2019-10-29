@@ -1,6 +1,33 @@
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Respondents Report</h3>
+        <h3 class="box-title">Respondents Summary</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table id="respondentsTable" cellspacing="0" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Answered at</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($reportViewModel->respondentsRows as $row)
+                        <tr>
+                            <td>{{ $row->email }}</td>
+                            <td>{{ $row->answered_at }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Respondents Analytic Report</h3>
     </div>
     <div class="box-body">
         <div class="row">
