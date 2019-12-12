@@ -2,18 +2,18 @@
 
 @section('content')
     <section>
-        @include('landingpages.partials.' . config('app.project_resources_dir') . '.motto')
+        @include('landingpages.partials.motto')
     </section>
     <section>
-        @include('landingpages.partials.' . config('app.project_resources_dir') . '.about')
+        @include('landingpages.partials.about')
     </section>
     <section>
-        @include('landingpages.partials.' . config('app.project_resources_dir') . '.questionnaire')
+        @include('landingpages.partials.questionnaire')
     </section>
 
     @if($viewModel->questionnaire)
         <section id="collective-goal">
-            @include('landingpages.partials.' . config('app.project_resources_dir') . '.goal-and-activity')
+            @include('landingpages.partials.goal-and-activity')
         </section>
     @endif
 @endsection
