@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
+
 
 /**
  * Used on menu to identify that a given menu item is selected
@@ -8,5 +10,5 @@
  */
 function UrlMatchesMenuItem(string $urlPatternToMatch) : string
 {
-    return \Request::is($urlPatternToMatch) ? "active" : "";
+    return Request::is($urlPatternToMatch) ? "active" : "";
 }
