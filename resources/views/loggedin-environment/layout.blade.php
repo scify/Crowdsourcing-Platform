@@ -75,7 +75,6 @@
         </div>
         <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
     </footer>
-    @include("loggedin-environment.partials.control-sidebar")
 
 </div>
 

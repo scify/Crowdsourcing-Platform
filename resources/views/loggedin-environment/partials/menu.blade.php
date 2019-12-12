@@ -4,9 +4,11 @@
     <!-- Logo -->
     <span class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><a href="/"><img style="" src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span>
+            <span class="logo-mini"><a href="/"><img style=""
+                                                     src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span>
         <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><a href="/"><img src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span></span>
+            <span class="logo-lg"><a href="/"><img
+                            src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span></span>
     </span>
     @include("loggedin-environment.partials.header-controls")
 </header>
@@ -39,11 +41,11 @@
             @can("manage-crowd-sourcing-projects")
                 <li class="header">CONTENT MANAGEMENT</li>
 
-                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/edit")}}">
-                    <a href="{{ route('editProject', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
-                                class="fa fa-file "></i><span>Edit {{ $defaultProject->name }} Page</span></a>
+                <li class="{{UrlMatchesMenuItem('projects')}}">
+                    <a href="{{ route('projects.all') }}"><i
+                                class="fa fa-list "></i><span>See all Projects</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/questionnaire")}}">
+                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/questionnaires")}}">
                     <a href="{{ route('manageQuestionnaires', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
                                 class="fa fa-question-circle "></i><span>Manage
                             Questionnaires</span></a>
