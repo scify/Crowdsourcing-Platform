@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('facebookLogin');
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@showHomePage')->name('home');
 Route::get('/terms-and-privacy', 'HomeController@termsAndPrivacyPage')->name('terms-and-privacy');
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
@@ -33,6 +33,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
     Route::get('/users/history', 'UserController@showUserHistory')->name('myHistory');
     Route::get('/users/data/download', 'UserController@downloadUserData')->name('downloadMyData');
+    Route::get('/projects', 'CrowdSourcingProjectController@index')->name('projects.all')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/project/{id}/edit', 'CrowdSourcingProjectController@edit')->name('editProject')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/project/{id}/update', 'CrowdSourcingProjectController@update')->name('updateProject')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/project/{id}/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('manageQuestionnaires')->middleware("can:manage-crowd-sourcing-projects");
@@ -56,6 +57,6 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
 
-Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage');
+Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 
 

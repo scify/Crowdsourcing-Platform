@@ -22,7 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Language whereLanguageName($value)
  * @mixin \Eloquent
  */
-class Language extends Model
-{
+class Language extends Model {
+
     protected $table = 'languages_lkp';
+
+    protected $fillable = [
+        'language_code',
+        'language_name'
+    ];
 }

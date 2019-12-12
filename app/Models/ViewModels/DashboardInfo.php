@@ -3,32 +3,20 @@
 namespace App\Models\ViewModels;
 
 
+use Illuminate\Support\Collection;
+
 class DashboardInfo
 {
-    public $project;
+    public $projects;
     public $badgesVM;
     public $gamificationNextStepVM;
-    public $projectGoalVM;
 
-    public function __construct($project,
+    public function __construct(Collection $projects,
                                 GamificationBadgesWithLevels $badgesVM,
-                                $gamificationNextStepViewModel,
-                                $projectGoalVM) {
-        $this->project = $this->formatProjectsInfoForDashboardDisplay($project);
+                                $gamificationNextStepViewModel) {
+        $this->projects = $projects;
         $this->badgesVM = $badgesVM;
         $this->gamificationNextStepVM = $gamificationNextStepViewModel;
-        $this->projectGoalVM = $projectGoalVM;
     }
 
-    private function formatProjectsInfoForDashboardDisplay($project)
-    {
-        $temp = (object)[
-            'name' => $project->name,
-            'slug' => '/' . $project->slug,
-            'logo_path' => $project->logo_path,
-            'help_by' => '-'
-        ];
-
-        return $temp;
-    }
 }
