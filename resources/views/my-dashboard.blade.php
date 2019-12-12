@@ -26,17 +26,6 @@
                             @else
                                 <table id="available-projects" class="table table-hover" cellspacing="0"
                                        style="width: 100%;">
-                                    <thead>
-                                    <tr>
-
-                                        <th>
-                                            Logo
-                                        </th>
-                                        <th>
-                                            er
-                                        </th>
-                                    </tr>
-                                    </thead>
                                     <tbody>
                                     @foreach($viewModel->projects as $project)
                                         <tr>
