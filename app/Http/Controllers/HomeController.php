@@ -20,16 +20,15 @@ class HomeController extends Controller
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
-    public function index()
+    public function showHomePage()
     {
         $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjects();
-        $defaultProject = $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject();
-        return view('home.layout')->with(['projects' => $projects, 'defaultProject' => $defaultProject]);
+        return view('home.layout')->with(['projects' => $projects]);
     }
 
     public function termsAndPrivacyPage() {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(null,false, $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject()->slug);
 
-        return view('landingpages.partials.' . config('app.project_resources_dir') . '.terms-of-use')->with(['viewModel' => $viewModel]);
+        return view('terms-of-use')->with(['viewModel' => $viewModel]);
     }
 }

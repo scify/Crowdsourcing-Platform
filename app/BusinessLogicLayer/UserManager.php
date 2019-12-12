@@ -13,6 +13,7 @@ use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -59,12 +60,15 @@ class UserManager {
     }
 
     public function getDashboardViewModel() {
-        $project = $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject();
+        $projects = $this->crowdSourcingProjectManager->getAllActiveCrowdSourcingProjects();
         $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser(Auth::id());
         $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
         $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
-        $projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel($project->id);
-        return new DashboardInfo($project, $gamificationBadgesViewModel, $gamificationNextStepViewModel, $projectGoalVM);
+
+        foreach ($projects as $project) {
+            $project->projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel($project->id);
+        }
+        return new DashboardInfo($projects, $gamificationBadgesViewModel, $gamificationNextStepViewModel);
     }
 
     public function getUser($userId) {
