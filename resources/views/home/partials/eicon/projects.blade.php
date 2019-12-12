@@ -32,19 +32,21 @@
 
 
             <div class="projects-container row">
-                <div class="col-md-5 col-sm-6 col-xs-12 col-sm-offset-0 col-md-offset-0" style="float: none; margin: 0 auto;">
-                    <div class="project-wrapper">
-                        <div class="project-logo">
-                            <img src="{{ $defaultProject->logo_path }}" alt="">
-                        </div>
-                        <div class="project-info">
-                            {!! $defaultProject->about !!}
-                        </div>
-                        <div class="project-visit-btn">
-                            <a href="/{{ $defaultProject->slug }}" class="btn btn-block btn-primary">Contribute</a>
+                @foreach($projects as $project)
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-sm-offset-0 col-md-offset-0">
+                        <div class="project-wrapper">
+                            <div class="project-logo">
+                                <img src="{{$project->logo_path}}" alt="">
+                            </div>
+                            <div class="project-info">
+                                {!! $project->about !!}
+                            </div>
+                            <div class="project-visit-btn">
+                                <a href="/{{$project->slug}}" class="btn btn-block btn-primary">Contribute</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
