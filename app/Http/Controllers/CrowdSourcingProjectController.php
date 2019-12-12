@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\Models\ViewModels\AllCrowdSourcingProjects;
 use Illuminate\Http\Request;
 use JsonSchema\Exception\ResourceNotFoundException;
 
@@ -26,13 +27,18 @@ class CrowdSourcingProjectController extends Controller
         $this->gamificationManager = $gamificationManager;
     }
 
+    public function index() {
+        $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjects();
+        $viewModel = new AllCrowdSourcingProjects($projects);
+        return view('admin.projects.index', ['viewModel' => $viewModel]);
+    }
+
     public function viewReports($projectId, Request $request) {
         $selectedProjectId = $projectId;
         $selectedQuestionnaireId = $request->questionnaireId;
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectReportsViewModel($selectedProjectId, $selectedQuestionnaireId);
         return view("questionnaire.reports.reports-with-filters", ['viewModel' => $viewModel]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
