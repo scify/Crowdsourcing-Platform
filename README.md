@@ -9,7 +9,7 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 
-Laravel 5.7 web application for Crowdsourcing Projects and Questionnaires
+Laravel 5.8 web application for Crowdsourcing Projects and Questionnaires
 
 [Project URL](https://crowdsourcing.scify.org/)
 
