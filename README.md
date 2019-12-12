@@ -6,7 +6,7 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.ecas.org/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 
 Laravel 5.7 web application for Crowdsourcing Projects and Questionnaires
@@ -52,12 +52,12 @@ to link this folder with the public directory
 
 
 ```
-% sudo touch /etc/apache2/sites-available/ecas.conf
-% sudo nano /etc/apache2/sites-available/ecas.conf
+% sudo touch /etc/apache2/sites-available/crowdsourcing.conf
+% sudo nano /etc/apache2/sites-available/crowdsourcing.conf
 <VirtualHost *:80>
        
-        ServerName dev.ecas
-        ServerAlias dev.ecas
+        ServerName dev.crowdsourcing
+        ServerAlias dev.crowdsourcing
         DocumentRoot "/home/path/to/project/public"
         <Directory "/home/path/to/project/public">
             Require all granted
@@ -71,7 +71,7 @@ to link this folder with the public directory
 ```
 Make the symbolic link:
 ```
-% cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/ecas.conf
+% cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/crowdsourcing.conf
 ```
 Enable mod_rewrite, mod_ssl and restart apache:
 ```
@@ -86,10 +86,10 @@ find . -type f -exec chmod 664 {} \;
 find . -type d -exec chmod 775 {} \;
 ```
 
-Change hosts file so ecas.dev points to to localhost 
+Change hosts file so dev.crowdsourcing points to to localhost 
 ```$xslt
 sudo nano /etc/hosts
-127.0.0.1       dev.ecas
+127.0.0.1       dev.crowdsourcing
 
 ```
 
@@ -98,31 +98,31 @@ This app uses [Socialite Laravel Plugin](https://laravel.com/docs/5.6/socialite)
 
 In order to get it working in your development environment, you need to make sure that you have API keys and secrets for 
 Facebook and Twitter (guides [here](https://appdividend.com/2017/07/12/laravel-facebook-login/) and [here](https://appdividend.com/2017/07/21/laravel-5-twitter-login/)),
-and that you can access [https://dev.ecas/](https://dev.ecas/) (notice the https) on your machine.
+and that you can access [https://dev.crowdsourcing/](https://dev.crowdsourcing/) (notice the https) on your machine.
 
 A guide for enabling https on your local machine can be found [here](https://deliciousbrains.com/https-locally-without-browser-privacy-errors/).
 
 Basically, you need to run 
 ```bash
 openssl req -new -sha256 -newkey rsa:2048 -nodes \
--keyout dev.ecas.key -x509 -days 365 \
--out dev.ecas.crt
+-keyout dev.crowdsourcing.key -x509 -days 365 \
+-out dev.crowdsourcing.crt
 ```
 
-And then reference the 2 files generated in the ecas.conf file of the application.
+And then reference the 2 files generated in the crowdsourcing.conf file of the application.
 Make sure you change the port to 443 as shown below:
 
 
 ```
-% sudo touch /etc/apache2/sites-available/ecas.conf
-% sudo nano /etc/apache2/sites-available/ecas.conf
+% sudo touch /etc/apache2/sites-available/crowdsourcing.conf
+% sudo nano /etc/apache2/sites-available/crowdsourcing.conf
 <VirtualHost *:443>
 	SSLEngine on
-	SSLCertificateFile "/etc/apache2/sites-available/dev.ecas.crt"
-	SSLCertificateKeyFile "/etc/apache2/sites-available/dev.ecas.key"
+	SSLCertificateFile "/etc/apache2/sites-available/dev.crowdsourcing.crt"
+	SSLCertificateKeyFile "/etc/apache2/sites-available/dev.crowdsourcing.key"
 
-        ServerName dev.ecas
-        ServerAlias dev.ecas
+        ServerName dev.crowdsourcing
+        ServerAlias dev.crowdsourcing
         DocumentRoot "/home/path/to/project/public"
         <Directory "/home/path/to/project/public">
             Require all granted
