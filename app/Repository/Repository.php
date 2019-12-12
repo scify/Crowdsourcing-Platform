@@ -16,7 +16,7 @@ abstract class Repository implements RepositoryInterface {
      * Query builder for this model
      * @var
      */
-    protected $modelQuery;
+    protected $modelInstance;
 
     /**
      * @param App $app
@@ -24,7 +24,7 @@ abstract class Repository implements RepositoryInterface {
      */
     public function __construct(App $app) {
         $this->app = $app;
-        $this->makeModelQuery();
+        $this->makeModelInstance();
     }
 
     /**
@@ -34,12 +34,14 @@ abstract class Repository implements RepositoryInterface {
      */
     abstract function getModelClassName();
 
-    /**
-     * @param array $columns
-     * @return mixed
-     */
-    public function all($columns = array('*')) {
-        return $this->modelQuery->get($columns);
+
+    public function all($columns = array('*'), $orderColumn = null, $order = null) {
+        $query = $this->modelInstance;
+
+        if($orderColumn)
+            $query->orderBy($orderColumn, $order ? $order : 'asc');
+
+        return $query->get($columns);
     }
 
     /**
@@ -48,7 +50,7 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function paginate($perPage = 15, $columns = array('*')) {
-        return $this->modelQuery->orderBy('updated_at', 'desc')->paginate($perPage, $columns);
+        return $this->modelInstance->orderBy('updated_at', 'desc')->paginate($perPage, $columns);
     }
 
     /**
@@ -56,7 +58,7 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function create(array $data) {
-        return $this->modelQuery->create($data);
+        return $this->modelInstance->create($data);
     }
 
     /**
@@ -66,7 +68,18 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function update(array $data, $id, $attribute="id") {
-        return $this->modelQuery->where($attribute, '=', $id)->update($data);
+        return $this->modelInstance->where($attribute, '=', $id)->update($this->onlyFillable($data));
+    }
+
+    protected function onlyFillable(array $items) {
+        $qualified = array();
+
+        foreach($items as $key => $val) {
+            if(in_array($key, $this->modelInstance->getFillable()))
+                $qualified[$key] = $val;
+        }
+
+        return $qualified;
     }
 
     /**
@@ -74,7 +87,7 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function delete($id) {
-        return $this->modelQuery->destroy($id);
+        return $this->modelInstance->destroy($id);
     }
 
     /**
@@ -83,7 +96,7 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function find($id, $columns = array('*')) {
-        return $this->modelQuery->find($id, $columns);
+        return $this->modelInstance->find($id, $columns);
     }
 
     /**
@@ -93,24 +106,24 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function findBy($attribute, $value, $columns = array('*')) {
-        return $this->modelQuery->where($attribute, '=', $value)->first($columns);
+        return $this->modelInstance->where($attribute, '=', $value)->first($columns);
     }
 
     public function where($whereArray, $columns = array('*')) {
-        return $this->modelQuery->where($whereArray)->first($columns);
+        return $this->modelInstance->where($whereArray)->first($columns);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws RepositoryException
      */
-    private function makeModelQuery() {
+    private function makeModelInstance() {
         $tryToCreateModel = $this->app->make($this->getModelClassName());
 
         if (!$tryToCreateModel instanceof Model)
             throw new RepositoryException("Class {$this->getModelClassName()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
 
-        return $this->modelQuery = $tryToCreateModel->newQuery();
+        return $this->modelInstance = $tryToCreateModel;
     }
 
 
