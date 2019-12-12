@@ -75,4 +75,8 @@ class CrowdSourcingProject extends Model
     {
         return $this->hasMany(Questionnaire::class, 'project_id', 'id');
     }
+
+    public function language() {
+        return $this->hasOne(Language::class, 'id', 'language_id');
+    }
 }
