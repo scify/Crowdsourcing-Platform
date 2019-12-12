@@ -2,10 +2,7 @@
     <p>{{ $projectGoalVM->responsesNeededToReachGoal }} answers left to reach our goal</p>
 </div>
 <div class="progress-container">
-    <div id="progress-bar-circle"
+    <div class="progress-bar-circle" id="project-progress-{{ $projectId }}"
          data-target="{{$projectGoalVM->targetAchievedPercentage}}">
     </div>
 </div>
-@push('scripts')
-    <script src="{{ mix('dist/js/projectGoal.js')}}?{{env("APP_VERSION")}}"></script>
-@endpush

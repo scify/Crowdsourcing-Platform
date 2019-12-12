@@ -1,7 +1,6 @@
 <div class="container">
 
     <div class="goal-title">
-        {{-- todo:  If 0 responses , or if target achieved display different messages --}}
         <h2 class="info">
             @if ($viewModel->totalResponses==0)
                 Zero people have spoken up so far. Be the first!
@@ -47,8 +46,11 @@
         @endcan
         @if($viewModel->projectGoalVM)
             <div class="col-xs-3 text-center {{ $class }}">
-                @include('landingpages.partials.eicon.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
+                @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
             </div>
         @endif
     </div>
 </div>
+<section>
+    @include('partials.signup_to_newsletter')
+</section>

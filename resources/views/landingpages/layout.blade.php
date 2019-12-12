@@ -23,7 +23,7 @@
     <meta property="twitter:url" content="{{url($viewModel->project->slug)}}">
     <meta property="twitter:image" content="images/projects/{{config('app.project_resources_dir')}}/social-image.png">
     <meta property="twitter:image:alt" content="crowdsourcing">
-    @include('landingpages.partials.' . config('app.project_resources_dir') . '.header-meta')
+    @include('landingpages.partials.header-meta')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
@@ -44,7 +44,7 @@
 <body class="project-landing-page">
     <div class="row">
         <div class="col-md-12">
-            @include('landingpages.partials.' . config('app.project_resources_dir') . '.navbar')
+            @include('landingpages.partials.navbar')
         </div>
     </div>
     @yield('content')
