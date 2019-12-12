@@ -8,6 +8,7 @@ use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireTranslationRepository;
+use App\Utils\FileUploader;
 use Illuminate\Support\Facades\Auth;
 use JsonSchema\Exception\ResourceNotFoundException;
 
@@ -89,26 +90,16 @@ class CrowdSourcingProjectManager
     }
 
 
-    public function updateCrowdSourcingProject($id, $attributes)
-    {
-        unset($attributes['_token']);
+    public function updateCrowdSourcingProject($id, $attributes) {
+
         if (isset($attributes['logo'])) {
-            $path = $attributes['logo']->store('project_' . $id, 'projects');
-            $attributes['logo_path'] = '/storage/projects/' . $path;
-            unset($attributes['logo']);
+            $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
         }
         if (isset($attributes['img'])) {
-            $path = $attributes['img']->store('project_' . $id, 'projects');
-            $attributes['img_path'] = '/storage/projects/' . $path;
-            unset($attributes['img']);
+            $attributes['img_path'] = FileUploader::uploadAndGetPath($attributes['img'], 'project_img');
         }
-        $this->crowdSourcingProjectRepository->update([
-            'name' => $attributes['name'],
-            'motto' => $attributes['motto'],
-            'about' => $attributes['about'],
-            'footer' => $attributes['footer'],
-            'language_id' => $attributes['language_id']
-        ], $id);
+
+        return $this->crowdSourcingProjectRepository->update($attributes, $id);
     }
 
     public function getActiveQuestionnaireForProject($projectId = self::DEFAULT_PROJECT_ID) {
@@ -123,5 +114,10 @@ class CrowdSourcingProjectManager
 
     public function getDefaultCrowdsourcingProject() {
         return $this->getCrowdSourcingProject(self::DEFAULT_PROJECT_ID);
+    }
+
+    // TODO this method should return only the active projects
+    public function getAllActiveCrowdSourcingProjects() {
+        return $this->getAllCrowdSourcingProjects();
     }
 }
