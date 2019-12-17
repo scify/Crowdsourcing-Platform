@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\DB;
 class QuestionnaireResponseAnswerRepository {
 
     public function getNonTranslatedAnswers() {
-        return QuestionnaireResponseAnswerText::where(['english_translation' => null])->get();
+        return DB::table('questionnaire_response_answer_texts')
+            ->where(['english_translation' => null])
+            ->limit(100)
+            ->get();
     }
 
     public function getResponseTextDataForQuestionnaire($questionnaireId) {
