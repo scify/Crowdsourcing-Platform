@@ -46,7 +46,7 @@
         @endcan
         @if($viewModel->projectGoalVM)
             <div class="col-xs-3 text-center {{ $class }}">
-                @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM])
+                @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM, 'projectId' => $viewModel->project->id])
             </div>
         @endif
     </div>
