@@ -42,8 +42,12 @@
                 <li class="header">CONTENT MANAGEMENT</li>
 
                 <li class="{{UrlMatchesMenuItem('projects')}}">
-                    <a href="{{ route('projects.all') }}"><i
+                    <a href="{{ route('projects.index') }}"><i
                                 class="fa fa-list "></i><span>See all Projects</span></a>
+                </li>
+                <li class="{{UrlMatchesMenuItem('projects/create')}}">
+                    <a href="{{ route('projects.create') }}"><i
+                                class="fa fa-plus "></i><span>Create new Project</span></a>
                 </li>
                 <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/questionnaires")}}">
                     <a href="{{ route('manageQuestionnaires', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i

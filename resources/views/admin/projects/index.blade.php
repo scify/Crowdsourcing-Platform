@@ -61,7 +61,7 @@
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('editProject', $project->id) }}">Edit Project</a></li>
+                                            <li><a href="{{ route('projects.edit', $project->id) }}">Edit Project</a></li>
                                             <li><a href="{{ route('project.landing-page', $project->slug) }}">View Landing Page</a></li>
                                         </ul>
                                     </div>

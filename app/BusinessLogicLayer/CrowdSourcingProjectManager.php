@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogicLayer;
 
+use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectGoal;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
@@ -10,6 +11,7 @@ use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Utils\FileUploader;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 define('DEFAULT_PROJECT_ID', config('app.project_id'));
@@ -89,8 +91,25 @@ class CrowdSourcingProjectManager
         return new CrowdSourcingProjectGoal($responsesNeededToReachGoal, $targetAchievedPercentage, $goal);
     }
 
+    public function createProject(array $attributes) {
+        if (isset($attributes['logo'])) {
+            $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
+        }
+        if (isset($attributes['img'])) {
+            $attributes['img_path'] = FileUploader::uploadAndGetPath($attributes['img'], 'project_img');
+        }
 
-    public function updateCrowdSourcingProject($id, $attributes) {
+        if(! isset($attributes['slug'])) {
+            $attributes['slug'] = Str::slug($attributes['name'], '-');
+        }
+
+        $attributes['user_creator_id'] = Auth::id();
+
+        return $this->crowdSourcingProjectRepository->create($attributes);
+
+    }
+
+    public function updateCrowdSourcingProject($id, array $attributes) {
 
         if (isset($attributes['logo'])) {
             $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
@@ -119,5 +138,13 @@ class CrowdSourcingProjectManager
     // TODO this method should return only the active projects
     public function getAllActiveCrowdSourcingProjects() {
         return $this->getAllCrowdSourcingProjects();
+    }
+
+    public function getCreateProjectViewModel() {
+        return new CreateEditCrowdSourcingProject($this->crowdSourcingProjectRepository->getModelInstance());
+    }
+
+    public function getEditProjectViewModel(int $id) {
+        return new CreateEditCrowdSourcingProject($this->getCrowdSourcingProject($id));
     }
 }
