@@ -33,9 +33,11 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
     Route::get('/users/history', 'UserController@showUserHistory')->name('myHistory');
     Route::get('/users/data/download', 'UserController@downloadUserData')->name('downloadMyData');
-    Route::get('/projects', 'CrowdSourcingProjectController@index')->name('projects.all')->middleware("can:manage-crowd-sourcing-projects");
-    Route::get('/project/{id}/edit', 'CrowdSourcingProjectController@edit')->name('editProject')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/project/{id}/update', 'CrowdSourcingProjectController@update')->name('updateProject')->middleware("can:manage-crowd-sourcing-projects");
+    Route::resource('projects', 'CrowdSourcingProjectController')->except([
+        'destroy'
+    ])->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('project/destroy', 'CrowdSourcingProjectController@destroy')->name('project.destroy')->middleware("can:manage-crowd-sourcing-projects");
+
     Route::get('/project/{id}/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('manageQuestionnaires')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/project/{id}/reports', 'CrowdSourcingProjectController@viewReports')->name('reports')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaire/new', 'QuestionnaireController@createQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
