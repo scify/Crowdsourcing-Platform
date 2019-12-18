@@ -9,7 +9,7 @@
 @endpush
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid no-padding">
         <div class="row">
             <div class="col-lg-10 col-md-11 col-xs-12">
                 <div class="box box-info">
@@ -146,9 +146,11 @@
                             </div>
                         </div>
                         <div class="box-footer">
-                            <div class="row">
-                                <div class="col-sm-4 col-sm-offset-4">
-                                    <button class="btn btn-block btn-primary" type="submit">Save</button>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 no-padding">
+                                        <button class="btn btn-block btn-primary btn-lg" type="submit">Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
