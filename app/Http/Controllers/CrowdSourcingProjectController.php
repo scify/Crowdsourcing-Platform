@@ -8,6 +8,8 @@ use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 class CrowdSourcingProjectController extends Controller
@@ -44,7 +46,7 @@ class CrowdSourcingProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -55,9 +57,10 @@ class CrowdSourcingProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id the project id
+     * @return Response
+     * @throws ValidationException
      */
     public function update(Request $request, $id)
     {
