@@ -71,6 +71,7 @@ class CrowdSourcingProjectController extends Controller
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name|max:100',
             'motto' => 'required|string',
+            'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug|max:100',
             'about' => 'required|string',
             'footer' => 'required|string',
@@ -93,13 +94,14 @@ class CrowdSourcingProjectController extends Controller
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name,' . $id . '|max:100',
             'motto' => 'required|string',
+            'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug,' . $id . '|max:100',
             'about' => 'required|string',
             'footer' => 'required|string',
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
         $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $request->all());
-        return redirect()->back()->with('flash_message_success', 'The project\'s info have been successfully updated');
+        return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project\'s info have been successfully updated');
     }
 
 
