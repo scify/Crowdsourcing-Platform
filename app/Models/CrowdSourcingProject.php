@@ -63,7 +63,7 @@ class CrowdSourcingProject extends Model
      */
     protected $fillable = [
         'name', 'slug', 'motto', 'description', 'about',  'footer', 'img_path',
-        'logo_path', 'user_creator_id', 'language_id'
+        'logo_path', 'user_creator_id', 'language_id', 'status_id'
     ];
 
     public function creator()
@@ -78,5 +78,9 @@ class CrowdSourcingProject extends Model
 
     public function language() {
         return $this->hasOne(Language::class, 'id', 'language_id');
+    }
+
+    public function status() {
+        return $this->hasOne(CrowdSourcingProjectStatusLkp::class, 'id', 'status_id');
     }
 }

@@ -37,7 +37,8 @@ class DefaultProjectSeeder extends Seeder
                 it contains.
             </p>',
                 'user_creator_id' => 1,
-                'language_id' => 6
+                'language_id' => 6,
+                'status_id'
             ),
         ));
         DB::table('crowd_sourcing_projects')->insert(array(
