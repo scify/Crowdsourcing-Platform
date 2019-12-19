@@ -9,6 +9,7 @@ use App\Models\ViewModels\CrowdSourcingProjectGoal;
 use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
+use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Utils\FileUploader;
@@ -24,17 +25,21 @@ class CrowdSourcingProjectManager
     protected $questionnaireRepository;
     protected $questionnaireTranslationRepository;
     protected $crowdSourcingProjectStatusManager;
+    protected $crowdSourcingProjectStatusHistoryRepository;
     const DEFAULT_PROJECT_ID = DEFAULT_PROJECT_ID;
+
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
-                                CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager)
+                                CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
+                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
+        $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
     }
 
     public function getAllCrowdSourcingProjects()
@@ -97,12 +102,6 @@ class CrowdSourcingProjectManager
     }
 
     public function createProject(array $attributes) {
-        if (isset($attributes['logo'])) {
-            $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
-        }
-        if (isset($attributes['img'])) {
-            $attributes['img_path'] = FileUploader::uploadAndGetPath($attributes['img'], 'project_img');
-        }
 
         if(! isset($attributes['slug'])) {
             $attributes['slug'] = Str::slug($attributes['name'], '-');
@@ -110,12 +109,22 @@ class CrowdSourcingProjectManager
 
         $attributes['user_creator_id'] = Auth::id();
 
-        return $this->crowdSourcingProjectRepository->create($attributes);
+        $attributes = $this->storeProjectRelatedFiles($attributes);
 
+        $project = $this->crowdSourcingProjectRepository->create($attributes);
+
+        $this->createProjectStatusHistoryRecord($project->id, $attributes['status_id']);
+
+        return $project;
     }
 
     public function updateCrowdSourcingProject($id, array $attributes) {
+        $attributes = $this->storeProjectRelatedFiles($attributes);
+        $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
+        return $this->crowdSourcingProjectRepository->update($attributes, $id);
+    }
 
+    protected function storeProjectRelatedFiles(array $attributes) {
         if (isset($attributes['logo'])) {
             $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
         }
@@ -123,7 +132,14 @@ class CrowdSourcingProjectManager
             $attributes['img_path'] = FileUploader::uploadAndGetPath($attributes['img'], 'project_img');
         }
 
-        return $this->crowdSourcingProjectRepository->update($attributes, $id);
+        return $attributes;
+    }
+
+    protected function createProjectStatusHistoryRecord($projectId, $statusId) {
+        $this->crowdSourcingProjectStatusHistoryRepository->create([
+            'project_id' => $projectId,
+            'status_id' => $statusId
+        ]);
     }
 
     public function getActiveQuestionnaireForProject($projectId = self::DEFAULT_PROJECT_ID) {
