@@ -15,7 +15,7 @@ class AddStatusIdToCrowdSourcingProjectsTable extends Migration
     public function up()
     {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
-            $table->unsignedInteger('status_id')->after('id')->default(CrowdSourcingProjectStatusLkp::DRAFT);
+            $table->unsignedInteger('status_id')->nullable()->after('id');
             $table->foreign('status_id')->references('id')->on('crowd_sourcing_project_statuses_lkp');
         });
     }
