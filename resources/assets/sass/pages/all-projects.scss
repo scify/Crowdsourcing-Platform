@@ -1,5 +1,31 @@
+@import "../variables";
+
 .all-projects {
   .project-logo {
     height: 100px;
+  }
+
+  .status {
+    font-weight: bold;
+  }
+
+  .draft {
+    color: $brand-warning;
+  }
+
+  .published {
+    color: $brand-success;
+  }
+
+  .finalized {
+    color: $brand-success;
+  }
+
+  .unpublished {
+    color: $brand-danger;
+  }
+
+  .deleted {
+    color: $brand-danger;
   }
 }

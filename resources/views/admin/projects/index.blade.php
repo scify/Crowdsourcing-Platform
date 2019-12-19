@@ -28,6 +28,9 @@
                             Logo
                         </th>
                         <th>
+                            Status
+                        </th>
+                        <th>
                             Creator
                         </th>
                         <th>
@@ -49,6 +52,9 @@
                                 </td>
                                 <td>
                                     <img class="project-logo" src="{{ $project->logo_path }}" alt="{{ $project->name }} logo">
+                                </td>
+                                <td class="status {{ $viewModel->getProjectStatusCSSClass($project->status) }}">
+                                    {{ $project->status->title }}
                                 </td>
                                 <td>
                                     {{ $project->creator->nickname }}
