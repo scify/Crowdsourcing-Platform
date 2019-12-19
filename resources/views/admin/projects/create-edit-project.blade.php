@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }} Project</h1>
+    <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }} Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->name : '' }}</h1>
 @stop
 
 @push('css')
@@ -38,6 +38,23 @@
                                         <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                                     </div>
 
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Project status</label>
+                                        <select class="form-control" name="status_id">
+                                            @foreach ($viewModel->projectStatusesLkp as $status)
+                                                <option
+                                                        @if ($viewModel->project->status_id == $status->id || old('status_id') == $status->id)
+                                                        selected
+                                                        @endif
+                                                        value="{{ $status->id }}">
+                                                    {{ $status->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <br>

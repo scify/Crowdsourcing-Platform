@@ -18,18 +18,21 @@ define('DEFAULT_PROJECT_ID', config('app.project_id'));
 
 class CrowdSourcingProjectManager
 {
-    private $crowdSourcingProjectRepository;
-    private $questionnaireRepository;
-    private $questionnaireTranslationRepository;
+    protected $crowdSourcingProjectRepository;
+    protected $questionnaireRepository;
+    protected $questionnaireTranslationRepository;
+    protected $crowdSourcingProjectStatusManager;
     const DEFAULT_PROJECT_ID = DEFAULT_PROJECT_ID;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository)
+                                QuestionnaireTranslationRepository $questionnaireTranslationRepository,
+                                CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
+        $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
     }
 
     public function getAllCrowdSourcingProjects()
@@ -141,10 +144,12 @@ class CrowdSourcingProjectManager
     }
 
     public function getCreateProjectViewModel() {
-        return new CreateEditCrowdSourcingProject($this->crowdSourcingProjectRepository->getModelInstance());
+        return new CreateEditCrowdSourcingProject($this->crowdSourcingProjectRepository->getModelInstance(),
+            $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp());
     }
 
     public function getEditProjectViewModel(int $id) {
-        return new CreateEditCrowdSourcingProject($this->getCrowdSourcingProject($id));
+        return new CreateEditCrowdSourcingProject($this->getCrowdSourcingProject($id),
+            $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp());
     }
 }
