@@ -2,9 +2,11 @@
 
 namespace App\BusinessLogicLayer;
 
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectGoal;
+use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireRepository;
@@ -151,5 +153,29 @@ class CrowdSourcingProjectManager
     public function getEditProjectViewModel(int $id) {
         return new CreateEditCrowdSourcingProject($this->getCrowdSourcingProject($id),
             $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp());
+    }
+
+    public function shouldShowLandingPage($project_slug) {
+        $project = $this->getCrowdSourcingProjectBySlug($project_slug);
+        return $project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED ||
+            $project->status_id === CrowdSourcingProjectStatusLkp::FINALIZED;
+    }
+
+    public function getCrowdSourcingProjectUnavailableViewModel($project_slug) {
+        $project = $this->getCrowdSourcingProjectBySlug($project_slug);
+        switch ($project->status_id) {
+            case CrowdSourcingProjectStatusLkp::DRAFT:
+                $unavailabilityMessage = 'The project is still in the draft phase.';
+                break;
+            case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
+                $unavailabilityMessage = 'The project is unpublished';
+                break;
+            case CrowdSourcingProjectStatusLkp::DELETED:
+                $unavailabilityMessage = 'The project is deleted';
+                break;
+            default:
+                throw new \Exception('The project status could not be identified: ' . $project->status_id);
+        }
+        return new CrowdSourcingProjectUnavailable($project, $unavailabilityMessage);
     }
 }

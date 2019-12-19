@@ -104,11 +104,16 @@ class CrowdSourcingProjectController extends Controller
         return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project\'s info have been successfully updated');
     }
 
-
     public function showLandingPage(Request $request, $project_slug) {
+        if($this->crowdSourcingProjectManager->shouldShowLandingPage($project_slug))
+            return $this->showNormalLandingPage($request, $project_slug);
+        return $this->showProjectUnavailablePage($project_slug);
+    }
+
+    protected function showNormalLandingPage(Request $request, $project_slug) {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
-                isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open == 1, $project_slug);
+                isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open, $project_slug);
             if (isset($request->questionnaireId) && isset($request->referrerId))
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager, $this->userManager->getUser($request->referrerId));
             if (isset($request->referrerId))
@@ -116,6 +121,19 @@ class CrowdSourcingProjectController extends Controller
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
             abort(404);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
+            return redirect()->to(route('home'));
+        }
+    }
+
+    protected function showProjectUnavailablePage($project_slug) {
+        try {
+            return view('landingpages.project-unavailable')
+                ->with(['viewModel' => $this->crowdSourcingProjectManager->getCrowdSourcingProjectUnavailableViewModel($project_slug)]);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
+            return redirect()->to(route('home'));
         }
     }
 }
