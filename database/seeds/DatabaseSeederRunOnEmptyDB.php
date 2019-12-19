@@ -18,6 +18,7 @@ class DatabaseSeederRunOnEmptyDB extends Seeder
             LanguagesLkpTableSeeder::class,
             DefaultProjectSeeder::class,
             QuestionnaireStatusesLkpTableSeeder::class,
+            CrowdSourcingProjectStatusesLkpTableSeeder::class,
             QuestionnairesSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
             MailChimpListsTableSeeder::class,
