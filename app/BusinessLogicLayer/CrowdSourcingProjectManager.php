@@ -132,6 +132,10 @@ class CrowdSourcingProjectManager
             $attributes['img_path'] = FileUploader::uploadAndGetPath($attributes['img'], 'project_img');
         }
 
+        if (isset($attributes['sm_featured_img'])) {
+            $attributes['sm_featured_img_path'] = FileUploader::uploadAndGetPath($attributes['sm_featured_img'], 'project_sm_featured_img');
+        }
+
         return $attributes;
     }
 

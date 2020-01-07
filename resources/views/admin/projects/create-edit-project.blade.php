@@ -1,7 +1,8 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }} Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->name : '' }}</h1>
+    <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
+        Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->name : '' }}</h1>
 @stop
 
 @push('css')
@@ -11,24 +12,28 @@
 @section('content')
     <div class="container-fluid no-padding">
         <div class="row">
-            <div class="col-lg-10 col-md-11 col-xs-12">
-                <div class="box box-info">
-                    <div class="box-header with-border">
-                        <h2>Project Details</h2>
-                        <p class="margin-top">required fields are marked with (<span class="red">*</span>)</p>
-                    </div>
-                    <form id="project-form" enctype="multipart/form-data" role="form" method="POST"
-                          action="{{ $viewModel->isEditMode() ? route('projects.update', $viewModel->project) : route('projects.store') }}">
-                        @if($viewModel->isEditMode())
-                            @method('PUT')
-                        @endif
+            <div class="col-md-12">
+                <p class="margin-top">required fields are marked with (<span class="red">*</span>)</p>
+            </div>
+        </div>
+        <div class="row">
+            <form id="project-form" enctype="multipart/form-data" role="form" method="POST"
+                  action="{{ $viewModel->isEditMode() ? route('projects.update', $viewModel->project) : route('projects.store') }}">
+                @if($viewModel->isEditMode())
+                    @method('PUT')
+                @endif
+                <div class="col-lg-6 col-sm-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h2>Project Basic Details</h2>
+                        </div>
                         <div class="box-body">
                             <div class="row">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 {{--English by default--}}
                                 <input type="hidden" name="language_id" value="6">
 
-                                <label class="col-sm-12 control-label">Project Name (<span class="red">*</span>)</label>
+                                <label class="col-sm-12 control-label" for="name">Project Name (<span class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
                                         <input id="name" type="text" class="form-control" name="name"
@@ -40,10 +45,10 @@
 
                                 </div>
 
-                                <div class="col-sm-12">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Project status</label>
-                                        <select class="form-control" name="status_id">
+                                        <label for="status_id">Project status</label>
+                                        <select id="status_id" class="form-control" name="status_id">
                                             @foreach ($viewModel->projectStatusesLkp as $status)
                                                 <option
                                                         @if ($viewModel->project->status_id == $status->id || old('status_id') == $status->id)
@@ -58,8 +63,8 @@
                                 </div>
 
                                 <br>
-                                
-                                <label class="col-sm-12 control-label">Project Slug <br>(it defines the project's url,
+
+                                <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the project's url,
                                     for example:
                                     <i>http://crowdsourcing.scify.org/your-project-slug</i>)<br>
                                     It can contain only letters, numbers, and dashes.<br>
@@ -78,7 +83,7 @@
                                 </div>
 
 
-                                <label class="col-sm-12 control-label">Project Motto (<span
+                                <label class="col-sm-12 control-label" for="motto">Project Motto (<span
                                             class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback">
@@ -89,7 +94,7 @@
                                     </div>
                                 </div>
 
-                                <label class="col-sm-12 control-label">Project Description (<span
+                                <label class="col-sm-12 control-label" for="description">Project Description (<span
                                             class="red">*</span>)<br>
                                     <i>(this will be used when posting the project's URL to social media)</i>
                                 </label>
@@ -104,7 +109,7 @@
 
                                 <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
 
-                                <label class="col-sm-12 control-label">About Text (<span class="red">*</span>)</label>
+                                <label class="col-sm-12 control-label" for="about">About Text (<span class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback">
                                     <textarea id="about" class="form-control summernote" name="about"
@@ -115,7 +120,7 @@
                                 </div>
 
 
-                                <label class="col-sm-12 control-label">Footer Section (<span
+                                <label class="col-sm-12 control-label" for="footer">Footer Section (<span
                                             class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback">
@@ -125,8 +130,18 @@
                                         <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
-
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h2>Project Assets</h2>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
                                 <label class="col-sm-12 control-label">Project Logo</label>
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
@@ -161,21 +176,64 @@
                                         <span class="help-block"><strong>{{ $errors->first('img') }}</strong></span>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                        <div class="box-footer">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12 no-padding">
-                                        <button class="btn btn-block btn-primary btn-lg" type="submit">Save</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h2>Social Media metadata</h2>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <label class="col-sm-12 control-label">Featured Image </label>
+                                <div class="col-sm-12">
+                                    <div class="image-preview-container">
+                                        <img class="selected-image-preview"
+                                             src="{{asset($viewModel->project->sm_featured_img_path)}}"
+                                             alt="Selected motto background image">
+                                    </div>
+                                    <div class="form-group has-feedback input-file-wrapper">
+                                        <small>In order to update the currently selected image, please choose a new
+                                            image by
+                                            clicking the button below.
+                                        </small>
+                                        <input type="file" name="sm_featured_img" accept="image/*">
+                                        <span class="help-block"><strong>{{ $errors->first('sm_featured_img') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-12 control-label" for="sm_title">Social Media Title</label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback {{ $errors->has('sm_title') ? 'has-error' : '' }}">
+                                        <input id="sm_title" type="text" class="form-control" name="sm_title"
+                                               value="{{ old('sm_title') ? old('sm_title') : $viewModel->project->sm_title  }}"
+                                               required
+                                               placeholder="Enter the title you would like to appear when posting the project to social media">
+                                        <span class="help-block"><strong>{{ $errors->first('sm_title') }}</strong></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-12 control-label" for="sm_description">Social Media Description<br>
+                                </label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                        <textarea id="sm_description" class="form-control" name="sm_description" required placeholder="Enter the description you would like to appear when posting the project to social media">{{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
+                                        <span class="help-block"><strong>{{ $errors->first('sm_description') }}</strong></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <div class="col-md-3 col-sm-12">
+                    <button class="btn btn-block btn-primary btn-lg" type="submit">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 @stop

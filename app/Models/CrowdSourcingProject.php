@@ -63,7 +63,8 @@ class CrowdSourcingProject extends Model
      */
     protected $fillable = [
         'name', 'slug', 'motto', 'description', 'about',  'footer', 'img_path',
-        'logo_path', 'user_creator_id', 'language_id', 'status_id'
+        'logo_path', 'user_creator_id', 'language_id', 'status_id', 'sm_title', 'sm_description',
+        'sm_featured_img_path'
     ];
 
     public function creator()
