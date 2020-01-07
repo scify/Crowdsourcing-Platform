@@ -33,7 +33,8 @@
                                 {{--English by default--}}
                                 <input type="hidden" name="language_id" value="6">
 
-                                <label class="col-sm-12 control-label" for="name">Project Name (<span class="red">*</span>)</label>
+                                <label class="col-sm-12 control-label" for="name">Project Name (<span
+                                            class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
                                         <input id="name" type="text" class="form-control" name="name"
@@ -64,7 +65,8 @@
 
                                 <br>
 
-                                <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the project's url,
+                                <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the
+                                    project's url,
                                     for example:
                                     <i>http://crowdsourcing.scify.org/your-project-slug</i>)<br>
                                     It can contain only letters, numbers, and dashes.<br>
@@ -109,7 +111,8 @@
 
                                 <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
 
-                                <label class="col-sm-12 control-label" for="about">About Text (<span class="red">*</span>)</label>
+                                <label class="col-sm-12 control-label" for="about">About Text (<span
+                                            class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback">
                                     <textarea id="about" class="form-control summernote" name="about"
@@ -218,13 +221,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-12 control-label" for="sm_description">Social Media Description<br>
+                                <label class="col-md-12 control-label" for="sm_description">Social Media Description<br>
                                 </label>
-                                <div class="col-sm-12">
+                                <div class="col-md-12">
                                     <div class="form-group has-feedback">
-                                        <textarea id="sm_description" class="form-control" name="sm_description" required placeholder="Enter the description you would like to appear when posting the project to social media">{{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
+                                        <textarea id="sm_description" class="form-control" name="sm_description"
+                                                  required
+                                                  placeholder="Enter the description you would like to appear when posting the project to social media">{{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
                                         <span class="help-block"><strong>{{ $errors->first('sm_description') }}</strong></span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="sm_keywords">Social Media Keywords<br>
+                                </label>
+                                <p class="col-md-12">Type enter or comma in order to separate the keywords.</p>
+                                <div class="col-md-12">
+                                    <input type="text" name="sm_keywords" id="sm_keywords" class="form-control"
+                                           data-role="tagsinput" value="{{ old('sm_keywords') ? old('sm_keywords') : $viewModel->project->sm_keywords  }}">
                                 </div>
                             </div>
                         </div>

@@ -18,7 +18,7 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
     .js('resources/assets/js/UsersListController.js', 'public/dist/js')
     .extract([
-        'jquery','jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert', 'select2', 'bootstrap', 'jquery-toast-plugin'
+        'jquery','jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert', 'select2', 'bootstrap', 'jquery-toast-plugin', 'bootstrap-tagsinput'
     ])
     .sourceMaps()
     .webpackConfig({

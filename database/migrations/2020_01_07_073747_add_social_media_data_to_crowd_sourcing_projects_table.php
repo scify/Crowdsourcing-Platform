@@ -20,7 +20,10 @@ class AddSocialMediaDataToCrowdSourcingProjectsTable extends Migration
             $table->text('sm_description')->nullable()->after('sm_title')->comment('
             The description that will be shown when the project URL is posted to social media
             ');
-            $table->string('sm_featured_img_path')->nullable()->after('sm_description')->comment('
+            $table->text('sm_keywords')->nullable()->after('sm_description')->comment('
+            Comma-separated words that will be shown as keywords when the project URL is posted to social media
+            ');
+            $table->string('sm_featured_img_path')->nullable()->after('sm_keywords')->comment('
             The path of the image that will be shown when the project URL is posted to social media
             ');
         });
@@ -36,6 +39,7 @@ class AddSocialMediaDataToCrowdSourcingProjectsTable extends Migration
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->dropColumn('sm_title');
             $table->dropColumn('sm_description');
+            $table->dropColumn('sm_keywords');
             $table->dropColumn('sm_featured_img_path');
         });
     }

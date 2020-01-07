@@ -12,6 +12,8 @@
 @import "select2-custom.scss";
 @import '../../../node_modules/datatables.net-bs/css/dataTables.bootstrap.css';
 @import '../../../node_modules/datatables.net-responsive-bs/css/responsive.bootstrap.min.css';
+@import '../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css';
+@import '../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css';
 
 body,
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -20,7 +22,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .background-page {
-  background-size: cover;
   background-size: 100%;
 }
 

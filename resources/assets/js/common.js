@@ -2,15 +2,17 @@ window.wa = {};
 window.wa.enums = {};
 window.swal = require('bootstrap-sweetalert');
 
-require("icheck");
+require('icheck');
 
 //if jquery ui is loaded make sure it doesnt conflict with bootstrap button
 //$.widget.bridge('uibutton', $.ui.button);
 
 //load dependencies for template
-require("bootstrap");
-require("fastclick");
+require('bootstrap');
+require('fastclick');
 require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
+require('select2');
+require('bootstrap-tagsinput')
 
 (function () {
 
@@ -47,9 +49,18 @@ require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
         }, 3000);
     };
 
+    let initializeSelect2Inputs = function () {
+        $('.select2').each(function(i, obj) {
+            $(obj).select2({
+                tags: true
+            });
+        });
+    };
+
     $(function () {
         initializeIcheck();
         closeDismissableAlerts();
+        initializeSelect2Inputs();
         $("#log-out").click(function (e) {
             e.preventDefault();
             $("#logout-form").submit();
