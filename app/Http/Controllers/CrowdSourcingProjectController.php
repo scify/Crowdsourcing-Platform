@@ -45,7 +45,7 @@ class CrowdSourcingProjectController extends Controller
     }
 
     public function create() {
-        return view('admin.projects.create-edit-project')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateProjectViewModel()]);
+        return view('admin.projects.create-edit-project')->with(['viewModel' => $this->crowdSourcingProjectManager->getCrowdSourcingProject()]);
     }
 
     /**
