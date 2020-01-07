@@ -23,6 +23,7 @@
     "admin-lte": "2.3.11",
     "bootstrap": "^3.3.7",
     "bootstrap-sweetalert": "^1.0.1",
+    "bootstrap-tagsinput": "^0.7.1",
     "codemirror": "^5.36.0",
     "datatables.net": "^1.10.13",
     "datatables.net-bs": "^1.10.13",

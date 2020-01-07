@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/13/18
- * Time: 11:35 AM
- */
 
 namespace App\Models\ViewModels;
 
@@ -17,17 +11,17 @@ class CrowdSourcingProjectForLandingPage
     public $allResponses;
     public $allLanguagesForQuestionnaire;
     public $totalResponses;
-
     public $openQuestionnaireWhenPageLoads = false;
     public $projectGoalVM;
+    public $socialMediaMetadataVM;
 
     public function __construct($project, $questionnaire,
                                 $userResponse,
                                 $allResponses,
                                 $allLanguagesForQuestionnaire,
                                 $openQuestionnaireWhenPageLoads,
-                                $projectGoalVM
-                                )
+                                $projectGoalVM,
+                                $socialMediaMetadataVM)
     {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
@@ -36,7 +30,7 @@ class CrowdSourcingProjectForLandingPage
         $this->allLanguagesForQuestionnaire = $allLanguagesForQuestionnaire;
         $this->totalResponses = $allResponses->count();
         $this->projectGoalVM = $projectGoalVM;
-
         $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
+        $this->socialMediaMetadataVM = $socialMediaMetadataVM;
     }
 }

@@ -45,7 +45,7 @@ class CrowdSourcingProjectController extends Controller
     }
 
     public function create() {
-        return view('admin.projects.create-edit-project')->with(['viewModel' => $this->crowdSourcingProjectManager->getCrowdSourcingProject()]);
+        return view('admin.projects.create-edit')->with(['viewModel' => $this->crowdSourcingProjectManager->getCrowdSourcingProject()]);
     }
 
     /**
@@ -56,7 +56,7 @@ class CrowdSourcingProjectController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.projects.create-edit-project')->with(['viewModel' => $this->crowdSourcingProjectManager->getEditProjectViewModel($id)]);
+        return view('admin.projects.create-edit')->with(['viewModel' => $this->crowdSourcingProjectManager->getEditProjectViewModel($id)]);
     }
 
     /**
@@ -106,11 +106,11 @@ class CrowdSourcingProjectController extends Controller
 
     public function showLandingPage(Request $request, $project_slug) {
         if($this->crowdSourcingProjectManager->shouldShowLandingPage($project_slug))
-            return $this->showNormalLandingPage($request, $project_slug);
+            return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
         return $this->showProjectUnavailablePage($project_slug);
     }
 
-    protected function showNormalLandingPage(Request $request, $project_slug) {
+    protected function showCrowdSourcingProjectLandingPage(Request $request, $project_slug) {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open, $project_slug);
@@ -121,6 +121,7 @@ class CrowdSourcingProjectController extends Controller
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
             abort(404);
+            return '';
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
             return redirect()->to(route('home'));

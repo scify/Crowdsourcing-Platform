@@ -3,9 +3,11 @@
 namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\Models\CrowdSourcingProject;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectGoal;
+use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
 use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
@@ -13,6 +15,7 @@ use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Utils\FileUploader;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use JsonSchema\Exception\ResourceNotFoundException;
@@ -42,7 +45,7 @@ class CrowdSourcingProjectManager
         $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
     }
 
-    public function getAllCrowdSourcingProjects()
+    public function getAllCrowdSourcingProjects(): Collection
     {
         return $this->crowdSourcingProjectRepository->all();
     }
@@ -56,7 +59,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug) {
+    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug): CrowdSourcingProjectForLandingPage {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         if(!$project)
             throw new ResourceNotFoundException("Project not found");
@@ -80,15 +83,17 @@ class CrowdSourcingProjectManager
         }
 
         $projectGoalVM = $this->getCrowdSourcingProjectGoalViewModel($project->id);
+        $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
         return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
             $userResponse,
             $allResponses,
             $allLanguagesForQuestionnaire,
             $openQuestionnaireWhenPageLoads,
-            $projectGoalVM);
+            $projectGoalVM,
+            $socialMediaMetadataVM);
     }
 
-    public function getCrowdSourcingProjectGoalViewModel($projectId) {
+    public function getCrowdSourcingProjectGoalViewModel(int $projectId) {
         $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, Auth::id());
         if(!$questionnaire)
             return null;
@@ -99,6 +104,16 @@ class CrowdSourcingProjectManager
         $goal = $questionnaire->goal;
 
         return new CrowdSourcingProjectGoal($responsesNeededToReachGoal, $targetAchievedPercentage, $goal);
+    }
+
+    public function getSocialMediaMetadataViewModel(CrowdSourcingProject $project): CrowdSourcingProjectSocialMediaMetadata {
+        return new CrowdSourcingProjectSocialMediaMetadata(
+            $project->sm_title,
+            $project->sm_description,
+            $project->sm_featured_img_path,
+            $project->sm_keywords,
+            $project->slug
+        );
     }
 
     public function createProject(array $attributes) {
