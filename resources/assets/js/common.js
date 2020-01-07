@@ -12,7 +12,8 @@ require('bootstrap');
 require('fastclick');
 require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
 require('select2');
-require('bootstrap-tagsinput')
+require('bootstrap-tagsinput');
+require('bootstrap-colorpicker');
 
 (function () {
 

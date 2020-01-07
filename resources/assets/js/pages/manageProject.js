@@ -9,9 +9,15 @@ require('summernote');
         });
     };
 
+    let initializeColorPicker = function () {
+        $('#bg_color').colorpicker({
+            horizontal: true
+        });
+    };
 
     let init = function () {
         initializeSummernote();
+        initializeColorPicker();
     };
 
     init();

@@ -10,18 +10,18 @@
 @endpush
 
 @section('content')
-    <div class="container-fluid no-padding">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="margin-top">required fields are marked with (<span class="red">*</span>)</p>
+    <form id="project-form" enctype="multipart/form-data" role="form" method="POST"
+          action="{{ $viewModel->isEditMode() ? route('projects.update', $viewModel->project) : route('projects.store') }}">
+        @if($viewModel->isEditMode())
+            @method('PUT')
+        @endif
+        <div class="container-fluid no-padding">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="margin-top">required fields are marked with (<span class="red">*</span>)</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <form id="project-form" enctype="multipart/form-data" role="form" method="POST"
-                  action="{{ $viewModel->isEditMode() ? route('projects.update', $viewModel->project) : route('projects.store') }}">
-                @if($viewModel->isEditMode())
-                    @method('PUT')
-                @endif
+            <div class="row">
                 <div class="col-lg-6 col-sm-12">
                     <div class="box box-info">
                         <div class="box-header with-border">
@@ -45,6 +45,8 @@
                                     </div>
 
                                 </div>
+                            </div>
+                            <div class="row">
 
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -64,6 +66,8 @@
                                 </div>
 
                                 <br>
+                            </div>
+                            <div class="row">
 
                                 <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the
                                     project's url,
@@ -83,67 +87,7 @@
                                     </div>
 
                                 </div>
-
-
-                                <label class="col-sm-12 control-label" for="motto">Project Motto (<span
-                                            class="red">*</span>)</label>
-                                <div class="col-sm-12">
-                                    <div class="form-group has-feedback">
-                                    <textarea id="motto" class="form-control" name="motto"
-                                              required
-                                              placeholder="Project Motto">{{ old('motto') ? old('motto') : $viewModel->project->motto }}</textarea>
-                                        <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
-                                    </div>
-                                </div>
-
-                                <label class="col-sm-12 control-label" for="description">Project Description (<span
-                                            class="red">*</span>)<br>
-                                    <i>(this will be used when posting the project's URL to social media)</i>
-                                </label>
-                                <div class="col-sm-12">
-                                    <div class="form-group has-feedback">
-                                    <textarea id="description" class="form-control" name="description"
-                                              required
-                                              placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
-                                        <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
-                                    </div>
-                                </div>
-
-                                <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
-
-                                <label class="col-sm-12 control-label" for="about">About Text (<span
-                                            class="red">*</span>)</label>
-                                <div class="col-sm-12">
-                                    <div class="form-group has-feedback">
-                                    <textarea id="about" class="form-control summernote" name="about"
-                                              required
-                                              placeholder="About Text">{{ old('about') ? old('about') : $viewModel->project->about }}</textarea>
-                                        <span class="help-block"><strong>{{ $errors->first('about') }}</strong></span>
-                                    </div>
-                                </div>
-
-
-                                <label class="col-sm-12 control-label" for="footer">Footer Section (<span
-                                            class="red">*</span>)</label>
-                                <div class="col-sm-12">
-                                    <div class="form-group has-feedback">
-                                    <textarea id="footer" class="form-control summernote" name="footer"
-                                              required
-                                              placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->footer }}</textarea>
-                                        <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h2>Project Assets</h2>
-                        </div>
-                        <div class="box-body">
                             <div class="row">
                                 <label class="col-sm-12 control-label">Project Logo</label>
                                 <div class="col-sm-12">
@@ -161,8 +105,71 @@
                                         <span class="help-block"><strong>{{ $errors->first('logo') }}</strong></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
 
+                <div class="col-lg-6 col-sm-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h2>Landing Page</h2>
+                        </div>
+                        <div class="box-body">
+
+                            <div class="row">
+                                <label class="col-sm-12 control-label" for="motto">Project Motto (<span
+                                            class="red">*</span>)</label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                    <textarea id="motto" class="form-control" name="motto"
+                                              required
+                                              placeholder="Project Motto">{{ old('motto') ? old('motto') : $viewModel->project->motto }}</textarea>
+                                        <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-12 control-label" for="description">Project Description (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                    <textarea id="description" class="form-control" name="description"
+                                              required
+                                              placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
+                                        <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-12 control-label" for="about">About Text (<span
+                                            class="red">*</span>)</label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                    <textarea id="about" class="form-control summernote" name="about"
+                                              required
+                                              placeholder="About Text">{{ old('about') ? old('about') : $viewModel->project->about }}</textarea>
+                                        <span class="help-block"><strong>{{ $errors->first('about') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-12 control-label" for="footer">Footer Section (<span
+                                            class="red">*</span>)</label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                    <textarea id="footer" class="form-control summernote" name="footer"
+                                              required
+                                              placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->footer }}</textarea>
+                                        <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-sm-12 control-label">Motto Background Image </label>
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
@@ -177,6 +184,18 @@
                                         </small>
                                         <input type="file" name="img" accept="image/*">
                                         <span class="help-block"><strong>{{ $errors->first('img') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 1rem">
+                                <label class="col-md-12 control-label" for="bg_color">Background color<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div id="bg_color" class="input-group colorpicker-component">
+                                        <input type="text" name="landing_page_bg_color" class="form-control"
+                                               value="{{ old('landing_page_bg_color') ? old('landing_page_bg_color') :
+                                                        $viewModel->project->landing_page_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -238,18 +257,22 @@
                                 <p class="col-md-12">Type enter or comma in order to separate the keywords.</p>
                                 <div class="col-md-12">
                                     <input type="text" name="sm_keywords" id="sm_keywords" class="form-control"
-                                           data-role="tagsinput" value="{{ old('sm_keywords') ? old('sm_keywords') : $viewModel->project->sm_keywords  }}">
+                                           data-role="tagsinput"
+                                           value="{{ old('sm_keywords') ? old('sm_keywords') : $viewModel->project->sm_keywords  }}">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <button class="btn btn-block btn-primary btn-lg" type="submit">Save</button>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 @stop
 
 @push('scripts')
