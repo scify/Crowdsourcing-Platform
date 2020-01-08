@@ -52,17 +52,21 @@ class CrowdSourcingProjectManager
 
     public function getCrowdSourcingProject($id = self::DEFAULT_PROJECT_ID)
     {
-        return $this->crowdSourcingProjectRepository->find($id);
+        $project = $this->crowdSourcingProjectRepository->find($id);
+        if(!$project)
+            throw new ResourceNotFoundException("Project with id " . $id . " not found");
+        return $project;
     }
 
     public function getCrowdSourcingProjectBySlug($project_slug) {
-        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        if(!$project)
+            throw new ResourceNotFoundException("Project with slug " . $project_slug . " not found");
+        return $project;
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug): CrowdSourcingProjectForLandingPage {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
-        if(!$project)
-            throw new ResourceNotFoundException("Project not found");
 
         $questionnaire = null;
         $userResponse = null;
@@ -180,14 +184,37 @@ class CrowdSourcingProjectManager
         return $this->getAllCrowdSourcingProjects();
     }
 
-    public function getCreateProjectViewModel() {
-        return new CreateEditCrowdSourcingProject($this->crowdSourcingProjectRepository->getModelInstance(),
-            $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp());
-    }
+    public function getCreateEditProjectViewModel(int $id = null) {
+        if($id)
+            $project = $this->getCrowdSourcingProject($id);
+        else
+            $project = $this->crowdSourcingProjectRepository->getModelInstance();
+        // set default values for colors
+        if(!$project->lp_motto_color)
+            $project->lp_motto_color = '#ffffff';
+        if(!$project->lp_about_bg_color)
+            $project->lp_about_bg_color = '#ffffff';
+        if(!$project->lp_about_color)
+            $project->lp_about_color = '#666666';
+        if(!$project->lp_questionnaire_color)
+            $project->lp_questionnaire_color = '#076ec1';
+        if(!$project->lp_footer_bg_color)
+            $project->lp_footer_bg_color = '#ffffff';
+        if(!$project->lp_footer_color)
+            $project->lp_footer_color = '#000000';
 
-    public function getEditProjectViewModel(int $id) {
-        return new CreateEditCrowdSourcingProject($this->getCrowdSourcingProject($id),
-            $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp());
+        // set default values for images
+        if(!$project->img_path)
+            $project->img_path = '/images/test.png';
+        if(!$project->logo_path)
+            $project->logo_path = '/images/test.png';
+        if(!$project->sm_featured_img_path)
+            $project->sm_featured_img_path = '/images/test.png';
+        if(!$project->lp_questionnaire_img_path)
+            $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
+
+        $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
+        return new CreateEditCrowdSourcingProject($project, $statusesLkp);
     }
 
     public function shouldShowLandingPage($project_slug) {

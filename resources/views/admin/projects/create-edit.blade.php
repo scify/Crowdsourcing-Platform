@@ -47,6 +47,19 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-sm-12 control-label" for="description">Project Description (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                    <textarea id="description" class="form-control" name="description"
+                                              required
+                                              placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
+                                        <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
 
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -68,7 +81,6 @@
                                 <br>
                             </div>
                             <div class="row">
-
                                 <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the
                                     project's url,
                                     for example:
@@ -88,7 +100,7 @@
 
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row image-input-container">
                                 <label class="col-sm-12 control-label">Project Logo</label>
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
@@ -101,7 +113,7 @@
                                             image by
                                             clicking the button below.
                                         </small>
-                                        <input type="file" name="logo" accept="image/*">
+                                        <input type="file" name="logo" class="image-input" accept="image/*">
                                         <span class="help-block"><strong>{{ $errors->first('logo') }}</strong></span>
                                     </div>
                                 </div>
@@ -117,9 +129,26 @@
                             <h2>Landing Page</h2>
                         </div>
                         <div class="box-body">
-
+                            <div class="row image-input-container">
+                                <label class="col-sm-12 control-label">Motto Background Image </label>
+                                <div class="col-sm-12">
+                                    <div class="image-preview-container">
+                                        <img class="selected-image-preview"
+                                             src="{{asset($viewModel->project->img_path) ? asset($viewModel->project->img_path) : ''}}"
+                                             alt="Selected motto background image">
+                                    </div>
+                                    <div class="form-group has-feedback input-file-wrapper">
+                                        <small>In order to update the currently selected image, please choose a new
+                                            image by
+                                            clicking the button below.
+                                        </small>
+                                        <input type="file" name="img" class="image-input" accept="image/*">
+                                        <span class="help-block"><strong>{{ $errors->first('img') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
-                                <label class="col-sm-12 control-label" for="motto">Project Motto (<span
+                                <label class="col-sm-12 control-label" for="motto">Project Motto Text (<span
                                             class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback">
@@ -130,17 +159,17 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <label class="col-sm-12 control-label" for="description">Project Description (<span
+                            <div class="row mb">
+                                <label class="col-md-12 control-label" for="lp_motto_color">Project Motto color (<span
                                             class="red">*</span>)<br>
                                 </label>
-                                <div class="col-sm-12">
-                                    <div class="form-group has-feedback">
-                                    <textarea id="description" class="form-control" name="description"
-                                              required
-                                              placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
-                                        <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_motto_color" type="text" name="lp_motto_color" class="form-control"
+                                               required
+                                               value="{{ old('lp_motto_color') ? old('lp_motto_color') :
+                                                        $viewModel->project->lp_motto_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -157,8 +186,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb">
+                                <label class="col-md-12 control-label" for="lp_about_color">About Text color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_about_color" type="text" name="lp_about_color" class="form-control"
+                                               required
+                                               value="{{ old('lp_about_color') ? old('lp_about_color') :
+                                                        $viewModel->project->lp_about_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb">
+                                <label class="col-md-12 control-label" for="lp_about_bg_color">About Text background (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_about_bg_color" type="text" name="lp_about_bg_color" class="form-control"
+                                               required
+                                               value="{{ old('lp_about_bg_color') ? old('lp_about_bg_color') :
+                                                        $viewModel->project->lp_about_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
-                                <label class="col-sm-12 control-label" for="footer">Footer Section (<span
+                                <label class="col-sm-12 control-label" for="footer">Footer Text (<span
                                             class="red">*</span>)</label>
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback">
@@ -169,33 +226,73 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb">
+                                <label class="col-md-12 control-label" for="lp_footer_color">Footer Text color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_footer_color" type="text" name="lp_footer_color" class="form-control"
+                                               required
+                                               value="{{ old('lp_footer_color') ? old('lp_footer_color') :
+                                                        $viewModel->project->lp_footer_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb">
+                                <label class="col-md-12 control-label" for="lp_footer_bg_color">Footer Text background (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_footer_bg_color" type="text" name="lp_footer_bg_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_footer_bg_color') ? old('lp_footer_bg_color') :
+                                                        $viewModel->project->lp_footer_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
-                                <label class="col-sm-12 control-label">Motto Background Image </label>
+                                <div class="col-md-12">
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Active Questionnaire section</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_color">Questionnaire color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_color" type="text" name="lp_questionnaire_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_color') ? old('lp_questionnaire_color') :
+                                                        $viewModel->project->lp_questionnaire_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-12 control-label">Questionnaire Background Image </label>
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
                                         <img class="selected-image-preview"
-                                             src="{{asset($viewModel->project->img_path)}}"
-                                             alt="Selected motto background image">
+                                             src="{{asset($viewModel->project->lp_questionnaire_img_path)}}"
+                                             alt="Selected questionnaire background image">
                                     </div>
                                     <div class="form-group has-feedback input-file-wrapper">
                                         <small>In order to update the currently selected image, please choose a new
                                             image by
                                             clicking the button below.
                                         </small>
-                                        <input type="file" name="img" accept="image/*">
-                                        <span class="help-block"><strong>{{ $errors->first('img') }}</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 1rem">
-                                <label class="col-md-12 control-label" for="bg_color">Background color<br>
-                                </label>
-                                <div class="col-md-6 col-sm-12">
-                                    <div id="bg_color" class="input-group colorpicker-component">
-                                        <input type="text" name="landing_page_bg_color" class="form-control"
-                                               value="{{ old('landing_page_bg_color') ? old('landing_page_bg_color') :
-                                                        $viewModel->project->landing_page_bg_color  }}"/>
-                                        <span class="input-group-addon"><i></i></span>
+                                        <input type="file" name="lp_questionnaire_img_path" accept="image/*">
+                                        <span class="help-block"><strong>{{ $errors->first('lp_questionnaire_img_path') }}</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -213,8 +310,8 @@
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
                                         <img class="selected-image-preview"
-                                             src="{{asset($viewModel->project->sm_featured_img_path)}}"
-                                             alt="Selected motto background image">
+                                             src="{{$viewModel->project->sm_featured_img_path ? asset($viewModel->project->sm_featured_img_path) : ''}}"
+                                             alt="Social media featured image">
                                     </div>
                                     <div class="form-group has-feedback input-file-wrapper">
                                         <small>In order to update the currently selected image, please choose a new
@@ -232,7 +329,6 @@
                                     <div class="form-group has-feedback {{ $errors->has('sm_title') ? 'has-error' : '' }}">
                                         <input id="sm_title" type="text" class="form-control" name="sm_title"
                                                value="{{ old('sm_title') ? old('sm_title') : $viewModel->project->sm_title  }}"
-                                               required
                                                placeholder="Enter the title you would like to appear when posting the project to social media">
                                         <span class="help-block"><strong>{{ $errors->first('sm_title') }}</strong></span>
                                     </div>
@@ -245,7 +341,6 @@
                                 <div class="col-md-12">
                                     <div class="form-group has-feedback">
                                         <textarea id="sm_description" class="form-control" name="sm_description"
-                                                  required
                                                   placeholder="Enter the description you would like to appear when posting the project to social media">{{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
                                         <span class="help-block"><strong>{{ $errors->first('sm_description') }}</strong></span>
                                     </div>
