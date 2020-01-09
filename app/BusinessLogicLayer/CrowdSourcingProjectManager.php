@@ -4,6 +4,7 @@ namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject;
+use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectGoal;
@@ -18,7 +19,6 @@ use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use JsonSchema\Exception\ResourceNotFoundException;
 
 define('DEFAULT_PROJECT_ID', config('app.project_id'));
 
@@ -29,13 +29,14 @@ class CrowdSourcingProjectManager
     protected $questionnaireTranslationRepository;
     protected $crowdSourcingProjectStatusManager;
     protected $crowdSourcingProjectStatusHistoryRepository;
-    const DEFAULT_PROJECT_ID = DEFAULT_PROJECT_ID;
+    protected $crowdSourcingProjectAccessManager;
 
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
+                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
                                 CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
@@ -43,6 +44,7 @@ class CrowdSourcingProjectManager
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
         $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
+        $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
     }
 
     public function getAllCrowdSourcingProjects(): Collection
@@ -50,19 +52,13 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->all();
     }
 
-    public function getCrowdSourcingProject($id = self::DEFAULT_PROJECT_ID)
+    public function getCrowdSourcingProject($id = DEFAULT_PROJECT_ID)
     {
-        $project = $this->crowdSourcingProjectRepository->find($id);
-        if(!$project)
-            throw new ResourceNotFoundException("Project with id " . $id . " not found");
-        return $project;
+        return $this->crowdSourcingProjectRepository->find($id);
     }
 
     public function getCrowdSourcingProjectBySlug($project_slug) {
-        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
-        if(!$project)
-            throw new ResourceNotFoundException("Project with slug " . $project_slug . " not found");
-        return $project;
+        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug): CrowdSourcingProjectForLandingPage {
@@ -169,7 +165,7 @@ class CrowdSourcingProjectManager
         ]);
     }
 
-    public function getActiveQuestionnaireForProject($projectId = self::DEFAULT_PROJECT_ID) {
+    public function getActiveQuestionnaireForProject($projectId = DEFAULT_PROJECT_ID) {
         return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, Auth::id());
     }
 
@@ -180,7 +176,7 @@ class CrowdSourcingProjectManager
     }
 
     public function getDefaultCrowdsourcingProject() {
-        return $this->getCrowdSourcingProject(self::DEFAULT_PROJECT_ID);
+        return $this->getCrowdSourcingProject(DEFAULT_PROJECT_ID);
     }
 
     // TODO this method should return only the active projects
@@ -243,5 +239,10 @@ class CrowdSourcingProjectManager
                 throw new \Exception('The project status could not be identified: ' . $project->status_id);
         }
         return new CrowdSourcingProjectUnavailable($project, $unavailabilityMessage);
+    }
+
+    public function getCrowdSourcingProjectsListPageViewModel() {
+        $user = Auth::user();
+        return new AllCrowdSourcingProjects($this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit($user));
     }
 }

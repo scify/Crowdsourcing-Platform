@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\RelationNotFoundException;
+use JsonSchema\Exception\ResourceNotFoundException;
 
 abstract class Repository implements RepositoryInterface {
 
@@ -96,7 +99,10 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function find($id, $columns = array('*')) {
-        return $this->modelInstance->find($id, $columns);
+        $model = $this->modelInstance->find($id, $columns);
+        if(!$model)
+            throw new ModelNotFoundException("Model of type " . $this->getModelClassName() . " with id " . $id . " not found");
+        return $model;
     }
 
     /**
@@ -106,7 +112,11 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function findBy($attribute, $value, $columns = array('*')) {
-        return $this->modelInstance->where($attribute, '=', $value)->first($columns);
+        $model = $this->modelInstance->where($attribute, '=', $value)->first($columns);
+        if(!$model)
+            throw new ModelNotFoundException("Model of type " . $this->getModelClassName() .
+                " with attribute "  . $attribute . " equal to " . $value . " not found");
+        return $model;
     }
 
     public function where($whereArray, $columns = array('*')) {
