@@ -29,6 +29,8 @@ class CrowdSourcingProject extends Model
         'lp_questionnaire_color', 'lp_footer_bg_color', 'lp_footer_color'
     ];
 
+    protected $with = ['creator', 'language', 'status'];
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
