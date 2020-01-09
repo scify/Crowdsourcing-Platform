@@ -39,8 +39,9 @@
         </div>
     </div>
     @yield('content')
-    <footer>
-        <div class="container">
+    <footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
+        <div class="container" style="
+                color: {{ $viewModel->project->lp_footer_color }}">
 
             {!! $viewModel->project->footer !!}
 

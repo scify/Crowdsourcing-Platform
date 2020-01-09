@@ -278,7 +278,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row image-input-container">
                                 <label class="col-sm-12 control-label">Questionnaire Background Image </label>
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
@@ -291,8 +291,8 @@
                                             image by
                                             clicking the button below.
                                         </small>
-                                        <input type="file" name="lp_questionnaire_img_path" accept="image/*">
-                                        <span class="help-block"><strong>{{ $errors->first('lp_questionnaire_img_path') }}</strong></span>
+                                        <input type="file" name="lp_questionnaire_img" class="image-input" accept="image/*">
+                                        <span class="help-block"><strong>{{ $errors->first('lp_questionnaire_img') }}</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +305,7 @@
                             <h2>Social Media metadata</h2>
                         </div>
                         <div class="box-body">
-                            <div class="row">
+                            <div class="row image-input-container">
                                 <label class="col-sm-12 control-label">Featured Image </label>
                                 <div class="col-sm-12">
                                     <div class="image-preview-container">
@@ -318,7 +318,7 @@
                                             image by
                                             clicking the button below.
                                         </small>
-                                        <input type="file" name="sm_featured_img" accept="image/*">
+                                        <input type="file" name="sm_featured_img" class="image-input" accept="image/*">
                                         <span class="help-block"><strong>{{ $errors->first('sm_featured_img') }}</strong></span>
                                     </div>
                                 </div>
