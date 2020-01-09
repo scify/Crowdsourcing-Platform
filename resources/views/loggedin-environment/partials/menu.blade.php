@@ -49,13 +49,13 @@
                     <a href="{{ route('projects.create') }}"><i
                                 class="fa fa-plus "></i><span>Create new Project</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/questionnaires")}}">
-                    <a href="{{ route('manageQuestionnaires', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
+                <li class="{{UrlMatchesMenuItem("project/" . DEFAULT_PROJECT_ID . "/questionnaires")}}">
+                    <a href="{{ route('manageQuestionnaires', ['id' => DEFAULT_PROJECT_ID]) }}"><i
                                 class="fa fa-question-circle "></i><span>Manage
                             Questionnaires</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/" . $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . "/reports")}}">
-                    <a href="{{ route('reports', ['id' => $CrowdSourcingProjectManager::DEFAULT_PROJECT_ID]) }}"><i
+                <li class="{{UrlMatchesMenuItem("project/" . DEFAULT_PROJECT_ID . "/reports")}}">
+                    <a href="{{ route('reports', ['id' => DEFAULT_PROJECT_ID]) }}"><i
                                 class="fa fa-line-chart"></i><span>Reports</span></a>
                 </li>
             @endcan
