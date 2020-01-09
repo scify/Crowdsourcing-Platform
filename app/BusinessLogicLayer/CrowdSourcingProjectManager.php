@@ -70,7 +70,7 @@ class CrowdSourcingProjectManager
         $allLanguagesForQuestionnaire = collect([]);
 
         if($questionnaireId)
-            $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
+            $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         else
             $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id, Auth::id());
 
@@ -171,7 +171,7 @@ class CrowdSourcingProjectManager
 
     public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null) {
         $allProjects = $this->getAllCrowdSourcingProjects();
-        $allQuestionnaires = $this->questionnaireRepository->getAllQuestionnaires();
+        $allQuestionnaires = $this->questionnaireRepository->all();
         return new QuestionnaireReportFilters($allProjects, $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 
