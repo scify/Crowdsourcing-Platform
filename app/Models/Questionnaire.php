@@ -52,7 +52,16 @@ class Questionnaire extends Model
     use SoftDeletes;
 
     protected $table = 'questionnaires';
-    protected $dates = ['deleted_at'];
+    protected $fillable = [
+        'project_id',
+        'prerequisite_order',
+        'status_id',
+        'default_language_id',
+        'title',
+        'description',
+        'goal',
+        'questionnaire_json'
+    ];
 
     public function defaultLanguage()
     {
