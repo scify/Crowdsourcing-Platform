@@ -28,7 +28,7 @@ class UserQuestionnaireShareManager {
 
     public function handleQuestionnaireShare(array $parameters, GamificationManager $gamificationManager, $referrer) {
         $questionnaireId = $parameters['questionnaireId'];
-        $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
+        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         if($questionnaire) {
             $this->createQuestionnaireShareForQuestionnaireIfNoneExists($questionnaire, $referrer, $gamificationManager);
         }

@@ -18,28 +18,22 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class QuestionnaireRepository
+class QuestionnaireRepository extends Repository
 {
     private $questionnaireTranslationRepository;
 
     public function __construct(QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
+        parent::__construct(app());
     }
 
-
-    public function findQuestionnaire($id)
-    {
-        return Questionnaire::findOrFail($id);
+    function getModelClassName() {
+        return Questionnaire::class;
     }
 
     public function getAllQuestionnaireStatuses()
     {
         return QuestionnaireStatus::all();
-    }
-
-    public function getAllQuestionnaires()
-    {
-        return Questionnaire::all();
     }
 
     public function getActiveQuestionnaireForProject($projectId, $userId)
@@ -406,5 +400,4 @@ class QuestionnaireRepository
     public function questionnaireResponsesForUserExists($userId) {
         return QuestionnaireResponse::where(['user_id' => $userId])->exists();
     }
-
 }
