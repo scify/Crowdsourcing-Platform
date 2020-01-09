@@ -23,6 +23,7 @@ use App\Repository\QuestionnaireResponseAnswerRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use JsonSchema\Exception\ResourceNotFoundException;
@@ -79,10 +80,15 @@ class QuestionnaireManager {
         return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title);
     }
 
-    public function getAllQuestionnairesForProjectViewModel($projectId) {
-        $questionnaires = $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($projectId);
+    public function getAllQuestionnairesPageViewModel() {
+        $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
+        $questionnaires = new Collection();
+        foreach ($projectTheUserHasAccessTo as $project) {
+            $questionnaires = $questionnaires->concat(
+                $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($project->id));
+        }
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
-        return new ManageQuestionnaires($questionnaires, $availableStatuses, $projectId);
+        return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
     public function getResponsesGivenByUser($userId) {

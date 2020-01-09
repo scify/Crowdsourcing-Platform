@@ -63,6 +63,8 @@ class Questionnaire extends Model
         'questionnaire_json'
     ];
 
+
+
     public function defaultLanguage()
     {
         return $this->hasOne(Language::class, 'id', 'default_language_id');

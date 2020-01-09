@@ -49,8 +49,8 @@
                     <a href="{{ route('projects.create') }}"><i
                                 class="fa fa-plus "></i><span>Create new Project</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/" . DEFAULT_PROJECT_ID . "/questionnaires")}}">
-                    <a href="{{ route('manageQuestionnaires', ['id' => DEFAULT_PROJECT_ID]) }}"><i
+                <li class="{{UrlMatchesMenuItem("questionnaires")}}">
+                    <a href="{{ route('questionnaires.all') }}"><i
                                 class="fa fa-question-circle "></i><span>Manage
                             Questionnaires</span></a>
                 </li>
@@ -74,18 +74,6 @@
                     <a href="{{ url("admin/manage-users") }}"><i
                                 class="fa fa-users"></i><span>Manage Users</span></a>
                 </li>
-                {{-- <li class="treeview {{ UrlMatchesMenuItem("admin*") }} ">
-                     <a href="javascript:void(0)">
-                         <i class="fa fa-wrench"></i>
-                         <span>Administration</span>
-                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                     </a>
-                     <ul class="treeview-menu">
-                         <li class="{{UrlMatchesMenuItem("admin/manage-users")}}">
-                             <a href="{{ url("admin/manage-users") }}"><i
-                                         class="fa fa-users"></i> Manage Users</a></li>
-                     </ul>
-                 </li>--}}
             @endcan
         </ul>
     </section>
