@@ -34,7 +34,7 @@
             editor.text = JSON.stringify(json);
         // disable "Fast Entry" for choices
         editor.onSetPropertyEditorOptions.add(function (survey, options) {
-             options.editorOptions.showTextView = false;
+            options.editorOptions.showTextView = false;
         });
     };
 
@@ -56,10 +56,6 @@
         disableNameInputForChoices.call(header);
     };
 
-    let initLanguagesSelect2 = function () {
-        $('#language').select2();
-    };
-
     let getGuid = function () {
         let S4 = function () {
             return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -70,15 +66,13 @@
     let addGuidsToContent = function (content) {
         let json = JSON.parse(content);
         let questions = json.pages[0].elements;
-        console.log(json);
         let alreadyUsedGuids = [];
         let alreadyUsedAnswerGuids = [];
         for (let i = 0; i < questions.length; i++) {
             if (!questions[i].guid) {
                 questions[i].guid = getGuid();
-                alreadyUsedGuids.push(questions[i].guid );
-            }
-            else{
+                alreadyUsedGuids.push(questions[i].guid);
+            } else {
                 //bug fix: we may have 2 questions with the same guid (due to a copy paste). We dont want this
                 if (alreadyUsedGuids.includes(questions[i].guid)) {
                     questions[i].guid = getGuid();
@@ -117,9 +111,10 @@
         let description = $('#description').val().trim();
         let goal = $('#goal').val().trim();
         let language = $('#language').val();
+        let project = $('#project').val();
         let content = editor.text;
         content = addGuidsToContent(content);
-        if (title === '' || description==='' || goal==='')
+        if (title === '' || description === '' || goal === '')
             swal({
                 title: "Fields Missing!",
                 text: "Please provide a title, description and goal.",
@@ -129,45 +124,59 @@
             });
         else {
             $.ajax({
-                 method: 'post',
-                 url: self.data('url'),
-                 data: {title, description, goal, language, content},
-                 success: function (response) {
-                     if (response.status === '__SUCCESS') {
-                         swal({
-                             title: "Success!",
-                             text: "The questionnaire has been successfully stored.",
-                             type: "success",
-                             confirmButtonClass: "btn-success",
-                             confirmButtonText: "OK",
-                         }, function () {
-                             window.location = response.redirect_url;
-                         });
-                     } else {
-                         swal({
-                             title: "Oops!",
-                             text: "An error occurred, please try again later.",
-                             type: "error",
-                             confirmButtonClass: "btn-danger",
-                             confirmButtonText: "OK",
-                         });
-                     }
-                 },
-                 error: function () {
-                     swal({
-                         title: "Oops!",
-                         text: "An error occurred, please try again later.",
-                         type: "error",
-                         confirmButtonClass: "btn-danger",
-                         confirmButtonText: "OK",
-                     });
-                 }
-             });
+                method: 'post',
+                url: self.data('url'),
+                data: {title, description, goal, language, content, project},
+                success: function (response) {
+                    if (response.status === '__SUCCESS') {
+                        swal({
+                            title: "Success!",
+                            text: "The questionnaire has been successfully stored.",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "OK",
+                        }, function () {
+                            window.location = response.redirect_url;
+                        });
+                    } else {
+                        swal({
+                            title: "Oops!",
+                            text: "An error occurred, please try again later.",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "OK",
+                        });
+                    }
+                },
+                error: function () {
+                    swal({
+                        title: "Oops!",
+                        text: "An error occurred, please try again later.",
+                        type: "error",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "OK",
+                    });
+                }
+            });
         }
     };
 
     let initEvents = function () {
-        $("#save").click(saveQuestionnaire);
+        $("#save").click(function () {
+            const content = editor.text;
+            const json = JSON.parse(content);
+            const questions = json.pages[0].elements;
+            if (!questions || !questions.length)
+                swal({
+                    title: "Questions missing!",
+                    text: "You should add at least 1 question to the questionnaire",
+                    type: "warning",
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                });
+            else
+                saveQuestionnaire();
+        });
         let body = $("body");
         body.on('click', '.svda_question_action[title="Edit"]', disableNameInputField);
         body.on('click', '.svd-accordion-tab-header', disableNameInputForChoices);
@@ -175,8 +184,7 @@
     };
 
     let init = function () {
-        $(document).ready(function() {
-            initLanguagesSelect2();
+        $(document).ready(function () {
             initQuestionnaireEditor();
             initEvents();
         });

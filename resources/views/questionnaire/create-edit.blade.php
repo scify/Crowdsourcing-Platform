@@ -33,6 +33,21 @@
                     @endif
                     <div class="row form-group">
                         <div class="col-md-2 col-sm-3 col-xs-12">
+                            <label for="language">Project the Questionnaire belongs to</label>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <select name="project_id" id="project" class="select2">
+                                @foreach($viewModel->projects as $project)
+                                    <option value="{{$project->id}}"
+                                            {{ $viewModel->questionnaire->project_id === $project->id ? 'selected' : '' }}>
+                                        {{$project->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 col-sm-3 col-xs-12">
                             <label for="title">Questionnaire's Title</label>
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
@@ -68,7 +83,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             {{--English by default--}}
-                            <select name="language_id" id="language" style="width: 100%;">
+                            <select name="language_id" id="language" class="select2">
                                 @foreach($viewModel->languages as $language)
                                     <option value="{{$language->id}}"
                                             {{ $viewModel->shouldLanguageBeSelected($language) ? 'selected' : '' }}>
