@@ -71,9 +71,7 @@
                             <select name="language_id" id="language" style="width: 100%;">
                                 @foreach($viewModel->languages as $language)
                                     <option value="{{$language->id}}"
-                                            {{$viewModel->questionnaire ?
-                                                ($viewModel->questionnaire->default_language_id == $language->id ? 'selected' : '')
-                                              : ($language->language_name === 'English' ? 'selected' : '')}}>
+                                            {{ $viewModel->shouldLanguageBeSelected($language) ? 'selected' : '' }}>
                                         {{$language->language_name}}
                                     </option>
                                 @endforeach

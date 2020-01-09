@@ -31,9 +31,9 @@ class QuestionnaireController extends Controller
         $this->gamificationManager = $gamificationManager;
     }
 
-    public function manageQuestionnaires($id)
+    public function manageQuestionnaires($projectId)
     {
-        $questionnairesViewModel = $this->questionnaireManager->getAllQuestionnairesForProjectViewModel($id);
+        $questionnairesViewModel = $this->questionnaireManager->getAllQuestionnairesForProjectViewModel($projectId);
         return view("manage-questionnaires")->with(['viewModel' => $questionnairesViewModel]);
     }
 
@@ -45,26 +45,27 @@ class QuestionnaireController extends Controller
 
     public function createQuestionnaire()
     {
-        $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel(null);
-        return view('create-edit-questionnaire')->with(['viewModel' => $viewModel]);
+        $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel();
+        return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
     public function storeQuestionnaire(Request $request)
     {
+        // TODO add validation
         $this->questionnaireManager->createNewQuestionnaire($request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . DEFAULT_PROJECT_ID . '/questionnaires')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url()->previous(route('home'))]);
     }
 
     public function editQuestionnaire($id)
     {
         $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel($id);
-        return view('create-edit-questionnaire')->with(['viewModel' => $viewModel]);
+        return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
     public function updateQuestionnaire(Request $request, $id)
     {
         $this->questionnaireManager->updateQuestionnaire($id, $request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . DEFAULT_PROJECT_ID . '/questionnaires')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url()->previous(route('home'))]);
     }
 
     public function storeQuestionnaireResponse(Request $request) {
@@ -119,7 +120,7 @@ class QuestionnaireController extends Controller
     public function storeQuestionnaireTranslations(Request $request, $id)
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . DEFAULT_PROJECT_ID . '/questionnaires')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url()->previous(route('home'))]);
     }
 
     public function storeQuestionnaireShare(Request $request) {

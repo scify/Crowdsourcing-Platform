@@ -38,6 +38,7 @@ class QuestionnaireManager {
     private $questionnaireReportRepository;
     private $questionnaireResponseAnswerRepository;
     private $questionnaireTranslationRepository;
+    protected $crowdSourcingProjectAccessManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -48,7 +49,8 @@ class QuestionnaireManager {
                                 QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
                                 QuestionnaireReportRepository $questionnaireReportRepository,
                                 QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
+                                QuestionnaireTranslationRepository $questionnaireTranslationRepository,
+                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -59,17 +61,22 @@ class QuestionnaireManager {
         $this->questionnaireReportRepository = $questionnaireReportRepository;
         $this->questionnaireResponseAnswerRepository = $questionnaireResponseAnswerRepository;
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
+        $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
     }
 
-    public function getCreateEditQuestionnaireViewModel($id) {
-        $questionnaire = null;
-        $title = "Create Questionnaire";
-        if (!is_null($id)) {
-            $questionnaire = $this->questionnaireRepository->findQuestionnaire($id);
+    public function getCreateEditQuestionnaireViewModel($id = null) {
+
+        if($id) {
+            $questionnaire = $this->questionnaireRepository->find($id);
             $title = "Edit Questionnaire";
         }
+        else {
+            $questionnaire = $this->questionnaireRepository->getModelInstance();
+            $title = "Create Questionnaire";
+        }
+        $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
-        return new CreateEditQuestionnaire($questionnaire, $languages, $title);
+        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title);
     }
 
     public function getAllQuestionnairesForProjectViewModel($projectId) {
@@ -89,7 +96,7 @@ class QuestionnaireManager {
 
     public function createNewQuestionnaire($data) {
         $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
-            $data['title'], $data['description'], $data['goal'], $data['language'], DEFAULT_PROJECT_ID, $data['content']
+            $data['title'], $data['description'], $data['goal'], $data['language'], $data['project_id'], $data['content']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
@@ -103,7 +110,7 @@ class QuestionnaireManager {
     public function storeQuestionnaireResponse($data) {
         $response = json_decode($data['response']);
         $user = Auth::user();
-        $questionnaire = $this->questionnaireRepository->findQuestionnaire($data['questionnaire_id']);
+        $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
         $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
         $this->awardContributorBadgeAndNotifyUser($questionnaire, $user);
         // if the user got invited by another user to answer the questionnaire, also award the referrer user.
@@ -145,7 +152,7 @@ class QuestionnaireManager {
     }
 
     public function getTranslateQuestionnaireViewModel($questionnaireId) {
-        $questionnaire = $this->questionnaireRepository->findQuestionnaire($questionnaireId);
+        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
         $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
         $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
@@ -248,7 +255,7 @@ class QuestionnaireManager {
         $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $langId);
         if (!$questionnaireLanguage)
             throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $langId);
-        $this->deleteTranslatedQuestionTitles($this->questionnaireRepository->findQuestionnaire($questionnaireId), $this->languageManager->getLanguage($langId));
+        $this->deleteTranslatedQuestionTitles($this->questionnaireRepository->find($questionnaireId), $this->languageManager->getLanguage($langId));
         $this->questionnaireTranslationRepository->deleteQuestionnaireTranslation($questionnaireLanguage);
     }
 
