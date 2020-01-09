@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use App\BusinessLogicLayer\PermissionsManager;
-
+use App\BusinessLogicLayer\UserRoleManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
 use Laravel\Passport\Passport;
@@ -33,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $permissionsManager = App::make(PermissionsManager::class);
+        $permissionsManager = App::make(UserRoleManager::class);
         $permissionsManager->registerUserPolicies();
 
         Passport::routes();

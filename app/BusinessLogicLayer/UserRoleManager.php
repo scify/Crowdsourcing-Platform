@@ -8,6 +8,7 @@ use App\Repository\UserRoleRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use Illuminate\Support\Facades\Gate;
 
 class UserRoleManager {
 
@@ -15,6 +16,22 @@ class UserRoleManager {
 
     public function __construct(UserRoleRepository $userRoleRepository) {
         $this->userRoleRepository = $userRoleRepository;
+    }
+
+    public function registerUserPolicies()
+    {
+
+        Gate::define('manage-platform', function ($user) {
+            return $this->userHasAdminRole($user);
+        });
+
+        Gate::define('manage-users', function ($user) {
+            return $this->userHasAdminRole($user);
+        });
+
+        Gate::define('manage-crowd-sourcing-projects', function ($user) {
+            return $this->userHasAdminRole($user) || $this->userHasContentManagerRole($user);
+        });
     }
 
     public function assignRegisteredUserRoleTo($user) {
@@ -29,6 +46,16 @@ class UserRoleManager {
      */
     public function userHasAdminRole(User $user) {
         return $this->userHasRole($user, UserRolesLkp::ADMIN, 'user_is_admin');
+    }
+
+    /**
+     * Checks if a given @see User has the content manager role
+     *
+     * @param User $user the @see User instance
+     * @return bool
+     */
+    public function userHasContentManagerRole(User $user) {
+        return $this->userHasRole($user, UserRolesLkp::CONTENT_MANAGER, 'user_is_content_manager');
     }
 
     /**
