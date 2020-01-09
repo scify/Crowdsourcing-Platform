@@ -24,7 +24,7 @@ class QuestionnaireAnswerManager {
     }
 
 
-    public function userHasAlreadyAnsweredTheActiveQuestionnaire($userId, $projectId = CrowdSourcingProjectManager::DEFAULT_PROJECT_ID) {
+    public function userHasAlreadyAnsweredTheActiveQuestionnaire($userId, $projectId = DEFAULT_PROJECT_ID) {
         $activeQuestionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, $userId);
         if(!$activeQuestionnaire)
             return false;

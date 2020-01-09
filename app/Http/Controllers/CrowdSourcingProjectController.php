@@ -9,7 +9,6 @@ use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use JsonSchema\Exception\ResourceNotFoundException;
@@ -32,8 +31,7 @@ class CrowdSourcingProjectController extends Controller
     }
 
     public function index() {
-        $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjects();
-        $viewModel = new AllCrowdSourcingProjects($projects);
+        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsListPageViewModel();
         return view('admin.projects.index', ['viewModel' => $viewModel]);
     }
 

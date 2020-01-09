@@ -52,7 +52,7 @@ class QuestionnaireController extends Controller
     public function storeQuestionnaire(Request $request)
     {
         $this->questionnaireManager->createNewQuestionnaire($request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . '/questionnaires')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . DEFAULT_PROJECT_ID . '/questionnaires')]);
     }
 
     public function editQuestionnaire($id)
@@ -64,7 +64,7 @@ class QuestionnaireController extends Controller
     public function updateQuestionnaire(Request $request, $id)
     {
         $this->questionnaireManager->updateQuestionnaire($id, $request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . '/questionnaires')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . DEFAULT_PROJECT_ID . '/questionnaires')]);
     }
 
     public function storeQuestionnaireResponse(Request $request) {
@@ -119,7 +119,7 @@ class QuestionnaireController extends Controller
     public function storeQuestionnaireTranslations(Request $request, $id)
     {
         $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . CrowdSourcingProjectManager::DEFAULT_PROJECT_ID . '/questionnaires')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url('/project/' . DEFAULT_PROJECT_ID . '/questionnaires')]);
     }
 
     public function storeQuestionnaireShare(Request $request) {
