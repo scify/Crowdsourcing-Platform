@@ -27,6 +27,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Project</th>
                             <th>Goal / Responses</th>
                             <th>Languages available</th>
                             <th>Status</th>
@@ -39,6 +40,7 @@
                                 data-status="{{$questionnaire->status_id}}">
                                 <td>{{$questionnaire->id}}</td>
                                 <td>{{$questionnaire->title}}</td>
+                                <td>{{ $questionnaire->project_name }}</td>
                                 <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
                                 <td>
                                     <b>{{$questionnaire->default_language_name}}</b>
@@ -57,7 +59,7 @@
                                         <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
                                     </div>
                                     <div class="action-btn">
-                                        <a href="{{route('reports', ['id' => $viewModel->projectId, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
+                                        <a href="{{route('reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
                                     </div>
                                     <div class="action-btn">
                                         <a href="javascript:void(0)" class="change-status" data-toggle="modal"

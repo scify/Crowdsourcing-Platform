@@ -31,10 +31,10 @@ class QuestionnaireController extends Controller
         $this->gamificationManager = $gamificationManager;
     }
 
-    public function manageQuestionnaires($projectId)
+    public function manageQuestionnaires()
     {
-        $questionnairesViewModel = $this->questionnaireManager->getAllQuestionnairesForProjectViewModel($projectId);
-        return view("manage-questionnaires")->with(['viewModel' => $questionnairesViewModel]);
+        $questionnairesViewModel = $this->questionnaireManager->getAllQuestionnairesPageViewModel();
+        return view("questionnaire.all")->with(['viewModel' => $questionnairesViewModel]);
     }
 
     public function saveQuestionnaireStatus(Request $request)

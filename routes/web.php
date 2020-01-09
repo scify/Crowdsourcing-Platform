@@ -38,7 +38,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     ])->middleware("can:manage-crowd-sourcing-projects");
     Route::post('project/destroy', 'CrowdSourcingProjectController@destroy')->name('project.destroy')->middleware("can:manage-crowd-sourcing-projects");
 
-    Route::get('/project/{id}/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('manageQuestionnaires')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('questionnaires.all')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/project/{id}/reports', 'CrowdSourcingProjectController@viewReports')->name('reports')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaire/new', 'QuestionnaireController@createQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('questionnaire/filter', 'QuestionnaireController@showReportForQuestionnaire')->name('questionnaireReport');

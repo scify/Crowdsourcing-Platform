@@ -27,29 +27,28 @@ class QuestionnaireTranslationRepository {
         });
     }
 
-    public function deleteHtmlTranslations($htmlId)
-    {
+    public function deleteHtmlTranslations($htmlId) {
         QuestionnaireTranslationHtml::where('html_id', $htmlId)->delete();
     }
 
-    public function getQuestionnaireAvailableLanguages($questionnaireId)
-    {
+    public function getQuestionnaireAvailableLanguages($questionnaireId) {
         return QuestionnaireLanguage::where('questionnaire_id', $questionnaireId)->with('language')->get();
     }
 
-    public function getQuestionnaireLanguage($questionnaireId, $langId)
-    {
+    public function getQuestionnaireLanguage($questionnaireId, $langId) {
         return QuestionnaireLanguage::where(['questionnaire_id' => $questionnaireId, 'language_id' => $langId])->first();
     }
 
-    public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId)
-    {
-        $questionnaires = DB::
+    public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId) {
+        return DB::
         select("select q.*, qsl.title as status_title, 
                                 responsesInfo.number_of_responses, languagesInfo.languages,
                                 qsl.description as status_description, 
-                                dl.language_name as default_language_name from questionnaires as q 
+                                dl.language_name as default_language_name,
+                                csp.name as project_name
+                                 from questionnaires as q 
                                 inner join languages_lkp as dl on dl.id = q.default_language_id 
+                                inner join crowd_sourcing_projects as csp on csp.id = q.project_id 
                                 inner join questionnaire_statuses_lkp as qsl on qsl.id = q.status_id 
                                 left join (
                                     select questionnaire_id, count(*) as number_of_responses from questionnaire_responses qr 
@@ -70,11 +69,9 @@ class QuestionnaireTranslationRepository {
                             
                                 where q.project_id = " . $projectId . " and q.deleted_at is null
                                 order by q.updated_at desc");
-        return $questionnaires;
     }
 
-    public function getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId)
-    {
+    public function getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId) {
         $questionnaireTranslations = DB::table('questionnaire_questions as qq')
             ->leftJoin('questionnaire_possible_answers as qpa', 'qq.id', '=', 'qpa.question_id')
             ->leftJoin('questionnaire_html as qh', 'qq.id', '=', 'qh.question_id')
@@ -111,8 +108,7 @@ class QuestionnaireTranslationRepository {
         return $result;
     }
 
-    public function getAvailableLanguagesForQuestionnaire($questionnaire)
-    {
+    public function getAvailableLanguagesForQuestionnaire($questionnaire) {
         $availableLanguages = [
             (object)[
                 "language_code" => $questionnaire->defaultLanguage->language_code,
@@ -133,8 +129,7 @@ class QuestionnaireTranslationRepository {
         return collect($availableLanguages);
     }
 
-    public function storeQuestionnaireTranslations($questionnaireId, $translations)
-    {
+    public function storeQuestionnaireTranslations($questionnaireId, $translations) {
         $questionnaireLanguages = $this->getQuestionnaireAvailableLanguages($questionnaireId);
         DB::transaction(function () use ($questionnaireId, $translations, $questionnaireLanguages) {
             $allTranslations = [];
@@ -178,15 +173,13 @@ class QuestionnaireTranslationRepository {
         });
     }
 
-    private function removeTranslationsForQuestionnaireLanguage($questionnaireLanguageId)
-    {
+    private function removeTranslationsForQuestionnaireLanguage($questionnaireLanguageId) {
         QuestionnaireTranslationQuestion::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
         QuestionnaireTranslationPossibleAnswer::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
         QuestionnaireTranslationHtml::where("questionnaire_language_id", $questionnaireLanguageId)->delete();
     }
 
-    private function storeQuestionnaireJsonWithTranslations($questionnaireId, $allTranslations)
-    {
+    private function storeQuestionnaireJsonWithTranslations($questionnaireId, $allTranslations) {
         $questionnaire = Questionnaire::findOrFail($questionnaireId);
         $json = json_decode($questionnaire->questionnaire_json);
         $elements = [];
@@ -203,9 +196,8 @@ class QuestionnaireTranslationRepository {
                     $htmlTranslations = $relatedTranslations->where('type', 'html');
                     $question->html = $this->setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $question);
                 }
-                if (isset($question->hasOther))
-                {
-                    $otherTranslations= $answerTranslations->where("value","other");
+                if (isset($question->hasOther)) {
+                    $otherTranslations = $answerTranslations->where("value", "other");
                     $question->otherText = $this->setQuestionnaireJsonOtherWithTranslations($otherTranslations, $question);
                 }
                 array_push($elements, $question);
@@ -215,9 +207,8 @@ class QuestionnaireTranslationRepository {
         $questionnaire->save();
     }
 
-    private function setQuestionnaireJsonTitleWithTranslations($questionTranslations, $element)
-    {
-        if($element->name == 'question2')
+    private function setQuestionnaireJsonTitleWithTranslations($questionTranslations, $element) {
+        if ($element->name == 'question2')
             $questionTranslations = $questionTranslations->where('id', 55);
         if (isset($element->title)) {
             if (isset($element->title->default)) // if title translations already exist
@@ -231,8 +222,7 @@ class QuestionnaireTranslationRepository {
         return (object)$temp;
     }
 
-    private function setQuestionnaireJsonChoicesWithTranslations($answerTranslations, $element)
-    {
+    private function setQuestionnaireJsonChoicesWithTranslations($answerTranslations, $element) {
         $choices = [];
         foreach ($element->choices as $choice) {
             if (isset($choice->text)) {
@@ -257,22 +247,19 @@ class QuestionnaireTranslationRepository {
         return $choices;
     }
 
-    private function setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element)
-    {
+    private function setQuestionnaireJsonHtmlWithTranslations($htmlTranslations, $element) {
         $temp = $this->setAllTranslationsForAQuestionnaireString(
             (isset($element->html->default) ? $element->html->default : $element->html), $htmlTranslations);
         return (object)$temp;
     }
 
-    private function setQuestionnaireJsonOtherWithTranslations($otherTranslations, $question)
-    {
+    private function setQuestionnaireJsonOtherWithTranslations($otherTranslations, $question) {
         $defaultValue = $this->getOtherAnswerTitle($question);
-        $temp = $this->setAllTranslationsForAQuestionnaireString($defaultValue ,$otherTranslations);
+        $temp = $this->setAllTranslationsForAQuestionnaireString($defaultValue, $otherTranslations);
         return (object)$temp;
     }
 
-    private function setAllTranslationsForAQuestionnaireString($defaultLanguageValue, $translations)
-    {
+    private function setAllTranslationsForAQuestionnaireString($defaultLanguageValue, $translations) {
         $temp = ['default' => $defaultLanguageValue];
         foreach ($translations as $translation) {
             $langCode = $translation->language_code;
@@ -281,8 +268,7 @@ class QuestionnaireTranslationRepository {
         return $temp;
     }
 
-    private function storeQuestionTranslation($translation)
-    {
+    private function storeQuestionTranslation($translation) {
         $questionTranslation = new QuestionnaireTranslationQuestion();
         $questionTranslation->questionnaire_language_id = $translation->questionnaire_language_id;
         $questionTranslation->question_id = $translation->id;
@@ -291,15 +277,13 @@ class QuestionnaireTranslationRepository {
         return $questionTranslation;
     }
 
-    private function storeAllAnswersTranslations($translations)
-    {
+    private function storeAllAnswersTranslations($translations) {
         foreach ($translations as $translation) {
             $this->storeAnswerTranslation($translation);
         }
     }
 
-    private function storeAnswerTranslation($translation)
-    {
+    private function storeAnswerTranslation($translation) {
         $answerTranslation = new QuestionnaireTranslationPossibleAnswer();
         $answerTranslation->questionnaire_language_id = $translation->questionnaire_language_id;
         $answerTranslation->possible_answer_id = $translation->id;
@@ -308,15 +292,13 @@ class QuestionnaireTranslationRepository {
         return $answerTranslation;
     }
 
-    private function storeAllHtmlTranslations($translations)
-    {
+    private function storeAllHtmlTranslations($translations) {
         foreach ($translations as $translation) {
             $this->storeHtmlTranslation($translation);
         }
     }
 
-    private function storeHtmlTranslation($translation)
-    {
+    private function storeHtmlTranslation($translation) {
         $htmlTranslation = new QuestionnaireTranslationHtml();
         $htmlTranslation->questionnaire_language_id = $translation->questionnaire_language_id;
         $htmlTranslation->html_id = $translation->id;
@@ -325,14 +307,13 @@ class QuestionnaireTranslationRepository {
         return $htmlTranslation;
     }
 
-    private function storeAllQuestionsTranslations($translations)
-    {
+    private function storeAllQuestionsTranslations($translations) {
         foreach ($translations as $translation) {
             $this->storeQuestionTranslation($translation);
         }
     }
 
-    public function getOtherAnswerTitle($question){
+    public function getOtherAnswerTitle($question) {
         if (isset($question->otherText) && is_string($question->otherText))
             return $question->otherText;
         else if (isset($question->otherText) && isset($question->otherText->default))
