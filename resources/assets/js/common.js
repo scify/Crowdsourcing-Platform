@@ -40,7 +40,6 @@ require('bootstrap-colorpicker');
     };
 
 
-
     let closeDismissableAlerts = function () {
         setTimeout(function () {
             /*Close any flash message after some time*/
@@ -51,21 +50,27 @@ require('bootstrap-colorpicker');
     };
 
     let initializeSelect2Inputs = function () {
-        $('.select2').each(function(i, obj) {
+        $('.select2-tags').each(function (i, obj) {
             $(obj).select2({
                 tags: true
             });
         });
+
+        $('.select2').each(function (i, obj) {
+            $(obj).select2();
+        });
     };
 
     $(function () {
-        initializeIcheck();
-        closeDismissableAlerts();
-        initializeSelect2Inputs();
-        $("#log-out").click(function (e) {
-            e.preventDefault();
-            $("#logout-form").submit();
-        })
+        $(document).ready(function () {
+            initializeIcheck();
+            closeDismissableAlerts();
+            initializeSelect2Inputs();
+            $("#log-out").click(function (e) {
+                e.preventDefault();
+                $("#logout-form").submit();
+            });
+        });
     });
 })();
 
