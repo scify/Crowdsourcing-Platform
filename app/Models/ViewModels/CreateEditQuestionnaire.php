@@ -1,24 +1,33 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/11/18
- * Time: 5:06 PM
- */
 
 namespace App\Models\ViewModels;
 
 
+use App\Models\Language;
+use App\Models\Questionnaire;
+use Illuminate\Support\Collection;
+
 class CreateEditQuestionnaire
 {
     public $questionnaire;
+    public $projects;
     public $languages;
     public $title;
+    protected $selectedLanguageId;
 
-    public function __construct($questionnaire, $languages, $title)
+    public function __construct(Questionnaire $questionnaire, Collection $projects, Collection $languages, $title)
     {
         $this->questionnaire = $questionnaire;
+        $this->projects = $projects;
         $this->languages = $languages;
         $this->title = $title;
+        if($this->questionnaire->id)
+            $this->selectedLanguageId = $this->questionnaire->default_language_id;
+        else
+            $this->selectedLanguageId = 6;
+    }
+
+    public function shouldLanguageBeSelected(Language $language) {
+        return $this->selectedLanguageId === $language->id;
     }
 }
