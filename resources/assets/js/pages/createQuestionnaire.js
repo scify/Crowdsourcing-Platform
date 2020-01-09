@@ -175,9 +175,11 @@
     };
 
     let init = function () {
-        initLanguagesSelect2();
-        initQuestionnaireEditor();
-        initEvents();
+        $(document).ready(function() {
+            initLanguagesSelect2();
+            initQuestionnaireEditor();
+            initEvents();
+        });
     };
 
     init();
