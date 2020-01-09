@@ -22,9 +22,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  p {
-    color: #666666;
-  }
   a {
     color: #2ea3f2;
   }
@@ -149,7 +146,6 @@ ol {
 
 #questionnaire {
 
-  background-image: url(../../images/bgsectionnaire.png);
   background-size: cover;
 
   #machine-translation-indicator
@@ -394,14 +390,8 @@ footer {
     padding-bottom: 20px;
   }
 
-  color: #000 !important;
-
-  p {
-    color: #000;
-  }
   a {
     font-weight: bold;
-    color: #000;
     &:hover, &:focus {
       color: #23527c;
     }
