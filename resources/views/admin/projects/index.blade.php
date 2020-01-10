@@ -69,6 +69,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ route('projects.edit', $project->id) }}">Edit Project</a></li>
                                             <li><a href="{{ route('project.landing-page', $project->slug) }}">View Landing Page</a></li>
+                                            <li><a href="{{ route('project.reports', $project->id) }}">View Reports</a></li>
                                         </ul>
                                     </div>
                                 </td>
