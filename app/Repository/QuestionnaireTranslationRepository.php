@@ -68,7 +68,7 @@ class QuestionnaireTranslationRepository {
                                 ) as  languagesInfo on languagesInfo.questionnaire_id = q.id
                             
                                 where q.project_id = " . $projectId . " and q.deleted_at is null
-                                order by q.created_at desc");
+                                order by q.updated_at desc");
     }
 
     public function getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId) {

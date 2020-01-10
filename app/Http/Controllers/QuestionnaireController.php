@@ -53,7 +53,7 @@ class QuestionnaireController extends Controller
     {
         // TODO add validation
         $this->questionnaireManager->createNewQuestionnaire($request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => route('projects.index')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => route('questionnaires.all')]);
     }
 
     public function editQuestionnaire($id)
@@ -65,7 +65,7 @@ class QuestionnaireController extends Controller
     public function updateQuestionnaire(Request $request, $id)
     {
         $this->questionnaireManager->updateQuestionnaire($id, $request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => route('projects.index')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => route('questionnaires.all')]);
     }
 
     public function storeQuestionnaireResponse(Request $request) {
