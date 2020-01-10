@@ -35,39 +35,39 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($viewModel->questionnaires as $questionnaire)
-                            <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
-                                data-status="{{$questionnaire->status_id}}">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{$questionnaire->title}}</td>
-                                <td>{{ $questionnaire->project_name }}</td>
-                                <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
-                                <td>
-                                    <b>{{$questionnaire->default_language_name}}</b>
-                                    {{--{{count($questionnaire->languages) > 0 ? ', ' : ''}}--}}
-                                    {{$questionnaire->languages}}
-                                </td>
-                                <td>
-                                    <span class="label {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
-                                          title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
-                                </td>
-                                <td>
-                                    <div class="action-btn">
-                                        <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-pencil"></i> Edit questionnaire</a>
-                                    </div>
-                                    <div class="action-btn">
-                                        <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
-                                    </div>
-                                    <div class="action-btn">
-                                        <a href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
-                                    </div>
-                                    <div class="action-btn">
-                                        <a href="javascript:void(0)" class="change-status" data-toggle="modal"
-                                           data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                            @foreach($viewModel->questionnaires as $questionnaire)
+                                <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
+                                    data-status="{{$questionnaire->status_id}}">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{$questionnaire->title}}</td>
+                                    <td>{{ $questionnaire->project_name }}</td>
+                                    <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
+                                    <td>
+                                        <b>{{$questionnaire->default_language_name}}</b>
+                                        {{--{{count($questionnaire->languages) > 0 ? ', ' : ''}}--}}
+                                        {{$questionnaire->languages}}
+                                    </td>
+                                    <td>
+                                        <span class="label {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
+                                              title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-pencil"></i> Edit questionnaire</a>
+                                        </div>
+                                        <div class="action-btn">
+                                            <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
+                                        </div>
+                                        <div class="action-btn">
+                                            <a href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
+                                        </div>
+                                        <div class="action-btn">
+                                            <a href="javascript:void(0)" class="change-status" data-toggle="modal"
+                                               data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
