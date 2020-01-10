@@ -215,6 +215,194 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Active Questionnaire section</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_color">Questionnaire color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_color" type="text" name="lp_questionnaire_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_color') ? old('lp_questionnaire_color') :
+                                                        $viewModel->project->lp_questionnaire_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_btn_color">"Speak up" button text color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_btn_color" type="text" name="lp_questionnaire_btn_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_btn_color') ? old('lp_questionnaire_btn_color') :
+                                                        $viewModel->project->lp_questionnaire_btn_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_btn_bg_color">"Speak up" button background color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_btn_bg_color" type="text" name="lp_questionnaire_btn_bg_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_btn_bg_color') ? old('lp_questionnaire_btn_bg_color') :
+                                                        $viewModel->project->lp_questionnaire_btn_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row image-input-container">
+                                <label class="col-sm-12 control-label">Questionnaire Background Image </label>
+                                <div class="col-sm-12">
+                                    <div class="image-preview-container">
+                                        <img class="selected-image-preview"
+                                             src="{{asset($viewModel->project->lp_questionnaire_img_path)}}"
+                                             alt="Selected questionnaire background image">
+                                    </div>
+                                    <div class="form-group has-feedback input-file-wrapper">
+                                        <small>In order to update the currently selected image, please choose a new
+                                            image by
+                                            clicking the button below.
+                                        </small>
+                                        <input type="file" name="lp_questionnaire_img" class="image-input" accept="image/*">
+                                        <span class="help-block"><strong>{{ $errors->first('lp_questionnaire_img') }}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Questionnaire Goal section</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_goal_bg_color">Goal background color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_goal_bg_color" type="text" name="lp_questionnaire_goal_bg_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_goal_bg_color') ? old('lp_questionnaire_goal_bg_color') :
+                                                        $viewModel->project->lp_questionnaire_goal_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_goal_title_color">Goal title color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_goal_title_color" type="text" name="lp_questionnaire_goal_title_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_goal_title_color') ? old('lp_questionnaire_goal_title_color') :
+                                                        $viewModel->project->lp_questionnaire_goal_title_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_questionnaire_goal_color">Goal text color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_questionnaire_goal_color" type="text" name="lp_questionnaire_goal_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_questionnaire_goal_color') ? old('lp_questionnaire_goal_color') :
+                                                        $viewModel->project->lp_questionnaire_goal_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Newsletter section</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_newsletter_bg_color">Newsletter background color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_newsletter_bg_color" type="text" name="lp_newsletter_bg_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_newsletter_bg_color') ? old('lp_newsletter_bg_color') :
+                                                        $viewModel->project->lp_newsletter_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_newsletter_title_color">Newsletter title color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_newsletter_title_color" type="text" name="lp_newsletter_title_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_newsletter_title_color') ? old('lp_newsletter_title_color') :
+                                                        $viewModel->project->lp_newsletter_title_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_newsletter_color">Newsletter text color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_newsletter_color" type="text" name="lp_newsletter_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_newsletter_color') ? old('lp_newsletter_color') :
+                                                        $viewModel->project->lp_newsletter_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_newsletter_btn_color">Newsletter button text color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_newsletter_btn_color" type="text" name="lp_newsletter_btn_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_newsletter_btn_color') ? old('lp_newsletter_btn_color') :
+                                                        $viewModel->project->lp_newsletter_btn_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-12 control-label" for="lp_newsletter_btn_bg_color">Newsletter button background color (<span
+                                            class="red">*</span>)<br>
+                                </label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="input-group colorpicker-component color-picker">
+                                        <input id="lp_newsletter_btn_bg_color" type="text" name="lp_newsletter_btn_bg_color"
+                                               class="form-control" required
+                                               value="{{ old('lp_newsletter_btn_bg_color') ? old('lp_newsletter_btn_bg_color') :
+                                                        $viewModel->project->lp_newsletter_btn_bg_color  }}"/>
+                                        <span class="input-group-addon"><i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-sm-12 control-label" for="footer">Footer Text (<span
                                             class="red">*</span>)</label>
                                 <div class="col-sm-12">
@@ -259,43 +447,7 @@
                                     <hr/>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h2>Active Questionnaire section</h2>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-12 control-label" for="lp_questionnaire_color">Questionnaire color (<span
-                                            class="red">*</span>)<br>
-                                </label>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="input-group colorpicker-component color-picker">
-                                        <input id="lp_questionnaire_color" type="text" name="lp_questionnaire_color"
-                                               class="form-control" required
-                                               value="{{ old('lp_questionnaire_color') ? old('lp_questionnaire_color') :
-                                                        $viewModel->project->lp_questionnaire_color  }}"/>
-                                        <span class="input-group-addon"><i></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row image-input-container">
-                                <label class="col-sm-12 control-label">Questionnaire Background Image </label>
-                                <div class="col-sm-12">
-                                    <div class="image-preview-container">
-                                        <img class="selected-image-preview"
-                                             src="{{asset($viewModel->project->lp_questionnaire_img_path)}}"
-                                             alt="Selected questionnaire background image">
-                                    </div>
-                                    <div class="form-group has-feedback input-file-wrapper">
-                                        <small>In order to update the currently selected image, please choose a new
-                                            image by
-                                            clicking the button below.
-                                        </small>
-                                        <input type="file" name="lp_questionnaire_img" class="image-input" accept="image/*">
-                                        <span class="help-block"><strong>{{ $errors->first('lp_questionnaire_img') }}</strong></span>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
