@@ -218,7 +218,7 @@ class CrowdSourcingProjectManager
         if(!$project->lp_questionnaire_btn_color)
             $project->lp_questionnaire_btn_color = '#ffffff';
         if(!$project->lp_questionnaire_btn_bg_color)
-            $project->lp_questionnaire_btn_bg_color = '#367fa9';
+            $project->lp_questionnaire_btn_bg_color = '#004f9f';
         if(!$project->lp_questionnaire_goal_title_color)
             $project->lp_questionnaire_goal_title_color = '#076ec1';
         if(!$project->lp_questionnaire_goal_color)
@@ -234,7 +234,7 @@ class CrowdSourcingProjectManager
         if(!$project->lp_newsletter_btn_color)
             $project->lp_newsletter_btn_color = '#ffffff';
         if(!$project->lp_newsletter_btn_bg_color)
-            $project->lp_newsletter_btn_bg_color = '#367fa9';
+            $project->lp_newsletter_btn_bg_color = '#004f9f';
 
         // set default values for images
         if(!$project->img_path)
