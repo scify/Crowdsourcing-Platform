@@ -3,20 +3,25 @@
         @if(!$viewModel->userResponse)
             <a href="javascript:void(0)"
                class="btn btn-primary respond-questionnaire"
+               style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
+                       background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};"
                data-open-on-load={{$viewModel->openQuestionnaireWhenPageLoads?"1":"0"}}
                        data-questionnaire-id="{{$viewModel->questionnaire->id}}"
                data-url="{{route('respond-questionnaire')}}"
                data-toggle="modal" data-target="#questionnaire-modal">
-                Speak up {{--<i class="fa fa-angle-right"></i>--}}
+                Speak up
             </a>
         @else
-            <a href="#questionnaire"
+            <a href="#questionnaire" style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
+                                            background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};"
                class="btn btn-primary respond-questionnaire">Speak up</a>
         @endif
     @else
         <a href="/login?submitQuestionnaire=1&redirectTo={{urlencode($viewModel->project->slug."?open=1")}}"
-           class="btn btn-primary respond-questionnaire">
-            Speak up {{--<i class="fa fa-angle-right"></i>--}}
+           class="btn btn-primary respond-questionnaire"
+           style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
+                   background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};">
+            Speak up
         </a>
     @endif
 @endif

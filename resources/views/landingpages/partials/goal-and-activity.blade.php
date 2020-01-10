@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="goal-title">
-        <h2 class="info">
+        <h2 class="info" style="color: {{ $viewModel->project->lp_questionnaire_goal_title_color }}">
             @if ($viewModel->totalResponses==0)
                 Zero people have spoken up so far. Be the first!
             @else
@@ -16,12 +16,12 @@
         @can("manage-platform")
             <div class="col-xs-9">
                 @if ($viewModel->totalResponses ==0)
-                    <p class="no-activity-found-msg">
+                    <p class="no-activity-found-msg" style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}">
                         No recent activity found
                     </p>
                 @elseif ($viewModel->totalResponses > 0)
                     <div class="activity-title wrapper-title">
-                        <p>Latest contributors</p>
+                        <p style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}">Latest contributors</p>
                     </div>
                     <div class="activity-content">
                         @foreach($viewModel->allResponses as $response)
