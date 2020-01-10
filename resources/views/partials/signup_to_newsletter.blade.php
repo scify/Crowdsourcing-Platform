@@ -1,13 +1,16 @@
-<div class="row" id="newsletter">
+<div class="row" id="newsletter" style="background-color: {{ $viewModel->project->lp_newsletter_bg_color }}">
     <div class="col-md-12 no-padding">
-        <h2>Newsletter</h2>
+        <h2 style="color: {{ $viewModel->project->lp_newsletter_title_color }}">Newsletter</h2>
         <div class="content-container">
-            <p class="text-center">Learn about all our new projects, get updates on active ones and contribute where
-                it is most
-                needed!</p>
-            <div class="sign-up row">
+            <p class="text-center" style="color: {{ $viewModel->project->lp_newsletter_color }}">
+                Learn about all our new projects, get updates on active ones and contribute where it is most
+                needed!
+            </p>
+            <div class="sign-up row" style="background-color: {{ $viewModel->project->lp_newsletter_bg_color }}">
                 <div class="col-md-3" style="float: none; margin: 0 auto;">
-                        <a href="https://ecas.org/#mc_signup" target="_blank" class="btn btn-block btn-primary signup-btn">Sign up!</a>
+                        <a style="background-color: {{ $viewModel->project->lp_newsletter_btn_bg_color }};
+                                color: {{ $viewModel->project->lp_newsletter_btn_color }}"
+                           href="https://ecas.org/#mc_signup" target="_blank" class="btn btn-block btn-primary signup-btn">Sign up!</a>
                 </div>
             </div>
             {{--<div class="sign-up row" data-url="{{route('newsletter')}}">--}}

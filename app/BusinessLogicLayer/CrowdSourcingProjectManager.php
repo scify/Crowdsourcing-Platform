@@ -134,12 +134,25 @@ class CrowdSourcingProjectManager
     }
 
     public function updateCrowdSourcingProject($id, array $attributes) {
+        $project = $this->getCrowdSourcingProject($id);
+
+        // set default values
+        if(!$project->logo_path)
+            $attributes['logo_path'] = '/images/test.png';
+        if(!$project->img_path)
+            $attributes['img_path'] = '/images/test.png';
+        if(!$project->sm_featured_img_path)
+            $attributes['sm_featured_img_path'] = '/images/test.png';
+        if(!$project->lp_questionnaire_img_path)
+            $attributes['lp_questionnaire_img_path'] = '/images/bgsectionnaire.png';
+
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
         return $this->crowdSourcingProjectRepository->update($attributes, $id);
     }
 
     protected function storeProjectRelatedFiles(array $attributes) {
+
         if (isset($attributes['logo'])) {
             $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
         }
