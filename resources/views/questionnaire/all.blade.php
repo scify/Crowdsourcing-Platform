@@ -38,7 +38,7 @@
                         @foreach($viewModel->questionnaires as $questionnaire)
                             <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
                                 data-status="{{$questionnaire->status_id}}">
-                                <td>{{$questionnaire->id}}</td>
+                                <td>{{ $loop->index + 1 }}</td>
                                 <td>{{$questionnaire->title}}</td>
                                 <td>{{ $questionnaire->project_name }}</td>
                                 <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
