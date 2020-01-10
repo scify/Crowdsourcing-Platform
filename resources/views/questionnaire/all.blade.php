@@ -59,7 +59,7 @@
                                         <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
                                     </div>
                                     <div class="action-btn">
-                                        <a href="{{route('reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
+                                        <a href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
                                     </div>
                                     <div class="action-btn">
                                         <a href="javascript:void(0)" class="change-status" data-toggle="modal"
