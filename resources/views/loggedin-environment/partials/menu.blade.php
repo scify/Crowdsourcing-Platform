@@ -54,10 +54,6 @@
                                 class="fa fa-question-circle "></i><span>Manage
                             Questionnaires</span></a>
                 </li>
-                <li class="{{UrlMatchesMenuItem("project/" . DEFAULT_PROJECT_ID . "/reports")}}">
-                    <a href="{{ route('reports', ['id' => DEFAULT_PROJECT_ID]) }}"><i
-                                class="fa fa-line-chart"></i><span>Reports</span></a>
-                </li>
             @endcan
             @can("manage-platform")
                 <li class="header">COMMUNICATION MANAGEMENT</li>
