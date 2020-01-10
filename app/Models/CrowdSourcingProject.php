@@ -26,7 +26,13 @@ class CrowdSourcingProject extends Model
         'logo_path', 'user_creator_id', 'language_id', 'status_id', 'sm_title',
         'sm_description', 'sm_keywords', 'sm_featured_img_path', 'lp_motto_color',
         'lp_about_bg_color', 'lp_about_color', 'lp_questionnaire_img_path',
-        'lp_questionnaire_color', 'lp_footer_bg_color', 'lp_footer_color'
+        'lp_questionnaire_color', 'lp_footer_bg_color', 'lp_footer_color',
+        'lp_questionnaire_btn_color', 'lp_questionnaire_btn_bg_color',
+        'lp_questionnaire_goal_title_color', 'lp_questionnaire_goal_color',
+        'lp_questionnaire_goal_bg_color',
+        'lp_newsletter_title_color', 'lp_newsletter_color',
+        'lp_newsletter_bg_color', 'lp_newsletter_btn_color',
+        'lp_newsletter_btn_bg_color'
     ];
 
     protected $with = ['creator', 'language', 'status'];

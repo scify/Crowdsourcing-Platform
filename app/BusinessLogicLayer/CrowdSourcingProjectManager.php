@@ -202,6 +202,26 @@ class CrowdSourcingProjectManager
             $project->lp_footer_bg_color = '#ffffff';
         if(!$project->lp_footer_color)
             $project->lp_footer_color = '#000000';
+        if(!$project->lp_questionnaire_btn_color)
+            $project->lp_questionnaire_btn_color = '#ffffff';
+        if(!$project->lp_questionnaire_btn_bg_color)
+            $project->lp_questionnaire_btn_bg_color = '#367fa9';
+        if(!$project->lp_questionnaire_goal_title_color)
+            $project->lp_questionnaire_goal_title_color = '#076ec1';
+        if(!$project->lp_questionnaire_goal_color)
+            $project->lp_questionnaire_goal_color = '#333333';
+        if(!$project->lp_questionnaire_goal_bg_color)
+            $project->lp_questionnaire_goal_bg_color = '#ffffff';
+        if(!$project->lp_newsletter_title_color)
+            $project->lp_newsletter_title_color = '#076ec1';
+        if(!$project->lp_newsletter_color)
+            $project->lp_newsletter_color = '#333333';
+        if(!$project->lp_newsletter_bg_color)
+            $project->lp_newsletter_bg_color = '#f3fafe';
+        if(!$project->lp_newsletter_btn_color)
+            $project->lp_newsletter_btn_color = '#ffffff';
+        if(!$project->lp_newsletter_btn_bg_color)
+            $project->lp_newsletter_btn_bg_color = '#367fa9';
 
         // set default values for images
         if(!$project->img_path)
@@ -212,6 +232,7 @@ class CrowdSourcingProjectManager
             $project->sm_featured_img_path = '/images/test.png';
         if(!$project->lp_questionnaire_img_path)
             $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
+
 
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
         return new CreateEditCrowdSourcingProject($project, $statusesLkp);
