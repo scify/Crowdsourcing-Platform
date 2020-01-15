@@ -2,9 +2,7 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\Models\User;
-use App\Models\ViewModels\DashboardInfo;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
@@ -13,7 +11,6 @@ use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +22,6 @@ class UserManager {
     private $questionnaireManager;
     private $projectRepository;
     private $mailChimpManager;
-    private $gamificationManager;
     private $crowdSourcingProjectManager;
     private $webSessionManager;
     private $questionnaireResponseManager;
@@ -38,37 +34,19 @@ class UserManager {
                                 CrowdSourcingProjectRepository $projectRepository,
                                 CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 MailChimpAdaptor $mailChimpManager,
-                                GamificationManager $gamificationManager,
                                 WebSessionManager $webSessionManager) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->questionnaireManager = $questionnaireManager;
         $this->projectRepository = $projectRepository;
         $this->mailChimpManager = $mailChimpManager;
-        $this->gamificationManager = $gamificationManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->webSessionManager = $webSessionManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
-    function userIsPlatformAdmin($user) {
-        return $this->userRepository->userIsPlatformAdmin($user);
-    }
-
     public function getUserProfile($user) {
         return new UserProfile($user);
-    }
-
-    public function getDashboardViewModel() {
-        $projects = $this->crowdSourcingProjectManager->getAllActiveCrowdSourcingProjects();
-        $gamificationBadgesForUser = $this->gamificationManager->getGamificationBadgesForUser(Auth::id());
-        $gamificationBadgesViewModel = $this->gamificationManager->getGamificationBadgesViewModels($gamificationBadgesForUser);
-        $gamificationNextStepViewModel = $this->gamificationManager->getGamificationNextStepViewModel($gamificationBadgesForUser);
-
-        foreach ($projects as $project) {
-            $project->projectGoalVM = $this->crowdSourcingProjectManager->getCrowdSourcingProjectGoalViewModel($project->id);
-        }
-        return new DashboardInfo($projects, $gamificationBadgesViewModel, $gamificationNextStepViewModel);
     }
 
     public function getUser($userId) {
