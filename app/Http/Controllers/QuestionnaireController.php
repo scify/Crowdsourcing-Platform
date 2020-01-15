@@ -1,34 +1,28 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/6/18
- * Time: 5:04 PM
- */
 
 namespace App\Http\Controllers;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\gamification\GamificationManager;
+use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\QuestionnaireManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
+use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class QuestionnaireController extends Controller
 {
-    private $questionnaireManager;
-    private $questionnaireShareManager;
-    private $gamificationManager;
+    protected $questionnaireManager;
+    protected $questionnaireShareManager;
+    protected $platformWideGamificationBadgesProvider;
 
     public function __construct(QuestionnaireManager $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                GamificationManager $gamificationManager)
+                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider)
     {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
-        $this->gamificationManager = $gamificationManager;
+        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
     }
 
     public function manageQuestionnaires()
@@ -70,7 +64,7 @@ class QuestionnaireController extends Controller
 
     public function storeQuestionnaireResponse(Request $request) {
         $this->questionnaireManager->storeQuestionnaireResponse($request->all());
-        $badge = $this->gamificationManager->getBadgeViewModel($this->gamificationManager->getContributorBadge(\Auth::id()));
+        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge(\Auth::id()));
         return response()->json(['status' => '__SUCCESS', 'badgeHTML' => (String) view('gamification.badge-single', compact('badge'))]);
     }
 
