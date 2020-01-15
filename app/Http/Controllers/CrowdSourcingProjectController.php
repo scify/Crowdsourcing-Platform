@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
-use App\Models\ViewModels\AllCrowdSourcingProjects;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -19,15 +17,13 @@ class CrowdSourcingProjectController extends Controller
     private $crowdSourcingProjectManager;
     private $questionnaireShareManager;
     private $userManager;
-    private $gamificationManager;
 
     public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                UserManager $userManager, GamificationManager $gamificationManager) {
+                                UserManager $userManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->userManager = $userManager;
-        $this->gamificationManager = $gamificationManager;
     }
 
     public function index() {
@@ -113,7 +109,7 @@ class CrowdSourcingProjectController extends Controller
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open, $project_slug);
             if (isset($request->questionnaireId) && isset($request->referrerId))
-                $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->gamificationManager, $this->userManager->getUser($request->referrerId));
+                $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->userManager->getUser($request->referrerId));
             if (isset($request->referrerId))
                 $this->userManager->setReferrerIdToWebSession($request->referrerId);
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
