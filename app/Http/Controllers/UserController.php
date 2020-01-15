@@ -3,21 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\UserDashboardManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\OperationResponse;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
     private $userManager;
     private $questionnaireResponseManager;
+    protected $userDashboardManager;
 
-    public function __construct(UserManager $userManager, QuestionnaireResponseManager $questionnaireResponseManager)
+    public function __construct(UserManager $userManager,
+                                QuestionnaireResponseManager $questionnaireResponseManager,
+                                UserDashboardManager $userDashboardManager)
     {
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
+        $this->userDashboardManager = $userDashboardManager;
     }
 
     public function home()
@@ -27,7 +32,7 @@ class UserController extends Controller
 
     public function myDashboard()
     {
-        $dashboardViewModel = $this->userManager->getDashboardViewModel();
+        $dashboardViewModel = $this->userDashboardManager->getUserDashboardViewModel(Auth::id());
         return view('my-dashboard', ['viewModel' => $dashboardViewModel]);
     }
 
