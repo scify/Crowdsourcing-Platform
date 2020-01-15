@@ -112,15 +112,20 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function findBy($attribute, $value, $columns = array('*')) {
-        $model = $this->modelInstance->where($attribute, '=', $value)->first($columns);
+        $model = $this->modelInstance->where($attribute, '=', $value)->get($columns);
         if(!$model)
             throw new ModelNotFoundException("Model of type " . $this->getModelClassName() .
                 " with attribute "  . $attribute . " equal to " . $value . " not found");
         return $model;
     }
 
+    public function exists($whereArray): bool {
+        $models = $this->where($whereArray);
+        return !$models->isEmpty();
+    }
+
     public function where($whereArray, $columns = array('*')) {
-        return $this->modelInstance->where($whereArray)->first($columns);
+        return $this->modelInstance->where($whereArray)->get($columns);
     }
 
     /**
