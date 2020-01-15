@@ -3,7 +3,7 @@
 namespace App\Models\ViewModels;
 
 
-class CrowdSourcingProjectGoal {
+class QuestionnaireProjectGoal {
 
     public $responsesNeededToReachGoal = 0;
     public $targetAchievedPercentage = 0;
@@ -14,6 +14,5 @@ class CrowdSourcingProjectGoal {
         $this->targetAchievedPercentage = $targetAchievedPercentage;
         $this->goal = $goal;
     }
-
 
 }
