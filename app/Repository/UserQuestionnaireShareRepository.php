@@ -16,9 +16,12 @@ class UserQuestionnaireShareRepository extends Repository {
         return UserQuestionnaireShare::class;
     }
 
-    function getUserQuestionnaireSharesForUser($userId)
-    {
+    public function getUserQuestionnaireSharesForUser($userId) {
         return $this->getModelInstance()->where('user_id', $userId)->get();
+    }
+
+    public function getUserQuestionnaireSharesForUserForQuestionnaire($questionnaireId, $userId) {
+        return $this->getModelInstance()->where(['user_id' => $userId, 'questionnaire_id' => $questionnaireId])->get();
     }
 
     public function questionnaireShareExists($questionnaireId, $userId) {
