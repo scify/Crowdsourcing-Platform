@@ -1,13 +1,9 @@
 <?php
 
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\gamification;
 
 
-use App\BusinessLogicLayer\gamification\CommunicatorBadge;
-use App\BusinessLogicLayer\gamification\ContributorBadge;
-use App\BusinessLogicLayer\gamification\GamificationBadge;
-use App\BusinessLogicLayer\gamification\InfluencerBadge;
 use App\Models\Questionnaire;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireResponseReferralRepository;
