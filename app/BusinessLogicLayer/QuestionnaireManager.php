@@ -8,15 +8,12 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\BusinessLogicLayer\gamification\GamificationManager;
 use App\Models\Language;
 use App\Models\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Models\ViewModels\reports\QuestionnaireReportResults;
-use App\Notifications\QuestionnaireResponded;
-use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireResponseAnswerRepository;
@@ -25,14 +22,12 @@ use App\Repository\UserRepository;
 use App\Utils\Translator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 class QuestionnaireManager {
     private $questionnaireRepository;
     private $languageManager;
     private $translator;
-    private $gamificationManager;
     private $webSessionManager;
     private $questionnaireResponseReferralManager;
     private $userRepository;
@@ -40,22 +35,22 @@ class QuestionnaireManager {
     private $questionnaireResponseAnswerRepository;
     private $questionnaireTranslationRepository;
     protected $crowdSourcingProjectAccessManager;
+    protected $questionnaireActionHandler;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
                                 Translator $translator,
-                                GamificationManager $gamificationManager,
                                 WebSessionManager $webSessionManager,
                                 UserRepository $userRepository,
                                 QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
                                 QuestionnaireReportRepository $questionnaireReportRepository,
                                 QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager) {
+                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
+                                QuestionnaireActionHandler $questionnaireActionHandler) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
-        $this->gamificationManager = $gamificationManager;
         $this->webSessionManager = $webSessionManager;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->userRepository = $userRepository;
@@ -63,6 +58,7 @@ class QuestionnaireManager {
         $this->questionnaireResponseAnswerRepository = $questionnaireResponseAnswerRepository;
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
+        $this->questionnaireActionHandler = $questionnaireActionHandler;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null) {
@@ -91,10 +87,6 @@ class QuestionnaireManager {
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
-    public function getResponsesGivenByUser($userId) {
-        return $this->questionnaireRepository->getAllResponsesGivenByUser($userId);
-    }
-
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
         $comments = is_null($comments) ? "" : $comments;
         $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
@@ -118,31 +110,9 @@ class QuestionnaireManager {
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
         $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
-        $this->awardContributorBadgeAndNotifyUser($questionnaire, $user);
+        $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $user);
         // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-        $this->handleQuestionnaireReferrer($questionnaire, $user);
-    }
-
-    private function awardContributorBadgeAndNotifyUser($questionnaire, $user) {
-        $contributorBadge = $this->gamificationManager->getContributorBadge($user->id);
-        try {
-            $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, $this->gamificationManager->getBadgeViewModel($contributorBadge)));
-        } catch (\Exception $e) {
-            Log::error($e);
-        }
-    }
-
-    private function handleQuestionnaireReferrer($questionnaire, $user) {
-        $referrerId = $this->webSessionManager->getReferredId();
-        if ($referrerId) {
-            $referrer = $this->userRepository->getUser($referrerId);
-            if ($referrer) {
-                $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
-                $influencerBadge = $this->gamificationManager->getInfluencerBadge($referrer->id, $questionnaire);
-                $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, $this->gamificationManager->getBadgeViewModel($influencerBadge)));
-                $this->webSessionManager->setReferrerId(null);
-            }
-        }
+        $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
     }
 
     public function getAutomaticTranslationForString($languageCodeToTranslateTo, $text) {
