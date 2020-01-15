@@ -5,20 +5,17 @@ namespace App\BusinessLogicLayer\gamification;
 
 class InfluencerBadge extends GamificationBadge {
 
-    public $numOfQuestionnaireReferralsForActiveQuestionnaire;
-    public $percentageForActiveQuestionnaire;
+    public $questionnaireReferralsNum;
 
-    public function __construct(int $totalQuestionnaireReferrals, int $numOfQuestionnaireReferralsForActiveQuestionnaire, $percentageForActiveQuestionnaire) {
+    public function __construct(int $questionnaireReferralsNum) {
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
         $this->color = '#f44336';
-        $this->numOfQuestionnaireReferralsForActiveQuestionnaire = $numOfQuestionnaireReferralsForActiveQuestionnaire;
-        $this->percentageForActiveQuestionnaire = $percentageForActiveQuestionnaire;
-        $numberOfActionsPerformed = $totalQuestionnaireReferrals;
+        $this->questionnaireReferralsNum = $questionnaireReferralsNum;
 
         parent::__construct("Influencer",
             "influencer.png",
             "In order to gain this badge, people have to respond to your social posts and contribute!",
-            $numberOfActionsPerformed);
+            $questionnaireReferralsNum);
     }
 
     public function getBadgeMessageForLevel() {
@@ -33,15 +30,15 @@ class InfluencerBadge extends GamificationBadge {
     }
 
     public function getNextStepMessage() {
-        if(!$this->percentageForActiveQuestionnaire)
+        if(!$this->questionnaireReferralsNum)
             $title = 'Zero people have responded to your call so far.<br>Write a compelling message and invite more friends!';
-        else if($this->percentageForActiveQuestionnaire < 2) {
-            $peopleStr = $this->numOfQuestionnaireReferralsForActiveQuestionnaire == 1 ? ' person has responded ' : ' people have responded ';
-            $title = 'Good job! ' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' to your call so far.<br>Write a compelling message and invite more friends!';
+        else if($this->questionnaireReferralsNum < 2) {
+            $peopleStr = $this->questionnaireReferralsNum == 1 ? ' person has responded ' : ' people have responded ';
+            $title = 'Good job! ' . $this->questionnaireReferralsNum . $peopleStr . ' to your call so far.<br>Write a compelling message and invite more friends!';
         }
         else {
-            $peopleStr = $this->numOfQuestionnaireReferralsForActiveQuestionnaire == 1 ? ' person has responded ' : ' people have responded ';
-            $title = 'Wow, you are a true influencer!<br>' . $this->numOfQuestionnaireReferralsForActiveQuestionnaire . $peopleStr . ' to your call so far. Write a compelling message and invite more friends!';
+            $peopleStr = $this->questionnaireReferralsNum == 1 ? ' person has responded ' : ' people have responded ';
+            $title = 'Wow, you are a true influencer!<br>' . $this->questionnaireReferralsNum . $peopleStr . ' to your call so far. Write a compelling message and invite more friends!';
         }
 
         return $title;
