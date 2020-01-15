@@ -13,10 +13,6 @@ class QuestionnaireResponseReferralManager {
         $this->questionnaireResponseReferralRepository = $questionnaireResponseReferralRepository;
     }
 
-    public function getQuestionnaireReferralsForUser($userId) {
-        return $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUser($userId);
-    }
-
     /**
      * @param $questionnaireId int the id of the questionnaire answered
      * @param $respondentId int the id of the user who responded
@@ -29,9 +25,5 @@ class QuestionnaireResponseReferralManager {
             'respondent_id' => $respondentId,
             'referrer_id' => $referrerId
         ]);
-    }
-
-    public function getQuestionnaireReferralsForUserForQuestionnaire(int $questionnaireId, int $userId) {
-        return $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUserForQuestionnaire($questionnaireId, $userId);
     }
 }
