@@ -17,10 +17,8 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-6 text-center col-main">
+                        <div class="col-md-12 text-center col-main">
                             @if($viewModel->projects->isEmpty())
-
-
                                 <div class="no-projects-found">There are currently no active projects.
                                 </div>
                             @else
@@ -37,13 +35,16 @@
                                             </td>
                                             <td>
                                                 <div class="progress-container">
-                                                    @if($project->projectGoalVM)
-                                                        @include('landingpages.partials.project-goal', ['projectGoalVM' => $project->projectGoalVM, 'projectId' => $project->id])
+                                                    @if($project->currentQuestionnaireGoalVM)
+                                                        @include('landingpages.partials.project-goal', ['viewModel' => $project->currentQuestionnaireGoalVM, 'projectId' => $project->id])
                                                     @else
                                                         <p>This project does not have an active questionnaire yet.</p>
                                                     @endif
                                                 </div>
 
+                                            </td>
+                                            <td>
+                                                @include('gamification.next-step', ['nextStepVM' => $project->gamificationNextStepVM])
                                             </td>
                                         </tr>
                                     @endforeach
@@ -52,7 +53,6 @@
                             @endif
                         </div>
                         <div class="col-md-6 col-main">
-                            @include('gamification.next-step', ['nextStepVM' => $viewModel->gamificationNextStepVM])
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
     <div class="row gamification-box">
         <div class="col-lg-7" style="margin: 10px auto; float: none !important;">
             <div id="awards">
-                @include('gamification.user-badges', ['badgesVM' => $viewModel->badgesVM])
+                @include('gamification.user-badges', ['badgesVM' => $viewModel->platformWideGamificationBadgesVM])
             </div>
         </div>
     </div>
