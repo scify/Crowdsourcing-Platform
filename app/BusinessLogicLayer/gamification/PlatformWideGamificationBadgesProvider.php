@@ -9,6 +9,7 @@ use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireResponseReferralRepository;
+use App\Repository\QuestionnaireResponseRepository;
 use App\Repository\UserQuestionnaireShareRepository;
 use Illuminate\Support\Collection;
 
@@ -17,14 +18,17 @@ class PlatformWideGamificationBadgesProvider {
     protected $questionnaireRepository;
     protected $userQuestionnaireShareRepository;
     protected $questionnaireResponseReferralRepository;
+    protected $questionnaireResponseRepository;
 
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
-                                QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository) {
+                                QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
+                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->userQuestionnaireShareRepository = $userQuestionnaireShareRepository;
         $this->questionnaireResponseReferralRepository = $questionnaireResponseReferralRepository;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
     public function getPlatformWideGamificationBadgesListVM(int $userId): GamificationBadgesWithLevels {
@@ -44,18 +48,32 @@ class PlatformWideGamificationBadgesProvider {
 
     public function getContributorBadge($userId) {
         $allResponses = $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count();
-        return new ContributorBadge($allResponses);
+        return new ContributorBadge($allResponses, $this->userHasAchievedContributorBadge($userId));
     }
 
     public function getCommunicatorBadge($userId) {
-        return new CommunicatorBadge($this->userQuestionnaireShareRepository->getUserQuestionnaireSharesForUser($userId)->count(), $userId);
+        return new CommunicatorBadge($this->userQuestionnaireShareRepository
+            ->getUserQuestionnaireSharesForUser($userId)->count(),
+            $this->userHasAchievedCommunicatorBadge($userId));
     }
 
     public function getInfluencerBadge($userId) {
         $numberOfActionsPerformedForQuestionnaire = null;
         $percentageForActiveQuestionnaire = null;
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUser($userId)->count();
-        return new InfluencerBadge($totalQuestionnaireReferrals);
+        return new InfluencerBadge($totalQuestionnaireReferrals, $this->userHasAchievedInfluencerBadge($userId));
+    }
+
+    public function userHasAchievedContributorBadge($userId):bool {
+        return $this->questionnaireResponseRepository->exists(['user_id' => $userId]);
+    }
+
+    public function userHasAchievedCommunicatorBadge($userId): bool {
+        return $this->userQuestionnaireShareRepository->exists(['user_id' => $userId]);
+    }
+
+    public function userHasAchievedInfluencerBadge($userId): bool {
+        return $this->questionnaireResponseReferralRepository->exists(['referrer_id' => $userId]);
     }
 
 }

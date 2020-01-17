@@ -7,15 +7,15 @@ class InfluencerBadge extends GamificationBadge {
 
     public $questionnaireReferralsNum;
 
-    public function __construct(int $questionnaireReferralsNum) {
+    public function __construct(int $questionnaireReferralsNum, $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
         $this->color = '#f44336';
         $this->questionnaireReferralsNum = $questionnaireReferralsNum;
-
         parent::__construct("Influencer",
             "influencer.png",
             "In order to gain this badge, people have to respond to your social posts and contribute!",
-            $questionnaireReferralsNum);
+            $questionnaireReferralsNum,
+            $userHasAchievedBadgePlatformWide);
     }
 
     public function getBadgeMessageForLevel() {
@@ -41,6 +41,8 @@ class InfluencerBadge extends GamificationBadge {
             $title = 'Wow, you are a true influencer!<br>' . $this->questionnaireReferralsNum . $peopleStr . ' to your call so far. Write a compelling message and invite more friends!';
         }
 
+        if($this->userHasAchievedBadgePlatformWide)
+            $title .= '<br>You are close to become a level <b>' . ($this->calculateLevel() + 1) . '</b> Influencer!';
         return $title;
     }
 }

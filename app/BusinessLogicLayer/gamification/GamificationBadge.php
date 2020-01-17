@@ -13,8 +13,10 @@ abstract class GamificationBadge {
     public $imageFileName;
     public $statusMessage;
     public $color;
+    protected $userHasAchievedBadgePlatformWide;
 
-    public function __construct($name, $imageFileName, $requiredActionMessage, $numberOfActionsPerformed, $pointsPerAction = 1) {
+    public function __construct($name, $imageFileName, $requiredActionMessage,
+                                $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction = 1) {
         $this->name = $name;
         $this->imageFileName = $imageFileName;
         $this->numberOfActionsPerformed = $numberOfActionsPerformed;
@@ -22,13 +24,14 @@ abstract class GamificationBadge {
         $this->level = $this->calculateLevel();
         $this->messageForLevel = $this->getBadgeMessageForLevel();
         $this->statusMessage = $this->calculateStatusMessage($requiredActionMessage);
+        $this->userHasAchievedBadgePlatformWide = $userHasAchievedBadgePlatformWide;
     }
 
     abstract protected function getBadgeMessageForLevel();
 
     abstract public function getEmailBody();
 
-    private function calculateLevel() {
+    protected function calculateLevel() {
         return $this->numberOfActionsPerformed * $this->pointsPerAction;
     }
 

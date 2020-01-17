@@ -12,7 +12,7 @@ class AllBadgesCompletedBadge extends GamificationBadge {
         parent::__construct("All badges completed",
             "all_badges_completed.png",
             "Congratulations! You received all available badges!",
-            0);
+            0, true);
     }
 
     public function getBadgeMessageForLevel() {

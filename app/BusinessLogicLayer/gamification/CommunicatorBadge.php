@@ -5,14 +5,14 @@ namespace App\BusinessLogicLayer\gamification;
 
 class CommunicatorBadge extends GamificationBadge {
 
-    public function __construct(int $questionnairesSharedByUser, $userId) {
+    public function __construct(int $questionnairesSharedByUser, $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID;
         $this->color = '#4CAF50';
         $numberOfActionsPerformed = $questionnairesSharedByUser;
         parent::__construct("Communicator",
             "communicator.png",
             "Gain this badge, by inviting more people to participate. Share to Facebook and Twitter!",
-            $numberOfActionsPerformed);
+            $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide);
     }
 
     protected function getBadgeMessageForLevel() {
@@ -29,6 +29,8 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     public function getNextStepMessage() {
+        if($this->userHasAchievedBadgePlatformWide)
+            return 'Invite more friends to answer<br>and become a level <b>' . ($this->calculateLevel() + 1) . '</b> Communicator!';
         return 'Invite your friends to answer, and get the "Communicator" badge!';
     }
 }
