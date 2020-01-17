@@ -7,7 +7,6 @@ use App\Models\CrowdSourcingProject;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
-use App\Models\ViewModels\CrowdSourcingProjectGoal;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
 use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
@@ -30,6 +29,8 @@ class CrowdSourcingProjectManager
     protected $crowdSourcingProjectStatusManager;
     protected $crowdSourcingProjectStatusHistoryRepository;
     protected $crowdSourcingProjectAccessManager;
+    protected $questionnaireGoalManager;
+    protected $currentQuestionnaireProvider;
 
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
@@ -37,7 +38,9 @@ class CrowdSourcingProjectManager
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository)
+                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
+                                QuestionnaireGoalManager $questionnaireGoalManager,
+                                CurrentQuestionnaireProvider $currentQuestionnaireProvider)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
@@ -45,6 +48,8 @@ class CrowdSourcingProjectManager
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
         $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
+        $this->questionnaireGoalManager = $questionnaireGoalManager;
+        $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
     }
 
     public function getAllCrowdSourcingProjects(): Collection
@@ -58,7 +63,7 @@ class CrowdSourcingProjectManager
     }
 
     public function getCrowdSourcingProjectBySlug($project_slug) {
-        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug)->first();
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug): CrowdSourcingProjectForLandingPage {
@@ -66,15 +71,17 @@ class CrowdSourcingProjectManager
 
         $questionnaire = null;
         $userResponse = null;
+        $questionnaireGoalVM = null;
         $allResponses = collect([]);
         $allLanguagesForQuestionnaire = collect([]);
 
         if($questionnaireId)
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         else
-            $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($project->id, Auth::id());
+            $questionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id, Auth::id());
 
         if ($questionnaire) {
+            $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
             $allLanguagesForQuestionnaire = $this->questionnaireTranslationRepository->getAvailableLanguagesForQuestionnaire($questionnaire);
@@ -82,29 +89,16 @@ class CrowdSourcingProjectManager
                 $openQuestionnaireWhenPageLoads = false; //user has already responded
         }
 
-        $projectGoalVM = $this->getCrowdSourcingProjectGoalViewModel($project->id);
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
         return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
             $userResponse,
             $allResponses,
             $allLanguagesForQuestionnaire,
             $openQuestionnaireWhenPageLoads,
-            $projectGoalVM,
+            $questionnaireGoalVM,
             $socialMediaMetadataVM);
     }
 
-    public function getCrowdSourcingProjectGoalViewModel(int $projectId) {
-        $questionnaire = $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, Auth::id());
-        if(!$questionnaire)
-            return null;
-
-        $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
-        $responsesNeededToReachGoal = $questionnaire->goal - $allResponses->count();
-        $targetAchievedPercentage = round($allResponses->count() / $questionnaire->goal * 100, 1);
-        $goal = $questionnaire->goal;
-
-        return new CrowdSourcingProjectGoal($responsesNeededToReachGoal, $targetAchievedPercentage, $goal);
-    }
 
     public function getSocialMediaMetadataViewModel(CrowdSourcingProject $project): CrowdSourcingProjectSocialMediaMetadata {
         return new CrowdSourcingProjectSocialMediaMetadata(
@@ -178,10 +172,6 @@ class CrowdSourcingProjectManager
         ]);
     }
 
-    public function getActiveQuestionnaireForProject($projectId = DEFAULT_PROJECT_ID) {
-        return $this->questionnaireRepository->getActiveQuestionnaireForProject($projectId, Auth::id());
-    }
-
     public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null) {
         $allProjects = $this->getAllCrowdSourcingProjects();
         $allQuestionnaires = $this->questionnaireRepository->all();
@@ -190,11 +180,6 @@ class CrowdSourcingProjectManager
 
     public function getDefaultCrowdsourcingProject() {
         return $this->getCrowdSourcingProject(DEFAULT_PROJECT_ID);
-    }
-
-    // TODO this method should return only the active projects
-    public function getAllActiveCrowdSourcingProjects() {
-        return $this->getAllCrowdSourcingProjects();
     }
 
     public function getCreateEditProjectViewModel(int $id = null) {

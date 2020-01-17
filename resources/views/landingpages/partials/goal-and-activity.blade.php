@@ -44,9 +44,9 @@
         @can("manage-platform")
             <?php $class = '' ?>
         @endcan
-        @if($viewModel->projectGoalVM)
+        @if($viewModel->questionnaireGoalVM)
             <div class="col-xs-3 text-center {{ $class }}">
-                @include('landingpages.partials.project-goal', ['projectGoalVM' => $viewModel->projectGoalVM, 'projectId' => $viewModel->project->id])
+                @include('landingpages.partials.project-goal', ['viewModel' => $viewModel->questionnaireGoalVM, 'projectId' => $viewModel->project->id])
             </div>
         @endif
     </div>
