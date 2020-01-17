@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Models\QuestionnaireResponseReferral;
 
-class QuestionnaireResponseReferralRepository {
+class QuestionnaireResponseReferralRepository extends Repository {
 
     function getQuestionnaireReferralsForUser($userId) {
         return QuestionnaireResponseReferral::where('referrer_id', $userId)->get();
@@ -23,5 +23,9 @@ class QuestionnaireResponseReferralRepository {
 
     public function getQuestionnaireReferralsForUserForQuestionnaire(int $questionnaireId, int $userId) {
         return QuestionnaireResponseReferral::where(['referrer_id' => $userId, 'questionnaire_id' => $questionnaireId])->get();
+    }
+
+    function getModelClassName() {
+        return QuestionnaireResponseReferral::class;
     }
 }
