@@ -49,6 +49,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   width: 100%;
 }
 
+table {
+  tr {
+    td.vertical-middle {
+      vertical-align: middle;
+    }
+  }
+}
+
 @media only screen and (max-width : 600px) {
   .main-header {
     display: inline-block;

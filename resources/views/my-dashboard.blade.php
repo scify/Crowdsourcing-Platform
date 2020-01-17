@@ -17,42 +17,41 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-12 text-center col-main">
-                            @if($viewModel->projects->isEmpty())
-                                <div class="no-projects-found">There are currently no active projects.
-                                </div>
-                            @else
-                                <table id="available-projects" class="table table-hover" cellspacing="0"
-                                       style="width: 100%;">
-                                    <tbody>
-                                    @foreach($viewModel->projects as $project)
-                                        <tr>
-                                            <td class="logo-column">
-                                                <div><a href="{{ route('project.landing-page', $project->slug) }}"> <img
-                                                                height="70" alt="{{$project->name}}"
-                                                                src="{{asset($project->logo_path)}}"></a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="progress-container">
-                                                    @if($project->currentQuestionnaireGoalVM)
-                                                        @include('landingpages.partials.project-goal', ['viewModel' => $project->currentQuestionnaireGoalVM, 'projectId' => $project->id])
-                                                    @else
-                                                        <p>This project does not have an active questionnaire yet.</p>
-                                                    @endif
-                                                </div>
+                        <div class="col-md-12 text-center">
+                            <div class="container-fluid table-responsive">
+                                @if($viewModel->projects->isEmpty())
+                                    <div class="no-projects-found">There are currently no active projects.
+                                    </div>
+                                @else
+                                    <table id="available-projects" class="row table table-hover">
+                                        <tbody>
+                                        @foreach($viewModel->projects as $project)
+                                            <tr>
+                                                <td class="col-md-3 col-sm-6 vertical-middle">
+                                                    <div><a href="{{ route('project.landing-page', $project->slug) }}"> <img
+                                                                    height="150" alt="{{$project->name}}"
+                                                                    src="{{asset($project->logo_path)}}"></a>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-3 col-sm-6 vertical-middle">
+                                                    <div class="progress-container">
+                                                        @if($project->currentQuestionnaireGoalVM)
+                                                            @include('landingpages.partials.project-goal', ['viewModel' => $project->currentQuestionnaireGoalVM, 'projectId' => $project->id])
+                                                        @else
+                                                            <p>This project does not have an active questionnaire yet.</p>
+                                                        @endif
+                                                    </div>
 
-                                            </td>
-                                            <td>
-                                                @include('gamification.next-step', ['nextStepVM' => $project->gamificationNextStepVM])
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            @endif
-                        </div>
-                        <div class="col-md-6 col-main">
+                                                </td>
+                                                <td class="col-md-6 col-sm-12 vertical-middle">
+                                                    @include('gamification.next-step', ['nextStepVM' => $project->gamificationNextStepVM])
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
