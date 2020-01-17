@@ -40,7 +40,7 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
             $this->badgeVM,
             'Thank you for your referral!',
             'You are making an impact!',
-            'Someone answered to a questionnaire you shared!<br>"' . $this->questionnaire->title . '".<br>',
+            'Someone answered to a questionnaire you shared!<br>"<b>' . $this->questionnaire->title . '</b>".<br>',
             $this->badge->getEmailBody(),
             '',
             'Increase your impact',

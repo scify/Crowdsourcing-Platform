@@ -40,7 +40,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
             $this->badgeVM,
             'Thank you for your contribution!',
             'Hello!',
-            'Thank you for taking the time to answer our questionnaire: "' . $this->questionnaire->title . '". This really means a lot to us!'
+            'Thank you for taking the time to answer our questionnaire: "<b>' . $this->questionnaire->title . '</b>". This really means a lot to us!'
             .'<br><br>Thanks to your contribution we are one step closer to understanding the type of obstacles EU citizens encounter when moving within the EU and engaging in political life. ',
             $this->badge->getEmailBody(),
             'If you have any further questions, or would like more information about ECAS\' work in the field of EU Rights and Digital Democracy do not hesitate to <span style="text-decoration: underline">get in touch</span> with us or subscribe to our newsletter via our <a href="https://ecas.org/" target="_blank">website!</a>',
