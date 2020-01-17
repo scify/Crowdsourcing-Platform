@@ -24,6 +24,6 @@ class AllBadgesCompletedBadge extends GamificationBadge {
     }
 
     public function getNextStepMessage() {
-        return "Congratulations! You have received all available badges for this questionnaire! You are an all-star contributor!";
+        return "Congratulations! You have received all available badges for this questionnaire! You are an all-star crowd-sourcer!";
     }
 }
