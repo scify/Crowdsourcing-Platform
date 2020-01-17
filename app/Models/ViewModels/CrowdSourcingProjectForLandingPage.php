@@ -12,7 +12,7 @@ class CrowdSourcingProjectForLandingPage
     public $allLanguagesForQuestionnaire;
     public $totalResponses;
     public $openQuestionnaireWhenPageLoads = false;
-    public $projectGoalVM;
+    public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
 
     public function __construct($project, $questionnaire,
@@ -20,7 +20,7 @@ class CrowdSourcingProjectForLandingPage
                                 $allResponses,
                                 $allLanguagesForQuestionnaire,
                                 $openQuestionnaireWhenPageLoads,
-                                $projectGoalVM,
+                                $questionnaireGoalVM,
                                 $socialMediaMetadataVM)
     {
         $this->project = $project;
@@ -29,7 +29,7 @@ class CrowdSourcingProjectForLandingPage
         $this->allResponses = $allResponses;
         $this->allLanguagesForQuestionnaire = $allLanguagesForQuestionnaire;
         $this->totalResponses = $allResponses->count();
-        $this->projectGoalVM = $projectGoalVM;
+        $this->questionnaireGoalVM = $questionnaireGoalVM;
         $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
     }
