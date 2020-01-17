@@ -48,7 +48,7 @@ class QuestionnaireActionHandler {
         $referrerId = $this->webSessionManager->getReferredId();
         if ($referrerId) {
             $referrer = $this->userRepository->getUser($referrerId);
-            if ($referrer) {
+            if ($referrer && $referrerId !== $user->id) {
                 $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
                 $influencerBadge = $this->platformWideGamificationBadgesProvider->getInfluencerBadge($referrer->id);
                 $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, new GamificationBadgeVM($influencerBadge)));
