@@ -3,6 +3,8 @@
 namespace App\Notifications;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
+use GPBMetadata\Google\Api\Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,10 +12,14 @@ use Illuminate\Notifications\Messages\MailMessage;
 class UserRegistered extends Notification
 {
     use Queueable;
-    private $crowdSourcingProjectManager;
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager)
+    protected $crowdSourcingProjectManager;
+    protected $currentQuestionnaireProvider;
+
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
+                                CurrentQuestionnaireProvider $currentQuestionnaireProvider)
     {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
     }
 
     /**
@@ -35,8 +41,8 @@ class UserRegistered extends Notification
      */
     public function toMail($notifiable)
     {
-        $activeQuestionnaire = $this->crowdSourcingProjectManager->getActiveQuestionnaireForProject();
         $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject();
+        $activeQuestionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id,  Auth::id());
 
         $message = (new MailMessage)
             ->subject('Crowdsourcing Platform | Welcome!')
