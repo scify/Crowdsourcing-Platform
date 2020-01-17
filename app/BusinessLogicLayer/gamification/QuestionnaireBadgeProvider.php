@@ -32,8 +32,7 @@ class QuestionnaireBadgeProvider {
 
 
     public function getNextUnlockableBadgeToShowForQuestionnaire(Questionnaire $questionnaire, int $userId): GamificationBadge {
-        // TODO Here we should also check if the selected badge has been awarded in any questionnaire.
-        // if it has, we should prompt the user with a different message.
+
         if(!$this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire, $userId))
             return new ContributorBadge($this->questionnaireRepository->
             getAllResponsesGivenByUser($userId)->count(), $this->platformWideGamificationBadgesProvider->userHasAchievedContributorBadge($userId));
