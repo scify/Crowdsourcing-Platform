@@ -43,7 +43,7 @@ class QuestionnaireResponse extends Model
     use SoftDeletes;
 
     protected $table = 'questionnaire_responses';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function user()
     {

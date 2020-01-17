@@ -53,7 +53,9 @@ class QuestionnaireRepository extends Repository {
 
     public function getAllResponsesGivenByUser($userId) {
         return QuestionnaireResponse::
-        select('questionnaire_responses.id as questionnaire_response_id', 'questionnaire_responses.*', 'q.description as questionnaire_description', 'q.*', 'csp.*')
+        select('questionnaire_responses.id as questionnaire_response_id',
+            'questionnaire_responses.created_at as responded_at',
+            'questionnaire_responses.*', 'q.description as questionnaire_description', 'q.*', 'csp.*')
             ->join('questionnaires as q', 'q.id', '=', 'questionnaire_id')
             ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'q.project_id')
             ->where('user_id', $userId)

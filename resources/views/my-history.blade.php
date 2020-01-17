@@ -29,6 +29,7 @@
                                 <th>Project</th>
                                 <th>Questionnaire title</th>
                                 <th>Questionnaire description</th>
+                                <th>Response date</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -48,6 +49,7 @@
                                         </td>
                                         <td>{{ $response->title }}</td>
                                         <td>{!! $response->questionnaire_description !!}</td>
+                                        <td>{{ \Carbon\Carbon::parse($response->responded_at)->diffForHumans() }}</td>
                                         <td><button class="btn btn-block btn-primary viewResponseBtn" data-responseid="{{ $response->questionnaire_response_id }}">View response</button></td>
                                     </tr>
                                 @endforeach
