@@ -6,13 +6,13 @@ namespace App\BusinessLogicLayer\gamification;
 class ContributorBadge extends GamificationBadge {
 
 
-    public function __construct(int $allResponses) {
+    public function __construct(int $allResponses, bool $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
         $this->color = '#3F51B5';
         parent::__construct("Contributor",
             "contributor.png",
             "Gain this badge, by answering to a questionnaire!",
-            $allResponses);
+            $allResponses, $userHasAchievedBadgePlatformWide);
     }
 
     protected function getBadgeMessageForLevel() {
@@ -27,6 +27,8 @@ class ContributorBadge extends GamificationBadge {
     }
 
     public function getNextStepMessage() {
+        if($this->userHasAchievedBadgePlatformWide)
+            return 'Tell us what you think<br>and become a level <b>' . ($this->calculateLevel() + 1) . '</b> Contributor!';
         return 'Tell us what you think<br>and gain the "Contributor" badge!';
     }
 }
