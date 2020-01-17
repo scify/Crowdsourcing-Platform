@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 8/1/18
- * Time: 5:05 PM
- */
 
 namespace App\Http\Controllers;
 
@@ -24,11 +18,5 @@ class HomeController extends Controller
     {
         $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjects();
         return view('home.layout')->with(['projects' => $projects]);
-    }
-
-    public function termsAndPrivacyPage() {
-        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(null,false, $this->crowdSourcingProjectManager->getDefaultCrowdsourcingProject()->slug);
-
-        return view('terms-of-use')->with(['viewModel' => $viewModel]);
     }
 }

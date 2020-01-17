@@ -16,7 +16,6 @@ Auth::routes();
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('facebookLogin');
 Route::get('/', 'HomeController@showHomePage')->name('home');
-Route::get('/terms-and-privacy', 'HomeController@termsAndPrivacyPage')->name('terms-and-privacy');
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
 Route::group([ 'middleware' => 'auth' ], function () {

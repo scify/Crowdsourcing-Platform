@@ -178,10 +178,6 @@ class CrowdSourcingProjectManager
         return new QuestionnaireReportFilters($allProjects, $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 
-    public function getDefaultCrowdsourcingProject() {
-        return $this->getCrowdSourcingProject(DEFAULT_PROJECT_ID);
-    }
-
     public function getCreateEditProjectViewModel(int $id = null) {
         if($id)
             $project = $this->getCrowdSourcingProject($id);

@@ -3,6 +3,7 @@
 namespace App\ViewComposers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\BusinessLogicLayer\UserManager;
 
@@ -18,8 +19,6 @@ class MenuComposer {
 
     public function compose(View $view)
     {
-        $defaultProject = $this->crowdsourcingProjectManager->getDefaultCrowdsourcingProject();
-        $view->with(['userHasContributedToAProject' => $this->userManager->userHasContributedToAProject(\Auth::id()),
-                     'defaultProject' => $defaultProject]);
+        $view->with(['userHasContributedToAProject' => $this->userManager->userHasContributedToAProject(Auth::id())]);
     }
 }
