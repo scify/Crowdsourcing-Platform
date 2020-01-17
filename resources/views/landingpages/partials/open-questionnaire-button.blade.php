@@ -17,7 +17,7 @@
                class="btn btn-primary respond-questionnaire">Speak up</a>
         @endif
     @else
-        <a href="/login?submitQuestionnaire=1&redirectTo={{urlencode($viewModel->project->slug."?open=1")}}"
+        <a href="{{ $viewModel->getSignInURLWithParameters() }}"
            class="btn btn-primary respond-questionnaire"
            style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
                    background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};">
