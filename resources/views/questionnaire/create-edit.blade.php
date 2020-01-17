@@ -46,6 +46,23 @@
                             </select>
                         </div>
                     </div>
+                    @if ($viewModel->maximumPrerequisiteOrder)
+                        <div class="row form-group">
+                            <div class="col-md-2 col-sm-3 col-xs-12">
+                                <label for="prerequisite_order">Prerequisite Order</label>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <select name="prerequisite_order" id="prerequisite_order" class="select2">
+                                    @for($i = 1 ; $i <= $viewModel->maximumPrerequisiteOrder ; $i++ )
+                                        <option value="{{$i}}"
+                                                {{ $viewModel->shouldPrerequisiteOrderBeSelected($i) ? 'selected' : '' }}>
+                                            {{$i}}
+                                        </option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                     <div class="row form-group">
                         <div class="col-md-2 col-sm-3 col-xs-12">
                             <label for="title">Questionnaire's Title</label>

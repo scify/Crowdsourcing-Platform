@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/9/18
- * Time: 3:48 PM
- */
 
 namespace App\BusinessLogicLayer;
 
@@ -14,6 +8,7 @@ use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Models\ViewModels\reports\QuestionnaireReportResults;
+use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireResponseAnswerRepository;
@@ -25,17 +20,18 @@ use Illuminate\Support\Facades\Auth;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 class QuestionnaireManager {
-    private $questionnaireRepository;
-    private $languageManager;
-    private $translator;
-    private $webSessionManager;
-    private $questionnaireResponseReferralManager;
-    private $userRepository;
-    private $questionnaireReportRepository;
-    private $questionnaireResponseAnswerRepository;
-    private $questionnaireTranslationRepository;
+    protected $questionnaireRepository;
+    protected $languageManager;
+    protected $translator;
+    protected $webSessionManager;
+    protected $questionnaireResponseReferralManager;
+    protected $userRepository;
+    protected $questionnaireReportRepository;
+    protected $questionnaireResponseAnswerRepository;
+    protected $questionnaireTranslationRepository;
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireActionHandler;
+    protected $crowdSourcingProjectRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -47,7 +43,8 @@ class QuestionnaireManager {
                                 QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                QuestionnaireActionHandler $questionnaireActionHandler) {
+                                QuestionnaireActionHandler $questionnaireActionHandler,
+                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -59,13 +56,15 @@ class QuestionnaireManager {
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
+        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null) {
-
+        $maximumPrerequisiteOrder = null;
         if($id) {
             $questionnaire = $this->questionnaireRepository->find($id);
             $title = "Edit Questionnaire";
+            $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
         }
         else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
@@ -73,7 +72,8 @@ class QuestionnaireManager {
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title);
+
+        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder);
     }
 
     public function getAllQuestionnairesPageViewModel() {
@@ -93,15 +93,21 @@ class QuestionnaireManager {
     }
 
     public function createNewQuestionnaire($data) {
+        $projectTheQuestionnaireBelongsTo = $this->crowdSourcingProjectRepository->find($data['project']);
+        // here we need to set the prerequisite order of the questionnaire equal to the number of questionnaires + 1.
+        $numOfQuestionnaires = $projectTheQuestionnaireBelongsTo->questionnaires->count();
         $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
-            $data['title'], $data['description'], $data['goal'], $data['language'], $data['project'], $data['content']
+            $data['title'], $data['description'],
+            $data['goal'], $data['language'],
+            $data['project'], $data['content'],
+            $numOfQuestionnaires + 1
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
 
     public function updateQuestionnaire($id, $data) {
         $this->questionnaireRepository->updateQuestionnaire($id, $data['title'], $data['description'],
-            $data['goal'], $data['language'], $data['project'], $data['content']);
+            $data['goal'], $data['language'], $data['project'], $data['content'], $data['prerequisite_order']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 

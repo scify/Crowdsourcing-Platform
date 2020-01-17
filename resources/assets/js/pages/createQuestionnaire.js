@@ -1,8 +1,3 @@
-/*
-
-*/
-
-
 (function () {
     let editor;
 
@@ -112,6 +107,7 @@
         let goal = $('#goal').val().trim();
         let language = $('#language').val();
         let project = $('#project').val();
+        let prerequisite_order = $('#prerequisite_order').val();
         let content = editor.text;
         content = addGuidsToContent(content);
         if (title === '' || description === '' || goal === '')
@@ -126,7 +122,7 @@
             $.ajax({
                 method: 'post',
                 url: self.data('url'),
-                data: {title, description, goal, language, content, project},
+                data: {title, description, goal, language, content, project, prerequisite_order},
                 success: function (response) {
                     if (response.status === '__SUCCESS') {
                         swal({

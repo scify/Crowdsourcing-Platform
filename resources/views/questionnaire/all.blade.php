@@ -31,6 +31,7 @@
                             <th>Goal / Responses</th>
                             <th>Languages available</th>
                             <th>Status</th>
+                            <th>Order</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -51,6 +52,7 @@
                                         <span class="label {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
                                               title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                     </td>
+                                    <td>{{ $questionnaire->prerequisite_order }}</td>
                                     <td>
                                         <div class="action-btn">
                                             <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-pencil"></i> Edit questionnaire</a>

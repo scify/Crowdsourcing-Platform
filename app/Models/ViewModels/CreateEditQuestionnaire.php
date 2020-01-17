@@ -13,14 +13,16 @@ class CreateEditQuestionnaire
     public $projects;
     public $languages;
     public $title;
+    public $maximumPrerequisiteOrder;
     protected $selectedLanguageId;
 
-    public function __construct(Questionnaire $questionnaire, Collection $projects, Collection $languages, $title)
+    public function __construct(Questionnaire $questionnaire, Collection $projects, Collection $languages, $title, $maximumPrerequisiteOrder = null)
     {
         $this->questionnaire = $questionnaire;
         $this->projects = $projects;
         $this->languages = $languages;
         $this->title = $title;
+        $this->maximumPrerequisiteOrder = $maximumPrerequisiteOrder;
         if($this->questionnaire->id)
             $this->selectedLanguageId = $this->questionnaire->default_language_id;
         else
@@ -29,5 +31,11 @@ class CreateEditQuestionnaire
 
     public function shouldLanguageBeSelected(Language $language) {
         return $this->selectedLanguageId === $language->id;
+    }
+
+    public function shouldPrerequisiteOrderBeSelected(int $index) {
+        if($this->questionnaire->prerequisite_order)
+            return $index === $this->questionnaire->prerequisite_order;
+        return $index === $this->maximumPrerequisiteOrder;
     }
 }
