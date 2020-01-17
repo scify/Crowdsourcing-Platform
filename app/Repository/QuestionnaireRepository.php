@@ -60,10 +60,10 @@ class QuestionnaireRepository extends Repository {
             ->get();
     }
 
-    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
-        $questionnaire = DB::transaction(function () use ($title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
+    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
+        $questionnaire = DB::transaction(function () use ($title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
             return $questionnaire;
@@ -71,10 +71,10 @@ class QuestionnaireRepository extends Repository {
         return $questionnaire;
     }
 
-    public function updateQuestionnaire($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
-        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
+    public function updateQuestionnaire($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
+        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder);
             return $questionnaire;
         });
         return $questionnaire;
@@ -202,13 +202,14 @@ class QuestionnaireRepository extends Repository {
     }
 
 
-    private function storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson) {
+    private function storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder = null) {
         $questionnaire->title = $title;
         $questionnaire->description = $description;
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         $questionnaire->project_id = $projectId;
         $questionnaire->questionnaire_json = $questionnaireJson;
+        $questionnaire->prerequisite_order = $prerequisiteOrder;
         $questionnaire->save();
         return $questionnaire;
     }
