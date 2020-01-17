@@ -33,7 +33,7 @@
                                                                     src="{{asset($project->logo_path)}}"></a>
                                                     </div>
                                                 </td>
-                                                <td class="col-md-3 col-sm-6 vertical-middle">
+                                                <td class="col-md-4 col-sm-6 vertical-middle">
                                                     <div class="progress-container">
                                                         @if($project->currentQuestionnaireGoalVM)
                                                             @include('landingpages.partials.project-goal', ['viewModel' => $project->currentQuestionnaireGoalVM, 'projectId' => $project->id])
@@ -43,7 +43,7 @@
                                                     </div>
 
                                                 </td>
-                                                <td class="col-md-6 col-sm-12 vertical-middle">
+                                                <td class="col-md-5 col-sm-12 vertical-middle">
                                                     @include('gamification.next-step', ['nextStepVM' => $project->gamificationNextStepVM])
                                                 </td>
                                             </tr>
