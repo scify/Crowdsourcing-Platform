@@ -164,12 +164,6 @@ class UserManager {
         return $this->userRepository->create($data);
     }
 
-    public function setReferrerIdToWebSession($referrerId) {
-        $referrer = $this->getUser($referrerId);
-        if ($referrer)
-            $this->webSessionManager->setReferrerId($referrerId);
-    }
-
     public function userHasContributedToAProject($userId) {
         return $this->questionnaireResponseManager->questionnaireResponsesForUserExists($userId);
     }

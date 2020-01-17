@@ -33,4 +33,11 @@ class CrowdSourcingProjectForLandingPage
         $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
     }
+
+    public function getSignInURLWithParameters() {
+        $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug."?open=1");
+        if(Request()->referrerId)
+            $url .= urlencode("&referrerId=") . Request()->referrerId;
+        return $url;
+    }
 }

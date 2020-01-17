@@ -16,14 +16,11 @@ class CrowdSourcingProjectController extends Controller
 
     private $crowdSourcingProjectManager;
     private $questionnaireShareManager;
-    private $userManager;
 
     public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
-                                UserQuestionnaireShareManager $questionnaireShareManager,
-                                UserManager $userManager) {
+                                UserQuestionnaireShareManager $questionnaireShareManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
-        $this->userManager = $userManager;
     }
 
     public function index() {
@@ -109,9 +106,7 @@ class CrowdSourcingProjectController extends Controller
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open, $project_slug);
             if (isset($request->questionnaireId) && isset($request->referrerId))
-                $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $this->userManager->getUser($request->referrerId));
-            if (isset($request->referrerId))
-                $this->userManager->setReferrerIdToWebSession($request->referrerId);
+                $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $request->referrerId);
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
             abort(404);
