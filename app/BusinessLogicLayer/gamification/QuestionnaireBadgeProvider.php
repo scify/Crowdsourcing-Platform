@@ -41,7 +41,7 @@ class QuestionnaireBadgeProvider {
             return new InfluencerBadge($this->questionnaireResponseReferralRepository->
             getQuestionnaireReferralsForUserForQuestionnaire($questionnaire->id, $userId)->count());
 
-        return null;
+        return new AllBadgesCompletedBadge();
     }
 
     protected function userHasAchievedContributorBadgeForQuestionnaire(Questionnaire $questionnaire, int $userId) {
