@@ -46,6 +46,15 @@ abstract class Repository implements RepositoryInterface {
         return $query->get($columns);
     }
 
+    public function allWithTrashed($columns = array('*'), $orderColumn = null, $order = null): Collection {
+        $query = $this->modelInstance;
+
+        if($orderColumn)
+            $query->orderBy($orderColumn, $order ? $order : 'asc');
+
+        return $query->withTrashed()->get($columns);
+    }
+
     /**
      * @param int $perPage
      * @param array $columns
@@ -125,6 +134,10 @@ abstract class Repository implements RepositoryInterface {
 
     public function where($whereArray, $columns = array('*')): Collection {
         return $this->modelInstance->where($whereArray)->get($columns);
+    }
+
+    public function whereWithTrashed($whereArray, $columns = array('*')): Collection {
+        return $this->modelInstance->where($whereArray)->withTrashed()->get($columns);
     }
 
     /**
