@@ -1,32 +1,5 @@
 $colorForTabs: #076ec1;
 
-/* mixin for multiline ellipsis */
-@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
-  overflow: hidden;
-  position: relative;
-  line-height: $lineHeight;
-  max-height: $lineHeight * $lineCount;
-  text-align: justify;
-  margin-right: -1em;
-  padding-right: 1em;
-  &:before {
-    content: '...';
-    position: absolute;
-    right: 1em;
-    bottom: 0;
-    background: $bgColor;
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: $bgColor;
-  }
-}
-
 section {
   h2 {
     font-size: 28px;
@@ -63,7 +36,6 @@ section {
   .sv_q_checkbox_control_item {
     float: left;
     margin-top: 5px !important;
-    //width: 5%;
   }
 
   .sv_q_checkbox_label {
@@ -72,10 +44,6 @@ section {
     p {
       width: 100%;
     }
-  }
-
-  .sv_q_checkbox_control_label {
-    //width: calc(95% - 0.55em);
   }
 
   .checkbox-material {
@@ -225,13 +193,27 @@ section {
         }
       }
       .project-info {
-        padding: 15px;
+        padding: 15px 15px 0;
         display: block;
-        p {
-          @include multiLineEllipsis($lineHeight: 1.4em, $lineCount: 5, $bgColor: white);
-        }
+        height: 3.6em; /* exactly three lines */
+        position: relative;
+        overflow: hidden;
+        min-height: 100px;
       }
+
+      .project-info:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        height: 1.2em;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+      }
+
       .project-visit-btn {
+        margin-top: 3rem;
         padding: 0 15px 15px;
         a {
           width: 200px;

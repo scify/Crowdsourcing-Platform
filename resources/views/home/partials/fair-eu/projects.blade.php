@@ -5,23 +5,7 @@
             <p>ECAS crowdsourcing platform hosts various projects. Please check below those
                 that are the currently active and waiting for your contribution.
                 Please visit a project's page and make an impact by answering just a couple of questions!</p>
-            <div class="projects-container row">
-                @foreach($projects as $project)
-                    <div class="col-md-4 col-sm-6 col-xs-12 col-sm-offset-0 col-md-offset-0">
-                        <div class="project-wrapper">
-                            <div class="project-logo">
-                                <img src="{{$project->logo_path}}" alt="">
-                            </div>
-                            <div class="project-info">
-                                {!! $project->about !!}
-                            </div>
-                            <div class="project-visit-btn">
-                                <a href="/{{$project->slug}}" class="btn btn-block btn-primary">Contribute</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+            @include('home.partials.projects-list-home')
         </div>
     </div>
 </div>
