@@ -68,7 +68,8 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug)->first();
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug): CrowdSourcingProjectForLandingPage {
+    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug):
+    CrowdSourcingProjectForLandingPage {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
         $questionnaire = null;
@@ -234,30 +235,6 @@ class CrowdSourcingProjectManager
 
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
         return new CreateEditCrowdSourcingProject($project, $statusesLkp);
-    }
-
-    public function shouldShowLandingPage($project_slug) {
-        $project = $this->getCrowdSourcingProjectBySlug($project_slug);
-        return $project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED ||
-            $project->status_id === CrowdSourcingProjectStatusLkp::FINALIZED;
-    }
-
-    public function getCrowdSourcingProjectUnavailableViewModel($project_slug) {
-        $project = $this->getCrowdSourcingProjectBySlug($project_slug);
-        switch ($project->status_id) {
-            case CrowdSourcingProjectStatusLkp::DRAFT:
-                $unavailabilityMessage = 'The project is still in the draft phase.';
-                break;
-            case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
-                $unavailabilityMessage = 'The project is unpublished';
-                break;
-            case CrowdSourcingProjectStatusLkp::DELETED:
-                $unavailabilityMessage = 'The project is deleted';
-                break;
-            default:
-                throw new \Exception('The project status could not be identified: ' . $project->status_id);
-        }
-        return new CrowdSourcingProjectUnavailable($project, $unavailabilityMessage);
     }
 
     public function getCrowdSourcingProjectsListPageViewModel() {

@@ -7,12 +7,13 @@ use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use JsonSchema\Exception\ResourceNotFoundException;
 
-class CrowdSourcingProjectController extends Controller
-{
+class CrowdSourcingProjectController extends Controller {
 
     private $crowdSourcingProjectManager;
     private $questionnaireShareManager;
@@ -42,11 +43,10 @@ class CrowdSourcingProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return View
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         return view('admin.projects.create-edit')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
     }
 
@@ -57,8 +57,7 @@ class CrowdSourcingProjectController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name|max:100',
             'motto' => 'required|string',
@@ -80,8 +79,7 @@ class CrowdSourcingProjectController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name,' . $id . '|max:100',
             'motto' => 'required|string',
@@ -96,9 +94,9 @@ class CrowdSourcingProjectController extends Controller
     }
 
     public function showLandingPage(Request $request, $project_slug) {
-        if($this->crowdSourcingProjectManager->shouldShowLandingPage($project_slug))
+        if (Gate::allows('view-landing-page', $project_slug))
             return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
-        return $this->showProjectUnavailablePage($project_slug);
+        abort(404);
     }
 
     protected function showCrowdSourcingProjectLandingPage(Request $request, $project_slug) {
@@ -111,16 +109,6 @@ class CrowdSourcingProjectController extends Controller
         } catch (ResourceNotFoundException $e) {
             abort(404);
             return '';
-        } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
-            return redirect()->to(route('home'));
-        }
-    }
-
-    protected function showProjectUnavailablePage($project_slug) {
-        try {
-            return view('landingpages.project-unavailable')
-                ->with(['viewModel' => $this->crowdSourcingProjectManager->getCrowdSourcingProjectUnavailableViewModel($project_slug)]);
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
             return redirect()->to(route('home'));

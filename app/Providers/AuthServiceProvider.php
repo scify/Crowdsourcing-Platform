@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
@@ -34,6 +35,9 @@ class AuthServiceProvider extends ServiceProvider
 
         $permissionsManager = App::make(UserRoleManager::class);
         $permissionsManager->registerUserPolicies();
+
+        $crowdSourcingProjectAccessManager = App::make(CrowdSourcingProjectAccessManager::class);
+        $crowdSourcingProjectAccessManager->registerCrowdSourcingProjectPolicies();
 
         Passport::routes();
 
