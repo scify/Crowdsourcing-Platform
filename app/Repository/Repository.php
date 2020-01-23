@@ -5,8 +5,7 @@ namespace App\Repository;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\Eloquent\RelationNotFoundException;
-use JsonSchema\Exception\ResourceNotFoundException;
+use Illuminate\Support\Collection;
 
 abstract class Repository implements RepositoryInterface {
 
@@ -38,7 +37,7 @@ abstract class Repository implements RepositoryInterface {
     abstract function getModelClassName();
 
 
-    public function all($columns = array('*'), $orderColumn = null, $order = null) {
+    public function all($columns = array('*'), $orderColumn = null, $order = null): Collection {
         $query = $this->modelInstance;
 
         if($orderColumn)
@@ -98,7 +97,7 @@ abstract class Repository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function find($id, $columns = array('*')) {
+    public function find($id, $columns = array('*')): Model {
         $model = $this->modelInstance->find($id, $columns);
         if(!$model)
             throw new ModelNotFoundException("Model of type " . $this->getModelClassName() . " with id " . $id . " not found");
@@ -111,12 +110,12 @@ abstract class Repository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function findBy($attribute, $value, $columns = array('*')) {
-        $model = $this->modelInstance->where($attribute, '=', $value)->get($columns);
-        if(!$model)
+    public function findBy($attribute, $value, $columns = array('*')): Collection {
+        $collection = $this->modelInstance->where($attribute, '=', $value)->get($columns);
+        if(!$collection || $collection->isEmpty())
             throw new ModelNotFoundException("Model of type " . $this->getModelClassName() .
                 " with attribute "  . $attribute . " equal to " . $value . " not found");
-        return $model;
+        return $collection;
     }
 
     public function exists($whereArray): bool {
@@ -124,7 +123,7 @@ abstract class Repository implements RepositoryInterface {
         return !$models->isEmpty();
     }
 
-    public function where($whereArray, $columns = array('*')) {
+    public function where($whereArray, $columns = array('*')): Collection {
         return $this->modelInstance->where($whereArray)->get($columns);
     }
 
