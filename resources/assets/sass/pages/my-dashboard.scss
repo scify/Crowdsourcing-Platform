@@ -1,7 +1,9 @@
 @import "../variables";
 
-.projects {
-  padding-left: 0;
+#available-projects {
+  .project-logo {
+    height: 100px;
+  }
 }
 
 .location-btn {
