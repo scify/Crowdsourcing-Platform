@@ -17,7 +17,7 @@ class CrowdSourcingProjectAccessManager {
     protected $userRoleManager;
 
     public function registerCrowdSourcingProjectPolicies() {
-        Gate::define('view-landing-page', function (User $user, string $project_slug) {
+        Gate::define('view-landing-page', function (?User $user, string $project_slug) {
             $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug)->first();
             return $this->shouldShowLandingPageToUser($user, $project);
         });
@@ -34,7 +34,7 @@ class CrowdSourcingProjectAccessManager {
         return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id]);
     }
 
-    protected function shouldShowLandingPageToUser(User $user, CrowdSourcingProject $project): bool {
+    protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {
         if(!$project)
             return false;
         if($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED)
@@ -42,7 +42,9 @@ class CrowdSourcingProjectAccessManager {
         return $this->userHasAccessToManageProject($user, $project);
     }
 
-    public function userHasAccessToManageProject(User $user, CrowdSourcingProject $project): bool {
+    public function userHasAccessToManageProject($user, CrowdSourcingProject $project): bool {
+        if(!$user)
+            return false;
         return $this->userRoleManager->userHasAdminRole($user) ||
             ($this->userRoleManager->userHasContentManagerRole($user) && $user->id === $project->user_creator_id);
     }
