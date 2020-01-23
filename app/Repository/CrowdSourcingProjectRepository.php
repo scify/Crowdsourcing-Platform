@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectRepository extends Repository
 {
@@ -21,7 +22,7 @@ class CrowdSourcingProjectRepository extends Repository
         return CrowdSourcingProject::class;
     }
 
-    public function getActiveProjectsWithAtLeastOneActiveQuestionnaire() {
+    public function getActiveProjectsWithAtLeastOneActiveQuestionnaire(): Collection {
         return CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
             ->whereHas('questionnaires', function (Builder $query) {
                 $query->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED]);

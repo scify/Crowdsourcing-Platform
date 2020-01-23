@@ -52,13 +52,15 @@ class CrowdSourcingProjectManager
         $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
     }
 
-    public function getAllCrowdSourcingProjects(): Collection
-    {
+    public function getAllCrowdSourcingProjects(): Collection {
         return $this->crowdSourcingProjectRepository->all();
     }
 
-    public function getCrowdSourcingProject($id = DEFAULT_PROJECT_ID)
-    {
+    public function getCrowdSourcingProjectsForHomePage(): Collection {
+        return $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
+    }
+
+    public function getCrowdSourcingProject($id = DEFAULT_PROJECT_ID) {
         return $this->crowdSourcingProjectRepository->find($id);
     }
 
