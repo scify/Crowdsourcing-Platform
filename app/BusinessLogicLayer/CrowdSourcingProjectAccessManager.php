@@ -19,8 +19,8 @@ class CrowdSourcingProjectAccessManager {
 
     public function getProjectsUserHasAccessToEdit(User $user) {
         if($this->userRoleManager->userHasAdminRole($user))
-            return $this->crowdSourcingProjectRepository->all();
-        return $this->crowdSourcingProjectRepository->where(['user_creator_id' => $user->id]);
+            return $this->crowdSourcingProjectRepository->allWithTrashed();
+        return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id]);
     }
 
 }
