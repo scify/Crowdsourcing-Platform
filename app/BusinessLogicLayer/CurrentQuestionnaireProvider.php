@@ -19,18 +19,25 @@ class CurrentQuestionnaireProvider {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
-    public function getCurrentQuestionnaire(int $projectId, int $userId) {
+    public function getCurrentQuestionnaire(int $projectId, $userId) {
         $toReturn = null;
         // get all questionnaires for project, order by prerequisite and creation date
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnairesForProject($projectId);
         foreach ($questionnaires as $questionnaire) {
             $toReturn = $questionnaire;
-            $questionnaire->answered = $this->questionnaireResponseRepository->questionnaireResponseExists($questionnaire->id, $userId);
+            if($userId)
+                $questionnaire->answered = $this->questionnaireResponseRepository->questionnaireResponseExists($questionnaire->id, $userId);
+            else
+                $questionnaire->answered = false;
             $questionnaire->goalCompleted = $this->questionnaireGoalIsCompleted($questionnaire);
-            if(!$questionnaire->answered && !$questionnaire->goalCompleted)
+            if($this->questionnaireShouldBeContributedTo($questionnaire))
                 break;
         }
         return $toReturn;
+    }
+
+    private function questionnaireShouldBeContributedTo(Questionnaire $questionnaire) {
+        return !$questionnaire->answered && !$questionnaire->goalCompleted;
     }
 
     protected function questionnaireGoalIsCompleted(Questionnaire $questionnaire): bool {
