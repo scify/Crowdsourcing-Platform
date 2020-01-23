@@ -144,7 +144,9 @@ class CrowdSourcingProjectManager
 
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
-        return $this->crowdSourcingProjectRepository->update($attributes, $id);
+        $this->crowdSourcingProjectRepository->update($attributes, $id);
+        if($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
+            $this->crowdSourcingProjectRepository->delete($id);
     }
 
     protected function storeProjectRelatedFiles(array $attributes) {
