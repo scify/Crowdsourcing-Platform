@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -101,8 +102,10 @@ class CrowdSourcingProjectController extends Controller {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open, $project_slug);
-            if (isset($request->questionnaireId) && isset($request->referrerId))
+
+            if ($this->shouldHandleQuestionnaireShare($request))
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $request->referrerId);
+
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ResourceNotFoundException $e) {
             abort(404);
@@ -111,5 +114,12 @@ class CrowdSourcingProjectController extends Controller {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
             return redirect()->to(route('home'));
         }
+    }
+
+    private function shouldHandleQuestionnaireShare($request) {
+        return (
+            isset($request->questionnaireId) &&
+            isset($request->referrerId) &&
+            Auth::check());
     }
 }
