@@ -14,9 +14,9 @@ class AddColumnsAboutQuestionnaireFooterToCrowdSourcingProjects extends Migratio
     public function up()
     {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
-            $table->mediumText('footer')->after('description');
-            $table->mediumText('questionnaire')->after('description');
-            $table->mediumText('about')->after('description');
+            $table->mediumText('footer')->nullable()->after('description');
+            $table->mediumText('questionnaire')->nullable()->after('description');
+            $table->mediumText('about')->nullable()->after('description');
         });
     }
 

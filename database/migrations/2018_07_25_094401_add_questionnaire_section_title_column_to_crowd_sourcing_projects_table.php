@@ -14,7 +14,7 @@ class AddQuestionnaireSectionTitleColumnToCrowdSourcingProjectsTable extends Mig
     public function up()
     {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
-            $table->string('questionnaire_section_title', 250)->after('about');
+            $table->string('questionnaire_section_title', 250)->nullable()->after('about');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropColumnsLabel1AndLabel2FromCrowdSourcingProjects extends Migration
+class DropColumnLabel1FromCrowdSourcingProjects extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,6 @@ class DropColumnsLabel1AndLabel2FromCrowdSourcingProjects extends Migration
     {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->dropColumn('label1');
-            $table->dropColumn('label2');
         });
     }
 

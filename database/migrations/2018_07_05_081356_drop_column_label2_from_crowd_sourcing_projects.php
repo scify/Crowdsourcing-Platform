@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnGuidToQuestionnairePossibleAnswers extends Migration
+class DropColumnLabel2FromCrowdSourcingProjects extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddColumnGuidToQuestionnairePossibleAnswers extends Migration
      */
     public function up()
     {
-        Schema::table('questionnaire_possible_answers', function (Blueprint $table) {
-            $table->string('guid', 40)->default(1)->after('question_id');
-            $table->index('guid');
+        Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
+            $table->dropColumn('label2');
         });
     }
 
@@ -26,7 +25,7 @@ class AddColumnGuidToQuestionnairePossibleAnswers extends Migration
      */
     public function down()
     {
-        Schema::table('questionnaire_possible_answers', function (Blueprint $table) {
+        Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             //
         });
     }

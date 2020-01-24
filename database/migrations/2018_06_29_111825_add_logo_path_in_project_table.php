@@ -14,7 +14,7 @@ class AddLogoPathInProjectTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('logo_path')->after('img_path');
+            $table->string('logo_path')->nullable()->after('img_path');
         });
     }
 
@@ -26,7 +26,7 @@ class AddLogoPathInProjectTable extends Migration
     public function down()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('logo_path')->after('img_path');
+            $table->dropColumn('logo_path');
         });
     }
 }
