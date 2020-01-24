@@ -73,7 +73,7 @@ class RegisterController extends Controller
     protected function create(array $data) {
         $user = $this->userManager->createUser($data);
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
-        $user->notify(new UserRegistered($this->crowdSourcingProjectManager));
+        $user->notify(new UserRegistered());
         return $user;
     }
 
