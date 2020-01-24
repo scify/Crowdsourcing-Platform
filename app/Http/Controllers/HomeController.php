@@ -17,6 +17,6 @@ class HomeController extends Controller
     public function showHomePage()
     {
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
-        return view('home.layout')->with(['projects' => $projects]);
+        return view('home.home')->with(['projects' => $projects]);
     }
 }
