@@ -147,6 +147,17 @@ This project uses the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2
 More specifically, it makes use of [Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE)
 for easier integration.
 
+## Run Tests
+We use a Sqlite database to generate an instance of the database, for testing purposes.
+In order to create the database file, run the following commands:
+
+```bash
+touch storage/database_testing.sqlite
+
+php artisan migrate --database=sqlite_testing
+
+php artisan db:seed --database=sqlite_testing --class=DatabaseSeederRunOnEmptyDB
+```
 
 ## How to debug
 - Install and configure Xdebug on your machine
