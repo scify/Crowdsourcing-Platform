@@ -8,7 +8,6 @@ use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
-use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
@@ -18,8 +17,6 @@ use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-
-define('DEFAULT_PROJECT_ID', config('app.project_id'));
 
 class CrowdSourcingProjectManager
 {
@@ -60,7 +57,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
     }
 
-    public function getCrowdSourcingProject($id = DEFAULT_PROJECT_ID) {
+    public function getCrowdSourcingProject(int $id) {
         return $this->crowdSourcingProjectRepository->find($id);
     }
 

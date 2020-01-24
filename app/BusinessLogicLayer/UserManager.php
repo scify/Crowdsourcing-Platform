@@ -101,7 +101,7 @@ class UserManager {
             ]);
             $user->save();
             try {
-                $user->notify(new UserRegistered($this->crowdSourcingProjectManager));
+                $user->notify(new UserRegistered());
             } catch (\Exception $e) {
                 Log::error($e);
             }
