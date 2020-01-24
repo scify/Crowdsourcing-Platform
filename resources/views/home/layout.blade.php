@@ -7,7 +7,7 @@
     <title>@yield('title_prefix', config('app.name')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="{{url('/')}}">
     @include('home.partials.' . config('app.project_resources_dir') . '.head-meta')
@@ -19,7 +19,7 @@
     <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
     <link rel="stylesheet" href="{{ asset('dist/css/home.css') }}?{{env("APP_VERSION")}}">
-
+    @stack('css')
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -40,18 +40,7 @@
         <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
     </div>
 @endif
-<section id="motto">
-    @include('home.partials.' . config('app.project_resources_dir') . '.motto')
-</section>
-<section id="about">
-    @include('home.partials.' . config('app.project_resources_dir') . '.about-us')
-</section>
-<section id="features">
-    @include('home.partials.' . config('app.project_resources_dir') . '.features')
-</section>
-<section id="projects">
-    @include('home.partials.' . config('app.project_resources_dir') . '.projects')
-</section>
+@yield('content')
 <footer>
     @include('home.partials.' . config('app.project_resources_dir') . '.footer')
 </footer>
