@@ -1,5 +1,6 @@
 <?php
 
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +39,7 @@ class DefaultProjectSeeder extends Seeder
             </p>',
                 'user_creator_id' => 1,
                 'language_id' => 6,
-                'status_id'
+                'status_id' => CrowdSourcingProjectStatusLkp::DRAFT
             ),
         ));
         DB::table('crowd_sourcing_projects')->insert(array(
@@ -68,7 +69,8 @@ class DefaultProjectSeeder extends Seeder
                 it contains.
             </p>',
                 'user_creator_id' => 1,
-                'language_id' => 6
+                'language_id' => 6,
+                'status_id' => CrowdSourcingProjectStatusLkp::DRAFT
             ),
         ));
         DB::table('crowd_sourcing_projects')->insert(array(
@@ -100,7 +102,8 @@ class DefaultProjectSeeder extends Seeder
                 it contains.
             </p>',
                 'user_creator_id' => 1,
-                'language_id' => 6
+                'language_id' => 6,
+                'status_id' => CrowdSourcingProjectStatusLkp::DRAFT
             ),
         ));
     }
