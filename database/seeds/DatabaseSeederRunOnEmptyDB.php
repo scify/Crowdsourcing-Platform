@@ -16,13 +16,12 @@ class DatabaseSeederRunOnEmptyDB extends Seeder
             UsersTableSeeder::class,
             UserRolesTableSeeder::class,
             LanguagesLkpTableSeeder::class,
-            DefaultProjectSeeder::class,
-            QuestionnaireStatusesLkpTableSeeder::class,
             CrowdSourcingProjectStatusesLkpTableSeeder::class,
+            QuestionnaireStatusesLkpTableSeeder::class,
+            DefaultProjectSeeder::class,
             QuestionnairesSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
-            MailChimpListsTableSeeder::class,
-            LanguagesLkpTableSeeder02::class
+            MailChimpListsTableSeeder::class
         ]);
     }
 }
