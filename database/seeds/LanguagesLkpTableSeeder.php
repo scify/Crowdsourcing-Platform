@@ -30,6 +30,7 @@ class LanguagesLkpTableSeeder extends Seeder
         'sl' => 'Slovenian',
         'es' => 'Spanish',
         'sv' => 'Swedish',
+        'mt' => 'Maltese'
     ];
 
     /**
