@@ -15,5 +15,5 @@ yarn-error.log
 _ide_helper.php
 storage/database_testing.sqlite
 public/images/vendor
-public/fonts/vendor
+public/fonts
 public/vendor
