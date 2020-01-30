@@ -143,9 +143,7 @@ sudo service apache2 restart
 ```
 
 ## Related HTML Template
-This project uses the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2.html) template. 
-More specifically, it makes use of [Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE)
-for easier integration.
+This project uses the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2.html) template.
 
 ## Run Tests
 We use a Sqlite database to generate an instance of the database, for testing purposes.
