@@ -34,7 +34,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
                                  $actionText2,
                                  $salutation = null) {
         $message = (new MailMessage)
-            ->subject('ECAS | ' . $subject)
+            ->subject('Crowdsourcing Platform | ' . $subject)
             ->greeting($greeting)
             ->line($title);
 
