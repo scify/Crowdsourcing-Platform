@@ -8,7 +8,7 @@
                                                      src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span>
         <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><a href="/"><img
-                            src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span></span>
+                            src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_50.png') }}"></a></span>
     </span>
     @include("loggedin-environment.partials.header-controls")
 </header>
