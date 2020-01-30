@@ -9,7 +9,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <form action="{{ route('password/email') }}" method="post">
+        <form action="{{ route('password.email') }}" method="post">
             {!! csrf_field() !!}
 
             <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">

@@ -63,7 +63,7 @@
                class="text-center"
             >I want to register</a>
             <br>
-            <a href="{{ route('password/reset') }}"
+            <a href="{{ route('password.request') }}"
                class="text-center"
             >I forgot my password</a>
             <br>
