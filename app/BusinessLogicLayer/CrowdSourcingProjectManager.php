@@ -132,11 +132,11 @@ class CrowdSourcingProjectManager
 
         // set default values
         if(!$project->logo_path)
-            $attributes['logo_path'] = '/images/test.png';
+            $attributes['logo_path'] = '/images/image_temp.png';
         if(!$project->img_path)
-            $attributes['img_path'] = '/images/test.png';
+            $attributes['img_path'] = '/images/image_temp.png';
         if(!$project->sm_featured_img_path)
-            $attributes['sm_featured_img_path'] = '/images/test.png';
+            $attributes['sm_featured_img_path'] = '/images/image_temp.png';
         if(!$project->lp_questionnaire_img_path)
             $attributes['lp_questionnaire_img_path'] = '/images/bgsectionnaire.png';
 
@@ -221,11 +221,11 @@ class CrowdSourcingProjectManager
 
         // set default values for images
         if(!$project->img_path)
-            $project->img_path = '/images/test.png';
+            $project->img_path = '/images/image_temp.png';
         if(!$project->logo_path)
-            $project->logo_path = '/images/test.png';
+            $project->logo_path = '/images/image_temp.png';
         if(!$project->sm_featured_img_path)
-            $project->sm_featured_img_path = '/images/test.png';
+            $project->sm_featured_img_path = '/images/image_temp.png';
         if(!$project->lp_questionnaire_img_path)
             $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
 
