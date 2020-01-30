@@ -1,13 +1,14 @@
 // Fonts
-@import "../../../public/vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.css";
-@import "../../../public/vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css";
-@import "../../../public/vendor/adminlte/vendor/Ionicons/css/ionicons.min.css";
-@import "../../../public/vendor/adminlte/dist/css/AdminLTE.css";
-@import '../../../public/vendor/adminlte/dist/css/skins/skin-blue.min.css';
-@import url("../../../public/vendor/adminlte/plugins/iCheck/square/blue.css");
+@import url("../../../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import url("../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+@import url("../../../node_modules/icheck/skins/square/blue.css");
 @import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
 @import url("~dropzone/dist/min/dropzone.min.css");
 @import url("~bootstrap-sweetalert/dist/sweetalert.css");
+
+@import "../../../node_modules/admin-lte/dist/css/AdminLTE.min.css";
+@import '../../../node_modules/admin-lte/dist/css/skins/skin-blue.min.css';
+
 @import "_variables.scss";
 @import "select2-custom.scss";
 @import '../../../node_modules/datatables.net-bs/css/dataTables.bootstrap.css';

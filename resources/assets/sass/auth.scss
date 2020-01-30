@@ -1,10 +1,12 @@
-
-@import url("../../../public/vendor/adminlte/css/auth.css");
-@import url("https://use.fontawesome.com/releases/v5.1.0/css/all.css");
+@import url("../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
 
 body,html {
   height:100% !important;
   font-family: 'Open Sans', sans-serif;
+}
+
+.auth-links {
+  margin-top: 10px;
 }
 
 .login-box, .register-box
