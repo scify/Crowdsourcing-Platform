@@ -19,7 +19,7 @@
         @include('analytics')
     @endif
 </head>
-<body class="hold-transition background-page @yield('body_class')" style="background-image: url('{{ asset('images/projects/' . config('app.project_resources_dir') . '/active_participation.png') }}');">
+<body class="hold-transition background-page @yield('body_class')" style="background-image: url('{{ asset('images/active_participation.png') }}');">
 @if (App::environment('staging'))
     <div class="staging-warning">
         <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
