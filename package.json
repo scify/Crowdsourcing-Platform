@@ -20,6 +20,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "admin-lte": "2.3.11",
     "bootstrap": "^3.3.7",
     "bootstrap-colorpicker": "^2.5.3",
@@ -34,7 +35,6 @@
     "datatables.net-select": "^1.2.2",
     "dropzone": "^4.3.0",
     "fastclick": "^1.0.6",
-    "font-awesome": "^4.7.0",
     "govpredict-morris": "^0.5.1",
     "icheck": "^1.0.2",
     "jquery": "3.4.0",

@@ -169,7 +169,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\ComposerServiceProvider::class,

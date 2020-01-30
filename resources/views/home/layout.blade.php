@@ -11,7 +11,6 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="{{url('/')}}">
     @include('home.partials.' . config('app.project_resources_dir') . '.head-meta')
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/skin-blue.min.css')}} ">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
