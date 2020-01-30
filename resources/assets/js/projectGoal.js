@@ -6,7 +6,6 @@ let ProjectGoal = require('progressbar.js');
         let progressBarElements = $(".progress-bar-circle");
         progressBarElements.each(function( index ) {
             const elementId = $(this).attr('id');
-            console.log(elementId);
             let bar = new ProjectGoal.Circle('#' + elementId, {
                 color: '#0063aa',
                 // This has to be the same size as the maximum width to
