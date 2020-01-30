@@ -9,7 +9,7 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 
-Laravel 5.8 web application for Crowdsourcing Projects and Questionnaires
+Laravel 6 Web Application for Crowdsourcing Projects and Questionnaires
 
 [Project URL](https://crowdsourcing.scify.org/)
 
@@ -17,12 +17,12 @@ Laravel 5.8 web application for Crowdsourcing Projects and Questionnaires
 
 ## First time install (setup database and install dependencies)
 
-0. Make sure php 7.1.3 (or newer) is installed.
+0. Make sure php 7.2 (or newer) is installed.
 
 Install graphics library 
 
 ```
- sudo apt-get install php7.1-gd
+ sudo apt-get install php7.2-gd
 ```
 
 1. After cloning the project, create an .env file (should be a copy of .env.example),
