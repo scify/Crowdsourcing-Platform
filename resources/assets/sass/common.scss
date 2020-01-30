@@ -1,6 +1,12 @@
 // Fonts
 @import url("../../../node_modules/bootstrap/dist/css/bootstrap.min.css");
-@import url("../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 @import url("../../../node_modules/icheck/skins/square/blue.css");
 @import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
 @import url("~dropzone/dist/min/dropzone.min.css");
@@ -21,6 +27,24 @@ body,
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   //font-size: 14px;
   font-family: 'Open Sans', sans-serif;
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  font-weight: normal;
+  font-style : normal;
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff");
+  src : url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2");
 }
 
 .background-page {
@@ -371,5 +395,3 @@ $header-height: 70px;
 .sv_container li {
   list-style-type: disc;
 }
-
-
