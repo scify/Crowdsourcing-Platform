@@ -34,7 +34,7 @@
                     <div class="box-body">
                         <p>Please provide the following MailChimp lists IDs (see instructions above).</p>
                         {{--<div class="form-group">--}}
-                            {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-toggle="tooltip"--}}
+                            {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-widget="tooltip"--}}
                                                                   {{--title="All mails subscribed to our newsletter via the landing pages will be added to this list"><span--}}
                                             {{--class="fa fa-info-circle"></span></a></label>--}}
                             {{--<input type="text" id="newsletter" class="form-control" name="newsletter"--}}
@@ -43,7 +43,7 @@
                         {{--</div>--}}
                         <div class="form-group">
                             <label for="registered-users">Newsletter for registered users <a href="javascript:void(0)"
-                                                                              data-toggle="tooltip"
+                                                                              data-widget="tooltip"
                                                                               title="All the registered users to the platform will be added to this list"><span
                                             class="fa fa-info-circle"></span></a></label>
                             <input type="text" id="registered-users" class="form-control" name="registered_users"

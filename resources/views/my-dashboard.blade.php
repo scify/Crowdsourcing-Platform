@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>My Dashboard</h1>
+    <h1 class="m-0 text-dark">My Dashboard</h1>
 @stop
 
 @push('css')
@@ -28,11 +28,10 @@
                                         @foreach($viewModel->projects as $project)
                                             <tr>
                                                 <td class="col-md-3 col-sm-6 vertical-middle">
-                                                    <div><a href="{{ route('project.landing-page', $project->slug) }}">
+                                                    <a href="{{ route('project.landing-page', $project->slug) }}">
                                                             <img class="project-logo"
                                                                     alt="Project logo for {{$project->name}}"
                                                                     src="{{asset($project->logo_path)}}"></a>
-                                                    </div>
                                                 </td>
                                                 <td class="col-md-4 col-sm-6 vertical-middle">
                                                     <div class="progress-container">
