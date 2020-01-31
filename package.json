@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "axios": "^0.18",
-    "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.1.4",
     "goodparts": "^1.2.1",
     "laravel-mix": "^1.0",
@@ -21,8 +20,8 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
-    "admin-lte": "2.3.11",
-    "bootstrap": "^3.3.7",
+    "admin-lte": "^3.0.2",
+    "bootstrap": "^4.4.1",
     "bootstrap-colorpicker": "^2.5.3",
     "bootstrap-sweetalert": "^1.0.1",
     "bootstrap-tagsinput": "^0.7.1",
@@ -44,6 +43,7 @@
     "jquery-ui": "^1.12.1",
     "jszip": "^3.1.5",
     "pdfmake": "^0.1.38",
+    "popper.js": "^1.16.1",
     "progressbar.js": "^1.0.1",
     "select2": "^4.0.5",
     "showdown": "^1.9.0",

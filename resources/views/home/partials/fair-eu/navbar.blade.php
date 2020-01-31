@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top navbar-default navbar-fixed-top">
     @if (App::environment('staging'))
         <div class="staging-warning">
             <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
@@ -9,7 +9,7 @@
             <a class="navbar-brand" href="#">
                 <img alt="ECAS" src="{{asset('images/projects/fair-eu/ecas_logo.png')}}">
             </a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            <button type="button" class="navbar-toggle collapsed" data-widget="collapse"
                     data-target="#top-menu-content">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>

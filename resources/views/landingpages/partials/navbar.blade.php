@@ -9,7 +9,7 @@
             <a class="navbar-brand" href="#">
                 <img alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
             </a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            <button type="button" class="navbar-toggle" data-widget="collapse"
                     data-target="#top-menu-content">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
