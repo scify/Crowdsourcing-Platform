@@ -64,7 +64,7 @@
                                             <a href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
                                         </div>
                                         <div class="action-btn">
-                                            <a href="javascript:void(0)" class="change-status" data-toggle="modal"
+                                            <a href="javascript:void(0)" class="change-status" data-widget="modal"
                                                data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
                                         </div>
                                     </td>

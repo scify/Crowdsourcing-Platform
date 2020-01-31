@@ -89,7 +89,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="{{ route('downloadMyData') }}" data-toggle="tooltip" title="This includes all your responses to questionnaires" target="_blank" class="btn btn-primary">Download my data</a>
+                            <a href="{{ route('downloadMyData') }}" data-widget="tooltip" title="This includes all your responses to questionnaires" target="_blank" class="btn btn-primary">Download my data</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="#deactivationConfirmationModal" data-toggle="modal">Deactivate my account</a>
+                            <a href="#deactivationConfirmationModal" data-widget="modal">Deactivate my account</a>
                         </div>
                     </div>
                 </div>
