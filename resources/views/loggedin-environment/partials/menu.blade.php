@@ -1,76 +1,83 @@
 @inject('CrowdSourcingProjectManager', 'App\BusinessLogicLayer\CrowdSourcingProjectManager')
 
-<header class="main-header">
-    <!-- Logo -->
-    <span class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><a href="/"><img style=""
-                                                     src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_menu.png') }}"></a></span>
-        <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><a href="/"><img
-                            src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_menu.png') }}"></a></span>
-    </span>
+{{--<header class="main-header">--}}
+{{--    <!-- Logo -->--}}
+{{--    <span class="logo">--}}
+{{--            <!-- mini logo for sidebar mini 50x50 pixels -->--}}
+{{--            <span class="logo-mini"><a href="/"><img style=""--}}
+{{--                                                     ></a></span>--}}
+{{--        <!-- logo for regular state and mobile devices -->--}}
+{{--            <span class="logo-lg"><a href="/"><img--}}
+{{--                            src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_menu.png') }}"></a></span>--}}
+{{--    </span>--}}
+{{--    @include("loggedin-environment.partials.header-controls")--}}
+{{--</header>--}}
     @include("loggedin-environment.partials.header-controls")
-</header>
 
-<aside class="main-sidebar">
-    <section class="sidebar">
-        <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="{{ UrlMatchesMenuItem("my-dashboard")}}">
-                <a href="{{url("my-dashboard")}}">
-                    <i class="fa fa-dashboard"></i> <span>My Dashboard</span>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="{{route('home')}}" class="brand-link">
+        <img src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_menu.png') }}"
+             alt="Main Logo" class="brand-image">
+    </a>
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                <li class="nav-header">MAIN NAVIGATION</li>
+                <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
+                    <a class="nav-link" href="{{url("my-dashboard")}}">
+                        <i class="nav-icon fa fa-dashboard"></i> <p>My Dashboard</p>
 
-                </a>
-            </li>
-
-            <li class="{{ UrlMatchesMenuItem("my-account")}}">
-                <a href="{{url("my-account")}}">
-                    <i class="fa fa-user"></i> <span>My Account</span>
-
-                </a>
-            </li>
-
-            @if($userHasContributedToAProject)
-                <li class="{{ UrlMatchesMenuItem("myHistory")}}">
-                    <a href="{{route("myHistory")}}">
-                        <i class="fa fa-history"></i> <span>My History</span>
                     </a>
                 </li>
-            @endif
-            @can("manage-crowd-sourcing-projects")
-                <li class="header">CONTENT MANAGEMENT</li>
 
-                <li class="{{UrlMatchesMenuItem('projects')}}">
-                    <a href="{{ route('projects.index') }}"><i
-                                class="fa fa-list "></i><span>See all Projects</span></a>
-                </li>
-                <li class="{{UrlMatchesMenuItem('projects/create')}}">
-                    <a href="{{ route('projects.create') }}"><i
-                                class="fa fa-plus "></i><span>Create new Project</span></a>
-                </li>
-                <li class="{{UrlMatchesMenuItem("questionnaires")}}">
-                    <a href="{{ route('questionnaires.all') }}"><i
-                                class="fa fa-question-circle "></i><span>Manage
-                            Questionnaires</span></a>
-                </li>
-            @endcan
-            @can("manage-platform")
-                <li class="header">COMMUNICATION MANAGEMENT</li>
+                <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
+                    <a class="nav-link" href="{{url("my-account")}}">
+                        <i class="nav-icon fa fa-user"></i> <p>My Account</p>
 
-                <li class="{{UrlMatchesMenuItem("communication/mailchimp")}}">
-                    <a href="{{ route('mailchimp-integration') }}"><i
-                                class="fa fa-envelope"></i><span>MailChimp Integration</span></a>
+                    </a>
                 </li>
-            @endcan
-            @can("manage-users")
-                <li class="header">PLATFORM MANAGEMENT</li>
 
-                <li class="{{UrlMatchesMenuItem("admin/manage-users")}}">
-                    <a href="{{ url("admin/manage-users") }}"><i
-                                class="fa fa-users"></i><span>Manage Users</span></a>
-                </li>
-            @endcan
-        </ul>
-    </section>
+                @if($userHasContributedToAProject)
+                    <li class="nav-item {{ UrlMatchesMenuItem("myHistory")}}">
+                        <a class="nav-link" href="{{route("myHistory")}}">
+                            <i class="nav-icon fa fa-history"></i> <p>My History</p>
+                        </a>
+                    </li>
+                @endif
+                @can("manage-crowd-sourcing-projects")
+                    <li class="nav-header">CONTENT MANAGEMENT</li>
+
+                    <li class="nav-item {{UrlMatchesMenuItem('projects')}}">
+                        <a class="nav-link" href="{{ route('projects.index') }}"><i
+                                    class="nav-icon fa fa-list "></i><p>See all Projects</p></a>
+                    </li>
+                    <li class="nav-item {{UrlMatchesMenuItem('projects/create')}}">
+                        <a class="nav-link" href="{{ route('projects.create') }}"><i
+                                    class="nav-icon fa fa-plus "></i><p>Create new Project</p></a>
+                    </li>
+                    <li class="nav-item {{UrlMatchesMenuItem("questionnaires")}}">
+                        <a class="nav-link" href="{{ route('questionnaires.all') }}"><i
+                                    class="nav-icon fa fa-question-circle "></i><p>Manage
+                            Questionnaires</p></a>
+                    </li>
+                @endcan
+                @can("manage-platform")
+                    <li class="nav-header">COMMUNICATION MANAGEMENT</li>
+
+                    <li class="nav-item {{UrlMatchesMenuItem("communication/mailchimp")}}">
+                        <a class="nav-link" href="{{ route('mailchimp-integration') }}"><i
+                                    class="nav-icon fa fa-envelope"></i><p>MailChimp Integration</p></a>
+                    </li>
+                @endcan
+                @can("manage-users")
+                    <li class="nav-header">PLATFORM MANAGEMENT</li>
+
+                    <li class="nav-item {{UrlMatchesMenuItem("admin/manage-users")}}">
+                        <a class="nav-link" href="{{ url("admin/manage-users") }}"><i
+                                    class="nav-icon fa fa-users"></i><p>Manage Users</p></a>
+                    </li>
+                @endcan
+            </ul>
+        </nav>
+    </div>
 </aside>

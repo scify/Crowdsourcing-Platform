@@ -16,14 +16,17 @@
         </h3>
     </div>
     <div class="box-body">
-        <div class="text-center badges-container row">
+        <div class="container">
+            <div class="text-center badges-container row">
 
-            @foreach($badgesVM->badgesWithLevelsList as $badge)
-                <div class="col-md-4 badgeContainer" data-toggle="tooltip"
-                     title="{{ $badge->statusMessage }}">
-                    @include('gamification.badge-single', ['badge' => $badge])
-                </div>
-            @endforeach
+                @foreach($badgesVM->badgesWithLevelsList as $badge)
+                    <div class="col-md-4 badgeContainer" data-widget="tooltip"
+                         title="{{ $badge->statusMessage }}">
+                        @include('gamification.badge-single', ['badge' => $badge])
+                    </div>
+                @endforeach
+            </div>
         </div>
+
     </div>
 </div>

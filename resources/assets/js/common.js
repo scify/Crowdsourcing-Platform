@@ -8,7 +8,9 @@ require('icheck');
 //$.widget.bridge('uibutton', $.ui.button);
 
 //load dependencies for template
-require('bootstrap');
+window.Popper = require('popper.js').default;
+
+require('./bootstrap');
 require('fastclick');
 require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
 require('select2');

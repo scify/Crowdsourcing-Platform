@@ -25,7 +25,7 @@
         @include('analytics')
     @endif
 </head>
-<body class="hold-transition skin-white sidebar-mini @yield('body_class')">
+<body class="hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
 @if (App::environment('staging'))
     <div class="staging-warning">
         <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
@@ -37,40 +37,44 @@
     @endif
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            @yield("content-header")
-            {{-- <ol class="breadcrumb">
-                 <li><a href="{{ url("/") }}"><i class="fa fa-dashboard"></i>Home</a></li>
-                 <li class="active"> {{ isset($pageTitle) ? $pageTitle : ''}}</li>
-             </ol>--}}
-        </section>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        @yield("content-header")
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="content">
-            @if(session('flash_message_success'))
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
-                </div>
-            @endif
+            <div class="container-fluid">
+                @if(session('flash_message_success'))
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
+                    </div>
+                @endif
 
-            @if(session('flash_message_failure'))
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><i class="icon fa fa-ban"></i> {{ session('flash_message_failure') }}</h4>
-                </div>
-            @endif
-            @if (count($errors) > 0 )
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    @foreach ($errors->all() as $error)
-                        <h4><i class="icon fa fa-ban"></i> {{ $error }}</h4>
-                    @endforeach
-                </div>
-            @endif
-            @yield('content')
+                @if(session('flash_message_failure'))
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> {{ session('flash_message_failure') }}</h4>
+                    </div>
+                @endif
+                @if (count($errors) > 0 )
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @foreach ($errors->all() as $error)
+                            <h4><i class="icon fa fa-ban"></i> {{ $error }}</h4>
+                        @endforeach
+                    </div>
+                @endif
+                @yield('content')
+            </div>
         </section>
     </div>
     <footer class="main-footer">
-        <div class="pull-right hidden-xs">
+        <div class="float-right d-none d-sm-inline">
             <b>Version</b> {{ env("APP_VERSION")}}
         </div>
         <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>

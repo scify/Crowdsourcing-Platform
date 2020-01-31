@@ -64,7 +64,7 @@
 
         if(questionnaireLanguage)
             if( questionnaireLanguage.machine_generated_translation) {
-                tooltip = 'data-toggle="tooltip" title="Translated by Google"';
+                tooltip = 'data-widget="tooltip" title="Translated by Google"';
                 warning = '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>';
                 translationMarkBtn = '<a class="mark-lang" data-mark-human="1" href="#">Mark as human approved</a>';
             } else {

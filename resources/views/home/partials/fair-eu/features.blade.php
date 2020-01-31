@@ -5,9 +5,9 @@
             <div class="text-center">
                 <ul id="features-nav" class="nav nav-pills" role="tablist">
                     <li role="presentation" class="active"><a href="#citizens" aria-controls="citizens" role="tab"
-                                                              data-toggle="tab">BUILT FOR CITIZENS</a></li>
+                                                              data-widget="tab">BUILT FOR CITIZENS</a></li>
                     <li role="presentation"><a href="#managers" aria-controls="managers" role="tab"
-                                               data-toggle="tab">OPEN-SOURCE PLATFORM</a></li>
+                                               data-widget="tab">OPEN-SOURCE PLATFORM</a></li>
                 </ul>
             </div>
             <div class="tab-content">

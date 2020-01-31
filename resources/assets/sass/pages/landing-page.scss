@@ -39,7 +39,7 @@ body {
   .navbar-brand {
     height: auto;
     img {
-      height: 70px;
+      height: 86px;
     }
   }
   .navbar-toggle {
@@ -111,7 +111,7 @@ body {
 
 section {
   &:first-of-type {
-    padding-top: 80px;
+    //padding-top: 80px;
   }
   &:nth-child(even) .row{
     background-color: #f3fafe;
