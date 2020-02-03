@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="{{ asset('dist/css/next-step.css') }}">
 @endpush
 
-<div class="box box-danger">
-    <div class="box-header with-border">
-        <h3 class="box-title">
+<div class="card card-danger">
+    <div class="card-header with-border">
+        <h3 class="card-title">
             @if ($badgesVM->numOfBadges ==0)
                 You don't have any badges, yet!
             @else
@@ -15,8 +15,8 @@
             @endif
         </h3>
     </div>
-    <div class="box-body">
-        <div class="container">
+    <div class="card-body">
+        <div class="container-fluid">
             <div class="text-center badges-container row">
 
                 @foreach($badgesVM->badgesWithLevelsList as $badge)
