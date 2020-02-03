@@ -18,8 +18,6 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('motto');
-            $table->string('label1');
-            $table->string('label2');
             $table->longText('description');
             $table->string('img_path');
             $table->unsignedInteger('user_creator_id');
