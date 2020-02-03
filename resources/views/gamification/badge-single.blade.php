@@ -11,7 +11,7 @@
     <div class="col-md-12 badgeImg">
         <img class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 mt-2">
         <h4 class="align-center badgeName" style="color: white; !important">{{ $badge->badgeName }}</h4>
         @if($badge->level)
             <h6 class="align-center badgeLevel" style="color: white; !important">Level: <span
