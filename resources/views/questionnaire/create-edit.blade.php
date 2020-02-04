@@ -13,11 +13,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
+            <div class="card card-primary">
+                <div class="card-header with-border">
                     Questionnaire Info
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     @if($viewModel->questionnaire)
                         <div class="row">
                             <div class="col-md-12">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     <div class="row">
                         <div class="col-md-offset-10 col-md-2">
                             <a href="javascript:void(0)" id="save" class="btn btn-block btn-primary">Save</a>
