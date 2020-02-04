@@ -286,3 +286,12 @@ table {
 .sv_container li {
   list-style-type: disc;
 }
+
+.dataTables_wrapper {
+  .dataTables_length {
+    .form-control.input-sm {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+}
