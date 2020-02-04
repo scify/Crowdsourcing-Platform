@@ -15,15 +15,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">You have contributed to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
+            <div class="card card-info">
+                <div class="card-header with-border">
+                    <h3 class="card-title">You have contributed to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     @if($responses->isEmpty())
                         <p class="warning">You haven't responded to any questionnaires, yet.</p>
                     @else
-                        <table id="responsesTable" cellspacing="0" style="width: 100%;">
+                        <table id="responsesTable" class="w-100" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>Project</th>
