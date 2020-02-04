@@ -23,11 +23,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
+                    <div class="card card-info">
+                        <div class="card-header with-border">
                             <h2>Project Basic Details</h2>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 {{--English by default--}}
@@ -124,11 +124,11 @@
                 </div>
 
                 <div class="col-lg-6 col-sm-12">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
+                    <div class="card card-info">
+                        <div class="card-header with-border">
                             <h2>Landing Page</h2>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row image-input-container">
                                 <label class="col-sm-12 control-label">Motto Background Image </label>
                                 <div class="col-sm-12">
@@ -452,11 +452,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
+                    <div class="card card-info">
+                        <div class="card-header with-border">
                             <h2>Social Media metadata</h2>
                         </div>
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row image-input-container">
                                 <label class="col-sm-12 control-label">Featured Image </label>
                                 <div class="col-sm-12">

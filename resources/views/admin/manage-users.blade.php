@@ -7,11 +7,11 @@
 @stop
 
 @section('content')
-    <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">Edit platform users</h3>
+    <div class="card card-info">
+        <div class="card-header with-border">
+            <h3 class="card-title">Edit platform users</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             <div id="allUsers">
                 @include('admin.partials.user-filters')
                 @include('admin.partials.users-list', ['users' => $viewModel->users])
@@ -19,11 +19,11 @@
         </div>
     </div>
 
-    <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">Add new user</h3>
+    <div class="card card-info">
+        <div class="card-header with-border">
+            <h3 class="card-title">Add new user</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             @include('admin.partials.new-user-form', ['roles' => $viewModel->allRoles])
         </div>
     </div>
