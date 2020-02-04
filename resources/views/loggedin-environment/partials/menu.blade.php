@@ -25,7 +25,7 @@
                 <li class="nav-header">MAIN NAVIGATION</li>
                 <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
                     <a class="nav-link" href="{{url("my-dashboard")}}">
-                        <i class="nav-icon fa fa-dashboard"></i> <p>My Dashboard</p>
+                        <i class="nav-icon fas fa-tachometer-alt"></i> <p>My Dashboard</p>
 
                     </a>
                 </li>
