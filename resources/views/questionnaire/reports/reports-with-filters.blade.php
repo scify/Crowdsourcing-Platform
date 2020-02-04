@@ -13,7 +13,7 @@
     <div class="row reports">
         <div class="col-md-12 col-xs-12">
             <div class="box box-info">
-                <div class="box-header with-border">
+                <div class="box-header">
                     <h3 class="box-title">Crowdsourcing Projects Reports</h3>
                 </div>
                 <div class="box-body">

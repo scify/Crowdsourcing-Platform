@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box box-info">
-                    <div class="box-header with-border">
+                    <div class="box-header">
                         <h3 class="box-title">Edit user {{ $viewModel->user->nickname }}</h3>
                     </div>
                     <div class="box-body">

@@ -1,5 +1,5 @@
 <div class="box box-info">
-    <div class="box-header with-border">
+    <div class="box-header">
         <h3 class="box-title">Respondents Summary</h3>
     </div>
     <div class="box-body">
@@ -26,7 +26,7 @@
     </div>
 </div>
 <div class="box box-info">
-    <div class="box-header with-border">
+    <div class="box-header">
         <h3 class="box-title">Respondents Analytic Report</h3>
     </div>
     <div class="box-body">
@@ -65,7 +65,7 @@
     </div>
 </div>
 <div class="box box-info">
-    <div class="box-header with-border">
+    <div class="box-header">
         <h3 class="box-title">Answers Report</h3>
     </div>
     <div class="box-body">

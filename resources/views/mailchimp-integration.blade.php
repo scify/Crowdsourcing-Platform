@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12 col-xs-12">
             <div class="card card-info">
-                <div class="card-header with-border">
+                <div class="card-header">
                     <h3 class="card-title">Instructions</h3>
                 </div>
                 <div class="card-body">
@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="card card-success">
-                <div class="card-header with-border">
+                <div class="card-header">
                     <h3 class="card-title">Integration Form</h3>
                 </div>
                 <form action="{{route('mailchimp-integration')}}" method="post">

@@ -4,7 +4,7 @@
 @endpush
 
 <div class="card card-danger">
-    <div class="card-header with-border">
+    <div class="card-header">
         <h3 class="card-title">
             @if ($badgesVM->numOfBadges ==0)
                 You don't have any badges, yet!

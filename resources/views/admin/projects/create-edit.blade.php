@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
                     <div class="card card-info">
-                        <div class="card-header with-border">
+                        <div class="card-header">
                             <h2>Project Basic Details</h2>
                         </div>
                         <div class="card-body">
@@ -125,7 +125,7 @@
 
                 <div class="col-lg-6 col-sm-12">
                     <div class="card card-info">
-                        <div class="card-header with-border">
+                        <div class="card-header">
                             <h2>Landing Page</h2>
                         </div>
                         <div class="card-body">
@@ -453,7 +453,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <div class="card card-info">
-                        <div class="card-header with-border">
+                        <div class="card-header">
                             <h2>Social Media metadata</h2>
                         </div>
                         <div class="card-body">

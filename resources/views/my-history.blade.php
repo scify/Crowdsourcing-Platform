@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-info">
-                <div class="card-header with-border">
+                <div class="card-header">
                     <h3 class="card-title">You have contributed to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
                 </div>
                 <div class="card-body">
