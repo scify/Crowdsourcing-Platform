@@ -11,8 +11,6 @@
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="{{ asset('dist/css/common.css')}}?{{env("APP_VERSION")}}">
-        {{--Loading summernote CSS via CDN because webpack does not seem to get it working...--}}
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
         <link href="{{asset('dist/css/select2.min.css')}}" rel="stylesheet">
         @stack('css')
 
