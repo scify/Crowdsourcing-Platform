@@ -145,6 +145,8 @@ sudo service apache2 restart
 ## Related HTML Template
 This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
 
+It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
+
 ## Run Tests
 We use a Sqlite database to generate an instance of the database, for testing purposes.
 In order to create the database file, run the following commands:
