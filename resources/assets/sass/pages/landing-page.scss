@@ -39,16 +39,13 @@ body {
   .navbar-brand {
     height: auto;
     img {
-      height: 86px;
+      height: 70px;
     }
   }
   .navbar-toggle {
     margin: 15px;
   }
   .navbar-collapse {
-    margin-top: 10px;
-    margin-bottom: 0;
-
     &.collapse.in, &.collapsing {
       float: unset !important;
     }
