@@ -11,11 +11,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Instructions</h3>
+            <div class="card card-info">
+                <div class="card-header with-border">
+                    <h3 class="card-title">Instructions</h3>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     First, login to your MailChimp account <a href="https://login.mailchimp.com/" target="_blank">here</a>.
                     Then, find your <b>Lists' IDs</b> by following the instructions provided by MailChimp
                     <a href="https://mailchimp.com/help/find-your-list-id/" target="_blank">here</a>.
@@ -25,13 +25,13 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Integration Form</h3>
+            <div class="card card-success">
+                <div class="card-header with-border">
+                    <h3 class="card-title">Integration Form</h3>
                 </div>
                 <form action="{{route('mailchimp-integration')}}" method="post">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <div class="box-body">
+                    <div class="card-body">
                         <p>Please provide the following MailChimp lists IDs (see instructions above).</p>
                         {{--<div class="form-group">--}}
                             {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-widget="tooltip"--}}
@@ -51,7 +51,7 @@
                                    value="{{isset($viewModel) && isset($viewModel->registeredUsersList) ? $viewModel->registeredUsersList->list_id : ''}}">
                         </div>
                     </div>
-                    <div class="box-footer">
+                    <div class="card-footer">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4 col-xs-12">
                                 <button type="submit" class="btn btn-block btn-primary">Save</button>
