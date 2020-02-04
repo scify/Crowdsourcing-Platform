@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-md-12">
                             <a href="javascript:void(0)" class="btn btn-block btn-primary" id="new-lang-btn"
-                               data-widget="modal" data-target="#add-new-lang-modal">
+                               data-toggle="modal" data-target="#add-new-lang-modal">
                                 <i class="fa fa-plus"></i> Add new language
                             </a>
                         </div>
