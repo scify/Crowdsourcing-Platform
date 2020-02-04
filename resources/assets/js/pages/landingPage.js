@@ -75,7 +75,8 @@ let ProgressBar = require('progressbar.js');
                     // $('.sv_complete_btn').remove();
                 });
         }
-        displayTranslation.apply($('#questionnaire-lang-selector'));
+        if($('#questionnaire-lang-selector').length)
+            displayTranslation.apply($('#questionnaire-lang-selector'));
     };
 
     let setQuestionNumbers = function (questions) {
