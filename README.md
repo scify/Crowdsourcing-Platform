@@ -143,7 +143,7 @@ sudo service apache2 restart
 ```
 
 ## Related HTML Template
-This project uses the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2.html) template.
+This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
 
 ## Run Tests
 We use a Sqlite database to generate an instance of the database, for testing purposes.
