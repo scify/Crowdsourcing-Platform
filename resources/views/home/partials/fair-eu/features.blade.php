@@ -2,16 +2,14 @@
     <div class="col-md-12">
         <h2>Features</h2>
         <div class="content-container">
-            <div class="text-center">
-                <ul id="features-nav" class="nav nav-pills" role="tablist">
-                    <li role="presentation" class="active"><a href="#citizens" aria-controls="citizens" role="tab"
-                                                              data-widget="tab">BUILT FOR CITIZENS</a></li>
-                    <li role="presentation"><a href="#managers" aria-controls="managers" role="tab"
-                                               data-widget="tab">OPEN-SOURCE PLATFORM</a></li>
+                <ul id="features-nav" class="nav nav-pills justify-content-center" role="tablist">
+                    <li role="presentation" class="nav-item"><a class="nav-link active" href="#citizens" aria-controls="citizens" role="tab"
+                                                              data-toggle="tab">BUILT FOR CITIZENS</a></li>
+                    <li role="presentation" class="nav-item"><a class="nav-link" href="#managers" aria-controls="managers" role="tab"
+                                               data-toggle="tab">OPEN-SOURCE PLATFORM</a></li>
                 </ul>
-            </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="citizens">
+                <div role="tabpanel" class="tab-pane fade show active" id="citizens">
 
                     <div class="features-wrapper">
                         <div class="features-list">
