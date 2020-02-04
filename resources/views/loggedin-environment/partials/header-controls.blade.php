@@ -34,7 +34,7 @@
                            class="btn btn-default btn-flat"
                            onclick="e">Sign out</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{--                                {{ csrf_field() }}--}}
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
                     </div>
                 </li>
