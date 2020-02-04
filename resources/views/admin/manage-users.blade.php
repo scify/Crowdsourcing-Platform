@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="card card-info">
-        <div class="card-header with-border">
+        <div class="card-header">
             <h3 class="card-title">Edit platform users</h3>
         </div>
         <div class="card-body">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="card card-info">
-        <div class="card-header with-border">
+        <div class="card-header">
             <h3 class="card-title">Add new user</h3>
         </div>
         <div class="card-body">

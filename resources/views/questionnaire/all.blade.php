@@ -12,7 +12,7 @@
     <div class="row manage-questionnaires">
         <div class="col-md-12 col-xs-12">
             <div class="card card-info">
-                <div class="card-header with-border">
+                <div class="card-header">
                     <h3 class="card-title">All questionnaires</h3>
                 </div>
                 <div class="card-body">
