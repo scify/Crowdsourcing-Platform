@@ -295,3 +295,9 @@ table {
     }
   }
 }
+
+.dropdown.show {
+  .dropdown-menu.show {
+    padding: 0.5rem;
+  }
+}

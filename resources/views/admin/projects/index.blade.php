@@ -9,11 +9,11 @@
 @endpush
 
 @section('content')
-    <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">Edit projects</h3>
+    <div class="card card-info">
+        <div class="card-header with-border">
+            <h3 class="card-title">Edit projects</h3>
         </div>
-        <div class="box-body">
+        <div class="card-body">
             <div class="all-projects">
                 <table id="userListTable" class="table table-hover" cellspacing="0" style="width: 100%;">
                     <thead>
@@ -66,11 +66,11 @@
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{{ route('projects.edit', $project->id) }}">Edit Project</a></li>
-                                            <li><a href="{{ route('project.landing-page', $project->slug) }}">View Landing Page</a></li>
-                                            <li><a href="{{ route('project.reports', $project->id) }}">View Reports</a></li>
-                                        </ul>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ route('projects.edit', $project->id) }}">Edit Project</a>
+                                            <a class="dropdown-item" href="{{ route('project.landing-page', $project->slug) }}">View Landing Page</a>
+                                            <a class="dropdown-item" href="{{ route('project.reports', $project->id) }}">View Reports</a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
