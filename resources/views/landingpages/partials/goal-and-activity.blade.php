@@ -14,7 +14,7 @@
 
     <div class="row activity-container wrapper-box">
         @can("manage-platform")
-            <div class="col-xs-9">
+            <div class="col-md-6 col-sm-12 text-center">
                 @if ($viewModel->totalResponses ==0)
                     <p class="no-activity-found-msg" style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}">
                         No recent activity found
@@ -45,7 +45,7 @@
             <?php $class = '' ?>
         @endcan
         @if($viewModel->questionnaireGoalVM)
-            <div class="col-xs-3 text-center {{ $class }}">
+            <div class="col-md-6 col-sm-12 text-center {{ $class }}">
                 @include('landingpages.partials.project-goal', ['viewModel' => $viewModel->questionnaireGoalVM, 'projectId' => $viewModel->project->id])
             </div>
         @endif
