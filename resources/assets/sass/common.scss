@@ -17,6 +17,7 @@
 @import '../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css';
 @import '../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css';
 @import '../../../node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css';
+@import '../../../node_modules/summernote/dist/summernote.css';
 
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap/scss/functions';
@@ -299,5 +300,13 @@ table {
 .dropdown.show {
   .dropdown-menu.show {
     padding: 0.5rem;
+  }
+}
+
+.card {
+  .card-header {
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 0;
+    }
   }
 }
