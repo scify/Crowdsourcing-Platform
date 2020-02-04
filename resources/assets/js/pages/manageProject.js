@@ -1,11 +1,10 @@
-require('summernote');
-
 (function () {
 
     let initializeSummernote = function () {
         $('.summernote').summernote({
             tabsize: 2,
-            height: 300
+            height: 300,
+            dialogsInBody: true
         });
     };
 
