@@ -11,11 +11,11 @@
 @section('content')
     <div class="row manage-questionnaires">
         <div class="col-md-12 col-xs-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">All questionnaires</h3>
+            <div class="card card-info">
+                <div class="card-header with-border">
+                    <h3 class="card-title">All questionnaires</h3>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="row margin-bottom">
                         <div class="col-md-2">
                             <a class="btn btn-block btn-primary new-questionnaire" href="{{route("create-questionnaire")}}"><i
@@ -54,18 +54,16 @@
                                     </td>
                                     <td>{{ $questionnaire->prerequisite_order }}</td>
                                     <td>
-                                        <div class="action-btn">
-                                            <a href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-pencil"></i> Edit questionnaire</a>
-                                        </div>
-                                        <div class="action-btn">
-                                            <a href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
-                                        </div>
-                                        <div class="action-btn">
-                                            <a href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fa fa-line-chart"></i> View Results</a>
-                                        </div>
-                                        <div class="action-btn">
-                                            <a href="javascript:void(0)" class="change-status" data-widget="modal"
-                                               data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select an action
+                                                <span class="caret"></span></button>
+                                            <div class="dropdown-menu">
+                                                <a class="action-btn dropdown-item" href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="far fa-edit"></i> Edit questionnaire</a>
+                                                <a class="action-btn dropdown-item" href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
+                                                <a class="action-btn dropdown-item" href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fas fa-list-ul"></i> View Results</a>
+                                                <a class="action-btn dropdown-item change-status" href="javascript:void(0)" data-toggle="modal"
+                                                   data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -83,9 +81,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title">Change status for Questionnaire</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Change status for "<span id="questionnaire-title"></span>"</h4>
                 </div>
                 <form action="{{route('update-questionnaire-status')}}" method="post">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
