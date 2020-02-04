@@ -23,8 +23,9 @@ window.QuestionnaireResponsesController.prototype = function() {
             "columns": [
                 { "width": "20%" },
                 { "width": "20%" },
-                { "width": "40%" },
+                { "width": "30%" },
                 { "width": "20%" },
+                { "width": "10%" },
             ],
             "initComplete": function(settings, json) {}
         });
