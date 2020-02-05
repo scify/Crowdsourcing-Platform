@@ -38,10 +38,10 @@
         </ul>
     </li>
 @else
-    <li>
-        <a href="/login">LOGIN</a>
+    <li class="nav-item">
+        <a class="nav-link" href="/login">LOGIN</a>
     </li>
-    <li>
-        <a href="/register">REGISTER</a>
+    <li class="nav-item">
+        <a class="nav-link" href="/register">REGISTER</a>
     </li>
 @endif
