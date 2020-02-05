@@ -7,8 +7,7 @@
         <form action="{{ route('register') }}" method="post">
             @include('auth.partials.register_form')
             <button type="submit"
-                    class="btn btn-primary btn-block btn-flat"
-            >Create account</button>
+                    class="btn btn-primary btn-block btn-flat btn-lg">Create account</button>
         </form>
     </div>
     @include('auth.partials.social-sign-in')
