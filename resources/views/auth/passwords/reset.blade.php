@@ -4,7 +4,7 @@
     <h1>Let's define our future!</h1>
     <div class="reset">
         <p class="login-box-msg">Reset your Password</p>
-        <form action="{{ route('password.reset') }}" method="post">
+        <form action="{{ route('password.reset', ['token' => $token]) }}" method="post">
             {!! csrf_field() !!}
 
             <input type="hidden" name="token" value="{{ $token }}">
