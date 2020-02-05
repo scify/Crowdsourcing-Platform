@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="card card-info">
+            <div class="card card-info card-outline">
                 <div class="card-header">
                     <h3 class="card-title">Personal Details</h3>
                 </div>
@@ -77,7 +77,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="card card-info">
+            <div class="card card-info card-outline">
                 <div class="card-header">
                     <h3 class="card-title">My Data</h3>
                 </div>
@@ -93,7 +93,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-xs-12">
-            <div class="card card-default">
+            <div class="card card-default card-outline">
                 <div class="card-header">
                     <h3 class="card-title">Account Deactivation</h3>
                 </div>

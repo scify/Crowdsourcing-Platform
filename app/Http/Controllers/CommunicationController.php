@@ -24,7 +24,7 @@ class CommunicationController extends Controller
     public function getMailChimpIntegration()
     {
         $viewModel = $this->communicationManager->getMailChimpIntegrationViewModel();
-        return view('mailchimp-integration')->with(['viewModel' => $viewModel]);
+        return view('admin.mailchimp-integration')->with(['viewModel' => $viewModel]);
     }
 
     public function storeMailChimpListsIds(Request $request)
