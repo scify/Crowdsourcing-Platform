@@ -53,6 +53,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2");
 }
 
+.modal-lg {
+  max-width: 1000px;
+}
+
 .background-page {
   background-size: cover;
   background-position: center;
