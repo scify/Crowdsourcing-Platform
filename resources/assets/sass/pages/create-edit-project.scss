@@ -25,3 +25,15 @@
     margin-bottom: 1rem;
   }
 }
+
+.card {
+  .card-header {
+    * {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.btn.submit {
+  font-size: 1.2rem;
+}

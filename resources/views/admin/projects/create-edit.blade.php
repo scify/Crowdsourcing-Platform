@@ -17,15 +17,15 @@
         @endif
         <div class="container-fluid no-padding">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9 col-sm-12">
                     <p class="margin-top">required fields are marked with (<span class="red">*</span>)</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-md-9 col-sm-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h2>Project Basic Details</h2>
+                            <h2 class="card-title">Project Basic Details (<span class="red">*</span>)</h2>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -54,6 +54,7 @@
                                     <div class="form-group has-feedback">
                                     <textarea id="description" class="form-control" name="description"
                                               required
+                                              rows="6"
                                               placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
                                         <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                                     </div>
@@ -122,11 +123,16 @@
 
                     </div>
                 </div>
-
-                <div class="col-lg-6 col-sm-12">
-                    <div class="card card-info">
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-sm-12">
+                    <div class="card card-info collapsed-card">
                         <div class="card-header">
-                            <h2>Landing Page</h2>
+                            <h2 class="card-title">Landing Page</h2>
+                            <div class="card-tools">
+                                <!-- Collapse Button -->
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="row image-input-container">
@@ -451,10 +457,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="card card-info">
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-sm-12">
+                    <div class="card card-info collapsed-card">
                         <div class="card-header">
-                            <h2>Social Media metadata</h2>
+                            <h2 class="card-title">Social Media metadata</h2>
+                            <div class="card-tools">
+                                <!-- Collapse Button -->
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="row image-input-container">
@@ -511,11 +523,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-3 col-sm-12">
-                    <button class="btn btn-block btn-primary btn-lg" type="submit">Save</button>
+                    <button class="btn btn-block btn-primary btn-lg submit" type="submit">Save</button>
                 </div>
             </div>
         </div>
