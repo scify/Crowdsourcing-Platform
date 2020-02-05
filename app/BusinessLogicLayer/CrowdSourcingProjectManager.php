@@ -130,21 +130,73 @@ class CrowdSourcingProjectManager
     public function updateCrowdSourcingProject($id, array $attributes) {
         $project = $this->getCrowdSourcingProject($id);
 
-        // set default values
-        if(!$project->logo_path)
-            $attributes['logo_path'] = '/images/image_temp.png';
-        if(!$project->img_path)
-            $attributes['img_path'] = '/images/image_temp.png';
-        if(!$project->sm_featured_img_path)
-            $attributes['sm_featured_img_path'] = '/images/image_temp.png';
-        if(!$project->lp_questionnaire_img_path)
-            $attributes['lp_questionnaire_img_path'] = '/images/bgsectionnaire.png';
+        if(!isset($attributes['sm_title']) || !$attributes['sm_title'])
+            $attributes['sm_title'] = $project->name;
+        if(!isset($attributes['sm_description']) || !$attributes['sm_description'])
+            $attributes['sm_description'] = strip_tags($project->motto);
+        if(!isset($attributes['sm_keywords']) || !$attributes['sm_keywords'])
+            $attributes['sm_keywords'] = str_replace(' ' , ',', $project->name);
 
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
         $this->crowdSourcingProjectRepository->update($attributes, $id);
         if($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
+    }
+
+    public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project) {
+        $project = $this->populateInitialFileValuesForProjectIfNotSet($project);
+        return $this->populateInitialColorValuesForProjectIfNotSet($project);
+    }
+
+    public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project) {
+        if(!$project->lp_motto_color)
+            $project->lp_motto_color = '#ffffff';
+        if(!$project->lp_about_bg_color)
+            $project->lp_about_bg_color = '#ffffff';
+        if(!$project->lp_about_color)
+            $project->lp_about_color = '#666666';
+        if(!$project->lp_questionnaire_color)
+            $project->lp_questionnaire_color = '#076ec1';
+        if(!$project->lp_footer_bg_color)
+            $project->lp_footer_bg_color = '#ffffff';
+        if(!$project->lp_footer_color)
+            $project->lp_footer_color = '#000000';
+        if(!$project->lp_questionnaire_btn_color)
+            $project->lp_questionnaire_btn_color = '#ffffff';
+        if(!$project->lp_questionnaire_btn_bg_color)
+            $project->lp_questionnaire_btn_bg_color = '#004f9f';
+        if(!$project->lp_questionnaire_goal_title_color)
+            $project->lp_questionnaire_goal_title_color = '#076ec1';
+        if(!$project->lp_questionnaire_goal_color)
+            $project->lp_questionnaire_goal_color = '#333333';
+        if(!$project->lp_questionnaire_goal_bg_color)
+            $project->lp_questionnaire_goal_bg_color = '#ffffff';
+        if(!$project->lp_newsletter_title_color)
+            $project->lp_newsletter_title_color = '#076ec1';
+        if(!$project->lp_newsletter_color)
+            $project->lp_newsletter_color = '#333333';
+        if(!$project->lp_newsletter_bg_color)
+            $project->lp_newsletter_bg_color = '#f3fafe';
+        if(!$project->lp_newsletter_btn_color)
+            $project->lp_newsletter_btn_color = '#ffffff';
+        if(!$project->lp_newsletter_btn_bg_color)
+            $project->lp_newsletter_btn_bg_color = '#004f9f';
+
+        return $project;
+    }
+
+    public function populateInitialFileValuesForProjectIfNotSet(CrowdSourcingProject $project) {
+        if(!$project->img_path)
+            $project->img_path = '/images/image_temp.png';
+        if(!$project->logo_path)
+            $project->logo_path = '/images/image_temp.png';
+        if(!$project->sm_featured_img_path)
+            $project->sm_featured_img_path = '/images/image_temp.png';
+        if(!$project->lp_questionnaire_img_path)
+            $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
+
+        return $project;
     }
 
     protected function storeProjectRelatedFiles(array $attributes) {
@@ -185,50 +237,8 @@ class CrowdSourcingProjectManager
             $project = $this->getCrowdSourcingProject($id);
         else
             $project = $this->crowdSourcingProjectRepository->getModelInstance();
-        // set default values for colors
-        if(!$project->lp_motto_color)
-            $project->lp_motto_color = '#ffffff';
-        if(!$project->lp_about_bg_color)
-            $project->lp_about_bg_color = '#ffffff';
-        if(!$project->lp_about_color)
-            $project->lp_about_color = '#666666';
-        if(!$project->lp_questionnaire_color)
-            $project->lp_questionnaire_color = '#076ec1';
-        if(!$project->lp_footer_bg_color)
-            $project->lp_footer_bg_color = '#ffffff';
-        if(!$project->lp_footer_color)
-            $project->lp_footer_color = '#000000';
-        if(!$project->lp_questionnaire_btn_color)
-            $project->lp_questionnaire_btn_color = '#ffffff';
-        if(!$project->lp_questionnaire_btn_bg_color)
-            $project->lp_questionnaire_btn_bg_color = '#004f9f';
-        if(!$project->lp_questionnaire_goal_title_color)
-            $project->lp_questionnaire_goal_title_color = '#076ec1';
-        if(!$project->lp_questionnaire_goal_color)
-            $project->lp_questionnaire_goal_color = '#333333';
-        if(!$project->lp_questionnaire_goal_bg_color)
-            $project->lp_questionnaire_goal_bg_color = '#ffffff';
-        if(!$project->lp_newsletter_title_color)
-            $project->lp_newsletter_title_color = '#076ec1';
-        if(!$project->lp_newsletter_color)
-            $project->lp_newsletter_color = '#333333';
-        if(!$project->lp_newsletter_bg_color)
-            $project->lp_newsletter_bg_color = '#f3fafe';
-        if(!$project->lp_newsletter_btn_color)
-            $project->lp_newsletter_btn_color = '#ffffff';
-        if(!$project->lp_newsletter_btn_bg_color)
-            $project->lp_newsletter_btn_bg_color = '#004f9f';
 
-        // set default values for images
-        if(!$project->img_path)
-            $project->img_path = '/images/image_temp.png';
-        if(!$project->logo_path)
-            $project->logo_path = '/images/image_temp.png';
-        if(!$project->sm_featured_img_path)
-            $project->sm_featured_img_path = '/images/image_temp.png';
-        if(!$project->lp_questionnaire_img_path)
-            $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
-
+        $project = $this->populateInitialValuesForProjectIfNotSet($project);
 
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
         return new CreateEditCrowdSourcingProject($project, $statusesLkp);
