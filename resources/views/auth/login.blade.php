@@ -6,17 +6,18 @@
             You're one step away!
         @else
             Let's define our future!
-            @endif
+        @endif
     </h1>
     <div class="logIn">
         <div class="form-wrapper">
             <p class="login-box-msg">
                 @if ($displayQuestionnaireLabels)
-                    In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue
-                    @else
+                    In order to avoid duplicate submissions, only logged-in users can contribute. Please login to
+                    continue
+                @else
                     Sign in with your account
-                    @endif
-                </p>
+                @endif
+            </p>
             <form action="{{ route('login') }}" method="post">
                 {!! csrf_field() !!}
 
@@ -40,20 +41,19 @@
                         </span>
                     @endif
                 </div>
-                <div class="row">
-                    <div class="col-xs-7">
+                <div class="row mt-2">
+                    <div class="col-md-6 col-sm-10">
                         <div class="checkbox icheck">
                             <label>
-                                <input class="icheck-input" type="checkbox" name="remember"> Remember me
+                                <input class="icheck-input" type="checkbox" name="remember"><span class="ml-3">Remember me</span>
                             </label>
                         </div>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-xs-5">
+                    <div class="col-md-6 col-sm-10">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat">Sign in</button>
+                                class="btn btn-primary btn-block btn-flat btn-lg">Sign in
+                        </button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
         </div>
