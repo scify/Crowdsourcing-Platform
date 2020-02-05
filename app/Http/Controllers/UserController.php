@@ -33,13 +33,13 @@ class UserController extends Controller
     public function myDashboard()
     {
         $dashboardViewModel = $this->userDashboardManager->getUserDashboardViewModel(Auth::id());
-        return view('my-dashboard', ['viewModel' => $dashboardViewModel]);
+        return view('loggedin-environment.my-dashboard', ['viewModel' => $dashboardViewModel]);
     }
 
     public function myAccount()
     {
         $userViewModel = $this->userManager->getUserProfile(Auth::user());
-        return view('my-account', ['viewModel' => $userViewModel]);
+        return view('loggedin-environment.my-account', ['viewModel' => $userViewModel]);
     }
 
     public function patch(Request $request) {
@@ -90,7 +90,7 @@ class UserController extends Controller
 
     public function showUserHistory() {
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
-        return view('my-history', ['responses' => $responses]);
+        return view('loggedin-environment.my-history', ['responses' => $responses]);
     }
 
     public function downloadUserData() {

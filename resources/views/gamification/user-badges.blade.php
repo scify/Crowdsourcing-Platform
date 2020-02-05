@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/next-step.css') }}">
 @endpush
 
-<div class="card card-danger">
+<div class="card card-danger card-outline">
     <div class="card-header">
         <h3 class="card-title">
             @if ($badgesVM->numOfBadges ==0)

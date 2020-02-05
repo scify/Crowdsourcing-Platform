@@ -12,7 +12,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                 <li class="nav-header">MAIN NAVIGATION</li>
                 <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
-                    <a class="nav-link" href="{{url("my-dashboard")}}">
+                    <a class="nav-link" href="{{route("my-dashboard")}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>My Dashboard</p>
 
