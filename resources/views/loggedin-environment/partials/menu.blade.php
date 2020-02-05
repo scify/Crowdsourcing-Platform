@@ -1,18 +1,6 @@
 @inject('CrowdSourcingProjectManager', 'App\BusinessLogicLayer\CrowdSourcingProjectManager')
 
-{{--<header class="main-header">--}}
-{{--    <!-- Logo -->--}}
-{{--    <span class="logo">--}}
-{{--            <!-- mini logo for sidebar mini 50x50 pixels -->--}}
-{{--            <span class="logo-mini"><a href="/"><img style=""--}}
-{{--                                                     ></a></span>--}}
-{{--        <!-- logo for regular state and mobile devices -->--}}
-{{--            <span class="logo-lg"><a href="/"><img--}}
-{{--                            src="{{ asset('images/projects/' . config('app.project_resources_dir') . '/logo_menu.png') }}"></a></span>--}}
-{{--    </span>--}}
-{{--    @include("loggedin-environment.partials.header-controls")--}}
-{{--</header>--}}
-    @include("loggedin-environment.partials.header-controls")
+@include("loggedin-environment.partials.header-controls")
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{route('home')}}" class="brand-link">
@@ -25,14 +13,16 @@
                 <li class="nav-header">MAIN NAVIGATION</li>
                 <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
                     <a class="nav-link" href="{{url("my-dashboard")}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i> <p>My Dashboard</p>
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>My Dashboard</p>
 
                     </a>
                 </li>
 
                 <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
                     <a class="nav-link" href="{{url("my-account")}}">
-                        <i class="nav-icon fa fa-user"></i> <p>My Account</p>
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>My Account</p>
 
                     </a>
                 </li>
@@ -40,7 +30,8 @@
                 @if($userHasContributedToAProject)
                     <li class="nav-item {{ UrlMatchesMenuItem("myHistory")}}">
                         <a class="nav-link" href="{{route("myHistory")}}">
-                            <i class="nav-icon fa fa-history"></i> <p>My History</p>
+                            <i class="nav-icon fa fa-history"></i>
+                            <p>My History</p>
                         </a>
                     </li>
                 @endif
@@ -49,16 +40,19 @@
 
                     <li class="nav-item {{UrlMatchesMenuItem('projects')}}">
                         <a class="nav-link" href="{{ route('projects.index') }}"><i
-                                    class="nav-icon fa fa-list "></i><p>See all Projects</p></a>
+                                    class="nav-icon fa fa-list "></i>
+                            <p>See all Projects</p></a>
                     </li>
                     <li class="nav-item {{UrlMatchesMenuItem('projects/create')}}">
                         <a class="nav-link" href="{{ route('projects.create') }}"><i
-                                    class="nav-icon fa fa-plus "></i><p>Create new Project</p></a>
+                                    class="nav-icon fa fa-plus "></i>
+                            <p>Create new Project</p></a>
                     </li>
                     <li class="nav-item {{UrlMatchesMenuItem("questionnaires")}}">
                         <a class="nav-link" href="{{ route('questionnaires.all') }}"><i
-                                    class="nav-icon fa fa-question-circle "></i><p>Manage
-                            Questionnaires</p></a>
+                                    class="nav-icon fa fa-question-circle "></i>
+                            <p>Manage
+                                Questionnaires</p></a>
                     </li>
                 @endcan
                 @can("manage-platform")
@@ -66,7 +60,8 @@
 
                     <li class="nav-item {{UrlMatchesMenuItem("communication/mailchimp")}}">
                         <a class="nav-link" href="{{ route('mailchimp-integration') }}"><i
-                                    class="nav-icon fa fa-envelope"></i><p>MailChimp Integration</p></a>
+                                    class="nav-icon fa fa-envelope"></i>
+                            <p>MailChimp Integration</p></a>
                     </li>
                 @endcan
                 @can("manage-users")
@@ -74,7 +69,8 @@
 
                     <li class="nav-item {{UrlMatchesMenuItem("admin/manage-users")}}">
                         <a class="nav-link" href="{{ url("admin/manage-users") }}"><i
-                                    class="nav-icon fa fa-users"></i><p>Manage Users</p></a>
+                                    class="nav-icon fa fa-users"></i>
+                            <p>Manage Users</p></a>
                     </li>
                 @endcan
             </ul>
