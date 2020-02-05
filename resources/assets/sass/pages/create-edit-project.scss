@@ -28,11 +28,12 @@
 
 .card {
   .card-header {
-    * {
+    h2, h3, .fa {
       font-size: 1.2rem;
     }
   }
 }
+
 
 .btn.submit {
   font-size: 1.2rem;
