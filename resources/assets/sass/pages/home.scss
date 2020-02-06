@@ -214,10 +214,14 @@ section {
       .project-info {
         padding: 15px 15px 0;
         display: block;
-        height: 3.6em; /* exactly three lines */
+        height: 3rem;
         position: relative;
         overflow: hidden;
         min-height: 100px;
+
+        p {
+          font-size: 1rem;
+        }
       }
 
       .project-info:after {
