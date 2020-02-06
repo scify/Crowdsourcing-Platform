@@ -6,10 +6,10 @@
                     <img src="{{$project->logo_path}}" alt="">
                 </div>
                 <div class="project-info">
-                    {!! $project->description !!}
+                    {!! $project->description ? $project->description : $project->about !!}
                 </div>
                 <div class="project-visit-btn">
-                    <a href="/{{$project->slug}}" class="btn btn-block btn-primary">Contribute</a>
+                    <a href="/{{$project->slug}}" class="btn btn-block btn-primary btn-lg">Contribute</a>
                 </div>
             </div>
         </div>
