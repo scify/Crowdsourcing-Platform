@@ -29,7 +29,7 @@
             <div class="col-md-12 margin-top">
 
 
-                <div class="col-md-3 no-padding form-group">
+                <div class="col-md-3 p-0 form-group">
                     <button type="submit" class="btn btn-primary btn-block ">Add user</button>
                 </div>
             </div>

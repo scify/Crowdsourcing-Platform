@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12 image-with-text-wrapper no-padding"
+    <div class="col-md-12 image-with-text-wrapper p-0"
          style="background-image: url({{asset('images/active_participation.png')}});">
         <div class="gray-filter"></div>
         <div class="text">

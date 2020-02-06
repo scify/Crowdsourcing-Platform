@@ -1,5 +1,5 @@
 <div class="row" id="questionnaire" style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
-    <div class="col-md-12 no-padding">
+    <div class="col-md-12 p-0">
         @if ($viewModel->questionnaire)
             <div id="questionnaire-wrapper" class="text-center content-container">
                 <h3 class="questionnaire-section-title" style="color: {{ $viewModel->project->lp_questionnaire_color }}">
