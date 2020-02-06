@@ -12,11 +12,11 @@ namespace App\Models\ViewModels;
 class ManageQuestionnaires
 {
     const STATUSES_CSS_CLASSES = [
-        'Draft' => 'label-warning',
-        'Published' => 'label-success',
-        'Finalized' => 'label-primary',
-        'Unpublished' => 'label-danger',
-        'Deleted' => 'label-danger'
+        'Draft' => 'badge-warning',
+        'Published' => 'badge-success',
+        'Finalized' => 'badge-primary',
+        'Unpublished' => 'badge-danger',
+        'Deleted' => 'badge-danger'
     ];
     public $questionnaires;
     public $statuses;

@@ -45,11 +45,10 @@
                                     <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
                                     <td>
                                         <b>{{$questionnaire->default_language_name}}</b>
-                                        {{--{{count($questionnaire->languages) > 0 ? ', ' : ''}}--}}
                                         {{$questionnaire->languages}}
                                     </td>
                                     <td>
-                                        <span class="label {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
+                                        <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
                                               title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                     </td>
                                     <td>{{ $questionnaire->prerequisite_order }}</td>
