@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="row" id="motto">
-            <div class="col-md-12 image-with-text-wrapper no-padding"
+            <div class="col-md-12 image-with-text-wrapper p-0"
                  style="background-image: url({{asset($viewModel->project->img_path)}});">
                 <div class="gray-filter"></div>
                 <div class="text">

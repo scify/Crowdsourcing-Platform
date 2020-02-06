@@ -49,6 +49,6 @@
         @include('partials.footer-scripts')
 
         <script src="{{ mix('dist/js/home.js') }}?{{ env("APP_VERSION") }}"></script>
-    
+
     </body>
 </html>

@@ -1,5 +1,5 @@
 <div class="row" id="newsletter" style="background-color: {{ $viewModel->project->lp_newsletter_bg_color }}">
-    <div class="col-md-12 no-padding">
+    <div class="col-md-12 p-0">
         <h2 style="color: {{ $viewModel->project->lp_newsletter_title_color }}">Newsletter</h2>
         <div class="content-container">
             <p class="text-center" style="color: {{ $viewModel->project->lp_newsletter_color }}">
