@@ -22,16 +22,16 @@
                                         class="fa fa-plus"></i> Create new questionnaire</a>
                         </div>
                     </div>
-                    <table class="table table-striped" id="questionnaires-table" cellspacing="0" style="width: 100%;">
+                    <table class="w-100 table table-striped" id="questionnaires-table" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="text-center">#</th>
                             <th>Title</th>
                             <th>Project</th>
                             <th>Goal / Responses</th>
                             <th>Languages available</th>
                             <th>Status</th>
-                            <th>Order</th>
+                            <th class="text-center">Order</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -39,10 +39,10 @@
                             @foreach($viewModel->questionnaires as $questionnaire)
                                 <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
                                     data-status="{{$questionnaire->status_id}}">
-                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td class="text-center">{{ $loop->index + 1 }}</td>
                                     <td>{{$questionnaire->title}}</td>
                                     <td>{{ $questionnaire->project_name }}</td>
-                                    <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} ({{ ($questionnaire->number_of_responses / $questionnaire->goal) * 100 }}%)</td>
+                                    <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}%)</b></td>
                                     <td>
                                         <b>{{$questionnaire->default_language_name}}</b>
                                         {{$questionnaire->languages}}
@@ -51,7 +51,7 @@
                                         <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
                                               title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                     </td>
-                                    <td>{{ $questionnaire->prerequisite_order }}</td>
+                                    <td class="text-center">{{ $questionnaire->prerequisite_order }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select an action
