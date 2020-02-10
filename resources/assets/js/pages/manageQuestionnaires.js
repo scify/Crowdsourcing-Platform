@@ -1,11 +1,3 @@
-require('datatables.net-bs');
-require('datatables.net-buttons');
-require('datatables.net-responsive');
-require('datatables.net-responsive-bs');
-require('datatables.net-buttons/js/dataTables.buttons');
-require('datatables.net-buttons/js/buttons.html5');
-require('datatables.net');
-
 (function () {
     let updateFieldsInChangeStatusModal = function () {
         let parent = $(this).closest('tr');

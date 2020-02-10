@@ -12,8 +12,13 @@
 @import url("~bootstrap-sweetalert/dist/sweetalert.css");
 
 @import "select2-custom.scss";
-@import '../../../node_modules/datatables.net-bs/css/dataTables.bootstrap.css';
-@import '../../../node_modules/datatables.net-responsive-bs/css/responsive.bootstrap.min.css';
+
+@import '../../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css';
+@import '../../../node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css';
+@import '../../../node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css';
+@import '../../../node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css';
+
+
 @import '../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css';
 @import '../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css';
 @import '../../../node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css';

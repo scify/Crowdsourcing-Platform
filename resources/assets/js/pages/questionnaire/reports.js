@@ -1,18 +1,11 @@
-require('datatables.net-bs');
-require('datatables.net-buttons');
-require('datatables.net-responsive');
-require('datatables.net-responsive-bs');
-require('datatables.net-buttons/js/dataTables.buttons');
-require('datatables.net-buttons/js/buttons.html5');
-
 (function () {
 
     let table;
+    const loader = $("#loader");
 
     let searchBtnHandler = function () {
         $("#searchBtn").on("click", function () {
             let criteria = {};
-            criteria.projectId = $('select[name=project_id]').val();
             criteria.questionnaireId = $('select[name=questionnaire_id]').val();
             getReportsForCriteria(criteria);
         });
@@ -27,9 +20,7 @@ require('datatables.net-buttons/js/buttons.html5');
             e.preventDefault();
             let question = $(this).data('question');
             let data = $(this).data('answers');
-            console.log(data);
             data = prepareDataForAnswersTable(data);
-            console.log(data);
             if (table)
                 table.destroy();
             table = $('#answerTextsTable').DataTable({
@@ -62,16 +53,16 @@ require('datatables.net-buttons/js/buttons.html5');
             cache: false,
             data: criteria,
             beforeSend: function () {
-                $(".loader-container").removeClass('hidden');
-                $("#errorMsg").addClass('hidden');
+                loader.removeClass('d-none');
+                $("#errorMsg").addClass('d-none');
             },
             success: function (response) {
                 parseSuccessData(response);
-                $(".loader-container").addClass('hidden');
+                loader.addClass('d-none');
             },
             error: function (xhr, status, errorThrown) {
-                $(".loader-container").addClass('hidden');
-                $("#errorMsg").removeClass('hidden');
+                loader.addClass('d-none');
+                $("#errorMsg").removeClass('d-none');
                 console.log(errorThrown);
                 $("#errorMsg").html("An error occurred");
             }
@@ -82,27 +73,31 @@ require('datatables.net-buttons/js/buttons.html5');
         let responseObj = JSON.parse(data);
         //if operation was unsuccessful
         if (responseObj.status === 2) {
-            $(".loader").addClass('hidden');
-            $("#errorMsg").removeClass('hidden');
+            loader.addClass('d-none');
+            $("#errorMsg").removeClass('d-none');
             $("#errorMsg").html(responseObj.data);
             $("#results").html("");
         } else {
             $("#results").html("");
-            $("#errorMsg").addClass('hidden');
-            $(".loader").addClass('hidden');
+            $("#errorMsg").addClass('d-none');
+            loader.addClass('d-none');
             $("#results").html(responseObj.data);
-            initializeDataTable();
+            initializeDataTables();
         }
     };
 
-    let initializeDataTable = function () {
+    let initializeDataTables = function () {
 
         let respondentsTable = $("#respondentsTable");
         respondentsTable.DataTable({
             "paging": true,
             "searching": true,
             "responsive": true,
-            "pageLength": 15
+            "pageLength": 10,
+            "columns" : [
+                {"width": "50%"},
+                {"width": "50%"}
+            ]
         });
 
         let usersTable = $("#usersTable");
@@ -110,7 +105,7 @@ require('datatables.net-buttons/js/buttons.html5');
             "paging": true,
             "searching": true,
             "responsive": true,
-            "pageLength": 15,
+            "pageLength": 10,
             "dom": 'Bfrtip',
             "buttons": [
                 {
@@ -139,7 +134,7 @@ require('datatables.net-buttons/js/buttons.html5');
             "paging": true,
             "searching": true,
             "responsive": true,
-            "pageLength": 15,
+            "pageLength": 10,
             "dom": 'Bfrtip',
             "buttons": [
                 {

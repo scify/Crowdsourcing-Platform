@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <button id="searchBtn" class="searchBtn btn btn-primary btn-ripple margin-right-10">
+                <button id="searchBtn" class="searchBtn btn btn-primary btn-ripple mr-1">
                     Search <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
             </div>
