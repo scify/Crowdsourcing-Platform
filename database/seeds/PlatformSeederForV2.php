@@ -43,7 +43,7 @@ class PlatformSeederForV2 extends Seeder {
 
         $attributesToBeUpdated['img_path'] = '/images/projects/fair-eu/fair-eu-bg.png';
         $attributesToBeUpdated['logo_path'] = '/images/projects/fair-eu/fair-eu.png';
-        $attributesToBeUpdated['sm_featured_img_path'] = '/images/projects/fair-eu.png';
+        $attributesToBeUpdated['sm_featured_img_path'] = '/images/projects/fair-eu/fair-eu.png';
 
         $this->crowdSourcingProjectManager->updateCrowdSourcingProject($project->id, $attributesToBeUpdated);
 
