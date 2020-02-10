@@ -48,7 +48,7 @@
     "progressbar.js": "^1.0.1",
     "select2": "^4.0.5",
     "showdown": "^1.9.0",
-    "survey-jquery": "^1.0.77",
-    "surveyjs-editor": "^1.0.30"
+    "survey-jquery": "^1.5.5",
+    "surveyjs-editor": "^1.1.25"
   }
 }

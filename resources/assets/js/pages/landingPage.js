@@ -1,5 +1,4 @@
-let Survey = require('survey-jquery');
-let ProgressBar = require('progressbar.js');
+import * as Survey from "survey-jquery";
 
 (function () {
     let survey;
@@ -27,7 +26,7 @@ let ProgressBar = require('progressbar.js');
                 page.elements = setQuestionNumbers(page.elements);
             });
 
-            survey = new Survey.Survey(JSON.stringify(json), wrapperId);
+            survey = new Survey.Model(json);
             survey
                 .onComplete
                 .add(function (result) {
@@ -53,6 +52,7 @@ let ProgressBar = require('progressbar.js');
                         }
                     });
                 });
+            $(wrapper).Survey({model: survey});
             const converter = new showdown.Converter();
             survey
                 .onTextMarkdown
@@ -69,13 +69,12 @@ let ProgressBar = require('progressbar.js');
                 .add(function (survey, options) {
                 });
             survey
-                .onRendered
+                .onAfterRenderSurvey
                 .add(function () {
                     $(".sv_complete_btn").after("<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>");
-                    // $('.sv_complete_btn').remove();
                 });
         }
-        if($('#questionnaire-lang-selector').length)
+        if ($('#questionnaire-lang-selector').length)
             displayTranslation.apply($('#questionnaire-lang-selector'));
     };
 
@@ -96,7 +95,7 @@ let ProgressBar = require('progressbar.js');
                     question.qnum = questionIndex;
                 }
             } else {
-                if(innerQuestionShouldHaveNumbering(question)) {
+                if (innerQuestionShouldHaveNumbering(question)) {
                     innerQuestionIndex++;
                     question.qnum = questionIndex + "." + innerQuestionIndex;
                 } else {
@@ -156,6 +155,7 @@ let ProgressBar = require('progressbar.js');
         initEvents();
         openQuestionnaireIfNeeded();
     };
-
-    init();
+    $(document).ready(function () {
+        init();
+    });
 })();
