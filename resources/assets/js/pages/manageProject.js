@@ -1,4 +1,7 @@
+const Stepper = require('bs-stepper');
+
 (function () {
+    let stepper;
 
     let initializeSummernote = function () {
         $('.summernote').summernote({
@@ -9,7 +12,7 @@
     };
 
     let initializeColorPicker = function () {
-        $('.color-picker').each(function(i, obj) {
+        $('.color-picker').each(function (i, obj) {
             $(obj).colorpicker({
                 horizontal: true
             });
@@ -18,7 +21,7 @@
     };
 
     let initializeImgFileChangePreviewHandlers = function () {
-        $('.image-input').each(function(i, obj) {
+        $('.image-input').each(function (i, obj) {
             $(obj).change(function () {
                 const event = this;
                 if (event.files && event.files[0]) {
@@ -34,11 +37,35 @@
         });
     };
 
+    let initializeStepper = function () {
+        const stepperEl = $('#project-form-stepper')[0];
+        stepper = new Stepper(stepperEl);
+        $("body").on('click', '.stepper-next', function () {
+            stepper.next();
+        });
+        $("body").on('click', '.stepper-previous', function () {
+            stepper.previous();
+        });
+
+        stepperEl.addEventListener('show.bs-stepper', function (event) {
+            // if on last step, show form submit button
+            if(event.detail.indexStep === 2) {
+                $('.stepper-next').addClass('d-none');
+                $('#submit-form').removeClass('d-none');
+            } else {
+                $('.stepper-next').removeClass('d-none');
+                $('#submit-form').addClass('d-none');
+            }
+        })
+    };
+
     let init = function () {
         initializeSummernote();
         initializeColorPicker();
         initializeImgFileChangePreviewHandlers();
+        initializeStepper();
     };
-
-    init();
+    $(document).ready(function () {
+        init();
+    });
 })();
