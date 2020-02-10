@@ -20,7 +20,7 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .extract([
         'jquery','jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert',
         'select2', 'bootstrap', 'jquery-toast-plugin', 'bootstrap-tagsinput',
-        'bootstrap-colorpicker', 'popper.js'
+        'bootstrap-colorpicker', 'popper.js', 'survey-jquery'
     ])
     .sourceMaps()
     .webpackConfig({
@@ -63,5 +63,3 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
 // move select2.min.css to public/dist/css
 mix.copy(['node_modules/select2/dist/css/select2.min.css'], 'public/dist/css/select2.min.css');
 mix.copy(['node_modules/showdown/dist/*'], 'public/dist/js');
-// move surveyjs files to public/dist/css
-mix.copy(['resources/assets/plugins/surveyjs-1.0.30/*'], 'public/dist/css/');
