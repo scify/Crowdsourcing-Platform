@@ -10,11 +10,11 @@
         <input name="userId" type="hidden" value="{{ $viewModel->user->id }}">
         <div class="row">
             <div class="col-md-6">
-                <div class="box box-info">
-                    <div class="box-header">
-                        <h3 class="box-title">Edit user {{ $viewModel->user->nickname }}</h3>
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit user {{ $viewModel->user->nickname }}</h3>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="form-group has-feedback">
                             <label>Email</label>
                             <input id="email" type="text" class="form-control" name="email" value="{{ $viewModel->user->email }}"

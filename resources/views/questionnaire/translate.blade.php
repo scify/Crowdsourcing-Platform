@@ -11,11 +11,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <div class="box box-info">
-                <div class="box-header">
-                    <h3 class="box-title">{{$viewModel->questionnaire->title}}</h3>
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">{{$viewModel->questionnaire->title}}</h3>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
                             <p>Default language: <b>{{$viewModel->defaultLanguage->language_name}}</b></p>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     <div class="row">
                         <div class="col-md-2 col-md-offset-10">
                             <a class="btn btn-block btn-primary save-translations"

@@ -1,38 +1,38 @@
-<div class="box box-info">
-    <div class="box-header">
-        <h3 class="box-title">Respondents Summary</h3>
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Respondents Summary</h3>
     </div>
-    <div class="box-body">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
-                <table id="respondentsTable" cellspacing="0" style="width: 100%;">
+                <table id="respondentsTable" class="w-100 table table-striped table-bordered" cellspacing="0">
                     <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Answered at</th>
-                    </tr>
+                        <tr>
+                            <th>Email</th>
+                            <th>Answered at</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach($reportViewModel->respondentsRows as $row)
-                        <tr>
-                            <td>{{ $row->email }}</td>
-                            <td>{{ $row->answered_at }}</td>
-                        </tr>
-                    @endforeach
+                        @foreach($reportViewModel->respondentsRows as $row)
+                            <tr>
+                                <td>{{ $row->email }}</td>
+                                <td>{{ $row->answered_at }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-<div class="box box-info">
-    <div class="box-header">
-        <h3 class="box-title">Respondents Analytic Report</h3>
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Respondents Analytic Report</h3>
     </div>
-    <div class="box-body">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
-                <table id="usersTable" cellspacing="0" style="width: 100%;">
+                <table id="usersTable" cellspacing="0" class="w-100 table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th>Email</th>
@@ -64,15 +64,15 @@
         </div>
     </div>
 </div>
-<div class="box box-info">
-    <div class="box-header">
-        <h3 class="box-title">Answers Report</h3>
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Answers Report</h3>
     </div>
-    <div class="box-body">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <div class="answerStats">
-                    <table id="answersTable" cellspacing="0" style="width: 100%;">
+                    <table id="answersTable" cellspacing="0" class="w-100 table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>Question id</th>
@@ -94,7 +94,8 @@
                                 </td>
                                 <td>
                                     @if(!$row->answer_texts->isEmpty())
-                                        <a data-question="{{ $row->question }}" data-answers="{{$row->answer_texts->toJson()}}" href="#"
+                                        <a data-question="{{ $row->question }}"
+                                           data-answers="{{$row->answer_texts->toJson()}}" href="#"
                                            class="btn btn-primary more-btn">
                                             View
                                         </a>

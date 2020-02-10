@@ -6,7 +6,6 @@
 
 @push('css')
     @push('css')
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="{{ asset('dist/css/my-questionnaire-responses.css') }}">
         <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     @endpush
@@ -23,7 +22,7 @@
                     @if($responses->isEmpty())
                         <p class="warning">You haven't responded to any questionnaires, yet.</p>
                     @else
-                        <table id="responsesTable" class="w-100" cellspacing="0">
+                        <table id="responsesTable" class="w-100 table table-striped table-bordered" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>Project</th>
