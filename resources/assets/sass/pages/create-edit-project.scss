@@ -1,3 +1,5 @@
+@import "../variables";
+
 .input-file-wrapper {
   overflow: hidden;
 }
@@ -32,4 +34,8 @@
       font-size: 1.2rem;
     }
   }
+}
+
+#form-error-message {
+  color: $danger;
 }
