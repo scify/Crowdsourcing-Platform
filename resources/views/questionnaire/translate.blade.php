@@ -27,7 +27,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row {{$viewModel->questionnaireTranslations->count() <= 1 ? 'hide' : ''}}">
+                    <div class="row {{$viewModel->questionnaireTranslations->count() <= 1 ? 'd-none' : ''}}">
                         <div class="col-md-12">
                             <div class="languages-wrapper"
                                  data-questionnaire-id="{{ $viewModel->questionnaire->id }}"
