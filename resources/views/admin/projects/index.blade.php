@@ -53,8 +53,8 @@
                                 <td>
                                     <img class="project-logo" src="{{ $project->logo_path }}" alt="{{ $project->name }} logo">
                                 </td>
-                                <td class="status {{ $viewModel->getProjectStatusCSSClass($project->status) }}">
-                                    {{ $project->status->title }}
+                                <td>
+                                    <span class="badge {{$viewModel->getProjectStatusCSSClass($project->status)}}">{{$project->status->title}}</span>
                                 </td>
                                 <td>
                                     {{ $project->creator->nickname }}

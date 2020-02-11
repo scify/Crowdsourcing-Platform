@@ -18,15 +18,14 @@ class AllCrowdSourcingProjects {
     public function getProjectStatusCSSClass(CrowdSourcingProjectStatusLkp $status) {
         switch ($status->id) {
             case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DRAFT:
-                return 'draft';
+                return 'badge-warning';
             case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::PUBLISHED:
-                return 'published';
+                return 'badge-success';
             case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED:
-                return 'finalized';
-            case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::UNPUBLISHED:
-                return 'unpublished';
+                return 'badge-primary';
             case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DELETED:
-                return 'deleted';
+            case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::UNPUBLISHED:
+                return 'badge-danger';
             default:
                 return '';
         }
