@@ -48,13 +48,24 @@ const Stepper = require('bs-stepper');
         });
 
         stepperEl.addEventListener('show.bs-stepper', function (event) {
+            $('#form-error-message').addClass('d-none');
             // if on last step, show form submit button
-            if(event.detail.indexStep === 2) {
+            if (event.detail.indexStep === 2) {
                 $('.stepper-next').addClass('d-none');
                 $('#submit-form').removeClass('d-none');
             } else {
                 $('.stepper-next').removeClass('d-none');
                 $('#submit-form').addClass('d-none');
+            }
+            // if trying to navigate away from first step, perform validation
+            if (event.detail.from === 0) {
+                let form = $('#project-form')[0];
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $('#form-error-message').removeClass('d-none');
+                    form.classList.add('was-validated');
+                }
             }
         })
     };
