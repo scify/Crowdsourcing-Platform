@@ -351,3 +351,12 @@ footer {
     }
   }
 }
+
+.color-picker {
+  .input-group-addon {
+    height: 33px;
+    width: 33px;
+    margin-left: 0.5rem;
+    border: 0.5px solid #444444;
+  }
+}

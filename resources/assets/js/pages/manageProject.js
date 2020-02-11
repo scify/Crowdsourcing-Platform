@@ -16,6 +16,11 @@ const Stepper = require('bs-stepper');
             $(obj).colorpicker({
                 horizontal: true
             });
+
+            $(obj).on('colorpickerChange', function(event) {
+                console.log(event.color.toString());
+                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
+            });
         });
 
     };
