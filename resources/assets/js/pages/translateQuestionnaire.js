@@ -9,14 +9,14 @@
         if (!newlySelectedTab.hasClass("btn-info")) {
             let newlySelectedTranslation = translationWrapper.find(".translation-item[data-lang-id='" + selectedLangVal + "']");
             languagesWrapper.find(".lang-selector").removeClass("btn-info").addClass("btn-default");
-            translationWrapper.find(".translation-item").addClass("hide");
+            translationWrapper.find(".translation-item").addClass("d-none");
             newlySelectedTab.removeClass("btn-default").addClass("btn-info");
-            newlySelectedTranslation.removeClass("hide");
+            newlySelectedTranslation.removeClass("d-none");
         }
     };
 
     let addNewTranslationItemInTranslationWrapperList = function (selectedLangVal, selectedLangCode, isAlreadyTranslated, languageName) {
-        let string = "<div class='translation-item hide' data-lang-id='" + selectedLangVal + "' data-lang-code='" + selectedLangCode + "'>";
+        let string = "<div class='translation-item d-none' data-lang-id='" + selectedLangVal + "' data-lang-code='" + selectedLangCode + "'>";
         let languageKey;
         if (isAlreadyTranslated && languageName)
             languageKey = languageName;
@@ -86,7 +86,7 @@
             '</div>';
 
         languagesWrapper.append(languageButton);
-        languagesWrapper.closest(".row").removeClass("hide");
+        languagesWrapper.closest(".row").removeClass("d-none");
         addNewTranslationItemInTranslationWrapperList(selectedLangVal, selectedLangCode, isAlreadyTranslated, languageName);
     };
 
