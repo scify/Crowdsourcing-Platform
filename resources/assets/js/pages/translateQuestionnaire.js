@@ -79,9 +79,9 @@
             '    <span class="sr-only">Toggle Dropdown</span>' +
             '  </button>' +
             '  <ul class="dropdown-menu lang-data" data-lang-id="' + selectedLangVal + '">' +
-            '    <li>' + translationMarkBtn + '</li>' +
+            '    <li class="dropdown-item">' + translationMarkBtn + '</li>' +
             '    <li role="separator" class="divider"></li>' +
-            '    <li><a class="delete-translation" href="#">Remove Language</a></li>' +
+            '    <li class="dropdown-item"><a class="delete-translation" href="#">Remove Language</a></li>' +
             '  </ul>' +
             '</div>';
 
