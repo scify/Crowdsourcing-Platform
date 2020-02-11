@@ -60,8 +60,13 @@
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-md-4 col-sm-12 mx-auto">
+                            <div class="col-md-5 col-sm-12 mx-auto">
                                 <div class="container-fluid">
+                                    <div class="row mb-2">
+                                        <div class="col-6 offset-6">
+                                            <div id="form-error-message" class="d-none">Please check all required fields</div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 mb-3">
                                             <button class="btn btn-block btn-primary btn-lg stepper-previous mb-2"
