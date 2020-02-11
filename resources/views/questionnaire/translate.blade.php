@@ -45,8 +45,8 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-2 col-md-offset-10">
-                            <a class="btn btn-block btn-primary save-translations"
-                               data-url="{{route('translate-questionnaire', ['id' => $viewModel->questionnaire->id])}}">Save</a>
+                            <button class="btn btn-block btn-primary save-translations"
+                               data-url="{{route('translate-questionnaire', ['id' => $viewModel->questionnaire->id])}}">Save</button>
                         </div>
                     </div>
                 </div>
@@ -57,12 +57,12 @@
 
 @push('modals')
     <div id="add-new-lang-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title">New translation language</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">New translation language</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
