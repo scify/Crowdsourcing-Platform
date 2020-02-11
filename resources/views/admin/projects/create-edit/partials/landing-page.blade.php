@@ -37,7 +37,6 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="motto" class="form-control" name="motto"
-                                                  required
                                                   placeholder="Project Motto">{{ old('motto') ? old('motto') : $viewModel->project->motto }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
                                         </div>
@@ -50,7 +49,6 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_motto_color" type="text" name="lp_motto_color" class="form-control"
-                                                   required
                                                    value="{{ old('lp_motto_color') ? old('lp_motto_color') :
                                                             $viewModel->project->lp_motto_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -77,7 +75,6 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="about" class="form-control summernote" name="about"
-                                                  required
                                                   placeholder="About Text">{{ old('about') ? old('about') : $viewModel->project->about }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('about') }}</strong></span>
                                         </div>
@@ -90,7 +87,6 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_about_color" type="text" name="lp_about_color" class="form-control"
-                                                   required
                                                    value="{{ old('lp_about_color') ? old('lp_about_color') :
                                                             $viewModel->project->lp_about_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -104,7 +100,6 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_about_bg_color" type="text" name="lp_about_bg_color" class="form-control"
-                                                   required
                                                    value="{{ old('lp_about_bg_color') ? old('lp_about_bg_color') :
                                                             $viewModel->project->lp_about_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -133,7 +128,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_questionnaire_color" type="text" name="lp_questionnaire_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_questionnaire_color') ? old('lp_questionnaire_color') :
                                                             $viewModel->project->lp_questionnaire_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -147,7 +142,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_questionnaire_btn_color" type="text" name="lp_questionnaire_btn_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_questionnaire_btn_color') ? old('lp_questionnaire_btn_color') :
                                                             $viewModel->project->lp_questionnaire_btn_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -161,7 +156,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_questionnaire_btn_bg_color" type="text" name="lp_questionnaire_btn_bg_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_questionnaire_btn_bg_color') ? old('lp_questionnaire_btn_bg_color') :
                                                             $viewModel->project->lp_questionnaire_btn_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -207,7 +202,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_questionnaire_goal_bg_color" type="text" name="lp_questionnaire_goal_bg_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_questionnaire_goal_bg_color') ? old('lp_questionnaire_goal_bg_color') :
                                                             $viewModel->project->lp_questionnaire_goal_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -221,7 +216,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_questionnaire_goal_title_color" type="text" name="lp_questionnaire_goal_title_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_questionnaire_goal_title_color') ? old('lp_questionnaire_goal_title_color') :
                                                             $viewModel->project->lp_questionnaire_goal_title_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -235,7 +230,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_questionnaire_goal_color" type="text" name="lp_questionnaire_goal_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_questionnaire_goal_color') ? old('lp_questionnaire_goal_color') :
                                                             $viewModel->project->lp_questionnaire_goal_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -265,7 +260,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_newsletter_bg_color" type="text" name="lp_newsletter_bg_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_newsletter_bg_color') ? old('lp_newsletter_bg_color') :
                                                             $viewModel->project->lp_newsletter_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -279,7 +274,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_newsletter_title_color" type="text" name="lp_newsletter_title_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_newsletter_title_color') ? old('lp_newsletter_title_color') :
                                                             $viewModel->project->lp_newsletter_title_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -293,7 +288,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_newsletter_color" type="text" name="lp_newsletter_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_newsletter_color') ? old('lp_newsletter_color') :
                                                             $viewModel->project->lp_newsletter_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -307,7 +302,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_newsletter_btn_color" type="text" name="lp_newsletter_btn_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_newsletter_btn_color') ? old('lp_newsletter_btn_color') :
                                                             $viewModel->project->lp_newsletter_btn_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -321,7 +316,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_newsletter_btn_bg_color" type="text" name="lp_newsletter_btn_bg_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_newsletter_btn_bg_color') ? old('lp_newsletter_btn_bg_color') :
                                                             $viewModel->project->lp_newsletter_btn_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -350,7 +345,6 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="footer" class="form-control summernote" name="footer"
-                                                  required
                                                   placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->footer }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
                                         </div>
@@ -363,7 +357,6 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_footer_color" type="text" name="lp_footer_color" class="form-control"
-                                                   required
                                                    value="{{ old('lp_footer_color') ? old('lp_footer_color') :
                                                             $viewModel->project->lp_footer_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
@@ -377,7 +370,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
                                             <input id="lp_footer_bg_color" type="text" name="lp_footer_bg_color"
-                                                   class="form-control" required
+                                                   class="form-control"
                                                    value="{{ old('lp_footer_bg_color') ? old('lp_footer_bg_color') :
                                                             $viewModel->project->lp_footer_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
