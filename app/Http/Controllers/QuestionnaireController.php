@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\QuestionnaireManager;
+use App\BusinessLogicLayer\QuestionnaireReportManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
 use App\Models\ViewModels\GamificationBadgeVM;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class QuestionnaireController extends Controller
@@ -15,14 +18,17 @@ class QuestionnaireController extends Controller
     protected $questionnaireManager;
     protected $questionnaireShareManager;
     protected $platformWideGamificationBadgesProvider;
+    protected $questionnaireReportManager;
 
     public function __construct(QuestionnaireManager $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider)
+                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
+                                QuestionnaireReportManager $questionnaireReportManager)
     {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
+        $this->questionnaireReportManager = $questionnaireReportManager;
     }
 
     public function manageQuestionnaires()
@@ -125,17 +131,27 @@ class QuestionnaireController extends Controller
         return response()->json(['status' => '__SUCCESS']);
     }
 
+    public function viewReportsPage(Request $request) {
+        $selectedQuestionnaireId = $request->questionnaireId;
+        $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
+        return view("questionnaire.reports.reports-with-filters", ['viewModel' => $viewModel]);
+    }
+
     public function showReportForQuestionnaire(Request $request) {
         $input = $request->all();
         try {
-            $reportViewModel = $this->questionnaireManager->getQuestionnaireReportViewModel($input);
+            $reportViewModel = $this->questionnaireReportManager->getQuestionnaireReportViewModel($input);
             $view = view('questionnaire.reports.report-for-questionnaire', compact('reportViewModel'));
-            $view=$view->render();
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (String) $view));
-        }  catch (\Exception $e) {
-            $errorMessage = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
-            Log::error($e);
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (String) view('partials.ajax_error_message', compact('errorMessage'))));
+            $responseCode = Response::HTTP_OK;
+            $responseContent = (String) $view->render();
+        } catch (QueryException $e) {
+            $responseCode = Response::HTTP_INTERNAL_SERVER_ERROR;
+            $responseContent = 'Error: ' . $e->getCode() . '. A Database error occurred.';
+        } catch (\Exception $e) {
+            $responseCode = Response::HTTP_INTERNAL_SERVER_ERROR;
+            $responseContent = 'Error: ' . $e->getCode() . "  " .  $e->getMessage();
+        } finally {
+            return response()->json(['data' => $responseContent], $responseCode);
         }
     }
 }

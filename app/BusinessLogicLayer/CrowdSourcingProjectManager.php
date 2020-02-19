@@ -8,7 +8,6 @@ use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
-use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
 use App\Repository\QuestionnaireRepository;
@@ -224,12 +223,6 @@ class CrowdSourcingProjectManager
             'project_id' => $projectId,
             'status_id' => $statusId
         ]);
-    }
-
-    public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null) {
-        $allProjects = $this->getAllCrowdSourcingProjects();
-        $allQuestionnaires = $this->questionnaireRepository->all();
-        return new QuestionnaireReportFilters($allProjects, $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 
     public function getCreateEditProjectViewModel(int $id = null) {

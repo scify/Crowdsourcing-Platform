@@ -28,13 +28,6 @@ class CrowdSourcingProjectController extends Controller {
         return view('admin.projects.index', ['viewModel' => $viewModel]);
     }
 
-    public function viewReports($projectId, Request $request) {
-        $selectedProjectId = $projectId;
-        $selectedQuestionnaireId = $request->questionnaireId;
-        $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectReportsViewModel($selectedProjectId, $selectedQuestionnaireId);
-        return view("questionnaire.reports.reports-with-filters", ['viewModel' => $viewModel]);
-    }
-
     public function create() {
         return view('admin.projects.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel()]);
     }

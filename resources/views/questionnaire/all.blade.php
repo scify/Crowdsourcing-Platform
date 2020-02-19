@@ -59,7 +59,7 @@
                                             <div class="dropdown-menu">
                                                 <a class="action-btn dropdown-item" href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="far fa-edit"></i> Edit questionnaire</a>
                                                 <a class="action-btn dropdown-item" href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
-                                                <a class="action-btn dropdown-item" href="{{route('project.reports', ['id' => $questionnaire->project_id, 'questionnaireId' => $questionnaire->id])}}"><i class="fas fa-list-ul"></i> View Results</a>
+                                                <a class="action-btn dropdown-item" href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i class="fas fa-list-ul"></i> View Results</a>
                                                 <a class="action-btn dropdown-item change-status" href="javascript:void(0)" data-toggle="modal"
                                                    data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
                                             </div>
