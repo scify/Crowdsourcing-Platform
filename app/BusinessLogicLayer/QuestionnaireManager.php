@@ -7,7 +7,6 @@ use App\Models\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
-use App\Models\ViewModels\reports\QuestionnaireReportResults;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
@@ -212,17 +211,6 @@ class QuestionnaireManager {
             array_push($result, $language[0]);
         }
         return $result;
-    }
-
-    public function getQuestionnaireReportViewModel(array $input) {
-        $questionnaireId = $input['questionnaireId'];
-        $respondentsRows = $this->questionnaireReportRepository->getRespondentsData($questionnaireId);
-        $usersRows = $this->questionnaireReportRepository->getReportDataForUsers($questionnaireId);
-        $answersRows = collect($this->questionnaireReportRepository->getReportDataForAnswers($questionnaireId));
-        $answerTextRows = $this->questionnaireResponseAnswerRepository->getResponseTextDataForQuestionnaire($questionnaireId);
-        foreach ($answersRows as $answersRow)
-            $answersRow->answer_texts = $answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id)->values();
-        return new QuestionnaireReportResults($usersRows, $answersRows, $respondentsRows);
     }
 
     public function markQuestionnaireTranslation(int $questionnaireId, int $langId, bool $markHuman) {
