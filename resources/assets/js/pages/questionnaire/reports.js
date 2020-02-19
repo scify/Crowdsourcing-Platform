@@ -3,10 +3,19 @@
     let table;
     const loader = $("#loader");
 
+    let checkForURLSearchParams = function () {
+        let searchParams = new URLSearchParams(window.location.search);
+        const questionnaireId = searchParams.get('questionnaireId');
+        if(questionnaireId)
+            $('select[name=questionnaire_id]').val(questionnaireId);
+    };
+
     let searchBtnHandler = function () {
         $("#searchBtn").on("click", function () {
             let criteria = {};
+            let searchParams = new URLSearchParams(window.location.search);
             criteria.questionnaireId = $('select[name=questionnaire_id]').val();
+            searchParams.set('questionnaireId', criteria.questionnaireId);
             getReportsForCriteria(criteria);
         });
     };
@@ -161,6 +170,7 @@
     };
 
     let init = function () {
+        checkForURLSearchParams();
         searchBtnHandler();
         answersBtnHandler();
         triggerSearch();
