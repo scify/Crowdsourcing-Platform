@@ -6,16 +6,29 @@
     let checkForURLSearchParams = function () {
         let searchParams = new URLSearchParams(window.location.search);
         const questionnaireId = searchParams.get('questionnaireId');
-        if(questionnaireId)
+        if (questionnaireId)
             $('select[name=questionnaire_id]').val(questionnaireId);
     };
+
+    let updateURLSearchParams = function (criteria) {
+        let searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('questionnaireId')) {
+            const newURL = location.href.replace("questionnaireId="+searchParams.get('questionnaireId'), "questionnaireId="+criteria.questionnaireId);
+            if (window.history.replaceState) {
+                window.history.replaceState({}, null, newURL);
+            }
+        } else {
+            searchParams.append('questionnaireId', criteria.questionnaireId);
+        }
+    };
+
 
     let searchBtnHandler = function () {
         $("#searchBtn").on("click", function () {
             let criteria = {};
-            let searchParams = new URLSearchParams(window.location.search);
             criteria.questionnaireId = $('select[name=questionnaire_id]').val();
-            searchParams.set('questionnaireId', criteria.questionnaireId);
+            if(criteria.questionnaireId)
+                updateURLSearchParams(criteria);
             getReportsForCriteria(criteria);
         });
     };
@@ -69,30 +82,20 @@
                 parseSuccessData(response);
                 loader.addClass('d-none');
             },
-            error: function (xhr, status, errorThrown) {
+            error: function (error) {
                 loader.addClass('d-none');
                 $("#errorMsg").removeClass('d-none');
-                console.log(errorThrown);
-                $("#errorMsg").html("An error occurred");
+                $("#errorMsg").html(error.responseJSON.data);
             }
         });
     };
 
-    let parseSuccessData = function (data) {
-        let responseObj = JSON.parse(data);
-        //if operation was unsuccessful
-        if (responseObj.status === 2) {
-            loader.addClass('d-none');
-            $("#errorMsg").removeClass('d-none');
-            $("#errorMsg").html(responseObj.data);
-            $("#results").html("");
-        } else {
-            $("#results").html("");
-            $("#errorMsg").addClass('d-none');
-            loader.addClass('d-none');
-            $("#results").html(responseObj.data);
-            initializeDataTables();
-        }
+    let parseSuccessData = function (response) {
+        $("#results").html("");
+        $("#errorMsg").addClass('d-none');
+        loader.addClass('d-none');
+        $("#results").html(response.data);
+        initializeDataTables();
     };
 
     let initializeDataTables = function () {
@@ -103,7 +106,7 @@
             "searching": true,
             "responsive": true,
             "pageLength": 10,
-            "columns" : [
+            "columns": [
                 {"width": "50%"},
                 {"width": "50%"}
             ]
