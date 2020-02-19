@@ -12,13 +12,15 @@
 
     let updateURLSearchParams = function (criteria) {
         let searchParams = new URLSearchParams(window.location.search);
+        let newURL = '';
         if (searchParams.has('questionnaireId')) {
-            const newURL = location.href.replace("questionnaireId="+searchParams.get('questionnaireId'), "questionnaireId="+criteria.questionnaireId);
-            if (window.history.replaceState) {
-                window.history.replaceState({}, null, newURL);
-            }
+            newURL = location.href.replace("questionnaireId="+searchParams.get('questionnaireId'), "questionnaireId="+criteria.questionnaireId);
         } else {
-            searchParams.append('questionnaireId', criteria.questionnaireId);
+            newURL = location.href += "?questionnaireId="+criteria.questionnaireId;
+        }
+
+        if (window.history.replaceState) {
+            window.history.replaceState({}, null, newURL);
         }
     };
 
