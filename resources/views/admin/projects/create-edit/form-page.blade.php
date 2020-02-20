@@ -38,10 +38,18 @@
                             </div>
                             <div class="line"></div>
                             <div class="step" data-target="#social-media">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="landing-page"
+                                <button type="button" class="step-trigger" role="tab" aria-controls="social-media"
                                         id="social-media-trigger">
                                     <span class="bs-stepper-circle">3</span>
                                     <span class="bs-stepper-label">Social Media</span>
+                                </button>
+                            </div>
+                            <div class="line"></div>
+                            <div class="step" data-target="#communication-resources">
+                                <button type="button" class="step-trigger" role="tab" aria-controls="communication-resources"
+                                        id="communication-resources-trigger">
+                                    <span class="bs-stepper-circle">4</span>
+                                    <span class="bs-stepper-label">Communication Emails</span>
                                 </button>
                             </div>
                         </div>
@@ -57,6 +65,10 @@
                             <div id="social-media" class="content" role="tabpanel"
                                  aria-labelledby="social-media-trigger">
                                 @include('admin.projects.create-edit.partials.social-media')
+                            </div>
+                            <div id="communication-resources" class="content" role="tabpanel"
+                                 aria-labelledby="communication-resources-trigger">
+                                @include('admin.projects.create-edit.partials.communication-resources')
                             </div>
                         </div>
                         <div class="row mt-4">

@@ -8,6 +8,7 @@ use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
+use App\Repository\CrowdSourcingProjectCommunicationResourcesRepository;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
 use App\Repository\QuestionnaireRepository;
@@ -27,7 +28,7 @@ class CrowdSourcingProjectManager
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireGoalManager;
     protected $currentQuestionnaireProvider;
-
+    protected $crowdSourcingProjectCommunicationResourcesManager;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
@@ -36,7 +37,8 @@ class CrowdSourcingProjectManager
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
                                 CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
                                 QuestionnaireGoalManager $questionnaireGoalManager,
-                                CurrentQuestionnaireProvider $currentQuestionnaireProvider)
+                                CurrentQuestionnaireProvider $currentQuestionnaireProvider,
+                                CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager)
     {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
@@ -46,6 +48,7 @@ class CrowdSourcingProjectManager
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireGoalManager = $questionnaireGoalManager;
         $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
+        $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
     }
 
     public function getAllCrowdSourcingProjects(): Collection {
@@ -56,7 +59,7 @@ class CrowdSourcingProjectManager
         return $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
     }
 
-    public function getCrowdSourcingProject(int $id) {
+    public function getCrowdSourcingProject(int $id): CrowdSourcingProject {
         return $this->crowdSourcingProjectRepository->find($id);
     }
 
@@ -120,6 +123,10 @@ class CrowdSourcingProjectManager
         $attributes = $this->storeProjectRelatedFiles($attributes);
 
         $project = $this->crowdSourcingProjectRepository->create($attributes);
+        $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, [
+            'questionnaire_response_email_intro_text' => $attributes['questionnaire_response_email_intro_text'],
+            'questionnaire_response_email_outro_text' => $attributes['questionnaire_response_email_outro_text']
+        ]);
 
         $this->createProjectStatusHistoryRecord($project->id, $attributes['status_id']);
 
@@ -139,6 +146,10 @@ class CrowdSourcingProjectManager
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
         $this->crowdSourcingProjectRepository->update($attributes, $id);
+        $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, [
+            'questionnaire_response_email_intro_text' => $attributes['questionnaire_response_email_intro_text'],
+            'questionnaire_response_email_outro_text' => $attributes['questionnaire_response_email_outro_text']
+        ]);
         if($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
     }
@@ -228,8 +239,12 @@ class CrowdSourcingProjectManager
     public function getCreateEditProjectViewModel(int $id = null) {
         if($id)
             $project = $this->getCrowdSourcingProject($id);
-        else
+        else {
             $project = $this->crowdSourcingProjectRepository->getModelInstance();
+        }
+
+        if(!$project->communicationResources()->exists())
+            $project->communicationResources = $this->crowdSourcingProjectCommunicationResourcesManager->getDefaultModelInstance();
 
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
 
