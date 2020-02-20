@@ -3,8 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+/**
+ * Class CrowdSourcingProject
+ * @package App\Models
+ */
 class CrowdSourcingProject extends Model
 {
     use SoftDeletes;
@@ -32,26 +40,48 @@ class CrowdSourcingProject extends Model
         'lp_questionnaire_goal_bg_color',
         'lp_newsletter_title_color', 'lp_newsletter_color',
         'lp_newsletter_bg_color', 'lp_newsletter_btn_color',
-        'lp_newsletter_btn_bg_color'
+        'lp_newsletter_btn_bg_color', 'communication_resources_id'
     ];
 
+    /**
+     * @var array
+     */
     protected $with = ['creator', 'language', 'status'];
 
+    /**
+     * @return BelongsTo
+     */
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
     }
 
+    /**
+     * @return HasMany
+     */
     public function questionnaires()
     {
         return $this->hasMany(Questionnaire::class, 'project_id', 'id');
     }
 
+    /**
+     * @return HasOne
+     */
     public function language() {
         return $this->hasOne(Language::class, 'id', 'language_id');
     }
 
+    /**
+     * @return HasOne
+     */
     public function status() {
         return $this->hasOne(CrowdSourcingProjectStatusLkp::class, 'id', 'status_id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function communicationResources() {
+        return $this->hasOne(CrowdSourcingProjectCommunicationResources::class, 'id', 'communication_resources_id');
     }
 }
