@@ -2,12 +2,16 @@
 
 namespace App\BusinessLogicLayer;
 
+use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject;
+use App\Models\Questionnaire;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
+use App\Models\ViewModels\GamificationBadgeVM;
+use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProjectCommunicationResourcesRepository;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
@@ -249,7 +253,20 @@ class CrowdSourcingProjectManager
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
 
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
-        return new CreateEditCrowdSourcingProject($project, $statusesLkp);
+
+        $contributorBadge = new ContributorBadge(1, true);
+        $contributorBadgeVM = new GamificationBadgeVM($contributorBadge);
+        $questionnaire = $this->questionnaireRepository->getModelInstance();
+        $questionnaire->title = 'Test Questionnaire';
+
+        $notification = (new QuestionnaireResponded(
+            $questionnaire,
+            $contributorBadge,
+            $contributorBadgeVM,
+            $project->communicationResources
+        ))->toMail(null)->render();
+
+        return new CreateEditCrowdSourcingProject($project, $statusesLkp, $notification);
     }
 
     public function getCrowdSourcingProjectsListPageViewModel() {

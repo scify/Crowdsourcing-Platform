@@ -39,3 +39,20 @@
 #form-error-message {
   color: $danger;
 }
+
+#communication-resources {
+  table.content {
+    display: block;
+    text-align: center;
+
+    tbody {
+      display: inline-block;
+
+      #intro_text, #outro_text {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: yellow;
+      }
+    }
+  }
+}

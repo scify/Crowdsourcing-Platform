@@ -2,9 +2,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+
+
+
+
                 <div class="row">
-                    <label class="col-sm-12 control-label" for="about">Congratulations email intro text (<span
-                                class="red">*</span>)</label>
+                    <label class="col-sm-12 control-label" for="about">Congratulations email intro text</label>
                     <div class="col-sm-12">
                         <div class="form-group has-feedback">
                                         <textarea id="questionnaire_response_email_intro_text"
@@ -16,8 +19,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-12 control-label" for="about">Congratulations email outro text (<span
-                                class="red">*</span>)</label>
+                    <label class="col-sm-12 control-label" for="about">Congratulations email outro text</label>
                     <div class="col-sm-12">
                         <div class="form-group has-feedback">
                                         <textarea id="questionnaire_response_email_outro_text"
@@ -30,5 +32,18 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h5><b>This is what the email will look like:</b></h5>
+        <h6><b>(We have highlighted the changeable texts with yellow color)</b></h6>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {!! $viewModel->contributorEmailView !!}
     </div>
 </div>
