@@ -38,7 +38,12 @@ class QuestionnaireActionHandler {
     public function handleQuestionnaireContributor(Questionnaire $questionnaire, User $user) {
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id);
         try {
-            $user->notify(new QuestionnaireResponded($questionnaire, $contributorBadge, new GamificationBadgeVM($contributorBadge)));
+            $user->notify(new QuestionnaireResponded(
+                $questionnaire,
+                $contributorBadge,
+                new GamificationBadgeVM($contributorBadge),
+                $questionnaire->project->communicationResources)
+            );
         } catch (\Exception $e) {
             Log::error($e);
         }

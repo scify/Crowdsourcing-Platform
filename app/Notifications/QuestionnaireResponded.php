@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\BusinessLogicLayer\gamification\GamificationBadge;
+use App\Models\CrowdSourcingProjectCommunicationResources;
 use App\Models\Questionnaire;
 use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
@@ -12,10 +13,16 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(Questionnaire $questionnaire, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
+    protected $crowdSourcingProjectCommunicationResources;
+
+    public function __construct(Questionnaire $questionnaire,
+                                GamificationBadge $badge,
+                                GamificationBadgeVM $badgeVM,
+                                CrowdSourcingProjectCommunicationResources $crowdSourcingProjectCommunicationResources) {
         $this->questionnaire = $questionnaire;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
+        $this->crowdSourcingProjectCommunicationResources = $crowdSourcingProjectCommunicationResources;
     }
 
     /**
@@ -42,9 +49,9 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
             'Thank you for your contribution!',
             'Hello!',
             'Thank you for taking the time to answer our questionnaire: "<b>' . $this->questionnaire->title . '</b>". This really means a lot to us!'
-            .'<br><br>' . $this->questionnaire->project->communication->questionnaire_response_email_intro_text,
+            .'<br><br><div id="intro_text">' . $this->crowdSourcingProjectCommunicationResources->questionnaire_response_email_intro_text . '</div>',
             $this->badge->getEmailBody(),
-            $this->questionnaire->project->communication->questionnaire_response_email_outro_text,
+            '<br><div id="outro_text">' . $this->crowdSourcingProjectCommunicationResources->questionnaire_response_email_outro_text . '</div>',
             'Increase your impact<br>',
             'Go to your dashboard, and invite your friends!',
             'Thank you once again!<br><br>The Crowdsourcing Team');
