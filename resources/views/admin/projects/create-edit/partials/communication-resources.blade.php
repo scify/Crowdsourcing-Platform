@@ -2,10 +2,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
-
-
-
                 <div class="row">
                     <label class="col-sm-12 control-label" for="about">Congratulations email intro text</label>
                     <div class="col-sm-12">
