@@ -17,7 +17,7 @@ const Stepper = require('bs-stepper');
                 horizontal: true
             });
 
-            $(obj).on('colorpickerChange', function(event) {
+            $(obj).on('colorpickerChange', function (event) {
                 console.log(event.color.toString());
                 $(obj).find('.input-group-addon').css('background-color', event.color.toString());
             });
@@ -75,11 +75,30 @@ const Stepper = require('bs-stepper');
         })
     };
 
+    let initializeCommunicationResourcesHandlers = function () {
+        initializeSummernoteAndUpdateElementOnKeyup($('#questionnaire_response_email_intro_text'), $('#intro_text'));
+        initializeSummernoteAndUpdateElementOnKeyup($('#questionnaire_response_email_outro_text'), $('#outro_text'));
+    };
+
+    let initializeSummernoteAndUpdateElementOnKeyup = function (summernoteEl, targetEl) {
+        summernoteEl.summernote({
+            height: 150,
+            callbacks: {
+                onChange: function (contents) {
+                    setTimeout(function () {
+                        targetEl.html(contents);
+                    }, 50);
+                }
+            }
+        });
+    };
+
     let init = function () {
         initializeSummernote();
         initializeColorPicker();
         initializeImgFileChangePreviewHandlers();
         initializeStepper();
+        initializeCommunicationResourcesHandlers();
     };
     $(document).ready(function () {
         init();
