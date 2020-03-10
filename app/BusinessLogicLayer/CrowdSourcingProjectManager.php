@@ -55,10 +55,6 @@ class CrowdSourcingProjectManager
         $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
     }
 
-    public function getAllCrowdSourcingProjects(): Collection {
-        return $this->crowdSourcingProjectRepository->all();
-    }
-
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         return $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
     }
@@ -117,29 +113,58 @@ class CrowdSourcingProjectManager
     }
 
     public function createProject(array $attributes) {
-
-        if(! isset($attributes['slug'])) {
-            $attributes['slug'] = Str::slug($attributes['name'], '-');
-        }
-
         $attributes['user_creator_id'] = Auth::id();
 
-        $attributes = $this->storeProjectRelatedFiles($attributes);
+        $attributes = $this->setDefaultValuesForCommonProjectFields($attributes);
 
         $project = $this->crowdSourcingProjectRepository->create($attributes);
-        $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, [
-            'questionnaire_response_email_intro_text' => $attributes['questionnaire_response_email_intro_text'],
-            'questionnaire_response_email_outro_text' => $attributes['questionnaire_response_email_outro_text']
-        ]);
 
-        $this->createProjectStatusHistoryRecord($project->id, $attributes['status_id']);
-
-        return $project;
+        $this->updateCrowdSourcingProject($project->id, $attributes);
     }
 
     public function updateCrowdSourcingProject($id, array $attributes) {
+        $attributes = $this->setDefaultValuesForCommonProjectFields($attributes);
         $project = $this->getCrowdSourcingProject($id);
 
+        $attributes = $this->setDefaultValuesForSocialMediaFields($project, $attributes);
+
+        $attributes = $this->storeProjectRelatedFiles($attributes);
+        $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
+        $this->crowdSourcingProjectRepository->update($attributes, $id);
+        $this->updateCommunicationResources($project, $attributes);
+        if($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
+            $this->crowdSourcingProjectRepository->delete($id);
+    }
+
+    protected function setDefaultValuesForCommonProjectFields(array $attributes) {
+        if(!isset($attributes['slug']) || !$attributes['slug'])
+            $attributes['slug'] = Str::slug($attributes['name'], '-');
+
+        if(!isset($attributes['motto']) || !$attributes['motto'])
+            $attributes['motto'] = $attributes['name'];
+
+        if(!isset($attributes['about']) || !$attributes['about'])
+            $attributes['about'] = $attributes['description'];
+
+        if(!isset($attributes['footer']) || !$attributes['footer'])
+            $attributes['footer'] = $attributes['description'];
+
+        if(!isset($attributes['img_path']) || !$attributes['img_path'])
+            $attributes['img_path'] = '/images/image_temp.png';
+
+        if(!isset($attributes['logo_path']) || !$attributes['logo_path'])
+            $attributes['logo_path'] = '/images/image_temp.png';
+
+        if(!isset($attributes['sm_featured_img_path']) || !$attributes['sm_featured_img_path'])
+            $attributes['sm_featured_img_path'] = '/images/image_temp.png';
+
+        if(!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
+            $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
+
+        return $attributes;
+    }
+
+    protected function setDefaultValuesForSocialMediaFields(CrowdSourcingProject $project, array $attributes) {
         if(!isset($attributes['sm_title']) || !$attributes['sm_title'])
             $attributes['sm_title'] = $project->name;
         if(!isset($attributes['sm_description']) || !$attributes['sm_description'])
@@ -147,16 +172,15 @@ class CrowdSourcingProjectManager
         if(!isset($attributes['sm_keywords']) || !$attributes['sm_keywords'])
             $attributes['sm_keywords'] = str_replace(' ' , ',', $project->name);
 
-        $attributes = $this->storeProjectRelatedFiles($attributes);
-        $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
-        $this->crowdSourcingProjectRepository->update($attributes, $id);
+        return $attributes;
+    }
+
+    protected function updateCommunicationResources(CrowdSourcingProject $project, array $attributes) {
         if(isset($attributes['questionnaire_response_email_intro_text']) && $attributes['questionnaire_response_email_outro_text'])
             $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, [
                 'questionnaire_response_email_intro_text' => $attributes['questionnaire_response_email_intro_text'],
                 'questionnaire_response_email_outro_text' => $attributes['questionnaire_response_email_outro_text']
             ]);
-        if($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
-            $this->crowdSourcingProjectRepository->delete($id);
     }
 
     public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project) {

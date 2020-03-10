@@ -53,11 +53,9 @@ class CrowdSourcingProjectController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name|max:100',
-            'motto' => 'required|string',
+            'description' => 'required|string',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug|max:100',
-            'about' => 'required|string',
-            'footer' => 'required|string',
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
         $this->crowdSourcingProjectManager->createProject($request->all());
@@ -75,11 +73,9 @@ class CrowdSourcingProjectController extends Controller {
     public function update(Request $request, $id) {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name,' . $id . '|max:100',
-            'motto' => 'required|string',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
+            'description' => 'required|string',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug,' . $id . '|max:100',
-            'about' => 'required|string',
-            'footer' => 'required|string',
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
         $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $request->all());
