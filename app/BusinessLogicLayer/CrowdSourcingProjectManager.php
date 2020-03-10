@@ -150,10 +150,11 @@ class CrowdSourcingProjectManager
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
         $this->crowdSourcingProjectRepository->update($attributes, $id);
-        $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, [
-            'questionnaire_response_email_intro_text' => $attributes['questionnaire_response_email_intro_text'],
-            'questionnaire_response_email_outro_text' => $attributes['questionnaire_response_email_outro_text']
-        ]);
+        if(isset($attributes['questionnaire_response_email_intro_text']) && $attributes['questionnaire_response_email_outro_text'])
+            $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, [
+                'questionnaire_response_email_intro_text' => $attributes['questionnaire_response_email_intro_text'],
+                'questionnaire_response_email_outro_text' => $attributes['questionnaire_response_email_outro_text']
+            ]);
         if($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
     }
