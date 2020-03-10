@@ -47,18 +47,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "FontAwesome";
   font-weight: normal;
   font-style: normal;
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff");
-  src: url("../../../public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg");
+
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2");
+
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2");
+
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff");
+  src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2");
 }
 
 .modal-lg {
