@@ -8,7 +8,7 @@
 @section('content')
     <section>
         <div class="flex-center position-ref error-container row">
-            <div class="content colmd-9 col-sm-11">
+            <div class="content col-md-9 col-sm-11">
                 <div class="code">
                     @yield('code')
                 </div>
@@ -17,6 +17,9 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section id="projects" class="w-100">
+        @include('home.partials.' . config('app.project_resources_dir') . '.projects')
     </section>
 @endsection
 
