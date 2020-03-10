@@ -11,7 +11,6 @@ class QuestionnaireResponseAnswerRepository {
     public function getNonTranslatedAnswers() {
         return DB::table('questionnaire_response_answer_texts')
             ->where(['english_translation' => null])
-            ->limit(100)
             ->get();
     }
 
