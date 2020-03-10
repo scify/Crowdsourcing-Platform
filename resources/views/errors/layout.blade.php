@@ -7,8 +7,8 @@
 @endsection
 @section('content')
     <section>
-        <div class="flex-center position-ref error-container">
-            <div class="content">
+        <div class="flex-center position-ref error-container row">
+            <div class="content colmd-9 col-sm-11">
                 <div class="code">
                     @yield('code')
                 </div>
