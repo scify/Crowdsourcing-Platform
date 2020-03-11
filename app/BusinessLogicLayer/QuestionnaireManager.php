@@ -127,8 +127,9 @@ class QuestionnaireManager {
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts) {
         $translations = [];
         $translatedTexts = $this->translator->translateTexts($texts, $languageCodeToTranslateTo);
-        foreach ($ids as $key => $id)
-            $translations[$id] = str_replace('&quot;', '"', $translatedTexts[$key]);
+        if($translatedTexts)
+            foreach ($ids as $key => $id)
+                $translations[$id] = str_replace('&quot;', '"', $translatedTexts[$key]);
         return $translations;
     }
 
