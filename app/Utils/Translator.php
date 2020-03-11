@@ -21,7 +21,7 @@ class Translator
         $batches = array_chunk($texts, self::BATCH_SIZE);
         $result = [];
         foreach ($batches as $batch) {
-            array_merge($result, $translate->translateBatch($batch, [
+            $result = array_merge($result, $translate->translateBatch($batch, [
                 'target' => $to,
             ]));
         }
