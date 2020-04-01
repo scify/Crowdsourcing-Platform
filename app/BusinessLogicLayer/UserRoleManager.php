@@ -32,6 +32,10 @@ class UserRoleManager {
         Gate::define('manage-crowd-sourcing-projects', function ($user) {
             return $this->userHasAdminRole($user) || $this->userHasContentManagerRole($user);
         });
+
+        Gate::define('change-status-crowd-sourcing-projects', function ($user) {
+            return $this->userHasAdminRole($user);
+        });
     }
 
     public function assignRegisteredUserRoleTo($user) {
