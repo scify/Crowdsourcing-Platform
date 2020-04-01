@@ -45,9 +45,11 @@
                             <select id="status_id" class="form-control" name="status_id">
                                 @foreach ($viewModel->projectStatusesLkp as $status)
                                     <option
-                                            disabled="{{!Gate::allows('change-status-crowd-sourcing-projects')}}"
+                                            @if(!Gate::allows('change-status-crowd-sourcing-projects'))
+                                                disabled
+                                            @endif
                                             @if ($viewModel->project->status_id == $status->id || old('status_id') == $status->id)
-                                            selected
+                                                selected
                                             @endif
                                             value="{{ $status->id }}">
                                         {{ $status->title }}
