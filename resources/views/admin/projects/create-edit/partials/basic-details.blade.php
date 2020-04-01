@@ -81,6 +81,22 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    <label class="col-md-12 control-label" for="slug">Project External URL <br>
+                        This URL will be visible to the project page once the project is finalized.<br>
+                        It can be a URL to an external website or resource.
+                    </label>
+                    <div class="col-sm-12">
+
+                        <div class="form-group has-feedback {{ $errors->has('external_url') ? 'has-error' : '' }}">
+                            <input id="external_url" type="text" class="form-control" name="external_url"
+                                   value="{{ old('external_url') ? old('external_url') : $viewModel->project->external_url  }}"
+                                   placeholder="Project External URL">
+                            <span class="help-block"><strong>{{ $errors->first('external_url') }}</strong></span>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="row image-input-container">
                     <label class="col-sm-12 control-label">Project Logo</label>
                     <div class="col-sm-12">
