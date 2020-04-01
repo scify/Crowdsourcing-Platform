@@ -123,8 +123,8 @@ class CrowdSourcingProjectManager
     }
 
     public function updateCrowdSourcingProject($id, array $attributes) {
-        $attributes = $this->setDefaultValuesForCommonProjectFields($attributes);
         $project = $this->getCrowdSourcingProject($id);
+        $attributes = $this->setDefaultValuesForCommonProjectFields($attributes, $project);
 
         $attributes = $this->setDefaultValuesForSocialMediaFields($project, $attributes);
 
@@ -136,7 +136,7 @@ class CrowdSourcingProjectManager
             $this->crowdSourcingProjectRepository->delete($id);
     }
 
-    protected function setDefaultValuesForCommonProjectFields(array $attributes) {
+    protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null) {
         if(!isset($attributes['slug']) || !$attributes['slug'])
             $attributes['slug'] = Str::slug($attributes['name'], '-');
 
@@ -149,16 +149,18 @@ class CrowdSourcingProjectManager
         if(!isset($attributes['footer']) || !$attributes['footer'])
             $attributes['footer'] = $attributes['description'];
 
-        if(!isset($attributes['img_path']) || !$attributes['img_path'])
+        if((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path))
             $attributes['img_path'] = '/images/image_temp.png';
 
-        if(!isset($attributes['logo_path']) || !$attributes['logo_path'])
+        if((!isset($attributes['logo_path']) || !$attributes['logo_path']) && (!$project || !$project->logo_path))
             $attributes['logo_path'] = '/images/image_temp.png';
 
-        if(!isset($attributes['sm_featured_img_path']) || !$attributes['sm_featured_img_path'])
+        if((!isset($attributes['sm_featured_img_path']) || !$attributes['sm_featured_img_path'])
+            && (!$project || !$project->sm_featured_img_path))
             $attributes['sm_featured_img_path'] = '/images/image_temp.png';
 
-        if(!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
+        if((!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
+            && (!$project || !$project->lp_questionnaire_img_path))
             $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
 
         return $attributes;
