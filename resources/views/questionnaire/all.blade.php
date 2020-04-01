@@ -18,7 +18,8 @@
                 <div class="card-body">
                     <div class="row margin-bottom">
                         <div class="col-md-2">
-                            <a class="btn btn-block btn-primary new-questionnaire" href="{{route("create-questionnaire")}}"><i
+                            <a class="btn btn-block btn-primary new-questionnaire"
+                               href="{{route("create-questionnaire")}}"><i
                                         class="fa fa-plus"></i> Create new questionnaire</a>
                         </div>
                     </div>
@@ -36,37 +37,49 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($viewModel->questionnaires as $questionnaire)
-                                <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
-                                    data-status="{{$questionnaire->status_id}}">
-                                    <td class="text-center">{{ $loop->index + 1 }}</td>
-                                    <td>{{$questionnaire->title}}</td>
-                                    <td>{{ $questionnaire->project_name }}</td>
-                                    <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }} <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}%)</b></td>
-                                    <td>
-                                        <b>{{$questionnaire->default_language_name}}</b>
-                                        {{$questionnaire->languages}}
-                                    </td>
-                                    <td>
+                        @foreach($viewModel->questionnaires as $questionnaire)
+                            <tr data-id="{{$questionnaire->id}}" data-title="{{$questionnaire->title}}"
+                                data-status="{{$questionnaire->status_id}}">
+                                <td class="text-center">{{ $loop->index + 1 }}</td>
+                                <td>{{$questionnaire->title}}</td>
+                                <td>{{ $questionnaire->project_name }}</td>
+                                <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }}
+                                    <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}
+                                        %)</b></td>
+                                <td>
+                                    <b>{{$questionnaire->default_language_name}}</b>
+                                    {{$questionnaire->languages}}
+                                </td>
+                                <td>
                                         <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
                                               title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
-                                    </td>
-                                    <td class="text-center">{{ $questionnaire->prerequisite_order }}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select an action
-                                                <span class="caret"></span></button>
-                                            <div class="dropdown-menu">
-                                                <a class="action-btn dropdown-item" href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i class="far fa-edit"></i> Edit questionnaire</a>
-                                                <a class="action-btn dropdown-item" href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i class="fa fa-language"></i> Translate</a>
-                                                <a class="action-btn dropdown-item" href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i class="fas fa-list-ul"></i> View Results</a>
-                                                <a class="action-btn dropdown-item change-status" href="javascript:void(0)" data-toggle="modal"
-                                                   data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
-                                            </div>
+                                </td>
+                                <td class="text-center">{{ $questionnaire->prerequisite_order }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                                data-toggle="dropdown">Select an action
+                                            <span class="caret"></span></button>
+                                        <div class="dropdown-menu">
+                                            <a class="action-btn dropdown-item"
+                                               href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                        class="far fa-edit"></i> Edit questionnaire</a>
+                                            <a class="action-btn dropdown-item"
+                                               href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                        class="fa fa-language"></i> Translate</a>
+                                            <a class="action-btn dropdown-item"
+                                               href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i
+                                                        class="fas fa-list-ul"></i> View Results</a>
+                                            @can('change-status-crowd-sourcing-projects'))
+                                            <a class="action-btn dropdown-item change-status" href="javascript:void(0)"
+                                               data-toggle="modal"
+                                               data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
+                                            @endcan
                                         </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
