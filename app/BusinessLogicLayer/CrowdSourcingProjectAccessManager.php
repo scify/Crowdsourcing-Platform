@@ -46,7 +46,7 @@ class CrowdSourcingProjectAccessManager {
         if(!$user)
             return false;
         return $this->userRoleManager->userHasAdminRole($user) ||
-            ($this->userRoleManager->userHasContentManagerRole($user) && $user->id === $project->user_creator_id);
+            $this->userRoleManager->userHasContentManagerRole($user);
     }
 
 }

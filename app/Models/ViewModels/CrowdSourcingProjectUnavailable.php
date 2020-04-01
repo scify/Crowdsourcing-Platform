@@ -4,13 +4,17 @@
 namespace App\Models\ViewModels;
 
 
+use Illuminate\Support\Collection;
+
 class CrowdSourcingProjectUnavailable {
 
     public $project;
+    public $projects;
     public $statusMessage;
 
-    public function __construct(\App\Models\CrowdSourcingProject $project, string $statusMessage) {
+    public function __construct(\App\Models\CrowdSourcingProject $project, Collection $projects, string $statusMessage) {
         $this->project = $project;
+        $this->projects = $projects;
         $this->statusMessage = $statusMessage;
     }
 
