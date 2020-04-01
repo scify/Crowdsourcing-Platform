@@ -30,7 +30,7 @@ class CrowdSourcingProject extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'motto', 'description', 'about',  'footer', 'img_path',
+        'name', 'slug', 'external_url', 'motto', 'description', 'about',  'footer', 'img_path',
         'logo_path', 'user_creator_id', 'language_id', 'status_id', 'sm_title',
         'sm_description', 'sm_keywords', 'sm_featured_img_path', 'lp_motto_color',
         'lp_about_bg_color', 'lp_about_color', 'lp_questionnaire_img_path',
