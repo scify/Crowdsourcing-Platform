@@ -29,7 +29,7 @@ class CrowdSourcingProjectAccessManager {
     }
 
     public function getProjectsUserHasAccessToEdit(User $user): Collection {
-        if($this->userRoleManager->userHasAdminRole($user))
+        if($this->userRoleManager->userHasAdminRole($user) || $this->userRoleManager->userHasContentManagerRole($user))
             return $this->crowdSourcingProjectRepository->allWithTrashed();
         return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id]);
     }
