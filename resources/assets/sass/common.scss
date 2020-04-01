@@ -94,11 +94,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 
-.main-header .logo {
-  height: 53px;
+.main-header {
 
-  img {
-    max-height: 50px;
+  padding-left: 6%;
+  padding-right: 6%;
+
+  .logo {
+    height: 53px;
+
+    img {
+      max-height: 50px;
+    }
   }
 }
 
