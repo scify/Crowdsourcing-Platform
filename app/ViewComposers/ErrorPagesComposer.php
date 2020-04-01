@@ -3,9 +3,7 @@
 namespace App\ViewComposers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use App\BusinessLogicLayer\UserManager;
 
 class ErrorPagesComposer {
 

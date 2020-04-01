@@ -32,31 +32,27 @@
     @endif
 </head>
 <body class="project-landing-page">
-    <div class="row">
-        <div class="col-md-12">
-            @include('landingpages.partials.navbar')
-        </div>
-    </div>
-    @yield('content')
-    <footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
-        <div class="container" style="
+
+@include('landingpages.partials.navbar')
+
+@yield('content')
+<footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
+    <div class="container" style="
                 color: {{ $viewModel->project->lp_footer_color }}">
-
-            {!! $viewModel->project->footer !!}
-
-        </div>
-    </footer>
-
-    <div id="pyro" class="">
-        <div class="before"></div>
-        <div class="after"></div>
+        {!! $viewModel->project->footer !!}
     </div>
+</footer>
 
-    <div class="loader-wrapper hidden">
-        <img src="{{asset('images/loading.gif')}}" alt="loading image">
-    </div>
-    @include('partials.footer-scripts')
-    <script src="{{asset('dist/js/showdown.min.js')}}?{{env("APP_VERSION")}}"></script>
-    <script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
+<div id="pyro" class="">
+    <div class="before"></div>
+    <div class="after"></div>
+</div>
+
+<div class="loader-wrapper hidden">
+    <img src="{{asset('images/loading.gif')}}" alt="loading image">
+</div>
+@include('partials.footer-scripts')
+<script src="{{asset('dist/js/showdown.min.js')}}?{{env("APP_VERSION")}}"></script>
+<script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
 </body>
 </html>

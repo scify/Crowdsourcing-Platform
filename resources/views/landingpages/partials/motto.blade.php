@@ -4,8 +4,12 @@
         <div class="gray-filter"></div>
         <div class="text">
             <h1 id="project-moto" style="color: {{ $viewModel->project->lp_motto_color }}">{!! $viewModel->project->motto !!}</h1>
-            <div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3 call-to-action mx-auto">
-                @include("landingpages.partials.open-questionnaire-button")
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-10 call-to-action mx-auto">
+                        @include("landingpages.partials.open-questionnaire-button")
+                    </div>
+                </div>
             </div>
         </div>
     </div>
