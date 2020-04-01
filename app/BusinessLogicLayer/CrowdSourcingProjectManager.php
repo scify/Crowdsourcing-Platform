@@ -5,14 +5,13 @@ namespace App\BusinessLogicLayer;
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject;
-use App\Models\Questionnaire;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
+use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;
-use App\Repository\CrowdSourcingProjectCommunicationResourcesRepository;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
 use App\Repository\QuestionnaireRepository;
@@ -20,6 +19,7 @@ use App\Repository\QuestionnaireTranslationRepository;
 use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager
@@ -299,5 +299,26 @@ class CrowdSourcingProjectManager
     public function getCrowdSourcingProjectsListPageViewModel() {
         $user = Auth::user();
         return new AllCrowdSourcingProjects($this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit($user));
+    }
+
+    public function getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug){
+        $project = $this->getCrowdSourcingProjectBySlug($project_slug);
+        $projects = $this->getCrowdSourcingProjectsForHomePage();
+        switch ($project->status_id) {
+            case CrowdSourcingProjectStatusLkp::FINALIZED:
+                $message = 'This project is finalized.<br>Tank you for your contribution!';
+                break;
+            case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
+                $message = 'This project is unpublished.';
+                break;
+            case CrowdSourcingProjectStatusLkp::DELETED:
+                $message = 'This project has been archived.';
+                break;
+            default:
+                $message = 'The project is not currently available';
+                break;
+        }
+
+        return new CrowdSourcingProjectUnavailable($project, $projects, $message);
     }
 }

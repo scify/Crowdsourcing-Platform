@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -86,7 +87,10 @@ class CrowdSourcingProjectController extends Controller {
         try {
             if (Gate::allows('view-landing-page', $project_slug))
                 return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
-            abort(404);
+
+            return view('landingpages.project-unavailable')
+                ->with(['viewModel' => $this->crowdSourcingProjectManager->
+                getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug)]);
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
@@ -101,6 +105,7 @@ class CrowdSourcingProjectController extends Controller {
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $request->referrerId);
 
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
+
         } catch (ModelNotFoundException $e) {
             abort(404);
             return '';
