@@ -36,13 +36,19 @@ class QuestionnaireActionHandler {
     }
 
     public function handleQuestionnaireContributor(Questionnaire $questionnaire, User $user) {
+        //check if the contributor email should be sent
+        if($questionnaire->project->communicationResources->should_send_email_after_questionnaire_response)
+            $this->awardContributorBadgeToUser($questionnaire, $user);
+    }
+
+    public function awardContributorBadgeToUser(Questionnaire $questionnaire, User $user) {
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id);
         try {
             $user->notify(new QuestionnaireResponded(
-                $questionnaire,
-                $contributorBadge,
-                new GamificationBadgeVM($contributorBadge),
-                $questionnaire->project->communicationResources)
+                    $questionnaire,
+                    $contributorBadge,
+                    new GamificationBadgeVM($contributorBadge),
+                    $questionnaire->project->communicationResources)
             );
         } catch (\Exception $e) {
             Log::error($e);
