@@ -3,6 +3,31 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
+                    <label class="col-sm-12 control-label" for="about">Congratulations email</label>
+                    <div class="col-sm-12">
+                        <div class="row mt-2">
+                            <div class="col">
+                                <div class="checkbox icheck">
+                                    <label>
+                                        <input
+                                                {{$viewModel->project->communicationResources->should_send_email_after_questionnaire_response ? 'checked' : ''}}
+                                                class="icheck-input" type="checkbox" name="should_send_email_after_questionnaire_response"><span class="ml-3">
+                                            Respondents to questionnaires for this project should receive a "congratulations" email.</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
                     <label class="col-sm-12 control-label" for="about">Congratulations email intro text</label>
                     <div class="col-sm-12">
                         <div class="form-group has-feedback">

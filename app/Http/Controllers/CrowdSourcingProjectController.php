@@ -72,6 +72,7 @@ class CrowdSourcingProjectController extends Controller {
      * @throws ValidationException
      */
     public function update(Request $request, $id) {
+
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_projects,name,' . $id . '|max:100',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
@@ -79,7 +80,12 @@ class CrowdSourcingProjectController extends Controller {
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug,' . $id . '|max:100',
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
-        $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $request->all());
+        $attributes = $request->all();
+        $attributes['should_send_email_after_questionnaire_response'] =
+            (isset($attributes['should_send_email_after_questionnaire_response'])
+                && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
+
+        $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $attributes);
         return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project\'s info have been successfully updated');
     }
 
