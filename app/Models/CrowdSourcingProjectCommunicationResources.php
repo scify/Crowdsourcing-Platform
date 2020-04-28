@@ -21,7 +21,8 @@ class CrowdSourcingProjectCommunicationResources extends Model
      * @var array
      */
     protected $fillable = [
-        'questionnaire_response_email_intro_text', 'questionnaire_response_email_outro_text'
+        'questionnaire_response_email_intro_text', 'questionnaire_response_email_outro_text',
+        'should_send_email_after_questionnaire_response'
     ];
 
     public function project() {
