@@ -20,12 +20,16 @@ class QuestionnaireResponseAnswerTranslator {
     public function translateAllNonTranslatedAnswerTexts() {
         $answerTexts = $this->questionnaireResponseAnswerRepository->getNonTranslatedAnswers();
         foreach ($answerTexts as $answerText) {
-            $translation = $this->translator->translateTexts([$answerText->answer], 'en');
-            if(isset($translation[0]['text']) && $translation[0]['text'] != '' && $translation[0]['text'] != $answerText->answer) {
-                $translation[0]['text'] = str_replace('&quot;', '"', $translation[0]['text']);
-                $answerText->english_translation = $translation[0]['text'];
-                $answerText->initial_language_detected = $translation[0]['source'];
-                $answerText->save();
+            if($answerText) {
+                $translation = $this->translator->translateTexts([$answerText->answer], 'en');
+                $text = $translation[0]['text'];
+                $source = $translation[0]['source'];
+                if ($text && $text != $answerText->answer) {
+                    $text = str_replace('&quot;', '"', $text);
+                    $answerText->english_translation = $text;
+                    $answerText->initial_language_detected = $source;
+                    $answerText->save();
+                }
             }
         }
     }
