@@ -3,6 +3,7 @@
 namespace App\Utils;
 
 use Google\Cloud\Translate\V2\TranslateClient;
+use Illuminate\Support\Facades\Log;
 
 class Translator
 {
@@ -21,9 +22,17 @@ class Translator
         $batches = array_chunk($texts, self::BATCH_SIZE);
         $result = [];
         foreach ($batches as $batch) {
-            $result = array_merge($result, $translate->translateBatch($batch, [
-                'target' => $to,
-            ]));
+            try {
+                $result = array_merge($result, $translate->translateBatch($batch, [
+                    'target' => $to,
+                ]));
+            } catch (\Exception $e) {
+                if (app()->bound('sentry'))
+                    app('sentry')->captureException($e);
+                else
+                    Log::error($e->getMessage());
+                return $result;
+            }
         }
         return $result;
     }
