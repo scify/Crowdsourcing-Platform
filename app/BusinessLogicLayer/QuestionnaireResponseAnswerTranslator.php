@@ -19,18 +19,23 @@ class QuestionnaireResponseAnswerTranslator {
 
     public function translateAllNonTranslatedAnswerTexts() {
         $answerTexts = $this->questionnaireResponseAnswerRepository->getNonTranslatedAnswers();
-        foreach ($answerTexts as $answerText) {
-            if($answerText) {
-                $translation = $this->translator->translateTexts([$answerText->answer], 'en');
-                $text = $translation[0]['text'];
-                $source = $translation[0]['source'];
-                if ($text && $text != $answerText->answer) {
-                    $text = str_replace('&quot;', '"', $text);
-                    $answerText->english_translation = $text;
-                    $answerText->initial_language_detected = $source;
-                    $answerText->save();
-                }
+        $textsToTranslate = $answerTexts->pluck('answer')->toArray();
+        $translations = $this->translator->translateTexts($textsToTranslate, 'en');
+
+        foreach ($translations as $index => $translation) {
+            // get the model corresponding
+            $answerTextModel = $answerTexts->get($index);
+            $translatedText = $translation['text'];
+            $source = $translation['source'];
+            // only update the translation if the translation
+            // is different from the original
+            if ($translatedText && $translatedText != $answerTextModel->answer) {
+                $translatedText = str_replace('&quot;', '"', $translatedText);
+                $answerTextModel->english_translation = $translatedText;
+                $answerTextModel->initial_language_detected = $source;
             }
+            $answerTextModel->parsed = true;
+            $answerTextModel->save();
         }
     }
 }
