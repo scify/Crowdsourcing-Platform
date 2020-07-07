@@ -21,8 +21,8 @@
 </head>
 <body class="hold-transition background-page @yield('body_class')" style="background-image: url('{{ asset('images/active_participation.png') }}');">
 @if (App::environment('staging'))
-    <div class="staging-warning">
-        <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
+    <div class="sticky-top w-100 staging-warning py-2 text-center">
+        <h5 class="m-0">~~~ WARNING: STAGING ENVIRONMENT ~~~</h5>
     </div>
 @endif
 <div class="login-box row h-100 justify-content-center align-items-center">

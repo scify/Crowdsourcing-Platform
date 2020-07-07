@@ -27,9 +27,14 @@
             @include('analytics')
         @endif
     </head>
+    @if (App::environment('staging'))
+        <div class="sticky-top w-100 staging-warning py-2 text-center">
+            <h5 class="m-0">~~~ WARNING: STAGING ENVIRONMENT ~~~</h5>
+        </div>
+    @endif
     <body class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 @include('home.partials.' . config('app.project_resources_dir') . '.navbar')
             </div>
         </div>
