@@ -64,6 +64,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2");
 }
 
+.header-margin-top {
+  .main-header {
+    margin-top: 35px !important;
+  }
+}
+
 .modal-lg {
   max-width: 1000px;
 }
@@ -273,16 +279,15 @@ table {
   position: relative;
 }
 
+
 .staging-warning {
 
-  background-color: #FFC107;
+  background-color: $yellow;
 
-  p {
+  h5 {
+    color: $header-font-color;
     font-weight: bold;
-    width: 100%;
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
   }
 }
 
