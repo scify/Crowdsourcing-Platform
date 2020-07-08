@@ -15,7 +15,7 @@ class QuestionnaireStatisticsRepositoryMock {
             [
                 'language_name' => 'English',
                 'language_code' => 'en',
-                'num_responses' => 30
+                'num_responses' => 35
             ],
             [
                 'language_name' => 'German',
@@ -25,7 +25,7 @@ class QuestionnaireStatisticsRepositoryMock {
             [
                 'language_name' => 'Italian',
                 'language_code' => 'it',
-                'num_responses' => 25
+                'num_responses' => 13
             ],
             [
                 'language_name' => 'Spanish',
