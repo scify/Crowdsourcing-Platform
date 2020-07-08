@@ -70,6 +70,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+.container.wide {
+  width: 75%;
+  max-width: 100%;
+
+  @media (max-width: 575px) {
+    width: 85%;
+  }
+}
+
 .modal-lg {
   max-width: 1000px;
 }
