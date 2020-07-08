@@ -57,7 +57,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
-Route::get('/questionnaire/{questionnaire}/visualizations', 'QuestionnaireVisualizationsController@showVisualizationsPageForQuestionnaire')->name('questionnaire.visualizations');
+Route::get('/questionnaires/{questionnaire}/visualizations', 'QuestionnaireVisualizationsController@showVisualizationsPageForQuestionnaire')->name('questionnaire.visualizations');
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 
