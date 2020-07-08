@@ -32,6 +32,7 @@
     "bs-stepper": "^1.7.0",
     "bs4-summernote": "^0.8.10",
     "chart.js": "^2.9.3",
+    "chartjs-plugin-datalabels": "^0.7.0",
     "codemirror": "^5.36.0",
     "datatables.net": "^1.10.20",
     "datatables.net-bs4": "^1.10.20",
