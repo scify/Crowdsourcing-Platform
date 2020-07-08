@@ -4,10 +4,10 @@ namespace App\Repository\QuestionnaireStatistics;
 
 class QuestionnaireResponsesPerLanguage {
 
-    public $numberOfResponsesPerLanguage;
+    public $data;
 
-    public function __construct($numberOfResponsesPerLanguage) {
-        $this->numberOfResponsesPerLanguage = $numberOfResponsesPerLanguage;
+    public function __construct($data) {
+        $this->data = $data;
     }
    
 }
