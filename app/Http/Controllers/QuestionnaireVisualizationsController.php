@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireVisualizationsManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
 use App\Models\Questionnaire;
 
 class QuestionnaireVisualizationsController extends Controller
@@ -10,7 +10,7 @@ class QuestionnaireVisualizationsController extends Controller
     protected $questionnaireVisualizationsManager;
 
 
-    public function __construct(QuestionnaireVisualizationsManager $questionnaireVisualizationsManager) {
+    public function __construct(QuestionnaireStatisticsManager $questionnaireVisualizationsManager) {
         $this->questionnaireVisualizationsManager = $questionnaireVisualizationsManager;
     }
 
