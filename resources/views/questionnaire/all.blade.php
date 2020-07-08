@@ -69,11 +69,18 @@
                                                         class="fa fa-language"></i> Translate</a>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i
-                                                        class="fas fa-list-ul"></i> View Results</a>
-                                            @can('change-status-crowd-sourcing-projects'))
-                                            <a class="action-btn dropdown-item change-status" href="javascript:void(0)"
-                                               data-toggle="modal"
-                                               data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change status</a>
+                                                        class="fas fa-list-ul"></i> View Results Report</a>
+                                            <a class="action-btn dropdown-item"
+                                               target="_blank"
+                                               href="{{route('questionnaire.visualizations', ['questionnaire' => $questionnaire->id])}}">
+                                                <i class="fas fa-chart-pie"></i> View Statistics</a>
+                                            @can('change-status-crowd-sourcing-projects')
+                                                <hr>
+                                                <a class="action-btn dropdown-item change-status"
+                                                   href="javascript:void(0)"
+                                                   data-toggle="modal"
+                                                   data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change
+                                                    status</a>
                                             @endcan
                                         </div>
                                     </div>
