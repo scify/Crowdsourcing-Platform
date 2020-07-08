@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\questionnaire\QuestionnaireVisualizationsManager;
 use App\Models\Questionnaire;
-use App\Models\ViewModels\Questionnaire\QuestionnaireVisualizations;
 
 class QuestionnaireVisualizationsController extends Controller
 {
+    protected $questionnaireVisualizationsManager;
+
+
+    public function __construct(QuestionnaireVisualizationsManager $questionnaireVisualizationsManager) {
+        $this->questionnaireVisualizationsManager = $questionnaireVisualizationsManager;
+    }
+
     public function showVisualizationsPageForQuestionnaire(Questionnaire $questionnaire) {
-        $viewModel = new QuestionnaireVisualizations($questionnaire->project);
+        $viewModel = $this->questionnaireVisualizationsManager->getQuestionnaireVisualizationsViewModel($questionnaire);
         return view('questionnaire.visualizations', compact(['viewModel']));
     }
 }
