@@ -7,6 +7,11 @@
     <div class="container wide">
         <div class="row my-5">
             <div class="col-12">
+                <h1 class="text-lg-center text-md-center text-sm-left"><b>{{ $viewModel->questionnaire->title }}</b></h1>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-12">
                 <h1 class="text-lg-center text-md-center text-sm-left">Total Questionnaire Statistics:</h1>
             </div>
         </div>
@@ -35,5 +40,8 @@
 @endsection
 
 @push('scripts')
-    <script src="{{mix('dist/js/visualizations.js')}}"></script>
+    <script type="text/javascript">
+        const viewModel = @json($viewModel);
+    </script>
+    <script type="text/javascript" src="{{mix('dist/js/visualizations.js')}}"></script>
 @endpush

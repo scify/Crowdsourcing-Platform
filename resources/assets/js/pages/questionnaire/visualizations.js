@@ -4,6 +4,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 (function () {
     let init = function () {
+        console.log(viewModel);
         initQuestionnaireResponsesChart();
         initQuestionnaireResponsesPerLanguageChart();
     };
@@ -13,7 +14,10 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
         const data = {
             datasets: [{
-                data: [150, 78],
+                data: [
+                    viewModel.questionnaireResponseStatistics.goalResponses,
+                    viewModel.questionnaireResponseStatistics.totalResponses
+                ],
                 backgroundColor: getRandomColors(2),
                 borderWidth: 1
             }],
@@ -30,15 +34,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
             },
             plugins: {
                 datalabels: {
-                    formatter: (value, ctx) => {
-                        let sum = 0;
-                        let dataArr = ctx.chart.data.datasets[0].data;
-                        dataArr.map(data => {
-                            sum += data;
-                        });
-                        const percentage = (value*100 / sum).toFixed(2)+"%";
-                        return value + ' responses\n' + percentage;
-                    },
+                    formatter: (value, ctx) => getResponsesPercentageDataLabels(value, ctx),
                     color: '#000',
                     textAlign: 'center',
                     labels: {
@@ -65,39 +61,24 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
         const data = {
             datasets: [{
-                data: [24, 45, 12, 4, 32, 9, 18],
-                backgroundColor: getRandomColors(7)
+                data: _.map(viewModel.numberOfResponsesPerLanguage.data, 'num_responses'),
+                backgroundColor: getRandomColors(viewModel.numberOfResponsesPerLanguage.data.length)
             }],
 
-            labels: [
-                'English',
-                'Greek',
-                'Italian',
-                'Albanian',
-                'Spanish',
-                'French',
-                'Portuguese'
-            ]
+            labels: _.map(viewModel.numberOfResponsesPerLanguage.data, 'language_name')
         };
 
         const options = {
-            legend: { display: false },
+            legend: {display: false},
             tooltips: {
                 enabled: true
             },
             plugins: {
                 datalabels: {
-                    formatter: (value, ctx) => {
-                        let sum = 0;
-                        let dataArr = ctx.chart.data.datasets[0].data;
-                        dataArr.map(data => {
-                            sum += data;
-                        });
-                        const percentage = (value*100 / sum).toFixed(2)+"%";
-                        return value + ' responses\n' + percentage;
-                    },
+                    formatter: (value, ctx) => getResponsesPercentageDataLabels(value, ctx),
                     color: '#222',
-                    textAlign: 'center',
+                    anchor: 'center',
+                    clamp: true,
                     labels: {
                         title: {
                             font: {
@@ -117,10 +98,20 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
         });
     };
 
-    let getRandomColors = function(num) {
+    let getResponsesPercentageDataLabels = function (value, ctx) {
+        let sum = 0;
+        let dataArr = ctx.chart.data.datasets[0].data;
+        dataArr.map(data => {
+            sum += data;
+        });
+        const percentage = (value * 100 / sum).toFixed(2) + "%";
+        return value + ' responses\n' + percentage;
+    };
+
+    let getRandomColors = function (num) {
         const array = [
-            "#ef5350", "#ab47bc","#5c6bc0",
-            "#66bb6a","#ffa726", "#8d6e63",
+            "#ef5350", "#ab47bc", "#5c6bc0",
+            "#66bb6a", "#ffa726", "#8d6e63",
             "#bdbdbd", "#ffee58", "#42a5f5",
             "#26a69a", "#ec407a", "#78909c"
         ];
