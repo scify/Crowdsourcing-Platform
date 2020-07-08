@@ -6,7 +6,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #076ec1;
 }
 
-.project-landing-page {
+.main-layout {
+
+  #content {
+    padding-top: 95px;
+  }
+
   footer {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -59,7 +64,7 @@ body {
   .text {
     position: relative;
     z-index: 1001;
-    margin-top: 250px;
+    margin-top: 210px;
 
     @media (max-width: 991px) {
       margin-top: 150px;

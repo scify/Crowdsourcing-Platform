@@ -31,7 +31,7 @@
         @include('analytics')
     @endif
 </head>
-<body class="project-landing-page">
+<body class="main-layout">
 @if (App::environment('staging'))
     <div class="sticky-top w-100 staging-warning py-2 text-center">
         <h5 class="m-0">~~~ WARNING: STAGING ENVIRONMENT ~~~</h5>
@@ -39,7 +39,10 @@
 @endif
 @include('landingpages.partials.navbar')
 
-@yield('content')
+<div id="content">
+    @yield('content')
+</div>
+
 <footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
     <div class="container" style="
                 color: {{ $viewModel->project->lp_footer_color }}">
