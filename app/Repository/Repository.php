@@ -82,6 +82,13 @@ abstract class Repository implements RepositoryInterface {
         return $this->modelInstance->where($attribute, '=', $id)->update($this->onlyFillable($data));
     }
 
+    public function updateOrCreate($criteria, $data) {
+        return $this->modelInstance->updateOrCreate(
+            $criteria,
+            $data
+        );
+    }
+
     protected function onlyFillable(array $items) {
         $qualified = array();
 
