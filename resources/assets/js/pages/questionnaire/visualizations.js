@@ -4,9 +4,9 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 (function () {
     let init = function () {
-        console.log(viewModel);
         initQuestionnaireResponsesChart();
         initQuestionnaireResponsesPerLanguageChart();
+        initQuestionResponsesCharts();
     };
 
     let initQuestionnaireResponsesChart = function () {
@@ -68,17 +68,69 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
             labels: _.map(viewModel.numberOfResponsesPerLanguage.data, 'language_name')
         };
 
-        const options = {
+        const myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: getChartOptions('bar')
+        });
+    };
+
+    let initQuestionResponsesCharts = function () {
+        for (let i = 0; i < viewModel.statisticsPerQuestion.length; i++) {
+            const questionStatisticsObj = viewModel.statisticsPerQuestion[i];
+            let canvasElement = $('.questionResponsesChart[data-question-id=' +
+                questionStatisticsObj.question_id + ']')[0];
+
+            createChartForQuestionStatistics(canvasElement, questionStatisticsObj);
+        }
+    };
+
+    let createChartForQuestionStatistics = function(canvasElement, questionStatisticsObj) {
+        switch (questionStatisticsObj.question_type) {
+            case 'fixed_choices':
+                createChartForFixedChoiceQuestionStatistics(canvasElement, questionStatisticsObj.statistics);
+                break;
+            case 'free_text':
+                createChartForFreeTextQuestionStatistics(canvasElement, questionStatisticsObj.statistics);
+                break;
+        }
+    };
+
+    let createChartForFixedChoiceQuestionStatistics = function(canvasElement, questionStatistics) {
+        let ctx = canvasElement.getContext("2d");
+        const data = {
+            datasets: [{
+                data: _.map(questionStatistics, 'num_responses'),
+                backgroundColor: getRandomColors(questionStatistics.length)
+            }],
+
+            labels: _.map(questionStatistics, 'answer_title')
+        };
+
+        const responsesChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: data,
+            options: getChartOptions('horizontalBar')
+        });
+    };
+
+    let createChartForFreeTextQuestionStatistics = function(canvasElement, questionStatistics) {
+        console.log(questionStatistics);
+    };
+
+    let getChartOptions = function (chartType) {
+        let options = {
             legend: {display: false},
             tooltips: {
                 enabled: true
             },
+            offset: true,
+
             plugins: {
                 datalabels: {
                     formatter: (value, ctx) => getResponsesPercentageDataLabels(value, ctx),
-                    color: '#222',
-                    anchor: 'center',
-                    clamp: true,
+                    color: '#000',
+                    textAlign: 'center',
                     labels: {
                         title: {
                             font: {
@@ -91,11 +143,37 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
             }
         };
 
-        const myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-        });
+        switch (chartType) {
+            case 'horizontalBar':
+                options.scales = {
+                    yAxes: [{
+                        gridLines: {
+                            offsetGridLines: true
+                        }
+                    }],
+                        xAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                };
+                break;
+            case 'bar':
+                options.scales = {
+                    xAxes: [{
+                        gridLines: {
+                            offsetGridLines: true
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                };
+                break;
+        }
+        return options;
     };
 
     let getResponsesPercentageDataLabels = function (value, ctx) {
