@@ -114,7 +114,14 @@ class QuestionnaireManager {
         $response = json_decode($data['response']);
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
-        $this->questionnaireRepository->saveNewQuestionnaireResponse($data['questionnaire_id'], $response, $user->id, $data['response']);
+        $language = $this->languageManager->getLanguageByCode($data['selectedLanguageCode']);
+        $this->questionnaireRepository->saveNewQuestionnaireResponse(
+            $data['questionnaire_id'],
+            $response,
+            $user->id,
+            $data['response'],
+            $language->id
+        );
         $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $user);
         // if the user got invited by another user to answer the questionnaire, also award the referrer user.
         $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
