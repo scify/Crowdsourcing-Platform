@@ -15,16 +15,19 @@ class QuestionnaireStatistics {
     public $questionnaireResponseStatistics;
     public $numberOfResponsesPerLanguage;
     public $questionnaire;
+    public $statisticsPerQuestion;
 
     public function __construct(Questionnaire $questionnaire,
                                 CrowdSourcingProject $project,
                                 QuestionnaireResponseStatistics $questionnaireResponseStatistics,
-                                QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage) {
+                                QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
+                                $statisticsPerQuestion) {
         $this->questionnaire = $questionnaire;
         $this->project = $project;
         $this->questionnaireResponseStatistics = $questionnaireResponseStatistics;
         $this->numberOfResponsesPerLanguage = $numberOfResponsesPerLanguage;
         $this->home_url = route('project.landing-page', $project->slug);
+        $this->statisticsPerQuestion = $statisticsPerQuestion;
     }
 
 }

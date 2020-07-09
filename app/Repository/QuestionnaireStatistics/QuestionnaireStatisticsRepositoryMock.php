@@ -64,15 +64,19 @@ class QuestionnaireStatisticsRepositoryMock {
 
     protected function getStatisticsForFixedChoicesQuestion(int $questionId) {
         $data = [
-                    [
-                        'answer_title' => 'answer 1',
-                        'num_responses' => 10
-                    ],
-                    [
-                        'answer_title' => 'answer 2',
-                        'num_responses' => 19
-                    ]
-                ];
+            [
+                'answer_title' => 'answer 1',
+                'num_responses' => 10
+            ],
+            [
+                'answer_title' => 'answer 2',
+                'num_responses' => 19
+            ],
+            [
+                'answer_title' => 'answer 3',
+                'num_responses' => 12
+            ]
+        ];
 
         return $data;
     }
