@@ -83,12 +83,32 @@ class QuestionnaireStatisticsRepositoryMock {
 
     protected function getStatisticsForFreeTextQuestion(int $questionId) {
         $data = [
-            'answer_text' => 'answer 3 (google translate)',
-            'is_translated' => true,
-            'answer_original_text' => 'answer 3',
-            'origin_language' => [
-                'language_name' => 'Spanish',
-                'language_code' => 'es'
+            [
+                'answer_text' => 'answer 5 (google translate)',
+                'is_translated' => true,
+                'answer_original_text' => 'answer 3',
+                'origin_language' => [
+                    'language_name' => 'Spanish',
+                    'language_code' => 'es'
+                ]
+            ],
+            [
+                'answer_text' => 'answer 6',
+                'is_translated' => false,
+                'answer_original_text' => 'answer 6',
+                'origin_language' => [
+                    'language_name' => 'Greek',
+                    'language_code' => 'el'
+                ]
+            ],
+            [
+                'answer_text' => 'answer 6 French answer translated',
+                'is_translated' => true,
+                'answer_original_text' => 'answer 6 French answer',
+                'origin_language' => [
+                    'language_name' => 'French',
+                    'language_code' => 'fr'
+                ]
             ]
         ];
 
