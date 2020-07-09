@@ -164,10 +164,10 @@ class QuestionnaireRepository extends Repository {
         return $questionnaireStatusHistory;
     }
 
-    public function saveNewQuestionnaireResponse($questionnaireId, $response, $userId, $responseJson) {
+    public function saveNewQuestionnaireResponse($questionnaireId, $response, $userId, $responseJson, $languageId) {
         $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
-        return DB::transaction(function () use ($questionnaireId, $response, $userId, $responseJson, $questionsFromDB) {
-            $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson);
+        return DB::transaction(function () use ($questionnaireId, $response, $userId, $responseJson, $questionsFromDB, $languageId) {
+            $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson, $languageId);
             foreach ($response as $question => $answerResponseArray) {
                 if (strpos($question, '-Comment') === false) {
                     $foundQuestionFromDB = $questionsFromDB->where('name', $question)->first();
@@ -312,11 +312,12 @@ class QuestionnaireRepository extends Repository {
         }
     }
 
-    private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson) {
+    private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson, $languageId) {
         $questionnaireResponse = new QuestionnaireResponse();
         $questionnaireResponse->questionnaire_id = $questionnaireId;
         $questionnaireResponse->user_id = $userId;
         $questionnaireResponse->response_json = $responseJson;
+        $questionnaireResponse->language_id = $languageId;
         $questionnaireResponse->save();
         return $questionnaireResponse;
     }

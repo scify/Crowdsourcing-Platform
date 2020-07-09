@@ -36,9 +36,10 @@ import * as Survey from "survey-jquery";
                     let response = JSON.stringify(result.data);
                     let questionnaire_id = button.data('questionnaire-id');
                     let url = button.data('url');
+                    const selectedLanguageCode = $('#questionnaire-lang-selector').val();
                     $.ajax({
                         method: 'post',
-                        data: {questionnaire_id, response},
+                        data: {questionnaire_id, response, selectedLanguageCode},
                         url: url,
                         success: function (response) {
                             console.log(response);
@@ -104,8 +105,6 @@ import * as Survey from "survey-jquery";
             }
 
         });
-
-        console.log(questions);
         return questions;
     };
 
