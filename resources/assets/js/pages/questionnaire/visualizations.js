@@ -28,32 +28,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
             ]
         };
 
-        const options = {
-            tooltips: {
-                enabled: true
-            },
-            plugins: {
-                datalabels: {
-                    formatter: (value, ctx) => getResponsesPercentageDataLabels(value, ctx),
-                    color: '#000',
-                    textAlign: 'center',
-                    labels: {
-                        title: {
-                            font: {
-                                weight: 'bold',
-                                size: 14
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        const responsesChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: options
-        });
+        createChart(ctx, data, 'pie');
     };
 
     let initQuestionnaireResponsesPerLanguageChart = function () {
@@ -68,11 +43,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
             labels: _.map(viewModel.numberOfResponsesPerLanguage.data, 'language_name')
         };
 
-        const myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: getChartOptions('bar')
-        });
+        createChart(ctx, data, 'bar');
     };
 
     let initQuestionResponsesCharts = function () {
@@ -107,25 +78,31 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
             labels: _.map(questionStatistics, 'answer_title')
         };
 
-        const responsesChart = new Chart(ctx, {
-            type: 'horizontalBar',
-            data: data,
-            options: getChartOptions('horizontalBar')
-        });
+        createChart(ctx, data, 'horizontalBar');
     };
 
     let createChartForFreeTextQuestionStatistics = function(canvasElement, questionStatistics) {
         console.log(questionStatistics);
     };
 
-    let getChartOptions = function (chartType) {
+    let createChart = function (canvasContext, data, chartType) {
+        let options = getChartCommonOptions(chartType);
+        if(chartType === 'pie')
+            options.legend = {display: true};
+        return new Chart(canvasContext, {
+            type: chartType,
+            data: data,
+            options: options
+        });
+    };
+
+    let getChartCommonOptions = function (chartType) {
         let options = {
             legend: {display: false},
             tooltips: {
                 enabled: true
             },
             offset: true,
-
             plugins: {
                 datalabels: {
                     formatter: (value, ctx) => getResponsesPercentageDataLabels(value, ctx),
