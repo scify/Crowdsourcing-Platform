@@ -6,6 +6,7 @@ namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\gamification\QuestionnaireBadgeProvider;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Models\ViewModels\UserDashboardViewModel;
