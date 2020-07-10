@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\QuestionnaireReportManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
@@ -19,21 +20,24 @@ class QuestionnaireController extends Controller
     protected $questionnaireShareManager;
     protected $platformWideGamificationBadgesProvider;
     protected $questionnaireReportManager;
+    protected $questionnaireVMProvider;
 
     public function __construct(QuestionnaireManager $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireReportManager $questionnaireReportManager)
+                                QuestionnaireReportManager $questionnaireReportManager,
+                                QuestionnaireVMProvider $questionnaireVMProvider)
     {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->questionnaireReportManager = $questionnaireReportManager;
+        $this->questionnaireVMProvider = $questionnaireVMProvider;
     }
 
     public function manageQuestionnaires()
     {
-        $questionnairesViewModel = $this->questionnaireManager->getAllQuestionnairesPageViewModel();
+        $questionnairesViewModel = $this->questionnaireVMProvider->getAllQuestionnairesPageViewModel();
         return view("questionnaire.all")->with(['viewModel' => $questionnairesViewModel]);
     }
 
@@ -45,7 +49,7 @@ class QuestionnaireController extends Controller
 
     public function createQuestionnaire()
     {
-        $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel();
+        $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel();
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
@@ -58,7 +62,7 @@ class QuestionnaireController extends Controller
 
     public function editQuestionnaire($id)
     {
-        $viewModel = $this->questionnaireManager->getCreateEditQuestionnaireViewModel($id);
+        $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel($id);
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
@@ -76,7 +80,7 @@ class QuestionnaireController extends Controller
 
     public function translateQuestionnaire($id)
     {
-        $viewModel = $this->questionnaireManager->getTranslateQuestionnaireViewModel($id);
+        $viewModel = $this->questionnaireVMProvider->getTranslateQuestionnaireViewModel($id);
         return view('questionnaire.translate')->with(['viewModel' => $viewModel]);
     }
 

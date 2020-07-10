@@ -9,18 +9,13 @@ use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
 use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\Language;
 use App\Models\Questionnaire;
-use App\Models\ViewModels\CreateEditQuestionnaire;
-use App\Models\ViewModels\ManageQuestionnaires;
-use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireResponseAnswerRepository;
-use App\Repository\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use JsonSchema\Exception\ResourceNotFoundException;
 
@@ -37,7 +32,6 @@ class QuestionnaireManager {
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireActionHandler;
     protected $crowdSourcingProjectRepository;
-    protected $questionnaireStatisticsPageVisibilityLkpRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -50,8 +44,7 @@ class QuestionnaireManager {
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
                                 QuestionnaireActionHandler $questionnaireActionHandler,
-                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-                                QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository) {
+                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -64,34 +57,6 @@ class QuestionnaireManager {
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
-        $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
-    }
-
-    public function getCreateEditQuestionnaireViewModel($id = null) {
-        $maximumPrerequisiteOrder = null;
-        if ($id) {
-            $questionnaire = $this->questionnaireRepository->find($id);
-            $title = "Edit Questionnaire";
-            $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
-        } else {
-            $questionnaire = $this->questionnaireRepository->getModelInstance();
-            $title = "Create Questionnaire";
-        }
-        $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $languages = $this->languageManager->getAllLanguages();
-        $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder, $questionnaireStatisticsPageVisibilityLkp);
-    }
-
-    public function getAllQuestionnairesPageViewModel() {
-        $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $questionnaires = new Collection();
-        foreach ($projectTheUserHasAccessTo as $project) {
-            $questionnaires = $questionnaires->concat(
-                $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($project->id));
-        }
-        $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
-        return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
@@ -152,26 +117,6 @@ class QuestionnaireManager {
         return $translations;
     }
 
-    public function getTranslateQuestionnaireViewModel($questionnaireId) {
-        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
-        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
-        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
-        $questionnaireTranslations = $this->questionnaireTranslationRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
-        $questionnaireLanguages = $this->questionnaireTranslationRepository->getQuestionnaireAvailableLanguages($questionnaireId);
-        // if default value translation is set and there are some translations but not for all questions/answers/html,
-        // we need to pass all the not translated strings to the other languages, so that they will be available for translation
-        if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
-            $defaultLanguageTranslation = $questionnaireTranslations->pull("");
-            foreach ($questionnaireTranslations->keys() as $language) {
-                foreach ($defaultLanguageTranslation as $translations) {
-                    $questionnaireTranslations->get($language)->push($translations);
-                }
-            }
-        }
-        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
-    }
-
     public function storeQuestionnaireTranslations($questionnaireId, $translations) {
         $this->questionnaireTranslationRepository->storeQuestionnaireTranslations($questionnaireId, json_decode($translations));
     }
@@ -223,14 +168,6 @@ class QuestionnaireManager {
 
         if (isset($question->hasOther) && $question->hasOther)
             $this->questionnaireRepository->saveNewOtherAnswer($questionId, $question);
-    }
-
-    private function transformAllLanguagesToArray($allLanguages) {
-        $result = [];
-        foreach ($allLanguages as $language) {
-            array_push($result, $language[0]);
-        }
-        return $result;
     }
 
     public function markQuestionnaireTranslation(int $questionnaireId, int $langId, bool $markHuman) {
