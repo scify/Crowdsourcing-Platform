@@ -23,6 +23,10 @@ class QuestionnaireResponseManager {
     }
 
     public function questionnaireResponsesForUserExists($userId) {
-        return $this->questionnaireRepository->questionnaireResponsesForUserExists($userId);
+        return $this->questionnaireResponseRepository->userResponseExists($userId);
+    }
+
+    public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId) {
+        return $this->questionnaireResponseRepository->questionnaireResponseExists($userId, $questionnaireId);
     }
 }
