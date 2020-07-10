@@ -35,7 +35,7 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
             ],
             [
                 'id' => 3,
-                'title' => 'Admins and content managers only',
+                'title' => 'Admins and Content Managers only',
                 'description' => 'The Statistics page is accessible only by admins and content managers'
             ]
         ];
