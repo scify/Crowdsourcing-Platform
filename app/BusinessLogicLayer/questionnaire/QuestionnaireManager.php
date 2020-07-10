@@ -4,8 +4,6 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\LanguageManager;
-use App\BusinessLogicLayer\QuestionnaireActionHandler;
-use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
 use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\Language;
 use App\Models\Questionnaire;

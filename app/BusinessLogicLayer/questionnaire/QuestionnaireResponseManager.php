@@ -1,6 +1,6 @@
 <?php
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\Models\User;

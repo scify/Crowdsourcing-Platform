@@ -3,6 +3,7 @@
 namespace App\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Models\User;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;

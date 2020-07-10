@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
-use App\BusinessLogicLayer\QuestionnaireReportManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireReportManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
 use App\Models\ViewModels\GamificationBadgeVM;
