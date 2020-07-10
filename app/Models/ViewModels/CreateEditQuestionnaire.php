@@ -9,20 +9,27 @@ use Illuminate\Support\Collection;
 
 class CreateEditQuestionnaire
 {
+    protected $selectedLanguageId;
     public $questionnaire;
     public $projects;
     public $languages;
     public $title;
     public $maximumPrerequisiteOrder;
-    protected $selectedLanguageId;
+    public $questionnaireStatisticsPageVisibilityLkp;
 
-    public function __construct(Questionnaire $questionnaire, Collection $projects, Collection $languages, $title, $maximumPrerequisiteOrder = null)
+    public function __construct(Questionnaire $questionnaire,
+                                Collection $projects,
+                                Collection $languages,
+                                $title,
+                                $maximumPrerequisiteOrder,
+                                Collection $questionnaireStatisticsPageVisibilityLkp)
     {
         $this->questionnaire = $questionnaire;
         $this->projects = $projects;
         $this->languages = $languages;
         $this->title = $title;
         $this->maximumPrerequisiteOrder = $maximumPrerequisiteOrder;
+        $this->questionnaireStatisticsPageVisibilityLkp = $questionnaireStatisticsPageVisibilityLkp;
         if($this->questionnaire->id)
             $this->selectedLanguageId = $this->questionnaire->default_language_id;
         else
