@@ -72,7 +72,7 @@
                                                         class="fas fa-list-ul"></i> View Results Report</a>
                                             <a class="action-btn dropdown-item"
                                                target="_blank"
-                                               href="{{route('questionnaire.visualizations', ['questionnaire' => $questionnaire->id])}}">
+                                               href="{{route('questionnaire.statistics', ['questionnaire' => $questionnaire->id])}}">
                                                 <i class="fas fa-chart-pie"></i> View Statistics</a>
                                             @can('change-status-crowd-sourcing-projects')
                                                 <hr>

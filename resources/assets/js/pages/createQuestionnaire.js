@@ -108,6 +108,7 @@
         let language = $('#language').val();
         let project = $('#project').val();
         let prerequisite_order = $('#prerequisite_order').val();
+        let statistics_page_visibility_lkp_id = $('#statistics_page_visibility_lkp_id').val();
         let content = editor.text;
         content = addGuidsToContent(content);
         if (title === '' || description === '' || goal === '')
@@ -122,7 +123,16 @@
             $.ajax({
                 method: 'post',
                 url: self.data('url'),
-                data: {title, description, goal, language, content, project, prerequisite_order},
+                data: {
+                    title,
+                    description,
+                    goal,
+                    language,
+                    content,
+                    project,
+                    prerequisite_order,
+                    statistics_page_visibility_lkp_id
+                },
                 success: function (response) {
                     if (response.status === '__SUCCESS') {
                         swal({

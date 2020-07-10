@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BusinessLogicLayer\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserDashboardManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\OperationResponse;

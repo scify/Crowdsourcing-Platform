@@ -1,12 +1,12 @@
 <?php
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\questionnaire;
 
+use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\Language;
 use App\Models\Questionnaire;
-use App\Models\ViewModels\CreateEditQuestionnaire;
-use App\Models\ViewModels\ManageQuestionnaires;
-use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
@@ -14,7 +14,6 @@ use App\Repository\QuestionnaireResponseAnswerRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use JsonSchema\Exception\ResourceNotFoundException;
 
@@ -58,34 +57,6 @@ class QuestionnaireManager {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
     }
 
-    public function getCreateEditQuestionnaireViewModel($id = null) {
-        $maximumPrerequisiteOrder = null;
-        if($id) {
-            $questionnaire = $this->questionnaireRepository->find($id);
-            $title = "Edit Questionnaire";
-            $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
-        }
-        else {
-            $questionnaire = $this->questionnaireRepository->getModelInstance();
-            $title = "Create Questionnaire";
-        }
-        $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $languages = $this->languageManager->getAllLanguages();
-
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder);
-    }
-
-    public function getAllQuestionnairesPageViewModel() {
-        $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $questionnaires = new Collection();
-        foreach ($projectTheUserHasAccessTo as $project) {
-            $questionnaires = $questionnaires->concat(
-                $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($project->id));
-        }
-        $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
-        return new ManageQuestionnaires($questionnaires, $availableStatuses);
-    }
-
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
         $comments = is_null($comments) ? "" : $comments;
         $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
@@ -99,14 +70,18 @@ class QuestionnaireManager {
             $data['title'], $data['description'],
             $data['goal'], $data['language'],
             $data['project'], $data['content'],
-            $numOfQuestionnaires + 1
+            $numOfQuestionnaires + 1,
+            $data['statistics_page_visibility_lkp_id']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
 
     public function updateQuestionnaire($id, $data) {
-        $this->questionnaireRepository->updateQuestionnaire($id, $data['title'], $data['description'],
-            $data['goal'], $data['language'], $data['project'], $data['content'], $data['prerequisite_order']);
+        $this->questionnaireRepository->updateQuestionnaire($id,
+            $data['title'], $data['description'],
+            $data['goal'], $data['language'],
+            $data['project'], $data['content'],
+            $data['prerequisite_order'], $data['statistics_page_visibility_lkp_id']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
@@ -134,30 +109,10 @@ class QuestionnaireManager {
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts) {
         $translations = [];
         $translatedTexts = $this->translator->translateTexts($texts, $languageCodeToTranslateTo);
-        if($translatedTexts)
+        if ($translatedTexts)
             foreach ($ids as $key => $id)
                 $translations[$id] = str_replace('&quot;', '"', $translatedTexts[$key]);
         return $translations;
-    }
-
-    public function getTranslateQuestionnaireViewModel($questionnaireId) {
-        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
-        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
-        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
-        $questionnaireTranslations = $this->questionnaireTranslationRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
-        $questionnaireLanguages = $this->questionnaireTranslationRepository->getQuestionnaireAvailableLanguages($questionnaireId);
-        // if default value translation is set and there are some translations but not for all questions/answers/html,
-        // we need to pass all the not translated strings to the other languages, so that they will be available for translation
-        if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
-            $defaultLanguageTranslation = $questionnaireTranslations->pull("");
-            foreach ($questionnaireTranslations->keys() as $language) {
-                foreach ($defaultLanguageTranslation as $translations) {
-                    $questionnaireTranslations->get($language)->push($translations);
-                }
-            }
-        }
-        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
     }
 
     public function storeQuestionnaireTranslations($questionnaireId, $translations) {
@@ -211,14 +166,6 @@ class QuestionnaireManager {
 
         if (isset($question->hasOther) && $question->hasOther)
             $this->questionnaireRepository->saveNewOtherAnswer($questionId, $question);
-    }
-
-    private function transformAllLanguagesToArray($allLanguages) {
-        $result = [];
-        foreach ($allLanguages as $language) {
-            array_push($result, $language[0]);
-        }
-        return $result;
     }
 
     public function markQuestionnaireTranslation(int $questionnaireId, int $langId, bool $markHuman) {

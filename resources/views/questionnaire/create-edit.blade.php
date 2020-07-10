@@ -46,6 +46,21 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 col-sm-3 col-xs-12">
+                            <label for="language">Statistics page visibility</label>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <select name="statistics_page_visibility_lkp_id" id="statistics_page_visibility_lkp_id" class="select2">
+                                @foreach($viewModel->questionnaireStatisticsPageVisibilityLkp as $visibilityLkp)
+                                    <option value="{{$visibilityLkp->id}}"
+                                            {{ $viewModel->questionnaire->statistics_page_visibility_lkp_id === $visibilityLkp->id ? 'selected' : '' }}>
+                                        {{$visibilityLkp->title}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     @if ($viewModel->maximumPrerequisiteOrder)
                         <div class="row form-group">
                             <div class="col-md-2 col-sm-3 col-xs-12">

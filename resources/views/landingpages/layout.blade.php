@@ -22,7 +22,7 @@
     <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
     <link rel="stylesheet" href="{{ asset('dist/css/home.css') }}?{{env("APP_VERSION")}}">
-
+    @stack('css')
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -58,6 +58,7 @@
 <div class="loader-wrapper hidden">
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
+@stack("modals")
 @include('partials.footer-scripts')
 <script src="{{asset('dist/js/showdown.min.js')}}?{{env("APP_VERSION")}}"></script>
 <script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
