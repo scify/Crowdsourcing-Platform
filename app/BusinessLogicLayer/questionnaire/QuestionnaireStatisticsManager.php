@@ -6,13 +6,13 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\Models\Questionnaire;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatistics;
-use App\Repository\QuestionnaireStatistics\QuestionnaireStatisticsRepositoryMock;
+use App\Repository\QuestionnaireStatistics\QuestionnaireStatisticsRepository;
 
 class QuestionnaireStatisticsManager {
 
     protected $questionnaireStatisticsRepository;
 
-    public function __construct(QuestionnaireStatisticsRepositoryMock $questionnaireStatisticsRepository) {
+    public function __construct(QuestionnaireStatisticsRepository $questionnaireStatisticsRepository) {
         $this->questionnaireStatisticsRepository = $questionnaireStatisticsRepository;
     }
 
