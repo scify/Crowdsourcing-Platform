@@ -25,17 +25,17 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
         $data = [
             [
                 'id' => 1,
-                'title' => 'PUBLIC',
+                'title' => 'Public',
                 'description' => 'The Statistics page is public to everyone'
             ],
             [
                 'id' => 2,
-                'title' => 'RESPONDENTS_ONLY',
+                'title' => 'Respondents only',
                 'description' => 'The Statistics page is accessible by those who have responded'
             ],
             [
                 'id' => 3,
-                'title' => 'PRIVATE',
+                'title' => 'Admins and content managers only',
                 'description' => 'The Statistics page is accessible only by admins and content managers'
             ]
         ];
