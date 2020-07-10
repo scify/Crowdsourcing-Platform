@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\questionnaire;
 
 
+use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
 use App\Models\Questionnaire;
 use App\Models\ViewModels\QuestionnaireProjectGoal;
 use App\Repository\QuestionnaireRepository;

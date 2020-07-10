@@ -62,24 +62,31 @@ class QuestionnaireRepository extends Repository {
             ->get();
     }
 
-    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
-        $questionnaire = DB::transaction(function () use ($title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
+    public function saveNewQuestionnaire($title, $description, $goal, $languageId,
+                                         $projectId, $questionnaireJson, $prerequisiteOrder,
+                                         $statisticsPageVisibilityLkpId) {
+        return DB::transaction(function () use ($title, $description, $goal, $languageId,
+            $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,
+                $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
             return $questionnaire;
         });
-        return $questionnaire;
     }
 
-    public function updateQuestionnaire($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
-        $questionnaire = DB::transaction(function () use ($questionnaireId, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder) {
+    public function updateQuestionnaire($questionnaireId, $title, $description,
+                                        $goal, $languageId, $projectId, $questionnaireJson,
+                                        $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
+        return DB::transaction(function () use ($questionnaireId, $title, $description, $goal,
+            $languageId, $projectId, $questionnaireJson,
+            $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder);
+            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,
+                $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId);
             return $questionnaire;
         });
-        return $questionnaire;
     }
 
     public function updateAllQuestionnaireRelatedTables($questionnaireId, $questions) {
@@ -204,7 +211,9 @@ class QuestionnaireRepository extends Repository {
     }
 
 
-    private function storeQuestionnaire($questionnaire, $title, $description, $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder = null) {
+    private function storeQuestionnaire($questionnaire, $title, $description, $goal,
+                                        $languageId, $projectId, $questionnaireJson,
+                                        $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
         $questionnaire->title = $title;
         $questionnaire->description = $description;
         $questionnaire->goal = $goal;
@@ -212,6 +221,7 @@ class QuestionnaireRepository extends Repository {
         $questionnaire->project_id = $projectId;
         $questionnaire->questionnaire_json = $questionnaireJson;
         $questionnaire->prerequisite_order = $prerequisiteOrder;
+        $questionnaire->statistics_page_visibility_lkp_id = $statisticsPageVisibilityLkpId;
         $questionnaire->save();
         return $questionnaire;
     }
@@ -349,27 +359,13 @@ class QuestionnaireRepository extends Repository {
         QuestionnaireTranslationQuestion::where('question_id', $questionId)->delete();
     }
 
-    public function questionnaireResponsesForUserExists($userId) {
-        return QuestionnaireResponse::where(['user_id' => $userId])->exists();
-    }
-
     public function getMostRecentlyRespondedQuestionnaireForProject(int $projectId, int $userId) {
-//        $questionnaire = Questionnaire::join('questionnaire_responses', 'questionnaires.id', '=', 'questionnaire_responses.questionnaire_id')
-//            ->orderBy('questionnaire_responses.created_at', 'DESC')
-//            ->where(['questionnaire_responses.user_id' => $userId])
-//            ->where(['questionnaires.project_id' => $projectId])
-//            ->first();
-//        return $questionnaire;
-
-        $questionnaire =
-            Questionnaire::whereHas('project', function (Builder $query) use ($projectId) {
-                $query->where(['id' => $projectId]);
-            })
-            ->whereHas('responses', function (Builder $query) use ($userId) {
-                $query->where(['user_id' => $userId]);
-            })
-            ->first();
-        return $questionnaire;
-
+        return Questionnaire::whereHas('project', function (Builder $query) use ($projectId) {
+            $query->where(['id' => $projectId]);
+        })
+        ->whereHas('responses', function (Builder $query) use ($userId) {
+            $query->where(['user_id' => $userId]);
+        })
+        ->first();
     }
 }

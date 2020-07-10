@@ -43,14 +43,72 @@
                     <h2>{{ $questionStatistics['question_id'] }}
                         . {{ $questionStatistics['question_title'] }}</h2>
                 </div>
-                <div class="col-lg-7 col-md-6 col-sm-12">
-                    <canvas class="questionResponsesChart" data-question-id="{{ $questionStatistics['question_id'] }}"></canvas>
-                </div>
+
+                @if($questionStatistics['question_type'] === 'fixed_choices')
+                    <div class="col-lg-7 col-md-6 col-sm-12">
+                        <canvas class="questionResponsesChart"
+                                data-question-id="{{ $questionStatistics['question_id'] }}"></canvas>
+                    </div>
+                @else
+                    <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-5">
+                        <table cellspacing="0"
+                               class="questionResponsesTable w-100 table table-striped table-bordered"
+                               data-question-id="{{ $questionStatistics['question_id'] }}">
+                            <thead>
+                            <tr>
+                                <th>Answer</th>
+                                <th>Original Answer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($questionStatistics['statistics'] as $index => $answer)
+                                <tr>
+                                    <td>{{ $answer['answer_text'] }}
+                                        @if($answer['is_translated'])
+                                            <span class="ml-2" title="Translated by Google Translate"><i
+                                                        class="fab fa-google"></i></span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($answer['is_translated'])
+                                            <button class="btn btn-primary showOriginalTranslationBtn"
+                                                    data-answer-index="{{ $index }}"
+                                                    data-question-id="{{ $questionStatistics['question_id'] }}">
+                                                View original
+                                            </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+
             </div>
         @endforeach
     </div>
 @endsection
-
+@push('modals')
+    <div class="modal fade" id="answerTranslationModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Question: "<span id="questionTitle"></span>"</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p class="mb-3">Original answer: <span id="originalAnswer"></span></p>
+                    <p class="mb-0">Language: <span id="originalAnswerLanguage"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endpush
 @push('scripts')
     <script type="text/javascript">
         const viewModel = @json($viewModel);

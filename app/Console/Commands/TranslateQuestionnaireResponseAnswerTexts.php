@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\BusinessLogicLayer\QuestionnaireResponseAnswerTranslator;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseAnswerTranslator;
 use Illuminate\Console\Command;
 
 class TranslateQuestionnaireResponseAnswerTexts extends Command
