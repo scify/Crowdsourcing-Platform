@@ -9,6 +9,9 @@
 namespace App\Models;
 
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,28 +26,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property int $goal
  * @property string $questionnaire_json
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
- * @property-read \App\Models\Language $defaultLanguage
- * @property-read \App\Models\CrowdSourcingProject $project
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\QuestionnaireStatusHistory[] $statusHistory
+ * @property int $statistics_page_visibility_lkp_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Language $defaultLanguage
+ * @property-read CrowdSourcingProject $project
+ * @property-read Collection|QuestionnaireStatusHistory[] $statusHistory
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Questionnaire onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Questionnaire onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereDefaultLanguageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereGoal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereProjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereQuestionnaireJson($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereStatusId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Questionnaire whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Questionnaire withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Questionnaire withoutTrashed()
+ * @method static Builder|Questionnaire whereCreatedAt($value)
+ * @method static Builder|Questionnaire whereDefaultLanguageId($value)
+ * @method static Builder|Questionnaire whereDeletedAt($value)
+ * @method static Builder|Questionnaire whereDescription($value)
+ * @method static Builder|Questionnaire whereGoal($value)
+ * @method static Builder|Questionnaire whereId($value)
+ * @method static Builder|Questionnaire whereProjectId($value)
+ * @method static Builder|Questionnaire whereQuestionnaireJson($value)
+ * @method static Builder|Questionnaire whereStatusId($value)
+ * @method static Builder|Questionnaire whereTitle($value)
+ * @method static Builder|Questionnaire whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Questionnaire withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Questionnaire withoutTrashed()
  * @mixin \Eloquent
  */
 class Questionnaire extends Model
@@ -60,7 +64,8 @@ class Questionnaire extends Model
         'title',
         'description',
         'goal',
-        'questionnaire_json'
+        'questionnaire_json',
+        'statistics_page_visibility_lkp_id'
     ];
 
     /**
@@ -91,5 +96,10 @@ class Questionnaire extends Model
     public function responses()
     {
         return $this->hasMany(QuestionnaireResponse::class, 'questionnaire_id', 'id');
+    }
+
+    public function statisticsPageVisibilityStatus()
+    {
+        return $this->hasOne(QuestionnaireStatisticsPageVisibilityLkp::class, 'id', 'statistics_page_visibility_lkp_id');
     }
 }
