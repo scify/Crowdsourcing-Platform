@@ -25,14 +25,13 @@ class QuestionnaireStatisticsManager {
             ->getNumberOfResponsesPerLanguage($questionnaire->id);
         $statisticsPerQuestion = $this->questionnaireStatisticsRepository
             ->getStatisticsPerQuestion($questionnaire);
-        $viewModel = new QuestionnaireStatistics (
+        return new QuestionnaireStatistics (
             $questionnaire,
             $project,
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
             $statisticsPerQuestion
         );
-        return $viewModel;
     }
 
 }
