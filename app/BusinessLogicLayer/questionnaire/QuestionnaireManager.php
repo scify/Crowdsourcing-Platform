@@ -1,7 +1,12 @@
 <?php
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\questionnaire;
 
+use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\QuestionnaireActionHandler;
+use App\BusinessLogicLayer\QuestionnaireResponseReferralManager;
+use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\Language;
 use App\Models\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
@@ -11,6 +16,7 @@ use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\QuestionnaireReportRepository;
 use App\Repository\QuestionnaireRepository;
 use App\Repository\QuestionnaireResponseAnswerRepository;
+use App\Repository\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use App\Repository\QuestionnaireTranslationRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
@@ -31,6 +37,7 @@ class QuestionnaireManager {
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireActionHandler;
     protected $crowdSourcingProjectRepository;
+    protected $questionnaireStatisticsPageVisibilityLkpRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -43,7 +50,8 @@ class QuestionnaireManager {
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
                                 QuestionnaireActionHandler $questionnaireActionHandler,
-                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
+                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
+                                QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -56,23 +64,23 @@ class QuestionnaireManager {
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
+        $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null) {
         $maximumPrerequisiteOrder = null;
-        if($id) {
+        if ($id) {
             $questionnaire = $this->questionnaireRepository->find($id);
             $title = "Edit Questionnaire";
             $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
-        }
-        else {
+        } else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
             $title = "Create Questionnaire";
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
-
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder);
+        $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
+        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder, $questionnaireStatisticsPageVisibilityLkp);
     }
 
     public function getAllQuestionnairesPageViewModel() {
@@ -99,14 +107,18 @@ class QuestionnaireManager {
             $data['title'], $data['description'],
             $data['goal'], $data['language'],
             $data['project'], $data['content'],
-            $numOfQuestionnaires + 1
+            $numOfQuestionnaires + 1,
+            $data['statistics_page_visibility_lkp_id']
         );
         $this->storeToAllQuestionnaireRelatedTables($questionnaire->id, $data);
     }
 
     public function updateQuestionnaire($id, $data) {
-        $this->questionnaireRepository->updateQuestionnaire($id, $data['title'], $data['description'],
-            $data['goal'], $data['language'], $data['project'], $data['content'], $data['prerequisite_order']);
+        $this->questionnaireRepository->updateQuestionnaire($id,
+            $data['title'], $data['description'],
+            $data['goal'], $data['language'],
+            $data['project'], $data['content'],
+            $data['prerequisite_order'], $data['statistics_page_visibility_lkp_id']);
         $this->updateAllQuestionnaireRelatedTables($id, $data);
     }
 
@@ -134,7 +146,7 @@ class QuestionnaireManager {
     public function getAutomaticTranslations($languageCodeToTranslateTo, $ids, $texts) {
         $translations = [];
         $translatedTexts = $this->translator->translateTexts($texts, $languageCodeToTranslateTo);
-        if($translatedTexts)
+        if ($translatedTexts)
             foreach ($ids as $key => $id)
                 $translations[$id] = str_replace('&quot;', '"', $translatedTexts[$key]);
         return $translations;

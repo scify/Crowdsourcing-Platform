@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
-use App\BusinessLogicLayer\QuestionnaireManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\QuestionnaireReportManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
