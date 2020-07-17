@@ -6,40 +6,19 @@ use Illuminate\Support\Facades\DB;
 
 class QuestionnaireStatisticsRepository {
 
+    // goal responses vs real responses
     public function getQuestionnaireResponseStatistics($questionnaireId) {
-        return new QuestionnaireResponseStatistics(100, 150);
+        $totalResponses = DB::select('select count(*) as count from questionnaire_responses where questionnaire_id = ' . $questionnaireId . ';');
+        $goalResponses = DB::select('select goal from questionnaires where id = ' . $questionnaireId . ';');
+        return new QuestionnaireResponseStatistics($totalResponses[0]->count, $goalResponses[0]->goal);
     }
 
     public function getNumberOfResponsesPerLanguage($questionnaireId) {
-        $data = [
-            [
-                'language_name' => 'English',
-                'language_code' => 'en',
-                'num_responses' => 35
-            ],
-            [
-                'language_name' => 'German',
-                'language_code' => 'ge',
-                'num_responses' => 28
-            ],
-            [
-                'language_name' => 'Italian',
-                'language_code' => 'it',
-                'num_responses' => 13
-            ],
-            [
-                'language_name' => 'Spanish',
-                'language_code' => 'es',
-                'num_responses' => 24
-            ],
-            [
-                'language_name' => 'Greek',
-                'language_code' => 'gr',
-                'num_responses' => 19
-            ]
-        ];
+        $query = DB::select('SELECT count(*) as num_responses, language_code, language_name FROM ecas_local.questionnaire_responses as qr
+                            join languages_lkp as ll on qr.language_id = ll.id
+                            where questionnaire_id = ' . $questionnaireId . ' group by language_code;');
 
-        return new QuestionnaireResponsesPerLanguage($data);
+        return new QuestionnaireResponsesPerLanguage($query);
     }
 
     // return both fixed and freetext
