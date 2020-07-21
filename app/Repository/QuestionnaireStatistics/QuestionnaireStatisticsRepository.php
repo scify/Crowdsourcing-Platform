@@ -64,6 +64,16 @@ class QuestionnaireStatisticsRepository {
     }
 
     protected function getStatisticsForFreeTextQuestion(int $questionId) {
+        $query = DB::select('
+            select question as title,
+                   ifnull(english_translation, answer) as answer_text,
+                   case when parsed = 1 then "false" else "true" end as is_translated,
+                   answer as answer_original_text,
+                   ifnull(initial_language_detected, "en") as languagecode from questionnaire_questions as qq
+                join questionnaire_response_answers as qra on qra.question_id = ' . $questionId . '
+                join questionnaire_response_answer_texts as qrat on qrat.questionnaire_response_answer_id = qra.id
+            where qq.type in ("text", "comment") and qq.deleted_at is null
+        ');
         // TODO
         $data = [
             [
@@ -98,7 +108,8 @@ class QuestionnaireStatisticsRepository {
             ]
         ];
 
-        return $data;
+        $query = collect($query)->map(function($x) { return (array) $x;} )->toArray();
+        return $query;
     }
 
 }
