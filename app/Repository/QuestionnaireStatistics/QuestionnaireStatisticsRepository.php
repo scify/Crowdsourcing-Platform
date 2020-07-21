@@ -14,7 +14,7 @@ class QuestionnaireStatisticsRepository {
     }
 
     public function getNumberOfResponsesPerLanguage($questionnaireId) {
-        $query = DB::select('SELECT count(*) as num_responses, language_code, language_name FROM ecas_local.questionnaire_responses as qr
+        $query = DB::select('SELECT count(*) as num_responses, language_code, language_name FROM questionnaire_responses as qr
                             join languages_lkp as ll on qr.language_id = ll.id
                             where questionnaire_id = ' . $questionnaireId . ' group by language_code;');
 
