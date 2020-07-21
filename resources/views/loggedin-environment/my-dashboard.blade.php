@@ -37,6 +37,17 @@
                                                     <div class="progress-container">
                                                         @if($project->currentQuestionnaireGoalVM)
                                                             @include('landingpages.partials.project-goal', ['viewModel' => $project->currentQuestionnaireGoalVM, 'projectId' => $project->id])
+                                                            @if ($project->userHasAccessToViewCurrentQuestionnaireStatisticsPage)
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <a class="btn btn-primary" target="_blank"
+                                                                           href="{{ route('questionnaire.statistics', $project->currentQuestionnaireForUser) }}">
+                                                                            <i class="fas fa-chart-pie mr-2"></i> View Statistics
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+
                                                         @else
                                                             <p>This project does not have an active questionnaire yet.</p>
                                                         @endif
