@@ -79,8 +79,8 @@ import Chart from 'chart.js';
     };
 
     let createDataTableForFreeTextQuestionStatistics = function (dataTableElement, questionStatistics) {
-        console.log(questionStatistics);
-        dataTableElement.DataTable({
+
+        let dataTableOptions = {
             destroy: true,
             "paging": true,
             "responsive": true,
@@ -89,8 +89,10 @@ import Chart from 'chart.js';
                 {"width": "70%"},
                 {"width": "30%"}
             ],
-            dom: 'Bfrtip',
-            buttons: [
+        };
+        if(viewModel.userCanPrintStatistics) {
+            dataTableOptions.dom = 'Bfrtip';
+            dataTableOptions.buttons= [
                 {
                     extend: 'print',
                     title: function(){
@@ -98,7 +100,8 @@ import Chart from 'chart.js';
                     }
                 }
             ]
-        });
+        }
+        dataTableElement.DataTable(dataTableOptions);
     };
 
     let createChart = function (canvasContext, data, chartType) {
