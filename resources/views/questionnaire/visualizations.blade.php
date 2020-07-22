@@ -71,11 +71,12 @@
                                     </td>
                                     <td>
                                         @if($answer['is_translated'])
-                                            <button class="btn btn-primary showOriginalTranslationBtn"
-                                                    data-answer-index="{{ $index }}"
-                                                    data-question-id="{{ $questionStatistics['question_id'] }}">
-                                                View original
-                                            </button>
+                                            <div>
+                                                {{ $answer['answer_original_text'] }}
+                                            </div>
+                                            <div class="mt-3">
+                                                Language: <span class="font-weight-bold">{{ $answer['origin_language']['language_name'] }}</span>
+                                            </div>
                                         @endif
                                     </td>
                                 </tr>
