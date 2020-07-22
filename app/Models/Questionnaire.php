@@ -82,6 +82,23 @@ class Questionnaire extends Model
         return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
     }
 
+    public function questions()
+    {
+        return $this->hasMany(QuestionnaireQuestion::class, 'questionnaire_id', 'id');
+    }
+
+    public function languages()
+    {
+        return $this->belongsToMany(
+            Language::class, // target model
+            QuestionnaireLanguage::class, // intermediate model
+            'questionnaire_id', // Foreign key of this model on the intermediate table
+            'language_id', // Foreign key of target model on the intermediate table
+            'id', // Local key on intermediate table
+            'id' // Local key on target table
+        );
+    }
+
     public function responses()
     {
         return $this->hasMany(QuestionnaireResponse::class, 'questionnaire_id', 'id');
@@ -107,9 +124,9 @@ class Questionnaire extends Model
             QuestionnaireQuestionStatisticsColor::class, // The model to access to
             'questionnaire_questions', // The intermediate table that connects the current Model to the intermediate one.
             'questionnaire_id', // The column of the intermediate table that connects to this model by its ID.
-            'questionnaire_question_id', // The column of the intermediate table that connects the intermediate Model by its ID.
+            'id', // The column of the intermediate table that connects the intermediate Model by its ID.
             'id', // The column that ties this model with the intermediate model table.
-            'id' // The column of the target Model table that ties it to the intermediate.
+            'questionnaire_question_id' // The column of the target Model table that ties it to the intermediate.
         );
     }
 }

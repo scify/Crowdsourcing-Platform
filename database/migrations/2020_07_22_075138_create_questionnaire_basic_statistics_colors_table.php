@@ -13,7 +13,7 @@ class CreateQuestionnaireBasicStatisticsColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionnaire_statistics_basic_colors', function (Blueprint $table) {
+        Schema::create('questionnaire_basic_statistics_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('questionnaire_id')->unique();
             $table->foreign('questionnaire_id')->references('id')->on('questionnaires');
@@ -30,6 +30,6 @@ class CreateQuestionnaireBasicStatisticsColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questionnaire_statistics_basic_colors');
+        Schema::dropIfExists('questionnaire_basic_statistics_colors');
     }
 }

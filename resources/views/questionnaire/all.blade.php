@@ -63,10 +63,14 @@
                                         <div class="dropdown-menu">
                                             <a class="action-btn dropdown-item"
                                                href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                        class="far fa-edit"></i> Edit questionnaire</a>
+                                                        class="far fa-edit"></i> Edit Questionnaire</a>
+                                            <a class="action-btn dropdown-item"
+                                               href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
+                                                        class="fas fa-palette"></i> Statistics Colors</a>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
                                                         class="fa fa-language"></i> Translate</a>
+                                            <hr>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i
                                                         class="fas fa-list-ul"></i> View Results Report</a>
