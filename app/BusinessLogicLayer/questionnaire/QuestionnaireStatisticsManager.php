@@ -7,6 +7,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 use App\Models\Questionnaire;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatistics;
 use App\Repository\QuestionnaireStatistics\QuestionnaireStatisticsRepositoryMock;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireStatisticsManager {
 
@@ -30,7 +31,8 @@ class QuestionnaireStatisticsManager {
             $project,
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
-            $statisticsPerQuestion
+            $statisticsPerQuestion,
+            Gate::allows('manage-crowd-sourcing-projects')
         );
     }
 

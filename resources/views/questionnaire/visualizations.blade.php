@@ -47,7 +47,7 @@
             </div>
         </div>
         @foreach($viewModel->statisticsPerQuestion as $questionStatistics)
-            <div class="row mt-4 pt-4 align-items-center bg-white">
+            <div class="row my-4 py-4 align-items-center bg-white">
                 <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
                     <h2>{{ $questionStatistics['question_title'] }}</h2>
                 </div>
@@ -58,7 +58,7 @@
                                 data-question-id="{{ $questionStatistics['question_id'] }}"></canvas>
                     </div>
                 @else
-                    <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-5">
+                    <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-3">
                         <table cellspacing="0"
                                class="questionResponsesTable w-100 table table-striped table-bordered"
                                data-question-id="{{ $questionStatistics['question_id'] }}">
