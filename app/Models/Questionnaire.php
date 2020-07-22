@@ -9,8 +9,10 @@
 namespace App\Models;
 
 
+use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
+use App\Models\Questionnaire\Statistics\QuestionnaireLanguageStatisticsColor;
+use App\Models\Questionnaire\Statistics\QuestionnaireQuestionStatisticsColor;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,23 +35,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Language $defaultLanguage
  * @property-read CrowdSourcingProject $project
  * @property-read Collection|QuestionnaireStatusHistory[] $statusHistory
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|Questionnaire onlyTrashed()
- * @method static bool|null restore()
- * @method static Builder|Questionnaire whereCreatedAt($value)
- * @method static Builder|Questionnaire whereDefaultLanguageId($value)
- * @method static Builder|Questionnaire whereDeletedAt($value)
- * @method static Builder|Questionnaire whereDescription($value)
- * @method static Builder|Questionnaire whereGoal($value)
- * @method static Builder|Questionnaire whereId($value)
- * @method static Builder|Questionnaire whereProjectId($value)
- * @method static Builder|Questionnaire whereQuestionnaireJson($value)
- * @method static Builder|Questionnaire whereStatusId($value)
- * @method static Builder|Questionnaire whereTitle($value)
- * @method static Builder|Questionnaire whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|Questionnaire withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Questionnaire withoutTrashed()
- * @mixin \Eloquent
+ * @property-read Collection|QuestionnaireResponse[] $responses
+ * @property-read QuestionnaireStatisticsPageVisibilityLkp $statisticsPageVisibilityStatus
+ * @property-read QuestionnaireBasicStatisticsColors $basicStatisticsColors
+ * @property-read Collection|QuestionnaireLanguageStatisticsColor[] $languageStatisticsColors
  */
 class Questionnaire extends Model
 {
@@ -101,5 +90,26 @@ class Questionnaire extends Model
     public function statisticsPageVisibilityStatus()
     {
         return $this->hasOne(QuestionnaireStatisticsPageVisibilityLkp::class, 'id', 'statistics_page_visibility_lkp_id');
+    }
+
+    public function basicStatisticsColors()
+    {
+        return $this->hasOne(QuestionnaireBasicStatisticsColors::class, 'questionnaire_id', 'id');
+    }
+
+    public function languageStatisticsColors()
+    {
+        return $this->hasMany(QuestionnaireLanguageStatisticsColor::class, 'questionnaire_id', 'id');
+    }
+
+    public function questionStatisticsColors() {
+        return $this->belongsToMany(
+            QuestionnaireQuestionStatisticsColor::class, // The model to access to
+            'questionnaire_questions', // The intermediate table that connects the current Model to the intermediate one.
+            'questionnaire_id', // The column of the intermediate table that connects to this model by its ID.
+            'questionnaire_question_id', // The column of the intermediate table that connects the intermediate Model by its ID.
+            'id', // The column that ties this model with the intermediate model table.
+            'id' // The column of the target Model table that ties it to the intermediate.
+        );
     }
 }
