@@ -5,6 +5,15 @@
 
 @section('content')
     <div class="container wide py-5">
+        @can('manage-crowd-sourcing-projects')
+            <div class="row my-5">
+                <div class="col">
+                    <button id="print-page" class="btn btn-primary btn-lg hidden-print"><i class="fas fa-print"></i>
+                        Print
+                    </button>
+                </div>
+            </div>
+        @endcan
         <div class="row my-5">
             <div class="col-12">
                 <h1 class="text-lg-center text-md-center text-sm-left"><b>{{ $viewModel->questionnaire->title }}</b>
@@ -38,10 +47,9 @@
             </div>
         </div>
         @foreach($viewModel->statisticsPerQuestion as $questionStatistics)
-            <div class="row my-4 py-4 align-items-center bg-white">
+            <div class="row mt-4 pt-4 align-items-center bg-white">
                 <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                    <h2>{{ $questionStatistics['question_id'] }}
-                        . {{ $questionStatistics['question_title'] }}</h2>
+                    <h2>{{ $questionStatistics['question_title'] }}</h2>
                 </div>
 
                 @if($questionStatistics['question_type'] === 'fixed_choices')
@@ -75,7 +83,8 @@
                                                 {{ $answer['answer_original_text'] }}
                                             </div>
                                             <div class="mt-3">
-                                                Language: <span class="font-weight-bold">{{ $answer['origin_language']['language_name'] }}</span>
+                                                Language: <span
+                                                        class="font-weight-bold">{{ $answer['origin_language']['language_name'] }}</span>
                                             </div>
                                         @endif
                                     </td>
