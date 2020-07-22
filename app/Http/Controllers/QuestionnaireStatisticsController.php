@@ -18,4 +18,9 @@ class QuestionnaireStatisticsController extends Controller
         $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModel($questionnaire);
         return view('questionnaire.visualizations', compact(['viewModel']));
     }
+
+    public function showEditStatisticsColorsPage(Questionnaire $questionnaire) {
+        $viewModel = $this->questionnaireStatisticsManager->getEditQuestionnaireStatisticsColorViewModel($questionnaire);
+        return view('questionnaire.statistics-colors', compact(['viewModel']));
+    }
 }

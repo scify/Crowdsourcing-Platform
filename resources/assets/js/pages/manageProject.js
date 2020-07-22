@@ -11,23 +11,6 @@ const Stepper = require('bs-stepper');
         });
     };
 
-    let initializeColorPicker = function () {
-        $('.color-picker').each(function (i, obj) {
-            $(obj).colorpicker({
-                horizontal: true
-            });
-
-            $(obj).on('colorpickerCreate', function (event) {
-                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
-            });
-
-            $(obj).on('colorpickerChange', function (event) {
-                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
-            });
-        });
-
-    };
-
     let initializeImgFileChangePreviewHandlers = function () {
         $('.image-input').each(function (i, obj) {
             $(obj).change(function () {
@@ -98,7 +81,6 @@ const Stepper = require('bs-stepper');
 
     let init = function () {
         initializeSummernote();
-        initializeColorPicker();
         initializeImgFileChangePreviewHandlers();
         initializeStepper();
         initializeCommunicationResourcesHandlers();

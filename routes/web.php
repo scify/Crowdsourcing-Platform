@@ -48,7 +48,9 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('/questionnaire/{id}/translate', 'QuestionnaireController@storeQuestionnaireTranslations')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/respond', 'QuestionnaireController@storeQuestionnaireResponse')->name('respond-questionnaire');
-//    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
+    Route::get('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@updateStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
+    //    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
     Route::post('automatic-translation', 'QuestionnaireController@getAutomaticTranslations')->name('automatic-translation');
     Route::post('mark-translation', 'QuestionnaireController@markTranslation')->name('mark-translation');
     Route::post('delete-translation', 'QuestionnaireController@deleteTranslation')->name('delete-translation');

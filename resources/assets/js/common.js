@@ -78,15 +78,37 @@ require('datatables.net-select-bs4');
         });
     };
 
+    let initializeColorPicker = function () {
+        $('.color-picker').each(function (i, obj) {
+            $(obj).colorpicker({
+                horizontal: true
+            });
+
+            $(obj).on('colorpickerCreate', function (event) {
+                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
+            });
+
+            $(obj).on('colorpickerChange', function (event) {
+                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
+            });
+        });
+
+    };
+
+    let handleLogoutBtnClick = function () {
+        $("#log-out").click(function (e) {
+            e.preventDefault();
+            $("#logout-form").submit();
+        });
+    }
+
     $(function () {
         $(document).ready(function () {
             initializeIcheck();
             closeDismissableAlerts();
             initializeSelect2Inputs();
-            $("#log-out").click(function (e) {
-                e.preventDefault();
-                $("#logout-form").submit();
-            });
+            initializeColorPicker();
+            handleLogoutBtnClick();
         });
     });
 })();
