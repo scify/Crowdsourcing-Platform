@@ -64,6 +64,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2");
 }
 
+@media print {
+  .hidden-print {
+    display: none;
+  }
+}
+
 .header-margin-top {
   .main-header {
     margin-top: 35px !important;

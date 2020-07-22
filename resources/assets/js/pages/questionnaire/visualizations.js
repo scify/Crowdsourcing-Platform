@@ -1,13 +1,12 @@
 'use strict';
 import Chart from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 (function () {
     let init = function () {
         initQuestionnaireResponsesChart();
         initQuestionnaireResponsesPerLanguageChart();
         initQuestionResponsesCharts();
-        showAnswerOriginalTranslationButtonHandler();
+        printPageBtnHandler();
     };
 
     let initQuestionnaireResponsesChart = function () {
@@ -59,7 +58,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
                 case 'free_text':
                     let dataTableElement = $('.questionResponsesTable[data-question-id=' +
                         questionStatisticsObj.question_id + ']');
-                    createDataTableForFreeTextQuestionStatistics(dataTableElement, questionStatisticsObj.statistics);
+                    createDataTableForFreeTextQuestionStatistics(dataTableElement, questionStatisticsObj);
                     break;
             }
         }
@@ -80,14 +79,24 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
     };
 
     let createDataTableForFreeTextQuestionStatistics = function (dataTableElement, questionStatistics) {
+        console.log(questionStatistics);
         dataTableElement.DataTable({
             destroy: true,
             "paging": true,
             "responsive": true,
             "searching": true,
             "columns": [
-                { "width": "70%" },
-                { "width": "30%" }
+                {"width": "70%"},
+                {"width": "30%"}
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'print',
+                    title: function(){
+                        return questionStatistics.question_title
+                    }
+                }
             ]
         });
     };
@@ -180,21 +189,11 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
         return array.sort(() => Math.random() - Math.random()).slice(0, num);
     };
 
-    let showAnswerOriginalTranslationButtonHandler = function () {
-        $(".showOriginalTranslationBtn").click(function () {
-            const answerIndex = $(this).data('answerIndex');
-            const questionId = $(this).data('questionId');
-            const statsForQuestion = _.find(viewModel.statisticsPerQuestion, function (q) {
-                return q.question_id === questionId;
-            });
-            const answer = statsForQuestion.statistics[answerIndex];
-            const modal = $("#answerTranslationModal");
-            modal.find('#questionTitle').html(statsForQuestion.question_title);
-            modal.find('#originalAnswer').html('<b>' + answer.answer_original_text + '</b>');
-            modal.find('#originalAnswerLanguage').html('<b>' + answer.origin_language.language_name + '</b>');
-            modal.modal();
+    let printPageBtnHandler = function () {
+        $("#print-page").click(function () {
+            window.print();
         });
-    };
+    }
 
     $(document).ready(function () {
         init();
