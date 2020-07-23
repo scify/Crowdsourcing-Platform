@@ -64,7 +64,7 @@
                                data-question-id="{{ $questionStatistics['question_id'] }}">
                             <thead>
                             <tr>
-                                <th>Answer</th>
+                                <th>Translated Answer</th>
                                 <th>Original Answer</th>
                             </tr>
                             </thead>
