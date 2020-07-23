@@ -10,7 +10,7 @@ use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\QuestionnairePossibleAnswerRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireBasicStatisticsColorsRepository;
-use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsRepositoryMock;
+use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsRepository;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireStatisticsManager {
@@ -20,7 +20,7 @@ class QuestionnaireStatisticsManager {
     protected $questionnaireLanguageRepository;
     protected $questionnairePossibleAnswerRepository;
 
-    public function __construct(QuestionnaireStatisticsRepositoryMock $questionnaireStatisticsRepository,
+    public function __construct(QuestionnaireStatisticsRepository $questionnaireStatisticsRepository,
                                 QuestionnaireBasicStatisticsColorsRepository $questionnaireBasicStatisticsColorsRepository,
                                 QuestionnaireLanguageRepository $questionnaireLanguageRepository,
                                 QuestionnairePossibleAnswerRepository $questionnairePossibleAnswerRepository) {
