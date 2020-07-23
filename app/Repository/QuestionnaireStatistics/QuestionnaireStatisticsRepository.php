@@ -8,7 +8,7 @@ class QuestionnaireStatisticsRepository {
 
     // goal responses vs real responses
     public function getQuestionnaireResponseStatistics($questionnaireId) {
-        $totalResponses = DB::select('select count(*) as count from questionnaire_responses where questionnaire_id = ?;', [$questionnaireId]);
+        $totalResponses = DB::select('select count(*) as count from questionnaire_responses where questionnaire_id = ? and deleted_at is null;', [$questionnaireId]);
         $goalResponses = DB::select('select goal from questionnaires where id = ?;', [$questionnaireId]);
         return new QuestionnaireResponseStatistics($totalResponses[0]->count, $goalResponses[0]->goal);
     }
@@ -16,7 +16,9 @@ class QuestionnaireStatisticsRepository {
     public function getNumberOfResponsesPerLanguage($questionnaireId) {
         $query = DB::select('SELECT count(*) as num_responses, language_code, language_name FROM questionnaire_responses as qr
                             join languages_lkp as ll on qr.language_id = ll.id
-                            where questionnaire_id = ? group by language_code, language_name;', [$questionnaireId]);
+                            where questionnaire_id = ?
+                            and qr.deleted_at is null
+                            group by language_code, language_name;', [$questionnaireId]);
 
         return new QuestionnaireResponsesPerLanguage($query);
     }
@@ -37,7 +39,7 @@ class QuestionnaireStatisticsRepository {
             select qq.id as question_id, question as title, 'fixed_choices' as question_type, qpa.answer as answer_title, count(*) as num_responses from questionnaire_response_answers as qra
                 inner join questionnaire_questions as qq on qra.question_id = qq.id
                 inner join questionnaire_possible_answers as qpa on answer_id = qpa.id
-            where qq.questionnaire_id = ? and qra.deleted_at is null and qq.type in ('radiogroup', 'checkbox')
+            where qq.questionnaire_id = ? and qra.deleted_at is null and qq.deleted_at is null and qq.type in ('radiogroup', 'checkbox')
             group by question, qq.id, qpa.answer
             order by qq.id
         ;", [$questionnaireId]);
