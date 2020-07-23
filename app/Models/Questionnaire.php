@@ -38,7 +38,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Collection|QuestionnaireResponse[] $responses
  * @property-read QuestionnaireStatisticsPageVisibilityLkp $statisticsPageVisibilityStatus
  * @property-read QuestionnaireBasicStatisticsColors $basicStatisticsColors
- * @property-read Collection|QuestionnaireLanguageStatisticsColor[] $languageStatisticsColors
  */
 class Questionnaire extends Model
 {
@@ -87,6 +86,11 @@ class Questionnaire extends Model
         return $this->hasMany(QuestionnaireQuestion::class, 'questionnaire_id', 'id');
     }
 
+    public function questionnaireLanguages()
+    {
+        return $this->hasMany(QuestionnaireLanguage::class, 'questionnaire_id', 'id');
+    }
+
     public function languages()
     {
         return $this->belongsToMany(
@@ -112,21 +116,5 @@ class Questionnaire extends Model
     public function basicStatisticsColors()
     {
         return $this->hasOne(QuestionnaireBasicStatisticsColors::class, 'questionnaire_id', 'id');
-    }
-
-    public function languageStatisticsColors()
-    {
-        return $this->hasMany(QuestionnaireLanguageStatisticsColor::class, 'questionnaire_id', 'id');
-    }
-
-    public function questionStatisticsColors() {
-        return $this->belongsToMany(
-            QuestionnaireQuestionStatisticsColor::class, // The model to access to
-            'questionnaire_questions', // The intermediate table that connects the current Model to the intermediate one.
-            'questionnaire_id', // The column of the intermediate table that connects to this model by its ID.
-            'id', // The column of the intermediate table that connects the intermediate Model by its ID.
-            'id', // The column that ties this model with the intermediate model table.
-            'questionnaire_question_id' // The column of the target Model table that ties it to the intermediate.
-        );
     }
 }

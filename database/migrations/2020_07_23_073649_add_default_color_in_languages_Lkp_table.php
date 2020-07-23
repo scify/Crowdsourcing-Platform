@@ -27,7 +27,7 @@ class AddDefaultColorInLanguagesLkpTable extends Migration
      */
     public function down()
     {
-        Schema::table('languages', function (Blueprint $table) {
+        Schema::table('languages_lkp', function (Blueprint $table) {
             $table->dropColumn('default_color');
         });
     }

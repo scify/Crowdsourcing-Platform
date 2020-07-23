@@ -9,6 +9,7 @@
 namespace App\Models;
 
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,23 +20,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $questionnaire_id
  * @property int $language_id
  * @property int $machine_generated_translation
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
- * @property-read \App\Models\Language $language
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\QuestionnaireLanguage onlyTrashed()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereLanguageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereMachineGeneratedTranslation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereQuestionnaireId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\QuestionnaireLanguage whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\QuestionnaireLanguage withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\QuestionnaireLanguage withoutTrashed()
- * @mixin \Eloquent
+ * @property string $color
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Language $language
+
  */
 class QuestionnaireLanguage extends Model
 {
@@ -43,6 +33,13 @@ class QuestionnaireLanguage extends Model
 
     protected $table = 'questionnaire_languages';
     protected $dates = ['deleted_at'];
+
+    protected $fillable = [
+        'questionnaire_id',
+        'language_id',
+        'machine_generated_translation',
+        'color'
+    ];
 
     public function language()
     {
