@@ -76,7 +76,7 @@ class QuestionnaireStatisticsRepository {
                    question as title,
                    'free_text' as question_type,
                    ifnull(english_translation, answer) as answer_text,
-                   case when parsed = 1 then 'false' else 'true' end as is_translated,
+                   case when english_translation is null then 0 else 1 end as is_translated,
                    answer as answer_original_text,
                    ifnull(ll.language_name, 'English') as language_name,
                    ifnull(initial_language_detected, 'en') as language_code
