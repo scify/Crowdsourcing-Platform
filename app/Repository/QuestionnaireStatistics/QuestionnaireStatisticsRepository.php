@@ -6,13 +6,26 @@ use Illuminate\Support\Facades\DB;
 
 class QuestionnaireStatisticsRepository {
 
-    // goal responses vs real responses
+    /**
+     * * getQuestionnaireResponseStatistics
+     * * Returns responses vs goal responses.
+     * *
+     * * @param mixed $questionnaireId
+     * * @return QuestionnaireResponseStatistics
+     * */
     public function getQuestionnaireResponseStatistics($questionnaireId) {
         $totalResponses = DB::select('select count(*) as count from questionnaire_responses where questionnaire_id = ? and deleted_at is null;', [$questionnaireId]);
         $goalResponses = DB::select('select goal from questionnaires where id = ?;', [$questionnaireId]);
         return new QuestionnaireResponseStatistics($totalResponses[0]->count, $goalResponses[0]->goal);
     }
 
+    /**
+     * * getNumberOfResponsesPerLanguage
+     * * Returns number of responses per language.
+     * *
+     * * @param mixed $questionnaireId
+     * * @return QuestionnaireResponsesPerLanguage
+     * */
     public function getNumberOfResponsesPerLanguage($questionnaireId) {
         $query = DB::select('SELECT count(*) as num_responses, language_code, language_name FROM questionnaire_responses as qr
                             join languages_lkp as ll on qr.language_id = ll.id
@@ -23,17 +36,50 @@ class QuestionnaireStatisticsRepository {
         return new QuestionnaireResponsesPerLanguage($query);
     }
 
-    // return both fixed and freetext
+    /**
+     * * getStatisticsPerQuestion
+     * * Returns a (sorted by question_id) collection of both fixed and free type replies.
+     * *
+     * * @param mixed $questionnaire
+     * * @return array
+     * * Example: $data = [
+     * *       [
+     * *           'question_id' => 1,
+     * *           'question_title' => 'Title 1',
+     * *           'question_type' => 'fixed_choices',
+     * *           'statistics' => [
+     * *       [
+     * *           'answer_title' => 'answer 1',
+     * *           'num_responses' => 10
+     * *       ],
+     * *       [
+     * *           'answer_title' => 'answer 2',
+     * *           'num_responses' => 19
+     * *       ],
+     * *       [
+     * *           'answer_title' => 'answer 3',
+     * *           'num_responses' => 12
+     * *       ]
+     * *   ]]];
+     * */
     public function getStatisticsPerQuestion($questionnaire) {
         $fixedTypeQuestionStatistics = $this->getStatisticsForFixedChoicesQuestion($questionnaire->id);
         $freeTypeQuestionStatistics = $this->getStatisticsForFreeTextQuestion($questionnaire->id);
-        $completeStatisticsPerQuestionnaire = collect(
-            array_merge($fixedTypeQuestionStatistics, $freeTypeQuestionStatistics)
-        );
+        $completeStatisticsPerQuestionnaire = array_merge($fixedTypeQuestionStatistics, $freeTypeQuestionStatistics);
+        // Sort the array before collect().
+        usort($completeStatisticsPerQuestionnaire, function($a, $b) {
+            return $a['question_id'] <=> $b['question_id'];
+        });
 
-        return $completeStatisticsPerQuestionnaire;
+        return collect($completeStatisticsPerQuestionnaire);
     }
 
+    /**
+     * * getStatisticsForFixedChoicesQuestion
+     * * Returns statistics for all fixed type questions for $questionnaireId
+     * *
+     * * @param int $questionnaireId
+     * */
     private function getStatisticsForFixedChoicesQuestion(int $questionnaireId) {
         $query = DB::select("
             select qq.id as question_id, question as title, 'fixed_choices' as question_type, qpa.answer as answer_title, count(*) as num_responses from questionnaire_response_answers as qra
@@ -71,6 +117,12 @@ class QuestionnaireStatisticsRepository {
         return $constructedQuery;
     }
 
+    /**
+     * * getStatisticsForFreeTextQuestion
+     * * Returns statistics for all free type questions for $questionnaireId
+     * *
+     * * @param int $questionnaireId
+     * */
     protected function getStatisticsForFreeTextQuestion(int $questionnaireId) {
         $query = DB::select("select qq.id as question_id,
                    question as title,
