@@ -10,7 +10,7 @@ use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\QuestionnairePossibleAnswerRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireBasicStatisticsColorsRepository;
-use App\Repository\QuestionnaireStatistics\QuestionnaireStatisticsRepositoryMock;
+use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsRepositoryMock;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireStatisticsManager {
