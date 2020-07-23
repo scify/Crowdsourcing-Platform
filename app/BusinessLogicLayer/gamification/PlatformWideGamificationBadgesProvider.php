@@ -7,9 +7,9 @@ namespace App\BusinessLogicLayer\gamification;
 use App\BusinessLogicLayer\GamificationPointsCalculator;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationBadgeVM;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireResponseReferralRepository;
-use App\Repository\QuestionnaireResponseRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserQuestionnaireShareRepository;
 use Illuminate\Support\Collection;
 

@@ -9,9 +9,9 @@ use App\BusinessLogicLayer\LanguageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireStatisticsPageVisibilityLkpRepository;
-use App\Repository\QuestionnaireTranslationRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
+use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 

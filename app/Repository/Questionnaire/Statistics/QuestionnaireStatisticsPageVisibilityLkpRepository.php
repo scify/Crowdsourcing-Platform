@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Repository;
+namespace App\Repository\Questionnaire\Statistics;
 
 
 use App\Models\QuestionnaireStatisticsPageVisibilityLkp;
+use App\Repository\Repository;
 
 class QuestionnaireStatisticsPageVisibilityLkpRepository extends Repository {
 

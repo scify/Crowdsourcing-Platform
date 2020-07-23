@@ -15,12 +15,11 @@ use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireTranslationRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {

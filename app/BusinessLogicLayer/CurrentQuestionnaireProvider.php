@@ -5,8 +5,8 @@ namespace App\BusinessLogicLayer;
 
 
 use App\Models\Questionnaire;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireResponseRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 
 class CurrentQuestionnaireProvider {
 

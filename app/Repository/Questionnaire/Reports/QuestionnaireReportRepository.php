@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Questionnaire\Reports;
 
 use Illuminate\Support\Facades\DB;
 

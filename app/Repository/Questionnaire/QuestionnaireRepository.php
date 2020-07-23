@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Questionnaire;
 
 
 use App\Models\Questionnaire;
@@ -14,9 +14,9 @@ use App\Models\QuestionnaireStatus;
 use App\Models\QuestionnaireStatusHistory;
 use App\Models\QuestionnaireTranslationPossibleAnswer;
 use App\Models\QuestionnaireTranslationQuestion;
+use App\Repository\Repository;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireRepository extends Repository {

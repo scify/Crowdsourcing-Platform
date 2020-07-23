@@ -12,8 +12,8 @@ use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Models\ViewModels\UserDashboardViewModel;
 use App\Repository\CrowdSourcingProjectRepository;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireResponseRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 
 class UserDashboardManager {
 

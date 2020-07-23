@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Questionnaire;
 
 
 use App\Models\Language;

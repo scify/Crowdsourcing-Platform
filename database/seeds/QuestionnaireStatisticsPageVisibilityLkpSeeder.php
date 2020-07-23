@@ -1,7 +1,7 @@
 <?php
 
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireStatisticsPageVisibilityLkpRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use Illuminate\Database\Seeder;
 
 class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {

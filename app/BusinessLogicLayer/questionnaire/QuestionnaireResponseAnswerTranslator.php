@@ -3,7 +3,7 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 
-use App\Repository\QuestionnaireResponseAnswerRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 use App\Utils\Translator;
 
 class QuestionnaireResponseAnswerTranslator {

@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Repository;
+namespace App\Repository\Questionnaire\Responses;
 
 
 use App\Models\QuestionnaireResponse;
+use App\Repository\Repository;
 
 class QuestionnaireResponseRepository extends Repository {
 
