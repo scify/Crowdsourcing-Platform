@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
 use App\Models\Questionnaire;
+use Illuminate\Http\Request;
 
 class QuestionnaireStatisticsController extends Controller
 {
@@ -22,5 +23,16 @@ class QuestionnaireStatisticsController extends Controller
     public function showEditStatisticsColorsPage(Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireStatisticsManager->getEditQuestionnaireStatisticsColorViewModel($questionnaire);
         return view('questionnaire.statistics-colors', compact(['viewModel']));
+    }
+
+    public function saveStatisticsColors(Request $request, Questionnaire $questionnaire) {
+        try {
+            $this->questionnaireStatisticsManager->saveStatisticsColors($questionnaire, $request->all());
+            session()->flash('flash_message_success', 'Colors saved!');
+        } catch (\Exception $e) {
+            session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . "  " . $e->getMessage());
+        } finally {
+            return back();
+        }
     }
 }
