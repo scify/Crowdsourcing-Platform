@@ -10,6 +10,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Language
@@ -17,17 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $language_code
  * @property string $language_name
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Language whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Language whereLanguageCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Language whereLanguageName($value)
- * @mixin \Eloquent
+ * @property string $default_color
  */
 class Language extends Model {
+
+    use SoftDeletes;
 
     protected $table = 'languages_lkp';
 
     protected $fillable = [
         'language_code',
-        'language_name'
+        'language_name',
+        'default_color'
     ];
 }
