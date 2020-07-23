@@ -106,7 +106,7 @@ class LanguagesLkpTableSeeder extends Seeder {
             [
                 'code' => 'pt',
                 'name' => 'Portuguese',
-                'default_color' => ''
+                'default_color' => '#ef5350'
             ],
             [
                 'code' => 'ro',
