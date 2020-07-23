@@ -5,8 +5,8 @@ namespace App\Models\ViewModels\Questionnaire;
 
 use App\Models\CrowdSourcingProject;
 use App\Models\Questionnaire;
-use App\Repository\QuestionnaireStatistics\QuestionnaireResponsesPerLanguage;
-use App\Repository\QuestionnaireStatistics\QuestionnaireResponseStatistics;
+use App\Repository\Questionnaire\Statistics\QuestionnaireResponsesPerLanguage;
+use App\Repository\Questionnaire\Statistics\QuestionnaireResponseStatistics;
 
 class QuestionnaireStatistics {
 
