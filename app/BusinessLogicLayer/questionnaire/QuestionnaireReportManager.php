@@ -7,9 +7,9 @@ namespace App\BusinessLogicLayer\questionnaire;
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Models\ViewModels\reports\QuestionnaireReportResults;
-use App\Repository\QuestionnaireReportRepository;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireResponseAnswerRepository;
+use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 
 class QuestionnaireReportManager {
 

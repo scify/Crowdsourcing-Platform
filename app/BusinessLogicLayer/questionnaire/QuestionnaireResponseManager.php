@@ -4,8 +4,8 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\Models\User;
-use App\Repository\QuestionnaireRepository;
-use App\Repository\QuestionnaireResponseRepository;
+use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 
 class QuestionnaireResponseManager {
 

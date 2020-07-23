@@ -3,7 +3,7 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 
-use App\Repository\QuestionnaireResponseReferralRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 
 class QuestionnaireResponseReferralManager {
 

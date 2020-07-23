@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\QuestionnaireStatistics;
+namespace App\Repository\Questionnaire\Statistics;
 
 class QuestionnaireResponseStatistics {
 
