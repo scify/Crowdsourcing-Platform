@@ -40,13 +40,13 @@ class QuestionnaireStatisticsManager {
     public function getEditQuestionnaireStatisticsColorViewModel(Questionnaire $questionnaire) {
         // load color relationships for questionnaire
         $questionnaire->load(
-            'languages',
             'basicStatisticsColors',
-            'languageStatisticsColors',
-            'questionStatisticsColors');
+            'questionnaireLanguages.language'
+        );
         $questionnaire->load(['questions' => function ($query) {
             $query->whereIn('type', ['radiogroup', 'checkbox']);
         }]);
+        $questionnaire->questions->load('possibleAnswers');
         //dd($questionnaire);
         return new QuestionnaireStatisticsColors($questionnaire);
     }
