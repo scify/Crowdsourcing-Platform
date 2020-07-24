@@ -51,15 +51,18 @@ class QuestionnaireStatisticsRepository {
      * *           'statistics' => [
      * *       [
      * *           'answer_title' => 'answer 1',
-     * *           'num_responses' => 10
+     * *           'num_responses' => 10,
+     *              'color' => '#000000'
      * *       ],
      * *       [
      * *           'answer_title' => 'answer 2',
-     * *           'num_responses' => 19
+     * *           'num_responses' => 19,
+     *              'color' => '#ffffff'
      * *       ],
      * *       [
      * *           'answer_title' => 'answer 3',
-     * *           'num_responses' => 12
+     * *           'num_responses' => 12,
+     *              'color' => '#000000'
      * *       ]
      * *   ]]];
      * */
@@ -83,11 +86,11 @@ class QuestionnaireStatisticsRepository {
      * */
     private function getStatisticsForFixedChoicesQuestion(int $questionnaireId) {
         $query = DB::select("
-            select qq.id as question_id, question as title, 'fixed_choices' as question_type, qpa.answer as answer_title, count(*) as num_responses from questionnaire_response_answers as qra
+            select qq.id as question_id, question as title, qpa.color, 'fixed_choices' as question_type, qpa.answer as answer_title, count(*) as num_responses from questionnaire_response_answers as qra
                 inner join questionnaire_questions as qq on qra.question_id = qq.id
                 inner join questionnaire_possible_answers as qpa on answer_id = qpa.id
             where qq.questionnaire_id = ? and qra.deleted_at is null and qq.deleted_at is null and qq.type in ('radiogroup', 'checkbox')
-            group by question, qq.id, qpa.answer
+            group by question, qq.id, qpa.answer, qpa.color
             order by qq.id
         ;", [$questionnaireId]);
         $query = collect($query)->map(function($x) { return (array) $x;} )->toArray();
@@ -102,7 +105,8 @@ class QuestionnaireStatisticsRepository {
                     'question_type' => $question['question_type'],
                     'statistics' => [[
                         'answer_title' => $question['answer_title'],
-                        'num_responses' => $question['num_responses']
+                        'num_responses' => $question['num_responses'],
+                        'color' => $question['color']
                     ]]
                 ];
             } else {
@@ -110,7 +114,8 @@ class QuestionnaireStatisticsRepository {
                 $arrayLastKey = array_key_last($constructedQuery);
                 array_push($constructedQuery[$arrayLastKey]['statistics'], array(
                     'answer_title' => $question['answer_title'],
-                    'num_responses' => $question['num_responses']
+                    'num_responses' => $question['num_responses'],
+                    'color' => $question['color']
                 ));
             }
         }
