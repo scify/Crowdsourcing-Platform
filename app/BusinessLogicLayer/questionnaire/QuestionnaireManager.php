@@ -89,7 +89,11 @@ class QuestionnaireManager {
         $response = json_decode($data['response']);
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
-        $language = $this->languageManager->getLanguageByCode($data['selectedLanguageCode']);
+        if(isset($data['selectedLanguageCode']))
+            $language = $this->languageManager->getLanguageByCode($data['selectedLanguageCode']);
+        else
+            $language = $this->languageManager->getLanguage($questionnaire->default_language_id);
+
         $this->questionnaireRepository->saveNewQuestionnaireResponse(
             $data['questionnaire_id'],
             $response,
