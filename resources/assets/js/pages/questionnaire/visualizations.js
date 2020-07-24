@@ -11,14 +11,20 @@ import Chart from 'chart.js';
 
     let initQuestionnaireResponsesChart = function () {
         let ctx = document.getElementById('responsesChart').getContext("2d");
-
+        if(!viewModel.questionnaireResponseStatistics.totalResponsesColor)
+            viewModel.questionnaireResponseStatistics.totalResponsesColor = getRandomColors(1)[0];
+        if(!viewModel.questionnaireResponseStatistics.goalResponsesColor)
+            viewModel.questionnaireResponseStatistics.goalResponsesColor = getRandomColors(1)[0];
         const data = {
             datasets: [{
                 data: [
                     viewModel.questionnaireResponseStatistics.goalResponses,
                     viewModel.questionnaireResponseStatistics.totalResponses
                 ],
-                backgroundColor: getRandomColors(2),
+                backgroundColor: [
+                    viewModel.questionnaireResponseStatistics.goalResponsesColor,
+                    viewModel.questionnaireResponseStatistics.totalResponsesColor
+                ],
                 borderWidth: 1
             }],
 
