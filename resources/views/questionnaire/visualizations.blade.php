@@ -57,7 +57,7 @@
                                 data-question-id="{{ $questionStatistics['question_id'] }}"></canvas>
                     </div>
                 @else
-                    <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 mb-4">
+                    <div class="col-lg-11 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4">
                         <h2>{{ $questionStatistics['question_title'] }}</h2>
                     </div>
                     <div class="d-print-none col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-3">
