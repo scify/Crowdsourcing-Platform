@@ -33,7 +33,7 @@ import Chart from 'chart.js';
 
     let initQuestionnaireResponsesPerLanguageChart = function () {
         let ctx = document.getElementById('responsesPerLanguageChart').getContext("2d");
-
+        console.log(viewModel.numberOfResponsesPerLanguage);
         const data = {
             datasets: [{
                 data: _.map(viewModel.numberOfResponsesPerLanguage.data, 'num_responses'),
@@ -81,6 +81,7 @@ import Chart from 'chart.js';
     let createDataTableForFreeTextQuestionStatistics = function (dataTableElement, questionStatistics) {
 
         let dataTableOptions = {
+            "order": [[ 1, "desc" ]],
             destroy: true,
             "paging": true,
             "responsive": true,
