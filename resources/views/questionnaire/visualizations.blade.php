@@ -48,16 +48,18 @@
         </div>
         @foreach($viewModel->statisticsPerQuestion as $questionStatistics)
             <div class="row my-4 py-4 align-items-center bg-white">
-                <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                    <h2>{{ $questionStatistics['question_title'] }}</h2>
-                </div>
-
                 @if($questionStatistics['question_type'] === 'fixed_choices')
+                    <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
+                        <h2>{{ $questionStatistics['question_title'] }}</h2>
+                    </div>
                     <div class="col-lg-7 col-md-6 col-sm-12">
                         <canvas class="questionResponsesChart"
                                 data-question-id="{{ $questionStatistics['question_id'] }}"></canvas>
                     </div>
                 @else
+                    <div class="col mb-4 mb-lg-0 mb-md-0">
+                        <h2>{{ $questionStatistics['question_title'] }}</h2>
+                    </div>
                     <div class="d-print-none col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-3">
                         <table cellspacing="0"
                                class="questionResponsesTable w-100 table table-striped table-bordered"
