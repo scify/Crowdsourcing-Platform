@@ -398,6 +398,17 @@ class QuestionnaireAnswersUpdateLanguageIds extends Seeder
             DB::statement('update questionnaire_responses set language_id =6 where user_id =565 and questionnaire_id = 2;');
             DB::statement('update questionnaire_responses set language_id =6 where user_id =566 and questionnaire_id = 2;');
             DB::statement('update questionnaire_responses set language_id =6 where user_id =567 and questionnaire_id = 2;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =77 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =90 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =476 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =572 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =573 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =574 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =575 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =576 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =577 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =578 and questionnaire_id = 4;');
+            DB::statement('update questionnaire_responses set language_id =6 where user_id =579 and questionnaire_id = 4;');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
