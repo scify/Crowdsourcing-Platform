@@ -14,9 +14,26 @@ class QuestionnaireStatisticsRepository {
      * * @return QuestionnaireResponseStatistics
      * */
     public function getQuestionnaireResponseStatistics($questionnaireId) {
-        $totalResponses = DB::select('select count(*) as count from questionnaire_responses where questionnaire_id = ? and deleted_at is null;', [$questionnaireId]);
-        $goalResponses = DB::select('select goal from questionnaires where id = ?;', [$questionnaireId]);
-        return new QuestionnaireResponseStatistics($totalResponses[0]->count, $goalResponses[0]->goal);
+        $totalResponses = DB::select(
+            'select count(*) as count, qbsc.total_responses_color
+                    from questionnaire_responses as qr
+                    left outer join questionnaire_basic_statistics_colors as qbsc
+                    on qbsc.questionnaire_id = qr.questionnaire_id
+                    where qr.questionnaire_id = ? and deleted_at is null
+                    group by qbsc.total_responses_color;'
+            , [$questionnaireId]);
+        $goalResponses = DB::select(
+            'select goal, qbsc.goal_responses_color from questionnaires
+                    left outer join questionnaire_basic_statistics_colors as qbsc
+                    on qbsc.questionnaire_id = questionnaires.id
+                    where questionnaires.id = ? and questionnaires.deleted_at is null;'
+            , [$questionnaireId]);
+        return new QuestionnaireResponseStatistics(
+            $totalResponses[0]->count,
+            $goalResponses[0]->goal,
+            $totalResponses[0]->total_responses_color,
+            $goalResponses[0]->goal_responses_color
+        );
     }
 
     /**
@@ -71,7 +88,7 @@ class QuestionnaireStatisticsRepository {
         $freeTypeQuestionStatistics = $this->getStatisticsForFreeTextQuestion($questionnaire->id);
         $completeStatisticsPerQuestionnaire = array_merge($fixedTypeQuestionStatistics, $freeTypeQuestionStatistics);
         // Sort the array before collect().
-        usort($completeStatisticsPerQuestionnaire, function($a, $b) {
+        usort($completeStatisticsPerQuestionnaire, function ($a, $b) {
             return $a['question_id'] <=> $b['question_id'];
         });
 
@@ -93,7 +110,9 @@ class QuestionnaireStatisticsRepository {
             group by question, qq.id, qpa.answer, qpa.color
             order by qq.id
         ;", [$questionnaireId]);
-        $query = collect($query)->map(function($x) { return (array) $x;} )->toArray();
+        $query = collect($query)->map(function ($x) {
+            return (array)$x;
+        })->toArray();
 
         // Construct a multidimensional array from $query.
         $constructedQuery = array();
@@ -145,7 +164,9 @@ class QuestionnaireStatisticsRepository {
             where qq.type in ('text', 'comment') and qq.deleted_at is null and qq.questionnaire_id = ?
             order by question;
             ", [$questionnaireId]);
-        $query = collect($query)->map(function($x) { return (array) $x;} )->toArray();
+        $query = collect($query)->map(function ($x) {
+            return (array)$x;
+        })->toArray();
 
         // Construct a multidimensional array from $query.
         $constructedQuery = array();
