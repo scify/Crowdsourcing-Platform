@@ -33,11 +33,14 @@ import Chart from 'chart.js';
 
     let initQuestionnaireResponsesPerLanguageChart = function () {
         let ctx = document.getElementById('responsesPerLanguageChart').getContext("2d");
-        console.log(viewModel.numberOfResponsesPerLanguage);
+        for(let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
+            if(!viewModel.numberOfResponsesPerLanguage.data[i].color)
+                viewModel.numberOfResponsesPerLanguage.data[i].color = getRandomColors(1)[0];
+        }
         const data = {
             datasets: [{
                 data: _.map(viewModel.numberOfResponsesPerLanguage.data, 'num_responses'),
-                backgroundColor: getRandomColors(viewModel.numberOfResponsesPerLanguage.data.length)
+                backgroundColor: _.map(viewModel.numberOfResponsesPerLanguage.data, 'color')
             }],
 
             labels: _.map(viewModel.numberOfResponsesPerLanguage.data, 'language_name')
@@ -66,10 +69,14 @@ import Chart from 'chart.js';
 
     let createChartForFixedChoiceQuestionStatistics = function (canvasElement, questionStatistics) {
         let ctx = canvasElement.getContext("2d");
+        for(let i = 0; i < questionStatistics.length; i++) {
+            if(!questionStatistics[i].color)
+                questionStatistics[i].color = getRandomColors(1)[0];
+        }
         const data = {
             datasets: [{
                 data: _.map(questionStatistics, 'num_responses'),
-                backgroundColor: getRandomColors(questionStatistics.length)
+                backgroundColor: _.map(questionStatistics, 'color')
             }],
 
             labels: _.map(questionStatistics, 'answer_title')
