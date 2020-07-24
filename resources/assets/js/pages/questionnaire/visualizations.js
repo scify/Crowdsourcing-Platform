@@ -4,7 +4,8 @@ import Chart from 'chart.js';
 (function () {
     let init = function () {
         initQuestionnaireResponsesChart();
-        initQuestionnaireResponsesPerLanguageChart();
+        if(viewModel.numberOfResponsesPerLanguage.data.length > 1)
+            initQuestionnaireResponsesPerLanguageChart();
         initQuestionResponsesCharts();
         printPageBtnHandler();
     };
