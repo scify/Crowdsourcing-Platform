@@ -58,13 +58,13 @@
                                 data-question-id="{{ $questionStatistics['question_id'] }}"></canvas>
                     </div>
                 @else
-                    <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-3">
+                    <div class="d-print-none col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-3">
                         <table cellspacing="0"
                                class="questionResponsesTable w-100 table table-striped table-bordered"
                                data-question-id="{{ $questionStatistics['question_id'] }}">
                             <thead>
                             <tr>
-                                <th>Answer</th>
+                                <th>Translated Answer</th>
                                 <th>Original Answer</th>
                             </tr>
                             </thead>
@@ -93,6 +93,42 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-none d-print-block col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mt-3">
+                        <table cellspacing="0"
+                               class="w-100 table table-striped table-bordered"
+                               data-question-id="{{ $questionStatistics['question_id'] }}">
+                            <thead>
+                            <tr>
+                                <th>Translated Answer</th>
+                                <th>Original Answer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($questionStatistics['statistics'] as $index => $answer)
+                                <tr>
+                                    <td>{{ $answer['answer_text'] }}
+                                        @if($answer['is_translated'])
+                                            <span class="ml-2" title="Translated by Google Translate"><i
+                                                        class="fab fa-google"></i></span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($answer['is_translated'])
+                                            <div>
+                                                {{ $answer['answer_original_text'] }}
+                                            </div>
+                                            <div class="mt-3">
+                                                Language: <span
+                                                        class="font-weight-bold">{{ $answer['origin_language']['language_name'] }}</span>
+                                            </div>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    {{-- also print simple HTML table that will only be visible on "print page" --}}
                 @endif
 
             </div>
