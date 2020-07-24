@@ -90,17 +90,6 @@ import Chart from 'chart.js';
                 {"width": "30%"}
             ],
         };
-        if(viewModel.userCanPrintStatistics) {
-            dataTableOptions.dom = 'Bfrtip';
-            dataTableOptions.buttons= [
-                {
-                    extend: 'print',
-                    title: function(){
-                        return questionStatistics.question_title
-                    }
-                }
-            ]
-        }
         dataTableElement.DataTable(dataTableOptions);
     };
 
