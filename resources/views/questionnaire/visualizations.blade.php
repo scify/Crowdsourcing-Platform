@@ -66,7 +66,10 @@
                                data-question-id="{{ $questionStatistics['question_id'] }}">
                             <thead>
                             <tr>
-                                <th>Translated Answer</th>
+                                <th>Answer<br><small><b>(Google logo <i
+                                                    class="fab fa-google"></i> indicates automatic translation by
+                                            Google
+                                            Translate)</b></small></th>
                                 <th>Original Answer</th>
                             </tr>
                             </thead>
@@ -101,7 +104,9 @@
                                data-question-id="{{ $questionStatistics['question_id'] }}">
                             <thead>
                             <tr>
-                                <th>Translated Answer</th>
+                                <th>Answer<br><small><b>(Google logo <i
+                                                    class="fab fa-google"></i> indicates automatic translation by
+                                            Google Translate)</b></small></th>
                                 <th>Original Answer</th>
                             </tr>
                             </thead>
