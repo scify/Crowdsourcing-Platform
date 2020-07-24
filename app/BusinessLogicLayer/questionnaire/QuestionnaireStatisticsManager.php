@@ -65,8 +65,10 @@ class QuestionnaireStatisticsManager {
 
     public function saveStatisticsColors(Questionnaire $questionnaire, array $requestData) {
         $this->saveBasicStatisticsColorsForQuestionnaire($questionnaire, $requestData['goal_responses_color'], $requestData['actual_responses_color']);
-        $this->saveQuestionnaireLanguagesColors($requestData['lang_colors']);
-        $this->saveQuestionnairePossibleAnswersColors($requestData['answer_colors']);
+        if(isset($requestData['lang_colors']))
+            $this->saveQuestionnaireLanguagesColors($requestData['lang_colors']);
+        if(isset($requestData['answer_colors']))
+            $this->saveQuestionnairePossibleAnswersColors($requestData['answer_colors']);
     }
 
     protected function saveBasicStatisticsColorsForQuestionnaire(Questionnaire $questionnaire, string $goalResponsesColor, string $actualResponsesColor) {
