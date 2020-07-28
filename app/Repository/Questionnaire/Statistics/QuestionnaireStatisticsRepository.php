@@ -29,9 +29,9 @@ class QuestionnaireStatisticsRepository {
                     where questionnaires.id = ? and questionnaires.deleted_at is null;'
             , [$questionnaireId]);
         return new QuestionnaireResponseStatistics(
-            $totalResponses[0]->count,
+            count($totalResponses) ? $totalResponses[0]->count : 0,
             $goalResponses[0]->goal,
-            $totalResponses[0]->total_responses_color,
+            count($totalResponses) ? $totalResponses[0]->total_responses_color: null,
             $goalResponses[0]->goal_responses_color
         );
     }
