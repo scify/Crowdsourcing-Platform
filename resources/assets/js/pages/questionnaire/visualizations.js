@@ -78,6 +78,8 @@ import Chart from 'chart.js';
     };
 
     let createChartForFixedChoiceQuestionStatistics = function (canvasElement, questionStatistics) {
+        if(!questionStatistics.length)
+            return;
         let ctx = canvasElement.getContext("2d");
         for(let i = 0; i < questionStatistics.length; i++) {
             if(!questionStatistics[i].color)
