@@ -181,9 +181,9 @@ class CrowdSourcingProjectManager {
             $attributesToUpdate['questionnaire_response_email_intro_text'] = $attributes['questionnaire_response_email_intro_text'];
             $attributesToUpdate['questionnaire_response_email_outro_text'] = $attributes['questionnaire_response_email_outro_text'];
         }
-
-        if (isset($attributes['should_send_email_after_questionnaire_response']))
-            $attributesToUpdate['should_send_email_after_questionnaire_response'] = $attributes['should_send_email_after_questionnaire_response'];
+        $attributesToUpdate['should_send_email_after_questionnaire_response'] =
+            (isset($attributes['should_send_email_after_questionnaire_response'])
+                && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
 
         $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, $attributesToUpdate);
     }
