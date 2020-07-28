@@ -42,7 +42,6 @@ import * as Survey from "survey-jquery";
                         data: {questionnaire_id, response, selectedLanguageCode},
                         url: url,
                         success: function (response) {
-                            console.log(response);
                             $(".loader-wrapper").addClass('hidden');
                             let questionnaireResponded = $("#questionnaire-responded");
                             // add badge fetched from response to the appropriate container
@@ -54,21 +53,6 @@ import * as Survey from "survey-jquery";
                     });
                 });
             $(wrapper).Survey({model: survey});
-            const converter = new showdown.Converter();
-            survey
-                .onTextMarkdown
-                .add(function (survey, options) {
-                    //convert the markdown text to html
-                    let str = converter.makeHtml(options.text);
-                    //remove root paragraphs <p></p>
-                    str = str.substring(0, str.length - 4);
-                    //set html
-                    options.html = str;
-                });
-            survey
-                .onProcessHtml
-                .add(function (survey, options) {
-                });
             survey
                 .onAfterRenderSurvey
                 .add(function () {
@@ -89,21 +73,16 @@ import * as Survey from "survey-jquery";
         let innerQuestionIndex = 0;
 
         questions.forEach(function (question) {
-            if (!questionIsInner(question)) {
-                innerQuestionIndex = 0;
-                if (questionShouldHaveNumbering(question)) {
+            if (questionShouldHaveNumbering(question)) {
+                if (questionIsInner(question)) {
+                    innerQuestionIndex++;
+                    question.qnum = questionIndex + "." + innerQuestionIndex;
+
+                } else {
                     questionIndex++;
                     question.qnum = questionIndex;
                 }
-            } else {
-                if (innerQuestionShouldHaveNumbering(question)) {
-                    innerQuestionIndex++;
-                    question.qnum = questionIndex + "." + innerQuestionIndex;
-                } else {
-                    question.qnum = "";
-                }
             }
-
         });
         return questions;
     };
@@ -113,11 +92,7 @@ import * as Survey from "survey-jquery";
     };
 
     let questionShouldHaveNumbering = function (question) {
-        return !questionIsInner(question) && question.type !== 'html';
-    };
-
-    let innerQuestionShouldHaveNumbering = function (question) {
-        return question.title && question.title.default && question.title.default.indexOf("Please share your ideas") === -1;
+        return question.type !== 'html';
     };
 
     let displayTranslation = function () {
