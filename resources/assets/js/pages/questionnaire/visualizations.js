@@ -41,7 +41,6 @@ import Chart from 'chart.js';
     let initQuestionnaireResponsesPerLanguageChart = function () {
         if(!viewModel.numberOfResponsesPerLanguage.data.length)
             return;
-
         let element = document.getElementById('responsesPerLanguageChart');
         let ctx = element.getContext("2d");
         for(let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
