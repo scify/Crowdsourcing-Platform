@@ -39,7 +39,11 @@ import Chart from 'chart.js';
     };
 
     let initQuestionnaireResponsesPerLanguageChart = function () {
-        let ctx = document.getElementById('responsesPerLanguageChart').getContext("2d");
+        if(!viewModel.numberOfResponsesPerLanguage.data.length)
+            return;
+
+        let element = document.getElementById('responsesPerLanguageChart');
+        let ctx = element.getContext("2d");
         for(let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
             if(!viewModel.numberOfResponsesPerLanguage.data[i].color)
                 viewModel.numberOfResponsesPerLanguage.data[i].color = getRandomColors(1)[0];
