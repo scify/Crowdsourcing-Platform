@@ -81,9 +81,6 @@ class CrowdSourcingProjectController extends Controller {
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
         $attributes = $request->all();
-        $attributes['should_send_email_after_questionnaire_response'] =
-            (isset($attributes['should_send_email_after_questionnaire_response'])
-                && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
 
         $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $attributes);
         return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project\'s info have been successfully updated');
