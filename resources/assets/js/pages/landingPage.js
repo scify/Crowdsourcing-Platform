@@ -80,6 +80,7 @@ import * as Survey from "survey-jquery";
 
                 } else {
                     questionIndex++;
+                    let innerQuestionIndex = 0;
                     question.qnum = questionIndex;
                 }
             }
