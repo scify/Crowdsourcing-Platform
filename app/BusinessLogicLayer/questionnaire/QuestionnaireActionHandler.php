@@ -38,7 +38,7 @@ class QuestionnaireActionHandler {
 
     public function handleQuestionnaireContributor(Questionnaire $questionnaire, User $user) {
         //check if the contributor email should be sent
-        if($questionnaire->project->communicationResources->should_send_email_after_questionnaire_response)
+        if($questionnaire->project->communicationResources && $questionnaire->project->communicationResources->should_send_email_after_questionnaire_response)
             $this->awardContributorBadgeToUser($questionnaire, $user);
     }
 
