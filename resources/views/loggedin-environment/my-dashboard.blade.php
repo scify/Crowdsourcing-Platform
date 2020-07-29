@@ -31,7 +31,10 @@
                                                     <a href="{{ route('project.landing-page', $project->slug) }}">
                                                             <img class="project-logo"
                                                                     alt="Project logo for {{$project->name}}"
-                                                                    src="{{asset($project->logo_path)}}"></a>
+                                                                    src="{{asset($project->logo_path)}}">
+                                                    <br>
+                                                        <p class="project-title mt-2">{{ $project->name }}</p>
+                                                    </a>
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="progress-container">
