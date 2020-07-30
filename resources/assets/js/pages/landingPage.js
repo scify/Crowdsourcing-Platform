@@ -73,7 +73,6 @@ import * as Survey from "survey-jquery";
         let innerQuestionIndex = 0;
 
         questions.forEach(function (question) {
-            console.log(question);
             if (questionShouldHaveNumbering(question)) {
                 if (questionIsInner(question)) {
                     innerQuestionIndex++;
@@ -81,7 +80,7 @@ import * as Survey from "survey-jquery";
 
                 } else {
                     questionIndex++;
-                    let innerQuestionIndex = 0;
+                    innerQuestionIndex = 0;
                     question.qnum = questionIndex;
                 }
             }
