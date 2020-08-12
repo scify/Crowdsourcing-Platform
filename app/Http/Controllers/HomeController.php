@@ -19,4 +19,8 @@ class HomeController extends Controller
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
         return view('home.home')->with(['projects' => $projects]);
     }
+
+    public function showTermsAndPrivacyPage() {
+        return view('terms-and-privacy');
+    }
 }
