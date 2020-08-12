@@ -17,7 +17,10 @@
                         <div>
                             <a href="https://ecas.org/about-us/" target="_blank">About us</a>
                         </div>
-                        <div><a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a></div>
+                        <div><a href="https://ecas.org/privacy-policy/" target="_blank">Our Privacy Policy</a></div>
+                        <div>
+                            <a href="{{ route('terms.privacy') }}" target="_blank">Platform Privacy Policy</a>
+                        </div>
                         <div><a href="https://github.com/scify/Crowdsourcing-Platform" target="_blank">Github</a></div>
                     </div>
                 </div>
