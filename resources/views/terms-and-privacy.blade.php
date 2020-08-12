@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container mb-5" style="margin-top: 100px">
+    <div class="container pt-5 mb-5" style="margin-top: 100px">
         <div class="row d-block">
             <h1>Terms & Conditions - Privacy Policy</h1>
             <h2>1. Introduction</h2>
