@@ -83,7 +83,7 @@ class CrowdSourcingProjectController extends Controller {
         $attributes = $request->all();
 
         $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $attributes);
-        return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project\'s info have been successfully updated');
+        return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project has been successfully updated');
     }
 
     public function showLandingPage(Request $request, $project_slug) {
