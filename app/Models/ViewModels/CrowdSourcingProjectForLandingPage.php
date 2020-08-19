@@ -38,6 +38,8 @@ class CrowdSourcingProjectForLandingPage
         $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug."?open=1");
         if(Request()->referrerId)
             $url .= urlencode("&referrerId=") . Request()->referrerId;
+        if(Request()->questionnaireId)
+            $url .= urlencode("&questionnaireId=") . Request()->questionnaireId;
         return $url;
     }
 }
