@@ -9,14 +9,16 @@
 namespace App\Models\ViewModels;
 
 
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
+
 class ManageQuestionnaires
 {
     const STATUSES_CSS_CLASSES = [
-        'Draft' => 'badge-warning',
-        'Published' => 'badge-success',
-        'Finalized' => 'badge-primary',
-        'Unpublished' => 'badge-danger',
-        'Deleted' => 'badge-danger'
+        QuestionnaireStatusLkp::DRAFT => 'badge-warning',
+        QuestionnaireStatusLkp::PUBLISHED => 'badge-success',
+        QuestionnaireStatusLkp::FINALIZED => 'badge-primary',
+        QuestionnaireStatusLkp::UNPUBLISHED => 'badge-danger',
+        QuestionnaireStatusLkp::DELETED => 'badge-danger'
     ];
     public $questionnaires;
     public $statuses;

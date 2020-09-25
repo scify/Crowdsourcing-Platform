@@ -51,7 +51,7 @@
                                     {{$questionnaire->languages}}
                                 </td>
                                 <td>
-                                        <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_title)}}"
+                                        <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_id)}}"
                                               title="{{$questionnaire->status_description}}">{{$questionnaire->status_title}}</span>
                                 </td>
                                 <td class="text-center">{{ $questionnaire->prerequisite_order }}</td>
@@ -70,6 +70,12 @@
                                             <a class="action-btn dropdown-item"
                                                href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
                                                         class="fa fa-language"></i> Translate</a>
+                                            @if(isset($questionnaire->url) && $questionnaire->url)
+                                                <button data-clipboard-text="{{ $questionnaire->url }}"
+                                                   class="copy-clipboard action-btn dropdown-item">
+                                                    <i class="copy-questionnaire-link fa fa-link"></i> Get Link
+                                                </button>
+                                            @endif
                                             <hr>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i

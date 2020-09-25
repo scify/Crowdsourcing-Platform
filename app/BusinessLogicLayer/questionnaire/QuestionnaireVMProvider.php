@@ -22,8 +22,10 @@ class QuestionnaireVMProvider {
     protected $languageManager;
     protected $questionnaireStatisticsPageVisibilityLkpRepository;
     protected $questionnaireTranslationRepository;
+    protected $questionnaireManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
+                                QuestionnaireManager $questionnaireManager,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
                                 LanguageManager $languageManager,
                                 QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
@@ -33,6 +35,7 @@ class QuestionnaireVMProvider {
         $this->languageManager = $languageManager;
         $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
+        $this->questionnaireManager = $questionnaireManager;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null) {
@@ -57,6 +60,10 @@ class QuestionnaireVMProvider {
         foreach ($projectTheUserHasAccessTo as $project) {
             $questionnaires = $questionnaires->concat(
                 $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($project->id));
+        }
+        foreach ($questionnaires as $questionnaire) {
+            if($this->questionnaireManager->shouldShowLinkForQuestionnaire($questionnaire))
+                $questionnaire->url = $this->questionnaireManager->getQuestionnaireURL($questionnaire->project_slug, $questionnaire->id);
         }
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses);

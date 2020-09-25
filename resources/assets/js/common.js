@@ -17,6 +17,8 @@ require('select2');
 require('bootstrap-tagsinput');
 require('bootstrap-colorpicker');
 require('bs4-summernote');
+require('clipboard')
+require('jquery-toast-plugin');
 
 require('datatables.net');
 require('datatables.net-bs4');
