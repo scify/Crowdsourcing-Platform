@@ -24,5 +24,11 @@
         max-height: 550px;
       }
     }
+
+    .svda_current_type {
+      option[value=imagepicker] {
+        display: none;
+      }
+    }
   }
 }
