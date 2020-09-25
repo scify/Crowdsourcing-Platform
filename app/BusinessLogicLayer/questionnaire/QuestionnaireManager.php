@@ -4,6 +4,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\Language;
 use App\Models\Questionnaire;
@@ -209,5 +210,13 @@ class QuestionnaireManager {
         }
         $questionnaire->questionnaire_json = json_encode($questionnaireJSONObj);
         $questionnaire->save();
+    }
+
+    public function shouldShowLinkForQuestionnaire($questionnaire) {
+        return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
+    }
+
+    public function getQuestionnaireURL($projectSlug, $questionnaireId) {
+        return url('/' . $projectSlug) . '?open=1&questionnaireId=' . $questionnaireId;
     }
 }

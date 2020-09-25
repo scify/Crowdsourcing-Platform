@@ -41,7 +41,7 @@ class QuestionnaireTranslationRepository {
 
     public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId) {
         return DB::
-        select("select q.*, qsl.title as status_title, 
+        select("select q.*, csp.slug as project_slug, qsl.title as status_title, 
                                 responsesInfo.number_of_responses, languagesInfo.languages,
                                 qsl.description as status_description, 
                                 dl.language_name as default_language_name,
