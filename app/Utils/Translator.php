@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Log;
 class Translator
 {
     public const BATCH_SIZE = 100;
+
     /**
      * Translate texts to the preferred language.
-     * @param array $texts   The texts that need translation
-     * @param string $to     The language in which the texts will be translated
+     * @param array $texts The texts that need translation
+     * @param string $to The language in which the texts will be translated
      * @return array         The translated texts
+     * @throws \Exception
      */
     public static function translateTexts(array $texts, $to)
     {
@@ -31,7 +33,7 @@ class Translator
                     app('sentry')->captureException($e);
                 else
                     Log::error($e->getMessage());
-                return $result;
+                throw $e;
             }
         }
         return $result;
