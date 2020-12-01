@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\gamification;
 
 
 use Illuminate\Support\Collection;
