@@ -119,6 +119,10 @@ body {
   }
 }
 
+section#past-projects {
+  background-color: #f3fafe;
+}
+
 section {
   &:first-of-type {
     //padding-top: 80px;
@@ -133,10 +137,9 @@ section {
     text-align: center;
   }
   .content-container {
-    padding: 100px 5%;
+    padding: 3.5rem 5%;
     font-size: 20px;
   }
-
 }
 
 ol {

@@ -57,6 +57,10 @@ class CrowdSourcingProjectManager {
         return $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
     }
 
+    public function getPastCrowdSourcingProjectsForHomePage(): Collection {
+        return $this->crowdSourcingProjectRepository->getPastProjects();
+    }
+
     public function getCrowdSourcingProject(int $id): CrowdSourcingProject {
         return $this->crowdSourcingProjectRepository->find($id);
     }
