@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <div class="footer-grp">
-                        <h3><b><i>"Together"</i></b> Crowdsourcing Platform</h3>
+                        <h3><b>"Together"</b> Crowdsourcing Platform</h3>
                         <div>
                             <a href="#about">About</a>
                         </div>
