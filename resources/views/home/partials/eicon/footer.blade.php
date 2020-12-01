@@ -1,49 +1,58 @@
 <div class="row" id="sitemap">
-    <div class="col-sm-2 col-sm-offset-3">
-        <div class="footer-grp">
-            <h3>ERASMUS+ Project EICON</h3>
-            <div>
-                <a href="#about">About</a>
+    <div class="col-md-6 col-sm-11 mx-auto">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="footer-grp">
+                        <h3>ERASMUS+ Project EICON</h3>
+                        <div>
+                            <a href="#about">About</a>
+                        </div>
+                        <div>
+                            <a href="#features">Features</a>
+                        </div>
+                        <div>
+                            <a href="#projects">What are we crowdsourcing?</a>
+                        </div>
+                        <div>
+                            <a href="http://www.eicon-project.eu/about.html" target="_blank">About us</a>
+                        </div>
+                        <div>
+                            <a href="http://www.eicon-project.eu/results.html" target="_blank">Results</a>
+                        </div>
+                        <div><a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a></div>
+                        <div><a href="https://github.com/scify/Crowdsourcing-Platform" target="_blank">Github</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="footer-grp">
+                        <h3>Get in touch</h3>
+                        <div>
+                            <b>Phone:</b> (+49) 631-20583-0
+                        </div>
+                        <div>
+                            <b>E-mail:</b> <a href="mailto:harald.weber@ita-kl.de">harald.weber@ita-kl.de</a>
+                        </div>
+                        <div class="social-media">
+                            <a href="https://www.facebook.com/"
+                               title="Facebook" class="social-btn facebook" target="_blank"><span
+                                        class="fa fa-facebook"></span>
+                            </a>
+                            <a href="https://twitter.com/" title="Twitter" class="social-btn twitter"
+                               target="_blank"><span class="fa fa-twitter"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <a href="https://ecas.org" target="_blank"><img class="footer-logo"
+                                                                    src="{{asset('images/projects/eicon/logo.png')}}"
+                                                                    alt="ecas logo" style="margin-bottom: 20px;"></a>
+                </div>
             </div>
-            <div>
-                <a href="#features">Features</a>
-            </div>
-            <div>
-                <a href="#projects">What are we crowdsourcing?</a>
-            </div>
-            <div>
-                <a href="http://www.eicon-project.eu/about.html" target="_blank">About us</a>
-            </div>
-            <div>
-                <a href="http://www.eicon-project.eu/results.html" target="_blank">Results</a>
-            </div>
-            <div> <a href="https://ecas.org/privacy-policy/" target="_blank">Privacy Policy</a></div>
-            <div> <a href="https://github.com/scify/Crowdsourcing-Platform" target="_blank">Github</a></div>
         </div>
     </div>
-    <div class="col-sm-2">
-        <div class="footer-grp">
-            <h3>Get in touch</h3>
-            <div>
-                <b>Phone:</b> (+49) 631-20583-0
-            </div>
-            <div>
-                <b>E-mail:</b> <a href="mailto:harald.weber@ita-kl.de">harald.weber@ita-kl.de</a>
-            </div>
-            <div class="social-media">
-                <a href="https://www.facebook.com/"
-                   title="Facebook" class="social-btn facebook" target="_blank"><span class="fa fa-facebook"></span>
-                </a>
-                <a href="https://twitter.com/" title="Twitter" class="social-btn twitter"
-                   target="_blank"><span class="fa fa-twitter"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <a href="https://ecas.org" target="_blank"><img class="footer-logo" src="{{asset('images/projects/eicon/logo.png')}}"
-                                                        alt="ecas logo" style="margin-bottom: 20px;"></a>
-    </div>
+
 </div>
 <div class="row">
     <div class="col-sm-3"></div>
