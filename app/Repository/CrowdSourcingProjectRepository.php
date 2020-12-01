@@ -29,4 +29,8 @@ class CrowdSourcingProjectRepository extends Repository
             })
             ->get();
     }
+
+    public function getPastProjects(): Collection {
+        return CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::FINALIZED])->get();
+    }
 }
