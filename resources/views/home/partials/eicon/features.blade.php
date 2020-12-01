@@ -2,33 +2,37 @@
     <div class="col-md-12">
         <h2>Features</h2>
         <div class="content-container">
-            <div class="text-center">
-                <ul id="features-nav" class="nav nav-pills" role="tablist">
-                    <li role="presentation" class="active"><a href="#citizens" aria-controls="citizens" role="tab"
-                                                              data-widget="tab">BUILT FOR YOU</a></li>
-                    <li role="presentation"><a href="#managers" aria-controls="managers" role="tab"
-                                               data-widget="tab">MAKE A DIFFERENCE</a></li>
-                </ul>
-            </div>
+            <ul id="features-nav" class="nav nav-pills justify-content-center" role="tablist">
+                <li role="presentation" class="nav-item"><a class="nav-link active" href="#citizens"
+                                                            aria-controls="citizens" role="tab"
+                                                            data-toggle="tab">BUILT FOR YOU</a></li>
+                <li role="presentation" class="nav-item"><a class="nav-link" href="#managers" aria-controls="managers"
+                                                            role="tab"
+                                                            data-toggle="tab">MAKE A DIFFERENCE</a></li>
+            </ul>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="citizens">
+                <div role="tabpanel" class="tab-pane fade show active" id="citizens">
 
                     <div class="features-wrapper">
                         <div class="features-list">
                             <div class="feature img-left">
                                 <img src="{{asset('images/landing-page/features/participate.jpg')}}" alt="participate">
-                                <p class="large-screens small-screens">Join our crowdsourcing platform in order to <b>make your voice heard!</b>
+                                <p class="large-screens small-screens">Join our crowdsourcing platform in order to <b>make
+                                        your voice heard!</b>
                                     You can enrich the reports by speaking up and providing your own input.</p>
                             </div>
                             <div class="feature img-right">
-                                <p class="large-screens small-screens"><b>Keep track</b> of your responses and stay informed about all the planned reports.</p>
+                                <p class="large-screens small-screens"><b>Keep track</b> of your responses and stay
+                                    informed about all the planned reports.</p>
                                 <img src="{{asset('images/landing-page/features/keep-track.jpg')}}" alt="keep track">
                             </div>
                             <div class="feature img-left">
                                 <img src="{{asset('images/landing-page/features/invite.jpg')}}" alt="invite">
-                                <p class="large-screens"><b>Invite your friends and colleagues</b> to contribute to reports that
+                                <p class="large-screens"><b>Invite your friends and colleagues</b> to contribute to
+                                    reports that
                                     actually matter.</p>
-                                <p class="small-screens"><b>Invite your friends and colleagues</b> to contribute to reports that
+                                <p class="small-screens"><b>Invite your friends and colleagues</b> to contribute to
+                                    reports that
                                     actually matter.</p>
                             </div>
                             <div class="feature img-right">
@@ -57,7 +61,8 @@
                             </div>
                             <div class="feature img-left">
                                 <img src="{{asset('images/landing-page/features/integrate.jpg')}}" alt="integrate">
-                                <p class="large-screens small-screens"><b>Learn and get new insights</b> by joining the discussion.</p>
+                                <p class="large-screens small-screens"><b>Learn and get new insights</b> by joining the
+                                    discussion.</p>
                             </div>
                         </div>
                     </div>
