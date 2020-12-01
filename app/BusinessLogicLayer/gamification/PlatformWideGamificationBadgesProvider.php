@@ -4,7 +4,6 @@
 namespace App\BusinessLogicLayer\gamification;
 
 
-use App\BusinessLogicLayer\GamificationPointsCalculator;
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Repository\Questionnaire\QuestionnaireRepository;

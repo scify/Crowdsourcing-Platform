@@ -324,4 +324,8 @@ class CrowdSourcingProjectManager {
 
         return new CrowdSourcingProjectUnavailable($project, $projects, $message);
     }
+
+    public function getAllCrowdSourcingProjects(): Collection {
+        return $this->crowdSourcingProjectRepository->all();
+    }
 }
