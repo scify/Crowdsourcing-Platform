@@ -113,7 +113,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'project_resources_dir' => env('PROJECT_RESOURCES_DIR'),
+    'installation_resources_dir' => env('INSTALLATION_RESOURCES_DIR'),
     'google_translate_key' => env('GOOGLE_TRANSLATE_KEY'),
     'version' => env('APP_VERSION'),
 

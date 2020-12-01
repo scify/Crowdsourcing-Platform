@@ -2,15 +2,15 @@
 
 @section('content')
     <section id="motto" class="w-100">
-        @include('home.partials.' . config('app.project_resources_dir') . '.motto')
+        @include('home.partials.' . config('app.installation_resources_dir') . '.motto')
     </section>
     <section id="about" class="w-100">
-        @include('home.partials.' . config('app.project_resources_dir') . '.about-us')
+        @include('home.partials.' . config('app.installation_resources_dir') . '.about-us')
     </section>
     <section id="features" class="w-100">
-        @include('home.partials.' . config('app.project_resources_dir') . '.features')
+        @include('home.partials.' . config('app.installation_resources_dir') . '.features')
     </section>
     <section id="projects" class="w-100">
-        @include('home.partials.' . config('app.project_resources_dir') . '.projects')
+        @include('home.partials.' . config('app.installation_resources_dir') . '.projects')
     </section>
 @endsection

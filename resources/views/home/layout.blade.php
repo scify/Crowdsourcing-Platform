@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <link rel="canonical" href="{{url('/')}}">
-        @include('home.partials.' . config('app.project_resources_dir') . '.head-meta')
+        @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
@@ -35,7 +35,7 @@
     <body class="container-fluid">
         <div class="row">
             <div class="col-12">
-                @include('home.partials.' . config('app.project_resources_dir') . '.navbar')
+                @include('home.partials.' . config('app.installation_resources_dir') . '.navbar')
             </div>
         </div>
         @if(session('flash_message_success'))
@@ -46,7 +46,7 @@
         @endif
         @yield('content')
         <footer>
-            @include('home.partials.' . config('app.project_resources_dir') . '.footer')
+            @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
         </footer>
         <div class="loader-wrapper hidden">
             <img src="{{asset('images/loading.gif')}}" alt="loading image">

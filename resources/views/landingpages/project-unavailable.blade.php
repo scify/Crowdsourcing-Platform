@@ -40,7 +40,7 @@
             @include('landingpages.partials.about')
         </section>
         <section id="projects" class="w-100">
-            @include('home.partials.' . config('app.project_resources_dir') . '.projects', ['projects' => $viewModel->projects])
+            @include('home.partials.' . config('app.installation_resources_dir') . '.projects', ['projects' => $viewModel->projects])
         </section>
     </div>
 @endsection
