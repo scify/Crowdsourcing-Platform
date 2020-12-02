@@ -313,7 +313,7 @@ class CrowdSourcingProjectManager {
         $projects = $this->getCrowdSourcingProjectsForHomePage();
         switch ($project->status_id) {
             case CrowdSourcingProjectStatusLkp::FINALIZED:
-                $message = 'This project is finalized.<br>Tank you for your contribution!';
+                $message = 'This project is finalized.<br>Thank you for your contribution!';
                 break;
             case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
                 $message = 'This project is unpublished.';
