@@ -1,5 +1,6 @@
 <?php
 
+namespace Database\Seeders;
 
 use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
