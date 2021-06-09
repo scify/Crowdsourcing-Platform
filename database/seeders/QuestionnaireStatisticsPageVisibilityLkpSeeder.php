@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use Illuminate\Database\Seeder;
