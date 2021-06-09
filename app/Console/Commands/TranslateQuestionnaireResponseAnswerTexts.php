@@ -37,5 +37,6 @@ class TranslateQuestionnaireResponseAnswerTexts extends Command
     public function handle()
     {
         $this->questionnaireResponseAnswerTranslator->translateAllNonTranslatedAnswerTexts();
+        return 0;
     }
 }
