@@ -8,8 +8,6 @@ use App\Models\User;
 use App\Models\UserRole;
 use App\Repository\CrowdSourcingProjectRepository;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CrowdSourcingProjectAccessTest extends TestCase {
     protected $crowdSourcingProjectRepository;
