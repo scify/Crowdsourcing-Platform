@@ -61,15 +61,18 @@
                                                 data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
                                         <div class="dropdown-menu">
-                                            <a class="action-btn dropdown-item"
-                                               href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                        class="far fa-edit"></i> Edit Questionnaire</a>
+                                            @if (!$viewModel->isQuestionnaireArchived($questionnaire))
+                                                <a class="action-btn dropdown-item"
+                                                   href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                            class="far fa-edit"></i> Edit Questionnaire</a>
+                                                <a class="action-btn dropdown-item"
+                                                   href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                            class="fa fa-language"></i> Translate</a>
+                                            @endif
                                             <a class="action-btn dropdown-item"
                                                href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
                                                         class="fas fa-palette"></i> Statistics Colors</a>
-                                            <a class="action-btn dropdown-item"
-                                               href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                        class="fa fa-language"></i> Translate</a>
+
                                             @if(isset($questionnaire->url) && $questionnaire->url)
                                                 <button data-clipboard-text="{{ $questionnaire->url }}"
                                                    class="copy-clipboard action-btn dropdown-item">
