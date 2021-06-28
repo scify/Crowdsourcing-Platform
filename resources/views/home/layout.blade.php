@@ -44,13 +44,22 @@
                 <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
             </div>
         @endif
-        @yield('content')
+        <div id="app">
+            @yield('content')
+        </div>
+
         <footer>
             @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
         </footer>
         <div class="loader-wrapper hidden">
             <img src="{{asset('images/loading.gif')}}" alt="loading image">
         </div>
+        <script>
+            window.Laravel = {!! json_encode([
+                'baseUrl' => url('/'),
+                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
+            ]) !!};
+        </script>
         @include('partials.footer-scripts')
 
         <script src="{{ mix('dist/js/home.js') }}?{{ env("APP_VERSION") }}"></script>

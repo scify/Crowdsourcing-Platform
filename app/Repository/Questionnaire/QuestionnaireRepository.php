@@ -38,9 +38,9 @@ class QuestionnaireRepository extends Repository {
     public function getActiveQuestionnairesForProject(int $projectId) {
         return Questionnaire::where('project_id', $projectId)
             ->where('status_id', 2)
-            ->orderBy('prerequisite_order', 'ASC')
-            ->orderBy('created_at', 'DESC')
-            ->get();
+            ->get()
+            ->sortBy('prerequisite_order')
+            ->sortByDesc('created_at');
     }
 
     public function getUserResponseForQuestionnaire($questionnaireId, $userId) {
@@ -83,75 +83,74 @@ class QuestionnaireRepository extends Repository {
             $languageId, $projectId, $questionnaireJson,
             $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,
+            return $this->storeQuestionnaire($questionnaire, $title, $description,
                 $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId);
-            return $questionnaire;
         });
     }
 
-    public function updateAllQuestionnaireRelatedTables($questionnaireId, $questions) {
-        $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
-        DB::transaction(function () use ($questionnaireId, $questions, $questionsFromDB) {
-            $guidsUsed = [];
-            $index = 1;
-            foreach ($questions as $question) {
-                $questionTitle = isset($question->title) ?
-                    (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
-                $questionType = $question->type;
-                $guid = $question->guid;
-                array_push($guidsUsed, $guid);
-                $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
-                try {
-                    if ($questionFoundInDB)
-                        $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name, $index);
-                    else
-                        $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid, $index);
-                } catch (Exception $e) {
-                    throw $e;
-                }
+//    public function updateAllQuestionnaireRelatedTables($questionnaireId, $questions) {
+//        $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
+//        DB::transaction(function () use ($questionnaireId, $questions, $questionsFromDB) {
+//            $guidsUsed = [];
+//            $index = 1;
+//            foreach ($questions as $question) {
+//                $questionTitle = isset($question->title) ?
+//                    (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
+//                $questionType = $question->type;
+//                $guid = $question->guid;
+//                array_push($guidsUsed, $guid);
+//                $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
+//                try {
+//                    if ($questionFoundInDB)
+//                        $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name, $index);
+//                    else
+//                        $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid, $index);
+//                } catch (Exception $e) {
+//                    throw $e;
+//                }
+//
+//                $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
+//                $this->updateAllAnswers($question, $storedQuestion->id);
+//                $index++;
+//            }
+//            $questionsFromDBToBeDeleted = $questionsFromDB->whereNotIn('guid', $guidsUsed);
+//            if ($questionsFromDBToBeDeleted->count() > 0) {
+//                $answersToBeDeletedBecauseQuestionsAreBeingDeleted = QuestionnairePossibleAnswer::whereIn(
+//                    'question_id', $questionsFromDBToBeDeleted->pluck('id')->toArray()
+//                )->get();
+//                $this->deleteAnswers($answersToBeDeletedBecauseQuestionsAreBeingDeleted);
+//                $this->deleteQuestions($questionsFromDBToBeDeleted);
+//            }
+//        });
+//    }
 
-                $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
-                $this->updateAllAnswers($question, $storedQuestion->id);
-                $index++;
-            }
-            $questionsFromDBToBeDeleted = $questionsFromDB->whereNotIn('guid', $guidsUsed);
-            if ($questionsFromDBToBeDeleted->count() > 0) {
-                $answersToBeDeletedBecauseQuestionsAreBeingDeleted = QuestionnairePossibleAnswer::whereIn(
-                    'question_id', $questionsFromDBToBeDeleted->pluck('id')->toArray()
-                )->get();
-                $this->deleteAnswers($answersToBeDeletedBecauseQuestionsAreBeingDeleted);
-                $this->deleteQuestions($questionsFromDBToBeDeleted);
-            }
-        });
-    }
+//    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionguid, $orderId) {
+//        $question = new QuestionnaireQuestion();
+//        $question->questionnaire_id = $questionnaireId;
+//        $question->guid = $questionguid;
+//        $question->order_id = $orderId;
+//        return $this->storeQuestion($question, $questionTitle, $questionType, $questionName, $orderId);
+//    }
 
-    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionguid, $orderId) {
-        $question = new QuestionnaireQuestion();
-        $question->questionnaire_id = $questionnaireId;
-        $question->guid = $questionguid;
-        $question->order_id = $orderId;
-        return $this->storeQuestion($question, $questionTitle, $questionType, $questionName, $orderId);
-    }
-
-    public function saveNewHtmlElement($questionId, $html) {
-        $questionnaireHtml = new QuestionnaireHtml();
-        $questionnaireHtml->question_id = $questionId;
-        return $this->storeHtmlElement($questionnaireHtml, $html);
-    }
+//    public function saveNewHtmlElement($questionId, $html) {
+//        $questionnaireHtml = new QuestionnaireHtml();
+//        $questionnaireHtml->question_id = $questionId;
+//        return $this->storeHtmlElement($questionnaireHtml, $html);
+//    }
 
 
-    public function saveNewOtherAnswer($questionId, $question) {
-        $answerTitle = $this->questionnaireTranslationRepository->getOtherAnswerTitle($question);
-        $this->saveNewAnswer($questionId, $answerTitle, "other", 'other');
+//    public function saveNewOtherAnswer($questionId, $question) {
+//        $answerTitle = $this->questionnaireTranslationRepository->getOtherAnswerTitle($question);
+//        $this->saveNewAnswer($questionId, $answerTitle, "other", 'other');
+//
+//    }
 
-    }
-
-    public function saveNewAnswer($questionId, $answer, $value, $guid) {
-        $questionnaireAnswer = new QuestionnairePossibleAnswer();
-        $questionnaireAnswer->question_id = $questionId;
-        $questionnaireAnswer->guid = $guid;
-        return $this->storeAnswer($questionnaireAnswer, $answer, $value);
-    }
+//    public function saveNewAnswer($questionId, $answer, $value, $guid) {
+//        $questionnaireAnswer = new QuestionnairePossibleAnswer();
+//        $questionnaireAnswer->question_id = $questionId;
+//        $questionnaireAnswer->guid = $guid;
+//        return $this->storeAnswer($questionnaireAnswer, $answer, $value);
+//    }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
         DB::transaction(function () use ($questionnaireId, $statusId, $comments) {
@@ -230,76 +229,76 @@ class QuestionnaireRepository extends Repository {
         return QuestionnaireQuestion::where('questionnaire_id', $questionnaireId)->get();
     }
 
-    private function storeQuestion(QuestionnaireQuestion $question, $questionTitle, $questionType, $questionName, $index) {
-        $question->question = $questionTitle;
-        $question->name = $questionName;
-        $question->type = $questionType;
-        $question->order_id = $index;
-        $question->save();
-        return $question;
-    }
+//    private function storeQuestion(QuestionnaireQuestion $question, $questionTitle, $questionType, $questionName, $index) {
+//        $question->question = $questionTitle;
+//        $question->name = $questionName;
+//        $question->type = $questionType;
+//        $question->order_id = $index;
+//        $question->save();
+//        return $question;
+//    }
 
-    private function updateHtmlElement($questionId, $question, $questionType) {
-        $questionnaireHtml = $this->getQuestionnaireHtmlForQuestion($questionId);
-        if ($questionnaireHtml) {
-            if ($questionType === 'html')
-                $this->storeHtmlElement($questionnaireHtml, (isset($question->html->default) ? $question->html->default : $question->html));
-            else {
-                $questionnaireHtml->delete();
-                $this->questionnaireTranslationRepository->deleteHtmlTranslations($questionnaireHtml->id);
-            }
-        } else {
-            if ($questionType === 'html')
-                $this->saveNewHtmlElement($questionId, (isset($question->html->default) ? $question->html->default : $question->html));
-        }
-    }
+//    private function updateHtmlElement($questionId, $question, $questionType) {
+//        $questionnaireHtml = $this->getQuestionnaireHtmlForQuestion($questionId);
+//        if ($questionnaireHtml) {
+//            if ($questionType === 'html')
+//                $this->storeHtmlElement($questionnaireHtml, (isset($question->html->default) ? $question->html->default : $question->html));
+//            else {
+//                $questionnaireHtml->delete();
+//                $this->questionnaireTranslationRepository->deleteHtmlTranslations($questionnaireHtml->id);
+//            }
+//        } else {
+//            if ($questionType === 'html')
+//                $this->saveNewHtmlElement($questionId, (isset($question->html->default) ? $question->html->default : $question->html));
+//        }
+//    }
 
-    private function getQuestionnaireHtmlForQuestion($questionId) {
-        return QuestionnaireHtml::where('question_id', $questionId)->first();
-    }
+//    private function getQuestionnaireHtmlForQuestion($questionId) {
+//        return QuestionnaireHtml::where('question_id', $questionId)->first();
+//    }
 
-    private function storeHtmlElement($questionnaireHtml, $html) {
-        $questionnaireHtml->html = $html;
-        $questionnaireHtml->save();
-        return $questionnaireHtml;
-    }
+//    private function storeHtmlElement($questionnaireHtml, $html) {
+//        $questionnaireHtml->html = $html;
+//        $questionnaireHtml->save();
+//        return $questionnaireHtml;
+//    }
 
-    private function updateAllAnswers($question, $questionId) {
-        $answersFromDB = $this->getAllPossibleAnswersForQuestion($questionId);
-        $guidsUsed = [];
-        if (isset($question->choices)) {
-            foreach ($question->choices as $temp) {
-                $answer = isset($temp->text) ? (isset($temp->text->default) ? $temp->text->default : $temp->text) :
-                    (isset($temp->name) ? $temp->name : $temp);
-                $value = isset($temp->value) ? $temp->value : $temp;
-                $guid = $temp->guid;
-                array_push($guidsUsed, $guid);
-                $answerFoundInDB = $answersFromDB->where('guid', $guid)->first();
-                if ($answerFoundInDB)
-                    $this->storeAnswer($answerFoundInDB, $answer, $value);
-                else
-                    $this->saveNewAnswer($questionId, $answer, $value, $guid);
-            }
-        }
-        if (isset($question->hasOther)) {
-            //add this so they won't be deleted. All answers that are type of other have the same guid with value ("other").
-            // This is a hack..we should revice the mechanism with the guid, maybe they are not needed at all, since we have a "name" column that seems to be unique for each question
-            array_push($guidsUsed, "other");
-            $answerFoundInDB = $answersFromDB->where('guid', "=", "other")->first();
-            if ($answerFoundInDB)
-                $this->storeAnswer($answerFoundInDB, $this->questionnaireTranslationRepository->getOtherAnswerTitle($question), "other");
-            else
-                $this->saveNewOtherAnswer($questionId, $question);
-        }
+//    private function updateAllAnswers($question, $questionId) {
+//        $answersFromDB = $this->getAllPossibleAnswersForQuestion($questionId);
+//        $guidsUsed = [];
+//        if (isset($question->choices)) {
+//            foreach ($question->choices as $temp) {
+//                $answer = isset($temp->text) ? (isset($temp->text->default) ? $temp->text->default : $temp->text) :
+//                    (isset($temp->name) ? $temp->name : $temp);
+//                $value = isset($temp->value) ? $temp->value : $temp;
+//                $guid = $temp->guid;
+//                array_push($guidsUsed, $guid);
+//                $answerFoundInDB = $answersFromDB->where('guid', $guid)->first();
+//                if ($answerFoundInDB)
+//                    $this->storeAnswer($answerFoundInDB, $answer, $value);
+//                else
+//                    $this->saveNewAnswer($questionId, $answer, $value, $guid);
+//            }
+//        }
+//        if (isset($question->hasOther)) {
+//            //add this so they won't be deleted. All answers that are type of other have the same guid with value ("other").
+//            // This is a hack..we should revice the mechanism with the guid, maybe they are not needed at all, since we have a "name" column that seems to be unique for each question
+//            array_push($guidsUsed, "other");
+//            $answerFoundInDB = $answersFromDB->where('guid', "=", "other")->first();
+//            if ($answerFoundInDB)
+//                $this->storeAnswer($answerFoundInDB, $this->questionnaireTranslationRepository->getOtherAnswerTitle($question), "other");
+//            else
+//                $this->saveNewOtherAnswer($questionId, $question);
+//        }
+//
+//        $answersFromDBToBeDeleted = $answersFromDB->whereNotIn('guid', $guidsUsed);
+//        if ($answersFromDBToBeDeleted->count() > 0)
+//            $this->deleteAnswers($answersFromDBToBeDeleted);
+//    }
 
-        $answersFromDBToBeDeleted = $answersFromDB->whereNotIn('guid', $guidsUsed);
-        if ($answersFromDBToBeDeleted->count() > 0)
-            $this->deleteAnswers($answersFromDBToBeDeleted);
-    }
-
-    private function getAllPossibleAnswersForQuestion($questionId) {
-        return QuestionnairePossibleAnswer::where('question_id', $questionId)->get();
-    }
+//    private function getAllPossibleAnswersForQuestion($questionId) {
+//        return QuestionnairePossibleAnswer::where('question_id', $questionId)->get();
+//    }
 
     private function storeAnswer($questionnaireAnswer, $answer, $value) {
         $questionnaireAnswer->answer = $answer;
@@ -308,19 +307,19 @@ class QuestionnaireRepository extends Repository {
         return $questionnaireAnswer;
     }
 
-    private function deleteAnswers($answers) {
-        foreach ($answers as $answer) {
-            QuestionnairePossibleAnswer::where('id', $answer->id)->delete();
-            $this->deleteAnswerTranslations($answer->id);
-        }
-    }
-
-    private function deleteQuestions($questions) {
-        foreach ($questions as $question) {
-            QuestionnaireQuestion::where('id', $question->id)->delete();
-            $this->deleteQuestionTranslations($question->id);
-        }
-    }
+//    private function deleteAnswers($answers) {
+//        foreach ($answers as $answer) {
+//            QuestionnairePossibleAnswer::where('id', $answer->id)->delete();
+//            $this->deleteAnswerTranslations($answer->id);
+//        }
+//    }
+//
+//    private function deleteQuestions($questions) {
+//        foreach ($questions as $question) {
+//            QuestionnaireQuestion::where('id', $question->id)->delete();
+//            $this->deleteQuestionTranslations($question->id);
+//        }
+//    }
 
     private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson, $languageId) {
         $questionnaireResponse = new QuestionnaireResponse();
@@ -351,21 +350,58 @@ class QuestionnaireRepository extends Repository {
         return $responseAnswer;
     }
 
-    private function deleteAnswerTranslations($answerId) {
-        QuestionnaireTranslationPossibleAnswer::where('possible_answer_id', $answerId)->delete();
-    }
+//    private function deleteAnswerTranslations($answerId) {
+//        QuestionnaireTranslationPossibleAnswer::where('possible_answer_id', $answerId)->delete();
+//    }
+//
+//    private function deleteQuestionTranslations($questionId) {
+//        QuestionnaireTranslationQuestion::where('question_id', $questionId)->delete();
+//    }
+//
+//    public function getMostRecentlyRespondedQuestionnaireForProject(int $projectId, int $userId) {
+//        return Questionnaire::whereHas('project', function (Builder $query) use ($projectId) {
+//            $query->where(['id' => $projectId]);
+//        })
+//        ->whereHas('responses', function (Builder $query) use ($userId) {
+//            $query->where(['user_id' => $userId]);
+//        })
+//        ->first();
+//    }
 
-    private function deleteQuestionTranslations($questionId) {
-        QuestionnaireTranslationQuestion::where('question_id', $questionId)->delete();
-    }
-
-    public function getMostRecentlyRespondedQuestionnaireForProject(int $projectId, int $userId) {
-        return Questionnaire::whereHas('project', function (Builder $query) use ($projectId) {
-            $query->where(['id' => $projectId]);
-        })
-        ->whereHas('responses', function (Builder $query) use ($userId) {
-            $query->where(['user_id' => $userId]);
-        })
-        ->first();
+    public function getAllQuestionnairesWithRelatedInfo(array $projectIds): array {
+        $projectIdsStr = implode(',', $projectIds);
+        return DB::
+        select("select q.id, q.project_id, q.prerequisite_order, q.status_id, q.default_language_id,
+                                q.title, q.description, q.goal, q.statistics_page_visibility_lkp_id,
+                                q.created_at, q.updated_at, q.deleted_at,
+                                csp.slug as project_slug, qsl.title as status_title, 
+                                responsesInfo.number_of_responses, languagesInfo.languages,
+                                qsl.description as status_description, 
+                                dl.language_name as default_language_name,
+                                csp.name as project_name
+                                 from questionnaires as q 
+                                inner join languages_lkp as dl on dl.id = q.default_language_id 
+                                inner join crowd_sourcing_projects as csp on csp.id = q.project_id 
+                                inner join questionnaire_statuses_lkp as qsl on qsl.id = q.status_id 
+                                left join (
+                                    select questionnaire_id, count(*) as number_of_responses from questionnaire_responses qr 
+                                    inner join questionnaires q on qr.questionnaire_id = q.id where q.project_id in (" . $projectIdsStr . ") 
+                                    and qr.deleted_at is null
+                                    group by questionnaire_id
+                                ) 
+                                as responsesInfo 
+                                on responsesInfo.questionnaire_id = q.id 
+                                left join (
+                                    select GROUP_CONCAT(languages_lkp.language_name SEPARATOR ', ') as languages, q.id as questionnaire_id
+                                    from questionnaire_languages ql
+                                    inner join languages_lkp on ql.language_id = languages_lkp.id
+                                    inner join questionnaires q on ql.questionnaire_id = q.id
+                                    where q.project_id in (" . $projectIdsStr . ") and ql.deleted_at is null
+                                    group by  q.id
+                                ) as  languagesInfo on languagesInfo.questionnaire_id = q.id
+                            
+                                where q.project_id in (" . $projectIdsStr . ") 
+                                and q.deleted_at is null
+                                order by q.updated_at desc");
     }
 }

@@ -23,7 +23,8 @@ class DatabaseSeederRunOnEmptyDB extends Seeder
             DefaultProjectSeeder::class,
             QuestionnairesSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
-            MailChimpListsTableSeeder::class
+            MailChimpListsTableSeeder::class,
+            ProduceAPITokenForDefaultAdmin::class
         ]);
     }
 }

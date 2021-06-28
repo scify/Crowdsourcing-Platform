@@ -33,6 +33,7 @@ class CurrentQuestionnaireProvider {
             if($this->questionnaireShouldBeContributedTo($questionnaire))
                 break;
         }
+
         return $toReturn;
     }
 

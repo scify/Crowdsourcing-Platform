@@ -9,6 +9,7 @@ require('icheck');
 
 //load dependencies for template
 window.Popper = require('popper.js').default;
+window.route = require('./backend-route');
 
 require('./bootstrap');
 require('fastclick');
@@ -33,6 +34,18 @@ require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
 require('datatables.net-select-bs4');
+
+import Vue from 'vue';
+import store from './store/store';
+
+Vue.component('modal', require('./vue-components/common/ModalComponent').default);
+Vue.component('questionnaire-create-edit', require('./vue-components/questionnaire/QuestionnaireCreateEdit').default);
+Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
+
+const app = new Vue({
+    el: '#app',
+    store: store
+});
 
 (function () {
 

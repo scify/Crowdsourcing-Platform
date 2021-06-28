@@ -39,38 +39,6 @@ class QuestionnaireTranslationRepository {
         return QuestionnaireLanguage::where(['questionnaire_id' => $questionnaireId, 'language_id' => $langId])->first();
     }
 
-    public function getAllQuestionnairesForProjectWithAvailableTranslations($projectId) {
-        return DB::
-        select("select q.*, csp.slug as project_slug, qsl.title as status_title, 
-                                responsesInfo.number_of_responses, languagesInfo.languages,
-                                qsl.description as status_description, 
-                                dl.language_name as default_language_name,
-                                csp.name as project_name
-                                 from questionnaires as q 
-                                inner join languages_lkp as dl on dl.id = q.default_language_id 
-                                inner join crowd_sourcing_projects as csp on csp.id = q.project_id 
-                                inner join questionnaire_statuses_lkp as qsl on qsl.id = q.status_id 
-                                left join (
-                                    select questionnaire_id, count(*) as number_of_responses from questionnaire_responses qr 
-                                    inner join questionnaires q on qr.questionnaire_id = q.id where q.project_id= " . $projectId . " 
-                                    and qr.deleted_at is null
-                                    group by questionnaire_id
-                                ) 
-                                as responsesInfo 
-                                on responsesInfo.questionnaire_id = q.id 
-                                left join (
-                                    select GROUP_CONCAT(languages_lkp.language_name SEPARATOR ', ') as languages, q.id as questionnaire_id
-                                    from questionnaire_languages ql
-                                    inner join languages_lkp on ql.language_id = languages_lkp.id
-                                    inner join questionnaires q on ql.questionnaire_id = q.id
-                                    where q.project_id= " . $projectId . " and ql.deleted_at is null
-                                    group by  q.id
-                                ) as  languagesInfo on languagesInfo.questionnaire_id = q.id
-                            
-                                where q.project_id = " . $projectId . " and q.deleted_at is null
-                                order by q.updated_at desc");
-    }
-
     public function getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId) {
         $questionnaireTranslations = DB::table('questionnaire_questions as qq')
             ->leftJoin('questionnaire_possible_answers as qpa', 'qq.id', '=', 'qpa.question_id')

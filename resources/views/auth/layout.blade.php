@@ -25,7 +25,7 @@
         <h5 class="m-0">~~~ WARNING: STAGING ENVIRONMENT ~~~</h5>
     </div>
 @endif
-<div class="login-box row h-100 justify-content-center align-items-center">
+<div id="app" class="login-box row h-100 justify-content-center align-items-center">
     <div class="login-box-body p-5 col-12">
         @yield('auth-form')
     </div>

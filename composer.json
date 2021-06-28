@@ -15,7 +15,7 @@
         "intervention/image": "^2.4",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",
-        "laravel/passport": "^10.0",
+        "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
@@ -66,6 +66,7 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "platform-check": false
     }
 }

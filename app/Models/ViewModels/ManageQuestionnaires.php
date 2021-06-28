@@ -27,6 +27,6 @@ class ManageQuestionnaires {
 
     public function isQuestionnaireArchived($questionnaire) {
         $dateCreated = date("Y/m/d", strtotime($questionnaire->created_at));
-        return $dateCreated < '2021/07/01';
+        return $dateCreated < '2021/06/01';
     }
 }

@@ -10,3 +10,8 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () {
+    Route::post('/questionnaire/new', 'QuestionnaireController@storeQuestionnaire')->name('store-questionnaire');
+    Route::post('/questionnaire/update/{id?}', 'QuestionnaireController@updateQuestionnaire')->name('update-questionnaire');
+});
