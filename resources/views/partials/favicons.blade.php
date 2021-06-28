@@ -1,8 +1,6 @@
 <link rel="shortcut icon" type="image/png" href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon.ico') }}"/>
-<link rel="shortcut icon" type="image/png" href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon_76.png') }}"/>
-<link rel="shortcut icon" type="image/png" href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon_57.png') }}"/>
-<link rel="apple-touch-icon-precomposed" sizes="76x76"
-      href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon_76.png') }}">
+<link rel="shortcut icon" type="image/png" sizes="76x76" href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon-76x76.png') }}"/>
+<link rel="shortcut icon" type="image/png" sizes="57x57" href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon-57x57.png') }}"/>
 <link rel="apple-touch-icon-precomposed" sizes="120x120"
       href="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/favicon/favicon_120.png') }}">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"

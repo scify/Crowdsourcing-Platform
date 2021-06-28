@@ -29,7 +29,7 @@
                 <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
             </div>
         @endif
-        <div class="wrapper">
+        <div id="app" class="wrapper">
             @if(Auth::check())
                 @include("loggedin-environment.partials.menu")
             @endif
@@ -82,6 +82,13 @@
 
         @stack("modals")
 
+        <script>
+            window.Laravel = {!! json_encode([
+                'csrfToken' => csrf_token(),
+                'baseUrl' => url('/'),
+                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
+            ]) !!};
+        </script>
         @include("partials.footer-scripts")
 
     </body>

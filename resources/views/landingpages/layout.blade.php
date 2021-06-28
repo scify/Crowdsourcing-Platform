@@ -39,7 +39,7 @@
 @endif
 @include('landingpages.partials.navbar')
 
-<div id="content">
+<div id="app">
     @yield('content')
 </div>
 
@@ -59,8 +59,14 @@
     <img src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 @stack("modals")
+<script>
+    window.Laravel = {!! json_encode([
+                'baseUrl' => url('/'),
+                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
+            ]) !!};
+</script>
 @include('partials.footer-scripts')
 <script src="{{asset('dist/js/showdown.min.js')}}?{{env("APP_VERSION")}}"></script>
-<script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>
+{{--<script src="{{asset('dist/js/landingPage.js')}}?{{env("APP_VERSION")}}"></script>--}}
 </body>
 </html>

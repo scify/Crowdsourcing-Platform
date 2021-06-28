@@ -12,9 +12,9 @@
 .editor-wrapper {
   margin-top: 50px;
   #questionnaire-editor {
-     #svd-survey-settings {
-      display: none;
-    }
+    // #svd-survey-settings {
+    //  display: none;
+    //}
     .svd_container .svd-dark-border-color {
       color: #333;
     }
@@ -25,10 +25,10 @@
       }
     }
 
-    .svda_current_type {
-      option[value=imagepicker] {
-        display: none;
-      }
-    }
+    //.svda_current_type {
+    //  option[value=imagepicker] {
+    //    display: none;
+    //  }
+    //}
   }
 }

@@ -10,9 +10,8 @@ use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
 use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
-use Illuminate\Support\Collection;
+use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireVMProvider {
@@ -46,6 +45,8 @@ class QuestionnaireVMProvider {
             $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
         } else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
+            $questionnaire->default_language_id = 6;
+            $questionnaire->prerequisite_order = 1;
             $title = "Create Questionnaire";
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
@@ -56,11 +57,7 @@ class QuestionnaireVMProvider {
 
     public function getAllQuestionnairesPageViewModel() {
         $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $questionnaires = new Collection();
-        foreach ($projectTheUserHasAccessTo as $project) {
-            $questionnaires = $questionnaires->concat(
-                $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($project->id));
-        }
+        $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($projectTheUserHasAccessTo->pluck('id')->toArray());
         foreach ($questionnaires as $questionnaire) {
             if($this->questionnaireManager->shouldShowLinkForQuestionnaire($questionnaire))
                 $questionnaire->url = $this->questionnaireManager->getQuestionnaireURL($questionnaire->project_slug, $questionnaire->id);

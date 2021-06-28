@@ -171,7 +171,6 @@ return [
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\ComposerServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
         //For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,

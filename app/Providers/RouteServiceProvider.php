@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -65,6 +69,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
+        RateLimiter::for('api-internal', function (Request $request) {
+            return Limit::perMinute(10000)->response(function () {
+                return response()->json(['status' => 'Too many requests'],
+                    Response::HTTP_TOO_MANY_REQUESTS);
+            });
+        });
+
         Route::prefix('api/v1')
              ->middleware('api')
              ->namespace($this->namespace)
