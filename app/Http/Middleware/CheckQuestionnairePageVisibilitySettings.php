@@ -30,7 +30,7 @@ class CheckQuestionnairePageVisibilitySettings
     public function handle($request, Closure $next)
     {
         $questionnaire = $request->route('questionnaire');
-        if($this->questionnaireAccessManager->loggedInUserHasAccessToViewQuestionnaireStatisticsPage($user, $questionnaire))
+        if($this->questionnaireAccessManager->userHasAccessToViewQuestionnaireStatisticsPage(Auth::user(), $questionnaire))
             return $next($request);
         return redirect()->route('home');
     }
