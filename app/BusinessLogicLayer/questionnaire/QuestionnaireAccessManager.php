@@ -7,6 +7,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Models\Questionnaire;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireAccessManager {
 
@@ -20,7 +21,8 @@ class QuestionnaireAccessManager {
     }
 
 
-    public function userHasAccessToViewQuestionnaireStatisticsPage($user, Questionnaire $questionnaire) {
+    public function loggedInUserHasAccessToViewQuestionnaireStatisticsPage(Questionnaire $questionnaire): bool {
+        $user = Auth::user();
         switch ($questionnaire->statistics_page_visibility_lkp_id) {
             case QuestionnaireStatisticsPageVisibilityLkp::PUBLIC:
                 return true;
