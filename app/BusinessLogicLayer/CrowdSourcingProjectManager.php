@@ -165,6 +165,9 @@ class CrowdSourcingProjectManager {
             && (!$project || !$project->lp_questionnaire_img_path))
             $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
 
+        if(!isset($attributes['lp_show_speak_up_btn']))
+            $attributes['lp_show_speak_up_btn'] = false;
+
         return $attributes;
     }
 
