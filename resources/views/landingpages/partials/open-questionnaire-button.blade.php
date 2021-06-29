@@ -11,7 +11,8 @@
                data-toggle="modal" data-target="#questionnaire-modal">
                 Speak up
             </a>
-        @else
+        @elseif ($viewModel->project->lp_show_speak_up_btn)
+            
             <a href="#questionnaire" style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
                                             background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};"
                class="btn btn-primary respond-questionnaire">Speak up</a>
