@@ -18,9 +18,9 @@
             showTestSurveyTab: true,
             showEmbededSurveyTab: false,
             showPropertyGrid: false,
-            toolbarItems: {visible: false},
-            showPagesToolbox: false,
-            questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "html", "comment"]
+            toolbarItems: {visible: true},
+            showPagesToolbox: true,
+            questionTypes: ["text", "checkbox", "radiogroup", "dropdown", "html", "comment", "rating"]
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
         let json = $("#questionnaire-editor").data('json');
@@ -60,43 +60,49 @@
 
     let addGuidsToContent = function (content) {
         let json = JSON.parse(content);
-        let questions = json.pages[0].elements;
-        let alreadyUsedGuids = [];
-        let alreadyUsedAnswerGuids = [];
-        for (let i = 0; i < questions.length; i++) {
-            if (!questions[i].guid) {
-                questions[i].guid = getGuid();
-                alreadyUsedGuids.push(questions[i].guid);
-            } else {
-                //bug fix: we may have 2 questions with the same guid (due to a copy paste). We dont want this
-                if (alreadyUsedGuids.includes(questions[i].guid)) {
+        for(let pagesIndex = 0; pagesIndex < json.pages.length; pagesIndex++) {
+            let questions = json.pages[pagesIndex].elements;
+            let alreadyUsedGuids = [];
+            let alreadyUsedAnswerGuids = [];
+            for (let i = 0; i < questions.length; i++) {
+                if (!questions[i].guid) {
                     questions[i].guid = getGuid();
-                }
-                alreadyUsedGuids.push(questions[i].guid);
-            }
-
-            if (questions[i].choices) {
-                let answers = json.pages[0].elements[i].choices;
-                for (let j = 0; j < answers.length; j++) {
-                    if (!answers[j].text) {
-                        let originalValue = answers[j];
-                        answers[j] = {};
-                        answers[j].text = originalValue;
-                        answers[j].value = originalValue;
+                    alreadyUsedGuids.push(questions[i].guid);
+                } else {
+                    //bug fix: we may have 2 questions with the same guid (due to a copy paste). We dont want this
+                    if (alreadyUsedGuids.includes(questions[i].guid)) {
+                        questions[i].guid = getGuid();
                     }
-                    if (!answers[j].guid) {
-                        answers[j].guid = getGuid();
-                        alreadyUsedAnswerGuids.push(answers[j].guid);
-                    } else {
-                        if (alreadyUsedAnswerGuids.includes(answers[j].guid)) {
-                            answers[j].guid = getGuid();
+                    alreadyUsedGuids.push(questions[i].guid);
+                }
+                if(questions[i].type === 'rating') {
+                    questions[i].choices = ['1', '2', '3', '4', '5'];
+                }
+                if (questions[i].choices) {
+                    let answers = json.pages[pagesIndex].elements[i].choices;
+                    for (let j = 0; j < answers.length; j++) {
+                        if (!answers[j].text) {
+                            let originalValue = answers[j];
+                            answers[j] = {};
+                            answers[j].text = originalValue;
+                            answers[j].value = originalValue;
                         }
-                        alreadyUsedAnswerGuids.push(answers[j].guid);
-                    }
+                        if (!answers[j].guid) {
+                            answers[j].guid = getGuid();
+                            alreadyUsedAnswerGuids.push(answers[j].guid);
+                        } else {
+                            if (alreadyUsedAnswerGuids.includes(answers[j].guid)) {
+                                answers[j].guid = getGuid();
+                            }
+                            alreadyUsedAnswerGuids.push(answers[j].guid);
+                        }
 
+                    }
                 }
+
             }
         }
+
         return JSON.stringify(json);
     };
 
