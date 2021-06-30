@@ -3,6 +3,8 @@
 namespace App\Models\ViewModels;
 
 
+use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
+
 class CrowdSourcingProjectForLandingPage
 {
     public $project;
@@ -41,5 +43,9 @@ class CrowdSourcingProjectForLandingPage
         if(Request()->questionnaireId)
             $url .= urlencode("&questionnaireId=") . Request()->questionnaireId;
         return $url;
+    }
+
+    public function shouldShowQuestionnaireStatisticsLink(): bool {
+        return $this->questionnaire->statistics_page_visibility_lkp_id === QuestionnaireStatisticsPageVisibilityLkp::PUBLIC;
     }
 }
