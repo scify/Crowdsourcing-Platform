@@ -5,7 +5,6 @@
 @stop
 
 @push('css')
-    <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     <link href="{{asset('dist/css/surveyeditor.css')}}" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('dist/css/create-questionnaire.css') }}">
 @endpush

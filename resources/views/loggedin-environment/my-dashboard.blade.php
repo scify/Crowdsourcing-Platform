@@ -83,6 +83,6 @@
 @stop
 
 @push('scripts')
-    <script src="{{ mix('dist/js/myProfile.js')}}?{{env("APP_VERSION")}}"></script>
-    <script src="{{ mix('dist/js/projectGoal.js')}}?{{env("APP_VERSION")}}"></script>
+    <script src="{{ mix('dist/js/myProfile.js')}}"></script>
+    <script src="{{ mix('dist/js/projectGoal.js')}}"></script>
 @endpush

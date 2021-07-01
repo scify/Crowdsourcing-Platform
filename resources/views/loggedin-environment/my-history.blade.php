@@ -7,7 +7,6 @@
 @push('css')
     @push('css')
         <link rel="stylesheet" href="{{ asset('dist/css/my-questionnaire-responses.css') }}">
-        <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
     @endpush
 @endpush
 
@@ -79,7 +78,7 @@
     @endpush
 @endsection
 @push('scripts')
-    <script src="{{ mix('dist/js/myQuestionnaireResponses.js')}}?{{env("APP_VERSION")}}"></script>
+    <script src="{{ mix('dist/js/myQuestionnaireResponses.js')}}?{{ config("app.version") }}"></script>
     <script type="text/javascript">
         let responses = {!! json_encode($responses) !!};
         let controller = new QuestionnaireResponsesController(responses);
