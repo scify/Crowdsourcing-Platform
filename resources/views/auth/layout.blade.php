@@ -7,8 +7,8 @@
     <title>@yield('title_prefix', config('app.name')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-    <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/auth.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/auth.css') }}">
     @stack('css')
 
     <!--[if lt IE 9]>
