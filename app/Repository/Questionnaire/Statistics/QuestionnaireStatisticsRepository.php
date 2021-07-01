@@ -106,7 +106,7 @@ class QuestionnaireStatisticsRepository {
             select qq.id as question_id, question as title, qpa.color, 'fixed_choices' as question_type, qpa.answer as answer_title, count(*) as num_responses from questionnaire_response_answers as qra
                 inner join questionnaire_questions as qq on qra.question_id = qq.id
                 inner join questionnaire_possible_answers as qpa on answer_id = qpa.id
-            where qq.questionnaire_id = ? and qra.deleted_at is null and qq.deleted_at is null and qq.type in ('radiogroup', 'checkbox')
+            where qq.questionnaire_id = ? and qra.deleted_at is null and qq.deleted_at is null and qq.type in ('radiogroup', 'checkbox', 'rating')
             group by question, qq.id, qpa.answer, qpa.color
             order by qq.id
         ;", [$questionnaireId]);

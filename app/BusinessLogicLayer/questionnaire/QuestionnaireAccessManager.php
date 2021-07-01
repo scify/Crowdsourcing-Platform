@@ -20,7 +20,7 @@ class QuestionnaireAccessManager {
     }
 
 
-    public function userHasAccessToViewQuestionnaireStatisticsPage($user, Questionnaire $questionnaire) {
+    public function userHasAccessToViewQuestionnaireStatisticsPage($user, Questionnaire $questionnaire): bool {
         switch ($questionnaire->statistics_page_visibility_lkp_id) {
             case QuestionnaireStatisticsPageVisibilityLkp::PUBLIC:
                 return true;

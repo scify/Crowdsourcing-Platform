@@ -1,5 +1,5 @@
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/social-share.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/social-share.css') }}">
 @endpush
 
 <div class="container-fluid">
@@ -32,5 +32,5 @@
     </div>
 </div>
 @push('scripts')
-    <script src="{{ mix('dist/js/questionnaireSocialShare.js')}}?{{env("APP_VERSION")}}"></script>
+    <script src="{{ mix('dist/js/questionnaireSocialShare.js')}}"></script>
 @endpush

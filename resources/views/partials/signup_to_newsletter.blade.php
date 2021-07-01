@@ -40,5 +40,5 @@
     </div>
 </div>
 @push('scripts')
-    <script src="{{asset('dist/js/newsletter-signup.js')}}"></script>
+    <script src="{{mix('dist/js/newsletter-signup.js')}}"></script>
 @endpush

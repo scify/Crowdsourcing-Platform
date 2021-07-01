@@ -40,7 +40,8 @@ class CrowdSourcingProject extends Model
         'lp_questionnaire_goal_bg_color',
         'lp_newsletter_title_color', 'lp_newsletter_color',
         'lp_newsletter_bg_color', 'lp_newsletter_btn_color',
-        'lp_newsletter_btn_bg_color', 'communication_resources_id'
+        'lp_newsletter_btn_bg_color', 'communication_resources_id',
+        'lp_show_speak_up_btn'
     ];
 
     /**

@@ -85,7 +85,7 @@
                     <div class="lower-footer">
                         Copyright &copy; {{ date("Y") }} <a target=" _blank"
                                                             href="https://scify.org/en">SciFY</a>
-                        All rights reserved. | Version {{ env("APP_VERSION")}}
+                        All rights reserved. | Version {{ config("app.version")}}
                     </div>
                 </div>
             </div>

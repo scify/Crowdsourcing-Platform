@@ -56,7 +56,7 @@ class QuestionnaireStatisticsManager {
             'questionnaireLanguages.language'
         );
         $questionnaire->load(['questions' => function ($query) {
-            $query->whereIn('type', ['radiogroup', 'checkbox']);
+            $query->whereIn('type', ['radiogroup', 'checkbox', 'rating']);
         }]);
         $questionnaire->questions->load('possibleAnswers');
         //dd($questionnaire);

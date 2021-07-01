@@ -9,5 +9,5 @@ return array(
     // Capture bindings on SQL queries
     'breadcrumbs.sql_bindings' => true,
 
-    'release' => env("APP_VERSION")
+    'release' => config("app.version")
 );

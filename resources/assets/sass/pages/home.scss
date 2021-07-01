@@ -1,4 +1,5 @@
 $colorForTabs: #076ec1;
+@import "../variables";
 
 section {
   h2 {
@@ -311,5 +312,17 @@ footer {
   .lower-footer {
     text-align: center;
     margin-top: 80px;
+  }
+}
+
+#questionnaire-modal {
+  .sv_main.sv_default_css hr {
+    border-bottom: 2px solid $primary;
+  }
+
+  .sv_main {
+    h2 {
+      margin-top: 0;
+    }
   }
 }

@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-        <link rel="stylesheet" href="{{ asset('dist/css/common.css')}}?{{env("APP_VERSION")}}">
+        <link rel="stylesheet" href="{{ mix('dist/css/common.css')}}">
         <link href="{{asset('dist/css/select2.min.css')}}" rel="stylesheet">
         @stack('css')
 
@@ -73,7 +73,7 @@
             </div>
             <footer class="main-footer">
                 <div class="float-right d-none d-sm-inline">
-                    <b>Version</b> {{ env("APP_VERSION")}}
+                    <b>Version</b> {{ config("app.version")}}
                 </div>
                 <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
             </footer>
