@@ -5,7 +5,7 @@
 @stop
 
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('dist/css/translate-questionnaire.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/translate-questionnaire.css')}}">
 @endpush
 
 @section('content')

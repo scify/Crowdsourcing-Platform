@@ -29,7 +29,7 @@
     </div>
 @stop
 @push('scripts')
-    <script src="{{ mix('dist/js/UsersListController.js')}}?{{env("APP_VERSION")}}"></script>
+    <script src="{{ mix('dist/js/UsersListController.js')}}"></script>
     <script>
             let controller = new window.UsersListController();
             controller.init();

@@ -13,11 +13,10 @@
         @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-        <link rel="stylesheet" href="{{ asset('dist/css/common.css') }}">
-        <link rel="stylesheet" href="{{ asset('dist/css/sweetalert.css') }}">
-        <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
-        <link rel="stylesheet" href="{{ asset('dist/css/landing-page.css') }}?{{env("APP_VERSION")}}">
-        <link rel="stylesheet" href="{{ asset('dist/css/home.css') }}?{{env("APP_VERSION")}}">
+        <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
+        <link rel="stylesheet" href="{{ mix('dist/css/sweetalert.css') }}">
+        <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
+        <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
         @stack('css')
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -62,7 +61,7 @@
         </script>
         @include('partials.footer-scripts')
 
-        <script src="{{ mix('dist/js/home.js') }}?{{ env("APP_VERSION") }}"></script>
+        <script src="{{ mix('dist/js/home.js') }}"></script>
 
     </body>
 </html>

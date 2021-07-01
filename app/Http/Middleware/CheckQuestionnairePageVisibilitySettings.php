@@ -29,9 +29,8 @@ class CheckQuestionnairePageVisibilitySettings
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::user();
         $questionnaire = $request->route('questionnaire');
-        if($this->questionnaireAccessManager->userHasAccessToViewQuestionnaireStatisticsPage($user, $questionnaire))
+        if($this->questionnaireAccessManager->userHasAccessToViewQuestionnaireStatisticsPage(Auth::user(), $questionnaire))
             return $next($request);
         return redirect()->route('home');
     }

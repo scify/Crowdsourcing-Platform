@@ -1,6 +1,6 @@
 @extends('home.layout')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/errors.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/errors.css') }}">
 @endpush
 @section('title_prefix')
     @yield('title')
