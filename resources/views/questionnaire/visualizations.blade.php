@@ -1,6 +1,6 @@
 @extends('landingpages.layout')
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('dist/css/visualizations.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/visualizations.css')}}">
 @endpush
 
 @section('content')

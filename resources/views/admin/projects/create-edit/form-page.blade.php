@@ -7,7 +7,7 @@
 @stop
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/create-edit-project.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/create-edit-project.css') }}">
 @endpush
 
 @section('content')

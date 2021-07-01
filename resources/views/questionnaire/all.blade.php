@@ -5,7 +5,7 @@
 @stop
 
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('dist/css/manage-questionnaires.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/manage-questionnaires.css')}}">
 @endpush
 
 @section('content')
@@ -144,5 +144,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{asset('/dist/js/manageQuestionnaires.js')}}"></script>
+    <script src="{{mix('/dist/js/manageQuestionnaires.js')}}"></script>
 @endpush

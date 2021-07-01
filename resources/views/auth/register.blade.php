@@ -17,5 +17,5 @@
     </div>
 @stop
 @push('scripts')
-    <script src="{{ asset('dist/js/register.js') }}"></script>
+    <script src="{{ mix('dist/js/register.js') }}"></script>
 @endpush

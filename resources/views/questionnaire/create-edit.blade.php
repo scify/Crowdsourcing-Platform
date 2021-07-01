@@ -5,8 +5,7 @@
 @stop
 
 @push('css')
-    <link href="{{asset('dist/css/surveyeditor.css')}}" type="text/css" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{ asset('dist/css/create-questionnaire.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/create-questionnaire.css') }}">
 @endpush
 
 @section('content')
@@ -152,5 +151,5 @@
     <script src="https://surveyjs.azureedge.net/1.0.41/survey.ko.min.js"></script>
     <script src="https://surveyjs.azureedge.net/1.0.41/surveyeditor.min.js"></script>
 
-    <script src="{{asset('dist/js/createQuestionnaire.js')}}"></script>
+    <script src="{{mix('dist/js/createQuestionnaire.js')}}"></script>
 @endpush

@@ -6,7 +6,7 @@
 
 @push('css')
     @push('css')
-        <link rel="stylesheet" href="{{ asset('dist/css/my-questionnaire-responses.css') }}">
+        <link rel="stylesheet" href="{{ mix('dist/css/my-questionnaire-responses.css') }}">
     @endpush
 @endpush
 

@@ -5,7 +5,7 @@
 @stop
 
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('dist/css/reports.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/reports.css')}}">
 @endpush
 
 @section('content')

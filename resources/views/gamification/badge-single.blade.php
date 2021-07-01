@@ -1,5 +1,5 @@
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/badge-single.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/badge-single.css') }}">
 @endpush
 
 <div class="col-md-12 gamification-badge {{ $badge->level == 0 ? 'locked' : 'unlocked' }}"
