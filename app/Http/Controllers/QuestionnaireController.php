@@ -69,7 +69,7 @@ class QuestionnaireController extends Controller
     public function updateQuestionnaire(Request $request, $id)
     {
         $this->questionnaireManager->updateQuestionnaire($id, $request->all());
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => route('questionnaires.all')]);
+        return response()->json(['status' => '__SUCCESS', 'redirect_url' => route('edit-questionnaire', $id)]);
     }
 
     public function storeQuestionnaireResponse(Request $request) {
