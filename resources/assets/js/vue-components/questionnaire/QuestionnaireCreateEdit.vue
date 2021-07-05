@@ -175,7 +175,6 @@ export default {
       'post'
     ]),
     initQuestionnaireEditor() {
-      console.log(process.env.MIX_API_AUTH_TOKEN);
       Survey.surveyLocalization.supportedLocales = _.map(this.languages, 'language_code');
       for(let i = 0; i < this.languages.length; i++) {
         Survey.surveyLocalization.localeNames[this.languages[i].language_code] = this.languages[i].language_name;
@@ -219,7 +218,7 @@ export default {
       this.post({
         url: this.questionnaire.id
             ? route('update-questionnaire', this.questionnaire.id)
-            : route('create-questionnaire'),
+            : route('store-questionnaire'),
         data: data,
         urlRelative: false,
         handleError: false
