@@ -175,40 +175,12 @@ export default {
       'post'
     ]),
     initQuestionnaireEditor() {
-      Survey.surveyLocalization.supportedLocales = ["gr", "fr", "hu", "en", "es", "de"];
+      console.log(process.env.MIX_API_AUTH_TOKEN);
+      Survey.surveyLocalization.supportedLocales = _.map(this.languages, 'language_code');
+      for(let i = 0; i < this.languages.length; i++) {
+        Survey.surveyLocalization.localeNames[this.languages[i].language_code] = this.languages[i].language_name;
+      }
       SurveyCreator.StylesManager.applyTheme("bootstrap");
-      let data = JSON.stringify({
-        locale: "en",
-        "pages": [
-          {
-            "name": "page1",
-            "elements": [
-              {
-                "type": "html",
-                "name": "question1",
-                "html": {
-                  "default": "Blablalbbalblablalba",
-                  "gr": "asdf",
-                  "fr": "4325",
-                  "hu": "345345"
-                }
-              }
-            ],
-            "title": {
-              "default": "First page",
-              "gr": "asdf",
-              "fr": "123",
-              "hu": "asdf"
-            },
-            "description": {
-              "default": "this is the first page",
-              "gr": "νεα ελληνικά",
-              "fr": "francais",
-              "hu": "asdf"
-            }
-          }
-        ]
-      });
       const options = {
         // show the embedded survey tab. It is hidden by default
         showEmbeddedSurveyTab: false,
@@ -223,8 +195,7 @@ export default {
       this.surveyCreator.render("questionnaire-editor");
       this.surveyCreator.haveCommercialLicense = true;
       if (this.questionnaireData.questionnaire_json)
-        data = this.questionnaireData.questionnaire_json;
-      this.surveyCreator.text = data;
+        this.surveyCreator.text = this.questionnaireData.questionnaire_json;
     },
     saveQuestionnaire() {
       if (this.formInvalid())

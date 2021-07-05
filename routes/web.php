@@ -46,7 +46,6 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/questionnaire/{id}/translate', 'QuestionnaireController@translateQuestionnaire')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/{id}/translate', 'QuestionnaireController@storeQuestionnaireTranslations')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/questionnaire/respond', 'QuestionnaireResponseController@storeQuestionnaireResponse')->name('respond-questionnaire');
     Route::get('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
     //    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
