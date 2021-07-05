@@ -31,6 +31,7 @@ class CrowdSourcingProjectManager {
     protected $questionnaireGoalManager;
     protected $currentQuestionnaireProvider;
     protected $crowdSourcingProjectCommunicationResourcesManager;
+    protected $languageRepository;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
@@ -39,7 +40,8 @@ class CrowdSourcingProjectManager {
                                 CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
                                 QuestionnaireGoalManager $questionnaireGoalManager,
                                 CurrentQuestionnaireProvider $currentQuestionnaireProvider,
-                                CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager) {
+                                CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager,
+                                LanguageRepository $languageRepository) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -48,6 +50,7 @@ class CrowdSourcingProjectManager {
         $this->questionnaireGoalManager = $questionnaireGoalManager;
         $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
         $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
+        $this->languageRepository = $languageRepository;
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
@@ -94,7 +97,8 @@ class CrowdSourcingProjectManager {
             $allResponses,
             $openQuestionnaireWhenPageLoads,
             $questionnaireGoalVM,
-            $socialMediaMetadataVM);
+            $socialMediaMetadataVM,
+            $this->languageRepository->all());
     }
 
 
@@ -159,7 +163,7 @@ class CrowdSourcingProjectManager {
             && (!$project || !$project->lp_questionnaire_img_path))
             $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
 
-        if(!isset($attributes['lp_show_speak_up_btn']))
+        if (!isset($attributes['lp_show_speak_up_btn']))
             $attributes['lp_show_speak_up_btn'] = false;
 
         return $attributes;
