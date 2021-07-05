@@ -14,5 +14,5 @@
 Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () {
     Route::post('/questionnaire/new', 'QuestionnaireController@storeQuestionnaire')->name('store-questionnaire');
     Route::post('/questionnaire/update/{id?}', 'QuestionnaireController@updateQuestionnaire')->name('update-questionnaire');
-    Route::post('/questionnaire/respond', 'QuestionnaireResponseController@storeQuestionnaireResponse')->name('questionnaire-respond');
+    Route::post('/questionnaire/respond', 'QuestionnaireResponseController@storeQuestionnaireResponse')->name('respond-questionnaire');
 });
