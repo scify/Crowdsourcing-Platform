@@ -41,7 +41,7 @@ export default {
       default: function () {
         return {}
       }
-    },
+    }
   },
   data: function () {
     return {
@@ -62,6 +62,7 @@ export default {
       this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
       this.survey.locale = 'en';
       const locales = this.survey.getUsedLocales();
+      // show English as the first language
       this.arraymove(locales, locales.indexOf("en"), 0);
 
       for (let i = 0; i < locales.length; i++) {

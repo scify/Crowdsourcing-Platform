@@ -34,7 +34,8 @@
                              data-content="{{$viewModel->questionnaire->questionnaire_json}}"></div>
                     </div>
                 </div>
-                <questionnaire-display :questionnaire='@json($viewModel->questionnaire)'>
+                <questionnaire-display
+                        :questionnaire='@json($viewModel->questionnaire)'>
                 </questionnaire-display>
             </div>
         </div>

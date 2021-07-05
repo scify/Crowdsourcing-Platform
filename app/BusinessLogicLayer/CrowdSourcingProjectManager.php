@@ -15,8 +15,8 @@ use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
+use App\Repository\LanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,6 @@ use Illuminate\Support\Str;
 class CrowdSourcingProjectManager {
     protected $crowdSourcingProjectRepository;
     protected $questionnaireRepository;
-    protected $questionnaireTranslationRepository;
     protected $crowdSourcingProjectStatusManager;
     protected $crowdSourcingProjectStatusHistoryRepository;
     protected $crowdSourcingProjectAccessManager;
@@ -35,7 +34,6 @@ class CrowdSourcingProjectManager {
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
                                 CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
@@ -44,7 +42,6 @@ class CrowdSourcingProjectManager {
                                 CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
-        $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
         $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
@@ -77,7 +74,6 @@ class CrowdSourcingProjectManager {
         $userResponse = null;
         $questionnaireGoalVM = null;
         $allResponses = collect([]);
-        $allLanguagesForQuestionnaire = collect([]);
 
         if ($questionnaireId)
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
@@ -88,7 +84,6 @@ class CrowdSourcingProjectManager {
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
-            $allLanguagesForQuestionnaire = $this->questionnaireTranslationRepository->getAvailableLanguagesForQuestionnaire($questionnaire);
             if ($userResponse != null)
                 $openQuestionnaireWhenPageLoads = false; //user has already responded
         }
@@ -97,7 +92,6 @@ class CrowdSourcingProjectManager {
         return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
             $userResponse,
             $allResponses,
-            $allLanguagesForQuestionnaire,
             $openQuestionnaireWhenPageLoads,
             $questionnaireGoalVM,
             $socialMediaMetadataVM);
