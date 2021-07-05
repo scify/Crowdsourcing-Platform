@@ -18,26 +18,27 @@
                             </div>
                         </div>
                     </div>
-                @if ($viewModel->shouldShowQuestionnaireStatisticsLink())
-                    <div class="row mt-4">
-                        <div class="col-md-12 text-center">
-                            <h3>Before answering to the questionnaire, check what the other respondents have said by
-                                clicking
-                                <a href="{{route('questionnaire.statistics', ['questionnaire' => $viewModel->questionnaire->id])}}"
-                                   target="_blank">here.</a></h3>
+                    @if ($viewModel->shouldShowQuestionnaireStatisticsLink())
+                        <div class="row mt-4">
+                            <div class="col-md-12 text-center">
+                                <h3>Before answering to the questionnaire, check what the other respondents have said by
+                                    clicking
+                                    <a href="{{route('questionnaire.statistics', ['questionnaire' => $viewModel->questionnaire->id])}}"
+                                       target="_blank">here.</a></h3>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="questionnaire-display-section"
+                                 data-content="{{$viewModel->questionnaire->questionnaire_json}}"></div>
                         </div>
                     </div>
-                @endif
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="questionnaire-display-section"
-                             data-content="{{$viewModel->questionnaire->questionnaire_json}}"></div>
-                    </div>
+                    <questionnaire-display
+                            :questionnaire='@json($viewModel->questionnaire)'
+                            :languages='@json($viewModel->languages)'>
+                    </questionnaire-display>
                 </div>
-                <questionnaire-display
-                        :questionnaire='@json($viewModel->questionnaire)'>
-                </questionnaire-display>
             </div>
         </div>
     </div>
-</div>

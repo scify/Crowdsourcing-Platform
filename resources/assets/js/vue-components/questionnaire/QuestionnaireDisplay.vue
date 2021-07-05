@@ -41,7 +41,8 @@ export default {
       default: function () {
         return {}
       }
-    }
+    },
+    languages: []
   },
   data: function () {
     return {
@@ -64,11 +65,11 @@ export default {
       const locales = this.survey.getUsedLocales();
       // show English as the first language
       this.arraymove(locales, locales.indexOf("en"), 0);
-
+      console.log(locales);
       for (let i = 0; i < locales.length; i++) {
         this.surveyLocales.push({
           code: locales[i],
-          name: this.languageService.getCountryNameFromCode(locales[i]).name
+          name: this.getLanguageFromCode(locales[i]).language_name
         });
       }
       this.survey.onComplete.add(this.saveQuestionnaireResponse);
@@ -85,6 +86,9 @@ export default {
       const element = arr[fromIndex];
       arr.splice(fromIndex, 1);
       arr.splice(toIndex, 0, element);
+    },
+    getLanguageFromCode(code) {
+      return _.find(this.languages, function(l) { return l.language_code === code; })
     }
   }
 }

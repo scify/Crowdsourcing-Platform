@@ -4,6 +4,7 @@ namespace App\Models\ViewModels;
 
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
+use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectForLandingPage
 {
@@ -15,13 +16,15 @@ class CrowdSourcingProjectForLandingPage
     public $openQuestionnaireWhenPageLoads = false;
     public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
+    public $languages;
 
     public function __construct($project, $questionnaire,
                                 $userResponse,
                                 $allResponses,
                                 $openQuestionnaireWhenPageLoads,
                                 $questionnaireGoalVM,
-                                $socialMediaMetadataVM)
+                                $socialMediaMetadataVM,
+                                Collection $languages)
     {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
@@ -31,6 +34,7 @@ class CrowdSourcingProjectForLandingPage
         $this->questionnaireGoalVM = $questionnaireGoalVM;
         $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
+        $this->languages = $languages;
     }
 
     public function getSignInURLWithParameters() {
