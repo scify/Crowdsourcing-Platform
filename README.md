@@ -174,6 +174,12 @@ This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
 
 It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
 
+## Installation-specific resources
+
+The application can be tweaked and personalized for each installation.
+In the `.env` file you can set the `INSTALLATION_RESOURCES_DIR` variable accordingly. This variable must take a value that represents a directory name in the `resourcess/views/home/partials` directory. For example, see the `resourcess/views/home/partials/together` directory. This directory must contain the partial blade files for the installation.
+
+
 ## Run Tests
 We use a Sqlite database to generate an instance of the database, for testing purposes.
 In order to create the database file, run the following commands:
