@@ -134,6 +134,7 @@
         for (i = 0 , j = texts.length ; i < j ; i += chunk) {
             tempTexts = texts.slice(i,i+chunk);
             tempIds = ids.slice(i,i+chunk);
+            console.log('texts to translate now', tempTexts);
             translateTextsInChunks(modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
             sleepFor(60000);
         }
