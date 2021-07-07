@@ -107,27 +107,14 @@ import * as Survey from "survey-jquery";
             $("#machine-translation-indicator").addClass("hide");
     };
 
-    let refreshPageToTheQuestionnaireSection = function () {
-        let split = window.location.toString().split("#");
-        window.location = split[0] + "#questionnaire";
-        window.location.reload();
-    };
-
-    let initEvents = function () {
-        $('#questionnaire-lang-selector').on('change', displayTranslation);
-        $('#questionnaire-responded').find('.refresh-page').on('click', refreshPageToTheQuestionnaireSection);
-    };
-
     let openQuestionnaireIfNeeded = function () {
-        let respondQuestionnaire = $(".respond-questionnaire");
-        if (respondQuestionnaire.first().data("open-on-load") === 1)
-            respondQuestionnaire.first().trigger("click");
-
+        let searchParams = new URLSearchParams(window.location.search);
+        if(searchParams.has('open') && searchParams.get('open') === '1') {
+            $("#questionnaire-modal").modal('show');
+        }
     };
 
     let init = function () {
-        displayQuestionnaire();
-        initEvents();
         openQuestionnaireIfNeeded();
     };
     $(document).ready(function () {
