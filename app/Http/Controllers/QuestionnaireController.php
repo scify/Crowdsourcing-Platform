@@ -43,7 +43,7 @@ class QuestionnaireController extends Controller {
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
-    public function storeQuestionnaire(Request $request) {
+    public function store(Request $request) {
         return $this->questionnaireManager->storeQuestionnaire($request->all());
     }
 
@@ -52,7 +52,7 @@ class QuestionnaireController extends Controller {
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
-    public function updateQuestionnaire(Request $request, $id) {
+    public function update(Request $request, $id) {
         return $this->questionnaireManager->updateQuestionnaire($id, $request->all());
     }
 

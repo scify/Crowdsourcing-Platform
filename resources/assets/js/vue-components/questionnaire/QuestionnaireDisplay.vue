@@ -26,17 +26,23 @@
 <script>
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
-import LanguageService from "./languageService";
+import {arrayMove} from "../../common";
 
 export default {
   created() {
-    this.languageService = new LanguageService();
   },
   mounted() {
     this.initQuestionnaireDisplay();
+    console.log(this.userResponse);
   },
   props: {
     questionnaire: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
+    userResponse: {
       type: Object,
       default: function () {
         return {}
@@ -48,7 +54,6 @@ export default {
     return {
       surveyCreator: null,
       survey: null,
-      languageService: null,
       surveyLocales: []
     }
   },
@@ -64,8 +69,7 @@ export default {
       this.survey.locale = 'en';
       const locales = this.survey.getUsedLocales();
       // show English as the first language
-      this.arraymove(locales, locales.indexOf("en"), 0);
-      console.log(locales);
+      arrayMove(locales, locales.indexOf("en"), 0);
       for (let i = 0; i < locales.length; i++) {
         this.surveyLocales.push({
           code: locales[i],
@@ -76,16 +80,24 @@ export default {
       this.survey.render("survey-container");
     },
     saveQuestionnaireResponse(sender) {
-      const resultAsString = sender.data;
-      console.log(resultAsString);
+      const resultAsString = JSON.stringify(sender.data);
+      this.post({
+        url: route('respond-questionnaire'),
+        data: {
+          questionnaire_id: this.questionnaire.id,
+          language_code: this.survey.locale,
+          response: resultAsString
+        },
+        urlRelative: false,
+        handleError: false
+      }).then((response) => {
+        console.log(response.data);
+      }).catch(error => {
+        console.error(error);
+      });
     },
     onLanguageChange(event) {
       this.survey.locale = event.target.value;
-    },
-    arraymove(arr, fromIndex, toIndex) {
-      const element = arr[fromIndex];
-      arr.splice(fromIndex, 1);
-      arr.splice(toIndex, 0, element);
     },
     getLanguageFromCode(code) {
       return _.find(this.languages, function(l) { return l.language_code === code; })
