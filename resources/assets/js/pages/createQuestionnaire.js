@@ -24,7 +24,7 @@
         };
         editor = new SurveyEditor.SurveyEditor("questionnaire-editor", editorOptions);
         let json = $("#questionnaire-editor").data('json');
-
+        console.log(JSON.stringify(json));
         if (json !== '')
             editor.text = JSON.stringify(json);
         // disable "Fast Entry" for choices
