@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>My Contributions</h1>
-@stop
+@endsection
 
 @push('css')
     @push('css')

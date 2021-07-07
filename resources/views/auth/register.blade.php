@@ -15,7 +15,7 @@
         <a href="{{ route('login') }}"
            class="text-center">I already have an account</a>
     </div>
-@stop
+@endsection
 @push('scripts')
     <script src="{{ mix('dist/js/register.js') }}"></script>
 @endpush

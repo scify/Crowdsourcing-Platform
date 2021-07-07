@@ -2,10 +2,10 @@
 
 @section('content-header')
     <h1>{{$viewModel->title}}</h1>
-@stop
+@endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/create-questionnaire.css') }}">
+    <link rel="stylesheet" href="{{ mix('dist/css/create-questionnaire.css') }}">
 @endpush
 
 @section('content')
@@ -16,4 +16,4 @@
             :maximum-prerequisite-order='@json($viewModel->maximumPrerequisiteOrder)'
             :questionnaire-statistics-page-visibility-lkp='@json($viewModel->questionnaireStatisticsPageVisibilityLkp)'>
     </questionnaire-create-edit>
-@stop
+@endsection

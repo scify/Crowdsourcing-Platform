@@ -128,7 +128,7 @@
         </div>
 
     </form>
-@stop
+@endsection
 
 @push('scripts')
 

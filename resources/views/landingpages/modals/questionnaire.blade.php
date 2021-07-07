@@ -35,6 +35,7 @@
                         </div>
                     </div>
                     <questionnaire-display
+                            :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
                             :languages='@json($viewModel->languages)'>
                     </questionnaire-display>

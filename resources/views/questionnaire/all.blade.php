@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>Manage Questionnaires</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{mix('dist/css/manage-questionnaires.css')}}">
@@ -106,7 +106,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @push('modals')
     <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog">

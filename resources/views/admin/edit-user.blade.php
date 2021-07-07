@@ -2,7 +2,7 @@
 @section('title', 'home')
 @section('content-header')
     <h1>Edit User</h1>
-@stop
+@endsection
 
 @section('content')
     <form action="{{ url('admin/update-user') }}" method="POST">
@@ -71,4 +71,4 @@
             </div>
         </div>
     </form>
-@stop
+@endsection

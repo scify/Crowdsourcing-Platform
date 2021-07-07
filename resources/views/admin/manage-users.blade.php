@@ -4,7 +4,7 @@
 
 @section('content-header')
     <h1>Manage Users</h1>
-@stop
+@endsection
 
 @section('content')
     <div class="card card-info">
@@ -27,7 +27,7 @@
             @include('admin.partials.new-user-form', ['roles' => $viewModel->allRoles])
         </div>
     </div>
-@stop
+@endsection
 @push('scripts')
     <script src="{{ mix('dist/js/UsersListController.js')}}"></script>
     <script>
