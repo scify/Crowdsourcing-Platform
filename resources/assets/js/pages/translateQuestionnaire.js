@@ -129,23 +129,21 @@
         });
         console.log(texts);
 
-        let i, j, tempTexts, tempIds, chunk = 50;
+        let i, j, tempTexts, tempIds, chunk = 100;
 
         for (i = 0 , j = texts.length ; i < j ; i += chunk) {
             tempTexts = texts.slice(i,i+chunk);
             tempIds = ids.slice(i,i+chunk);
-            setTimeout(translateTextsInChunks,i*60000, modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
+            translateTextsInChunks(modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
         }
     };
 
     let translateTextsInChunks = function(modal, translationItem, languageCodeToTranslateTo, ids, texts) {
-        console.log('texts to translate now', texts);
         $.ajax({
             method: 'post',
             url: $(".translation-wrapper").data("url"),
             data: {languageCodeToTranslateTo, ids, texts},
             beforeSend: function () {
-                modal.modal('show');
                 modal.addClass("loading");
             },
             success: function (response) {
