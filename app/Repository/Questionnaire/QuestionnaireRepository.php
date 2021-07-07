@@ -88,70 +88,6 @@ class QuestionnaireRepository extends Repository {
         });
     }
 
-//    public function updateAllQuestionnaireRelatedTables($questionnaireId, $questions) {
-//        $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
-//        DB::transaction(function () use ($questionnaireId, $questions, $questionsFromDB) {
-//            $guidsUsed = [];
-//            $index = 1;
-//            foreach ($questions as $question) {
-//                $questionTitle = isset($question->title) ?
-//                    (isset($question->title->default) ? $question->title->default : $question->title) : $question->name;
-//                $questionType = $question->type;
-//                $guid = $question->guid;
-//                array_push($guidsUsed, $guid);
-//                $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
-//                try {
-//                    if ($questionFoundInDB)
-//                        $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name, $index);
-//                    else
-//                        $storedQuestion = $this->saveNewQuestion($questionnaireId, $questionTitle, $questionType, $question->name, $guid, $index);
-//                } catch (Exception $e) {
-//                    throw $e;
-//                }
-//
-//                $this->updateHtmlElement($storedQuestion->id, $question, $questionType);
-//                $this->updateAllAnswers($question, $storedQuestion->id);
-//                $index++;
-//            }
-//            $questionsFromDBToBeDeleted = $questionsFromDB->whereNotIn('guid', $guidsUsed);
-//            if ($questionsFromDBToBeDeleted->count() > 0) {
-//                $answersToBeDeletedBecauseQuestionsAreBeingDeleted = QuestionnairePossibleAnswer::whereIn(
-//                    'question_id', $questionsFromDBToBeDeleted->pluck('id')->toArray()
-//                )->get();
-//                $this->deleteAnswers($answersToBeDeletedBecauseQuestionsAreBeingDeleted);
-//                $this->deleteQuestions($questionsFromDBToBeDeleted);
-//            }
-//        });
-//    }
-
-//    public function saveNewQuestion($questionnaireId, $questionTitle, $questionType, $questionName, $questionguid, $orderId) {
-//        $question = new QuestionnaireQuestion();
-//        $question->questionnaire_id = $questionnaireId;
-//        $question->guid = $questionguid;
-//        $question->order_id = $orderId;
-//        return $this->storeQuestion($question, $questionTitle, $questionType, $questionName, $orderId);
-//    }
-
-//    public function saveNewHtmlElement($questionId, $html) {
-//        $questionnaireHtml = new QuestionnaireHtml();
-//        $questionnaireHtml->question_id = $questionId;
-//        return $this->storeHtmlElement($questionnaireHtml, $html);
-//    }
-
-
-//    public function saveNewOtherAnswer($questionId, $question) {
-//        $answerTitle = $this->questionnaireTranslationRepository->getOtherAnswerTitle($question);
-//        $this->saveNewAnswer($questionId, $answerTitle, "other", 'other');
-//
-//    }
-
-//    public function saveNewAnswer($questionId, $answer, $value, $guid) {
-//        $questionnaireAnswer = new QuestionnairePossibleAnswer();
-//        $questionnaireAnswer->question_id = $questionId;
-//        $questionnaireAnswer->guid = $guid;
-//        return $this->storeAnswer($questionnaireAnswer, $answer, $value);
-//    }
-
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
         DB::transaction(function () use ($questionnaireId, $statusId, $comments) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
@@ -170,45 +106,6 @@ class QuestionnaireRepository extends Repository {
         return $questionnaireStatusHistory;
     }
 
-    public function saveNewQuestionnaireResponse($questionnaireId, $response, $userId, $responseJson, $languageId) {
-        $questionsFromDB = $this->getQuestionsForQuestionnaire($questionnaireId);
-        return DB::transaction(function () use ($questionnaireId, $response, $userId, $responseJson, $questionsFromDB, $languageId) {
-            $questionnaireResponse = $this->storeQuestionnaireResponse($questionnaireId, $userId, $responseJson, $languageId);
-            foreach ($response as $question => $answerResponseArray) {
-                if (strpos($question, '-Comment') === false) {
-                    $foundQuestionFromDB = $questionsFromDB->where('name', $question)->first();
-                    $possibleAnswers = QuestionnairePossibleAnswer::where('question_id', $foundQuestionFromDB->id)->get();
-                    if (!is_array($answerResponseArray))
-                        $answerResponseArray = [$answerResponseArray];
-                    foreach ($answerResponseArray as $answerResponse) {
-                        $foundAnswerFromDB = $possibleAnswers->where('value', $answerResponse)->first();
-                        $answerTextToStore = null;
-                        if ($foundAnswerFromDB == null) {
-                            //this only occurs when the question is of type "text"
-                            // At this scenario the response contains text enterned by the user
-                            $answerTextToStore = $answerResponse;
-                        } else if ($answerResponse == "other") {
-                            // if value is "Other", then there will be a key containing the answer in the $response array,
-                            // for example: if user gives to question1 the answer "other", a key $question1-Comment
-                            // should exist inside the $response array that will contain the answer written by user
-                            $commentFieldName = $question . '-Comment';
-                            $answerTextToStore = (isset($response->$commentFieldName)) ? $response->$commentFieldName : null;
-                        }
-
-
-                        $this->storeQuestionnaireResponseAnswer($questionnaireResponse,
-                            $foundQuestionFromDB,
-                            $foundAnswerFromDB,
-                            $answerTextToStore
-                        );
-
-                    }
-                }
-            }
-            return $questionnaireResponse;
-        });
-    }
-
 
     private function storeQuestionnaire($questionnaire, $title, $description, $goal,
                                         $languageId, $projectId, $questionnaireJson,
@@ -218,155 +115,13 @@ class QuestionnaireRepository extends Repository {
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         $questionnaire->project_id = $projectId;
-        $questionnaire->questionnaire_json = $questionnaireJson;
+        // decoding and re-encoding the json, in order to "flatten" it (no new lines)
+        $questionnaire->questionnaire_json = json_encode(json_decode($questionnaireJson));
         $questionnaire->prerequisite_order = $prerequisiteOrder;
         $questionnaire->statistics_page_visibility_lkp_id = $statisticsPageVisibilityLkpId;
         $questionnaire->save();
         return $questionnaire;
     }
-
-    private function getQuestionsForQuestionnaire($questionnaireId) {
-        return QuestionnaireQuestion::where('questionnaire_id', $questionnaireId)->get();
-    }
-
-//    private function storeQuestion(QuestionnaireQuestion $question, $questionTitle, $questionType, $questionName, $index) {
-//        $question->question = $questionTitle;
-//        $question->name = $questionName;
-//        $question->type = $questionType;
-//        $question->order_id = $index;
-//        $question->save();
-//        return $question;
-//    }
-
-//    private function updateHtmlElement($questionId, $question, $questionType) {
-//        $questionnaireHtml = $this->getQuestionnaireHtmlForQuestion($questionId);
-//        if ($questionnaireHtml) {
-//            if ($questionType === 'html')
-//                $this->storeHtmlElement($questionnaireHtml, (isset($question->html->default) ? $question->html->default : $question->html));
-//            else {
-//                $questionnaireHtml->delete();
-//                $this->questionnaireTranslationRepository->deleteHtmlTranslations($questionnaireHtml->id);
-//            }
-//        } else {
-//            if ($questionType === 'html')
-//                $this->saveNewHtmlElement($questionId, (isset($question->html->default) ? $question->html->default : $question->html));
-//        }
-//    }
-
-//    private function getQuestionnaireHtmlForQuestion($questionId) {
-//        return QuestionnaireHtml::where('question_id', $questionId)->first();
-//    }
-
-//    private function storeHtmlElement($questionnaireHtml, $html) {
-//        $questionnaireHtml->html = $html;
-//        $questionnaireHtml->save();
-//        return $questionnaireHtml;
-//    }
-
-//    private function updateAllAnswers($question, $questionId) {
-//        $answersFromDB = $this->getAllPossibleAnswersForQuestion($questionId);
-//        $guidsUsed = [];
-//        if (isset($question->choices)) {
-//            foreach ($question->choices as $temp) {
-//                $answer = isset($temp->text) ? (isset($temp->text->default) ? $temp->text->default : $temp->text) :
-//                    (isset($temp->name) ? $temp->name : $temp);
-//                $value = isset($temp->value) ? $temp->value : $temp;
-//                $guid = $temp->guid;
-//                array_push($guidsUsed, $guid);
-//                $answerFoundInDB = $answersFromDB->where('guid', $guid)->first();
-//                if ($answerFoundInDB)
-//                    $this->storeAnswer($answerFoundInDB, $answer, $value);
-//                else
-//                    $this->saveNewAnswer($questionId, $answer, $value, $guid);
-//            }
-//        }
-//        if (isset($question->hasOther)) {
-//            //add this so they won't be deleted. All answers that are type of other have the same guid with value ("other").
-//            // This is a hack..we should revice the mechanism with the guid, maybe they are not needed at all, since we have a "name" column that seems to be unique for each question
-//            array_push($guidsUsed, "other");
-//            $answerFoundInDB = $answersFromDB->where('guid', "=", "other")->first();
-//            if ($answerFoundInDB)
-//                $this->storeAnswer($answerFoundInDB, $this->questionnaireTranslationRepository->getOtherAnswerTitle($question), "other");
-//            else
-//                $this->saveNewOtherAnswer($questionId, $question);
-//        }
-//
-//        $answersFromDBToBeDeleted = $answersFromDB->whereNotIn('guid', $guidsUsed);
-//        if ($answersFromDBToBeDeleted->count() > 0)
-//            $this->deleteAnswers($answersFromDBToBeDeleted);
-//    }
-
-//    private function getAllPossibleAnswersForQuestion($questionId) {
-//        return QuestionnairePossibleAnswer::where('question_id', $questionId)->get();
-//    }
-
-    private function storeAnswer($questionnaireAnswer, $answer, $value) {
-        $questionnaireAnswer->answer = $answer;
-        $questionnaireAnswer->value = $value;
-        $questionnaireAnswer->save();
-        return $questionnaireAnswer;
-    }
-
-//    private function deleteAnswers($answers) {
-//        foreach ($answers as $answer) {
-//            QuestionnairePossibleAnswer::where('id', $answer->id)->delete();
-//            $this->deleteAnswerTranslations($answer->id);
-//        }
-//    }
-//
-//    private function deleteQuestions($questions) {
-//        foreach ($questions as $question) {
-//            QuestionnaireQuestion::where('id', $question->id)->delete();
-//            $this->deleteQuestionTranslations($question->id);
-//        }
-//    }
-
-    private function storeQuestionnaireResponse($questionnaireId, $userId, $responseJson, $languageId) {
-        $questionnaireResponse = new QuestionnaireResponse();
-        $questionnaireResponse->questionnaire_id = $questionnaireId;
-        $questionnaireResponse->user_id = $userId;
-        $questionnaireResponse->response_json = $responseJson;
-        $questionnaireResponse->language_id = $languageId;
-        $questionnaireResponse->save();
-        return $questionnaireResponse;
-    }
-
-    private function storeQuestionnaireResponseAnswer($questionnaireResponse, $foundQuestionFromDB, $foundAnswerFromDB, $comment) {
-        $responseAnswer = new QuestionnaireResponseAnswer();
-        $responseAnswer->questionnaire_response_id = $questionnaireResponse->id;
-        $responseAnswer->question_id = $foundQuestionFromDB->id;
-        if (!is_null($foundAnswerFromDB))
-            $responseAnswer->answer_id = $foundAnswerFromDB->id;
-
-        $responseAnswer->save();
-
-        if (!is_null($comment)) {
-            $answerText = new QuestionnaireResponseAnswerText();
-            $answerText->questionnaire_response_answer_id = $responseAnswer->id;
-            $answerText->answer = $comment;
-            $answerText->save();
-        }
-
-        return $responseAnswer;
-    }
-
-//    private function deleteAnswerTranslations($answerId) {
-//        QuestionnaireTranslationPossibleAnswer::where('possible_answer_id', $answerId)->delete();
-//    }
-//
-//    private function deleteQuestionTranslations($questionId) {
-//        QuestionnaireTranslationQuestion::where('question_id', $questionId)->delete();
-//    }
-//
-//    public function getMostRecentlyRespondedQuestionnaireForProject(int $projectId, int $userId) {
-//        return Questionnaire::whereHas('project', function (Builder $query) use ($projectId) {
-//            $query->where(['id' => $projectId]);
-//        })
-//        ->whereHas('responses', function (Builder $query) use ($userId) {
-//            $query->where(['user_id' => $userId]);
-//        })
-//        ->first();
-//    }
 
     public function getAllQuestionnairesWithRelatedInfo(array $projectIds): array {
         $projectIdsStr = implode(',', $projectIds);

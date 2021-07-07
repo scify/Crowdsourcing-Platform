@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/9/18
- * Time: 5:35 PM
- */
 
 namespace App\Models;
 
@@ -34,10 +28,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\QuestionnaireResponseAnswerText withoutTrashed()
  * @mixin \Eloquent
  */
-class QuestionnaireResponseAnswerText extends Model
-{
+class QuestionnaireResponseAnswerText extends Model {
     use SoftDeletes;
 
     protected $table = 'questionnaire_response_answer_texts';
     protected $dates = ['deleted_at'];
+    protected $fillable = [
+        'questionnaire_id', 'questionnaire_response_id',
+        'question_name', 'answer', 'parsed',
+        'english_translation', 'initial_language_detected'
+    ];
 }

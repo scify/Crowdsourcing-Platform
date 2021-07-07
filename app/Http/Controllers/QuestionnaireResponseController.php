@@ -7,7 +7,9 @@ namespace App\Http\Controllers;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Models\ViewModels\GamificationBadgeVM;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireResponseController extends Controller {
 
@@ -15,14 +17,14 @@ class QuestionnaireResponseController extends Controller {
     protected $platformWideGamificationBadgesProvider;
 
     public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,) {
+                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
     }
 
-    public function storeQuestionnaireResponse(Request $request) {
+    public function store(Request $request): JsonResponse {
         $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
-        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge(\Auth::id()));
-        return response()->json(['status' => '__SUCCESS', 'badgeHTML' => (string)view('gamification.badge-single', compact('badge'))]);
+        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge(Auth::id()));
+        return response()->json(['badgeHTML' => (string)view('gamification.badge-single', compact('badge'))]);
     }
 }
