@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 class Translator
 {
-    public const BATCH_SIZE = 100;
+    public const BATCH_SIZE = 50;
 
     /**
      * Translate texts to the preferred language.

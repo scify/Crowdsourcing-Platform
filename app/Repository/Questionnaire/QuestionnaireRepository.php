@@ -99,9 +99,11 @@ class QuestionnaireRepository extends Repository {
 
     public function saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments) {
         $questionnaireStatusHistory = new QuestionnaireStatusHistory();
+        $questionnaire = $this->find($questionnaireId);
         $questionnaireStatusHistory->questionnaire_id = $questionnaireId;
         $questionnaireStatusHistory->status_id = $statusId;
         $questionnaireStatusHistory->comments = $comments;
+        $questionnaireStatusHistory->current_json = $questionnaire->questionnaire_json;
         $questionnaireStatusHistory->save();
         return $questionnaireStatusHistory;
     }
