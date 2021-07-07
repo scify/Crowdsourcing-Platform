@@ -17,3 +17,4 @@ storage/database_testing.sqlite
 public/images/vendor
 public/fonts
 public/vendor
+.phpunit.result.cache
