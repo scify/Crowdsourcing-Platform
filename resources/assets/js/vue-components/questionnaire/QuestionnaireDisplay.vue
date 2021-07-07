@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" v-if="!userResponse">
       <div class="col-md-12">
         <div class="form-group">
           <label for="language-select">Select language</label>
@@ -33,7 +33,6 @@ export default {
   },
   mounted() {
     this.initQuestionnaireDisplay();
-    console.log(this.userResponse);
   },
   props: {
     questionnaire: {
@@ -66,6 +65,13 @@ export default {
     initQuestionnaireDisplay() {
       Survey.StylesManager.applyTheme("modern");
       this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
+      if(!this.userResponse)
+        this.prepareQuestionnaireForResponding();
+      else
+        this.prepareQuestionnaireForViewingResponse();
+      this.survey.render("survey-container");
+    },
+    prepareQuestionnaireForResponding() {
       this.survey.locale = 'en';
       const locales = this.survey.getUsedLocales();
       // show English as the first language
@@ -77,7 +83,10 @@ export default {
         });
       }
       this.survey.onComplete.add(this.saveQuestionnaireResponse);
-      this.survey.render("survey-container");
+    },
+    prepareQuestionnaireForViewingResponse() {
+      this.survey.data = JSON.parse(this.userResponse.response_json);
+      this.survey.mode = 'display';
     },
     saveQuestionnaireResponse(sender) {
       const resultAsString = JSON.stringify(sender.data);
