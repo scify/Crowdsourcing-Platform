@@ -20,4 +20,17 @@ class QuestionnaireResponseRepository extends Repository {
     public function questionnaireResponseExists(int $questionnaireId, int $userId): bool {
         return $this->exists(['questionnaire_id' => $questionnaireId, 'user_id' => $userId]);
     }
+
+    public function storeQuestionnaireResponse(int $questionnaireId,
+                                               int $userId,
+                                               int $languageId,
+                                               string $responseJson): QuestionnaireResponse {
+        $questionnaireResponse = new QuestionnaireResponse();
+        $questionnaireResponse->questionnaire_id = $questionnaireId;
+        $questionnaireResponse->user_id = $userId;
+        $questionnaireResponse->language_id = $languageId;
+        $questionnaireResponse->response_json = $responseJson;
+        $questionnaireResponse->save();
+        return $questionnaireResponse;
+    }
 }
