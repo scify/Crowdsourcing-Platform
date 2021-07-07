@@ -121,6 +121,7 @@ class QuestionnaireManager {
     }
 
     public function storeQuestionnaireTranslations($questionnaireId, $translations) {
+        $this->questionnaireRepository->saveNewQuestionnaireStatusHistory($questionnaireId, 2, 'Before translating');
         $this->questionnaireTranslationRepository->storeQuestionnaireTranslations($questionnaireId, json_decode($translations));
     }
 
