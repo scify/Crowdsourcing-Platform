@@ -76,7 +76,7 @@
                     alreadyUsedGuids.push(questions[i].guid);
                 }
                 if(questions[i].type === 'rating') {
-                    questions[i].choices = ['1', '2', '3', '4', '5'];
+                    questions[i].choices = ['1', '2', '3', '4', '5', '6', '7'];
                 }
                 if (questions[i].choices) {
                     let answers = json.pages[pagesIndex].elements[i].choices;
