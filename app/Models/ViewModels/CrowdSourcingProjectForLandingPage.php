@@ -13,7 +13,6 @@ class CrowdSourcingProjectForLandingPage
     public $userResponse;
     public $allResponses;
     public $totalResponses;
-    public $openQuestionnaireWhenPageLoads = false;
     public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
     public $languages;
@@ -21,7 +20,6 @@ class CrowdSourcingProjectForLandingPage
     public function __construct($project, $questionnaire,
                                 $userResponse,
                                 $allResponses,
-                                $openQuestionnaireWhenPageLoads,
                                 $questionnaireGoalVM,
                                 $socialMediaMetadataVM,
                                 Collection $languages)
@@ -32,12 +30,11 @@ class CrowdSourcingProjectForLandingPage
         $this->allResponses = $allResponses;
         $this->totalResponses = $allResponses->count();
         $this->questionnaireGoalVM = $questionnaireGoalVM;
-        $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;
     }
 
-    public function getSignInURLWithParameters() {
+    public function getSignInURLWithParameters(): string {
         $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug."?open=1");
         if(Request()->referrerId)
             $url .= urlencode("&referrerId=") . Request()->referrerId;

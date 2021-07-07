@@ -69,15 +69,13 @@ class CrowdSourcingProjectManager {
         return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug)->first();
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $openQuestionnaireWhenPageLoads, $project_slug):
+    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $project_slug):
     CrowdSourcingProjectForLandingPage {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
-        $questionnaire = null;
         $userResponse = null;
         $questionnaireGoalVM = null;
         $allResponses = collect([]);
-
         if ($questionnaireId)
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         else
@@ -87,15 +85,13 @@ class CrowdSourcingProjectManager {
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
-            if ($userResponse != null)
-                $openQuestionnaireWhenPageLoads = false; //user has already responded
+
         }
 
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
         return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
             $userResponse,
             $allResponses,
-            $openQuestionnaireWhenPageLoads,
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
             $this->languageRepository->all());

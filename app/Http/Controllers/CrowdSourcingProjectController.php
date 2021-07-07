@@ -102,7 +102,7 @@ class CrowdSourcingProjectController extends Controller {
     protected function showCrowdSourcingProjectLandingPage(Request $request, $project_slug) {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
-                isset($request->questionnaireId) ? $request->questionnaireId : null, $request->open, $project_slug);
+                $request->questionnaireId ?? null, $project_slug);
 
             if ($this->shouldHandleQuestionnaireShare($request))
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $request->referrerId);
@@ -118,7 +118,7 @@ class CrowdSourcingProjectController extends Controller {
         }
     }
 
-    private function shouldHandleQuestionnaireShare($request) {
+    private function shouldHandleQuestionnaireShare($request): bool {
         return (
             isset($request->questionnaireId) &&
             isset($request->referrerId) &&
