@@ -134,18 +134,12 @@
         for (i = 0 , j = texts.length ; i < j ; i += chunk) {
             tempTexts = texts.slice(i,i+chunk);
             tempIds = ids.slice(i,i+chunk);
-            console.log('texts to translate now', tempTexts);
-            translateTextsInChunks(modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
-            sleepFor(60000);
+            setTimeout(translateTextsInChunks,i*60000, modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
         }
     };
 
-    function sleepFor(sleepDuration){
-        const now = new Date().getTime();
-        while(new Date().getTime() < now + sleepDuration){ /* Do nothing */ }
-    }
-
     let translateTextsInChunks = function(modal, translationItem, languageCodeToTranslateTo, ids, texts) {
+        console.log('texts to translate now', texts);
         $.ajax({
             method: 'post',
             url: $(".translation-wrapper").data("url"),
