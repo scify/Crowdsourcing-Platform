@@ -44,4 +44,4 @@
             >Reset Password</button>
         </form>
     </div>
-@stop
+@endsection

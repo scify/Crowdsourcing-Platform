@@ -69,5 +69,5 @@
             <br>
         </div>
     </div>
-@stop
+@endsection
 

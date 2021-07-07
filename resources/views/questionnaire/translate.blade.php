@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>Translate</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{mix('dist/css/translate-questionnaire.css')}}">

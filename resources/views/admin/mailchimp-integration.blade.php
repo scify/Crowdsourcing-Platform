@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>MailChimp Integration</h1>
-@stop
+@endsection
 
 @push('css')
 
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @push('scripts')
 

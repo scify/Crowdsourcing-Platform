@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>Reports</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{mix('dist/css/reports.css')}}">
@@ -45,7 +45,7 @@
             <div id="results"></div>
         </div>
     </div>
-@stop
+@endsection
 @push('modals')
     <div class="modal fade" id="answersModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">

@@ -2,7 +2,7 @@
 @section('title', 'home')
 @section('content-header')
     <h1>All Crowd-sourcing Projects</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" href="{{ mix('dist/css/all-projects.css') }}">
