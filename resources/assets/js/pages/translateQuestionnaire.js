@@ -129,14 +129,20 @@
         });
         console.log(texts);
 
-        let i, j, tempTexts, tempIds, chunk = 100;
+        let i, j, tempTexts, tempIds, chunk = 50;
 
         for (i = 0 , j = texts.length ; i < j ; i += chunk) {
             tempTexts = texts.slice(i,i+chunk);
             tempIds = ids.slice(i,i+chunk);
             translateTextsInChunks(modal, translationItem, languageCodeToTranslateTo, tempIds, tempTexts);
+            sleepFor(60000);
         }
     };
+
+    function sleepFor(sleepDuration){
+        const now = new Date().getTime();
+        while(new Date().getTime() < now + sleepDuration){ /* Do nothing */ }
+    }
 
     let translateTextsInChunks = function(modal, translationItem, languageCodeToTranslateTo, ids, texts) {
         $.ajax({
