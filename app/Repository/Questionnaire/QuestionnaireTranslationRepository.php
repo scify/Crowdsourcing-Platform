@@ -182,9 +182,11 @@ class QuestionnaireTranslationRepository {
     private function storeQuestionnaireJsonWithTranslations($questionnaireId, $allTranslations) {
         $questionnaire = Questionnaire::findOrFail($questionnaireId);
         $json = json_decode($questionnaire->questionnaire_json);
-        $elements = [];
-        if (isset($json->pages) && isset($json->pages[0]) && isset($json->pages[0]->elements)) {
-            foreach ($json->pages[0]->elements as $question) {
+        $new_json = '{"pages": [';
+
+        foreach ($json->pages as $page) {
+            $elements = [];
+            foreach ($page->elements as $question) {
                 $relatedTranslations = $allTranslations->where('name', $question->name);
                 $questionTranslations = $relatedTranslations->where('type', 'question');
                 $question->title = $this->setQuestionnaireJsonTitleWithTranslations($questionTranslations, $question);
@@ -202,14 +204,17 @@ class QuestionnaireTranslationRepository {
                 }
                 array_push($elements, $question);
             }
+
+            $new_json .= '{"name": "' . $page->name . '", "elements": ' . json_encode($elements) . '},';
         }
-        $questionnaire->questionnaire_json = '{"pages": [{"name": "page1", "elements": ' . json_encode($elements) . '}]}';
+
+        $new_json = rtrim($new_json, ',');
+
+        $questionnaire->questionnaire_json = $new_json . ']}';
         $questionnaire->save();
     }
 
     private function setQuestionnaireJsonTitleWithTranslations($questionTranslations, $element) {
-        if ($element->name == 'question2')
-            $questionTranslations = $questionTranslations->where('id', 55);
         if (isset($element->title)) {
             if (isset($element->title->default)) // if title translations already exist
                 $defaultTitle = $element->title->default;
