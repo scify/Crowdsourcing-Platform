@@ -145,6 +145,7 @@
             url: $(".translation-wrapper").data("url"),
             data: {languageCodeToTranslateTo, ids, texts},
             beforeSend: function () {
+                modal.modal('show');
                 modal.addClass("loading");
             },
             success: function (response) {
