@@ -4,173 +4,135 @@
 namespace Tests\Feature;
 
 
+use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
+use Tests\TestCase;
 
-class QuestionnaireTests extends \Tests\TestCase {
+class QuestionnaireTests extends TestCase {
 
     protected $questionnaireTranslationRepository;
+    protected $questionnaireResponseManager;
 
     protected function setUp(): void {
         parent::setUp();
         $this->questionnaireTranslationRepository = $this->app->make(QuestionnaireTranslationRepository::class);
+        $this->questionnaireResponseManager = $this->app->make(QuestionnaireResponseManager::class);
     }
 
-    public function test_questionnaire_get_translations_by_language_and_question() {
+    public function test_questionnaire_free_type_questions() {
 
-        $questionnaireJSON = '{
-             "pages": [
+        $questionnaireJSON = '
+        {
+           "pages":[
               {
-               "name": "page1",
-               "elements": [
-                {
-                 "type": "text",
-                 "name": "question7",
-                 "title": "Test input"
-                },
-                {
-                 "type": "multipletext",
-                 "name": "question8",
-                 "title": "Text multiple text input",
-                 "items": [
-                  {
-                   "name": "text1",
-                   "title": "question 1"
-                  },
-                  {
-                   "name": "text2",
-                   "title": "question 2"
-                  }
-                 ]
-                },
-                {
-                 "type": "radiogroup",
-                 "name": "question9",
-                 "choices": [
-                  "item1",
-                  "item2",
-                  "item3"
+                 "name":"page1",
+                 "elements":[
+                    {
+                       "type":"rating",
+                       "name":"question1",
+                       "title":{
+                          "default":"Rating question",
+                          "de":"asdfasdf",
+                          "da":"asdfasdf",
+                          "el":"asdfsadf"
+                       }
+                    },
+                    {
+                       "type":"radiogroup",
+                       "name":"question5",
+                       "title":"Radio group",
+                       "choices":[
+                          "item1",
+                          "item2",
+                          "item3"
+                       ],
+                       "hasOther":true
+                    },
+                    {
+                       "type":"multipletext",
+                       "name":"question4",
+                       "title":{
+                          "default":"Multiple free text",
+                          "de":"German multiple",
+                          "da":"Danish multiple",
+                          "el":"\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03cc multiple"
+                       },
+                       "items":[
+                          {
+                             "name":"text1",
+                             "title":{
+                                "default":"Text first",
+                                "de":"sdfwf",
+                                "da":"qwfwdf",
+                                "el":"23322332"
+                             }
+                          },
+                          {
+                             "name":"text2",
+                             "title":{
+                                "default":"Second text",
+                                "de":"23r23",
+                                "da":"23qd23d",
+                                "el":"2q3d2q3d"
+                             }
+                          }
+                       ]
+                    },
+                    {
+                       "type":"text",
+                       "name":"question2",
+                       "title":{
+                          "default":"SImple input question",
+                          "el":"\u0395\u03c1\u03ce\u03c4\u03b7\u03c3\u03b7 \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7",
+                          "da":"Danish question text",
+                          "de":"German question text"
+                       }
+                    },
+                    {
+                       "type":"matrix",
+                       "name":"question3",
+                       "title":"Matrix question",
+                       "columns":[
+                          "First",
+                          "Second",
+                          "Third"
+                       ],
+                       "rows":[
+                          "One",
+                          "Two"
+                       ]
+                    }
                  ],
-                 "hasOther": true
-                },
-                {
-                 "type": "html",
-                 "name": "question1",
-                 "html": {
-                  "fr": "4325",
-                  "gr": "ελληνικά εδώ",
-                  "hu": "345345",
-                  "default": "Blablalbbalblablalba"
+                 "title":{
+                    "default":"This is the first page",
+                    "el":"\u03a0\u03c1\u03ce\u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1",
+                    "da":"afafd",
+                    "de":"asdfasdfsadf"
                  }
-                },
-                {
-                 "type": "rating",
-                 "name": "question2",
-                 "title": {
-                  "fr": "sfafa",
-                  "gr": "fadfsfa",
-                  "hu": "sdfasdf"
-                 }
-                },
-                {
-                 "type": "matrix",
-                 "name": "question4",
-                 "title": {
-                  "fr": "asdfasf",
-                  "gr": "asfasf",
-                  "hu": "asdfasdf"
-                 },
-                 "columns": [
-                  "Column 1",
-                  "Column 2",
-                  "Column 3"
-                 ],
-                 "rows": [
-                  "Row 1",
-                  "Row 2"
-                 ]
-                }
-               ],
-               "title": {
-                "fr": "123",
-                "gr": "ελληνικός τίτλος",
-                "hu": "asdf",
-                "default": "First page123"
-               },
-               "description": {
-                "fr": "francais",
-                "gr": "νεα ελληνικά",
-                "hu": "asdf",
-                "default": "this is the first page"
-               }
-              },
-              {
-               "name": "page2",
-               "elements": [
-                {
-                 "type": "dropdown",
-                 "name": "question5",
-                 "title": {
-                  "fr": "2ef2ef",
-                  "gr": "2fe2ef",
-                  "hu": "2ef2ef",
-                  "default": "Dropdown question here"
-                 },
-                 "choices": [
-                  {
-                   "value": "item1",
-                   "text": {
-                    "fr": "2f",
-                    "gr": "fe2",
-                    "hu": "fe2"
-                   }
-                  },
-                  {
-                   "value": "item2",
-                   "text": {
-                    "fr": "2ef",
-                    "gr": "f2e",
-                    "hu": "e2f"
-                   }
-                  },
-                  {
-                   "value": "item3",
-                   "text": {
-                    "fr": "2ef",
-                    "gr": "f2e",
-                    "hu": "fe2"
-                   }
-                  }
-                 ]
-                },
-                {
-                 "type": "boolean",
-                 "name": "question6",
-                 "title": {
-                  "fr": "2ef2ef",
-                  "gr": "2ef2ef",
-                  "hu": "e2f2ef",
-                  "default": "Boolean question here"
-                 }
-                }
-               ],
-               "title": {
-                "fr": "2ef2ef",
-                "gr": "2ef",
-                "hu": "2ef",
-                "default": "This is the second page!"
-               },
-               "description": {
-                "fr": "qef",
-                "gr": "q2ef",
-                "hu": "2f",
-                "default": "Second page description"
-               }
               }
-             ]
-             }';
-        $questions = json_decode($questionnaireJSON);
-        foreach ($questions['pages'] as $page) {
+           ]
+        }
+        ';
+        $responseJSON = '
+        {
+           "question1":3,
+           "question5":"other",
+           "question2":"DSSAdasdasd",
+           "question3":{
+              "Two":"First",
+              "One":"Second"
+           },
+           "question5-Comment":"Test test test test"
+        }
+        ';
 
+        $freeTypeQuestions = $this->questionnaireResponseManager->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaireJSON);
+
+        $answers = json_decode($responseJSON);
+
+        foreach ($answers as $questionName => $answer) {
+            if(isset($freeTypeQuestions[$questionName]))
+                self::assertEquals($questionName, $freeTypeQuestions[$questionName]->name);
         }
     }
 }
