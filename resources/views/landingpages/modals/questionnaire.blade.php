@@ -13,11 +13,12 @@
                         <div class="col-12">
                             <div class="description-container">
                                 <div class="description">
-                                    {!! $viewModel->questionnaire->description !!}
+                                    <h4>{!! $viewModel->questionnaire->description !!}</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr>
                     @if ($viewModel->shouldShowQuestionnaireStatisticsLink())
                         <div class="row mt-4">
                             <div class="col-md-12 text-center">
