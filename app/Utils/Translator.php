@@ -7,17 +7,16 @@ use Illuminate\Support\Facades\Log;
 
 class Translator
 {
-    public const BATCH_SIZE = 50;
+    public const BATCH_SIZE = 100;
 
     /**
      * Translate texts to the preferred language.
      * @param array $texts The texts that need translation
-     * @param string $to The language in which the texts will be translated
-     * @return array         The translated texts
+     * @param string $lang_code The language code in which the texts will be translated
+     * @return array The translated texts
      * @throws \Exception
      */
-    public static function translateTexts(array $texts, $to)
-    {
+    public static function translateTexts(array $texts, string $lang_code): array {
         $translate = new TranslateClient(['key' => config('app.google_translate_key')]);
         // Google translate capacity is 100 texts per request.
         // So we need to break the texts into 100-texts batches
@@ -26,7 +25,7 @@ class Translator
         foreach ($batches as $batch) {
             try {
                 $result = array_merge($result, $translate->translateBatch($batch, [
-                    'target' => $to,
+                    'target' => $lang_code,
                 ]));
             } catch (\Exception $e) {
                 if (app()->bound('sentry'))

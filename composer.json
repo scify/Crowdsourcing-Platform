@@ -11,7 +11,7 @@
         "doctrine/dbal": "^2.9",
         "fakerphp/faker": "^1.14",
         "fideloper/proxy": "^4.0",
-        "google/cloud-translate": "^1.2",
+        "google/cloud-translate": "^1.10",
         "intervention/image": "^2.4",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",
