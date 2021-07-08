@@ -15,7 +15,8 @@
         <div class="col-md-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">You have contributed to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
+                    <h3 class="card-title">You have contributed
+                        to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
                 </div>
                 <div class="card-body">
                     @if($responses->isEmpty())
@@ -27,30 +28,35 @@
                                 <th>Project</th>
                                 <th>Questionnaire title</th>
                                 <th>Questionnaire description</th>
-                                <th>Response date</th>
+                                <th>Responded</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($responses as $response)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ url('/' . $response->slug) }}">
-                                                <div class="row">
-                                                    <div class="col-lg-12 margin-bottom">{{ $response->name }}</div>
-                                                    <div class="col-lg-12">
-                                                        <img height="70" alt="{{$response->name}}"
-                                                             src="{{asset($response->logo_path)}}">
-                                                    </div>
+                            @foreach($responses as $response)
+                                <tr>
+                                    <td>
+                                        <a href="{{ url('/' . $response->slug) }}">
+                                            <div class="row">
+                                                <div class="col-lg-12 margin-bottom">{{ $response->name }}</div>
+                                                <div class="col-lg-12">
+                                                    <img height="70" alt="{{$response->name}}"
+                                                         src="{{asset($response->logo_path)}}">
                                                 </div>
-                                            </a>
-                                        </td>
-                                        <td>{{ $response->title }}</td>
-                                        <td>{!! $response->questionnaire_description !!}</td>
-                                        <td>{{ \Carbon\Carbon::parse($response->responded_at)->diffForHumans() }}</td>
-                                        <td><button class="btn btn-block btn-primary viewResponseBtn" data-responseid="{{ $response->questionnaire_response_id }}">View response</button></td>
-                                    </tr>
-                                @endforeach
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>{{ $response->title }}</td>
+                                    <td>{!! $response->questionnaire_description !!}</td>
+                                    <td>{{ \Carbon\Carbon::parse($response->responded_at)->diffForHumans() }}</td>
+                                    <td class="align-middle">
+                                        <button class="btn btn-block btn-primary viewResponseBtn"
+                                                data-responseid="{{ $response->questionnaire_response_id }}">
+                                            View response
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     @endif
@@ -78,7 +84,7 @@
     @endpush
 @endsection
 @push('scripts')
-    <script src="{{ mix('dist/js/myQuestionnaireResponses.js')}}?{{ config("app.version") }}"></script>
+    <script src="{{ mix('dist/js/myQuestionnaireResponses.js')}}"></script>
     <script type="text/javascript">
         let responses = {!! json_encode($responses) !!};
         let controller = new QuestionnaireResponsesController(responses);

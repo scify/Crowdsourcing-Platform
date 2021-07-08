@@ -59,7 +59,8 @@ class QuestionnaireRepository extends Repository {
             ->join('questionnaires as q', 'q.id', '=', 'questionnaire_id')
             ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'q.project_id')
             ->where('user_id', $userId)
-            ->get();
+            ->get()
+            ->sortByDesc('responded_at');
     }
 
     public function saveNewQuestionnaire($title, $description, $goal, $languageId,

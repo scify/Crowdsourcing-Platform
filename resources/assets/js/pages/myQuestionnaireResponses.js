@@ -14,11 +14,13 @@ window.QuestionnaireResponsesController.prototype = function() {
             "searching": true,
             "responsive": true,
             "pageLength": 10,
+            /* No ordering applied by DataTables during initialisation */
+            "order": [],
             "columns": [
                 { "width": "20%" },
                 { "width": "20%" },
-                { "width": "30%" },
-                { "width": "20%" },
+                { "width": "40%" },
+                { "width": "10%" },
                 { "width": "10%" },
             ],
             "initComplete": function(settings, json) {}
@@ -35,7 +37,6 @@ window.QuestionnaireResponsesController.prototype = function() {
     let showResponse = function(instance, responseId) {
         let response = getResponseById(instance.responses, responseId);
         if(response) {
-            console.log(response);
             instance.responseModal.find("#questionnaireResponse").html("");
             instance.responseModal.find("#questionnaireTitle").html(response.title);
             let survey = new Survey.Model(JSON.parse(response.questionnaire_json));

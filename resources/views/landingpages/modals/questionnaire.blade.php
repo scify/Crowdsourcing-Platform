@@ -29,12 +29,6 @@
                             </div>
                         </div>
                     @endif
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="questionnaire-display-section"
-                                 data-content="{{$viewModel->questionnaire->questionnaire_json}}"></div>
-                        </div>
-                    </div>
                     <questionnaire-display
                             :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
