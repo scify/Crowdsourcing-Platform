@@ -18,6 +18,7 @@ use App\Repository\Repository;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class QuestionnaireRepository extends Repository {
     private $questionnaireTranslationRepository;
@@ -100,7 +101,7 @@ class QuestionnaireRepository extends Repository {
                 $questionType = $question->type;
                 $guid = $question->guid;
                 array_push($guidsUsed, $guid);
-                $questionFoundInDB = $questionsFromDB->where('guid', $guid)->first();
+                $questionFoundInDB = QuestionnaireQuestion::where('guid', $guid)->first();
                 try {
                     if ($questionFoundInDB)
                         $storedQuestion = $this->storeQuestion($questionFoundInDB, $questionTitle, $questionType, $question->name, $index);
