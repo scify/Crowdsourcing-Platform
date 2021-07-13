@@ -19,7 +19,7 @@
            class="btn btn-primary respond-questionnaire"
            style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
                    background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};">
-            Speak up
+            Sign in to answer
         </a>
     @endif
 @endif
