@@ -119,9 +119,10 @@ import * as Survey from "survey-jquery";
     };
 
     let openQuestionnaireIfNeeded = function () {
-        let respondQuestionnaire = $(".respond-questionnaire");
-        if (respondQuestionnaire.first().data("open-on-load") === 1)
-            respondQuestionnaire.first().trigger("click");
+        let searchParams = new URLSearchParams(window.location.search);
+        if(searchParams.has('open') && searchParams.get('open') === '1') {
+            $("#questionnaire-modal").modal('show');
+        }
 
     };
 
