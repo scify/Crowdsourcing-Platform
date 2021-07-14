@@ -31,7 +31,7 @@ class QuestionnaireStatisticsRepository {
         return new QuestionnaireResponseStatistics(
             count($totalResponses) ? $totalResponses[0]->count : 0,
             $goalResponses[0]->goal,
-            count($totalResponses) ? $totalResponses[0]->total_responses_color: null,
+            count($totalResponses) ? $totalResponses[0]->total_responses_color : null,
             $goalResponses[0]->goal_responses_color
         );
     }
@@ -106,7 +106,7 @@ class QuestionnaireStatisticsRepository {
             select qq.id as question_id, question as title, qpa.color, 'fixed_choices' as question_type, qpa.answer as answer_title, count(*) as num_responses from questionnaire_response_answers as qra
                 inner join questionnaire_questions as qq on qra.question_id = qq.id
                 inner join questionnaire_possible_answers as qpa on answer_id = qpa.id
-            where qq.questionnaire_id = ? and qra.deleted_at is null and qq.deleted_at is null and qq.type in ('radiogroup', 'checkbox', 'rating')
+            where qq.questionnaire_id = ? and qra.deleted_at is null and qra.deleted_at is null and qq.deleted_at is null and qq.type in ('radiogroup', 'checkbox', 'rating')
             group by question, qq.id, qpa.answer, qpa.color
             order by qq.id
         ;", [$questionnaireId]);
@@ -162,6 +162,7 @@ class QuestionnaireStatisticsRepository {
                 join questionnaire_response_answer_texts as qrat on qrat.questionnaire_response_answer_id = qra.id
                 left outer join languages_lkp as ll on ll.language_code = initial_language_detected
             where qq.type in ('text', 'comment') and qq.deleted_at is null and qq.questionnaire_id = ?
+              and qra.deleted_at is null and qrat.deleted_at is null
             order by question;
             ", [$questionnaireId]);
         $query = collect($query)->map(function ($x) {
