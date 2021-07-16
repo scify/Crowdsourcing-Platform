@@ -8,15 +8,17 @@
                data-questionnaire-id="{{$viewModel->questionnaire->id}}"
                data-url="{{route('respond-questionnaire')}}"
                data-toggle="modal" data-target="#questionnaire-modal">
-                Speak up
+                Contribute
             </a>
+        @else
+            <h2 class="mt-3 text-center">You have already answered this questionnaire.<br>Thank you for your response!</h2>
         @endif
     @else
         <a href="{{ $viewModel->getSignInURLWithParameters() }}"
            class="btn btn-primary respond-questionnaire"
            style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
                    background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};">
-            Speak up
+            Sign in to contribute
         </a>
     @endif
 @endif
