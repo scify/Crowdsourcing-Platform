@@ -18,7 +18,7 @@
             @else
 
                 <a href="{{url("/" . $nextStepVM->project->slug . "?open=1")}}"
-                   class="btn btn-primary btn-lg nextStepActionBtn">Speak up</a>
+                   class="btn btn-primary btn-lg nextStepActionBtn">Contribute</a>
 
             @endif
         </div>

@@ -64,7 +64,7 @@
                                             <input {{ $viewModel->project->lp_show_speak_up_btn ? 'checked' : ''  }} class="form-check-input"
                                                    type="checkbox" name="lp_show_speak_up_btn" value="1" id="show-speak-up-btn">
                                             <label class="form-check-label control-label" for="show-speak-up-btn">
-                                                Show "Speak up" button
+                                                Show "Contribute" button
                                             </label>
                                         </div>
                                     </div>
@@ -155,7 +155,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-12 control-label" for="lp_questionnaire_btn_color">"Speak up"
+                                    <label class="col-md-12 control-label" for="lp_questionnaire_btn_color">"Contribute"
                                         button text color (<span
                                                 class="red">*</span>)<br>
                                     </label>
