@@ -62,6 +62,11 @@ Route::get('/questionnaires/{questionnaire}/statistics',
     ->name('questionnaire.statistics')
     ->middleware('questionnaire.page_settings');
 
+Route::get('/questionnaires/{questionnaire}/statistics-new',
+    'QuestionnaireStatisticsController@showStatisticsVisualizationsNewPageForQuestionnaire')
+    ->name('questionnaire.statistics_new')
+    ->middleware('questionnaire.page_settings');
+
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 
 

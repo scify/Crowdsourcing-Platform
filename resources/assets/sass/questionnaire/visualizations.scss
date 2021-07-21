@@ -1,3 +1,5 @@
+@import "../variables";
+
 #answerTranslationModal {
 
   .modal-dialog {
@@ -11,6 +13,42 @@
   }
 }
 
-.modal-dialog {
+.sa-question.sa-question-layouted {
+  position: relative;
+  margin: 0 auto;
+}
 
+.sa-visualizer__toolbar.sa-panel__header {
+  .sa-toolbar {
+    .sa-toolbar__button {
+      display: none;
+    }
+  }
+}
+
+.js-plotly-plot .plotly, .js-plotly-plot .plotly div {
+  margin: 0 auto;
+}
+
+.sa-visualizer__content {
+  text-align: center;
+}
+
+.plot-container.plotly {
+  .user-select-none.svg-container {
+    margin: 0 auto;
+  }
+}
+
+.loader-container {
+
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+
+  .spinner-border {
+    width: 10rem;
+    height: 10rem;
+    color: $primary;
+    border-width: 0.5rem;
+  }
 }

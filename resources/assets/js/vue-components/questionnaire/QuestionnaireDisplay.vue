@@ -90,20 +90,21 @@ export default {
     },
     saveQuestionnaireResponse(sender) {
       const resultAsString = JSON.stringify(sender.data);
-      this.post({
-        url: route('respond-questionnaire'),
-        data: {
-          questionnaire_id: this.questionnaire.id,
-          language_code: this.survey.locale,
-          response: resultAsString
-        },
-        urlRelative: false,
-        handleError: false
-      }).then((response) => {
-        console.log(response.data);
-      }).catch(error => {
-        console.error(error);
-      });
+      console.log(JSON.stringify(sender.data));
+      // this.post({
+      //   url: route('respond-questionnaire'),
+      //   data: {
+      //     questionnaire_id: this.questionnaire.id,
+      //     language_code: this.survey.locale,
+      //     response: resultAsString
+      //   },
+      //   urlRelative: false,
+      //   handleError: false
+      // }).then((response) => {
+      //   console.log(response.data);
+      // }).catch(error => {
+      //   console.error(error);
+      // });
     },
     onLanguageChange(event) {
       this.survey.locale = event.target.value;

@@ -6,8 +6,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
 use App\Models\Questionnaire;
 use Illuminate\Http\Request;
 
-class QuestionnaireStatisticsController extends Controller
-{
+class QuestionnaireStatisticsController extends Controller {
     protected $questionnaireStatisticsManager;
 
 
@@ -18,6 +17,12 @@ class QuestionnaireStatisticsController extends Controller
     public function showStatisticsVisualizationsPageForQuestionnaire(Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModel($questionnaire);
         return view('questionnaire.visualizations', compact(['viewModel']));
+    }
+
+    public function showStatisticsVisualizationsNewPageForQuestionnaire(Questionnaire $questionnaire) {
+        $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModelNew($questionnaire);
+
+        return view('questionnaire.visualizations_new', compact(['viewModel']));
     }
 
     public function showEditStatisticsColorsPage(Questionnaire $questionnaire) {

@@ -7,6 +7,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 use App\Models\Questionnaire;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatistics;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
+use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsNew;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\QuestionnairePossibleAnswerRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireBasicStatisticsColorsRepository;
@@ -45,6 +46,15 @@ class QuestionnaireStatisticsManager {
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
             $statisticsPerQuestion,
+            Gate::allows('manage-crowd-sourcing-projects')
+        );
+    }
+
+    public function getQuestionnaireVisualizationsViewModelNew(Questionnaire $questionnaire) {
+        $project = $questionnaire->project;
+        return new QuestionnaireStatisticsNew (
+            $questionnaire,
+            $project,
             Gate::allows('manage-crowd-sourcing-projects')
         );
     }

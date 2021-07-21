@@ -26,10 +26,10 @@ require('datatables.net-bs4');
 require('datatables.net-buttons');
 require('datatables.net-buttons-bs4');
 
-require( 'datatables.net-buttons/js/buttons.colVis.js' )();
-require( 'datatables.net-buttons/js/buttons.html5.js' )();
-require( 'datatables.net-buttons/js/buttons.flash.js' )();
-require( 'datatables.net-buttons/js/buttons.print.js' )();
+require('datatables.net-buttons/js/buttons.colVis.js')();
+require('datatables.net-buttons/js/buttons.html5.js')();
+require('datatables.net-buttons/js/buttons.flash.js')();
+require('datatables.net-buttons/js/buttons.print.js')();
 require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
@@ -39,8 +39,10 @@ import Vue from 'vue';
 import store from './store/store';
 
 Vue.component('modal', require('./vue-components/common/ModalComponent').default);
+Vue.component('store-modal', require('./vue-components/common/StoreModalComponent').default);
 Vue.component('questionnaire-create-edit', require('./vue-components/questionnaire/QuestionnaireCreateEdit').default);
 Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
+Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
 
 const app = new Vue({
     el: '#app',

@@ -165,7 +165,10 @@ export default {
         statistics_page_visibility_lkp_id: null,
         project_id: null
       },
-      surveyCreator: null
+      surveyCreator: null,
+      questionTypes: ["boolean", "checkbox", "comment", "dropdown",
+        "html", "matrix", "matrixdropdown", "matrixdynamic", "radiogroup", "rating", "text"],
+      colors: ["red", "green", "blue", "yellow", "purple", "black", "orange"]
     }
   },
   methods: {
@@ -175,11 +178,21 @@ export default {
       'post'
     ]),
     initQuestionnaireEditor() {
+
       Survey.surveyLocalization.supportedLocales = _.map(this.languages, 'language_code');
-      for(let i = 0; i < this.languages.length; i++) {
+      for (let i = 0; i < this.languages.length; i++) {
         Survey.surveyLocalization.localeNames[this.languages[i].language_code] = this.languages[i].language_name;
       }
-      SurveyCreator.StylesManager.applyTheme("bootstrap");
+      Survey
+          .JsonObject
+          .metaData
+          .addProperty("itemvalue", {
+            name: "statsColor",
+            title: "Stats Color",
+            choices: this.colors,
+            isRequired: false
+          });
+
       const options = {
         // show the embedded survey tab. It is hidden by default
         showEmbeddedSurveyTab: false,
@@ -187,14 +200,15 @@ export default {
         showTestSurveyTab: true,
         // hide the JSON text editor tab. It is shown by default
         showJSONEditorTab: true,
-        showTranslationTab: true
+        showTranslationTab: true,
+        questionTypes: this.questionTypes
       };
 
       this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
       this.surveyCreator.render("questionnaire-editor");
       this.surveyCreator.haveCommercialLicense = true;
       if (this.questionnaireData.questionnaire_json)
-        this.surveyCreator.text = this.questionnaireData.questionnaire_json;
+        this.surveyCreator.text = this.assignRandomColorsToChoices(this.questionnaireData.questionnaire_json);
     },
     saveQuestionnaire() {
       if (this.formInvalid())
@@ -244,10 +258,63 @@ export default {
       });
 
     },
-
     formInvalid() {
       return !this.questionnaire.title || !this.questionnaire.description || !this.questionnaire.goal;
+    },
+    getRandomColor() {
+      return this.colors[Math.floor(Math.random() * this.colors.length)];
+    },
+    shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+
+      return array;
+    },
+    assignRandomColorsToChoices(jsonStr) {
+      const colors = this.shuffle(this.colors);
+      let json = JSON.parse(jsonStr);
+      let colorIndex = 0;
+      for (let i = 0; i < json.pages.length; i++) {
+        for (let j = 0; j < json.pages[i].elements.length; j++) {
+          if (json.pages[i].elements[j].choices) {
+            for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
+              if (!json.pages[i].elements[j].choices[choiceIndex].statsColor) {
+                json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
+                colorIndex++;
+                if (colorIndex === colors.length)
+                  colorIndex = 0;
+              }
+            }
+          }
+          if (json.pages[i].elements[j].columns) {
+            for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
+              if (!json.pages[i].elements[j].columns[colIndex].statsColor) {
+                json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
+                colorIndex++;
+                if (colorIndex === colors.length)
+                  colorIndex = 0;
+              }
+            }
+          }
+          if (json.pages[i].elements[j].rows) {
+            for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
+              if (!json.pages[i].elements[j].rows[rowIndex].statsColor) {
+                json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
+                colorIndex++;
+                if (colorIndex === colors.length)
+                  colorIndex = 0;
+              }
+            }
+          }
+        }
+      }
+      return JSON.stringify(json);
     }
+
   }
 }
 </script>

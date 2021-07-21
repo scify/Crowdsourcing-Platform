@@ -87,6 +87,10 @@
                                                target="_blank"
                                                href="{{route('questionnaire.statistics', ['questionnaire' => $questionnaire->id])}}">
                                                 <i class="fas fa-chart-pie"></i> View Statistics</a>
+                                                <a class="action-btn dropdown-item"
+                                                   target="_blank"
+                                                   href="{{route('questionnaire.statistics_new', ['questionnaire' => $questionnaire->id])}}">
+                                                    <i class="fas fa-chart-pie"></i> View New Statistics</a>
                                             @can('change-status-crowd-sourcing-projects')
                                                 <hr>
                                                 <a class="action-btn dropdown-item change-status"

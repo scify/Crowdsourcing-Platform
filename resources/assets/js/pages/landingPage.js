@@ -37,20 +37,21 @@ import * as Survey from "survey-jquery";
                     let questionnaire_id = button.data('questionnaire-id');
                     let url = button.data('url');
                     const selectedLanguageCode = $('#questionnaire-lang-selector').val();
-                    $.ajax({
-                        method: 'post',
-                        data: {questionnaire_id, response, selectedLanguageCode},
-                        url: url,
-                        success: function (response) {
-                            $(".loader-wrapper").addClass('hidden');
-                            let questionnaireResponded = $("#questionnaire-responded");
-                            // add badge fetched from response to the appropriate container
-                            if (response.status === "__SUCCESS" && response.badgeHTML)
-                                questionnaireResponded.find('.badge-container').html(response.badgeHTML);
-                            questionnaireResponded.modal({backdrop: 'static'});
-                            $("#pyro").addClass("pyro-on");
-                        }
-                    });
+                    console.log(result.data);
+                    // $.ajax({
+                    //     method: 'post',
+                    //     data: {questionnaire_id, response, selectedLanguageCode},
+                    //     url: url,
+                    //     success: function (response) {
+                    //         $(".loader-wrapper").addClass('hidden');
+                    //         let questionnaireResponded = $("#questionnaire-responded");
+                    //         // add badge fetched from response to the appropriate container
+                    //         if (response.status === "__SUCCESS" && response.badgeHTML)
+                    //             questionnaireResponded.find('.badge-container').html(response.badgeHTML);
+                    //         questionnaireResponded.modal({backdrop: 'static'});
+                    //         $("#pyro").addClass("pyro-on");
+                    //     }
+                    // });
                 });
             $(wrapper).Survey({model: survey});
             survey
