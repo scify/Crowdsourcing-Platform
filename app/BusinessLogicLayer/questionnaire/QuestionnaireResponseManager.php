@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireResponseManager {
@@ -36,12 +37,16 @@ class QuestionnaireResponseManager {
         return $this->questionnaireRepository->getAllResponsesGivenByUser($user->id);
     }
 
-    public function questionnaireResponsesForUserExists($userId) {
+    public function questionnaireResponsesForUserExists($userId): bool {
         return $this->questionnaireResponseRepository->userResponseExists($userId);
     }
 
-    public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId) {
+    public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId): bool {
         return $this->questionnaireResponseRepository->questionnaireResponseExists($userId, $questionnaireId);
+    }
+
+    public function getQuestionnaireResponsesForQuestionnaire(int $questionnaire_id): Collection {
+        return $this->questionnaireResponseRepository->where(['questionnaire_id' => $questionnaire_id]);
     }
 
     public function storeQuestionnaireResponse($data) {
@@ -76,7 +81,7 @@ class QuestionnaireResponseManager {
                 $shouldSave = true;
                 $questionName = str_replace('-Comment', '', $questionName);
             }
-            if($shouldSave) {
+            if ($shouldSave) {
                 $data = [
                     'questionnaire_id' => $questionnaire->id,
                     'questionnaire_response_id' => $questionnaireResponse->id,

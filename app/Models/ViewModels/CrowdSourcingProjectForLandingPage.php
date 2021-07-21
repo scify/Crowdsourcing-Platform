@@ -6,8 +6,7 @@ namespace App\Models\ViewModels;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
 use Illuminate\Support\Collection;
 
-class CrowdSourcingProjectForLandingPage
-{
+class CrowdSourcingProjectForLandingPage {
     public $project;
     public $questionnaire;
     public $userResponse;
@@ -16,14 +15,15 @@ class CrowdSourcingProjectForLandingPage
     public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
     public $languages;
+    public $openQuestionnaireWhenPageLoads = false;
 
     public function __construct($project, $questionnaire,
                                 $userResponse,
                                 $allResponses,
                                 $questionnaireGoalVM,
                                 $socialMediaMetadataVM,
-                                Collection $languages)
-    {
+                                Collection $languages,
+                                $openQuestionnaireWhenPageLoads) {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
         $this->userResponse = $userResponse;
@@ -32,13 +32,14 @@ class CrowdSourcingProjectForLandingPage
         $this->questionnaireGoalVM = $questionnaireGoalVM;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;
+        $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
     }
 
     public function getSignInURLWithParameters(): string {
-        $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug."?open=1");
-        if(Request()->referrerId)
+        $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug . "?open=1");
+        if (Request()->referrerId)
             $url .= urlencode("&referrerId=") . Request()->referrerId;
-        if(Request()->questionnaireId)
+        if (Request()->questionnaireId)
             $url .= urlencode("&questionnaireId=") . Request()->questionnaireId;
         return $url;
     }

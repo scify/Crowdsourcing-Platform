@@ -27,4 +27,8 @@ class QuestionnaireResponseController extends Controller {
         $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge(Auth::id()));
         return response()->json(['badgeHTML' => (string)view('gamification.badge-single', compact('badge'))]);
     }
+
+    public function getResponsesForQuestionnaire(int $questionnaire_id): JsonResponse {
+        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id));
+    }
 }
