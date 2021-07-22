@@ -43,6 +43,7 @@ Vue.component('store-modal', require('./vue-components/common/StoreModalComponen
 Vue.component('questionnaire-create-edit', require('./vue-components/questionnaire/QuestionnaireCreateEdit').default);
 Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
 Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
+Vue.component('crowd-sourcing-project-colors', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectColors').default);
 
 const app = new Vue({
     el: '#app',
@@ -96,21 +97,11 @@ const app = new Vue({
     };
 
     let initializeColorPicker = function () {
-        $('.color-picker').each(function (i, obj) {
-            $(obj).colorpicker({
-                horizontal: true
-            });
-
-            $(obj).on('colorpickerCreate', function (event) {
-                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
-            });
-
-            $(obj).on('colorpickerChange', function (event) {
-                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
-            });
+        $('.color-picker').each(function (i, el) {
+            initSingleColorPicker(el);
         });
-
     };
+
 
     let handleLogoutBtnClick = function () {
         $("#log-out").click(function (e) {
@@ -134,4 +125,18 @@ export function arrayMove(arr, fromIndex, toIndex) {
     const element = arr[fromIndex];
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
+}
+
+export function initSingleColorPicker (el) {
+    $(el).colorpicker({
+        horizontal: true
+    });
+
+    $(el).on('colorpickerCreate', function (event) {
+        $(el).find('.input-group-addon').css('background-color', event.color.toString());
+    });
+
+    $(el).on('colorpickerChange', function (event) {
+        $(el).find('.input-group-addon').css('background-color', event.color.toString());
+    });
 }
