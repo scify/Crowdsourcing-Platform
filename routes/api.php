@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\QuestionnaireResponseController;
 
@@ -19,4 +20,5 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
     Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('update-questionnaire');
     Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
     Route::get('/questionnaire/responses/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])->name('questionnaire.responses');
+    Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])->name('crowd-sourcing-project.get-colors');
 });
