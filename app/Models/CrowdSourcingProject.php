@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectColors;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -84,5 +85,12 @@ class CrowdSourcingProject extends Model
      */
     public function communicationResources() {
         return $this->hasOne(CrowdSourcingProjectCommunicationResources::class, 'id', 'communication_resources_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function colors() {
+        return $this->hasMany(CrowdSourcingProjectColors::class, 'project_id', 'id');
     }
 }

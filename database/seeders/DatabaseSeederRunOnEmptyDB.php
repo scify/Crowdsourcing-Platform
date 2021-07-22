@@ -24,7 +24,8 @@ class DatabaseSeederRunOnEmptyDB extends Seeder
             QuestionnairesSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
             MailChimpListsTableSeeder::class,
-            ProduceAPITokenForDefaultAdmin::class
+            ProduceAPITokenForDefaultAdmin::class,
+            CrowdSourcingProjectColorsSeeder::class
         ]);
     }
 }

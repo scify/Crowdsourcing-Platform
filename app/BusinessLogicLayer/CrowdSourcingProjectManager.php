@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogicLayer;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectColorsManager;
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
@@ -32,6 +33,7 @@ class CrowdSourcingProjectManager {
     protected $currentQuestionnaireProvider;
     protected $crowdSourcingProjectCommunicationResourcesManager;
     protected $languageRepository;
+    protected $crowdSourcingProjectColorsManager;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 QuestionnaireRepository $questionnaireRepository,
@@ -41,7 +43,8 @@ class CrowdSourcingProjectManager {
                                 QuestionnaireGoalManager $questionnaireGoalManager,
                                 CurrentQuestionnaireProvider $currentQuestionnaireProvider,
                                 CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager,
-                                LanguageRepository $languageRepository) {
+                                LanguageRepository $languageRepository,
+                                CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -51,6 +54,7 @@ class CrowdSourcingProjectManager {
         $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
         $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
         $this->languageRepository = $languageRepository;
+        $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
@@ -132,6 +136,15 @@ class CrowdSourcingProjectManager {
         $this->updateCommunicationResources($project, $attributes);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
+        $colors = [];
+        for($i = 0; $i < count($attributes['color_codes']); $i++) {
+            array_push($colors, [
+                'id' => $attributes['color_ids'][$i],
+                'color_name' => $attributes['color_names'][$i],
+                'color_code' => $attributes['color_codes'][$i]
+            ]);
+        }
+        $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null) {
@@ -284,7 +297,7 @@ class CrowdSourcingProjectManager {
             $project->communicationResources = $this->crowdSourcingProjectCommunicationResourcesManager->getDefaultModelInstance();
 
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
-
+        $project->colors = $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id);
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
 
         $contributorBadge = new ContributorBadge(1, true);

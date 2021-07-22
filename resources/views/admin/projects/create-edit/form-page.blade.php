@@ -53,6 +53,15 @@
                                     <span class="bs-stepper-label">Communication Emails</span>
                                 </button>
                             </div>
+                            <div class="line"></div>
+                            <div class="step" data-target="#statistics-colors">
+                                <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="statistics-colors"
+                                        id="statistics-colors-trigger">
+                                    <span class="bs-stepper-circle">5</span>
+                                    <span class="bs-stepper-label">Statistics Colors</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="bs-stepper-content">
                             <div id="basic-details" class="content" role="tabpanel"
@@ -70,6 +79,10 @@
                             <div id="communication-resources" class="content" role="tabpanel"
                                  aria-labelledby="communication-resources-trigger">
                                 @include('admin.projects.create-edit.partials.communication-resources')
+                            </div>
+                            <div id="statistics-colors" class="content" role="tabpanel"
+                                 aria-labelledby="statistics-colors-trigger">
+                                @include('admin.projects.create-edit.partials.statistics-colors')
                             </div>
                         </div>
                         <div class="row mt-4">

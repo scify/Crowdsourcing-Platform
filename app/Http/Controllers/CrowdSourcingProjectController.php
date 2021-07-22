@@ -81,8 +81,11 @@ class CrowdSourcingProjectController extends Controller {
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
         $attributes = $request->all();
-
-        $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $attributes);
+        try {
+            $this->crowdSourcingProjectManager->updateCrowdSourcingProject($id, $attributes);
+        } catch (\Exception $e) {
+            return back()->with('flash_message_failure', $e->getMessage());
+        }
         return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project has been successfully updated');
     }
 
