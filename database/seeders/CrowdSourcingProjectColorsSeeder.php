@@ -23,39 +23,39 @@ class CrowdSourcingProjectColorsSeeder extends Seeder {
     public function run() {
         $colors = [
             [
-                'color_name' => 'color-1',
+                'color_name' => 'color-01',
                 'color_code' => '#004F9F'
             ],
             [
-                'color_name' => 'color-2',
+                'color_name' => 'color-02',
                 'color_code' => '#28A745'
             ],
             [
-                'color_name' => 'color-3',
+                'color_name' => 'color-03',
                 'color_code' => '#DC3545'
             ],
             [
-                'color_name' => 'color-4',
+                'color_name' => 'color-04',
                 'color_code' => '#FD7E14'
             ],
             [
-                'color_name' => 'color-5',
+                'color_name' => 'color-05',
                 'color_code' => '#FFC107'
             ],
             [
-                'color_name' => 'color-6',
+                'color_name' => 'color-06',
                 'color_code' => '#20C997'
             ],
             [
-                'color_name' => 'color-7',
+                'color_name' => 'color-07',
                 'color_code' => '#E83E8C'
             ],
             [
-                'color_name' => 'color-8',
+                'color_name' => 'color-08',
                 'color_code' => '#29B6F6'
             ],
             [
-                'color_name' => 'color-9',
+                'color_name' => 'color-09',
                 'color_code' => '#6610F2'
             ],
             [

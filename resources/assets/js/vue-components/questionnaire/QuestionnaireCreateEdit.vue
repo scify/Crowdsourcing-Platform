@@ -140,7 +140,7 @@ export default {
       this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id
   },
   mounted() {
-    this.initQuestionnaireEditor();
+    this.getColorsForCrowdSourcingProject();
   },
   props: {
     questionnaireData: {
@@ -168,7 +168,7 @@ export default {
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
         "html", "matrix", "matrixdropdown", "matrixdynamic", "radiogroup", "rating", "text"],
-      colors: ["red", "green", "blue", "yellow", "purple", "black", "orange"]
+      colors: []
     }
   },
   methods: {
@@ -177,6 +177,16 @@ export default {
       'handleError',
       'post'
     ]),
+    getColorsForCrowdSourcingProject() {
+      this.get({
+        url: route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
+        data: {},
+        urlRelative: false
+      }).then(response => {
+        this.colors = _.map(response.data, 'color_name').sort();
+        this.initQuestionnaireEditor();
+      });
+    },
     initQuestionnaireEditor() {
 
       Survey.surveyLocalization.supportedLocales = _.map(this.languages, 'language_code');
