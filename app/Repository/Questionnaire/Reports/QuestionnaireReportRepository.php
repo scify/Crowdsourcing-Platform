@@ -24,41 +24,6 @@ class QuestionnaireReportRepository {
         ');
     }
 
-    public function getReportDataForAnswers($questionnaireId) {
-        return DB::select('
-                select
-                q.id as questionnaire_id,
-                qq.id as question_id, 
-                qq.question,
-                qpa.id as answer_id,
-                qpa.answer,
-                IFNULL(ResponseCounts.num_of_responses,0) as num_of_responses
-                
-                from 
-                    questionnaires q 
-                    inner join questionnaire_questions qq on qq.questionnaire_id = q.id
-                    left outer join questionnaire_possible_answers qpa on qpa.question_id = qq.id
-                
-                    left outer join
-                        (
-                        select 
-                            question_id,answer_id, count(*) as num_of_responses
-                            from questionnaire_response_answers  qra
-                                inner join questionnaire_questions qq on qq.id = qra.question_id
-                                where qq.questionnaire_id = ' . $questionnaireId . '
-                                group by question_id,answer_id
-                        ) as ResponseCounts on  ResponseCounts.question_id = qq.id and ResponseCounts.answer_id <=>  qpa.id
-                   
-                where 
-                q.id = 1 
-                and qq.type <> "html"
-                
-                and qq.deleted_at is null
-                and qpa.deleted_at is null 
-                order by qq.order_id, qpa.id
-        ');
-    }
-
     public function getRespondentsData($questionnaireId) {
         return DB::select('
              select questionnaire_responses.id, questionnaire_id, 

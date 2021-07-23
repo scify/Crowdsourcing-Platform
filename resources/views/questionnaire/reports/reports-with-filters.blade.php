@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div class="col-md-3 col-sm-12 justify-content-center align-items-center">
-                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg" data-url="{{ route('questionnaireReport') }}"><i
+                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg" data-url="{{ route('questionnaire.get-report-data') }}"><i
                                         class="fa fa-plus mr-1"></i> View</button>
                         </div>
                     </div>

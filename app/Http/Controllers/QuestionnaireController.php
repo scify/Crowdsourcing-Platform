@@ -3,28 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireReportManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
-use Illuminate\Database\QueryException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class QuestionnaireController extends Controller {
     protected $questionnaireManager;
     protected $questionnaireShareManager;
-    protected $questionnaireReportManager;
     protected $questionnaireVMProvider;
 
     public function __construct(QuestionnaireManager $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireReportManager $questionnaireReportManager,
                                 QuestionnaireVMProvider $questionnaireVMProvider) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
-        $this->questionnaireReportManager = $questionnaireReportManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;
     }
 
@@ -33,7 +28,7 @@ class QuestionnaireController extends Controller {
         return view("questionnaire.all")->with(['viewModel' => $questionnairesViewModel]);
     }
 
-    public function saveQuestionnaireStatus(Request $request) {
+    public function saveQuestionnaireStatus(Request $request): RedirectResponse {
         $this->questionnaireManager->updateQuestionnaireStatus($request->questionnaire_id, $request->status_id, $request->comments);
         return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
     }
@@ -96,29 +91,5 @@ class QuestionnaireController extends Controller {
         $questionnaireId = $values['questionnaire-id'];
         $this->questionnaireShareManager->createQuestionnaireShare($userId, $questionnaireId);
         return response()->json(['status' => '__SUCCESS']);
-    }
-
-    public function viewReportsPage(Request $request) {
-        $selectedQuestionnaireId = $request->questionnaireId;
-        $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
-        return view("questionnaire.reports.reports-with-filters", ['viewModel' => $viewModel]);
-    }
-
-    public function showReportForQuestionnaire(Request $request) {
-        $input = $request->all();
-        try {
-            $reportViewModel = $this->questionnaireReportManager->getQuestionnaireReportViewModel($input);
-            $view = view('questionnaire.reports.report-for-questionnaire', compact('reportViewModel'));
-            $responseCode = Response::HTTP_OK;
-            $responseContent = (string)$view->render();
-        } catch (QueryException $e) {
-            $responseCode = Response::HTTP_INTERNAL_SERVER_ERROR;
-            $responseContent = 'Error: ' . $e->getCode() . '. A Database error occurred.';
-        } catch (\Exception $e) {
-            $responseCode = Response::HTTP_INTERNAL_SERVER_ERROR;
-            $responseContent = 'Error: ' . $e->getCode() . "  " . $e->getMessage();
-        } finally {
-            return response()->json(['data' => $responseContent], $responseCode);
-        }
     }
 }

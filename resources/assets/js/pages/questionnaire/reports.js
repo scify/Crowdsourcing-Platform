@@ -1,7 +1,11 @@
+import * as Survey from "survey-knockout";
+import { Tabulator } from 'survey-analytics/survey.analytics.tabulator.js';
+
 (function () {
 
     let table;
     const loader = $("#loader");
+    let questionnaire;
 
     let checkForURLSearchParams = function () {
         let searchParams = new URLSearchParams(window.location.search);
@@ -96,8 +100,10 @@
         $("#results").html("");
         $("#errorMsg").addClass('d-none');
         loader.addClass('d-none');
-        $("#results").html(response.data);
+        $("#results").html(response.data.view);
+        questionnaire = response.data.questionnaire;
         initializeDataTables();
+        initializeQuestionnaireResponsesReport(response.data.responses);
     };
 
     let initializeDataTables = function () {
@@ -142,36 +148,17 @@
             "initComplete": function (settings, json) {
             }
         });
+    };
 
-        let answersTable = $("#answersTable");
-        answersTable.DataTable({
-            "paging": true,
-            "searching": true,
-            "responsive": true,
-            "pageLength": 10,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'csvHtml5',
-                    text: 'Download as CSV',
-                    filename: 'Answers_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime(),
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 5]
-                    }
-                }
-
-            ],
-            "columns": [
-                {"width": "5%"},
-                {"width": "40%"},
-                {"width": "5%"},
-                {"width": "5%"},
-                {"width": "10%"},
-                {"width": "30%"},
-            ],
-            "initComplete": function (settings, json) {
-            }
-        });
+    let initializeQuestionnaireResponsesReport = function (responsesData) {
+        Survey.StylesManager.applyTheme("bootstrap");
+        const survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
+        let panelEl = document.getElementById("questionnaire-responses-report");
+        const answers = _.map(_.map(responsesData, 'response_json'), JSON.parse);
+        panelEl.innerHTML = "";
+        Tabulator.haveCommercialLicense = true;
+        const surveyAnalyticsTabulator = new Tabulator(survey, answers, {});
+        surveyAnalyticsTabulator.render(panelEl);
     };
 
     let init = function () {
