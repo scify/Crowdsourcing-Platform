@@ -55,7 +55,7 @@ export default {
 
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
-    this.getQuestionnaireResponses();
+    this.getColorsForCrowdSourcingProject();
   },
   mounted() {
   },
@@ -65,6 +65,16 @@ export default {
       'handleError',
       'closeModal'
     ]),
+    getColorsForCrowdSourcingProject() {
+      this.get({
+        url: route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
+        data: {},
+        urlRelative: false
+      }).then(response => {
+        this.colors = response.data;
+        this.getQuestionnaireResponses();
+      });
+    },
     getQuestionnaireResponses() {
       this.get({
         url: route('questionnaire.responses', this.questionnaire.id),
@@ -82,8 +92,12 @@ export default {
         if (!this.shouldDrawStatistics(this.questions[i]))
           continue;
 
-        const colors = this.getColorsForQuestion(this.questions[i]);
+        const colors = this.convertColorNamesToColorCodes(this.getColorsForQuestion(this.questions[i]));
+
         if (colors.length) {
+          if (this.questions[i].otherItem) {
+            colors.unshift("blue");
+          }
           this.statsPanelIndexToColors.set(i, colors);
         }
 
@@ -102,7 +116,8 @@ export default {
         visPanel.visualizers.forEach((visualizer) => {
           if (!visualizer.onAnswersDataReady) return;
           visualizer.onAnswersDataReady.add((sender, options) => {
-            options.colors = instance.statsPanelIndexToColors.get(sender.options.index);
+            if (instance.statsPanelIndexToColors.has(sender.options.index))
+              options.colors = instance.statsPanelIndexToColors.get(sender.options.index);
           });
         });
         visPanel.render(document.getElementById('survey-statistics-container_' + i));
@@ -120,11 +135,16 @@ export default {
       else
         return [];
 
-      let colors = _.map(choices, 'statsColor');
-      if (question.otherItem) {
-        colors.unshift("blue");
+      return _.map(choices, 'statsColor');
+    },
+    convertColorNamesToColorCodes(colorNames) {
+      let colorCodes = [];
+      for (let i = 0; i < colorNames.length; i++) {
+        const color = _.find(this.colors, ['color_name', colorNames[i]]);
+        if (color)
+          colorCodes.push(color.color_code);
       }
-      return colors;
+      return colorCodes;
     }
   }
 }

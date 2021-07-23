@@ -247,7 +247,6 @@ export default {
         urlRelative: false,
         handleError: false
       }).then((response) => {
-        console.log(response.data);
         swal({
           title: "Success!",
           text: "The questionnaire has been successfully stored.",
