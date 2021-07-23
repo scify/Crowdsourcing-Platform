@@ -130,7 +130,6 @@
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
-import {surveyLocalization} from "survey-jquery";
 
 export default {
   created() {
