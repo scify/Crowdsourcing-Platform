@@ -29,8 +29,8 @@
                             <th class="text-center">#</th>
                             <th>Title</th>
                             <th>Project</th>
-                            <th>Goal / Responses</th>
-                            <th>Languages available</th>
+                            <th>Responses / Goal</th>
+                            <th>Languages</th>
                             <th>Status</th>
                             <th class="text-center">Order</th>
                             <th>Actions</th>
@@ -43,12 +43,11 @@
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td>{{$questionnaire->title}}</td>
                                 <td>{{ $questionnaire->project_name }}</td>
-                                <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }}
+                                <td>{{ $questionnaire->number_of_responses ?? 0 }} / {{ $questionnaire->goal }}
                                     <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}
                                         %)</b></td>
                                 <td>
-                                    <b>{{$questionnaire->default_language_name}}</b>
-                                    {{$questionnaire->languages}}
+                                    <b>{{$questionnaire->default_language_name}}</b>{{ $questionnaire->languages? ', ' : '' }}{{$questionnaire->languages}}
                                 </td>
                                 <td>
                                         <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_id)}}"

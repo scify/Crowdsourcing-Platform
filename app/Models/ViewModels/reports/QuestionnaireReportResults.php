@@ -6,12 +6,12 @@ namespace App\Models\ViewModels\reports;
 class QuestionnaireReportResults {
 
     public $usersRows;
-    public $answersRows;
+    public $responses;
     public $respondentsRows;
 
-    public function __construct($usersRows, $answersRows, $respondentsRows) {
+    public function __construct($usersRows, $responses, $respondentsRows) {
         $this->usersRows = $usersRows;
-        $this->answersRows = $answersRows;
+        $this->responses = $responses;
         $this->respondentsRows = $respondentsRows;
     }
 

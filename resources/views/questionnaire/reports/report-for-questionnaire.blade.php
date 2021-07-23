@@ -7,18 +7,18 @@
             <div class="col-md-12">
                 <table id="respondentsTable" class="w-100 table table-striped table-bordered" cellspacing="0">
                     <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>Answered at</th>
-                        </tr>
+                    <tr>
+                        <th>Email</th>
+                        <th>Answered at</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach($reportViewModel->respondentsRows as $row)
-                            <tr>
-                                <td>{{ $row->email }}</td>
-                                <td>{{ $row->answered_at }}</td>
-                            </tr>
-                        @endforeach
+                    @foreach($reportViewModel->respondentsRows as $row)
+                        <tr>
+                            <td>{{ $row->email }}</td>
+                            <td>{{ $row->answered_at }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -70,43 +70,8 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-12">
-                <div class="answerStats">
-                    <table id="answersTable" cellspacing="0" class="w-100 table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Question id</th>
-                            <th>Question text</th>
-                            <th>Answer id</th>
-                            <th>Number of responses</th>
-                            <th>Action</th>
-                            <th>Answer text</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($reportViewModel->answersRows as $row)
-                            <tr>
-                                <td>{{ $row->question_id }}</td>
-                                <td>{{ $row->question }}</td>
-                                <td>{{ $row->answer_id }}</td>
-                                <td>
-                                    {{ $row->num_of_responses }}
-                                </td>
-                                <td>
-                                    @if(!$row->answer_texts->isEmpty())
-                                        <a data-question="{{ $row->question }}"
-                                           data-answers="{{$row->answer_texts->toJson()}}" href="#"
-                                           class="btn btn-primary more-btn">
-                                            View
-                                        </a>
-                                    @endif
-                                </td>
-                                <td>{{ $row->answer }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-12">
+                <div id="questionnaire-responses-report"></div>
             </div>
         </div>
     </div>
