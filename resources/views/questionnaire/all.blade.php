@@ -71,26 +71,22 @@
                                             @endif
                                             <a class="action-btn dropdown-item"
                                                href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
-                                                        class="fas fa-palette"></i> Statistics Colors</a>
+                                                        class="fas fa-palette"></i> Basic Statistics Colors</a>
 
                                             @if(isset($questionnaire->url) && $questionnaire->url)
                                                 <button data-clipboard-text="{{ $questionnaire->url }}"
-                                                   class="copy-clipboard action-btn dropdown-item">
+                                                        class="copy-clipboard action-btn dropdown-item">
                                                     <i class="copy-questionnaire-link fa fa-link"></i> Get Link
                                                 </button>
                                             @endif
                                             <hr>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i
-                                                        class="fas fa-list-ul"></i> View Results Report</a>
+                                                        class="fas fa-list-ul"></i> Results Report</a>
                                             <a class="action-btn dropdown-item"
                                                target="_blank"
                                                href="{{route('questionnaire.statistics', ['questionnaire' => $questionnaire->id])}}">
-                                                <i class="fas fa-chart-pie"></i> View Statistics</a>
-                                                <a class="action-btn dropdown-item"
-                                                   target="_blank"
-                                                   href="{{route('questionnaire.statistics_new', ['questionnaire' => $questionnaire->id])}}">
-                                                    <i class="fas fa-chart-pie"></i> View New Statistics</a>
+                                                <i class="fas fa-chart-pie"></i> Statistics</a>
                                             @can('change-status-crowd-sourcing-projects')
                                                 <hr>
                                                 <a class="action-btn dropdown-item change-status"

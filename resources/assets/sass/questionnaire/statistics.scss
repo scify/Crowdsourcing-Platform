@@ -52,3 +52,25 @@
     border-width: 0.5rem;
   }
 }
+
+.survey-statistics-container {
+  .sa-question {
+    .sa-question__content {
+      .sa-question__title {
+        font-size: 2rem;
+        font-family: "Oswald", Arial, Sans-Serif, serif;
+        color: $primary;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+    }
+
+    .sa-visualizer__content {
+      .sa-text-table__cell {
+        text-align: left;
+        padding: 0.75rem;
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ import Chart from 'chart.js';
         initQuestionnaireResponsesChart();
         if(viewModel.numberOfResponsesPerLanguage.data.length > 1)
             initQuestionnaireResponsesPerLanguageChart();
-        initQuestionResponsesCharts();
+        // initQuestionResponsesCharts();
         printPageBtnHandler();
     };
 

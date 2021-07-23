@@ -66,32 +66,32 @@ class QuestionnaireVMProvider {
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
-    public function getTranslateQuestionnaireViewModel($questionnaireId) {
-        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
-        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
-        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
-        $questionnaireTranslations = $this->questionnaireTranslationRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
-        $questionnaireLanguages = $this->questionnaireTranslationRepository->getQuestionnaireAvailableLanguages($questionnaireId);
-        // if default value translation is set and there are some translations but not for all questions/answers/html,
-        // we need to pass all the not translated strings to the other languages, so that they will be available for translation
-        if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
-            $defaultLanguageTranslation = $questionnaireTranslations->pull("");
-            foreach ($questionnaireTranslations->keys() as $language) {
-                foreach ($defaultLanguageTranslation as $translations) {
-                    $questionnaireTranslations->get($language)->push($translations);
-                }
-            }
-        }
-        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
-    }
+//    public function getTranslateQuestionnaireViewModel($questionnaireId) {
+//        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
+//        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
+//        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
+//        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
+//        $questionnaireTranslations = $this->questionnaireTranslationRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
+//        $questionnaireLanguages = $this->questionnaireTranslationRepository->getQuestionnaireAvailableLanguages($questionnaireId);
+//        // if default value translation is set and there are some translations but not for all questions/answers/html,
+//        // we need to pass all the not translated strings to the other languages, so that they will be available for translation
+//        if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
+//            $defaultLanguageTranslation = $questionnaireTranslations->pull("");
+//            foreach ($questionnaireTranslations->keys() as $language) {
+//                foreach ($defaultLanguageTranslation as $translations) {
+//                    $questionnaireTranslations->get($language)->push($translations);
+//                }
+//            }
+//        }
+//        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
+//    }
 
-    private function transformAllLanguagesToArray($allLanguages) {
-        $result = [];
-        foreach ($allLanguages as $language) {
-            array_push($result, $language[0]);
-        }
-        return $result;
-    }
+//    private function transformAllLanguagesToArray($allLanguages) {
+//        $result = [];
+//        foreach ($allLanguages as $language) {
+//            array_push($result, $language[0]);
+//        }
+//        return $result;
+//    }
 
 }

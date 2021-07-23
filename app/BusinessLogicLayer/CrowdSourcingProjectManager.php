@@ -70,7 +70,7 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectBySlug($project_slug) {
-        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug)->first();
+        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $project_slug, $openQuestionnaireWhenPageLoads):

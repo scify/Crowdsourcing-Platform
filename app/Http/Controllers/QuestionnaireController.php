@@ -56,10 +56,10 @@ class QuestionnaireController extends Controller {
         return $this->questionnaireManager->updateQuestionnaire($id, $request->all());
     }
 
-    public function translateQuestionnaire($id) {
-        $viewModel = $this->questionnaireVMProvider->getTranslateQuestionnaireViewModel($id);
-        return view('questionnaire.translate')->with(['viewModel' => $viewModel]);
-    }
+//    public function translateQuestionnaire($id) {
+//        $viewModel = $this->questionnaireVMProvider->getTranslateQuestionnaireViewModel($id);
+//        return view('questionnaire.translate')->with(['viewModel' => $viewModel]);
+//    }
 
     public function getAutomaticTranslationForString(Request $request) {
         $translation = $this->questionnaireManager->getAutomaticTranslationForString(

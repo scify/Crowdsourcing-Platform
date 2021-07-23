@@ -46,8 +46,8 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/questionnaire/{id}/translate', 'QuestionnaireController@translateQuestionnaire')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/{id}/translate', 'QuestionnaireController@storeQuestionnaireTranslations')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
-    Route::get('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
     //    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
     Route::post('automatic-translation', 'QuestionnaireController@getAutomaticTranslations')->name('automatic-translation');
     Route::post('mark-translation', 'QuestionnaireController@markTranslation')->name('mark-translation');
@@ -57,14 +57,10 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
-Route::get('/questionnaires/{questionnaire}/statistics',
-    'QuestionnaireStatisticsController@showStatisticsVisualizationsPageForQuestionnaire')
-    ->name('questionnaire.statistics')
-    ->middleware('questionnaire.page_settings');
 
-Route::get('/questionnaires/{questionnaire}/statistics-new',
-    'QuestionnaireStatisticsController@showStatisticsVisualizationsNewPageForQuestionnaire')
-    ->name('questionnaire.statistics_new')
+Route::get('/questionnaires/{questionnaire}/statistics',
+    'QuestionnaireStatisticsController@showStatisticsPageForQuestionnaire')
+    ->name('questionnaire.statistics')
     ->middleware('questionnaire.page_settings');
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');

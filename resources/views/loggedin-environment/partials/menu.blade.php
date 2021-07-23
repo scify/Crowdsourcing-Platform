@@ -51,8 +51,7 @@
                     <li class="nav-item {{UrlMatchesMenuItem("questionnaires")}}">
                         <a class="nav-link" href="{{ route('questionnaires.all') }}"><i
                                     class="nav-icon fa fa-question-circle "></i>
-                            <p>Manage
-                                Questionnaires</p></a>
+                            <p>Questionnaires</p></a>
                     </li>
                 @endcan
                 @can("manage-platform")
