@@ -13,7 +13,6 @@ window.UsersListController.prototype = function () {
             $("body").on("click", "#usersList .pagination a", function (e) {
                 e.preventDefault();
                 pageNum = $(this).attr("href").replace('#?page=', '');
-                console.log(pageNum);
                 if(!$(this).parent().hasClass("active")) {
                     $("#usersFilters").find("#searchBtn").trigger("click");
                 }
