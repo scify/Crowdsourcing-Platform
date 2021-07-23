@@ -23,11 +23,11 @@ class CrowdSourcingProjectColorsManager {
     }
 
     public function getDefaultColors(): Collection {
-        return $this->crowdSourcingProjectColorsRepository->where(['project_id' => null]);
+        return $this->crowdSourcingProjectColorsRepository->allWhere(['project_id' => null]);
     }
 
     public function getColorsForCrowdSourcingProject(int $project_id): Collection {
-        return $this->crowdSourcingProjectColorsRepository->where(['project_id' => $project_id]);
+        return $this->crowdSourcingProjectColorsRepository->allWhere(['project_id' => $project_id]);
     }
 
     public function saveColorsForCrowdSourcingProject(array $colors, int $project_id) {

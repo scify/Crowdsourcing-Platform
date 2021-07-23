@@ -18,7 +18,7 @@ class CrowdSourcingProjectAccessManager {
 
     public function registerCrowdSourcingProjectPolicies() {
         Gate::define('view-landing-page', function (?User $user, string $project_slug) {
-            $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug)->first();
+            $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
             return $this->shouldShowLandingPageToUser($user, $project);
         });
     }

@@ -49,7 +49,7 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
         }
 
         // update all questionnaires that have null
-        $questionnaires = $this->questionnaireRepository->where(['statistics_page_visibility_lkp_id' => null]);
+        $questionnaires = $this->questionnaireRepository->allWhere(['statistics_page_visibility_lkp_id' => null]);
         foreach ($questionnaires as $questionnaire) {
             $this->questionnaireRepository->update([
                 'statistics_page_visibility_lkp_id' => 1

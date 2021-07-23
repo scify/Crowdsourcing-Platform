@@ -30,6 +30,7 @@ class QuestionnaireManager {
     protected $questionnaireTranslationRepository;
     protected $crowdSourcingProjectAccessManager;
     protected $crowdSourcingProjectRepository;
+    protected $questionnaireLanguageManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 LanguageManager $languageManager,
@@ -41,7 +42,8 @@ class QuestionnaireManager {
                                 QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
                                 QuestionnaireTranslationRepository $questionnaireTranslationRepository,
                                 CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
+                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
+                                QuestionnaireLanguageManager $questionnaireLanguageManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -53,6 +55,7 @@ class QuestionnaireManager {
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
+        $this->questionnaireLanguageManager = $questionnaireLanguageManager;
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
@@ -64,21 +67,25 @@ class QuestionnaireManager {
         $projectTheQuestionnaireBelongsTo = $this->crowdSourcingProjectRepository->find($data['project']);
         // here we need to set the prerequisite order of the questionnaire equal to the number of questionnaires + 1.
         $numOfQuestionnaires = $projectTheQuestionnaireBelongsTo->questionnaires->count();
-        return $this->questionnaireRepository->saveNewQuestionnaire(
+        $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
             $data['title'], $data['description'],
             $data['goal'], $data['language'],
             $data['project'], $data['content'],
             $numOfQuestionnaires + 1,
             $data['statistics_page_visibility_lkp_id']
         );
+        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        return $questionnaire;
     }
 
     public function updateQuestionnaire($id, $data) {
-        return $this->questionnaireRepository->updateQuestionnaire($id,
+        $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
             $data['title'], $data['description'],
             $data['goal'], $data['language'],
             $data['project'], $data['content'],
             $data['prerequisite_order'], $data['statistics_page_visibility_lkp_id']);
+        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        return $questionnaire;
     }
 
     public function getAutomaticTranslationForString($languageCodeToTranslateTo, $text) {
@@ -187,11 +194,11 @@ class QuestionnaireManager {
 //        $questionnaire->save();
 //    }
 
-    public function shouldShowLinkForQuestionnaire($questionnaire) {
+    public function shouldShowLinkForQuestionnaire($questionnaire): bool {
         return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
     }
 
-    public function getQuestionnaireURL($projectSlug, $questionnaireId) {
+    public function getQuestionnaireURL($projectSlug, $questionnaireId): string {
         return url('/' . $projectSlug) . '?open=1&questionnaireId=' . $questionnaireId;
     }
 }

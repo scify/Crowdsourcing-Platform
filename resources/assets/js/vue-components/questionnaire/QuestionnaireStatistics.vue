@@ -11,7 +11,7 @@
     </div>
     <div class="row" v-for="index in questions.length">
       <div class="col-lg-8 col-md-10 col-sm-11 mx-auto">
-        <div :id="'survey-statistics-container_' + (index - 1)"></div>
+        <div class="survey-statistics-container" :id="'survey-statistics-container_' + (index - 1)"></div>
       </div>
     </div>
     <store-modal

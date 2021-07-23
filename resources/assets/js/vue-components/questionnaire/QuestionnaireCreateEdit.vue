@@ -117,7 +117,7 @@
         <div class="card-footer">
           <div class="row">
             <div class="col-md-offset-10 col-md-2">
-              <button @click="saveQuestionnaire" class="btn btn-block btn-primary">Save</button>
+              <button @click="saveQuestionnaire" class="btn btn-block btn-primary btn-lg w-100">Save</button>
             </div>
           </div>
         </div>
@@ -130,6 +130,7 @@
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
+import {surveyLocalization} from "survey-jquery";
 
 export default {
   created() {
@@ -168,7 +169,8 @@ export default {
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
         "html", "matrix", "matrixdropdown", "matrixdynamic", "radiogroup", "rating", "text"],
-      colors: []
+      colors: [],
+      isTranTabInitialised: false
     }
   },
   methods: {
@@ -219,6 +221,16 @@ export default {
       this.surveyCreator.haveCommercialLicense = true;
       if (this.questionnaireData.questionnaire_json)
         this.surveyCreator.text = this.assignRandomColorsToChoices(this.questionnaireData.questionnaire_json);
+      let instance = this;
+      let usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
+      this.surveyCreator.onActiveTabChanged.add((sender, options) => {
+        if (options.tabName == "translation") {
+          if (!instance.isTranTabInitialised) {
+            sender.translation.setSelectedLocales(usedLocales);
+            instance.isTranTabInitialised = true;
+          }
+        }
+      });
     },
     saveQuestionnaire() {
       if (this.formInvalid())
@@ -229,6 +241,10 @@ export default {
           confirmButtonClass: "btn-danger",
           confirmButtonText: "OK",
         });
+      let locales = this.surveyCreator.translationValue.getSelectedLocales();
+      if (locales[0] === "") {
+        locales = [];
+      }
       const data = {
         title: this.questionnaire.title,
         description: this.questionnaire.description,
@@ -238,7 +254,10 @@ export default {
         prerequisite_order: this.questionnaire.prerequisite_order,
         statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
         content: this.surveyCreator.text,
+        lang_codes: locales
       };
+      const instance = this;
+
       this.post({
         url: this.questionnaire.id
             ? route('update-questionnaire', this.questionnaire.id)
@@ -254,7 +273,7 @@ export default {
           confirmButtonClass: "btn-success",
           confirmButtonText: "OK",
         }, function () {
-          window.location = route('questionnaires.all');
+          window.location = route('edit-questionnaire', instance.questionnaire.id);
         });
       }).catch(error => {
         swal({

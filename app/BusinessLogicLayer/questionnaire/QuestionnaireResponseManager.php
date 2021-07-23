@@ -46,7 +46,7 @@ class QuestionnaireResponseManager {
     }
 
     public function getQuestionnaireResponsesForQuestionnaire(int $questionnaire_id): Collection {
-        return $this->questionnaireResponseRepository->where(['questionnaire_id' => $questionnaire_id]);
+        return $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaire_id]);
     }
 
     public function storeQuestionnaireResponse($data) {
