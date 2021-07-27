@@ -5,7 +5,7 @@ namespace App\Repository;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
-use App\Models\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 

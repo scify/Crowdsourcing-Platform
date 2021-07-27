@@ -6,7 +6,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\WebSessionManager;
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;

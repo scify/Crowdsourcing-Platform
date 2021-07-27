@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/9/18
- * Time: 5:43 PM
- */
-
-namespace App\Models;
+namespace App\Models\Questionnaire;
 
 
+use App\Models\Language;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

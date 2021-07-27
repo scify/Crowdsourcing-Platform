@@ -3,10 +3,10 @@
 namespace App\Repository\Questionnaire;
 
 
-use App\Models\Questionnaire;
-use App\Models\QuestionnaireResponse;
-use App\Models\QuestionnaireStatus;
-use App\Models\QuestionnaireStatusHistory;
+use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireResponse;
+use App\Models\Questionnaire\QuestionnaireStatus;
+use App\Models\Questionnaire\QuestionnaireStatusHistory;
 use App\Repository\Repository;
 use Illuminate\Support\Facades\DB;
 

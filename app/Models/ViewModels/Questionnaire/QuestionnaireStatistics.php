@@ -3,8 +3,8 @@
 
 namespace App\Models\ViewModels\Questionnaire;
 
-use App\Models\CrowdSourcingProject;
-use App\Models\Questionnaire;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\Statistics\QuestionnaireResponsesPerLanguage;
 use App\Repository\Questionnaire\Statistics\QuestionnaireResponseStatistics;
 

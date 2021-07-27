@@ -3,7 +3,7 @@
 namespace App\Models\ViewModels;
 
 
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 
 class QuestionnaireSocialShareButtons {
 

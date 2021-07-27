@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\CrowdSourcingProject;
 
-use App\Models\CrowdSourcingProject\CrowdSourcingProjectColors;
+use App\Models\Language;
+use App\Models\Questionnaire\Questionnaire;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;

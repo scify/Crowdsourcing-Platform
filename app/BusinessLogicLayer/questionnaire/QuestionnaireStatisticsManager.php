@@ -4,7 +4,7 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatistics;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;

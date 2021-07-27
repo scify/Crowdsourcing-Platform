@@ -7,7 +7,7 @@ use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\Language;
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
