@@ -4,7 +4,7 @@
 namespace App\Repository\Questionnaire\Responses;
 
 
-use App\Models\QuestionnaireResponse;
+use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Repository\Repository;
 
 class QuestionnaireResponseRepository extends Repository {

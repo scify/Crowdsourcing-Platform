@@ -1,17 +1,14 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/9/18
- * Time: 5:35 PM
- */
 
-namespace App\Models;
+namespace App\Models\Questionnaire;
 
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Language;
 use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
-use App\Models\Questionnaire\Statistics\QuestionnaireLanguageStatisticsColor;
-use App\Models\Questionnaire\Statistics\QuestionnaireQuestionStatisticsColor;
+use App\Models\QuestionnaireQuestion;
+use App\Models\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkp;
+use App\Models\Questionnaire\QuestionnaireStatusHistory;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

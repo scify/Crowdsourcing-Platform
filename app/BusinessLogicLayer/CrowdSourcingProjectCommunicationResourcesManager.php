@@ -4,8 +4,8 @@
 namespace App\BusinessLogicLayer;
 
 
-use App\Models\CrowdSourcingProject;
-use App\Models\CrowdSourcingProjectCommunicationResources;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectCommunicationResources;;
 use App\Repository\CrowdSourcingProjectCommunicationResourcesRepository;
 use App\Repository\CrowdSourcingProjectRepository;
 

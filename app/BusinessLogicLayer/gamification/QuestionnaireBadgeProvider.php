@@ -4,7 +4,7 @@
 namespace App\BusinessLogicLayer\gamification;
 
 
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;

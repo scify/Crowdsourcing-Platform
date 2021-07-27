@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use App\BusinessLogicLayer\gamification\GamificationBadge;
-use App\Models\CrowdSourcingProjectCommunicationResources;
-use App\Models\Questionnaire;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectCommunicationResources;;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -4,7 +4,7 @@
 namespace App\Models\ViewModels;
 
 
-use App\Models\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
 
 class CreateEditCrowdSourcingProject {

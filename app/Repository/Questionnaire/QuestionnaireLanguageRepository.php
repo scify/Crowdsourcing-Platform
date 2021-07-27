@@ -4,7 +4,7 @@
 namespace App\Repository\Questionnaire;
 
 
-use App\Models\QuestionnaireLanguage;
+use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Repository\Repository;
 use Illuminate\Support\Collection;
 

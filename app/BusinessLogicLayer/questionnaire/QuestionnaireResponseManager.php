@@ -4,8 +4,8 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\BusinessLogicLayer\LanguageManager;
-use App\Models\Questionnaire;
-use App\Models\QuestionnaireResponse;
+use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextRepository;

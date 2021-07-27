@@ -4,7 +4,7 @@
 namespace App\Repository;
 
 
-use App\Models\CrowdSourcingProjectCommunicationResources;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectCommunicationResources;;
 
 class CrowdSourcingProjectCommunicationResourcesRepository extends Repository {
 

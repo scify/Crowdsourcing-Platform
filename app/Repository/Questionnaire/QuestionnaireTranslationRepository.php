@@ -4,8 +4,8 @@ namespace App\Repository\Questionnaire;
 
 
 use App\Models\Language;
-use App\Models\Questionnaire;
-use App\Models\QuestionnaireLanguage;
+use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Models\QuestionnaireTranslationHtml;
 use App\Models\QuestionnaireTranslationPossibleAnswer;
 use App\Models\QuestionnaireTranslationQuestion;

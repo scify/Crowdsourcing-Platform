@@ -6,7 +6,7 @@ use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectColorsManage
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
-use App\Models\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
