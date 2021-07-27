@@ -74,3 +74,21 @@
     }
   }
 }
+
+.custom-texts-table-container {
+  .custom-texts-table {
+    th, td {
+      text-align: left;
+
+      .like-count {
+        font-size: small;
+        margin-bottom: 0;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .dataTables_length,.dataTables_info {
+    text-align: left;
+  }
+}
