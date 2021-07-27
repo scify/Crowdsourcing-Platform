@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="row" v-for="index in questions.length">
-      <div class="col-lg-8 col-md-10 col-sm-11 mx-auto">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
         <div class="survey-statistics-container" :id="'survey-statistics-container_' + (index - 1)"></div>
       </div>
     </div>
@@ -24,6 +24,7 @@
 import * as Survey from "survey-knockout";
 import * as SurveyAnalytics from "survey-analytics";
 import {mapActions} from "vuex";
+import FreeTextQuestionStatisticsCustomVisualizer from "./FreeTextQuestionStatisticsCustomVisualizer";
 
 export default {
   props: {
@@ -39,7 +40,8 @@ export default {
       survey: null,
       questions: [],
       statsPanelIndexToColors: new Map(),
-      loading: false
+      loading: false,
+      questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"]
     }
   },
   created() {
@@ -52,6 +54,31 @@ export default {
         });
     Survey.StylesManager.applyTheme("bootstrap");
     SurveyAnalytics.VisualizationPanel.haveCommercialLicense = true;
+    for (let i = 0; i < this.questionTypesToApplyCustomTextsTableVisualizer.length; i++) {
+      const type = this.questionTypesToApplyCustomTextsTableVisualizer[i];
+      // Register custom visualizer for the free text question type
+      let visualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(type);
+      // arrange visualizers
+      const wordCloud = visualizers[0];
+      const simpleTable = visualizers[1];
+
+      SurveyAnalytics
+          .VisualizationManager
+          .unregisterVisualizer(type, wordCloud);
+      SurveyAnalytics
+          .VisualizationManager
+          .unregisterVisualizer(type, simpleTable);
+      SurveyAnalytics
+          .VisualizationManager
+          .registerVisualizer(type, FreeTextQuestionStatisticsCustomVisualizer);
+      SurveyAnalytics
+          .VisualizationManager
+          .registerVisualizer(type, wordCloud);
+    }
+    // Set localized title of this visualizer
+    SurveyAnalytics
+        .localization
+        .locales["en"]["visualizer_freeTextVisualizer"] = "Translated Responses";
 
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
