@@ -3,20 +3,16 @@
 namespace App\Repository\Questionnaire;
 
 
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\Questionnaire\QuestionnaireStatus;
 use App\Models\Questionnaire\QuestionnaireStatusHistory;
 use App\Repository\Repository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class QuestionnaireRepository extends Repository {
-    private $questionnaireTranslationRepository;
-
-    public function __construct(QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
-        $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
-        parent::__construct(app());
-    }
 
     function getModelClassName() {
         return Questionnaire::class;
@@ -27,11 +23,14 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getActiveQuestionnairesForProject(int $projectId) {
-        return Questionnaire::where('project_id', $projectId)
-            ->where('status_id', 2)
-            ->get()
-            ->sortBy('prerequisite_order')
-            ->sortByDesc('created_at');
+        return Questionnaire
+            ::whereHas('projects', function (Builder $query) use ($projectId) {
+                $query->where(['id' => $projectId]);
+            })
+            ->where('status_id', QuestionnaireStatusLkp::PUBLISHED)
+            ->orderBy('prerequisite_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 
     public function getUserResponseForQuestionnaire($questionnaireId, $userId) {
@@ -54,29 +53,29 @@ class QuestionnaireRepository extends Repository {
             ->sortByDesc('responded_at');
     }
 
-    public function saveNewQuestionnaire($title, $description, $goal, $languageId,
-                                         $projectId, $questionnaireJson, $prerequisiteOrder,
+    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $questionnaireJson,
                                          $statisticsPageVisibilityLkpId) {
-        return DB::transaction(function () use ($title, $description, $goal, $languageId,
-            $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
+        return DB::transaction(function () use (
+            $title, $description, $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
+        ) {
             $questionnaire = new Questionnaire();
             $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,
-                $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId);
+                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId);
             // store with status 'Draft'
-            $this->saveNewQuestionnaireStatusHistory($questionnaire->id, 1, 'The questionnaire has been created.');
+            $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
             return $questionnaire;
         });
     }
 
     public function updateQuestionnaire($questionnaireId, $title, $description,
-                                        $goal, $languageId, $projectId, $questionnaireJson,
-                                        $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
-        return DB::transaction(function () use ($questionnaireId, $title, $description, $goal,
-            $languageId, $projectId, $questionnaireJson,
-            $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
+                                        $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId) {
+        return DB::transaction(function () use (
+            $questionnaireId, $title, $description, $goal,
+            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
+        ) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
             return $this->storeQuestionnaire($questionnaire, $title, $description,
-                $goal, $languageId, $projectId, $questionnaireJson, $prerequisiteOrder, $statisticsPageVisibilityLkpId);
+                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId);
         });
     }
 
@@ -102,16 +101,13 @@ class QuestionnaireRepository extends Repository {
 
 
     private function storeQuestionnaire($questionnaire, $title, $description, $goal,
-                                        $languageId, $projectId, $questionnaireJson,
-                                        $prerequisiteOrder, $statisticsPageVisibilityLkpId) {
+                                        $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId) {
         $questionnaire->title = $title;
         $questionnaire->description = $description;
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
-        $questionnaire->project_id = $projectId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)
         $questionnaire->questionnaire_json = json_encode(json_decode($questionnaireJson));
-        $questionnaire->prerequisite_order = $prerequisiteOrder;
         $questionnaire->statistics_page_visibility_lkp_id = $statisticsPageVisibilityLkpId;
         $questionnaire->save();
         return $questionnaire;
@@ -120,37 +116,64 @@ class QuestionnaireRepository extends Repository {
     public function getAllQuestionnairesWithRelatedInfo(array $projectIds): array {
         $projectIdsStr = implode(',', $projectIds);
         return DB::
-        select("select q.id, q.project_id, q.prerequisite_order, q.status_id, q.default_language_id,
-                                q.title, q.description, q.goal, q.statistics_page_visibility_lkp_id,
-                                q.created_at, q.updated_at, q.deleted_at,
-                                csp.slug as project_slug, qsl.title as status_title, 
-                                responsesInfo.number_of_responses, languagesInfo.languages,
-                                qsl.description as status_description, 
-                                dl.language_name as default_language_name,
-                                csp.name as project_name
-                                 from questionnaires as q 
-                                inner join languages_lkp as dl on dl.id = q.default_language_id 
-                                inner join crowd_sourcing_projects as csp on csp.id = q.project_id 
-                                inner join questionnaire_statuses_lkp as qsl on qsl.id = q.status_id 
-                                left join (
-                                    select questionnaire_id, count(*) as number_of_responses from questionnaire_responses qr 
-                                    inner join questionnaires q on qr.questionnaire_id = q.id where q.project_id in (" . $projectIdsStr . ") 
-                                    and qr.deleted_at is null
-                                    group by questionnaire_id
-                                ) 
-                                as responsesInfo 
-                                on responsesInfo.questionnaire_id = q.id 
-                                left join (
-                                    select GROUP_CONCAT(languages_lkp.language_name SEPARATOR ', ') as languages, q.id as questionnaire_id
-                                    from questionnaire_languages ql
-                                    inner join languages_lkp on ql.language_id = languages_lkp.id
-                                    inner join questionnaires q on ql.questionnaire_id = q.id
-                                    where q.project_id in (" . $projectIdsStr . ") and ql.deleted_at is null
-                                    group by  q.id
-                                ) as  languagesInfo on languagesInfo.questionnaire_id = q.id
+        select("SELECT 
+                        q.id,
+                        q.prerequisite_order,
+                        q.status_id,
+                        q.default_language_id,
+                        q.title,
+                        q.description,
+                        q.goal,
+                        q.statistics_page_visibility_lkp_id,
+                        q.created_at,
+                        q.updated_at,
+                        q.deleted_at,
+                        COUNT(csp.id) AS num_of_projects,
+                        GROUP_CONCAT(csp.name
+                            SEPARATOR ', ') AS project_names,
+                        GROUP_CONCAT(csp.slug
+                            SEPARATOR ', ') AS project_slugs,
+       
+                        qsl.title AS status_title,
+                        responsesInfo.number_of_responses,
+                        languagesInfo.languages,
+                        qsl.description AS status_description,
+                        dl.language_name AS default_language_name
+                    FROM
+                        questionnaires q
+                            INNER JOIN
+                        crowd_sourcing_project_questionnaires cspq ON cspq.questionnaire_id = q.id
+                            INNER JOIN
+                        crowd_sourcing_projects csp ON csp.id = cspq.project_id
+                            INNER JOIN
+                        languages_lkp AS dl ON dl.id = q.default_language_id
+                            INNER JOIN
+                        questionnaire_statuses_lkp AS qsl ON qsl.id = q.status_id
+                            LEFT JOIN
+                        (SELECT 
+                            questionnaire_id, COUNT(*) AS number_of_responses
+                        FROM
+                            questionnaire_responses qr
+                        INNER JOIN questionnaires q ON qr.questionnaire_id = q.id
+                            AND qr.deleted_at IS NULL
+                        GROUP BY questionnaire_id) AS responsesInfo ON responsesInfo.questionnaire_id = q.id
+                            LEFT JOIN
+                        (SELECT 
+                            GROUP_CONCAT(languages_lkp.language_name
+                                    SEPARATOR ', ') AS languages,
+                                q.id AS questionnaire_id
+                        FROM
+                            questionnaire_languages ql
+                        INNER JOIN languages_lkp ON ql.language_id = languages_lkp.id
+                        INNER JOIN questionnaires q ON ql.questionnaire_id = q.id
+                        WHERE
+                            ql.deleted_at IS NULL
+                        GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
+
                             
-                                where q.project_id in (" . $projectIdsStr . ") 
-                                and q.deleted_at is null
-                                order by q.updated_at desc");
+                        where q.project_id in (" . $projectIdsStr . ") 
+                        and q.deleted_at is null
+                        GROUP BY q.id
+                        order by q.id asc");
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectColorsManager;
+use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;

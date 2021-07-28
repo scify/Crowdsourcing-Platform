@@ -1,5 +1,6 @@
 'use strict';
 import Chart from 'chart.js';
+import _ from "lodash";
 
 (function () {
     let init = function () {

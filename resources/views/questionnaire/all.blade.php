@@ -28,7 +28,7 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th>Title</th>
-                            <th>Project</th>
+                            <th>Projects</th>
                             <th>Responses / Goal</th>
                             <th>Languages</th>
                             <th>Status</th>
@@ -42,7 +42,7 @@
                                 data-status="{{$questionnaire->status_id}}">
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td>{{$questionnaire->title}}</td>
-                                <td>{{ $questionnaire->project_name }}</td>
+                                <td>{{ $questionnaire->project_names }}</td>
                                 <td>{{ $questionnaire->number_of_responses ?? 0 }} / {{ $questionnaire->goal }}
                                     <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}
                                         %)</b></td>
@@ -59,7 +59,7 @@
                                         <button class="btn btn-primary dropdown-toggle" type="button"
                                                 data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
-                                        <div class="dropdown-menu">
+                                        <div class="dropdown-menu dropdown-menu-right">
                                             @if (!$viewModel->isQuestionnaireArchived($questionnaire))
                                                 <a class="action-btn dropdown-item"
                                                    href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
@@ -72,11 +72,21 @@
                                                href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
                                                         class="fas fa-palette"></i> Basic Statistics Colors</a>
 
-                                            @if(isset($questionnaire->url) && $questionnaire->url)
-                                                <button data-clipboard-text="{{ $questionnaire->url }}"
-                                                        class="copy-clipboard action-btn dropdown-item">
-                                                    <i class="copy-questionnaire-link fa fa-link"></i> Get Link
-                                                </button>
+                                            @if(isset($questionnaire->urls))
+                                                @if(count($questionnaire->urls) === 1)
+                                                    <button data-clipboard-text="{{ $questionnaire->urls[0]['url'] }}"
+                                                            class="copy-clipboard action-btn dropdown-item">
+                                                        <i class="copy-questionnaire-link fa fa-link"></i> Get Link
+                                                    </button>
+                                                @else
+                                                    @foreach($questionnaire->urls as $url)
+                                                        <button data-clipboard-text="{{ $url['url'] }}"
+                                                                class="copy-clipboard action-btn dropdown-item">
+                                                            <i class="copy-questionnaire-link fa fa-link"></i>
+                                                            Get {{ $url['project_name'] }} Link
+                                                        </button>
+                                                    @endforeach
+                                                @endif
                                             @endif
                                             <hr>
                                             <a class="action-btn dropdown-item"

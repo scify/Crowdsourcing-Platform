@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
@@ -19,9 +19,6 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
     ];
-
-
-
 
     /**
      * Register any authentication / authorization services.

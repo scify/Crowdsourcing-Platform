@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use Illuminate\Database\Seeder;
 

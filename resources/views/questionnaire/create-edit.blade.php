@@ -13,7 +13,6 @@
             :questionnaire-data='@json($viewModel->questionnaire)'
             :projects='@json($viewModel->projects)'
             :languages='@json($viewModel->languages)'
-            :maximum-prerequisite-order='@json($viewModel->maximumPrerequisiteOrder)'
             :questionnaire-statistics-page-visibility-lkp='@json($viewModel->questionnaireStatisticsPageVisibilityLkp)'>
     </questionnaire-create-edit>
 @endsection

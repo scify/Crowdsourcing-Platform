@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;

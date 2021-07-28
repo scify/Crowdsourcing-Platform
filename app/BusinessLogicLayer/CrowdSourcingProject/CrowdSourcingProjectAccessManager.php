@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\UserRoleManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use App\Repository\CrowdSourcingProjectRepository;
