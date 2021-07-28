@@ -2,14 +2,12 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Models\User;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Notifications\UserRegistered;
-use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
@@ -21,29 +19,17 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class UserManager {
     private $userRepository;
     private $userRoleRepository;
-    private $questionnaireManager;
-    private $projectRepository;
     private $mailChimpManager;
-    private $crowdSourcingProjectManager;
-    private $webSessionManager;
     private $questionnaireResponseManager;
     public static $USERS_PER_PAGE = 10;
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
-                                QuestionnaireManager $questionnaireManager,
                                 QuestionnaireResponseManager $questionnaireResponseManager,
-                                CrowdSourcingProjectRepository $projectRepository,
-                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
-                                MailChimpAdaptor $mailChimpManager,
-                                WebSessionManager $webSessionManager) {
+                                MailChimpAdaptor $mailChimpManager) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
-        $this->questionnaireManager = $questionnaireManager;
-        $this->projectRepository = $projectRepository;
         $this->mailChimpManager = $mailChimpManager;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->webSessionManager = $webSessionManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 

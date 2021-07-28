@@ -2,7 +2,7 @@
 
 namespace App\ViewComposers;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use Illuminate\View\View;
 
 class ErrorPagesComposer {

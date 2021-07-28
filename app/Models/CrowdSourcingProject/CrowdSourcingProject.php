@@ -7,6 +7,7 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,8 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class CrowdSourcingProject
  * @package App\Models
  */
-class CrowdSourcingProject extends Model
-{
+class CrowdSourcingProject extends Model {
     use SoftDeletes;
 
     /**
@@ -33,7 +33,7 @@ class CrowdSourcingProject extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'external_url', 'motto', 'description', 'about',  'footer', 'img_path',
+        'name', 'slug', 'external_url', 'motto', 'description', 'about', 'footer', 'img_path',
         'logo_path', 'user_creator_id', 'language_id', 'status_id', 'sm_title',
         'sm_description', 'sm_keywords', 'sm_featured_img_path', 'lp_motto_color',
         'lp_about_bg_color', 'lp_about_color', 'lp_questionnaire_img_path',
@@ -55,17 +55,21 @@ class CrowdSourcingProject extends Model
     /**
      * @return BelongsTo
      */
-    public function creator()
-    {
+    public function creator() {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
     }
 
+
     /**
-     * @return HasMany
+     * The users that belong to the role.
+     * @return BelongsToMany
      */
-    public function questionnaires()
-    {
-        return $this->hasMany(Questionnaire::class, 'project_id', 'id');
+    public function questionnaires() {
+        return $this->belongsToMany(
+            Questionnaire::class,
+            'crowd_sourcing_project_questionnaires',
+            'project_id',
+            'questionnaire_id');
     }
 
     /**

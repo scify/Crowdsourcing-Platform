@@ -1,5 +1,3 @@
-@inject('CrowdSourcingProjectManager', 'App\BusinessLogicLayer\CrowdSourcingProjectManager')
-
 @include("loggedin-environment.partials.header-controls")
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">

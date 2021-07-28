@@ -41,9 +41,9 @@ abstract class Repository implements RepositoryInterface {
     public function all($columns = array('*'), $orderColumn = null, $order = null, $withRelationships = []) {
         $query = $this->modelInstance;
 
-        if($orderColumn)
+        if ($orderColumn)
             $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
-        if(count($withRelationships) > 0)
+        if (count($withRelationships) > 0)
             $query = $query->with($withRelationships);
 
         return $query->get($columns);
@@ -52,7 +52,7 @@ abstract class Repository implements RepositoryInterface {
     public function allWithTrashed($columns = array('*'), $orderColumn = null, $order = null): Collection {
         $query = $this->modelInstance;
 
-        if($orderColumn)
+        if ($orderColumn)
             $query->orderBy($orderColumn, $order ? $order : 'asc');
 
         return $query->withTrashed()->get($columns);
@@ -81,7 +81,7 @@ abstract class Repository implements RepositoryInterface {
      * @param string $attribute
      * @return mixed
      */
-    public function update(array $data, $id, $attribute="id") {
+    public function update(array $data, $id, $attribute = "id") {
         return $this->modelInstance->where($attribute, '=', $id)->update($this->onlyFillable($data));
     }
 
@@ -93,12 +93,12 @@ abstract class Repository implements RepositoryInterface {
     }
 
     protected function onlyFillable(array $items) {
-        if(sizeof($this->modelInstance->getFillable()) === 0)
+        if (sizeof($this->modelInstance->getFillable()) === 0)
             return $items;
 
         $qualified = array();
-        foreach($items as $key => $val) {
-            if(in_array($key, $this->modelInstance->getFillable()))
+        foreach ($items as $key => $val) {
+            if (in_array($key, $this->modelInstance->getFillable()))
                 $qualified[$key] = $val;
         }
         return $qualified;
@@ -117,8 +117,11 @@ abstract class Repository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function find($id, $columns = array('*')) {
-        return $this->modelInstance->findOrFail($id, $columns);
+    public function find($id, $columns = array('*'), array $withRelationships = []) {
+        $query = $this->modelInstance;
+        if (count($withRelationships))
+            $query = $query->with($withRelationships);
+        return $query->findOrFail($id, $columns);
     }
 
     public function firstOrCreate($criteria, $data) {
@@ -137,18 +140,18 @@ abstract class Repository implements RepositoryInterface {
      * @return mixed
      */
     public function findBy($field, $value, $columns = array('*'), bool $caseInsensitive = false, array $withRelationships = []) {
-        if($caseInsensitive)
-            $query = $this->modelInstance->whereRaw("LOWER(`". $field."`) LIKE '".
+        if ($caseInsensitive)
+            $query = $this->modelInstance->whereRaw("LOWER(`" . $field . "`) LIKE '" .
                 strtolower($value) . "'");
         else
             $query = $this->modelInstance->where($field, '=', $value);
 
-        if(count($withRelationships) > 0)
+        if (count($withRelationships) > 0)
             $query = $query->with($withRelationships);
 
         $model = $query->first();
 
-        if(!$model)
+        if (!$model)
             throw new ModelNotFoundException("Model with criteria: '" . $field . "' equal to '" . $value . "' was not found.");
         return $model;
     }
@@ -162,12 +165,12 @@ abstract class Repository implements RepositoryInterface {
         return $this->modelInstance->where($whereArray)->first($columns);
     }
 
-    public function allWhere(array $whereArray, $columns = array('*'), $orderColumn = null, $order = null, $withRelationships=[]) {
+    public function allWhere(array $whereArray, $columns = array('*'), $orderColumn = null, $order = null, $withRelationships = []) {
         $query = $this->modelInstance->where($whereArray);
 
-        if($orderColumn)
+        if ($orderColumn)
             $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
-        if(count($withRelationships) > 0)
+        if (count($withRelationships) > 0)
             $query = $query->with($withRelationships);
 
         return $query->get($columns);
@@ -190,7 +193,6 @@ abstract class Repository implements RepositoryInterface {
 
         return $this->modelInstance = $tryToCreateModel;
     }
-
 
 
     public function getModelInstance() {

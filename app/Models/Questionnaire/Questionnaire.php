@@ -6,12 +6,12 @@ namespace App\Models\Questionnaire;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Language;
 use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
-use App\Models\QuestionnaireQuestion;
 use App\Models\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkp;
-use App\Models\Questionnaire\QuestionnaireStatusHistory;
+use App\Models\QuestionnaireQuestion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -36,8 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read QuestionnaireStatisticsPageVisibilityLkp $statisticsPageVisibilityStatus
  * @property-read QuestionnaireBasicStatisticsColors $basicStatisticsColors
  */
-class Questionnaire extends Model
-{
+class Questionnaire extends Model {
     use SoftDeletes;
 
     protected $table = 'questionnaires';
@@ -58,38 +57,39 @@ class Questionnaire extends Model
      *
      * @return string
      */
-    public function getRouteKeyName()
-    {
+    public function getRouteKeyName() {
         return 'id';
     }
 
-    public function defaultLanguage()
-    {
+    public function defaultLanguage() {
         return $this->hasOne(Language::class, 'id', 'default_language_id');
     }
 
-    public function project()
-    {
-        return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');
+    /**
+     * The users that belong to the role.
+     * @return BelongsToMany
+     */
+    public function projects() {
+        return $this->belongsToMany(
+            CrowdSourcingProject::class,
+            'crowd_sourcing_project_questionnaires',
+            'questionnaire_id',
+            'project_id');
     }
 
-    public function statusHistory()
-    {
+    public function statusHistory() {
         return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
     }
 
-    public function questions()
-    {
+    public function questions() {
         return $this->hasMany(QuestionnaireQuestion::class, 'questionnaire_id', 'id');
     }
 
-    public function questionnaireLanguages()
-    {
+    public function questionnaireLanguages() {
         return $this->hasMany(QuestionnaireLanguage::class, 'questionnaire_id', 'id');
     }
 
-    public function languages()
-    {
+    public function languages() {
         return $this->belongsToMany(
             Language::class, // target model
             QuestionnaireLanguage::class, // intermediate model
@@ -100,18 +100,15 @@ class Questionnaire extends Model
         );
     }
 
-    public function responses()
-    {
+    public function responses() {
         return $this->hasMany(QuestionnaireResponse::class, 'questionnaire_id', 'id');
     }
 
-    public function statisticsPageVisibilityStatus()
-    {
+    public function statisticsPageVisibilityStatus() {
         return $this->hasOne(QuestionnaireStatisticsPageVisibilityLkp::class, 'id', 'statistics_page_visibility_lkp_id');
     }
 
-    public function basicStatisticsColors()
-    {
+    public function basicStatisticsColors() {
         return $this->hasOne(QuestionnaireBasicStatisticsColors::class, 'questionnaire_id', 'id');
     }
 }

@@ -4,7 +4,7 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 
-use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\LanguageManager;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
@@ -23,12 +23,12 @@ class QuestionnaireVMProvider {
     protected $questionnaireTranslationRepository;
     protected $questionnaireManager;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireManager $questionnaireManager,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                LanguageManager $languageManager,
+    public function __construct(QuestionnaireRepository                            $questionnaireRepository,
+                                QuestionnaireManager                               $questionnaireManager,
+                                CrowdSourcingProjectAccessManager                  $crowdSourcingProjectAccessManager,
+                                LanguageManager                                    $languageManager,
                                 QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
+                                QuestionnaireTranslationRepository                 $questionnaireTranslationRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
@@ -37,12 +37,10 @@ class QuestionnaireVMProvider {
         $this->questionnaireManager = $questionnaireManager;
     }
 
-    public function getCreateEditQuestionnaireViewModel($id = null) {
-        $maximumPrerequisiteOrder = null;
+    public function getCreateEditQuestionnaireViewModel($id = null): CreateEditQuestionnaire {
         if ($id) {
-            $questionnaire = $this->questionnaireRepository->find($id);
+            $questionnaire = $this->questionnaireRepository->find($id, array('*'), ['projects']);
             $title = "Edit Questionnaire";
-            $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
         } else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
             $questionnaire->default_language_id = 6;
@@ -52,15 +50,27 @@ class QuestionnaireVMProvider {
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
         $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder, $questionnaireStatisticsPageVisibilityLkp);
+        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $questionnaireStatisticsPageVisibilityLkp);
     }
 
-    public function getAllQuestionnairesPageViewModel() {
+    public function getAllQuestionnairesPageViewModel(): ManageQuestionnaires {
         $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($projectTheUserHasAccessTo->pluck('id')->toArray());
         foreach ($questionnaires as $questionnaire) {
-            if($this->questionnaireManager->shouldShowLinkForQuestionnaire($questionnaire))
-                $questionnaire->url = $this->questionnaireManager->getQuestionnaireURL($questionnaire->project_slug, $questionnaire->id);
+            if ($this->questionnaireManager->shouldShowLinkForQuestionnaire($questionnaire)) {
+                $projectSlugs = explode(',', $questionnaire->project_slugs);
+                $projectNames = explode(',', $questionnaire->project_names);
+                $questionnaire->urls = [];
+                foreach ($projectSlugs as $index => $projectSlug)
+                    array_push(
+                        $questionnaire->urls,
+                        [
+                            'project_name' => $projectNames[$index],
+                            'url' => $this->questionnaireManager->getQuestionnaireURL($projectSlug, $questionnaire->id)
+                        ]
+                    );
+            }
+
         }
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses);

@@ -25,8 +25,8 @@ class ManageQuestionnaires {
         return self::STATUSES_CSS_CLASSES[$status];
     }
 
-    public function isQuestionnaireArchived($questionnaire) {
+    public function isQuestionnaireArchived($questionnaire): bool {
         $dateCreated = date("Y/m/d", strtotime($questionnaire->created_at));
-        return $dateCreated < '2021/06/01';
+        return $dateCreated < '2018/04/01';
     }
 }

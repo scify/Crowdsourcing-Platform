@@ -2,20 +2,19 @@
 
 namespace App\BusinessLogicLayer\questionnaire;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\WebSessionManager;
-use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectQuestionnaireRepository;
 use App\Repository\CrowdSourcingProjectRepository;
-use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
+use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 use App\Repository\UserRepository;
 use App\Utils\Translator;
-use Illuminate\Support\Facades\Auth;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 class QuestionnaireManager {
@@ -31,19 +30,21 @@ class QuestionnaireManager {
     protected $crowdSourcingProjectAccessManager;
     protected $crowdSourcingProjectRepository;
     protected $questionnaireLanguageManager;
+    protected $crowdSourcingProjectQuestionnaireRepository;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                LanguageManager $languageManager,
-                                Translator $translator,
-                                WebSessionManager $webSessionManager,
-                                UserRepository $userRepository,
-                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
-                                QuestionnaireReportRepository $questionnaireReportRepository,
-                                QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-                                QuestionnaireLanguageManager $questionnaireLanguageManager) {
+    public function __construct(QuestionnaireRepository                     $questionnaireRepository,
+                                LanguageManager                             $languageManager,
+                                Translator                                  $translator,
+                                WebSessionManager                           $webSessionManager,
+                                UserRepository                              $userRepository,
+                                QuestionnaireResponseReferralManager        $questionnaireResponseReferralManager,
+                                QuestionnaireReportRepository               $questionnaireReportRepository,
+                                QuestionnaireResponseAnswerRepository       $questionnaireResponseAnswerRepository,
+                                QuestionnaireTranslationRepository          $questionnaireTranslationRepository,
+                                CrowdSourcingProjectAccessManager           $crowdSourcingProjectAccessManager,
+                                CrowdSourcingProjectRepository              $crowdSourcingProjectRepository,
+                                QuestionnaireLanguageManager                $questionnaireLanguageManager,
+                                CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->languageManager = $languageManager;
         $this->translator = $translator;
@@ -56,6 +57,7 @@ class QuestionnaireManager {
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireLanguageManager = $questionnaireLanguageManager;
+        $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
@@ -64,28 +66,27 @@ class QuestionnaireManager {
     }
 
     public function storeQuestionnaire($data) {
-        $projectTheQuestionnaireBelongsTo = $this->crowdSourcingProjectRepository->find($data['project']);
-        // here we need to set the prerequisite order of the questionnaire equal to the number of questionnaires + 1.
-        $numOfQuestionnaires = $projectTheQuestionnaireBelongsTo->questionnaires->count();
         $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
             $data['title'], $data['description'],
-            $data['goal'], $data['language'],
-            $data['project'], $data['content'],
-            $numOfQuestionnaires + 1,
+            $data['goal'], $data['language'], $data['content'],
             $data['statistics_page_visibility_lkp_id']
         );
-        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        $this->storeRelatedDataForQuestionnaire($questionnaire, $data);
         return $questionnaire;
     }
 
     public function updateQuestionnaire($id, $data) {
         $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
             $data['title'], $data['description'],
-            $data['goal'], $data['language'],
-            $data['project'], $data['content'],
-            $data['prerequisite_order'], $data['statistics_page_visibility_lkp_id']);
-        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+            $data['goal'], $data['language'], $data['content'],
+            $data['statistics_page_visibility_lkp_id']);
+        $this->storeRelatedDataForQuestionnaire($questionnaire, $data);
         return $questionnaire;
+    }
+
+    protected function storeRelatedDataForQuestionnaire(Questionnaire $questionnaire, array $data) {
+        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        $this->crowdSourcingProjectQuestionnaireRepository->setQuestionnaireToProjects($questionnaire->id, $data['project_ids']);
     }
 
     public function getAutomaticTranslationForString($languageCodeToTranslateTo, $text) {

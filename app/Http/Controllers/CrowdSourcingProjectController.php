@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

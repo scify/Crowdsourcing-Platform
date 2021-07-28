@@ -20,13 +20,14 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="language">Project the Questionnaire belongs to</label>
+              <label for="language">Projects the Questionnaire belongs to</label>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <select name="project_id" id="project" class="select2">
-
-                <option v-for="project in projects" :value="project.id"
-                        v-model="questionnaire.project_id">
+            <div class="col-md-6 col-sm-9 col-xs-12">
+              <select
+                  id="project-ids" class="select2" multiple="multiple">
+                <option v-for="project in projects"
+                        :value="project.id"
+                        :selected="isProjectSelected(project.id)">
                   {{ project.name }}
                 </option>
               </select>
@@ -42,19 +43,6 @@
                 <option v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
                         v-model="questionnaire.statistics_page_visibility_lkp_id">
                   {{visibilityLkp.title}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div v-if="maximumPrerequisiteOrder" class="row form-group">
-            <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="prerequisite_order">Prerequisite Order</label>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <select name="prerequisite_order" id="prerequisite_order" class="select2">
-                <option v-for="index in maximumPrerequisiteOrder"
-                        v-model="questionnaire.prerequisite_order">
-                  {{index}}
                 </option>
               </select>
             </div>
@@ -130,6 +118,7 @@
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
+import _ from "lodash";
 
 export default {
   created() {
@@ -138,6 +127,7 @@ export default {
       this.questionnaire.project_id = this.projects[0].id;
     if (!this.questionnaire.statistics_page_visibility_lkp_id)
       this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id
+    this.questionnaire.projectIds = _.map(this.questionnaireData.projects, 'id');
   },
   mounted() {
     this.getColorsForCrowdSourcingProject();
@@ -151,8 +141,7 @@ export default {
     },
     projects: [],
     languages: [],
-    questionnaireStatisticsPageVisibilityLkp: [],
-    maximumPrerequisiteOrder: false
+    questionnaireStatisticsPageVisibilityLkp: []
   },
   data: function () {
     return {
@@ -163,7 +152,7 @@ export default {
         description: null,
         goal: null,
         statistics_page_visibility_lkp_id: null,
-        project_id: null
+        projectIds: []
       },
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
@@ -178,6 +167,9 @@ export default {
       'handleError',
       'post'
     ]),
+    isProjectSelected(projectId) {
+      return this.questionnaire.projectIds.includes(projectId);
+    },
     getColorsForCrowdSourcingProject() {
       this.get({
         url: route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
@@ -232,14 +224,6 @@ export default {
       });
     },
     saveQuestionnaire() {
-      if (this.formInvalid())
-        return swal({
-          title: "Fields Missing!",
-          text: "Please provide a title, description and goal.",
-          type: "warning",
-          confirmButtonClass: "btn-danger",
-          confirmButtonText: "OK",
-        });
       let locales = this.surveyCreator.translationValue.getSelectedLocales();
       if (locales[0] === "") {
         locales = [];
@@ -249,12 +233,24 @@ export default {
         description: this.questionnaire.description,
         goal: this.questionnaire.goal,
         language: this.questionnaire.default_language_id,
-        project: this.questionnaire.project_id,
-        prerequisite_order: this.questionnaire.prerequisite_order,
+        project_ids: [],
         statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
         content: this.surveyCreator.text,
         lang_codes: locales
       };
+      $("#project-ids").val().map((x) => {
+        data.project_ids.push(parseInt(x));
+      });
+
+      if (this.formInvalid(data))
+        return swal({
+          title: "Fields Missing!",
+          text: "Please provide a title, description, goal, and at least one project.",
+          type: "warning",
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "OK",
+        });
+
       const instance = this;
 
       this.post({
@@ -285,11 +281,8 @@ export default {
       });
 
     },
-    formInvalid() {
-      return !this.questionnaire.title || !this.questionnaire.description || !this.questionnaire.goal;
-    },
-    getRandomColor() {
-      return this.colors[Math.floor(Math.random() * this.colors.length)];
+    formInvalid(data) {
+      return !data.title || !data.description || !data.goal || !data.project_ids.length;
     },
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -298,7 +291,6 @@ export default {
         array[i] = array[j];
         array[j] = temp;
       }
-
       return array;
     },
     assignRandomColorsToChoices(jsonStr) {

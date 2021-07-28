@@ -18,7 +18,6 @@ require('select2');
 require('bootstrap-tagsinput');
 require('bootstrap-colorpicker');
 require('bs4-summernote');
-require('clipboard')
 require('jquery-toast-plugin');
 
 require('datatables.net');
@@ -34,6 +33,7 @@ require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
 require('datatables.net-select-bs4');
+import Clipboard from "clipboard/dist/clipboard";
 
 import Vue from 'vue';
 import store from './store/store';
@@ -110,6 +110,21 @@ const app = new Vue({
         });
     }
 
+    let initClipboardElements = function () {
+        const clipboard = new Clipboard(".copy-clipboard");
+
+        clipboard.on('success', function (e) {
+            showToast('Copied to clipboard!', '#28a745');
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function (e) {
+            console.error(e);
+            showToast('Error while copying to clipboard: ' + e.toString(), '#dc3545');
+            e.clearSelection();
+        });
+    }
+
     $(function () {
         $(document).ready(function () {
             initializeIcheck();
@@ -117,6 +132,7 @@ const app = new Vue({
             initializeSelect2Inputs();
             initializeColorPicker();
             handleLogoutBtnClick();
+            initClipboardElements();
         });
     });
 })();
@@ -127,7 +143,7 @@ export function arrayMove(arr, fromIndex, toIndex) {
     arr.splice(toIndex, 0, element);
 }
 
-export function initSingleColorPicker (el) {
+export function initSingleColorPicker(el) {
     $(el).colorpicker({
         horizontal: true
     });
@@ -139,4 +155,18 @@ export function initSingleColorPicker (el) {
     $(el).on('colorpickerChange', function (event) {
         $(el).find('.input-group-addon').css('background-color', event.color.toString());
     });
+}
+
+export function showToast(text, bgColor) {
+    $.toast({
+        text: text,
+        showHideTransition: 'slide',  // It can be plain, fade or slide
+        bgColor: bgColor,              // Background color for toast
+        textColor: '#eee',            // text color
+        allowToastClose: true,       // Show the close button or not
+        hideAfter: 3000,              // `false` to make it sticky or time in miliseconds to hide after
+        stack: 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
+        textAlign: 'left',            // Alignment of text i.e. left, right, center
+        position: 'top-right'       // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
+    })
 }

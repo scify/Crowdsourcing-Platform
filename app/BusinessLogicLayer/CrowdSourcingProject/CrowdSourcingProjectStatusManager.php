@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\BusinessLogicLayer;
+namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 
 use App\Repository\CrowdSourcingProjectStatusLkpRepository;
