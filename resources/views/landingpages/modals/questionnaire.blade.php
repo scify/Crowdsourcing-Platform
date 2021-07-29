@@ -32,6 +32,7 @@
                     <questionnaire-display
                             :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
+                            :project='@json($viewModel->project)'
                             :languages='@json($viewModel->languages)'>
                     </questionnaire-display>
                 </div>
