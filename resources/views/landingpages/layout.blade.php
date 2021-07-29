@@ -66,7 +66,6 @@
             ]) !!};
 </script>
 @include('partials.footer-scripts')
-<script src="{{asset('dist/js/showdown.min.js')}}?{{env("APP_VERSION")}}"></script>
 <script src="{{mix('dist/js/landingPage.js')}}"></script>
 </body>
 </html>

@@ -41,6 +41,12 @@ export default {
         return {}
       }
     },
+    project: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
     userResponse: {
       type: Object,
       default: function () {
@@ -65,7 +71,7 @@ export default {
     initQuestionnaireDisplay() {
       Survey.StylesManager.applyTheme("modern");
       this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
-      if(!this.userResponse)
+      if (!this.userResponse)
         this.prepareQuestionnaireForResponding();
       else
         this.prepareQuestionnaireForViewingResponse();
@@ -77,12 +83,21 @@ export default {
       // show English as the first language
       arrayMove(locales, locales.indexOf("en"), 0);
       for (let i = 0; i < locales.length; i++) {
-        this.surveyLocales.push({
-          code: locales[i],
-          name: this.getLanguageFromCode(locales[i]).language_name
-        });
+        const locale = this.getLanguageFromCode(locales[i]);
+        if (locale)
+          this.surveyLocales.push({
+            code: locales[i],
+            name: locale.language_name
+          });
       }
       this.survey.onComplete.add(this.saveQuestionnaireResponse);
+      this.survey
+          .onAfterRenderSurvey
+          .add(function () {
+            $(".sv_complete_btn").after(
+                "<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>"
+            );
+          });
     },
     prepareQuestionnaireForViewingResponse() {
       this.survey.data = JSON.parse(this.userResponse.response_json);
@@ -90,26 +105,53 @@ export default {
     },
     saveQuestionnaireResponse(sender) {
       const resultAsString = JSON.stringify(sender.data);
+      $(".loader-wrapper").removeClass('hidden');
+      $("#questionnaire-modal").modal('hide');
       this.post({
         url: route('respond-questionnaire'),
         data: {
           questionnaire_id: this.questionnaire.id,
+          project_id: this.project.id,
           language_code: this.survey.locale,
           response: resultAsString
         },
         urlRelative: false,
         handleError: false
       }).then((response) => {
-        console.log(response.data);
+        this.displaySuccessResponse(response.data);
       }).catch(error => {
         console.error(error);
+        this.displayErrorResponse(error);
+      }).finally(() => {
+        $("#questionnaire-modal").modal('hide');
+      });
+    },
+    displaySuccessResponse(responseData) {
+      $(".loader-wrapper").addClass('hidden');
+      let questionnaireResponded = $("#questionnaire-responded");
+      // add badge fetched from response to the appropriate container
+      if (responseData.badgeHTML) {
+        questionnaireResponded.find('.badge-container').html(responseData.badgeHTML);
+        questionnaireResponded.modal({backdrop: 'static'});
+        $("#pyro").addClass("pyro-on");
+      }
+    },
+    displayErrorResponse(error) {
+      swal({
+        title: "Oops!",
+        text: "An error occurred:" + error.toString(),
+        type: "error",
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "OK",
       });
     },
     onLanguageChange(event) {
       this.survey.locale = event.target.value;
     },
     getLanguageFromCode(code) {
-      return _.find(this.languages, function(l) { return l.language_code === code; })
+      return _.find(this.languages, function (l) {
+        return l.language_code === code;
+      })
     }
   }
 }

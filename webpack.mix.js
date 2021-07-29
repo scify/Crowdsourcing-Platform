@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 
-mix.disableNotifications();
+mix.disableSuccessNotifications();
 
 mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/pages/register.js', 'public/dist/js')
@@ -63,7 +63,5 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
 
 // move sweetalert.css to public/dist/css
 mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
-
 // move select2.min.css to public/dist/css
 mix.copy(['node_modules/select2/dist/css/select2.min.css'], 'public/dist/css/select2.min.css');
-mix.copy(['node_modules/showdown/dist/*'], 'public/dist/js');

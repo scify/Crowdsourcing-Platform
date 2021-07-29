@@ -200,6 +200,6 @@ class QuestionnaireManager {
     }
 
     public function getQuestionnaireURL($projectSlug, $questionnaireId): string {
-        return url('/' . $projectSlug) . '?open=1&questionnaireId=' . $questionnaireId;
+        return url('/' . trim($projectSlug)) . '?open=1&questionnaireId=' . $questionnaireId;
     }
 }

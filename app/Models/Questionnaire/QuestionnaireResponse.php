@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Models\Questionnaire;
 
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -20,15 +22,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $deleted_at
  * @property-read User $user
  */
-class QuestionnaireResponse extends Model
-{
+class QuestionnaireResponse extends Model {
     use SoftDeletes;
 
     protected $table = 'questionnaire_responses';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    public function user()
-    {
+    protected $fillable = [
+        'questionnaire_id',
+        'project_id',
+        'user_id',
+        'language_id',
+        'response_json'
+    ];
+
+    public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function questionnaire() {
+        return $this->belongsTo(Questionnaire::class);
+    }
+
+    public function project() {
+        return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');
     }
 }

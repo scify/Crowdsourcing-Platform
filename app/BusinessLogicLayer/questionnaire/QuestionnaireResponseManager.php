@@ -21,11 +21,11 @@ class QuestionnaireResponseManager {
     protected $languageManager;
     protected $questionnaireActionHandler;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
+    public function __construct(QuestionnaireRepository                   $questionnaireRepository,
+                                QuestionnaireResponseRepository           $questionnaireResponseRepository,
                                 QuestionnaireResponseAnswerTextRepository $questionnaireResponseAnswerTextRepository,
-                                LanguageManager $languageManager,
-                                QuestionnaireActionHandler $questionnaireActionHandler) {
+                                LanguageManager                           $languageManager,
+                                QuestionnaireActionHandler                $questionnaireActionHandler) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireResponseAnswerTextRepository = $questionnaireResponseAnswerTextRepository;
@@ -57,19 +57,25 @@ class QuestionnaireResponseManager {
         else
             $language = $this->languageManager->getLanguage($questionnaire->default_language_id);
 
-        $questionnaireResponse = $this->questionnaireResponseRepository->storeQuestionnaireResponse(
-            $data['questionnaire_id'],
-            $user->id,
-            $language->id,
-            $data['response']
+        $queryData = [
+            'questionnaire_id' => $data['questionnaire_id'],
+            'user_id' => $user->id,
+            'project_id' => $data['project_id']
+        ];
+        $questionnaireResponse = $this->questionnaireResponseRepository->updateOrCreate(
+            $queryData,
+            array_merge($queryData, [
+                'language_id' => $language->id,
+                'response_json' => $data['response']
+            ])
         );
         $this->storeQuestionnaireAnswerTextsForInputTypeQuestions($questionnaire, $questionnaireResponse);
-        $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $user);
+        $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $questionnaireResponse->project, $user);
         // if the user got invited by another user to answer the questionnaire, also award the referrer user.
         $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
     }
 
-    protected function storeQuestionnaireAnswerTextsForInputTypeQuestions(Questionnaire $questionnaire,
+    protected function storeQuestionnaireAnswerTextsForInputTypeQuestions(Questionnaire         $questionnaire,
                                                                           QuestionnaireResponse $questionnaireResponse) {
         $freeTypeQuestions = $this->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
         $answers = json_decode($questionnaireResponse->response_json);
