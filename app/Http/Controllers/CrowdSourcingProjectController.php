@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
-use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use JsonSchema\Exception\ResourceNotFoundException;
 
 class CrowdSourcingProjectController extends Controller {
 
