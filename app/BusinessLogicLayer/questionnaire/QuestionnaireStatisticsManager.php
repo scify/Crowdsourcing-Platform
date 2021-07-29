@@ -27,14 +27,12 @@ class QuestionnaireStatisticsManager {
     }
 
     public function getQuestionnaireVisualizationsViewModel(Questionnaire $questionnaire): QuestionnaireStatistics {
-        $project = $questionnaire->project;
         $questionnaireTotalResponseStatistics = $this->questionnaireStatisticsRepository
             ->getQuestionnaireResponseStatistics($questionnaire->id);
         $numberOfResponsesPerLanguage = $this->questionnaireStatisticsRepository
             ->getNumberOfResponsesPerLanguage($questionnaire->id);
         return new QuestionnaireStatistics (
             $questionnaire,
-            $project,
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
             Gate::allows('manage-crowd-sourcing-projects')
