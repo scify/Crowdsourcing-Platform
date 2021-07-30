@@ -136,7 +136,11 @@ class QuestionnaireResponseManager {
             'respondent_user_id' => $respondent_user_id,
             'voter_user_id' => $voterUserId
         ];
-        return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
+        $existing = $this->questionnaireAnswerVoteRepository->where($data);
+        if ($existing && $existing->upvote == $upvote) {
+            return $existing->delete();
+        } else
+            return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
     }
 
 }

@@ -206,7 +206,11 @@ export default {
         },
         urlRelative: false
       }).then(response => {
-        console.log(response.data);
+        if(upvote) {
+          element.toggleClass('user-upvoted');
+        } else {
+          element.toggleClass('user-downvoted');
+        }
       });
     }
   }
