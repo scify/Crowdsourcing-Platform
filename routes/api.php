@@ -19,6 +19,12 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
     Route::post('/questionnaire/new', [QuestionnaireController::class, 'store'])->name('store-questionnaire');
     Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('update-questionnaire');
     Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
-    Route::get('/questionnaire/responses/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])->name('questionnaire.responses');
-    Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])->name('crowd-sourcing-project.get-colors');
+    Route::get('/questionnaire/responses/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
+        ->name('questionnaire.responses');
+    Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
+        ->name('crowd-sourcing-project.get-colors');
+    Route::get('/questionnaire/answer-votes/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
+        ->name('questionnaire.answer-votes');
+    Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.vote');
+
 });

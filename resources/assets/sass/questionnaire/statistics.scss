@@ -80,15 +80,35 @@
     th, td {
       text-align: left;
 
-      .like-count {
-        font-size: small;
-        margin-bottom: 0;
-        padding-left: 5px;
+      .vote-btn {
+
+        &.upvote:hover {
+          border-color: $brand-primary;
+        }
+
+        &.downvote:hover {
+          border-color: $brand-danger;
+        }
+
+        .count {
+          font-size: small;
+          margin-bottom: 0;
+          padding-left: 5px;
+        }
       }
+
+      .vote-btn.user-upvoted {
+        color: $brand-primary;
+      }
+
+      .vote-btn.user-downvoted {
+        color: $brand-danger;
+      }
+
     }
   }
 
-  .dataTables_length,.dataTables_info {
+  .dataTables_length, .dataTables_info {
     text-align: left;
   }
 }

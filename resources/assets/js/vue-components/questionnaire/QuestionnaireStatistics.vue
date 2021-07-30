@@ -24,7 +24,7 @@
 import * as Survey from "survey-knockout";
 import * as SurveyAnalytics from "survey-analytics";
 import {mapActions} from "vuex";
-import FreeTextQuestionStatisticsCustomVisualizer from "./FreeTextQuestionStatisticsCustomVisualizer";
+import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTextQuestionStatisticsCustomVisualizer";
 
 export default {
   props: {
@@ -33,7 +33,8 @@ export default {
       default: function () {
         return {}
       }
-    }
+    },
+    userId: Number
   },
   data: function () {
     return {
@@ -85,10 +86,12 @@ export default {
     this.getColorsForCrowdSourcingProject();
   },
   mounted() {
+    this.listenForVoteClickEvent();
   },
   methods: {
     ...mapActions([
       'get',
+      'post',
       'handleError',
       'closeModal'
     ]),
@@ -109,11 +112,19 @@ export default {
         urlRelative: false
       }).then(response => {
         const answers = _.map(_.map(response.data, 'response_json'), JSON.parse);
-        this.initStatistics(answers);
-        this.loading = false;
+        this.get({
+          url: route('questionnaire.answer-votes', this.questionnaire.id),
+          data: {},
+          urlRelative: false
+        }).then(response => {
+          this.initStatistics(answers, response.data);
+          this.loading = false;
+        });
       });
     },
-    initStatistics(answers) {
+    initStatistics(answers, answerVotes) {
+      AnswersData.answerVotes = answerVotes;
+      AnswersData.userId = this.userId;
       for (let i = 0; i < this.questions.length; i++) {
 
         if (!this.shouldDrawStatistics(this.questions[i]))
@@ -172,6 +183,31 @@ export default {
           colorCodes.push(color.color_code);
       }
       return colorCodes;
+    },
+    listenForVoteClickEvent() {
+      const instance = this;
+      $(document).on('click', 'body .vote-btn', function () {
+        instance.handleVote(
+            $(this),
+            $(this).data('question-name'),
+            parseInt($(this).data('respondent-user-id')),
+            $(this).hasClass('upvote')
+        );
+      });
+    },
+    handleVote(element, questionName, respondentUserId, upvote) {
+      this.post({
+        url: route('questionnaire.answer-votes.vote'),
+        data: {
+          questionnaire_id: this.questionnaire.id,
+          question_name: questionName,
+          respondent_user_id: respondentUserId,
+          upvote: upvote
+        },
+        urlRelative: false
+      }).then(response => {
+        console.log(response.data);
+      });
     }
   }
 }
