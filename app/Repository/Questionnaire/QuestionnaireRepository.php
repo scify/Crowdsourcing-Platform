@@ -174,6 +174,6 @@ class QuestionnaireRepository extends Repository {
                         where q.project_id in (" . $projectIdsStr . ") 
                         and q.deleted_at is null
                         GROUP BY q.id
-                        order by q.id asc");
+                        order by q.created_at desc");
     }
 }
