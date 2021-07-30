@@ -16,7 +16,7 @@ class QuestionnaireResponseController extends Controller {
     protected $questionnaireResponseManager;
     protected $platformWideGamificationBadgesProvider;
 
-    public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
+    public function __construct(QuestionnaireResponseManager           $questionnaireResponseManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
@@ -30,5 +30,15 @@ class QuestionnaireResponseController extends Controller {
 
     public function getResponsesForQuestionnaire(int $questionnaire_id): JsonResponse {
         return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id));
+    }
+
+    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
+        return response()->json($this->questionnaireResponseManager
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, Auth::id()));
+    }
+
+    public function voteAnswer(Request $request): JsonResponse {
+        return response()->json($this->questionnaireResponseManager
+            ->voteAnswer($request->questionnaire_id, $request->question_name, $request->respondent_user_id, $request->upvote));
     }
 }

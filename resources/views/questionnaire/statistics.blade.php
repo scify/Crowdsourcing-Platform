@@ -50,6 +50,7 @@
         </div>
         <div class="row">
             <questionnaire-statistics
+                    :user-id="{{ $viewModel->current_user_id }}"
                     :questionnaire='@json($viewModel->questionnaire)'>
             </questionnaire-statistics>
         </div>

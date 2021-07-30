@@ -1,6 +1,12 @@
 import * as SurveyAnalytics from "survey-analytics";
 
+export class AnswersData {
+    static answerVotes = [];
+    static userId = null;
+}
+
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
+
     function renderHeader(table, visualizer) {
         const header = document.createElement("thead");
         const tr = document.createElement("tr");
@@ -28,9 +34,9 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         answers
             .forEach(function (value) {
                 const answer = value[questionName];
-                if(!answer)
+                if (!answer)
                     return;
-
+                const respondentUserId = value.respondent_user_id;
                 const tr = document.createElement("tr");
                 const td1 = document.createElement("td");
                 const td2 = document.createElement("td");
@@ -47,13 +53,37 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
+                let userUpvotedClass = '';
+                let userDownvotedClass = '';
+                if (userHasUpvoted(questionName, respondentUserId))
+                    userUpvotedClass = 'user-upvoted';
+                else if (userHasDownvoted(questionName, respondentUserId))
+                    userDownvotedClass = 'user-downvoted';
+                const upvotesNum = getNumOfUpvotes(questionName, respondentUserId);
+                const downvotesNum = getNumOfDownvotes(questionName, respondentUserId);
+
+                if (upvotesNum)
+                    td4.setAttribute('data-order', (upvotesNum * 10));
+                else if (downvotesNum)
+                    td4.setAttribute('data-order', '0.' + downvotesNum);
+                else
+                    td4.setAttribute('data-order', '1');
+
                 td4.innerHTML = '<div class="container-fluid">' +
                     '<div class="row text-center no-gutters">' +
                     '<div class="col-6 pr-1">' +
-                    '<button type="button" class="btn btn-light w-100"><i class="far fa-thumbs-up"></i><span class="like-count">10</span></button>' +
+                    '<button data-question-name="' + questionName + '" ' +
+                    'data-respondent-user-id="' + respondentUserId + '" ' +
+                    'type="button" class="btn btn-light w-100 upvote vote-btn ' + userUpvotedClass + '">' +
+                    '<i class="far fa-thumbs-up"></i><span class="count">' + upvotesNum + '</span>' +
+                    '</button>' +
                     '</div>' +
                     '<div class="col-6 pl-1">' +
-                    '<button type="button" class="btn btn-light w-100"><i class="far fa-thumbs-down"></i><span class="like-count">5</span></button>' +
+                    '<button data-question-name="' + questionName + '" ' +
+                    'data-respondent-user-id="' + respondentUserId + '" ' +
+                    'type="button" class="btn btn-light w-100 downvote vote-btn ' + userDownvotedClass + '">' +
+                    '<i class="far fa-thumbs-down"></i><span class="count">' + downvotesNum + '</span>' +
+                    '</button>' +
                     '</div>' +
                     '</div>' +
                     '</div>';
@@ -61,6 +91,42 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 tbody.appendChild(tr);
             });
         table.appendChild(tbody);
+    }
+
+    function getNumOfUpvotes(questionName, respondent_user_id) {
+        for (let i = 0; i < AnswersData.answerVotes.length; i++) {
+            if (AnswersData.answerVotes[i].question_name === questionName
+                && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
+                return AnswersData.answerVotes[i].num_upvotes;
+        }
+        return 0;
+    }
+
+    function userHasUpvoted(questionName, respondent_user_id) {
+        for (let i = 0; i < AnswersData.answerVotes.length; i++) {
+            if (AnswersData.answerVotes[i].question_name === questionName
+                && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
+                return AnswersData.answerVotes[i].upvoted_by_user;
+        }
+        return false;
+    }
+
+    function userHasDownvoted(questionName, respondent_user_id) {
+        for (let i = 0; i < AnswersData.answerVotes.length; i++) {
+            if (AnswersData.answerVotes[i].question_name === questionName
+                && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
+                return AnswersData.answerVotes[i].downvoted_by_user;
+        }
+        return false;
+    }
+
+    function getNumOfDownvotes(questionName, respondent_user_id) {
+        for (let i = 0; i < AnswersData.answerVotes.length; i++) {
+            if (AnswersData.answerVotes[i].question_name === questionName
+                && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
+                return AnswersData.answerVotes[i].num_downvotes;
+        }
+        return 0;
     }
 
     function isString(str) {
@@ -84,7 +150,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 {"width": "40%"},
                 {"width": "5%"},
                 {"width": "15%"}
-            ]
+            ],
+            "order": [[3, "desc"]]
         });
     };
     return new SurveyAnalytics.VisualizerBase(question, data, {

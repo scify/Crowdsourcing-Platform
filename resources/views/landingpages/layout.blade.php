@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @include('partials.favicons')
-    <title>@yield('title_prefix', $viewModel->project->name) @yield('title_postfix', '')</title>
+    <title>@yield('title_prefix', isset($viewModel->project) ? $viewModel->project->name : config('app.name')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -43,13 +43,14 @@
     @yield('content')
 </div>
 
-<footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
-    <div class="container" style="
+@if(isset($viewModel->project))
+    <footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
+        <div class="container" style="
                 color: {{ $viewModel->project->lp_footer_color }}">
-        {!! $viewModel->project->footer !!}
-    </div>
-</footer>
-
+            {!! $viewModel->project->footer !!}
+        </div>
+    </footer>
+@endif
 <div id="pyro" class="">
     <div class="before"></div>
     <div class="after"></div>

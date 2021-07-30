@@ -6,6 +6,7 @@ namespace App\Models\ViewModels\Questionnaire;
 use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\Statistics\QuestionnaireResponsesPerLanguage;
 use App\Repository\Questionnaire\Statistics\QuestionnaireResponseStatistics;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireStatistics {
 
@@ -13,12 +14,14 @@ class QuestionnaireStatistics {
     public $userCanPrintStatistics;
     public $questionnaireResponseStatistics;
     public $numberOfResponsesPerLanguage;
+    public $current_user_id;
 
-    public function __construct(Questionnaire $questionnaire,
-                                QuestionnaireResponseStatistics $questionnaireResponseStatistics,
+    public function __construct(Questionnaire                     $questionnaire,
+                                QuestionnaireResponseStatistics   $questionnaireResponseStatistics,
                                 QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
-                                $userCanPrintStatistics) {
+                                                                  $userCanPrintStatistics) {
         $this->questionnaire = $questionnaire;
+        $this->current_user_id = Auth::check() ? Auth::id() : 0;
         $this->userCanPrintStatistics = $userCanPrintStatistics;
         $this->questionnaireResponseStatistics = $questionnaireResponseStatistics;
         $this->numberOfResponsesPerLanguage = $numberOfResponsesPerLanguage;

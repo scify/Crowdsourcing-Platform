@@ -7,10 +7,11 @@ use App\BusinessLogicLayer\LanguageManager;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
+use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireResponseManager {
@@ -20,17 +21,20 @@ class QuestionnaireResponseManager {
     protected $questionnaireResponseAnswerTextRepository;
     protected $languageManager;
     protected $questionnaireActionHandler;
+    protected $questionnaireAnswerVoteRepository;
 
     public function __construct(QuestionnaireRepository                   $questionnaireRepository,
                                 QuestionnaireResponseRepository           $questionnaireResponseRepository,
                                 QuestionnaireResponseAnswerTextRepository $questionnaireResponseAnswerTextRepository,
                                 LanguageManager                           $languageManager,
-                                QuestionnaireActionHandler                $questionnaireActionHandler) {
+                                QuestionnaireActionHandler                $questionnaireActionHandler,
+                                QuestionnaireAnswerVoteRepository         $questionnaireAnswerVoteRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireResponseAnswerTextRepository = $questionnaireResponseAnswerTextRepository;
         $this->languageManager = $languageManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
+        $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
     }
 
     public function getQuestionnaireResponsesForUser(User $user) {
@@ -62,11 +66,13 @@ class QuestionnaireResponseManager {
             'user_id' => $user->id,
             'project_id' => $data['project_id']
         ];
+        $responseObj = json_decode($data['response']);
+        $responseObj->user_respondent_id = $user->id;
         $questionnaireResponse = $this->questionnaireResponseRepository->updateOrCreate(
             $queryData,
             array_merge($queryData, [
                 'language_id' => $language->id,
-                'response_json' => $data['response']
+                'response_json' => json_encode($responseObj)
             ])
         );
         $this->storeQuestionnaireAnswerTextsForInputTypeQuestions($questionnaire, $questionnaireResponse);
@@ -113,6 +119,24 @@ class QuestionnaireResponseManager {
                     $freeTypeQuestions[$question->name] = $question;
 
         return $freeTypeQuestions;
+    }
+
+    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id, int $user_voter_id): Collection {
+        return $this->questionnaireAnswerVoteRepository
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, $user_voter_id);
+    }
+
+    public function voteAnswer(int $questionnaire_id, string $question_name, int $respondent_user_id, bool $upvote) {
+        if (!Auth::check())
+            return false;
+        $voterUserId = Auth::id();
+        $data = [
+            'questionnaire_id' => $questionnaire_id,
+            'question_name' => $question_name,
+            'respondent_user_id' => $respondent_user_id,
+            'voter_user_id' => $voterUserId
+        ];
+        return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
     }
 
 }
