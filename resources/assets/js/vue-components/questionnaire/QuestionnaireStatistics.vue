@@ -206,12 +206,37 @@ export default {
         },
         urlRelative: false
       }).then(response => {
-        if(upvote) {
+        if (upvote) {
+          // if the user has already upvoted, subtract one
+          // if the user has downvoted the same question, subtract one from downvotes and cancel the downvote class
+          this.updateCountElement(element, 'user-upvoted', 'user-downvoted', 'downvote');
           element.toggleClass('user-upvoted');
         } else {
+          // if the user has already downvoted, subtract one
+          // if the user has upvoted the same question, subtract one from downvotes and cancel the downvote class
+          this.updateCountElement(element, 'user-downvoted', 'user-upvoted', 'upvote');
           element.toggleClass('user-downvoted');
         }
       });
+    },
+    updateCountElement(element, className, oppositeClassName, oppositeButtonClassName) {
+      let countEl = element.find(".count:first");
+      let count = parseInt(countEl.html());
+      if (element.hasClass(className)) {
+        count -= 1;
+      } else {
+        count += 1;
+      }
+      countEl.html(count);
+
+      const parent = element.closest(".reaction-buttons");
+      let oppositeButtonEl = parent.find("." + oppositeButtonClassName + ":first");
+      if (oppositeButtonEl.hasClass(oppositeClassName)) {
+        oppositeButtonEl.removeClass(oppositeClassName);
+        let countEl = oppositeButtonEl.find(".count:first");
+        let count = parseInt(countEl.html()) - 1;
+        countEl.html(count);
+      }
     }
   }
 }
