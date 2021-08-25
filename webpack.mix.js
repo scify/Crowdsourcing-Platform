@@ -25,7 +25,7 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
-        resolve: { fallback: { fs: false, path: false }}
+        resolve: {fallback: {fs: false, path: false}}
     })
     .version()
     .vue();
@@ -57,11 +57,6 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
-        resolve: { fallback: { fs: false, path: false }}
+        resolve: {fallback: {fs: false, path: false}}
     })
     .version();
-
-// move sweetalert.css to public/dist/css
-mix.copy(['node_modules/bootstrap-sweetalert/dist/sweetalert.css'], 'public/dist/css/sweetalert.css');
-// move select2.min.css to public/dist/css
-mix.copy(['node_modules/select2/dist/css/select2.min.css'], 'public/dist/css/select2.min.css');
