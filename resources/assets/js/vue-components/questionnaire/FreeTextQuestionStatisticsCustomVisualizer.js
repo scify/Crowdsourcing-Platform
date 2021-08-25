@@ -70,7 +70,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     td4.setAttribute('data-order', '1');
 
                 td4.innerHTML = '<div class="container-fluid">' +
-                    '<div class="row text-center no-gutters">' +
+                    '<div class="row text-center no-gutters reaction-buttons">' +
                     '<div class="col-6 pr-1">' +
                     '<button data-question-name="' + questionName + '" ' +
                     'data-respondent-user-id="' + respondentUserId + '" ' +
