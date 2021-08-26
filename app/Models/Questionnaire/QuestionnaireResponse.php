@@ -33,7 +33,8 @@ class QuestionnaireResponse extends Model {
         'project_id',
         'user_id',
         'language_id',
-        'response_json'
+        'response_json',
+        'response_json_translated'
     ];
 
     public function user() {

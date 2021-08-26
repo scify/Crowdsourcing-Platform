@@ -111,7 +111,7 @@ export default {
         data: {},
         urlRelative: false
       }).then(response => {
-        const answers = _.map(_.map(response.data, 'response_json'), JSON.parse);
+        const answers = _.map(_.map(response.data, 'response_json_translated'), JSON.parse);
         this.get({
           url: route('questionnaire.answer-votes', this.questionnaire.id),
           data: {},
