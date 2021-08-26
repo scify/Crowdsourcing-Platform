@@ -44,9 +44,9 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
     let viewResponseBtnHandler = function () {
         $('body').on('click', '.response-btn', function (e) {
-            const responseId = $(this).data('respondentUserId');
+            const respondentUserId = $(this).data('respondentUserId');
             const respondentUserData = $(this).data('respondentUserData');
-            const answer = getResponseByRespondentId(responseId);
+            const answer = getResponseByRespondentId(respondentUserId);
             if (answer) {
                 $('#respondent-answers-modal-title').html(respondentUserData);
                 survey.data = answer;
