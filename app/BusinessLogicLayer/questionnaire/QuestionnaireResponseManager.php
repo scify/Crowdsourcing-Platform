@@ -4,6 +4,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\BusinessLogicLayer\LanguageManager;
+use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
@@ -67,7 +68,7 @@ class QuestionnaireResponseManager {
             'project_id' => $data['project_id']
         ];
         $responseObj = json_decode($data['response']);
-        $responseObj->user_respondent_id = $user->id;
+        $responseObj->respondent_user_id = $user->id;
         $questionnaireResponse = $this->questionnaireResponseRepository->updateOrCreate(
             $queryData,
             array_merge($queryData, [
@@ -79,6 +80,8 @@ class QuestionnaireResponseManager {
         $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $questionnaireResponse->project, $user);
         // if the user got invited by another user to answer the questionnaire, also award the referrer user.
         $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
+        TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
+        return $questionnaireResponse;
     }
 
     protected function storeQuestionnaireAnswerTextsForInputTypeQuestions(Questionnaire         $questionnaire,

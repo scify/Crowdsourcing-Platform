@@ -18,7 +18,7 @@
                     @foreach($reportViewModel->respondentsRows as $response)
                         <tr id="questionnaire_response_{{ $response->id }}">
                             <td>{{ $response->respondent_email }} / {{ $response->respondent_nickname }}</td>
-                            <td>{{ date('d/m/Y h:i:s', strtotime($response->answered_at)) }}</td>
+                            <td>{{ $response->answered_at ? date('d/m/Y h:i:s', strtotime($response->answered_at)) : '' }}</td>
                             <td class="text-center">
                                 <div class="container-fluid">
                                     <div class="row">
