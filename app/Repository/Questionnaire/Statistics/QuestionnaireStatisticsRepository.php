@@ -44,13 +44,18 @@ class QuestionnaireStatisticsRepository {
      * * @return QuestionnaireResponsesPerLanguage
      * */
     public function getNumberOfResponsesPerLanguage($questionnaireId) {
-        $query = DB::select('SELECT count(*) as num_responses, language_code, language_name, ifnull(ql.color, default_color) as color 
+        $query = DB::select('SELECT count(*) as num_responses, 
+                            language_code, language_name, 
+                            ifnull(ql.color, default_color) as color 
                             FROM questionnaire_responses as qr
                             join languages_lkp as ll on qr.language_id = ll.id
                             left outer join questionnaire_languages as ql on ql.language_id = ll.id
                             where qr.questionnaire_id = ?
+                            and ql.questionnaire_id = ?
                             and qr.deleted_at is null
-                            group by language_code, language_name, color;', [$questionnaireId]);
+                            and ql.deleted_at is null
+                            and ll.deleted_at is null
+                            group by language_code, language_name, color;', [$questionnaireId, $questionnaireId]);
 
         return new QuestionnaireResponsesPerLanguage($query);
     }
