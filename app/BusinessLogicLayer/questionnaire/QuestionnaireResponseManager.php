@@ -143,4 +143,8 @@ class QuestionnaireResponseManager {
             return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
     }
 
+    public function deleteResponse(int $questionnaire_response_id) {
+        return $this->questionnaireResponseRepository->delete($questionnaire_response_id);
+    }
+
 }

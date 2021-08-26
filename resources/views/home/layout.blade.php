@@ -14,7 +14,6 @@
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-        <link rel="stylesheet" href="{{ mix('dist/css/sweetalert.css') }}">
         <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
         <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
         @stack('css')
