@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\QuestionnaireReportController;
+use App\Http\Controllers\QuestionnaireResponseController;
 
 Auth::routes();
 
@@ -55,6 +56,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::post('mark-translation', 'QuestionnaireController@markTranslation')->name('mark-translation');
     Route::post('delete-translation', 'QuestionnaireController@deleteTranslation')->name('delete-translation');
     Route::post('automatic-translation-single-string', 'QuestionnaireController@getAutomaticTranslationForString')->name('automatic-translation-single-string');
+    Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
 
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");

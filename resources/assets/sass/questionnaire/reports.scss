@@ -1,6 +1,7 @@
 @import "resources/assets/sass/variables";
 @import "~survey-analytics/survey.analytics.tabulator.min.css";
 @import "~tabulator-tables/dist/css/tabulator.min.css";
+@import "~survey-jquery/modern.min.css";
 
 .reports {
   .search-btn {
@@ -28,7 +29,7 @@
   margin-left: 5px;
 }
 
-#questionnaire-responses-report {
+.responses-report {
   font-family: 'Open Sans', sans-serif;
 
   .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {

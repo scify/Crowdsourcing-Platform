@@ -41,4 +41,11 @@ class QuestionnaireResponseController extends Controller {
         return response()->json($this->questionnaireResponseManager
             ->voteAnswer($request->questionnaire_id, $request->question_name, $request->respondent_user_id, $request->upvote));
     }
+
+    public function destroy(Request $request) {
+        $this->validate($request, [
+            'questionnaire_response_id' => 'required|integer|exists:questionnaire_responses,id'
+        ]);
+        return $this->questionnaireResponseManager->deleteResponse($request->questionnaire_response_id);
+    }
 }
