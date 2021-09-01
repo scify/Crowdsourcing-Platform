@@ -38,11 +38,10 @@
               <label for="language">Statistics page visibility</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <select name="statistics_page_visibility_lkp_id" id="statistics_page_visibility_lkp_id"
-                      class="select2">
+              <select name="statistics_page_visibility_lkp_id" id="statistics_page_visibility_lkp_id">
                 <option v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
                         v-model="questionnaire.statistics_page_visibility_lkp_id">
-                  {{visibilityLkp.title}}
+                  {{ visibilityLkp.title }}
                 </option>
               </select>
             </div>
@@ -59,7 +58,7 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="description">Description - Motto</label>
+              <label>Description - Motto</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                             <textarea class="form-control" name="description" id="description"
@@ -82,15 +81,17 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="language">Default Language</label>
+              <label>Default Language</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-
-              <select name="language_id" id="language" class="select2">
+              <select
+                  class="language-select"
+                  @change="initQuestionnaireEditor($event.target.value)"
+                  id="language">
                 <option v-for="language in languages"
-                        v-model="questionnaire.default_language_id"
+                        :value="language.language_code"
                         :selected="questionnaire.default_language_id === language.id">
-                  {{language.language_name}}
+                  {{ language.language_name }}
                 </option>
               </select>
             </div>
@@ -111,6 +112,26 @@
         </div>
       </div>
     </div>
+    <div class="modal-component">
+      <modal
+          :hide-header="true"
+          :open="modalOpen"
+          :allow-close="false">
+        <template v-slot:body>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-10 text-center mx-auto">
+                                        <span
+                                            class="loader loader-lg loader-dark spinner-border my-5"
+                                            role="status"
+                                            aria-hidden="true"></span>
+                <h4 v-if="modalMessage" class="mt-0 p-0 mb-5 text-center message" v-html="modalMessage"></h4>
+              </div>
+            </div>
+          </div>
+        </template>
+      </modal>
+    </div>
   </div>
 </template>
 
@@ -119,6 +140,7 @@ import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
 import _ from "lodash";
+import {arrayMove, showToast} from "../../common";
 
 export default {
   created() {
@@ -128,6 +150,10 @@ export default {
     if (!this.questionnaire.statistics_page_visibility_lkp_id)
       this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id
     this.questionnaire.projectIds = _.map(this.questionnaireData.projects, 'id');
+    const langId = this.questionnaire.default_language_id;
+    this.defaultLocale = this.languages.filter(function (el) {
+      return el.id === langId;
+    })[0].language_code;
   },
   mounted() {
     this.getColorsForCrowdSourcingProject();
@@ -158,7 +184,10 @@ export default {
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
         "html", "matrix", "matrixdropdown", "matrixdynamic", "radiogroup", "rating", "text"],
       colors: [],
-      isTranTabInitialised: false
+      isTranTabInitialised: false,
+      modalOpen: false,
+      modalMessage: null,
+      defaultLocale: null
     }
   },
   methods: {
@@ -177,15 +206,16 @@ export default {
         urlRelative: false
       }).then(response => {
         this.colors = _.map(response.data, 'color_name').sort();
-        this.initQuestionnaireEditor();
+        this.initQuestionnaireEditor(this.defaultLocale);
       });
     },
-    initQuestionnaireEditor() {
+    initQuestionnaireEditor(locale) {
+      this.questionnaire.default_language_id = this.languages.filter(function (el) {
+        return el.language_code === locale;
+      })[0].id;
 
-      Survey.surveyLocalization.supportedLocales = _.map(this.languages, 'language_code');
-      for (let i = 0; i < this.languages.length; i++) {
-        Survey.surveyLocalization.localeNames[this.languages[i].language_code] = this.languages[i].language_name;
-      }
+      this.initLocaleForQuestionnaireEditor(locale);
+
       Survey
           .JsonObject
           .metaData
@@ -210,17 +240,83 @@ export default {
       this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
       this.surveyCreator.render("questionnaire-editor");
       this.surveyCreator.haveCommercialLicense = true;
+
+
       if (this.questionnaireData.questionnaire_json)
         this.surveyCreator.text = this.assignRandomColorsToChoices(this.questionnaireData.questionnaire_json);
+      else
+        this.surveyCreator.text = ' { "pages": [ { "name": "page1", "elements": [ { "type": "rating", "name": "question4", "title": "Rating question", "rateMax": 7, "minRateDescription": "This is the minimum", "maxRateDescription": "This is the maximum" }, { "type": "radiogroup", "name": "question3", "title": "Is this a question?", "choices": [ { "value": "item1", "text": "First" }, { "value": "item2", "text": "Second" }, { "value": "item3", "text": "Third" } ] }, { "type": "text", "name": "question1", "title": "First question" }, { "type": "matrix", "name": "question2", "title": "Matrix question here", "columns": [ { "value": "Column 1", "text": "First col" }, { "value": "Column 2", "text": "Second col" }, { "value": "Column 3", "text": "Third" } ], "rows": [ { "value": "Row 1", "text": "first row!" }, { "value": "Row 2", "text": "Second row here" } ] } ] } ] } ';
       let instance = this;
       let usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
       this.surveyCreator.onActiveTabChanged.add((sender, options) => {
-        if (options.tabName == "translation") {
+        if (options.tabName.toLowerCase() === "translation") {
           if (!instance.isTranTabInitialised) {
-            sender.translation.setSelectedLocales(usedLocales);
+            if (usedLocales.length)
+              sender.translation.setSelectedLocales(usedLocales);
             instance.isTranTabInitialised = true;
+            sender.translation.mergeLocaleWithDefault();
+            sender.translation.toolbarItems.push({
+              id: "auto-translate",
+              visible: true,
+              title: "Translate Survey Now",
+              action: function () {
+                instance.translateQuestionnaireToLocales(sender.translation.getSelectedLocales());
+              }
+            });
           }
         }
+      });
+    },
+    initLocaleForQuestionnaireEditor(locale) {
+      console.log(locale);
+      this.defaultLocale = locale;
+      // show default language as the first language
+      arrayMove(this.languages, this.getIndexOfDefaultLocale(), 0);
+      Survey.surveyLocalization.supportedLocales = _.map(this.languages, 'language_code');
+      Survey.surveyLocalization.defaultLocale = this.defaultLocale;
+      SurveyCreator.editorLocalization.currentLocale = this.defaultLocale;
+      for (let i = 0; i < this.languages.length; i++)
+        Survey.surveyLocalization.localeNames[this.languages[i].language_code] = this.languages[i].language_name;
+    },
+    getIndexOfDefaultLocale() {
+      for (let i = 0; i < this.languages.length; i++)
+        if (this.languages[i].language_code === this.defaultLocale)
+          return i;
+      throw "Default locale not found";
+    },
+    translateQuestionnaireToLocales(locales) {
+      locales = locales.filter(function (el) {
+        return el !== "";
+      });
+      if (!locales.length)
+        return swal({
+          title: "Languages Missing!",
+          text: "Please provide at least one language from the dropdown menu.",
+          type: "warning",
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "OK",
+        });
+      this.modalOpen = true;
+      this.modalMessage = 'Please wait while the translations are generated...';
+      const data = {
+        questionnaire_json: this.surveyCreator.text,
+        locales: locales
+      };
+      this.post({
+        url: route('questionnaire.translate'),
+        data: data,
+        urlRelative: false,
+        handleError: false
+      }).then((response) => {
+        this.surveyCreator.changeText(response.data.translation);
+        console.log(response.data.translation);
+        console.log(JSON.parse(response.data.translation));
+        this.surveyCreator.showTranslationEditor();
+        this.modalOpen = false;
+        showToast('Translations generated!', '#28a745', 'bottom-right');
+      }).catch(error => {
+        console.error(error);
+        this.modalOpen = false;
       });
     },
     saveQuestionnaire() {
@@ -340,4 +436,20 @@ export default {
 
 <style scoped lang="scss">
 
+.modal-component {
+  .loader {
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.3rem;
+  }
+}
+
+select {
+  background-color: #fff;
+  border: 1px solid #d2d6de;
+  border-radius: 0;
+  padding: 6px 8px;
+  width: 100%;
+  height: 34px;
+}
 </style>

@@ -64,9 +64,6 @@
                                                 <a class="action-btn dropdown-item"
                                                    href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
                                                             class="far fa-edit"></i> Edit Questionnaire</a>
-                                                <a class="action-btn dropdown-item"
-                                                   href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                            class="fa fa-language"></i> Translate</a>
                                             @endif
                                             <a class="action-btn dropdown-item"
                                                href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i

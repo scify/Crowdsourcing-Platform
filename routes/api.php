@@ -26,5 +26,5 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
     Route::get('/questionnaire/answer-votes/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
         ->name('questionnaire.answer-votes');
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.vote');
-
+    Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('questionnaire.translate')->middleware("can:manage-crowd-sourcing-projects");
 });

@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\OperationResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -15,9 +16,9 @@ class QuestionnaireController extends Controller {
     protected $questionnaireShareManager;
     protected $questionnaireVMProvider;
 
-    public function __construct(QuestionnaireManager $questionnaireManager,
+    public function __construct(QuestionnaireManager          $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireVMProvider $questionnaireVMProvider) {
+                                QuestionnaireVMProvider       $questionnaireVMProvider) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;
@@ -51,23 +52,16 @@ class QuestionnaireController extends Controller {
         return $this->questionnaireManager->updateQuestionnaire($id, $request->all());
     }
 
-//    public function translateQuestionnaire($id) {
-//        $viewModel = $this->questionnaireVMProvider->getTranslateQuestionnaireViewModel($id);
-//        return view('questionnaire.translate')->with(['viewModel' => $viewModel]);
-//    }
-
-    public function getAutomaticTranslationForString(Request $request) {
-        $translation = $this->questionnaireManager->getAutomaticTranslationForString(
-            $request->languageCodeToTranslateTo,
-            $request->text);
-        return $translation;
+    public function translateQuestionnaire(Request $request): JsonResponse {
+        $this->validate($request, [
+            'questionnaire_json' => 'required|string|json',
+            'locales' => 'required|array'
+        ]);
+        return response()->json([
+            'translation' => $this->questionnaireManager->translateQuestionnaireToLocales($request->questionnaire_json, $request->locales)
+        ]);
     }
 
-    public function getAutomaticTranslations(Request $request) {
-        $translations = $this->questionnaireManager->getAutomaticTranslations(
-            $request->languageCodeToTranslateTo, $request->ids, $request->texts);
-        return response()->json(['status' => '__SUCCESS', 'translations' => $translations]);
-    }
 
     public function markTranslation(Request $request) {
         try {
@@ -80,10 +74,6 @@ class QuestionnaireController extends Controller {
         }
     }
 
-    public function storeQuestionnaireTranslations(Request $request, $id) {
-        $this->questionnaireManager->storeQuestionnaireTranslations($id, $request->translations);
-        return response()->json(['status' => '__SUCCESS', 'redirect_url' => url()->previous(route('home'))]);
-    }
 
     public function storeQuestionnaireShare(Request $request) {
         $userId = \Auth::id();
