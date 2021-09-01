@@ -309,8 +309,6 @@ export default {
         handleError: false
       }).then((response) => {
         this.surveyCreator.changeText(response.data.translation);
-        console.log(response.data.translation);
-        console.log(JSON.parse(response.data.translation));
         this.surveyCreator.showTranslationEditor();
         this.modalOpen = false;
         showToast('Translations generated!', '#28a745', 'bottom-right');
