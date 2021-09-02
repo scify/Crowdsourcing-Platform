@@ -1,8 +1,10 @@
 import * as SurveyAnalytics from "survey-analytics";
+import _ from "lodash";
 
 export class AnswersData {
     static answerVotes = [];
     static userId = null;
+    static languages = [];
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
@@ -48,7 +50,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 else {
                     td1.innerHTML = answer.initial_answer;
                     td2.innerHTML = answer.translated_answer;
-                    td3.innerHTML = answer.initial_language_detected;
+                    td3.innerHTML = answer.initial_language_detected ? getLanguageFromCode(answer.initial_language_detected).language_name : '';
                 }
                 tr.appendChild(td1);
                 tr.appendChild(td2);
@@ -131,6 +133,12 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
     function isString(str) {
         return (typeof str === 'string' || str instanceof String)
+    }
+
+    function getLanguageFromCode(code) {
+        return _.find(AnswersData.languages, function (l) {
+            return l.language_code === code;
+        });
     }
 
     const renderContent = function (contentContainer, visualizer) {

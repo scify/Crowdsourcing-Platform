@@ -102,7 +102,14 @@ export default {
         urlRelative: false
       }).then(response => {
         this.colors = response.data;
-        this.getQuestionnaireResponses();
+        this.get({
+          url: route('languages'),
+          data: {},
+          urlRelative: false
+        }).then(response => {
+          AnswersData.languages = response.data.languages;
+          this.getQuestionnaireResponses();
+        });
       });
     },
     getQuestionnaireResponses() {
