@@ -18,7 +18,7 @@ class QuestionnaireLanguageRepository extends Repository {
         return QuestionnaireLanguage::where(['questionnaire_id' => $questionnaire_id])->with('language')->get();
     }
 
-    public function deleteLanguageByForQuestionnaire(int $lang_id, int $questionnaire_id) {
+    public function deleteLanguageFromQuestionnaire(int $lang_id, int $questionnaire_id) {
         return $this->where(['language_id' => $lang_id, 'questionnaire_id' => $questionnaire_id])->forceDelete();
     }
 }

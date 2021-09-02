@@ -132,6 +132,11 @@
         </template>
       </modal>
     </div>
+    <questionnaire-languages
+        :questionnaire-id="questionnaire.id"
+        :modal-open="questionnaireLanguagesModalOpen"
+        @canceled="questionnaireLanguagesModalOpen = false"
+    ></questionnaire-languages>
   </div>
 </template>
 
@@ -187,7 +192,8 @@ export default {
       isTranTabInitialised: false,
       modalOpen: false,
       modalMessage: null,
-      defaultLocale: null
+      defaultLocale: null,
+      questionnaireLanguagesModalOpen: false
     }
   },
   methods: {
@@ -248,24 +254,31 @@ export default {
         this.surveyCreator.text = ' { "pages": [ { "name": "page1", "elements": [ { "type": "rating", "name": "question4", "title": "Rating question", "rateMax": 7, "minRateDescription": "This is the minimum", "maxRateDescription": "This is the maximum" }, { "type": "radiogroup", "name": "question3", "title": "Is this a question?", "choices": [ { "value": "item1", "text": "First" }, { "value": "item2", "text": "Second" }, { "value": "item3", "text": "Third" } ] }, { "type": "text", "name": "question1", "title": "First question" }, { "type": "matrix", "name": "question2", "title": "Matrix question here", "columns": [ { "value": "Column 1", "text": "First col" }, { "value": "Column 2", "text": "Second col" }, { "value": "Column 3", "text": "Third" } ], "rows": [ { "value": "Row 1", "text": "first row!" }, { "value": "Row 2", "text": "Second row here" } ] } ] } ] } ';
       let instance = this;
       let usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
-      this.surveyCreator.onActiveTabChanged.add((sender, options) => {
-        if (options.tabName.toLowerCase() === "translation") {
-          if (!instance.isTranTabInitialised) {
-            if (usedLocales.length)
-              sender.translation.setSelectedLocales(usedLocales);
-            instance.isTranTabInitialised = true;
-            sender.translation.mergeLocaleWithDefault();
-            sender.translation.toolbarItems.push({
-              id: "auto-translate",
-              visible: true,
-              title: "Translate Survey Now",
-              action: function () {
-                instance.translateQuestionnaireToLocales(sender.translation.getSelectedLocales());
-              }
-            });
+
+      if (!this.isTranTabInitialised) {
+        if (usedLocales.length)
+          this.surveyCreator.translation.setSelectedLocales(usedLocales);
+        this.isTranTabInitialised = true;
+        this.surveyCreator.translation.mergeLocaleWithDefault();
+        this.surveyCreator.translation.toolbarItems.push({
+          id: "auto-translate",
+          visible: true,
+          title: "Translate Survey Now",
+          action: function () {
+            instance.translateQuestionnaireToLocales(sender.translation.getSelectedLocales());
           }
-        }
-      });
+        });
+        if (this.questionnaire.id)
+          this.surveyCreator.translation.toolbarItems.push({
+            id: "questionnaire-languages",
+            visible: true,
+            title: "Mark languages as approved",
+            action: function () {
+              instance.questionnaireLanguagesModalOpen = true;
+            }
+          });
+      }
+
     },
     initLocaleForQuestionnaireEditor(locale) {
       console.log(locale);

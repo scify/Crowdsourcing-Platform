@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $questionnaire_id
  * @property int $language_id
- * @property int $machine_generated_translation
+ * @property int $human_approved
  * @property string $color
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -31,7 +31,7 @@ class QuestionnaireLanguage extends Model
     protected $fillable = [
         'questionnaire_id',
         'language_id',
-        'machine_generated_translation',
+        'human_approved',
         'color'
     ];
 

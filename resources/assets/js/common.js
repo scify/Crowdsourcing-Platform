@@ -41,6 +41,7 @@ import store from './store/store';
 Vue.component('modal', require('./vue-components/common/ModalComponent').default);
 Vue.component('store-modal', require('./vue-components/common/StoreModalComponent').default);
 Vue.component('questionnaire-create-edit', require('./vue-components/questionnaire/QuestionnaireCreateEdit').default);
+Vue.component('questionnaire-languages', require('./vue-components/questionnaire/QuestionnaireLanguages').default);
 Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
 Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
 Vue.component('crowd-sourcing-project-colors', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectColors').default);
@@ -164,7 +165,7 @@ export function showToast(text, bgColor, position = 'top-right') {
         bgColor: bgColor,              // Background color for toast
         textColor: '#eee',            // text color
         allowToastClose: true,       // Show the close button or not
-        hideAfter: 3000,              // `false` to make it sticky or time in miliseconds to hide after
+        hideAfter: 4000,              // `false` to make it sticky or time in miliseconds to hide after
         stack: 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
         textAlign: 'left',            // Alignment of text i.e. left, right, center
         position: position      // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page

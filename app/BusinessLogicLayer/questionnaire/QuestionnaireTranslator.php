@@ -2,7 +2,9 @@
 
 namespace App\BusinessLogicLayer\questionnaire;
 
+use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Utils\Translator;
+use JsonSchema\Exception\ResourceNotFoundException;
 
 class QuestionnaireTranslator {
 
@@ -12,9 +14,11 @@ class QuestionnaireTranslator {
     protected $translatablePageFirstLevelContentIdentifiers;
     protected $translatableQuestionFirstLevelContentIdentifiers;
     protected $translatableQuestionSecondLevelContentIdentifiers;
+    protected $questionnaireTranslationRepository;
 
-    public function __construct(Translator $translator) {
+    public function __construct(Translator $translator, QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
         $this->translator = $translator;
+        $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->translatableQuestionnaireFirstLevelContentIdentifiers = [
             'title',
             'description',
@@ -217,8 +221,18 @@ class QuestionnaireTranslator {
         return $content;
     }
 
-    protected
-    function identifierRefersToInnerChoices(string $identifier): bool {
+    protected function identifierRefersToInnerChoices(string $identifier): bool {
         return in_array($identifier, ['choices', 'rows', 'columns']);
+    }
+
+    public function markQuestionnaireTranslations(int $questionnaireId, array $lang_ids_to_status): bool {
+        foreach ($lang_ids_to_status as $lang_id_with_status) {
+            $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $lang_id_with_status['id']);
+            if (!$questionnaireLanguage)
+                throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $lang_id);
+            $questionnaireLanguage->human_approved = $lang_id_with_status['status'];
+            $questionnaireLanguage->save();
+        }
+        return true;
     }
 }

@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\QuestionnaireReportController;
 use App\Http\Controllers\QuestionnaireResponseController;
 
@@ -47,15 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/questionnaire/new', 'QuestionnaireController@createQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('questionnaire/report-data', [QuestionnaireReportController::class, 'getReportDataForQuestionnaire'])->name('questionnaire.get-report-data');
     Route::get('/questionnaire/{id}/edit', 'QuestionnaireController@editQuestionnaire')->name('edit-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
-    //    Route::get('/questionnaire/{id}/translate', 'QuestionnaireController@translateQuestionnaire')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
-    //    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
-    // Route::post('automatic-translation', 'QuestionnaireController@getAutomaticTranslations')->name('automatic-translation');
-    Route::post('mark-translation', 'QuestionnaireController@markTranslation')->name('mark-translation');
-    // Route::post('delete-translation', 'QuestionnaireController@deleteTranslation')->name('delete-translation');
-    // Route::post('automatic-translation-single-string', 'QuestionnaireController@getAutomaticTranslationForString')->name('automatic-translation-single-string');
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
 
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
