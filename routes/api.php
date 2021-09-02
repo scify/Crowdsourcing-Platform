@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\CrowdSourcingProjectColorsController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\QuestionnaireResponseController;
 
@@ -29,4 +30,6 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('questionnaire.translate')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('questionnaire.languages');
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('questionnaire.mark-translations');
+    Route::get('/languages', [LanguageController::class, 'getLanguages'])
+        ->name('languages');
 });
