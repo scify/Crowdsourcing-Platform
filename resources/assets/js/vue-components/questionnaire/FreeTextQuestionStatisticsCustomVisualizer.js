@@ -151,7 +151,16 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 {"width": "5%"},
                 {"width": "15%"}
             ],
-            "order": [[3, "desc"]]
+            "order": [[3, "desc"]],
+            "dom": 'Bfrtip',
+            "buttons": [
+                {
+                    extend: 'csvHtml5',
+                    text: 'Download as CSV',
+                    filename: 'Statistics_' + new Date().getTime()
+                }
+
+            ]
         });
     };
     return new SurveyAnalytics.VisualizerBase(question, data, {
