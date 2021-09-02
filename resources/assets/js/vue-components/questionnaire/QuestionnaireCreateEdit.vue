@@ -447,20 +447,6 @@ export default {
 
 <style scoped lang="scss">
 
-.modal-component {
-  .loader {
-    width: 5rem;
-    height: 5rem;
-    border-width: 0.3rem;
-  }
-}
 
-select {
-  background-color: #fff;
-  border: 1px solid #d2d6de;
-  border-radius: 0;
-  padding: 6px 8px;
-  width: 100%;
-  height: 34px;
-}
+
 </style>
