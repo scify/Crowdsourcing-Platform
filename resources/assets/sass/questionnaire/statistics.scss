@@ -1,28 +1,16 @@
 @import "../variables";
 
-#answerTranslationModal {
-
-  .modal-dialog {
-    margin-top: 5rem;
-  }
-
-  .modal-body {
-    p {
-      font-size: 1.2rem;
-    }
-  }
-}
-
 .sa-question.sa-question-layouted {
   position: relative;
   margin: 0 auto;
 }
 
-.sa-visualizer__toolbar.sa-panel__header {
+.sa-visualizer__toolbar {
   .sa-toolbar {
     .sa-toolbar__button {
       display: none;
     }
+    margin-bottom: 10px;
   }
 }
 
@@ -111,4 +99,8 @@
   .dataTables_length, .dataTables_info {
     text-align: left;
   }
+}
+
+.dataTables_wrapper.dt-bootstrap4.no-footer {
+  text-align: left;
 }

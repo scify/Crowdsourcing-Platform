@@ -243,7 +243,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "resources/assets/sass/variables";
 @import "~survey-jquery/modern.min.css";
 @import "~survey-analytics/survey.analytics.min.css";
+@import "resources/assets/sass/questionnaire/statistics";
 </style>
