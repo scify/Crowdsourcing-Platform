@@ -6,9 +6,9 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
-use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
@@ -57,7 +57,7 @@ class QuestionnaireVMProvider {
         $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($projectTheUserHasAccessTo->pluck('id')->toArray());
         foreach ($questionnaires as $questionnaire) {
-            if ($this->questionnaireManager->shouldShowLinkForQuestionnaire($questionnaire)) {
+            if ($this->shouldShowLinkForQuestionnaire($questionnaire)) {
                 $projectSlugs = explode(',', $questionnaire->project_slugs);
                 $projectNames = explode(',', $questionnaire->project_names);
                 $questionnaire->urls = [];
@@ -66,7 +66,7 @@ class QuestionnaireVMProvider {
                         $questionnaire->urls,
                         [
                             'project_name' => $projectNames[$index],
-                            'url' => $this->questionnaireManager->getQuestionnaireURL($projectSlug, $questionnaire->id)
+                            'url' => $this->getQuestionnaireURL($projectSlug, $questionnaire->id)
                         ]
                     );
             }
@@ -76,32 +76,11 @@ class QuestionnaireVMProvider {
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
-//    public function getTranslateQuestionnaireViewModel($questionnaireId) {
-//        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-//        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
-//        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
-//        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
-//        $questionnaireTranslations = $this->questionnaireTranslationRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
-//        $questionnaireLanguages = $this->questionnaireTranslationRepository->getQuestionnaireAvailableLanguages($questionnaireId);
-//        // if default value translation is set and there are some translations but not for all questions/answers/html,
-//        // we need to pass all the not translated strings to the other languages, so that they will be available for translation
-//        if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
-//            $defaultLanguageTranslation = $questionnaireTranslations->pull("");
-//            foreach ($questionnaireTranslations->keys() as $language) {
-//                foreach ($defaultLanguageTranslation as $translations) {
-//                    $questionnaireTranslations->get($language)->push($translations);
-//                }
-//            }
-//        }
-//        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
-//    }
+    protected function shouldShowLinkForQuestionnaire($questionnaire): bool {
+        return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
+    }
 
-//    private function transformAllLanguagesToArray($allLanguages) {
-//        $result = [];
-//        foreach ($allLanguages as $language) {
-//            array_push($result, $language[0]);
-//        }
-//        return $result;
-//    }
-
+    protected function getQuestionnaireURL($projectSlug, $questionnaireId): string {
+        return url('/' . trim($projectSlug)) . '?open=1&questionnaireId=' . $questionnaireId;
+    }
 }

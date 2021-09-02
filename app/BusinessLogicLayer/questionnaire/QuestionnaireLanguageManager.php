@@ -37,7 +37,7 @@ class QuestionnaireLanguageManager {
         }
         foreach ($languagesToDelete as $langCode) {
             $language = $this->languageManager->getLanguageByCode($langCode);
-            $this->questionnaireLanguageRepository->deleteLanguageByForQuestionnaire($language->id, $questionnaire_id);
+            $this->questionnaireLanguageRepository->deleteLanguageFromQuestionnaire($language->id, $questionnaire_id);
         }
     }
 

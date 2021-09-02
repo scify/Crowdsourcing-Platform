@@ -406,3 +406,11 @@ footer {
     overflow-y: auto;
   }
 }
+
+.spinner-border {
+  vertical-align: middle;
+}
+
+.jq-toast-wrap {
+  z-index: 10000 !important;
+}

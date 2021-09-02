@@ -3,12 +3,14 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-dialog modal-dialog-scrollable" :class="additionalClasses">
             <div class="modal-content">
               <div class="modal-header" v-if="!hideHeader">
                 <slot name="header"></slot>
-                <button v-if="allowClose" type="button" class="btn-close"
-                        @click="cancel" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button v-if="allowClose" @click="cancel" type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <div class="modal-body p-0">
                 <slot name="body"></slot>
@@ -29,7 +31,8 @@ export default {
   props: {
     allowClose: Boolean,
     open: false,
-    hideHeader: false
+    hideHeader: false,
+    additionalClasses: 'modal-lg'
   },
   data: function () {
     return {}

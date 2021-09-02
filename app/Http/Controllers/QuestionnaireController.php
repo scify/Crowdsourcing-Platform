@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\questionnaire\QuestionnaireLanguageManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
-use App\Http\OperationResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireController extends Controller {
     protected $questionnaireManager;
     protected $questionnaireShareManager;
     protected $questionnaireVMProvider;
+    protected $questionnaireTranslator;
+    protected $questionnaireLanguageManager;
 
     public function __construct(QuestionnaireManager          $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireVMProvider       $questionnaireVMProvider) {
+                                QuestionnaireVMProvider       $questionnaireVMProvider,
+                                QuestionnaireTranslator       $questionnaireTranslator,
+                                QuestionnaireLanguageManager  $questionnaireLanguageManager) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;
+        $this->questionnaireTranslator = $questionnaireTranslator;
+        $this->questionnaireLanguageManager = $questionnaireLanguageManager;
     }
 
     public function manageQuestionnaires() {
@@ -40,7 +47,10 @@ class QuestionnaireController extends Controller {
     }
 
     public function store(Request $request) {
-        return $this->questionnaireManager->storeQuestionnaire($request->all());
+        $data = $request->all();
+        $questionnaire = $this->questionnaireManager->storeQuestionnaire($request->all());
+        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        return $questionnaire;
     }
 
     public function editQuestionnaire($id) {
@@ -49,7 +59,10 @@ class QuestionnaireController extends Controller {
     }
 
     public function update(Request $request, $id) {
-        return $this->questionnaireManager->updateQuestionnaire($id, $request->all());
+        $data = $request->all();
+        $questionnaire = $this->questionnaireManager->updateQuestionnaire($id, $data);
+        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        return $questionnaire;
     }
 
     public function translateQuestionnaire(Request $request): JsonResponse {
@@ -58,25 +71,31 @@ class QuestionnaireController extends Controller {
             'locales' => 'required|array'
         ]);
         return response()->json([
-            'translation' => $this->questionnaireManager->translateQuestionnaireToLocales($request->questionnaire_json, $request->locales)
+            'translation' => $this->questionnaireTranslator->translateQuestionnaireJSONToLocales($request->questionnaire_json, $request->locales)
         ]);
     }
 
-
-    public function markTranslation(Request $request) {
-        try {
-            $this->questionnaireManager->markQuestionnaireTranslation($request->questionnaire_id, $request->lang_id, $request->mark_human);
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), ""));
-        } catch (\Exception $e) {
-            $errorMessage = 'Error: ' . $e->getCode() . "  " . $e->getMessage();
-            Log::error($e);
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string)view('partials.ajax_error_message', compact('errorMessage'))));
-        }
+    public function getLanguagesForQuestionnaire(Request $request): JsonResponse {
+        $this->validate($request, [
+            'questionnaire_id' => 'required|integer'
+        ]);
+        return response()->json([
+            'questionnaire_languages' => $this->questionnaireLanguageManager->getLanguagesForQuestionnaire(($request->questionnaire_id))
+        ]);
     }
 
+    public function markQuestionnaireTranslations(Request $request): JsonResponse {
+        $this->validate($request, [
+            'questionnaire_id' => 'required|integer',
+            'lang_ids_to_status' => 'required|array',
+        ]);
+        return response()->json([
+            'success' => $this->questionnaireTranslator->markQuestionnaireTranslations($request->questionnaire_id, $request->lang_ids_to_status)
+        ]);
+    }
 
-    public function storeQuestionnaireShare(Request $request) {
-        $userId = \Auth::id();
+    public function storeQuestionnaireShare(Request $request): JsonResponse {
+        $userId = Auth::id();
         $values = $request->all();
         $questionnaireId = $values['questionnaire-id'];
         $this->questionnaireShareManager->createQuestionnaireShare($userId, $questionnaireId);

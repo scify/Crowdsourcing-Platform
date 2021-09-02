@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectQuestionnaireRepository;
 use Illuminate\Database\Seeder;
@@ -36,6 +37,12 @@ class V4Seeder extends Seeder {
             $projectId = $questionnaireResponse->questionnaire->projects->get(0)->id;
             $questionnaireResponse->project_id = $projectId;
             $questionnaireResponse->save();
+        }
+
+        $questionnaireLanguages = QuestionnaireLanguage::all();
+        foreach ($questionnaireLanguages as $questionnaireLanguage) {
+            $questionnaireLanguage->human_approved = !$questionnaireLanguage->human_approved;
+            $questionnaireLanguage->save();
         }
     }
 
