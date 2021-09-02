@@ -187,7 +187,7 @@ export default {
       },
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
-        "html", "matrix", "matrixdropdown", "matrixdynamic", "radiogroup", "rating", "text"],
+        "html", "matrix", "matrixdropdown", "radiogroup", "rating", "text"],
       colors: [],
       isTranTabInitialised: false,
       modalOpen: false,
@@ -250,8 +250,6 @@ export default {
 
       if (this.questionnaireData.questionnaire_json)
         this.surveyCreator.text = this.assignRandomColorsToChoices(this.questionnaireData.questionnaire_json);
-      else
-        this.surveyCreator.text = ' { "pages": [ { "name": "page1", "elements": [ { "type": "rating", "name": "question4", "title": "Rating question", "rateMax": 7, "minRateDescription": "This is the minimum", "maxRateDescription": "This is the maximum" }, { "type": "radiogroup", "name": "question3", "title": "Is this a question?", "choices": [ { "value": "item1", "text": "First" }, { "value": "item2", "text": "Second" }, { "value": "item3", "text": "Third" } ] }, { "type": "text", "name": "question1", "title": "First question" }, { "type": "matrix", "name": "question2", "title": "Matrix question here", "columns": [ { "value": "Column 1", "text": "First col" }, { "value": "Column 2", "text": "Second col" }, { "value": "Column 3", "text": "Third" } ], "rows": [ { "value": "Row 1", "text": "first row!" }, { "value": "Row 2", "text": "Second row here" } ] } ] } ] } ';
       let instance = this;
       let usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
 
@@ -265,7 +263,7 @@ export default {
           visible: true,
           title: "Translate Survey Now",
           action: function () {
-            instance.translateQuestionnaireToLocales(sender.translation.getSelectedLocales());
+            instance.translateQuestionnaireToLocales(instance.surveyCreator.translation.getSelectedLocales());
           }
         });
         if (this.questionnaire.id)
@@ -446,7 +444,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 
 
 </style>

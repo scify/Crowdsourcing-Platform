@@ -15,6 +15,7 @@ class QuestionnaireTranslator {
     protected $translatableQuestionFirstLevelContentIdentifiers;
     protected $translatableQuestionSecondLevelContentIdentifiers;
     protected $questionnaireTranslationRepository;
+    protected $translatableQuestionThirdLevelContentIdentifiers;
 
     public function __construct(Translator $translator, QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
         $this->translator = $translator;
@@ -51,12 +52,42 @@ class QuestionnaireTranslator {
             'noneText',
             'otherText',
             'otherErrorText',
-            'commentText'
+            'commentText',
+            'label',
+            'labelTrue',
+            'labelFalse',
+            'optionsCaption',
+            'keyDuplicationError',
+            'totalText'
         ];
         $this->translatableQuestionSecondLevelContentIdentifiers = [
             'choices',
             'columns',
-            'rows'
+            'rows',
+            'optionsCaption',
+            'keyDuplicationError',
+            'confirmDeleteText',
+            'addRowText',
+            'removeRowText',
+            'emptyRowsText',
+            'totalText',
+            'requiredErrorText'
+        ];
+        $this->translatableQuestionThirdLevelContentIdentifiers = [
+            'text',
+            'title',
+            'keyDuplicationError',
+            'requiredErrorText',
+            'optionsCaption',
+            'totalFormat',
+            'description',
+            'commentText',
+            'otherPlaceHolder',
+            'noneText',
+            'otherText',
+            'totalText',
+            'otherErrorText',
+            'optionsCaption'
         ];
     }
 
@@ -131,14 +162,19 @@ class QuestionnaireTranslator {
                 foreach ($this->translatableQuestionSecondLevelContentIdentifiers as $identifier) {
                     if (isset($question[$identifier]) && is_array($question[$identifier])) {
                         for ($i = 0; $i < count($question[$identifier]); $i++) {
-                            $translatedSchema = $this->getContentTranslatedSchema(
-                                $question[$identifier][$i],
-                                $locale,
-                                $translationIndex,
-                                'text');
-                            if ($translatedSchema) {
-                                $question[$identifier][$i]['text'] = $translatedSchema;
-                                $translationIndex++;
+                            if (isset($question[$identifier][$i])
+                                && is_array($question[$identifier][$i])) {
+                                foreach ($this->translatableQuestionThirdLevelContentIdentifiers as $thirdLevelIdentifier) {
+                                    $translatedSchema = $this->getContentTranslatedSchema(
+                                        $question[$identifier][$i],
+                                        $locale,
+                                        $translationIndex,
+                                        $thirdLevelIdentifier);
+                                    if ($translatedSchema) {
+                                        $question[$identifier][$i][$thirdLevelIdentifier] = $translatedSchema;
+                                        $translationIndex++;
+                                    }
+                                }
                             }
                         }
                     }
@@ -184,10 +220,16 @@ class QuestionnaireTranslator {
                 foreach ($this->translatableQuestionSecondLevelContentIdentifiers as $identifier) {
                     if (isset($question[$identifier]) && is_array($question[$identifier])) {
                         for ($i = 0; $i < count($question[$identifier]); $i++) {
-                            if (key_exists($locale, $question[$identifier][$i]['text'])
-                                && is_int($question[$identifier][$i]['text'][$locale])) {
-                                $question[$identifier][$i]['text'][$locale] = $translatedTexts[$question[$identifier][$i]['text'][$locale]]['text'];
-                                $questionnaire['pages'][$pageIndex]['elements'][$questionIndex] = $question;
+                            if (isset($question[$identifier][$i])
+                                && is_array($question[$identifier][$i])) {
+                                foreach ($this->translatableQuestionThirdLevelContentIdentifiers as $thirdLevelIdentifier) {
+                                    if (isset($question[$identifier][$i][$thirdLevelIdentifier])
+                                        && key_exists($locale, $question[$identifier][$i][$thirdLevelIdentifier])
+                                        && is_int($question[$identifier][$i][$thirdLevelIdentifier][$locale])) {
+                                        $question[$identifier][$i][$thirdLevelIdentifier][$locale] = $translatedTexts[$question[$identifier][$i][$thirdLevelIdentifier][$locale]]['text'];
+                                        $questionnaire['pages'][$pageIndex]['elements'][$questionIndex] = $question;
+                                    }
+                                }
                             }
                         }
                     }
