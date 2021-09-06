@@ -23,15 +23,11 @@
             </li>
 
             <li class="user-footer">
-                <div class="pull-left">
-{{--                    <a href="#" class="btn btn-default btn-flat">Profile</a>--}}
-                </div>
                 <div class="pull-right">
                     <a id="log-out" href="{{ route('logout') }}"
-                       class="btn btn-default btn-flat"
-                       onclick="e">Sign out</a>
+                       class="btn btn-default btn-flat">Sign out</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{--                                {{ csrf_field() }}--}}
+                        @csrf
                     </form>
                 </div>
             </li>

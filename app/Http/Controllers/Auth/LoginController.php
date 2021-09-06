@@ -8,8 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -33,20 +32,17 @@ class LoginController extends Controller
     private $userManager;
 
 
-    public function __construct(UserManager $userManager)
-    {
+    public function __construct(UserManager $userManager) {
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
     }
 
-    public function showLoginForm(Request $request)
-    {
+    public function showLoginForm(Request $request) {
         $request->session()->put("redirectTo", $request->redirectTo);
         return view('auth.login')->with("displayQuestionnaireLabels", $request->submitQuestionnaire != null);
     }
 
-    protected function authenticated(Request $request, $user)
-    {
+    protected function authenticated(Request $request, $user) {
         $redirectToOverrideUrl = session("redirectTo");
         if ($redirectToOverrideUrl)
             return redirect($redirectToOverrideUrl);
@@ -55,29 +51,25 @@ class LoginController extends Controller
     }
 
 
-    public function redirectToProvider($driver)
-    {
+    public function redirectToProvider($driver) {
         return Socialite::driver($driver)->redirect();
     }
 
-    public function handleProviderCallback(Request $request, $driver)
-    {
-        if(isset($request['denied']) || isset($request['error']))
+    public function handleProviderCallback(Request $request, $driver) {
+        if (isset($request['denied']) || isset($request['error']))
             return redirect()->route('home');
         $socialUser = Socialite::driver($driver)->user();
         $user = $this->userManager->handleSocialLoginUser($socialUser);
-        return $this->authenticated($request,$user);
+        return $this->authenticated($request, $user);
     }
 
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
+    public function logout(Request $request) {
+        //$this->guard()->logout();
 
-        $request->session()->invalidate();
-
-        return redirect('/');
+        //$request->session()->invalidate();
+        dd("123");
+        return redirect()->route('home');
     }
-
 
 
 }

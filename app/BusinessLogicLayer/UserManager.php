@@ -170,4 +170,19 @@ class UserManager {
     public function userHasContributedToAProject($userId) {
         return $this->questionnaireResponseManager->questionnaireResponsesForUserExists($userId);
     }
+
+    public function getLoggedInUserOrCreateAnonymousUser() {
+        if (Auth::check())
+            return Auth::user();
+        return $this->createAnonymousUser();
+    }
+
+    protected function createAnonymousUser(): User {
+        $name = 'Anonymous_User_' . now()->timestamp;
+        return $this->userRepository->create([
+            'nickname' => $name,
+            'email' => $name . '@crowd.org'
+        ]);
+    }
 }
+

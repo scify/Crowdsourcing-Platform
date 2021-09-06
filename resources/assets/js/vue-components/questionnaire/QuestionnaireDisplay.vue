@@ -26,7 +26,7 @@
 <script>
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
-import {arrayMove} from "../../common";
+import {arrayMove, setCookie} from "../../common";
 
 export default {
   created() {
@@ -127,7 +127,10 @@ export default {
         urlRelative: false,
         handleError: false
       }).then((response) => {
-        this.displaySuccessResponse(response.data);
+        this.displaySuccessResponse(response.data.badgeHTML);
+        const anonymousUserId = response.data.anonymousUserId;
+        if (anonymousUserId)
+          setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 365);
       }).catch(error => {
         console.error(error);
         this.displayErrorResponse(error);
@@ -135,12 +138,12 @@ export default {
         $("#questionnaire-modal").modal('hide');
       });
     },
-    displaySuccessResponse(responseData) {
+    displaySuccessResponse(badgeHTML) {
       $(".loader-wrapper").addClass('hidden');
       let questionnaireResponded = $("#questionnaire-responded");
       // add badge fetched from response to the appropriate container
-      if (responseData.badgeHTML) {
-        questionnaireResponded.find('.badge-container').html(responseData.badgeHTML);
+      if (badgeHTML) {
+        questionnaireResponded.find('.badge-container').html(badgeHTML);
         questionnaireResponded.modal({backdrop: 'static'});
         $("#pyro").addClass("pyro-on");
       }
