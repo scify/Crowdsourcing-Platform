@@ -55,53 +55,6 @@
 </div>
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title">Respondents Analytic Report</h3>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                <table id="usersTable" cellspacing="0" class="w-100 table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Name</th>
-                        <th>Question text</th>
-                        <th>Answer text (color indicates answer entered by the respondent)</th>
-                        <th>Answer automatic translation</th>
-                        <th>Answer initial language detected</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($reportViewModel->usersRows as $row)
-                        <tr>
-                            <td>{{ $row->email }}</td>
-                            <td>{{ $row->nickname }}</td>
-                            <td>{{ $row->question }}</td>
-                            <td class="{{ $row->text_answer ? 'colored' : '' }}">{{ $row->text_answer ? $row->text_answer : $row->answer }}</td>
-                            <td>{{ $row->answer_english_translation }}</td>
-                            <td>{{ $row->answer_initial_language_detected }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card card-info">
-    <div class="card-header">
-        <h3 class="card-title">Respondents Analytic Report</h3>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                <div id="respondents-analytic-report"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card card-info">
-    <div class="card-header">
         <h3 class="card-title">Answers Report</h3>
     </div>
     <div class="card-body">
@@ -174,7 +127,7 @@
                 <form role="form" novalidate>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="questionnaire_response_id">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button id="delete-response-form-btn" type="button" class="btn btn-danger">
                         Delete<span id="delete-response-loader" class="spinner-border spinner-border-sm ml-2 d-none"
                                     role="status"
