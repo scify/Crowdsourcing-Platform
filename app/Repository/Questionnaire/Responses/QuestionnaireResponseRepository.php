@@ -20,4 +20,14 @@ class QuestionnaireResponseRepository extends Repository {
     public function questionnaireResponseExists(int $questionnaireId, int $userId): bool {
         return $this->exists(['questionnaire_id' => $questionnaireId, 'user_id' => $userId]);
     }
+
+    public function deleteResponsesByUser(int $id) {
+        return QuestionnaireResponse::whereIn('user_id', $id)->delete();
+    }
+
+    public function restoreResponsesByUser(int $id) {
+        return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', $id)->restore();
+    }
+
+
 }

@@ -63,4 +63,12 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 order by qav.question_name, qav.respondent_user_id;
         "));
     }
+
+    public function deleteAnswerVotesByUser(int $id) {
+        return QuestionnaireAnswerVote::whereIn('user_id', $id)->delete();
+    }
+
+    public function restoreAnswerVotesByUser(int $id) {
+        return QuestionnaireAnswerVote::onlyTrashed()->whereIn('user_id', $id)->restore();
+    }
 }

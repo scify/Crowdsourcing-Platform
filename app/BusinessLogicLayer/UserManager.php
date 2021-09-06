@@ -8,6 +8,8 @@ use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Notifications\UserRegistered;
+use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
@@ -21,16 +23,23 @@ class UserManager {
     private $userRoleRepository;
     private $mailChimpManager;
     private $questionnaireResponseManager;
+    private $questionnaireResponseRepository;
+    private $questionnaireAnswerVoteRepository;
+
     public static $USERS_PER_PAGE = 10;
 
-    public function __construct(UserRepository $userRepository,
-                                UserRoleRepository $userRoleRepository,
-                                QuestionnaireResponseManager $questionnaireResponseManager,
-                                MailChimpAdaptor $mailChimpManager) {
+    public function __construct(UserRepository                    $userRepository,
+                                UserRoleRepository                $userRoleRepository,
+                                QuestionnaireResponseManager      $questionnaireResponseManager,
+                                MailChimpAdaptor                  $mailChimpManager,
+                                QuestionnaireResponseRepository   $questionnaireResponseRepository,
+                                QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->mailChimpManager = $mailChimpManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
     }
 
     public function getUserProfile($user) {
@@ -60,15 +69,21 @@ class UserManager {
 
     public function deactivateUser($id) {
         $user = $this->userRepository->getUserWithTrashed($id);
+        $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
+        $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
         $this->userRepository->softDeleteUser($user);
     }
 
     public function anonymizeUser($user) {
+        $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
+        $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
         $this->userRepository->anonymizeUser($user);
     }
 
     public function reactivateUser($id) {
         $user = $this->userRepository->getUserWithTrashed($id);
+        $this->questionnaireAnswerVoteRepository->restoreAnswerVotesByUser($user->id);
+        $this->questionnaireResponseRepository->restoreResponsesByUser($user->id);
         $this->userRepository->reActivateUser($user);
     }
 
@@ -128,7 +143,7 @@ class UserManager {
     public function handleSocialLoginUser($socialUser) {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.
-        if(!$socialUser->email)
+        if (!$socialUser->email)
             $socialUser->email = $socialUser->id . '@crowdsourcing.org';
         $result = $this->getOrAddUserToPlatform($socialUser->email,
             $socialUser->name,
