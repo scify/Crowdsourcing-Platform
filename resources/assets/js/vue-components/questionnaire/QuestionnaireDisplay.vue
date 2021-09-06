@@ -8,7 +8,7 @@
             <option :selected="language.code === 'en'"
                     :value="language.code" v-for="(language, index) in surveyLocales"
                     :key="index">
-              {{language.name}}
+              {{ language.name }}
             </option>
           </select>
         </div>
@@ -30,6 +30,7 @@ import {arrayMove} from "../../common";
 
 export default {
   created() {
+    this.questionnaireLocalStorageKey = "questionnaire_" + this.questionnaire.id + "_response";
   },
   mounted() {
     this.initQuestionnaireDisplay();
@@ -59,7 +60,8 @@ export default {
     return {
       surveyCreator: null,
       survey: null,
-      surveyLocales: []
+      surveyLocales: [],
+      questionnaireLocalStorageKey: ''
     }
   },
   methods: {
@@ -79,6 +81,9 @@ export default {
     },
     prepareQuestionnaireForResponding() {
       this.survey.locale = 'en';
+      const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
+      if (responseJSON && JSON.parse(responseJSON))
+        this.survey.data = JSON.parse(responseJSON);
       const locales = this.survey.getUsedLocales();
       // show English as the first language
       arrayMove(locales, locales.indexOf("en"), 0);
@@ -90,6 +95,7 @@ export default {
             name: locale.language_name
           });
       }
+      this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
       this.survey.onComplete.add(this.saveQuestionnaireResponse);
       this.survey
           .onAfterRenderSurvey
@@ -102,6 +108,9 @@ export default {
     prepareQuestionnaireForViewingResponse() {
       this.survey.data = JSON.parse(this.userResponse.response_json);
       this.survey.mode = 'display';
+    },
+    saveQuestionnaireResponseProgress(sender, options) {
+      window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
     },
     saveQuestionnaireResponse(sender) {
       const resultAsString = JSON.stringify(sender.data);
