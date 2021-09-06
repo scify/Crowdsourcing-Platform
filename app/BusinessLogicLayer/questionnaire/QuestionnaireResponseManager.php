@@ -4,9 +4,8 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\UserManager;
 use App\Jobs\TranslateQuestionnaireResponse;
-use App\Models\Questionnaire\Questionnaire;
-use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
@@ -23,19 +22,22 @@ class QuestionnaireResponseManager {
     protected $languageManager;
     protected $questionnaireActionHandler;
     protected $questionnaireAnswerVoteRepository;
+    protected $userManager;
 
     public function __construct(QuestionnaireRepository                   $questionnaireRepository,
                                 QuestionnaireResponseRepository           $questionnaireResponseRepository,
                                 QuestionnaireResponseAnswerTextRepository $questionnaireResponseAnswerTextRepository,
                                 LanguageManager                           $languageManager,
                                 QuestionnaireActionHandler                $questionnaireActionHandler,
-                                QuestionnaireAnswerVoteRepository         $questionnaireAnswerVoteRepository) {
+                                QuestionnaireAnswerVoteRepository         $questionnaireAnswerVoteRepository,
+                                UserManager                               $userManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireResponseAnswerTextRepository = $questionnaireResponseAnswerTextRepository;
         $this->languageManager = $languageManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
         $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
+        $this->userManager = $userManager;
     }
 
     public function getQuestionnaireResponsesForUser(User $user) {
@@ -55,7 +57,7 @@ class QuestionnaireResponseManager {
     }
 
     public function storeQuestionnaireResponse($data) {
-        $user = Auth::user();
+        $user = $this->userManager->getLoggedInUserOrCreateAnonymousUser();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
         if (isset($data['language_code']))
             $language = $this->languageManager->getLanguageByCode($data['language_code']);
@@ -76,39 +78,13 @@ class QuestionnaireResponseManager {
                 'response_json' => json_encode($responseObj)
             ])
         );
-        $this->storeQuestionnaireAnswerTextsForInputTypeQuestions($questionnaire, $questionnaireResponse);
-        $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $questionnaireResponse->project, $user);
-        // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-        $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
+        if (Auth::check()) {
+            $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $questionnaireResponse->project, $user);
+            // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
+        }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
         return $questionnaireResponse;
-    }
-
-    protected function storeQuestionnaireAnswerTextsForInputTypeQuestions(Questionnaire         $questionnaire,
-                                                                          QuestionnaireResponse $questionnaireResponse) {
-        $freeTypeQuestions = $this->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
-        $answers = json_decode($questionnaireResponse->response_json);
-        foreach ($answers as $questionName => $answer) {
-            $shouldSave = false;
-            if (isset($freeTypeQuestions[$questionName])) {
-                $shouldSave = true;
-            } else if (strpos($questionName, '-Comment') !== false) {
-                $shouldSave = true;
-                $questionName = str_replace('-Comment', '', $questionName);
-            }
-            if ($shouldSave) {
-                $data = [
-                    'questionnaire_id' => $questionnaire->id,
-                    'questionnaire_response_id' => $questionnaireResponse->id,
-                    'question_name' => $questionName
-                ];
-                $this->questionnaireResponseAnswerTextRepository->updateOrCreate(
-                    $data,
-                    array_merge($data, ['answer' => $answer])
-                );
-            }
-        }
-
     }
 
     public function getFreeTypeQuestionsFromQuestionnaireJSON(string $questionnaireJSON): array {

@@ -23,9 +23,12 @@ class QuestionnaireResponseController extends Controller {
     }
 
     public function store(Request $request): JsonResponse {
-        $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
-        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge(Auth::id()));
-        return response()->json(['badgeHTML' => (string)view('gamification.badge-single', compact('badge'))]);
+        $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
+        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireResponse->user_id));
+        return response()->json([
+            'badgeHTML' => (string)view('gamification.badge-single', compact('badge')),
+            'userId' => !Auth::check() ? $questionnaireResponse->user_id : null
+        ]);
     }
 
     public function getResponsesForQuestionnaire(int $questionnaire_id): JsonResponse {
