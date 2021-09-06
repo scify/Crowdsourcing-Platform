@@ -48,7 +48,7 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
-        $questionnaire = $this->questionnaireManager->storeQuestionnaire($request->all());
+        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($request->all());
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
         return $questionnaire;
     }
@@ -60,7 +60,7 @@ class QuestionnaireController extends Controller {
 
     public function update(Request $request, $id) {
         $data = $request->all();
-        $questionnaire = $this->questionnaireManager->updateQuestionnaire($id, $data);
+        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $id);
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
         return $questionnaire;
     }
