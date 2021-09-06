@@ -30,7 +30,7 @@ import {arrayMove} from "../../common";
 
 export default {
   created() {
-    this.questionnaireLocalStorageKey = "questionnaire_" + this.questionnaire.id + "_response";
+    this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
   },
   mounted() {
     this.initQuestionnaireDisplay();
