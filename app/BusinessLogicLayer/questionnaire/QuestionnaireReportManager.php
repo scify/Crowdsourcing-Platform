@@ -37,9 +37,8 @@ class QuestionnaireReportManager {
     public function getQuestionnaireReportViewModel(array $input): QuestionnaireReportResults {
         $questionnaireId = $input['questionnaireId'];
         $respondentsRows = $this->questionnaireReportRepository->getRespondentsData($questionnaireId);
-        $usersRows = $this->questionnaireReportRepository->getReportDataForUsers($questionnaireId);
         $responses = $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaireId]);
-        return new QuestionnaireReportResults($usersRows, $responses, $respondentsRows);
+        return new QuestionnaireReportResults($responses, $respondentsRows);
     }
 
 }
