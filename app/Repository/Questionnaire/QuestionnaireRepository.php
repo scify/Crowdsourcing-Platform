@@ -168,6 +168,7 @@ class QuestionnaireRepository extends Repository {
                         INNER JOIN questionnaires q ON ql.questionnaire_id = q.id
                         WHERE
                             ql.deleted_at IS NULL
+                            AND ql.language_id <> q.default_language_id
                         GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
 
                             
