@@ -27,7 +27,7 @@ class QuestionnaireResponseController extends Controller {
         $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireResponse->user_id));
         return response()->json([
             'badgeHTML' => (string)view('gamification.badge-single', compact('badge')),
-            'userId' => !Auth::check() ? $questionnaireResponse->user_id : null
+            'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id
         ]);
     }
 
