@@ -2,7 +2,6 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Models\User;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
@@ -22,7 +21,6 @@ class UserManager {
     private $userRepository;
     private $userRoleRepository;
     private $mailChimpManager;
-    private $questionnaireResponseManager;
     private $questionnaireResponseRepository;
     private $questionnaireAnswerVoteRepository;
 
@@ -30,14 +28,12 @@ class UserManager {
 
     public function __construct(UserRepository                    $userRepository,
                                 UserRoleRepository                $userRoleRepository,
-                                QuestionnaireResponseManager      $questionnaireResponseManager,
                                 MailChimpAdaptor                  $mailChimpManager,
                                 QuestionnaireResponseRepository   $questionnaireResponseRepository,
                                 QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->mailChimpManager = $mailChimpManager;
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
     }
@@ -168,7 +164,7 @@ class UserManager {
     }
 
     public function userHasContributedToAProject($userId) {
-        return $this->questionnaireResponseManager->questionnaireResponsesForUserExists($userId);
+        return $this->questionnaireResponseRepository->userResponseExists($userId);
     }
 
     public function getLoggedInUserOrCreateAnonymousUser() {
