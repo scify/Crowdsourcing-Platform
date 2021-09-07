@@ -129,6 +129,7 @@ export default {
       }).then((response) => {
         this.displaySuccessResponse(response.data.badgeHTML);
         const anonymousUserId = response.data.anonymousUserId;
+        console.log(anonymousUserId);
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 365);
       }).catch(error => {

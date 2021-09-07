@@ -32,6 +32,7 @@ class UserController extends Controller
 
     public function myDashboard()
     {
+        dd("123");
         $dashboardViewModel = $this->userDashboardManager->getUserDashboardViewModel(Auth::user());
         return view('loggedin-environment.my-dashboard', ['viewModel' => $dashboardViewModel]);
     }

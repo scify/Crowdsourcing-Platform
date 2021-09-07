@@ -136,7 +136,7 @@ class UserManager {
     }
 
 
-    public function getPlatformAdminUsersWithCriteria($paginationNum = null, $data) {
+    public function getPlatformAdminUsersWithCriteria($data, $paginationNum = null) {
         return $this->userRepository->getPlatformUsers($paginationNum, $data, true);
     }
 
