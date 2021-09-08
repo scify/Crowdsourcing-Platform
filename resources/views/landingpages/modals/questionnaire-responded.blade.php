@@ -10,8 +10,13 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <p class="dashboard-message w-100">Visit your Dashboard to invite your friends</p>
-                <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">Go to Dashboard</a>
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    <p class="dashboard-message w-100">Visit your Dashboard to invite your friends</p>
+                    <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">Go to Dashboard</a>
+                @else
+                    <p class="dashboard-message w-100">Create an account to see more questionnaires!</p>
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
+                @endif
             </div>
         </div>
     </div>

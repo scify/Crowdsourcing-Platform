@@ -1,26 +1,49 @@
 <template>
-  <div class="container-fluid">
-    <div class="row" v-if="!userResponse">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label for="language-select">Select language</label>
-          <select class="form-control" @change="onLanguageChange($event)" id="language-select">
-            <option :selected="language.code === 'en'"
-                    :value="language.code" v-for="(language, index) in surveyLocales"
-                    :key="index">
-              {{ language.name }}
-            </option>
-          </select>
+  <div class="component mt-3">
+    <div v-if="displayLoginPrompt" class="container-fluid">
+      <div class="row mb-5">
+        <h3>You can create an account in order to see more questionnaires that need answering</h3>
+      </div>
+      <div class="row">
+        <div class="col-5 text-center pl-0">
+          <button class="btn btn-outline-primary btn-lg w-100">Sign up / Sign in</button>
+        </div>
+        <div class="col-5 offset-2 text-center pr-0">
+          <button @click="skipLogin()" class="btn btn-primary btn-lg w-100">Answer anonymously</button>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="survey-container">
+    <div v-else class="container-fluid">
+      <div class="row" v-if="!userResponse">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="language-select">Select language</label>
+            <select class="form-control" @change="onLanguageChange($event)" id="language-select">
+              <option :selected="language.code === 'en'"
+                      :value="language.code" v-for="(language, index) in surveyLocales"
+                      :key="index">
+                {{ language.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div v-if="loading" id="questionnaire-loader" class="row my-5">
+        <div class="col text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="survey-container">
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -34,8 +57,15 @@ export default {
   },
   mounted() {
     this.initQuestionnaireDisplay();
+    this.displayLoginPrompt = !(this.user && this.user.id);
   },
   props: {
+    user: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    },
     questionnaire: {
       type: Object,
       default: function () {
@@ -61,7 +91,9 @@ export default {
       surveyCreator: null,
       survey: null,
       surveyLocales: [],
-      questionnaireLocalStorageKey: ''
+      questionnaireLocalStorageKey: '',
+      displayLoginPrompt: true,
+      loading: false
     }
   },
   methods: {
@@ -70,6 +102,14 @@ export default {
       'handleError',
       'post'
     ]),
+    skipLogin() {
+      this.displayLoginPrompt = false;
+      const instance = this;
+      this.loading = true;
+      setTimeout(function () {
+        instance.survey.render("survey-container");
+      }, 500);
+    },
     initQuestionnaireDisplay() {
       Survey.StylesManager.applyTheme("modern");
       this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
@@ -77,7 +117,6 @@ export default {
         this.prepareQuestionnaireForResponding();
       else
         this.prepareQuestionnaireForViewingResponse();
-      this.survey.render("survey-container");
     },
     prepareQuestionnaireForResponding() {
       this.survey.locale = 'en';
@@ -97,9 +136,11 @@ export default {
       }
       this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
       this.survey.onComplete.add(this.saveQuestionnaireResponse);
+      const instance = this;
       this.survey
           .onAfterRenderSurvey
           .add(function () {
+            instance.loading = false;
             $(".sv_complete_btn").after(
                 "<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>"
             );
@@ -129,9 +170,8 @@ export default {
       }).then((response) => {
         this.displaySuccessResponse(response.data.badgeHTML);
         const anonymousUserId = response.data.anonymousUserId;
-        console.log(anonymousUserId);
         if (anonymousUserId)
-          setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 365);
+          setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
       }).catch(error => {
         console.error(error);
         this.displayErrorResponse(error);
@@ -188,6 +228,16 @@ export default {
   .sv-page.sv-body__page, .sv-footer {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+#questionnaire-loader {
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.5rem;
+    border-color: $brand-primary;
+    border-right-color: transparent;
   }
 }
 

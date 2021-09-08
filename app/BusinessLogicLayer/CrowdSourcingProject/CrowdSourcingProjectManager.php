@@ -35,16 +35,16 @@ class CrowdSourcingProjectManager {
     protected $languageRepository;
     protected $crowdSourcingProjectColorsManager;
 
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
-                                QuestionnaireGoalManager $questionnaireGoalManager,
-                                CurrentQuestionnaireProvider $currentQuestionnaireProvider,
+    public function __construct(CrowdSourcingProjectRepository                    $crowdSourcingProjectRepository,
+                                QuestionnaireRepository                           $questionnaireRepository,
+                                CrowdSourcingProjectStatusManager                 $crowdSourcingProjectStatusManager,
+                                CrowdSourcingProjectAccessManager                 $crowdSourcingProjectAccessManager,
+                                CrowdSourcingProjectStatusHistoryRepository       $crowdSourcingProjectStatusHistoryRepository,
+                                QuestionnaireGoalManager                          $questionnaireGoalManager,
+                                CurrentQuestionnaireProvider                      $currentQuestionnaireProvider,
                                 CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager,
-                                LanguageRepository $languageRepository,
-                                CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager) {
+                                LanguageRepository                                $languageRepository,
+                                CrowdSourcingProjectColorsManager                 $crowdSourcingProjectColorsManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -75,6 +75,14 @@ class CrowdSourcingProjectManager {
 
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $project_slug, $openQuestionnaireWhenPageLoads):
     CrowdSourcingProjectForLandingPage {
+        $userId = null;
+        // if the user is logged in, get the user id
+        if (Auth::check())
+            $userId = Auth::id();
+        // else, check if the user is anonymous (by checking the cookie) and get the user id
+        else if (isset($_COOKIE['crowdsourcing_anonymous_user_id']))
+            $userId = intval($_COOKIE['crowdsourcing_anonymous_user_id']);
+
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
         $userResponse = null;
@@ -83,11 +91,11 @@ class CrowdSourcingProjectManager {
         if ($questionnaireId)
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         else
-            $questionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id, Auth::id());
+            $questionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id, $userId);
 
         if ($questionnaire) {
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire);
-            $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, Auth::id());
+            $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
             if ($userResponse != null)
                 $openQuestionnaireWhenPageLoads = false;
@@ -137,7 +145,7 @@ class CrowdSourcingProjectManager {
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
         $colors = [];
-        for($i = 0; $i < count($attributes['color_codes']); $i++) {
+        for ($i = 0; $i < count($attributes['color_codes']); $i++) {
             array_push($colors, [
                 'id' => $attributes['color_ids'][$i],
                 'color_name' => $attributes['color_names'][$i],

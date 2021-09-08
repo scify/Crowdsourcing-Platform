@@ -13,7 +13,6 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import url("../../../node_modules/icheck/skins/square/blue.css");
 @import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
-@import url("~dropzone/dist/min/dropzone.min.css");
 @import url("~bootstrap-sweetalert/dist/sweetalert.css");
 
 @import "select2-custom.scss";
@@ -187,13 +186,6 @@ table {
     background-position: center center;
 
   }
-}
-
-.dropzone {
-  border: 2px dashed #0087F7 !important;
-  border-radius: 5px;
-  background: white !important;
-  font-size: 18px;
 }
 
 .warning-wrapper {
