@@ -4,7 +4,10 @@ namespace App\Models\ViewModels;
 
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
+use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class CrowdSourcingProjectForLandingPage {
     public $project;
@@ -46,5 +49,9 @@ class CrowdSourcingProjectForLandingPage {
 
     public function shouldShowQuestionnaireStatisticsLink(): bool {
         return $this->questionnaire->statistics_page_visibility_lkp_id === QuestionnaireStatisticsPageVisibilityLkp::PUBLIC;
+    }
+
+    public function getLoggedInUser() {
+        return Auth::user();
     }
 }

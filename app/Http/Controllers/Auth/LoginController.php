@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\UserManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller {
@@ -64,10 +65,9 @@ class LoginController extends Controller {
     }
 
     public function logout(Request $request) {
-        //$this->guard()->logout();
-
-        //$request->session()->invalidate();
-        dd("123");
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('home');
     }
 

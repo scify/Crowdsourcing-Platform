@@ -21,7 +21,7 @@
                     <hr>
                     @if ($viewModel->shouldShowQuestionnaireStatisticsLink())
                         <div class="row mt-4">
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-left">
                                 <h3>Before answering to the questionnaire, check what the other respondents have said by
                                     clicking
                                     <a href="{{route('questionnaire.statistics', ['questionnaire' => $viewModel->questionnaire->id])}}"
@@ -29,7 +29,9 @@
                             </div>
                         </div>
                     @endif
+                    <hr>
                     <questionnaire-display
+                            :user='@json($viewModel->getLoggedInUser())'
                             :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
                             :project='@json($viewModel->project)'

@@ -8,7 +8,7 @@ require('icheck');
 //$.widget.bridge('uibutton', $.ui.button);
 
 //load dependencies for template
-window.Popper = require('popper.js').default;
+window.Popper = require('@popperjs/core');
 window.route = require('./backend-route');
 
 require('./bootstrap');
