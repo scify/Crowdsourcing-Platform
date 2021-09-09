@@ -75,8 +75,13 @@ class V4Seeder extends Seeder {
 //            $questionnaire_response->save();
 //        }
 
-        $this->transformQuestionnaireResponsesSchema();
-
+        //$this->transformQuestionnaireResponsesSchema();
+        $defaultProject = CrowdSourcingProject::find(1);
+        $defaultProject->img_path = '/storage/uploads/project_img/fair-eu-bg.png';
+        $defaultProject->logo_path = '/storage/uploads/project_logos/fair-eu.png';
+        $defaultProject->lp_questionnaire_img_path = '/storage/uploads/project_questionnaire_bg_img/bgsectionnaire.png';
+        $defaultProject->sm_featured_img_path = '/storage/uploads/project_sm_featured_img/fair-eu.png';
+        $defaultProject->save();
 
     }
 

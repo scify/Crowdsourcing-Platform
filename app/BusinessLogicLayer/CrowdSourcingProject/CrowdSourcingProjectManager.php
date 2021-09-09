@@ -21,6 +21,9 @@ use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
@@ -294,7 +297,7 @@ class CrowdSourcingProjectManager {
         ]);
     }
 
-    public function getCreateEditProjectViewModel(int $id = null) {
+    public function getCreateEditProjectViewModel(int $id = null): CreateEditCrowdSourcingProject {
         if ($id)
             $project = $this->getCrowdSourcingProject($id);
         else {
@@ -319,7 +322,6 @@ class CrowdSourcingProjectManager {
             $contributorBadgeVM,
             $project->communicationResources
         ))->toMail(null)->render();
-
         return new CreateEditCrowdSourcingProject($project, $statusesLkp, $notification);
     }
 
@@ -351,5 +353,45 @@ class CrowdSourcingProjectManager {
 
     public function getAllCrowdSourcingProjects(): Collection {
         return $this->crowdSourcingProjectRepository->all();
+    }
+
+    public function cloneProject(int $id): CrowdSourcingProject {
+        return DB::transaction(function () use ($id) {
+            $now = Date::now();
+            $project = $this->getCrowdSourcingProject($id);
+            $project->load(['language', 'status', 'communicationResources']);
+            $clone = $project->replicate();
+            $clone->name .= ' - Clone';
+            $clone->created_at = $now;
+            $clone->updated_at = $now;
+            $clone->user_creator_id = Auth::id();
+
+            foreach ($project->colors as $color) {
+                $clone->colors()->attach($color, ['created_at' => $now, 'updated_at' => $now]);
+                // you may set the timestamps to the second argument of attach()
+            }
+            if($clone->img_path)
+                $clone->img_path = $this->copyProjectFile($clone->img_path);
+            if($clone->logo_path)
+                $clone->logo_path = $this->copyProjectFile($clone->logo_path);
+            if($clone->lp_questionnaire_img_path)
+                $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path);
+            if($clone->sm_featured_img_path)
+                $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path);
+            $clone->push();
+            return $clone;
+        });
+    }
+
+    protected function copyProjectFile(string $filePath): string {
+        if (!$filePath)
+            return "";
+        $ext = pathinfo($filePath, PATHINFO_EXTENSION);
+        $newFile = basename($filePath, "." . $ext);
+        $newFile .= "_" . now()->getTimestamp() . "." . $ext;
+        $file = basename($filePath, "." . $ext);
+        $lastDirName = basename(dirname($filePath));
+        Storage::copy('public/uploads/' . $lastDirName . '/' . $file . "." . $ext, 'public/uploads/' . $lastDirName . '/' . $newFile);
+        return '/storage/uploads/' . $lastDirName . '/' . $newFile;
     }
 }
