@@ -13,8 +13,11 @@
                         <a class="socialSignIn" href="{{url('login/social/twitter')}}"><i class="fab fa-twitter-square"></i></a>
 
                     </div>
-                    <div class="col-3 google px-0 text-center">
-                        <a class="socialSignIn" href="{{url('login/social/google')}}"><i class="fab fa-google"></i></a>
+                    <div class="col-3 whole px-0 text-center">
+                        <a class="socialSignIn google" href="{{url('login/social/google')}}"><i class="fab fa-google"></i></a>
+                    </div>
+                    <div class="col-3 whole px-0 text-center">
+                        <a class="socialSignIn microsoft" href="{{url('login/social/microsoft')}}"><i class="fab fa-windows"></i></a>
                     </div>
                 </div>
             </div>
