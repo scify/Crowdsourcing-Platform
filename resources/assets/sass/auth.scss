@@ -29,11 +29,18 @@ body, html {
   }
 }
 
-.google {
+.whole {
   padding-top: 3px;
 
-  .socialSignIn {
+  .socialSignIn.google {
     background-color: #DB4437;
+  }
+
+  .socialSignIn.microsoft {
+    background-color: #00adef;
+  }
+
+  .socialSignIn {
     border-radius: 5px;
     height: calc(100% - 3px);
     width: 45px;

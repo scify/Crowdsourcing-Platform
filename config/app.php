@@ -173,7 +173,7 @@ return [
         \App\Providers\ComposerServiceProvider::class,
         //For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
         \App\Providers\ConfigServiceProvider::class
     ],
 
