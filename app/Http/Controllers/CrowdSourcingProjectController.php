@@ -17,7 +17,7 @@ class CrowdSourcingProjectController extends Controller {
     private $crowdSourcingProjectManager;
     private $questionnaireShareManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
+    public function __construct(CrowdSourcingProjectManager   $crowdSourcingProjectManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
@@ -38,7 +38,7 @@ class CrowdSourcingProjectController extends Controller {
      * @param int $id
      * @return View
      */
-    public function edit($id) {
+    public function edit(int $id): View {
         return view('admin.projects.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
     }
 
@@ -124,5 +124,12 @@ class CrowdSourcingProjectController extends Controller {
             isset($request->questionnaireId) &&
             isset($request->referrerId) &&
             Auth::check());
+    }
+
+    public function clone(int $id): RedirectResponse {
+        $newProject = $this->crowdSourcingProjectManager->cloneProject($id);
+        return redirect()->action(
+            [self::class, 'edit'], ['project' => $newProject->id]
+        );
     }
 }

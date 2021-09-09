@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\CrowdSourcingProjectController;
 use App\Http\Controllers\QuestionnaireReportController;
 use App\Http\Controllers\QuestionnaireResponseController;
 
@@ -39,7 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('projects', 'CrowdSourcingProjectController')->except([
         'destroy'
     ])->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('project/destroy', 'CrowdSourcingProjectController@destroy')->name('project.destroy')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('project/{id}/clone', [CrowdSourcingProjectController::class, 'clone'])->name('project.clone')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('project/destroy', [CrowdSourcingProjectController::class, 'destroy'])->name('project.destroy')->middleware("can:manage-crowd-sourcing-projects");
 
     Route::get('/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('questionnaires.all')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaires/reports', [QuestionnaireReportController::class, 'viewReportsPage'])->name('questionnaires.reports')->middleware("can:manage-crowd-sourcing-projects");
