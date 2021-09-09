@@ -1,7 +1,8 @@
 @import url("../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+@import "variables";
 
-body,html {
-  height:100% !important;
+body, html {
+  height: 100% !important;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -9,32 +10,52 @@ body,html {
   margin-top: 10px;
 }
 
-.login-box
-{
+.login-box {
   margin: 0 auto;
-  width:500px;
+  width: 500px;
   max-width: 90%;
 }
 
-.login-box-msg
-{
+.login-box-msg {
   text-align: left;
-  padding:0 0 20px 0px;
+  padding: 0 0 20px 0px;
 }
+
 .socialSignIn {
+  display: inline-block;
+
   i {
     font-size: 50px;
   }
 }
 
-.form-wrapper, .socialSignInContainer,.auth-links,.reset{
+.google {
+  padding-top: 3px;
+
+  .socialSignIn {
+    background-color: #DB4437;
+    border-radius: 5px;
+    height: calc(100% - 3px);
+    width: 45px;
+    padding-top: 4px;
+    text-align: center;
+
+    i {
+      color: $white;
+      font-size: 35px;
+    }
+  }
+}
+
+.form-wrapper, .socialSignInContainer, .auth-links, .reset {
   padding: 25px;
   padding-bottom: 0;
 }
 
 
 .socialSignInContainer {
-  padding-top:0;
+  padding-top: 0;
+
   .title {
     text-align: left;
     margin-top: 13px;
@@ -51,9 +72,11 @@ body,html {
 
 .account-type-btn {
   padding: 50px 25px;
+
   img {
     max-width: 50px;
   }
+
   &.active-selection {
     background-color: #00a7d0;
   }
@@ -70,14 +93,14 @@ body,html {
   text-align: left;
 }
 
-.login-box-body
-{
-  color:black;
-  background-color:rgba(255,255,255,0.95);
-  border-radius:10px;
+.login-box-body {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+
   h1 {
-    text-align:center;
-    font-size:26px;
-    padding-bottom:0;
+    text-align: center;
+    font-size: 26px;
+    padding-bottom: 0;
   }
 }
