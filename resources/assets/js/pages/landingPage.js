@@ -1,3 +1,5 @@
+import AnalyticsLogger from "../analytics-logger";
+
 (function () {
 
     let displayTranslation = function () {
@@ -28,6 +30,8 @@
     let init = function () {
         initEvents();
         openQuestionnaireIfNeeded();
+        const projectEl = $("#project");
+        AnalyticsLogger.logEvent('landing_page', 'view', projectEl.data("name"), parseInt(projectEl.data("id")));
     };
     $(document).ready(function () {
         init();

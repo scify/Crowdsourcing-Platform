@@ -50,6 +50,7 @@
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import {arrayMove, setCookie} from "../../common";
+import AnalyticsLogger from "../../analytics-logger";
 
 export default {
   created() {
@@ -58,6 +59,8 @@ export default {
   mounted() {
     this.initQuestionnaireDisplay();
     this.displayLoginPrompt = !(this.user && this.user.id);
+    if (!this.displayLoginPrompt)
+      this.skipLogin();
   },
   props: {
     user: {
@@ -119,7 +122,7 @@ export default {
         this.prepareQuestionnaireForViewingResponse();
     },
     prepareQuestionnaireForResponding() {
-      this.survey.locale = 'en';
+
       const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
       if (responseJSON && JSON.parse(responseJSON))
         this.survey.data = JSON.parse(responseJSON);
@@ -136,6 +139,7 @@ export default {
       }
       this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
       this.survey.onComplete.add(this.saveQuestionnaireResponse);
+      this.survey.locale = this.surveyLocales[0].code;
       const instance = this;
       this.survey
           .onAfterRenderSurvey
@@ -151,9 +155,16 @@ export default {
       this.survey.mode = 'display';
     },
     saveQuestionnaireResponseProgress(sender, options) {
+      const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
+      if (!responseJSON || !JSON.parse(responseJSON))
+        AnalyticsLogger.logEvent('questionnaire_respond', 'begin', this.questionnaire.title, this.questionnaire.id);
       window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
     },
     saveQuestionnaireResponse(sender) {
+      let locale = sender.locale;
+      if (!locale)
+        locale = this.surveyLocales[0].code;
+
       const resultAsString = JSON.stringify(sender.data);
       $(".loader-wrapper").removeClass('hidden');
       $("#questionnaire-modal").modal('hide');
@@ -162,7 +173,7 @@ export default {
         data: {
           questionnaire_id: this.questionnaire.id,
           project_id: this.project.id,
-          language_code: this.survey.locale,
+          language_code: locale,
           response: resultAsString
         },
         urlRelative: false,
@@ -172,6 +183,11 @@ export default {
         const anonymousUserId = response.data.anonymousUserId;
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
+        AnalyticsLogger.logEvent('questionnaire_respond', 'complete', JSON.stringify({
+          'questionnaire': this.questionnaire.title,
+          'project': this.project.name,
+          'language': locale
+        }), this.questionnaire.id);
       }).catch(error => {
         console.error(error);
         this.displayErrorResponse(error);
