@@ -19,9 +19,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
         <![endif]-->
-        @if (App::environment('production'))
-            @include('analytics')
-        @endif
+        @include('analytics')
     </head>
     <body class="hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
         @if (App::environment('staging'))
