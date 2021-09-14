@@ -12,6 +12,7 @@ class TranslatorTest extends TestCase {
 
     protected $translator;
 
+
     protected function setUp(): void {
         parent::setUp();
         $this->translator = $this->app->make(Translator::class);
