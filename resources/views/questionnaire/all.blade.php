@@ -66,7 +66,7 @@
                                                             class="far fa-edit"></i> Edit Questionnaire</a>
                                             @endif
                                             <a class="action-btn dropdown-item"
-                                               href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
+                                               href="{{route('statistics-colors-page', ['questionnaire' => $questionnaire->id])}}"><i
                                                         class="fas fa-palette"></i> Basic Statistics Colors</a>
 
                                             @if(isset($questionnaire->urls))
