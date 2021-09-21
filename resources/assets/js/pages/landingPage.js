@@ -31,7 +31,7 @@ import AnalyticsLogger from "../analytics-logger";
         initEvents();
         openQuestionnaireIfNeeded();
         const projectEl = $("#project");
-        AnalyticsLogger.logEvent('project', 'view_landing_page', projectEl.data("name"), parseInt(projectEl.data("id")));
+        AnalyticsLogger.logEvent('project_landing_page', 'view_' + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
     };
     $(document).ready(function () {
         init();
