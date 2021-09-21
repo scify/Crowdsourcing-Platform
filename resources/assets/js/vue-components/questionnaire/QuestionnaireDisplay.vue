@@ -158,7 +158,7 @@ export default {
     saveQuestionnaireResponseProgress(sender, options) {
       const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
       if (!responseJSON || !JSON.parse(responseJSON))
-        AnalyticsLogger.logEvent('questionnaire_respond', 'begin', this.questionnaire.title, this.questionnaire.id);
+        AnalyticsLogger.logEvent('questionnaire', 'respond_begin', this.questionnaire.title, this.questionnaire.id);
       window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
       if (!this.t0)
         this.t0 = performance.now();
@@ -187,7 +187,7 @@ export default {
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
         const time = performance.now() - this.t0;
-        AnalyticsLogger.logEvent('questionnaire_respond', 'complete', JSON.stringify({
+        AnalyticsLogger.logEvent('questionnaire', 'respond_complete', JSON.stringify({
           'questionnaire': this.questionnaire.title,
           'project': this.project.name,
           'language': locale,
