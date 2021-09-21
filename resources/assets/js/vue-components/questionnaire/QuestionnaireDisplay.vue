@@ -96,7 +96,8 @@ export default {
       surveyLocales: [],
       questionnaireLocalStorageKey: '',
       displayLoginPrompt: true,
-      loading: false
+      loading: false,
+      t0: null
     }
   },
   methods: {
@@ -159,6 +160,8 @@ export default {
       if (!responseJSON || !JSON.parse(responseJSON))
         AnalyticsLogger.logEvent('questionnaire_respond', 'begin', this.questionnaire.title, this.questionnaire.id);
       window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
+      if (!this.t0)
+        this.t0 = performance.now();
     },
     saveQuestionnaireResponse(sender) {
       let locale = sender.locale;
@@ -183,10 +186,12 @@ export default {
         const anonymousUserId = response.data.anonymousUserId;
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
+        const time = performance.now() - this.t0;
         AnalyticsLogger.logEvent('questionnaire_respond', 'complete', JSON.stringify({
           'questionnaire': this.questionnaire.title,
           'project': this.project.name,
-          'language': locale
+          'language': locale,
+          'time_to_complete': time
         }), this.questionnaire.id);
       }).catch(error => {
         console.error(error);
