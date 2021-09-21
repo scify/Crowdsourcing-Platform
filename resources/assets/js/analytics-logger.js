@@ -1,7 +1,8 @@
 class AnalyticsLogger {
 
     static logEvent(category, action, label, value) {
-        if (this.isGoogleAnalyticsLoaded())
+        if (this.isGoogleAnalyticsLoaded()) {
+            console.log('Google Analytics loaded');
             ga('send', {
                 hitType: 'event',
                 eventCategory: category,
@@ -9,7 +10,8 @@ class AnalyticsLogger {
                 eventLabel: label,
                 eventValue: value
             });
-        console.log('log', category + ' ' +action + ' ' + label + ' ' + value);
+        }
+        console.log('log', category + ' ' + action + ' ' + label + ' ' + value);
     }
 
     static isGoogleAnalyticsLoaded() {
