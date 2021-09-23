@@ -39,25 +39,25 @@ class QuestionnaireResponseTranslator {
         $translations = $this->translator->translateTexts($textsToTranslate, 'en');
         $i = 0;
         foreach ($responseAnswers as $questionName => $answer) {
-            if ($this->shouldAcceptTranslatedAnswer($questionName, $answer, $freeTypeQuestions, $translations, $i)) {
-                $answerNewObj = [];
-                $answerNewObj['initial_answer'] = $answer;
-                $answerNewObj['translated_answer'] = $translations[$i]['text'];
-                $answerNewObj['initial_language_detected'] = $translations[$i]['source'];
-                $responseAnswers[$questionName] = $answerNewObj;
+            if ($this->shouldTranslateAnswer($questionName, $answer, $freeTypeQuestions)) {
+                if ($this->shouldAcceptTranslatedAnswer($answer, $translations, $i)) {
+                    $answerNewObj = [];
+                    $answerNewObj['initial_answer'] = $answer;
+                    $answerNewObj['translated_answer'] = $translations[$i]['text'];
+                    $answerNewObj['initial_language_detected'] = $translations[$i]['source'];
+                    $responseAnswers[$questionName] = $answerNewObj;
+                }
                 $i++;
             }
-
         }
         $questionnaireResponse->response_json_translated = json_encode($responseAnswers);
         $questionnaireResponse->save();
     }
 
-    protected function shouldAcceptTranslatedAnswer(string $questionName, $answer,
-                                                    array  $freeTypeQuestions, array $translations,
-                                                    int    $i): bool {
-        return $this->shouldTranslateAnswer($questionName, $answer, $freeTypeQuestions)
-            && strcmp(trim($translations[$i]['text']), trim($answer)) !== 0;
+    protected function shouldAcceptTranslatedAnswer($answer,
+                                                    array $translations,
+                                                    int $i): bool {
+        return strcmp(trim($translations[$i]['text']), trim($answer)) !== 0;
     }
 
     protected function shouldTranslateAnswer(string $questionName, $answer, array $freeTypeQuestions): bool {
