@@ -5,6 +5,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\UserManager;
+use App\Jobs\AnalyzeQuestionnaireResponseToxicity;
 use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
@@ -84,6 +85,7 @@ class QuestionnaireResponseManager {
             $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
+        AnalyzeQuestionnaireResponseToxicity::dispatch($questionnaireResponse->id);
         return $questionnaireResponse;
     }
 
