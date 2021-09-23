@@ -2,7 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\BusinessLogicLayer\CommentAnalyzer\Analyzer;
+use App\BusinessLogicLayer\CommentAnalyzer\GooglePerspectiveAPIService;
+use App\BusinessLogicLayer\CommentAnalyzer\ToxicityAnalyzerService;
 use Tests\TestCase;
 
 class CommentAnalyzerTest extends TestCase {
@@ -12,7 +13,7 @@ class CommentAnalyzerTest extends TestCase {
 
     protected function setUp(): void {
         parent::setUp();
-        $this->analyzer = $this->app->make(Analyzer::class);
+        $this->analyzer = $this->app->make(ToxicityAnalyzerService::class);
     }
 
     /**
@@ -21,7 +22,7 @@ class CommentAnalyzerTest extends TestCase {
      * @return void
      */
     public function testCommentAnalyzer() {
-        $result = $this->analyzer->getToxicityResponse('what kind of idiot name is foo?');
-        dd($result);
+        $result = $this->analyzer->getToxicityScore('what kind of idiot name is foo?');
+        self::assertIsFloat($result->toxicityScore);
     }
 }

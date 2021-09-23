@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\BusinessLogicLayer\CommentAnalyzer\Analyzer;
+use App\BusinessLogicLayer\CommentAnalyzer\GooglePerspectiveAPIService;
+use App\BusinessLogicLayer\CommentAnalyzer\ToxicityAnalyzerService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
@@ -24,8 +25,8 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->singleton(Analyzer::class, function ($app) {
-            return new Analyzer();
+        $this->app->singleton(ToxicityAnalyzerService::class, function ($app) {
+            return new GooglePerspectiveAPIService();
         });
     }
 }

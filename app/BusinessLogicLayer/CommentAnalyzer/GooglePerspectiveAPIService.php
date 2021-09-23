@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
-class Analyzer {
+class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
     private $api_key;
     private $client;
     const API_URL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze';
@@ -22,7 +22,7 @@ class Analyzer {
      * @throws GuzzleException
      * @throws AnalyzerException
      */
-    public function getToxicityResponse(string $text): string {
+    public function getToxicityScore(string $text): ToxicityAnalyzerResponse {
         try {
             $response = $this->client->post(static::API_URL . '?key=' . $this->api_key, [
                 RequestOptions::JSON => [
@@ -42,6 +42,7 @@ class Analyzer {
             throw new AnalyzerException(sprintf('Call to Perspective API Failed: HTTP %s', $response->getStatusCode()));
         }
 
-        return $response->getBody();
+        $responseContent = json_decode($response->getBody());
+        return new ToxicityAnalyzerResponse($responseContent->attributeScores->TOXICITY->summaryScore->value, $response->getBody());
     }
 }
