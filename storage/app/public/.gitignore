@@ -1,5 +1,6 @@
 *
 !.gitignore
+!uploads/.gitignore
 !uploads/project_img/fair-eu-bg.png
 !uploads/project_logos/fair-eu.png
 !uploads/project_questionnaire_bg_img/bgsectionnaire.png
