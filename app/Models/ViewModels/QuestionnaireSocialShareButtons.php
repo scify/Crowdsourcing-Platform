@@ -3,7 +3,7 @@
 namespace App\Models\ViewModels;
 
 
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 
 class QuestionnaireSocialShareButtons {
 
@@ -13,7 +13,7 @@ class QuestionnaireSocialShareButtons {
 
     /**
      * QuestionnaireSocialShareButtons constructor.
-     * @param $project \App\Models\CrowdSourcingProject the project the questionnaire belongs to
+     * @param $project CrowdSourcingProject the project the questionnaire belongs to
      * @param $questionnaire Questionnaire the questionnaire to be shared
      * @param $referrerId int (optional) the id of the user that will share
      * the questionnaire

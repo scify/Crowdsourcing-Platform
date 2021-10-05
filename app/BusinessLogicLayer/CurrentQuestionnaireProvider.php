@@ -4,7 +4,7 @@
 namespace App\BusinessLogicLayer;
 
 
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 
@@ -33,6 +33,7 @@ class CurrentQuestionnaireProvider {
             if($this->questionnaireShouldBeContributedTo($questionnaire))
                 break;
         }
+
         return $toReturn;
     }
 

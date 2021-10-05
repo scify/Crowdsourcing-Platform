@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1 class="m-0 text-dark">My Dashboard</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" href="{{ mix('dist/css/my-dashboard.css') }}">
@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @push('scripts')
     <script src="{{ mix('dist/js/myProfile.js')}}"></script>

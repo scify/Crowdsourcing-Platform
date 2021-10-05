@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>My Account</h1>
-@stop
+@endsection
 
 @section('content')
     <div class="row">
@@ -129,7 +129,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 
 

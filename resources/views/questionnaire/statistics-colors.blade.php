@@ -80,40 +80,6 @@
                             @endforeach
                         </div>
                     </div>
-
-                    <div class="row mt-5">
-                        <div class="col p-0">
-                            <h3 class="font-weight-bold">Questions Statistics Colors:</h3>
-                        </div>
-                    </div>
-                    @foreach($viewModel->questionnaire->questions as $question)
-                        <div class="row mt-5">
-                            <div class="col p-0">
-                                <h4>{{ $question->question }}</h4>
-                            </div>
-                        </div>
-                        <div class="row my-3 py-5 align-items-center bg-gradient-light">
-                            <div class="container-fluid">
-                                @foreach($question->possibleAnswers as $possibleAnswer)
-                                    <div class="row mb-3">
-                                        <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                                            <h4>{{ $possibleAnswer->answer }}</h4>
-                                        </div>
-                                        <div class="col-lg-7 col-md-6 col-sm-12">
-                                            <div class="input-group colorpicker-component color-picker">
-                                                <input id="answer_colors_{{ $possibleAnswer->id }}" type="text"
-                                                       name="answer_colors[{{ $possibleAnswer->id }}]"
-                                                       class="form-control"
-                                                       value="{{ old('answer_colors[' . $possibleAnswer->id . ']') ? old('answer_colors[' . $possibleAnswer->id . ']') :
-                                                            $viewModel->getColorForPossibleAnswer($possibleAnswer)  }}"/>
-                                                <span class="input-group-addon"><i></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
                 </div>
                 <div class="card-footer">
                     <div class="row">
@@ -128,8 +94,4 @@
         </div>
 
     </form>
-@stop
-
-@push('scripts')
-
-@endpush
+@endsection

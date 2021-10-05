@@ -14,7 +14,6 @@
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-        <link rel="stylesheet" href="{{ mix('dist/css/sweetalert.css') }}">
         <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
         <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
         @stack('css')
@@ -22,9 +21,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        @if (App::environment('production'))
-            @include('analytics')
-        @endif
+        @include('analytics')
     </head>
     @if (App::environment('staging'))
         <div class="sticky-top w-100 staging-warning py-2 text-center">
@@ -43,13 +40,22 @@
                 <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
             </div>
         @endif
-        @yield('content')
+        <div id="app">
+            @yield('content')
+        </div>
+
         <footer>
             @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
         </footer>
         <div class="loader-wrapper hidden">
             <img src="{{asset('images/loading.gif')}}" alt="loading image">
         </div>
+        <script>
+            window.Laravel = {!! json_encode([
+                'baseUrl' => url('/'),
+                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
+            ]) !!};
+        </script>
         @include('partials.footer-scripts')
 
         <script src="{{ mix('dist/js/home.js') }}"></script>

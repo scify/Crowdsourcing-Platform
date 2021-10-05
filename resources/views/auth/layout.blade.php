@@ -6,7 +6,8 @@
     @include('partials.favicons')
     <title>@yield('title_prefix', config('app.name')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ mix('dist/css/auth.css') }}">
     @stack('css')
@@ -15,19 +16,20 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    @if (App::environment('production'))
-        @include('analytics')
-    @endif
+    @include('analytics')
 </head>
-<body class="hold-transition background-page @yield('body_class')" style="background-image: url('{{ asset('images/active_participation.png') }}');">
+<body class="hold-transition background-page @yield('body_class')"
+      style="background-image: url('{{ asset('images/active_participation.png') }}');">
 @if (App::environment('staging'))
     <div class="sticky-top w-100 staging-warning py-2 text-center">
         <h5 class="m-0">~~~ WARNING: STAGING ENVIRONMENT ~~~</h5>
     </div>
 @endif
-<div class="login-box row h-100 justify-content-center align-items-center">
-    <div class="login-box-body p-5 col-12">
-        @yield('auth-form')
+<div id="app" class="row h-100 justify-content-center align-items-center">
+    <div class="login-box col-md-4 col-sm-9">
+        <div class="login-box-body p-5 w-100">
+            @yield('auth-form')
+        </div>
     </div>
 </div>
 

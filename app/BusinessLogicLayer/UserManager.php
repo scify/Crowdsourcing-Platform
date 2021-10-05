@@ -2,17 +2,17 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Models\User;
 use App\Models\ViewModels\EditUser;
 use App\Models\ViewModels\ManageUsers;
 use App\Models\ViewModels\UserProfile;
 use App\Notifications\UserRegistered;
-use App\Repository\CrowdSourcingProjectRepository;
+use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -21,30 +21,22 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class UserManager {
     private $userRepository;
     private $userRoleRepository;
-    private $questionnaireManager;
-    private $projectRepository;
     private $mailChimpManager;
-    private $crowdSourcingProjectManager;
-    private $webSessionManager;
-    private $questionnaireResponseManager;
+    private $questionnaireResponseRepository;
+    private $questionnaireAnswerVoteRepository;
+
     public static $USERS_PER_PAGE = 10;
 
-    public function __construct(UserRepository $userRepository,
-                                UserRoleRepository $userRoleRepository,
-                                QuestionnaireManager $questionnaireManager,
-                                QuestionnaireResponseManager $questionnaireResponseManager,
-                                CrowdSourcingProjectRepository $projectRepository,
-                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
-                                MailChimpAdaptor $mailChimpManager,
-                                WebSessionManager $webSessionManager) {
+    public function __construct(UserRepository                    $userRepository,
+                                UserRoleRepository                $userRoleRepository,
+                                MailChimpAdaptor                  $mailChimpManager,
+                                QuestionnaireResponseRepository   $questionnaireResponseRepository,
+                                QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
-        $this->questionnaireManager = $questionnaireManager;
-        $this->projectRepository = $projectRepository;
         $this->mailChimpManager = $mailChimpManager;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->webSessionManager = $webSessionManager;
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
     }
 
     public function getUserProfile($user) {
@@ -74,15 +66,21 @@ class UserManager {
 
     public function deactivateUser($id) {
         $user = $this->userRepository->getUserWithTrashed($id);
+        $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
+        $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
         $this->userRepository->softDeleteUser($user);
     }
 
     public function anonymizeUser($user) {
+        $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
+        $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
         $this->userRepository->anonymizeUser($user);
     }
 
     public function reactivateUser($id) {
         $user = $this->userRepository->getUserWithTrashed($id);
+        $this->questionnaireAnswerVoteRepository->restoreAnswerVotesByUser($user->id);
+        $this->questionnaireResponseRepository->restoreResponsesByUser($user->id);
         $this->userRepository->reActivateUser($user);
     }
 
@@ -117,7 +115,7 @@ class UserManager {
      * @throws HttpException
      */
     public function updateUser($data) {
-        $user_id = Auth::User()->id;
+        $user_id = Auth::id();
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
@@ -135,14 +133,14 @@ class UserManager {
     }
 
 
-    public function getPlatformAdminUsersWithCriteria($paginationNum = null, $data) {
+    public function getPlatformAdminUsersWithCriteria($data, $paginationNum = null) {
         return $this->userRepository->getPlatformUsers($paginationNum, $data, true);
     }
 
     public function handleSocialLoginUser($socialUser) {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.
-        if(!$socialUser->email)
+        if (!$socialUser->email)
             $socialUser->email = $socialUser->id . '@crowdsourcing.org';
         $result = $this->getOrAddUserToPlatform($socialUser->email,
             $socialUser->name,
@@ -162,11 +160,53 @@ class UserManager {
     }
 
     public function createUser(array $data) {
-        $data['password'] = bcrypt($data['password']);
-        return $this->userRepository->create($data);
+        $data = [
+            'email' => $data['email'],
+            'nickname' => $data['nickname'],
+            'password' => Hash::make($data['password'])
+        ];
+        if (!isset($_COOKIE['crowdsourcing_anonymous_user_id']))
+            return $this->userRepository->create($data);
+        else {
+            $userId = intval($_COOKIE['crowdsourcing_anonymous_user_id']);
+            try {
+                $existingUser = $this->userRepository->find($userId);
+                $this->userRepository->update([
+                    'email' => $data['email'],
+                    'nickname' => $data['nickname'],
+                    'password' => $data['password']
+                ], $existingUser->id);
+                return $this->userRepository->find($existingUser->id);
+            } catch (ModelNotFoundException $e) {
+                unset($_COOKIE['crowdsourcing_anonymous_user_id']);
+                return $this->createUser($data);
+            }
+        }
     }
 
     public function userHasContributedToAProject($userId) {
-        return $this->questionnaireResponseManager->questionnaireResponsesForUserExists($userId);
+        return $this->questionnaireResponseRepository->userResponseExists($userId);
+    }
+
+    public function getLoggedInUserOrCreateAnonymousUser() {
+        if (Auth::check())
+            return Auth::user();
+        if (isset($_COOKIE['crowdsourcing_anonymous_user_id']) && intval($_COOKIE['crowdsourcing_anonymous_user_id'])) {
+            try {
+                return $this->userRepository->find(intval($_COOKIE['crowdsourcing_anonymous_user_id']));
+            } catch (ModelNotFoundException $e) {
+                return $this->createAnonymousUser();
+            }
+        }
+        return $this->createAnonymousUser();
+    }
+
+    protected function createAnonymousUser(): User {
+        $name = 'Anonymous_User_' . now()->timestamp;
+        return $this->userRepository->create([
+            'nickname' => $name,
+            'email' => $name . '@crowd.org'
+        ]);
     }
 }
+

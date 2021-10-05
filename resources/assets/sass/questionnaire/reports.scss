@@ -1,0 +1,63 @@
+@import "resources/assets/sass/variables";
+@import "~survey-analytics/survey.analytics.tabulator.min.css";
+@import "~tabulator-tables/dist/css/tabulator.min.css";
+@import "~survey-jquery/modern.min.css";
+
+.reports {
+  .search-btn {
+    margin-top: 35px;
+  }
+
+  #results {
+    margin-top: 35px;
+  }
+
+  .colored {
+    color: $blue;
+  }
+
+  .loader {
+    text-align: center;
+
+    i {
+      font-size: 50px;
+    }
+  }
+}
+
+.more-btn {
+  margin-left: 5px;
+}
+
+.responses-report {
+  font-family: 'Open Sans', sans-serif;
+
+  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {
+    display: none;
+  }
+
+  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(3) {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
+
+}
+
+#searchBtn {
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}

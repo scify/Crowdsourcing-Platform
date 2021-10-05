@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 
 class HomeController extends Controller {
     private $crowdSourcingProjectManager;

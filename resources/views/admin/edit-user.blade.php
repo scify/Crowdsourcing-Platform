@@ -2,7 +2,7 @@
 @section('title', 'home')
 @section('content-header')
     <h1>Edit User</h1>
-@stop
+@endsection
 
 @section('content')
     <form action="{{ url('admin/update-user') }}" method="POST">
@@ -17,7 +17,8 @@
                     <div class="card-body">
                         <div class="form-group has-feedback">
                             <label>Email</label>
-                            <input id="email" type="text" class="form-control" name="email" value="{{ $viewModel->user->email }}"
+                            <input id="email" type="text" class="form-control" name="email"
+                                   value="{{ $viewModel->user->email }}"
                                    required
                                    autofocus placeholder="Email" readonly>
                             @if ($errors->has('email'))
@@ -29,7 +30,8 @@
 
                         <div class="form-group has-feedback">
                             <label>Nickname</label>
-                            <input id="nickname" type="text" class="form-control" name="nickname" value="{{ $viewModel->user->nickname  }}"
+                            <input id="nickname" type="text" class="form-control" name="nickname"
+                                   value="{{ $viewModel->user->nickname  }}"
                                    required
                                    autofocus
                                    placeholder="Nickname" readonly>
@@ -47,7 +49,7 @@
                                 @foreach ($viewModel->allRoles as $role)
                                     <option
                                             @if ($viewModel->userRoleIds->contains($role->id))
-                                                selected
+                                            selected
                                             @endif
                                             value="{{ $role->id }}" name="roleVal[{{ $role->id }}]"
                                     >
@@ -69,4 +71,4 @@
             </div>
         </div>
     </form>
-@stop
+@endsection

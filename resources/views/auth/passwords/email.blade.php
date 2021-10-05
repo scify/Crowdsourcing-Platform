@@ -27,5 +27,5 @@
             >Send Password Reset link</button>
         </form>
     </div>
-@stop
+@endsection
 

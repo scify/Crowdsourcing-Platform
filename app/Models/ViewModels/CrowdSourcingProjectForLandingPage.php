@@ -4,48 +4,54 @@ namespace App\Models\ViewModels;
 
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
+use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
-class CrowdSourcingProjectForLandingPage
-{
+class CrowdSourcingProjectForLandingPage {
     public $project;
     public $questionnaire;
     public $userResponse;
     public $allResponses;
-    public $allLanguagesForQuestionnaire;
     public $totalResponses;
-    public $openQuestionnaireWhenPageLoads = false;
     public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
+    public $languages;
+    public $openQuestionnaireWhenPageLoads = false;
 
     public function __construct($project, $questionnaire,
                                 $userResponse,
                                 $allResponses,
-                                $allLanguagesForQuestionnaire,
-                                $openQuestionnaireWhenPageLoads,
                                 $questionnaireGoalVM,
-                                $socialMediaMetadataVM)
-    {
+                                $socialMediaMetadataVM,
+                                Collection $languages,
+                                $openQuestionnaireWhenPageLoads) {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
         $this->userResponse = $userResponse;
         $this->allResponses = $allResponses;
-        $this->allLanguagesForQuestionnaire = $allLanguagesForQuestionnaire;
         $this->totalResponses = $allResponses->count();
         $this->questionnaireGoalVM = $questionnaireGoalVM;
-        $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
+        $this->languages = $languages;
+        $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
     }
 
-    public function getSignInURLWithParameters() {
-        $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug."?open=1");
-        if(Request()->referrerId)
+    public function getSignInURLWithParameters(): string {
+        $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug . "?open=1");
+        if (Request()->referrerId)
             $url .= urlencode("&referrerId=") . Request()->referrerId;
-        if(Request()->questionnaireId)
+        if (Request()->questionnaireId)
             $url .= urlencode("&questionnaireId=") . Request()->questionnaireId;
         return $url;
     }
 
     public function shouldShowQuestionnaireStatisticsLink(): bool {
         return $this->questionnaire->statistics_page_visibility_lkp_id === QuestionnaireStatisticsPageVisibilityLkp::PUBLIC;
+    }
+
+    public function getLoggedInUser() {
+        return Auth::user();
     }
 }

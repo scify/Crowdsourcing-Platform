@@ -5,7 +5,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\QuestionnaireProjectGoal;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 

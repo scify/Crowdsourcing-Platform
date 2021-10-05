@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>Manage Questionnaires</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{mix('dist/css/manage-questionnaires.css')}}">
@@ -28,9 +28,9 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th>Title</th>
-                            <th>Project</th>
-                            <th>Goal / Responses</th>
-                            <th>Languages available</th>
+                            <th>Projects</th>
+                            <th>Responses / Goal</th>
+                            <th>Languages</th>
                             <th>Status</th>
                             <th class="text-center">Order</th>
                             <th>Actions</th>
@@ -42,13 +42,12 @@
                                 data-status="{{$questionnaire->status_id}}">
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td>{{$questionnaire->title}}</td>
-                                <td>{{ $questionnaire->project_name }}</td>
-                                <td>{{ $questionnaire->goal }} / {{ $questionnaire->number_of_responses }}
+                                <td>{{ $questionnaire->project_names }}</td>
+                                <td>{{ $questionnaire->number_of_responses ?? 0 }} / {{ $questionnaire->goal }}
                                     <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}
                                         %)</b></td>
                                 <td>
-                                    <b>{{$questionnaire->default_language_name}}</b>
-                                    {{$questionnaire->languages}}
+                                    <b>{{$questionnaire->default_language_name}}</b>{{ $questionnaire->languages? ', ' : '' }}{{$questionnaire->languages}}
                                 </td>
                                 <td>
                                         <span class="badge {{$viewModel->setCssClassForStatus($questionnaire->status_id)}}"
@@ -60,30 +59,40 @@
                                         <button class="btn btn-primary dropdown-toggle" type="button"
                                                 data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
-                                        <div class="dropdown-menu">
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            @if (!$viewModel->isQuestionnaireArchived($questionnaire))
+                                                <a class="action-btn dropdown-item"
+                                                   href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                            class="far fa-edit"></i> Edit Questionnaire</a>
+                                            @endif
                                             <a class="action-btn dropdown-item"
-                                               href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                        class="far fa-edit"></i> Edit Questionnaire</a>
-                                            <a class="action-btn dropdown-item"
-                                               href="{{route('statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
-                                                        class="fas fa-palette"></i> Statistics Colors</a>
-                                            <a class="action-btn dropdown-item"
-                                               href="{{route('translate-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                        class="fa fa-language"></i> Translate</a>
-                                            @if(isset($questionnaire->url) && $questionnaire->url)
-                                                <button data-clipboard-text="{{ $questionnaire->url }}"
-                                                   class="copy-clipboard action-btn dropdown-item">
-                                                    <i class="copy-questionnaire-link fa fa-link"></i> Get Link
-                                                </button>
+                                               href="{{route('statistics-colors-page', ['questionnaire' => $questionnaire->id])}}"><i
+                                                        class="fas fa-palette"></i> Basic Statistics Colors</a>
+
+                                            @if(isset($questionnaire->urls))
+                                                @if(count($questionnaire->urls) === 1)
+                                                    <button data-clipboard-text="{{ $questionnaire->urls[0]['url'] }}"
+                                                            class="copy-clipboard action-btn dropdown-item">
+                                                        <i class="copy-questionnaire-link fa fa-link"></i> Get Link
+                                                    </button>
+                                                @else
+                                                    @foreach($questionnaire->urls as $url)
+                                                        <button data-clipboard-text="{{ $url['url'] }}"
+                                                                class="copy-clipboard action-btn dropdown-item">
+                                                            <i class="copy-questionnaire-link fa fa-link"></i>
+                                                            Get {{ $url['project_name'] }} Link
+                                                        </button>
+                                                    @endforeach
+                                                @endif
                                             @endif
                                             <hr>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i
-                                                        class="fas fa-list-ul"></i> View Results Report</a>
+                                                        class="fas fa-list-ul"></i> Results Report</a>
                                             <a class="action-btn dropdown-item"
                                                target="_blank"
                                                href="{{route('questionnaire.statistics', ['questionnaire' => $questionnaire->id])}}">
-                                                <i class="fas fa-chart-pie"></i> View Statistics</a>
+                                                <i class="fas fa-chart-pie"></i> Statistics</a>
                                             @can('change-status-crowd-sourcing-projects')
                                                 <hr>
                                                 <a class="action-btn dropdown-item change-status"
@@ -103,7 +112,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @push('modals')
     <div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog">

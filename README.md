@@ -9,7 +9,7 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 
-Laravel 6 Web Application for Crowdsourcing Projects and Questionnaires
+Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
 
 [Project URL](https://crowdsourcing.scify.org/)
 
@@ -17,12 +17,12 @@ Laravel 6 Web Application for Crowdsourcing Projects and Questionnaires
 
 ## First time install (setup database and install dependencies)
 
-0. Make sure php 7.2 (or newer) is installed.
+0. Make sure php 7.4 (or newer) is installed.
 
 Install graphics library 
 
 ```
- sudo apt-get install php7.2-gd
+ sudo apt-get install php7.4-gd
 ```
 
 1. After cloning the project, create an .env file (should be a copy of .env.example),
@@ -47,6 +47,33 @@ By default images are stored at app/storage/public. Run
 php artisan storage:link
 ```
 to link this folder with the public directory
+
+## Database Considerations
+
+If you are running MySQL version 8.0 and above, there is a certain [bug](https://bugs.mysql.com/bug.php?id=103465) regarding memory overflow when trying to sort results in tables that have columns of JSON data type.
+
+A workaround to fix this is to tweak the memory buffer size for sorting.
+In order to do so, please follow:
+
+```bash
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+And append the following options:
+
+```bash
+[mysqld]
+sort_buffer_size = 10485760
+innodb_sort_buffer_size = 10485760
+```
+
+After you save the file, restart the MySQL service:
+
+
+```bash
+sudo service mysql restart
+```
+
 
 ## Apache configuration:
 
@@ -146,6 +173,12 @@ sudo service apache2 restart
 This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
 
 It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
+
+## Installation-specific resources
+
+The application can be tweaked and personalized for each installation.
+In the `.env` file you can set the `INSTALLATION_RESOURCES_DIR` variable accordingly. This variable must take a value that represents a directory name in the `resourcess/views/home/partials` directory. For example, see the `resourcess/views/home/partials/together` directory. This directory must contain the partial blade files for the installation.
+
 
 ## Run Tests
 We use a Sqlite database to generate an instance of the database, for testing purposes.

@@ -4,8 +4,8 @@
 namespace App\Models\ViewModels;
 
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
 
 class CreateEditCrowdSourcingProject {
 
@@ -13,13 +13,13 @@ class CreateEditCrowdSourcingProject {
     public $projectStatusesLkp;
     public $contributorEmailView;
 
-    public function __construct(\App\Models\CrowdSourcingProject $project, Collection $projectStatusesLkp, string $contributorEmailView) {
+    public function __construct(CrowdSourcingProject $project, Collection $projectStatusesLkp, string $contributorEmailView) {
         $this->project = $project;
         $this->projectStatusesLkp = $projectStatusesLkp;
         $this->contributorEmailView = $contributorEmailView;
     }
 
-    public function isEditMode() {
+    public function isEditMode(): bool {
         return $this->project->id !== null;
     }
 

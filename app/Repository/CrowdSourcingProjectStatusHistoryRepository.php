@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Models\CrowdSourcingProjectStatusHistory;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusHistory;
 
 class CrowdSourcingProjectStatusHistoryRepository extends Repository
 {

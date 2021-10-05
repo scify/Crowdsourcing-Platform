@@ -4,8 +4,8 @@
 namespace App\Models\ViewModels\Questionnaire;
 
 
-use App\Models\Questionnaire;
-use App\Models\QuestionnaireLanguage;
+use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Models\QuestionnairePossibleAnswer;
 
 class QuestionnaireStatisticsColors {

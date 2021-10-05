@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>Reports</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{mix('dist/css/reports.css')}}">
@@ -27,9 +27,9 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3 col-sm-12 justify-content-center align-items-center">
-                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg" data-url="{{ route('questionnaireReport') }}"><i
-                                        class="fa fa-plus mr-1"></i> View</button>
+                        <div class="col-md-2 offset-md-1 col-sm-12 justify-content-center align-items-center">
+                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg" data-url="{{ route('questionnaire.get-report-data') }}"><i
+                                        class="fas fa-search mr-1"></i> View</button>
                         </div>
                     </div>
                     <div id="errorMsg" class="alert alert-danger stickyAlert margin-top margin-bottom d-none" role="alert"></div>
@@ -45,7 +45,7 @@
             <div id="results"></div>
         </div>
     </div>
-@stop
+@endsection
 @push('modals')
     <div class="modal fade" id="answersModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">

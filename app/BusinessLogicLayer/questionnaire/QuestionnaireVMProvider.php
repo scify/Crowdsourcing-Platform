@@ -4,15 +4,14 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 
-use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\LanguageManager;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
-use App\Models\ViewModels\QuestionnaireTranslation;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
-use Illuminate\Support\Collection;
+use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireVMProvider {
@@ -24,12 +23,12 @@ class QuestionnaireVMProvider {
     protected $questionnaireTranslationRepository;
     protected $questionnaireManager;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireManager $questionnaireManager,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                LanguageManager $languageManager,
+    public function __construct(QuestionnaireRepository                            $questionnaireRepository,
+                                QuestionnaireManager                               $questionnaireManager,
+                                CrowdSourcingProjectAccessManager                  $crowdSourcingProjectAccessManager,
+                                LanguageManager                                    $languageManager,
                                 QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
+                                QuestionnaireTranslationRepository                 $questionnaireTranslationRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
@@ -38,63 +37,50 @@ class QuestionnaireVMProvider {
         $this->questionnaireManager = $questionnaireManager;
     }
 
-    public function getCreateEditQuestionnaireViewModel($id = null) {
-        $maximumPrerequisiteOrder = null;
+    public function getCreateEditQuestionnaireViewModel($id = null): CreateEditQuestionnaire {
         if ($id) {
-            $questionnaire = $this->questionnaireRepository->find($id);
+            $questionnaire = $this->questionnaireRepository->find($id, array('*'), ['projects']);
             $title = "Edit Questionnaire";
-            $maximumPrerequisiteOrder = $questionnaire->project->questionnaires->count();
         } else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
+            $questionnaire->default_language_id = 6;
+            $questionnaire->prerequisite_order = 1;
             $title = "Create Questionnaire";
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
         $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $maximumPrerequisiteOrder, $questionnaireStatisticsPageVisibilityLkp);
+        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $questionnaireStatisticsPageVisibilityLkp);
     }
 
-    public function getAllQuestionnairesPageViewModel() {
+    public function getAllQuestionnairesPageViewModel(): ManageQuestionnaires {
         $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $questionnaires = new Collection();
-        foreach ($projectTheUserHasAccessTo as $project) {
-            $questionnaires = $questionnaires->concat(
-                $this->questionnaireTranslationRepository->getAllQuestionnairesForProjectWithAvailableTranslations($project->id));
-        }
+        $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($projectTheUserHasAccessTo->pluck('id')->toArray());
         foreach ($questionnaires as $questionnaire) {
-            if($this->questionnaireManager->shouldShowLinkForQuestionnaire($questionnaire))
-                $questionnaire->url = $this->questionnaireManager->getQuestionnaireURL($questionnaire->project_slug, $questionnaire->id);
+            if ($this->shouldShowLinkForQuestionnaire($questionnaire)) {
+                $projectSlugs = explode(',', $questionnaire->project_slugs);
+                $projectNames = explode(',', $questionnaire->project_names);
+                $questionnaire->urls = [];
+                foreach ($projectSlugs as $index => $projectSlug)
+                    array_push(
+                        $questionnaire->urls,
+                        [
+                            'project_name' => $projectNames[$index],
+                            'url' => $this->getQuestionnaireURL($projectSlug, $questionnaire->id)
+                        ]
+                    );
+            }
+
         }
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
-    public function getTranslateQuestionnaireViewModel($questionnaireId) {
-        $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-        $allLanguages = $this->languageManager->getAllLanguages()->groupBy('id');
-        $defaultLanguage = $allLanguages->pull($questionnaire->default_language_id);
-        $allLanguages = $this->transformAllLanguagesToArray($allLanguages);
-        $questionnaireTranslations = $this->questionnaireTranslationRepository->getQuestionnaireTranslationsGroupedByLanguageAndQuestion($questionnaireId);
-        $questionnaireLanguages = $this->questionnaireTranslationRepository->getQuestionnaireAvailableLanguages($questionnaireId);
-        // if default value translation is set and there are some translations but not for all questions/answers/html,
-        // we need to pass all the not translated strings to the other languages, so that they will be available for translation
-        if ($questionnaireTranslations->has("") && $questionnaireTranslations->count() > 1) {
-            $defaultLanguageTranslation = $questionnaireTranslations->pull("");
-            foreach ($questionnaireTranslations->keys() as $language) {
-                foreach ($defaultLanguageTranslation as $translations) {
-                    $questionnaireTranslations->get($language)->push($translations);
-                }
-            }
-        }
-        return new QuestionnaireTranslation($questionnaireTranslations, $questionnaireLanguages, $questionnaire, $allLanguages, $defaultLanguage[0]);
+    protected function shouldShowLinkForQuestionnaire($questionnaire): bool {
+        return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
     }
 
-    private function transformAllLanguagesToArray($allLanguages) {
-        $result = [];
-        foreach ($allLanguages as $language) {
-            array_push($result, $language[0]);
-        }
-        return $result;
+    protected function getQuestionnaireURL($projectSlug, $questionnaireId): string {
+        return url('/' . trim($projectSlug)) . '?open=1&questionnaireId=' . $questionnaireId;
     }
-
 }
