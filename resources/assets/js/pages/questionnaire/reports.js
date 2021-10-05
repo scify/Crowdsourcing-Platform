@@ -1,6 +1,9 @@
+import * as Survey from "survey-knockout";
+import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
+
 (function () {
 
-    let table;
+    let table, respondentsTable, questionnaire, answers, survey;
     const loader = $("#loader");
 
     let checkForURLSearchParams = function () {
@@ -14,9 +17,9 @@
         let searchParams = new URLSearchParams(window.location.search);
         let newURL = '';
         if (searchParams.has('questionnaireId')) {
-            newURL = location.href.replace("questionnaireId="+searchParams.get('questionnaireId'), "questionnaireId="+criteria.questionnaireId);
+            newURL = location.href.replace("questionnaireId=" + searchParams.get('questionnaireId'), "questionnaireId=" + criteria.questionnaireId);
         } else {
-            newURL = location.href += "?questionnaireId="+criteria.questionnaireId;
+            newURL = location.href += "?questionnaireId=" + criteria.questionnaireId;
         }
 
         if (window.history.replaceState) {
@@ -29,7 +32,7 @@
         $("#searchBtn").on("click", function () {
             let criteria = {};
             criteria.questionnaireId = $('select[name=questionnaire_id]').val();
-            if(criteria.questionnaireId)
+            if (criteria.questionnaireId)
                 updateURLSearchParams(criteria);
             getReportsForCriteria(criteria);
         });
@@ -37,6 +40,89 @@
 
     let triggerSearch = function () {
         $("#searchBtn").trigger("click");
+    };
+
+    let viewResponseBtnHandler = function () {
+        $('body').on('click', '.response-btn', function (e) {
+            const respondentUserId = $(this).data('respondentUserId');
+            const respondentUserData = $(this).data('respondentUserData');
+            const answer = getResponseByRespondentId(respondentUserId);
+            if (answer) {
+                $('#respondent-answers-modal-title').html(respondentUserData);
+                survey.data = answer;
+                $('#respondent-answers-modal').modal();
+            }
+        });
+    };
+
+    let viewResponseTableBtnHandler = function () {
+        $('body').on('click', '.response-table-btn', function (e) {
+            const responseId = $(this).data('respondentUserId');
+            const respondentUserData = $(this).data('respondentUserData');
+            const answer = getResponseByRespondentId(responseId);
+            $('#respondent-answers-table-modal-title').html(respondentUserData);
+            let panelEl = document.getElementById("respondent-answers-table-panel");
+            panelEl.innerHTML = "";
+            Tabulator.haveCommercialLicense = true;
+            const surveyAnalyticsTabulator = new Tabulator(survey, [answer], {});
+            surveyAnalyticsTabulator.render(panelEl);
+            $('#respondent-answers-table-modal').modal();
+        });
+    };
+
+    let deleteResponseBtnHandler = function () {
+        const body = $('body');
+        body.on('click', '.delete-response-btn', function (e) {
+            const questionnaireResponseId = $(this).data('questionnaireResponseId');
+            $('input[name=questionnaire_response_id]').val(questionnaireResponseId);
+            $('#delete-response-modal').modal();
+        });
+
+        body.on('click', '#delete-response-form-btn', function (e) {
+            const questionnaireResponseId = $('input[name=questionnaire_response_id]').val();
+            const loader = $("#delete-response-loader");
+            const errorEl = $("#delete-response-error");
+            $.ajax({
+                method: "POST",
+                url: route('questionnaire_response.destroy'),
+                cache: false,
+                data: {
+                    questionnaire_response_id: questionnaireResponseId
+                },
+                beforeSend: function () {
+                    loader.removeClass('d-none');
+                    errorEl.addClass('d-none');
+                },
+                success: function (response) {
+                    loader.addClass('d-none');
+                    const tableRow = $("#questionnaire_response_" + questionnaireResponseId);
+                    respondentsTable
+                        .row(tableRow)
+                        .remove()
+                        .draw();
+
+                    $('#delete-response-modal').modal('hide');
+                    swal({
+                        title: "Response deleted!",
+                        text: "",
+                        type: "success",
+                        confirmButtonClass: "btn-success",
+                        confirmButtonText: "OK",
+                    });
+                },
+                error: function (error) {
+                    loader.addClass('d-none');
+                    errorEl.removeClass('d-none');
+                    errorEl.html(error.responseJSON.data);
+                }
+            });
+        });
+    };
+
+    let getResponseByRespondentId = function (id) {
+        for (let i = 0; i < answers.length; i++)
+            if (answers[i].respondent_user_id === id)
+                return answers[i];
     };
 
     let answersBtnHandler = function () {
@@ -71,6 +157,7 @@
     };
 
     let getReportsForCriteria = function (criteria) {
+        const errorEl = $("#errorMsg");
         $.ajax({
             method: "GET",
             url: $("#searchBtn").data("url"),
@@ -78,7 +165,7 @@
             data: criteria,
             beforeSend: function () {
                 loader.removeClass('d-none');
-                $("#errorMsg").addClass('d-none');
+                errorEl.addClass('d-none');
             },
             success: function (response) {
                 parseSuccessData(response);
@@ -86,31 +173,38 @@
             },
             error: function (error) {
                 loader.addClass('d-none');
-                $("#errorMsg").removeClass('d-none');
-                $("#errorMsg").html(error.responseJSON.data);
+                errorEl.removeClass('d-none');
+                errorEl.html(error.responseJSON.data);
             }
         });
     };
 
     let parseSuccessData = function (response) {
-        $("#results").html("");
+        const resultsEl = $("#results");
+        resultsEl.html("");
         $("#errorMsg").addClass('d-none');
         loader.addClass('d-none');
-        $("#results").html(response.data);
+        resultsEl.html(response.data.view);
+        questionnaire = response.data.questionnaire;
         initializeDataTables();
+        answers = _.map(_.map(response.data.responses, 'response_json'), JSON.parse);
+        survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
+        survey.mode = 'display';
+        survey.render("respondent-answers-panel");
+        initializeQuestionnaireResponsesReport();
     };
 
     let initializeDataTables = function () {
-
-        let respondentsTable = $("#respondentsTable");
-        respondentsTable.DataTable({
+        respondentsTable = $("#respondentsTable").DataTable({
             "paging": true,
             "searching": true,
             "responsive": true,
             "pageLength": 10,
             "columns": [
-                {"width": "50%"},
-                {"width": "50%"}
+                {"width": "30%"},
+                {"width": "30%"},
+                {"width": "30%"},
+                {"width": "10%"}
             ]
         });
 
@@ -130,55 +224,35 @@
 
             ],
             "columns": [
-                {"width": "5%"},
-                {"width": "5%"},
-                {"width": "2%"},
+                {"width": "7%"},
+                {"width": "7%"},
                 {"width": "35%"},
-                {"width": "2%"},
                 {"width": "23%"},
                 {"width": "23%"},
                 {"width": "2%"},
-            ],
-            "initComplete": function (settings, json) {
-            }
-        });
-
-        let answersTable = $("#answersTable");
-        answersTable.DataTable({
-            "paging": true,
-            "searching": true,
-            "responsive": true,
-            "pageLength": 10,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'csvHtml5',
-                    text: 'Download as CSV',
-                    filename: 'Answers_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime(),
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 5]
-                    }
-                }
-
-            ],
-            "columns": [
-                {"width": "5%"},
-                {"width": "40%"},
-                {"width": "5%"},
-                {"width": "5%"},
-                {"width": "10%"},
-                {"width": "30%"},
             ],
             "initComplete": function (settings, json) {
             }
         });
     };
 
+    let initializeQuestionnaireResponsesReport = function () {
+        let panelEl = document.getElementById("questionnaire-responses-report");
+        panelEl.innerHTML = "";
+        Tabulator.haveCommercialLicense = true;
+        const surveyAnalyticsTabulator = new Tabulator(survey, answers, {});
+        surveyAnalyticsTabulator.render(panelEl);
+    };
+
     let init = function () {
+        Survey.StylesManager.applyTheme("modern");
         checkForURLSearchParams();
         searchBtnHandler();
         answersBtnHandler();
         triggerSearch();
+        viewResponseBtnHandler();
+        viewResponseTableBtnHandler();
+        deleteResponseBtnHandler();
     };
 
     $(document).ready(function () {

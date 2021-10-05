@@ -4,7 +4,7 @@
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
         Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->name : '' }}
         <small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" href="{{ mix('dist/css/create-edit-project.css') }}">
@@ -46,10 +46,20 @@
                             </div>
                             <div class="line"></div>
                             <div class="step" data-target="#communication-resources">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="communication-resources"
+                                <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="communication-resources"
                                         id="communication-resources-trigger">
                                     <span class="bs-stepper-circle">4</span>
                                     <span class="bs-stepper-label">Communication Emails</span>
+                                </button>
+                            </div>
+                            <div class="line"></div>
+                            <div class="step" data-target="#statistics-colors">
+                                <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="statistics-colors"
+                                        id="statistics-colors-trigger">
+                                    <span class="bs-stepper-circle">5</span>
+                                    <span class="bs-stepper-label">Statistics Colors</span>
                                 </button>
                             </div>
                         </div>
@@ -70,13 +80,19 @@
                                  aria-labelledby="communication-resources-trigger">
                                 @include('admin.projects.create-edit.partials.communication-resources')
                             </div>
+                            <div id="statistics-colors" class="content" role="tabpanel"
+                                 aria-labelledby="statistics-colors-trigger">
+                                @include('admin.projects.create-edit.partials.statistics-colors')
+                            </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-5 col-sm-12 mx-auto">
                                 <div class="container-fluid">
                                     <div class="row mb-2">
                                         <div class="col-6 offset-6">
-                                            <div id="form-error-message" class="d-none">Please check all required fields</div>
+                                            <div id="form-error-message" class="d-none">Please check all required
+                                                fields
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -90,7 +106,8 @@
                                             <button class="btn btn-block btn-primary btn-lg stepper-next" type="button">
                                                 Next
                                             </button>
-                                            <button class="btn btn-block btn-primary btn-lg d-none mt-0" id="submit-form"
+                                            <button class="btn btn-block btn-primary btn-lg d-none mt-0"
+                                                    id="submit-form"
                                                     type="submit">Save
                                             </button>
                                         </div>
@@ -103,9 +120,8 @@
             </div>
         </div>
     </form>
-
-@stop
+@endsection
 
 @push('scripts')
-    <script src="{{mix('dist/js/manageProject.js')}}"></script>
+    <script type="application/javascript" src="{{mix('dist/js/manageProject.js')}}"></script>
 @endpush

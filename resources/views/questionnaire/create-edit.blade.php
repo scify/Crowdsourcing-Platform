@@ -2,154 +2,17 @@
 
 @section('content-header')
     <h1>{{$viewModel->title}}</h1>
-@stop
+@endsection
 
 @push('css')
     <link rel="stylesheet" href="{{ mix('dist/css/create-questionnaire.css') }}">
 @endpush
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            <div class="card card-primary">
-                <div class="card-header">
-                    Questionnaire Info
-                </div>
-                <div class="card-body">
-                    @if($viewModel->questionnaire)
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="warning-wrapper">
-                                    <i class="glyphicon glyphicon-alert"></i>
-                                    Please notice, that if you click on the button "Save" below, your questionnaire's
-                                    translations will not be synchronized with the latest questionnaire's changes. You
-                                    need to revisit the translations to make sure that it will be correctly displayed
-                                    in different languages.
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    <div class="row form-group">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <label for="language">Project the Questionnaire belongs to</label>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <select name="project_id" id="project" class="select2">
-                                @foreach($viewModel->projects as $project)
-                                    <option value="{{$project->id}}"
-                                            {{ $viewModel->questionnaire->project_id === $project->id ? 'selected' : '' }}>
-                                        {{$project->name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <label for="language">Statistics page visibility</label>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <select name="statistics_page_visibility_lkp_id" id="statistics_page_visibility_lkp_id" class="select2">
-                                @foreach($viewModel->questionnaireStatisticsPageVisibilityLkp as $visibilityLkp)
-                                    <option value="{{$visibilityLkp->id}}"
-                                            {{ $viewModel->questionnaire->statistics_page_visibility_lkp_id === $visibilityLkp->id ? 'selected' : '' }}>
-                                        {{$visibilityLkp->title}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    @if ($viewModel->maximumPrerequisiteOrder)
-                        <div class="row form-group">
-                            <div class="col-md-2 col-sm-3 col-xs-12">
-                                <label for="prerequisite_order">Prerequisite Order</label>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <select name="prerequisite_order" id="prerequisite_order" class="select2">
-                                    @for($i = 1 ; $i <= $viewModel->maximumPrerequisiteOrder ; $i++ )
-                                        <option value="{{$i}}"
-                                                {{ $viewModel->shouldPrerequisiteOrderBeSelected($i) ? 'selected' : '' }}>
-                                            {{$i}}
-                                        </option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
-                    @endif
-                    <div class="row form-group">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <label for="title">Questionnaire's Title</label>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control" name="title" id="title"
-                                   placeholder="Insert questionnaire's title"
-                                   value="{{$viewModel->questionnaire ? $viewModel->questionnaire->title : ''}}">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <label for="description">Description - Motto</label>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <textarea class="form-control" name="description" id="description"
-                                      required
-                                      placeholder="Insert questionnaire's description">{{$viewModel->questionnaire ? $viewModel->questionnaire->description : ''}}</textarea>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <label for="goal">Responses Goal</label>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <input type="number" class="form-control" name="goal" id="goal"
-                                   required
-                                   placeholder="Insert questionnaire's goal"
-                                   value="{{$viewModel->questionnaire ? $viewModel->questionnaire->goal : ''}}">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <label for="language">Default Language</label>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            {{--English by default--}}
-                            <select name="language_id" id="language" class="select2">
-                                @foreach($viewModel->languages as $language)
-                                    <option value="{{$language->id}}"
-                                            {{ $viewModel->shouldLanguageBeSelected($language) ? 'selected' : '' }}>
-                                        {{$language->language_name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 editor-wrapper">
-                            <em>Use the editor below to {{ $viewModel->questionnaire ? 'modify' : 'create' }} your
-                                questionnaire.</em>
-                            <div id="questionnaire-editor"
-                                 data-json="{{$viewModel->questionnaire ? $viewModel->questionnaire->questionnaire_json : ''}}"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-md-offset-10 col-md-2">
-                            <a href="javascript:void(0)" id="save" class="btn btn-block btn-primary">Save</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@stop
-
-@push('scripts')
-
-    {{--todo: move to webpack--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-    <script src="https://surveyjs.azureedge.net/1.0.41/survey.ko.min.js"></script>
-    <script src="https://surveyjs.azureedge.net/1.0.41/surveyeditor.min.js"></script>
-
-    <script src="{{mix('dist/js/createQuestionnaire.js')}}"></script>
-@endpush
+    <questionnaire-create-edit
+            :questionnaire-data='@json($viewModel->questionnaire)'
+            :projects='@json($viewModel->projects)'
+            :languages='@json($viewModel->languages)'
+            :questionnaire-statistics-page-visibility-lkp='@json($viewModel->questionnaireStatisticsPageVisibilityLkp)'>
+    </questionnaire-create-edit>
+@endsection

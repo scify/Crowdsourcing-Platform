@@ -11,15 +11,19 @@
 |
 */
 
+use App\Http\Controllers\CrowdSourcingProjectController;
+use App\Http\Controllers\QuestionnaireReportController;
+use App\Http\Controllers\QuestionnaireResponseController;
+
 Auth::routes();
 
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
-Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('facebookLogin');
+Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('socialLoginCallback');
 Route::get('/', 'HomeController@showHomePage')->name('home');
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 Route::get('/terms-and-privacy', 'HomeController@showTermsAndPrivacyPage')->name('terms.privacy');
 
-Route::group([ 'middleware' => 'auth' ], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/my-dashboard', 'UserController@myDashboard')->name('my-dashboard');
     Route::get('/my-account', 'UserController@myAccount')->name('my-account');
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
@@ -36,32 +40,25 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::resource('projects', 'CrowdSourcingProjectController')->except([
         'destroy'
     ])->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('project/destroy', 'CrowdSourcingProjectController@destroy')->name('project.destroy')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('project/{id}/clone', [CrowdSourcingProjectController::class, 'clone'])->name('project.clone')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('project/destroy', [CrowdSourcingProjectController::class, 'destroy'])->name('project.destroy')->middleware("can:manage-crowd-sourcing-projects");
 
     Route::get('/questionnaires', 'QuestionnaireController@manageQuestionnaires')->name('questionnaires.all')->middleware("can:manage-crowd-sourcing-projects");
-    Route::get('/questionnaires/reports', 'QuestionnaireController@viewReportsPage')->name('questionnaires.reports')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('/questionnaires/reports', [QuestionnaireReportController::class, 'viewReportsPage'])->name('questionnaires.reports')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaire/new', 'QuestionnaireController@createQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
-    Route::get('questionnaire/filter', 'QuestionnaireController@showReportForQuestionnaire')->name('questionnaireReport');
-    Route::post('/questionnaire/new', 'QuestionnaireController@storeQuestionnaire')->name('create-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
+    Route::get('questionnaire/report-data', [QuestionnaireReportController::class, 'getReportDataForQuestionnaire'])->name('questionnaire.get-report-data');
     Route::get('/questionnaire/{id}/edit', 'QuestionnaireController@editQuestionnaire')->name('edit-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/questionnaire/{id}/edit', 'QuestionnaireController@updateQuestionnaire')->name('edit-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
-    Route::get('/questionnaire/{id}/translate', 'QuestionnaireController@translateQuestionnaire')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/questionnaire/{id}/translate', 'QuestionnaireController@storeQuestionnaireTranslations')->name('translate-questionnaire')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('/questionnaire/update-status', 'QuestionnaireController@saveQuestionnaireStatus')->name('update-questionnaire-status')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/questionnaire/respond', 'QuestionnaireController@storeQuestionnaireResponse')->name('respond-questionnaire');
-    Route::get('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
-    Route::post('/questionnaires/{questionnaire}/statistics-colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
-    //    Route::post('/questionnaire/share', 'QuestionnaireController@storeQuestionnaireShare')->name('share-questionnaire');
-    Route::post('automatic-translation', 'QuestionnaireController@getAutomaticTranslations')->name('automatic-translation');
-    Route::post('mark-translation', 'QuestionnaireController@markTranslation')->name('mark-translation');
-    Route::post('delete-translation', 'QuestionnaireController@deleteTranslation')->name('delete-translation');
-    Route::post('automatic-translation-single-string', 'QuestionnaireController@getAutomaticTranslationForString')->name('automatic-translation-single-string');
+    Route::get('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@showEditStatisticsColorsPage')->name('statistics-colors-page')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
+    Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
 
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
+
 Route::get('/questionnaires/{questionnaire}/statistics',
-    'QuestionnaireStatisticsController@showStatisticsVisualizationsPageForQuestionnaire')
+    'QuestionnaireStatisticsController@showStatisticsPageForQuestionnaire')
     ->name('questionnaire.statistics')
     ->middleware('questionnaire.page_settings');
 

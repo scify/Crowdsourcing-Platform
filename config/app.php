@@ -115,6 +115,8 @@ return [
 
     'installation_resources_dir' => env('INSTALLATION_RESOURCES_DIR'),
     'google_translate_key' => env('GOOGLE_TRANSLATE_KEY'),
+    'google_comment_analyzer_key' => env('GOOGLE_TRANSLATE_KEY'),
+    'google_analytics_id' => env('GA_ID'),
     'version' => env('APP_VERSION'),
 
     /*
@@ -171,10 +173,9 @@ return [
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\ComposerServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
         //For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
         \App\Providers\ConfigServiceProvider::class
     ],
 

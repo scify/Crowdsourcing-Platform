@@ -1,7 +1,7 @@
 @import "_variables.scss";
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap/scss/functions';
-@import "~admin-lte/build/scss/AdminLTE-raw";
+@import "~admin-lte/build/scss/adminlte.raw";
 
 // Fonts
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
@@ -13,7 +13,6 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import url("../../../node_modules/icheck/skins/square/blue.css");
 @import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
-@import url("~dropzone/dist/min/dropzone.min.css");
 @import url("~bootstrap-sweetalert/dist/sweetalert.css");
 
 @import "select2-custom.scss";
@@ -28,9 +27,10 @@
 @import '../../../node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css';
 @import '../../../node_modules/bs4-summernote/dist/summernote-bs4.css';
 @import '../../../node_modules/survey-jquery/survey.min.css';
-@import '../../../node_modules/surveyjs-editor/surveyeditor.min.css';
+@import '../../../node_modules/survey-creator/survey-creator.min.css';
 
 @import '../../../node_modules/bs-stepper/dist/css/bs-stepper.min.css';
+@import '../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css';
 
 @import 'sidebar';
 
@@ -92,6 +92,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .background-page {
   background-size: cover;
   background-position: center;
+}
+
+.h-0 {
+  height: 0;
 }
 
 .hidden {
@@ -188,13 +192,6 @@ table {
   }
 }
 
-.dropzone {
-  border: 2px dashed #0087F7 !important;
-  border-radius: 5px;
-  background: white !important;
-  font-size: 18px;
-}
-
 .warning-wrapper {
   font-size: small;
   background-color: lightgray;
@@ -213,10 +210,6 @@ table {
 
 .margin-top {
   margin-top: 20px;
-}
-
-#searchBtn {
-  width: 100%;
 }
 
 .align-right {
@@ -393,4 +386,24 @@ footer {
     font-size: 18px;
     top: 5px;
   }
+}
+
+.modal-overflow {
+  /* Important part */
+  .modal-dialog {
+    overflow-y: initial !important
+  }
+
+  .modal-body {
+    height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+.spinner-border {
+  vertical-align: middle;
+}
+
+.jq-toast-wrap {
+  z-index: 10000 !important;
 }

@@ -3,46 +3,42 @@
 
 namespace App\BusinessLogicLayer\questionnaire;
 
-
-use App\BusinessLogicLayer\CrowdSourcingProjectManager;
 use App\Models\ViewModels\reports\QuestionnaireReportFilters;
 use App\Models\ViewModels\reports\QuestionnaireReportResults;
 use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 
 class QuestionnaireReportManager {
 
-    protected $crowdsourcingProjectManager;
     protected $questionnaireRepository;
     protected $questionnaireReportRepository;
     protected $questionnaireResponseAnswerRepository;
+    protected $questionnaireResponseRepository;
 
-    public function __construct(CrowdSourcingProjectManager $crowdsourcingProjectManager,
-                                QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireReportRepository $questionnaireReportRepository,
-                                QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository) {
-        $this->crowdsourcingProjectManager = $crowdsourcingProjectManager;
+    public function __construct(
+        QuestionnaireRepository $questionnaireRepository,
+        QuestionnaireReportRepository $questionnaireReportRepository,
+        QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
+        QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireReportRepository = $questionnaireReportRepository;
         $this->questionnaireResponseAnswerRepository = $questionnaireResponseAnswerRepository;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
 
-    public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null) {
+    public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null): QuestionnaireReportFilters {
         $allQuestionnaires = $this->questionnaireRepository->all();
         return new QuestionnaireReportFilters($allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 
-    public function getQuestionnaireReportViewModel(array $input) {
+    public function getQuestionnaireReportViewModel(array $input): QuestionnaireReportResults {
         $questionnaireId = $input['questionnaireId'];
         $respondentsRows = $this->questionnaireReportRepository->getRespondentsData($questionnaireId);
-        $usersRows = $this->questionnaireReportRepository->getReportDataForUsers($questionnaireId);
-        $answersRows = collect($this->questionnaireReportRepository->getReportDataForAnswers($questionnaireId));
-        $answerTextRows = $this->questionnaireResponseAnswerRepository->getResponseTextDataForQuestionnaire($questionnaireId);
-        foreach ($answersRows as $answersRow)
-            $answersRow->answer_texts = $answerTextRows->where('question_id', $answersRow->question_id)->where('answer_id', $answersRow->answer_id)->values();
-        return new QuestionnaireReportResults($usersRows, $answersRows, $respondentsRows);
+        $responses = $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaireId]);
+        return new QuestionnaireReportResults($responses, $respondentsRows);
     }
 
 }

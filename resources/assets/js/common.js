@@ -8,7 +8,8 @@ require('icheck');
 //$.widget.bridge('uibutton', $.ui.button);
 
 //load dependencies for template
-window.Popper = require('popper.js').default;
+window.Popper = require('@popperjs/core');
+window.route = require('./backend-route');
 
 require('./bootstrap');
 require('fastclick');
@@ -17,7 +18,6 @@ require('select2');
 require('bootstrap-tagsinput');
 require('bootstrap-colorpicker');
 require('bs4-summernote');
-require('clipboard')
 require('jquery-toast-plugin');
 
 require('datatables.net');
@@ -25,14 +25,31 @@ require('datatables.net-bs4');
 require('datatables.net-buttons');
 require('datatables.net-buttons-bs4');
 
-require( 'datatables.net-buttons/js/buttons.colVis.js' )();
-require( 'datatables.net-buttons/js/buttons.html5.js' )();
-require( 'datatables.net-buttons/js/buttons.flash.js' )();
-require( 'datatables.net-buttons/js/buttons.print.js' )();
+require('datatables.net-buttons/js/buttons.colVis.js')();
+require('datatables.net-buttons/js/buttons.html5.js')();
+require('datatables.net-buttons/js/buttons.flash.js')();
+require('datatables.net-buttons/js/buttons.print.js')();
 require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
 require('datatables.net-select-bs4');
+import Clipboard from "clipboard/dist/clipboard";
+
+import Vue from 'vue';
+import store from './store/store';
+
+Vue.component('modal', require('./vue-components/common/ModalComponent').default);
+Vue.component('store-modal', require('./vue-components/common/StoreModalComponent').default);
+Vue.component('questionnaire-create-edit', require('./vue-components/questionnaire/QuestionnaireCreateEdit').default);
+Vue.component('questionnaire-languages', require('./vue-components/questionnaire/QuestionnaireLanguages').default);
+Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
+Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
+Vue.component('crowd-sourcing-project-colors', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectColors').default);
+
+const app = new Vue({
+    el: '#app',
+    store: store
+});
 
 (function () {
 
@@ -81,26 +98,31 @@ require('datatables.net-select-bs4');
     };
 
     let initializeColorPicker = function () {
-        $('.color-picker').each(function (i, obj) {
-            $(obj).colorpicker({
-                horizontal: true
-            });
-
-            $(obj).on('colorpickerCreate', function (event) {
-                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
-            });
-
-            $(obj).on('colorpickerChange', function (event) {
-                $(obj).find('.input-group-addon').css('background-color', event.color.toString());
-            });
+        $('.color-picker').each(function (i, el) {
+            initSingleColorPicker(el);
         });
-
     };
+
 
     let handleLogoutBtnClick = function () {
         $("#log-out").click(function (e) {
             e.preventDefault();
             $("#logout-form").submit();
+        });
+    }
+
+    let initClipboardElements = function () {
+        const clipboard = new Clipboard(".copy-clipboard");
+
+        clipboard.on('success', function (e) {
+            showToast('Copied to clipboard!', '#28a745');
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function (e) {
+            console.error(e);
+            showToast('Error while copying to clipboard: ' + e.toString(), '#dc3545');
+            e.clearSelection();
         });
     }
 
@@ -111,7 +133,64 @@ require('datatables.net-select-bs4');
             initializeSelect2Inputs();
             initializeColorPicker();
             handleLogoutBtnClick();
+            initClipboardElements();
         });
     });
 })();
 
+export function arrayMove(arr, fromIndex, toIndex) {
+    const element = arr[fromIndex];
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, element);
+}
+
+export function initSingleColorPicker(el) {
+    $(el).colorpicker({
+        horizontal: true
+    });
+
+    $(el).on('colorpickerCreate', function (event) {
+        $(el).find('.input-group-addon').css('background-color', event.color.toString());
+    });
+
+    $(el).on('colorpickerChange', function (event) {
+        $(el).find('.input-group-addon').css('background-color', event.color.toString());
+    });
+}
+
+export function showToast(text, bgColor, position = 'top-right') {
+    $.toast({
+        text: text,
+        showHideTransition: 'slide',  // It can be plain, fade or slide
+        bgColor: bgColor,              // Background color for toast
+        textColor: '#eee',            // text color
+        allowToastClose: true,       // Show the close button or not
+        hideAfter: 4000,              // `false` to make it sticky or time in miliseconds to hide after
+        stack: 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
+        textAlign: 'left',            // Alignment of text i.e. left, right, center
+        position: position      // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
+    })
+}
+
+export function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+export function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}

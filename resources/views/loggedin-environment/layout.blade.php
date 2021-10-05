@@ -19,9 +19,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
         <![endif]-->
-        @if (App::environment('production'))
-            @include('analytics')
-        @endif
+        @include('analytics')
     </head>
     <body class="hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
         @if (App::environment('staging'))
@@ -29,7 +27,7 @@
                 <p>~~~WARING: STAGING ENVIRONMENT~~~</p>
             </div>
         @endif
-        <div class="wrapper">
+        <div id="app" class="wrapper">
             @if(Auth::check())
                 @include("loggedin-environment.partials.menu")
             @endif
@@ -82,6 +80,12 @@
 
         @stack("modals")
 
+        <script>
+            window.Laravel = {!! json_encode([
+                'baseUrl' => url('/'),
+                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
+            ]) !!};
+        </script>
         @include("partials.footer-scripts")
 
     </body>

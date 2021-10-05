@@ -1,27 +1,19 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 7/5/18
- * Time: 3:50 PM
- */
 
 namespace App\BusinessLogicLayer;
 
 
 use App\Repository\LanguageRepository;
+use Illuminate\Database\Eloquent\Collection;
 
-class LanguageManager
-{
+class LanguageManager {
     private $languageRepository;
 
-    public function __construct(LanguageRepository $languageRepository)
-    {
+    public function __construct(LanguageRepository $languageRepository) {
         $this->languageRepository = $languageRepository;
     }
 
-    public function getAllLanguages()
-    {
+    public function getAllLanguages(): Collection {
         return $this->languageRepository->all();
     }
 
@@ -32,6 +24,6 @@ class LanguageManager
     public function getLanguageByCode($languageCode) {
         return $this->languageRepository->where([
             'language_code' => $languageCode
-        ])->first();
+        ]);
     }
 }

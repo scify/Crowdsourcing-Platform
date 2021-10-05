@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class QuestionnaireStatisticsController extends Controller
-{
+class QuestionnaireStatisticsController extends Controller {
     protected $questionnaireStatisticsManager;
 
 
@@ -15,9 +15,9 @@ class QuestionnaireStatisticsController extends Controller
         $this->questionnaireStatisticsManager = $questionnaireStatisticsManager;
     }
 
-    public function showStatisticsVisualizationsPageForQuestionnaire(Questionnaire $questionnaire) {
+    public function showStatisticsPageForQuestionnaire(Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModel($questionnaire);
-        return view('questionnaire.visualizations', compact(['viewModel']));
+        return view('questionnaire.statistics', compact(['viewModel']));
     }
 
     public function showEditStatisticsColorsPage(Questionnaire $questionnaire) {
@@ -25,7 +25,7 @@ class QuestionnaireStatisticsController extends Controller
         return view('questionnaire.statistics-colors', compact(['viewModel']));
     }
 
-    public function saveStatisticsColors(Request $request, Questionnaire $questionnaire) {
+    public function saveStatisticsColors(Request $request, Questionnaire $questionnaire): RedirectResponse {
         try {
             $this->questionnaireStatisticsManager->saveStatisticsColors($questionnaire, $request->all());
             session()->flash('flash_message_success', 'Colors saved!');

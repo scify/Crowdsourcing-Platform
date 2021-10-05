@@ -2,19 +2,21 @@
 
 namespace App\Providers;
 
+use App\BusinessLogicLayer\CommentAnalyzer\GooglePerspectiveAPIService;
+use App\BusinessLogicLayer\CommentAnalyzer\ToxicityAnalyzerService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
-class AppServiceProvider extends ServiceProvider
-{
+class AppServiceProvider extends ServiceProvider {
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         Schema::defaultStringLength(191);
+        Paginator::useBootstrap();
     }
 
     /**
@@ -22,8 +24,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-        //
+    public function register() {
+        $this->app->singleton(ToxicityAnalyzerService::class, function ($app) {
+            return new GooglePerspectiveAPIService();
+        });
     }
 }

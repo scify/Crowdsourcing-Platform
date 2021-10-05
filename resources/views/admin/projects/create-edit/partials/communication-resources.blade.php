@@ -63,8 +63,22 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-12">
-        {!! $viewModel->contributorEmailView !!}
+<div class="card card-info collapsed-card">
+    <div class="card-header">
+        <h2 class="card-title">Contributor email</h2>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                        class="fas fa-plus"></i></button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {!! $viewModel->contributorEmailView !!}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+

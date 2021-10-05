@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-use App\BusinessLogicLayer\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
-use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -20,9 +19,6 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
     ];
-
-
-
 
     /**
      * Register any authentication / authorization services.
@@ -38,8 +34,6 @@ class AuthServiceProvider extends ServiceProvider
 
         $crowdSourcingProjectAccessManager = App::make(CrowdSourcingProjectAccessManager::class);
         $crowdSourcingProjectAccessManager->registerCrowdSourcingProjectPolicies();
-
-        Passport::routes();
 
     }
 }

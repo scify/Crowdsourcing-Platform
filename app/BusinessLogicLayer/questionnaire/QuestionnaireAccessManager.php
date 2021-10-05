@@ -6,7 +6,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
 use App\BusinessLogicLayer\UserRoleManager;
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 
 class QuestionnaireAccessManager {
 

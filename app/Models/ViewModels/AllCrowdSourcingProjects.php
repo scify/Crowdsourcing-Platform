@@ -4,7 +4,7 @@
 namespace App\Models\ViewModels;
 
 
-use App\Models\CrowdSourcingProjectStatusLkp;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
 use Illuminate\Support\Collection;
 
 class AllCrowdSourcingProjects {
@@ -15,7 +15,7 @@ class AllCrowdSourcingProjects {
         $this->projects = $projects;
     }
 
-    public function getProjectStatusCSSClass(CrowdSourcingProjectStatusLkp $status) {
+    public function getProjectStatusCSSClass(CrowdSourcingProjectStatusLkp $status): string {
         switch ($status->id) {
             case \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DRAFT:
                 return 'badge-warning';

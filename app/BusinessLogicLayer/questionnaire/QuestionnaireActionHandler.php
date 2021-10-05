@@ -6,7 +6,8 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\WebSessionManager;
-use App\Models\Questionnaire;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;
@@ -36,20 +37,20 @@ class QuestionnaireActionHandler {
         $this->questionnaireShareRepository = $questionnaireShareRepository;
     }
 
-    public function handleQuestionnaireContributor(Questionnaire $questionnaire, User $user) {
+    public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
         //check if the contributor email should be sent
-        if($questionnaire->project->communicationResources && $questionnaire->project->communicationResources->should_send_email_after_questionnaire_response)
-            $this->awardContributorBadgeToUser($questionnaire, $user);
+        if($project->communicationResources && $project->communicationResources->should_send_email_after_questionnaire_response)
+            $this->awardContributorBadgeToUser($questionnaire, $project, $user);
     }
 
-    public function awardContributorBadgeToUser(Questionnaire $questionnaire, User $user) {
+    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project,  User $user) {
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id);
         try {
             $user->notify(new QuestionnaireResponded(
                     $questionnaire,
                     $contributorBadge,
                     new GamificationBadgeVM($contributorBadge),
-                    $questionnaire->project->communicationResources)
+                    $project->communicationResources)
             );
         } catch (\Exception $e) {
             Log::error($e);

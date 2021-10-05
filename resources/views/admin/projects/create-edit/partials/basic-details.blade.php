@@ -65,7 +65,7 @@
                     <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the
                         project's url,
                         for example:
-                        <i>http://crowdsourcing.scify.org/your-project-slug</i>)<br>
+                        <i>https://crowdsourcing.scify.org/your-project-slug</i>)<br>
                         It can contain only letters, numbers, and dashes.<br>
                         If left empty, we will take care of creating the URL, based on the project name.<br>
                         Please note that once you publish the project you <i>cannot</i> change the slug.

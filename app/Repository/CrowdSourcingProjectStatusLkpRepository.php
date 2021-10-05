@@ -4,7 +4,7 @@
 namespace App\Repository;
 
 
-use App\Models\CrowdSourcingProjectStatusLkp;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
 
 class CrowdSourcingProjectStatusLkpRepository extends Repository {
 

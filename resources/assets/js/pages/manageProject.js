@@ -41,7 +41,7 @@ const Stepper = require('bs-stepper');
         stepperEl.addEventListener('show.bs-stepper', function (event) {
             $('#form-error-message').addClass('d-none');
             // if on last step, show form submit button
-            if (event.detail.indexStep === 3) {
+            if (event.detail.indexStep === 4) {
                 $('.stepper-next').addClass('d-none');
                 $('#submit-form').removeClass('d-none');
             } else {

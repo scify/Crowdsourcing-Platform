@@ -1,7 +1,7 @@
 <?php
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
-use App\Models\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
