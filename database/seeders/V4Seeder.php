@@ -33,58 +33,59 @@ class V4Seeder extends Seeder {
      */
     public function run() {
         // update colors for projects
-//        $this->call([
-//            CrowdSourcingProjectColorsSeeder::class
-//        ]);
-//
-//        // project-questionnaire is a 1-to-many relationship now, so we should add each questionnaire to it's project
-//        $questionnaires = Questionnaire::withTrashed()->get();
-//        foreach ($questionnaires as $questionnaire) {
-//            $this->crowdSourcingProjectQuestionnaireRepository->addQuestionnaireToCrowdSourcingProject($questionnaire->id, $questionnaire->project_id);
-//        }
-//
-//        // update all questionnaire responses to have a project_id
-//        $questionnaireResponses = QuestionnaireResponse::where(['project_id' => null])->get();
-//        foreach ($questionnaireResponses as $questionnaireResponse) {
-//            $projectId = $questionnaireResponse->questionnaire->projects->get(0)->id;
-//            $questionnaireResponse->project_id = $projectId;
-//            $questionnaireResponse->save();
-//        }
-//
-//        // update all questionnaire languages to have the proper language_approved column value
-//        $questionnaireLanguages = QuestionnaireLanguage::all();
-//        foreach ($questionnaireLanguages as $questionnaireLanguage) {
-//            $questionnaireLanguage->human_approved = !$questionnaireLanguage->human_approved;
-//            $questionnaireLanguage->save();
-//        }
+        $this->call([
+            CrowdSourcingProjectColorsSeeder::class
+        ]);
+
+        // project-questionnaire is a 1-to-many relationship now, so we should add each questionnaire to it's project
+        $questionnaires = Questionnaire::withTrashed()->get();
+        foreach ($questionnaires as $questionnaire) {
+            $this->crowdSourcingProjectQuestionnaireRepository->addQuestionnaireToCrowdSourcingProject($questionnaire->id, $questionnaire->project_id);
+        }
+
+        // update all questionnaire responses to have a project_id
+        $questionnaireResponses = QuestionnaireResponse::where(['project_id' => null])->get();
+        foreach ($questionnaireResponses as $questionnaireResponse) {
+            $projectId = $questionnaireResponse->questionnaire->projects->get(0)->id;
+            $questionnaireResponse->project_id = $projectId;
+            $questionnaireResponse->save();
+        }
+
+        // update all questionnaire languages to have the proper language_approved column value
+        $questionnaireLanguages = QuestionnaireLanguage::all();
+        foreach ($questionnaireLanguages as $questionnaireLanguage) {
+            $questionnaireLanguage->human_approved = !$questionnaireLanguage->human_approved;
+            $questionnaireLanguage->save();
+        }
 
 
-//        $questionnaires = Questionnaire::all();
-//        foreach ($questionnaires as $questionnaire) {
-//            $data = [
-//                'questionnaire_id' => $questionnaire->id,
-//                'language_id' => $questionnaire->defaultLanguage->id
-//            ];
-//            $this->questionnaireLanguageRepository->updateOrCreate($data, $data);
-//        }
-//
-//        $questionnaire_responses = QuestionnaireResponse::whereNull(['language_id'])->get();
-//        foreach ($questionnaire_responses as $questionnaire_response) {
-//            $questionnaire = Questionnaire::where(['id' => $questionnaire_response->questionnaire_id])->first();
-//            $questionnaire_response->language_id = $questionnaire->default_language_id;
-//            $questionnaire_response->save();
-//        }
+        $questionnaires = Questionnaire::all();
+        foreach ($questionnaires as $questionnaire) {
+            $data = [
+                'questionnaire_id' => $questionnaire->id,
+                'language_id' => $questionnaire->defaultLanguage->id
+            ];
+            $this->questionnaireLanguageRepository->updateOrCreate($data, $data);
+        }
 
-        //$this->transformQuestionnaireResponsesSchema();
+        $questionnaire_responses = QuestionnaireResponse::whereNull(['language_id'])->get();
+        foreach ($questionnaire_responses as $questionnaire_response) {
+            $questionnaire = Questionnaire::where(['id' => $questionnaire_response->questionnaire_id])->first();
+            $questionnaire_response->language_id = $questionnaire->default_language_id;
+            $questionnaire_response->save();
+        }
+
+        $this->transformQuestionnaireResponsesSchema();
+        $this->call([
+            UpdateResponsesWithRespondentIdSeeder::class
+        ]);
         $defaultProject = CrowdSourcingProject::find(1);
         $defaultProject->img_path = '/storage/uploads/project_img/fair-eu-bg.png';
         $defaultProject->logo_path = '/storage/uploads/project_logos/fair-eu.png';
         $defaultProject->lp_questionnaire_img_path = '/storage/uploads/project_questionnaire_bg_img/bgsectionnaire.png';
         $defaultProject->sm_featured_img_path = '/storage/uploads/project_sm_featured_img/fair-eu.png';
         $defaultProject->save();
-
     }
-
 
     protected function transformQuestionnaireResponsesSchema() {
         // for each questionnaire, get all questions and all responses.
