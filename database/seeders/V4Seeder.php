@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireLanguageManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
-use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Models\Questionnaire\QuestionnaireResponse;
@@ -46,7 +44,11 @@ class V4Seeder extends Seeder {
         // update all questionnaire responses to have a project_id
         $questionnaireResponses = QuestionnaireResponse::where(['project_id' => null])->get();
         foreach ($questionnaireResponses as $questionnaireResponse) {
-            $projectId = $questionnaireResponse->questionnaire->projects->get(0)->id;
+            if ($questionnaireResponse->questionnaire) {
+                $projectId = $questionnaireResponse->questionnaire->projects->get(0)->id;
+            } else {
+                $projectId = Questionnaire::withTrashed()->where('id' , $questionnaireResponse->questionnaire_id)->first()->project_id;
+            }
             $questionnaireResponse->project_id = $projectId;
             $questionnaireResponse->save();
         }
@@ -85,6 +87,7 @@ class V4Seeder extends Seeder {
         $defaultProject->lp_questionnaire_img_path = '/storage/uploads/project_questionnaire_bg_img/bgsectionnaire.png';
         $defaultProject->sm_featured_img_path = '/storage/uploads/project_sm_featured_img/fair-eu.png';
         $defaultProject->save();
+
     }
 
     protected function transformQuestionnaireResponsesSchema() {
