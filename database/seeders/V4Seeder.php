@@ -47,7 +47,7 @@ class V4Seeder extends Seeder {
             if ($questionnaireResponse->questionnaire) {
                 $projectId = $questionnaireResponse->questionnaire->projects->get(0)->id;
             } else {
-                $projectId = Questionnaire::withTrashed()->where('id' , $questionnaireResponse->questionnaire_id)->first()->project_id;
+                $projectId = Questionnaire::withTrashed()->where('id', $questionnaireResponse->questionnaire_id)->first()->project_id;
             }
             $questionnaireResponse->project_id = $projectId;
             $questionnaireResponse->save();
@@ -111,9 +111,10 @@ class V4Seeder extends Seeder {
                             if ($response_answer) {
                                 $response_answer_text = QuestionnaireResponseAnswerText::
                                 where(['questionnaire_response_answer_id' => $response_answer->id])
-                                    ->whereNotNull(['english_translation', 'initial_language_detected'])
                                     ->first();
-                                if ($response_answer_text) {
+                                if ($response_answer_text
+                                    && $response_answer_text->english_translation
+                                    && $response_answer_text->initial_language_detected) {
                                     $original_answer = $response_answer_text->answer;
                                     $responseObj[$question_name] = [
                                         'initial_answer' => $original_answer,
@@ -122,10 +123,11 @@ class V4Seeder extends Seeder {
                                     ];
                                     echo "\nParsed: " . $original_answer . " to: " . $response_answer_text->english_translation . " lang: " . $response_answer_text->initial_language_detected . "\n";
                                     $sum += 1;
-                                    $response->response_json_translated = json_encode($responseObj);
-                                    $response->save();
+                                } else {
+                                    $responseObj[$question_name] = $responseText;
                                 }
-
+                                $response->response_json_translated = json_encode($responseObj);
+                                $response->save();
                             }
                         }
                     }
