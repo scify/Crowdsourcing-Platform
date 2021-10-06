@@ -85,7 +85,7 @@ class QuestionnaireResponseManager {
             $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
-        AnalyzeQuestionnaireResponseToxicity::dispatch($questionnaireResponse->id);
+        // AnalyzeQuestionnaireResponseToxicity::dispatch($questionnaireResponse->id);
         return $questionnaireResponse;
     }
 
