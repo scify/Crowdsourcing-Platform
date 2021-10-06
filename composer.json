@@ -25,7 +25,7 @@
         "spatie/laravel-newsletter": "^4.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.2",
+        "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.10",
         "fakerphp/faker": "^1.14",
         "filp/whoops": "~2.0",
