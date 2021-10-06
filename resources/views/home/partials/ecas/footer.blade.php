@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <a href="https://ecas.org" target="_blank"><img class="footer-logo"
-                                                                    src="{{asset('images/projects/fair-eu/ecas_logo.png')}}"
+                                                                    src="{{asset('images/projects/ecas/ecas_logo_scaled.png')}}"
                                                                     alt="ecas logo"></a>
                 </div>
             </div>
