@@ -13,7 +13,6 @@ class HomeController extends Controller {
     }
 
     public function showHomePage() {
-        phpinfo();
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
         $pastProjects = $this->crowdSourcingProjectManager->getPastCrowdSourcingProjectsForHomePage();
         return view('home.home')->with(['projects' => $projects, 'pastProjects' => $pastProjects]);
