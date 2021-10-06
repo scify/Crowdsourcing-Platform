@@ -83,9 +83,9 @@ class V4Seeder extends Seeder {
         ]);
         $defaultProject = CrowdSourcingProject::find(1);
         $defaultProject->img_path = '/storage/uploads/project_img/fair-eu-bg.png';
-        $defaultProject->logo_path = '/storage/uploads/project_logos/fair-eu.png';
+        $defaultProject->logo_path = '/storage/uploads/project_logos/ecas_logo_scaled.png';
         $defaultProject->lp_questionnaire_img_path = '/storage/uploads/project_questionnaire_bg_img/bgsectionnaire.png';
-        $defaultProject->sm_featured_img_path = '/storage/uploads/project_sm_featured_img/fair-eu.png';
+        $defaultProject->sm_featured_img_path = '/storage/uploads/project_sm_featured_img/ecas_logo_scaled.png';
         $defaultProject->save();
 
     }
