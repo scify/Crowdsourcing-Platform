@@ -13,7 +13,6 @@ class HomeController extends Controller {
     }
 
     public function showHomePage() {
-        dd(env('QUEUE_CONNECTION'));
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
         $pastProjects = $this->crowdSourcingProjectManager->getPastCrowdSourcingProjectsForHomePage();
         return view('home.home')->with(['projects' => $projects, 'pastProjects' => $pastProjects]);
