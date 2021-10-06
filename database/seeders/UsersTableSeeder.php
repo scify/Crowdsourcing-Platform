@@ -19,26 +19,26 @@ class UsersTableSeeder extends Seeder
      * @return void
      */
     public function run() {
-        echo "\nRunning User Seeder... pass: ". env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED') . "\n";
+        echo "\nRunning User Seeder... pass: ". config('app.admin_pass_seed') . "\n";
 
         $data = [
             [
                 'id' => 1,
                 'nickname' => 'Platform Admin',
                 'email' => 'platform-admin@crowd.com',
-                'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'))
+                'password' => bcrypt(config('app.admin_pass_seed'))
             ],
             [
                 'id' => 2,
                 'nickname' => 'Content Manager',
                 'email' => 'content-manager@crowd.com',
-                'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'))
+                'password' => bcrypt(config('app.admin_pass_seed'))
             ],
             [
                 'id' => 3,
                 'nickname' => 'Registered User',
                 'email' => 'user@crowd.com',
-                'password' => bcrypt(env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'))
+                'password' => bcrypt(config('app.admin_pass_seed'))
             ]
         ];
 
