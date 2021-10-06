@@ -2,7 +2,7 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{route('home')}}" class="brand-link">
-        <img src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
+        <img loading="lazy" src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
              alt="Main Logo" class="brand-image">
     </a>
     <div class="sidebar">

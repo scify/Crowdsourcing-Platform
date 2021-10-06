@@ -6,7 +6,7 @@
                     <label class="col-sm-12 control-label">Featured Image </label>
                     <div class="col-sm-12">
                         <div class="image-preview-container">
-                            <img class="selected-image-preview"
+                            <img loading="lazy" class="selected-image-preview"
                                  src="{{$viewModel->project->sm_featured_img_path ? asset($viewModel->project->sm_featured_img_path) : ''}}"
                                  alt="Social media featured image">
                         </div>

@@ -9,7 +9,7 @@
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if (Auth::user()->avatar)
-                    <img src="{{ Auth::user()->avatar}}" class="user-image">
+                    <img loading="lazy" src="{{ Auth::user()->avatar}}" class="user-image">
                 @endif
                 <span class="hidden-xs">{{Auth::user()->nickname}}</span>
             </a>
@@ -17,7 +17,7 @@
                 <!-- User image -->
                 <li class="user-header">
                     @if (Auth::user()->avatar)
-                        <img src="{{Auth::user()->avatar}}" class="img-circle"">
+                        <img loading="lazy" src="{{Auth::user()->avatar}}" class="img-circle"">
                     @endif
                     <p>
                         {{ Auth::user()->name }} {{ Auth::user()->nickname }}

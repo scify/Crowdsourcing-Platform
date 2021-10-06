@@ -48,7 +48,7 @@
             @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
         </footer>
         <div class="loader-wrapper hidden">
-            <img src="{{asset('images/loading.gif')}}" alt="loading image">
+            <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
         </div>
         <script>
             window.Laravel = {!! json_encode([

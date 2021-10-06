@@ -55,14 +55,14 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <a href="https://ecas.org" target="_blank"><img class="footer-logo"
+                    <a href="https://ecas.org" target="_blank"><img loading="lazy" class="footer-logo"
                                                                     src="{{asset('images/projects/ecas/ecas_logo_scaled.png')}}"
                                                                     alt="ecas logo"></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-10 ml-auto eu-logo">
-                    <img src="https://faireu.ecas.org/wp-content/uploads/2018/02/big-eu-flag.png" alt="">
+                    <img loading="lazy" src="https://faireu.ecas.org/wp-content/uploads/2018/02/big-eu-flag.png" alt="">
                 </div>
                 <div class="col-md-6 col-sm-10 ml-auto">
                     <p style="font-size:13px; line-height:20px; text-align: justify;">

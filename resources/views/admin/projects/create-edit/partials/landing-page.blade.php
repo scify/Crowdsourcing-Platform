@@ -18,7 +18,7 @@
                                     <label class="col-sm-12 control-label">Motto Background Image </label>
                                     <div class="col-sm-12">
                                         <div class="image-preview-container">
-                                            <img class="selected-image-preview"
+                                            <img loading="lazy" class="selected-image-preview"
                                                  src="{{asset($viewModel->project->img_path) ? asset($viewModel->project->img_path) : ''}}"
                                                  alt="Selected motto background image">
                                         </div>
@@ -190,7 +190,7 @@
                                     <label class="col-sm-12 control-label">Questionnaire Background Image </label>
                                     <div class="col-sm-12">
                                         <div class="image-preview-container">
-                                            <img class="selected-image-preview"
+                                            <img loading="lazy" class="selected-image-preview"
                                                  src="{{asset($viewModel->project->lp_questionnaire_img_path)}}"
                                                  alt="Selected questionnaire background image">
                                         </div>

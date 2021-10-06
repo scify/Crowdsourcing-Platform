@@ -29,7 +29,7 @@
                                             <tr class="d-flex">
                                                 <td class="h-75 col-md-3 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <a href="{{ route('project.landing-page', $project->slug) }}">
-                                                            <img class="project-logo"
+                                                            <img loading="lazy" class="project-logo"
                                                                     alt="Project logo for {{$project->name}}"
                                                                     src="{{asset($project->logo_path)}}">
                                                     <br>

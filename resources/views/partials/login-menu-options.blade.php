@@ -5,7 +5,7 @@
     <li class="nav-item dropdown user user-menu">
         <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">
             @if (Auth::user()->avatar)
-                <img src="{{ Auth::user()->avatar}}" class="user-image">
+                <img loading="lazy" src="{{ Auth::user()->avatar}}" class="user-image">
             @endif
             <span class="hidden-xs">{{Auth::user()->nickname}}</span>
             <i class="fas fa-caret-down"></i>
@@ -14,7 +14,7 @@
             <!-- User image -->
             <li class="user-header">
                 @if (Auth::user()->avatar)
-                    <img src="{{Auth::user()->avatar}}" class="img-circle">
+                    <img loading="lazy" src="{{Auth::user()->avatar}}" class="img-circle">
                 @endif
                 <p>
                     {{ Auth::user()->name }} {{ Auth::user()->nickname }}

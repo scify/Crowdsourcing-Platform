@@ -40,7 +40,7 @@
                                             <div class="row">
                                                 <div class="col-lg-12 margin-bottom">{{ $response->name }}</div>
                                                 <div class="col-lg-12">
-                                                    <img height="70" alt="{{$response->name}}"
+                                                    <img loading="lazy" height="70" alt="{{$response->name}}"
                                                          src="{{asset($response->logo_path)}}">
                                                 </div>
                                             </div>

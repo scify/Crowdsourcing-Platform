@@ -54,7 +54,7 @@
 </div>
 
 <div class="loader-wrapper hidden">
-    <img src="{{asset('images/loading.gif')}}" alt="loading image">
+    <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 @stack("modals")
 <script>
