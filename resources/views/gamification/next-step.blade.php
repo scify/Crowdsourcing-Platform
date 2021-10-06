@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <h4 class="title">{!! $nextStepVM->title !!}</h4>
             <div class="nextStepImgContainer">
-                <img class="nextStepImg" src="{{asset("images/badges/" . $nextStepVM->imgFileName)}}">
+                <img loading="lazy" class="nextStepImg" src="{{asset("images/badges/" . $nextStepVM->imgFileName)}}">
             </div>
 
             @if($nextStepVM->userHasAlreadyAnsweredTheActiveQuestionnaire)

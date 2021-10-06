@@ -101,7 +101,7 @@
                     <label class="col-sm-12 control-label">Project Logo</label>
                     <div class="col-sm-12">
                         <div class="image-preview-container">
-                            <img class="selected-image-preview"
+                            <img loading="lazy" class="selected-image-preview"
                                  src="{{asset($viewModel->project->logo_path)}}"
                                  alt="Selected logo image">
                         </div>

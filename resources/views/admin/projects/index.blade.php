@@ -51,7 +51,7 @@
                                 {{ $project->name }}
                             </td>
                             <td>
-                                <img class="project-logo" src="{{ $project->logo_path }}"
+                                <img loading="lazy" class="project-logo" src="{{ $project->logo_path }}"
                                      alt="{{ $project->name }} logo">
                             </td>
                             <td>
