@@ -1,8 +1,7 @@
 # Crowdsourcing Web Application
 
-[![dependencies Status](https://david-dm.org/scify/Crowdsourcing-Platform/status.svg)](https://david-dm.org/scify/Crowdsourcing-Platform)
+[![dependencies Status](https://david-dm.org/scify/Crowdsourcing-Platform.svg)](https://david-dm.org/scify/Crowdsourcing-Platform.svg)
 [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/dwyl/goodparts "JavaScript The Good Parts")
-[![HitCount](http://hits.dwyl.io/scify/Crowdsourcing-Platform.svg)](http://hits.dwyl.io/scify/Crowdsourcing-Platform)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
