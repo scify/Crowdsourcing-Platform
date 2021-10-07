@@ -26,10 +26,12 @@ class CrowdSourcingProjectRepository extends Repository {
                 $query->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED]);
             })
             ->with('questionnaires', function ($query) {
-                $query->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED])
-                    ->with('responses')
+                $query->select(['id', 'title', 'prerequisite_order', 'status_id', 'default_language_id',
+                    'description', 'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created'])
+                    ->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED])
+                    ->withCount('responses')
                     ->orderBy('prerequisite_order')
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('questionnaire_created', 'desc');
             })
             ->get();
     }
