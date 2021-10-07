@@ -8,6 +8,7 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
+use function Symfony\Component\Translation\t;
 
 class CurrentQuestionnaireProvider {
 
@@ -43,7 +44,7 @@ class CurrentQuestionnaireProvider {
 
     protected function questionnaireGoalIsCompleted(Questionnaire $questionnaire): bool {
         // get all responses and see if they are equal to the questionnaire goal
-        return $questionnaire->responses->count() >= $questionnaire->goal;
+        return $questionnaire->responses_count >= $questionnaire->goal;
     }
 
 }

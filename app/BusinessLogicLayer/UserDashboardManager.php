@@ -48,7 +48,6 @@ class UserDashboardManager {
     public function getUserDashboardViewModel($user): UserDashboardViewModel {
         // should show only projects that are published and have at least 1 published questionnaire
         $projects = $this->projectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
-        dd($projects);
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         foreach ($projects as $project) {
@@ -56,7 +55,7 @@ class UserDashboardManager {
             $project->currentQuestionnaireForUser = $this->currentQuestionnaireCalculator
                 ->getCurrentQuestionnaire($project->id, $user->id, $project->questionnaires, $questionnaireIdsUserHasAnsweredTo);
             $project->currentQuestionnaireGoalVM = $this->crowdSourcingProjectGoalManager
-                ->getQuestionnaireGoalViewModel($project->currentQuestionnaireForUser, $project->currentQuestionnaireForUser->responses);
+                ->getQuestionnaireGoalViewModel($project->currentQuestionnaireForUser, $project->currentQuestionnaireForUser->responses_count);
             $nextUnlockableBadgeForCurrentQuestionnaire = $this->questionnaireBadgeProvider
                 ->getNextUnlockableBadgeToShowForQuestionnaire($project->currentQuestionnaireForUser, $user->id, $questionnaireIdsUserHasAnsweredTo);
             $project->userHasAccessToViewCurrentQuestionnaireStatisticsPage = $this->questionnaireAccessManager
