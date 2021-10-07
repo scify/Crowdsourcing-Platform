@@ -18,6 +18,7 @@ use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\FileUploader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,7 @@ class CrowdSourcingProjectManager {
     protected $crowdSourcingProjectCommunicationResourcesManager;
     protected $languageRepository;
     protected $crowdSourcingProjectColorsManager;
+    protected $questionnaireResponseRepository;
 
     public function __construct(CrowdSourcingProjectRepository                    $crowdSourcingProjectRepository,
                                 QuestionnaireRepository                           $questionnaireRepository,
@@ -47,7 +49,8 @@ class CrowdSourcingProjectManager {
                                 CurrentQuestionnaireProvider                      $currentQuestionnaireProvider,
                                 CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager,
                                 LanguageRepository                                $languageRepository,
-                                CrowdSourcingProjectColorsManager                 $crowdSourcingProjectColorsManager) {
+                                CrowdSourcingProjectColorsManager                 $crowdSourcingProjectColorsManager,
+                                QuestionnaireResponseRepository                   $questionnaireResponseRepository) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -58,6 +61,7 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
         $this->languageRepository = $languageRepository;
         $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
@@ -91,15 +95,17 @@ class CrowdSourcingProjectManager {
         $userResponse = null;
         $questionnaireGoalVM = null;
         $allResponses = collect([]);
+        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
+            ->where(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
         if ($questionnaireId)
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         else
-            $questionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id, $userId);
+            $questionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id, $userId, new Collection(), $questionnaireIdsUserHasAnsweredTo);
 
         if ($questionnaire) {
-            $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire);
-            $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
             $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
+            $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire, $allResponses);
+            $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
             if ($userResponse != null)
                 $openQuestionnaireWhenPageLoads = false;
         }
@@ -370,13 +376,13 @@ class CrowdSourcingProjectManager {
                 $clone->colors()->attach($color, ['created_at' => $now, 'updated_at' => $now]);
                 // you may set the timestamps to the second argument of attach()
             }
-            if($clone->img_path)
+            if ($clone->img_path)
                 $clone->img_path = $this->copyProjectFile($clone->img_path);
-            if($clone->logo_path)
+            if ($clone->logo_path)
                 $clone->logo_path = $this->copyProjectFile($clone->logo_path);
-            if($clone->lp_questionnaire_img_path)
+            if ($clone->lp_questionnaire_img_path)
                 $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path);
-            if($clone->sm_featured_img_path)
+            if ($clone->sm_featured_img_path)
                 $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path);
             $clone->push();
             return $clone;

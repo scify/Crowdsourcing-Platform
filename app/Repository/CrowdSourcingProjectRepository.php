@@ -9,16 +9,14 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
-class CrowdSourcingProjectRepository extends Repository
-{
+class CrowdSourcingProjectRepository extends Repository {
 
     /**
      * Specify Model class name
      *
      * @return mixed
      */
-    function getModelClassName()
-    {
+    function getModelClassName() {
         return CrowdSourcingProject::class;
     }
 
@@ -26,6 +24,12 @@ class CrowdSourcingProjectRepository extends Repository
         return CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
             ->whereHas('questionnaires', function (Builder $query) {
                 $query->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED]);
+            })
+            ->with('questionnaires', function ($query) {
+                $query->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED])
+                    ->with('responses')
+                    ->orderBy('prerequisite_order')
+                    ->orderBy('created_at', 'desc');
             })
             ->get();
     }

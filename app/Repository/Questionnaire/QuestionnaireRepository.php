@@ -28,7 +28,7 @@ class QuestionnaireRepository extends Repository {
                 $query->where(['id' => $projectId]);
             })
             ->where('status_id', QuestionnaireStatusLkp::PUBLISHED)
-            ->with('responses')
+            ->withCount('responses')
             ->orderBy('prerequisite_order')
             ->orderBy('created_at', 'desc')
             ->get();

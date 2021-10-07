@@ -26,14 +26,14 @@ class UserDashboardManager {
     protected $questionnaireResponseRepository;
     protected $questionnaireAccessManager;
 
-    public function __construct(CrowdSourcingProjectRepository $projectRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                CurrentQuestionnaireProvider $currentQuestionnaireCalculator,
+    public function __construct(CrowdSourcingProjectRepository         $projectRepository,
+                                QuestionnaireRepository                $questionnaireRepository,
+                                CurrentQuestionnaireProvider           $currentQuestionnaireCalculator,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireGoalManager $crowdSourcingProjectGoalManager,
-                                QuestionnaireBadgeProvider $questionnaireBadgeProvider,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireAccessManager $questionnaireAccessManager) {
+                                QuestionnaireGoalManager               $crowdSourcingProjectGoalManager,
+                                QuestionnaireBadgeProvider             $questionnaireBadgeProvider,
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
+                                QuestionnaireAccessManager             $questionnaireAccessManager) {
         $this->projectRepository = $projectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->currentQuestionnaireCalculator = $currentQuestionnaireCalculator;
@@ -48,15 +48,16 @@ class UserDashboardManager {
     public function getUserDashboardViewModel($user): UserDashboardViewModel {
         // should show only projects that are published and have at least 1 published questionnaire
         $projects = $this->projectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
-
+        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
+            ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         foreach ($projects as $project) {
             // for each project, get the suitable questionnaire for the user
             $project->currentQuestionnaireForUser = $this->currentQuestionnaireCalculator
-                ->getCurrentQuestionnaire($project->id, $user->id);
+                ->getCurrentQuestionnaire($project->id, $user->id, $project->questionnaires, $questionnaireIdsUserHasAnsweredTo);
             $project->currentQuestionnaireGoalVM = $this->crowdSourcingProjectGoalManager
-                ->getQuestionnaireGoalViewModel($project->currentQuestionnaireForUser);
+                ->getQuestionnaireGoalViewModel($project->currentQuestionnaireForUser, $project->currentQuestionnaireForUser->responses);
             $nextUnlockableBadgeForCurrentQuestionnaire = $this->questionnaireBadgeProvider
-                ->getNextUnlockableBadgeToShowForQuestionnaire($project->currentQuestionnaireForUser, $user->id);
+                ->getNextUnlockableBadgeToShowForQuestionnaire($project->currentQuestionnaireForUser, $user->id, $questionnaireIdsUserHasAnsweredTo);
             $project->userHasAccessToViewCurrentQuestionnaireStatisticsPage = $this->questionnaireAccessManager
                 ->userHasAccessToViewQuestionnaireStatisticsPage($user, $project->currentQuestionnaireForUser);
             $project->gamificationNextStepVM = new GamificationNextStep(
@@ -65,9 +66,9 @@ class UserDashboardManager {
                 $nextUnlockableBadgeForCurrentQuestionnaire->imageFileName,
                 true,
                 new QuestionnaireSocialShareButtons($project, $project->currentQuestionnaireForUser, $user->id),
-                $this->questionnaireResponseRepository->questionnaireResponseExists($project->currentQuestionnaireForUser->id, $user->id));
+                in_array($project->currentQuestionnaireForUser->id, $questionnaireIdsUserHasAnsweredTo));
         }
-        $platformWideGamificationBadgesVM = $this->platformWideGamificationBadgesProvider->getPlatformWideGamificationBadgesListVM($user->id);
+        $platformWideGamificationBadgesVM = $this->platformWideGamificationBadgesProvider->getPlatformWideGamificationBadgesListVM($user->id, $questionnaireIdsUserHasAnsweredTo);
 
         return new UserDashboardViewModel($projects, $platformWideGamificationBadgesVM);
     }
