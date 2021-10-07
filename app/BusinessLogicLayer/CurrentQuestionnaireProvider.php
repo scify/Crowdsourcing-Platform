@@ -43,7 +43,7 @@ class CurrentQuestionnaireProvider {
 
     protected function questionnaireGoalIsCompleted(Questionnaire $questionnaire): bool {
         // get all responses and see if they are equal to the questionnaire goal
-        return $questionnaire->responses_count >= $questionnaire->goal;
+        return $questionnaire->responses->count() >= $questionnaire->goal;
     }
 
 }
