@@ -30,9 +30,9 @@ class PlatformWideGamificationBadgesProvider {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
-    public function getPlatformWideGamificationBadgesListVM(int $userId): GamificationBadgesWithLevels {
+    public function getPlatformWideGamificationBadgesListVM(int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadgesWithLevels {
         $badges = new Collection();
-        $badges->push($this->getContributorBadge($userId));
+        $badges->push($this->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
         $badges->push($this->getCommunicatorBadge($userId));
         $badges->push($this->getInfluencerBadge($userId));
 
@@ -45,9 +45,8 @@ class PlatformWideGamificationBadgesProvider {
     }
 
 
-    public function getContributorBadge($userId): ContributorBadge {
-        $allResponses = $this->questionnaireRepository->getAllResponsesGivenByUser($userId)->count();
-        return new ContributorBadge($allResponses, $this->userHasAchievedContributorBadge($userId));
+    public function getContributorBadge(array $questionnaireIdsUserHasAnsweredTo): ContributorBadge {
+        return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), count($questionnaireIdsUserHasAnsweredTo));
     }
 
     public function getCommunicatorBadge($userId): CommunicatorBadge {
@@ -59,10 +58,6 @@ class PlatformWideGamificationBadgesProvider {
     public function getInfluencerBadge($userId): InfluencerBadge {
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUser($userId)->count();
         return new InfluencerBadge($totalQuestionnaireReferrals, $this->userHasAchievedInfluencerBadge($userId));
-    }
-
-    public function userHasAchievedContributorBadge($userId): bool {
-        return $this->questionnaireResponseRepository->exists(['user_id' => $userId]);
     }
 
     public function userHasAchievedCommunicatorBadge($userId): bool {

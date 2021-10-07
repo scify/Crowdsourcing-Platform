@@ -18,11 +18,11 @@ class QuestionnaireBadgeProvider {
     protected $questionnaireResponseReferralRepository;
     protected $platformWideGamificationBadgesProvider;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
+    public function __construct(QuestionnaireRepository                 $questionnaireRepository,
+                                QuestionnaireResponseRepository         $questionnaireResponseRepository,
+                                UserQuestionnaireShareRepository        $userQuestionnaireShareRepository,
                                 QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
+                                PlatformWideGamificationBadgesProvider  $platformWideGamificationBadgesProvider) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->userQuestionnaireShareRepository = $userQuestionnaireShareRepository;
@@ -31,27 +31,26 @@ class QuestionnaireBadgeProvider {
     }
 
 
-    public function getNextUnlockableBadgeToShowForQuestionnaire(Questionnaire $questionnaire, int $userId): GamificationBadge {
+    public function getNextUnlockableBadgeToShowForQuestionnaire(Questionnaire $questionnaire, int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadge {
 
-        if(!$this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire, $userId))
-            return new ContributorBadge($this->questionnaireRepository->
-            getAllResponsesGivenByUser($userId)->count(), $this->platformWideGamificationBadgesProvider->userHasAchievedContributorBadge($userId));
+        if (!$this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire->id, $questionnaireIdsUserHasAnsweredTo))
+            return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), count($questionnaireIdsUserHasAnsweredTo));
 
-        if(!$this->userHasAchievedCommunicatorBadgeForQuestionnaire($questionnaire, $userId))
+        if (!$this->userHasAchievedCommunicatorBadgeForQuestionnaire($questionnaire, $userId))
             return new CommunicatorBadge($this->userQuestionnaireShareRepository->
-            getUserQuestionnaireSharesForUserForQuestionnaire($questionnaire->id, $userId)->count(),
-            $this->platformWideGamificationBadgesProvider->userHasAchievedCommunicatorBadge($userId));
+            getUserQuestionnaireSharesForUserForQuestionnaire($questionnaire->id, $userId),
+                $this->platformWideGamificationBadgesProvider->userHasAchievedCommunicatorBadge($userId));
 
-        if(!$this->userHasAchievedInfluencerBadgeForQuestionnaire($questionnaire, $userId))
+        if (!$this->userHasAchievedInfluencerBadgeForQuestionnaire($questionnaire, $userId))
             return new InfluencerBadge($this->questionnaireResponseReferralRepository->
             getQuestionnaireReferralsForUserForQuestionnaire($questionnaire->id, $userId)->count(),
-            $this->platformWideGamificationBadgesProvider->userHasAchievedInfluencerBadge($userId));
+                $this->platformWideGamificationBadgesProvider->userHasAchievedInfluencerBadge($userId));
 
         return new AllBadgesCompletedBadge();
     }
 
-    protected function userHasAchievedContributorBadgeForQuestionnaire(Questionnaire $questionnaire, int $userId) {
-        return $this->questionnaireResponseRepository->questionnaireResponseExists($questionnaire->id, $userId);
+    protected function userHasAchievedContributorBadgeForQuestionnaire(int $questionnaire_id, array $questionnaireIdsUserHasAnsweredTo): bool {
+        return in_array($questionnaire_id, $questionnaireIdsUserHasAnsweredTo);
     }
 
     protected function userHasAchievedCommunicatorBadgeForQuestionnaire(Questionnaire $questionnaire, int $userId) {
