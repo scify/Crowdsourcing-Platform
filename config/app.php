@@ -45,6 +45,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', false),
+    'sentry_dsn' => env('SENTRY_LARAVEL_DSN'),
 
     /*
     |--------------------------------------------------------------------------
