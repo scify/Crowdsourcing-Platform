@@ -34,7 +34,7 @@ class CurrentQuestionnaireProvider {
         return $toReturn;
     }
 
-    private function questionnaireShouldBeContributedTo(Questionnaire $questionnaire, int $userId, array $questionnaireIdsUserHasAnsweredTo): bool {
+    private function questionnaireShouldBeContributedTo(Questionnaire $questionnaire, $userId, array $questionnaireIdsUserHasAnsweredTo): bool {
         if ($userId)
             $answered = in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo);
         else
