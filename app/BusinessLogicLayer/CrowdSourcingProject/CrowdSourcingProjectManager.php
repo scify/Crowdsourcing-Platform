@@ -83,20 +83,23 @@ class CrowdSourcingProjectManager {
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $project_slug, $openQuestionnaireWhenPageLoads):
     CrowdSourcingProjectForLandingPage {
         $userId = null;
+        $questionnaireIdsUserHasAnsweredTo = [];
         // if the user is logged in, get the user id
-        if (Auth::check())
+        if (Auth::check()) {
             $userId = Auth::id();
-        // else, check if the user is anonymous (by checking the cookie) and get the user id
+        } // else, check if the user is anonymous (by checking the cookie) and get the user id
         else if (isset($_COOKIE['crowdsourcing_anonymous_user_id']))
             $userId = intval($_COOKIE['crowdsourcing_anonymous_user_id']);
+        if($userId)
+            $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
+                ->where(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
         $userResponse = null;
         $questionnaireGoalVM = null;
         $allResponses = collect([]);
-        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
-            ->where(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
+
         if ($questionnaireId)
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
         else
