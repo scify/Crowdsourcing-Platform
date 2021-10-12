@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Models\ViewModels\GamificationBadgeVM;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,16 +16,21 @@ class QuestionnaireResponseController extends Controller {
 
     protected $questionnaireResponseManager;
     protected $platformWideGamificationBadgesProvider;
+    protected $questionnaireResponseRepository;
 
     public function __construct(QuestionnaireResponseManager           $questionnaireResponseManager,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
+                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
     public function store(Request $request): JsonResponse {
         $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
-        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireResponse->user_id));
+        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
+            ->allWhere(['user_id' => $questionnaireResponse->user_id])->pluck('questionnaire_id')->toArray();
+        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
         return response()->json([
             'badgeHTML' => (string)view('gamification.badge-single', compact('badge')),
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id
