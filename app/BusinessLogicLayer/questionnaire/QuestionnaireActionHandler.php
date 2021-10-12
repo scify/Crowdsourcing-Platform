@@ -13,6 +13,7 @@ use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;
 use App\Notifications\QuestionnaireShared;
 use App\Notifications\ReferredQuestionnaireAnswered;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserQuestionnaireShareRepository;
 use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Log;
@@ -24,27 +25,32 @@ class QuestionnaireActionHandler {
     protected $questionnaireResponseReferralManager;
     protected $platformWideGamificationBadgesProvider;
     protected $questionnaireShareRepository;
+    protected $questionnaireResponseRepository;
 
-    public function __construct(WebSessionManager $webSessionManager,
-                                UserRepository $userRepository,
-                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
+    public function __construct(WebSessionManager                      $webSessionManager,
+                                UserRepository                         $userRepository,
+                                QuestionnaireResponseReferralManager   $questionnaireResponseReferralManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                UserQuestionnaireShareRepository $questionnaireShareRepository) {
+                                UserQuestionnaireShareRepository       $questionnaireShareRepository,
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository) {
         $this->webSessionManager = $webSessionManager;
         $this->userRepository = $userRepository;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->questionnaireShareRepository = $questionnaireShareRepository;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
     public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
         //check if the contributor email should be sent
-        if($project->communicationResources && $project->communicationResources->should_send_email_after_questionnaire_response)
+        if ($project->communicationResources && $project->communicationResources->should_send_email_after_questionnaire_response)
             $this->awardContributorBadgeToUser($questionnaire, $project, $user);
     }
 
-    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project,  User $user) {
-        $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id);
+    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
+        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
+            ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
+        $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
         try {
             $user->notify(new QuestionnaireResponded(
                     $questionnaire,
@@ -71,7 +77,7 @@ class QuestionnaireActionHandler {
     }
 
     public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user) {
-        if(!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
+        if (!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
             $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
             try {
                 $user->notify(new QuestionnaireShared($questionnaire, $communicatorBadge, new GamificationBadgeVM($communicatorBadge)));
