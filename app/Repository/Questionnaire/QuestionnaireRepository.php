@@ -39,7 +39,7 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getAllResponsesForQuestionnaire($questionnaireId) {
-        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->orderBy('created_at', 'desc')->get();
+        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->with(['user'])->orderBy('created_at', 'desc')->get();
     }
 
     public function getAllResponsesGivenByUser($userId) {
