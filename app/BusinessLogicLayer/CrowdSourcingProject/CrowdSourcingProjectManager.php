@@ -92,7 +92,7 @@ class CrowdSourcingProjectManager {
             $userId = intval($_COOKIE['crowdsourcing_anonymous_user_id']);
         if($userId)
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
-                ->where(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
+                ->allWhere(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
