@@ -39,7 +39,7 @@
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="progress-container">
                                                         @if($project->currentQuestionnaireGoalVM)
-                                                            @include('landingpages.partials.project-goal', ['viewModel' => $project->currentQuestionnaireGoalVM, 'projectId' => $project->id])
+                                                            @include('landingpages.partials.project-goal', ['questionnaireViewModel' => $project->currentQuestionnaireGoalVM, 'project' => $project])
                                                             @if ($project->userHasAccessToViewCurrentQuestionnaireStatisticsPage)
                                                                 <div class="row">
                                                                     <div class="col">

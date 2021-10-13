@@ -3,10 +3,11 @@ let ProjectGoal = require('progressbar.js');
 (function () {
     let displayProgressBar = function () {
         let progressBarElements = $(".progress-bar-circle");
-        progressBarElements.each(function( index ) {
+        progressBarElements.each(function (index) {
             const elementId = $(this).attr('id');
+            const color = $(this).data('color');
             let bar = new ProjectGoal.Circle('#' + elementId, {
-                color: '#0063aa',
+                color: color,
                 // This has to be the same size as the maximum width to
                 // prevent clipping
                 strokeWidth: 4,
@@ -20,8 +21,8 @@ let ProjectGoal = require('progressbar.js');
                     display: 'absolute',
                     width: '120px'
                 },
-                from: {color: '#008AE5', width: 2},
-                to: {color: '#008AE5', width: 4},
+                from: {color: color, width: 2},
+                to: {color: color, width: 4},
                 // Set default step function for all animate calls
                 step: function (state, circle) {
                     circle.path.setAttribute('stroke', state.color);
@@ -29,10 +30,8 @@ let ProjectGoal = require('progressbar.js');
 
                     let value = Math.round(circle.value() * 100);
                     circle.setText(value + '%');
-
                 }
             });
-
             bar.text.style.fontSize = '2rem';
             bar.animate($(this).data("target") / 100);
         });
@@ -42,6 +41,7 @@ let ProjectGoal = require('progressbar.js');
     let init = function () {
         displayProgressBar();
     };
-
-    init();
+    $(document).ready(function () {
+        init();
+    });
 })();

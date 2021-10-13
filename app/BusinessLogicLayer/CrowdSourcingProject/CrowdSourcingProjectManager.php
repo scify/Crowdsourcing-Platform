@@ -239,9 +239,9 @@ class CrowdSourcingProjectManager {
         if (!$project->lp_about_bg_color)
             $project->lp_about_bg_color = '#ffffff';
         if (!$project->lp_about_color)
-            $project->lp_about_color = '#666666';
+            $project->lp_about_color = '#333333';
         if (!$project->lp_questionnaire_color)
-            $project->lp_questionnaire_color = '#076ec1';
+            $project->lp_questionnaire_color = '#000000';
         if (!$project->lp_footer_bg_color)
             $project->lp_footer_bg_color = '#ffffff';
         if (!$project->lp_footer_color)
@@ -249,28 +249,30 @@ class CrowdSourcingProjectManager {
         if (!$project->lp_questionnaire_btn_color)
             $project->lp_questionnaire_btn_color = '#ffffff';
         if (!$project->lp_questionnaire_btn_bg_color)
-            $project->lp_questionnaire_btn_bg_color = '#004f9f';
+            $project->lp_questionnaire_btn_bg_color = '#076ec1';
         if (!$project->lp_questionnaire_goal_title_color)
-            $project->lp_questionnaire_goal_title_color = '#076ec1';
+            $project->lp_questionnaire_goal_title_color = '#000000';
         if (!$project->lp_questionnaire_goal_color)
-            $project->lp_questionnaire_goal_color = '#333333';
+            $project->lp_questionnaire_goal_color = '#000000';
         if (!$project->lp_questionnaire_goal_bg_color)
             $project->lp_questionnaire_goal_bg_color = '#ffffff';
         if (!$project->lp_newsletter_title_color)
-            $project->lp_newsletter_title_color = '#076ec1';
+            $project->lp_newsletter_title_color = '#000000';
         if (!$project->lp_newsletter_color)
             $project->lp_newsletter_color = '#333333';
         if (!$project->lp_newsletter_bg_color)
-            $project->lp_newsletter_bg_color = '#f3fafe';
+            $project->lp_newsletter_bg_color = '#e0e0e0';
         if (!$project->lp_newsletter_btn_color)
             $project->lp_newsletter_btn_color = '#ffffff';
         if (!$project->lp_newsletter_btn_bg_color)
-            $project->lp_newsletter_btn_bg_color = '#004f9f';
+            $project->lp_newsletter_btn_bg_color = '#076ec1';
         if(!$project->lp_motto_overlay_color)
             $project->lp_motto_overlay_color = '#9e9e9e';
         if(!$project->lp_motto_inner_bg_color)
             $project->lp_motto_inner_bg_color = '#bdbdbd';
         if(!$project->lp_external_url_btn_color)
+            $project->lp_external_url_btn_bg_color = '#ffffff';
+        if(!$project->lp_external_url_btn_bg_color)
             $project->lp_external_url_btn_color = '#076ec1';
 
         return $project;

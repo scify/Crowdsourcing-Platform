@@ -15,7 +15,9 @@
                 @if($viewModel->project->external_url)
                     <div class="row">
                         <div class="col-lg-2 col-md-4 col-sm-10 call-to-action mx-auto text-center">
-                            <a href="{{$viewModel->project->external_url}}" target="_blank" class="btn btn-primary">Project
+                            <a href="{{$viewModel->project->external_url}}" target="_blank" class="btn btn-primary"
+                               style="color: {{ $viewModel->project->lp_questionnaire_btn_color }};
+                                       background-color: {{ $viewModel->project->lp_questionnaire_btn_bg_color }};">Project
                                 Webpage</a>
                         </div>
                     </div>
