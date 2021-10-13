@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb">
-                                    <label class="col-md-12 control-label" for="lp_motto_color">Project Motto overlay
+                                    <label class="col-md-12 control-label" for="lp_motto_overlay_color">Project Motto overlay
                                         color
                                         (<span
                                                 class="red">*</span>)<br>
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb">
-                                    <label class="col-md-12 control-label" for="lp_motto_color">Project Motto inner
+                                    <label class="col-md-12 control-label" for="lp_motto_inner_bg_color">Project Motto inner
                                         background color
                                         (<span
                                                 class="red">*</span>)<br>
@@ -114,18 +114,35 @@
                                     </div>
                                 </div>
                                 <div class="row mb">
-                                    <label class="col-md-12 control-label" for="lp_motto_color">External URL button
-                                        background color
+                                    <label class="col-md-12 control-label" for="lp_external_url_btn_color">
+                                        External URL button color
                                         (<span
                                                 class="red">*</span>)<br>
                                     </label>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="input-group colorpicker-component color-picker">
-                                            <input id="lp_motto_inner_bg_color" type="text"
-                                                   name="lp_motto_inner_bg_color"
+                                            <input id="lp_external_url_btn_color" type="text"
+                                                   name="lp_external_url_btn_color"
                                                    class="form-control"
                                                    value="{{ old('lp_external_url_btn_color') ? old('lp_external_url_btn_color') :
                                                             $viewModel->project->lp_external_url_btn_color  }}"/>
+                                            <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb">
+                                    <label class="col-md-12 control-label" for="lp_external_url_btn_bg_color">
+                                        External URL button background color
+                                        (<span
+                                                class="red">*</span>)<br>
+                                    </label>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group colorpicker-component color-picker">
+                                            <input id="lp_external_url_btn_bg_color" type="text"
+                                                   name="lp_external_url_btn_bg_color"
+                                                   class="form-control"
+                                                   value="{{ old('lp_external_url_btn_bg_color') ? old('lp_external_url_btn_bg_color') :
+                                                            $viewModel->project->lp_external_url_btn_bg_color  }}"/>
                                             <span class="input-group-addon"><i></i></span>
                                         </div>
                                     </div>

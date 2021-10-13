@@ -249,7 +249,7 @@ class CrowdSourcingProjectManager {
         if (!$project->lp_questionnaire_btn_color)
             $project->lp_questionnaire_btn_color = '#ffffff';
         if (!$project->lp_questionnaire_btn_bg_color)
-            $project->lp_questionnaire_btn_bg_color = '#076ec1';
+            $project->lp_questionnaire_btn_bg_color = '#0077FF';
         if (!$project->lp_questionnaire_goal_title_color)
             $project->lp_questionnaire_goal_title_color = '#000000';
         if (!$project->lp_questionnaire_goal_color)
@@ -265,15 +265,15 @@ class CrowdSourcingProjectManager {
         if (!$project->lp_newsletter_btn_color)
             $project->lp_newsletter_btn_color = '#ffffff';
         if (!$project->lp_newsletter_btn_bg_color)
-            $project->lp_newsletter_btn_bg_color = '#076ec1';
+            $project->lp_newsletter_btn_bg_color = '#0077FF';
         if(!$project->lp_motto_overlay_color)
-            $project->lp_motto_overlay_color = '#9e9e9e';
+            $project->lp_motto_overlay_color = '#707070';
         if(!$project->lp_motto_inner_bg_color)
-            $project->lp_motto_inner_bg_color = '#bdbdbd';
+            $project->lp_motto_inner_bg_color = '#EFEFEF';
         if(!$project->lp_external_url_btn_color)
             $project->lp_external_url_btn_bg_color = '#ffffff';
         if(!$project->lp_external_url_btn_bg_color)
-            $project->lp_external_url_btn_color = '#076ec1';
+            $project->lp_external_url_btn_color = '#0077FF';
 
         return $project;
     }
