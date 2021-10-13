@@ -25,12 +25,12 @@
                 </div>
                 <div class="activity-content">
                     @foreach($viewModel->allResponses as $response)
-                        @if($response->user)
+                        @if($response->user_name)
                             <div class="activity-item text-left">
                                 <i class="fa fa-user-circle user-icon" aria-hidden="true"></i>
-                                {{$response->user->nickname}}
+                                {{$response->user_name}}
                                 @if($response->created_at)
-                                    responded at {{$response->created_at->toDayDateTimeString()}}
+                                    responded at {{\Carbon\Carbon::parse($response->created_at)->toDayDateTimeString()}}
                                 @endif
                             </div>
                         @endif

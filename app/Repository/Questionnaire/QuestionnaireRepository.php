@@ -9,8 +9,8 @@ use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\Questionnaire\QuestionnaireStatus;
 use App\Models\Questionnaire\QuestionnaireStatusHistory;
 use App\Repository\Repository;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class QuestionnaireRepository extends Repository {
 
@@ -39,7 +39,11 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getAllResponsesForQuestionnaire($questionnaireId) {
-        return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->with(['user'])->orderBy('created_at', 'desc')->get();
+        return DB::table('questionnaire_responses')
+            ->select('questionnaire_responses.created_at', 'u.nickname as user_name')
+            ->join('users as u', 'u.id', '=', 'questionnaire_responses.user_id')
+            ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
+            ->orderBy('created_at', 'desc')->get();
     }
 
     public function getAllResponsesGivenByUser($userId) {

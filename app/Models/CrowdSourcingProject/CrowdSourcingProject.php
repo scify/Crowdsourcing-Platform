@@ -50,11 +50,6 @@ class CrowdSourcingProject extends Model {
     ];
 
     /**
-     * @var array
-     */
-    protected $with = ['creator', 'language', 'status'];
-
-    /**
      * @return BelongsTo
      */
     public function creator() {
