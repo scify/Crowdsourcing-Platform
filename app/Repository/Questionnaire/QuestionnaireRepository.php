@@ -43,6 +43,8 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getAllResponsesGivenByUser($userId) {
+        // here we select the columns that we want to fetch, due to this mySQL 8 bug:
+        // https://bugs.mysql.com/bug.php?id=103225
         return QuestionnaireResponse::
         select('questionnaire_responses.id as questionnaire_response_id',
             'questionnaire_responses.created_at as responded_at',

@@ -407,3 +407,14 @@ footer {
 .jq-toast-wrap {
   z-index: 10000 !important;
 }
+
+.alert-dismissable.alert-floating {
+  position: absolute;
+  max-width: 50%;
+  z-index: 100000;
+  right: 25px;
+  top: 25px;
+  * {
+    color: $white;
+  }
+}
