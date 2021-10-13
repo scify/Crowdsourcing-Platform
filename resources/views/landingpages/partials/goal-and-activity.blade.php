@@ -41,7 +41,7 @@
         </div>
 
         @if($viewModel->questionnaireGoalVM)
-            <div class="col-md-6 col-sm-12 text-center {{ $class }}">
+            <div class="col-md-6 col-sm-12 text-center center}">
                 @include('landingpages.partials.project-goal', ['viewModel' => $viewModel->questionnaireGoalVM, 'projectId' => $viewModel->project->id])
             </div>
         @endif
