@@ -33,13 +33,23 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-sm-12 control-label" for="motto">Project Motto Text (<span
+                                    <label class="col-sm-12 control-label" for="motto">Project Motto Title (<span
                                                 class="red">*</span>)</label>
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
-                                        <textarea id="motto" class="form-control" name="motto"
-                                                  placeholder="Project Motto">{{ old('motto') ? old('motto') : $viewModel->project->motto }}</textarea>
-                                            <span class="help-block"><strong>{{ $errors->first('motto') }}</strong></span>
+                                        <textarea id="motto" class="form-control" name="motto_title"
+                                                  placeholder="Project Motto">{{ old('motto_title') ? old('motto_title') : $viewModel->project->motto_title }}</textarea>
+                                            <span class="help-block"><strong>{{ $errors->first('motto_title') }}</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-12 control-label" for="motto_subtitle">Project Motto Subtitle</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group has-feedback">
+                                        <textarea id="motto_subtitle" class="form-control" name="motto_subtitle"
+                                                  placeholder="Project Motto Subtitle">{{ old('motto_subtitle') ? old('motto_subtitle') : $viewModel->project->motto_subtitle }}</textarea>
+                                            <span class="help-block"><strong>{{ $errors->first('motto_subtitle') }}</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -59,21 +69,70 @@
                                     </div>
                                 </div>
                                 <div class="row mb">
+                                    <label class="col-md-12 control-label" for="lp_motto_color">Project Motto overlay
+                                        color
+                                        (<span
+                                                class="red">*</span>)<br>
+                                    </label>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group colorpicker-component color-picker">
+                                            <input id="lp_motto_overlay_color" type="text" name="lp_motto_overlay_color"
+                                                   class="form-control"
+                                                   value="{{ old('lp_motto_overlay_color') ? old('lp_motto_overlay_color') :
+                                                            $viewModel->project->lp_motto_overlay_color  }}"/>
+                                            <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb">
+                                    <label class="col-md-12 control-label" for="lp_motto_color">Project Motto inner
+                                        background color
+                                        (<span
+                                                class="red">*</span>)<br>
+                                    </label>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group colorpicker-component color-picker">
+                                            <input id="lp_motto_inner_bg_color" type="text"
+                                                   name="lp_motto_inner_bg_color"
+                                                   class="form-control"
+                                                   value="{{ old('lp_motto_inner_bg_color') ? old('lp_motto_inner_bg_color') :
+                                                            $viewModel->project->lp_motto_inner_bg_color  }}"/>
+                                            <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-check">
                                             <input {{ $viewModel->project->lp_show_speak_up_btn ? 'checked' : ''  }} class="form-check-input"
-                                                   type="checkbox" name="lp_show_speak_up_btn" value="1" id="show-speak-up-btn">
+                                                   type="checkbox" name="lp_show_speak_up_btn" value="1"
+                                                   id="show-speak-up-btn">
                                             <label class="form-check-label control-label" for="show-speak-up-btn">
                                                 Show "Contribute" button
                                             </label>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mb">
+                                    <label class="col-md-12 control-label" for="lp_motto_color">External URL button
+                                        background color
+                                        (<span
+                                                class="red">*</span>)<br>
+                                    </label>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group colorpicker-component color-picker">
+                                            <input id="lp_motto_inner_bg_color" type="text"
+                                                   name="lp_motto_inner_bg_color"
+                                                   class="form-control"
+                                                   value="{{ old('lp_external_url_btn_color') ? old('lp_external_url_btn_color') :
+                                                            $viewModel->project->lp_external_url_btn_color  }}"/>
+                                            <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
                     <div class="card card-info collapsed-card">
                         <div class="card-header">
                             <h2 class="card-title">About Section</h2>

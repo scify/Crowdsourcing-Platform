@@ -134,17 +134,17 @@ class CrowdSourcingProjectManager {
         );
     }
 
-    public function createProject(array $attributes) {
+    public function storeProject(array $attributes) {
         $attributes['user_creator_id'] = Auth::id();
 
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes);
 
         $project = $this->crowdSourcingProjectRepository->create($attributes);
 
-        $this->updateCrowdSourcingProject($project->id, $attributes);
+        $this->updateProject($project->id, $attributes);
     }
 
-    public function updateCrowdSourcingProject($id, array $attributes) {
+    public function updateProject($id, array $attributes) {
         $project = $this->getCrowdSourcingProject($id);
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes, $project);
 
@@ -167,12 +167,12 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
     }
 
-    protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null) {
+    protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {
         if (!isset($attributes['slug']) || !$attributes['slug'])
             $attributes['slug'] = Str::slug($attributes['name'], '-');
 
-        if (!isset($attributes['motto']) || !$attributes['motto'])
-            $attributes['motto'] = $attributes['name'];
+        if (!isset($attributes['motto_title']) || !$attributes['motto_title'])
+            $attributes['motto_title'] = $attributes['name'];
 
         if (!isset($attributes['about']) || !$attributes['about'])
             $attributes['about'] = $attributes['description'];
@@ -194,17 +194,21 @@ class CrowdSourcingProjectManager {
             && (!$project || !$project->lp_questionnaire_img_path))
             $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
 
+        if ((!isset($attributes['lp_about_img_path']) || !$attributes['lp_about_img_path'])
+            && (!$project || !$project->lp_about_img_path))
+            $attributes['lp_about_img_path'] = '/images/image_temp.png';
+
         if (!isset($attributes['lp_show_speak_up_btn']))
             $attributes['lp_show_speak_up_btn'] = false;
 
         return $attributes;
     }
 
-    protected function setDefaultValuesForSocialMediaFields(CrowdSourcingProject $project, array $attributes) {
+    protected function setDefaultValuesForSocialMediaFields(CrowdSourcingProject $project, array $attributes): array {
         if (!isset($attributes['sm_title']) || !$attributes['sm_title'])
             $attributes['sm_title'] = $project->name;
         if (!isset($attributes['sm_description']) || !$attributes['sm_description'])
-            $attributes['sm_description'] = strip_tags($project->motto);
+            $attributes['sm_description'] = strip_tags($project->motto_title);
         if (!isset($attributes['sm_keywords']) || !$attributes['sm_keywords'])
             $attributes['sm_keywords'] = str_replace(' ', ',', $project->name);
 
@@ -224,12 +228,12 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, $attributesToUpdate);
     }
 
-    public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project) {
+    public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         $project = $this->populateInitialFileValuesForProjectIfNotSet($project);
         return $this->populateInitialColorValuesForProjectIfNotSet($project);
     }
 
-    public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project) {
+    public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         if (!$project->lp_motto_color)
             $project->lp_motto_color = '#ffffff';
         if (!$project->lp_about_bg_color)
@@ -262,11 +266,17 @@ class CrowdSourcingProjectManager {
             $project->lp_newsletter_btn_color = '#ffffff';
         if (!$project->lp_newsletter_btn_bg_color)
             $project->lp_newsletter_btn_bg_color = '#004f9f';
+        if(!$project->lp_motto_overlay_color)
+            $project->lp_motto_overlay_color = '#9e9e9e';
+        if(!$project->lp_motto_inner_bg_color)
+            $project->lp_motto_inner_bg_color = '#bdbdbd';
+        if(!$project->lp_external_url_btn_color)
+            $project->lp_external_url_btn_color = '#076ec1';
 
         return $project;
     }
 
-    public function populateInitialFileValuesForProjectIfNotSet(CrowdSourcingProject $project) {
+    public function populateInitialFileValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         if (!$project->img_path)
             $project->img_path = '/images/image_temp.png';
         if (!$project->logo_path)
@@ -275,11 +285,13 @@ class CrowdSourcingProjectManager {
             $project->sm_featured_img_path = '/images/image_temp.png';
         if (!$project->lp_questionnaire_img_path)
             $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
+        if (!$project->lp_about_img_path)
+            $project->lp_about_img_path = '/images/image_temp.png';
 
         return $project;
     }
 
-    protected function storeProjectRelatedFiles(array $attributes) {
+    protected function storeProjectRelatedFiles(array $attributes): array {
 
         if (isset($attributes['logo'])) {
             $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
@@ -334,12 +346,12 @@ class CrowdSourcingProjectManager {
         return new CreateEditCrowdSourcingProject($project, $statusesLkp, $notification);
     }
 
-    public function getCrowdSourcingProjectsListPageViewModel() {
+    public function getCrowdSourcingProjectsListPageViewModel(): AllCrowdSourcingProjects {
         $user = Auth::user();
         return new AllCrowdSourcingProjects($this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit($user));
     }
 
-    public function getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug) {
+    public function getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug): CrowdSourcingProjectUnavailable {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $projects = $this->getCrowdSourcingProjectsForHomePage();
         switch ($project->status_id) {
