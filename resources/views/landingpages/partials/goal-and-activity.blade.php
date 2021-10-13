@@ -5,8 +5,8 @@
             @if ($viewModel->totalResponses==0)
                 Zero people have spoken up so far. Be the first!
             @else
-                <span class="number">{{$viewModel->totalResponses}}</span> people have spoken up so far.
-                Let's get to {{$viewModel->questionnaire->goal}}!
+                <span class="number"><b>{{$viewModel->totalResponses}}</b></span> people have spoken up so far.
+                Let's get to <b>{{$viewModel->questionnaire->goal}}</b>!
             @endif
 
         </h2>
@@ -27,10 +27,11 @@
                     @foreach($viewModel->allResponses as $response)
                         @if($response->user_name)
                             <div class="activity-item text-left">
-                                <i class="fa fa-user-circle user-icon" aria-hidden="true"></i>
-                                {{$response->user_name}}
+                                <i style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}"
+                                   class="fa fa-user-circle user-icon" aria-hidden="true"></i>
+                                <b>{{$response->user_name}}</b>
                                 @if($response->created_at)
-                                    responded at {{\Carbon\Carbon::parse($response->created_at)->toDayDateTimeString()}}
+                                    responded at {{\Carbon\Carbon::parse($response->created_at)->format('F d, Y')}}
                                 @endif
                             </div>
                         @endif
@@ -42,7 +43,7 @@
 
         @if($viewModel->questionnaireGoalVM)
             <div class="col-md-6 col-sm-12 text-center center}">
-                @include('landingpages.partials.project-goal', ['viewModel' => $viewModel->questionnaireGoalVM, 'projectId' => $viewModel->project->id])
+                @include('landingpages.partials.project-goal', ['questionnaireViewModel' => $viewModel->questionnaireGoalVM, 'project' => $viewModel->project])
             </div>
         @endif
     </div>

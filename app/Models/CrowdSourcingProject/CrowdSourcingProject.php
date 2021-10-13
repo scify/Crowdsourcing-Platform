@@ -46,7 +46,8 @@ class CrowdSourcingProject extends Model {
         'lp_newsletter_bg_color', 'lp_newsletter_btn_color',
         'lp_newsletter_btn_bg_color', 'communication_resources_id',
         'lp_show_speak_up_btn', 'lp_motto_overlay_color',
-        'lp_external_url_btn_color', 'lp_about_img_path', 'lp_motto_inner_bg_color'
+        'lp_external_url_btn_color', 'lp_external_url_btn_bg_color',
+        'lp_about_img_path', 'lp_motto_inner_bg_color'
     ];
 
     /**
@@ -55,7 +56,6 @@ class CrowdSourcingProject extends Model {
     public function creator() {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
     }
-
 
     /**
      * The users that belong to the role.
