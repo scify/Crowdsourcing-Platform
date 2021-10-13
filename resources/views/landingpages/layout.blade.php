@@ -35,7 +35,7 @@
     </div>
 @endif
 @include('landingpages.partials.navbar')
-
+@include('partials.flash-messages-and-errors')
 <div id="app">
     @yield('content')
 </div>

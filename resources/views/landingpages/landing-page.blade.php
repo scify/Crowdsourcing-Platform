@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('partials.flash-messages-and-errors')
         <section>
             @include('landingpages.partials.motto')
         </section>

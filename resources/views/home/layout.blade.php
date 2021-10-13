@@ -38,12 +38,7 @@
         @include('home.partials.' . config('app.installation_resources_dir') . '.navbar')
     </div>
 </div>
-@if(session('flash_message_success'))
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-check"></i> {{ session('flash_message_success') }}</h4>
-    </div>
-@endif
+@include('partials.flash-messages-and-errors')
 <div id="app">
     @yield('content')
 </div>
