@@ -4,6 +4,7 @@
 namespace Database\Seeders;
 
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectColorsRepository;
 use Illuminate\Database\Seeder;
 
@@ -76,5 +77,13 @@ class CrowdSourcingProjectColorsSeeder extends Seeder {
         }
         echo "\nDefault colors were created.\n";
 
+        $projects = CrowdSourcingProject::all();
+        foreach ($projects as $project) {
+            $project->lp_motto_overlay_color = '#707070';
+            $project->lp_motto_inner_bg_color = '#EFEFEF';
+            $project->lp_external_url_btn_color = '#000000';
+            $project->lp_external_url_btn_bg_color = '#ffffff';
+            $project->save();
+        }
     }
 }
