@@ -27,7 +27,7 @@ class DefaultProjectSeeder extends Seeder {
                 'slug' => 'crowdsourcing-demo',
                 'logo_path' => '/images/projects/demo/logo.png',
                 'img_path' => '/images/projects/demo/logo-bg.png',
-                'motto' => 'Please share with us your opinion on an important subject. Your voice matters!',
+                'motto_title' => 'Please share with us your opinion on an important subject. Your voice matters!',
                 'description' => '',
                 'about' => '<p>The Demo Project serves as a demonstration mechanism for the various Crowdsourcing beneficial results and a showcase. <a href="https://www.scify.gr/site/en/">Learn more about our project.</a></p>',
                 'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
@@ -54,7 +54,7 @@ class DefaultProjectSeeder extends Seeder {
                 'slug' => 'fair-eu',
                 'logo_path' => '/images/projects/ecas/fair-eu.png',
                 'img_path' => '/images/projects/ecas/fair-eu-bg.png',
-                'motto' => 'Please share with us your opinion on obstacles to free movement and <br>political participation in the EU. Your voice matters!',
+                'motto_title' => 'Please share with us your opinion on obstacles to free movement and <br>political participation in the EU. Your voice matters!',
                 'description' => '',
                 'about' => '<p>The FAIR EU (Fostering Awareness, Inclusion and Recognition of EU Mobile Citizens’ Political Rights)
                 project aims to foster the successful inclusion of EU mobile citizens in their host EU country’s civic

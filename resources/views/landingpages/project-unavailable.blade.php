@@ -8,7 +8,7 @@
                      style="background-image: url({{asset($viewModel->project->img_path)}});">
                     <div class="gray-filter"></div>
                     <div class="text">
-                        <h1 id="project-moto">{!! $viewModel->project->motto !!}
+                        <h1 id="project-moto">{!! $viewModel->project->motto_title !!}
                             <br><br>
                             {!! $viewModel->getProjectStatusMessage() !!}
                         </h1>

@@ -4,7 +4,8 @@
         <div class="gray-filter"></div>
         <div class="text">
             <h1 id="project-moto"
-                style="color: {{ $viewModel->project->lp_motto_color }}">{!! $viewModel->project->motto !!}</h1>
+                style="color: {{ $viewModel->project->lp_motto_color }}">{!! $viewModel->project->motto_title !!}</h1>
+            <h3 id="project-moto-subtitle">{!! $viewModel->project->motto_subtitle !!}</h3>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-2 col-md-4 col-sm-10 call-to-action mx-auto">

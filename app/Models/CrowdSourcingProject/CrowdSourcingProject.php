@@ -33,7 +33,8 @@ class CrowdSourcingProject extends Model {
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'external_url', 'motto', 'description', 'about', 'footer', 'img_path',
+        'name', 'slug', 'external_url', 'motto_title', 'motto_subtitle', 'description',
+        'about', 'footer', 'img_path',
         'logo_path', 'user_creator_id', 'language_id', 'status_id', 'sm_title',
         'sm_description', 'sm_keywords', 'sm_featured_img_path', 'lp_motto_color',
         'lp_about_bg_color', 'lp_about_color', 'lp_questionnaire_img_path',
@@ -44,7 +45,8 @@ class CrowdSourcingProject extends Model {
         'lp_newsletter_title_color', 'lp_newsletter_color',
         'lp_newsletter_bg_color', 'lp_newsletter_btn_color',
         'lp_newsletter_btn_bg_color', 'communication_resources_id',
-        'lp_show_speak_up_btn'
+        'lp_show_speak_up_btn', 'lp_motto_overlay_color',
+        'lp_external_url_btn_color', 'lp_about_img_path', 'lp_motto_inner_bg_color'
     ];
 
     /**

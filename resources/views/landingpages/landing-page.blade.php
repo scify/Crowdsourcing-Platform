@@ -17,5 +17,8 @@
                 @include('landingpages.partials.goal-and-activity')
             </section>
         @endif
+        <section>
+            @include('partials.signup_to_newsletter')
+        </section>
     </div>
 @endsection
