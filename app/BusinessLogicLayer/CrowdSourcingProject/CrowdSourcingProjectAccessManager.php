@@ -30,9 +30,10 @@ class CrowdSourcingProjectAccessManager {
     }
 
     public function getProjectsUserHasAccessToEdit(User $user): Collection {
+        $relationships = ['creator', 'language', 'status'];
         if($this->userRoleManager->userHasAdminRole($user) || $this->userRoleManager->userHasContentManagerRole($user))
-            return $this->crowdSourcingProjectRepository->allWithTrashed();
-        return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id]);
+            return $this->crowdSourcingProjectRepository->allWithTrashed(array('*'),null, null, $relationships);
+        return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id], array('*'), $relationships);
     }
 
     protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {

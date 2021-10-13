@@ -2,7 +2,6 @@ let ProjectGoal = require('progressbar.js');
 
 (function () {
     let displayProgressBar = function () {
-
         let progressBarElements = $(".progress-bar-circle");
         progressBarElements.each(function( index ) {
             const elementId = $(this).attr('id');
