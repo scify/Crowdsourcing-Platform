@@ -30,6 +30,7 @@ const Stepper = require('bs-stepper');
 
     let initializeStepper = function () {
         const stepperEl = $('#project-form-stepper')[0];
+        console.log(stepperEl);
         stepper = new Stepper(stepperEl);
         $("body").on('click', '.stepper-next', function () {
             stepper.next();
