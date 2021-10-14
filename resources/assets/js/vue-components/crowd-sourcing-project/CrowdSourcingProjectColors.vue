@@ -43,7 +43,6 @@ import {initSingleColorPicker} from "../../common";
 
 export default {
   props: {
-    projectId: null,
     colorData: []
   },
   data: function () {
