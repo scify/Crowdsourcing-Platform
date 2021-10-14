@@ -15,7 +15,7 @@ class CrowdSourcingProjectColorsManager {
         $this->crowdSourcingProjectColorsRepository = $crowdSourcingProjectColorsRepository;
     }
 
-    public function getColorsForCrowdSourcingProjectOrDefault(int $project_id): Collection {
+    public function getColorsForCrowdSourcingProjectOrDefault($project_id): Collection {
         $colors = $this->getColorsForCrowdSourcingProject($project_id);
         if ($colors->isEmpty())
             $colors = $this->getDefaultColors();
@@ -26,7 +26,7 @@ class CrowdSourcingProjectColorsManager {
         return $this->crowdSourcingProjectColorsRepository->allWhere(['project_id' => null]);
     }
 
-    public function getColorsForCrowdSourcingProject(int $project_id): Collection {
+    public function getColorsForCrowdSourcingProject($project_id): Collection {
         return $this->crowdSourcingProjectColorsRepository->allWhere(['project_id' => $project_id]);
     }
 
