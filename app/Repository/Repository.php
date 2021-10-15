@@ -49,11 +49,14 @@ abstract class Repository implements RepositoryInterface {
         return $query->get($columns);
     }
 
-    public function allWithTrashed($columns = array('*'), $orderColumn = null, $order = null, $withRelationships = []): Collection {
+    public function allWithTrashed($columns = array('*'),
+                                   $orderColumn = null,
+                                   $order = null,
+                                   $withRelationships = []): Collection {
         $query = $this->modelInstance;
 
         if ($orderColumn)
-            $query->orderBy($orderColumn, $order ? $order : 'asc');
+            $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
         if (count($withRelationships) > 0)
             $query = $query->with($withRelationships);
         return $query->withTrashed()->get($columns);
@@ -177,8 +180,15 @@ abstract class Repository implements RepositoryInterface {
         return $query->get($columns);
     }
 
-    public function whereWithTrashed($whereArray, $columns = array('*'), $withRelationships = []): Collection {
+    public function whereWithTrashed($whereArray,
+                                     $columns = array('*'),
+                                     $orderColumn = null,
+                                     $order = null,
+                                     $withRelationships = []): Collection {
         $query = $this->modelInstance->where($whereArray);
+
+        if ($orderColumn)
+            $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
 
         if (count($withRelationships) > 0)
             $query = $query->with($withRelationships);
