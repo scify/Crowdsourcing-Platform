@@ -191,7 +191,7 @@ ol {
 #questionnaire-section{
 
   @include media-breakpoint-up(sm) {
-    padding: 7vh;
+    padding: 9vh 0;
   }
 
 }
@@ -215,10 +215,6 @@ ol {
 
   #machine-translation-indicator {
     padding-top: 30px;
-  }
-
-  #questionnaire-wrapper {
-    padding: 140px 15%;
   }
 
   .questionnaire-description {
@@ -471,7 +467,10 @@ ol {
 
 #questionnaire-wrapper {
   background-color: #EFEFEF;
-  padding: 7vh;
+  @include media-breakpoint-up(sm) {
+    padding: 0 7vh ;
+  }
+
 }
 .divider {
   border-bottom: 1px solid gray;
