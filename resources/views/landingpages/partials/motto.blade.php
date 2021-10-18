@@ -38,14 +38,14 @@
                                             your response!</h2>
                                     </div>
                                     @if($viewModel->project->external_url)
-                                        <div class="col-5 mx-auto">
+                                        <div class="col-5 mx-auto call-to-action">
                                             @include('landingpages.partials.external-url')
                                         </div>
                                     @endif
                                 @endif
                             @else
                                 @if($viewModel->project->external_url)
-                                    <div class="col-5 mx-auto">
+                                    <div class="col-5 mx-auto call-to-action">
                                         @include('landingpages.partials.external-url')
                                     </div>
                                 @endif
