@@ -251,6 +251,24 @@ export default {
     margin-left: 0;
     margin-right: 0;
   }
+
+  .sv-root-modern .sv-question__title--answer {
+    background-color: rgba(0, 119, 255, 0.2);
+  }
+
+  .sv-root-modern .sv-rating__item--selected .sv-rating__item-text {
+    background-color: $brand-primary;
+    color: rgb(255, 255, 255);
+    border-color: $brand-primary;
+  }
+
+  .sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
+    background-color: $brand-primary;
+  }
+
+  .sv-root-modern ::-webkit-scrollbar-thumb {
+    background: $brand-primary;
+  }
 }
 
 #questionnaire-loader {
