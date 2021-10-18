@@ -11,15 +11,17 @@
 
         <div class="collapse navbar-collapse pull-right" id="top-menu-content">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">ABOUT US</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">FEATURES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#projects">WHAT ARE WE CROWDSOURCING?</a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">FEATURES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">WHAT ARE WE CROWDSOURCING?</a>
+                    </li>
+                @endguest
                 @include("partials.login-menu-options")
             </ul>
         </div>
