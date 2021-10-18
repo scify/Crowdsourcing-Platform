@@ -15,9 +15,7 @@
                     <div class="text-center">
 
 
-                    <a href="{{$viewModel->project->external_url}}" target="_blank" class="btn btn-primary visit-project-website "
-                       style="color: {{ $viewModel->project->lp_external_url_btn_color }};
-                               background-color: {{ $viewModel->project->lp_external_url_btn_bg_color }};">
+                    <a href="{{$viewModel->project->external_url}}" target="_blank" class="btn btn-primary visit-project-website ">
                         Visit project's site
                     </a>
                     </div>
