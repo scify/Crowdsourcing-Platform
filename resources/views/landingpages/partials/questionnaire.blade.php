@@ -1,4 +1,5 @@
-<div class="row w-100 align-items-center mx-0" id="questionnaire"
+<div id="questionnaire-wrapper" class="container">
+    <div class="row  align-items-center mx-0" id="questionnaire"
      style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
     <div class="col-md-12 p-0">
         @if ($viewModel->questionnaire)
@@ -46,7 +47,7 @@
         @endif
     </div>
 </div>
-
+</div>
 
 
 
