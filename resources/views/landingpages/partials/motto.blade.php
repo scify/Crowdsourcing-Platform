@@ -1,4 +1,4 @@
-<div class="row h-100 w-100 align-items-center mx-0 bg-img"
+<div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
      style="background-image: url({{asset($viewModel->project->img_path)}});">
     <div class="overlay-filter"
          style="background-color: {{ $viewModel->project->lp_motto_overlay_color }};
