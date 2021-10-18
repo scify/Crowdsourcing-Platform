@@ -5,8 +5,9 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use App\Models\ViewModels\Questionnaire\QuestionnaireStatistics;
+use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectQuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireBasicStatisticsColorsRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsRepository;
@@ -17,13 +18,16 @@ class QuestionnaireStatisticsManager {
     protected $questionnaireStatisticsRepository;
     protected $questionnaireBasicStatisticsColorsRepository;
     protected $questionnaireLanguageRepository;
+    protected $crowdSourcingProjectQuestionnaireRepository;
 
-    public function __construct(QuestionnaireStatisticsRepository $questionnaireStatisticsRepository,
+    public function __construct(QuestionnaireStatisticsRepository            $questionnaireStatisticsRepository,
                                 QuestionnaireBasicStatisticsColorsRepository $questionnaireBasicStatisticsColorsRepository,
-                                QuestionnaireLanguageRepository $questionnaireLanguageRepository) {
+                                QuestionnaireLanguageRepository              $questionnaireLanguageRepository,
+                                CrowdSourcingProjectQuestionnaireRepository  $crowdSourcingProjectQuestionnaireRepository) {
         $this->questionnaireStatisticsRepository = $questionnaireStatisticsRepository;
         $this->questionnaireBasicStatisticsColorsRepository = $questionnaireBasicStatisticsColorsRepository;
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
+        $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
     }
 
     public function getQuestionnaireVisualizationsViewModel(Questionnaire $questionnaire): QuestionnaireStatistics {
@@ -31,6 +35,7 @@ class QuestionnaireStatisticsManager {
             ->getQuestionnaireResponseStatistics($questionnaire->id);
         $numberOfResponsesPerLanguage = $this->questionnaireStatisticsRepository
             ->getNumberOfResponsesPerLanguage($questionnaire->id);
+        $questionnaire->project_id = $this->crowdSourcingProjectQuestionnaireRepository->where(['questionnaire_id' => $questionnaire->id])->project_id;
         return new QuestionnaireStatistics (
             $questionnaire,
             $questionnaireTotalResponseStatistics,

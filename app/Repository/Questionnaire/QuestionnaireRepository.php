@@ -179,7 +179,7 @@ class QuestionnaireRepository extends Repository {
                         GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
 
                             
-                        where q.project_id in (" . $projectIdsStr . ") 
+                        where cspq.project_id in (" . $projectIdsStr . ") 
                         and q.deleted_at is null
                         GROUP BY q.id
                         order by q.created_at desc");

@@ -14,7 +14,8 @@ class AddProjectLandingPageUiElementsToCrowdSourcingProjectsTable extends Migrat
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->string('lp_motto_overlay_color')->nullable()->after('lp_motto_color');
             $table->string('lp_motto_inner_bg_color')->nullable()->after('lp_motto_overlay_color');
-            $table->string('lp_external_url_btn_color')->nullable()->after('lp_motto_overlay_color');
+            $table->string('lp_external_url_btn_color')->nullable()->default('#0077FF')->after('lp_motto_overlay_color');
+            $table->string('lp_external_url_btn_bg_color')->nullable()->default('#ffffff')->after('lp_external_url_btn_color');
             $table->string('lp_about_img_path')->nullable()->after('lp_about_bg_color');
             $table->string('motto_subtitle')->nullable()->after('motto');
             $table->renameColumn('motto', 'motto_title');

@@ -187,7 +187,7 @@ export default {
       },
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
-        "html", "matrix", "matrixdropdown", "radiogroup", "rating", "text"],
+        "html", "matrix", "matrixdropdown", "radiogroup", "rating", "text", "ranking"],
       colors: [],
       isTranTabInitialised: false,
       modalOpen: false,
@@ -373,7 +373,7 @@ export default {
           confirmButtonClass: "btn-success",
           confirmButtonText: "OK",
         }, function () {
-          window.location = route('edit-questionnaire', instance.questionnaire.id);
+          window.location = route('edit-questionnaire', response.data.id);
         });
       }).catch(error => {
         swal({

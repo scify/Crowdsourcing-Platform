@@ -58,7 +58,8 @@ export default {
   },
   mounted() {
     this.initQuestionnaireDisplay();
-    this.displayLoginPrompt = !(this.user && this.user.id);
+    //this.displayLoginPrompt = !(this.user && this.user.id);
+    this.displayLoginPrompt = false;
     if (!this.displayLoginPrompt)
       this.skipLogin();
   },

@@ -1,4 +1,4 @@
-<div class="row" id="questionnaire"
+<div class="row w-100 align-items-center mx-0" id="questionnaire"
      style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
     <div class="col-md-12 p-0">
         @if ($viewModel->questionnaire)
@@ -12,13 +12,19 @@
                          style="color: {{ $viewModel->project->lp_questionnaire_color }}">
                         {!! $viewModel->questionnaire->description !!}
                     </div>
-                    @include("landingpages.partials.open-questionnaire-button")
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5 col-sm-11 mx-auto">
+                                @include("landingpages.partials.open-questionnaire-button")
+                            </div>
+                        </div>
+                    </div>
                 @endif
             </div>
         @else
             <div id="questionnaire-wrapper" class="text-center content-container ">
                 <div
-                     style="color: {{ $viewModel->project->lp_questionnaire_color }}">
+                        style="color: {{ $viewModel->project->lp_questionnaire_color }}">
                     @if ($viewModel->project->status_id == App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED)
                         <h3 class="questionnaire-section-title">This project has been finalized.</h3>
                         @if($viewModel->project->external_url)
