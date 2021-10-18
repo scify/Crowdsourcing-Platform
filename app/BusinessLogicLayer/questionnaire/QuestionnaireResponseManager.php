@@ -91,7 +91,7 @@ class QuestionnaireResponseManager {
 
     public function getFreeTypeQuestionsFromQuestionnaireJSON(string $questionnaireJSON): array {
         $freeTypeQuestions = [];
-        $freeTypeQuestionTypes = ['text'];
+        $freeTypeQuestionTypes = ['text', 'comment'];
         $questionnaire = json_decode($questionnaireJSON);
         $pages = $questionnaire->pages;
         foreach ($pages as $page)
