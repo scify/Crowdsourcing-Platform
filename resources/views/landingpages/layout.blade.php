@@ -32,7 +32,7 @@
 @include('partials.staging-indicator')
 @include('landingpages.partials.navbar')
 @include('partials.flash-messages-and-errors')
-<div id="app" @if (App::environment('staging')) style="margin-top: 35px" @endif>
+<div id="app" style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
 

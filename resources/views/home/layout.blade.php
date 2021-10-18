@@ -31,7 +31,7 @@
     </div>
 </div>
 @include('partials.flash-messages-and-errors')
-<div id="app">
+<div id="app" style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
 
