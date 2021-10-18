@@ -14,6 +14,8 @@
 use App\Http\Controllers\CrowdSourcingProjectController;
 use App\Http\Controllers\QuestionnaireReportController;
 use App\Http\Controllers\QuestionnaireResponseController;
+use App\Models\User;
+use App\Notifications\UserRegistered;
 
 Auth::routes();
 
@@ -64,4 +66,10 @@ Route::get('/questionnaires/{questionnaire}/statistics',
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
 
+Route::get('/test-email', function () {
+    User::findOrFail(1)->notify(new UserRegistered());
+});
