@@ -10,8 +10,10 @@
         <div class="col-md-12 p-0 mx-auto">
             <div class="content-container" style="color: {{ $viewModel->project->lp_about_color }}">
                 {!! $viewModel->project->about !!}
+
+                @include('landingpages.partials.external-url')
             </div>
-            @include('landingpages.partials.external-url')
+
         </div>
     </div>
 
