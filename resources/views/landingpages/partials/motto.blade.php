@@ -15,7 +15,7 @@
             @if($viewModel->project->motto_subtitle)
                 <div class="row mb-5">
                     <div class="col">
-                        <h4 id="motto-subtitle" class="text">{!! $viewModel->project->motto_subtitle !!}</h4>
+                        <h4 id="motto-subtitle" class="text text-center">{!! $viewModel->project->motto_subtitle !!}</h4>
                     </div>
                 </div>
             @endif
