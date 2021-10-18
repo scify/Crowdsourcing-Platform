@@ -28,12 +28,8 @@
     <![endif]-->
     @include('analytics')
 </head>
-<body class="main-layout">
-@if (App::environment('staging'))
-    <div class="sticky-top w-100 staging-warning py-2 text-center">
-        <h5 class="m-0">~~~ WARNING: STAGING ENVIRONMENT ~~~</h5>
-    </div>
-@endif
+<body class="container-fluid p-0">
+@include('partials.staging-indicator')
 @include('landingpages.partials.navbar')
 @include('partials.flash-messages-and-errors')
 <div id="app">
@@ -41,7 +37,7 @@
 </div>
 
 @if(isset($viewModel->project))
-    <footer style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
+    <footer class="py-5" style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
         <div class="container" style="
                 color: {{ $viewModel->project->lp_footer_color }}">
             {!! $viewModel->project->footer !!}

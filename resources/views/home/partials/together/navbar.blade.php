@@ -1,5 +1,5 @@
 <div @if (App::environment('staging')) class="header-margin-top" @endif>
-    <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light fixed-top navbar-default navbar-fixed-top m-0">
+    <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light fixed-top navbar-default navbar-fixed-top m-0" style="z-index: 100000;">
         <a class="navbar-brand" href="#">
             <img loading="lazy" alt="Together" src="{{asset('images/projects/together/logo.png')}}">
         </a>

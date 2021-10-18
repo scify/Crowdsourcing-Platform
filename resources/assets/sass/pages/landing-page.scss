@@ -5,15 +5,18 @@ h1, h2, h3, h4, h5, h6 {
   color: $brand-primary;
 }
 
-.main-layout {
+.row {
+  background-size: cover;
+  background-position: center;
 
-  #app {
-    padding-top: 95px;
-  }
-
-  footer {
-    padding-top: 50px;
-    padding-bottom: 50px;
+  .gray-filter {
+    z-index: 1000;
+    background-color: black;
+    opacity: 0.5;
+    height: 650px;
+    top: 0;
+    position: absolute;
+    width: 100%;
   }
 }
 
@@ -52,35 +55,37 @@ body {
   }
 }
 
-.image-with-text-wrapper {
-  height: 650px;
-  background-size: cover;
-  background-position: center;
+.motto-content {
+  padding: 50px 5px;
 
-  .gray-filter {
-    z-index: 1000;
-    background-color: black;
-    opacity: 0.5;
-    height: inherit;
+  .frosted {
     position: absolute;
+    overflow: hidden;
     width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    filter: blur(1px);
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    z-index: 1;
   }
 
-  #project-moto {
+
+  h1, h2 {
+    margin-bottom: 2.5rem;
+    font-weight: bold;
+  }
+
+  #project-motto {
     position: relative;
-    z-index: 1001;
-    margin-top: 210px;
+    z-index: 2;
 
     @media (max-width: 991px) {
       margin-top: 150px;
-    }
-
-
-    .text {
-      color: #000000;
-      text-align: center;
-      margin: auto;
-      max-width: 60%;
     }
 
     #motto-title {
@@ -90,7 +95,6 @@ body {
     @media (max-width: 991px) {
       max-width: 90%;
     }
-
 
     color: white;
   }
