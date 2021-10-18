@@ -12,12 +12,6 @@
 
         <div class="collapse navbar-collapse pull-right" id="top-menu-content">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home mr-1"></i>HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">ABOUT</a>
-                </li>
                 @include("partials.login-menu-options")
             </ul>
         </div>
