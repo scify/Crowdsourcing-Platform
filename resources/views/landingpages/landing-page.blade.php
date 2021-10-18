@@ -9,7 +9,7 @@
         <section>
             @include('landingpages.partials.about')
         </section>
-        <section>
+        <section >
             @include('landingpages.partials.questionnaire')
         </section>
         @if($viewModel->questionnaire)

@@ -20,6 +20,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
+
+
 #project-motto-container {
   .overlay-filter {
     opacity: 0.3;
@@ -94,7 +97,7 @@ body {
 
     #motto-title {
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-size: 2.3rem;
     }
 
@@ -187,6 +190,11 @@ ol {
     }
 }
 
+#questionnaire-section{
+
+  padding-top:10vh;
+  padding-bottom:10vh;
+}
 #questionnaire {
 
   background-size: cover;
@@ -445,6 +453,10 @@ ol {
       font-family: 'Open Sans', sans-serif;
     }
   }
+}
+
+#questionnaire-section{
+  background-color:#EFEFEF;
 }
 
 .divider {
