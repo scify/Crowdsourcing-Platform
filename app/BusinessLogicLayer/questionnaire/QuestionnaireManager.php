@@ -36,11 +36,11 @@ class QuestionnaireManager {
                 $data['title'], $data['description'],
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id']);
-        $data = [
+        $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
             'language_id' => $questionnaire->defaultLanguage->id
         ];
-        $this->questionnaireLanguageRepository->updateOrCreate($data, $data);
+        $this->questionnaireLanguageRepository->updateOrCreate($questionnaireData, $questionnaireData);
         $this->crowdSourcingProjectQuestionnaireRepository->setQuestionnaireToProjects($questionnaire->id, $data['project_ids']);
         return $questionnaire;
     }
