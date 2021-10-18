@@ -180,15 +180,16 @@ In the `.env` file you can set the `INSTALLATION_RESOURCES_DIR` variable accordi
 
 
 ## Run Tests
-We use a Sqlite database to generate an instance of the database, for testing purposes.
-In order to create the database file, run the following commands:
+You may use a separate MySQL database, for testing purposes. 
+Generally, the fields for testing should be defined in a `.env.testing` file, which should start as a copy of the `.env.testing.example` file.
+Then, run the `migrate` and `seed` commands for the testing Database:
 
 ```bash
-touch storage/database_testing.sqlite
+cp .env.testing.example .env.testing
 
-php artisan migrate --database=sqlite_testing
+php artisan migrate --env=testing
 
-php artisan db:seed --database=sqlite_testing --class=DatabaseSeederRunOnEmptyDB
+php artisan db:seed --env=testing --class=DatabaseSeeder
 ```
 
 ## How to debug
