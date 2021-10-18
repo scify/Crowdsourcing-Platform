@@ -64,8 +64,6 @@ Route::get('/questionnaires/{questionnaire}/statistics',
     ->name('questionnaire.statistics')
     ->middleware('questionnaire.page_settings');
 
-Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
-
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
@@ -73,3 +71,7 @@ Route::get('/debug-sentry', function () {
 Route::get('/test-email', function () {
     User::findOrFail(1)->notify(new UserRegistered());
 });
+
+Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
+
+
