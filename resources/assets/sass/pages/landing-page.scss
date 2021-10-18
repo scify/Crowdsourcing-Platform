@@ -190,7 +190,7 @@ ol {
 }
 #questionnaire-section{
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     padding: 9vh 0;
   }
 
@@ -199,14 +199,14 @@ ol {
 
   background-size: cover;
   width: 100%;
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     padding: 7vh 10vh;
   }
   min-height: 100px;
   .content-container{
     background-color:rgba(0,119,255,0.85);
     font-size: 20px;
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
       padding: 5vh 12vh;
     }
 
@@ -467,7 +467,7 @@ ol {
 
 #questionnaire-wrapper {
   background-color: #EFEFEF;
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     padding: 0 7vh ;
   }
 
