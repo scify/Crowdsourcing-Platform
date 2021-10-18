@@ -463,12 +463,12 @@ ol {
       font-family: 'Open Sans', sans-serif;
     }
   }
-}
+}#questionnaire-wrapper
 
 #questionnaire-wrapper {
   background-color: #EFEFEF;
   @include media-breakpoint-up(md) {
-    padding: 0 7vh ;
+    padding:  7vh 0 ;
   }
 
 }
