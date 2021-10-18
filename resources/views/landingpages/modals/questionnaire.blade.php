@@ -9,16 +9,18 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid mb-5">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="description-container">
-                                <div class="description">
-                                    <h4>{!! $viewModel->questionnaire->description !!}</h4>
+                    @if($viewModel->questionnaire->description)
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="description-container">
+                                    <div class="description">
+                                        <h4>{!! $viewModel->questionnaire->description !!}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
+                        <hr>
+                    @endif
                     @if ($viewModel->shouldShowQuestionnaireStatisticsLink())
                         <div class="row mt-4">
                             <div class="col-md-12 text-left">
@@ -28,8 +30,8 @@
                                        target="_blank">here.</a></h3>
                             </div>
                         </div>
+                        <hr>
                     @endif
-                    <hr>
                     <questionnaire-display
                             :user='@json($viewModel->getLoggedInUser())'
                             :user-response='@json($viewModel->userResponse)'
