@@ -17,7 +17,10 @@ require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
 require('select2');
 require('bootstrap-tagsinput');
 require('bootstrap-colorpicker');
-require('bs4-summernote');
+
+
+import 'summernote/dist/summernote-bs4';
+
 require('jquery-toast-plugin');
 
 require('datatables.net');
