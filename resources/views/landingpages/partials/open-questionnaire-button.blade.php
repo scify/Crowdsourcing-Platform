@@ -6,5 +6,5 @@
            data-questionnaire-id="{{$viewModel->questionnaire->id}}"
    data-url="{{route('respond-questionnaire')}}"
    data-toggle="modal" data-target="#questionnaire-modal">
-    Contribute
+    Answer the questionnaire
 </a>
