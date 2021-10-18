@@ -1,6 +1,8 @@
 <div class="row h-100 w-100 align-items-center mx-0 bg-img"
      style="background-image: url({{asset($viewModel->project->img_path)}});">
-    <div class="gray-filter" style="background-color: {{ $viewModel->project->lp_motto_overlay_color }}"></div>
+    <div class="gray-filter"
+         style="background-color: {{ $viewModel->project->lp_motto_overlay_color }};
+                 top: @if (App::environment('staging')) 128.75px @else 93.75px @endif"></div>
     <div class="col-lg-5 col-md-6 col-sm-11 mx-auto motto-content px-0">
         <div class="frosted"></div>
         <div id="project-motto" class="container-fluid">
