@@ -6,7 +6,7 @@
             <div class="row" id="motto">
                 <div class="col-md-12 motto-content p-0"
                      style="background-image: url({{asset($viewModel->project->img_path)}});">
-                    <div class="gray-filter"></div>
+                    <div class="overlay-filter"></div>
                     <div class="text">
                         <h1 id="project-motto">{!! $viewModel->project->motto_title !!}
                             <br><br>
