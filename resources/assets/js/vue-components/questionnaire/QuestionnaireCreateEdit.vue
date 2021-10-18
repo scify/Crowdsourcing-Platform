@@ -58,11 +58,10 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
-              <label>Description - Motto</label>
+              <label>Description</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                             <textarea class="form-control" name="description" id="description"
-                                      required
                                       v-model="questionnaire.description"
                                       placeholder="Insert questionnaire's description">
                             </textarea>
@@ -350,7 +349,7 @@ export default {
       if (this.formInvalid(data))
         return swal({
           title: "Fields Missing!",
-          text: "Please provide a title, description, goal, and at least one project.",
+          text: "Please provide a title, goal, and at least one project.",
           type: "warning",
           confirmButtonClass: "btn-danger",
           confirmButtonText: "OK",
@@ -387,7 +386,7 @@ export default {
 
     },
     formInvalid(data) {
-      return !data.title || !data.description || !data.goal || !data.project_ids.length;
+      return !data.title || !data.goal || !data.project_ids.length;
     },
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
