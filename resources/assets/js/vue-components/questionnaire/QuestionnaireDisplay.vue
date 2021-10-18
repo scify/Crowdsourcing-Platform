@@ -261,6 +261,14 @@ export default {
     color: rgb(255, 255, 255);
     border-color: $brand-primary;
   }
+
+  .sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
+    background-color: $brand-primary;
+  }
+
+  .sv-root-modern ::-webkit-scrollbar-thumb {
+    background: $brand-primary;
+  }
 }
 
 #questionnaire-loader {
