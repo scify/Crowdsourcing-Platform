@@ -185,21 +185,31 @@ ol {
       font-size: 16px;
     }
 }
-
-#questionnaire-section{
+#questionnaire-section,#collective-goal{
   background-color: #efefef;
-  padding: 7vh;
+}
+#questionnaire-section{
+
+  @include media-breakpoint-up(sm) {
+    padding: 7vh;
+  }
+
 }
 #questionnaire {
 
   background-size: cover;
   width: 100%;
-  padding: 7vh 10vh;
+  @include media-breakpoint-up(sm) {
+    padding: 7vh 10vh;
+  }
   min-height: 100px;
   .content-container{
     background-color:rgba(0,119,255,0.85);
     font-size: 20px;
-    padding: 50px 90px;
+    @include media-breakpoint-up(sm) {
+      padding: 5vh 12vh;
+    }
+
     color: white;
   }
 
