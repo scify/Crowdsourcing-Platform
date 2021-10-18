@@ -1,13 +1,19 @@
 const Stepper = require('bs-stepper');
+import CodeMirror from 'codemirror/lib/codemirror';
+
+import 'codemirror/mode/xml/xml';
 
 (function () {
     let stepper;
 
     let initializeSummernote = function () {
+
         $('.summernote').summernote({
-            tabsize: 2,
-            height: 300,
-            dialogsInBody: true
+            height: 150,   //set editable area's height
+            codemirror: { // codemirror options
+                CodeMirrorConstructor: CodeMirror,
+                theme: 'monokai'
+            }
         });
     };
 
