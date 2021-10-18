@@ -48,7 +48,7 @@ class CrowdSourcingProjectForLandingPage {
     }
 
     public function shouldShowQuestionnaireStatisticsLink(): bool {
-        return $this->questionnaire->statistics_page_visibility_lkp_id === QuestionnaireStatisticsPageVisibilityLkp::PUBLIC;
+        return false;
     }
 
     public function getLoggedInUser() {
