@@ -222,6 +222,8 @@ ol {
 }
 
 #questionnaire-modal {
+  z-index: 100000;
+
   .modal-title {
     font-weight: normal;
     text-align: center;
@@ -331,6 +333,8 @@ ol {
 }
 
 #questionnaire-responded {
+  z-index: 100000;
+
   .modal-title {
     font-weight: normal;
     text-align: center;
