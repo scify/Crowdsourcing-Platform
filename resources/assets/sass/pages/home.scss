@@ -4,8 +4,6 @@ $colorForTabs: #0077FF;
 section {
   h2 {
     font-size: 28px;
-    margin-top: 86px;
-    margin-bottom: 0;
     @media screen and (max-width: 950px) {
       padding: 0 15px;
     }
@@ -65,7 +63,8 @@ section {
   }
 }
 
-.image-with-text-wrapper {
+.motto-content {
+  z-index: 10001;
 
   .call-to-action {
     a {

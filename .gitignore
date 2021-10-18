@@ -18,3 +18,4 @@ public/images/vendor
 public/fonts
 public/vendor
 .phpunit.result.cache
+.env.testing
