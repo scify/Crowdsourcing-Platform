@@ -91,10 +91,6 @@ body {
     position: relative;
     z-index: 2;
 
-    @media (max-width: 991px) {
-      margin-top: 150px;
-    }
-
     #motto-title {
       font-weight: 600;
       margin-bottom: 0.8rem;
@@ -191,13 +187,21 @@ ol {
 }
 
 #questionnaire-section{
-
-  padding-top:10vh;
-  padding-bottom:10vh;
+  background-color: #efefef;
+  padding: 7vh;
 }
 #questionnaire {
 
   background-size: cover;
+  width: 100%;
+  padding: 7vh 10vh;
+  min-height: 100px;
+  .content-container{
+    color:rgba(0,119,255,0.85);
+    font-size: 20px;
+    padding: 50px 90px;
+    color: white;
+  }
 
   #machine-translation-indicator {
     padding-top: 30px;
@@ -208,23 +212,23 @@ ol {
   }
 
   .questionnaire-description {
-    max-width: 1000px;
+    font-size:1.3rem;
     margin: auto;
     text-align: justify;
   }
 
   .respond-questionnaire {
-    font-size: 26px;
+    font-size: 20px;
     padding: 10px 20px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 
   .questionnaire-section-title {
-    font-size: 43px;
-    text-align: center;
-    margin-bottom: 50px;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 
   .wrapper-box {
