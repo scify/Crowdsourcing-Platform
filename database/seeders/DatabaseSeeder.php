@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             CrowdSourcingProjectStatusesLkpTableSeeder::class,
             QuestionnaireStatusesLkpTableSeeder::class,
             DefaultProjectSeeder::class,
-            QuestionnaireStatusHistoryTableSeeder::class,
+            QuestionnaireStatisticsPageVisibilityLkpSeeder::class,
             MailChimpListsTableSeeder::class,
             ProduceAPITokenForDefaultAdmin::class,
             CrowdSourcingProjectColorsSeeder::class
