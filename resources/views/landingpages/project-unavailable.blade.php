@@ -4,11 +4,11 @@
     <div class="container-fluid">
         <section>
             <div class="row" id="motto">
-                <div class="col-md-12 image-with-text-wrapper p-0"
+                <div class="col-md-12 motto-content p-0"
                      style="background-image: url({{asset($viewModel->project->img_path)}});">
                     <div class="gray-filter"></div>
                     <div class="text">
-                        <h1 id="project-moto">{!! $viewModel->project->motto_title !!}
+                        <h1 id="project-motto">{!! $viewModel->project->motto_title !!}
                             <br><br>
                             {!! $viewModel->getProjectStatusMessage() !!}
                         </h1>
