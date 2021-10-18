@@ -2,7 +2,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Open Sans', sans-serif;
-  color: $brand-primary;
+  color: $landing-page-primary;
 }
 
 .row {
@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
   a {
-    color: $brand-primary;
+    color: $landing-page-primary;
   }
 }
 
@@ -262,7 +262,7 @@ ol {
 
         &.active {
           .sv_q_rating_item_text {
-            background-color: $brand-primary;
+            background-color: $landing-page-primary;
             border-radius: 50%;
             padding: 5px;
             display: inline-block;
@@ -305,7 +305,7 @@ ol {
     .sv_complete_btn, .sv_prev_btn, .sv_next_btn {
       padding: 10px 20px;
       border: none;
-      background-color: $brand-primary;
+      background-color: $landing-page-primary;
       color: white;
       margin: 0 5px;
 
@@ -479,7 +479,7 @@ footer {
     margin: auto;
 
     .progress-bar {
-      background-color: $brand-primary;
+      background-color: $landing-page-primary;
     }
   }
 
@@ -489,7 +489,7 @@ footer {
       padding: 15px;
 
       .number {
-        color: $brand-primary;
+        color: $landing-page-primary;
         font-weight: bold;
         width: 100px;
         text-align: right;
