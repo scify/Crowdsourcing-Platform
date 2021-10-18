@@ -12,7 +12,7 @@ class NotificationTest extends TestCase {
      *
      * @return void
      */
-    public function testBasicTest() {
+    public function test_notification_sending() {
         $user = User::findOrFail(1);
         $user->notify(new UserRegistered());
     }
