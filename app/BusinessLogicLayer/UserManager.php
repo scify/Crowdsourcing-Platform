@@ -181,6 +181,7 @@ class UserManager {
                 return $this->userRepository->find($existingUser->id);
             } catch (ModelNotFoundException $e) {
                 unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
+                setcookie(UserManager::$USER_COOKIE_KEY, false);
                 return $this->createUser($data);
             }
         }
