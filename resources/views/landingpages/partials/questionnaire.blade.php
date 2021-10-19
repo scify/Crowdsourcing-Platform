@@ -5,13 +5,11 @@
              style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
             @if ($viewModel->questionnaire)
                 <div class="text-center content-container">
-                    <h3 class="questionnaire-section-title"
-                        style="color: {{ $viewModel->project->lp_questionnaire_color }}">
+                    <h3 class="questionnaire-section-title">
                         {{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}
                     </h3>
                     @if(!$viewModel->userResponse)
-                        <div class="questionnaire-description"
-                             style="color: {{ $viewModel->project->lp_questionnaire_color }}">
+                        <div class="questionnaire-description">
                             {!! $viewModel->questionnaire->description !!}
                         </div>
                         <div class="container-fluid">
@@ -25,7 +23,7 @@
                 </div>
             @else
                 <div class="text-center content-container ">
-                    <div style="color: {{ $viewModel->project->lp_questionnaire_color }}">
+                    <div>
                         @if ($viewModel->project->status_id == App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED)
                             <h3 class="questionnaire-section-title">This project has been finalized.</h3>
                         @else

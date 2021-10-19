@@ -13,8 +13,7 @@
             @include('landingpages.partials.questionnaire')
         </section>
         @if($viewModel->questionnaire)
-            <section id="collective-goal"
-                     style="background-color: {{ $viewModel->project->lp_questionnaire_goal_bg_color }}">
+            <section id="collective-goal">
                 @include('landingpages.partials.goal-and-activity')
             </section>
         @endif

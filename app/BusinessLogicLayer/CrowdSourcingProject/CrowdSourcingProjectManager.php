@@ -194,10 +194,6 @@ class CrowdSourcingProjectManager {
             && (!$project || !$project->lp_questionnaire_img_path))
             $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
 
-        if ((!isset($attributes['lp_about_img_path']) || !$attributes['lp_about_img_path'])
-            && (!$project || !$project->lp_about_img_path))
-            $attributes['lp_about_img_path'] = '/images/image_temp.png';
-
         if (!isset($attributes['lp_show_speak_up_btn']))
             $attributes['lp_show_speak_up_btn'] = false;
 
@@ -234,47 +230,8 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        if (!$project->lp_motto_color)
-            $project->lp_motto_color = '#ffffff';
-        if (!$project->lp_about_bg_color)
-            $project->lp_about_bg_color = '#ffffff';
-        if (!$project->lp_about_color)
-            $project->lp_about_color = '#333333';
-        if (!$project->lp_questionnaire_color)
-            $project->lp_questionnaire_color = '#000000';
-        if (!$project->lp_footer_bg_color)
-            $project->lp_footer_bg_color = '#ffffff';
-        if (!$project->lp_footer_color)
-            $project->lp_footer_color = '#000000';
-        if (!$project->lp_questionnaire_btn_color)
-            $project->lp_questionnaire_btn_color = '#ffffff';
-        if (!$project->lp_questionnaire_btn_bg_color)
-            $project->lp_questionnaire_btn_bg_color = '#0077FF';
-        if (!$project->lp_questionnaire_goal_title_color)
-            $project->lp_questionnaire_goal_title_color = '#000000';
-        if (!$project->lp_questionnaire_goal_color)
-            $project->lp_questionnaire_goal_color = '#000000';
-        if (!$project->lp_questionnaire_goal_bg_color)
-            $project->lp_questionnaire_goal_bg_color = '#ffffff';
-        if (!$project->lp_newsletter_title_color)
-            $project->lp_newsletter_title_color = '#000000';
-        if (!$project->lp_newsletter_color)
-            $project->lp_newsletter_color = '#333333';
-        if (!$project->lp_newsletter_bg_color)
-            $project->lp_newsletter_bg_color = '#e0e0e0';
-        if (!$project->lp_newsletter_btn_color)
-            $project->lp_newsletter_btn_color = '#ffffff';
-        if (!$project->lp_newsletter_btn_bg_color)
-            $project->lp_newsletter_btn_bg_color = '#0077FF';
-        if(!$project->lp_motto_overlay_color)
-            $project->lp_motto_overlay_color = '#707070';
-        if(!$project->lp_motto_inner_bg_color)
-            $project->lp_motto_inner_bg_color = '#EFEFEF';
-        if(!$project->lp_external_url_btn_color)
-            $project->lp_external_url_btn_bg_color = '#ffffff';
-        if(!$project->lp_external_url_btn_bg_color)
-            $project->lp_external_url_btn_color = '#0077FF';
-
+        if(!$project->lp_primary_color)
+            $project->lp_primary_color = '#707070';
         return $project;
     }
 
@@ -287,8 +244,6 @@ class CrowdSourcingProjectManager {
             $project->sm_featured_img_path = '/images/image_temp.png';
         if (!$project->lp_questionnaire_img_path)
             $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
-        if (!$project->lp_about_img_path)
-            $project->lp_about_img_path = '/images/image_temp.png';
 
         return $project;
     }
