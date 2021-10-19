@@ -12,8 +12,8 @@
         </h2>
     </div>
 
-    <div class="row activity-container wrapper-box py-5">
-        <div class="col-md-6 col-sm-12 text-center">
+    <div class="row activity-container wrapper-box py-5 bg-white">
+        <div class="col-md-6 col-sm-12 text-center" style="border-right: 1px solid {{ $viewModel->project->lp_primary_color }}">
             @if ($viewModel->totalResponses ==0)
                 <p class="no-activity-found-msg"
                    style="color: {{ $viewModel->project->lp_primary_color }}">
