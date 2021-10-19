@@ -4,7 +4,7 @@
              class="align-items-center mx-0"
              style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
             @if ($viewModel->questionnaire)
-                <div class="text-center content-container" style="background: {{ $viewModel->project->lp_primary_color }}85">
+                <div class="text-center content-container" style="background: {{ $viewModel->project->lp_primary_color }}D9">
                     <h3 class="questionnaire-section-title">
                         {{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}
                     </h3>
