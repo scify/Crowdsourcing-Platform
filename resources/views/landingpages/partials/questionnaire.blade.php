@@ -9,12 +9,12 @@
                         {{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}
                     </h3>
                     @if(!$viewModel->userResponse)
-                        <div class="questionnaire-description">
+                        <div class="questionnaire-description mb-4">
                             {!! $viewModel->questionnaire->description !!}
                         </div>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-4 col-md-5 col-sm-11 mx-auto call-to-action">
+                                <div class="col-md-5 col-sm-11 mx-auto call-to-action">
                                     @include("landingpages.partials.open-questionnaire-button",["label"=>"Start answering"])
                                 </div>
                             </div>
@@ -22,7 +22,7 @@
                     @endif
                 </div>
             @else
-                <div class="text-center content-container ">
+                <div class="text-center content-container">
                     <div>
                         @if ($viewModel->project->status_id == App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED)
                             <h3 class="questionnaire-section-title">This project has been finalized.</h3>
