@@ -449,11 +449,11 @@ footer {
 }
 
 .call-to-action.action-dark {
-  background-color: $brand-primary;
+  background-color: $grey;
   color: $white;
 }
 
 .btn-primary.focus, .btn-primary:focus, .btn-primary:hover {
-  background-color: $brand-primary;
-  border-color: darken($brand-primary, 30);
+  background-color: $grey;
+  border-color: darken($grey, 40);
 }
