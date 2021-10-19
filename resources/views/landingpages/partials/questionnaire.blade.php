@@ -14,7 +14,7 @@
                         </div>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-4 col-md-5 col-sm-11 mx-auto">
+                                <div class="col-lg-4 col-md-5 col-sm-11 mx-auto call-to-action">
                                     @include("landingpages.partials.open-questionnaire-button",["label"=>"Start answering"])
                                 </div>
                             </div>
