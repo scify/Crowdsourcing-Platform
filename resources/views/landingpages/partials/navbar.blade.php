@@ -5,12 +5,6 @@
             <a class="navbar-brand" target="_blank" href="{{ $viewModel->project->external_url}}">
                 <img loading="lazy" alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
             </a>
-        @else
-            <a class="navbar-brand" href="{{ isset($viewModel->home_url) ? $viewModel->home_url : '#' }}">
-                @if(isset($viewModel->project))
-                    <img loading="lazy" alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
-                @endif
-            </a>
         @endif
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-menu-content"
