@@ -12,7 +12,7 @@
 
                 @if($viewModel->project->external_url)
                     <div class="text-center call-to-action">
-                        <a style="background-color: {{ $viewModel->project_lp_primary_color }}"
+                        <a style="background-color: {{ $viewModel->lp_primary_color }}"
                            href="{{$viewModel->project->external_url}}" target="_blank"
                            class="btn btn-primary visit-project-website ">
                             Visit project's site
