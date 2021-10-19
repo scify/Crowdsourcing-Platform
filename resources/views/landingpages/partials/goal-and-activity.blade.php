@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container py-5">
 
     <div class="goal-title">
-        <h2 class="info" style="color: {{ $viewModel->project->lp_primary_color }}">
+        <h2 class="info">
             @if ($viewModel->totalResponses==0)
                 Zero people have spoken up so far. Be the first!
             @else
-                <span class="number"><b>{{$viewModel->totalResponses}}</b></span> people have spoken up so far.
+                <span style="color: {{ $viewModel->project->lp_primary_color }}" class="number"><b>{{$viewModel->totalResponses}}</b></span> people have spoken up so far.
                 Let's get to <b>{{$viewModel->questionnaire->goal}}</b>!
             @endif
 

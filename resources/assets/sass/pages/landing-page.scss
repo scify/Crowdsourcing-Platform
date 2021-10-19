@@ -21,8 +21,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
-
 #project-motto-container {
   .overlay-filter {
     opacity: 0.3;
@@ -113,13 +111,13 @@ body {
 
     a {
       padding: .3em 1em;
-      border: 2px solid white;
+      border: 1px solid $black;
       border-radius: 3px;
-      background-color: transparent;
-      font-size: 20px;
+      background-color: $white;
+      font-size: 22px;
       font-weight: 500;
       line-height: 1.7em;
-      color: white;
+      color: $black;
       transition: all .2s;
 
       i {
@@ -177,24 +175,27 @@ ol {
   }
 }
 
-#about{
-    .btn.btn-primary{
-      color: white;
-      background-color: #07F;
-      padding: 12px 30px;
-      font-size: 16px;
-    }
+#about {
+  .btn.btn-primary {
+    color: white;
+    background-color: #07F;
+    padding: 12px 30px;
+    font-size: 16px;
+  }
 }
-#questionnaire-section,#collective-goal{
+
+#questionnaire-section, #collective-goal {
   background-color: #efefef;
 }
-#questionnaire-section{
+
+#questionnaire-section {
 
   @include media-breakpoint-up(md) {
     padding: 9vh 0;
   }
 
 }
+
 #questionnaire {
 
   background-size: cover;
@@ -203,8 +204,9 @@ ol {
     padding: 7vh 10vh;
   }
   min-height: 100px;
-  .content-container{
-    background-color:rgba(0,119,255,0.85);
+
+  .content-container {
+    background-color: rgba(0, 119, 255, 0.85);
     font-size: 20px;
     @include media-breakpoint-up(md) {
       padding: 5vh 12vh;
@@ -218,15 +220,9 @@ ol {
   }
 
   .questionnaire-description {
-    font-size:1.3rem;
+    font-size: 1.3rem;
     margin: auto;
     text-align: justify;
-  }
-
-  .respond-questionnaire {
-    font-size: 20px;
-    padding: 10px 20px;
-    margin-top: 30px;
   }
 
   .questionnaire-section-title {
@@ -235,6 +231,8 @@ ol {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    font-weight: bold;
+    color: $white;
   }
 
   .wrapper-box {
@@ -463,15 +461,17 @@ ol {
       font-family: 'Open Sans', sans-serif;
     }
   }
-}#questionnaire-wrapper
+}
 
+#questionnaire-wrapper
 #questionnaire-wrapper {
   background-color: #EFEFEF;
   @include media-breakpoint-up(md) {
-    padding:  7vh 0 ;
+    padding: 7vh 0;
   }
 
 }
+
 .divider {
   border-bottom: 1px solid gray;
   width: 35%;
@@ -502,6 +502,10 @@ footer {
   @media screen and (max-width: 767px) {
     text-align: center;
   }
+}
+
+.goal-title {
+  color: $black;
 }
 
 #collective-goal {
