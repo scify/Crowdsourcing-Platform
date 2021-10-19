@@ -14,6 +14,7 @@
                 @if(!\Illuminate\Support\Facades\Auth::check())
                     <p class="dashboard-message w-100">Please login to complete your submission:</p>
                     <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
+                    <p class="dashboard-message mt-2 mb-2 w-100">After you complete your submission, you will receive the following badge:</p>
 
                 @endif
                 <div class="row">
