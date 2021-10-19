@@ -95,11 +95,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                        <div class="row  mb-6 p-4">
+                        <div class="row  mb-6 pl-4 pr-4">
                             <div class="col-md-6 text-left" >
                                 <button class="btn  btn-primary btn-lg  mt-0 float-left"
                                         id="submit-form"
