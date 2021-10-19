@@ -167,7 +167,7 @@ class UserManager {
             'nickname' => $data['nickname'],
             'password' => Hash::make($data['password'])
         ];
-        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]))
+        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             return $this->userRepository->create($data);
         else {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
