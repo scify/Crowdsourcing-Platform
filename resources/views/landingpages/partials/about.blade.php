@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="about" class="row align-items-center mx-0">
+    <div id="about" class="row align-items-center mx-0" style="background: {{ $viewModel->project->lp_primary_color }}0C">
 
         <span id="project"
               class="h-0 hidden"
