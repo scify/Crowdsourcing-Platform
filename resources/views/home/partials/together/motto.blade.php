@@ -6,8 +6,8 @@
             <div class="frosted"></div>
             <div id="project-motto">
                 <h2>Let's crowdsource!<br>Taking decisions with citizens and not for them</h2>
-                <div class="w-50 call-to-action mx-auto">
-                    <a href="/login" class="btn btn-block">Share your ideas</a>
+                <div class="w-50 mx-auto">
+                    <a href="/login" class="btn btn-block call-to-action">Share your ideas</a>
                 </div>
             </div>
         </div>
