@@ -12,7 +12,7 @@
         </h2>
     </div>
 
-    <div class="row activity-container wrapper-box">
+    <div class="row activity-container wrapper-box py-5">
         <div class="col-md-6 col-sm-12 text-center">
             @if ($viewModel->totalResponses ==0)
                 <p class="no-activity-found-msg"
