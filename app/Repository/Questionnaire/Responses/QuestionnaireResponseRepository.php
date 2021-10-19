@@ -45,7 +45,6 @@ class QuestionnaireResponseRepository extends Repository {
         } catch (Exception $e) {
             Log::error($e->getMessage());
         } finally {
-            Log::info('Unsetting cookie for user: ' . $anonymousUserId);
             unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
             setcookie(UserManager::$USER_COOKIE_KEY, false);
         }
