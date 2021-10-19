@@ -21,8 +21,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
-
 #project-motto-container {
   .overlay-filter {
     opacity: 0.3;
@@ -107,42 +105,6 @@ body {
   #motto-subtitle {
     font-size: 1.2rem;
   }
-
-  .call-to-action {
-    text-align: center;
-
-    a {
-      padding: .3em 1em;
-      border: 2px solid white;
-      border-radius: 3px;
-      background-color: transparent;
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1.7em;
-      color: white;
-      transition: all .2s;
-
-      i {
-        display: none;
-        position: relative;
-        left: 20px;
-        bottom: 2px;
-        top: 2px;
-        font-size: 30px;
-      }
-
-      &:hover {
-        /* padding: .3em 2em .3em .7em;*/
-        background-color: rgba(255, 255, 255, .2);
-        border: 2px solid transparent;
-
-        i {
-          display: inline-block;
-          transition: all 5s;
-        }
-      }
-    }
-  }
 }
 
 section#past-projects {
@@ -150,17 +112,6 @@ section#past-projects {
 }
 
 section {
-  &:first-of-type {
-    //padding-top: 80px;
-  }
-
-  &:nth-child(even) .row {
-    background-color: #f3fafe;
-  }
-
-  //& {
-  //  margin: 0 -15px;
-  //}
   h2 {
     text-align: center;
   }
@@ -177,24 +128,29 @@ ol {
   }
 }
 
-#about{
-    .btn.btn-primary{
-      color: white;
-      background-color: #07F;
-      padding: 12px 30px;
-      font-size: 16px;
-    }
+#about {
+  .btn.btn-primary {
+    color: white;
+  }
 }
-#questionnaire-section,#collective-goal{
+
+#questionnaire-section, #collective-goal {
   background-color: #efefef;
 }
-#questionnaire-section{
+
+#questionnaire-section {
 
   @include media-breakpoint-up(md) {
     padding: 9vh 0;
   }
 
 }
+
+#questionnaire-wrapper {
+  background-color: #efefef;
+  padding-top: 7rem;
+}
+
 #questionnaire {
 
   background-size: cover;
@@ -203,13 +159,12 @@ ol {
     padding: 7vh 10vh;
   }
   min-height: 100px;
-  .content-container{
-    background-color:rgba(0,119,255,0.85);
+
+  .content-container {
     font-size: 20px;
     @include media-breakpoint-up(md) {
       padding: 5vh 12vh;
     }
-
     color: white;
   }
 
@@ -218,15 +173,9 @@ ol {
   }
 
   .questionnaire-description {
-    font-size:1.3rem;
+    font-size: 1.3rem;
     margin: auto;
     text-align: justify;
-  }
-
-  .respond-questionnaire {
-    font-size: 20px;
-    padding: 10px 20px;
-    margin-top: 30px;
   }
 
   .questionnaire-section-title {
@@ -235,6 +184,8 @@ ol {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    font-weight: bold;
+    color: $white;
   }
 
   .wrapper-box {
@@ -264,9 +215,7 @@ ol {
   .modal-title {
     font-weight: normal;
     text-align: center;
-    font-size: 25px;
-    padding-top: 10px;
-    padding-bottom: 20px;
+    font-size: 22px;
   }
 
   .sv_row {
@@ -379,39 +328,6 @@ ol {
   }
 
   .modal-body {
-    p {
-      text-align: center;
-      font-size: 20px;
-    }
-
-    .badge-container {
-      padding-top: 30px;
-      padding-bottom: 30px;
-      margin-bottom: -15px;
-      margin-top: -15px;
-
-      p {
-        font-weight: bold;
-
-        .level {
-          font-weight: normal;
-        }
-      }
-
-      img {
-        height: auto;
-        width: 250px;
-        margin: 10px auto;
-        display: block;
-      }
-    }
-  }
-
-  .modal-footer {
-    .refresh-page {
-      max-width: 100px;
-      margin: auto;
-    }
 
     .btn {
       margin-top: 10px;
@@ -441,6 +357,41 @@ ol {
       margin-top: 0;
       text-align: center;
     }
+
+    .refresh-page {
+      max-width: 100px;
+      margin: auto;
+    }
+  }
+
+  .modal-footer {
+
+    p {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .badge-container {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-bottom: -15px;
+      margin-top: -15px;
+
+      p {
+        font-weight: bold;
+
+        .level {
+          font-weight: normal;
+        }
+      }
+
+      img {
+        height: auto;
+        width: 250px;
+        margin: 10px auto;
+        display: block;
+      }
+    }
   }
 
   .gamification-badge {
@@ -463,15 +414,17 @@ ol {
       font-family: 'Open Sans', sans-serif;
     }
   }
-}#questionnaire-wrapper
+}
 
+#questionnaire-wrapper
 #questionnaire-wrapper {
   background-color: #EFEFEF;
   @include media-breakpoint-up(md) {
-    padding:  7vh 0 ;
+    padding: 7vh 0;
   }
 
 }
+
 .divider {
   border-bottom: 1px solid gray;
   width: 35%;
@@ -502,6 +455,10 @@ footer {
   @media screen and (max-width: 767px) {
     text-align: center;
   }
+}
+
+.goal-title {
+  color: $black;
 }
 
 #collective-goal {
@@ -596,15 +553,6 @@ footer {
 
       div {
         margin-bottom: 10px;
-      }
-
-      input, .btn {
-        font-size: 25px;
-        height: auto;
-      }
-
-      .btn {
-        padding: 7px 12px;
       }
     }
 

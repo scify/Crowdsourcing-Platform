@@ -1,6 +1,6 @@
 <template>
   <div class="component mt-3">
-    <div v-if="displayLoginPrompt" class="container-fluid">
+    <div v-if="displayLoginPrompt" class="container-fluid p-0">
       <div class="row mb-5">
         <h3>You can create an account in order to see more questionnaires that need answering</h3>
       </div>
