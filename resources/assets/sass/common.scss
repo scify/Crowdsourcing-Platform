@@ -454,7 +454,7 @@ footer {
 }
 
 .call-to-action.btn-primary.focus, .call-to-action.btn-primary:focus, .call-to-action.btn-primary:hover {
-  background-color: color("grey-light");
+  background-color: $grey-light;
   color: $black;
   border-color: $grey;
 }
