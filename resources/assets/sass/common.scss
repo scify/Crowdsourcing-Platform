@@ -452,3 +452,8 @@ footer {
   background-color: $brand-primary;
   color: $white;
 }
+
+.btn-primary.focus, .btn-primary:focus, .btn-primary:hover {
+  background-color: $brand-primary;
+  border-color: darken($brand-primary, 30);
+}
