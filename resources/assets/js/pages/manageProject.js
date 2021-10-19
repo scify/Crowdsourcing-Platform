@@ -49,10 +49,11 @@ import 'codemirror/mode/xml/xml';
             // if on last step, show form submit button
             if (event.detail.indexStep === 4) {
                 $('.stepper-next').addClass('d-none');
-                $('#submit-form').removeClass('d-none');
+                // always display the save
+               // $('#submit-form').removeClass('d-none');
             } else {
                 $('.stepper-next').removeClass('d-none');
-                $('#submit-form').addClass('d-none');
+               // $('#submit-form').addClass('d-none');
             }
             // if trying to navigate away from first step, perform validation
             if (event.detail.from === 0) {
