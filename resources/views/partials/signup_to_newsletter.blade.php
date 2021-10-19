@@ -6,10 +6,12 @@
                 Learn about all our new projects, get updates on active ones and contribute where it is most
                 needed!
             </p>
-            <div class="sign-up row">
-                <div class="col-md-3 call-to-action" style="float: none; margin: 0 auto;">
-                    <a href="https://ecas.org/#mc_signup" target="_blank"
-                       class="btn btn-outline-dark signup-btn">Sign up!</a>
+            <div class="sign-up container-fluid">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12 mx-auto">
+                        <a href="https://ecas.org/#mc_signup" target="_blank"
+                           class="btn btn-outline-dark signup-btn call-to-action">Sign up!</a>
+                    </div>
                 </div>
             </div>
         </div>

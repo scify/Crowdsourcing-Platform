@@ -24,7 +24,7 @@
                         <div class="row">
                             @if($viewModel->questionnaire)
                                 @if(!$viewModel->userResponse)
-                                    <div class="col-md-5 col-sm-12 call-to-action mx-auto">
+                                    <div class="col-md-5 col-sm-12 mx-auto">
                                         @include("landingpages.partials.open-questionnaire-button", ["label"=>"Answer the questionnaire"])
                                     </div>
                                 @else
