@@ -99,15 +99,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row  mb-6 p-4">
                             <div class="col-md-6 text-left" >
                                 <button class="btn  btn-primary btn-lg  mt-0 float-left"
                                         id="submit-form"
                                         type="submit">Save
                                 </button>
                             </div>
-                            <div class="col-md-6 mb-3 text-right">
-                                <button class="btn  btn-primary btn-lg stepper-previous mb-2"
+                            <div class="col-md-6 text-right">
+                                <button class="btn  btn-primary btn-lg stepper-previous "
                                         type="button">
                                     Previous
                                 </button>
