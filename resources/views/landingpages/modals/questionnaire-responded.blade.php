@@ -2,11 +2,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Thank you!</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        Thank you!
+                    @else
+                        Almost there!
+                    @endif
+                </h4>
             </div>
             <div class="modal-body">
+                @if(!\Illuminate\Support\Facades\Auth::check())
+                    <p class="dashboard-message w-100">Please login to complete your submission:</p>
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
+
+                @endif
                 <div class="row">
                     <div class="col-md-12 badge-container"></div>
                 </div>
@@ -15,9 +24,6 @@
                 @if(\Illuminate\Support\Facades\Auth::check())
                     <p class="dashboard-message w-100">Visit your Dashboard to invite your friends</p>
                     <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">Go to Dashboard</a>
-                @else
-                    <p class="dashboard-message w-100">Create an account to see more questionnaires!</p>
-                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
                 @endif
             </div>
         </div>
