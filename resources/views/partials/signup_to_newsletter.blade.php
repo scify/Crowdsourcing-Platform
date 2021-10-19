@@ -8,7 +8,7 @@
             </p>
             <div class="sign-up container">
                 <div class="row">
-                    <div class="col-md-5 col-sm-12 mx-auto">
+                    <div class="col-md-4 col-sm-12 mx-auto">
                         <a href="https://ecas.org/#mc_signup" target="_blank"
                            class="btn btn-outline-dark signup-btn call-to-action">Sign up!</a>
                     </div>
