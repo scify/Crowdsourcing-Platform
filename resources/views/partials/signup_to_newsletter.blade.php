@@ -7,7 +7,7 @@
                 needed!
             </p>
             <div class="sign-up row">
-                <div class="col-md-3" style="float: none; margin: 0 auto;">
+                <div class="col-md-3 call-to-action" style="float: none; margin: 0 auto;">
                     <a href="https://ecas.org/#mc_signup" target="_blank"
                        class="btn btn-block btn-outline-dark signup-btn">Sign up!</a>
                 </div>
