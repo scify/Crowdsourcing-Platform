@@ -105,40 +105,29 @@ body {
   #motto-subtitle {
     font-size: 1.2rem;
   }
+}
 
-  .call-to-action {
-    text-align: center;
+.call-to-action {
+  text-align: center;
 
-    a {
-      padding: .3em 1em;
-      border: 1px solid $black;
-      border-radius: 3px;
-      background-color: $white;
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 1.7em;
-      color: $black;
-      transition: all .2s;
+  a {
+    padding: .3em 1em;
+    border: 1px solid $black;
+    border-radius: 3px;
+    background-color: $white;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.7em;
+    color: $black;
+    transition: all .2s;
 
-      i {
-        display: none;
-        position: relative;
-        left: 20px;
-        bottom: 2px;
-        top: 2px;
-        font-size: 30px;
-      }
-
-      &:hover {
-        /* padding: .3em 2em .3em .7em;*/
-        background-color: rgba(255, 255, 255, .2);
-        border: 2px solid transparent;
-
-        i {
-          display: inline-block;
-          transition: all 5s;
-        }
-      }
+    i {
+      display: none;
+      position: relative;
+      left: 20px;
+      bottom: 2px;
+      top: 2px;
+      font-size: 30px;
     }
   }
 }
