@@ -95,26 +95,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6 text-left" >
-                                            <button class="btn btn-block btn-primary btn-lg  mt-0 float-left"
-                                                    id="submit-form"
-                                                    type="submit">Save
-                                            </button>
-                                        </div>
-                                        <div class="col-md-6 mb-3 text-right">
-                                            <button class="btn btn-block btn-primary btn-lg stepper-previous mb-2"
-                                                    type="button">
-                                                Previous
-                                            </button>
-                                            <button class="btn btn-block btn-primary btn-lg stepper-next" type="button">
-                                                Next
-                                            </button>
-                                        </div>
 
-                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-left" >
+                                <button class="btn  btn-primary btn-lg  mt-0 float-left"
+                                        id="submit-form"
+                                        type="submit">Save
+                                </button>
+                            </div>
+                            <div class="col-md-6 mb-3 text-right">
+                                <button class="btn  btn-primary btn-lg stepper-previous mb-2"
+                                        type="button">
+                                    Previous
+                                </button>
+                                <button class="btn  btn-primary btn-lg stepper-next" type="button">
+                                    Next
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
