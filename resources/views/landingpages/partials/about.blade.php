@@ -12,11 +12,18 @@
 
                 @if($viewModel->project->external_url)
                     <div class="text-center call-to-action">
-                        <a style="background-color: {{ $viewModel->project->lp_primary_color }}"
-                           href="{{$viewModel->project->external_url}}" target="_blank"
-                           class="btn btn-primary visit-project-website ">
-                            Visit project's site
-                        </a>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-12">
+                                    <a style="background-color: {{ $viewModel->project->lp_primary_color }}"
+                                       href="{{$viewModel->project->external_url}}" target="_blank"
+                                       class="btn btn-primary visit-project-website w-100">
+                                        Visit project's site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 @endif
