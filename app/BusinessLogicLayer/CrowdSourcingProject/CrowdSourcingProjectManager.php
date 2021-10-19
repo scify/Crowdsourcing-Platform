@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
+use App\BusinessLogicLayer\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
@@ -88,8 +89,8 @@ class CrowdSourcingProjectManager {
         if (Auth::check()) {
             $userId = Auth::id();
         } // else, check if the user is anonymous (by checking the cookie) and get the user id
-        else if (isset($_COOKIE['crowdsourcing_anonymous_user_id']))
-            $userId = intval($_COOKIE['crowdsourcing_anonymous_user_id']);
+        else if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]))
+            $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
         if($userId)
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
