@@ -167,12 +167,10 @@ ol {
   min-height: 100px;
 
   .content-container {
-    background-color: rgba(0, 119, 255, 0.85);
     font-size: 20px;
     @include media-breakpoint-up(md) {
       padding: 5vh 12vh;
     }
-
     color: white;
   }
 
