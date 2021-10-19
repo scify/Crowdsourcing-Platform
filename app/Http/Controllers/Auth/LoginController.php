@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\UserManager;
 use App\Http\Controllers\Controller;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,12 +31,14 @@ class LoginController extends Controller {
      */
     protected $redirectTo = '/my-dashboard';
 
-    private $userManager;
+    protected $userManager;
+    protected $questionnaireResponseRepository;
 
-
-    public function __construct(UserManager $userManager) {
+    public function __construct(UserManager                     $userManager,
+                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
     public function showLoginForm(Request $request) {
@@ -44,6 +47,7 @@ class LoginController extends Controller {
     }
 
     protected function authenticated(Request $request, $user) {
+        $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
         $redirectToOverrideUrl = session("redirectTo");
         if ($redirectToOverrideUrl)
             return redirect($redirectToOverrideUrl);
