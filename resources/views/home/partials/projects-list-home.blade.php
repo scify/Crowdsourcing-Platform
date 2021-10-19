@@ -11,7 +11,7 @@
                             {!! $project->description ? $project->description : $project->about !!}
                         </div>
                         <div class="project-visit-btn">
-                            <a href="/{{$project->slug}}" class="btn btn-block btn-primary btn-lg">
+                            <a href="/{{$project->slug}}" class="btn btn-block btn-primary call-to-action">
                                 {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
                             </a>
                         </div>
