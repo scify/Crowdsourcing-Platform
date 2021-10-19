@@ -26,6 +26,7 @@ class UserManager {
     private $questionnaireAnswerVoteRepository;
 
     public static $USERS_PER_PAGE = 10;
+    public static $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
     public function __construct(UserRepository                    $userRepository,
                                 UserRoleRepository                $userRoleRepository,
@@ -152,6 +153,7 @@ class UserManager {
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
         if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
             $user = $result->data;
+            $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
             auth()->login($user);
             return $user;
         } else {
@@ -165,10 +167,10 @@ class UserManager {
             'nickname' => $data['nickname'],
             'password' => Hash::make($data['password'])
         ];
-        if (!isset($_COOKIE['crowdsourcing_anonymous_user_id']))
+        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             return $this->userRepository->create($data);
         else {
-            $userId = intval($_COOKIE['crowdsourcing_anonymous_user_id']);
+            $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
             try {
                 $existingUser = $this->userRepository->find($userId);
                 $this->userRepository->update([
@@ -178,7 +180,7 @@ class UserManager {
                 ], $existingUser->id);
                 return $this->userRepository->find($existingUser->id);
             } catch (ModelNotFoundException $e) {
-                unset($_COOKIE['crowdsourcing_anonymous_user_id']);
+                unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
                 return $this->createUser($data);
             }
         }
@@ -191,9 +193,9 @@ class UserManager {
     public function getLoggedInUserOrCreateAnonymousUser() {
         if (Auth::check())
             return Auth::user();
-        if (isset($_COOKIE['crowdsourcing_anonymous_user_id']) && intval($_COOKIE['crowdsourcing_anonymous_user_id'])) {
+        if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             try {
-                return $this->userRepository->find(intval($_COOKIE['crowdsourcing_anonymous_user_id']));
+                return $this->userRepository->find(intval($_COOKIE[UserManager::$USER_COOKIE_KEY]));
             } catch (ModelNotFoundException $e) {
                 return $this->createAnonymousUser();
             }
