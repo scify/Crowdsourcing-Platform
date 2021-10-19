@@ -5,7 +5,6 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\UserManager;
-use App\Jobs\AnalyzeQuestionnaireResponseToxicity;
 use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
@@ -127,5 +126,4 @@ class QuestionnaireResponseManager {
     public function deleteResponse(int $questionnaire_response_id) {
         return $this->questionnaireResponseRepository->delete($questionnaire_response_id);
     }
-
 }

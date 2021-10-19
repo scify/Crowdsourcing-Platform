@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
+use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -37,16 +38,19 @@ class RegisterController extends Controller
     private $userManager;
     private $mailChimpManager;
     private $crowdSourcingProjectManager;
+    protected $questionnaireResponseRepository;
 
     public function __construct(UserRoleManager $userRoleManager,
                                 UserManager $userManager,
                                 MailChimpAdaptor $mailChimpManager,
-                                CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
+                                QuestionnaireResponseRepository   $questionnaireResponseRepository) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
         $this->userManager = $userManager;
         $this->mailChimpManager = $mailChimpManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
     }
 
     /**
@@ -79,6 +83,7 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
+        $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
         $this->mailChimpManager->subscribe($user->email, 'registered_users',$user->nickname);
         //same code with Login controller authenticated method
         $redirectToOverrideUrl = session("redirectTo");
