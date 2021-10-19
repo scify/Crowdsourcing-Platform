@@ -89,7 +89,7 @@ class CrowdSourcingProjectManager {
         if (Auth::check()) {
             $userId = Auth::id();
         } // else, check if the user is anonymous (by checking the cookie) and get the user id
-        else if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]))
+        else if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
         if($userId)
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
