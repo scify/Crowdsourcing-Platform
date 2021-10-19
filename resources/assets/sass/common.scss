@@ -31,7 +31,6 @@
 @import '../../../node_modules/codemirror/theme/monokai.css';
 @import '../../../node_modules/summernote/dist/summernote-bs4.css';
 
-
 @import '../../../node_modules/survey-jquery/survey.min.css';
 @import '../../../node_modules/survey-creator/survey-creator.min.css';
 
@@ -359,10 +358,11 @@ table {
     }
   }
 }
-.navbar-light .navbar-nav .nav-link{
-  color:black;
-  font-weight:600;
-  padding-left:3rem;
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+  font-weight: 600;
+  padding-left: 3rem;
 }
 
 .modal-dialog {
@@ -425,7 +425,36 @@ footer {
   z-index: 100000;
   right: 25px;
   top: 25px;
+
   * {
     color: $white;
   }
+}
+
+.call-to-action {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 3px;
+  background-color: $white;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.7em;
+  color: $black;
+  transition: all .2s;
+  padding: toRem(12) toRem(30);
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.call-to-action.action-dark {
+  background-color: $brand-primary;
+  color: $white;
+}
+
+.call-to-action.btn-primary.focus, .call-to-action.btn-primary:focus, .call-to-action.btn-primary:hover {
+  background-color: $grey-light;
+  color: $black;
+  border-color: $grey;
 }

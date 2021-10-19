@@ -1,33 +1,33 @@
-<div class="container">
+<div class="container py-5">
 
     <div class="goal-title">
-        <h2 class="info" style="color: {{ $viewModel->project->lp_questionnaire_goal_title_color }}">
+        <h2 class="info">
             @if ($viewModel->totalResponses==0)
                 Zero people have spoken up so far. Be the first!
             @else
-                <span class="number"><b>{{$viewModel->totalResponses}}</b></span> people have spoken up so far.
+                <span style="color: {{ $viewModel->project->lp_primary_color }}" class="number"><b>{{$viewModel->totalResponses}}</b></span> people have spoken up so far.
                 Let's get to <b>{{$viewModel->questionnaire->goal}}</b>!
             @endif
 
         </h2>
     </div>
 
-    <div class="row activity-container wrapper-box">
-        <div class="col-md-6 col-sm-12 text-center">
+    <div class="row activity-container wrapper-box py-5 bg-white">
+        <div class="col-md-6 col-sm-12 text-center" style="border-right: 1px solid {{ $viewModel->project->lp_primary_color }}">
             @if ($viewModel->totalResponses ==0)
                 <p class="no-activity-found-msg"
-                   style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}">
+                   style="color: {{ $viewModel->project->lp_primary_color }}">
                     No recent activity found
                 </p>
             @elseif ($viewModel->totalResponses > 0)
                 <div class="activity-title wrapper-title">
-                    <p style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}">Latest contributors</p>
+                    <p style="color: {{ $viewModel->project->lp_primary_color }}">Latest contributors</p>
                 </div>
                 <div class="activity-content">
                     @foreach($viewModel->allResponses as $response)
                         @if($response->user_name)
                             <div class="activity-item text-left">
-                                <i style="color: {{ $viewModel->project->lp_questionnaire_goal_color }}"
+                                <i style="color: {{ $viewModel->project->lp_primary_color }}"
                                    class="fa fa-user-circle user-icon" aria-hidden="true"></i>
                                 <b>{{$response->user_name}}</b>
                                 @if($response->created_at)

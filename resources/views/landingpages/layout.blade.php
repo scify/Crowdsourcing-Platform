@@ -37,9 +37,8 @@
 </div>
 
 @if(isset($viewModel->project))
-    <footer class="py-5" style="background-color: {{ $viewModel->project->lp_footer_bg_color }}">
-        <div class="container" style="
-                color: {{ $viewModel->project->lp_footer_color }}">
+    <footer class="py-5">
+        <div class="container">
             {!! $viewModel->project->footer !!}
         </div>
     </footer>
