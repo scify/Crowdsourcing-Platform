@@ -9,12 +9,12 @@
                         {{ $viewModel->userResponse?"You have already participated, thank you!":   $viewModel->questionnaire->title }}
                     </h3>
                     @if(!$viewModel->userResponse)
-                        <div class="questionnaire-description mb-4">
+                        <div class="questionnaire-description mb-5">
                             {!! $viewModel->questionnaire->description !!}
                         </div>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-5 col-sm-11 mx-auto">
+                                <div class="col-md-6 col-sm-11 mx-auto">
                                     @include("landingpages.partials.open-questionnaire-button",["label"=>"Start answering"])
                                 </div>
                             </div>
