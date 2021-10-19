@@ -1,6 +1,5 @@
 <div class="container">
-    <div id="about" class="row align-items-center mx-0"
-         style="background-color: {{ $viewModel->project->lp_about_bg_color }}">
+    <div id="about" class="row align-items-center mx-0">
 
         <span id="project"
               class="h-0 hidden"
@@ -8,7 +7,7 @@
               data-id="{{ $viewModel->project->id }}"></span>
 
         <div class="col-md-10 col-sm-12 p-0 mx-auto">
-            <div class="content-container" style="color: {{ $viewModel->project->lp_about_color }}">
+            <div class="content-container">
                 {!! $viewModel->project->about !!}
 
                 @if($viewModel->project->external_url)

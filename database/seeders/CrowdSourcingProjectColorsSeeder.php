@@ -79,10 +79,7 @@ class CrowdSourcingProjectColorsSeeder extends Seeder {
 
         $projects = CrowdSourcingProject::all();
         foreach ($projects as $project) {
-            $project->lp_motto_overlay_color = '#707070';
-            $project->lp_motto_inner_bg_color = '#EFEFEF';
-            $project->lp_external_url_btn_color = '#000000';
-            $project->lp_external_url_btn_bg_color = '#ffffff';
+            $project->lp_primary_color = '#707070';
             $project->save();
         }
     }
