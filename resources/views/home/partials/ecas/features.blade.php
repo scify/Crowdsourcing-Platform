@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Features</h2>
+        <h2>CrowdSourcing platform features</h2>
         <div class="content-container">
             <ul id="features-nav" class="nav nav-pills justify-content-center" role="tablist">
                 <li role="presentation" class="nav-item"><a class="nav-link active" href="#citizens"
