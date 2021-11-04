@@ -19,7 +19,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         header2.innerHTML = "Translated Answer";
         tr.appendChild(header2);
         const header3 = document.createElement("th");
-        header3.innerHTML = "Initial Language Detected";
+        header3.innerHTML = "Language";
         tr.appendChild(header3);
         const header4 = document.createElement("th");
         header4.innerHTML = "";
@@ -63,7 +63,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     userDownvotedClass = 'user-downvoted';
                 const upvotesNum = getNumOfUpvotes(questionName, respondentUserId);
                 const downvotesNum = getNumOfDownvotes(questionName, respondentUserId);
-
                 if (upvotesNum)
                     td4.setAttribute('data-order', (upvotesNum * 10));
                 else if (downvotesNum)
@@ -71,19 +70,19 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 else
                     td4.setAttribute('data-order', '1');
 
-                td4.innerHTML = '<div class="container-fluid">' +
+                td4.innerHTML = '<div class="container-fluid px-0">' +
                     '<div class="row text-center no-gutters reaction-buttons">' +
-                    '<div class="col-6 pr-1">' +
+                    '<div class="col">' +
                     '<button data-question-name="' + questionName + '" ' +
                     'data-respondent-user-id="' + respondentUserId + '" ' +
-                    'type="button" class="btn btn-light w-100 upvote vote-btn ' + userUpvotedClass + '">' +
+                    'type="button" class="btn btn-outline-secondary w-100 upvote vote-btn ' + userUpvotedClass + '">' +
                     '<i class="far fa-thumbs-up"></i><span class="count">' + upvotesNum + '</span>' +
                     '</button>' +
                     '</div>' +
-                    '<div class="col-6 pl-1">' +
+                    '<div class="col-6 d-none">' +
                     '<button data-question-name="' + questionName + '" ' +
                     'data-respondent-user-id="' + respondentUserId + '" ' +
-                    'type="button" class="btn btn-light w-100 downvote vote-btn ' + userDownvotedClass + '">' +
+                    'type="button" class="btn btn-outline-secondary w-100 downvote vote-btn' + userDownvotedClass + '">' +
                     '<i class="far fa-thumbs-down"></i><span class="count">' + downvotesNum + '</span>' +
                     '</button>' +
                     '</div>' +
@@ -148,10 +147,10 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             "responsive": true,
             "searching": true,
             "columns": [
-                {"width": "40%"},
-                {"width": "40%"},
+                {"width": "42.5%"},
+                {"width": "42.5%"},
                 {"width": "5%"},
-                {"width": "15%"}
+                {"width": "10%"}
             ],
             "order": [[3, "desc"]],
             "dom": 'Bfrtip',

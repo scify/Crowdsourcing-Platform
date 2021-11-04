@@ -262,7 +262,7 @@ export default {
 
       const parent = element.closest(".reaction-buttons");
       let oppositeButtonEl = parent.find("." + oppositeButtonClassName + ":first");
-      if (oppositeButtonEl.hasClass(oppositeClassName)) {
+      if (oppositeButtonEl && oppositeButtonEl.hasClass(oppositeClassName)) {
         oppositeButtonEl.removeClass(oppositeClassName);
         let countEl = oppositeButtonEl.find(".count:first");
         let count = parseInt(countEl.html()) - 1;
