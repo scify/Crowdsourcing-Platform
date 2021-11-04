@@ -106,15 +106,16 @@ class QuestionnaireResponseManager {
             ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, $user_voter_id);
     }
 
-    public function voteAnswer(int $questionnaire_id, string $question_name, int $respondent_user_id, bool $upvote) {
-        if (!Auth::check())
-            return false;
-        $voterUserId = Auth::id();
+    public function voteAnswer(int $questionnaire_id,
+                               string $question_name,
+                               int $respondent_user_id,
+                               int $voter_user_id,
+                               bool $upvote) {
         $data = [
             'questionnaire_id' => $questionnaire_id,
             'question_name' => $question_name,
             'respondent_user_id' => $respondent_user_id,
-            'voter_user_id' => $voterUserId
+            'voter_user_id' => $voter_user_id
         ];
         $existing = $this->questionnaireAnswerVoteRepository->where($data);
         if ($existing && $existing->upvote == $upvote) {

@@ -48,7 +48,13 @@ class QuestionnaireResponseController extends Controller {
 
     public function voteAnswer(Request $request): JsonResponse {
         return response()->json($this->questionnaireResponseManager
-            ->voteAnswer($request->questionnaire_id, $request->question_name, $request->respondent_user_id, $request->upvote));
+            ->voteAnswer(
+                $request->questionnaire_id,
+                $request->question_name,
+                $request->respondent_user_id,
+                $request->voter_user_id,
+                $request->upvote)
+        );
     }
 
     public function destroy(Request $request) {
