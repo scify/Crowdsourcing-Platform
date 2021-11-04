@@ -8,6 +8,7 @@ export class AnswersData {
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
+    let translationExistsForQuestion = true;
 
     function renderHeader(table, visualizer) {
         const header = document.createElement("thead");
@@ -15,12 +16,14 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         const header1 = document.createElement("th");
         header1.innerHTML = "Original Answer";
         tr.appendChild(header1);
-        const header2 = document.createElement("th");
-        header2.innerHTML = "Translated Answer";
-        tr.appendChild(header2);
-        const header3 = document.createElement("th");
-        header3.innerHTML = "Language";
-        tr.appendChild(header3);
+        if (translationExistsForQuestion) {
+            const header2 = document.createElement("th");
+            header2.innerHTML = "Translated Answer";
+            tr.appendChild(header2);
+            const header3 = document.createElement("th");
+            header3.innerHTML = "Language";
+            tr.appendChild(header3);
+        }
         const header4 = document.createElement("th");
         header4.innerHTML = "";
         tr.appendChild(header4);
@@ -53,8 +56,10 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     td3.innerHTML = answer.initial_language_detected ? getLanguageName(answer.initial_language_detected) : '';
                 }
                 tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
+                if (translationExistsForQuestion) {
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                }
                 let userUpvotedClass = '';
                 let userDownvotedClass = '';
                 if (userHasUpvoted(questionName, respondentUserId))
@@ -69,8 +74,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     td4.setAttribute('data-order', '0.' + downvotesNum);
                 else
                     td4.setAttribute('data-order', '1');
-
-                td4.innerHTML = '<div class="container-fluid px-0">' +
+                const classNameForContainer = translationExistsForQuestion ? 'px-0' : '';
+                td4.innerHTML = '<div class="container-fluid ' + classNameForContainer + '">' +
                     '<div class="row text-center no-gutters reaction-buttons">' +
                     '<div class="col">' +
                     '<button data-question-name="' + questionName + '" ' +
@@ -135,24 +140,34 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     const renderContent = function (contentContainer, visualizer) {
+        const answersForCurrentQuestion = visualizer.dataProvider.data
+            .map(a => a[visualizer.question.name]).filter(a => a !== undefined);
+        translationExistsForQuestion = answersForCurrentQuestion.find(a => !isString(a));
+
         const table = document.createElement("table");
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
         renderRows(table, visualizer);
         contentContainer.appendChild(table);
         contentContainer.className += " custom-texts-table-container";
+        let columns = [
+            {"width": "42.5%"},
+            {"width": "42.5%"},
+            {"width": "5%"},
+            {"width": "10%"}
+        ];
+        if (!translationExistsForQuestion)
+            columns = [
+                {"width": "80%"},
+                {"width": "20%"}
+            ];
         $(table).DataTable({
             destroy: true,
             "paging": true,
             "responsive": true,
             "searching": true,
-            "columns": [
-                {"width": "42.5%"},
-                {"width": "42.5%"},
-                {"width": "5%"},
-                {"width": "10%"}
-            ],
-            "order": [[3, "desc"]],
+            "columns": columns,
+            "order": [[(columns.length - 1), "desc"]],
             "dom": 'Bfrtip',
             "buttons": [
                 {
