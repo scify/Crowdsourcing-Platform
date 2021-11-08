@@ -37,17 +37,24 @@ class QuestionnaireResponseRepository extends Repository {
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             return;
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
+        Log::info('Transferring responses from user: ' . $anonymousUserId . ' to user: ' . $user_id);
         if ($anonymousUserId === $user_id)
             return;
         try {
             $user = User::findOrFail($anonymousUserId);
-            Log::info('Transfering responses from user: ' . $anonymousUserId . ' to user: ' . $user_id);
+            $questionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
+            $questionnaireResponseQuestionnaireIds = $questionnaireResponses->pluck('questionnaire_id')->toArray();
+            $questionnaireResponsesOfUser = QuestionnaireResponse::where('user_id', '=', $user_id)->get();
+            foreach ($questionnaireResponsesOfUser as $response) {
+                if (in_array($response->qustionnaire_id, $questionnaireResponseQuestionnaireIds))
+                    $response->delete();
+            }
             QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->update(['user_id' => $user_id]);
             $user->delete();
         } catch (Exception $e) {
-            Log::error($e->getMessage());
-        } finally {
-            setcookie(UserManager::$USER_COOKIE_KEY, $user_id);
+            Log::error('Transfer error:' . $e->getMessage());
+            setcookie(UserManager::$USER_COOKIE_KEY, false);
+            unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
         }
     }
 }

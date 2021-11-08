@@ -8,6 +8,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller {
@@ -48,11 +49,8 @@ class LoginController extends Controller {
 
     protected function authenticated(Request $request, $user) {
         $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
-        $redirectToOverrideUrl = session("redirectTo");
-        if ($redirectToOverrideUrl)
-            return redirect($redirectToOverrideUrl);
-        else
-            return redirect($this->redirectTo);
+        $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
+        return redirect($url)->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $user->id));
     }
 
 
