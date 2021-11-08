@@ -14,7 +14,7 @@
                             <div class="col-12">
                                 <div class="description-container">
                                     <div class="description">
-                                        <h4>{!! $viewModel->questionnaire->description !!}</h4>
+                                        <h5>{!! $viewModel->questionnaire->description !!}</h5>
                                     </div>
                                 </div>
                             </div>
