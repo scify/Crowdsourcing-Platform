@@ -19,20 +19,22 @@ use App\Http\Controllers\QuestionnaireResponseController;
 Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () {
     Route::post('/questionnaire/new', [QuestionnaireController::class, 'store'])->name('store-questionnaire');
     Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('update-questionnaire');
-    Route::get('/questionnaire/responses/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
-        ->name('questionnaire.responses');
-    Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
-        ->name('crowd-sourcing-project.get-colors');
-    Route::get('/questionnaire/answer-votes/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
-        ->name('questionnaire.answer-votes');
+
+
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('questionnaire.translate')->middleware("can:manage-crowd-sourcing-projects");
     Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('questionnaire.languages');
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('questionnaire.mark-translations');
     Route::get('/languages', [LanguageController::class, 'getLanguages'])
         ->name('languages');
+    Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.vote');
 });
 
 Route::middleware(['throttle:api-internal'])->group(function () {
     Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
-    Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.vote');
+    Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
+        ->name('crowd-sourcing-project.get-colors');
+    Route::get('/questionnaire/responses/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
+        ->name('questionnaire.responses');
+    Route::get('/questionnaire/answer-votes/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
+        ->name('questionnaire.answer-votes');
 });

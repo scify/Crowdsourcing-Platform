@@ -6,7 +6,7 @@
       </div>
       <div class="row">
         <div class="col-5 text-center pl-0">
-          <button class="btn btn-outline-primary btn-lg w-100">Sign up / Sign in</button>
+          <a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">Sign in</a>
         </div>
         <div class="col-5 offset-2 text-center pr-0">
           <button @click="skipLogin()" class="btn btn-primary btn-lg w-100">Answer anonymously</button>
@@ -227,6 +227,9 @@ export default {
       return _.find(this.languages, function (l) {
         return l.language_code === code;
       })
+    },
+    getSignInUrl() {
+      return route('login') + '?redirectTo=' + window.location.href;
     }
   }
 }

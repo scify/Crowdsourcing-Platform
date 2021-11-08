@@ -7,7 +7,6 @@ import _ from "lodash";
         initQuestionnaireResponsesChart();
         if(viewModel.numberOfResponsesPerLanguage.data.length > 1)
             initQuestionnaireResponsesPerLanguageChart();
-        // initQuestionResponsesCharts();
         printPageBtnHandler();
     };
 
@@ -40,8 +39,6 @@ import _ from "lodash";
     };
 
     let initQuestionnaireResponsesPerLanguageChart = function () {
-        if(!viewModel.numberOfResponsesPerLanguage.data.length)
-            return;
         let element = document.getElementById('responsesPerLanguageChart');
         let ctx = element.getContext("2d");
         for(let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
@@ -58,60 +55,6 @@ import _ from "lodash";
         };
 
         createChart(ctx, data, 'bar');
-    };
-
-    let initQuestionResponsesCharts = function () {
-        for (let i = 0; i < viewModel.statisticsPerQuestion.length; i++) {
-            const questionStatisticsObj = viewModel.statisticsPerQuestion[i];
-            switch (questionStatisticsObj.question_type) {
-                case 'fixed_choices':
-                    let canvasElement = $('.questionResponsesChart[data-question-id=' +
-                        questionStatisticsObj.question_id + ']')[0];
-                    createChartForFixedChoiceQuestionStatistics(canvasElement, questionStatisticsObj.statistics);
-                    break;
-                case 'free_text':
-                    let dataTableElement = $('.questionResponsesTable[data-question-id=' +
-                        questionStatisticsObj.question_id + ']');
-                    createDataTableForFreeTextQuestionStatistics(dataTableElement, questionStatisticsObj);
-                    break;
-            }
-        }
-    };
-
-    let createChartForFixedChoiceQuestionStatistics = function (canvasElement, questionStatistics) {
-        if(!questionStatistics.length)
-            return;
-        let ctx = canvasElement.getContext("2d");
-        for(let i = 0; i < questionStatistics.length; i++) {
-            if(!questionStatistics[i].color)
-                questionStatistics[i].color = getRandomColors(1)[0];
-        }
-        const data = {
-            datasets: [{
-                data: _.map(questionStatistics, 'num_responses'),
-                backgroundColor: _.map(questionStatistics, 'color')
-            }],
-
-            labels: _.map(questionStatistics, 'answer_title')
-        };
-
-        createChart(ctx, data, 'horizontalBar');
-    };
-
-    let createDataTableForFreeTextQuestionStatistics = function (dataTableElement, questionStatistics) {
-
-        let dataTableOptions = {
-            "order": [[ 1, "desc" ]],
-            destroy: true,
-            "paging": true,
-            "responsive": true,
-            "searching": true,
-            "columns": [
-                {"width": "70%"},
-                {"width": "30%"}
-            ],
-        };
-        dataTableElement.DataTable(dataTableOptions);
     };
 
     let createChart = function (canvasContext, data, chartType) {

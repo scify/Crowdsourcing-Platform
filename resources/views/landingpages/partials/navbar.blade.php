@@ -5,8 +5,12 @@
             <a class="navbar-brand" target="_blank" href="{{ $viewModel->project->external_url}}">
                 <img loading="lazy" alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
             </a>
+        @else
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img loading="lazy" alt="homepage"
+                     src="{{asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png')}}">
+            </a>
         @endif
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-menu-content"
                 aria-controls="top-menu-content" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

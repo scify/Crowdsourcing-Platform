@@ -17,6 +17,22 @@
     <store-modal
         :show-ok-button="true"
         @okClicked="closeModal"></store-modal>
+    <modal
+        :hide-header="false"
+        :open="signInModalOpen"
+        :allow-close="true"
+        @canceled="signInModalOpen = false">
+      <template v-slot:body>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-10 text-center mx-auto py-5">
+              <h4 class="mt-0 p-0 mb-5 text-center message">Please sign in to vote</h4>
+              <a class="btn btn-primary btn-lg w-100" :href="getSignInUrl()">Sign in</a>
+            </div>
+          </div>
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -42,7 +58,8 @@ export default {
       questions: [],
       statsPanelIndexToColors: new Map(),
       loading: false,
-      questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"]
+      questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"],
+      signInModalOpen: false
     }
   },
   created() {
@@ -114,14 +131,19 @@ export default {
         const answers = _.map(_.map(response.data, function (response) {
           return response.response_json_translated ?? response.response_json;
         }), JSON.parse);
-        this.get({
-          url: route('questionnaire.answer-votes', this.questionnaire.id),
-          data: {},
-          urlRelative: false
-        }).then(response => {
-          this.initStatistics(answers, response.data);
+        if(this.userId) {
+          this.get({
+            url: route('questionnaire.answer-votes', this.questionnaire.id),
+            data: {},
+            urlRelative: false
+          }).then(response => {
+            this.initStatistics(answers, response.data);
+            this.loading = false;
+          });
+        } else {
+          this.initStatistics(answers, []);
           this.loading = false;
-        });
+        }
       });
     },
     initStatistics(answers, answerVotes) {
@@ -189,12 +211,15 @@ export default {
     listenForVoteClickEvent() {
       const instance = this;
       $(document).on('click', 'body .vote-btn', function () {
-        instance.handleVote(
-            $(this),
-            $(this).data('question-name'),
-            parseInt($(this).data('respondent-user-id')),
-            $(this).hasClass('upvote')
-        );
+        if (instance.userId)
+          instance.handleVote(
+              $(this),
+              $(this).data('question-name'),
+              parseInt($(this).data('respondent-user-id')),
+              $(this).hasClass('upvote')
+          );
+        else
+          instance.displayLoginPrompt();
       });
     },
     handleVote(element, questionName, respondentUserId, upvote) {
@@ -204,6 +229,7 @@ export default {
           questionnaire_id: this.questionnaire.id,
           question_name: questionName,
           respondent_user_id: respondentUserId,
+          voter_user_id: this.userId,
           upvote: upvote
         },
         urlRelative: false
@@ -221,6 +247,9 @@ export default {
         }
       });
     },
+    displayLoginPrompt() {
+      this.signInModalOpen = true;
+    },
     updateCountElement(element, className, oppositeClassName, oppositeButtonClassName) {
       let countEl = element.find(".count:first");
       let count = parseInt(countEl.html());
@@ -233,12 +262,15 @@ export default {
 
       const parent = element.closest(".reaction-buttons");
       let oppositeButtonEl = parent.find("." + oppositeButtonClassName + ":first");
-      if (oppositeButtonEl.hasClass(oppositeClassName)) {
+      if (oppositeButtonEl && oppositeButtonEl.hasClass(oppositeClassName)) {
         oppositeButtonEl.removeClass(oppositeClassName);
         let countEl = oppositeButtonEl.find(".count:first");
         let count = parseInt(countEl.html()) - 1;
         countEl.html(count);
       }
+    },
+    getSignInUrl() {
+      return route('login') + '?redirectTo=' + window.location.href;
     }
   }
 }
