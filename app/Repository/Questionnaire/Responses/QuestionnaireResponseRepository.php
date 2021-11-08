@@ -37,6 +37,8 @@ class QuestionnaireResponseRepository extends Repository {
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             return;
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
+        if ($anonymousUserId === $user_id)
+            return;
         try {
             $user = User::findOrFail($anonymousUserId);
             Log::info('Transfering responses from user: ' . $anonymousUserId . ' to user: ' . $user_id);
@@ -45,8 +47,7 @@ class QuestionnaireResponseRepository extends Repository {
         } catch (Exception $e) {
             Log::error($e->getMessage());
         } finally {
-            unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
-            setcookie(UserManager::$USER_COOKIE_KEY, false);
+            setcookie(UserManager::$USER_COOKIE_KEY, $user_id);
         }
     }
 }
