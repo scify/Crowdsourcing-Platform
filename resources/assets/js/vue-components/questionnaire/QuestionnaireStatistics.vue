@@ -128,10 +128,13 @@ export default {
         data: {},
         urlRelative: false
       }).then(response => {
-        const answers = _.map(_.map(response.data, function (response) {
-          return response.response_json_translated ?? response.response_json;
-        }), JSON.parse);
-        if(this.userId) {
+        const answers = _.map(response.data, function (response) {
+          return {
+            answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
+            respondent_user_id: response.user_id
+          }
+        });
+        if (this.userId) {
           this.get({
             url: route('questionnaire.answer-votes', this.questionnaire.id),
             data: {},

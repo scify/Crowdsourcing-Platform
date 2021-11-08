@@ -70,7 +70,6 @@ class QuestionnaireResponseManager {
             'project_id' => $data['project_id']
         ];
         $responseObj = json_decode($data['response']);
-        $responseObj->respondent_user_id = $user->id;
         $questionnaireResponse = $this->questionnaireResponseRepository->updateOrCreate(
             $queryData,
             array_merge($queryData, [
