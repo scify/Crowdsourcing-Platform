@@ -10,16 +10,30 @@
                     @endif
                 </h4>
             </div>
+
             <div class="modal-body">
                 @if(!\Illuminate\Support\Facades\Auth::check())
-                    <p class="dashboard-message mt-4 mb-4  w-100">Please login to complete your submission:</p>
-                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
-                    <p class="dashboard-message mt-4 mb-4 w-100">After you complete your submission, you will receive the following badge:</p>
 
+                    <p class="dashboard-message mt-4 mb-4 text-left w-100">Your answers have been saved anonymously. <br>
+                        Please login to complete your submission!</p>
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
+                    <p class="dashboard-message mt-4 text-left w-100">By registering<sup>*</sup> you
+                        <ul>
+                            <li>- Help us <strong>filter out</strong> spammers, people who answer randomly.</li>
+                            <li>- Can <strong>view</strong> your contribution, <strong>compare your answers</strong> with others.</li>
+                            <li>- <strong>Vote/Thumbs up</strong> the best answers</li>
+                        </ul>
+                    <label>
+                        * <i> We don't share your information to 3rd parties.</i><br>
+                        * <i>During registration you are asked for an email and a nickname.</i>
+                    </label>
+                    </p>
+                @else
+                    <div class="row">
+                        <div class="col-md-12 badge-container"></div>
+                    </div>
                 @endif
-                <div class="row">
-                    <div class="col-md-12 badge-container"></div>
-                </div>
+
             </div>
             <div class="modal-footer">
                 @if(\Illuminate\Support\Facades\Auth::check())
