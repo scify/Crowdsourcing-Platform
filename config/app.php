@@ -120,6 +120,7 @@ return [
     'google_analytics_id' => env('GA_ID'),
     'version' => env('APP_VERSION'),
     'admin_pass_seed' => env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'),
+    'mailchimp_api_key' => env('MAILCHIMP_API_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
