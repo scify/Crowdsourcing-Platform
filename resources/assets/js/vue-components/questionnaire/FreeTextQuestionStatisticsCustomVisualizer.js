@@ -145,7 +145,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     const renderContent = function (contentContainer, visualizer) {
         const answersForCurrentQuestion = visualizer.dataProvider.data
             .map(a => a[visualizer.question.name]).filter(a => a !== undefined);
-        translationExistsForQuestion = true;
+        console.log(visualizer.question.name, answersForCurrentQuestion);
+        translationExistsForQuestion = answersForCurrentQuestion.find(a => !isString(a));
         const table = document.createElement("table");
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
