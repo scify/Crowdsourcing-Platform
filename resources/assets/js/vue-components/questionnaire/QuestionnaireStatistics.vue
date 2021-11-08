@@ -96,7 +96,7 @@ export default {
     // Set localized title of this visualizer
     SurveyAnalytics
         .localization
-        .locales["en"]["visualizer_freeTextVisualizer"] = "Translated Responses";
+        .locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
 
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
