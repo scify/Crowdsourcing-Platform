@@ -38,10 +38,13 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
         answers
             .forEach(function (value) {
-                const answer = value[questionName];
-                if (!answer)
+                if(!value.answerObj || !value.answerObj[questionName])
                     return;
+                const answer = value.answerObj[questionName];
                 const respondentUserId = value.respondent_user_id;
+                if (!answer || !respondentUserId)
+                    return;
+
                 const tr = document.createElement("tr");
                 const td1 = document.createElement("td");
                 const td2 = document.createElement("td");
