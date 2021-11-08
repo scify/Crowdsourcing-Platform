@@ -183,8 +183,8 @@ export default {
         urlRelative: false,
         handleError: false
       }).then((response) => {
-        this.displaySuccessResponse(response.data.badgeHTML);
         const anonymousUserId = response.data.anonymousUserId;
+        this.displaySuccessResponse(response.data.badgeHTML);
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
         const time = performance.now() - this.t0;
