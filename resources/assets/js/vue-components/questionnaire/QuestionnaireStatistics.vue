@@ -214,18 +214,30 @@ export default {
     listenForVoteClickEvent() {
       const instance = this;
       $(document).on('click', 'body .vote-btn', function () {
-        if (instance.userId)
-          instance.handleVote(
-              $(this),
-              $(this).data('question-name'),
-              parseInt($(this).data('respondent-user-id')),
-              $(this).hasClass('upvote')
+        const upvote = $(this).hasClass('upvote');
+        const element = $(this);
+        if (instance.userId) {
+          instance.performVoteCall(
+              element.data('question-name'),
+              parseInt(element.data('respondent-user-id')),
+              upvote
           );
-        else
+          if (upvote) {
+            // if the user has already upvoted, subtract one
+            // if the user has downvoted the same question, subtract one from downvotes and cancel the downvote class
+            instance.updateCountElement(element, 'user-upvoted', 'user-downvoted', 'downvote');
+            element.toggleClass('user-upvoted');
+          } else {
+            // if the user has already downvoted, subtract one
+            // if the user has upvoted the same question, subtract one from downvotes and cancel the downvote class
+            instance.updateCountElement(element, 'user-downvoted', 'user-upvoted', 'upvote');
+            element.toggleClass('user-downvoted');
+          }
+        } else
           instance.displayLoginPrompt();
       });
     },
-    handleVote(element, questionName, respondentUserId, upvote) {
+    performVoteCall(questionName, respondentUserId, upvote) {
       this.post({
         url: route('questionnaire.answer-votes.vote'),
         data: {
@@ -237,17 +249,7 @@ export default {
         },
         urlRelative: false
       }).then(response => {
-        if (upvote) {
-          // if the user has already upvoted, subtract one
-          // if the user has downvoted the same question, subtract one from downvotes and cancel the downvote class
-          this.updateCountElement(element, 'user-upvoted', 'user-downvoted', 'downvote');
-          element.toggleClass('user-upvoted');
-        } else {
-          // if the user has already downvoted, subtract one
-          // if the user has upvoted the same question, subtract one from downvotes and cancel the downvote class
-          this.updateCountElement(element, 'user-downvoted', 'user-upvoted', 'upvote');
-          element.toggleClass('user-downvoted');
-        }
+
       });
     },
     displayLoginPrompt() {
