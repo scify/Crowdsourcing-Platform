@@ -216,8 +216,21 @@ ol {
     font-weight: normal;
     text-align: center;
     font-size: 22px;
+    padding:20px;
+    width:100%;
+  }
+  .language-selection{
+    label,select {
+      font-size: 1.25em;
+    }
   }
 
+  .description h5 {
+    line-height: 1.6em;
+  }
+  .sv-title {
+    font-family: inherit;
+  }
   .sv_row {
     padding: 10px 25px 20px;
 

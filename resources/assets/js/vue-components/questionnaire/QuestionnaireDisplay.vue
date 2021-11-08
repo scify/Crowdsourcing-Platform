@@ -15,7 +15,7 @@
     </div>
     <div v-else class="container-fluid">
       <div class="row" v-if="!userResponse">
-        <div class="col-md-12">
+        <div class="col-md-12 language-selection">
           <div class="form-group">
             <label for="language-select">Select language</label>
             <select class="form-control" @change="onLanguageChange($event)" id="language-select">
