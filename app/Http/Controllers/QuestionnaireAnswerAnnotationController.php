@@ -28,4 +28,13 @@ class QuestionnaireAnswerAnnotationController extends Controller {
                 $request->annotation_text)
         );
     }
+
+    public function deleteAnswerAnnotation(Request $request): JsonResponse {
+        return response()->json($this->questionnaireAnswerAnnotator
+            ->deleteAnswerAnnotation(
+                $request->questionnaire_id,
+                $request->question_name,
+                $request->respondent_user_id)
+        );
+    }
 }

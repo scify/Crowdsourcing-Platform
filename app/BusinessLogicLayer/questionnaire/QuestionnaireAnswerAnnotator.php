@@ -32,4 +32,9 @@ class QuestionnaireAnswerAnnotator {
                 'annotation_text' => $annotation_text
             ]));
     }
+
+    public function deleteAnswerAnnotation(int $questionnaire_id, string $question_name,
+                                           int $respondent_user_id) {
+        return $this->questionnaireAnswerAnnotationRepository->deleteAnswerAnnotation($questionnaire_id, $question_name, $respondent_user_id);
+    }
 }
