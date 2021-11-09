@@ -41,6 +41,7 @@ import * as Survey from "survey-knockout";
 import * as SurveyAnalytics from "survey-analytics";
 import {mapActions} from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTextQuestionStatisticsCustomVisualizer";
+import Promise from "lodash/_Promise";
 
 export default {
   props: {
@@ -119,38 +120,52 @@ export default {
         urlRelative: false
       }).then(response => {
         this.colors = response.data;
-        this.getQuestionnaireResponses();
+        this.getQuestionnaireDataAndInitStatistics();
+      });
+    },
+    getQuestionnaireDataAndInitStatistics() {
+      Promise.all([
+        this.getQuestionnaireResponses(),
+        this.getQuestionnaireAnswerVotes(),
+        this.getQuestionnaireAnswerAnnotations()]).then(results => {
+        this.initStatistics(results[0], results[1], results[2])
       });
     },
     getQuestionnaireResponses() {
-      this.get({
-        url: route('questionnaire.responses', this.questionnaire.id),
-        data: {},
-        urlRelative: false
-      }).then(response => {
-        const answers = _.map(response.data, function (response) {
-          return {
-            answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
-            respondent_user_id: response.user_id
-          }
-        });
-        if (this.userId) {
-          this.get({
-            url: route('questionnaire.answer-votes', this.questionnaire.id),
-            data: {},
-            urlRelative: false
-          }).then(response => {
-            this.initStatistics(answers, response.data);
-            this.loading = false;
+      const instance = this;
+      return new Promise(function callback(resolve, reject) {
+        instance.get({
+          url: route('questionnaire.responses', instance.questionnaire.id),
+          data: {},
+          urlRelative: false
+        }).then(response => {
+          const answers = _.map(response.data, function (response) {
+            return {
+              answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
+              respondent_user_id: response.user_id
+            }
           });
-        } else {
-          this.initStatistics(answers, []);
-          this.loading = false;
-        }
+          resolve(answers);
+        }).catch(e => reject(e));
       });
     },
-    initStatistics(answers, answerVotes) {
+    getQuestionnaireAnswerVotes() {
+      return this.get({
+        url: route('questionnaire.answer-votes', this.questionnaire.id),
+        data: {},
+        urlRelative: false
+      }).then(res => res.data);
+    },
+    getQuestionnaireAnswerAnnotations() {
+      return this.get({
+        url: route('questionnaire.answer-annotations', this.questionnaire.id),
+        data: {},
+        urlRelative: false
+      }).then(res => res.data);
+    },
+    initStatistics(answers, answerVotes, answerAnnotations) {
       AnswersData.answerVotes = answerVotes;
+      AnswersData.answerAnnotations = answerAnnotations;
       AnswersData.userId = this.userId;
       for (let i = 0; i < this.questions.length; i++) {
 
@@ -187,6 +202,7 @@ export default {
         });
         visPanel.render(document.getElementById('survey-statistics-container_' + i));
       }
+      this.loading = false;
     },
     shouldDrawStatistics(question) {
       return question.getType().toLowerCase() !== 'html'
