@@ -43,7 +43,7 @@ class QuestionnaireResponseController extends Controller {
 
     public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
         return response()->json($this->questionnaireResponseManager
-            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, Auth::id()));
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, Auth::id() ?? 0));
     }
 
     public function voteAnswer(Request $request): JsonResponse {

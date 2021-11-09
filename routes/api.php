@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\QuestionnaireAnswerAnnotationController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\QuestionnaireResponseController;
 
@@ -27,6 +28,7 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
     Route::get('/languages', [LanguageController::class, 'getLanguages'])
         ->name('languages');
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.vote');
+    Route::post('/questionnaire/answer-annotations', [QuestionnaireAnswerAnnotationController::class, 'annotateAnswer'])->name('questionnaire.answer-annotations.annotate');
 });
 
 Route::middleware(['throttle:api-internal'])->group(function () {
@@ -37,4 +39,6 @@ Route::middleware(['throttle:api-internal'])->group(function () {
         ->name('questionnaire.responses');
     Route::get('/questionnaire/answer-votes/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
         ->name('questionnaire.answer-votes');
+    Route::get('/questionnaire/answer-annotations/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])
+        ->name('questionnaire.answer-annotations');
 });

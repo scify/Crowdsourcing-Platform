@@ -4,29 +4,20 @@ require('../../lang');
 
 export class AnswersData {
     static answerVotes = [];
+    static answerAnnotations = {};
     static userId = null;
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
-    let translationExistsForQuestion = true;
-
     function renderHeader(table, visualizer) {
         const header = document.createElement("thead");
         const tr = document.createElement("tr");
         const header1 = document.createElement("th");
-        header1.innerHTML = "Original Answer";
+        header1.innerHTML = "Answer";
         tr.appendChild(header1);
-        if (translationExistsForQuestion) {
-            const header2 = document.createElement("th");
-            header2.innerHTML = "Translated Answer";
-            tr.appendChild(header2);
-            const header3 = document.createElement("th");
-            header3.innerHTML = "Language";
-            tr.appendChild(header3);
-        }
-        const header4 = document.createElement("th");
-        header4.innerHTML = "";
-        tr.appendChild(header4);
+        const header2 = document.createElement("th");
+        header2.innerHTML = "";
+        tr.appendChild(header2);
         header.appendChild(tr);
         table.appendChild(header);
     }
@@ -38,7 +29,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
         answers
             .forEach(function (value) {
-                if(!value.answerObj || !value.answerObj[questionName])
+                if (!value.answerObj || !value.answerObj[questionName])
                     return;
                 const answer = value.answerObj[questionName];
                 const respondentUserId = value.respondent_user_id;
@@ -48,21 +39,24 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 const tr = document.createElement("tr");
                 const td1 = document.createElement("td");
                 const td2 = document.createElement("td");
-                const td3 = document.createElement("td");
-                const td4 = document.createElement("td");
 
-                if (isString(answer))
-                    td1.innerHTML = answer;
-                else {
-                    td1.innerHTML = answer.initial_answer;
-                    td2.innerHTML = answer.translated_answer;
-                    td3.innerHTML = answer.initial_language_detected ? getLanguageName(answer.initial_language_detected) : '';
-                }
+
+                if (AnswersData.answerAnnotations[questionName]
+                    && AnswersData.answerAnnotations[questionName][respondentUserId]) {
+                    const annotation = AnswersData.answerAnnotations[questionName][respondentUserId][0];
+                    td1.innerHTML = '<b>Annotation:</b><p>'
+                        + annotation.annotation_text
+                        + '</p><b>Original answer:</b><p>'
+                        + getAnswerHTML(answer, 'initial_answer') + '</p>';
+                } else
+                    td1.innerHTML = getAnswerHTML(answer, 'initial_answer');
+
                 tr.appendChild(td1);
-                if (translationExistsForQuestion) {
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                }
+                if (!isString(answer) && answer.translated_answer !== "")
+                    td1.innerHTML += '<b>Translation ('
+                        + getLanguageName(answer.initial_language_detected) + '):</b><p>'
+                        + getAnswerHTML(answer, 'translated_answer') + '</p>';
+
                 let userUpvotedClass = '';
                 let userDownvotedClass = '';
                 if (userHasUpvoted(questionName, respondentUserId))
@@ -72,13 +66,12 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 const upvotesNum = getNumOfUpvotes(questionName, respondentUserId);
                 const downvotesNum = getNumOfDownvotes(questionName, respondentUserId);
                 if (upvotesNum)
-                    td4.setAttribute('data-order', (upvotesNum * 10));
+                    td2.setAttribute('data-order', (upvotesNum * 10));
                 else if (downvotesNum)
-                    td4.setAttribute('data-order', '0.' + downvotesNum);
+                    td2.setAttribute('data-order', '0.' + downvotesNum);
                 else
-                    td4.setAttribute('data-order', '1');
-                const classNameForContainer = translationExistsForQuestion ? 'px-0' : '';
-                td4.innerHTML = '<div class="container-fluid ' + classNameForContainer + '">' +
+                    td2.setAttribute('data-order', '1');
+                td2.innerHTML = '<div class="container-fluid">' +
                     '<div class="row text-center no-gutters reaction-buttons">' +
                     '<div class="col">' +
                     '<button data-question-name="' + questionName + '" ' +
@@ -96,10 +89,20 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     '</div>' +
                     '</div>' +
                     '</div>';
-                tr.appendChild(td4);
+                tr.appendChild(td2);
                 tbody.appendChild(tr);
             });
         table.appendChild(tbody);
+    }
+
+    function getAnswerHTML(answer, field_name) {
+        const maxLength = 150;
+        const answerText = isString(answer) ? answer.trim() : answer[field_name].trim();
+        if (answerText.length < maxLength)
+            return answerText;
+        const shortStr = answerText.substring(0, maxLength);
+        const removedStr = answerText.substring(maxLength, answerText.length);
+        return shortStr + '<a href="javascript:void(0);" class="read-more">Read more...</a>' + '<span class="more-text hidden">' + removedStr + '</span>';
     }
 
     function getNumOfUpvotes(questionName, respondent_user_id) {
@@ -115,7 +118,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         for (let i = 0; i < AnswersData.answerVotes.length; i++) {
             if (AnswersData.answerVotes[i].question_name === questionName
                 && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
-                return AnswersData.answerVotes[i].upvoted_by_user;
+                return parseInt(AnswersData.answerVotes[i].upvoted_by_user);
         }
         return false;
     }
@@ -124,7 +127,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         for (let i = 0; i < AnswersData.answerVotes.length; i++) {
             if (AnswersData.answerVotes[i].question_name === questionName
                 && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
-                return AnswersData.answerVotes[i].downvoted_by_user;
+                return parseInt(AnswersData.answerVotes[i].downvoted_by_user);
         }
         return false;
     }
@@ -143,26 +146,16 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     const renderContent = function (contentContainer, visualizer) {
-        const answersForCurrentQuestion = visualizer.dataProvider.data
-            .map(a => a.answerObj[visualizer.question.name]).filter(a => a !== undefined);
-        translationExistsForQuestion = answersForCurrentQuestion.find(a => !isString(a));
         const table = document.createElement("table");
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
         renderRows(table, visualizer);
         contentContainer.appendChild(table);
         contentContainer.className += " custom-texts-table-container";
-        let columns = [
-            {"width": "42.5%"},
-            {"width": "42.5%"},
-            {"width": "5%"},
-            {"width": "10%"}
+        const columns = [
+            {"width": "80%"},
+            {"width": "20%"}
         ];
-        if (!translationExistsForQuestion)
-            columns = [
-                {"width": "80%"},
-                {"width": "20%"}
-            ];
         $(table).DataTable({
             destroy: true,
             "paging": true,

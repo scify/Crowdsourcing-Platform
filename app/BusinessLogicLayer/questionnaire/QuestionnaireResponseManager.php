@@ -7,7 +7,7 @@ use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\User;
-use App\Repository\Questionnaire\QuestionnaireAnswerVoteRepository;
+use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
