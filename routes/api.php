@@ -29,6 +29,7 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
         ->name('languages');
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.create');
     Route::post('/questionnaire/answer-annotations', [QuestionnaireAnswerAnnotationController::class, 'annotateAnswer'])->name('questionnaire.answer-annotations.create');
+    Route::post('/questionnaire/answer-annotations/delete', [QuestionnaireAnswerAnnotationController::class, 'deleteAnswerAnnotation'])->name('questionnaire.answer-annotations.delete');
 });
 
 Route::middleware(['throttle:api-internal'])->group(function () {

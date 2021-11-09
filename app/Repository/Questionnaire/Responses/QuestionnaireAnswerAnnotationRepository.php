@@ -20,4 +20,12 @@ class QuestionnaireAnswerAnnotationRepository extends Repository {
             'questionnaire_id' => $questionnaire_id
         ])->get()->groupBy(['question_name', 'respondent_user_id']);
     }
+
+    public function deleteAnswerAnnotation(int $questionnaire_id, string $question_name, int $respondent_user_id) {
+        return QuestionnaireAnswerAnnotation::where([
+            'questionnaire_id' => $questionnaire_id,
+            'question_name' => $question_name,
+            'respondent_user_id' => $respondent_user_id
+        ])->delete();
+    }
 }

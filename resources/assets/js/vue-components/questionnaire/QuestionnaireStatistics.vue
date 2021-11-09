@@ -49,13 +49,21 @@
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-12 text-center mx-auto">
+            <div class="col-12 text-center mx-auto mb-3">
               <button @click="saveAnnotation" :disabled="annotationLoading || annotation.annotation_text.length === 0"
                       class="btn btn-primary btn-lg w-100">
                 <span class="mr-2">Save</span><span v-if="annotationLoading"
                                                     class="spinner-border spinner-border-sm"
                                                     role="status"
                                                     aria-hidden="true"></span></button>
+            </div>
+            <div class="col-12 text-center mx-auto">
+              <button @click="deleteAnnotation" :disabled="annotationLoading"
+                      class="btn btn-outline-danger btn-lg w-100">
+                <span class="mr-2">Delete</span><span v-if="annotationLoading"
+                                                      class="spinner-border spinner-border-sm"
+                                                      role="status"
+                                                      aria-hidden="true"></span></button>
             </div>
           </div>
         </div>
@@ -368,6 +376,28 @@ export default {
               + '</p></div><b>Original answer:</b>');
         }
         cellElement.find(".annotate-btn").attr('data-annotation', this.annotation.annotation_text);
+        this.annotation = {
+          annotation_text: ''
+        };
+      });
+    },
+    deleteAnnotation() {
+      this.annotationLoading = true;
+      this.post({
+        url: route('questionnaire.answer-annotations.delete'),
+        data: {
+          questionnaire_id: this.questionnaire.id,
+          question_name: this.annotation.question_name,
+          respondent_user_id: this.annotation.respondent_user_id
+        },
+        urlRelative: false
+      }).then(response => {
+        this.annotationLoading = false;
+        this.annotationModalOpen = false;
+        const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
+        const annotationElement = cellElement.find('.annotation-wrapper');
+        if (annotationElement.length)
+          annotationElement.remove();
         this.annotation = {
           annotation_text: ''
         };
