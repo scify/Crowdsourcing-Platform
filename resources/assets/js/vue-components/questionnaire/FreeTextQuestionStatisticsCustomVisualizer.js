@@ -6,6 +6,7 @@ export class AnswersData {
     static answerVotes = [];
     static answerAnnotations = {};
     static userId = null;
+    static userCanAnnotateAnswers = false;
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
@@ -38,24 +39,33 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
                 const tr = document.createElement("tr");
                 const td1 = document.createElement("td");
+                td1.setAttribute("id", "answer_" + questionName + "_" + respondentUserId)
                 const td2 = document.createElement("td");
-
-
+                let annotation = false;
                 if (AnswersData.answerAnnotations[questionName]
                     && AnswersData.answerAnnotations[questionName][respondentUserId]) {
-                    const annotation = AnswersData.answerAnnotations[questionName][respondentUserId][0];
-                    td1.innerHTML = '<b>Annotation:</b><p>'
-                        + annotation.annotation_text
-                        + '</p><b>Original answer:</b><p>'
-                        + getAnswerHTML(answer, 'initial_answer') + '</p>';
-                } else
-                    td1.innerHTML = getAnswerHTML(answer, 'initial_answer');
+                    annotation = AnswersData.answerAnnotations[questionName][respondentUserId][0];
+                }
+                const annotationText = annotation ? annotation.annotation_text : "";
+                if (AnswersData.userCanAnnotateAnswers) {
+                    td1.innerHTML = '<span class="annotation-button"><button data-annotation="' + annotationText
+                        + '" data-question="' + questionName
+                        + '" data-respondent="' + respondentUserId + '" '
+                        + 'class="btn annotate-btn"><i class="fa fa-edit"></i></button></span>';
+                }
+                if (annotation) {
+                    td1.innerHTML += '<div class="annotation-wrapper"><b>Annotation:</b><p class="annotation-text">'
+                        + annotationText
+                        + '</p></div><b>Original answer:</b><br>';
+                }
+                td1.innerHTML += '<p>' + getAnswerHTML(answer, 'initial_answer') + '</p>';
 
-                tr.appendChild(td1);
+
                 if (!isString(answer) && answer.translated_answer !== "")
                     td1.innerHTML += '<b>Translation ('
                         + getLanguageName(answer.initial_language_detected) + '):</b><p>'
                         + getAnswerHTML(answer, 'translated_answer') + '</p>';
+                tr.appendChild(td1);
 
                 let userUpvotedClass = '';
                 let userDownvotedClass = '';

@@ -40,6 +40,7 @@ class QuestionnaireStatisticsManager {
             $questionnaire,
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
+            Gate::allows('manage-crowd-sourcing-projects'),
             Gate::allows('manage-crowd-sourcing-projects')
         );
     }

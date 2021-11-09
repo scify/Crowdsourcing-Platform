@@ -33,6 +33,34 @@
         </div>
       </template>
     </modal>
+    <modal
+        :hide-header="false"
+        :open="annotationModalOpen"
+        :allow-close="true"
+        @canceled="annotationModalOpen = false">
+      <template v-slot:header>
+        <h5 class="modal-title pl-2">Annotate answer</h5>
+      </template>
+      <template v-slot:body>
+        <div class="container py-4">
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mx-auto mb-4">
+              <textarea class="form-control" rows="3" v-model="annotation.annotation_text"></textarea>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mx-auto">
+              <button @click="saveAnnotation" :disabled="annotationLoading || annotation.annotation_text.length === 0"
+                      class="btn btn-primary btn-lg w-100">
+                <span class="mr-2">Save</span><span v-if="annotationLoading"
+                                                    class="spinner-border spinner-border-sm"
+                                                    role="status"
+                                                    aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -51,7 +79,11 @@ export default {
         return {}
       }
     },
-    userId: Number
+    userId: Number,
+    userCanAnnotateAnswers: {
+      type: Number,
+      default: 0
+    }
   },
   data: function () {
     return {
@@ -60,7 +92,12 @@ export default {
       statsPanelIndexToColors: new Map(),
       loading: false,
       questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"],
-      signInModalOpen: false
+      signInModalOpen: false,
+      annotationModalOpen: false,
+      annotationLoading: false,
+      annotation: {
+        annotation_text: ''
+      }
     }
   },
   created() {
@@ -105,6 +142,7 @@ export default {
   },
   mounted() {
     this.listenForVoteClickEvent();
+    this.listenForAnnotateClickEvent();
   },
   methods: {
     ...mapActions([
@@ -167,6 +205,7 @@ export default {
       AnswersData.answerVotes = answerVotes;
       AnswersData.answerAnnotations = answerAnnotations;
       AnswersData.userId = this.userId;
+      AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       for (let i = 0; i < this.questions.length; i++) {
 
         if (!this.shouldDrawStatistics(this.questions[i]))
@@ -253,9 +292,20 @@ export default {
           instance.displayLoginPrompt();
       });
     },
+    listenForAnnotateClickEvent() {
+      const instance = this;
+      $(document).on('click', 'body .annotate-btn', function () {
+        instance.annotation = {
+          annotation_text: $(this).attr('data-annotation'),
+          question_name: $(this).data('question'),
+          respondent_user_id: $(this).data('respondent')
+        };
+        instance.annotationModalOpen = true;
+      });
+    },
     performVoteCall(questionName, respondentUserId, upvote) {
       this.post({
-        url: route('questionnaire.answer-votes.vote'),
+        url: route('questionnaire.answer-votes.create'),
         data: {
           questionnaire_id: this.questionnaire.id,
           question_name: questionName,
@@ -292,6 +342,36 @@ export default {
     },
     getSignInUrl() {
       return route('login') + '?redirectTo=' + window.location.href;
+    },
+    saveAnnotation() {
+      this.annotationLoading = true;
+      this.post({
+        url: route('questionnaire.answer-annotations.create'),
+        data: {
+          questionnaire_id: this.questionnaire.id,
+          question_name: this.annotation.question_name,
+          respondent_user_id: this.annotation.respondent_user_id,
+          annotator_user_id: this.userId,
+          annotation_text: this.annotation.annotation_text
+        },
+        urlRelative: false
+      }).then(response => {
+        this.annotationLoading = false;
+        this.annotationModalOpen = false;
+        const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
+        const annotationElement = cellElement.find('.annotation-wrapper');
+        if (annotationElement.length !== 0)
+          annotationElement.find(".annotation-text").html(this.annotation.annotation_text);
+        else {
+          cellElement.find(".annotation-button").after('<div class="annotation-wrapper"><b>Annotation:</b><p class="annotation-text">'
+              + this.annotation.annotation_text
+              + '</p></div><b>Original answer:</b>');
+        }
+        cellElement.find(".annotate-btn").attr('data-annotation', this.annotation.annotation_text);
+        this.annotation = {
+          annotation_text: ''
+        };
+      });
     }
   }
 }
