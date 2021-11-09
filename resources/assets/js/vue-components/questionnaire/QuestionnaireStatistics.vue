@@ -363,7 +363,7 @@ export default {
         if (annotationElement.length !== 0)
           annotationElement.find(".annotation-text").html(this.annotation.annotation_text);
         else {
-          cellElement.find(".annotation-button").after('<div class="annotation-wrapper"><b>Annotation:</b><p class="annotation-text">'
+          cellElement.find(".annotation-button").after('<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
               + this.annotation.annotation_text
               + '</p></div><b>Original answer:</b>');
         }

@@ -54,7 +54,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                         + 'class="btn annotate-btn"><i class="fa fa-edit"></i></button></span>';
                 }
                 if (annotation) {
-                    td1.innerHTML += '<div class="annotation-wrapper"><b>Annotation:</b><p class="annotation-text">'
+                    td1.innerHTML += '<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
                         + annotationText
                         + '</p></div><b>Original answer:</b><br>';
                 }
