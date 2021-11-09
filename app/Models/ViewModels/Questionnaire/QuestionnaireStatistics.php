@@ -15,16 +15,19 @@ class QuestionnaireStatistics {
     public $questionnaireResponseStatistics;
     public $numberOfResponsesPerLanguage;
     public $current_user_id;
+    public $userCanAnnotateAnswers;
 
     public function __construct(Questionnaire                     $questionnaire,
                                 QuestionnaireResponseStatistics   $questionnaireResponseStatistics,
                                 QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
-                                                                  $userCanPrintStatistics) {
+                                                                  $userCanPrintStatistics,
+                                                                  $userCanAnnotateAnswers) {
         $this->questionnaire = $questionnaire;
         $this->current_user_id = Auth::check() ? Auth::id() : 0;
         $this->userCanPrintStatistics = $userCanPrintStatistics;
         $this->questionnaireResponseStatistics = $questionnaireResponseStatistics;
         $this->numberOfResponsesPerLanguage = $numberOfResponsesPerLanguage;
+        $this->userCanAnnotateAnswers = $userCanAnnotateAnswers;
     }
 
 }
