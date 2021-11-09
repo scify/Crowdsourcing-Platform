@@ -96,7 +96,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     function getAnswerHTML(answer, field_name) {
-        const maxLength = 150;
+        const maxLength = 350;
         const answerText = isString(answer) ? answer.trim() : answer[field_name].trim();
         if (answerText.length < maxLength)
             return answerText;
