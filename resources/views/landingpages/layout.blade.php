@@ -55,6 +55,6 @@
             ]) !!};
 </script>
 @include('partials.footer-scripts')
-<script src="{{mix('dist/js/landingPage.js')}}"></script>
+<script async src="{{mix('dist/js/landingPage.js')}}"></script>
 </body>
 </html>
