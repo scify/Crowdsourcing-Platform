@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Questionnaire;
+namespace App\Repository\Questionnaire\Responses;
 
 use App\Models\Questionnaire\QuestionnaireAnswerVote;
 use App\Repository\Repository;

@@ -33,6 +33,42 @@
         </div>
       </template>
     </modal>
+    <modal
+        :hide-header="false"
+        :open="annotationModalOpen"
+        :allow-close="true"
+        @canceled="annotationModalOpen = false">
+      <template v-slot:header>
+        <h5 class="modal-title pl-2">Annotate answer</h5>
+      </template>
+      <template v-slot:body>
+        <div class="container py-4">
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mx-auto mb-4">
+              <textarea class="form-control" rows="3" v-model="annotation.annotation_text"></textarea>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mx-auto mb-3">
+              <button @click="saveAnnotation" :disabled="annotationLoading || annotation.annotation_text.length === 0"
+                      class="btn btn-primary btn-lg w-100">
+                <span class="mr-2">Save</span><span v-if="annotationLoading"
+                                                    class="spinner-border spinner-border-sm"
+                                                    role="status"
+                                                    aria-hidden="true"></span></button>
+            </div>
+            <div class="col-12 text-center mx-auto">
+              <button @click="deleteAnnotation" :disabled="annotationLoading"
+                      class="btn btn-outline-danger btn-lg w-100">
+                <span class="mr-2">Delete</span><span v-if="annotationLoading"
+                                                      class="spinner-border spinner-border-sm"
+                                                      role="status"
+                                                      aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -41,6 +77,7 @@ import * as Survey from "survey-knockout";
 import * as SurveyAnalytics from "survey-analytics";
 import {mapActions} from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTextQuestionStatisticsCustomVisualizer";
+import Promise from "lodash/_Promise";
 
 export default {
   props: {
@@ -50,7 +87,11 @@ export default {
         return {}
       }
     },
-    userId: Number
+    userId: Number,
+    userCanAnnotateAnswers: {
+      type: Number,
+      default: 0
+    }
   },
   data: function () {
     return {
@@ -59,7 +100,12 @@ export default {
       statsPanelIndexToColors: new Map(),
       loading: false,
       questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"],
-      signInModalOpen: false
+      signInModalOpen: false,
+      annotationModalOpen: false,
+      annotationLoading: false,
+      annotation: {
+        annotation_text: ''
+      }
     }
   },
   created() {
@@ -96,7 +142,7 @@ export default {
     // Set localized title of this visualizer
     SurveyAnalytics
         .localization
-        .locales["en"]["visualizer_freeTextVisualizer"] = "Translated Responses";
+        .locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
 
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
@@ -104,6 +150,7 @@ export default {
   },
   mounted() {
     this.listenForVoteClickEvent();
+    this.listenForAnnotateClickEvent();
   },
   methods: {
     ...mapActions([
@@ -119,36 +166,54 @@ export default {
         urlRelative: false
       }).then(response => {
         this.colors = response.data;
-        this.getQuestionnaireResponses();
+        this.getQuestionnaireDataAndInitStatistics();
+      });
+    },
+    getQuestionnaireDataAndInitStatistics() {
+      Promise.all([
+        this.getQuestionnaireResponses(),
+        this.getQuestionnaireAnswerVotes(),
+        this.getQuestionnaireAnswerAnnotations()]).then(results => {
+        this.initStatistics(results[0], results[1], results[2])
       });
     },
     getQuestionnaireResponses() {
-      this.get({
-        url: route('questionnaire.responses', this.questionnaire.id),
-        data: {},
-        urlRelative: false
-      }).then(response => {
-        const answers = _.map(_.map(response.data, function (response) {
-          return response.response_json_translated ?? response.response_json;
-        }), JSON.parse);
-        if(this.userId) {
-          this.get({
-            url: route('questionnaire.answer-votes', this.questionnaire.id),
-            data: {},
-            urlRelative: false
-          }).then(response => {
-            this.initStatistics(answers, response.data);
-            this.loading = false;
+      const instance = this;
+      return new Promise(function callback(resolve, reject) {
+        instance.get({
+          url: route('questionnaire.responses', instance.questionnaire.id),
+          data: {},
+          urlRelative: false
+        }).then(response => {
+          const answers = _.map(response.data, function (response) {
+            return {
+              answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
+              respondent_user_id: response.user_id
+            }
           });
-        } else {
-          this.initStatistics(answers, []);
-          this.loading = false;
-        }
+          resolve(answers);
+        }).catch(e => reject(e));
       });
     },
-    initStatistics(answers, answerVotes) {
+    getQuestionnaireAnswerVotes() {
+      return this.get({
+        url: route('questionnaire.answer-votes', this.questionnaire.id),
+        data: {},
+        urlRelative: false
+      }).then(res => res.data);
+    },
+    getQuestionnaireAnswerAnnotations() {
+      return this.get({
+        url: route('questionnaire.answer-annotations', this.questionnaire.id),
+        data: {},
+        urlRelative: false
+      }).then(res => res.data);
+    },
+    initStatistics(answers, answerVotes, answerAnnotations) {
       AnswersData.answerVotes = answerVotes;
+      AnswersData.answerAnnotations = answerAnnotations;
       AnswersData.userId = this.userId;
+      AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       for (let i = 0; i < this.questions.length; i++) {
 
         if (!this.shouldDrawStatistics(this.questions[i]))
@@ -184,6 +249,7 @@ export default {
         });
         visPanel.render(document.getElementById('survey-statistics-container_' + i));
       }
+      this.loading = false;
     },
     shouldDrawStatistics(question) {
       return question.getType().toLowerCase() !== 'html'
@@ -211,20 +277,43 @@ export default {
     listenForVoteClickEvent() {
       const instance = this;
       $(document).on('click', 'body .vote-btn', function () {
-        if (instance.userId)
-          instance.handleVote(
-              $(this),
-              $(this).data('question-name'),
-              parseInt($(this).data('respondent-user-id')),
-              $(this).hasClass('upvote')
+        const upvote = $(this).hasClass('upvote');
+        const element = $(this);
+        if (instance.userId) {
+          instance.performVoteCall(
+              element.data('question-name'),
+              parseInt(element.data('respondent-user-id')),
+              upvote
           );
-        else
+          if (upvote) {
+            // if the user has already upvoted, subtract one
+            // if the user has downvoted the same question, subtract one from downvotes and cancel the downvote class
+            instance.updateCountElement(element, 'user-upvoted', 'user-downvoted', 'downvote');
+            element.toggleClass('user-upvoted');
+          } else {
+            // if the user has already downvoted, subtract one
+            // if the user has upvoted the same question, subtract one from downvotes and cancel the downvote class
+            instance.updateCountElement(element, 'user-downvoted', 'user-upvoted', 'upvote');
+            element.toggleClass('user-downvoted');
+          }
+        } else
           instance.displayLoginPrompt();
       });
     },
-    handleVote(element, questionName, respondentUserId, upvote) {
+    listenForAnnotateClickEvent() {
+      const instance = this;
+      $(document).on('click', 'body .annotate-btn', function () {
+        instance.annotation = {
+          annotation_text: $(this).attr('data-annotation'),
+          question_name: $(this).data('question'),
+          respondent_user_id: $(this).data('respondent')
+        };
+        instance.annotationModalOpen = true;
+      });
+    },
+    performVoteCall(questionName, respondentUserId, upvote) {
       this.post({
-        url: route('questionnaire.answer-votes.vote'),
+        url: route('questionnaire.answer-votes.create'),
         data: {
           questionnaire_id: this.questionnaire.id,
           question_name: questionName,
@@ -234,17 +323,7 @@ export default {
         },
         urlRelative: false
       }).then(response => {
-        if (upvote) {
-          // if the user has already upvoted, subtract one
-          // if the user has downvoted the same question, subtract one from downvotes and cancel the downvote class
-          this.updateCountElement(element, 'user-upvoted', 'user-downvoted', 'downvote');
-          element.toggleClass('user-upvoted');
-        } else {
-          // if the user has already downvoted, subtract one
-          // if the user has upvoted the same question, subtract one from downvotes and cancel the downvote class
-          this.updateCountElement(element, 'user-downvoted', 'user-upvoted', 'upvote');
-          element.toggleClass('user-downvoted');
-        }
+
       });
     },
     displayLoginPrompt() {
@@ -271,6 +350,58 @@ export default {
     },
     getSignInUrl() {
       return route('login') + '?redirectTo=' + window.location.href;
+    },
+    saveAnnotation() {
+      this.annotationLoading = true;
+      this.post({
+        url: route('questionnaire.answer-annotations.create'),
+        data: {
+          questionnaire_id: this.questionnaire.id,
+          question_name: this.annotation.question_name,
+          respondent_user_id: this.annotation.respondent_user_id,
+          annotator_user_id: this.userId,
+          annotation_text: this.annotation.annotation_text
+        },
+        urlRelative: false
+      }).then(response => {
+        this.annotationLoading = false;
+        this.annotationModalOpen = false;
+        const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
+        const annotationElement = cellElement.find('.annotation-wrapper');
+        if (annotationElement.length !== 0)
+          annotationElement.find(".annotation-text").html(this.annotation.annotation_text);
+        else {
+          cellElement.find(".annotation-button").after('<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
+              + this.annotation.annotation_text
+              + '</p></div><b>Original answer:</b>');
+        }
+        cellElement.find(".annotate-btn").attr('data-annotation', this.annotation.annotation_text);
+        this.annotation = {
+          annotation_text: ''
+        };
+      });
+    },
+    deleteAnnotation() {
+      this.annotationLoading = true;
+      this.post({
+        url: route('questionnaire.answer-annotations.delete'),
+        data: {
+          questionnaire_id: this.questionnaire.id,
+          question_name: this.annotation.question_name,
+          respondent_user_id: this.annotation.respondent_user_id
+        },
+        urlRelative: false
+      }).then(response => {
+        this.annotationLoading = false;
+        this.annotationModalOpen = false;
+        const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
+        const annotationElement = cellElement.find('.annotation-wrapper');
+        if (annotationElement.length)
+          annotationElement.remove();
+        this.annotation = {
+          annotation_text: ''
+        };
+      });
     }
   }
 }

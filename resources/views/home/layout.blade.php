@@ -36,7 +36,9 @@
 </div>
 
 <footer>
-    @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
+    <div class="container-fluid">
+        @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
+    </div>
 </footer>
 <div class="loader-wrapper hidden">
     <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">

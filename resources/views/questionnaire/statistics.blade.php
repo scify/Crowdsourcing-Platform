@@ -46,6 +46,7 @@
                     <div class="row my-5">
                         <questionnaire-statistics
                                 :user-id="{{ $viewModel->current_user_id }}"
+                                :user-can-annotate-answers="{{ $viewModel->userCanAnnotateAnswers ? 1 : 0 }}"
                                 :questionnaire='@json($viewModel->questionnaire)'>
                         </questionnaire-statistics>
                     </div>

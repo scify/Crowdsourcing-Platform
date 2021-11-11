@@ -129,6 +129,20 @@ const app = new Vue({
         });
     }
 
+    let listenToReadMoreClicks = function() {
+        const body = $('body');
+        body.on('click', '.read-more', function (e) {
+            $(this).siblings(".more-text").after('<a href="javascript:void(0);" class="read-less">Read less</a>');
+            $(this).siblings(".more-text").removeClass('hidden');
+            $(this).remove();
+        });
+        body.on('click', '.read-less', function (e) {
+            $(this).siblings(".more-text").before('<a href="javascript:void(0);" class="read-more">Read more...</a>');
+            $(this).siblings(".more-text").addClass('hidden');
+            $(this).remove();
+        });
+    }
+
     $(function () {
         $(document).ready(function () {
             initializeIcheck();
@@ -137,6 +151,7 @@ const app = new Vue({
             initializeColorPicker();
             handleLogoutBtnClick();
             initClipboardElements();
+            listenToReadMoreClicks();
         });
     });
 })();
