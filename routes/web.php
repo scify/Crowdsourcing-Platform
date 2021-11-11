@@ -71,6 +71,7 @@ Route::get('/debug-sentry', function () {
 
 Route::get('/test-email/{email}', function (Request $request) {
     User::where(['email' => $request->email])->first()->notify(new UserRegistered());
+    return "Success! Email sent to: " . $request->email;
 });
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
