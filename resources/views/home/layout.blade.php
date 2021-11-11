@@ -35,7 +35,7 @@
     @yield('content')
 </div>
 
-<footer>
+<footer class="container-fluid">
     @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
 </footer>
 <div class="loader-wrapper hidden">
