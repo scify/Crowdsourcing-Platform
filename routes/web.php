@@ -66,7 +66,7 @@ Route::get('/questionnaires/{questionnaire}/statistics',
     ->middleware('questionnaire.page_settings');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/debug-sentry/{message}', function (Request $request) {
+    Route::get('/test-sentry/{message}', function (Request $request) {
         throw new Exception('Test Sentry error: ' . $request->message);
     })->middleware("can:manage-platform");
 
