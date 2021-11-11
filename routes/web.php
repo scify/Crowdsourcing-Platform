@@ -68,8 +68,8 @@ Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
 
-Route::get('/test-email', function () {
-    User::findOrFail(1)->notify(new UserRegistered());
+Route::get('/test-email/{email}', function () {
+    User::where(['email' => request()->get('email')])->first()->notify(new UserRegistered());
 });
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
