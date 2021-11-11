@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="{{url('/')}}">
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
-    <link rel="stylesheet"
+    <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
     <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
