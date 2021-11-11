@@ -16,6 +16,7 @@ use App\Http\Controllers\QuestionnaireReportController;
 use App\Http\Controllers\QuestionnaireResponseController;
 use App\Models\User;
 use App\Notifications\UserRegistered;
+use Illuminate\Http\Request;
 
 Auth::routes();
 
@@ -64,12 +65,15 @@ Route::get('/questionnaires/{questionnaire}/statistics',
     ->name('questionnaire.statistics')
     ->middleware('questionnaire.page_settings');
 
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/test-sentry/{message}', function (Request $request) {
+        throw new Exception('Test Sentry error: ' . $request->message);
+    })->middleware("can:manage-platform");
 
-Route::get('/test-email', function () {
-    User::findOrFail(1)->notify(new UserRegistered());
+    Route::get('/test-email/{email}', function (Request $request) {
+        User::where(['email' => $request->email])->first()->notify(new UserRegistered());
+        return "Success! Email sent to: " . $request->email;
+    })->middleware("can:manage-platform");
 });
 
 Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');

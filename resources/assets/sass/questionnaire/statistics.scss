@@ -105,3 +105,16 @@
 .dataTables_wrapper.dt-bootstrap4.no-footer {
   text-align: left;
 }
+
+.read-more,.read-less {
+  color: $brand-primary;
+  margin-left: 5px;
+}
+
+.more-text.hidden{
+  display: none;
+}
+
+.annotation-button {
+  float: left;
+}

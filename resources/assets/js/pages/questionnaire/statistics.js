@@ -5,17 +5,19 @@ import _ from "lodash";
 (function () {
     let init = function () {
         initQuestionnaireResponsesChart();
-        if(viewModel.numberOfResponsesPerLanguage.data.length > 1)
+        if (viewModel.numberOfResponsesPerLanguage.data.length > 1)
             initQuestionnaireResponsesPerLanguageChart();
         printPageBtnHandler();
     };
 
     let initQuestionnaireResponsesChart = function () {
         let ctx = document.getElementById('responsesChart').getContext("2d");
-        if(!viewModel.questionnaireResponseStatistics.totalResponsesColor)
-            viewModel.questionnaireResponseStatistics.totalResponsesColor = getRandomColors(1)[0];
-        if(!viewModel.questionnaireResponseStatistics.goalResponsesColor)
-            viewModel.questionnaireResponseStatistics.goalResponsesColor = getRandomColors(1)[0];
+        const colors = getRandomColors(2);
+
+        if (!viewModel.questionnaireResponseStatistics.totalResponsesColor)
+            viewModel.questionnaireResponseStatistics.totalResponsesColor = colors[0];
+        if (!viewModel.questionnaireResponseStatistics.goalResponsesColor)
+            viewModel.questionnaireResponseStatistics.goalResponsesColor = colors[1];
         const data = {
             datasets: [{
                 data: [
@@ -41,9 +43,10 @@ import _ from "lodash";
     let initQuestionnaireResponsesPerLanguageChart = function () {
         let element = document.getElementById('responsesPerLanguageChart');
         let ctx = element.getContext("2d");
-        for(let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
-            if(!viewModel.numberOfResponsesPerLanguage.data[i].color)
-                viewModel.numberOfResponsesPerLanguage.data[i].color = getRandomColors(1)[0];
+        let colors = getRandomColors(viewModel.numberOfResponsesPerLanguage.data.length);
+        for (let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
+            if (!viewModel.numberOfResponsesPerLanguage.data[i].color)
+                viewModel.numberOfResponsesPerLanguage.data[i].color = colors[i];
         }
         const data = {
             datasets: [{

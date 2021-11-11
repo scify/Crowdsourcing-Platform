@@ -31,12 +31,12 @@ class MailChimpAdaptor
 
     public function subscribe($email, $listName, $name)
     {
-        if(env('MAILCHIMP_API_KEY') && env('MAILCHIMP_API_KEY') != "") {
+        if(config('app.mailchimp_api_key') && config('app.mailchimp_api_key') != "") {
             $mailChimpLists = $this->mailChimpListRepository->all();
 
             $registeredUsersListId = $mailChimpLists->where('id', "=", 2)->first()->list_id;
             $config = $this->generateNewsletterListConfiguration($registeredUsersListId);
-            $this->newsletterManager = new Newsletter(new MailChimp(env('MAILCHIMP_API_KEY')), NewsletterListCollection::createFromConfig($config));
+            $this->newsletterManager = new Newsletter(new MailChimp(config('app.mailchimp_api_key')), NewsletterListCollection::createFromConfig($config));
 
             $mergeFields = [];
             if ($name)

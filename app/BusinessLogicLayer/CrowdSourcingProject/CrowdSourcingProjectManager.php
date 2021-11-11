@@ -94,7 +94,6 @@ class CrowdSourcingProjectManager {
         if($userId)
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
-
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
         $userResponse = null;

@@ -10,6 +10,7 @@ use App\Notifications\UserRegistered;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -86,10 +87,7 @@ class RegisterController extends Controller
         $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
         $this->mailChimpManager->subscribe($user->email, 'registered_users',$user->nickname);
         //same code with Login controller authenticated method
-        $redirectToOverrideUrl = session("redirectTo");
-        if ($redirectToOverrideUrl)
-            return redirect($redirectToOverrideUrl);
-        else
-            return redirect($this->redirectTo);
+        $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
+        return redirect($url)->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $user->id));
     }
 }

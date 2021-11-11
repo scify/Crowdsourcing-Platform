@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import modal from './modal';
+import Promise from "lodash/_Promise";
 
 
 export default new Vuex.Store({
