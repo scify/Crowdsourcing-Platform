@@ -192,7 +192,9 @@ class QuestionnaireRepository extends Repository {
                         q.deleted_at,
                         qsl.title,
                         qsl.description,
-                        dl.language_name
+                        dl.language_name,
+                        number_of_responses,
+                        languages
                         order by q.created_at desc");
     }
 }
