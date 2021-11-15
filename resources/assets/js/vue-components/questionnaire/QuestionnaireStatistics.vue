@@ -174,7 +174,7 @@ export default {
         this.getQuestionnaireResponses(),
         this.getQuestionnaireAnswerVotes(),
         this.getQuestionnaireAnswerAnnotations()]).then(results => {
-        this.initStatistics(results[0], results[1], results[2])
+        this.initStatistics(_.map(results[0], 'answerObj'), results[1], results[2])
       });
     },
     getQuestionnaireResponses() {
@@ -215,7 +215,6 @@ export default {
       AnswersData.userId = this.userId;
       AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       for (let i = 0; i < this.questions.length; i++) {
-
         if (!this.shouldDrawStatistics(this.questions[i]))
           continue;
 
