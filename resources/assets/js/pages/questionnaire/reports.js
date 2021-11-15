@@ -121,8 +121,8 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
     let getResponseByRespondentId = function (id) {
         for (let i = 0; i < answers.length; i++)
-            if (answers[i].respondent_user_id === id)
-                return answers[i];
+            if (answers[i].user_id === id)
+                return JSON.parse(answers[i].response_json);
     };
 
     let answersBtnHandler = function () {
@@ -187,7 +187,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         resultsEl.html(response.data.view);
         questionnaire = response.data.questionnaire;
         initializeDataTables();
-        answers = _.map(_.map(response.data.responses, 'response_json'), JSON.parse);
+        answers = response.data.responses;
         survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
