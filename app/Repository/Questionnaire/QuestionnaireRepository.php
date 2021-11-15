@@ -181,7 +181,15 @@ class QuestionnaireRepository extends Repository {
                             
                         where cspq.project_id in (" . $projectIdsStr . ") 
                         and q.deleted_at is null
-                        GROUP BY q.id
+                        GROUP BY q.id, q.prerequisite_order, q.status_id,
+                        q.default_language_id,
+                        q.title,
+                        q.description,
+                        q.goal,
+                        q.statistics_page_visibility_lkp_id,
+                        q.created_at,
+                        q.updated_at,
+                        q.deleted_at
                         order by q.created_at desc");
     }
 }
