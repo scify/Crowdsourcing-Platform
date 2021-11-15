@@ -174,7 +174,7 @@ export default {
         this.getQuestionnaireResponses(),
         this.getQuestionnaireAnswerVotes(),
         this.getQuestionnaireAnswerAnnotations()]).then(results => {
-        this.initStatistics(_.map(results[0], 'answerObj'), results[1], results[2])
+        this.initStatistics(results[0], results[1], results[2])
       });
     },
     getQuestionnaireResponses() {
@@ -215,6 +215,11 @@ export default {
       AnswersData.userId = this.userId;
       AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       for (let i = 0; i < this.questions.length; i++) {
+        let answersForPanel = answers;
+
+        if (!this.questionTypesToApplyCustomTextsTableVisualizer.includes(this.questions[i].getType()))
+          answersForPanel = _.map(answers, 'answerObj');
+
         if (!this.shouldDrawStatistics(this.questions[i]))
           continue;
 
@@ -229,7 +234,7 @@ export default {
 
         let visPanel = new SurveyAnalytics.VisualizationPanel(
             [this.questions[i]],
-            answers,
+            answersForPanel,
             {
               labelTruncateLength: -1,
               allowDynamicLayout: false,
