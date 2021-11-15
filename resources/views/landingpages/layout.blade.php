@@ -15,17 +15,13 @@
     @if (isset($viewModel->socialMediaMetadataVM))
         @include('landingpages.partials.header-meta', ['viewModel' => $viewModel->socialMediaMetadataVM])
     @endif
-    <link rel="stylesheet"
+    <link rel="stylesheet"  media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-    <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>
+{{--    <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
     @stack('css')
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     @include('analytics')
 </head>
 <body class="container-fluid p-0">
@@ -59,6 +55,6 @@
             ]) !!};
 </script>
 @include('partials.footer-scripts')
-<script src="{{mix('dist/js/landingPage.js')}}"></script>
+<script async src="{{mix('dist/js/landingPage.js')}}"></script>
 </body>
 </html>
