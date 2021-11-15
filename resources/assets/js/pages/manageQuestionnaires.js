@@ -23,7 +23,7 @@
 
     let initializeDataTable = function () {
         let table = $("#questionnaires-table");
-
+        console.log(table);
         table.DataTable({
             destroy: true,
             "paging": true,
