@@ -22,24 +22,27 @@
     };
 
     let initializeDataTable = function () {
-        let table = $("#questionnaires-table");
-        console.log(table);
-        table.DataTable({
-            destroy: true,
-            "paging": true,
-            "responsive": true,
-            "searching": true,
-            "columns": [
-                {"width": "5%"},
-                {"width": "30%"},
-                {"width": "10%"},
-                {"width": "10%"},
-                {"width": "20%"},
-                {"width": "10%"},
-                {"width": "5%"},
-                {"width": "10%"},
-            ]
-        });
+
+        setTimeout(function () {
+            let table = $("#questionnaires-table");
+            table.DataTable({
+                destroy: true,
+                "paging": true,
+                "responsive": true,
+                "searching": true,
+                "columns": [
+                    {"width": "5%"},
+                    {"width": "30%"},
+                    {"width": "10%"},
+                    {"width": "10%"},
+                    {"width": "20%"},
+                    {"width": "10%"},
+                    {"width": "5%"},
+                    {"width": "10%"},
+                ]
+            });
+        }, 1000);
+
     };
 
     $(document).ready(function () {
