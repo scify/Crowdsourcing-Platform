@@ -189,7 +189,10 @@ class QuestionnaireRepository extends Repository {
                         q.statistics_page_visibility_lkp_id,
                         q.created_at,
                         q.updated_at,
-                        q.deleted_at
+                        q.deleted_at,
+                        qsl.title,
+                        qsl.description,
+                        dl.language_name
                         order by q.created_at desc");
     }
 }
