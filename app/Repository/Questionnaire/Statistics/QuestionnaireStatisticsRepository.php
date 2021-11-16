@@ -55,7 +55,7 @@ class QuestionnaireStatisticsRepository {
                             and qr.deleted_at is null
                             and ql.deleted_at is null
                             and ll.deleted_at is null
-                            group by language_code, language_name, color;', [$questionnaireId, $questionnaireId]);
+                            group by language_code, language_name, color, ll.default_color;', [$questionnaireId, $questionnaireId]);
 
         return new QuestionnaireResponsesPerLanguage($query);
     }
