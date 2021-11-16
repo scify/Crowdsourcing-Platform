@@ -59,7 +59,7 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 ) as downvotesInfo on downvotesInfo.question_name = qav.question_name and downvotesInfo.respondent_user_id = qav.respondent_user_id
                 
                 where qav.questionnaire_id = " . $questionnaire_id . "
-                group by qav.question_name, qav.respondent_user_id
+                group by qav.question_name, qav.respondent_user_id, upvoteInfo.upvoted, downvoteInfo.downvoted, upvotesInfo.num_upvotes, downvotesInfo.num_downvotes
                 order by qav.question_name, qav.respondent_user_id;
         "));
     }
