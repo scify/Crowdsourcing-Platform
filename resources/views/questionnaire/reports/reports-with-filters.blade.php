@@ -28,16 +28,19 @@
                             </select>
                         </div>
                         <div class="col-md-2 offset-md-1 col-sm-12 justify-content-center align-items-center">
-                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg" data-url="{{ route('questionnaire.get-report-data') }}"><i
-                                        class="fas fa-search mr-1"></i> View</button>
+                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg"
+                                    data-url="{{ route('questionnaire.get-report-data') }}"><i
+                                        class="fas fa-search mr-1"></i> View
+                            </button>
                         </div>
                     </div>
-                    <div id="errorMsg" class="alert alert-danger stickyAlert margin-top margin-bottom d-none" role="alert"></div>
+                    <div id="errorMsg" class="alert alert-danger stickyAlert margin-top margin-bottom d-none"
+                         role="alert"></div>
                 </div>
             </div>
-            <div class="row loader-container">
+            <div class="row loader-container d-none" id="loader">
                 <div class="col-md-12">
-                    <div class="loader d-none fa-3x" id="loader">
+                    <div class="loader fa-3x">
                         <i class="fas fa-sync fa-spin"></i>
                     </div>
                 </div>
@@ -56,7 +59,8 @@
                                 aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <table id="answerTextsTable" class="display w-100 table table-striped table-bordered" width="100%"></table>
+                    <table id="answerTextsTable" class="display w-100 table table-striped table-bordered"
+                           width="100%"></table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>

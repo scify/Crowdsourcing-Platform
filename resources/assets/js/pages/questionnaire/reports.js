@@ -3,8 +3,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
 (function () {
 
-    let table, respondentsTable, questionnaire, answers, survey;
-    const loader = $("#loader");
+    let table, respondentsTable, questionnaire, answers, survey, loader;
 
     let checkForURLSearchParams = function () {
         let searchParams = new URLSearchParams(window.location.search);
@@ -183,7 +182,6 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         const resultsEl = $("#results");
         resultsEl.html("");
         $("#errorMsg").addClass('d-none');
-        loader.addClass('d-none');
         resultsEl.html(response.data.view);
         questionnaire = response.data.questionnaire;
         initializeDataTables();
@@ -192,6 +190,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
         initializeQuestionnaireResponsesReport();
+        loader.addClass('d-none');
     };
 
     let initializeDataTables = function () {
@@ -200,6 +199,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             "searching": true,
             "responsive": true,
             "pageLength": 10,
+            "order": [[ 1, "desc" ]],
             "columns": [
                 {"width": "30%"},
                 {"width": "30%"},
@@ -245,6 +245,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
     };
 
     let init = function () {
+        loader = $("#loader")
         Survey.StylesManager.applyTheme("modern");
         checkForURLSearchParams();
         searchBtnHandler();
