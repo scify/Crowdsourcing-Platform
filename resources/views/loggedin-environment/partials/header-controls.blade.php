@@ -5,12 +5,13 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-        <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <li class="nav-item dropdown user user-menu">
+            <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if (Auth::user()->avatar)
                     <img loading="lazy" src="{{ Auth::user()->avatar}}" class="user-image">
                 @endif
                 <span class="hidden-xs">{{Auth::user()->nickname}}</span>
+                <i class="fas fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu">
                 <!-- User image -->
