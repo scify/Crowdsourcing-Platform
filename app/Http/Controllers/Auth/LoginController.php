@@ -30,7 +30,11 @@ class LoginController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/my-dashboard';
+    protected $redirectTo = '/en/my-dashboard';
+    public function redirectTo()
+    {
+        return app()->getLocale() . '/my-dashboard';
+    }
 
     protected $userManager;
     protected $questionnaireResponseRepository;

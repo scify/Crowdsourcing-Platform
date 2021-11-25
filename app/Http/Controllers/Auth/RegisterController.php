@@ -34,7 +34,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/my-dashboard';
+    protected $redirectTo = '/en/my-dashboard';
+    public function redirectTo()
+    {
+        return app()->getLocale() . '/my-dashboard';
+    }
+
     private $userRoleManager;
     private $userManager;
     private $mailChimpManager;

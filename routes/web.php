@@ -25,9 +25,9 @@ Route::get('/', function () {
 
 //notice we use this also for /my-dashbor and /my-account
 $localeInfo = ['prefix' => '{locale}',
-    'where' => ['locale' => '[a-zA-Z]{2}'],
-    'middleware' => 'setlocale'
-];
+                'where' => ['locale' => '[a-zA-Z]{2}'],
+                 'middleware' => 'setlocale'
+                ];
 Route::group($localeInfo, function () {
     Auth::routes();
     Route::get('/', 'HomeController@showHomePage')->name('home');
@@ -101,7 +101,8 @@ Route::group(['middleware' => 'auth'], function () {
     })->middleware("can:manage-platform");
 });
 
-Route::group([$localeInfo], function () {
+
+Route::group($localeInfo, function () {
     Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 });
 
