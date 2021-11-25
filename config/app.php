@@ -87,17 +87,17 @@ return [
     'locale' => 'en',
 
     'available_locales' => [
-        'en', // English
-        'lv', // Latvian
-        "gr", // Greek
-        'et', // Estonian
-        'pt', // Portuguese
-        'bg', // Bulgarian
-        'hu', //Hungarian
-        'nl', //Dutch,
-        'fr', // French,
-        'de', //German,
-        'mg' // Montenegrin
+        'en'=> "English",
+        'lv'=> "Latvian",
+        "gr"=> "Greek",
+        'et'=> "Estonian",
+        'pt'=> "Portuguese",
+        'bg'=> "Bulgarian",
+        'hu'=> "Hungarian",
+        'nl'=> "Dutch",
+        'fr' => "French",
+        'de' => "German",
+        'mg' => "Montenegrin"
 
     ],
 
