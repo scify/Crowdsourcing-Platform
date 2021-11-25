@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
-                    <a class="nav-link" href="{{url("my-account")}}">
+                    <a class="nav-link" href="{{route("my-account")}}">
                         <i class="nav-icon fa fa-user"></i>
                         <p>My Account</p>
 
