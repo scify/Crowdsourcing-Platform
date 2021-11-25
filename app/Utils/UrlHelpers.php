@@ -12,3 +12,4 @@ function UrlMatchesMenuItem(string $urlPatternToMatch) : string
 {
     return Request::is($urlPatternToMatch) ? "active" : "";
 }
+
