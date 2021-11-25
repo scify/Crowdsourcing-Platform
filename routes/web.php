@@ -18,17 +18,38 @@ use App\Models\User;
 use App\Notifications\UserRegistered;
 use Illuminate\Http\Request;
 
-Auth::routes();
+
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
+
+//notice we use this also for /my-dashbor and /my-account
+$localeInfo = ['prefix' => '{locale}',
+    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'middleware' => 'setlocale'
+];
+Route::group($localeInfo, function () {
+    Auth::routes();
+    Route::get('/', 'HomeController@showHomePage')->name('home');
+    Route::get('/terms-and-privacy', 'HomeController@showTermsAndPrivacyPage')->name('terms.privacy');
+});
+
 
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('socialLoginCallback');
-Route::get('/', 'HomeController@showHomePage')->name('home');
-Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
-Route::get('/terms-and-privacy', 'HomeController@showTermsAndPrivacyPage')->name('terms.privacy');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
+
+Route::group(['prefix' => '{locale}',
+    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'middleware' => ['auth', 'setlocale'],
+], function () {
     Route::get('/my-dashboard', 'UserController@myDashboard')->name('my-dashboard');
     Route::get('/my-account', 'UserController@myAccount')->name('my-account');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+
     Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
     Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
     Route::post("/admin/add-user", "AdminController@addUserToPlatform")->middleware("can:manage-users");
@@ -60,10 +81,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
 
-Route::get('/questionnaires/{questionnaire}/statistics',
-    'QuestionnaireStatisticsController@showStatisticsPageForQuestionnaire')
-    ->name('questionnaire.statistics')
-    ->middleware('questionnaire.page_settings');
+
+Route::group([$localeInfo], function () {
+    Route::get('/questionnaires/{questionnaire}/statistics',
+        'QuestionnaireStatisticsController@showStatisticsPageForQuestionnaire')
+        ->name('questionnaire.statistics')
+        ->middleware('questionnaire.page_settings');
+});
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/test-sentry/{message}', function (Request $request) {
@@ -76,6 +101,10 @@ Route::group(['middleware' => 'auth'], function () {
     })->middleware("can:manage-platform");
 });
 
-Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
+Route::group([$localeInfo], function () {
+    Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
+});
+
+
 
 
