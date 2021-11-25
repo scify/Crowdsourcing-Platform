@@ -37,10 +37,10 @@
 
 @else
     <li class="nav-item">
-        <a class="nav-link" href="/login">LOGIN</a>
+        <a class="nav-link" href="{{route("login")}}">LOGIN</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/register">REGISTER</a>
+        <a class="nav-link" href="{{route("register")}}">REGISTER</a>
     </li>
 @endif
 @include('partials.language-selector')

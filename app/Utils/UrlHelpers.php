@@ -13,3 +13,12 @@ function UrlMatchesMenuItem(string $urlPatternToMatch) : string
     return Request::is($urlPatternToMatch) ? "active" : "";
 }
 
+function getNameOfRoute($currentRoute){
+    if ($currentRoute)
+    return $currentRoute->getName();
+}
+function SetParameterAndGetAll ($currentRoute, $parameter, $key){
+    $currentRoute->setParameter($parameter, $key);
+    return $currentRoute->parameters();
+
+}

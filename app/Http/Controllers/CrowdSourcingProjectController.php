@@ -87,8 +87,9 @@ class CrowdSourcingProjectController extends Controller {
         return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project has been successfully updated');
     }
 
-    public function showLandingPage(Request $request, $project_slug) {
+    public function showLandingPage(Request $request ) {
         try {
+            $project_slug =$request->project_slug;
             if (Gate::allows('view-landing-page', $project_slug))
                 return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
 
