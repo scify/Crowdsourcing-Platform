@@ -5,7 +5,6 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if (Auth::user()->avatar)
@@ -35,6 +34,7 @@
                     </div>
                 </li>
             </ul>
+            @include("partials.language-selector")
         </li>
     </ul>
 </nav>

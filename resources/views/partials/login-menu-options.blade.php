@@ -2,6 +2,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('my-dashboard') }}">DASHBOARD</a>
     </li>
+
     <li class="nav-item dropdown user user-menu">
         <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">
             @if (Auth::user()->avatar)
@@ -33,6 +34,7 @@
             </li>
         </ul>
     </li>
+
 @else
     <li class="nav-item">
         <a class="nav-link" href="/login">LOGIN</a>
@@ -41,3 +43,4 @@
         <a class="nav-link" href="/register">REGISTER</a>
     </li>
 @endif
+@include('partials.language-selector')
