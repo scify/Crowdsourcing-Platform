@@ -1,6 +1,6 @@
 @if (Auth::check())
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('my-dashboard') }}">DASHBOARD</a>
+        <a class="nav-link" href="{{ route('my-dashboard') }}"> {{ __("menu.dashboard") }} </a>
     </li>
 
     <li class="nav-item dropdown user user-menu">

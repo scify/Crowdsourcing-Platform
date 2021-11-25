@@ -9,7 +9,7 @@
         <div class="col-md-6 col-xs-12">
             <div class="card card-info card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Personal Details</h3>
+                    <h3 class="card-title"> Personal Details</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
