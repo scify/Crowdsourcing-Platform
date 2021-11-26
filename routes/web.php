@@ -23,10 +23,12 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
+
+$regexForLocalParameter= config("app.regex_for_validating_locale_at_routes");
 //notice we use this also for /my-dashbor and /my-account
 $localeInfo = ['prefix' => '{locale}',
-                'where' => ['locale' => '[a-zA-Z]{2}'],
-                 'middleware' => 'setlocale'
+               'where' => ['locale' => $regexForLocalParameter],
+               'middleware' => 'setlocale'
                 ];
 Route::group($localeInfo, function () {
     Auth::routes();
@@ -41,7 +43,7 @@ Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProvide
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
 Route::group(['prefix' => '{locale}',
-    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'where' => ['locale' => $regexForLocalParameter],
     'middleware' => ['auth', 'setlocale'],
 ], function () {
     Route::get('/my-dashboard', 'UserController@myDashboard')->name('my-dashboard');
