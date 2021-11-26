@@ -53,7 +53,6 @@
                     @include('admin.projects.create-edit.partials.landing-page')
 
                 </div>
-
                 <div class="tab-pane fade " id="social-media" role="tabpanel" aria-labelledby="social-media-tab">
                     @include('admin.projects.create-edit.partials.social-media')
 
@@ -72,6 +71,13 @@
                     @include('admin.projects.create-edit.partials.translations')
                 </div>
             </div>
+            <div>
+                <button class="btn  btn-primary btn-lg  mt-3 mb-3"
+                        id="submit-form"
+                        type="submit">Save
+                </button>
+            </div>
+
 
 
         </div>

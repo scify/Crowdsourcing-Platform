@@ -27,10 +27,16 @@
                             "id":11,
                             "language_name":"Greek",
                             "language_code":"el"
+                        },
+                         {
+                            "id":2,
+                            "language_name":"Croatian",
+                            "language_code":"hr"
                         }
                         ]'
                     :existing-translations=' [{
                             "language_id": 6,
+                            "project_id": 8,
                             "name" : " original translation name",
                             "motto_title": " original translation moto",
                             "motto_subtitle": " original translation subtitle",
@@ -39,10 +45,13 @@
                             "footer": " original translation footer",
                             "sm_title": " original translation sm title",
                             "sm_description": " original translation sm descr",
-                            "sm_keywords": " original translation sm keywords"
+                            "sm_keywords": " original translation sm keywords",
+                            "questionnaire_response_email_intro_text": "original email intro",
+                            "questionnaire_response_email_outro_text": "original email outro"
                           },
                             {
                               "language_id": 1,
+                              "project_id": 8,
                               "name" : "other name",
                               "motto_title" : "other moto",
                               "motto_subtitle":"other subtitle ",
@@ -51,10 +60,13 @@
                               "footer": "other footer",
                               "sm_title" : "other sm title",
                               "sm_description": "other sm descr",
-                              "sm_keywords": "other  sm keywords"
+                              "sm_keywords": "other  sm keywords",
+                                "questionnaire_response_email_intro_text": "original email intro",
+                                "questionnaire_response_email_outro_text": "original email outro"
                             },
                              {
                               "language_id": 2,
+                              "project_id": 8,
                               "name" : "other name 2",
                               "motto_title" : "other moto2",
                               "motto_subtitle":"other subtitle 2",
@@ -63,7 +75,9 @@
                               "footer": "other footer 2",
                               "sm_title" : "other sm title 2",
                               "sm_description": "other sm descr 2",
-                              "sm_keywords": "other  sm keywords 2"
+                              "sm_keywords": "other  sm keywords 2",
+                              "questionnaire_response_email_intro_text": "original email intro",
+                              "questionnaire_response_email_outro_text": "original email outro"
                             }
                           ]'
                 />
