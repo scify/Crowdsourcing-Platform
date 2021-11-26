@@ -1,8 +1,17 @@
 <template>
   <div>
-    <!--    TODO: ITERATE TO ALL LANGUAGES AND CREATE CHECKBOXES. USER SHOULD BE ABLE TO SELECT THE LANGUAGE-->
 
-    <!-- TODO:  WHEN A LANGUAGE IS ADDED, THE TRANSLATIONS SHOULD BE ENRICHED.-->
+    <div v-for="(language) in availableLanguages"
+         v-if="language.id !==6">
+      <label>
+        <input type="checkbox"
+               :value="language"
+               v-model="checkedLanguages"
+               @change="checkChanged($event,language)">
+        {{ language.language_name}}
+      </label>
+    </div>
+
     <ul class="nav nav-tabs mt-4" id="translations-tab" role="tablist">
       <li v-for="(translation, index) in this.translations"
           class="nav-item"
@@ -38,7 +47,7 @@
             <td class="original-translation">{{ originalTranslation.name }}</td>
             <td>
 
-              <textarea></textarea>
+              <textarea v-model="translation.name"></textarea>
             </td>
           </tr>
           <tr>
@@ -47,7 +56,7 @@
               {{ originalTranslation.description }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.description"></textarea>
             </td>
           </tr>
           <tr>
@@ -56,7 +65,7 @@
               {{ originalTranslation.motto_title }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.motto_title"></textarea>
             </td>
           </tr>
           <tr>
@@ -65,21 +74,21 @@
               {{ originalTranslation.motto_subtitle }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.motto_subtitle"></textarea>
             </td>
           </tr>
           <tr>
             <td class="field"> About Text (*)</td>
             <td class="original-translation"> {{ originalTranslation.about }}</td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.about"></textarea>
             </td>
           </tr>
           <tr>
             <td class="field"> Footer Text (*)</td>
             <td class="original-translation"> {{ originalTranslation.footer }}</td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.footer"></textarea>
             </td>
           </tr>
           <tr>
@@ -88,7 +97,7 @@
               {{ originalTranslation.sm_title }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.sm_title"></textarea>
             </td>
           </tr>
           <tr>
@@ -97,7 +106,7 @@
               {{ originalTranslation.sm_description }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.sm_description"></textarea>
             </td>
           </tr>
           <tr>
@@ -106,7 +115,7 @@
               {{ originalTranslation.sm_keywords }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.sm_keywords"></textarea>
             </td>
           </tr>
           <tr>
@@ -116,7 +125,7 @@
 
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.questionnaire_response_email_intro_text"></textarea>
             </td>
           </tr>
           <tr>
@@ -125,7 +134,7 @@
               {{ originalTranslation.questionnaire_response_email_outro_text }}
             </td>
             <td>
-              <textarea></textarea>
+              <textarea v-model="translation.questionnaire_response_email_outro_text"></textarea>
             </td>
           </tr>
           </tbody>
@@ -137,77 +146,86 @@
 
 <script>
 
+import _ from "lodash";
+
 export default {
   props: ["existingTranslations", "availableLanguages"],
   data: function () {
     return {
-      translations: this.removeOriginalEngishTranslation(), //todo: use initModel instead
-      originalTranslation: this.getOriginalTranslation()
+      translations: this.removeOriginalEngishTranslation(),
+      originalTranslation: this.getOriginalEnglishTranslation(),
+      checkedLanguages: this.getAlreadySelectedLanguages()
     }
   },
 
   methods: {
-    removeOriginalEngishTranslation(){
-      let translations=[];
-      this.$props.existingTranslations.forEach(function(t){
-        if (t.language_id !=6)
+    getAlreadySelectedLanguages() {
+      var checkedLanguages = [];
+      _.filter(this.$props.availableLanguages, (lang) => {
+        // if you can find in the translations.
+        var result = _.find(this.existingTranslations, {"language_id": lang.id});
+        if (result)
+          checkedLanguages.push(lang);
+      });
+      return checkedLanguages;
+    },
+    removeOriginalEngishTranslation() {
+      let translations = [];
+      this.$props.existingTranslations.forEach(function (t) {
+        if (t.language_id != 6)
           translations.push(t);
       });
       return translations;
     },
-    initModel() {
-      // TO BE IMPLEMENTED if translatiosn have this form
-      let model = {
-        "el": {
-          "language_id": 6,
-          "name": "name",
-          "motto_title": "moto",
-          "motto_subtitle": "subtitle",
-          "description": "descritpion",
-          "about": "about",
-          "footer": "footer",
-          "sm_title": "sm title",
-          "sm_description": "sm descr",
-          "sm_keywords": "sm keywords"
-        },
-        "bg": {
-          "language_id": 6,
-          "name": "name",
-          "motto_title": "moto",
-          "motto_subtitle": "subtitle",
-          "description": "descritpion",
-          "about": "about",
-          "footer": "footer",
-          "sm_title": "sm title",
-          "sm_description": "sm descr",
-          "sm_keywords": "sm keywords"
-        }
-      }
-      //then we can bind them to the textareas like
-      // v-model = translations[languageCode].about
-      // v-model = translations[languageCode].moto
-      // v-model = translations[languageCode].footer
-      // and so on
-      return model;
-    },
     getLanguageName(languageId) {
       //find the name from availableLanguages
-      return "Language" + languageId;
-    }
-    ,
-    addNewTranslation(languageId) {
-      //copy the first translation, empty the values and set the language id
-    }
-    ,
-    getOriginalTranslation() {
-      // let filterResults =  this.translations.filter((item) => item.language_id ==6);
-      // console.log(filterResults);
-      let originalTranslation =null;
-      this.$props.existingTranslations.forEach(function(t){
-        if (t.language_id ==6)
-          originalTranslation = t;
-      });
-      return originalTranslation;
+      let lang = _.find(this.$props.availableLanguages, {"id": languageId});
+      return lang.language_name;
+    },
+    addNewTranslation(language) {
+      //copy the original translation
+      var copy = { ... this.originalTranslation}
+      for (const property in copy) {
+        copy[property]=null;
+      }
+      copy.id = 0;
+      copy.project_id = this.originalTranslation.project_id;
+      copy.language_id = language.id;
+      this.translations.push(copy);
+    },
+    checkChanged($event, language) {
+      console.log($event, language);
+
+      if ($event.target.checked)
+        this.addNewTranslation(language);
+      else
+        this.deleteTranslation(language);
+
+    },
+    deleteTranslation(language) {
+      let translation = _.find(this.translations,{"language_id": language.id});
+      let instance = this;
+      window.swal({
+            title: "Are you sure?",
+            text: "The translation will be deleted",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          },
+          function(isConfirm) {
+            if (isConfirm) {
+              instance.translations.splice(instance.translations.indexOf(translation), 1);
+            }
+            else               //restore the checked option
+              instance.checkedLanguages.push(language);
+          });
+    },
+    getOriginalEnglishTranslation() {
+      return _.find(this.$props.existingTranslations, {"language_id": 6});
     }
 
   }
@@ -221,10 +239,12 @@ export default {
   max-width: 60px;
 
 }
-textarea{
-  width:100%;
-  min-height:30px;
+
+textarea {
+  width: 100%;
+  min-height: 30px;
 }
+
 .table .original-translation {
   max-width: 300px;
 }
