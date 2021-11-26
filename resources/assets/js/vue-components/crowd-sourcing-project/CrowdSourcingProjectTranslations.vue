@@ -214,14 +214,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "resources/assets/sass/variables";
 
 .table .field {
   max-width: 60px;
 
 }
-
+textarea{
+  width:100%;
+  min-height:30px;
+}
 .table .original-translation {
   max-width: 300px;
 }
