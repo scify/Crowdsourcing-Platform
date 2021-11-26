@@ -1,6 +1,8 @@
 <template>
   <div>
 
+    <input type="hidden" name="extra_project_translations" :value="JSON.stringify(this.translations)"/>
+
     <div v-for="(language) in availableLanguages"
          v-if="language.id !==6">
       <label>
