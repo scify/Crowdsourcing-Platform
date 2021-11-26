@@ -98,8 +98,9 @@ return [
         'fr' => "French",
         'de' => "German",
         'mg' => "Montenegrin"
-
     ],
+    // check web.php
+    'regex_for_validating_locale_at_routes' => 'en|lv|gr|et|pt|bg|hu|nl|fr|de|mg',
 
     /*
     |--------------------------------------------------------------------------
