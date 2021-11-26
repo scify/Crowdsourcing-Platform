@@ -89,7 +89,7 @@ return [
     'available_locales' => [
         'en'=> "English",
         'lv'=> "Latvian",
-        "gr"=> "Greek",
+        "el"=> "Greek",
         'et'=> "Estonian",
         'pt'=> "Portuguese",
         'bg'=> "Bulgarian",
@@ -97,10 +97,11 @@ return [
         'nl'=> "Dutch",
         'fr' => "French",
         'de' => "German",
-        'mg' => "Montenegrin"
+        'mg' => "Montenegrin",
+        "ru" => "Russian"
     ],
     // check web.php
-    'regex_for_validating_locale_at_routes' => 'en|lv|gr|et|pt|bg|hu|nl|fr|de|mg',
+    'regex_for_validating_locale_at_routes' => 'en|lv|el|et|pt|bg|hu|nl|fr|de|mg|ru',
 
     /*
     |--------------------------------------------------------------------------
