@@ -141,7 +141,7 @@ export default {
   props: ["existingTranslations", "availableLanguages"],
   data: function () {
     return {
-      translations: this.removeOriginalEngishTranslation(), //todo: use initTranslations instead
+      translations: this.removeOriginalEngishTranslation(), //todo: use initModel instead
       originalTranslation: this.getOriginalTranslation()
     }
   },
@@ -155,9 +155,9 @@ export default {
       });
       return translations;
     },
-    initTranslations() {
+    initModel() {
       // TO BE IMPLEMENTED if translatiosn have this form
-      let transnations = {
+      let model = {
         "el": {
           "language_id": 6,
           "name": "name",
@@ -187,8 +187,8 @@ export default {
       // v-model = translations[languageCode].about
       // v-model = translations[languageCode].moto
       // v-model = translations[languageCode].footer
-      // and so one
-      return transnations;
+      // and so on
+      return model;
     },
     getLanguageName(languageId) {
       //find the name from availableLanguages
