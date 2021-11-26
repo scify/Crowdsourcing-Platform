@@ -37,8 +37,9 @@
                     </label>
                     <div class="col-md-12">
                         <div class="form-group has-feedback">
-                                            <textarea id="sm_description" class="form-control" name="sm_description"
-                                                      placeholder="Enter the description you would like to appear when posting the project to social media">{{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
+                        <textarea id="sm_description" class="form-control" name="sm_description"
+                                  placeholder="Enter the description you would like to appear when posting the project to social media">
+                            {{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
                             <span class="help-block"><strong>{{ $errors->first('sm_description') }}</strong></span>
                         </div>
                     </div>

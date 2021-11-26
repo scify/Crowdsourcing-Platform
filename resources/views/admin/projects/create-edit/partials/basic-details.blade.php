@@ -2,40 +2,26 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <input type="hidden" name="language_id" value="6">
-
-                    <label class="col-sm-12 control-label" for="name">Project Name (<span
-                                class="red">*</span>)</label>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="language_id" value="6">
+                <div class="row image-input-container">
+                    <label class="col-sm-12 control-label">Project Logo</label>
                     <div class="col-sm-12">
-                        <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
-                            <input id="name" type="text" class="form-control" name="name"
-                                   value="{{ old('name') ? old('name') : $viewModel->project->name  }}"
-                                   required
-                                   placeholder="Project Name">
-                            <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
+                        <div class="form-group has-feedback input-file-wrapper">
+                            <label class=" control-label"> In order to update the currently selected image, please choose a new image by
+                                   clicking the button below.</label><Br>
+
+                            <input type="file" name="logo" class="image-input" accept="image/*">
+                            <span class="help-block"><strong>{{ $errors->first('logo') }}</strong></span>
                         </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="col-sm-12 control-label" for="description">Project Description (<span
-                                class="red">*</span>)<br>
-                    </label>
-                    <div class="col-sm-12">
-                        <div class="form-group has-feedback">
-                                        <textarea id="description" class="form-control" name="description"
-                                                  required
-                                                  rows="6"
-                                                  placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
-                            <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
+                        <div class="image-preview-container">
+                            <img loading="lazy" class="selected-image-preview"
+                                 src="{{asset($viewModel->project->logo_path)}}"
+                                 alt="">
                         </div>
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="status_id">Project status</label>
@@ -64,9 +50,12 @@
                 <div class="row">
                     <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the
                         project's url,
-                        for example:
-                        <i>https://crowdsourcing.scify.org/your-project-slug</i>)<br>
-                        It can contain only letters, numbers, and dashes.<br>
+                        for example:<br>
+                        <i>For english | https://crowdsourcing.ecas.org/en/your-project-slug</i>)<br>
+                        <i>For greek | https://crowdsourcing.ecas.org/gr/your-project-slug</i>)<br>
+                        <i>For dutch | https://crowdsourcing.ecas.org/nl/your-project-slug</i>)<br>
+
+                        The url can contain only letters, numbers, and dashes.<br>
                         If left empty, we will take care of creating the URL, based on the project name.<br>
                         Please note that once you publish the project you <i>cannot</i> change the slug.
                     </label>
@@ -97,24 +86,35 @@
 
                     </div>
                 </div>
-                <div class="row image-input-container">
-                    <label class="col-sm-12 control-label">Project Logo</label>
+                <div class="row">
+                    <label class="col-sm-12 control-label" for="name">Project Name (<span
+                                class="red">*</span>)</label>
                     <div class="col-sm-12">
-                        <div class="image-preview-container">
-                            <img loading="lazy" class="selected-image-preview"
-                                 src="{{asset($viewModel->project->logo_path)}}"
-                                 alt="Selected logo image">
+                        <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
+                            <input id="name" type="text" class="form-control" name="name"
+                                   value="{{ old('name') ? old('name') : $viewModel->project->name  }}"
+                                   required
+                                   placeholder="Project Name">
+                            <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                         </div>
-                        <div class="form-group has-feedback input-file-wrapper">
-                            <small>In order to update the currently selected image, please choose a new
-                                image by
-                                clicking the button below.
-                            </small>
-                            <input type="file" name="logo" class="image-input" accept="image/*">
-                            <span class="help-block"><strong>{{ $errors->first('logo') }}</strong></span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 control-label" for="description">Project Description (<span
+                                class="red">*</span>)<br>
+                    </label>
+                    <div class="col-sm-12">
+                        <div class="form-group has-feedback">
+                                        <textarea id="description" class="form-control" name="description"
+                                                  required
+                                                  rows="6"
+                                                  placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
+                            <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
