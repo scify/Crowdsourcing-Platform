@@ -25,9 +25,11 @@ class MoveCrowdsourcingProjectsToTranslations extends Migration
                 footer,
                 sm_title,
                 sm_description,
-                sm_keywords)
+                sm_keywords,
+                questionnaire_response_email_intro_text,
+                questionnaire_response_email_outro_text)
                 
-                select id,
+                 select  p.id,
                 language_id,
                 name,
                 motto_title,
@@ -37,7 +39,11 @@ class MoveCrowdsourcingProjectsToTranslations extends Migration
                 footer,
                 sm_title,
                 sm_description,
-                sm_keywords from crowd_sourcing_projects";
+                sm_keywords ,
+                r.questionnaire_response_email_intro_text,
+                r.questionnaire_response_email_outro_text
+                from crowd_sourcing_projects p 
+                inner join crowd_sourcing_project_communication_resources r on p.communication_resources_id = r.id";
 
         DB::statement($sql);
     }

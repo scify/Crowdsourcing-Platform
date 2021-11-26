@@ -27,6 +27,8 @@ class CreateProjectsTranslationsTable extends Migration
                       `sm_title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '\n            The title that will be shown when the project URL is posted to social media\n            ',
                       `sm_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT '\n            The description that will be shown when the project URL is posted to social media\n            ',
                       `sm_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT '\n            Comma-separated words that will be shown as keywords when the project URL is posted to social media\n            ',
+                      `questionnaire_response_email_intro_text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+                      `questionnaire_response_email_outro_text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
                       `created_at` timestamp NULL DEFAULT NULL,
                       `updated_at` timestamp NULL DEFAULT NULL,
                       `deleted_at` timestamp NULL DEFAULT NULL,
