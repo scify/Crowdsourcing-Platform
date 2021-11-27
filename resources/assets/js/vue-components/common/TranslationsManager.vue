@@ -10,7 +10,7 @@
                :value="language"
                v-model="checkedLanguages"
                @change="checkChanged($event,language)">
-        {{ language.language_name}}
+        {{ language.language_name }}
       </label>
     </div>
 
@@ -44,99 +44,13 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td class="field">Project Name (*)</td>
-            <td class="original-translation">{{ originalTranslation.name }}</td>
+          <tr v-for="(value, property) in translation"
+              v-if="modelMetaData[property]"
+          >
+            <td class="field">{{ getDisplayTitleForProperty(property) }}</td>
+            <td class="original-translation">{{ originalTranslation[property] }}</td>
             <td>
-
-              <textarea v-model="translation.name"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field">Project Description (*)</td>
-            <td class="original-translation">
-              {{ originalTranslation.description }}
-            </td>
-            <td>
-              <textarea v-model="translation.description"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field">Project Motto Title (*)</td>
-            <td class="original-translation">
-              {{ originalTranslation.motto_title }}
-            </td>
-            <td>
-              <textarea v-model="translation.motto_title"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field">Project Motto Subtitle</td>
-            <td class="original-translation">
-              {{ originalTranslation.motto_subtitle }}
-            </td>
-            <td>
-              <textarea v-model="translation.motto_subtitle"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> About Text (*)</td>
-            <td class="original-translation"> {{ originalTranslation.about }}</td>
-            <td>
-              <textarea v-model="translation.about"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> Footer Text (*)</td>
-            <td class="original-translation"> {{ originalTranslation.footer }}</td>
-            <td>
-              <textarea v-model="translation.footer"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> Social Media Title</td>
-            <td class="original-translation">
-              {{ originalTranslation.sm_title }}
-            </td>
-            <td>
-              <textarea v-model="translation.sm_title"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> Social Media Description</td>
-            <td class="original-translation">
-              {{ originalTranslation.sm_description }}
-            </td>
-            <td>
-              <textarea v-model="translation.sm_description"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> Social Media Keywords</td>
-            <td class="original-translation">
-              {{ originalTranslation.sm_keywords }}
-            </td>
-            <td>
-              <textarea v-model="translation.sm_keywords"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> Congratulations email intro text</td>
-            <td class="original-translation">
-              {{ originalTranslation.questionnaire_response_email_intro_text }}
-
-            </td>
-            <td>
-              <textarea v-model="translation.questionnaire_response_email_intro_text"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td class="field"> Congratulations email outro text</td>
-            <td class="original-translation">
-              {{ originalTranslation.questionnaire_response_email_outro_text }}
-            </td>
-            <td>
-              <textarea v-model="translation.questionnaire_response_email_outro_text"></textarea>
+              <textarea v-model="translation[property]"></textarea>
             </td>
           </tr>
           </tbody>
@@ -151,7 +65,7 @@
 import _ from "lodash";
 
 export default {
-  props: ["existingTranslations", "availableLanguages"],
+  props: ["existingTranslations", "availableLanguages", "modelMetaData"],
   data: function () {
     return {
       translations: this.removeOriginalEngishTranslation(),
@@ -161,6 +75,9 @@ export default {
   },
 
   methods: {
+    getDisplayTitleForProperty(property){
+      return this.modelMetaData[property].display_title;
+    },
     getAlreadySelectedLanguages() {
       var checkedLanguages = [];
       _.filter(this.$props.availableLanguages, (lang) => {
@@ -186,13 +103,18 @@ export default {
     },
     addNewTranslation(language) {
       //copy the original translation
-      var copy = { ... this.originalTranslation}
+      var copy = {...this.originalTranslation}
       for (const property in copy) {
-        copy[property]=null;
+        if (typeof property === 'string' || property instanceof String) {
+          copy[property] = null;
+        }
       }
-      copy.id = 0;
-      copy.project_id = this.originalTranslation.project_id;
+      //WE MAKE THE ASSUMPTIONS THAT THE VIEWMODEL PASSED TO THIS COMPONENT HAS
+      // THE DATABASE ID as "id"
+      //  id : the database id
       copy.language_id = language.id;
+      copy.id = 0;
+
       this.translations.push(copy);
     },
     checkChanged($event, language) {
@@ -205,7 +127,7 @@ export default {
 
     },
     deleteTranslation(language) {
-      let translation = _.find(this.translations,{"language_id": language.id});
+      let translation = _.find(this.translations, {"language_id": language.id});
       let instance = this;
       window.swal({
             title: "Are you sure?",
@@ -218,11 +140,10 @@ export default {
             closeOnConfirm: true,
             closeOnCancel: true
           },
-          function(isConfirm) {
+          function (isConfirm) {
             if (isConfirm) {
               instance.translations.splice(instance.translations.indexOf(translation), 1);
-            }
-            else               //restore the checked option
+            } else               //restore the checked option
               instance.checkedLanguages.push(language);
           });
     },

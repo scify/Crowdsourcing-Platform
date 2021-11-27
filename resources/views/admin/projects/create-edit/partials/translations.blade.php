@@ -11,7 +11,53 @@
                  the language look up and
                  crowd_sourcing_project_translations data for this project
                   --}}
-                <crowd-sourcing-project-translations
+                <translations-manager
+                        :model-meta-data='{
+                            "name":{
+                              "display_title" :"Project Name (*)",
+                              "required": true
+                            },
+                            "description":{
+                                "display_title" :"Project description (*)",
+                                "required": true
+                            },
+                            "motto_title":{
+                                "display_title" :"Project Motto Title (*)",
+                                "required": true
+                            },
+                            "motto_subtitle":{
+                                "display_title" :"Project Motto Subtitle",
+                                "required": true
+                            },
+                            "about":{
+                                "display_title" :"About Text (*)",
+                                "required": true
+                            },
+                            "footer":{
+                                "display_title" :"Footer Text (*)",
+                                "required": true
+                            },
+                            "sm_title":{
+                                "display_title" :"Social Media Title",
+                                "required": true
+                            },
+                            "sm_description":{
+                                "display_title" :"Social Media Description",
+                                "required": true
+                            },
+                             "sm_keywords":{
+                                "display_title" :"Social Media Keywords",
+                                "required": true
+                            },
+                             "questionnaire_response_email_intro_text":{
+                                "display_title" :"Congratulations email intro text",
+                                "required": true
+                            },
+                             "questionnaire_response_email_outro_text":{
+                                "display_title" :"Congratulations email outro text",
+                                "required": true
+                            }
+                        }'
                         :available-languages='[
                         {
                             "id":1,
@@ -92,3 +138,9 @@
     </div>
 </div>
 
+<script>
+    import TranslationsManager from "../../../../../assets/js/vue-components/common/TranslationsManager";
+    export default {
+        components: {TranslationsManager}
+    }
+</script>

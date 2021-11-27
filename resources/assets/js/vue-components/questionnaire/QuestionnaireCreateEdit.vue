@@ -80,6 +80,67 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label>Other translations</label>
+            </div>
+            <div class="col-md-10 col-sm-6 col-xs-12">
+              <translations-manager
+                  :model-meta-data='{
+                            "title":{
+                              "display_title" :"Title (*)",
+                              "required": true
+                            },
+                            "description":{
+                                "display_title" :"Description (*)",
+                                "required": true
+                            },
+                        }'
+                  :available-languages='[
+                        {
+                            "id":1,
+                            "language_name":"Bulgarian",
+                            "language_code":"bg"
+                        },
+                        {
+                            "id":6,
+                            "language_name":"English",
+                            "language_code":"en"
+                        },
+                        {
+                            "id":11,
+                            "language_name":"Greek",
+                            "language_code":"el"
+                        },
+                         {
+                            "id":2,
+                            "language_name":"Croatian",
+                            "language_code":"hr"
+                        }
+                        ]'
+                  :existing-translations=' [{
+                            "language_id": 6,
+                            "questionnaire_id": 28,
+                            "title" : " original title",
+                            "description": " original description",
+                          },
+                          {
+                            "language_id": 1,
+                            "questionnaire_id": 28,
+                            "title" : " language 1 title",
+                            "description": " language 1  description",
+                          },
+                          {
+                            "language_id": 2,
+                            "questionnaire_id": 28,
+                            "title" : " language 2  title",
+                            "description": " language 2 description",
+                          }
+                          ]'
+              />
+            </div>
+
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label>Default Language</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -95,6 +156,7 @@
               </select>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-12 editor-wrapper">
               <em>Use the editor below to create your questionnaire.</em>

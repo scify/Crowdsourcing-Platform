@@ -48,7 +48,7 @@ Vue.component('questionnaire-languages', require('./vue-components/questionnaire
 Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
 Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
 Vue.component('crowd-sourcing-project-colors', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectColors').default);
-Vue.component('crowd-sourcing-project-translations', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectTranslations').default);
+Vue.component('translations-manager', require('./vue-components/common/TranslationsManager').default);
 
 const app = new Vue({
     el: '#app',
