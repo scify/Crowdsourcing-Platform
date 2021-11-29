@@ -81,6 +81,6 @@ class QuestionnaireVMProvider {
     }
 
     protected function getQuestionnaireURL($projectSlug, $questionnaireId): string {
-        return url('/' . trim($projectSlug)) . '?open=1&questionnaireId=' . $questionnaireId;
+        return url('/en/' . trim($projectSlug)) . '?open=1&questionnaireId=' . $questionnaireId;
     }
 }
