@@ -13,7 +13,7 @@ class QuestionnaireStatisticsRepository {
      * * @param mixed $questionnaireId
      * * @return QuestionnaireResponseStatistics
      * */
-    public function getQuestionnaireResponseStatistics($questionnaireId) {
+    public function getQuestionnaireResponseStatistics($questionnaireId): QuestionnaireResponseStatistics {
         $totalResponses = DB::select(
             'select count(*) as count, qbsc.total_responses_color
                     from questionnaire_responses as qr
