@@ -4,7 +4,8 @@ import _ from "lodash";
 
 (function () {
     let init = function () {
-        initQuestionnaireResponsesChart();
+        if (viewModel.questionnaireTotalResponseStatistics.totalResponses > 1)
+            initQuestionnaireResponsesChart();
         if (viewModel.numberOfResponsesPerLanguage.data.length > 1)
             initQuestionnaireResponsesPerLanguageChart();
         printPageBtnHandler();
