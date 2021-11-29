@@ -9,7 +9,7 @@
             <li >
                 <a class="dropdown-item"
                                    href="{{ route( getNameOfRoute(\Illuminate\Support\Facades\Route::current()),
-                                                   SetParameterAndGetAll(\Illuminate\Support\Facades\Route::current(), "locale", $key))
+                                                   SetParameterAndGetAll(\Illuminate\Support\Facades\Route::current(), "locale", $key)) . substr(\Illuminate\Support\Facades\Request::fullUrl(), strpos(\Illuminate\Support\Facades\Request::fullUrl(), "?"))
                                             }}"
                    @if (app()->getLocale() == $key) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($key) . ", ".strtoupper($label) }}</a>
             </li>
