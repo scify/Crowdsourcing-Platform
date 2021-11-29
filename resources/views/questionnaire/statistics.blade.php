@@ -25,7 +25,7 @@
                             </h1>
                         </div>
                     </div>
-                    @if($viewModel->questionnaireTotalResponseStatistics->totalResponses)
+                    @if($viewModel->questionnaireResponseStatistics->totalResponses)
                         <div class="row my-5 py-5 align-items-center bg-white">
                             <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
                                 <h2>Total Responses:</h2>
