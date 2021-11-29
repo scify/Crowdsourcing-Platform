@@ -84,10 +84,8 @@
     @endpush
 @endsection
 @push('scripts')
-    <script src="{{ mix('dist/js/myQuestionnaireResponses.js')}}"></script>
-    <script type="text/javascript">
-        let responses = Object.values(@json($responses));
-        let controller = new QuestionnaireResponsesController(responses);
-        controller.init();
+    <script>
+        const responses = {!!  json_encode($responses) !!};
     </script>
+    <script src="{{ mix('dist/js/myQuestionnaireResponses.js') }}"></script>
 @endpush
