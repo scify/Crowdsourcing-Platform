@@ -4,7 +4,7 @@
     <input type="hidden" name="extra_project_translations" :value="JSON.stringify(this.translations)"/>
 
     <div v-for="(language) in availableLanguages"
-         v-if="language.id !==6">
+         v-if="language.id !== defaultLang.id">
       <label>
         <input type="checkbox"
                :value="language"
@@ -63,47 +63,77 @@
 <script>
 
 import _ from "lodash";
+import {mapActions} from "vuex";
 
 export default {
-  props: ["existingTranslations", "availableLanguages", "modelMetaData"],
+  props: ["existingTranslations", "modelMetaData"],
   data: function () {
     return {
-      translations: this.removeOriginalEngishTranslation(),
-      originalTranslation: this.getOriginalEnglishTranslation(),
-      checkedLanguages: this.getAlreadySelectedLanguages()
+      translations: [],
+      originalTranslation: [],
+      checkedLanguages: [],
+      availableLanguages: [],
+      defaultLangCode: 'en',
+      defaultLang: {}
     }
   },
-
+  mounted() {
+    this.getAvailableLanguagesAndInit();
+  },
   methods: {
-    getDisplayTitleForProperty(property){
+    ...mapActions([
+      'get',
+      'handleError'
+    ]),
+    getAvailableLanguagesAndInit() {
+      this.get({
+        url: route('languages.get'),
+        data: {},
+        urlRelative: false
+      }).then(response => {
+        this.availableLanguages = response.data.languages;
+        this.defaultLang = this.getDefaultLang();
+        this.translations = this.removeDefaultTranslation();
+        this.originalTranslation = this.getOriginalEnglishTranslation();
+        this.checkedLanguages = this.getAlreadySelectedLanguages();
+      });
+    },
+    getDefaultLang() {
+      for (let i = 0; i < this.availableLanguages.length; i++)
+        if (this.availableLanguages[i].language_code === this.defaultLangCode)
+          return this.availableLanguages[i];
+      throw "Default locale not found. Code: " + this.defaultLangCode;
+    },
+    getDisplayTitleForProperty(property) {
       return this.modelMetaData[property].display_title;
     },
     getAlreadySelectedLanguages() {
-      var checkedLanguages = [];
-      _.filter(this.$props.availableLanguages, (lang) => {
+      const checkedLanguages = [];
+      _.filter(this.availableLanguages, (lang) => {
         // if you can find in the translations.
-        var result = _.find(this.existingTranslations, {"language_id": lang.id});
+        const result = _.find(this.existingTranslations, {"language_id": lang.id});
         if (result)
           checkedLanguages.push(lang);
       });
       return checkedLanguages;
     },
-    removeOriginalEngishTranslation() {
+    removeDefaultTranslation() {
       let translations = [];
-      this.$props.existingTranslations.forEach(function (t) {
-        if (t.language_id != 6)
+      let instance = this;
+      this.existingTranslations.forEach(function (t) {
+        if (t.language_id !== instance.defaultLang.id)
           translations.push(t);
       });
       return translations;
     },
     getLanguageName(languageId) {
       //find the name from availableLanguages
-      let lang = _.find(this.$props.availableLanguages, {"id": languageId});
+      let lang = _.find(this.availableLanguages, {"id": languageId});
       return lang.language_name;
     },
     addNewTranslation(language) {
       //copy the original translation
-      var copy = {...this.originalTranslation}
+      const copy = {...this.originalTranslation};
       for (const property in copy) {
         if (typeof property === 'string' || property instanceof String) {
           copy[property] = null;
@@ -148,7 +178,7 @@ export default {
           });
     },
     getOriginalEnglishTranslation() {
-      return _.find(this.$props.existingTranslations, {"language_id": 6});
+      return _.find(this.$props.existingTranslations, {"language_id": this.defaultLang.id});
     }
 
   }
