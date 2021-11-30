@@ -4,6 +4,7 @@
 namespace App\Repository\Questionnaire\Responses;
 
 
+use App\BusinessLogicLayer\CookieManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
@@ -51,12 +52,10 @@ class QuestionnaireResponseRepository extends Repository {
             }
             QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->update(['user_id' => $user_id]);
             $user->delete();
-            setcookie(UserManager::$USER_COOKIE_KEY, false);
-            unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
+            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
         } catch (Exception $e) {
             Log::error('Transfer error:' . $e->getMessage());
-            setcookie(UserManager::$USER_COOKIE_KEY, false);
-            unset($_COOKIE[UserManager::$USER_COOKIE_KEY]);
+            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
         }
     }
 }
