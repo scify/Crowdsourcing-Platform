@@ -185,7 +185,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         resultsEl.html(response.data.view);
         questionnaire = response.data.questionnaire;
         initializeDataTables();
-        answers = response.data.responses;
+        answers = _.map(response.data.responses, 'response_json').map(JSON.parse);
         survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
@@ -199,7 +199,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             "searching": true,
             "responsive": true,
             "pageLength": 10,
-            "order": [[ 1, "desc" ]],
+            "order": [[1, "desc"]],
             "columns": [
                 {"width": "30%"},
                 {"width": "30%"},
