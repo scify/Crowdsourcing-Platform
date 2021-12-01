@@ -7,7 +7,8 @@
                 @else
                     <translations-manager
                             :model-meta-data='@json( $viewModel->translationsMetaData)'
-                            :existing-translations=' @json( $viewModel->translations)'></translations-manager>
+                            :existing-translations=' @json( $viewModel->translations)'
+                            :default-lang-id="{{ $viewModel->project->language_id }}"></translations-manager>
                 @endif
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Models\ViewModels;
 
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Language;
 use Illuminate\Support\Collection;
 
 class CreateEditCrowdSourcingProject {
@@ -14,12 +15,16 @@ class CreateEditCrowdSourcingProject {
     public $projectStatusesLkp;
     public $contributorEmailView;
     public $translationsMetaData;
+    public $languagesLkp;
+    public $defaultLanguageCode = 'en';
 
     public function __construct(CrowdSourcingProject $project, Collection $translations,
-                                Collection $projectStatusesLkp, string $contributorEmailView) {
+                                Collection           $projectStatusesLkp,
+                                Collection $languagesLkp, string $contributorEmailView) {
         $this->project = $project;
         $this->translations = $translations;
         $this->projectStatusesLkp = $projectStatusesLkp;
+        $this->languagesLkp = $languagesLkp;
         $this->contributorEmailView = $contributorEmailView;
         $this->translationsMetaData = [
             'name' => [
@@ -71,6 +76,12 @@ class CreateEditCrowdSourcingProject {
 
     public function isEditMode(): bool {
         return $this->project->id !== null;
+    }
+
+    public function shouldLanguageBeSelected(Language $language): bool {
+        if ($this->project->language_id)
+            return $this->project->language_id == $language->id;
+        return $language->language_code === $this->defaultLanguageCode;
     }
 
 }

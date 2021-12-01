@@ -171,8 +171,10 @@ class CrowdSourcingProjectManager {
             ]);
         }
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
+        $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultLanguageForProject(
+            $attributes, $id);
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
-            json_decode($attributes['extra_project_translations']), $id);
+            json_decode($attributes['extra_project_translations']), $project->id, intval($attributes['language_id']));
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {
@@ -295,8 +297,14 @@ class CrowdSourcingProjectManager {
             $contributorBadgeVM,
             $project->communicationResources
         ))->toMail(null)->render();
-        $translations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project->id);
-        return new CreateEditCrowdSourcingProject($project, $translations, $statusesLkp, $notification);
+        $translations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
+        return new CreateEditCrowdSourcingProject(
+            $project,
+            $translations,
+            $statusesLkp,
+            $this->languageRepository->all(),
+            $notification
+        );
     }
 
     public function getCrowdSourcingProjectsListPageViewModel(): AllCrowdSourcingProjects {
