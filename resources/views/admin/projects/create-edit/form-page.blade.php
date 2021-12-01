@@ -72,12 +72,10 @@
                 </div>
             </div>
             <div>
-                <button class="btn  btn-primary btn-lg  mt-3 mb-3"
-                        id="submit-form"
-                        type="submit">Save
-                </button>
+                <input class="btn btn-primary btn-lg  mt-3 mb-3"
+                       id="submit-form"
+                       type="submit" value="Save">
             </div>
-
 
 
         </div>
