@@ -58,7 +58,7 @@ class CrowdSourcingProjectController extends Controller {
             'language_id' => 'required|numeric|exists:languages_lkp,id'
         ]);
         $this->crowdSourcingProjectManager->storeProject($request->all());
-        return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project has been successfully created');
+        return back()->with('flash_message_success', 'The project has been successfully created');
     }
 
     /**
@@ -84,7 +84,7 @@ class CrowdSourcingProjectController extends Controller {
         } catch (\Exception $e) {
             return back()->with('flash_message_failure', $e->getMessage());
         }
-        return redirect()->to(route('projects.index'))->with('flash_message_success', 'The project has been successfully updated');
+        return back()->with('flash_message_success', 'The project has been successfully updated');
     }
 
     public function showLandingPage(Request $request ) {

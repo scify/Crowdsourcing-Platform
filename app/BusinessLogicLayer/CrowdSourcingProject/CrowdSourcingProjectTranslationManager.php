@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
 use Illuminate\Support\Collection;
@@ -14,12 +15,25 @@ class CrowdSourcingProjectTranslationManager {
         $this->crowdSourcingProjectTranslationRepository = $crowdSourcingProjectTranslationRepository;
     }
 
-    public function getTranslationsForProject(int $project_id): Collection {
-        return $this->crowdSourcingProjectTranslationRepository->allWhere(['project_id' => $project_id]);
+    public function getTranslationsForProject(CrowdSourcingProject $project): Collection {
+        if (!$project->id)
+            return new Collection();
+        return $this->crowdSourcingProjectTranslationRepository->allWhere(['project_id' => $project->id]);
     }
 
-    public function storeOrUpdateTranslationsForProject(array $attributesArray, int $project_id) {
-        $defaultLanguageContentForProject = $this->crowdSourcingProjectTranslationRepository->where(['project_id' => $project_id])->toArray();
+    public function storeOrUpdateDefaultLanguageForProject(array $attributes, int $project_id) {
+        $allowedKeys = (new CrowdSourcingProjectTranslation())->getFillable();
+        $filtered = $this->getFilteredAttributes($attributes, $allowedKeys);
+        $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
+            ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
+            $filtered
+        );
+    }
+
+    public function storeOrUpdateTranslationsForProject(array $attributesArray, int $project_id, int $language_id) {
+        $defaultLanguageContentForProject = $this->crowdSourcingProjectTranslationRepository->where([
+            'project_id' => $project_id, 'language_id' => $language_id])
+            ->toArray();
         $allowedKeys = (new CrowdSourcingProjectTranslation())->getFillable();
         foreach ($attributesArray as $attributes) {
             $attributes = json_decode(json_encode($attributes), true);
@@ -27,13 +41,7 @@ class CrowdSourcingProjectTranslationManager {
                 if (!$value)
                     $attributes[$key] = $defaultLanguageContentForProject[$key];
             }
-            $filtered = array_filter(
-                $attributes,
-                function ($key) use ($allowedKeys) {
-                    return in_array($key, $allowedKeys);
-                },
-                ARRAY_FILTER_USE_KEY
-            );
+            $filtered = $this->getFilteredAttributes($attributes, $allowedKeys);
             $filtered['project_id'] = $project_id;
             $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
                 ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
@@ -41,5 +49,15 @@ class CrowdSourcingProjectTranslationManager {
             );
         }
 
+    }
+
+    private function getFilteredAttributes(array $attributes, array $allowedKeys): array {
+        return array_filter(
+            $attributes,
+            function ($key) use ($allowedKeys) {
+                return in_array($key, $allowedKeys);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
     }
 }

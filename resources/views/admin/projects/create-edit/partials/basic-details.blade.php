@@ -3,13 +3,13 @@
         <div class="card">
             <div class="card-body">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="language_id" value="6">
                 <div class="row image-input-container">
                     <label class="col-sm-12 control-label">Project Logo</label>
                     <div class="col-sm-12">
                         <div class="form-group has-feedback input-file-wrapper">
-                            <label class=" control-label"> In order to update the currently selected image, please choose a new image by
-                                   clicking the button below.</label><Br>
+                            <label class=" control-label"> In order to update the currently selected image, please
+                                choose a new image by
+                                clicking the button below.</label><Br>
 
                             <input type="file" name="logo" class="image-input" accept="image/*">
                             <span class="help-block"><strong>{{ $errors->first('logo') }}</strong></span>
@@ -26,16 +26,17 @@
                         <div class="form-group">
                             <label for="status_id">Project status</label>
                             @if(!Gate::check('change-status-crowd-sourcing-projects'))
-                                <small class="text-blue">(The project status can only be changed by a platform administrator.)</small>
+                                <small class="text-blue">(The project status can only be changed by a platform
+                                    administrator.)</small>
                             @endif
                             <select id="status_id" class="form-control" name="status_id">
                                 @foreach ($viewModel->projectStatusesLkp as $status)
                                     <option
                                             @if(!Gate::allows('change-status-crowd-sourcing-projects'))
-                                                disabled
+                                            disabled
                                             @endif
                                             @if ($viewModel->project->status_id == $status->id || old('status_id') == $status->id)
-                                                selected
+                                            selected
                                             @endif
                                             value="{{ $status->id }}">
                                         {{ $status->title }}
@@ -85,6 +86,26 @@
                         </div>
 
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="status_id">Project Default Language</label>
+                            <select id="default_lang_id" class="form-control" name="language_id">
+                                @foreach ($viewModel->languagesLkp as $language)
+                                    <option
+                                            @if ($viewModel->shouldLanguageBeSelected($language))
+                                            selected
+                                            @endif
+                                            value="{{ $language->id }}">
+                                        {{ $language->language_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <br>
                 </div>
                 <div class="row">
                     <label class="col-sm-12 control-label" for="name">Project Name (<span

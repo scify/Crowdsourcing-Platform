@@ -4,7 +4,7 @@
     <input type="hidden" name="extra_project_translations" :value="JSON.stringify(this.translations)"/>
 
     <div v-for="(language) in availableLanguages"
-         v-if="language.id !== defaultLang.id">
+         v-if="language.id !== defaultLangId">
       <label>
         <input type="checkbox"
                :value="language"
@@ -40,7 +40,7 @@
           <tr>
             <th scope="col">Field</th>
             <th scope="col">Original Translation</th>
-            <th scope="col">{{ getLanguageName(translation.language_id) }}</th>
+            <th scope="col">Default ({{ getLanguageName(defaultLangId) }})</th>
           </tr>
           </thead>
           <tbody>
@@ -66,15 +66,13 @@ import _ from "lodash";
 import {mapActions} from "vuex";
 
 export default {
-  props: ["existingTranslations", "modelMetaData"],
+  props: ["existingTranslations", "modelMetaData", "defaultLangId"],
   data: function () {
     return {
       translations: [],
       originalTranslation: [],
       checkedLanguages: [],
-      availableLanguages: [],
-      defaultLangCode: 'en',
-      defaultLang: {}
+      availableLanguages: []
     }
   },
   mounted() {
@@ -92,17 +90,10 @@ export default {
         urlRelative: false
       }).then(response => {
         this.availableLanguages = response.data.languages;
-        this.defaultLang = this.getDefaultLang();
         this.translations = this.removeDefaultTranslation();
         this.originalTranslation = this.getOriginalEnglishTranslation();
         this.checkedLanguages = this.getAlreadySelectedLanguages();
       });
-    },
-    getDefaultLang() {
-      for (let i = 0; i < this.availableLanguages.length; i++)
-        if (this.availableLanguages[i].language_code === this.defaultLangCode)
-          return this.availableLanguages[i];
-      throw "Default locale not found. Code: " + this.defaultLangCode;
     },
     getDisplayTitleForProperty(property) {
       return this.modelMetaData[property].display_title;
@@ -121,7 +112,7 @@ export default {
       let translations = [];
       let instance = this;
       this.existingTranslations.forEach(function (t) {
-        if (t.language_id !== instance.defaultLang.id)
+        if (t.language_id !== instance.defaultLangId)
           translations.push(t);
       });
       return translations;
@@ -178,7 +169,7 @@ export default {
           });
     },
     getOriginalEnglishTranslation() {
-      return _.find(this.$props.existingTranslations, {"language_id": this.defaultLang.id});
+      return _.find(this.existingTranslations, {"language_id": this.defaultLangId});
     }
 
   }
