@@ -122,7 +122,7 @@ class QuestionnaireRepository extends Repository {
                         q.updated_at,
                         q.deleted_at,
                         COUNT(csp.id) AS num_of_projects,
-                        GROUP_CONCAT(csp.name
+                        GROUP_CONCAT(cspt.name
                             SEPARATOR ', ') AS project_names,
                         GROUP_CONCAT(csp.slug
                             SEPARATOR ', ') AS project_slugs,
@@ -138,6 +138,9 @@ class QuestionnaireRepository extends Repository {
                         crowd_sourcing_project_questionnaires cspq ON cspq.questionnaire_id = q.id
                             INNER JOIN
                         crowd_sourcing_projects csp ON csp.id = cspq.project_id
+                            INNER JOIN
+                        crowd_sourcing_project_translations cspt ON cspt.project_id = cspq.project_id 
+                                                                        and cspt.language_id = csp.language_id
                             INNER JOIN
                         languages_lkp AS dl ON dl.id = q.default_language_id
                             INNER JOIN
