@@ -5,6 +5,7 @@ namespace App\Models\CrowdSourcingProject;
 use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
+use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class CrowdSourcingProject extends Model {
     use SoftDeletes;
+    use Compoships;
 
     /**
      * The table associated with the model.
@@ -33,14 +35,19 @@ class CrowdSourcingProject extends Model {
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'external_url', 'motto_title', 'motto_subtitle', 'description',
-        'about', 'footer', 'img_path',
-        'logo_path', 'user_creator_id', 'language_id', 'status_id', 'sm_title',
-        'sm_description', 'sm_keywords', 'sm_featured_img_path', 'lp_questionnaire_img_path',
-        'communication_resources_id',
+        'slug', 'external_url', 'img_path',
+        'logo_path', 'user_creator_id', 'language_id', 'status_id',
+        'sm_featured_img_path', 'lp_questionnaire_img_path',
         'lp_show_speak_up_btn', 'lp_primary_color',
         'should_send_email_after_questionnaire_response'
     ];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['defaultTranslation'];
 
     /**
      * @return BelongsTo
@@ -71,15 +78,26 @@ class CrowdSourcingProject extends Model {
     /**
      * @return HasOne
      */
-    public function status() {
-        return $this->hasOne(CrowdSourcingProjectStatusLkp::class, 'id', 'status_id');
+    public function defaultTranslation() {
+        return $this->hasOne(CrowdSourcingProjectTranslation::class,
+            ['project_id', 'language_id'], ['id', 'language_id'])->withDefault([
+            'questionnaire_response_email_intro_text' => 'Thanks to your contribution we are one step closer to our goal!',
+            'questionnaire_response_email_outro_text' => 'If you have any inquiries about our work, do not hesitate to contact us.'
+        ]);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function translations() {
+        return $this->hasMany(CrowdSourcingProjectTranslation::class, 'project_id', 'id');
     }
 
     /**
      * @return HasOne
      */
-    public function communicationResources() {
-        return $this->hasOne(CrowdSourcingProjectCommunicationResources::class, 'id', 'communication_resources_id');
+    public function status() {
+        return $this->hasOne(CrowdSourcingProjectStatusLkp::class, 'id', 'status_id');
     }
 
     /**

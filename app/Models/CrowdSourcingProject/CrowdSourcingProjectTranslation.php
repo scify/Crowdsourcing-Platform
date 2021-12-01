@@ -3,6 +3,7 @@
 namespace App\Models\CrowdSourcingProject;
 
 use App\Models\Language;
+use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CrowdSourcingProjectTranslation extends Model
 {
     use SoftDeletes;
+    use Compoships;
     /**
      * The table associated with the model.
      *

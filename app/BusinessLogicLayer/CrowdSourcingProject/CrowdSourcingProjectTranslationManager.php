@@ -5,6 +5,7 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
+use App\Utils\Helpers;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectTranslationManager {
@@ -23,7 +24,7 @@ class CrowdSourcingProjectTranslationManager {
 
     public function storeOrUpdateDefaultLanguageForProject(array $attributes, int $project_id) {
         $allowedKeys = (new CrowdSourcingProjectTranslation())->getFillable();
-        $filtered = $this->getFilteredAttributes($attributes, $allowedKeys);
+        $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
         $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
             ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
             $filtered
@@ -41,7 +42,7 @@ class CrowdSourcingProjectTranslationManager {
                 if (!$value)
                     $attributes[$key] = $defaultLanguageContentForProject[$key];
             }
-            $filtered = $this->getFilteredAttributes($attributes, $allowedKeys);
+            $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
             $filtered['project_id'] = $project_id;
             $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
                 ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
@@ -49,15 +50,5 @@ class CrowdSourcingProjectTranslationManager {
             );
         }
 
-    }
-
-    private function getFilteredAttributes(array $attributes, array $allowedKeys): array {
-        return array_filter(
-            $attributes,
-            function ($key) use ($allowedKeys) {
-                return in_array($key, $allowedKeys);
-            },
-            ARRAY_FILTER_USE_KEY
-        );
     }
 }

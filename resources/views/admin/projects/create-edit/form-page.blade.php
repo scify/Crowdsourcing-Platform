@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
-        Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->name : '' }}
+        Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->defaultTranslation->name : '' }}
         <small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
 @endsection
 

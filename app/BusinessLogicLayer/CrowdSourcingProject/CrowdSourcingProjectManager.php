@@ -36,24 +36,22 @@ class CrowdSourcingProjectManager {
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireGoalManager;
     protected $currentQuestionnaireProvider;
-    protected $crowdSourcingProjectCommunicationResourcesManager;
     protected $languageRepository;
     protected $crowdSourcingProjectColorsManager;
     protected $questionnaireResponseRepository;
     protected $crowdSourcingProjectTranslationManager;
 
-    public function __construct(CrowdSourcingProjectRepository                    $crowdSourcingProjectRepository,
-                                QuestionnaireRepository                           $questionnaireRepository,
-                                CrowdSourcingProjectStatusManager                 $crowdSourcingProjectStatusManager,
-                                CrowdSourcingProjectAccessManager                 $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectStatusHistoryRepository       $crowdSourcingProjectStatusHistoryRepository,
-                                QuestionnaireGoalManager                          $questionnaireGoalManager,
-                                CurrentQuestionnaireProvider                      $currentQuestionnaireProvider,
-                                CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager,
-                                LanguageRepository                                $languageRepository,
-                                CrowdSourcingProjectColorsManager                 $crowdSourcingProjectColorsManager,
-                                QuestionnaireResponseRepository                   $questionnaireResponseRepository,
-                                CrowdSourcingProjectTranslationManager            $crowdSourcingProjectTranslationManager) {
+    public function __construct(CrowdSourcingProjectRepository              $crowdSourcingProjectRepository,
+                                QuestionnaireRepository                     $questionnaireRepository,
+                                CrowdSourcingProjectStatusManager           $crowdSourcingProjectStatusManager,
+                                CrowdSourcingProjectAccessManager           $crowdSourcingProjectAccessManager,
+                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
+                                QuestionnaireGoalManager                    $questionnaireGoalManager,
+                                CurrentQuestionnaireProvider                $currentQuestionnaireProvider,
+                                LanguageRepository                          $languageRepository,
+                                CrowdSourcingProjectColorsManager           $crowdSourcingProjectColorsManager,
+                                QuestionnaireResponseRepository             $questionnaireResponseRepository,
+                                CrowdSourcingProjectTranslationManager      $crowdSourcingProjectTranslationManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -61,7 +59,6 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireGoalManager = $questionnaireGoalManager;
         $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
-        $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
         $this->languageRepository = $languageRepository;
         $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
@@ -129,10 +126,10 @@ class CrowdSourcingProjectManager {
 
     public function getSocialMediaMetadataViewModel(CrowdSourcingProject $project): CrowdSourcingProjectSocialMediaMetadata {
         return new CrowdSourcingProjectSocialMediaMetadata(
-            $project->sm_title,
-            $project->sm_description,
+            $project->defaultTranslation->sm_title,
+            $project->defaultTranslation->sm_description,
             $project->sm_featured_img_path,
-            $project->sm_keywords,
+            $project->defaultTranslation->sm_keywords,
             $project->slug
         );
     }
@@ -151,7 +148,7 @@ class CrowdSourcingProjectManager {
         $project = $this->getCrowdSourcingProject($id);
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes, $project);
 
-        $attributes = $this->setDefaultValuesForSocialMediaFields($project, $attributes);
+        $attributes = $this->setDefaultValuesForSocialMediaFields($attributes);
 
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
@@ -210,13 +207,13 @@ class CrowdSourcingProjectManager {
         return $attributes;
     }
 
-    protected function setDefaultValuesForSocialMediaFields(CrowdSourcingProject $project, array $attributes): array {
+    protected function setDefaultValuesForSocialMediaFields(array $attributes): array {
         if (!isset($attributes['sm_title']) || !$attributes['sm_title'])
-            $attributes['sm_title'] = $project->name;
+            $attributes['sm_title'] = $attributes['name'];
         if (!isset($attributes['sm_description']) || !$attributes['sm_description'])
-            $attributes['sm_description'] = strip_tags($project->motto_title);
+            $attributes['sm_description'] = $attributes['description'];
         if (!isset($attributes['sm_keywords']) || !$attributes['sm_keywords'])
-            $attributes['sm_keywords'] = str_replace(' ', ',', $project->name);
+            $attributes['sm_keywords'] = str_replace(' ', ',', $attributes['name']);
 
         return $attributes;
     }
@@ -279,9 +276,6 @@ class CrowdSourcingProjectManager {
             $project = $this->crowdSourcingProjectRepository->getModelInstance();
         }
 
-        if (!$project->communicationResources()->exists())
-            $project->communicationResources = $this->crowdSourcingProjectCommunicationResourcesManager->getDefaultModelInstance();
-
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
         $project->colors = $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id);
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
@@ -295,7 +289,7 @@ class CrowdSourcingProjectManager {
             $questionnaire,
             $contributorBadge,
             $contributorBadgeVM,
-            $project->communicationResources
+            $project->defaultTranslation
         ))->toMail(null)->render();
         $translations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
         return new CreateEditCrowdSourcingProject(
@@ -341,7 +335,7 @@ class CrowdSourcingProjectManager {
         return DB::transaction(function () use ($id) {
             $now = Date::now();
             $project = $this->getCrowdSourcingProject($id);
-            $project->load(['language', 'status', 'communicationResources']);
+            $project->load(['language', 'status', 'translations']);
             $clone = $project->replicate();
             $clone->name .= ' - Clone';
             $clone->created_at = $now;

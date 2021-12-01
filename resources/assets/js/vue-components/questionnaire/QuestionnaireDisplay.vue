@@ -190,7 +190,7 @@ export default {
         const time = performance.now() - this.t0;
         AnalyticsLogger.logEvent('questionnaire_respond_complete_' + this.questionnaire.title, 'respond_complete', JSON.stringify({
           'questionnaire': this.questionnaire.title,
-          'project': this.project.name,
+          'project': this.project.defaultTranslation.name,
           'language': locale,
           'time_to_complete': time
         }), this.questionnaire.id);

@@ -28,7 +28,7 @@
                 <option v-for="project in projects"
                         :value="project.id"
                         :selected="isProjectSelected(project.id)">
-                  {{ project.name }}
+                  {{ project.defaultTranslation.name }}
                 </option>
               </select>
             </div>

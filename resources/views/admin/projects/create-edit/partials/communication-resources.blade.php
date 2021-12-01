@@ -10,7 +10,7 @@
                                 <div class="checkbox icheck">
                                     <label>
                                         <input
-                                                {{$viewModel->project->communicationResources->should_send_email_after_questionnaire_response ? 'checked' : ''}}
+                                                {{$viewModel->project->should_send_email_after_questionnaire_response ? 'checked' : ''}}
                                                 class="icheck-input" type="checkbox" name="should_send_email_after_questionnaire_response"><span class="ml-3">
                                             Respondents to questionnaires for this project should receive a "congratulations" email.</span>
                                     </label>
@@ -34,7 +34,7 @@
                                         <textarea id="questionnaire_response_email_intro_text"
                                                   class="form-control"
                                                   name="questionnaire_response_email_intro_text"
-                                                  placeholder="About Text">{{ old('questionnaire_response_email_intro_text') ? old('questionnaire_response_email_intro_text') : $viewModel->project->communicationResources->questionnaire_response_email_intro_text }}</textarea>
+                                                  placeholder="About Text">{{ old('questionnaire_response_email_intro_text') ? old('questionnaire_response_email_intro_text') : $viewModel->project->defaultTranslation->questionnaire_response_email_intro_text }}</textarea>
                             <span class="help-block"><strong>{{ $errors->first('questionnaire_response_email_intro_text') }}</strong></span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                         <textarea id="questionnaire_response_email_outro_text"
                                                   class="form-control"
                                                   name="questionnaire_response_email_outro_text"
-                                                  placeholder="About Text">{{ old('questionnaire_response_email_outro_text') ? old('questionnaire_response_email_outro_text') : $viewModel->project->communicationResources->questionnaire_response_email_outro_text }}</textarea>
+                                                  placeholder="About Text">{{ old('questionnaire_response_email_outro_text') ? old('questionnaire_response_email_outro_text') : $viewModel->project->defaultTranslation->questionnaire_response_email_outro_text }}</textarea>
                             <span class="help-block"><strong>{{ $errors->first('questionnaire_response_email_outro_text') }}</strong></span>
                         </div>
                     </div>
