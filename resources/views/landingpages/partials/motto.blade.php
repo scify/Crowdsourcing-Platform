@@ -8,13 +8,13 @@
         <div id="project-motto" class="container-fluid">
             <div class="row mb-3 text-center">
                 <div class="col">
-                    <h1 id="motto-title" class="text">{!! $viewModel->project->motto_title !!}</h1>
+                    <h1 id="motto-title" class="text">{!! $viewModel->project->defaultTranslation->motto_title !!}</h1>
                 </div>
             </div>
-            @if($viewModel->project->motto_subtitle)
+            @if($viewModel->project->defaultTranslation->motto_subtitle)
                 <div class="row mb-5">
                     <div class="col">
-                        <h4 id="motto-subtitle" class="text text-center">{!! $viewModel->project->motto_subtitle !!}</h4>
+                        <h4 id="motto-subtitle" class="text text-center">{!! $viewModel->project->defaultTranslation->motto_subtitle !!}</h4>
                     </div>
                 </div>
             @endif

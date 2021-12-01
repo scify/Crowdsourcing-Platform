@@ -46,20 +46,6 @@ class QuestionnaireRepository extends Repository {
             ->orderBy('created_at', 'desc')->get();
     }
 
-    public function getAllResponsesGivenByUser($userId) {
-        // here we select the columns that we want to fetch, due to this mySQL 8 bug:
-        // https://bugs.mysql.com/bug.php?id=103225
-        return QuestionnaireResponse::
-        select('questionnaire_responses.id as questionnaire_response_id',
-            'questionnaire_responses.created_at as responded_at',
-            'questionnaire_responses.*', 'q.description as questionnaire_description', 'q.*', 'csp.*')
-            ->join('questionnaires as q', 'q.id', '=', 'questionnaire_responses.questionnaire_id')
-            ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'questionnaire_responses.project_id')
-            ->where('user_id', $userId)
-            ->get()
-            ->sortByDesc('responded_at');
-    }
-
     public function saveNewQuestionnaire($title, $description, $goal, $languageId, $questionnaireJson,
                                          $statisticsPageVisibilityLkpId) {
         return DB::transaction(function () use (

@@ -113,7 +113,7 @@
                     <div class="col-sm-12">
                         <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
                             <input id="name" type="text" class="form-control" name="name"
-                                   value="{{ old('name') ? old('name') : $viewModel->project->name  }}"
+                                   value="{{ old('name') ? old('name') : $viewModel->project->defaultTranslation->name  }}"
                                    required
                                    placeholder="Project Name">
                             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
@@ -130,7 +130,7 @@
                                         <textarea id="description" class="form-control" name="description"
                                                   required
                                                   rows="6"
-                                                  placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->description }}</textarea>
+                                                  placeholder="Project Description">{{ old('description') ? old('description') : $viewModel->project->defaultTranslation->description }}</textarea>
                             <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                         </div>
                     </div>

@@ -39,8 +39,8 @@
           <thead>
           <tr>
             <th scope="col">Field</th>
-            <th scope="col">Original Translation</th>
-            <th scope="col">Default ({{ getLanguageName(defaultLangId) }})</th>
+            <th scope="col">Original Translation ({{ getLanguageName(defaultLangId) }})</th>
+            <th scope="col">Default ({{ getLanguageName(translation.language_id) }})</th>
           </tr>
           </thead>
           <tbody>

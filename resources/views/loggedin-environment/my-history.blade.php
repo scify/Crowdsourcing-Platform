@@ -36,12 +36,12 @@
                             @foreach($responses as $response)
                                 <tr>
                                     <td>
-                                        <a href="{{ url('/' . $response->slug) }}">
+                                        <a href="{{ url('/' . $response->project_slug) }}">
                                             <div class="row">
-                                                <div class="col-lg-12 margin-bottom">{{ $response->name }}</div>
+                                                <div class="col-lg-12 margin-bottom">{{ $response->project_name }}</div>
                                                 <div class="col-lg-12">
-                                                    <img loading="lazy" height="70" alt="{{$response->name}}"
-                                                         src="{{asset($response->logo_path)}}">
+                                                    <img loading="lazy" height="70" alt="{{$response->project_name}}"
+                                                         src="{{asset($response->project_logo_path)}}">
                                                 </div>
                                             </div>
                                         </a>

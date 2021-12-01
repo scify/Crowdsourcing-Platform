@@ -43,7 +43,7 @@ class QuestionnaireActionHandler {
 
     public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
         //check if the contributor email should be sent
-        if ($project->communicationResources && $project->communicationResources->should_send_email_after_questionnaire_response)
+        if ($project->should_send_email_after_questionnaire_response)
             $this->awardContributorBadgeToUser($questionnaire, $project, $user);
     }
 
@@ -56,7 +56,7 @@ class QuestionnaireActionHandler {
                     $questionnaire,
                     $contributorBadge,
                     new GamificationBadgeVM($contributorBadge),
-                    $project->communicationResources)
+                    $project->defaultTranslation)
             );
         } catch (\Exception $e) {
             Log::error($e);

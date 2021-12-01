@@ -48,11 +48,11 @@
                                 {{ $project->id }}
                             </td>
                             <td>
-                                {{ $project->name }}
+                                {{ $project->defaultTranslation->name }}
                             </td>
                             <td>
                                 <img loading="lazy" class="project-logo" src="{{ $project->logo_path }}"
-                                     alt="{{ $project->name }} logo">
+                                     alt="{{ $project->defaultTranslation->name }} logo">
                             </td>
                             <td>
                                 <span class="badge {{$viewModel->getProjectStatusCSSClass($project->status)}}">{{$project->status->title}}</span>

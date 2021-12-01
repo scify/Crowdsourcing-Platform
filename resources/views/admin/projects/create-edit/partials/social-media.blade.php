@@ -25,7 +25,7 @@
                     <div class="col-sm-12">
                         <div class="form-group has-feedback {{ $errors->has('sm_title') ? 'has-error' : '' }}">
                             <input id="sm_title" type="text" class="form-control" name="sm_title"
-                                   value="{{ old('sm_title') ? old('sm_title') : $viewModel->project->sm_title  }}"
+                                   value="{{ old('sm_title') ? old('sm_title') : $viewModel->project->defaultTranslation->sm_title  }}"
                                    placeholder="Enter the title you would like to appear when posting the project to social media">
                             <span class="help-block"><strong>{{ $errors->first('sm_title') }}</strong></span>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="form-group has-feedback">
                         <textarea id="sm_description" class="form-control" name="sm_description"
                                   placeholder="Enter the description you would like to appear when posting the project to social media">
-                            {{ old('sm_description') ? old('sm_description') : trim($viewModel->project->sm_description) }}</textarea>
+                            {{ old('sm_description') ? old('sm_description') : trim($viewModel->project->defaultTranslation->sm_description) }}</textarea>
                             <span class="help-block"><strong>{{ $errors->first('sm_description') }}</strong></span>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="col-md-12">
                         <input type="text" name="sm_keywords" id="sm_keywords" class="form-control"
                                data-role="tagsinput"
-                               value="{{ old('sm_keywords') ? old('sm_keywords') : $viewModel->project->sm_keywords  }}">
+                               value="{{ old('sm_keywords') ? old('sm_keywords') : $viewModel->project->defaultTranslation->sm_keywords  }}">
                     </div>
                 </div>
             </div>

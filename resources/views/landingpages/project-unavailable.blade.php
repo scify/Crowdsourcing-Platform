@@ -8,7 +8,7 @@
                      style="background-image: url({{asset($viewModel->project->img_path)}});">
                     <div class="overlay-filter"></div>
                     <div class="text">
-                        <h1 id="project-motto">{!! $viewModel->project->motto_title !!}
+                        <h1 id="project-motto">{!! $viewModel->project->defaultTranslation->motto_title !!}
                             <br><br>
                             {!! $viewModel->getProjectStatusMessage() !!}
                         </h1>
