@@ -5,7 +5,7 @@ import 'codemirror/mode/xml/xml';
 (function () {
 
     let initializeSummernote = function () {
-        window.setTimeout(function(){
+        window.setTimeout(function () {
             $('.summernote').summernote({
                 height: 150,   //set editable area's height
                 codemirror: { // codemirror options
@@ -13,9 +13,27 @@ import 'codemirror/mode/xml/xml';
                     theme: 'monokai'
                 }
             });
-        },2000);
+        }, 2000);
 
     };
+
+    let initializeSubmitFormListener = function () {
+        $("#project-form").one("submit", function (event) {
+            event.preventDefault();
+            fixAllSummerNoteCodes();
+            $(this).submit();
+        });
+    }
+
+    let fixAllSummerNoteCodes = function () {
+        $('.summernote').each((index, element) => {
+            updateSummerNoteCodeContent($(element));
+        });
+    }
+
+    let updateSummerNoteCodeContent = function (el) {
+        el.val(el.summernote('code'));
+    }
 
     let initializeImgFileChangePreviewHandlers = function () {
         $('.image-input').each(function (i, obj) {
@@ -55,6 +73,7 @@ import 'codemirror/mode/xml/xml';
 
     let init = function () {
         initializeSummernote();
+        initializeSubmitFormListener();
         initializeImgFileChangePreviewHandlers();
         initializeCommunicationResourcesHandlers();
     };
