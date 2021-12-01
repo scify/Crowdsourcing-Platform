@@ -340,7 +340,6 @@ export default {
 
     },
     initLocaleForQuestionnaireEditor(locale) {
-      console.log(locale);
       this.defaultLocale = locale;
       // show default language as the first language
       arrayMove(this.languages, this.getIndexOfDefaultLocale(), 0);
@@ -411,7 +410,7 @@ export default {
       if (this.formInvalid(data))
         return swal({
           title: "Fields Missing!",
-          text: "Please provide a title, goal, and at least one project.",
+          text: "Please provide a title, description, goal, and at least one project.",
           type: "warning",
           confirmButtonClass: "btn-danger",
           confirmButtonText: "OK",
@@ -448,7 +447,7 @@ export default {
 
     },
     formInvalid(data) {
-      return !data.title || !data.goal || !data.project_ids.length;
+      return !data.title || !data.description || !data.goal || !data.project_ids.length;
     },
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
