@@ -8,22 +8,29 @@ use Illuminate\Support\Facades\Request;
  * @param string $urlPatternToMatch the menu item url
  * @return string A relevant CSS class
  */
-function UrlMatchesMenuItem(string $urlPatternToMatch) : string
-{
+function UrlMatchesMenuItem(string $urlPatternToMatch): string {
     return Request::is($urlPatternToMatch) ? "active" : "";
 }
 
-function getNameOfRoute($currentRoute){
-    if ($currentRoute ==null) //if we have a 404, the route name is null
+function getNameOfRoute($currentRoute) {
+    if ($currentRoute == null) //if we have a 404, the route name is null
         return "home";
 
     return $currentRoute->getName();
 }
-function SetParameterAndGetAll ($currentRoute, $parameter, $key){
-    if ($currentRoute ==null) //if we have a 404, the route name is null
+
+function SetParameterAndGetAll($currentRoute, $parameter, $key) {
+    if ($currentRoute == null) //if we have a 404, the route name is null
         return [];
 
     $currentRoute->setParameter($parameter, $key);
     return $currentRoute->parameters();
 
+}
+
+function getRouteParameters() {
+    $fullUrl = Request::fullUrl();
+    if (!strpos($fullUrl, "?"))
+        return '';
+    return substr($fullUrl, strpos($fullUrl, "?"));
 }
