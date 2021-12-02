@@ -36,6 +36,7 @@ require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
 require('datatables.net-select-bs4');
+import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
 import Clipboard from "clipboard/dist/clipboard";
 
 import Vue from 'vue';
@@ -57,6 +58,7 @@ const app = new Vue({
 
 (function () {
 
+    window.language= languageBundle;
     Number.prototype.round = function (places) {
         return +(Math.round(this + "e+" + places) + "e-" + places);
     };
