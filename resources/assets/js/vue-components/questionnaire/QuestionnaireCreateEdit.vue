@@ -28,7 +28,7 @@
                 <option v-for="project in projects"
                         :value="project.id"
                         :selected="isProjectSelected(project.id)">
-                  {{ project.defaultTranslation.name }}
+                  {{ project.default_translation.name }}
                 </option>
               </select>
             </div>
@@ -94,28 +94,7 @@
                                 "required": true
                             },
                         }'
-                  :available-languages='[
-                        {
-                            "id":1,
-                            "language_name":"Bulgarian",
-                            "language_code":"bg"
-                        },
-                        {
-                            "id":6,
-                            "language_name":"English",
-                            "language_code":"en"
-                        },
-                        {
-                            "id":11,
-                            "language_name":"Greek",
-                            "language_code":"el"
-                        },
-                         {
-                            "id":2,
-                            "language_name":"Croatian",
-                            "language_code":"hr"
-                        }
-                        ]'
+                  :default-lang-id='questionnaire.default_language_id'
                   :existing-translations=' [{
                             "language_id": 6,
                             "questionnaire_id": 28,
