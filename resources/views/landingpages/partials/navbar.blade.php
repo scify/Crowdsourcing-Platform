@@ -3,7 +3,7 @@
          style="z-index: 100000;">
         @if(isset($viewModel->project) &&  isset($viewModel->project->external_url) && $viewModel->project->external_url !=null)
             <a class="navbar-brand" target="_blank" href="{{ $viewModel->project->external_url}}">
-                <img loading="lazy" alt="{{$viewModel->project->name}}" src="{{asset($viewModel->project->logo_path)}}">
+                <img loading="lazy" alt="{{$viewModel->project->currentTranslation->name}}" src="{{asset($viewModel->project->logo_path)}}">
             </a>
         @else
             <a class="navbar-brand" href="{{ route('home') }}">

@@ -8,7 +8,7 @@
                             <img loading="lazy" src="{{$project->logo_path}}" alt="">
                         </div>
                         <div class="project-info">
-                            {!! $project->description ? $project->description : $project->about !!}
+                            {!! $project->currentTranslation->description ? : $project->currentTranslation->about !!}
                         </div>
                         <div class="project-visit-btn">
                             <a href="/{{app()->getLocale() .'/'.$project->slug}}" class="btn btn-block btn-primary call-to-action action-dark">

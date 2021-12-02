@@ -54,7 +54,7 @@ class LoginController extends Controller {
     protected function authenticated(Request $request, $user) {
         $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
         $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
-        return redirect($url)->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $user->id));
+        return redirect($url);
     }
 
 

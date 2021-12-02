@@ -10,13 +10,16 @@ class QuestionnaireManager {
     protected $questionnaireRepository;
     protected $crowdSourcingProjectQuestionnaireRepository;
     protected $questionnaireLanguageRepository;
+    protected $questionnaireFieldsTranslationManager;
 
     public function __construct(QuestionnaireRepository                     $questionnaireRepository,
                                 CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
-                                QuestionnaireLanguageRepository             $questionnaireLanguageRepository) {
+                                QuestionnaireLanguageRepository             $questionnaireLanguageRepository,
+                                QuestionnaireFieldsTranslationManager       $questionnaireFieldsTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
+        $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
@@ -27,13 +30,11 @@ class QuestionnaireManager {
     public function storeOrUpdateQuestionnaire($data, $id = null) {
         if (!$id)
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
-                $data['title'], $data['description'],
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id']
             );
         else
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
-                $data['title'], $data['description'],
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id']);
         $questionnaireData = [
@@ -42,6 +43,14 @@ class QuestionnaireManager {
         ];
         $this->questionnaireLanguageRepository->updateOrCreate($questionnaireData, $questionnaireData);
         $this->crowdSourcingProjectQuestionnaireRepository->setQuestionnaireToProjects($questionnaire->id, $data['project_ids']);
+        $this->questionnaireFieldsTranslationManager->storeOrUpdateDefaultFieldsTranslationForQuestionnaire([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'language_id' => intval($data['language'])
+        ], $questionnaire->id);
+        if (isset($data['extra_fields_translations']))
+            $this->questionnaireFieldsTranslationManager->storeOrUpdateFieldsTranslationsForQuestionnaire(
+                json_decode($data['extra_fields_translations']), $questionnaire->id, intval($data['language']));
         return $questionnaire;
     }
 

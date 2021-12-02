@@ -38,7 +38,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="motto" class="form-control" name="motto_title"
-                                                  placeholder="Project Motto">{{ old('motto_title') ? old('motto_title') : $viewModel->project->motto_title }}</textarea>
+                                                  placeholder="Project Motto">{{ old('motto_title') ? old('motto_title') : $viewModel->project->defaultTranslation->motto_title }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('motto_title') }}</strong></span>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="motto_subtitle" class="form-control" name="motto_subtitle"
-                                                  placeholder="Project Motto Subtitle">{{ old('motto_subtitle') ? old('motto_subtitle') : $viewModel->project->motto_subtitle }}</textarea>
+                                                  placeholder="Project Motto Subtitle">{{ old('motto_subtitle') ? old('motto_subtitle') : $viewModel->project->defaultTranslation->motto_subtitle }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('motto_subtitle') }}</strong></span>
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="about" class="form-control summernote" name="about"
-                                                  placeholder="About Text">{{ old('about') ? old('about') : $viewModel->project->about }}</textarea>
+                                                  placeholder="About Text">{{ old('about') ? old('about') : $viewModel->project->defaultTranslation->about }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('about') }}</strong></span>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="footer" class="form-control summernote" name="footer"
-                                                  placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->footer }}</textarea>
+                                                  placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->defaultTranslation->footer }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
                                         </div>
                                     </div>

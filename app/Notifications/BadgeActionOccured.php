@@ -11,6 +11,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 class BadgeActionOccured extends Notification implements ShouldQueue {
     use Queueable;
     protected $questionnaire;
+    protected $questionnaireFieldsTranslation;
     protected $badge;
     protected $badgeVM;
 

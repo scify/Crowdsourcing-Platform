@@ -73,14 +73,14 @@
                                                 @if(count($questionnaire->urls) === 1)
                                                     <button data-clipboard-text="{{ $questionnaire->urls[0]['url'] }}"
                                                             class="copy-clipboard action-btn dropdown-item">
-                                                        <i class="copy-questionnaire-link fa fa-link"></i> Get Link
+                                                        <i class="copy-questionnaire-link fa fa-link"></i> Get English Link
                                                     </button>
                                                 @else
                                                     @foreach($questionnaire->urls as $url)
                                                         <button data-clipboard-text="{{ $url['url'] }}"
                                                                 class="copy-clipboard action-btn dropdown-item">
                                                             <i class="copy-questionnaire-link fa fa-link"></i>
-                                                            Get {{ $url['project_name'] }} Link
+                                                            Get {{ $url['project_name'] }} English Link
                                                         </button>
                                                     @endforeach
                                                 @endif

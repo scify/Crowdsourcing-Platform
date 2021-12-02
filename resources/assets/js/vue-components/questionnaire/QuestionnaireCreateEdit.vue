@@ -28,7 +28,7 @@
                 <option v-for="project in projects"
                         :value="project.id"
                         :selected="isProjectSelected(project.id)">
-                  {{ project.name }}
+                  {{ project.default_translation.name }}
                 </option>
               </select>
             </div>
@@ -53,7 +53,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
               <input type="text" class="form-control" name="title" id="title"
                      placeholder="Insert questionnaire's title"
-                     v-model="questionnaire.title">
+                     v-model="questionnaire.default_fields_translation.title">
             </div>
           </div>
           <div class="row form-group">
@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                             <textarea class="form-control" name="description" id="description"
-                                      v-model="questionnaire.description"
+                                      v-model="questionnaire.default_fields_translation.description"
                                       placeholder="Insert questionnaire's description">
                             </textarea>
             </div>
@@ -80,6 +80,19 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label>Other translations</label>
+            </div>
+            <div class="col-md-10 col-sm-6 col-xs-12">
+              <translations-manager
+                  :model-meta-data='translationMetaData'
+                  :default-lang-id='questionnaire.default_language_id'
+                  :existing-translations='questionnaireFieldsTranslations'
+              />
+            </div>
+
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label>Default Language</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -89,12 +102,13 @@
                   id="language">
                 <option v-for="language in languages"
                         :value="language.language_code"
-                        :selected="questionnaire.default_language_id === language.id">
+                        :selected="shouldLanguageBeSelected(language)">
                   {{ language.language_name }}
                 </option>
               </select>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-12 editor-wrapper">
               <em>Use the editor below to create your questionnaire.</em>
@@ -171,7 +185,9 @@ export default {
     },
     projects: [],
     languages: [],
-    questionnaireStatisticsPageVisibilityLkp: []
+    questionnaireStatisticsPageVisibilityLkp: [],
+    translationMetaData: [],
+    questionnaireFieldsTranslations: []
   },
   data: function () {
     return {
@@ -192,7 +208,8 @@ export default {
       modalOpen: false,
       modalMessage: null,
       defaultLocale: null,
-      questionnaireLanguagesModalOpen: false
+      questionnaireLanguagesModalOpen: false,
+      defaultLangCodeForQuestionnaireFields: 'en'
     }
   },
   methods: {
@@ -203,6 +220,11 @@ export default {
     ]),
     isProjectSelected(projectId) {
       return this.questionnaire.projectIds.includes(projectId);
+    },
+    shouldLanguageBeSelected(language) {
+      if (this.questionnaire.default_language_id)
+        return this.questionnaire.default_language_id === language.id;
+      return language.language_code === this.defaultLangCodeForQuestionnaireFields;
     },
     getColorsForCrowdSourcingProject() {
       this.get({
@@ -278,7 +300,6 @@ export default {
 
     },
     initLocaleForQuestionnaireEditor(locale) {
-      console.log(locale);
       this.defaultLocale = locale;
       // show default language as the first language
       arrayMove(this.languages, this.getIndexOfDefaultLocale(), 0);
@@ -333,14 +354,15 @@ export default {
         locales = [];
       }
       const data = {
-        title: this.questionnaire.title,
-        description: this.questionnaire.description,
+        title: this.questionnaire.default_fields_translation.title,
+        description: this.questionnaire.default_fields_translation.description,
         goal: this.questionnaire.goal,
         language: this.questionnaire.default_language_id,
         project_ids: [],
         statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
         content: this.surveyCreator.text,
-        lang_codes: locales
+        lang_codes: locales,
+        extra_fields_translations: document.getElementById('extra_translations').value
       };
       $("#project-ids").val().map((x) => {
         data.project_ids.push(parseInt(x));
@@ -349,7 +371,7 @@ export default {
       if (this.formInvalid(data))
         return swal({
           title: "Fields Missing!",
-          text: "Please provide a title, goal, and at least one project.",
+          text: "Please provide a title, description, goal, and at least one project.",
           type: "warning",
           confirmButtonClass: "btn-danger",
           confirmButtonText: "OK",
@@ -386,7 +408,7 @@ export default {
 
     },
     formInvalid(data) {
-      return !data.title || !data.goal || !data.project_ids.length;
+      return !data.title || !data.description || !data.goal || !data.project_ids.length;
     },
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {

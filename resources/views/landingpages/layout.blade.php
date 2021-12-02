@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @include('partials.favicons')
-    <title>@yield('title_prefix', isset($viewModel->project) ? $viewModel->project->name : config('app.name')) @yield('title_postfix', '')</title>
+    <title>@yield('title_prefix', isset($viewModel->project) ? $viewModel->project->defaultTranslation->name : config('app.name')) @yield('title_postfix', '')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -35,7 +35,7 @@
 @if(isset($viewModel->project))
     <footer class="py-5">
         <div class="container">
-            {!! $viewModel->project->footer !!}
+            {!! $viewModel->project->defaultTranslation->footer !!}
         </div>
     </footer>
 @endif
@@ -48,12 +48,7 @@
     <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 @stack("modals")
-<script>
-    window.Laravel = {!! json_encode([
-                'baseUrl' => url('/'),
-                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
-            ]) !!};
-</script>
+
 @include('partials.footer-scripts')
 <script async src="{{mix('dist/js/landingPage.js')}}"></script>
 </body>

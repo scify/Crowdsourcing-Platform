@@ -55,7 +55,7 @@
                     <li class="nav-header">COMMUNICATION MANAGEMENT</li>
 
                     <li class="nav-item {{UrlMatchesMenuItem("communication/mailchimp")}}">
-                        <a class="nav-link" href="{{ route('mailchimp-integration') }}"><i
+                        <a class="nav-link" href="{{ route('mailchimp-integration.get') }}"><i
                                     class="nav-icon fa fa-envelope"></i>
                             <p>MailChimp Integration</p></a>
                     </li>

@@ -9,6 +9,7 @@
         "ext-libxml": "*",
         "ext-simplexml": "*",
         "ext-zip": "*",
+        "awobaz/compoships": "^2.1",
         "cocur/slugify": "^3.1",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",

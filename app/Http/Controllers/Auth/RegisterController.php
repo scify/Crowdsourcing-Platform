@@ -9,13 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\MailChimpAdaptor;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -35,8 +33,8 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/en/my-dashboard';
-    public function redirectTo()
-    {
+
+    public function redirectTo() {
         return app()->getLocale() . '/my-dashboard';
     }
 
@@ -46,11 +44,11 @@ class RegisterController extends Controller
     private $crowdSourcingProjectManager;
     protected $questionnaireResponseRepository;
 
-    public function __construct(UserRoleManager $userRoleManager,
-                                UserManager $userManager,
-                                MailChimpAdaptor $mailChimpManager,
-                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
-                                QuestionnaireResponseRepository   $questionnaireResponseRepository) {
+    public function __construct(UserRoleManager                 $userRoleManager,
+                                UserManager                     $userManager,
+                                MailChimpAdaptor                $mailChimpManager,
+                                CrowdSourcingProjectManager     $crowdSourcingProjectManager,
+                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
         $this->userManager = $userManager;
@@ -62,11 +60,10 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'nickname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -77,7 +74,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\User
      */
     protected function create(array $data) {
@@ -87,12 +84,10 @@ class RegisterController extends Controller
         return $user;
     }
 
-    protected function registered(Request $request, $user)
-    {
+    protected function registered(Request $request, $user) {
         $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
-        $this->mailChimpManager->subscribe($user->email, 'registered_users',$user->nickname);
-        //same code with Login controller authenticated method
+        $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
-        return redirect($url)->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $user->id));
+        return redirect($url);
     }
 }
