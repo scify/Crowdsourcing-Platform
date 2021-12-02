@@ -43,7 +43,6 @@ class QuestionnaireVMProvider {
             $title = "Edit Questionnaire";
         } else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
-            $questionnaire->default_language_id = 6;
             $questionnaire->prerequisite_order = 1;
             $title = "Create Questionnaire";
         }
