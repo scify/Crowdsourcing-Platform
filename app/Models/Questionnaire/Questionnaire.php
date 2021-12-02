@@ -3,11 +3,11 @@
 namespace App\Models\Questionnaire;
 
 
+use App\BusinessLogicLayer\questionnaire\QuestionnaireFieldsTranslationManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Language;
 use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
 use App\Models\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkp;
-use App\Models\QuestionnaireQuestion;
 use Awobaz\Compoships\Compoships;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,6 +60,12 @@ class Questionnaire extends Model {
      * @var array
      */
     protected $with = ['defaultFieldsTranslation'];
+    protected $appends = ['currentFieldsTranslation'];
+
+    public function getCurrentFieldsTranslationAttribute() {
+        $questionnaireFieldsTranslationManager = app()->make(QuestionnaireFieldsTranslationManager::class);
+        return $questionnaireFieldsTranslationManager->getFieldsTranslationForQuestionnaire($this);
+    }
 
     /**
      * Get the route key for the model.

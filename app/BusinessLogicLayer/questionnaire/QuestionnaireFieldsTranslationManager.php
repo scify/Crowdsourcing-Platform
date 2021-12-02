@@ -4,6 +4,7 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
+use App\Repository\LanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireFieldsTranslationRepository;
 use App\Utils\Helpers;
 use Illuminate\Support\Collection;
@@ -11,9 +12,23 @@ use Illuminate\Support\Collection;
 class QuestionnaireFieldsTranslationManager {
 
     protected $questionnaireFieldsTranslationRepository;
+    protected $languageRepository;
 
-    public function __construct(QuestionnaireFieldsTranslationRepository $questionnaireFieldsTranslationRepository) {
+    public function __construct(QuestionnaireFieldsTranslationRepository $questionnaireFieldsTranslationRepository,
+                                LanguageRepository                       $languageRepository) {
         $this->questionnaireFieldsTranslationRepository = $questionnaireFieldsTranslationRepository;
+        $this->languageRepository = $languageRepository;
+    }
+
+    public function getFieldsTranslationForQuestionnaire(Questionnaire $questionnaire): QuestionnaireFieldsTranslation {
+        $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
+        if (!$language)
+            return $questionnaire->defaultFieldsTranslation;
+        $fieldsTranslation = $this->questionnaireFieldsTranslationRepository->where([
+            'questionnaire_id' => $questionnaire->id,
+            'language_id' => $language->id
+        ]);
+        return $fieldsTranslation ?: $questionnaire->defaultFieldsTranslation;
     }
 
     public function getFieldsTranslationsForQuestionnaire(Questionnaire $questionnaire): Collection {
@@ -49,6 +64,5 @@ class QuestionnaireFieldsTranslationManager {
                 $filtered
             );
         }
-
     }
 }

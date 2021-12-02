@@ -10,7 +10,7 @@
         <div class="col-lg-6">
             <a target="_blank"
                data-project="{{ $viewModel->project->defaultTranslation->name }}"
-               data-questionnaire="{{ $viewModel->questionnaire->title }}"
+               data-questionnaire="{{ $viewModel->questionnaire->currentFieldsTranslation->title }}"
                data-questionnaireId="{{ $viewModel->questionnaire->id }}"
                data-medium="facebook"
                href="https://www.facebook.com/sharer/sharer.php?u={{ $viewModel->getSocialShareURL() }}"
@@ -21,7 +21,7 @@
         <div class="col-lg-6">
             <a target="_blank"
                data-project="{{ $viewModel->project->defaultTranslation->name }}"
-               data-questionnaire="{{ $viewModel->questionnaire->title }}"
+               data-questionnaire="{{ $viewModel->questionnaire->currentFieldsTranslation->title }}"
                data-questionnaireId="{{ $viewModel->questionnaire->id }}"
                data-medium="twitter"
                href="https://twitter.com/share?url={{ $viewModel->getSocialShareURL() }}"

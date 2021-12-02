@@ -354,8 +354,8 @@ export default {
         locales = [];
       }
       const data = {
-        title: this.questionnaire.title,
-        description: this.questionnaire.description,
+        title: this.questionnaire.default_fields_translation.title,
+        description: this.questionnaire.default_fields_translation.description,
         goal: this.questionnaire.goal,
         language: this.questionnaire.default_language_id,
         project_ids: [],

@@ -112,8 +112,8 @@ class QuestionnaireRepository extends Repository {
                         q.prerequisite_order,
                         q.status_id,
                         q.default_language_id,
-                        q.title,
-                        q.description,
+                        qft.title,
+                        qft.description,
                         q.goal,
                         q.statistics_page_visibility_lkp_id,
                         q.created_at,
@@ -139,6 +139,9 @@ class QuestionnaireRepository extends Repository {
                             INNER JOIN
                         crowd_sourcing_project_translations cspt ON cspt.project_id = cspq.project_id 
                                                                         and cspt.language_id = csp.language_id
+                            INNER JOIN
+                        questionnaire_fields_translations qft ON qft.questionnaire_id = q.id 
+                                                                        and qft.language_id = q.default_language_id
                             INNER JOIN
                         languages_lkp AS dl ON dl.id = q.default_language_id
                             INNER JOIN

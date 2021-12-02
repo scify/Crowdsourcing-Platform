@@ -284,7 +284,6 @@ class CrowdSourcingProjectManager {
         $contributorBadge = new ContributorBadge(1, true);
         $contributorBadgeVM = new GamificationBadgeVM($contributorBadge);
         $questionnaire = $this->questionnaireRepository->getModelInstance();
-        $questionnaire->title = 'Test Questionnaire';
 
         $notification = (new QuestionnaireResponded(
             $questionnaire,
