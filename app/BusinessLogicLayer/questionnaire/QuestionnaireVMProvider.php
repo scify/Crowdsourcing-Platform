@@ -22,19 +22,22 @@ class QuestionnaireVMProvider {
     protected $questionnaireStatisticsPageVisibilityLkpRepository;
     protected $questionnaireTranslationRepository;
     protected $questionnaireManager;
+    protected $questionnaireFieldsTranslationManager;
 
     public function __construct(QuestionnaireRepository                            $questionnaireRepository,
                                 QuestionnaireManager                               $questionnaireManager,
                                 CrowdSourcingProjectAccessManager                  $crowdSourcingProjectAccessManager,
                                 LanguageManager                                    $languageManager,
                                 QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-                                QuestionnaireTranslationRepository                 $questionnaireTranslationRepository) {
+                                QuestionnaireTranslationRepository                 $questionnaireTranslationRepository,
+                                QuestionnaireFieldsTranslationManager              $questionnaireFieldsTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
         $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->questionnaireManager = $questionnaireManager;
+        $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null): CreateEditQuestionnaire {
@@ -49,7 +52,9 @@ class QuestionnaireVMProvider {
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
         $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages, $title, $questionnaireStatisticsPageVisibilityLkp);
+        return new CreateEditQuestionnaire($questionnaire, $projects, $languages,
+            $title, $questionnaireStatisticsPageVisibilityLkp, $this->questionnaireFieldsTranslationManager->getFieldsTranslationsForQuestionnaire($questionnaire)
+        );
     }
 
     public function getAllQuestionnairesPageViewModel(): ManageQuestionnaires {

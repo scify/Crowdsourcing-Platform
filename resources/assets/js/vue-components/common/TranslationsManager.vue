@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <div class="row mb-4">
       <div class="col">
-        <input type="hidden" name="extra_project_translations" :value="JSON.stringify(this.translations)"/>
+        <input id="extra_translations" type="hidden" name="extra_translations"
+               :value="JSON.stringify(this.translations)"/>
 
         <div class="float-left mr-2 lang" v-for="(language) in availableLanguages"
              v-if="language.id !== defaultLangId">
@@ -142,12 +143,7 @@ export default {
           copy[property] = null;
         }
       }
-      //WE MAKE THE ASSUMPTIONS THAT THE VIEWMODEL PASSED TO THIS COMPONENT HAS
-      // THE DATABASE ID as "id"
-      //  id : the database id
       copy.language_id = language.id;
-      copy.id = 0;
-
       this.translations.push(copy);
     },
     checkChanged($event, language) {

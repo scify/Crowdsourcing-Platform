@@ -53,7 +53,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
               <input type="text" class="form-control" name="title" id="title"
                      placeholder="Insert questionnaire's title"
-                     v-model="questionnaire.title">
+                     v-model="questionnaire.default_fields_translation.title">
             </div>
           </div>
           <div class="row form-group">
@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                             <textarea class="form-control" name="description" id="description"
-                                      v-model="questionnaire.description"
+                                      v-model="questionnaire.default_fields_translation.description"
                                       placeholder="Insert questionnaire's description">
                             </textarea>
             </div>
@@ -84,36 +84,9 @@
             </div>
             <div class="col-md-10 col-sm-6 col-xs-12">
               <translations-manager
-                  :model-meta-data='{
-                            "title":{
-                              "display_title" :"Title (*)",
-                              "required": true
-                            },
-                            "description":{
-                                "display_title" :"Description (*)",
-                                "required": true
-                            },
-                        }'
+                  :model-meta-data='translationMetaData'
                   :default-lang-id='questionnaire.default_language_id'
-                  :existing-translations=' [{
-                            "language_id": 6,
-                            "questionnaire_id": 28,
-                            "title" : " original title",
-                            "description": " original description",
-                          },
-                          {
-                            "language_id": 1,
-                            "questionnaire_id": 28,
-                            "title" : " language 1 title",
-                            "description": " language 1  description",
-                          },
-                          {
-                            "language_id": 2,
-                            "questionnaire_id": 28,
-                            "title" : " language 2  title",
-                            "description": " language 2 description",
-                          }
-                          ]'
+                  :existing-translations='questionnaireFieldsTranslations'
               />
             </div>
 
@@ -212,7 +185,9 @@ export default {
     },
     projects: [],
     languages: [],
-    questionnaireStatisticsPageVisibilityLkp: []
+    questionnaireStatisticsPageVisibilityLkp: [],
+    translationMetaData: [],
+    questionnaireFieldsTranslations: []
   },
   data: function () {
     return {
@@ -247,7 +222,7 @@ export default {
       return this.questionnaire.projectIds.includes(projectId);
     },
     shouldLanguageBeSelected(language) {
-      if(this.questionnaire.default_language_id)
+      if (this.questionnaire.default_language_id)
         return this.questionnaire.default_language_id === language.id;
       return language.language_code === this.defaultLangCodeForQuestionnaireFields;
     },
@@ -386,7 +361,8 @@ export default {
         project_ids: [],
         statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
         content: this.surveyCreator.text,
-        lang_codes: locales
+        lang_codes: locales,
+        extra_fields_translations: document.getElementById('extra_translations').value
       };
       $("#project-ids").val().map((x) => {
         data.project_ids.push(parseInt(x));

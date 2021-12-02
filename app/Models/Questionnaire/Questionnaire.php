@@ -49,8 +49,6 @@ class Questionnaire extends Model {
         'prerequisite_order',
         'status_id',
         'default_language_id',
-        'title',
-        'description',
         'goal',
         'questionnaire_json',
         'statistics_page_visibility_lkp_id'
@@ -61,7 +59,7 @@ class Questionnaire extends Model {
      *
      * @var array
      */
-    protected $with = ['defaultTranslation'];
+    protected $with = ['defaultFieldsTranslation'];
 
     /**
      * Get the route key for the model.
@@ -122,7 +120,7 @@ class Questionnaire extends Model {
     /**
      * @return HasOne
      */
-    public function defaultTranslation() {
+    public function defaultFieldsTranslation() {
         return $this->hasOne(QuestionnaireFieldsTranslation::class,
             ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
             'title' => 'Questionnaire title',
@@ -133,7 +131,7 @@ class Questionnaire extends Model {
     /**
      * @return HasMany
      */
-    public function translations() {
+    public function fieldsTranslations() {
         return $this->hasMany(QuestionnaireFieldsTranslation::class, 'questionnaire_id', 'id');
     }
 }
