@@ -168,11 +168,11 @@ class CrowdSourcingProjectManager {
             ]);
         }
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
-        $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultLanguageForProject(
+        $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(
             $attributes, $id);
-        if (isset($attributes['extra_project_translations']))
+        if (isset($attributes['extra_translations']))
             $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
-                json_decode($attributes['extra_project_translations']), $project->id, intval($attributes['language_id']));
+                json_decode($attributes['extra_translations']), $project->id, intval($attributes['language_id']));
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {

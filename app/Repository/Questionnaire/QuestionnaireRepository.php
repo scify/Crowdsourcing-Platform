@@ -46,13 +46,13 @@ class QuestionnaireRepository extends Repository {
             ->orderBy('created_at', 'desc')->get();
     }
 
-    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $questionnaireJson,
+    public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,
                                          $statisticsPageVisibilityLkpId) {
         return DB::transaction(function () use (
-            $title, $description, $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
+            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
         ) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,
+            $questionnaire = $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
@@ -60,14 +60,14 @@ class QuestionnaireRepository extends Repository {
         });
     }
 
-    public function updateQuestionnaire($questionnaireId, $title, $description,
+    public function updateQuestionnaire($questionnaireId,
                                         $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId) {
         return DB::transaction(function () use (
-            $questionnaireId, $title, $description, $goal,
+            $questionnaireId, $goal,
             $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
         ) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            return $this->storeQuestionnaire($questionnaire, $title, $description,
+            return $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId);
         });
     }
@@ -93,10 +93,8 @@ class QuestionnaireRepository extends Repository {
     }
 
 
-    private function storeQuestionnaire($questionnaire, $title, $description, $goal,
+    private function storeQuestionnaire($questionnaire, $goal,
                                         $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId) {
-        $questionnaire->title = $title;
-        $questionnaire->description = $description;
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)

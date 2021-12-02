@@ -22,7 +22,7 @@ class CrowdSourcingProjectTranslationManager {
         return $this->crowdSourcingProjectTranslationRepository->allWhere(['project_id' => $project->id]);
     }
 
-    public function storeOrUpdateDefaultLanguageForProject(array $attributes, int $project_id) {
+    public function storeOrUpdateDefaultTranslationForProject(array $attributes, int $project_id) {
         $allowedKeys = (new CrowdSourcingProjectTranslation())->getFillable();
         $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
         $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
@@ -49,6 +49,5 @@ class CrowdSourcingProjectTranslationManager {
                 $filtered
             );
         }
-
     }
 }
