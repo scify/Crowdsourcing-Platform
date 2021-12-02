@@ -46,27 +46,13 @@ class QuestionnaireRepository extends Repository {
             ->orderBy('created_at', 'desc')->get();
     }
 
-    public function getAllResponsesGivenByUser($userId) {
-        // here we select the columns that we want to fetch, due to this mySQL 8 bug:
-        // https://bugs.mysql.com/bug.php?id=103225
-        return QuestionnaireResponse::
-        select('questionnaire_responses.id as questionnaire_response_id',
-            'questionnaire_responses.created_at as responded_at',
-            'questionnaire_responses.*', 'q.description as questionnaire_description', 'q.*', 'csp.*')
-            ->join('questionnaires as q', 'q.id', '=', 'questionnaire_id')
-            ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'q.project_id')
-            ->where('user_id', $userId)
-            ->get()
-            ->sortByDesc('responded_at');
-    }
-
-    public function saveNewQuestionnaire($title, $description, $goal, $languageId, $questionnaireJson,
+    public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,
                                          $statisticsPageVisibilityLkpId) {
         return DB::transaction(function () use (
-            $title, $description, $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
+            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
         ) {
             $questionnaire = new Questionnaire();
-            $questionnaire = $this->storeQuestionnaire($questionnaire, $title, $description,
+            $questionnaire = $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
@@ -74,14 +60,14 @@ class QuestionnaireRepository extends Repository {
         });
     }
 
-    public function updateQuestionnaire($questionnaireId, $title, $description,
+    public function updateQuestionnaire($questionnaireId,
                                         $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId) {
         return DB::transaction(function () use (
-            $questionnaireId, $title, $description, $goal,
+            $questionnaireId, $goal,
             $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId
         ) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
-            return $this->storeQuestionnaire($questionnaire, $title, $description,
+            return $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId);
         });
     }
@@ -107,10 +93,8 @@ class QuestionnaireRepository extends Repository {
     }
 
 
-    private function storeQuestionnaire($questionnaire, $title, $description, $goal,
+    private function storeQuestionnaire($questionnaire, $goal,
                                         $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId) {
-        $questionnaire->title = $title;
-        $questionnaire->description = $description;
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)
@@ -128,15 +112,15 @@ class QuestionnaireRepository extends Repository {
                         q.prerequisite_order,
                         q.status_id,
                         q.default_language_id,
-                        q.title,
-                        q.description,
+                        qft.title,
+                        qft.description,
                         q.goal,
                         q.statistics_page_visibility_lkp_id,
                         q.created_at,
                         q.updated_at,
                         q.deleted_at,
                         COUNT(csp.id) AS num_of_projects,
-                        GROUP_CONCAT(csp.name
+                        GROUP_CONCAT(cspt.name
                             SEPARATOR ', ') AS project_names,
                         GROUP_CONCAT(csp.slug
                             SEPARATOR ', ') AS project_slugs,
@@ -152,6 +136,12 @@ class QuestionnaireRepository extends Repository {
                         crowd_sourcing_project_questionnaires cspq ON cspq.questionnaire_id = q.id
                             INNER JOIN
                         crowd_sourcing_projects csp ON csp.id = cspq.project_id
+                            INNER JOIN
+                        crowd_sourcing_project_translations cspt ON cspt.project_id = cspq.project_id 
+                                                                        and cspt.language_id = csp.language_id
+                            INNER JOIN
+                        questionnaire_fields_translations qft ON qft.questionnaire_id = q.id 
+                                                                        and qft.language_id = q.default_language_id
                             INNER JOIN
                         languages_lkp AS dl ON dl.id = q.default_language_id
                             INNER JOIN

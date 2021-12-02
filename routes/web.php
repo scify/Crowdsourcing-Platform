@@ -23,10 +23,12 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
+
+$regexForLocalParameter= config("app.regex_for_validating_locale_at_routes");
 //notice we use this also for /my-dashbor and /my-account
 $localeInfo = ['prefix' => '{locale}',
-                'where' => ['locale' => '[a-zA-Z]{2}'],
-                 'middleware' => 'setlocale'
+               'where' => ['locale' => $regexForLocalParameter],
+               'middleware' => 'setlocale'
                 ];
 Route::group($localeInfo, function () {
     Auth::routes();
@@ -41,7 +43,7 @@ Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProvide
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
 Route::group(['prefix' => '{locale}',
-    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'where' => ['locale' => $regexForLocalParameter],
     'middleware' => ['auth', 'setlocale'],
 ], function () {
     Route::get('/my-dashboard', 'UserController@myDashboard')->name('my-dashboard');
@@ -77,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
 
-    Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration')->middleware("can:manage-platform");
+    Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration.get')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
 
@@ -105,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group($localeInfo, function () {
     Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 });
+
 
 
 

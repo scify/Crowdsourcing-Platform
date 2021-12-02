@@ -3,9 +3,6 @@
 namespace App\Models\ViewModels;
 
 
-use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
-use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,12 +18,12 @@ class CrowdSourcingProjectForLandingPage {
     public $openQuestionnaireWhenPageLoads = false;
 
     public function __construct($project, $questionnaire,
-                                $userResponse,
-                                $allResponses,
-                                $questionnaireGoalVM,
-                                $socialMediaMetadataVM,
+        $userResponse,
+        $allResponses,
+        $questionnaireGoalVM,
+        $socialMediaMetadataVM,
                                 Collection $languages,
-                                $openQuestionnaireWhenPageLoads) {
+        $openQuestionnaireWhenPageLoads) {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
         $this->userResponse = $userResponse;

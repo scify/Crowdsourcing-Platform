@@ -13,6 +13,8 @@
             :questionnaire-data='@json($viewModel->questionnaire)'
             :projects='@json($viewModel->projects)'
             :languages='@json($viewModel->languages)'
-            :questionnaire-statistics-page-visibility-lkp='@json($viewModel->questionnaireStatisticsPageVisibilityLkp)'>
+            :questionnaire-statistics-page-visibility-lkp='@json($viewModel->questionnaireStatisticsPageVisibilityLkp)'
+            :translation-meta-data='@json($viewModel->translationMetaData)'
+            :questionnaire-fields-translations='@json($viewModel->questionnaireFieldsTranslations)'>
     </questionnaire-create-edit>
 @endsection

@@ -22,7 +22,7 @@
                             <select class="form-control" name="questionnaire_id">
                                 @foreach ($viewModel->allQuestionnaires as $questionnaire)
                                     <option value="{{ $questionnaire->id }}">
-                                        {{ $questionnaire->title }}
+                                        {{ $questionnaire->defaultFieldsTranslation->title }}
                                     </option>
                                 @endforeach
                             </select>

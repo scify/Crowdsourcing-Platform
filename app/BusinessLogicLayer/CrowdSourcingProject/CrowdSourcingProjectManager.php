@@ -36,22 +36,22 @@ class CrowdSourcingProjectManager {
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireGoalManager;
     protected $currentQuestionnaireProvider;
-    protected $crowdSourcingProjectCommunicationResourcesManager;
     protected $languageRepository;
     protected $crowdSourcingProjectColorsManager;
     protected $questionnaireResponseRepository;
+    protected $crowdSourcingProjectTranslationManager;
 
-    public function __construct(CrowdSourcingProjectRepository                    $crowdSourcingProjectRepository,
-                                QuestionnaireRepository                           $questionnaireRepository,
-                                CrowdSourcingProjectStatusManager                 $crowdSourcingProjectStatusManager,
-                                CrowdSourcingProjectAccessManager                 $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectStatusHistoryRepository       $crowdSourcingProjectStatusHistoryRepository,
-                                QuestionnaireGoalManager                          $questionnaireGoalManager,
-                                CurrentQuestionnaireProvider                      $currentQuestionnaireProvider,
-                                CrowdSourcingProjectCommunicationResourcesManager $crowdSourcingProjectCommunicationResourcesManager,
-                                LanguageRepository                                $languageRepository,
-                                CrowdSourcingProjectColorsManager                 $crowdSourcingProjectColorsManager,
-                                QuestionnaireResponseRepository                   $questionnaireResponseRepository) {
+    public function __construct(CrowdSourcingProjectRepository              $crowdSourcingProjectRepository,
+                                QuestionnaireRepository                     $questionnaireRepository,
+                                CrowdSourcingProjectStatusManager           $crowdSourcingProjectStatusManager,
+                                CrowdSourcingProjectAccessManager           $crowdSourcingProjectAccessManager,
+                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
+                                QuestionnaireGoalManager                    $questionnaireGoalManager,
+                                CurrentQuestionnaireProvider                $currentQuestionnaireProvider,
+                                LanguageRepository                          $languageRepository,
+                                CrowdSourcingProjectColorsManager           $crowdSourcingProjectColorsManager,
+                                QuestionnaireResponseRepository             $questionnaireResponseRepository,
+                                CrowdSourcingProjectTranslationManager      $crowdSourcingProjectTranslationManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -59,10 +59,10 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireGoalManager = $questionnaireGoalManager;
         $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
-        $this->crowdSourcingProjectCommunicationResourcesManager = $crowdSourcingProjectCommunicationResourcesManager;
         $this->languageRepository = $languageRepository;
         $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
@@ -91,7 +91,7 @@ class CrowdSourcingProjectManager {
         } // else, check if the user is anonymous (by checking the cookie) and get the user id
         else if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
-        if($userId)
+        if ($userId)
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
@@ -126,10 +126,10 @@ class CrowdSourcingProjectManager {
 
     public function getSocialMediaMetadataViewModel(CrowdSourcingProject $project): CrowdSourcingProjectSocialMediaMetadata {
         return new CrowdSourcingProjectSocialMediaMetadata(
-            $project->sm_title,
-            $project->sm_description,
+            $project->defaultTranslation->sm_title,
+            $project->defaultTranslation->sm_description,
             $project->sm_featured_img_path,
-            $project->sm_keywords,
+            $project->defaultTranslation->sm_keywords,
             $project->slug
         );
     }
@@ -148,12 +148,15 @@ class CrowdSourcingProjectManager {
         $project = $this->getCrowdSourcingProject($id);
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes, $project);
 
-        $attributes = $this->setDefaultValuesForSocialMediaFields($project, $attributes);
+        $attributes = $this->setDefaultValuesForSocialMediaFields($attributes);
 
         $attributes = $this->storeProjectRelatedFiles($attributes);
         $this->createProjectStatusHistoryRecord($id, $attributes['status_id']);
+
+        $attributes['should_send_email_after_questionnaire_response'] =
+            (isset($attributes['should_send_email_after_questionnaire_response'])
+                && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
         $this->crowdSourcingProjectRepository->update($attributes, $id);
-        $this->updateCommunicationResources($project, $attributes);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
         $colors = [];
@@ -165,6 +168,11 @@ class CrowdSourcingProjectManager {
             ]);
         }
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
+        $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(
+            $attributes, $id);
+        if (isset($attributes['extra_translations']))
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
+                json_decode($attributes['extra_translations']), $project->id, intval($attributes['language_id']));
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {
@@ -200,28 +208,15 @@ class CrowdSourcingProjectManager {
         return $attributes;
     }
 
-    protected function setDefaultValuesForSocialMediaFields(CrowdSourcingProject $project, array $attributes): array {
+    protected function setDefaultValuesForSocialMediaFields(array $attributes): array {
         if (!isset($attributes['sm_title']) || !$attributes['sm_title'])
-            $attributes['sm_title'] = $project->name;
+            $attributes['sm_title'] = $attributes['name'];
         if (!isset($attributes['sm_description']) || !$attributes['sm_description'])
-            $attributes['sm_description'] = strip_tags($project->motto_title);
+            $attributes['sm_description'] = $attributes['description'];
         if (!isset($attributes['sm_keywords']) || !$attributes['sm_keywords'])
-            $attributes['sm_keywords'] = str_replace(' ', ',', $project->name);
+            $attributes['sm_keywords'] = str_replace(' ', ',', $attributes['name']);
 
         return $attributes;
-    }
-
-    protected function updateCommunicationResources(CrowdSourcingProject $project, array $attributes) {
-        $attributesToUpdate = [];
-        if (isset($attributes['questionnaire_response_email_intro_text']) && $attributes['questionnaire_response_email_outro_text']) {
-            $attributesToUpdate['questionnaire_response_email_intro_text'] = $attributes['questionnaire_response_email_intro_text'];
-            $attributesToUpdate['questionnaire_response_email_outro_text'] = $attributes['questionnaire_response_email_outro_text'];
-        }
-        $attributesToUpdate['should_send_email_after_questionnaire_response'] =
-            (isset($attributes['should_send_email_after_questionnaire_response'])
-                && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
-
-        $this->crowdSourcingProjectCommunicationResourcesManager->createOrUpdateCommunicationResourcesForProject($project, $attributesToUpdate);
     }
 
     public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
@@ -230,7 +225,7 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        if(!$project->lp_primary_color)
+        if (!$project->lp_primary_color)
             $project->lp_primary_color = '#707070';
         return $project;
     }
@@ -282,9 +277,6 @@ class CrowdSourcingProjectManager {
             $project = $this->crowdSourcingProjectRepository->getModelInstance();
         }
 
-        if (!$project->communicationResources()->exists())
-            $project->communicationResources = $this->crowdSourcingProjectCommunicationResourcesManager->getDefaultModelInstance();
-
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
         $project->colors = $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id);
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
@@ -292,15 +284,21 @@ class CrowdSourcingProjectManager {
         $contributorBadge = new ContributorBadge(1, true);
         $contributorBadgeVM = new GamificationBadgeVM($contributorBadge);
         $questionnaire = $this->questionnaireRepository->getModelInstance();
-        $questionnaire->title = 'Test Questionnaire';
 
         $notification = (new QuestionnaireResponded(
-            $questionnaire,
+            $questionnaire->defaultFieldsTranslation,
             $contributorBadge,
             $contributorBadgeVM,
-            $project->communicationResources
+            $project->defaultTranslation
         ))->toMail(null)->render();
-        return new CreateEditCrowdSourcingProject($project, $statusesLkp, $notification);
+        $translations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
+        return new CreateEditCrowdSourcingProject(
+            $project,
+            $translations,
+            $statusesLkp,
+            $this->languageRepository->all(),
+            $notification
+        );
     }
 
     public function getCrowdSourcingProjectsListPageViewModel(): AllCrowdSourcingProjects {
@@ -337,7 +335,7 @@ class CrowdSourcingProjectManager {
         return DB::transaction(function () use ($id) {
             $now = Date::now();
             $project = $this->getCrowdSourcingProject($id);
-            $project->load(['language', 'status', 'communicationResources']);
+            $project->load(['language', 'status', 'translations']);
             $clone = $project->replicate();
             $clone->name .= ' - Clone';
             $clone->created_at = $now;

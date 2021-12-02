@@ -3,15 +3,22 @@
 namespace Database\Seeders;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
 use App\Repository\CrowdSourcingProjectRepository;
+use App\Utils\Helpers;
 use Illuminate\Database\Seeder;
 
 class DefaultProjectSeeder extends Seeder {
 
     protected $projectRepository;
+    protected $projectTranslationRepository;
 
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
+    public function __construct(CrowdSourcingProjectRepository            $crowdSourcingProjectRepository,
+                                CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
         $this->projectRepository = $crowdSourcingProjectRepository;
+        $this->projectTranslationRepository = $crowdSourcingProjectTranslationRepository;
     }
 
     /**
@@ -82,8 +89,10 @@ class DefaultProjectSeeder extends Seeder {
 
         foreach ($data as $project) {
             $project = $this->projectRepository->updateOrCreate(['id' => $project['id']],
-                $project);
-            echo "\nAdded Project: " . $project->name . " with slug: " . $project->slug . "\n";
+                Helpers::getFilteredAttributes($project, (new CrowdSourcingProject())->getFillable()));
+            $this->projectTranslationRepository->updateOrCreate(['project_id' => $project['id'], 'language_id' => $project['language_id']],
+                Helpers::getFilteredAttributes($project, (new CrowdSourcingProjectTranslation())->getFillable()));
+            echo "\nAdded Project: " . $project['name'] . " with slug: " . $project->slug . "\n";
         }
     }
 }

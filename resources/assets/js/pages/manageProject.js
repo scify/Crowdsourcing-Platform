@@ -1,21 +1,39 @@
-const Stepper = require('bs-stepper');
 import CodeMirror from 'codemirror/lib/codemirror';
 
 import 'codemirror/mode/xml/xml';
 
 (function () {
-    let stepper;
 
     let initializeSummernote = function () {
+        window.setTimeout(function () {
+            $('.summernote').summernote({
+                height: 150,   //set editable area's height
+                codemirror: { // codemirror options
+                    CodeMirrorConstructor: CodeMirror,
+                    theme: 'monokai'
+                }
+            });
+        }, 2000);
 
-        $('.summernote').summernote({
-            height: 150,   //set editable area's height
-            codemirror: { // codemirror options
-                CodeMirrorConstructor: CodeMirror,
-                theme: 'monokai'
-            }
-        });
     };
+
+    let initializeSubmitFormListener = function () {
+        $("#project-form").one("submit", function (event) {
+            event.preventDefault();
+            fixAllSummerNoteCodes();
+            $(this).submit();
+        });
+    }
+
+    let fixAllSummerNoteCodes = function () {
+        $('.summernote').each((index, element) => {
+            updateSummerNoteCodeContent($(element));
+        });
+    }
+
+    let updateSummerNoteCodeContent = function (el) {
+        el.val(el.summernote('code'));
+    }
 
     let initializeImgFileChangePreviewHandlers = function () {
         $('.image-input').each(function (i, obj) {
@@ -34,39 +52,6 @@ import 'codemirror/mode/xml/xml';
         });
     };
 
-    let initializeStepper = function () {
-        const stepperEl = $('#project-form-stepper')[0];
-        stepper = new Stepper(stepperEl);
-        $("body").on('click', '.stepper-next', function () {
-            stepper.next();
-        });
-        $("body").on('click', '.stepper-previous', function () {
-            stepper.previous();
-        });
-
-        stepperEl.addEventListener('show.bs-stepper', function (event) {
-            $('#form-error-message').addClass('d-none');
-            // if on last step, show form submit button
-            if (event.detail.indexStep === 4) {
-                $('.stepper-next').addClass('d-none');
-                // always display the save
-               // $('#submit-form').removeClass('d-none');
-            } else {
-                $('.stepper-next').removeClass('d-none');
-               // $('#submit-form').addClass('d-none');
-            }
-            // if trying to navigate away from first step, perform validation
-            if (event.detail.from === 0) {
-                let form = $('#project-form')[0];
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    $('#form-error-message').removeClass('d-none');
-                    form.classList.add('was-validated');
-                }
-            }
-        })
-    };
 
     let initializeCommunicationResourcesHandlers = function () {
         initializeSummernoteAndUpdateElementOnKeyup($('#questionnaire_response_email_intro_text'), $('#intro_text'));
@@ -88,8 +73,8 @@ import 'codemirror/mode/xml/xml';
 
     let init = function () {
         initializeSummernote();
+        initializeSubmitFormListener();
         initializeImgFileChangePreviewHandlers();
-        initializeStepper();
         initializeCommunicationResourcesHandlers();
     };
     $(document).ready(function () {

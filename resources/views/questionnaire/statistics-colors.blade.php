@@ -10,7 +10,7 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h4>Edit Colors for Questionnaire:</h4>
-                <h3 class="font-weight-bold">{{$viewModel->questionnaire->title}}</h3>
+                <h3 class="font-weight-bold">{{$viewModel->questionnaire->currentFieldsTranslation->title}}</h3>
             </div>
             <div class="card-body">
                 <div class="container mt-4">

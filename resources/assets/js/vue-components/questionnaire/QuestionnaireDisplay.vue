@@ -159,7 +159,7 @@ export default {
     saveQuestionnaireResponseProgress(sender, options) {
       const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
       if (!responseJSON || !JSON.parse(responseJSON))
-        AnalyticsLogger.logEvent('questionnaire_respond_begin_' + this.questionnaire.title, 'respond_begin', this.questionnaire.title, this.questionnaire.id);
+        AnalyticsLogger.logEvent('questionnaire_respond_begin_' + this.questionnaire.default_fields_translation.title, 'respond_begin', this.questionnaire.title, this.questionnaire.id);
       window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
       if (!this.t0)
         this.t0 = performance.now();
@@ -188,9 +188,9 @@ export default {
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
         const time = performance.now() - this.t0;
-        AnalyticsLogger.logEvent('questionnaire_respond_complete_' + this.questionnaire.title, 'respond_complete', JSON.stringify({
-          'questionnaire': this.questionnaire.title,
-          'project': this.project.name,
+        AnalyticsLogger.logEvent('questionnaire_respond_complete_' + this.questionnaire.default_fields_translation.title, 'respond_complete', JSON.stringify({
+          'questionnaire': this.questionnaire.default_fields_translation.title,
+          'project': this.project.default_translation.name,
           'language': locale,
           'time_to_complete': time
         }), this.questionnaire.id);

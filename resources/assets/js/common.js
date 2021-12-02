@@ -36,6 +36,7 @@ require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
 require('datatables.net-select-bs4');
+import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
 import Clipboard from "clipboard/dist/clipboard";
 
 import Vue from 'vue';
@@ -48,6 +49,7 @@ Vue.component('questionnaire-languages', require('./vue-components/questionnaire
 Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
 Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
 Vue.component('crowd-sourcing-project-colors', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectColors').default);
+Vue.component('translations-manager', require('./vue-components/common/TranslationsManager').default);
 
 const app = new Vue({
     el: '#app',
@@ -56,6 +58,7 @@ const app = new Vue({
 
 (function () {
 
+    window.language= languageBundle;
     Number.prototype.round = function (places) {
         return +(Math.round(this + "e+" + places) + "e-" + places);
     };

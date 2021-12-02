@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
-        Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->name : '' }}
+        Project {{ $viewModel->isEditMode() ? ': ' . $viewModel->project->defaultTranslation->name : '' }}
         <small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
 @endsection
 
@@ -17,108 +17,67 @@
             @method('PUT')
         @endif
         <div class="container-fluid p-0">
-            <div class="row">
-                <div class="col-md-10 col-sm-12 mx-auto">
-                    <div class="bs-stepper" id="project-form-stepper">
-                        <div class="bs-stepper-header" role="tablist">
-                            <div class="step" data-target="#basic-details">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="basic-details"
-                                        id="basic-details-trigger">
-                                    <span class="bs-stepper-circle">1</span>
-                                    <span class="bs-stepper-label">Basic Details</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#landing-page">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="landing-page"
-                                        id="landing-page-trigger">
-                                    <span class="bs-stepper-circle">2</span>
-                                    <span class="bs-stepper-label">Landing Page</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#social-media">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="social-media"
-                                        id="social-media-trigger">
-                                    <span class="bs-stepper-circle">3</span>
-                                    <span class="bs-stepper-label">Social Media</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#communication-resources">
-                                <button type="button" class="step-trigger" role="tab"
-                                        aria-controls="communication-resources"
-                                        id="communication-resources-trigger">
-                                    <span class="bs-stepper-circle">4</span>
-                                    <span class="bs-stepper-label">Communication Emails</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#statistics-colors">
-                                <button type="button" class="step-trigger" role="tab"
-                                        aria-controls="statistics-colors"
-                                        id="statistics-colors-trigger">
-                                    <span class="bs-stepper-circle">5</span>
-                                    <span class="bs-stepper-label">Statistics Colors</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bs-stepper-content">
-                            <div id="basic-details" class="content" role="tabpanel"
-                                 aria-labelledby="basic-details-trigger">
-                                @include('admin.projects.create-edit.partials.basic-details')
-                            </div>
-                            <div id="landing-page" class="content" role="tabpanel"
-                                 aria-labelledby="landing-page-trigger">
-                                @include('admin.projects.create-edit.partials.landing-page')
-                            </div>
-                            <div id="social-media" class="content" role="tabpanel"
-                                 aria-labelledby="social-media-trigger">
-                                @include('admin.projects.create-edit.partials.social-media')
-                            </div>
-                            <div id="communication-resources" class="content" role="tabpanel"
-                                 aria-labelledby="communication-resources-trigger">
-                                @include('admin.projects.create-edit.partials.communication-resources')
-                            </div>
-                            <div id="statistics-colors" class="content" role="tabpanel"
-                                 aria-labelledby="statistics-colors-trigger">
-                                @include('admin.projects.create-edit.partials.statistics-colors')
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-md-5 col-sm-12 mx-auto">
-                                <div class="container-fluid">
-                                    <div class="row mb-2">
-                                        <div class="col-6 offset-6">
-                                            <div id="form-error-message" class="d-none">Please check all required
-                                                fields
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row  mb-6 pl-4 pr-4">
-                            <div class="col-md-6 text-left" >
-                                <button class="btn  btn-primary btn-lg  mt-0 float-left"
-                                        id="submit-form"
-                                        type="submit">Save
-                                </button>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <button class="btn  btn-primary btn-lg stepper-previous "
-                                        type="button">
-                                    Previous
-                                </button>
-                                <button class="btn  btn-primary btn-lg stepper-next" type="button">
-                                    Next
-                                </button>
-                            </div>
+            <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab"
+                       aria-controls="basic-details" aria-selected="true">Basic Details</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#landing-page" role="tab"
+                       aria-controls="profile" aria-selected="false">Landing Page</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#social-media" role="tab"
+                       aria-controls="contact" aria-selected="false">Social Media</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#communication-resources" role="tab"
+                       aria-controls="contact" aria-selected="false">Communication Emails</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#statistics-colors" role="tab"
+                       aria-controls="contact" aria-selected="false">Statistics Colors</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#translations" role="tab"
+                       aria-controls="contact" aria-selected="false">Translations</a>
+                </li>
+            </ul>
+            <div class="tab-content " id="myTabContent">
+                <div class="tab-pane fade show active " id="basic-details" role="tabpanel"
+                     aria-labelledby="basic-details-tab">
+                    @include('admin.projects.create-edit.partials.basic-details')
 
-                        </div>
-                    </div>
+                </div>
+                <div class="tab-pane fade " id="landing-page" role="tabpanel" aria-labelledby="landing-page-tab">
+                    @include('admin.projects.create-edit.partials.landing-page')
+
+                </div>
+                <div class="tab-pane fade " id="social-media" role="tabpanel" aria-labelledby="social-media-tab">
+                    @include('admin.projects.create-edit.partials.social-media')
+
+                </div>
+                <div class="tab-pane fade " id="communication-resources" role="tabpanel"
+                     aria-labelledby="communication-resources-tab">
+                    @include('admin.projects.create-edit.partials.communication-resources')
+
+                </div>
+                <div class="tab-pane fade " id="statistics-colors" role="tabpanel"
+                     aria-labelledby="statistics-colors-tab">
+                    @include('admin.projects.create-edit.partials.statistics-colors')
+
+                </div>
+                <div class="tab-pane fade " id="translations" role="tabpanel" aria-labelledby="translations-tab">
+                    @include('admin.projects.create-edit.partials.translations')
                 </div>
             </div>
+            <div>
+                <input class="btn btn-primary btn-lg  mt-3 mb-3"
+                       id="submit-form"
+                       type="submit" value="Save">
+            </div>
+
+
         </div>
     </form>
 @endsection

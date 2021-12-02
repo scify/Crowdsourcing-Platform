@@ -21,18 +21,20 @@
                     <div class="row my-5">
                         <div class="col-12">
                             <h1 class="text-lg-center text-md-center text-sm-left">
-                                <b>{{ $viewModel->questionnaire->title }}</b>
+                                <b>{{ $viewModel->questionnaire->currentFieldsTranslation->title }}</b>
                             </h1>
                         </div>
                     </div>
-                    <div class="row my-5 py-5 align-items-center bg-white">
-                        <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                            <h2>{{ __("statistics.total_responses")}}:</h2>
+                    @if($viewModel->questionnaireResponseStatistics->totalResponses)
+                        <div class="row my-5 py-5 align-items-center bg-white">
+                            <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
+                                <h2>{{ __("statistics.total_responses")}}:</h2>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-12">
+                                <canvas id="responsesChart"></canvas>
+                            </div>
                         </div>
-                        <div class="col-lg-7 col-md-6 col-sm-12">
-                            <canvas id="responsesChart"></canvas>
-                        </div>
-                    </div>
+                    @endif
                     @if (sizeof($viewModel->numberOfResponsesPerLanguage->data) > 1)
                         <div class="row my-5 py-5 align-items-center bg-white">
                             <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
