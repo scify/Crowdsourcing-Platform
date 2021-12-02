@@ -26,19 +26,22 @@ class QuestionnaireActionHandler {
     protected $platformWideGamificationBadgesProvider;
     protected $questionnaireShareRepository;
     protected $questionnaireResponseRepository;
+    protected $questionnaireFieldsTranslationManager;
 
     public function __construct(WebSessionManager                      $webSessionManager,
                                 UserRepository                         $userRepository,
                                 QuestionnaireResponseReferralManager   $questionnaireResponseReferralManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
                                 UserQuestionnaireShareRepository       $questionnaireShareRepository,
-                                QuestionnaireResponseRepository        $questionnaireResponseRepository) {
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
+                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager) {
         $this->webSessionManager = $webSessionManager;
         $this->userRepository = $userRepository;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->questionnaireShareRepository = $questionnaireShareRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
     }
 
     public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
@@ -53,7 +56,7 @@ class QuestionnaireActionHandler {
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
         try {
             $user->notify(new QuestionnaireResponded(
-                    $questionnaire,
+                    $questionnaire->currentFieldsTranslation,
                     $contributorBadge,
                     new GamificationBadgeVM($contributorBadge),
                     $project->defaultTranslation)
@@ -70,7 +73,9 @@ class QuestionnaireActionHandler {
             if ($referrer && $referrerId !== $user->id) {
                 $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
                 $influencerBadge = $this->platformWideGamificationBadgesProvider->getInfluencerBadge($referrer->id);
-                $referrer->notify(new ReferredQuestionnaireAnswered($questionnaire, $influencerBadge, new GamificationBadgeVM($influencerBadge)));
+                $referrer->notify(new ReferredQuestionnaireAnswered(
+                    $questionnaire->currentFieldsTranslation,
+                    $influencerBadge, new GamificationBadgeVM($influencerBadge)));
                 $this->webSessionManager->setReferrerId(null);
             }
         }
@@ -80,7 +85,9 @@ class QuestionnaireActionHandler {
         if (!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
             $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
             try {
-                $user->notify(new QuestionnaireShared($questionnaire, $communicatorBadge, new GamificationBadgeVM($communicatorBadge)));
+                $user->notify(new QuestionnaireShared(
+                    $questionnaire->currentFieldsTranslation,
+                    $communicatorBadge, new GamificationBadgeVM($communicatorBadge)));
             } catch (\Exception $e) {
                 Log::error($e);
             }

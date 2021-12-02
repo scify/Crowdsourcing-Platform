@@ -4,7 +4,7 @@ namespace App\Notifications;
 
 use App\BusinessLogicLayer\gamification\GamificationBadge;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
-use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
 use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,11 +14,11 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
 
     protected $crowdSourcingProjectTranslation;
 
-    public function __construct(Questionnaire                   $questionnaire,
+    public function __construct(QuestionnaireFieldsTranslation  $questionnaireFieldsTranslation,
                                 GamificationBadge               $badge,
                                 GamificationBadgeVM             $badgeVM,
                                 CrowdSourcingProjectTranslation $crowdSourcingProjectTranslation) {
-        $this->questionnaire = $questionnaire;
+        $this->questionnaireFieldsTranslation = $questionnaireFieldsTranslation;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
         $this->crowdSourcingProjectTranslation = $crowdSourcingProjectTranslation;
@@ -45,7 +45,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
             $this->badgeVM,
             'Thank you for your contribution!',
             'Hello!',
-            'Thank you for taking the time to answer our questionnaire: "<b>' . $this->questionnaire->title . '</b>". This really means a lot to us!'
+            'Thank you for taking the time to answer our questionnaire: "<b>' . $this->questionnaireFieldsTranslation->title . '</b>". This really means a lot to us!'
             . '<br><br><div id="intro_text">' . $this->crowdSourcingProjectTranslation->questionnaire_response_email_intro_text . '</div>',
             $this->badge->getEmailBody(),
             '<br><div id="outro_text">' . $this->crowdSourcingProjectTranslation->questionnaire_response_email_outro_text . '</div>',
