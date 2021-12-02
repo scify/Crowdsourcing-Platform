@@ -286,7 +286,7 @@ class CrowdSourcingProjectManager {
         $questionnaire = $this->questionnaireRepository->getModelInstance();
 
         $notification = (new QuestionnaireResponded(
-            $questionnaire,
+            $questionnaire->defaultFieldsTranslation,
             $contributorBadge,
             $contributorBadgeVM,
             $project->defaultTranslation

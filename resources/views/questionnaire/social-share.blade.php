@@ -9,7 +9,7 @@
         </div>
         <div class="col-lg-6">
             <a target="_blank"
-               data-project="{{ $viewModel->project->defaultTranslation->name }}"
+               data-project="{{ $viewModel->project->currentTranslation->name }}"
                data-questionnaire="{{ $viewModel->questionnaire->currentFieldsTranslation->title }}"
                data-questionnaireId="{{ $viewModel->questionnaire->id }}"
                data-medium="facebook"
@@ -20,7 +20,7 @@
         </div>
         <div class="col-lg-6">
             <a target="_blank"
-               data-project="{{ $viewModel->project->defaultTranslation->name }}"
+               data-project="{{ $viewModel->project->currentTranslation->name }}"
                data-questionnaire="{{ $viewModel->questionnaire->currentFieldsTranslation->title }}"
                data-questionnaireId="{{ $viewModel->questionnaire->id }}"
                data-medium="twitter"

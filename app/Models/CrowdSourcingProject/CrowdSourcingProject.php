@@ -2,6 +2,7 @@
 
 namespace App\Models\CrowdSourcingProject;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
 use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
@@ -41,6 +42,13 @@ class CrowdSourcingProject extends Model {
         'lp_show_speak_up_btn', 'lp_primary_color',
         'should_send_email_after_questionnaire_response'
     ];
+
+    protected $appends = ['currentTranslation'];
+
+    public function getCurrentTranslationAttribute() {
+        $crowdSourcingProjectTranslationManager = app()->make(CrowdSourcingProjectTranslationManager::class);
+        return $crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($this);
+    }
 
     /**
      * The relationships that should always be loaded.
