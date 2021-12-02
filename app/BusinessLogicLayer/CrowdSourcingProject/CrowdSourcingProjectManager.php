@@ -170,8 +170,9 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultLanguageForProject(
             $attributes, $id);
-        $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
-            json_decode($attributes['extra_project_translations']), $project->id, intval($attributes['language_id']));
+        if (isset($attributes['extra_project_translations']))
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
+                json_decode($attributes['extra_project_translations']), $project->id, intval($attributes['language_id']));
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {
