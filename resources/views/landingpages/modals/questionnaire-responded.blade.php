@@ -4,9 +4,9 @@
             <div class="modal-header">
                 <h4 class="modal-title">
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        Thank you!
+                        {{ __("questionnaire.thank_you") }}
                     @else
-                        Almost there!
+                        {{ __("questionnaire.almost_there") }}
                     @endif
                 </h4>
             </div>
@@ -14,18 +14,18 @@
             <div class="modal-body">
                 @if(!\Illuminate\Support\Facades\Auth::check())
 
-                    <p class="dashboard-message mt-4 mb-4 text-left w-100">Your answers have been saved anonymously. <br>
-                        Please login to complete your submission!</p>
-                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">Sign up / sign in</a>
-                    <p class="dashboard-message mt-4 text-left w-100">By registering<sup>*</sup> you
+                    <p class="dashboard-message mt-4 mb-4 text-left w-100">{{ __("questionnaire.answers_saved_anonymously") }} <br>
+                        {{ __("questionnaire.login_to_complete_submission") }}</p>
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-block btn-primary">{{ __("questionnaire.sign_up") }} / {{ __("questionnaire.sign_in") }}</a>
+                    <p class="dashboard-message mt-4 text-left w-100">{!! __("questionnaire.by_registering_you") !!}
                         <ul>
-                            <li>- Help us <strong>filter out</strong> spammers, people who answer randomly.</li>
-                            <li>- Can <strong>view</strong> your contribution, <strong>compare your answers</strong> with others.</li>
-                            <li>- <strong>Vote/Thumbs up</strong> the best answers</li>
+                            <li>- {!! __("questionnaire.filter_spammers") !!}</li>
+                            <li>- {!! __("questionnaire.view_your_contribution") !!}</li>
+                            <li>- {!! __("questionnaire.vote_thumbs_up") !!}</li>
                         </ul>
                     <label>
-                        * <i> We don't share your information to 3rd parties.</i><br>
-                        * <i>During registration you are asked for an email and a nickname.</i>
+                        * <i>{!! __("questionnaire.no_share_information") !!}</i><br>
+                        * <i>{!! __("questionnaire.during_registration") !!}</i>
                     </label>
                     </p>
                 @else
@@ -37,8 +37,8 @@
             </div>
             <div class="modal-footer">
                 @if(\Illuminate\Support\Facades\Auth::check())
-                    <p class="dashboard-message w-100">Visit your Dashboard to invite your friends</p>
-                    <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">Go to Dashboard</a>
+                    <p class="dashboard-message w-100">{{ __("questionnaire.visit_dashboard_and_invite") }}</p>
+                    <a href="{{ route('my-dashboard') }}" class="btn btn-lg btn-block btn-primary">{{ __("questionnaire.go_to_dashboard") }}</a>
                 @endif
             </div>
         </div>

@@ -29,6 +29,6 @@ class ContributorBadge extends GamificationBadge {
     public function getNextStepMessage() {
         if($this->userHasAchievedBadgePlatformWide)
             return 'Tell us what you think<br>and become a level <b>' . ($this->calculateLevel() + 1) . '</b> Contributor!';
-        return 'Tell us what you think<br>and gain the "Contributor" badge!';
+        return 'Tell us what you think<br>and gain the "Contributor" badge! ';
     }
 }

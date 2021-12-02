@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row social-share">
         <div class="col-md-12">
-            <h4 class="title" style="margin-bottom: 20px">Share the Questionnaire:</h4>
+            <h4 class="title" style="margin-bottom: 20px">{{ __("my-dashboard.share_questionnaire")}}</h4>
         </div>
         <div class="col-lg-6">
             <a target="_blank"
@@ -33,8 +33,8 @@
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                Thank you for sharing the Questionnaire! <br>
-                You will soon receive an e-mail with your badge!
+                {!! __("my-dashboard.thank_you_for_sharing") !!}
+
             </div>
         </div>
     </div>

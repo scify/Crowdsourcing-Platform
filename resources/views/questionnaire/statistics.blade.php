@@ -13,7 +13,7 @@
                             <div class="col">
                                 <button id="print-page" class="btn btn-primary btn-lg hidden-print"><i
                                             class="fas fa-print"></i>
-                                    Print
+                                    {{ __("statistics.print")}}
                                 </button>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="row my-5 py-5 align-items-center bg-white">
                         <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                            <h2>Total Responses:</h2>
+                            <h2>{{ __("statistics.total_responses")}}:</h2>
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-12">
                             <canvas id="responsesChart"></canvas>
@@ -36,7 +36,7 @@
                     @if (sizeof($viewModel->numberOfResponsesPerLanguage->data) > 1)
                         <div class="row my-5 py-5 align-items-center bg-white">
                             <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                                <h2>Responses per language:</h2>
+                                <h2>{{ __("statistics.responses_per_language")}}:</h2>
                             </div>
                             <div class="col-lg-7 col-md-6 col-sm-12">
                                 <canvas id="responsesPerLanguageChart"></canvas>

@@ -1,7 +1,7 @@
 <div class="socialSignInContainer">
     <div class="row">
         <div class="col-sm-4 title">
-            Or sign in with:
+            {{ __("login-register.login_with") }}
         </div>
         <div class="col-sm-8 align-left">
             <div class="container-fluid">

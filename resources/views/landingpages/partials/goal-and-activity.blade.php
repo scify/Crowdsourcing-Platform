@@ -3,12 +3,10 @@
     <div class="goal-title">
         <h2 class="info">
             @if ($viewModel->totalResponses==0)
-                Zero people have spoken up so far. Be the first!
+                {{ __("questionnaire.zero_answers") }}
             @else
-                <span style="color: {{ $viewModel->project->lp_primary_color }}" class="number"><b>{{$viewModel->totalResponses}}</b></span> people have spoken up so far.
-                Let's get to <b>{{$viewModel->questionnaire->goal}}</b>!
+                <span style="color: {{ $viewModel->project->lp_primary_color }}" class="number"><b>{{$viewModel->totalResponses}}</b></span> {{ __("questionnaire.answers_so_far") }} <b>{{$viewModel->questionnaire->goal}}</b>!
             @endif
-
         </h2>
     </div>
 
@@ -17,11 +15,11 @@
             @if ($viewModel->totalResponses ==0)
                 <p class="no-activity-found-msg"
                    style="color: {{ $viewModel->project->lp_primary_color }}">
-                    No recent activity found
+                    {{ __("questionnaire.no_recent_activity") }}
                 </p>
             @elseif ($viewModel->totalResponses > 0)
                 <div class="activity-title wrapper-title">
-                    <p style="color: {{ $viewModel->project->lp_primary_color }}">Latest contributors</p>
+                    <p style="color: {{ $viewModel->project->lp_primary_color }}">{{ __("questionnaire.latest_contributors") }}</p>
                 </div>
                 <div class="activity-content">
                     @foreach($viewModel->allResponses as $response)
@@ -29,9 +27,8 @@
                             <div class="activity-item text-left">
                                 <i style="color: {{ $viewModel->project->lp_primary_color }}"
                                    class="fa fa-user-circle user-icon" aria-hidden="true"></i>
-                                <b>{{$response->user_name}}</b>
                                 @if($response->created_at)
-                                    responded at {{\Carbon\Carbon::parse($response->created_at)->format('F d, Y')}}
+                                  {!! __("questionnaire.name_and_date_of_last_contributors", [ "name"=>"<b> $response->user_name </b>", "date" => \Carbon\Carbon::parse($response->created_at)->format('F d, Y')])!!} 
                                 @endif
                             </div>
                         @endif
