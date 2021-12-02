@@ -8,10 +8,13 @@ use App\Models\Language;
 use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
 use App\Models\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkp;
 use App\Models\QuestionnaireQuestion;
+use Awobaz\Compoships\Compoships;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -38,6 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Questionnaire extends Model {
     use SoftDeletes;
+    use Compoships;
 
     protected $table = 'questionnaires';
     protected $fillable = [
@@ -51,6 +55,13 @@ class Questionnaire extends Model {
         'questionnaire_json',
         'statistics_page_visibility_lkp_id'
     ];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['defaultTranslation'];
 
     /**
      * Get the route key for the model.
@@ -81,10 +92,6 @@ class Questionnaire extends Model {
         return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
     }
 
-    public function questions() {
-        return $this->hasMany(QuestionnaireQuestion::class, 'questionnaire_id', 'id');
-    }
-
     public function questionnaireLanguages() {
         return $this->hasMany(QuestionnaireLanguage::class, 'questionnaire_id', 'id');
     }
@@ -110,5 +117,23 @@ class Questionnaire extends Model {
 
     public function basicStatisticsColors() {
         return $this->hasOne(QuestionnaireBasicStatisticsColors::class, 'questionnaire_id', 'id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function defaultTranslation() {
+        return $this->hasOne(QuestionnaireFieldsTranslation::class,
+            ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
+            'title' => 'Questionnaire title',
+            'description' => 'Questionnaire description'
+        ]);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function translations() {
+        return $this->hasMany(QuestionnaireFieldsTranslation::class, 'questionnaire_id', 'id');
     }
 }

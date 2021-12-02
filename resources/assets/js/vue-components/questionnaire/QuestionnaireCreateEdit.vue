@@ -129,7 +129,7 @@
                   id="language">
                 <option v-for="language in languages"
                         :value="language.language_code"
-                        :selected="questionnaire.default_language_id === language.id">
+                        :selected="shouldLanguageBeSelected(language)">
                   {{ language.language_name }}
                 </option>
               </select>
@@ -233,7 +233,8 @@ export default {
       modalOpen: false,
       modalMessage: null,
       defaultLocale: null,
-      questionnaireLanguagesModalOpen: false
+      questionnaireLanguagesModalOpen: false,
+      defaultLangCodeForQuestionnaireFields: 'en'
     }
   },
   methods: {
@@ -244,6 +245,11 @@ export default {
     ]),
     isProjectSelected(projectId) {
       return this.questionnaire.projectIds.includes(projectId);
+    },
+    shouldLanguageBeSelected(language) {
+      if(this.questionnaire.default_language_id)
+        return this.questionnaire.default_language_id === language.id;
+      return language.language_code === this.defaultLangCodeForQuestionnaireFields;
     },
     getColorsForCrowdSourcingProject() {
       this.get({
