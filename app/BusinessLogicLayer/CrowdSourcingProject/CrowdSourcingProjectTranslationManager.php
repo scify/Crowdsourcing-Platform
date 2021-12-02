@@ -5,15 +5,30 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
+use App\Repository\LanguageRepository;
 use App\Utils\Helpers;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectTranslationManager {
 
     protected $crowdSourcingProjectTranslationRepository;
+    protected $languageRepository;
 
-    public function __construct(CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
+    public function __construct(CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository,
+                                LanguageRepository                        $languageRepository) {
         $this->crowdSourcingProjectTranslationRepository = $crowdSourcingProjectTranslationRepository;
+        $this->languageRepository = $languageRepository;
+    }
+
+    public function getFieldsTranslationForProject(CrowdSourcingProject $project): CrowdSourcingProjectTranslation {
+        $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
+        if (!$language)
+            return $project->defaultTranslation;
+        $fieldsTranslation = $this->crowdSourcingProjectTranslationRepository->where([
+            'project_id' => $project->id,
+            'language_id' => $language->id
+        ]);
+        return $fieldsTranslation ?: $project->defaultTranslation;
     }
 
     public function getTranslationsForProject(CrowdSourcingProject $project): Collection {

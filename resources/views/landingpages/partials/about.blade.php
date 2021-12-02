@@ -3,12 +3,12 @@
 
         <span id="project"
               class="h-0 hidden"
-              data-name="{{ $viewModel->project->defaultTranslation->name }}"
+              data-name="{{ $viewModel->project->currentTranslation->name }}"
               data-id="{{ $viewModel->project->id }}"></span>
 
         <div class="col-md-10 col-sm-12 p-0 mx-auto">
             <div class="content-container">
-                {!! $viewModel->project->defaultTranslation->about !!}
+                {!! $viewModel->project->currentTranslation->about !!}
 
                 @if($viewModel->project->external_url)
                     <div class="text-center">
