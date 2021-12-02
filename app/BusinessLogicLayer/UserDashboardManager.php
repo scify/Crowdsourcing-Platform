@@ -4,6 +4,7 @@
 namespace App\BusinessLogicLayer;
 
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\gamification\QuestionnaireBadgeProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireAccessManager;
@@ -25,6 +26,7 @@ class UserDashboardManager {
     protected $questionnaireBadgeProvider;
     protected $questionnaireResponseRepository;
     protected $questionnaireAccessManager;
+    protected $crowdSourcingProjectTranslationManager;
 
     public function __construct(CrowdSourcingProjectRepository         $projectRepository,
                                 QuestionnaireRepository                $questionnaireRepository,
@@ -33,7 +35,8 @@ class UserDashboardManager {
                                 QuestionnaireGoalManager               $crowdSourcingProjectGoalManager,
                                 QuestionnaireBadgeProvider             $questionnaireBadgeProvider,
                                 QuestionnaireResponseRepository        $questionnaireResponseRepository,
-                                QuestionnaireAccessManager             $questionnaireAccessManager) {
+                                QuestionnaireAccessManager             $questionnaireAccessManager,
+                                CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
         $this->projectRepository = $projectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->currentQuestionnaireCalculator = $currentQuestionnaireCalculator;
@@ -42,12 +45,16 @@ class UserDashboardManager {
         $this->questionnaireBadgeProvider = $questionnaireBadgeProvider;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireAccessManager = $questionnaireAccessManager;
+        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
     }
 
 
     public function getUserDashboardViewModel($user): UserDashboardViewModel {
         // should show only projects that are published and have at least 1 published questionnaire
         $projects = $this->projectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire(['creator', 'language', 'status']);
+        foreach ($projects as $project) {
+            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        }
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         foreach ($projects as $project) {
