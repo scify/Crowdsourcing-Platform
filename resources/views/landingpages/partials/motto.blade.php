@@ -25,13 +25,11 @@
                             @if($viewModel->questionnaire)
                                 @if(!$viewModel->userResponse)
                                     <div class="col-md-5 col-sm-12 mx-auto">
-                                        @include("landingpages.partials.open-questionnaire-button", ["label"=>"Answer the questionnaire"])
+                                        @include("landingpages.partials.open-questionnaire-button", ["label"=>"Answer the questionnaire"])  
                                     </div>
                                 @else
                                     <div class="col-12">
-                                        <h2 class="mt-3 text-center">You have already answered this questionnaire.<br>Thank
-                                            you for
-                                            your response!</h2>
+                                        <h2 class="mt-3 text-center">{{ __("questionnaire.already_answered") }}<br>{{ __("questionnaire.thank_you_for_your_response") }}</h2>
                                     </div>
                                     @include('landingpages.partials.external-url')
                                 @endif

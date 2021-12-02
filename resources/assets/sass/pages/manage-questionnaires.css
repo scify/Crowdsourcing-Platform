@@ -1,0 +1,17 @@
+.manage-questionnaires .new-questionnaire {
+  width: 250px;
+  margin: 0 0 45px;
+}
+
+.manage-questionnaires .action-btn {
+  margin-bottom: 7px;
+}
+
+.manage-questionnaires .action-btn i {
+  margin-right: 5px;
+}
+
+.manage-questionnaires .badge {
+  font-size: 90%;
+}
+/*# sourceMappingURL=manage-questionnaires.css.map */

@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>My Contributions</h1>
+    <h1>{{ __("my-history.my_contributions")}}</h1>
 @endsection
 
 @push('css')
@@ -15,21 +15,20 @@
         <div class="col-md-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">You have contributed
-                        to {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
+                    <h3 class="card-title">{{ __("my-history.number_of_questionnaires")}} {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
                 </div>
                 <div class="card-body">
                     @if($responses->isEmpty())
-                        <p class="warning">You haven't responded to any questionnaires, yet.</p>
+                        <p class="warning">{{ __("my-history.no_questionnaires")}}</p>
                     @else
                         <table id="responsesTable" class="w-100 table table-striped table-bordered" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Project</th>
-                                <th>Questionnaire title</th>
-                                <th>Questionnaire description</th>
-                                <th>Responded</th>
-                                <th>Actions</th>
+                                <th>{{ __("my-history.project")}}</th>
+                                <th>{{ __("my-history.questionnaire_title")}}</th>
+                                <th>{{ __("my-history.questionnaire_description")}}</th>
+                                <th>{{ __("my-history.responded")}}</th>
+                                <th>{{ __("my-history.actions")}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,7 +51,7 @@
                                     <td class="align-middle">
                                         <button class="btn btn-block btn-primary viewResponseBtn"
                                                 data-responseid="{{ $response->questionnaire_response_id }}">
-                                            View response
+                                            View response{{ __("my-history.view_response")}}
                                         </button>
                                     </td>
                                 </tr>

@@ -17,7 +17,7 @@
                                 <div class="col-md-6 col-sm-11 mx-auto">
                                     @include("landingpages.partials.open-questionnaire-button",["label"=>"Start answering"])
                                 </div>
-                            </div>
+                            </div>                        
                         </div>
                     @endif
                 </div>

@@ -1,0 +1,45 @@
+.projects .header {
+  font-size: 12px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.projects .header .fa-user {
+  font-size: 18px;
+  color: gray;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+.projects .fa-link {
+  font-size: 18px;
+  padding-right: 5px;
+}
+
+.projects .article {
+  background-color: white;
+}
+
+.projects .image {
+  height: 150px;
+  background-size: cover;
+}
+
+.projects .body {
+  padding: 5px;
+  height: 200px;
+  max-height: 200px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.projects h2 {
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.projects p {
+  font-size: 13px;
+}
+/*# sourceMappingURL=projects-list.css.map */

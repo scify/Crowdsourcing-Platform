@@ -1,9 +1,9 @@
 @extends('auth.layout')
 
 @section('auth-form')
-    <h1>Let's define our future!</h1>
+    <h1>{{ __("login-register.moto_login_page") }}</h1>
     <div class="reset">
-        <p class="login-box-msg">Reset your password</p>
+        <p class="login-box-msg">{{ __("login-register.password_reset_message") }}</p>
         @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -24,7 +24,7 @@
             </div>
             <button type="submit"
                     class="btn btn-primary btn-block btn-flat"
-            >Send Password Reset link</button>
+            >{{ __("login-register.send_password_reset_link") }}</button>
         </form>
     </div>
 @endsection

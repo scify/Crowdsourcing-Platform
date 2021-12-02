@@ -5,7 +5,7 @@
         @if ($displayQuestionnaireLabels)
             You're one step away!
         @else
-            Let's define our future!
+            {{ __("login-register.moto_login_page") }}
         @endif
     </h1>
     <div class="logIn">
@@ -15,7 +15,7 @@
                     In order to avoid duplicate submissions, only logged-in users can contribute. Please login to
                     continue
                 @else
-                    Sign in with your account
+                    {{ __("login-register.login_message") }}
                 @endif
             </p>
             <form action="{{ route('login') }}" method="post">
@@ -45,7 +45,7 @@
                     <div class="col-md-6 col-sm-10">
                         <div class="checkbox icheck">
                             <label>
-                                <input class="icheck-input" type="checkbox" name="remember"><span class="ml-3">Remember me</span>
+                                <input class="icheck-input" type="checkbox" name="remember"><span class="ml-3">{{ __("login-register.remember_me") }}</span>
                             </label>
                         </div>
                     </div>
@@ -61,11 +61,11 @@
         <div class="auth-links">
             <a href="{{ route('register') }}"
                class="text-center"
-            >I want to register</a>
+            >{{ __("login-register.register_option") }}</a>
             <br>
             <a href="{{ route('password.request') }}"
                class="text-center"
-            >I forgot my password</a>
+            >{{ __("login-register.i_forgot_my_password") }}</a>
             <br>
         </div>
     </div>

@@ -9,6 +9,9 @@ class CommunicatorBadge extends GamificationBadge {
         $this->badgeID = GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID;
         $this->color = '#4CAF50';
         $numberOfActionsPerformed = $questionnairesSharedByUser;
+        
+        
+
         parent::__construct("Communicator",
             "communicator.png",
             "Gain this badge, by inviting more people to participate. Share to Facebook and Twitter!",
@@ -31,6 +34,6 @@ class CommunicatorBadge extends GamificationBadge {
     public function getNextStepMessage() {
         if($this->userHasAchievedBadgePlatformWide)
             return 'Invite more friends to answer<br>and become a level <b>' . ($this->calculateLevel() + 1) . '</b> Communicator!';
-        return 'Invite your friends to answer, and get the "Communicator" badge!';
+        return __("badges_messages.gain_communicator_badge");
     }
 }

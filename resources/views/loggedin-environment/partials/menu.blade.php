@@ -12,14 +12,14 @@
                 <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
                     <a class="nav-link" href="{{route("my-dashboard")}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>My Dashboard</p>
+                        <p>{{ __("menu.my_dashboard") }}</p>
 
                     </a>
                 </li>
                 <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
                     <a class="nav-link" href="{{route("my-account")}}">
                         <i class="nav-icon fa fa-user"></i>
-                        <p>My Account</p>
+                        <p>{{ __("menu.my_account") }}</p>
 
                     </a>
                 </li>
@@ -28,7 +28,7 @@
                     <li class="nav-item {{ UrlMatchesMenuItem("myHistory")}}">
                         <a class="nav-link" href="{{route("myHistory")}}">
                             <i class="nav-icon fa fa-history"></i>
-                            <p>My History</p>
+                            <p>{{ __("menu.my_history") }}</p>
                         </a>
                     </li>
                 @endif

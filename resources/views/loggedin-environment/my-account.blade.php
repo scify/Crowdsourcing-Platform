@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>My Account</h1>
+    <h1>{{ __("menu.my_account") }}</h1>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="col-md-6 col-xs-12">
             <div class="card card-info card-outline">
                 <div class="card-header">
-                    <h3 class="card-title"> Personal Details</h3>
+                    <h3 class="card-title"> {{ __("my-account.personal_details") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -17,13 +17,13 @@
                               novalidate>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                            <label class="col-sm-4 control-label">Email</label>
+                            <label class="col-sm-4 control-label">{{ __("login-register.email") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <div>{{ $viewModel->user->email  }}</div>
                                 </div>
                             </div>
-                            <label class="col-sm-4 control-label">Nickname</label>
+                            <label class="col-sm-4 control-label">{{ __("login-register.nickname") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group has-feedback">
                                     <input id="nickname" type="text" class="form-control" name="nickname"
@@ -40,33 +40,32 @@
                                     </span>
                             @endif
                             @if($viewModel->user->password)
-                                <label for="current_password" class="col-sm-4 control-label">Current Password</label>
+                                <label for="current_password" class="col-sm-4 control-label">{{ __("my-account.current_password") }}</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <input type="password" class="form-control" id="current_password"
-                                               name="current_password" placeholder="Current Password">
+                                               name="current_password" placeholder="{{ __("my-account.current_password") }}">
                                     </div>
                                 </div>
                             @endif
-                            <label for="password" class="col-sm-4 control-label">New Password</label>
+                            <label for="password" class="col-sm-4 control-label">{{ __("my-account.new_password") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password" name="password"
-                                           placeholder="Password">
+                                           placeholder="{{ __("login-register.password") }}">
                                 </div>
                             </div>
-                            <label for="password_confirmation" class="col-sm-4 control-label">Re-enter
-                                Password</label>
+                            <label for="password_confirmation" class="col-sm-4 control-label">{{ __("my-account.re_enter_password") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password_confirmation"
-                                           name="password_confirmation" placeholder="Re-enter Password">
+                                           name="password_confirmation" placeholder="{{ __("my-account.re_enter_password") }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">{{ __("my-account.update") }}</button>
                                 </div>
                             </div>
                         </form>
@@ -79,12 +78,12 @@
         <div class="col-md-6 col-xs-12">
             <div class="card card-info card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">My Data</h3>
+                    <h3 class="card-title">{{ __("my-account.my_data") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="{{ route('downloadMyData') }}" data-widget="tooltip" title="This includes all your responses to questionnaires" target="_blank" class="btn btn-primary">Download my data</a>
+                            <a href="{{ route('downloadMyData') }}" data-widget="tooltip" title="This includes all your responses to questionnaires" target="_blank" class="btn btn-primary">{{ __("my-account.download_my_data") }}</a>
                         </div>
                     </div>
                 </div>
@@ -95,12 +94,12 @@
         <div class="col-md-6 col-xs-12">
             <div class="card card-default card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Account Deactivation</h3>
+                    <h3 class="card-title">{{ __("my-account.account_deactivation") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="#deactivationConfirmationModal" data-toggle="modal">Deactivate my account</a>
+                            <a href="#deactivationConfirmationModal" data-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
                         </div>
                     </div>
                 </div>
@@ -112,18 +111,18 @@
         <div class="modal-dialog" style="margin-top: 10%">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Are you sure?</h4>
+                    <h4 class="modal-title">{{ __("my-account.are_you_sure") }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-danger"><b>Waring:</b> This action will delete your account.<br><br>You will lose  all your badges and will not be able to participate in the platform any more.</p>
+                    <p class="text-danger">{!! __("my-account.warning_for_deactivation") !!}</p>
                 </div>
                 <div class="modal-footer">
                     <form role="form" method="POST" action="{{ url('/user/deactivate') }}"
                           novalidate>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">I understand, please deactivate my account</button>
+                        <button type="submit" class="btn btn-danger">{{ __("my-account.deactivate_my_account_2") }}</button>
                     </form>
                 </div>
             </div>

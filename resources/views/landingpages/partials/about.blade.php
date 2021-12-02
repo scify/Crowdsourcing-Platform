@@ -18,7 +18,7 @@
                                     <a style="background-color: {{ $viewModel->project->lp_primary_color }}"
                                        href="{{$viewModel->project->external_url}}" target="_blank"
                                        class="btn btn-primary visit-project-website call-to-action">
-                                        Visit project's site
+                                        {{ __("questionnaire.visit_projects_site") }}
                                     </a>
                                 </div>
                             </div>

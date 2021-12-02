@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1 class="m-0 text-dark">My Dashboard</h1>
+    <h1 class="m-0 text-dark">{{ __("menu.my_dashboard") }}</h1>
 @endsection
 
 @push('css')
@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="card card-success card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Projects you can contribute to</h3>
+                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -45,7 +45,7 @@
                                                                     <div class="col">
                                                                         <a class="btn btn-primary" target="_blank"
                                                                            href="{{ route('questionnaire.statistics', $project->currentQuestionnaireForUser) }}">
-                                                                            <i class="fas fa-chart-pie mr-2"></i> View Statistics
+                                                                            <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
                                                                         </a>
                                                                     </div>
                                                                 </div>
