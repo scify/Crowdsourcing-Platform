@@ -127,8 +127,9 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     function userHasUpvoted(questionName, respondent_user_id) {
         for (let i = 0; i < AnswersData.answerVotes.length; i++) {
             if (AnswersData.answerVotes[i].question_name === questionName
+                && parseInt(AnswersData.userId) === parseInt(AnswersData.answerVotes[i].voter_user_id)
                 && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
-                return parseInt(AnswersData.answerVotes[i].upvoted_by_user);
+                return parseInt(AnswersData.answerVotes[i].upvote);
         }
         return false;
     }
@@ -136,8 +137,9 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     function userHasDownvoted(questionName, respondent_user_id) {
         for (let i = 0; i < AnswersData.answerVotes.length; i++) {
             if (AnswersData.answerVotes[i].question_name === questionName
+                && parseInt(AnswersData.userId) === parseInt(AnswersData.answerVotes[i].voter_user_id)
                 && parseInt(respondent_user_id) === parseInt(AnswersData.answerVotes[i].respondent_user_id))
-                return parseInt(AnswersData.answerVotes[i].downvoted_by_user);
+                return !parseInt(AnswersData.answerVotes[i].upvote);
         }
         return false;
     }
