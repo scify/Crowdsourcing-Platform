@@ -31,12 +31,14 @@ class QuestionnaireManager {
         if (!$id)
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
                 $data['goal'], $data['language'], $data['content'],
-                $data['statistics_page_visibility_lkp_id']
+                $data['statistics_page_visibility_lkp_id'],
+                $data['max_votes_num']
             );
         else
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
                 $data['goal'], $data['language'], $data['content'],
-                $data['statistics_page_visibility_lkp_id']);
+                $data['statistics_page_visibility_lkp_id'],
+                $data['max_votes_num']);
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
             'language_id' => $questionnaire->defaultLanguage->id

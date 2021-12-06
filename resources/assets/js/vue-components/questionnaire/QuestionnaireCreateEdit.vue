@@ -80,6 +80,16 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Maximum number of votes</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="number" class="form-control" name="max_votes_num" id="max_votes_num"
+                     required
+                     v-model="questionnaire.max_votes_num">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label>Other translations</label>
             </div>
             <div class="col-md-10 col-sm-6 col-xs-12">
@@ -362,7 +372,8 @@ export default {
         statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
         content: this.surveyCreator.text,
         lang_codes: locales,
-        extra_fields_translations: document.getElementById('extra_translations').value
+        extra_fields_translations: document.getElementById('extra_translations').value,
+        max_votes_num: this.questionnaire.max_votes_num
       };
       $("#project-ids").val().map((x) => {
         data.project_ids.push(parseInt(x));
