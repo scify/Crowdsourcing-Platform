@@ -85,21 +85,6 @@ return [
     */
 
     'locale' => 'en',
-
-    'available_locales' => [
-        'en'=> "English",
-        'lv'=> "Latvian",
-        "el"=> "Greek",
-        'et'=> "Estonian",
-        'pt'=> "Portuguese",
-        'bg'=> "Bulgarian",
-        'hu'=> "Hungarian",
-        'nl'=> "Dutch",
-        'fr' => "French",
-        'de' => "German",
-        'mg' => "Montenegrin",
-        "ru" => "Russian"
-    ],
     // check web.php
     'regex_for_validating_locale_at_routes' => 'en|lv|el|et|pt|bg|hu|nl|fr|de|mg|ru',
 
