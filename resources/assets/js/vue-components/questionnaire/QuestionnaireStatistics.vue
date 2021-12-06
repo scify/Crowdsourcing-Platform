@@ -42,8 +42,8 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-10 text-center mx-auto py-5">
-              <h4 class="mt-0 p-0 mb-5 text-center message">This questionnaire allows up to
-                <b>{{ questionnaire.max_votes_num }}</b> votes.</h4>
+              <h4 class="mt-0 p-0 mb-5 text-center message">You can vote up to
+                <b>{{ questionnaire.max_votes_num }}</b> times.</h4>
             </div>
           </div>
         </div>
