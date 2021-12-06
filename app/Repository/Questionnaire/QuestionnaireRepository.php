@@ -174,8 +174,8 @@ class QuestionnaireRepository extends Repository {
                         and q.deleted_at is null
                         GROUP BY q.id, q.prerequisite_order, q.status_id,
                         q.default_language_id,
-                        q.title,
-                        q.description,
+                        qft.title,
+                        qft.description,
                         q.goal,
                         q.statistics_page_visibility_lkp_id,
                         q.created_at,
