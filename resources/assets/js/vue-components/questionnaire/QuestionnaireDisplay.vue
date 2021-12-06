@@ -245,7 +245,7 @@ export default {
       const urlLang = url.substring(start, end);
       if (locales.indexOf(urlLang) !== -1)
         return urlLang;
-      return "en";
+      return this.defaultLangCode;
     },
     getPosition(string, subString, occurrence) {
       return string.split(subString, occurrence).join(subString).length;
