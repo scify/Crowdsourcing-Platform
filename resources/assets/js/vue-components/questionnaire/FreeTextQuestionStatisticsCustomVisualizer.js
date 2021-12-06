@@ -7,6 +7,7 @@ export class AnswersData {
     static answerAnnotations = {};
     static userId = null;
     static userCanAnnotateAnswers = false;
+    static currentIndex = 1
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
@@ -39,6 +40,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
                 const tr = document.createElement("tr");
                 const td1 = document.createElement("td");
+                td1.className = "answer-column";
                 td1.setAttribute("id", "answer_" + questionName + "_" + respondentUserId)
                 const td2 = document.createElement("td");
                 let annotation = false;
@@ -162,8 +164,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
         renderRows(table, visualizer);
-        contentContainer.appendChild(table);
-        contentContainer.className += " custom-texts-table-container";
         const columns = [
             {"width": "80%"},
             {"width": "20%"}
@@ -185,6 +185,15 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
             ]
         });
+        const container = document.createElement("div");
+        container.innerHTML = '<div class="card"><div class="card-header" id="answers_heading_' + AnswersData.currentIndex + '"><h5 class="mb-0">' +
+            '<button class="btn btn-outline-primary collapsed toggle-collapse" data-toggle="collapse" data-target="#answers_collapse_' + AnswersData.currentIndex + '" aria-expanded="true" aria-controls="answers_collapse_'
+            + AnswersData.currentIndex + '"><span class="if-collapsed">Show</span><span class="if-not-collapsed">Hide</span> Answers</button></h5></div><div id="answers_collapse_' + AnswersData.currentIndex
+            + '" class="collapse" aria-labelledby="answers_heading_' + AnswersData.currentIndex + '"><div class="card-body">' + table.outerHTML + '</div></div></div>';
+
+        contentContainer.appendChild(container);
+        contentContainer.className += " custom-texts-table-container";
+        AnswersData.currentIndex += 1;
     };
     return new SurveyAnalytics.VisualizerBase(question, data, {
         renderContent: renderContent
