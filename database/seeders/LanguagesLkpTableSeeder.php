@@ -29,17 +29,20 @@ class LanguagesLkpTableSeeder extends Seeder {
             [
                 'code' => 'hr',
                 'name' => 'Croatian',
-                'default_color' => '#90caf9'
+                'default_color' => '#90caf9',
+                'delete' => true
             ],
             [
                 'code' => 'cs',
                 'name' => 'Czech',
-                'default_color' => '#d32f2f'
+                'default_color' => '#d32f2f',
+                'delete' => true
             ],
             [
                 'code' => 'da',
                 'name' => 'Danish',
-                'default_color' => '#d50000'
+                'default_color' => '#d50000',
+                'delete' => true
             ],
             [
                 'code' => 'nl',
@@ -58,12 +61,14 @@ class LanguagesLkpTableSeeder extends Seeder {
             [
                 'code' => 'fi',
                 'name' => 'Finnish',
-                'default_color' => '#29b6f6'
+                'default_color' => '#29b6f6',
+                'delete' => true
             ],
             [
                 'code' => 'ga',
                 'name' => 'Irish',
-                'default_color' => '#66bb6a'
+                'default_color' => '#66bb6a',
+                'delete' => true
             ],
             [
                 'code' => 'fr',
@@ -88,7 +93,8 @@ class LanguagesLkpTableSeeder extends Seeder {
             [
                 'code' => 'it',
                 'name' => 'Italian',
-                'default_color' => '#3949ab'
+                'default_color' => '#3949ab',
+                'delete' => true
             ],
             [
                 'code' => 'lv',
@@ -98,12 +104,14 @@ class LanguagesLkpTableSeeder extends Seeder {
             [
                 'code' => 'lt',
                 'name' => 'Lithuanian',
-                'default_color' => '#43a047'
+                'default_color' => '#43a047',
+                'delete' => true
             ],
             [
                 'code' => 'pl',
                 'name' => 'Polish',
-                'default_color' => '#e57373'
+                'default_color' => '#e57373',
+                'delete' => true
             ],
             [
                 'code' => 'pt',
@@ -113,37 +121,54 @@ class LanguagesLkpTableSeeder extends Seeder {
             [
                 'code' => 'ro',
                 'name' => 'Romanian',
-                'default_color' => '#ffb300'
+                'default_color' => '#ffb300',
+                'delete' => true
             ],
             [
                 'code' => 'sk',
                 'name' => 'Slovak',
-                'default_color' => '#0d47a1'
+                'default_color' => '#0d47a1',
+                'delete' => true
             ],
             [
                 'code' => 'sl',
                 'name' => 'Slovenian',
-                'default_color' => '#d81b60'
+                'default_color' => '#d81b60',
+                'delete' => true
             ],
             [
                 'code' => 'es',
                 'name' => 'Spanish',
-                'default_color' => '#fb8c00'
+                'default_color' => '#fb8c00',
+                'delete' => true
             ],
             [
                 'code' => 'sv',
                 'name' => 'Swedish',
-                'default_color' => '#fdd835'
+                'default_color' => '#fdd835',
+                'delete' => true
             ],
             [
                 'code' => 'mt',
                 'name' => 'Maltese',
-                'default_color' => '#b71c1c'
+                'default_color' => '#b71c1c',
+                'delete' => true
             ],
             [
                 'code' => 'sq',
                 'name' => 'Albanian',
-                'default_color' => '#e53935'
+                'default_color' => '#e53935',
+                'delete' => true
+            ],
+            [
+                'code' => 'mg',
+                'name' => 'Montenegrin',
+                'default_color' => '#06004D'
+            ],
+            [
+                'code' => 'ru',
+                'name' => 'Russian',
+                'default_color' => '#06004D'
             ]
         ];
         foreach ($languages as $languageObj) {
@@ -154,6 +179,10 @@ class LanguagesLkpTableSeeder extends Seeder {
                     'default_color' => $languageObj['default_color']
                 ]
             );
+            if (isset($languageObj['delete']) && $languageObj['delete']) {
+                $this->languagesRepository->delete($this->languagesRepository->where(['language_code' => $languageObj['code']])->id);
+                echo "\nDeleted: " . $languageObj['name'] . " (" . $languageObj['code'] . ").\n";
+            }
         }
     }
 }

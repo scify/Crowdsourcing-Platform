@@ -17,6 +17,8 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('loggedin-environment.partials.menu', 'App\ViewComposers\MenuComposer');
 
         View::composer('errors::layout', 'App\ViewComposers\ErrorPagesComposer');
+
+        View::composer('partials.language-selector', 'App\ViewComposers\LanguageSelectorComposer');
     }
 
     /**
