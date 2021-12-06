@@ -21,6 +21,7 @@ class QuestionnaireAnswerVoteRepository extends Repository {
         select("
                 select qav.question_name, 
                 qav.respondent_user_id,
+                qav.voter_user_id,
                 ifnull(upvoteInfo.upvoted, false) as upvoted_by_user, 
                 ifnull(downvoteInfo.downvoted, false) as downvoted_by_user,
                 ifnull(upvotesInfo.num_upvotes, false) as num_upvotes,
@@ -59,7 +60,8 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 ) as downvotesInfo on downvotesInfo.question_name = qav.question_name and downvotesInfo.respondent_user_id = qav.respondent_user_id
                 
                 where qav.questionnaire_id = " . $questionnaire_id . "
-                group by qav.question_name, qav.respondent_user_id, upvoteInfo.upvoted, downvoteInfo.downvoted, upvotesInfo.num_upvotes, downvotesInfo.num_downvotes
+                group by qav.question_name, qav.respondent_user_id, qav.voter_user_id,
+                 upvoteInfo.upvoted, downvoteInfo.downvoted, upvotesInfo.num_upvotes, downvotesInfo.num_downvotes
                 order by qav.question_name, qav.respondent_user_id;
         "));
     }

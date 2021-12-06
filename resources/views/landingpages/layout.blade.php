@@ -50,6 +50,5 @@
 @stack("modals")
 
 @include('partials.footer-scripts')
-<script async src="{{mix('dist/js/landingPage.js')}}"></script>
 </body>
 </html>
