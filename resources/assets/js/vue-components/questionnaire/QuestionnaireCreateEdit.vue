@@ -80,7 +80,7 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="goal">Maximum number of votes</label>
+              <label for="goal">Max number of votes (statistics page)</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <input type="number" class="form-control" name="max_votes_num" id="max_votes_num"
