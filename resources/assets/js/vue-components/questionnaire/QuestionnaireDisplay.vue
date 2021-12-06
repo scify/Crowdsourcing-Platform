@@ -19,7 +19,7 @@
           <div class="form-group">
             <label for="language-select">Select language</label>
             <select class="form-control" @change="onLanguageChange($event)" id="language-select">
-              <option :selected="language.code === 'en'"
+              <option :selected="language.code === defaultLangCode"
                       :value="language.code" v-for="(language, index) in surveyLocales"
                       :key="index">
                 {{ language.name }}
@@ -55,6 +55,9 @@ import AnalyticsLogger from "../../analytics-logger";
 export default {
   created() {
     this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
+  },
+  components: {
+    AnalyticsLogger
   },
   mounted() {
     this.initQuestionnaireDisplay();
@@ -98,7 +101,8 @@ export default {
       questionnaireLocalStorageKey: '',
       displayLoginPrompt: true,
       loading: false,
-      t0: null
+      t0: null,
+      defaultLangCode: 'en'
     }
   },
   methods: {
@@ -129,8 +133,9 @@ export default {
       if (responseJSON && JSON.parse(responseJSON))
         this.survey.data = JSON.parse(responseJSON);
       const locales = this.survey.getUsedLocales();
-      // show English as the first language
-      arrayMove(locales, locales.indexOf("en"), 0);
+      // set the default questionnaire language as first, in order to be loaded first.
+      this.defaultLangCode = this.getDefaultLocaleForQuestionnaire();
+      arrayMove(locales, locales.indexOf(this.defaultLangCode), 0);
       for (let i = 0; i < locales.length; i++) {
         const locale = this.getLanguageFromCode(locales[i]);
         if (locale)
@@ -230,6 +235,20 @@ export default {
     },
     getSignInUrl() {
       return route('login') + '?redirectTo=' + window.location.href;
+    },
+    getDefaultLocaleForQuestionnaire() {
+      const locales = this.survey.getUsedLocales();
+      // the lang in URl is between the 3rd and the 4rth slash characters
+      const url = window.location.href;
+      const start = this.getPosition(url, '/', 3) + 1;
+      const end = this.getPosition(url, '/', 4);
+      const urlLang = url.substring(start, end);
+      if (locales.indexOf(urlLang) !== -1)
+        return urlLang;
+      return "en";
+    },
+    getPosition(string, subString, occurrence) {
+      return string.split(subString, occurrence).join(subString).length;
     }
   }
 }
