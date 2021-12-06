@@ -67,13 +67,14 @@ class RouteServiceProvider extends ServiceProvider {
      */
     protected function mapApiRoutes() {
         RateLimiter::for('api-internal', function (Request $request) {
-            return Limit::perMinute(100000)->by(optional($request->user())->id ?: $request->ip())->response(function () {
+            return Limit::perMinute(10000)->by(optional($request->user())->id ?: $request->ip())->response(function () {
                 return response()->json(['status' => 'Too many requests!'],
                     Response::HTTP_TOO_MANY_REQUESTS);
             });
         });
 
         Route::prefix('api/v1')
+            ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
     }

@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'throttle:api-internal'])->group(function () 
     Route::post('/questionnaire/answer-annotations/delete', [QuestionnaireAnswerAnnotationController::class, 'deleteAnswerAnnotation'])->name('questionnaire.answer-annotations.delete');
 });
 
-Route::middleware(['throttle:api-internal'])->group(function () {
+Route::middleware(['api', 'throttle:api-internal'])->group(function () {
     Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
     Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
         ->name('crowd-sourcing-project.get-colors');
