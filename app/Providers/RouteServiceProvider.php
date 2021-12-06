@@ -72,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         RateLimiter::for('api-internal', function (Request $request) {
-            return Limit::perMinute(10000)->response(function () {
+            return Limit::perMinute(100000)->response(function () {
                 return response()->json(['status' => 'Too many requests!'],
                     Response::HTTP_TOO_MANY_REQUESTS);
             });
