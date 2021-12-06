@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class RouteServiceProvider extends ServiceProvider {
     /**
@@ -69,7 +70,7 @@ class RouteServiceProvider extends ServiceProvider {
         RateLimiter::for('api-internal', function (Request $request) {
             return Limit::perMinute(10000)->by(optional($request->user())->id ?: $request->ip())->response(function () {
                 return response()->json(['status' => 'Too many requests!'],
-                    Response::HTTP_TOO_MANY_REQUESTS);
+                    ResponseAlias::HTTP_TOO_MANY_REQUESTS);
             });
         });
 
