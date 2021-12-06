@@ -14,6 +14,6 @@ class LanguageSelectorComposer {
     }
 
     public function compose(View $view) {
-        $view->with(['languages' => $this->languageManager->getAllLanguages()]);
+        $view->with(['languages' => $this->languageManager->getLanguagesAvailableForPlatformTranslation()]);
     }
 }
