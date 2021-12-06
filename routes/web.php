@@ -113,11 +113,11 @@ Route::group($localeInfo, function () {
 Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
 Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
     ->name('crowd-sourcing-project.get-colors');
-Route::get('/questionnaire/responses-get/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
+Route::get('/questionnaire/responses/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
     ->name('questionnaire.responses');
-Route::get('/questionnaire/answer-votes-get/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
+Route::get('/questionnaire/answer-votes/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
     ->name('questionnaire.answer-votes');
-Route::get('/questionnaire/answer-annotations-get/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])
+Route::get('/questionnaire/answer-annotations/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])
     ->name('questionnaire.answer-annotations');
 
 
