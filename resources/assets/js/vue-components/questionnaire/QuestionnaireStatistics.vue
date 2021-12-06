@@ -229,7 +229,6 @@ export default {
       }).then(res => res.data);
     },
     initStatistics(answers, answerVotes, answerAnnotations) {
-      console.log(_.filter(answerVotes, {voter_user_id: this.userId}));
       this.numOfVotesByCurrentUser = _.filter(answerVotes, {voter_user_id: this.userId}).length;
       AnswersData.answerVotes = answerVotes;
       AnswersData.answerAnnotations = answerAnnotations;
