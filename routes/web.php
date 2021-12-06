@@ -110,15 +110,7 @@ Route::group($localeInfo, function () {
     Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 });
 
-Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
-Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
-    ->name('crowd-sourcing-project.get-colors');
-Route::get('/questionnaire/responses-get-2/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
-    ->name('questionnaire.responses');
-Route::get('/questionnaire/answer-votes-get-2/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
-    ->name('questionnaire.answer-votes');
-Route::get('/questionnaire/answer-annotations-get-2/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])
-    ->name('questionnaire.answer-annotations');
+
 
 
 
