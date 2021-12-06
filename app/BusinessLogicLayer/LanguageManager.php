@@ -20,6 +20,12 @@ class LanguageManager {
         });
     }
 
+    public function getLanguagesAvailableForPlatformTranslation(): Collection {
+        return Cache::rememberForever('languages_platform_translation', function () {
+            return $this->languageRepository->allWhere(['available_for_platform_translation' => true], array('*'), 'language_name');
+        });
+    }
+
     public function getLanguage($id) {
         return $this->languageRepository->find($id);
     }
