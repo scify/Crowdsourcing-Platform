@@ -73,12 +73,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api-internal', function (Request $request) {
             return Limit::perMinute(10000)->response(function () {
-                return response()->json(['status' => 'Too many requests'],
+                return response()->json(['status' => 'Too many requests!'],
                     Response::HTTP_TOO_MANY_REQUESTS);
             });
         });
 
         Route::prefix('api/v1')
+             ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
