@@ -15,6 +15,8 @@ return [
     'main_navigation' => 'MAIN NAVIGATION', //??
     'my_dashboard' => 'My Dashboard', 
     'my_account' => 'My Account', 
-    'my_history' => 'My history'
+    'my_history' => 'My history',
+    'sign_out' => 'Sign out'
+
 
 ];

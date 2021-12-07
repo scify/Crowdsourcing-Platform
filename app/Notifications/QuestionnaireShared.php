@@ -36,13 +36,13 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
     public function toMail($notifiable) {
         return parent::objectToMail(
             $this->badgeVM,
-            'Thank you for sharing!',
-            'Hello!',
-            'Thank you for sharing the questionnaire<br>"<b>' . $this->questionnaireFieldsTranslation->title . '</b>"!',
+            __("notifications.thank_you_for_sharing"),
+            __("notifications.hello"),
+            __("notifications.sharing_the_questionnaire") . "<b>" . $this->questionnaireFieldsTranslation->title . "</b>!",
             $this->badge->getEmailBody(),
             '',
-            'Sharing is caring!',
-            'Visit your dashboard to see what to do next');
+            __("notifications.sharing_is_caring"),
+            __("notifications.visit_your_dashboard"));
     }
 
     /**

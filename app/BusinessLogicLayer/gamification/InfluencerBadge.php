@@ -11,38 +11,38 @@ class InfluencerBadge extends GamificationBadge {
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
         $this->color = '#f44336';
         $this->questionnaireReferralsNum = $questionnaireReferralsNum;
-        parent::__construct("Influencer",
+        parent::__construct(__("badges_messages.influencer_title"),
             "influencer.png",
-            "In order to gain this badge, people have to respond to your social posts and contribute!",
+            __("badges_messages.gain_influencer_badge"),
             $questionnaireReferralsNum,
             $userHasAchievedBadgePlatformWide);
     }
 
     public function getBadgeMessageForLevel() {
-        $word = $this->numberOfActionsPerformed == 1 ? 'person' : 'people';
-        return $this->numberOfActionsPerformed . ' ' . $word .  ' responded to your call';
+        $word = $this->numberOfActionsPerformed == 1 ? __("badges_messages.person") : __("badges_messages.people");
+        return $this->numberOfActionsPerformed . ' ' . $word .  __("badges_messages.responded_to_call");
     }
 
     public function getEmailBody() {
         if($this->level == 1)
-            return 'You have also unlocked a new badge:';
-        return 'You are a Level <b>' . $this->level . '</b> Influencer! Keep Going!';
+            return __("email_messages.unlocked_new_badge");
+        return __("badges_messages.you_are_a_level") . " <b>" . $this->level . "</b> " . __("badges_messages.level_3_influencer");
     }
 
     public function getNextStepMessage() {
         if(!$this->questionnaireReferralsNum)
-            $title = 'Zero people have responded to your call so far.<br>Write a compelling message and invite more friends!';
+            $title = __("badges_messages.zero_people_responded_to_call");
         else if($this->questionnaireReferralsNum < 2) {
-            $peopleStr = $this->questionnaireReferralsNum == 1 ? ' person has responded ' : ' people have responded ';
-            $title = 'Good job! ' . $this->questionnaireReferralsNum . $peopleStr . ' to your call so far.<br>Write a compelling message and invite more friends!';
+            $peopleStr = $this->questionnaireReferralsNum == 1 ? __("badges_messages.person_has_responded") : __("badges_messages.people_have_responded");
+            $title = __("badges_messages.good_job") . $this->questionnaireReferralsNum . $peopleStr . __("badges_messages.people_responded_to_call");
         }
         else {
-            $peopleStr = $this->questionnaireReferralsNum == 1 ? ' person has responded ' : ' people have responded ';
-            $title = 'Wow, you are a true influencer!<br>' . $this->questionnaireReferralsNum . $peopleStr . ' to your call so far. Write a compelling message and invite more friends!';
+            $peopleStr = $this->questionnaireReferralsNum == 1 ? __("badges_messages.person_has_responded") : __("badges_messages.people_have_responded");
+            $title = __("badges_messages.true_influencer") . $this->questionnaireReferralsNum . $peopleStr . __("badges_messages.people_responded_to_call_2");
         }
 
         if($this->userHasAchievedBadgePlatformWide)
-            $title .= '<br>You are close to become a level <b>' . ($this->calculateLevel() + 1) . '</b> Influencer!';
+            $title .= __("badges_messages.you_are_close") . " <b>" . ($this->calculateLevel() + 1) . "</b> " . __("badges_messages.influencer_title") . "!";
         return $title;
     }
 }

@@ -33,8 +33,8 @@ import _ from "lodash";
             }],
 
             labels: [
-                'Goal Responses',
-                'Actual Responses'
+                window.language[window.Laravel.locale].statistics.goal_responses,
+                window.language[window.Laravel.locale].statistics.actual_responses
             ]
         };
 

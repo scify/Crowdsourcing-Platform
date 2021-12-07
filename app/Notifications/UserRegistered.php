@@ -29,12 +29,12 @@ class UserRegistered extends Notification {
 
         $message = (new MailMessage)
             ->subject('Crowdsourcing Platform | Welcome!')
-            ->greeting('Thanks for joining the Crowdsourcing Platform!')
+            ->greeting( __("notifications.thanks_message"))
             ->line('<div style="text-align:center; height: 200px;"><img class="badgeImg" style="height: 200px; margin-bottom: 0;" src=' . asset("images/active_participation.png") . '></div>');
 
-        $message->line('<br><h1 style="text-align: center; margin-bottom: 5px"><b>Are you ready to make an impact?</b></h1>');
-        $message->line('<p style="text-align: center; margin-bottom: 5px"><b>Visit your Dashboard to see how you can contribute:</b></p>');
-        $message->action('Go to Dashboard', url('/my-dashboard'));
+        $message->line('<br><h1 style="text-align: center; margin-bottom: 5px"><b>{{ __("notifications.make_an_impact")}}</b></h1>');
+        $message->line('<p style="text-align: center; margin-bottom: 5px"><b>{{ __("notifications.visit_your_dashboard_contribute}}</b></p>');
+        $message->action(__("notifications.go_to_dashboard"), url('/my-dashboard'));
         return $message;
     }
 

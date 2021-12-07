@@ -26,7 +26,7 @@
             <li class="user-footer">
                 <div class="pull-right">
                     <a id="log-out" href="{{ route('logout') }}"
-                       class="btn btn-default btn-flat">Sign out</a>
+                       class="btn btn-default btn-flat">{{ __("menu.sign_out")}}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -37,10 +37,10 @@
 
 @else
     <li class="nav-item">
-        <a class="nav-link" href="{{route("login")}}">LOGIN</a>
+        <a class="nav-link" href="{{route("login")}}">{{ __("menu.login")}}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{route("register")}}">REGISTER</a>
+        <a class="nav-link" href="{{route("register")}}">{{ __("menu.register")}}</a>
     </li>
 @endif
 @include('partials.language-selector')
