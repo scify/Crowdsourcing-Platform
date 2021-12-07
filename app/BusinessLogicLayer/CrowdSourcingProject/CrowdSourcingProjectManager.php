@@ -66,7 +66,11 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
-        return $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
+        foreach ($projects as $project) {
+            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        }
+        return $projects;
     }
 
     public function getPastCrowdSourcingProjectsForHomePage(): Collection {
@@ -74,11 +78,15 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProject(int $id): CrowdSourcingProject {
-        return $this->crowdSourcingProjectRepository->find($id);
+        $project = $this->crowdSourcingProjectRepository->find($id);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        return $project;
     }
 
     public function getCrowdSourcingProjectBySlug($project_slug) {
-        return $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        return $project;
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $project_slug, $openQuestionnaireWhenPageLoads):

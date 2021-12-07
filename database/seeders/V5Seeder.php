@@ -13,8 +13,7 @@ class V5Seeder extends Seeder {
      */
     public function run() {
         $this->call([
-            LanguagesRussianMontenegrinSeeder::class
+            LanguagesLkpTableSeeder::class
         ]);
-
     }
 }

@@ -9,7 +9,7 @@
         <section>
             @include('landingpages.partials.about')
         </section>
-        <section >
+        <section>
             @include('landingpages.partials.questionnaire')
         </section>
         @if($viewModel->questionnaire)
@@ -22,3 +22,6 @@
         </section>
     </div>
 @endsection
+@push('scripts')
+    <script async src="{{mix('dist/js/landingPage.js')}}"></script>
+@endpush

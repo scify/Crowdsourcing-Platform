@@ -35,6 +35,22 @@
     </modal>
     <modal
         :hide-header="false"
+        :open="maxVotesModalOpen"
+        :allow-close="true"
+        @canceled="maxVotesModalOpen = false">
+      <template v-slot:body>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-10 text-center mx-auto py-5">
+              <h4 class="mt-0 p-0 mb-5 text-center message">You can vote up to
+                <b>{{ questionnaire.max_votes_num }}</b> times.</h4>
+            </div>
+          </div>
+        </div>
+      </template>
+    </modal>
+    <modal
+        :hide-header="false"
         :open="annotationModalOpen"
         :allow-close="true"
         @canceled="annotationModalOpen = false">
@@ -78,6 +94,7 @@ import * as SurveyAnalytics from "survey-analytics";
 import {mapActions} from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTextQuestionStatisticsCustomVisualizer";
 import Promise from "lodash/_Promise";
+import _ from "lodash";
 
 export default {
   props: {
@@ -101,11 +118,13 @@ export default {
       loading: false,
       questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"],
       signInModalOpen: false,
+      maxVotesModalOpen: false,
       annotationModalOpen: false,
       annotationLoading: false,
       annotation: {
         annotation_text: ''
-      }
+      },
+      numOfVotesByCurrentUser: 0
     }
   },
   created() {
@@ -210,6 +229,7 @@ export default {
       }).then(res => res.data);
     },
     initStatistics(answers, answerVotes, answerAnnotations) {
+      this.numOfVotesByCurrentUser = _.filter(answerVotes, {voter_user_id: this.userId}).length;
       AnswersData.answerVotes = answerVotes;
       AnswersData.answerAnnotations = answerAnnotations;
       AnswersData.userId = this.userId;
@@ -281,15 +301,22 @@ export default {
     listenForVoteClickEvent() {
       const instance = this;
       $(document).on('click', 'body .vote-btn', function () {
-        const upvote = $(this).hasClass('upvote');
+        const actionIsUpvote = $(this).hasClass('upvote');
+        const userHasAlreadyUpVoted = $(this).hasClass('user-upvoted');
         const element = $(this);
         if (instance.userId) {
+          if (!userHasAlreadyUpVoted && actionIsUpvote && instance.numOfVotesByCurrentUser >= instance.questionnaire.max_votes_num)
+            return instance.displayMaxVotesMessage()
           instance.performVoteCall(
               element.data('question-name'),
               parseInt(element.data('respondent-user-id')),
-              upvote
+              actionIsUpvote
           );
-          if (upvote) {
+          if (actionIsUpvote) {
+            if (userHasAlreadyUpVoted)
+              instance.numOfVotesByCurrentUser -= 1;
+            else
+              instance.numOfVotesByCurrentUser += 1;
             // if the user has already upvoted, subtract one
             // if the user has downvoted the same question, subtract one from downvotes and cancel the downvote class
             instance.updateCountElement(element, 'user-upvoted', 'user-downvoted', 'downvote');
@@ -332,6 +359,9 @@ export default {
     },
     displayLoginPrompt() {
       this.signInModalOpen = true;
+    },
+    displayMaxVotesMessage() {
+      this.maxVotesModalOpen = true;
     },
     updateCountElement(element, className, oppositeClassName, oppositeButtonClassName) {
       let countEl = element.find(".count:first");

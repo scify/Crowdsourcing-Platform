@@ -80,6 +80,25 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Max number of votes (statistics page)</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="number" class="form-control" name="max_votes_num" id="max_votes_num"
+                     required
+                     v-model="questionnaire.max_votes_num">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Show general statistics</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="checkbox" class="form-control checkbox" name="show_general_statistics" id="show_general_statistics"
+                     v-model="questionnaire.show_general_statistics">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label>Other translations</label>
             </div>
             <div class="col-md-10 col-sm-6 col-xs-12">
@@ -362,7 +381,9 @@ export default {
         statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
         content: this.surveyCreator.text,
         lang_codes: locales,
-        extra_fields_translations: document.getElementById('extra_translations').value
+        extra_fields_translations: document.getElementById('extra_translations').value,
+        max_votes_num: this.questionnaire.max_votes_num,
+        show_general_statistics: this.questionnaire.show_general_statistics
       };
       $("#project-ids").val().map((x) => {
         data.project_ids.push(parseInt(x));
@@ -376,8 +397,6 @@ export default {
           confirmButtonClass: "btn-danger",
           confirmButtonText: "OK",
         });
-
-      const instance = this;
 
       this.post({
         url: this.questionnaire.id
