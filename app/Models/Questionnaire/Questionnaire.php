@@ -52,7 +52,8 @@ class Questionnaire extends Model {
         'goal',
         'questionnaire_json',
         'statistics_page_visibility_lkp_id',
-        'max_votes_num'
+        'max_votes_num',
+        'show_general_statistics'
     ];
 
     /**
