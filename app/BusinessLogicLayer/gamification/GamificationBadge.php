@@ -38,6 +38,6 @@ abstract class GamificationBadge {
     private function calculateStatusMessage($requiredActionMessage) {
         if($this->level == 0)
             return $requiredActionMessage;
-        return 'You have the ' . $this->name . ' badge!';
+        return __("badges_messages.you_have_the") . $this->name . __("badges_messages.badge");
     }
 }

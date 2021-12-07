@@ -11,7 +11,7 @@ return [
 
     'my_dashboard' => 'My Dashboard',
     'contribution' => 'Projects you can contribute to',
-    'answers_left' => ':attribute answers left to reach our goal', //??
+    'answers_left' => ' answers left to reach our goal', 
     'view_statistics'  => 'View Statistics', 
     'invite_friends' =>  'Invite your friends to answer, and get the :attribute badge!',
     'share_questionnaire' => 'Share the Questionnaire:', 

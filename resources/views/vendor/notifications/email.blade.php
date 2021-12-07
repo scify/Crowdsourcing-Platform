@@ -45,14 +45,13 @@
 @if (! empty($salutation))
 {!! $salutation !!}
 @else
-Regards,<br><br>The Crowdsourcing Team
+{{ __("email_messages.regards")}},<br><br>The Crowdsourcing Team
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 @component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+{{ __("email_messages.trouble_with_button")}} "{{ $actionText }}" {{ __("email_messages.copy_paste_url")}} [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endisset
 @endcomponent

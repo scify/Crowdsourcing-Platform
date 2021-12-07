@@ -24,10 +24,9 @@
                     @if ($viewModel->shouldShowQuestionnaireStatisticsLink())
                         <div class="row mt-4">
                             <div class="col-md-12 text-left">
-                                <h3>Before answering to the questionnaire, check what the other respondents have said by
-                                    clicking
+                                <h3>{{ __("questionnaire.check_what_other_respondents")}}
                                     <a href="{{route('questionnaire.statistics', ['questionnaire' => $viewModel->questionnaire->id])}}"
-                                       target="_blank">here.</a></h3>
+                                       target="_blank">{{ __("questionnaire.here")}}.</a></h3>
                             </div>
                         </div>
                         <hr>

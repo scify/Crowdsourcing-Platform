@@ -9,14 +9,14 @@ class AllBadgesCompletedBadge extends GamificationBadge {
         $this->badgeID = GamificationBadgeIdsEnum::ALL_BADGES_COMPLETED_BADGE_ID;
         $this->color = '#f44336';
 
-        parent::__construct("All badges completed",
+        parent::__construct(__("badges_messages.badges_completed"),
             "all_badges_completed.png",
-            "Congratulations! You received all available badges!",
+            __("badges_messages.received_all_badges"),
             0, true);
     }
 
     public function getBadgeMessageForLevel() {
-        return 'You made a huge impact in this questionnaire!';
+        return __("badges_messages.huge_impact");
     }
 
     public function getEmailBody() {
@@ -24,6 +24,6 @@ class AllBadgesCompletedBadge extends GamificationBadge {
     }
 
     public function getNextStepMessage() {
-        return "Congratulations! You have received all available badges for this questionnaire! You are an all-star crowd-sourcer!";
+        return __("badges_messages.all_star_crowdsourcer");
     }
 }

@@ -43,15 +43,15 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
     public function toMail($notifiable) {
         return parent::objectToMail(
             $this->badgeVM,
-            'Thank you for your contribution!',
-            'Hello!',
-            'Thank you for taking the time to answer our questionnaire: "<b>' . $this->questionnaireFieldsTranslation->title . '</b>". This really means a lot to us!'
+            __("notifications.thank_you_for_contribution"),
+            __("notifications.hello"),
+            __("notifications.thanks_message_for_answering_2") . " <b>" . $this->questionnaireFieldsTranslation->title . "</b> " .  __("notifications.really_means")
             . '<br><br><div id="intro_text">' . $this->crowdSourcingProjectTranslation->questionnaire_response_email_intro_text . '</div>',
             $this->badge->getEmailBody(),
             '<br><div id="outro_text">' . $this->crowdSourcingProjectTranslation->questionnaire_response_email_outro_text . '</div>',
-            'Increase your impact<br>',
-            'Go to your dashboard, and invite your friends!',
-            'Thank you once again!<br><br>The Crowdsourcing Team');
+            __("notifications.increase_your_impact") . "<br>",
+            __("notifications.invite_your_friends"),
+             __("notifications.thanks_message_2") . "<br><br>The Crowdsourcing Team");
     }
 
     /**

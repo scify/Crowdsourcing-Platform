@@ -36,13 +36,13 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
     public function toMail($notifiable) {
         return parent::objectToMail(
             $this->badgeVM,
-            'Thank you for your referral!',
-            'You are making an impact!',
-            'Someone answered to a questionnaire you shared!<br>"<b>' . $this->questionnaireFieldsTranslation->title . '</b>".<br>',
+            __("notifications.thank_you_for_referral"),
+            __("notifications.making_impact"),
+            __("notifications.someone_answered_to_questionnaire") . "<b>" . $this->questionnaireFieldsTranslation->title . "</b><br>",
             $this->badge->getEmailBody(),
             '',
-            'Increase your impact',
-            'Visit your dashboard and invite more friends');
+            __("notifications.increase_your_impact"),
+            __("notifications.visit_your_dashboard_and_invite"));
     }
 
     /**

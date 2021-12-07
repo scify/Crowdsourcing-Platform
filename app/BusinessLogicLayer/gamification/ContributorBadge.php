@@ -9,26 +9,26 @@ class ContributorBadge extends GamificationBadge {
     public function __construct(int $allResponses, bool $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
         $this->color = '#3F51B5';
-        parent::__construct("Contributor",
+        parent::__construct(__("badges_messages.contributor_title"),
             "contributor.png",
-            "Gain this badge, by answering to a questionnaire!",
+            __("badges_messages.gain_badge_by_answering"),
             $allResponses, $userHasAchievedBadgePlatformWide);
     }
 
     protected function getBadgeMessageForLevel() {
-        $word = $this->numberOfActionsPerformed == 1 ? 'questionnaire' : 'questionnaires';
-        return 'You have answered ' . $this->numberOfActionsPerformed . ' ' . $word;
+        $word = $this->numberOfActionsPerformed == 1 ? __("badges_messages.questionnaire") : __("badges_messages.questionnaires");
+        return __("badges_messages.you_have_answered") . " <b>" . $this->numberOfActionsPerformed . '</b> ' . $word;
     }
 
     public function getEmailBody() {
         if($this->level == 1)
-            return 'You have also unlocked a new badge:';
-        return 'You are a Level <b>' . $this->level . '</b> Contributor! Keep Going!';
+            return __("email_messages.unlocked_new_badge");
+        return __("badges_messages.you_are_a_level") . " <b>" . $this->level . '</b> ' . __("badges_messages.level_1_contributor");
     }
 
     public function getNextStepMessage() {
         if($this->userHasAchievedBadgePlatformWide)
-            return 'Tell us what you think<br>and become a level <b>' . ($this->calculateLevel() + 1) . '</b> Contributor!';
-        return 'Tell us what you think<br>and gain the "Contributor" badge! ';
+            return __("badges_messages.tell_us_what_you_think") . " <b>" . ($this->calculateLevel() + 1) . "</b> " . __("badges_messages.contributor_title") . "!";
+        return __("badges_messages.gain_contributor_badge") ;
     }
 }

@@ -41,7 +41,7 @@
             </div>
             <button type="submit"
                     class="btn btn-primary btn-block btn-flat"
-            >Reset Password</button>
+            >{{ __("email_messages.reset_password")}}</button>
         </form>
     </div>
 @endsection

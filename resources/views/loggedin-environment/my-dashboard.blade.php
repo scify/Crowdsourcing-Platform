@@ -20,7 +20,7 @@
                         <div class="col-md-12 text-center">
                             <div class="container-fluid table-responsive">
                                 @if($viewModel->projects->isEmpty())
-                                    <div class="no-projects-found">There are currently no active projects.
+                                    <div class="no-projects-found">There are currently no active projects. {{ __("questionnaire.no_active_projects")}}
                                     </div>
                                 @else
                                     <table id="available-projects" class="w-100 row table table-striped table-hover table-responsive-md">
@@ -52,7 +52,7 @@
                                                             @endif
 
                                                         @else
-                                                            <p>This project does not have an active questionnaire yet.</p>
+                                                            <p>{{ __("questionnaire.project_no_active_questionnaire")}}</p>
                                                         @endif
                                                     </div>
 

@@ -3,7 +3,7 @@
 @section('auth-form')
     <h1>
         @if ($displayQuestionnaireLabels)
-            You're one step away!
+            {{ __("login-register.one_step_away")}}
         @else
             {{ __("login-register.moto_login_page") }}
         @endif
@@ -12,8 +12,7 @@
         <div class="form-wrapper">
             <p class="login-box-msg">
                 @if ($displayQuestionnaireLabels)
-                    In order to avoid duplicate submissions, only logged-in users can contribute. Please login to
-                    continue
+                    {{ __("login-register.avoid_duplicate_submissions")}}
                 @else
                     {{ __("login-register.login_message") }}
                 @endif
@@ -51,7 +50,7 @@
                     </div>
                     <div class="col-md-6 col-sm-10">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat btn-lg">Sign in
+                                class="btn btn-primary btn-block btn-flat btn-lg">{{ __("questionnaire.sign_in")}}
                         </button>
                     </div>
                 </div>

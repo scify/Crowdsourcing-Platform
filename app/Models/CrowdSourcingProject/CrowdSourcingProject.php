@@ -89,8 +89,8 @@ class CrowdSourcingProject extends Model {
     public function defaultTranslation() {
         return $this->hasOne(CrowdSourcingProjectTranslation::class,
             ['project_id', 'language_id'], ['id', 'language_id'])->withDefault([
-            'questionnaire_response_email_intro_text' => 'Thanks to your contribution we are one step closer to our goal!',
-            'questionnaire_response_email_outro_text' => 'If you have any inquiries about our work, do not hesitate to contact us.'
+            'questionnaire_response_email_intro_text' => __("email_messages.thanks_message_for_contribution"),
+            'questionnaire_response_email_outro_text' => __("email_messages.inquiries_about_our_work")
         ]);
     }
 

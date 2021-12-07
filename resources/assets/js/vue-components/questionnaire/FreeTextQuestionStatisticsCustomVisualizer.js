@@ -177,7 +177,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             "buttons": [
                 {
                     extend: 'csvHtml5',
-                    text: 'Download as CSV',
+                    text: window.language[window.Laravel.locale].statistics.download_csv,
                     filename: 'Statistics_' + new Date().getTime()
                 }
 

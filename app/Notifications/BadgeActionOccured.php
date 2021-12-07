@@ -45,7 +45,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
         $message->line('<br><p style="text-align: center"><b>' . $actionText . '</b><br>' . $actionText2 . '</p>');
         if($salutation)
             $message->salutation($salutation);
-        $message->action('Go to Dashboard', url('/my-dashboard'));
+        $message->action(__("notifications.go_to_dashboard"), url('/my-dashboard'));
         return $message;
     }
 

@@ -218,7 +218,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             "buttons": [
                 {
                     extend: 'csvHtml5',
-                    text: 'Download as CSV',
+                    text: window.language[window.Laravel.locale].statistics.download_csv,
                     filename: 'Respondents_Questionnaire_' + $('select[name=questionnaire_id]').val() + '_' + new Date().getTime()
                 }
 
