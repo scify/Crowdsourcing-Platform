@@ -47,13 +47,13 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,
-                                         $statisticsPageVisibilityLkpId, $maxVotesNum) {
+                                         $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics) {
         return DB::transaction(function () use (
-            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum
+            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics
         ) {
             $questionnaire = new Questionnaire();
             $questionnaire = $this->storeQuestionnaire($questionnaire,
-                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum);
+                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
             return $questionnaire;
@@ -61,14 +61,14 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function updateQuestionnaire($questionnaireId,
-                                        $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum) {
+                                        $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics) {
         return DB::transaction(function () use (
             $questionnaireId, $goal,
-            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum
+            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics
         ) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
             return $this->storeQuestionnaire($questionnaire,
-                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum);
+                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics);
         });
     }
 
@@ -94,13 +94,14 @@ class QuestionnaireRepository extends Repository {
 
 
     private function storeQuestionnaire($questionnaire, $goal,
-                                        $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum) {
+                                        $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics) {
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)
         $questionnaire->questionnaire_json = json_encode(json_decode($questionnaireJson));
         $questionnaire->statistics_page_visibility_lkp_id = $statisticsPageVisibilityLkpId;
         $questionnaire->max_votes_num = $maxVotesNum;
+        $questionnaire->show_general_statistics = $showGeneralStatistics;
         $questionnaire->save();
         return $questionnaire;
     }

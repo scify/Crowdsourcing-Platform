@@ -32,13 +32,15 @@ class QuestionnaireManager {
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
-                $data['max_votes_num']
+                $data['max_votes_num'],
+                $data['show_general_statistics']
             );
         else
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
-                $data['max_votes_num']);
+                $data['max_votes_num'],
+                $data['show_general_statistics']);
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
             'language_id' => $questionnaire->defaultLanguage->id

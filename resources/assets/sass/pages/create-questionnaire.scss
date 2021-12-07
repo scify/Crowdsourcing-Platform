@@ -92,3 +92,8 @@ select {
     border-color: $button-border-color !important;
   }
 }
+
+.form-control.checkbox {
+  width: 20px;
+  height: 20px;
+}
