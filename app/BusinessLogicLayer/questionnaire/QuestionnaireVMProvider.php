@@ -47,6 +47,8 @@ class QuestionnaireVMProvider {
         } else {
             $questionnaire = $this->questionnaireRepository->getModelInstance();
             $questionnaire->prerequisite_order = 1;
+            $questionnaire->max_votes_num = 10;
+            $questionnaire->show_general_statistics = true;
             $title = "Create Questionnaire";
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());

@@ -158,7 +158,9 @@ import _ from "lodash";
     }
 
     $(document).ready(function () {
-        init();
+        setTimeout(function () {
+            init();
+        }, 3000);
     });
 
 })();

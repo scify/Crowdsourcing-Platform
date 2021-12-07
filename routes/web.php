@@ -11,7 +11,9 @@
 |
 */
 
+use App\Http\Controllers\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\CrowdSourcingProjectController;
+use App\Http\Controllers\QuestionnaireAnswerAnnotationController;
 use App\Http\Controllers\QuestionnaireReportController;
 use App\Http\Controllers\QuestionnaireResponseController;
 use App\Models\User;
@@ -107,6 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group($localeInfo, function () {
     Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 });
+
 
 
 

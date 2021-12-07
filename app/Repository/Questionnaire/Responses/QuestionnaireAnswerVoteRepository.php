@@ -21,28 +21,11 @@ class QuestionnaireAnswerVoteRepository extends Repository {
         select("
                 select qav.question_name, 
                 qav.respondent_user_id,
-                ifnull(upvoteInfo.upvoted, false) as upvoted_by_user, 
-                ifnull(downvoteInfo.downvoted, false) as downvoted_by_user,
+                qav.voter_user_id,
+                qav.upvote,
                 ifnull(upvotesInfo.num_upvotes, false) as num_upvotes,
                 ifnull(downvotesInfo.num_downvotes, false) as num_downvotes
                 from questionnaire_answer_votes qav
-                left outer join (
-                    select qav1.question_name,qav1.respondent_user_id, count(*) as upvoted
-                    from questionnaire_answer_votes qav1
-                    where qav1.questionnaire_id = " . $questionnaire_id . "
-                    and voter_user_id = " . $user_voter_id . "
-                    and qav1.upvote = 1
-                    group by qav1.question_name, qav1.respondent_user_id
-                ) as upvoteInfo on upvoteInfo.question_name = qav.question_name and upvoteInfo.respondent_user_id = qav.respondent_user_id
-                
-                left outer join (
-                    select qav2.question_name,qav2.respondent_user_id, count(*) as downvoted
-                    from questionnaire_answer_votes qav2
-                    where qav2.questionnaire_id = " . $questionnaire_id . "
-                    and voter_user_id = " . $user_voter_id . "
-                    and qav2.upvote = 0
-                    group by qav2.question_name, qav2.respondent_user_id
-                ) as downvoteInfo on downvoteInfo.question_name = qav.question_name and downvoteInfo.respondent_user_id = qav.respondent_user_id
                 
                 left outer join (
                     select qav3.question_name,qav3.respondent_user_id, count(*) as num_upvotes
@@ -59,7 +42,8 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 ) as downvotesInfo on downvotesInfo.question_name = qav.question_name and downvotesInfo.respondent_user_id = qav.respondent_user_id
                 
                 where qav.questionnaire_id = " . $questionnaire_id . "
-                group by qav.question_name, qav.respondent_user_id, upvoteInfo.upvoted, downvoteInfo.downvoted, upvotesInfo.num_upvotes, downvotesInfo.num_downvotes
+                group by qav.question_name, qav.respondent_user_id, qav.voter_user_id,
+                 qav.upvote, upvotesInfo.num_upvotes, downvotesInfo.num_downvotes
                 order by qav.question_name, qav.respondent_user_id;
         "));
     }

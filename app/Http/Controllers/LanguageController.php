@@ -15,7 +15,7 @@ class LanguageController extends Controller {
 
     public function getLanguages(): JsonResponse {
         return response()->json([
-            'languages' => $this->languageManager->getAllLanguages()
+            'languages' => $this->languageManager->getLanguagesAvailableForPlatformTranslation()
         ]);
     }
 

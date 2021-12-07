@@ -3,14 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class RouteServiceProvider extends ServiceProvider
-{
+class RouteServiceProvider extends ServiceProvider {
     /**
      * This namespace is applied to your controller routes.
      *
@@ -25,10 +25,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         ///validate the locale parameter
-        $regexForLocalParameter= config("app.regex_for_validating_locale_at_routes");
+        $regexForLocalParameter = config("app.regex_for_validating_locale_at_routes");
         Route::pattern('locale', $regexForLocalParameter);
 
         parent::boot();
@@ -39,8 +38,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map()
-    {
+    public function map() {
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -55,11 +53,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes()
-    {
+    protected function mapWebRoutes() {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -69,18 +66,15 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
-    {
+    protected function mapApiRoutes() {
         RateLimiter::for('api-internal', function (Request $request) {
-            return Limit::perMinute(10000)->response(function () {
-                return response()->json(['status' => 'Too many requests'],
-                    Response::HTTP_TOO_MANY_REQUESTS);
+            return Limit::perMinute(10000)->by(optional($request->user())->id ?: $request->ip())->response(function () {
+                return response()->json(['status' => 'Too many requests!'],
+                    ResponseAlias::HTTP_TOO_MANY_REQUESTS);
             });
         });
 
-        Route::prefix('api/v1')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+        Route::namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 }

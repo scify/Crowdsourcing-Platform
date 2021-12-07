@@ -118,3 +118,20 @@
 .annotation-button {
   float: left;
 }
+
+.answer-column {
+  width: 80%;
+}
+
+[data-toggle="collapse"] {
+  &.collapsed .if-not-collapsed {
+    display: none;
+  }
+  &:not(.collapsed) .if-collapsed {
+    display: none;
+  }
+}
+
+.toggle-collapse {
+  width: 200px;
+}
