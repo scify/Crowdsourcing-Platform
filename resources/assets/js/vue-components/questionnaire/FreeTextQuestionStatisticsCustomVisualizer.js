@@ -19,7 +19,10 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         tr.appendChild(header1);
         const header2 = document.createElement("th");
         header2.innerHTML = "";
+        const header3 = document.createElement("th");
+        header3.innerHTML = "Number of votes";
         tr.appendChild(header2);
+        tr.appendChild(header3);
         header.appendChild(tr);
         table.appendChild(header);
     }
@@ -43,6 +46,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 td1.className = "answer-column";
                 td1.setAttribute("id", "answer_" + questionName + "_" + respondentUserId)
                 const td2 = document.createElement("td");
+                const td3 = document.createElement("td");
                 let annotation = false;
                 if (AnswersData.answerAnnotations[questionName]
                     && AnswersData.answerAnnotations[questionName][respondentUserId]) {
@@ -102,6 +106,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     '</div>' +
                     '</div>';
                 tr.appendChild(td2);
+                td3.innerHTML = upvotesNum;
+                tr.appendChild(td3);
                 tbody.appendChild(tr);
             });
         table.appendChild(tbody);
@@ -164,36 +170,51 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
         renderRows(table, visualizer);
+        const container = document.createElement("div");
+        container.innerHTML = '<div class="card"><div class="card-header" id="answers_heading_' + AnswersData.currentIndex + '"><h5 class="mb-0">' +
+            '<button class="btn btn-outline-primary collapsed toggle-collapse" data-toggle="collapse" data-target="#answers_collapse_' + AnswersData.currentIndex + '" aria-expanded="true" aria-controls="answers_collapse_'
+            + AnswersData.currentIndex + '"><span class="if-collapsed">Show</span><span class="if-not-collapsed">Hide</span> Answers</button></h5></div><div id="answers_collapse_' + AnswersData.currentIndex
+            + '" class="collapse" aria-labelledby="answers_heading_' + AnswersData.currentIndex + '">' +
+            '<div class="card-body" id="card_body_' + AnswersData.currentIndex + '"></div></div></div>';
+        contentContainer.appendChild(container);
+        const cardBody = document.getElementById("card_body_" + AnswersData.currentIndex);
+        cardBody.appendChild(table);
+        contentContainer.className += " custom-texts-table-container";
+        AnswersData.currentIndex += 1;
         const columns = [
             {"width": "80%"},
-            {"width": "20%"}
+            {"width": "20%"},
+            {"width": "0%"}
         ];
-        $(table).DataTable({
+        const options = {
             destroy: true,
             "paging": true,
             "responsive": true,
             "searching": true,
             "columns": columns,
+            "columnDefs": [
+
+                {
+                    "targets": [2],
+                    "visible": false
+                }
+            ],
             "order": [[(columns.length - 1), "desc"]],
-            "dom": 'Bfrtip',
-            "buttons": [
+            "dom": 'Bfrtip'
+        };
+        if (AnswersData.userCanAnnotateAnswers)
+            options.buttons = [
                 {
                     extend: 'csvHtml5',
                     text: 'Download as CSV',
-                    filename: 'Statistics_' + new Date().getTime()
+                    filename: 'Statistics_' + new Date().getTime(),
+                    exportOptions: {
+                        columns: [0, 2]
+                    }
                 }
 
             ]
-        });
-        const container = document.createElement("div");
-        container.innerHTML = '<div class="card"><div class="card-header" id="answers_heading_' + AnswersData.currentIndex + '"><h5 class="mb-0">' +
-            '<button class="btn btn-outline-primary collapsed toggle-collapse" data-toggle="collapse" data-target="#answers_collapse_' + AnswersData.currentIndex + '" aria-expanded="true" aria-controls="answers_collapse_'
-            + AnswersData.currentIndex + '"><span class="if-collapsed">Show</span><span class="if-not-collapsed">Hide</span> Answers</button></h5></div><div id="answers_collapse_' + AnswersData.currentIndex
-            + '" class="collapse" aria-labelledby="answers_heading_' + AnswersData.currentIndex + '"><div class="card-body">' + table.outerHTML + '</div></div></div>';
-
-        contentContainer.appendChild(container);
-        contentContainer.className += " custom-texts-table-container";
-        AnswersData.currentIndex += 1;
+        $(table).DataTable(options);
     };
     return new SurveyAnalytics.VisualizerBase(question, data, {
         renderContent: renderContent
