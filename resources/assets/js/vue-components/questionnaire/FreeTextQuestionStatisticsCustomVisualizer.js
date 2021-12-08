@@ -20,7 +20,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         tr.appendChild(header1);
         const header2 = document.createElement("th");
         header2.classList.add("text-center");
-        header2.innerHTML = "You can vote up to " + AnswersData.numberOfVotesForQuestionnaire + " times";
+        header2.innerHTML = "";
         const header3 = document.createElement("th");
         header3.innerHTML = "Number of votes";
         tr.appendChild(header2);
