@@ -50,11 +50,11 @@ class QuestionnaireManager {
         $this->questionnaireFieldsTranslationManager->storeOrUpdateDefaultFieldsTranslationForQuestionnaire([
             'title' => $data['title'],
             'description' => $data['description'],
-            'language_id' => intval($data['language'])
+            'language_id' => $data['language']
         ], $questionnaire->id);
         if (isset($data['extra_fields_translations']))
             $this->questionnaireFieldsTranslationManager->storeOrUpdateFieldsTranslationsForQuestionnaire(
-                json_decode($data['extra_fields_translations']), $questionnaire->id, intval($data['language']));
+                json_decode($data['extra_fields_translations']), $questionnaire->id, $data['language']);
         return $questionnaire;
     }
 
