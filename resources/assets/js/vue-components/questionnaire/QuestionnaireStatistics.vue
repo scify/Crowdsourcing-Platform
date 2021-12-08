@@ -95,6 +95,7 @@ import {mapActions} from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTextQuestionStatisticsCustomVisualizer";
 import Promise from "lodash/_Promise";
 import _ from "lodash";
+import {showToast} from "../../common";
 
 export default {
   props: {
@@ -234,6 +235,7 @@ export default {
       AnswersData.answerAnnotations = answerAnnotations;
       AnswersData.userId = this.userId;
       AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
+      AnswersData.numberOfVotesForQuestionnaire = this.questionnaire.max_votes_num;
       for (let i = 0; i < this.questions.length; i++) {
         let answersForPanel = answers;
 
@@ -327,6 +329,12 @@ export default {
             instance.updateCountElement(element, 'user-downvoted', 'user-upvoted', 'upvote');
             element.toggleClass('user-downvoted');
           }
+          const remainingVotes = (instance.questionnaire.max_votes_num - instance.numOfVotesByCurrentUser);
+          let votesWord = 'vote';
+          if (remainingVotes > 1)
+            votesWord += 's';
+          showToast('Cool! You have ' + remainingVotes
+              + ' ' + votesWord + ' left!', '#28a745', 'bottom-right');
         } else
           instance.displayLoginPrompt();
       });
