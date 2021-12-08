@@ -25,6 +25,7 @@
                             </h1>
                         </div>
                     </div>
+                    <hr>
                     <div class="row mb-5">
                         <div class="col-12">
                             <h4 class="text-lg-center text-md-center text-sm-left">
