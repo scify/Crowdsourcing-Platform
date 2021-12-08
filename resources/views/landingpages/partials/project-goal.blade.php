@@ -1,9 +1,10 @@
 <div class="activity-title wrapper-title">
     <p>
-        <b style="color: {{ $project->lp_primary_color }}">{{ $questionnaireViewModel->responsesNeededToReachGoal }}</b> answers left to reach our goal</p>
+        <b style="color: {{ $project->lp_primary_color }}">{{ $questionnaireViewModel->responsesNeededToReachGoal }}</b>
+        answers left to reach our goal</p>
 </div>
 <div class="progress-container">
-    <div class="progress-bar-circle" id="project-progress-{{ $project->id }}"
+    <div class="progress-bar-circle" id="questionnaire-progress-{{ $questionnaireId }}"
          data-color="{{ $project->lp_primary_color }}"
          data-target="{{$questionnaireViewModel->targetAchievedPercentage}}">
     </div>

@@ -5,8 +5,8 @@ import AnalyticsLogger from "./analytics-logger";
     let socialShareHandler = function () {
         $("body").on("click", ".social-share-button", function (e) {
             setTimeout(function () {
-                $(".share-success").removeClass("hidden");
-            }, 5000);
+                $(".share-success").removeClass("d-none");
+            }, 2000);
             const project = $(this).data("project");
             const questionnaire = $(this).data("questionnaire");
             const questionnaireId = $(this).data("questionnaireid");
