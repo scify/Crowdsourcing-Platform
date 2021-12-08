@@ -8,6 +8,7 @@ export class AnswersData {
     static userId = null;
     static userCanAnnotateAnswers = false;
     static currentIndex = 1
+    static numberOfVotesForQuestionnaire;
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
@@ -18,7 +19,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         header1.innerHTML = "Answer";
         tr.appendChild(header1);
         const header2 = document.createElement("th");
-        header2.innerHTML = "";
+        header2.classList.add("text-center");
+        header2.innerHTML = "You can vote up to " + AnswersData.numberOfVotesForQuestionnaire + " times";
         const header3 = document.createElement("th");
         header3.innerHTML = "Number of votes";
         tr.appendChild(header2);
