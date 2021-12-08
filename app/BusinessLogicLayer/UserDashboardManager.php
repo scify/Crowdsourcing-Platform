@@ -12,13 +12,11 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Models\ViewModels\UserDashboardViewModel;
-use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 
 class UserDashboardManager {
 
-    protected $projectRepository;
     protected $questionnaireRepository;
     protected $currentQuestionnaireCalculator;
     protected $platformWideGamificationBadgesProvider;
@@ -28,8 +26,7 @@ class UserDashboardManager {
     protected $questionnaireAccessManager;
     protected $crowdSourcingProjectTranslationManager;
 
-    public function __construct(CrowdSourcingProjectRepository         $projectRepository,
-                                QuestionnaireRepository                $questionnaireRepository,
+    public function __construct(QuestionnaireRepository                $questionnaireRepository,
                                 CurrentQuestionnaireProvider           $currentQuestionnaireCalculator,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
                                 QuestionnaireGoalManager               $crowdSourcingProjectGoalManager,
@@ -37,7 +34,6 @@ class UserDashboardManager {
                                 QuestionnaireResponseRepository        $questionnaireResponseRepository,
                                 QuestionnaireAccessManager             $questionnaireAccessManager,
                                 CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
-        $this->projectRepository = $projectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->currentQuestionnaireCalculator = $currentQuestionnaireCalculator;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
@@ -50,34 +46,32 @@ class UserDashboardManager {
 
 
     public function getUserDashboardViewModel($user): UserDashboardViewModel {
-        // should show only projects that are published and have at least 1 published questionnaire
-        $projects = $this->projectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire(['creator', 'language', 'status']);
-        foreach ($projects as $project) {
-            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
-        }
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
-        foreach ($projects as $project) {
-            // for each project, get the suitable questionnaire for the user
-            $project->currentQuestionnaireForUser = $this->currentQuestionnaireCalculator
-                ->getCurrentQuestionnaire($project->id, $user->id, $project->questionnaires, $questionnaireIdsUserHasAnsweredTo);
-            $project->currentQuestionnaireGoalVM = $this->crowdSourcingProjectGoalManager
-                ->getQuestionnaireGoalViewModel($project->currentQuestionnaireForUser, $project->currentQuestionnaireForUser->responses_count);
-            $nextUnlockableBadgeForCurrentQuestionnaire = $this->questionnaireBadgeProvider
-                ->getNextUnlockableBadgeToShowForQuestionnaire($project->currentQuestionnaireForUser, $user->id, $questionnaireIdsUserHasAnsweredTo);
-            $project->userHasAccessToViewCurrentQuestionnaireStatisticsPage = $this->questionnaireAccessManager
-                ->userHasAccessToViewQuestionnaireStatisticsPage($user, $project->currentQuestionnaireForUser);
-            $project->gamificationNextStepVM = new GamificationNextStep(
-                $project,
-                $nextUnlockableBadgeForCurrentQuestionnaire->getNextStepMessage(),
-                $nextUnlockableBadgeForCurrentQuestionnaire->imageFileName,
+        // should show only projects that are published and have at least 1 published questionnaire
+        $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
+
+        foreach ($questionnaires as $questionnaire) {
+            $questionnaire->primaryProject = $questionnaire->projects->get(0);
+            $questionnaire->primary_project_id = $questionnaire->primaryProject->id;
+            $questionnaire->goalVM = $this->crowdSourcingProjectGoalManager
+                ->getQuestionnaireGoalViewModel($questionnaire, $questionnaire->responses_count);
+
+            $nextUnlockableBadge = $this->questionnaireBadgeProvider
+                ->getNextUnlockableBadgeToShowForQuestionnaire($questionnaire, $user->id, $questionnaireIdsUserHasAnsweredTo);
+            $questionnaire->userHasAccessToViewStatisticsPage = $this->questionnaireAccessManager
+                ->userHasAccessToViewQuestionnaireStatisticsPage($user, $questionnaire);
+            $questionnaire->gamificationNextStepVM = new GamificationNextStep(
+                $questionnaire->projects,
+                $nextUnlockableBadge->getNextStepMessage(),
+                $nextUnlockableBadge->imageFileName,
                 true,
-                new QuestionnaireSocialShareButtons($project, $project->currentQuestionnaireForUser, $user->id),
-                in_array($project->currentQuestionnaireForUser->id, $questionnaireIdsUserHasAnsweredTo));
+                new QuestionnaireSocialShareButtons($questionnaire->projects, $questionnaire, $user->id),
+                in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo));
         }
         $platformWideGamificationBadgesVM = $this->platformWideGamificationBadgesProvider->getPlatformWideGamificationBadgesListVM($user->id, $questionnaireIdsUserHasAnsweredTo);
 
-        return new UserDashboardViewModel($projects, $platformWideGamificationBadgesVM);
+        return new UserDashboardViewModel($questionnaires, $platformWideGamificationBadgesVM);
     }
 
 }

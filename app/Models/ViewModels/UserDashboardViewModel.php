@@ -7,12 +7,12 @@ use Illuminate\Support\Collection;
 
 class UserDashboardViewModel
 {
-    public $projects;
+    public $questionnaires;
     public $platformWideGamificationBadgesVM;
 
-    public function __construct(Collection $projects,
+    public function __construct(Collection $questionnaires,
                                 GamificationBadgesWithLevels $platformWideGamificationBadgesVM) {
-        $this->projects = $projects;
+        $this->questionnaires = $questionnaires;
         $this->platformWideGamificationBadgesVM = $platformWideGamificationBadgesVM;
     }
 

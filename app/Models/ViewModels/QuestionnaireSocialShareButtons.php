@@ -3,29 +3,42 @@
 namespace App\Models\ViewModels;
 
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
+use Illuminate\Support\Collection;
 
 class QuestionnaireSocialShareButtons {
 
     public $questionnaire;
-    public $project;
+    public $projects;
     public $referrerId;
 
     /**
      * QuestionnaireSocialShareButtons constructor.
-     * @param $project CrowdSourcingProject the project the questionnaire belongs to
+     * @param $projects Collection the projects the questionnaire belongs to
      * @param $questionnaire Questionnaire the questionnaire to be shared
      * @param $referrerId int (optional) the id of the user that will share
      * the questionnaire
      */
-    public function __construct($project, $questionnaire, $referrerId = null) {
-        $this->project = $project;
+    public function __construct(Collection $projects, Questionnaire $questionnaire, $referrerId = null) {
+        $this->projects = $projects;
         $this->questionnaire = $questionnaire;
         $this->referrerId = $referrerId;
     }
 
-    public function getSocialShareURL() {
-        return url('/' . $this->project->slug) . urlencode('?open=1&referrerId=' . $this->referrerId . '&questionnaireId=' . $this->questionnaire->id);
+    public function getSocialShareURL(CrowdSourcingProject $project, $medium) {
+        switch ($medium) {
+            case "facebook":
+                $url = "https://www.facebook.com/sharer/sharer.php?u=";
+                break;
+            case "twitter":
+                $url = "https://twitter.com/share?url=";
+                break;
+            default:
+                $url = "";
+                break;
+        }
+        return $url . url('/' . $project->slug) . urlencode('?open=1&referrerId=' . $this->referrerId . '&questionnaireId=' . $this->questionnaire->id);
     }
 
 }

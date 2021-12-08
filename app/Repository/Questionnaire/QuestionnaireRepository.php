@@ -22,6 +22,16 @@ class QuestionnaireRepository extends Repository {
         return QuestionnaireStatus::all();
     }
 
+    public function getActiveQuestionnaires() {
+        return Questionnaire
+            ::where('status_id', QuestionnaireStatusLkp::PUBLISHED)
+            ->with('projects')
+            ->withCount('responses')
+            ->orderBy('prerequisite_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
     public function getActiveQuestionnairesForProject(int $projectId) {
         return Questionnaire
             ::whereHas('projects', function (Builder $query) use ($projectId) {
