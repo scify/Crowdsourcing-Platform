@@ -2,12 +2,12 @@
 
 namespace App\Models\Questionnaire;
 
+use App\Models\CompositeKeysModel;
 use Awobaz\Compoships\Compoships;
-use Illuminate\Database\Eloquent\Model;
 
-class QuestionnaireFieldsTranslation extends Model
-{
+class QuestionnaireFieldsTranslation extends CompositeKeysModel {
     use Compoships;
+
     /**
      * The table associated with the model.
      *

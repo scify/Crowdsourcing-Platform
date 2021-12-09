@@ -18,11 +18,20 @@
                             </div>
                         </div>
                     @endcan
-                    <div class="row my-5">
+                    <div class="row mt-5 mb-3">
                         <div class="col-12">
                             <h1 class="text-lg-center text-md-center text-sm-left">
                                 <b>{{ $viewModel->questionnaire->currentFieldsTranslation->title }}</b>
                             </h1>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h4 class="text-lg-center text-md-center text-sm-left">
+                                You can vote up to <b>{{ $viewModel->questionnaire->max_votes_num }}</b> times for this
+                                questionnaire.
+                            </h4>
                         </div>
                     </div>
                     @if($viewModel->questionnaire->show_general_statistics)

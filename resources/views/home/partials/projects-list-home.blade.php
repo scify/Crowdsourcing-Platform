@@ -11,9 +11,16 @@
                             {!! $project->currentTranslation->description ? : $project->currentTranslation->about !!}
                         </div>
                         <div class="project-visit-btn">
-                            <a href="/{{app()->getLocale() .'/'.$project->slug}}" class="btn btn-block btn-primary call-to-action action-dark">
-                                {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
-                            </a>
+                            @if($project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED)
+                                <a href="/{{app()->getLocale() .'/'.$project->slug}}"
+                                   class="btn btn-block btn-primary call-to-action action-dark">
+                                    {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
+                                </a>
+                            @else
+                                <a href="{{ route('questionnaire.statistics', $project->latestQuestionnaire->id) }}"
+                                   class="btn btn-block btn-success call-to-action action-success">Vote
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

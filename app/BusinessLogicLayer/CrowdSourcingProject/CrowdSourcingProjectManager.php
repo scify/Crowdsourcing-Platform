@@ -5,6 +5,7 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject;
 use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -66,9 +67,12 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
-        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneActiveQuestionnaire();
+        $projectsWithActiveQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus();
+        $projectsWithFinalizedQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus([], QuestionnaireStatusLkp::FINALIZED);
+        $projects = $projectsWithActiveQuestionnaires->merge($projectsWithFinalizedQuestionnaires);
         foreach ($projects as $project) {
             $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+            $project->latestQuestionnaire = $project->questionnaires->last();
         }
         return $projects;
     }
