@@ -454,6 +454,11 @@ footer {
   color: $white;
 }
 
+.call-to-action.action-success {
+  background-color: $success;
+  color: $white;
+}
+
 .call-to-action.btn-primary.focus, .call-to-action.btn-primary:focus, .call-to-action.btn-primary:hover {
   background-color: $grey-light;
   color: $black;
