@@ -20,15 +20,17 @@ class CrowdSourcingProjectRepository extends Repository {
         return CrowdSourcingProject::class;
     }
 
-    public function getActiveProjectsWithAtLeastOneActiveQuestionnaire($additionalRelationships = []): Collection {
+    public function getActiveProjectsWithAtLeastOneQuestionnaireWithStatus(
+        $additionalRelationships = [], $questionnaireStatusId = QuestionnaireStatusLkp::PUBLISHED
+    ): Collection {
         $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
-            ->whereHas('questionnaires', function (Builder $query) {
-                $query->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED]);
+            ->whereHas('questionnaires', function (Builder $query) use ($questionnaireStatusId) {
+                $query->where(['status_id' => $questionnaireStatusId]);
             })
-            ->with('questionnaires', function ($query) {
+            ->with('questionnaires', function ($query) use ($questionnaireStatusId) {
                 $query->select(['id', 'title', 'prerequisite_order', 'status_id', 'default_language_id',
                     'description', 'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created'])
-                    ->where(['status_id' => QuestionnaireStatusLkp::PUBLISHED])
+                    ->where(['status_id' => $questionnaireStatusId])
                     ->withCount('responses')
                     ->orderBy('prerequisite_order')
                     ->orderBy('questionnaire_created', 'desc');
