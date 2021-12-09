@@ -121,7 +121,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
     let getResponseByRespondentId = function (id) {
         for (let i = 0; i < answers.length; i++)
             if (answers[i].respondent_user_id === id || answers[i].user_id === id)
-                return JSON.parse(answers[i].response_json);
+                return answers[i];
     };
 
     let answersBtnHandler = function () {
