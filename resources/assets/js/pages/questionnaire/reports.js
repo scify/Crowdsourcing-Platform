@@ -56,9 +56,9 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
     let viewResponseTableBtnHandler = function () {
         $('body').on('click', '.response-table-btn', function (e) {
-            const responseId = $(this).data('respondentUserId');
+            const respondentUserId = $(this).data('respondentUserId');
             const respondentUserData = $(this).data('respondentUserData');
-            const answer = getResponseByRespondentId(responseId);
+            const answer = getResponseByRespondentId(respondentUserId);
             $('#respondent-answers-table-modal-title').html(respondentUserData);
             let panelEl = document.getElementById("respondent-answers-table-panel");
             panelEl.innerHTML = "";
@@ -120,7 +120,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
     let getResponseByRespondentId = function (id) {
         for (let i = 0; i < answers.length; i++)
-            if (answers[i].user_id === id)
+            if (answers[i].respondent_user_id === id || answers[i].user_id === id)
                 return JSON.parse(answers[i].response_json);
     };
 
