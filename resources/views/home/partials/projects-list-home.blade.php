@@ -18,7 +18,7 @@
                                 </a>
                             @else
                                 <a href="{{ route('questionnaire.statistics', $project->latestQuestionnaire->id) }}"
-                                   class="btn btn-block btn-primary call-to-action action-dark">Vote
+                                   class="btn btn-block btn-success call-to-action action-dark">Vote
                                 </a>
                             @endif
                         </div>
