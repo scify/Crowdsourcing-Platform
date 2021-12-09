@@ -52,8 +52,6 @@ class UserDashboardManager {
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
 
         foreach ($questionnaires as $questionnaire) {
-            $questionnaire->primaryProject = $questionnaire->projects->get(0);
-            $questionnaire->primary_project_id = $questionnaire->primaryProject->id;
             $questionnaire->goalVM = $this->crowdSourcingProjectGoalManager
                 ->getQuestionnaireGoalViewModel($questionnaire, $questionnaire->responses_count);
 
