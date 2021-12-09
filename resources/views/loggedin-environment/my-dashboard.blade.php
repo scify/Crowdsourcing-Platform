@@ -19,25 +19,36 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="container-fluid table-responsive">
-                                @if($viewModel->projects->isEmpty())
-                                    <div class="no-projects-found">There are currently no active projects. {{ __("questionnaire.no_active_projects")}}
+                                @if($viewModel->questionnaires->isEmpty())
+                                    <div class="no-projects-found">{{ __("questionnaire.no_active_projects")}}
                                     </div>
                                 @else
-                                    <table id="available-projects" class="w-100 row table table-striped table-hover table-responsive-md">
+                                    <table id="available-projects"
+                                           class="w-100 row table table-striped table-hover table-responsive-md">
                                         <tbody class="w-100">
-                                        @foreach($viewModel->projects as $project)
+                                        @foreach($viewModel->questionnaires as $questionnaire)
                                             <tr class="d-flex">
-                                                <td class="h-75 col-md-3 col-sm-6 justify-content-center align-self-center border-top-0">
-                                                    <a href="{{ route('project.landing-page', $project->slug) }}">
-                                                            <img loading="lazy" class="project-logo"
-                                                                    alt="Project logo for {{$project->currentTranslation->name}}"
-                                                                    src="{{asset($project->logo_path)}}">
-                                                    <br>
-                                                        <p class="project-title mt-2">{{ $project->currentTranslation->name }}</p>
-                                                    </a>
+                                                <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            @foreach($questionnaire->projects as $project)
+                                                                <div class="col-md-6 col-sm-12 mx-auto">
+                                                                    <a href="{{ route('project.landing-page', $project->slug) }}">
+                                                                        <img loading="lazy" class="project-logo w-100"
+                                                                             alt="Project logo for {{$project->defaultTranslation->name}}"
+                                                                             src="{{asset($project->logo_path)}}">
+                                                                        <br>
+                                                                        <p class="project-title mt-2">{{ $project->defaultTranslation->name }}</p>
+                                                                    </a>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="progress-container">
+<<<<<<< HEAD
                                                         @if($project->currentQuestionnaireGoalVM)
                                                             @include('landingpages.partials.project-goal', ['questionnaireViewModel' => $project->currentQuestionnaireGoalVM, 'project' => $project])
                                                             @if ($project->userHasAccessToViewCurrentQuestionnaireStatisticsPage)
@@ -53,12 +64,25 @@
 
                                                         @else
                                                             <p>{{ __("questionnaire.project_no_active_questionnaire")}}</p>
+=======
+                                                        @include('landingpages.partials.project-goal',
+                                                        ['questionnaireId' => $questionnaire->id, 'questionnaireViewModel' => $questionnaire->goalVM, 'project' => $questionnaire->projects->get(0)])
+                                                        @if ($questionnaire->userHasAccessToViewStatisticsPage)
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <a class="btn btn-primary" target="_blank"
+                                                                       href="{{ route('questionnaire.statistics', $questionnaire) }}">
+                                                                        <i class="fas fa-chart-pie mr-2"></i> View
+                                                                        Statistics
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+>>>>>>> 7e2b1845cde7839a4cb9332cb0fd4a4db3813bb5
                                                         @endif
                                                     </div>
-
                                                 </td>
-                                                <td class="h-75 col-md-5 col-sm-12 justify-content-center align-self-center border-top-0">
-                                                    @include('gamification.next-step', ['nextStepVM' => $project->gamificationNextStepVM])
+                                                <td class="h-75 col-md-4 col-sm-12 justify-content-center align-self-center border-top-0">
+                                                    @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])
                                                 </td>
                                             </tr>
                                         @endforeach

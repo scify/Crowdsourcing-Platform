@@ -8,26 +8,12 @@
             <h4 class="title" style="margin-bottom: 20px">{{ __("my-dashboard.share_questionnaire")}}</h4>
         </div>
         <div class="col-lg-6">
-            <a target="_blank"
-               data-project="{{ $viewModel->project->currentTranslation->name }}"
-               data-questionnaire="{{ $viewModel->questionnaire->currentFieldsTranslation->title }}"
-               data-questionnaireId="{{ $viewModel->questionnaire->id }}"
-               data-medium="facebook"
-               href="https://www.facebook.com/sharer/sharer.php?u={{ $viewModel->getSocialShareURL() }}"
-               class="social-share-button fb-share-button facebook btn btn-lg btn-default">
-                <i class="fab fa-facebook-f"></i>Facebook
-            </a>
+            @include('questionnaire.social-share-media',
+            ['viewModel' => $viewModel, 'projects' => $nextStepVM->projects, 'mediumName' => "Facebook", 'fontAwesomeBtnClass' => 'fa-facebook-f'])
         </div>
         <div class="col-lg-6">
-            <a target="_blank"
-               data-project="{{ $viewModel->project->currentTranslation->name }}"
-               data-questionnaire="{{ $viewModel->questionnaire->currentFieldsTranslation->title }}"
-               data-questionnaireId="{{ $viewModel->questionnaire->id }}"
-               data-medium="twitter"
-               href="https://twitter.com/share?url={{ $viewModel->getSocialShareURL() }}"
-               class="social-share-button twitter-share-button twitter btn btn-lg btn-default">
-                <i class="fab fa-twitter"></i>Twitter
-            </a>
+            @include('questionnaire.social-share-media',
+            ['viewModel' => $viewModel, 'projects' => $nextStepVM->projects, 'mediumName' => "Twitter", 'fontAwesomeBtnClass' => 'fa-twitter'])
         </div>
         <div class="col-md-12 share-success d-none">
             <div class="alert alert-success alert-dismissible" role="alert">
