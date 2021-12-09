@@ -11,7 +11,6 @@
         <link rel="stylesheet"  media="print" onload="this.onload=null;this.removeAttribute('media');"
               href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="{{ mix('dist/css/common.css')}}">
-        <link href="{{asset('dist/css/select2.min.css')}}" rel="stylesheet">
         @stack('css')
 
         <!--[if lt IE 9]>
