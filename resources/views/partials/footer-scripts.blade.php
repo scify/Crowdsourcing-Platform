@@ -1,6 +1,6 @@
 <script>
     window.Laravel = {!! json_encode([
-                'baseUrl' => url('/'),
+                'baseUrl' => route('home'),
                 'locale' => app()->getLocale(),
                 'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
             ]) !!};
