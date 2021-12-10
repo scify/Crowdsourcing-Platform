@@ -9,6 +9,7 @@ export class AnswersData {
     static userCanAnnotateAnswers = false;
     static currentIndex = 1
     static numberOfVotesForQuestionnaire;
+    static languageResources = {};
 }
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
@@ -208,7 +209,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             options.buttons = [
                 {
                     extend: 'csvHtml5',
-                    text: window.language[window.Laravel.locale].statistics.download_csv,
+                    text: AnswersData.languageResources.download_csv,
                     filename: 'Statistics_' + new Date().getTime(),
                     exportOptions: {
                         columns: [0, 2]
