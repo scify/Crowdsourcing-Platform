@@ -180,6 +180,8 @@ export default {
       'closeModal'
     ]),
     getColorsForCrowdSourcingProject() {
+      console.log(route('crowd-sourcing-project.get-colors', this.questionnaire.project_id));
+
       this.get({
         url: route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
         data: {},
