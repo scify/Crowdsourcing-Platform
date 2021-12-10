@@ -48,23 +48,6 @@
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="progress-container">
-<<<<<<< HEAD
-                                                        @if($project->currentQuestionnaireGoalVM)
-                                                            @include('landingpages.partials.project-goal', ['questionnaireViewModel' => $project->currentQuestionnaireGoalVM, 'project' => $project])
-                                                            @if ($project->userHasAccessToViewCurrentQuestionnaireStatisticsPage)
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <a class="btn btn-primary" target="_blank"
-                                                                           href="{{ route('questionnaire.statistics', $project->currentQuestionnaireForUser) }}">
-                                                                            <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-
-                                                        @else
-                                                            <p>{{ __("questionnaire.project_no_active_questionnaire")}}</p>
-=======
                                                         @include('landingpages.partials.project-goal',
                                                         ['questionnaireId' => $questionnaire->id, 'questionnaireViewModel' => $questionnaire->goalVM, 'project' => $questionnaire->projects->get(0)])
                                                         @if ($questionnaire->userHasAccessToViewStatisticsPage)
@@ -72,12 +55,10 @@
                                                                 <div class="col">
                                                                     <a class="btn btn-primary" target="_blank"
                                                                        href="{{ route('questionnaire.statistics', $questionnaire) }}">
-                                                                        <i class="fas fa-chart-pie mr-2"></i> View
-                                                                        Statistics
+                                                                        <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
                                                                     </a>
                                                                 </div>
                                                             </div>
->>>>>>> 7e2b1845cde7839a4cb9332cb0fd4a4db3813bb5
                                                         @endif
                                                     </div>
                                                 </td>
