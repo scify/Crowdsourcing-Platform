@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
 use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class QuestionnaireStatisticsController extends Controller {
     protected $questionnaireStatisticsManager;

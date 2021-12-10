@@ -13,6 +13,7 @@ import 'codemirror/mode/xml/xml';
                     theme: 'monokai'
                 }
             });
+            initializeCommunicationResourcesHandlers();
         }, 2000);
 
     };
@@ -72,10 +73,11 @@ import 'codemirror/mode/xml/xml';
     };
 
     let init = function () {
-        initializeSummernote();
+
         initializeSubmitFormListener();
         initializeImgFileChangePreviewHandlers();
-        initializeCommunicationResourcesHandlers();
+        initializeSummernote();
+
     };
     $(document).ready(function () {
         init();
