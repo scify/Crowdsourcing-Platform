@@ -38,7 +38,7 @@ class QuestionnaireSocialShareButtons {
                 $url = "";
                 break;
         }
-        return $url . url('/' . $project->slug) . urlencode('?open=1&referrerId=' . $this->referrerId . '&questionnaireId=' . $this->questionnaire->id);
+        return $url . route("project.landing-page", $project->slug) . urlencode('?open=1&referrerId=' . $this->referrerId . '&questionnaireId=' . $this->questionnaire->id);
     }
 
 }

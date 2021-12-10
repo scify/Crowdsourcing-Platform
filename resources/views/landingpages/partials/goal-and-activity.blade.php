@@ -40,7 +40,7 @@
 
         @if($viewModel->questionnaireGoalVM)
             <div class="col-md-6 col-sm-12 text-center center}">
-                @include('landingpages.partials.project-goal', ['questionnaireViewModel' => $viewModel->questionnaireGoalVM, 'project' => $viewModel->project])
+                @include('landingpages.partials.project-goal', ['questionnaireViewModel' => $viewModel->questionnaireGoalVM, 'project' => $viewModel->project, 'questionnaireId' => $viewModel->questionnaire->id])
             </div>
         @endif
     </div>
