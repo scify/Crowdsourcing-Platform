@@ -26,7 +26,7 @@
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             @foreach($nextStepVM->projects as $project)
-                                <a href="{{url("/" . $project->slug . "?open=1")}}"
+                                <a href="{{route("project.landing-page", $project->slug) . "?open=1"}}"
                                    class="btn btn-light w-100 mb-2 text-left">
                                     Contribute for {{ $project->defaultTranslation->name }}
                                 </a>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{url("/" . $nextStepVM->projects->get(0)->slug . "?open=1")}}"
+                    <a href="{{route("project.landing-page", $nextStepVM->projects->get(0)->slug) . "?open=1"}}"
                        class="btn btn-primary btn-lg nextStepActionBtn">Contribute</a>
                 @endif
 

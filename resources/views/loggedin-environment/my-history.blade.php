@@ -36,7 +36,7 @@
                             @foreach($responses as $response)
                                 <tr>
                                     <td>
-                                        <a href="{{ url('/' . $response->project_slug) }}">
+                                        <a href="{{ route('home', $response->project_slug) }}">
                                             <div class="row">
                                                 <div class="col-lg-12 margin-bottom">{{ $response->project_name }}</div>
                                                 <div class="col-lg-12">
