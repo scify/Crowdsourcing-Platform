@@ -40,7 +40,9 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
               <select name="statistics_page_visibility_lkp_id" id="statistics_page_visibility_lkp_id">
                 <option v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
-                        v-model="questionnaire.statistics_page_visibility_lkp_id">
+                        :value="visibilityLkp.id"
+                        v-model="questionnaire.statistics_page_visibility_lkp_id"
+                        :selected="questionnaire.statistics_page_visibility_lkp_id === visibilityLkp.id">
                   {{ visibilityLkp.title }}
                 </option>
               </select>
@@ -93,7 +95,8 @@
               <label for="goal">Show general statistics</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="checkbox" class="form-control checkbox" name="show_general_statistics" id="show_general_statistics"
+              <input type="checkbox" class="form-control checkbox" name="show_general_statistics"
+                     id="show_general_statistics"
                      v-model="questionnaire.show_general_statistics">
             </div>
           </div>
@@ -182,6 +185,7 @@ import {arrayMove, showToast} from "../../common";
 export default {
   created() {
     this.questionnaire = this.questionnaireData;
+
     if (!this.questionnaire.project_id)
       this.questionnaire.project_id = this.projects[0].id;
     if (!this.questionnaire.statistics_page_visibility_lkp_id)
