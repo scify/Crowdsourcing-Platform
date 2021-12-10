@@ -86,7 +86,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::group([$localeInfo], function () {
+Route::group($localeInfo, function () {
     Route::get('/questionnaires/{questionnaire}/statistics',
         'QuestionnaireStatisticsController@showStatisticsPageForQuestionnaire')
         ->name('questionnaire.statistics')
