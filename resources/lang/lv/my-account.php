@@ -9,7 +9,7 @@ return [
 
     */
 
-    'my_account' => 'My Account',
+    'my_account' => 'Mans profils',
     'personal_details' => 'Personal Details', 
     'update' => 'Update', 
     'my_data' => 'My data', 

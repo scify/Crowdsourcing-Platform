@@ -9,14 +9,14 @@ return [
 
     */
 
-    'login' => 'LOGIN', //??
-    'register' => 'Register', //??
-    'dashboard' =>  'DASHBOARD', //??
-    'main_navigation' => 'MAIN NAVIGATION', //??
-    'my_dashboard' => 'My Dashboard', 
-    'my_account' => 'My Account', 
-    'my_history' => 'My history',
-    'sign_out' => 'Sign out'
+    'login' => 'Pieteikšanās', //??
+    'register' => 'Reģistrēties', //??
+    'dashboard' =>  'Vadības panelis', //??
+    'main_navigation' => 'GALVENĀ NAVIGĀCIJA', //??
+    'my_dashboard' => 'Mans vadības panelis', 
+    'my_account' => 'Mans profils', 
+    'my_history' => 'Mana vēsture',
+    'sign_out' => 'Izrakstīties'
 
 
 ];

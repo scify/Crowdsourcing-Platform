@@ -11,10 +11,10 @@ return [
 
     'start_answering' => 'Begin met beantwoorden', 
     'already_participated' => 'Je hebt al deelgenomen, dank je wel!',  
-    'answers_so_far' => 'mensen hebben hun mening gegeven. Lets get to ', 
+    'answers_so_far' => 'mensen hebben hun mening gegeven. Laten we gaan voor de ', 
     'latest_contributors' => 'Meest recente deelnemers', 
     'name_and_date_of_last_contributors' => ':name heeft gereageerd op :date', //Maria responded at November 23, 2021 
-    'answers_left_to_goal' => 'answers left to reach our goal', //1002 answers left to reach our goal  
+    'answers_left_to_goal' => 'antwoorden te gaan om ons doel te bereiken', //1002 answers left to reach our goal  
     'newsletter' => 'Nieuwsbrief',  
     'learn_about_new_projects' => 'Lees meer over onze nieuwe projecten. Ontvang updates over lopende projecten en doe mee!', 
     'sign_in' => 'Log in', 
@@ -45,8 +45,8 @@ return [
     'answer_the_questionnaire' => 'Beantwoord de vragenlijst',
     'project_no_active_questionnaire' => 'Dit project heeft nog geen actieve vragenlijst.',
     'no_active_projects' => 'Op dit moment zijn er nog geen actieve vragenlijsten.',
-    'check_what_other_respondents' => 'Before answering to the questionnaire, check what the other respondents have said by clicking',
-    'here' => 'here'
+    'check_what_other_respondents' => 'Voordat je de vragenlijst beantwoordt kun je zien wat anderen hebben gezegd. Klik daarvoor',
+    'here' => 'hier'
 
 
 
