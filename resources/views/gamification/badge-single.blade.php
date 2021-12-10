@@ -16,7 +16,7 @@
         @if($badge->level)
             <h6 class="badgeLevel" style="color: white; text-align: center; margin: 0.5rem 0; ">Level: <span
                         class="points" style="font-weight: bold;">{{ $badge->level }}</span></h6>
-            <h5 class="badgeMessage" style="color: white; text-align: center; margin: 0.5rem 0;">{{ $badge->badgeMessage }}</h5>
+            <h5 class="badgeMessage" style="color: white; text-align: center; margin: 0.5rem 0;">{!! $badge->badgeMessage !!}</h5>
         @endif
     </div>
 </div>
