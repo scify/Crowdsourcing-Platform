@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Šādi dati nav mūsu sistēmā.',
+    'failed' => 'Diese Angaben stimmen nicht mit unseren Aufzeichnungen überein.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
