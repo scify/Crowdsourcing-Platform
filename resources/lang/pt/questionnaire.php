@@ -14,7 +14,7 @@ return [
     'answers_so_far' => 'pessoas falaram até agora. Vamos chegar a ', 
     'latest_contributors' => 'Contribuidores mais recentes', 
     'name_and_date_of_last_contributors' => ':name respondeu em :date', //Maria responded at November 23, 2021 
-    'answers_left_to_goal' => 'answers left to reach our goal', //1002 answers left to reach our goal  
+    'answers_left_to_goal' => 'respostas para alcançar nosso objetivo', //1002 answers left to reach our goal  
     'newsletter' => 'Newsletter',  
     'learn_about_new_projects' => 'Conheça todos os nossos novos projetos, atualize-se sobre os ativos e contribua onde for mais necessário!', 
     'sign_in' => 'Entrar', 
@@ -36,17 +36,17 @@ return [
     'prefer_staying_anonymous' =>  'Prefere permanecer anónimo?', //den ta exo brei kapou
     'feedback_about_platform' => 'Envie-nos comentários sobre nossa plataforma respondendo a 4 perguntas', //den ta exo brei kapou
     'give_us_feedback' => 'Dê-nos feedback', //den ta exo brei kapou
-    'zero_answers' => 'Zero people have spoken up so far. Be the first!', 
-    'no_recent_activity' => 'No recent activity found', 
+    'zero_answers' => 'Ninguém respondeu até agora, seja o primeiro!', 
+    'no_recent_activity' => 'Nenhuma atividade recente encontrada', 
     'visit_projects_site' => 'Visite o site do projeto',
-    'project_finalized' => 'This project has been finalized.',
+    'project_finalized' => 'Este projeto foi concluído.',
     'no_active_questionnaires' => 'No active questionnaires',
-    'next_questionnaire' => 'Our next questionnaire is on its way: stay tuned!',
+    'next_questionnaire' => 'O nosso próximo questionário está a caminho, fique atento!',
     'answer_the_questionnaire' => 'Responda ao questionário',
-    'project_no_active_questionnaire' => 'This project does not have an active questionnaire yet.',
-    'no_active_projects' => 'There are currently no active projects.',
-    'check_what_other_respondents' => 'Before answering to the questionnaire, check what the other respondents have said by clicking',
-    'here' => 'here'
+    'project_no_active_questionnaire' => 'Este projeto ainda não tem questionários ativos.',
+    'no_active_projects' => 'Atualmente não há projetos ativos.',
+    'check_what_other_respondents' => 'Antes de responder ao questionário, veja o que outros participantes têm dito clicando',
+    'here' => 'aqui'
 
 
 
