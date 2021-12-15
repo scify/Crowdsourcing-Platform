@@ -9,6 +9,13 @@
 @endpush
 
 @section('content')
+    <div class="row gamification-box">
+        <div class="col-md-9 col-sm-11 mx-auto mt-4 mb-4" style="float: none !important;">
+            <div id="awards">
+                @include('gamification.user-badges', ['badgesVM' => $viewModel->platformWideGamificationBadgesVM])
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card card-success card-outline">
@@ -78,13 +85,7 @@
         </div>
 
     </div>
-    <div class="row gamification-box">
-        <div class="col-md-9 col-sm-11 mx-auto mt-4 mb-4" style="float: none !important;">
-            <div id="awards">
-                @include('gamification.user-badges', ['badgesVM' => $viewModel->platformWideGamificationBadgesVM])
-            </div>
-        </div>
-    </div>
+
 @endsection
 
 @push('scripts')
