@@ -37,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div id="survey-container">
+          <div :id="surveyContainerId" class="survey-container">
           </div>
         </div>
       </div>
@@ -91,6 +91,9 @@ export default {
         return {}
       }
     },
+    surveyContainerId:{
+      type: String
+    },
     languages: []
   },
   data: function () {
@@ -115,8 +118,10 @@ export default {
       this.displayLoginPrompt = false;
       const instance = this;
       this.loading = true;
+      let surveyContainerId = this.$props.surveyContainerId;
+      console.log(surveyContainerId);
       setTimeout(function () {
-        instance.survey.render("survey-container");
+        instance.survey.render(surveyContainerId);
       }, 500);
     },
     initQuestionnaireDisplay() {
@@ -176,7 +181,7 @@ export default {
 
       const resultAsString = JSON.stringify(sender.data);
       $(".loader-wrapper").removeClass('hidden');
-      $("#questionnaire-modal").modal('hide');
+      $(".questionnaire-modal").modal('hide');
       this.post({
         url: route('respond-questionnaire'),
         data: {
@@ -203,7 +208,7 @@ export default {
         console.error(error);
         this.displayErrorResponse(error);
       }).finally(() => {
-        $("#questionnaire-modal").modal('hide');
+        $(".questionnaire-modal").modal('hide');
       });
     },
     displaySuccessResponse(badgeHTML) {
@@ -258,7 +263,7 @@ export default {
 @import "resources/assets/sass/variables";
 @import "~survey-jquery/modern.min.css";
 
-#survey-container {
+.survey-container {
   .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__prev-btn {
     background-color: $brand-primary;
     float: left;

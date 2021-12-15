@@ -26,19 +26,29 @@
                             @if($viewModel->questionnaire)
                                 {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
                                 @if($viewModel->userResponse)
-
-                                    {{-- IF HE HAS RESPONDEDED TO THE FEEDBACK TOO, DISPLAY THANK YOU AND PROJECT URL --}}
                                     <div class="col-12">
                                         <h2 class="mt-3 text-center">{{ __("questionnaire.already_answered") }}<br>{{ __("questionnaire.thank_you_for_your_response") }}</h2>
                                     </div>
-                                    @include('landingpages.partials.external-url')
-                                    {{-- ELSE INVITE HIM TO RESPOND TO THE FEEDBACK  --}}
+                                    {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
+                                    @if ($viewModel->displayFeedbackQuestionnaire())
+                                        <div class="col-md-5 col-sm-12 mx-auto">
+                                            @include("landingpages.partials.open-feedback-questionnaire-button",
+                                                        [
+                                                            "css_class"=> "btn btn-primary w-100 ",
+                                                            "label"=>  __("questionnaire.give_us_feedback")
+                                                        ])
+                                        </div>
+                                    @else
+                                        {{-- DISPLAY PROJECT URL --}}
+                                        @include('landingpages.partials.external-url')
+
+                                    @endif
+
                                 @else
                                     {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
                                     <div class="col-md-5 col-sm-12 mx-auto">
                                         @include("landingpages.partials.open-questionnaire-button", ["label"=>  __("questionnaire.answer_the_questionnaire") ])
                                     </div>
-
                                 @endif
                             @else
                             {{-- PROJECT DOES NOT HAVE AN ACTIVE QUESTIONNAIRE --}}

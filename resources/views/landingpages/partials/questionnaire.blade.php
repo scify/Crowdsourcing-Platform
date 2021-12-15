@@ -18,7 +18,7 @@
                                 <div class="col-md-6 col-sm-11 mx-auto">
                                     @include("landingpages.partials.open-questionnaire-button",["label"=>__("questionnaire.start_answering")])
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -43,4 +43,8 @@
 @if($viewModel->questionnaire)
     @include('landingpages.modals.questionnaire')
     @include('landingpages.modals.questionnaire-responded')
+    @if ($viewModel->feedbackQuestionnaire)
+        @include('landingpages.modals.questionnaire-feedback')
+    @endif
+
 @endif
