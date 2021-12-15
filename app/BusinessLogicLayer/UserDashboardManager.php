@@ -18,7 +18,6 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 class UserDashboardManager {
 
     protected $questionnaireRepository;
-    protected $currentQuestionnaireCalculator;
     protected $platformWideGamificationBadgesProvider;
     protected $crowdSourcingProjectGoalManager;
     protected $questionnaireBadgeProvider;
@@ -27,7 +26,6 @@ class UserDashboardManager {
     protected $crowdSourcingProjectTranslationManager;
 
     public function __construct(QuestionnaireRepository                $questionnaireRepository,
-                                CurrentQuestionnaireProvider           $currentQuestionnaireCalculator,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
                                 QuestionnaireGoalManager               $crowdSourcingProjectGoalManager,
                                 QuestionnaireBadgeProvider             $questionnaireBadgeProvider,
@@ -35,7 +33,6 @@ class UserDashboardManager {
                                 QuestionnaireAccessManager             $questionnaireAccessManager,
                                 CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
-        $this->currentQuestionnaireCalculator = $currentQuestionnaireCalculator;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->crowdSourcingProjectGoalManager = $crowdSourcingProjectGoalManager;
         $this->questionnaireBadgeProvider = $questionnaireBadgeProvider;

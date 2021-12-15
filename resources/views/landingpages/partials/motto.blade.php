@@ -22,18 +22,26 @@
                 <div class="col-md-10 col-sm-11 mx-auto">
                     <div class="container-fluid">
                         <div class="row">
+                            {{-- PROJECT HAVE AN ACTIVE QUESTIONNAIRE --}}
                             @if($viewModel->questionnaire)
-                                @if(!$viewModel->userResponse)
-                                    <div class="col-md-5 col-sm-12 mx-auto">
-                                        @include("landingpages.partials.open-questionnaire-button", ["label"=>  __("questionnaire.answer_the_questionnaire") ])  
-                                    </div>
-                                @else
+                                {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
+                                @if($viewModel->userResponse)
+
+                                    {{-- IF HE HAS RESPONDEDED TO THE FEEDBACK TOO, DISPLAY THANK YOU AND PROJECT URL --}}
                                     <div class="col-12">
                                         <h2 class="mt-3 text-center">{{ __("questionnaire.already_answered") }}<br>{{ __("questionnaire.thank_you_for_your_response") }}</h2>
                                     </div>
                                     @include('landingpages.partials.external-url')
+                                    {{-- ELSE INVITE HIM TO RESPOND TO THE FEEDBACK  --}}
+                                @else
+                                    {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
+                                    <div class="col-md-5 col-sm-12 mx-auto">
+                                        @include("landingpages.partials.open-questionnaire-button", ["label"=>  __("questionnaire.answer_the_questionnaire") ])
+                                    </div>
+
                                 @endif
                             @else
+                            {{-- PROJECT DOES NOT HAVE AN ACTIVE QUESTIONNAIRE --}}
                                 @include('landingpages.partials.external-url')
                             @endif
                         </div>
