@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1 class="m-0 text-dark">{{ __("menu.my_dashboard") }}</h1>
+   {{-- <h1 class="m-0 text-dark">{{ __("menu.my_dashboard") }}</h1>--}}
 @endsection
 
 @push('css')
