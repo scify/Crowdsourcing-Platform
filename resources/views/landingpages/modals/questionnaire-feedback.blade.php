@@ -22,7 +22,7 @@
                         <hr>
                     @endif
                     <questionnaire-display
-                            survey-container-id=="quest_survey"
+                            survey-container-id="quest_survey"
                             :user='@json($viewModel->getLoggedInUser())'
                             :user-response='@json($viewModel->userFeedbackQuestionnaireResponse)'
                             :questionnaire='@json($viewModel->feedbackQuestionnaire)'
