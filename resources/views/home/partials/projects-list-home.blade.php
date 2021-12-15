@@ -8,7 +8,7 @@
                             <img loading="lazy" src="{{$project->logo_path}}" alt="">
                         </div>
                         <div class="project-info">
-                            {!! $project->currentTranslation->description ? : $project->currentTranslation->about !!}
+                            {!! $project->currentTranslation->motto_title !!}
                         </div>
                         <div class="project-visit-btn">
                             @if($project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED)
