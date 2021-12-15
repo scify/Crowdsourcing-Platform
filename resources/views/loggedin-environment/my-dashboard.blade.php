@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row gamification-box">
-        <div class="col-md-9 col-sm-11 mx-auto mt-4 mb-4" style="float: none !important;">
+        <div class="col-md-9 col-sm-11 mt-4 mb-4" style="float: none !important;">
             <div id="awards">
                 @include('gamification.user-badges', ['badgesVM' => $viewModel->platformWideGamificationBadgesVM])
             </div>
