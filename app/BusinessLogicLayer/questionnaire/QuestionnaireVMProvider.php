@@ -54,8 +54,13 @@ class QuestionnaireVMProvider {
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
         $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
-        return new CreateEditQuestionnaire($questionnaire, $projects, $languages,
-            $title, $questionnaireStatisticsPageVisibilityLkp, $this->questionnaireFieldsTranslationManager->getFieldsTranslationsForQuestionnaire($questionnaire)
+        return new CreateEditQuestionnaire($questionnaire,
+            $projects,
+            $languages,
+            $title,
+            $questionnaireStatisticsPageVisibilityLkp,
+            $this->questionnaireFieldsTranslationManager->getFieldsTranslationsForQuestionnaire($questionnaire)
+
         );
     }
 
