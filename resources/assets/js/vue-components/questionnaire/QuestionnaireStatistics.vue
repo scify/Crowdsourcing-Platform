@@ -180,8 +180,6 @@ export default {
       'closeModal'
     ]),
     getColorsForCrowdSourcingProject() {
-      console.log(route('crowd-sourcing-project.get-colors', this.questionnaire.project_id));
-
       this.get({
         url: route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
         data: {},
@@ -238,6 +236,7 @@ export default {
       AnswersData.userId = this.userId;
       AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       AnswersData.numberOfVotesForQuestionnaire = this.questionnaire.max_votes_num;
+      AnswersData.languageResources= window.language[window.Laravel.locale].statistics;
       for (let i = 0; i < this.questions.length; i++) {
         let answersForPanel = answers;
 
