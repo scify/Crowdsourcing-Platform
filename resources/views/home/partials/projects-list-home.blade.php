@@ -5,7 +5,7 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="project-wrapper">
                         <div class="project-logo">
-                            <img loading="lazy" src="{{$project->logo_path}}" alt="">
+                            <img loading="lazy" src="{{$project->logo_path}}" alt="logo of project">
                         </div>
                         <div class="project-info">
                             {!! $project->currentTranslation->motto_title !!}
