@@ -11,25 +11,25 @@ return [
 
     
 
-    'go_to_dashboard'                   => 'Go to Dashboard',
-    'thank_you_for_contribution'        => 'Thank you for your contribution!',
-    'hello'                             => 'Hello!',
-    'thanks_message_for_answering_2'    => 'Thank you for taking the time to answer our questionnaire',
-    'really_means'                      => 'This really means a lot to us!',
-    'increase_your_impact'              => 'Increase your impact',
-    'invite_your_friends'               => 'Go to your dashboard, and invite your friends!',    
-    'thanks_message_2'                  => 'Thank you once again!',
-    'thank_you_for_sharing'             => 'Thank you for sharing!',
-    'sharing_the_questionnaire'         => 'Thank you for sharing the questionnaire<br>',
-    'sharing_is_caring'                 => 'Sharing is caring!',
-    'visit_your_dashboard'              => 'Visit your dashboard to see what to do next',
-    'thank_you_for_referral'            => 'Thank you for your referral!',
-    'making_impact'                     => 'You are making an impact!',
-    'someone_answered_to_questionnaire' => 'Someone answered to a questionnaire you shared!<br>',
-    'visit_your_dashboard_and_invite'   => 'Visit your dashboard and invite more friends',
-    'thanks_message'                    => 'Thanks for joining the Crowdsourcing Platform!',
-    'make_an_impact'                    => 'Are you ready to make an impact?',
-    'visit_your_dashboard_contribute'   => 'Visit your Dashboard to see how you can contribute:'
+    'go_to_dashboard'                   => 'Doties uz vadības paneli',
+    'thank_you_for_contribution'        => 'Paldies par ieguldījumu!',
+    'hello'                             => 'Sveiki!',
+    'thanks_message_for_answering_2'    => 'Paldies, ka veltīji laiku, lai atbildētu uz mūsu anketas jautājumiem',
+    'really_means'                      => 'Tas mums nozīmē ļoti daudz!',
+    'increase_your_impact'              => 'Stiprini savu ietekmi',
+    'invite_your_friends'               => 'Dodies uz rīku paneli un aicini draugus!',    
+    'thanks_message_2'                  => 'Vēlreiz paldies!',
+    'thank_you_for_sharing'             => 'Paldies par dalīšanos!',
+    'sharing_the_questionnaire'         => 'Paldies par dalīšanos ar anketu<br>',
+    'sharing_is_caring'                 => 'Dalīšanās ir rūpes!',
+    'visit_your_dashboard'              => 'Apmeklē rīku paneli, lai uzzinātu, ko darīt tālāk',
+    'thank_you_for_referral'            => 'Paldies par ieteikumu!',
+    'making_impact'                     => 'Tev ir iespēja ietekmēt!',
+    'someone_answered_to_questionnaire' => 'Kāds atbildēja uz anketu, ar kuru Jūs dalījies!<br>',
+    'visit_your_dashboard_and_invite'   => 'Ej uz savu rīku paneli un aicini draugus',
+    'thanks_message'                    => 'Paldies, ka pievienojies ideju vākšanas platformai!',
+    'make_an_impact'                    => 'Vai esi gatavs mainīt pasauli uz labu?',
+    'visit_your_dashboard_contribute'   => 'Apmeklē savu rīku paneli, lai uzzinātu, kā vari sniegt savu ieguldījumu:'
 
 
 

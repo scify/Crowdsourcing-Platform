@@ -9,12 +9,12 @@ return [
 
     */
 
-    'my_dashboard' => 'My Dashboard',
-    'contribution' => 'Projects you can contribute to',
-    'answers_left' => ' answers left to reach our goal', 
-    'view_statistics'  => 'View Statistics', 
-    'share_questionnaire' => 'Share the Questionnaire:', 
-    'thank_you_for_sharing' => 'Thank you for sharing the Questionnaire! <br> You will soon receive an e-mail with your badge!'
+    'my_dashboard' => 'Mans rīku panelis',
+    'contribution' => 'Projekti, kuros vari piedalīties',
+    'answers_left' => ' atbildes līdz mērķa sasniegšanai', 
+    'view_statistics'  => 'Skatīt statistiku', 
+    'share_questionnaire' => 'Kopīgo anketu:', 
+    'thank_you_for_sharing' => 'Paldies par dalīšanos ar anketu! <br> Tu drīz saņemsi e-pastu ar savu nozīmīti!'
 
 
 

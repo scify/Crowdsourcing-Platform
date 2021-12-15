@@ -33,8 +33,8 @@ return [
     'password_not_match'          => 'A confirmação da palavra passe não teve sucesso.',
     'password_min_characters'     => 'A senha deve ter pelo menos 8 caracteres.',
     'credentials_not_match'       => 'Essas credenciais não correspondem aos nossos registros.',
-    'one_step_away'               => 'You’re one step away!',
-    'avoid_duplicate_submissions' => 'In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue'
+    'one_step_away'               => 'Está a um passo do final!',
+    'avoid_duplicate_submissions' => 'Para evitar submissões duplicadas, apenas os participantes registados podem contribuir. Por favor faça login para continuar'
 
 
 

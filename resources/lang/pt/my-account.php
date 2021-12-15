@@ -19,9 +19,9 @@ return [
     'are_you_sure' => 'Tem certeza?', 
     'warning_for_deactivation' => '<b>Aviso:</b> esta ação irá apagar a sua conta.<br><br> Você perderá todos os seus crachás e não poderá participar mais na plataforma.',
     'deactivate_my_account_2' => 'Eu entendo, por favor, desative minha conta',
-    'current_password' => 'Current Password', 
-    'new_password' => 'New Password', 
-    're_enter_password' => 'Re-enter Password'
+    'current_password' => 'Password atual', 
+    'new_password' => 'Nova palavra passe', 
+    're_enter_password' => 'Reintroduza a palavra passe'
 
 
 ];

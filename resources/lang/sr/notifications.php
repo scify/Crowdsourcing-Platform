@@ -1,0 +1,38 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications elements
+    |--------------------------------------------------------------------------
+
+    */
+
+    
+
+    'go_to_dashboard'                   => 'Idite na Kontrolnu tablu',
+    'thank_you_for_contribution'        => 'Hvala Vam na doprinosu!',
+    'hello'                             => 'Zdravo!',
+    'thanks_message_for_answering_2'    => 'Hvala Vam što ste izdvojili vrijeme da odgovorite na naš upitnik',
+    'really_means'                      => 'Ovo nam zaista mnogo znači!',
+    'increase_your_impact'              => 'Pojačajte Vaš uticaj',
+    'invite_your_friends'               => 'Idite na svoju Kontrolnu tablu i pozovite svoje prijatelje!',    
+    'thanks_message_2'                  => 'Hvala Vam još jednom!',
+    'thank_you_for_sharing'             => 'Hvala Vam za dijeljenje!',
+    'sharing_the_questionnaire'         => 'Hvala Vam što ste podijelili Upitnik<br>',
+    'sharing_is_caring'                 => 'Dijeljenje je pokazivanje da ti je stalo!',
+    'visit_your_dashboard'              => 'Posjetite Vašu kontrolnu tablu da vidite šta dalje',
+    'thank_you_for_referral'            => 'Hvala Vam na preporuci!',
+    'making_impact'                     => 'Vi stvarate uticaj!',
+    'someone_answered_to_questionnaire' => 'Neko je odgovorio na upitnik koji ste podijelili!<br>',
+    'visit_your_dashboard_and_invite'   => 'Posjetite svoju kontrolnu tablu i pozovite još prijatelja',
+    'thanks_message'                    => 'Hvala Vam što ste se prdružili Crowdsourcing platformi!',
+    'make_an_impact'                    => 'Da li ste spremni da napravite uticaj?',
+    'visit_your_dashboard_contribute'   => 'Posjetite svoju Kontrolnu tablu da vidite kako možete da doprinesete:'
+
+
+
+
+
+];
