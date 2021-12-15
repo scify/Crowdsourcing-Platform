@@ -53,6 +53,17 @@ class CrowdSourcingProjectForLandingPage {
         return $url;
     }
 
+
+    public function displayFeedbackQuestionnaire():bool
+    {
+        // if user has responded to the main questionnaire,
+        // and a feedback questionnaire exists
+        // and the feedback questionnare has not been answered
+        return $this->userResponse !=null &&
+            $this->feedbackQuestionnaire !=null
+            && $this->userFeedbackQuestionnaireResponse ==null;
+    }
+
     public function shouldShowQuestionnaireStatisticsLink(): bool {
         return false;
     }

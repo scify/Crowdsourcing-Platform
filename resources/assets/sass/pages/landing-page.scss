@@ -209,7 +209,7 @@ ol {
 
 }
 
-#questionnaire-modal {
+.questionnaire-modal {
   z-index: 100000;
 
   .modal-title {
@@ -359,6 +359,17 @@ ol {
     font-size: x-large;
   }
 
+  .respond-questionnaire.feedback{
+    text-decoration: underline;
+    color:$button-background-color;
+  }
+
+  .anonymous-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size:24px;
+  }
   .dashboard-message {
     font-family: Avenir, Helvetica, sans-serif;
     box-sizing: border-box;
