@@ -48,12 +48,21 @@ class QuestionnaireRepository extends Repository {
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->where('user_id', $userId)->first();
     }
 
-    public function getAllResponsesForQuestionnaire($questionnaireId) {
+    public function getLatestResponsesForQuestionnaire($questionnaireId) {
         return DB::table('questionnaire_responses')
             ->select('questionnaire_responses.created_at', 'u.nickname as user_name')
             ->join('users as u', 'u.id', '=', 'questionnaire_responses.user_id')
             ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
+            ->get();
+    }
+
+    public function countAllResponsesForQuestionnaire($questionnaireId) {
+        return DB::table('questionnaire_responses')
+            ->select('questionnaire_responses.id')
+            ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
+            ->orderBy('created_at', 'desc')->count();
     }
 
     public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,

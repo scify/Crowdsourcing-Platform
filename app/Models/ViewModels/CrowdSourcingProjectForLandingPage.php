@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class CrowdSourcingProjectForLandingPage {
     public $project;
     public $questionnaire;
+    public $feedbackQuestionnaire;
     public $userResponse;
+    public $userFeedbackQuestionnaireResponse;
     public $allResponses;
     public $totalResponses;
     public $questionnaireGoalVM;
@@ -17,16 +19,23 @@ class CrowdSourcingProjectForLandingPage {
     public $languages;
     public $openQuestionnaireWhenPageLoads = false;
 
-    public function __construct($project, $questionnaire,
+    public function __construct(
+        $project,
+        $questionnaire,
+        $feedbackQuestionnaire,
         $userResponse,
+        $userFeedbackQuestionnaireResponse,
         $allResponses,
         $questionnaireGoalVM,
         $socialMediaMetadataVM,
-                                Collection $languages,
-        $openQuestionnaireWhenPageLoads) {
+        Collection $languages,
+        $openQuestionnaireWhenPageLoads)
+    {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
+        $this->feedbackQuestionnaire= $feedbackQuestionnaire;
         $this->userResponse = $userResponse;
+        $this->userFeedbackQuestionnaireResponse = $userFeedbackQuestionnaireResponse;
         $this->allResponses = $allResponses;
         $this->totalResponses = $allResponses->count();
         $this->questionnaireGoalVM = $questionnaireGoalVM;
