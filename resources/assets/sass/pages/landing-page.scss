@@ -364,6 +364,7 @@ ol {
     color:$button-background-color;
   }
 
+
   .anonymous-title{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -637,6 +638,10 @@ footer {
   top: 40%;
   left: 45%;
   position: relative;
+}
+
+.sweet-alert{
+  z-index: 10001;
 }
 
 

@@ -16,7 +16,7 @@
                     <h2 class="anonymous-title text-left">{{ __("questionnaire.answers_saved_anonymously") }}</h2>
                     <p class="dashboard-message mt-4 mb-0 text-left w-100">
                         {{ __("questionnaire.login_to_complete_submission") }}</p>
-                    <p class="dashboard-message mt-4 text-left w-100">{!! __("questionnaire.by_registering_you") !!}</p>
+                    <p class="dashboard-message text-left w-100">{!! __("questionnaire.by_registering_you") !!}</p>
                     <ul>
                         <li>- {!! __("questionnaire.filter_spammers") !!}</li>
                         <li>- {!! __("questionnaire.view_your_contribution") !!}</li>

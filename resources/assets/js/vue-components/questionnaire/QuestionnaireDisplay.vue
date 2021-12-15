@@ -94,6 +94,9 @@ export default {
     surveyContainerId:{
       type: String
     },
+    idOfModalToOpenWhenSubmitted:{
+      type: String
+    },
     languages: []
   },
   data: function () {
@@ -213,13 +216,29 @@ export default {
     },
     displaySuccessResponse(badgeHTML) {
       $(".loader-wrapper").addClass('hidden');
-      let questionnaireResponded = $("#questionnaire-responded");
-      // add badge fetched from response to the appropriate container
-      if (badgeHTML) {
-        questionnaireResponded.find('.badge-container').html(badgeHTML);
-        questionnaireResponded.modal({backdrop: 'static'});
-        $("#pyro").addClass("pyro-on");
+      if (this.idOfModalToOpenWhenSubmitted){ //if property is defined display the requested modal
+        let questionnaireResponded = $("#"+ this.idOfModalToOpenWhenSubmitted);
+        // add badge fetched from response to the appropriate container
+        if (badgeHTML) {
+          questionnaireResponded.find('.badge-container').html(badgeHTML);
+          questionnaireResponded.modal({backdrop: 'static'});
+          $("#pyro").addClass("pyro-on");
+        }
       }
+      else{
+        //close all modals
+        $('.modal').modal('hide');
+        //display a thank you message
+        swal({
+          title: "Thank you",
+          type: "success",
+          confirmButtonText: "OK",
+          closeOnConfirm: true
+        },function(){
+          location.reload();
+        });
+      }
+
     },
     displayErrorResponse(error) {
       swal({
