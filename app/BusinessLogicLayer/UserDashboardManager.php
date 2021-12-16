@@ -43,8 +43,10 @@ class UserDashboardManager {
 
 
     public function getUserDashboardViewModel($user): UserDashboardViewModel {
-        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
-            ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
+        $questionnairesUserHasAnsweredTo = $this->questionnaireResponseRepository
+                                            ->allWhere(['user_id' => $user->id]);
+
+        $questionnaireIdsUserHasAnsweredTo = $questionnairesUserHasAnsweredTo->pluck('questionnaire_id')->toArray();
         // should show only projects that are published and have at least 1 published questionnaire
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
 
