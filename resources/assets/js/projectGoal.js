@@ -1,4 +1,4 @@
-let ProjectGoal = require('progressbar.js');
+//let ProjectGoal = require('progressbar.js');
 
 (function () {
     let displayProgressBar = function () {
@@ -39,7 +39,8 @@ let ProjectGoal = require('progressbar.js');
     };
 
     let init = function () {
-        displayProgressBar();
+        //displayProgressBar();
+
     };
     $(document).ready(function () {
         init();
