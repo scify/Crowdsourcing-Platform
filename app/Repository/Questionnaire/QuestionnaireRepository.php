@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class QuestionnaireRepository extends Repository {
 
-    function getModelClassName() {
+    function getModelClassName(){
         return Questionnaire::class;
     }
 
@@ -53,6 +53,7 @@ class QuestionnaireRepository extends Repository {
             ->select('questionnaire_responses.created_at', 'u.nickname as user_name')
             ->join('users as u', 'u.id', '=', 'questionnaire_responses.user_id')
             ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
+            ->whereNull('questionnaire_responses.deleted_at')
             ->orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
@@ -62,6 +63,7 @@ class QuestionnaireRepository extends Repository {
         return DB::table('questionnaire_responses')
             ->select('questionnaire_responses.id')
             ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
+            ->whereNull('questionnaire_responses.deleted_at')
             ->orderBy('created_at', 'desc')->count();
     }
 
