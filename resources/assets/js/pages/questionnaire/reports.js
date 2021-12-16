@@ -186,6 +186,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         questionnaire = response.data.questionnaire;
         initializeDataTables();
         answers = response.data.responses;
+        console.log(answers);
         survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
