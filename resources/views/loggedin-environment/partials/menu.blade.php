@@ -1,37 +1,10 @@
 @include("loggedin-environment.partials.header-controls")
 
+@can("manage-crowd-sourcing-projects")
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="{{route('home')}}" class="brand-link">
-        <img loading="lazy" src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
-             alt="Main Logo" class="brand-image">
-    </a>
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                <li class="nav-header"> {{ __("menu.main_navigation") }}</li>
-                <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
-                    <a class="nav-link" href="{{route("my-dashboard")}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>{{ __("menu.my_dashboard") }}</p>
-
-                    </a>
-                </li>
-                <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
-                    <a class="nav-link" href="{{route("my-account")}}">
-                        <i class="nav-icon fa fa-user"></i>
-                        <p>{{ __("menu.my_account") }}</p>
-
-                    </a>
-                </li>
-
-                @if($userHasContributedToAProject)
-                    <li class="nav-item {{ UrlMatchesMenuItem("myHistory")}}">
-                        <a class="nav-link" href="{{route("myHistory")}}">
-                            <i class="nav-icon fa fa-history"></i>
-                            <p>{{ __("menu.my_history") }}</p>
-                        </a>
-                    </li>
-                @endif
                 @can("manage-crowd-sourcing-projects")
                     <li class="nav-header">CONTENT MANAGEMENT</li>
 
@@ -73,3 +46,4 @@
         </nav>
     </div>
 </aside>
+@endcan

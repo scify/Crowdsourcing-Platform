@@ -54,8 +54,8 @@ Route::group(['prefix' => '{locale}',
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get("/admin/manage-users", "AdminController@manageUsers")->middleware("can:manage-users");
-    Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->middleware("can:manage-users");
+    Route::get("/admin/manage-users", "AdminController@manageUsers")->name('manage-users')->middleware("can:manage-users");
+    Route::get("/admin/edit-user/{id}", "AdminController@EditUserForm")->name('edit-user')->middleware("can:manage-users");
     Route::post("/admin/add-user", "AdminController@addUserToPlatform")->middleware("can:manage-users");
     Route::post("admin/update-user", "AdminController@updateUserRoles")->middleware("can:manage-platform");
     Route::post('/user/update', 'UserController@patch')->name('updateUser');

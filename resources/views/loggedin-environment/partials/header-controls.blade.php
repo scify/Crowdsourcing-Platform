@@ -1,10 +1,22 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header  navbar navbar-expand navbar-white navbar-light">
     <!-- Sidebar toggle button-->
     <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a></li>
+        <li class="nav-item"> <img loading="lazy" height="40" src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
+                                   alt="Main Logo" class="brand-image"></li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item {{ UrlMatchesMenuItem("my-dashboard")}}">
+            <a class="nav-link" href="{{route("my-dashboard")}}"> {{ __("menu.my_dashboard") }} </a>
+        </li>
+        <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
+            <a class="nav-link" href="{{route("my-account")}}"> {{ __("menu.my_account") }} </a>
+        </li>
+        @if($userHasContributedToAProject)
+            <li class="nav-item {{ UrlMatchesMenuItem("myHistory")}}">
+                <a class="nav-link" href="{{route("myHistory")}}"> {{ __("menu.my_history") }} </a>
+            </li>
+        @endif
         <li class="nav-item dropdown user user-menu">
             <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if (Auth::user()->avatar)
@@ -17,7 +29,7 @@
                 <!-- User image -->
                 <li class="user-header">
                     @if (Auth::user()->avatar)
-                        <img loading="lazy" src="{{Auth::user()->avatar}}" class="img-circle"">
+                        <img loading="lazy" src="{{Auth::user()->avatar}}" class="img-circle">
                     @endif
                     <p>
                         {{ Auth::user()->name }} {{ Auth::user()->nickname }}
