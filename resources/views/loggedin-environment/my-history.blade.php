@@ -51,7 +51,7 @@
                                     <td class="align-middle">
                                         <button class="btn btn-block btn-primary viewResponseBtn"
                                                 data-responseid="{{ $response->questionnaire_response_id }}">
-                                            View response{{ __("my-history.view_response")}}
+                                            {{ __("my-history.view_response")}}
                                         </button>
                                     </td>
                                 </tr>
@@ -84,7 +84,7 @@
 @endsection
 @push('scripts')
     <script>
-        const responses = {!!  json_encode($responses) !!};
+        const responses = Object.values(@json($responses));
     </script>
     <script src="{{ mix('dist/js/myQuestionnaireResponses.js') }}"></script>
 @endpush
