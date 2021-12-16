@@ -34,7 +34,7 @@
                                         <div class="col-md-5 col-sm-12 mx-auto">
                                             @include("landingpages.partials.open-feedback-questionnaire-button",
                                                         [
-                                                            "css_class"=> "btn btn-primary w-100 ",
+                                                            "css_class"=> "btn btn-primary w-100 call-to-action ",
                                                             "label"=>  __("questionnaire.give_us_feedback")
                                                         ])
                                         </div>
