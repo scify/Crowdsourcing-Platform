@@ -137,6 +137,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
   }
 }
+.logged-in-env .main-header{
+  padding-left:35px;
+
+}
+.logged-in-env{
+  .main-header,.content-wrapper, .main-footer{
+    margin-left:0 !important;
+    .container-fluid{
+      max-width:1440px;
+      margin:auto;
+    }
+  }
+}
+.logged-in-env.display-admin-menu{
+  .main-header,.content-wrapper, .main-footer{
+    margin-left:250px !important;;
+  }
+}
 
 .red {
   color: $brand-danger;
