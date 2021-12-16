@@ -29,7 +29,7 @@
     </div>
 </div>
 
-@include("partials.footer-scripts")
+@include("partials.footer-scripts",["includeBackofficeCommonJs" => false]))
 
 @stack('scripts')
 

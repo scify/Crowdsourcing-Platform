@@ -2,12 +2,12 @@ const mix = require('laravel-mix');
 
 mix.disableSuccessNotifications();
 
-mix.js('resources/assets/js/common.js', 'public/dist/js/')
+mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/pages/register.js', 'public/dist/js')
+    .js('resources/assets/js/pages/home.js', 'public/dist/js')
     .js('resources/assets/js/pages/myProfile.js', 'public/dist/js')
     .js('resources/assets/js/pages/manageQuestionnaires.js', 'public/dist/js')
     .js('resources/assets/js/pages/landingPage.js', 'public/dist/js')
-    .js('resources/assets/js/pages/home.js', 'public/dist/js')
     .js('resources/assets/js/projectGoal.js', 'public/dist/js')
     .js('resources/assets/js/pages/manageProject.js', 'public/dist/js')
     .js('resources/assets/js/pages/myQuestionnaireResponses.js', 'public/dist/js')
@@ -16,10 +16,16 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/questionnaireSocialShare.js', 'public/dist/js')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
     .js('resources/assets/js/UsersListController.js', 'public/dist/js')
+    // .extract([
+    //     'jquery', 'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert',
+    //     'select2', 'bootstrap', 'jquery-toast-plugin', 'bootstrap-tagsinput',
+    //     'bootstrap-colorpicker', 'survey-jquery', 'survey-knockout', 'survey-creator'
+    // ])
+    // .extract([
+    //     'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-jquery', 'survey-knockout'
+    // ])
     .extract([
-        'jquery', 'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert',
-        'select2', 'bootstrap', 'jquery-toast-plugin', 'bootstrap-tagsinput',
-        'bootstrap-colorpicker', 'survey-jquery', 'survey-knockout', 'survey-creator'
+        'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-knockout'
     ])
     .sourceMaps()
     .webpackConfig({

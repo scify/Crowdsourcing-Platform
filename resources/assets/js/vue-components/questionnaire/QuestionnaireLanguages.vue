@@ -67,7 +67,7 @@
 
 import {mapActions} from "vuex";
 import _ from "lodash";
-import {showToast} from "../../common";
+import {showToast} from "../../common-utils";
 
 export default {
   name: "QuestionnaireLanguages",

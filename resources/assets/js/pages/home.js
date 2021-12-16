@@ -1,5 +1,2 @@
-'use strict';
+require('../bootstrap');
 
-(function () {
-
-})();
