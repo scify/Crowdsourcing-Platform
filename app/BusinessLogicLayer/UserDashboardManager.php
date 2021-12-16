@@ -77,17 +77,29 @@ class UserDashboardManager
      */
     private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection
     {
-        if ($q->type_id == 2) {
-            //This is a feedback questionnaire.
-            //Let's find the main project that the user answered. THis could be for example /gr/air-quality-athens
-            // We will only display this in the contribute (And we will skip all other projects related with the questionnaire)
-            $mainResponse = $userResponses->first(function ($u) use ($q) {
-                return $u->questionnaire->type_id == 1 &&
-                    $q->projects->firstWhere("id", $u->project_id) != null;
-            });
-            return collect([$q->projects->firstWhere("id",$mainResponse->project_id)]);
-        }
-        return $q->projects;
+
+        //If user has already responded to this questionnaire, then any other actions,
+        // like
+        // a)  responding to the feedback questionnaire or
+        // b) sharing to social media,
+        // should be done for the main project that the user answered.
+        //
+        // For example user answered a questionnaire via page  /gr/air-quality-athens, but the questionnaire can also
+        // belongs to project /pt/air-quality-lisbon
+
+        //When opening the dashboard, the user
+        // a) should only share the questionnaire via the /gr/air-quality-athens page.
+        // b) should provide feedback by navigating to /gr/air-quality-athens.
+
+        // So what we need to do, is to find if there is response for a Main project already.
+        $mainResponse = $userResponses->first(function ($u) use ($q) {
+            return $u->questionnaire->type_id == 1 &&
+                $q->projects->firstWhere("id", $u->project_id) != null;
+        });
+        if ($mainResponse)
+            return collect([$q->projects->firstWhere("id", $mainResponse->project_id)]);
+        else
+            return $q->projects;
     }
 
     public function getUserDashboardViewModel($user): UserDashboardViewModel
