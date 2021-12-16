@@ -24,9 +24,7 @@ import AnalyticsLogger from "../analytics-logger";
     let openQuestionnaireIfNeeded = function () {
         let respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
         if (respondQuestionnaire.first().data("open-on-load") === 1){
-            window.setTimeout(function(){
-                respondQuestionnaire.first().trigger("click");
-            },500);
+            respondQuestionnaire.first().trigger("click");
         }
     };
 
