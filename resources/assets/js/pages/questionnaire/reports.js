@@ -168,7 +168,6 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             },
             success: function (response) {
                 parseSuccessData(response);
-                loader.addClass('d-none');
             },
             error: function (error) {
                 loader.addClass('d-none');
@@ -179,17 +178,17 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
     };
 
     let parseSuccessData = function (response) {
+        console.log(response.data);
         const resultsEl = $("#results");
         resultsEl.html("");
         $("#errorMsg").addClass('d-none');
         resultsEl.html(response.data.view);
         questionnaire = response.data.questionnaire;
-        initializeDataTables();
         answers = response.data.responses;
-        console.log(answers);
         survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
+        initializeDataTables();
         initializeQuestionnaireResponsesReport();
         loader.addClass('d-none');
     };
