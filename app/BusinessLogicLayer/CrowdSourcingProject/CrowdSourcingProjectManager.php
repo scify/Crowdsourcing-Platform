@@ -124,8 +124,6 @@ class CrowdSourcingProjectManager {
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire,$countAll);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
-            if ($userResponse != null)
-                $openQuestionnaireWhenPageLoads = false;
         }
         if ($feedbackQuestionnaire)
             $userFeedbackQuestionnaireResponse =

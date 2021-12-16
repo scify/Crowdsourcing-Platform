@@ -22,7 +22,7 @@ import AnalyticsLogger from "../analytics-logger";
     };
 
     let openQuestionnaireIfNeeded = function () {
-        let respondQuestionnaire = $(".respond-questionnaire");
+        let respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
         if (respondQuestionnaire.first().data("open-on-load") === 1)
             respondQuestionnaire.first().trigger("click");
     };
