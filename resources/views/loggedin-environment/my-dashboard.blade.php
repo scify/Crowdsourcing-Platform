@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-   {{-- <h1 class="m-0 text-dark">{{ __("menu.my_dashboard") }}</h1>--}}
+    {{-- <h1 class="m-0 text-dark">{{ __("menu.my_dashboard") }}</h1>--}}
 @endsection
 
 @push('css')
@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card card-success card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}</h3>
+                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}. You get more badges by responding and inviting others to do so!</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -37,41 +37,41 @@
                                             <tr class="d-flex">
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="container-fluid">
-                                                        <div class="row">
-                                                            @foreach($questionnaire->projects as $project)
-                                                                <div class="col-md-6 col-sm-12 mx-auto">
-                                                                    <a href="{{ route('project.landing-page', $project->slug) }}">
-                                                                        <img loading="lazy" class="project-logo w-100"
-                                                                             alt="Project logo for {{$project->defaultTranslation->name}}"
-                                                                             src="{{asset($project->logo_path)}}">
-                                                                        <br>
-                                                                        <p class="project-title mt-2">{{ $project->defaultTranslation->name }}</p>
-                                                                    </a>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
 
-                                                </td>
-                                                <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
-                                                    <div class="progress-container">
-                                                        @include('landingpages.partials.project-goal',
-                                                        ['questionnaireId' => $questionnaire->id, 'questionnaireViewModel' => $questionnaire->goalVM, 'project' => $questionnaire->projects->get(0)])
-                                                        @if ($questionnaire->userHasAccessToViewStatisticsPage)
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <a class="btn btn-primary" target="_blank"
-                                                                       href="{{ route('questionnaire.statistics', $questionnaire) }}">
-                                                                        <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
-                                                                    </a>
-                                                                </div>
-                                                            </div>
+                                                        <h4>  {{ $questionnaire->title }}</h4>
+                                                        @if ($questionnaire->type_id==2)
+                                                            <a href="{{ route('project.landing-page',$questionnaire->projects[0]->slug) }}">
+                                                                <img loading="lazy" class="project-logo" style="max-height:70px;"
+                                                                     alt="Project logo for {{$questionnaire->projects[0]->defaultTranslation->name}}"
+                                                                     src="{{asset($questionnaire->projects[0]->logo_path)}}">
+                                                                <br>
+                                                            </a>
                                                         @endif
                                                     </div>
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-12 justify-content-center align-self-center border-top-0">
                                                     @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])
                                                 </td>
+                                                <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
+                                                    @if ($questionnaire->type_id==1)
+                                                        <div class="progress-container">
+                                                            @include('landingpages.partials.project-goal',
+                                                            ['questionnaireId' => $questionnaire->id, 'questionnaireViewModel' => $questionnaire->goalVM, 'project' => $questionnaire->projects->get(0)])
+                                                            @if ($questionnaire->userHasAccessToViewStatisticsPage)
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <a class="btn btn-primary" target="_blank"
+                                                                           href="{{ route('questionnaire.statistics', $questionnaire) }}">
+                                                                            <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    @endif
+
+                                                </td>
+
                                             </tr>
                                         @endforeach
                                         </tbody>

@@ -146,6 +146,9 @@ const app = new Vue({
         });
     }
 
+    let initializeTooltips =function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     $(function () {
         $(document).ready(function () {
             initializeIcheck();
@@ -155,6 +158,7 @@ const app = new Vue({
             handleLogoutBtnClick();
             initClipboardElements();
             listenToReadMoreClicks();
+            initializeTooltips();
         });
     });
 })();
