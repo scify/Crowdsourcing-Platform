@@ -49,7 +49,7 @@
 <script>
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
-import {arrayMove, setCookie} from "../../common";
+import {arrayMove, setCookie} from "../../common-utils";
 import AnalyticsLogger from "../../analytics-logger";
 
 export default {

@@ -192,7 +192,7 @@ import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
 import _ from "lodash";
-import {arrayMove, showToast} from "../../common";
+import {arrayMove, showToast} from "../../common-utils";
 
 export default {
   created() {

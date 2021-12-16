@@ -1,6 +1,7 @@
 import * as Survey from "survey-knockout";
 import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
+
 (function () {
 
     let table, respondentsTable, questionnaire, answers, survey, loader;
