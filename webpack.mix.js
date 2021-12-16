@@ -19,7 +19,7 @@ mix.js('resources/assets/js/common.js', 'public/dist/js/')
     .extract([
         'jquery', 'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert',
         'select2', 'bootstrap', 'jquery-toast-plugin', 'bootstrap-tagsinput',
-        'bootstrap-colorpicker', 'survey-jquery', 'survey-knockout', 'survey-creator', 'bs-stepper'
+        'bootstrap-colorpicker', 'survey-jquery', 'survey-knockout', 'survey-creator'
     ])
     .sourceMaps()
     .webpackConfig({
