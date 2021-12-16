@@ -62,6 +62,12 @@ class QuestionnaireResponseRepository extends Repository {
         }
     }
 
+    public function getQuestionnaireResponsesOfUser($userId){
+        return  QuestionnaireResponse::with("questionnaire")
+            ->where('user_id', $userId)
+            ->get();
+    }
+
     public function getAllResponsesGivenByUser($userId) {
         // here we select the columns that we want to fetch, due to this mySQL 8 bug:
         // https://bugs.mysql.com/bug.php?id=103225
