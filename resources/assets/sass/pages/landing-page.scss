@@ -158,14 +158,15 @@ ol {
   @include media-breakpoint-up(md) {
     padding: 7vh 10vh;
   }
-  min-height: 100px;
-
   .content-container {
     font-size: 20px;
+    color: white;
     @include media-breakpoint-up(md) {
       padding: 5vh 12vh;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
     }
-    color: white;
   }
 
   #machine-translation-indicator {
