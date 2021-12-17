@@ -30,7 +30,7 @@ Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
 
 Offering the code under open source licenses includes many benefits. Of those, the ones related to our project, are:
 
-- There is no dependency on the developer of the solution (SciFY), but other collaborators can be used after the end of the project. A very common problem is that users are forced to cooperate with the software developer. This often causes problems, e.g. When they are unhappy with him, or if the supplier stops operating. The code remains always freely available.
+- There is no dependency on the developer of the solution (SciFY), but other collaborators can be used after the end of the project. The code remains always freely available.
 - Stakeholders can add features, change it, improve it, adjust to their needs. 
 - New contributions are added to the existing solution so that everyone benefit
 
