@@ -11,7 +11,7 @@ return [
 
     'my_history' => 'My history',
     'my_contributions' => 'My Contributions',
-    'number_of_questionnaires' => 'You have contributed to ',
+    'number_of_questionnaires' => '{0} You have contributed to zero questionnaires |{1}  You have contributed to 1 questionnaire |[2,*] You have contributed to  :count questionnaires"',
     'no_questionnaires' => 'You haven’t responded to any questionnaires, yet.',
     'project' => 'Project',
     'questionnaire_title' => 'Questionnaire title',

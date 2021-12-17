@@ -9,13 +9,13 @@ return [
 
     */
 
-    'login' => 'LOGIN', //??
-    'register' => 'Register', //??
-    'dashboard' =>  'DASHBOARD', //??
-    'main_navigation' => 'MAIN NAVIGATION', //??
-    'my_dashboard' => 'My Dashboard', 
-    'my_account' => 'My Account', 
-    'my_history' => 'My history',
+    'login' => 'Вход', //??
+    'register' => 'Регистрация', //??
+    'dashboard' =>  'Табло за управление', //??
+    'main_navigation' => 'Меню', //??
+    'my_dashboard' => 'Табло за управление', 
+    'my_account' => 'Моят акаунт', 
+    'my_history' => 'История на ползването',
     'sign_out' => 'Sign out'
 
 
