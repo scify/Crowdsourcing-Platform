@@ -194,7 +194,7 @@ class UserManager {
             Log::info(Auth::user());
             return Auth::user();
         }
-        Log::info("no user found", Auth::user());
+        Log::info("no user found".  Auth::user());
         if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             try {
                 return $this->userRepository->find(intval($_COOKIE[UserManager::$USER_COOKIE_KEY]));
