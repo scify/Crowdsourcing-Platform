@@ -90,6 +90,7 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage(
+        $questionnaireIdRequestedInTheURL,
         $project_slug,
         $openQuestionnaireWhenPageLoads):CrowdSourcingProjectForLandingPage {
         $userId = null;
@@ -103,8 +104,13 @@ class CrowdSourcingProjectManager {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
+
         $activeQuestionnairesForThisProject =$this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
-        $questionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 1);
+        if ($questionnaireIdRequestedInTheURL)
+            $questionnaire =$activeQuestionnairesForThisProject->firstWhere("id", "=", $questionnaireIdRequestedInTheURL);
+        else
+            $questionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 1);
+
         $feedbackQuestionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 2);
 
         $userResponse = null;
