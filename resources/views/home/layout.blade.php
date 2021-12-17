@@ -41,7 +41,7 @@
     <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
 
-@include('partials.footer-scripts',["includeBackofficeCommonJs" => false]))
+@include('partials.footer-scripts')
 <script src="{{mix('dist/js/home.js')}}"></script>
 
 </body>
