@@ -14,6 +14,7 @@ class CreateEditQuestionnaire {
     public $questionnaireStatisticsPageVisibilityLkp;
     public $translationMetaData;
     public $questionnaireFieldsTranslations;
+    public $type;
 
     public function __construct(Questionnaire $questionnaire,
                                 Collection    $projects,

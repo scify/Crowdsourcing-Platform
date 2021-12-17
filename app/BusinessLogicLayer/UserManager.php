@@ -190,8 +190,9 @@ class UserManager {
     }
 
     public function getLoggedInUserOrCreateAnonymousUser() {
-        if (Auth::check())
+        if (Auth::check()){
             return Auth::user();
+        }
         if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             try {
                 return $this->userRepository->find(intval($_COOKIE[UserManager::$USER_COOKIE_KEY]));

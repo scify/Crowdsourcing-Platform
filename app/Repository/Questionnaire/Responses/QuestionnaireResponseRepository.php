@@ -38,10 +38,13 @@ class QuestionnaireResponseRepository extends Repository {
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             return;
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
-        if ($anonymousUserId === $user_id)
+        if ($anonymousUserId === $user_id) {
+            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
             return;
+        }
+
         try {
-            Log::info('Transferring responses from user: ' . $anonymousUserId . ' to user: ' . $user_id);
+            //Log::info('Transferring responses from user: ' . $anonymousUserId . ' to user: ' . $user_id);
             $user = User::findOrFail($anonymousUserId);
             $questionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
             $questionnaireResponseQuestionnaireIds = $questionnaireResponses->pluck('questionnaire_id')->toArray();
@@ -57,6 +60,12 @@ class QuestionnaireResponseRepository extends Repository {
             Log::error('Transfer error:' . $e->getMessage());
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
         }
+    }
+
+    public function getQuestionnaireResponsesOfUser($userId){
+        return  QuestionnaireResponse::with("questionnaire")
+            ->where('user_id', $userId)
+            ->get();
     }
 
     public function getAllResponsesGivenByUser($userId) {

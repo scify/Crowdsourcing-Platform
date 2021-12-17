@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $project_id
  * @property int $status_id
+ * @property int $type_id
  * @property int $default_language_id
  * @property string $title
  * @property string $description
@@ -48,6 +49,7 @@ class Questionnaire extends Model {
         'project_id',
         'prerequisite_order',
         'status_id',
+        'type_id',
         'default_language_id',
         'goal',
         'questionnaire_json',

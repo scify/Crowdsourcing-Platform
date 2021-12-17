@@ -1,4 +1,4 @@
-<div class="modal fade" id="questionnaire-modal" tabindex="-1" role="dialog">
+<div class="modal fade questionnaire-modal " id="questionnaire-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -32,6 +32,8 @@
                         <hr>
                     @endif
                     <questionnaire-display
+                            survey-container-id="questionnaire_project"
+                            id-of-modal-to-open-when-submitted="questionnaire-responded"
                             :user='@json($viewModel->getLoggedInUser())'
                             :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'

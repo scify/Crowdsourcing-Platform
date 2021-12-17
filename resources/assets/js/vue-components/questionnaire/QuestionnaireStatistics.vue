@@ -95,7 +95,7 @@ import {mapActions} from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTextQuestionStatisticsCustomVisualizer";
 import Promise from "lodash/_Promise";
 import _ from "lodash";
-import {showToast} from "../../common";
+import {showToast} from "../../common-utils";
 
 export default {
   props: {

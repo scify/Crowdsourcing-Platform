@@ -20,7 +20,7 @@
         <![endif]-->
         @include('analytics')
     </head>
-    <body class="hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
+    <body class="logged-in-env {{ app(\Illuminate\Contracts\Auth\Access\Gate::class)->check("manage-crowd-sourcing-projects")? "display-admin-menu": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
         <div id="app" class="wrapper">
             @if(Auth::check())
                 @include("loggedin-environment.partials.menu")
@@ -60,7 +60,7 @@
                 'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
             ]) !!};
         </script>
-        @include("partials.footer-scripts")
+        @include("partials.footer-scripts",["includeBackofficeCommonJs" => true])
 
     </body>
 </html>

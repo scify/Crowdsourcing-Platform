@@ -1,14 +1,13 @@
 <?php
 
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
-
-use App\BusinessLogicLayer\CurrentQuestionnaireProvider;
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\AllCrowdSourcingProjects;
 use App\Models\ViewModels\CreateEditCrowdSourcingProject;
 use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
@@ -36,7 +35,6 @@ class CrowdSourcingProjectManager {
     protected $crowdSourcingProjectStatusHistoryRepository;
     protected $crowdSourcingProjectAccessManager;
     protected $questionnaireGoalManager;
-    protected $currentQuestionnaireProvider;
     protected $languageRepository;
     protected $crowdSourcingProjectColorsManager;
     protected $questionnaireResponseRepository;
@@ -48,7 +46,6 @@ class CrowdSourcingProjectManager {
                                 CrowdSourcingProjectAccessManager           $crowdSourcingProjectAccessManager,
                                 CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
                                 QuestionnaireGoalManager                    $questionnaireGoalManager,
-                                CurrentQuestionnaireProvider                $currentQuestionnaireProvider,
                                 LanguageRepository                          $languageRepository,
                                 CrowdSourcingProjectColorsManager           $crowdSourcingProjectColorsManager,
                                 QuestionnaireResponseRepository             $questionnaireResponseRepository,
@@ -59,7 +56,6 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->questionnaireGoalManager = $questionnaireGoalManager;
-        $this->currentQuestionnaireProvider = $currentQuestionnaireProvider;
         $this->languageRepository = $languageRepository;
         $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
@@ -93,42 +89,52 @@ class CrowdSourcingProjectManager {
         return $project;
     }
 
-    public function getCrowdSourcingProjectViewModelForLandingPage($questionnaireId, $project_slug, $openQuestionnaireWhenPageLoads):
-    CrowdSourcingProjectForLandingPage {
+    public function getCrowdSourcingProjectViewModelForLandingPage(
+        $questionnaireIdRequestedInTheURL,
+        $project_slug,
+        $openQuestionnaireWhenPageLoads):CrowdSourcingProjectForLandingPage {
         $userId = null;
-        $questionnaireIdsUserHasAnsweredTo = [];
+
+
         // if the user is logged in, get the user id
         if (Auth::check()) {
             $userId = Auth::id();
         } // else, check if the user is anonymous (by checking the cookie) and get the user id
         else if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
-        if ($userId)
-            $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
-                ->allWhere(['user_id' => $userId])->pluck('questionnaire_id')->toArray();
+
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
-        $userResponse = null;
-        $questionnaireGoalVM = null;
-        $allResponses = collect([]);
-
-        if ($questionnaireId)
-            $questionnaire = $this->questionnaireRepository->find($questionnaireId);
+        $activeQuestionnairesForThisProject =$this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
+        if ($questionnaireIdRequestedInTheURL)
+            $questionnaire =$activeQuestionnairesForThisProject->firstWhere("id", "=", $questionnaireIdRequestedInTheURL);
         else
-            $questionnaire = $this->currentQuestionnaireProvider->getCurrentQuestionnaire($project->id, $userId, new Collection(), $questionnaireIdsUserHasAnsweredTo);
+            $questionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 1);
+
+        $feedbackQuestionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 2);
+
+        $userResponse = null;
+        $userFeedbackQuestionnaireResponse = null;
+        $questionnaireGoalVM = null;
+        $latestResponses = collect([]);
 
         if ($questionnaire) {
-            $allResponses = $this->questionnaireRepository->getAllResponsesForQuestionnaire($questionnaire->id);
-            $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire, $allResponses->count());
+            $latestResponses = $this->questionnaireRepository->getLatestResponsesForQuestionnaire($questionnaire->id);
+            $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
+            $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire,$countAll);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
-            if ($userResponse != null)
-                $openQuestionnaireWhenPageLoads = false;
         }
+        if ($feedbackQuestionnaire)
+            $userFeedbackQuestionnaireResponse =
+                $this->questionnaireRepository->getUserResponseForQuestionnaire($feedbackQuestionnaire->id, $userId);
 
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
-        return new CrowdSourcingProjectForLandingPage($project, $questionnaire,
+        return new CrowdSourcingProjectForLandingPage($project,
+            $questionnaire,
+            $feedbackQuestionnaire,
             $userResponse,
-            $allResponses,
+            $userFeedbackQuestionnaireResponse,
+            $latestResponses,
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
             $this->languageRepository->all(),

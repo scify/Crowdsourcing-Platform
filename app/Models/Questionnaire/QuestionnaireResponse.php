@@ -42,8 +42,9 @@ class QuestionnaireResponse extends Model {
     }
 
     public function questionnaire() {
-        return $this->belongsTo(Questionnaire::class);
+        return $this->belongsTo(Questionnaire::class)->withTrashed();
     }
+
 
     public function project() {
         return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');

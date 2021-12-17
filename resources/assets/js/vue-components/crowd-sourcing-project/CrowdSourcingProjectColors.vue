@@ -39,7 +39,7 @@
 
 <script>
 import {mapActions} from "vuex";
-import {initSingleColorPicker} from "../../common";
+import {initSingleColorPicker} from "../../common-backoffice";
 
 export default {
   props: {
