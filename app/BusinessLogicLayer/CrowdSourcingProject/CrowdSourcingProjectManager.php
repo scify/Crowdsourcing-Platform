@@ -90,7 +90,6 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage(
-        $questionnaireId,
         $project_slug,
         $openQuestionnaireWhenPageLoads):CrowdSourcingProjectForLandingPage {
         $userId = null;
@@ -104,15 +103,9 @@ class CrowdSourcingProjectManager {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
-
-        if ($questionnaireId) { //if parameter exists in the url, then load it
-            $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-        }
-        else{ //parameter does not exist in the url. Let's find all the questionnaires user can contribute to.
-            $activeQuestionnairesForThisProject =$this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
-            $questionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 1);
-            $feedbackQuestionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 2);
-        }
+        $activeQuestionnairesForThisProject =$this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
+        $questionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 1);
+        $feedbackQuestionnaire =$activeQuestionnairesForThisProject->firstWhere("type_id", "=", 2);
 
         $userResponse = null;
         $userFeedbackQuestionnaireResponse = null;
