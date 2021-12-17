@@ -25,7 +25,7 @@ Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
 - View statistics
 - Login function with fb, g+, linkedin, twitter, windows
 - Platform is available in many languages (and new translations can be added with relative low cost)
-- 
+- GDPR compliant 
  ## Benefits of Open Source applications
 
 Offering the code under open source licenses includes many benefits. Of those, the ones related to our project, are:
