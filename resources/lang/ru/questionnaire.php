@@ -11,10 +11,10 @@ return [
 
     'start_answering' => 'Start answering', 
     'already_participated' => 'You have already participated, thank you!',  
-    'answers_so_far' => 'people have spoken up so far. Lets get to ', 
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> people has spoken up so far. Let\'s get to  <b>:goal</b>!',
     'latest_contributors' => 'Latest contributors', 
     'name_and_date_of_last_contributors' => ':name responded at :date', //Maria responded at November 23, 2021 
-    'answers_left_to_goal' => 'answers left to reach our goal', //1002 answers left to reach our goal  
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> answers left to reach our goal', //1002 answers left to reach our goal  
     'newsletter' => 'Newsletter',  
     'learn_about_new_projects' => 'Learn about all our new projects, get updates on active ones and contribute where it is most needed!', 
     'sign_in' => 'Sign in', 

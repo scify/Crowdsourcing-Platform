@@ -11,10 +11,10 @@ return [
 
     'start_answering' => 'Απαντήστε το ερωτηματολόγιο εδώ', 
     'already_participated' => 'Έχετε συμμετάσχει ήδη, σας ευχαριστούμε!',  
-    'answers_so_far' => 'άτομα έχουν μιλήσει μέχρι τώρα. Πάμε στα ', 
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> άτομα έχουν μιλήσει μέχρι τώρα. Πάμε στα  <b>:goal</b>!',
     'latest_contributors' => 'Πρόσφατοι συμμετέχοντες', 
     'name_and_date_of_last_contributors' => ':name απάντησε στις :date', //Maria responded at November 23, 2021 
-    'answers_left_to_goal' => 'απαντήσεις για να φτάσουμε το στόχο μας', //1002 answers left to reach our goal  
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> απαντήσεις για να φτάσουμε το στόχο μας', //1002 answers left to reach our goal  
     'newsletter' => 'Ενημερωτικό δελτίο',  
     'learn_about_new_projects' => 'Μάθετε για όλα τα νέα έργα μας, ενημερωθείτε για αυτά που είναι ενεργά και συμβάλετε όπου χρειάζεται!', 
     'sign_in' => 'Συνδεθείτε', 

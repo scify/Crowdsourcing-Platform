@@ -1,4 +1,12 @@
 @extends('landingpages.layout')
+@push('css')
+<style>
+:root  {
+    --project-primary-color: {{ $viewModel->project->lp_primary_color}}
+    
+}
+</style>
+@endpush
 
 @section('content')
     <div class="container-fluid h-100 w-100 px-0">
