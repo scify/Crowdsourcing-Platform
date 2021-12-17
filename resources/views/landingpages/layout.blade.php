@@ -48,6 +48,6 @@
 </div>
 @stack("modals")
 
-@include('partials.footer-scripts', ["includeBackofficeCommonJs" => false])
+@include('partials.footer-scripts')
 </body>
 </html>

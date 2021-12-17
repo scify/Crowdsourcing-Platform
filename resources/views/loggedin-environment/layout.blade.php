@@ -60,7 +60,7 @@
                 'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
             ]) !!};
         </script>
-        @include("partials.footer-scripts",["includeBackofficeCommonJs" => true]))
+        @include("partials.footer-scripts",["includeBackofficeCommonJs" => true])
 
     </body>
 </html>
