@@ -10,8 +10,11 @@
 
 Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
 
-[Project URL: SciFY's installation](https://crowdsourcing.scify.org/)
-[Project URL: ECAS's installation](https://crowdsourcing.ecas.org/en)
+# Organizations using the Crowdsourcing platform
+[ECAS official installation](https://crowdsourcing.ecas.org/en)
+
+[SciFY's official installation](https://crowdsourcing.scify.org/)
+
 
 # Installation Instructions:
 
