@@ -31,5 +31,5 @@
     </div>
 @endsection
 @push('scripts')
-    <script async src="{{mix('dist/js/landingPage.js')}}"></script>
+    <script src="{{mix('dist/js/landingPage.js')}}"></script>
 @endpush

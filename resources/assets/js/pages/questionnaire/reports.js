@@ -1,6 +1,7 @@
 import * as Survey from "survey-knockout";
 import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
+
 (function () {
 
     let table, respondentsTable, questionnaire, answers, survey, loader;
@@ -45,7 +46,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         $('body').on('click', '.response-btn', function (e) {
             const respondentUserId = $(this).data('respondentUserId');
             const respondentUserData = $(this).data('respondentUserData');
-            const answer = getResponseByRespondentId(respondentUserId);
+            const answer = getResponseJSONByRespondentId(respondentUserId);
             if (answer) {
                 $('#respondent-answers-modal-title').html(respondentUserData);
                 survey.data = answer;
@@ -58,7 +59,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         $('body').on('click', '.response-table-btn', function (e) {
             const respondentUserId = $(this).data('respondentUserId');
             const respondentUserData = $(this).data('respondentUserData');
-            const answer = getResponseByRespondentId(respondentUserId);
+            const answer = getResponseJSONByRespondentId(respondentUserId);
             $('#respondent-answers-table-modal-title').html(respondentUserData);
             let panelEl = document.getElementById("respondent-answers-table-panel");
             panelEl.innerHTML = "";
@@ -118,10 +119,10 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         });
     };
 
-    let getResponseByRespondentId = function (id) {
+    let getResponseJSONByRespondentId = function (id) {
         for (let i = 0; i < answers.length; i++)
-            if (answers[i].respondent_user_id === id || answers[i].user_id === id)
-                return answers[i];
+            if (answers[i].user_id === id)
+                return JSON.parse(answers[i].response_json);
     };
 
     let answersBtnHandler = function () {
@@ -168,7 +169,6 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             },
             success: function (response) {
                 parseSuccessData(response);
-                loader.addClass('d-none');
             },
             error: function (error) {
                 loader.addClass('d-none');
@@ -179,16 +179,17 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
     };
 
     let parseSuccessData = function (response) {
+        console.log(response.data);
         const resultsEl = $("#results");
         resultsEl.html("");
         $("#errorMsg").addClass('d-none');
         resultsEl.html(response.data.view);
         questionnaire = response.data.questionnaire;
-        initializeDataTables();
-        answers = _.map(response.data.responses, 'response_json').map(JSON.parse);
+        answers = response.data.responses;
         survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
+        initializeDataTables();
         initializeQuestionnaireResponsesReport();
         loader.addClass('d-none');
     };
@@ -240,7 +241,8 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         let panelEl = document.getElementById("questionnaire-responses-report");
         panelEl.innerHTML = "";
         Tabulator.haveCommercialLicense = true;
-        const surveyAnalyticsTabulator = new Tabulator(survey, answers, {});
+        const answersForSurveyTabulator = _.map(answers, 'response_json').map(JSON.parse);
+        const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {});
         surveyAnalyticsTabulator.render(panelEl);
     };
 

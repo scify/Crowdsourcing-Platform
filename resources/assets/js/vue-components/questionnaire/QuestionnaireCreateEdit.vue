@@ -35,6 +35,18 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="language">Type</label>
+            </div>
+            <div class="col-md-6 col-sm-9 col-xs-12">
+              <select
+                  id="questionnaire-types" v-model="questionnaire.type_id">
+                <option value="1">Main Questionnaire | The questionnaire the users are asked to respond for a project</option>
+                <option value="2">Feedback Questionnaire | The quality assessment questionnaire. User are invited to respond after they have responded to the Main questionnaire</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label for="language">Statistics page visibility</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -180,7 +192,7 @@ import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
 import _ from "lodash";
-import {arrayMove, showToast} from "../../common";
+import {arrayMove, showToast} from "../../common-utils";
 
 export default {
   created() {
@@ -221,7 +233,8 @@ export default {
         description: null,
         goal: null,
         statistics_page_visibility_lkp_id: null,
-        projectIds: []
+        projectIds: [],
+        type_id:1
       },
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
@@ -387,7 +400,8 @@ export default {
         lang_codes: locales,
         extra_fields_translations: document.getElementById('extra_translations').value,
         max_votes_num: this.questionnaire.max_votes_num,
-        show_general_statistics: this.questionnaire.show_general_statistics
+        show_general_statistics: this.questionnaire.show_general_statistics,
+        type_id:this.questionnaire.type_id
       };
       $("#project-ids").val().map((x) => {
         data.project_ids.push(parseInt(x));

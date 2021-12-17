@@ -158,14 +158,16 @@ ol {
   @include media-breakpoint-up(md) {
     padding: 7vh 10vh;
   }
-  min-height: 100px;
-
   .content-container {
     font-size: 20px;
+    color: white;
     @include media-breakpoint-up(md) {
       padding: 5vh 12vh;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    color: white;
   }
 
   #machine-translation-indicator {
@@ -209,7 +211,7 @@ ol {
 
 }
 
-#questionnaire-modal {
+.questionnaire-modal {
   z-index: 100000;
 
   .modal-title {
@@ -359,6 +361,18 @@ ol {
     font-size: x-large;
   }
 
+  .respond-questionnaire.feedback{
+    text-decoration: underline;
+    color:$button-background-color;
+  }
+
+
+  .anonymous-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size:24px;
+  }
   .dashboard-message {
     font-family: Avenir, Helvetica, sans-serif;
     box-sizing: border-box;
@@ -628,6 +642,13 @@ footer {
   position: relative;
 }
 
+.sweet-alert{
+  z-index: 10001;
+}
+
+.sv-matrix .sv-matrix__cell {
+  min-width: 5em;
+}
 
 // firewords animation http://jsfiddle.net/elin/7m3bL/
 .pyro-on {

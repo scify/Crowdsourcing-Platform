@@ -37,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div id="survey-container">
+          <div :id="surveyContainerId" class="survey-container">
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
 <script>
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
-import {arrayMove, setCookie} from "../../common";
+import {arrayMove, setCookie} from "../../common-utils";
 import AnalyticsLogger from "../../analytics-logger";
 
 export default {
@@ -91,6 +91,12 @@ export default {
         return {}
       }
     },
+    surveyContainerId:{
+      type: String
+    },
+    idOfModalToOpenWhenSubmitted:{
+      type: String
+    },
     languages: []
   },
   data: function () {
@@ -115,8 +121,10 @@ export default {
       this.displayLoginPrompt = false;
       const instance = this;
       this.loading = true;
+      let surveyContainerId = this.$props.surveyContainerId;
+      console.log(surveyContainerId);
       setTimeout(function () {
-        instance.survey.render("survey-container");
+        instance.survey.render(surveyContainerId);
       }, 500);
     },
     initQuestionnaireDisplay() {
@@ -176,7 +184,7 @@ export default {
 
       const resultAsString = JSON.stringify(sender.data);
       $(".loader-wrapper").removeClass('hidden');
-      $("#questionnaire-modal").modal('hide');
+      $(".questionnaire-modal").modal('hide');
       this.post({
         url: route('respond-questionnaire'),
         data: {
@@ -203,18 +211,34 @@ export default {
         console.error(error);
         this.displayErrorResponse(error);
       }).finally(() => {
-        $("#questionnaire-modal").modal('hide');
+        $(".questionnaire-modal").modal('hide');
       });
     },
     displaySuccessResponse(badgeHTML) {
       $(".loader-wrapper").addClass('hidden');
-      let questionnaireResponded = $("#questionnaire-responded");
-      // add badge fetched from response to the appropriate container
-      if (badgeHTML) {
-        questionnaireResponded.find('.badge-container').html(badgeHTML);
-        questionnaireResponded.modal({backdrop: 'static'});
-        $("#pyro").addClass("pyro-on");
+      if (this.idOfModalToOpenWhenSubmitted){ //if property is defined display the requested modal
+        let questionnaireResponded = $("#"+ this.idOfModalToOpenWhenSubmitted);
+        // add badge fetched from response to the appropriate container
+        if (badgeHTML) {
+          questionnaireResponded.find('.badge-container').html(badgeHTML);
+          questionnaireResponded.modal({backdrop: 'static'});
+          $("#pyro").addClass("pyro-on");
+        }
       }
+      else{
+        //close all modals
+        $('.modal').modal('hide');
+        //display a thank you message
+        swal({
+          title: "Thank you",
+          type: "success",
+          confirmButtonText: "OK",
+          closeOnConfirm: true
+        },function(){
+          location.reload();
+        });
+      }
+
     },
     displayErrorResponse(error) {
       swal({
@@ -258,7 +282,7 @@ export default {
 @import "resources/assets/sass/variables";
 @import "~survey-jquery/modern.min.css";
 
-#survey-container {
+.survey-container {
   .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__prev-btn {
     background-color: $brand-primary;
     float: left;

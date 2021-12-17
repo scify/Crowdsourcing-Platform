@@ -40,15 +40,9 @@
 <div class="loader-wrapper hidden">
     <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
-<script>
-    window.Laravel = {!! json_encode([
-                'baseUrl' => url('/'),
-                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
-            ]) !!};
-</script>
-@include('partials.footer-scripts')
 
-<script src="{{ mix('dist/js/home.js') }}"></script>
+@include('partials.footer-scripts')
+<script src="{{mix('dist/js/home.js')}}"></script>
 
 </body>
 </html>

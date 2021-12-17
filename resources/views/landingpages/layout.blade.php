@@ -9,16 +9,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="canonical" href="{{route('home')}}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @if (isset($viewModel->socialMediaMetadataVM))
         @include('landingpages.partials.header-meta', ['viewModel' => $viewModel->socialMediaMetadataVM])
+    @else
+        <link rel="canonical" href="{{route('home')}}">
     @endif
-    <link rel="stylesheet"  media="print" onload="this.onload=null;this.removeAttribute('media');"
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-{{--    <link href="{{asset('dist/css/survey.css')}}" type="text/css" rel="stylesheet"/>--}}
     <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
     <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
     @stack('css')
