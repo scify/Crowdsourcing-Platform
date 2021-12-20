@@ -9,16 +9,16 @@ return [
 
     */
 
-    'my_history' => 'My history',
-    'my_contributions' => 'My Contributions',
-    'number_of_questionnaires' => '{0} You have contributed to zero questionnaires |{1}  You have contributed to 1 questionnaire |[2,*] You have contributed to  :count questionnaires"',
-    'no_questionnaires' => 'You haven’t responded to any questionnaires, yet.',
-    'project' => 'Project',
-    'questionnaire_title' => 'Questionnaire title',
-    'questionnaire_description' => 'Questionnaire description',
-    'responded' => 'Responded',
+    'my_history' => 'Mon historique',
+    'my_contributions' => 'Mes contributions',
+    'number_of_questionnaires' => '{0} Vous avez contribué à 0 questionnaire |{1}  Vous avez contribué à 1 questionnaire |[2,*] Vous avez contribué à :count questionnaires"',
+    'no_questionnaires' => 'Vous n’avez encore répondu à aucun questionnaire.',
+    'project' => 'Projet',
+    'questionnaire_title' => 'Titre du questionnaire',
+    'questionnaire_description' => 'Description du questionnaire',
+    'responded' => 'Répondu',
     'actions' => 'Actions',
-    'view_response' => 'View response'
+    'view_response' => 'Voir la réponse'
 
 
 
