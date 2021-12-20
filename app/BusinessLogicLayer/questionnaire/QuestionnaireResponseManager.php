@@ -56,6 +56,19 @@ class QuestionnaireResponseManager {
         return $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaire_id]);
     }
 
+
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser($user):int{
+        $questionnaireResponsesThatWereTransferredToUser =  $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
+        if ($questionnaireResponsesThatWereTransferredToUser){
+            foreach($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse){
+                $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project, $user);
+                // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+                $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaireResponse->questionnaire, $user);
+            }
+            return count($questionnaireResponsesThatWereTransferredToUser);
+        }
+        return 0;
+    }
     public function storeQuestionnaireResponse($data) {
         $user = $this->userManager->getLoggedInUserOrCreateAnonymousUser();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);

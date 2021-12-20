@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireActionHandler;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;
@@ -42,19 +44,19 @@ class RegisterController extends Controller {
     private $userManager;
     private $mailChimpManager;
     private $crowdSourcingProjectManager;
-    protected $questionnaireResponseRepository;
+    protected $questionnaireResponseManager;
 
     public function __construct(UserRoleManager                 $userRoleManager,
                                 UserManager                     $userManager,
                                 MailChimpAdaptor                $mailChimpManager,
                                 CrowdSourcingProjectManager     $crowdSourcingProjectManager,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
+                                QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
         $this->userManager = $userManager;
         $this->mailChimpManager = $mailChimpManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
     /**
@@ -85,8 +87,11 @@ class RegisterController extends Controller {
     }
 
     protected function registered(Request $request, $user) {
-        $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
+        $numberOfResponsedTransfered = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
+        if ($numberOfResponsedTransfered)
+            session()->flash('flash_message_success', 'Thanks for answering! ');
+
         $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
         return redirect($url);
     }
