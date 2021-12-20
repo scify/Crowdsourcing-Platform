@@ -42,4 +42,6 @@ Route::middleware(['throttle:api-internal'])->group(function () {
         ->name('questionnaire.answer-votes');
     Route::get('/questionnaire/answer-annotations-get/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])
         ->name('questionnaire.answer-annotations');
+    Route::get('/questionnaire/answers-admin-analysis-statuses-get/', [QuestionnaireAnswerAnnotationController::class, 'getQuestionnaireAnswerAdminReviewStatuses'])
+        ->name('questionnaire.answers-admin-analysis-statuses.get');
 });
