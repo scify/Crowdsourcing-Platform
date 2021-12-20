@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\BusinessLogicLayer\questionnaire\QuestionnaireActionHandler;
+use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
@@ -36,14 +38,15 @@ class LoginController extends Controller {
         return app()->getLocale() . '/my-dashboard';
     }
 
-    protected $userManager;
-    protected $questionnaireResponseRepository;
+    protected UserManager $userManager;
+    protected QuestionnaireResponseManager $questionnaireResponseManager;
+
 
     public function __construct(UserManager                     $userManager,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
+                                QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
     public function showLoginForm(Request $request) {
@@ -52,8 +55,11 @@ class LoginController extends Controller {
     }
 
     protected function authenticated(Request $request, $user) {
-        $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
+        $numberOfResponsedTransfered = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
+        if ($numberOfResponsedTransfered)
+            session()->flash('flash_message_success', 'Thanks for answering! ');
+
         return redirect($url);
     }
 
