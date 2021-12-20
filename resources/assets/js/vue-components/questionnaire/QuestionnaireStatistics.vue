@@ -61,22 +61,41 @@
         <div class="container py-4">
           <div class="row justify-content-center">
             <div class="col-12 text-center mx-auto mb-4">
-              <textarea class="form-control" rows="3" v-model="annotation.annotation_text"></textarea>
+              <textarea class="form-control" rows="3" v-model="annotation.annotation_text"
+                        placeholder="Annotation text (optional)"></textarea>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12 text-center mx-auto mb-3">
-              <button @click="saveAnnotation" :disabled="annotationLoading || annotation.annotation_text.length === 0"
+              <select
+                  v-model="annotation.admin_review_status_id"
+                  id="annotation-admin-review-status-id" class="form-control">
+                <option v-for="status in answerAnnotationAdminReviewStatuses"
+                        :value="status.id">
+                  {{ status.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mx-auto mb-4">
+              <textarea class="form-control" rows="2" v-model="annotation.admin_review_comment"
+                        placeholder="Review status (optional)"></textarea>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 text-center mx-auto mb-3">
+              <button @click="saveAnnotation" :disabled="annotationSaveLoading"
                       class="btn btn-primary btn-lg w-100">
-                <span class="mr-2">Save</span><span v-if="annotationLoading"
+                <span class="mr-2">Save</span><span v-if="annotationSaveLoading"
                                                     class="spinner-border spinner-border-sm"
                                                     role="status"
                                                     aria-hidden="true"></span></button>
             </div>
             <div class="col-12 text-center mx-auto">
-              <button @click="deleteAnnotation" :disabled="annotationLoading"
+              <button @click="deleteAnnotation" :disabled="annotationDeleteLoading"
                       class="btn btn-outline-danger btn-lg w-100">
-                <span class="mr-2">Delete</span><span v-if="annotationLoading"
+                <span class="mr-2">Delete</span><span v-if="annotationDeleteLoading"
                                                       class="spinner-border spinner-border-sm"
                                                       role="status"
                                                       aria-hidden="true"></span></button>
@@ -121,11 +140,15 @@ export default {
       signInModalOpen: false,
       maxVotesModalOpen: false,
       annotationModalOpen: false,
-      annotationLoading: false,
+      annotationSaveLoading: false,
+      annotationDeleteLoading: false,
       annotation: {
-        annotation_text: ''
+        annotation_text: null,
+        admin_review_status_id: null,
+        admin_review_comment: null
       },
-      numOfVotesByCurrentUser: 0
+      numOfVotesByCurrentUser: 0,
+      answerAnnotationAdminReviewStatuses: []
     }
   },
   created() {
@@ -193,8 +216,10 @@ export default {
       Promise.all([
         this.getQuestionnaireResponses(),
         this.getQuestionnaireAnswerVotes(),
-        this.getQuestionnaireAnswerAnnotations()]).then(results => {
-        this.initStatistics(results[0], results[1], results[2])
+        this.getQuestionnaireAnswerAnnotations(),
+        this.getQuestionnaireAnswerAdminAnalysisStatuses()
+      ]).then(results => {
+        this.initStatistics(results[0], results[1], results[2], results[3])
       });
     },
     getQuestionnaireResponses() {
@@ -229,14 +254,22 @@ export default {
         urlRelative: false
       }).then(res => res.data);
     },
-    initStatistics(answers, answerVotes, answerAnnotations) {
+    getQuestionnaireAnswerAdminAnalysisStatuses() {
+      return this.get({
+        url: route('questionnaire.answers-admin-analysis-statuses.get'),
+        data: {},
+        urlRelative: false
+      }).then(res => res.data);
+    },
+    initStatistics(answers, answerVotes, answerAnnotations, adminAnalysisStatuses) {
+      this.answerAnnotationAdminReviewStatuses = adminAnalysisStatuses;
       this.numOfVotesByCurrentUser = _.filter(answerVotes, {voter_user_id: this.userId}).length;
       AnswersData.answerVotes = answerVotes;
       AnswersData.answerAnnotations = answerAnnotations;
       AnswersData.userId = this.userId;
       AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       AnswersData.numberOfVotesForQuestionnaire = this.questionnaire.max_votes_num;
-      AnswersData.languageResources= window.language[window.Laravel.locale].statistics;
+      AnswersData.languageResources = window.language[window.Laravel.locale].statistics;
       for (let i = 0; i < this.questions.length; i++) {
         let answersForPanel = answers;
 
@@ -343,8 +376,20 @@ export default {
     listenForAnnotateClickEvent() {
       const instance = this;
       $(document).on('click', 'body .annotate-btn', function () {
+        let adminReviewStatusId = parseInt($(this).attr('data-annotation-admin-review-status-id'));
+        let annotationText = $(this).attr('data-annotation');
+        let adminReviewComment = $(this).attr('data-annotation-admin-review-comment');
+        if (!adminReviewStatusId)
+          adminReviewStatusId = instance.answerAnnotationAdminReviewStatuses[0].id;
+        if (annotationText === "null")
+          annotationText = null;
+        if (adminReviewComment === "null")
+          adminReviewComment = null;
+
         instance.annotation = {
-          annotation_text: $(this).attr('data-annotation'),
+          annotation_text: annotationText,
+          admin_review_status_id: adminReviewStatusId,
+          admin_review_comment: adminReviewComment,
           question_name: $(this).data('question'),
           respondent_user_id: $(this).data('respondent')
         };
@@ -395,7 +440,7 @@ export default {
       return route('login') + '?redirectTo=' + window.location.href;
     },
     saveAnnotation() {
-      this.annotationLoading = true;
+      this.annotationSaveLoading = true;
       this.post({
         url: route('questionnaire.answer-annotations.create'),
         data: {
@@ -403,29 +448,32 @@ export default {
           question_name: this.annotation.question_name,
           respondent_user_id: this.annotation.respondent_user_id,
           annotator_user_id: this.userId,
-          annotation_text: this.annotation.annotation_text
+          annotation_text: this.annotation.annotation_text,
+          admin_review_status_id: this.annotation.admin_review_status_id,
+          admin_review_comment: this.annotation.admin_review_comment
         },
         urlRelative: false
       }).then(response => {
-        this.annotationLoading = false;
+        this.annotationSaveLoading = false;
         this.annotationModalOpen = false;
         const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
         const annotationElement = cellElement.find('.annotation-wrapper');
-        if (annotationElement.length !== 0)
-          annotationElement.find(".annotation-text").html(this.annotation.annotation_text);
-        else {
-          cellElement.find(".annotation-button").after('<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
-              + this.annotation.annotation_text
-              + '</p></div><b>Original answer:</b>');
+        if (this.annotation.annotation_text) {
+          if (annotationElement.length !== 0)
+            annotationElement.find(".annotation-text").html(this.annotation.annotation_text);
+          else {
+            cellElement.find(".annotation-button").after('<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
+                + this.annotation.annotation_text
+                + '</p></div><b>Original answer:</b>');
+          }
         }
         cellElement.find(".annotate-btn").attr('data-annotation', this.annotation.annotation_text);
-        this.annotation = {
-          annotation_text: ''
-        };
+        cellElement.find(".annotate-btn").attr('data-annotation-admin-review-status-id', this.annotation.admin_review_status_id);
+        cellElement.find(".annotate-btn").attr('data-annotation-admin-review-comment', this.annotation.admin_review_comment);
       });
     },
     deleteAnnotation() {
-      this.annotationLoading = true;
+      this.annotationDeleteLoading = true;
       this.post({
         url: route('questionnaire.answer-annotations.delete'),
         data: {
@@ -435,7 +483,7 @@ export default {
         },
         urlRelative: false
       }).then(response => {
-        this.annotationLoading = false;
+        this.annotationDeleteLoading = false;
         this.annotationModalOpen = false;
         const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
         const annotationElement = cellElement.find('.annotation-wrapper');

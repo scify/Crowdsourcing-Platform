@@ -56,13 +56,20 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     annotation = AnswersData.answerAnnotations[questionName][respondentUserId][0];
                 }
                 const annotationText = annotation ? annotation.annotation_text : "";
+                let adminReviewStatusId = 0;
+                if (annotation)
+                    adminReviewStatusId = annotation.admin_review_status_id ? annotation.admin_review_status_id : 0;
+                const adminReviewComment = annotation ? annotation.admin_review_comment : "";
                 if (AnswersData.userCanAnnotateAnswers) {
-                    td1.innerHTML = '<span class="annotation-button"><button data-annotation="' + annotationText
+                    td1.innerHTML = '<span class="annotation-button"><button ' +
+                        'data-annotation="' + annotationText
+                        + '" data-annotation-admin-review-status-id="' + adminReviewStatusId
+                        + '" data-annotation-admin-review-comment="' + adminReviewComment
                         + '" data-question="' + questionName
                         + '" data-respondent="' + respondentUserId + '" '
                         + 'class="btn annotate-btn"><i class="fa fa-edit"></i></button></span>';
                 }
-                if (annotation) {
+                if (annotationText && annotationText !== "") {
                     td1.innerHTML += '<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
                         + annotationText
                         + '</p></div><b>Original answer:</b><br>';
@@ -174,11 +181,11 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         renderHeader(table, visualizer);
         renderRows(table, visualizer);
         const container = document.createElement("div");
-      /*  container.innerHTML = '<div class="card"><div class="card-header" id="answers_heading_' + AnswersData.currentIndex + '"><h5 class="mb-0">' +
-            '<button class="btn btn-outline-primary collapsed toggle-collapse" data-toggle="collapse" data-target="#answers_collapse_' + AnswersData.currentIndex + '" aria-expanded="true" aria-controls="answers_collapse_'
-            + AnswersData.currentIndex + '"><span class="if-collapsed">Show</span><span class="if-not-collapsed">Hide</span> Answers</button></h5></div><div id="answers_collapse_' + AnswersData.currentIndex
-            + '" class="collapse" aria-labelledby="answers_heading_' + AnswersData.currentIndex + '">' +
-            '<div class="card-body" id="card_body_' + AnswersData.currentIndex + '"></div></div></div>';*/
+        /*  container.innerHTML = '<div class="card"><div class="card-header" id="answers_heading_' + AnswersData.currentIndex + '"><h5 class="mb-0">' +
+              '<button class="btn btn-outline-primary collapsed toggle-collapse" data-toggle="collapse" data-target="#answers_collapse_' + AnswersData.currentIndex + '" aria-expanded="true" aria-controls="answers_collapse_'
+              + AnswersData.currentIndex + '"><span class="if-collapsed">Show</span><span class="if-not-collapsed">Hide</span> Answers</button></h5></div><div id="answers_collapse_' + AnswersData.currentIndex
+              + '" class="collapse" aria-labelledby="answers_heading_' + AnswersData.currentIndex + '">' +
+              '<div class="card-body" id="card_body_' + AnswersData.currentIndex + '"></div></div></div>';*/
         //contentContainer.appendChild(container);
         //const cardBody = document.getElementById("card_body_" + AnswersData.currentIndex);
         //cardBody.appendChild(table);
