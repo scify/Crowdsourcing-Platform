@@ -9,12 +9,12 @@ return [
 
     */
 
-    'total_responses' => 'Total Responses',
-    'goal_responses' => 'Goal responses', 
-    'actual_responses' => 'Actual responses', 
-    'download_csv' => 'Download as CSV', 
-    'print' => 'Print',
-    'responses_per_language' => 'Responses per language',
+    'total_responses' => 'Kokku vastajaid',
+    'goal_responses' => 'Eesmärk', 
+    'actual_responses' => 'Tegelikult vastajaid', 
+    'download_csv' => 'Laadi alla CSV-vormingus', 
+    'print' => 'Trüki',
+    'responses_per_language' => 'Vastused keele kaupa',
 
 
 

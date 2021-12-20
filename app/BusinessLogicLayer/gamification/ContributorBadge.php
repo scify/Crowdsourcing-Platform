@@ -42,7 +42,7 @@ class ContributorBadge extends GamificationBadge
 
     public function getNextStepMessage() {
     if($this->userHasAchievedBadgePlatformWide)
-        return __("badges_messages.become_a_contributor", ["level"=>"<b> " .  ($this->calculateLevel() + 1) . "</b>"]);
+        return __("badges_messages.become_a_contributor", ["level"=>"<b>" .  ($this->calculateLevel() + 1) . "</b>"]);
     return __("badges_messages.gain_contributor_badge") ;
 }
 }

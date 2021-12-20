@@ -9,12 +9,12 @@ return [
 
     */
 
-    'total_responses' => 'Total Responses',
-    'goal_responses' => 'Goal responses', 
-    'actual_responses' => 'Actual responses', 
-    'download_csv' => 'Download as CSV', 
-    'print' => 'Print',
-    'responses_per_language' => 'Responses per language',
+    'total_responses' => 'Total des réponses',
+    'goal_responses' => 'Réponses aux objectifs', 
+    'actual_responses' => 'Réponses réelles', 
+    'download_csv' => 'Télécharger en CSV', 
+    'print' => 'Imprimer',
+    'responses_per_language' => 'Réponses par langue',
 
 
 

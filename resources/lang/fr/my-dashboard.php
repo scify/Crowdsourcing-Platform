@@ -9,12 +9,12 @@ return [
 
     */
 
-    'my_dashboard' => 'My Dashboard',
-    'contribution' => 'Projects you can contribute to',
-    'answers_left' => ' answers left to reach our goal', 
-    'view_statistics'  => 'View Statistics', 
-    'share_questionnaire' => 'Share the Questionnaire:', 
-    'thank_you_for_sharing' => 'Thank you for sharing the Questionnaire! <br> You will soon receive an e-mail with your badge!'
+    'my_dashboard' => 'Mon tableau de bord',
+    'contribution' => 'Projets auxquels vous pouvez contribuer',
+    'answers_left' => ' réponses pour atteindre notre objectif', 
+    'view_statistics'  => 'Voir les statistiques', 
+    'share_questionnaire' => 'Partager le questionnaire:', 
+    'thank_you_for_sharing' => 'Merci d’avoir partagé le Questionnaire! <br> Vous recevrez bientôt un e-mail avec votre badge!'
 
 
 

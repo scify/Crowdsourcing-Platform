@@ -11,25 +11,25 @@ return [
 
     
 
-    'go_to_dashboard'                   => 'Go to Dashboard',
-    'thank_you_for_contribution'        => 'Thank you for your contribution!',
-    'hello'                             => 'Hello!',
-    'thanks_message_for_answering_2'    => 'Thank you for taking the time to answer our questionnaire',
-    'really_means'                      => 'This really means a lot to us!',
-    'increase_your_impact'              => 'Increase your impact',
-    'invite_your_friends'               => 'Go to your dashboard, and invite your friends!',    
-    'thanks_message_2'                  => 'Thank you once again!',
-    'thank_you_for_sharing'             => 'Thank you for sharing!',
-    'sharing_the_questionnaire'         => 'Thank you for sharing the questionnaire<br>',
-    'sharing_is_caring'                 => 'Sharing is caring!',
-    'visit_your_dashboard'              => 'Visit your dashboard to see what to do next',
-    'thank_you_for_referral'            => 'Thank you for your referral!',
-    'making_impact'                     => 'You are making an impact!',
-    'someone_answered_to_questionnaire' => 'Someone answered to a questionnaire you shared!<br>',
-    'visit_your_dashboard_and_invite'   => 'Visit your dashboard and invite more friends',
-    'thanks_message'                    => 'Thanks for joining the Crowdsourcing Platform!',
-    'make_an_impact'                    => 'Are you ready to make an impact?',
-    'visit_your_dashboard_contribute'   => 'Visit your Dashboard to see how you can contribute:'
+    'go_to_dashboard'                   => 'Accéder au tableau de bord',
+    'thank_you_for_contribution'        => 'Merci pour votre contribution!',
+    'hello'                             => 'Bonjour!',
+    'thanks_message_for_answering_2'    => 'Merci d’avoir pris le temps de répondre à notre questionnaire',
+    'really_means'                      => 'Cela signifie beaucoup pour nous!',
+    'increase_your_impact'              => 'Renforcer votre impact',
+    'invite_your_friends'               => 'Allez dans votre tableau de bord, et invitez vos amis!',    
+    'thanks_message_2'                  => 'Merci encore!',
+    'thank_you_for_sharing'             => 'Merci de partager!',
+    'sharing_the_questionnaire'         => 'Merci d’avoir partagé le Questionnaire<br>',
+    'sharing_is_caring'                 => 'Partager, c’est montrer de l’intérêt!',
+    'visit_your_dashboard'              => 'Visitez votre tableau de bord pour voir ce qu’il faut faire maintenant',
+    'thank_you_for_referral'            => 'Merci pour votre recommandation!',
+    'making_impact'                     => 'Vous avez un impact!',
+    'someone_answered_to_questionnaire' => 'Quelqu’un a répondu à un questionnaire que vous avez partagé!<br>',
+    'visit_your_dashboard_and_invite'   => 'Visitez votre tableau de bord et invitez d’autres amis',
+    'thanks_message'                    => 'Merci de rejoindre la plateforme de crowdsourcing!',
+    'make_an_impact'                    => 'Êtes-vous prêt à avoir un impact?',
+    'visit_your_dashboard_contribute'   => 'Visitez votre tableau de bord pour voir comment vous pouvez contribuer:'
 
 
 
