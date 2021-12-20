@@ -10,7 +10,35 @@
 
 Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
 
-[Project URL](https://crowdsourcing.scify.org/)
+# Features
+
+- Administration panel to set up of questionnaires & projects
+- Questionnaires with and without login: Questionnaires can be responded anonymously or eponymoysly
+- The questionnaires can be automatically translated via google translations (to facilitate the manual translations)
+- The citizen responses are automatically translated via google translations  (and at the results you can see both the original and the translated)
+- Setting targets for goals (number of responses needed for the questionnaire) to be reached
+- Gamifications elements: The platform motivates users to respond to questionnaires or invite others to respond
+- Mailchimp integration: All the email of registered users are collected to a mailchimp list
+- Google Analytics integration (with anonymized settings turned on) with custom events: We track anonymously people who do actions in the website
+- Voting mechanism for provided answers: Users can vote the best answers, Platform moderators can highlight the most interesting answers and reject/demote the not interesting ones
+- Extract the results: You can download the answers to excel
+- View statistics
+- Login function with fb, g+, linkedin, twitter, windows
+- Platform is available in many languages (and new translations can be added with relative low cost)
+- GDPR compliant 
+ ## Benefits of Open Source applications
+
+Offering the code under open source licenses includes many benefits. Of those, the ones related to our project, are:
+
+- There is no dependency on the developer of the solution (SciFY), but other collaborators can be used after the end of the project. The code remains always freely available.
+- Stakeholders can add features, change it, improve it, adjust to their needs. 
+- New contributions are added to the existing solution so that everyone benefit
+
+# Organizations using the Crowdsourcing platform
+[ECAS official installation](https://crowdsourcing.ecas.org/en)
+
+[SciFY's official installation](https://crowdsourcing.scify.org/)
+
 
 # Installation Instructions:
 
