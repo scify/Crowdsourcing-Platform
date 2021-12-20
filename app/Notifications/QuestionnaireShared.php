@@ -11,8 +11,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
     use Queueable;
 
-    public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
-        $this->questionnaireFieldsTranslation = $questionnaireFieldsTranslation;
+    public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
+                                GamificationBadge $badge,
+                                GamificationBadgeVM $badgeVM) {
+        $this->title = $questionnaireFieldsTranslation->title;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
     }
@@ -38,7 +40,7 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
             $this->badgeVM,
             __("notifications.thank_you_for_sharing"),
             __("notifications.hello"),
-            __("notifications.sharing_the_questionnaire") . "<b>" . $this->questionnaireFieldsTranslation->title . "</b>!",
+            __("notifications.sharing_the_questionnaire") . "<b>" . $this->title . "</b>!",
             $this->badge->getEmailBody(),
             '',
             __("notifications.sharing_is_caring"),
