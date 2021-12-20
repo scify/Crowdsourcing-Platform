@@ -28,12 +28,12 @@ class QuestionnaireAnswerAdminAnalysisLkpTableSeeder extends Seeder {
             ],
             [
                 'id' => 2,
-                'name' => 'Interesting / Useful',
+                'name' => 'Interesting / Useful - Display first',
                 'description' => 'The answer was reviewed by a moderator and it was marked as a useful one.',
             ],
             [
                 'id' => 3,
-                'name' => 'Not useful - Display only when user clicks view all',
+                'name' => 'Not useful - Display last',
                 'description' => 'The answer was reviewed by a moderator and it was marked as not useful.',
             ],
             [
