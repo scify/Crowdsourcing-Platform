@@ -179,18 +179,23 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     function getOrderingFactorForAnswer(annotation, upVotesNum, downVotesNum) {
-        let orderingFactor = 2;
+        let orderingFactor = 0;
         if (annotation) {
             if (annotation.admin_review_status_id === 2)
-                orderingFactor += 100;
+                orderingFactor += 1000;
             if (annotation.admin_review_status_id === 3)
-                orderingFactor -= 100;
+                orderingFactor -= 1000;
         }
         if (upVotesNum)
             orderingFactor += (2 * upVotesNum);
         if (downVotesNum)
             orderingFactor -= (2 * downVotesNum);
-        return Math.log2(orderingFactor);
+        return sigmoid(orderingFactor);
+    }
+
+    const k = 2;
+    function sigmoid(z) {
+        return 1 / (1 + Math.exp(-z/k));
     }
 
     const renderContent = function (contentContainer, visualizer) {
