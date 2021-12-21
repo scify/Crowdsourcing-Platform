@@ -10,19 +10,19 @@ return [
     */
 
     
-    'crowdsource_our_future'            => 'Let’s crowdsource our future',
-    'hello'                             => 'Hello!',
-    'email_reset_password'              => 'You are receiving this email because we received a password reset request for your account.',
-    'reset_password'                    => 'Reset Password',
-    'reset_link_expire'                 => 'This password reset link will expire in 60 minutes.',
-    'no_further_action'                 => 'If you did not request a password reset, no further action is required.',
-    'regards'                           => 'Regards',
-    'trouble_with_button'               => 'If you’re having trouble clicking the ',
-    'copy_paste_url'                    => ' button, copy and paste the URL below into your web browser:',
-    'thanks_message_for_answering'      => 'Thank you for taking the time to answer our questionnaire with the title: ',
-    'thanks_message_for_contribution'   => 'Thanks to your contribution we are one step closer to our goal!',
-    'unlocked_new_badge'                => 'You have also unlocked a new badge:', 
-    'inquiries_about_our_work'          => 'If you have any inquiries about our work, do not hesitate to contact us.'
+    'crowdsource_our_future'            => 'Találjuk ki a jövőnket közösen',
+    'hello'                             => 'Üdvözöljük!',
+    'email_reset_password'              => 'Azért kapja ezt az e-mailt, mert jelszó-visszaállítási küldött a fiókjához.',
+    'reset_password'                    => 'Jelszó visszaállítása',
+    'reset_link_expire'                 => 'Ez a jelszó-visszaállítási link 60 perc múlva lejár.',
+    'no_further_action'                 => 'Ha nem kérte a jelszó visszaállítását, nincs szükség további lépésekre.',
+    'regards'                           => 'Üdvözlettel',
+    'trouble_with_button'               => 'Ha gondot okoz a ',
+    'copy_paste_url'                    => ' gombra kattintás, másolja be az alábbi URL-t a böngészőjébe:',
+    'thanks_message_for_answering'      => 'Köszönjük, hogy időt szakított a címben szereplő kérdőívünk megválaszolására: ',
+    'thanks_message_for_contribution'   => 'Az Ön hozzájárulásának köszönhetően egy lépéssel közelebb kerültünk a célunkhoz!',
+    'unlocked_new_badge'                => 'Egy új jelvényt is feloldott:', 
+    'inquiries_about_our_work'          => 'Ha bármilyen kérdése van a munkánkkal kapcsolatban, lépjen velünk kapcsolatba.'
 
 
 

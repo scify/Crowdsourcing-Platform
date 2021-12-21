@@ -11,25 +11,25 @@ return [
 
     
 
-    'go_to_dashboard'                   => 'Go to Dashboard',
-    'thank_you_for_contribution'        => 'Thank you for your contribution!',
-    'hello'                             => 'Hello!',
-    'thanks_message_for_answering_2'    => 'Thank you for taking the time to answer our questionnaire',
-    'really_means'                      => 'This really means a lot to us!',
-    'increase_your_impact'              => 'Increase your impact',
-    'invite_your_friends'               => 'Go to your dashboard, and invite your friends!',    
-    'thanks_message_2'                  => 'Thank you once again!',
-    'thank_you_for_sharing'             => 'Thank you for sharing!',
-    'sharing_the_questionnaire'         => 'Thank you for sharing the questionnaire<br>',
-    'sharing_is_caring'                 => 'Sharing is caring!',
-    'visit_your_dashboard'              => 'Visit your dashboard to see what to do next',
-    'thank_you_for_referral'            => 'Thank you for your referral!',
-    'making_impact'                     => 'You are making an impact!',
-    'someone_answered_to_questionnaire' => 'Someone answered to a questionnaire you shared!<br>',
-    'visit_your_dashboard_and_invite'   => 'Visit your dashboard and invite more friends',
-    'thanks_message'                    => 'Thanks for joining the Crowdsourcing Platform!',
-    'make_an_impact'                    => 'Are you ready to make an impact?',
-    'visit_your_dashboard_contribute'   => 'Visit your Dashboard to see how you can contribute:'
+    'go_to_dashboard'                   => 'Menjen az főoldalra',
+    'thank_you_for_contribution'        => 'Köszönjük a közreműködését!!',
+    'hello'                             => 'Üdvözöljük!',
+    'thanks_message_for_answering_2'    => 'Köszönjük, hogy időt szakított a kérdőívünk megválaszolására',
+    'really_means'                      => 'Ez nagyon sokat jelent nekünk!',
+    'increase_your_impact'              => 'Növelje hatását',
+    'invite_your_friends'               => 'Navigáljon a főoldalra, és hívja meg a barátait!',    
+    'thanks_message_2'                  => 'Még egyszer köszönjük!',
+    'thank_you_for_sharing'             => 'Köszönjük, hogy megosztotta velünk!',
+    'sharing_the_questionnaire'         => 'Köszönjük, hogy megosztotta a kérdőívet!<br>',
+    'sharing_is_caring'                 => 'A megosztás közös gondolkodás!',
+    'visit_your_dashboard'              => 'Menjen a főoldalra, hogy lássa, mi a következő teendője',
+    'thank_you_for_referral'            => 'Köszönjük az ajánlást!',
+    'making_impact'                     => 'Ön hatással van a folyamatokra!!',
+    'someone_answered_to_questionnaire' => 'Valaki válaszolt az Ön által megosztott kérdőívre!<br>',
+    'visit_your_dashboard_and_invite'   => 'Menjen el a főoldalra, és hívjon meg még több barátot!',
+    'thanks_message'                    => 'Köszönjük, hogy csatlakozott a Crowdsourcing Platformhoz!',
+    'make_an_impact'                    => 'Készen áll arra, hogy hatást gyakoroljon?',
+    'visit_your_dashboard_contribute'   => 'Navigáljon a főoldalra, hogy megnézze, hogyan járulhat hozzá:'
 
 
 
