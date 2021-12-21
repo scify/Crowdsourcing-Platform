@@ -16,9 +16,9 @@ return [
     'download_my_data' => 'Laadi minu andmed alla', 
     'account_deactivation' => 'Konto inaktiveerimine', 
     'deactivate_my_account' => 'Inaktiveeri minu konto', 
-    'are_you_sure' => 'Are you sure?', 
-    'warning_for_deactivation' => '<b>Warning:</b> This action will delete your account.<br><br> You will lose all your badges and will not be able to participate in the platform any more.',
-    'deactivate_my_account_2' => 'I understand, please deactivate my account',
+    'are_you_sure' => 'Oled kindel?', 
+    'warning_for_deactivation' => '<b>Hoiatus:</b> See tegevus kustutab Sinu konto!<br><br> Sa kaotad kõik oma tunnusemärgid (badges) ja Sul ei ole võimalik enam platvormil osaleda.',
+    'deactivate_my_account_2' => 'Ma mõistan, palun deaktiveerige mu konto',
     'current_password' => 'Kehtiv salasõna', 
     'new_password' => 'Uus salasõna', 
     're_enter_password' => 'Sisesta salasõna uuesti'

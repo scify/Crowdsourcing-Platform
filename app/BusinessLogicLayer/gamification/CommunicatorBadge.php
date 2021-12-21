@@ -34,8 +34,7 @@ class CommunicatorBadge extends GamificationBadge {
         if($this->level == 1)
             return __("email_messages.unlocked_new_badge");
         
-        return __("badges_messages.you_are_a_level") . " <b>" . $this->level . "</b> " . __("badges_messages.level_2_communicator");
-
+        return __("badges_messages.you_are_a_communicator", ["level" => "<b> $this->level </b>"]);
         // You are a Level level Communicator! Keep Going!
     }
 
