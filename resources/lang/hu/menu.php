@@ -9,13 +9,13 @@ return [
 
     */
 
-    'login' => 'LOGIN', //??
-    'register' => 'Register', //??
-    'dashboard' =>  'DASHBOARD', //??
-    'my_dashboard' => 'My Dashboard',
-    'my_account' => 'My Account',
-    'my_history' => 'My history',
-    'sign_out' => 'Sign out'
+    'login' => 'Bejelentkezés', //??
+    'register' => 'Regisztráció', //??
+    'dashboard' =>  'Irányítópult', //??
+    'my_dashboard' => 'Főoldal',
+    'my_account' => 'Fiókom',
+    'my_history' => 'Előzmények',
+    'sign_out' => 'Kijelentkezés'
 
 
 ];
