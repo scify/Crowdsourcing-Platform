@@ -41,7 +41,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     return;
                 const answer = value.answerObj[questionName];
                 const respondentUserId = value.respondent_user_id;
-                if (!answer || !respondentUserId)
+                if (!answer || !respondentUserId || isAnswerMarkedAsHidden(questionName, respondentUserId))
                     return;
 
                 const tr = document.createElement("tr");
@@ -50,11 +50,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 td1.setAttribute("id", "answer_" + questionName + "_" + respondentUserId)
                 const td2 = document.createElement("td");
                 const td3 = document.createElement("td");
-                let annotation = false;
-                if (AnswersData.answerAnnotations[questionName]
-                    && AnswersData.answerAnnotations[questionName][respondentUserId]) {
-                    annotation = AnswersData.answerAnnotations[questionName][respondentUserId][0];
-                }
+                let annotation = getAnnotationForAnswer(questionName, respondentUserId);
                 const annotationText = annotation ? annotation.annotation_text : "";
                 let adminReviewStatusId = 0;
                 if (annotation)
@@ -91,12 +87,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     userDownvotedClass = 'user-downvoted';
                 const upvotesNum = getNumOfUpvotes(questionName, respondentUserId);
                 const downvotesNum = getNumOfDownvotes(questionName, respondentUserId);
-                if (upvotesNum)
-                    td2.setAttribute('data-order', (upvotesNum * 10));
-                else if (downvotesNum)
-                    td2.setAttribute('data-order', '0.' + downvotesNum);
-                else
-                    td2.setAttribute('data-order', '1');
+
+                td2.setAttribute('data-order', getOrderingFactorForAnswer(annotation, upvotesNum, downvotesNum).toString());
                 td2.innerHTML = '<div class="container-fluid">' +
                     '<div class="row text-center no-gutters reaction-buttons">' +
                     '<div class="col">' +
@@ -175,20 +167,44 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         return (typeof str === 'string' || str instanceof String)
     }
 
+    function isAnswerMarkedAsHidden(questionName, respondentUserId) {
+        const annotation = getAnnotationForAnswer(questionName, respondentUserId);
+        return annotation && annotation.admin_review_status_id === 4;
+    }
+
+    function getAnnotationForAnswer(questionName, respondentUserId) {
+        if (AnswersData.answerAnnotations[questionName] && AnswersData.answerAnnotations[questionName][respondentUserId])
+            return AnswersData.answerAnnotations[questionName][respondentUserId][0];
+        return false;
+    }
+
+    function getOrderingFactorForAnswer(annotation, upVotesNum, downVotesNum) {
+        let orderingFactor = 0;
+        if (annotation) {
+            if (annotation.admin_review_status_id === 2)
+                orderingFactor += 1000;
+            if (annotation.admin_review_status_id === 3)
+                orderingFactor -= 1000;
+        }
+        if (upVotesNum)
+            orderingFactor += (2 * upVotesNum);
+        if (downVotesNum)
+            orderingFactor -= (2 * downVotesNum);
+        return sigmoid(orderingFactor);
+    }
+
+    const k = 2;
+    function sigmoid(z) {
+        return 1 / (1 + Math.exp(-z/k));
+    }
+
     const renderContent = function (contentContainer, visualizer) {
         const table = document.createElement("table");
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
         renderRows(table, visualizer);
         const container = document.createElement("div");
-        /*  container.innerHTML = '<div class="card"><div class="card-header" id="answers_heading_' + AnswersData.currentIndex + '"><h5 class="mb-0">' +
-              '<button class="btn btn-outline-primary collapsed toggle-collapse" data-toggle="collapse" data-target="#answers_collapse_' + AnswersData.currentIndex + '" aria-expanded="true" aria-controls="answers_collapse_'
-              + AnswersData.currentIndex + '"><span class="if-collapsed">Show</span><span class="if-not-collapsed">Hide</span> Answers</button></h5></div><div id="answers_collapse_' + AnswersData.currentIndex
-              + '" class="collapse" aria-labelledby="answers_heading_' + AnswersData.currentIndex + '">' +
-              '<div class="card-body" id="card_body_' + AnswersData.currentIndex + '"></div></div></div>';*/
-        //contentContainer.appendChild(container);
-        //const cardBody = document.getElementById("card_body_" + AnswersData.currentIndex);
-        //cardBody.appendChild(table);
+
         contentContainer.appendChild(container);
         container.appendChild(table);
         contentContainer.className += " custom-texts-table-container";
@@ -211,7 +227,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     "visible": false
                 }
             ],
-            "order": [[(columns.length - 1), "desc"]],
+            "order": [[(columns.length - 2), "desc"]],
             "dom": 'Bfrtip'
         };
         if (AnswersData.userCanAnnotateAnswers)
