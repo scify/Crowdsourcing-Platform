@@ -20,7 +20,7 @@ return [
     'invite_your_friends'               => 'Mine töölauale ja kutsu oma sõpru osalema!',    
     'thanks_message_2'                  => 'Veelkord, suur tänu!',
     'thank_you_for_sharing'             => 'Täname, et jagasid!',
-    'sharing_the_questionnaire'         => 'Thank you for sharing the questionnaire<br>',
+    'sharing_the_questionnaire'         => 'Aitäh küsimustikku jagamast<br>',
     'sharing_is_caring'                 => 'Jagada - see tähendab hoolida!',
     'visit_your_dashboard'              => 'Vaata oma töölauda, et näha, mida teha  järgmiseks',
     'thank_you_for_referral'            => 'Täname suunamise eest!',
