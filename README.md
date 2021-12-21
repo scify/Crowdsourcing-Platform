@@ -21,7 +21,7 @@ Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
 - Mailchimp integration: All the email of registered users are collected to a mailchimp list
 - Google Analytics integration (with anonymized settings turned on) with custom events: We track anonymously people who do actions in the website
 - Voting mechanism for provided answers: Users can vote the best answers, Platform moderators can highlight the most interesting answers and reject/demote the not interesting ones
-- Extract the results: You can download the answers to excel
+- Extract the results2021_12_20_115932_add_social_image_to_projects_table: You can download the answers to excel
 - View statistics
 - Login function with fb, g+, linkedin, twitter, windows
 - Platform is available in many languages (and new translations can be added with relative low cost)

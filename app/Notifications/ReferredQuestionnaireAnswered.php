@@ -11,8 +11,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class ReferredQuestionnaireAnswered extends BadgeActionOccured implements ShouldQueue {
     use Queueable;
 
-    public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation, GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
-        $this->questionnaireFieldsTranslation = $questionnaireFieldsTranslation;
+    public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
+                                GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
+        $this->title = $questionnaireFieldsTranslation->title;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
     }
@@ -38,7 +39,7 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
             $this->badgeVM,
             __("notifications.thank_you_for_referral"),
             __("notifications.making_impact"),
-            __("notifications.someone_answered_to_questionnaire") . "<b>" . $this->questionnaireFieldsTranslation->title . "</b><br>",
+            __("notifications.someone_answered_to_questionnaire") . "<b>" . $this->title . "</b><br>",
             $this->badge->getEmailBody(),
             '',
             __("notifications.increase_your_impact"),

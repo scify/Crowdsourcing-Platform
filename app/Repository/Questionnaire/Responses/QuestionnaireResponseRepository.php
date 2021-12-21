@@ -10,65 +10,96 @@ use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Repository;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 
-class QuestionnaireResponseRepository extends Repository {
+class QuestionnaireResponseRepository extends Repository
+{
 
-    function getModelClassName() {
+    function getModelClassName()
+    {
         return QuestionnaireResponse::class;
     }
 
-    public function userResponseExists(int $userId): bool {
+    public function userResponseExists(int $userId): bool
+    {
         return $this->exists(['user_id' => $userId]);
     }
 
-    public function questionnaireResponseExists(int $questionnaireId, int $userId): bool {
+    public function questionnaireResponseExists(int $questionnaireId, int $userId): bool
+    {
         return $this->exists(['questionnaire_id' => $questionnaireId, 'user_id' => $userId]);
     }
 
-    public function deleteResponsesByUser(int $id) {
+    public function deleteResponsesByUser(int $id)
+    {
         return QuestionnaireResponse::whereIn('user_id', $id)->delete();
     }
 
-    public function restoreResponsesByUser(int $id) {
+    public function restoreResponsesByUser(int $id)
+    {
         return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', $id)->restore();
     }
 
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id) {
+
+
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id)
+    {
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
-            return;
+            return null;
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
         if ($anonymousUserId === $user_id) {
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
-            return;
+            return null;
         }
 
-        try {
-            //Log::info('Transferring responses from user: ' . $anonymousUserId . ' to user: ' . $user_id);
-            $user = User::findOrFail($anonymousUserId);
-            $questionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
-            $questionnaireResponseQuestionnaireIds = $questionnaireResponses->pluck('questionnaire_id')->toArray();
-            $questionnaireResponsesOfUser = QuestionnaireResponse::where('user_id', '=', $user_id)->get();
-            foreach ($questionnaireResponsesOfUser as $response) {
-                if (in_array($response->qustionnaire_id, $questionnaireResponseQuestionnaireIds))
-                    $response->delete();
-            }
-            QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->update(['user_id' => $user_id]);
-            $user->delete();
+        $anonymousUser = User::find($anonymousUserId);
+        if (!$anonymousUser){
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
-        } catch (Exception $e) {
-            Log::error('Transfer error:' . $e->getMessage());
-            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+            return null;
         }
+
+        $anonymousQuestionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
+        $anonymousQuestionnaireResponseQuestionnaireIds = $anonymousQuestionnaireResponses->pluck('questionnaire_id')->toArray();
+        //find existings questionnaires of the user.
+        $existingQuestionnaireResponsesOfUser = QuestionnaireResponse::where('user_id', '=', $user_id)->get();
+
+        //if this questionnaire has been answered in the past, delete it. We keep latest, the anonymous one
+        //foreach ($existingQuestionnaireResponsesOfUser as $response) {
+        //                if (in_array($response->qustionnaire_id, $anonymousQuestionnaireResponseQuestionnaireIds))
+        //                    $response->delete();
+        //  }
+
+        $questionnairesThatWereTransferedToUser = collect([]);
+        foreach ($anonymousQuestionnaireResponses as $anonymousResponse) {
+            $itHasAlreadyBeenAnswered = $existingQuestionnaireResponsesOfUser->contains(function ($existing) use ($anonymousResponse) {
+                return $existing->questionnaire_id == $anonymousResponse->questionnaire_id;
+            });
+
+            if ($itHasAlreadyBeenAnswered) {
+                //delete this anonymous response
+                QuestionnaireResponse::where('id', '=', $anonymousResponse->id)->delete();
+            } else {
+                //transfer it to the new user and send email.
+                QuestionnaireResponse::where('id', '=', $anonymousResponse->id)->update(['user_id' => $user_id]);
+                $questionnairesThatWereTransferedToUser->push($anonymousResponse);
+            }
+        }
+        $anonymousUser->delete();
+        CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+        return $questionnairesThatWereTransferedToUser;
+
     }
 
-    public function getQuestionnaireResponsesOfUser($userId){
-        return  QuestionnaireResponse::with("questionnaire")
+    public function getQuestionnaireResponsesOfUser($userId)
+    {
+        return QuestionnaireResponse::with("questionnaire")
             ->where('user_id', $userId)
             ->get();
     }
 
-    public function getAllResponsesGivenByUser($userId) {
+    public function getAllResponsesGivenByUser($userId)
+    {
         // here we select the columns that we want to fetch, due to this mySQL 8 bug:
         // https://bugs.mysql.com/bug.php?id=103225
         return QuestionnaireResponse::

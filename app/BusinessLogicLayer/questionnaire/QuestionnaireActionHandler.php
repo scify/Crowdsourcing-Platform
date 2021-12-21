@@ -18,7 +18,8 @@ use App\Repository\UserQuestionnaireShareRepository;
 use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Log;
 
-class QuestionnaireActionHandler {
+class QuestionnaireActionHandler
+{
 
     protected $webSessionManager;
     protected $userRepository;
@@ -34,7 +35,8 @@ class QuestionnaireActionHandler {
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
                                 UserQuestionnaireShareRepository       $questionnaireShareRepository,
                                 QuestionnaireResponseRepository        $questionnaireResponseRepository,
-                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager) {
+                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager)
+    {
         $this->webSessionManager = $webSessionManager;
         $this->userRepository = $userRepository;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
@@ -44,29 +46,29 @@ class QuestionnaireActionHandler {
         $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
     }
 
-    public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
+    public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user)
+    {
         //check if the contributor email should be sent
         if ($project->should_send_email_after_questionnaire_response)
             $this->awardContributorBadgeToUser($questionnaire, $project, $user);
     }
 
-    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user) {
+    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user)
+    {
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
-        try {
-            $user->notify(new QuestionnaireResponded(
-                    $questionnaire->currentFieldsTranslation,
-                    $contributorBadge,
-                    new GamificationBadgeVM($contributorBadge),
-                    $project->defaultTranslation)
-            );
-        } catch (\Exception $e) {
-            Log::error($e);
-        }
+        $event = new QuestionnaireResponded(
+            $questionnaire->currentFieldsTranslation,
+            $contributorBadge,
+            new GamificationBadgeVM($contributorBadge),
+            $project->defaultTranslation);
+
+        $user->notify($event); //ΤODO: HERE WE SHOULD SELECT THE LANGUAGE OF THE USER?
     }
 
-    public function handleQuestionnaireReferrer(Questionnaire $questionnaire, User $user) {
+    public function handleQuestionnaireReferrer(Questionnaire $questionnaire, User $user)
+    {
         $referrerId = $this->webSessionManager->getReferredId();
         if ($referrerId) {
             $referrer = $this->userRepository->getUser($referrerId);
@@ -81,16 +83,14 @@ class QuestionnaireActionHandler {
         }
     }
 
-    public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user) {
+    public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user)
+    {
         if (!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
             $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
-            try {
-                $user->notify(new QuestionnaireShared(
-                    $questionnaire->currentFieldsTranslation,
-                    $communicatorBadge, new GamificationBadgeVM($communicatorBadge)));
-            } catch (\Exception $e) {
-                Log::error($e);
-            }
+            $user->notify(new QuestionnaireShared(
+                $questionnaire->currentFieldsTranslation,
+                $communicatorBadge, new GamificationBadgeVM($communicatorBadge)));
+
         }
     }
 
