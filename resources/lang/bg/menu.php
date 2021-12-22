@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'Табло за управление', 
     'my_account' => 'Моят акаунт', 
     'my_history' => 'История на ползването',
-    'sign_out' => 'Sign out'
+    'sign_out' => 'Изключете се'
 
 
 ];
