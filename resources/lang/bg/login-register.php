@@ -33,8 +33,8 @@ return [
     'password_not_match'          => 'Повторната парола не отговаря на първоначалната.',
     'password_min_characters'     => 'Паролата трябва да съдържа най-малко 8 знака.',
     'credentials_not_match'       => 'Въведените данни не отговарят на базата ни данни.',
-    'one_step_away'               => 'You’re one step away!',
-    'avoid_duplicate_submissions' => 'In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue'
+    'one_step_away'               => 'Вие сте една стъпка напред!',
+    'avoid_duplicate_submissions' => 'За да избегнем дублиране, само логнати потребители могат да участват. Моля, влезте в системата с профила си.'
 
 
 
