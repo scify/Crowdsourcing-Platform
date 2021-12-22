@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Essas credenciais não correspondem aos nossos registros.',
+    'failed' => 'Essas credenciais não correspondem aos nossos registos.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

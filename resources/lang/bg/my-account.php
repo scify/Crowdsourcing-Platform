@@ -9,19 +9,19 @@ return [
 
     */
 
-    'my_account' => 'My Account',
-    'personal_details' => 'Personal Details', 
-    'update' => 'Update', 
-    'my_data' => 'My data', 
-    'download_my_data' => 'Download my data', 
-    'account_deactivation' => 'Account Deactivation', 
-    'deactivate_my_account' => 'Deactivate my account', 
-    'are_you_sure' => 'Are you sure?', 
-    'warning_for_deactivation' => '<b>Warning:</b> This action will delete your account.<br><br> You will lose all your badges and will not be able to participate in the platform any more.',
-    'deactivate_my_account_2' => 'I understand, please deactivate my account',
-    'current_password' => 'Current Password', 
-    'new_password' => 'New Password', 
-    're_enter_password' => 'Re-enter Password'
+    'my_account' => 'Моят акаунт',
+    'personal_details' => 'Лични данни', 
+    'update' => 'Ъпдейт', 
+    'my_data' => 'Моите данни', 
+    'download_my_data' => 'Свалете своите данни', 
+    'account_deactivation' => 'Закриване на акаунта', 
+    'deactivate_my_account' => 'Закрий акаунта', 
+    'are_you_sure' => 'Сигурни ли сте?', 
+    'warning_for_deactivation' => '<b>Внимание:</b> Това действие ще заличи Вашия акаунт.<br><br> Ще загубите всички спечелени досега значки и няма да можете да участвате в платформата повече.',
+    'deactivate_my_account_2' => 'Разбирам, моля деактивирайте моя акаунт.',
+    'current_password' => 'Досегашна парола', 
+    'new_password' => 'Нова парола', 
+    're_enter_password' => 'Вкарайте паролата отново'
 
 
 ];

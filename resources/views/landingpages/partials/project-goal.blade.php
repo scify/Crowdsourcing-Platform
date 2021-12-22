@@ -1,7 +1,5 @@
 <div class="activity-title wrapper-title">
-    <p>
-        <b style="color: {{ $project->lp_primary_color }}">{{ $questionnaireViewModel->responsesNeededToReachGoal }}</b>
-        {{ __("questionnaire.answers_left_to_goal") }}</p>
+    <p>          {!! __("questionnaire.answers_left_to_goal",  ["count"=>"<b> $questionnaireViewModel->responsesNeededToReachGoal </b>"]) !!}</p>
 </div>
 <div class="progress-container">
     <div class="progress-bar-circle" id="questionnaire-progress-{{ $questionnaireId }}"
@@ -12,3 +10,5 @@
 @push('scripts')
     <script src="{{ mix('dist/js/projectGoal.js')}}"></script>
 @endpush
+
+

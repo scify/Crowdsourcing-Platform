@@ -9,13 +9,13 @@ return [
 
     */
 
-    'login' => 'LOGIN', //??
-    'register' => 'Register', //??
-    'dashboard' =>  'DASHBOARD', //??
-    'my_dashboard' => 'My Dashboard',
-    'my_account' => 'My Account',
-    'my_history' => 'My history',
-    'sign_out' => 'Sign out'
+    'login' => 'Se connecter', //??
+    'register' => 'S\'inscrire', //??
+    'dashboard' =>  'Tableau de bord', //??
+    'my_dashboard' => 'Mon tableau de bord',
+    'my_account' => 'Mon compte',
+    'my_history' => 'Mon historique',
+    'sign_out' => 'Se déconnecter'
 
 
 ];

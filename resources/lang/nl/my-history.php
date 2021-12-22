@@ -11,7 +11,7 @@ return [
 
     'my_history' => 'Mijn geschiedenis',
     'my_contributions' => 'Mijn bijdragen',
-    'number_of_questionnaires' => 'Je hebt bijgedragen aan ',
+    'number_of_questionnaires' => '{0} Je hebt bijgedragen aan 0 vragenlijsten |{1}  Je hebt bijgedragen aan 1 vragenlijst |[2,*] Je hebt bijgedragen aan :count vragenlijsten"',
     'no_questionnaires' => 'Je hebt nog niet gereageerd op een van de vragenlijsten.',
     'project' => 'Project ',
     'questionnaire_title' => 'Vragenlijst titel',

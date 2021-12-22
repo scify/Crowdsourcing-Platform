@@ -9,12 +9,12 @@ return [
 
     */
 
-    'total_responses' => 'Total Responses',
-    'goal_responses' => 'Goal responses', 
-    'actual_responses' => 'Actual responses', 
-    'download_csv' => 'Download as CSV', 
-    'print' => 'Print',
-    'responses_per_language' => 'Responses per language',
+    'total_responses' => 'Összes válasz',
+    'goal_responses' => 'Válasz cél', 
+    'actual_responses' => 'Tényleges válaszok', 
+    'download_csv' => 'Letöltés CSV formátumban', 
+    'print' => 'Nyomtatás',
+    'responses_per_language' => 'Válaszok nyelvenként',
 
 
 

@@ -9,16 +9,16 @@ return [
 
     */
 
-    'my_history' => 'My history',
-    'my_contributions' => 'My Contributions',
-    'number_of_questionnaires' => 'You have contributed to ',
-    'no_questionnaires' => 'You haven’t responded to any questionnaires, yet.',
-    'project' => 'Project',
-    'questionnaire_title' => 'Questionnaire title',
-    'questionnaire_description' => 'Questionnaire description',
-    'responded' => 'Responded',
-    'actions' => 'Actions',
-    'view_response' => 'View response'
+    'my_history' => 'История на ползването',
+    'my_contributions' => 'Моите отговори',
+    'number_of_questionnaires' => '{0} Допринесли сте за 0 въпроса |{1}  Допринесли сте за 1 въпросник |[2,*] Допринесли сте за :count въпросника"',
+    'no_questionnaires' => 'Все още не сте отговорили на нито един въпрос.',
+    'project' => 'Проект',
+    'questionnaire_title' => 'Заглавие на въпросника',
+    'questionnaire_description' => 'Описание на въпросника',
+    'responded' => 'Отоворил/и',
+    'actions' => 'Действия',
+    'view_response' => 'Вижте отговора'
 
 
 

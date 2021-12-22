@@ -11,10 +11,10 @@ return [
 
     'start_answering' => 'Begin met beantwoorden', 
     'already_participated' => 'Je hebt al deelgenomen, dank je wel!',  
-    'answers_so_far' => 'mensen hebben hun mening gegeven. Laten we gaan voor de ', 
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> mensen hebben hun mening gegeven. Laten we gaan voor de <b>:goal</b>!',
     'latest_contributors' => 'Meest recente deelnemers', 
     'name_and_date_of_last_contributors' => ':name heeft gereageerd op :date', //Maria responded at November 23, 2021 
-    'answers_left_to_goal' => 'antwoorden te gaan om ons doel te bereiken', //1002 answers left to reach our goal  
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> antwoorden te gaan om ons doel te bereiken', //1002 answers left to reach our goal  
     'newsletter' => 'Nieuwsbrief',  
     'learn_about_new_projects' => 'Lees meer over onze nieuwe projecten. Ontvang updates over lopende projecten en doe mee!', 
     'sign_in' => 'Log in', 

@@ -11,10 +11,10 @@ return [
 
     'start_answering' => 'Mit der Beantwortung beginnen', 
     'already_participated' => 'Sie haben bereits teilgenommen, vielen Dank!',  
-    'answers_so_far' => 'Personen haben bisher teilgenommen. Erreichen wir gemeinsam die ', 
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> Personen haben bisher teilgenommen. Erreichen wir gemeinsam die  <b>:goal</b>!',
     'latest_contributors' => 'Neueste Beiträge', 
     'name_and_date_of_last_contributors' => ':name antwortete am :date', //Maria responded at November 23, 2021 
-    'answers_left_to_goal' => 'Antworten sind noch nötig, um unser Ziel zu erreichen', //1002 answers left to reach our goal  
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> Antworten sind noch nötig, um unser Ziel zu erreichen', //1002 answers left to reach our goal  
     'newsletter' => 'Newsletter',  
     'learn_about_new_projects' => 'Informieren Sie sich über alle neuen Projekte, erhalten Sie aktuelle Informationen über laufende Projekte und leisten Sie Ihren Beitrag dort, wo er am dringendsten benötigt wird!', 
     'sign_in' => 'Anmelden', 
