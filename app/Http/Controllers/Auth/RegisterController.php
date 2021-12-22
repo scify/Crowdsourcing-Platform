@@ -92,7 +92,7 @@ class RegisterController extends Controller {
         if ($numberOfResponsedTransfered)
             session()->flash('flash_message_success', 'Thanks for answering! ');
 
-        $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo;
+        $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo();
         return redirect($url);
     }
 }
