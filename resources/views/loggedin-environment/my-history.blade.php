@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __("my-history.number_of_questionnaires")}} {{ $responses->count() }} {{ str_plural('questionnaire', $responses->count())}}</h3>
+                    <h3 class="card-title">{{ trans_choice("my-history.number_of_questionnaires",  $responses->count()  , [ "count" =>  $responses->count()  ]) }} </h3>
                 </div>
                 <div class="card-body">
                     @if($responses->isEmpty())

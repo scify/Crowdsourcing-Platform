@@ -11,25 +11,25 @@ return [
 
     
 
-    'go_to_dashboard'                   => 'Go to Dashboard',
-    'thank_you_for_contribution'        => 'Thank you for your contribution!',
-    'hello'                             => 'Hello!',
-    'thanks_message_for_answering_2'    => 'Thank you for taking the time to answer our questionnaire',
-    'really_means'                      => 'This really means a lot to us!',
-    'increase_your_impact'              => 'Increase your impact',
-    'invite_your_friends'               => 'Go to your dashboard, and invite your friends!',    
-    'thanks_message_2'                  => 'Thank you once again!',
-    'thank_you_for_sharing'             => 'Thank you for sharing!',
-    'sharing_the_questionnaire'         => 'Thank you for sharing the questionnaire<br>',
-    'sharing_is_caring'                 => 'Sharing is caring!',
-    'visit_your_dashboard'              => 'Visit your dashboard to see what to do next',
-    'thank_you_for_referral'            => 'Thank you for your referral!',
-    'making_impact'                     => 'You are making an impact!',
-    'someone_answered_to_questionnaire' => 'Someone answered to a questionnaire you shared!<br>',
-    'visit_your_dashboard_and_invite'   => 'Visit your dashboard and invite more friends',
-    'thanks_message'                    => 'Thanks for joining the Crowdsourcing Platform!',
-    'make_an_impact'                    => 'Are you ready to make an impact?',
-    'visit_your_dashboard_contribute'   => 'Visit your Dashboard to see how you can contribute:'
+    'go_to_dashboard'                   => 'Към таблото за управление',
+    'thank_you_for_contribution'        => 'Благодарим Ви за приноса!',
+    'hello'                             => 'Здравейте!',
+    'thanks_message_for_answering_2'    => 'Благодарим, че отделихте време да отговорите на въпросника',
+    'really_means'                      => 'Това е наистина важно за нас!',
+    'increase_your_impact'              => 'Засилете въздействието си',
+    'invite_your_friends'               => 'Посетете своето табло за управление, за да поканите своите приятели!',    
+    'thanks_message_2'                  => 'Благодарим Ви отново!',
+    'thank_you_for_sharing'             => 'Благодарим, че споделихте!',
+    'sharing_the_questionnaire'         => 'Благодарим Ви, че споделихте въпросника<br>',
+    'sharing_is_caring'                 => 'Sharing is caring! (Ако споделяш, значи ти пука)',
+    'visit_your_dashboard'              => 'Посетете таблото си за управление за да видите какво следва',
+    'thank_you_for_referral'            => 'Благодарим Ви за препратката!',
+    'making_impact'                     => 'Вие въздействате!',
+    'someone_answered_to_questionnaire' => 'Някой отговори на въпросника, който сте споделили!<br>',
+    'visit_your_dashboard_and_invite'   => 'Посетете таблото си за управление и поканете още приятели',
+    'thanks_message'                    => 'Благодарим Ви, че се присъединихте към краудсорсинг платформата!',
+    'make_an_impact'                    => 'Готови ли сте да се включите?',
+    'visit_your_dashboard_contribute'   => 'Посетете таблото си за управление, за да видите как можете да участвате:'
 
 
 

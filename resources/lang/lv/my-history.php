@@ -11,7 +11,7 @@ return [
 
     'my_history' => 'Mana vēsture',
     'my_contributions' => 'Manas atbildes',
-    'number_of_questionnaires' => 'Tu esi piedalījies ',
+    'number_of_questionnaires' => '{0} Tu esi piedalījies 0 anketas |{1}  Tu esi piedalījies 1 anketu |[2,*] Tu esi piedalījies :count anketas"',
     'no_questionnaires' => 'Tu vēl neesi atbildējis uz anketas jautājumiem.',
     'project' => 'Projekts',
     'questionnaire_title' => 'Anketas nosaukums',

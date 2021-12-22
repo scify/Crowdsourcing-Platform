@@ -10,19 +10,19 @@ return [
     */
 
     
-    'crowdsource_our_future'            => 'Let’s crowdsource our future',
-    'hello'                             => 'Hello!',
-    'email_reset_password'              => 'You are receiving this email because we received a password reset request for your account.',
-    'reset_password'                    => 'Reset Password',
-    'reset_link_expire'                 => 'This password reset link will expire in 60 minutes.',
-    'no_further_action'                 => 'If you did not request a password reset, no further action is required.',
-    'regards'                           => 'Regards',
-    'trouble_with_button'               => 'If you’re having trouble clicking the ',
-    'copy_paste_url'                    => ' button, copy and paste the URL below into your web browser:',
-    'thanks_message_for_answering'      => 'Thank you for taking the time to answer our questionnaire with the title: ',
-    'thanks_message_for_contribution'   => 'Thanks to your contribution we are one step closer to our goal!',
-    'unlocked_new_badge'                => 'You have also unlocked a new badge:', 
-    'inquiries_about_our_work'          => 'If you have any inquiries about our work, do not hesitate to contact us.'
+    'crowdsource_our_future'            => 'Créons notre avenir grâce au crowdsourcing',
+    'hello'                             => 'Bonjour!',
+    'email_reset_password'              => 'Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.',
+    'reset_password'                    => 'Réinitialiser le mot de passe',
+    'reset_link_expire'                 => 'Ce lien de réinitialisation du mot de passe expirera dans 60 minutes.',
+    'no_further_action'                 => 'Si vous n\'avez pas demandé de réinitialisation du mot de passe, aucune action supplémentaire n\'est requise.',
+    'regards'                           => 'Salutations',
+    'trouble_with_button'               => 'Si vous avez des difficultés à cliquer sur le bouton ',
+    'copy_paste_url'                    => ' copiez et collez l\'URL ci-dessous dans votre navigateur web:',
+    'thanks_message_for_answering'      => 'Merci de prendre le temps de répondre à notre questionnaire intitulé: ',
+    'thanks_message_for_contribution'   => 'Grâce à votre contribution, nous nous rapprochons un peu plus de notre objectif!',
+    'unlocked_new_badge'                => 'Vous avez également débloqué un nouveau badge:', 
+    'inquiries_about_our_work'          => 'Si vous avez des questions sur notre travail, n\'hésitez pas à nous contacter.'
 
 
 
