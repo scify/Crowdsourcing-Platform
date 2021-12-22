@@ -86,7 +86,7 @@ return [
 
     'locale' => 'en',
     // check web.php
-    'regex_for_validating_locale_at_routes' => 'en|lv|el|et|pt|bg|hu|nl|fr|de|mg|ru',
+    'regex_for_validating_locale_at_routes' => 'en|lv|el|et|pt|bg|hu|nl|fr|de|sr',
 
     /*
     |--------------------------------------------------------------------------

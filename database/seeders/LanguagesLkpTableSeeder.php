@@ -173,7 +173,7 @@ class LanguagesLkpTableSeeder extends Seeder {
                 'available_for_platform_translation' => false
             ],
             [
-                'code' => 'mg',
+                'code' => 'sr',
                 'name' => 'Montenegrin',
                 'default_color' => '#06004D',
                 'available_for_platform_translation' => true
@@ -201,5 +201,9 @@ class LanguagesLkpTableSeeder extends Seeder {
                 ]
             );
         }
+        //delete Russiaan
+        $this->languagesRepository->delete(28);
+        //delete old Montenegro
+        $this->languagesRepository->delete(27);
     }
 }
