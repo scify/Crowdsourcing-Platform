@@ -11,12 +11,12 @@ return [
 
 
     'gain_badge_by_answering'        => 'Κέρδισε αυτό το badge απαντώντας σε ένα ερωτηματολόγιο!',
-    'you_have_answered'              => 'Έχετε απαντήσει σε :count',
+    'you_have_answered'              => 'Έχετε απαντήσει :count',
     'questionnaire'                  => 'ερωτηματολόγιο',
     'questionnaires'                 => 'ερωτηματολόγια',
-    'you_are_a_contributor'          => 'Είσαι Επιπέδου :level Contributor! Συνέχισε!',
+    'you_are_a_contributor'          => 'Είσαι Contributor Επιπέδου :level! Συνέχισε!',
     'contributor_title'              => 'Contributor',
-    'become_a_contributor'           => 'Πες μας τη γνώμη σου<br>και γίνε επιπέδου :level Contributor!',
+    'become_a_contributor'           => 'Πες μας τη γνώμη σου<br>και γίνε Contributor επιπέδου :level!',
     'gain_contributor_badge'         => 'Πες μας τη γνώμη σου<br/>και κέρδισε το "Contributor" badge!',
     'gain_badge_by_inviting'         => 'Κέρδισε αυτό το badge προσκαλώντας κι άλλα άτομα να συμμετάσχουν. Μοιράσου το στο Facebook και το Twitter!',
     'communicator_title'             => 'Communicator',
@@ -40,10 +40,10 @@ return [
     'true_influencer'                => '{1} Ουάου, είστε πραγματικός influencer!<br> 1 άτομο απάντησε στο κάλεσμά σου μέχρι στιγμής. Γράψτε ένα συναρπαστικό μήνυμα και προσκαλέστε περισσότερους φίλους! |[2.*] Ουάου, είστε πραγματικός influencer!<br> :count άτομα απάντησαν στο κάλεσμά σου μέχρι στιγμής. Γράψτε ένα συναρπαστικό μήνυμα και προσκαλέστε περισσότερους φίλους!',
     'you_are_close'                  => '<br>Είστε κοντά στο να γίνετε επιπέδου',
     'become_an_influencer'           => '<br>Είστε κοντά στο να γίνετε επιπέδου :level Influencer!',
-    'badges_completed'               => 'Έχετε μαζέψει όλα τα badges',
-    'received_all_badges'            => 'Συγχαρητήρια! Έχετε πάρει όλα τα διαθέσιμα badges!',
-    'huge_impact'                    => 'Έχετε κάνει τεράστιο αντίκτυπο σε αυτό το ερωτηματολόγιο!',
-    'all_star_crowdsourcer'          => 'Συγχαρητήρια! Έχετε πάρει όλα τα διαθέσιμα badges γι’ αυτό το ερωτηματολόγιο!',
+    'badges_completed'               => 'Έχετε κερδίσει όλα τα badges',
+    'received_all_badges'            => 'Συγχαρητήρια! Έχετε κερδίσει όλα τα διαθέσιμα badges!',
+    'huge_impact'                    => 'Έχετε συνεισφέρει σημαντικά  σε αυτό το ερωτηματολόγιο!',
+    'all_star_crowdsourcer'          => 'Συγχαρητήρια! Έχετε κερδίσει όλα τα διαθέσιμα badges γι’ αυτό το ερωτηματολόγιο!',
 
 
 
