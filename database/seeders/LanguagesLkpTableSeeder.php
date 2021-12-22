@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Language;
 use App\Repository\LanguageRepository;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class LanguagesLkpTableSeeder extends Seeder {
 
@@ -201,9 +202,15 @@ class LanguagesLkpTableSeeder extends Seeder {
                 ]
             );
         }
-        //delete Russiaan
+        //delete invalid Montenegro code
+        DB::statement("update languages_lkp set deleted_at =now() where language_code = 'mg'");
         $this->languagesRepository->delete(28);
-        //delete old Montenegro
+        //delete  Russiaan
+        DB::statement("update languages_lkp set deleted_at =now() where language_code = 'ru'");
         $this->languagesRepository->delete(27);
+        //update montenegrin to projects
+        DB::statement("update crowd_sourcing_projects set language_id = 29 where language_id = 27");
+
+
     }
 }
