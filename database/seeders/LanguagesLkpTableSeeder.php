@@ -23,6 +23,7 @@ class LanguagesLkpTableSeeder extends Seeder {
     public function run() {
         // languages found here: https://en.wikipedia.org/wiki/Languages_of_the_European_Union
         Language::onlyTrashed()->restore();
+        DB::statement("update languages_lkp set deleted_at =now() where language_code = 'mg'");
         $languages = [
             [
                 'code' => 'bg',
@@ -202,8 +203,6 @@ class LanguagesLkpTableSeeder extends Seeder {
                 ]
             );
         }
-        //delete invalid Montenegro code
-        DB::statement("update languages_lkp set deleted_at =now() where language_code = 'mg'");
         //delete  Russiaan
         DB::statement("update languages_lkp set deleted_at =now() where language_code = 'ru'");
 
