@@ -1,5 +1,8 @@
 import * as SurveyAnalytics from "survey-analytics";
 
+import Vue from 'vue';
+import AnswersPresenter from "./AnswersPresenter.vue";
+
 require('../../lang');
 
 export class AnswersData {
@@ -194,11 +197,25 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     const k = 2;
+
     function sigmoid(z) {
-        return 1 / (1 + Math.exp(-z/k));
+        return 1 / (1 + Math.exp(-z / k));
     }
 
     const renderContent = function (contentContainer, visualizer) {
+
+        const div = document.createElement("div");
+        console.log(question);
+        div.id = question.name + "_answer_container"
+        contentContainer.appendChild(div);
+        new Vue({
+            el: '#' + div.id,
+            render: h => h(AnswersPresenter, {props: {
+                    answers: [],
+                    title: "hello from vue"
+                }})
+            });
+
         const table = document.createElement("table");
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
         renderHeader(table, visualizer);
