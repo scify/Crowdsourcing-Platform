@@ -76,12 +76,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Which personal data are processed?</h2>
-                                <b>3.1. Registration- account creation:</b><br>
+                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+
+                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
+                                <b>3.1.1 Registration- account creation:</b><br>
                                 In order for a User to voluntarily create an account in the Platform, the User should
                                 fill in the necessary data: his nickname, email address, and password
                                 <br><br>
-                                <b>3.2 Submitted questionnaire responses</b><br>
+                                <b>3.1.2 Submitted questionnaire responses</b><br>
                                 The Platform collects user answers (that is opinions on various subjects) on questions
                                 made via Platform's questionnaires.
                                 These answers are analyzed and presented in a questionnaire results page.
@@ -90,12 +92,20 @@
                                 posting publicly any personal data that do not wish to be publicly available on the
                                 Platform.
                                 <br><br>
-                                <b>3.3. Platform's communication for reasons related to User's permitted use of the
+                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
                                     Platform.</b>
                                 <br><br>
                                 In order for the Platform to communicate with the User for the above purposes, Data
                                 Controller can process all data relating to User's account, uploaded content and data
                                 related to the User's use of the Platform.
+
+                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
+                                We may also collect information how the webpage is accessed and used ("Usage Data").
+                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
+                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
+                                the time spent on those pages, unique device identifiers and other diagnostic data.
+
+
                             </div>
                         </div>
                         <div class="row">
