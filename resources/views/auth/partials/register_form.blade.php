@@ -39,3 +39,12 @@
                         </span>
     @endif
 </div>
+<div class="form-group ">
+    <div class="checkbox icheck">
+        <label>
+            <input class="icheck-input" type="checkbox" required name="privacy-policy">
+            <span class="ml-3">I agree to the <a href="{{route('terms.privacy')}}" target="_blank">the privacy policy</a></span>
+        </label>
+    </div>
+</div>
+
