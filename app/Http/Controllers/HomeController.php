@@ -19,6 +19,7 @@ class HomeController extends Controller {
     }
 
     public function showTermsAndPrivacyPage() {
-        return view('terms-and-privacy');
+        $locale = app()->getLocale();
+        return view("privacy-policy.".$locale);
     }
 }
