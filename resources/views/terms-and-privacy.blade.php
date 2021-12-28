@@ -370,9 +370,6 @@
                                 User's previous notification) in accordance with the appropriate legal provisions. If
                                 the User should be previously notified in accordance with the legal provisions, then the
                                 User has the right to object to this processing as provided in article 7 above.
-                                <br><br>
-                                <b>8.3.</b> Αs to the professional details of each User, they are available to all
-                                register Users of the Platform for the purposes mentioned above.
 
                             </div>
                         </div>
