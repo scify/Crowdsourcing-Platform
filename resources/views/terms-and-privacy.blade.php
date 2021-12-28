@@ -94,7 +94,7 @@
                                 <br><br>
                                 <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
                                     Platform.</b>
-                                <br><br>
+                                <br>
                                 In order for the Platform to communicate with the User for the above purposes, Data
                                 Controller can process all data relating to User's account, uploaded content and data
                                 related to the User's use of the Platform.
