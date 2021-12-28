@@ -38,6 +38,10 @@ Route::group($localeInfo, function () {
     Route::get('/terms-and-privacy', 'HomeController@showTermsAndPrivacyPage')->name('terms.privacy');
 });
 
+Route::get('/terms-and-privacy', function () {
+    return redirect(app()->getLocale() ."/terms-and-privacy");
+});
+
 
 Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('socialLoginCallback');
