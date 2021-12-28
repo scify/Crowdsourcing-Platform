@@ -522,7 +522,19 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Amendments to this Privacy Policy </h2>
+                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
+                                Our project does not address anyone under the age of 18 ("Children").
+                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
+                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
+                                If we become aware that we have collected Personal Data from children without verification of parental consent,
+                                we take steps to remove that information from our servers.
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
                                 The Data Controller reserves the right to amend this present Privacy Policy, for example
                                 when this is necessary to comply with new requirements imposed by applicable laws,
                                 guidelines or technical requirements, or in the course of a revision of the Data
