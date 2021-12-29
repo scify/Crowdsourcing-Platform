@@ -51,26 +51,26 @@ class QuestionnaireActionHandler
         $this->languageManager = $languageManager;
     }
 
-    public function handleQuestionnaireContributor(Questionnaire $questionnaire,
+    public function handleQuestionnaireContributor(Questionnaire        $questionnaire,
                                                    CrowdSourcingProject $project,
-                                                   User $user,
-                                                   Language $language)
+                                                   User                 $user,
+                                                   Language             $language)
     {
         //check if the contributor email should be sent
         if ($project->should_send_email_after_questionnaire_response)
-            $this->awardContributorBadgeToUser($questionnaire, $project, $user,$language);
+            $this->awardContributorBadgeToUser($questionnaire, $project, $user, $language);
     }
 
     public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project,
-                                                User $user,
-                                                Language $language)
+                                                User          $user,
+                                                Language      $language)
     {
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
 
-        $project_translation = $project->translations->firstWhere("language_id","=",$language->id);
-        $questionnaire_translation = $questionnaire->fieldsTranslations->firstWhere("language_id","=",$language->id);
+        $project_translation = $project->translations->firstWhere("language_id", "=", $language->id);
+        $questionnaire_translation = $questionnaire->fieldsTranslations->firstWhere("language_id", "=", $language->id);
         $event = new QuestionnaireResponded(
             $questionnaire_translation,
             $contributorBadge,
@@ -83,8 +83,8 @@ class QuestionnaireActionHandler
 
 
     public function handleQuestionnaireReferrer(Questionnaire $questionnaire,
-                                                User $user,
-                                                Language $language)
+                                                User          $user,
+                                                Language      $language)
     {
         $referrerId = $this->webSessionManager->getReferredId();
         if ($referrerId) {
@@ -104,15 +104,15 @@ class QuestionnaireActionHandler
 
     public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user, Language $language)
     {
-        if (!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
-            $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
-            $user->notify(new QuestionnaireShared(
-                $questionnaire->currentFieldsTranslation,
-                $communicatorBadge,
-                new GamificationBadgeVM($communicatorBadge),
-                $language->language_code));
 
-        }
+        $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
+        $user->notify(new QuestionnaireShared(
+            $questionnaire->currentFieldsTranslation,
+            $communicatorBadge,
+            new GamificationBadgeVM($communicatorBadge),
+            $language->language_code));
+
+
     }
 
 }
