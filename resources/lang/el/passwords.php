@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => 'Οι κωδικοί πρέπει να είναι τουλάχιστον 6 χαρακτήρες και να ταιρίαζουν μεταξύ τους',
+    'reset' => 'Ο κωδικός σας έχει αλλάξει!',
+    'sent' => 'Σας στείλαμε ενα e-mail για να αλλάξετε τον κωδικό σας ',
+    'token' => 'Ο κωδικός ενεργοποίησης είναι λανθασμένος/έχει λήξει. Παρακαλώ επαναλάβετε τη διαδικασία αλλαγής κωδικου',
+    'user' => "Δε βρέθηκε χρήστης με αυτό το e-mail",
 
 ];
