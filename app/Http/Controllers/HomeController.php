@@ -22,4 +22,8 @@ class HomeController extends Controller {
         $locale = app()->getLocale();
         return view("privacy-policy.".$locale);
     }
+    public function showCodeOfConductPage(){
+        $locale = app()->getLocale();
+        return view("code-of-conduct.".$locale);
+    }
 }
