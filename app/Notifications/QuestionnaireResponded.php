@@ -17,16 +17,19 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
     protected $questionnaire_response_email_outro_text;
     protected $questionnaire_response_email_intro_text;
 
+
     public function __construct($questionnaireFieldsTranslation,
                                 GamificationBadge $badge,
                                 GamificationBadgeVM $badgeVM,
-        $crowdSourcingProjectTranslation)
+                                $crowdSourcingProjectTranslation,
+                                string $locale)
     {
         $this->title = $questionnaireFieldsTranslation->title;
         $this->questionnaire_response_email_intro_text = $crowdSourcingProjectTranslation->questionnaire_response_email_intro_text;
         $this->questionnaire_response_email_outro_text = $crowdSourcingProjectTranslation->questionnaire_response_email_outro_text;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
+        $this->locale = $locale;
 
     }
 
@@ -52,15 +55,15 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue
 
         return parent::objectToMail(
             $this->badgeVM,
-            __("notifications.thank_you_for_contribution"),
-            __("notifications.hello"),
-            __("notifications.thanks_message_for_answering_2") . " <b>" . $this->title . "</b> " . __("notifications.really_means")
+            __("notifications.thank_you_for_contribution",[],$this->locale),
+            __("notifications.hello",[],$this->locale),
+            __("notifications.thanks_message_for_answering_2",[],$this->locale) . " <b>" . $this->title . "</b> " . __("notifications.really_means",[],$this->locale)
             . '<br><br><div id="intro_text">' . $this->questionnaire_response_email_intro_text . '</div>',
             $this->badge->getEmailBody(),
             '<br><div id="outro_text">' . $this->questionnaire_response_email_outro_text . '</div>',
-            __("notifications.increase_your_impact") . "<br>",
-            __("notifications.invite_your_friends"),
-            __("notifications.thanks_message_2") . "<br><br>The Crowdsourcing Team");
+            __("notifications.increase_your_impact",[],$this->locale) . "<br>",
+            __("notifications.invite_your_friends",[],$this->locale),
+            __("notifications.thanks_message_2",[],$this->locale) . "<br><br>The Crowdsourcing Team");
     }
 
     /**

@@ -33,11 +33,13 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
                                  $afterBadge,
                                  $actionText,
                                  $actionText2,
-                                 $salutation = null) {
+                                 $salutation = null
+                                 ) {
         $message = (new MailMessage)
             ->subject('Crowdsourcing Platform | ' . $subject)
             ->greeting($greeting)
             ->line($title);
+
 
         $message->line('<div style="text-align: center;"><br><b>' . $beforeBadge . '</b><br><br></div>');
         $message->line((String)view('gamification.badge-single', compact('badge')));
@@ -45,7 +47,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
         $message->line('<br><p style="text-align: center"><b>' . $actionText . '</b><br>' . $actionText2 . '</p>');
         if($salutation)
             $message->salutation($salutation);
-        $message->action(__("notifications.go_to_dashboard"), route('my-dashboard'));
+        $message->action(__("notifications.go_to_dashboard",[],$this->locale), route('my-dashboard'));
         return $message;
     }
 

@@ -11,12 +11,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
     use Queueable;
 
+    /**
+     * @param QuestionnaireFieldsTranslation $questionnaireFieldsTranslation
+     * @param GamificationBadge $badge
+     * @param GamificationBadgeVM $badgeVM
+     * @param string $locale We add the locale here because this notification may be trigger by an api.web action.
+     */
     public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
-                                GamificationBadge $badge,
-                                GamificationBadgeVM $badgeVM) {
+                                GamificationBadge              $badge,
+                                GamificationBadgeVM            $badgeVM,
+                                string                         $locale) {
         $this->title = $questionnaireFieldsTranslation->title;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
+        $this->locale = $locale;
     }
 
     /**
@@ -38,13 +46,13 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
     public function toMail($notifiable) {
         return parent::objectToMail(
             $this->badgeVM,
-            __("notifications.thank_you_for_sharing"),
-            __("notifications.hello"),
-            __("notifications.sharing_the_questionnaire") . "<b>" . $this->title . "</b>!",
+            __("notifications.thank_you_for_sharing",[],$this->locale),
+            __("notifications.hello",[],$this->locale),
+            __("notifications.sharing_the_questionnaire",[],$this->locale) . "<b>" . $this->title . "</b>!",
             $this->badge->getEmailBody(),
             '',
-            __("notifications.sharing_is_caring"),
-            __("notifications.visit_your_dashboard"));
+            __("notifications.sharing_is_caring",[],$this->locale),
+            __("notifications.visit_your_dashboard",[],$this->locale));
     }
 
     /**

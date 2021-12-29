@@ -12,10 +12,13 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
     use Queueable;
 
     public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
-                                GamificationBadge $badge, GamificationBadgeVM $badgeVM) {
+                                GamificationBadge $badge,
+                                GamificationBadgeVM $badgeVM,
+                                string $locale) {
         $this->title = $questionnaireFieldsTranslation->title;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;
+        $this->locale = $locale;
     }
 
     /**
@@ -37,13 +40,14 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
     public function toMail($notifiable) {
         return parent::objectToMail(
             $this->badgeVM,
-            __("notifications.thank_you_for_referral"),
-            __("notifications.making_impact"),
-            __("notifications.someone_answered_to_questionnaire") . "<b>" . $this->title . "</b><br>",
+            __("notifications.thank_you_for_referral",[],$this->locale),
+            __("notifications.making_impact"[],$this->locale),
+            __("notifications.someone_answered_to_questionnaire"[],$this->locale) . "<b>" . $this->title . "</b><br>",
             $this->badge->getEmailBody(),
             '',
-            __("notifications.increase_your_impact"),
-            __("notifications.visit_your_dashboard_and_invite"));
+            __("notifications.increase_your_impact"[],$this->locale),
+            __("notifications.visit_your_dashboard_and_invite"[],$this->locale),
+            $this->locale);
     }
 
     /**

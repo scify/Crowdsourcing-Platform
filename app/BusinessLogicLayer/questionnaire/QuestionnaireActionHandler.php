@@ -5,8 +5,10 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
+use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\WebSessionManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use App\Models\ViewModels\GamificationBadgeVM;
@@ -28,6 +30,7 @@ class QuestionnaireActionHandler
     protected $questionnaireShareRepository;
     protected $questionnaireResponseRepository;
     protected $questionnaireFieldsTranslationManager;
+    protected $languageManager;
 
     public function __construct(WebSessionManager                      $webSessionManager,
                                 UserRepository                         $userRepository,
@@ -35,7 +38,8 @@ class QuestionnaireActionHandler
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
                                 UserQuestionnaireShareRepository       $questionnaireShareRepository,
                                 QuestionnaireResponseRepository        $questionnaireResponseRepository,
-                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager)
+                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager,
+                                LanguageManager                        $languageManager)
     {
         $this->webSessionManager = $webSessionManager;
         $this->userRepository = $userRepository;
@@ -44,30 +48,43 @@ class QuestionnaireActionHandler
         $this->questionnaireShareRepository = $questionnaireShareRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
+        $this->languageManager = $languageManager;
     }
 
-    public function handleQuestionnaireContributor(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user)
+    public function handleQuestionnaireContributor(Questionnaire $questionnaire,
+                                                   CrowdSourcingProject $project,
+                                                   User $user,
+                                                   Language $language)
     {
         //check if the contributor email should be sent
         if ($project->should_send_email_after_questionnaire_response)
-            $this->awardContributorBadgeToUser($questionnaire, $project, $user);
+            $this->awardContributorBadgeToUser($questionnaire, $project, $user,$language);
     }
 
-    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project, User $user)
+    public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project,
+                                                User $user,
+                                                Language $language)
     {
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
+
+        $project_translation = $project->translations->firstWhere("language_id","=",$language->id);
+        $questionnaire_translation = $questionnaire->fieldsTranslations->firstWhere("language_id","=",$language->id);
         $event = new QuestionnaireResponded(
-            $questionnaire->currentFieldsTranslation,
+            $questionnaire_translation,
             $contributorBadge,
             new GamificationBadgeVM($contributorBadge),
-            $project->defaultTranslation);
+            $project_translation,
+            $language->language_code);
 
-        $user->notify($event); //ΤODO: HERE WE SHOULD SELECT THE LANGUAGE OF THE USER?
+        $user->notify($event);
     }
 
-    public function handleQuestionnaireReferrer(Questionnaire $questionnaire, User $user)
+
+    public function handleQuestionnaireReferrer(Questionnaire $questionnaire,
+                                                User $user,
+                                                Language $language)
     {
         $referrerId = $this->webSessionManager->getReferredId();
         if ($referrerId) {
@@ -77,19 +94,23 @@ class QuestionnaireActionHandler
                 $influencerBadge = $this->platformWideGamificationBadgesProvider->getInfluencerBadge($referrer->id);
                 $referrer->notify(new ReferredQuestionnaireAnswered(
                     $questionnaire->currentFieldsTranslation,
-                    $influencerBadge, new GamificationBadgeVM($influencerBadge)));
+                    $influencerBadge,
+                    new GamificationBadgeVM($influencerBadge),
+                    $language->language_code));
                 $this->webSessionManager->setReferrerId(null);
             }
         }
     }
 
-    public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user)
+    public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user, Language $language)
     {
         if (!$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $user->id)) {
             $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
             $user->notify(new QuestionnaireShared(
                 $questionnaire->currentFieldsTranslation,
-                $communicatorBadge, new GamificationBadgeVM($communicatorBadge)));
+                $communicatorBadge,
+                new GamificationBadgeVM($communicatorBadge),
+                $language->language_code));
 
         }
     }

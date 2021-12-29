@@ -31,8 +31,9 @@ class LanguageManager {
     }
 
     public function getLanguageByCode($languageCode) {
-        return $this->languageRepository->where([
-            'language_code' => $languageCode
-        ]);
+        return $this->getAllLanguages()->firstWhere("language_code" ,"=", $languageCode);
+    }
+    public function getLanguageById($languageId) {
+        return $this->getAllLanguages()->firstWhere("id" ,"=", $languageId);
     }
 }

@@ -61,9 +61,12 @@ class QuestionnaireResponseManager {
         $questionnaireResponsesThatWereTransferredToUser =  $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
         if ($questionnaireResponsesThatWereTransferredToUser){
             foreach($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse){
-                $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project, $user);
+                $lang = $this->languageManager->getLanguageById($questionnaireResponse->language_id);
+                $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project,
+                    $user, $lang);
                 // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-                $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaireResponse->questionnaire, $user);
+                $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaireResponse->questionnaire, $user,
+                    $lang);
             }
             return count($questionnaireResponsesThatWereTransferredToUser);
         }
@@ -91,9 +94,12 @@ class QuestionnaireResponseManager {
             ])
         );
         if (Auth::check()) {
-            $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire, $questionnaireResponse->project, $user);
+            $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire,
+                $questionnaireResponse->project,
+                $user,
+                $language);
             // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user);
+            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user,  $language);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
         // AnalyzeQuestionnaireResponseToxicity::dispatch($questionnaireResponse->id);
