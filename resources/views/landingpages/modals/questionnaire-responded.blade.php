@@ -34,13 +34,15 @@
                     </div>
                     {{-- if feedback questionnaire is assigned to the project --}}
                     @if ($viewModel->feedbackQuestionnaire)
-                        <p class="prefer-staying-anonymous dashboard-message mt-4 text-left w-100">{!! __("questionnaire.prefer_staying_anonymous") !!}</p>
-                        <label>{!! __("questionnaire.feedback_about_platform") !!}</label>:
-                        @include("landingpages.partials.open-feedback-questionnaire-button",
-                                 [
-                                     "css_class"=> "",
-                                     "label"=>  __("questionnaire.give_us_feedback")
-                                 ])
+                        <p class="prefer-staying-anonymous dashboard-message mt-4 text-center w-100">{!! __("questionnaire.prefer_staying_anonymous") !!}</p>
+                        <div class="text-center">
+                            <label>{!! __("questionnaire.feedback_about_platform") !!}</label>:
+                            @include("landingpages.partials.open-feedback-questionnaire-button",
+                                     [
+                                         "css_class"=> "",
+                                         "label"=>  __("questionnaire.give_us_feedback")
+                                     ])
+                        </div>
                     @endif
                 @else
                     <div class="row">
