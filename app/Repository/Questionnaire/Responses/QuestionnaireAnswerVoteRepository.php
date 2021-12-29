@@ -49,10 +49,10 @@ class QuestionnaireAnswerVoteRepository extends Repository {
     }
 
     public function deleteAnswerVotesByUser(int $id) {
-        return QuestionnaireAnswerVote::whereIn('user_id', $id)->delete();
+        return QuestionnaireAnswerVote::whereIn('voter_user_id', [$id])->delete();
     }
 
     public function restoreAnswerVotesByUser(int $id) {
-        return QuestionnaireAnswerVote::onlyTrashed()->whereIn('user_id', $id)->restore();
+        return QuestionnaireAnswerVote::onlyTrashed()->whereIn('voter_user_id', [$id])->restore();
     }
 }
