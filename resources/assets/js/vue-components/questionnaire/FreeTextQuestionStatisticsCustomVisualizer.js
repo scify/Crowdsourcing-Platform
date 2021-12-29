@@ -1,7 +1,7 @@
 import * as SurveyAnalytics from "survey-analytics";
 
 import Vue from 'vue';
-import AnswersPresenter from "./AnswersPresenter.vue";
+//import AnswersPresenter from "./AnswersPresenter.vue";
 
 require('../../lang');
 

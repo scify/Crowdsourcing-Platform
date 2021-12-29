@@ -58,6 +58,7 @@ Route::group(['prefix' => '{locale}',
 ], function () {
     Route::get('/my-dashboard', 'UserController@myDashboard')->name('my-dashboard');
     Route::get('/my-account', 'UserController@myAccount')->name('my-account');
+    Route::get('/users/history', 'UserController@showUserHistory')->name('myHistory');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -71,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/deactivate', 'UserController@deactivateLoggedInUser')->name('deactivateUser');
     Route::post('/user/restore', 'UserController@restore')->name('restoreUser')->middleware("can:manage-users");
     Route::get('/users/filter', 'UserController@showUsersByCriteria')->name('filterUsers')->middleware("can:manage-users");
-    Route::get('/users/history', 'UserController@showUserHistory')->name('myHistory');
+
     Route::get('/users/data/download', 'UserController@downloadUserData')->name('downloadMyData');
     Route::resource('projects', 'CrowdSourcingProjectController')->except([
         'destroy'

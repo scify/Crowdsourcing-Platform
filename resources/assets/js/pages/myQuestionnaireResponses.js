@@ -41,6 +41,7 @@ let Survey = require('survey-jquery');
             survey.data = JSON.parse(response.response_json);
             survey.mode = 'display';
             survey.render("questionnaireResponse")
+            survey.locale= response.language_code
             responseModal.modal();
         }
     };

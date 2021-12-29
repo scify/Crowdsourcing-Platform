@@ -105,13 +105,26 @@ class QuestionnaireResponseRepository extends Repository
         return QuestionnaireResponse::
         select('questionnaire_responses.id as questionnaire_response_id',
             'questionnaire_responses.created_at as responded_at',
-            'questionnaire_responses.*', 'q.description as questionnaire_description', 'q.*', 'csp.slug as project_slug',
-            'csp.logo_path as project_logo_path', 'cspt.name as project_name')
+            'questionnaire_responses.*',
+            'qft.description as questionnaire_description',
+            'qft.title',
+            'q.questionnaire_json',
+            'csp.slug as project_slug',
+            'csp.logo_path as project_logo_path',
+            'cspt.name as project_name',
+            'languages_lkp.language_code')
             ->join('questionnaires as q', 'q.id', '=', 'questionnaire_responses.questionnaire_id')
             ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'questionnaire_responses.project_id')
             ->join('crowd_sourcing_project_translations as cspt', function ($join) {
                 $join->on('cspt.project_id', '=', 'csp.id');
                 $join->on('cspt.language_id', '=', 'csp.language_id');
+            })
+            ->join('questionnaire_fields_translations as qft', function ($join) {
+                $join->on('qft.questionnaire_id', '=', 'questionnaire_responses.questionnaire_id');
+                $join->on('qft.language_id', '=', 'questionnaire_responses.language_id');
+            })
+            ->join('languages_lkp', function($join){
+                $join->on('languages_lkp.id', '=', 'questionnaire_responses.language_id');
             })
             ->where('user_id', $userId)
             ->get()
