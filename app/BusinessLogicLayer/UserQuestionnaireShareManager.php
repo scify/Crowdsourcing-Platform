@@ -45,9 +45,11 @@ class UserQuestionnaireShareManager
         if ($this->shouldCountQuestionnaireShare($questionnaireId, $referrerId)) {
             $this->webSessionManager->setReferrerId($referrerId);
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
-            if ($questionnaire) {
-                $this->createQuestionnaireShare($referrerId, $questionnaire->id);
+            if ($questionnaire &&
+                !$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $referrerId))
+            {
                 $lang = $this->languageManager->getLanguageByCode(app()->getLocale());
+                $this->createQuestionnaireShare($referrerId, $questionnaire->id);
                 $this->questionnaireActionHandler->handleQuestionnaireSharer($questionnaire,
                     $this->userRepository->find($referrerId),
                     $lang);
