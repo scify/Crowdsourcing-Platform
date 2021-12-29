@@ -17,7 +17,6 @@
                         <div>
                             <a href="https://ecas.org/about-us/" target="_blank">About us</a>
                         </div>
-                        <div><a href="https://ecas.org/privacy-policy/" target="_blank">Our Privacy Policy</a></div>
                         <div>
                             <a href="{{ route('codeOfConduct') }}" target="_blank">Code of Conduct</a>
                         </div>
