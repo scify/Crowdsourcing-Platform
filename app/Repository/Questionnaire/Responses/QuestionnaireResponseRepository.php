@@ -33,12 +33,12 @@ class QuestionnaireResponseRepository extends Repository
 
     public function deleteResponsesByUser(int $id)
     {
-        return QuestionnaireResponse::whereIn('user_id', $id)->delete();
+        return QuestionnaireResponse::whereIn('user_id', [$id])->delete();
     }
 
     public function restoreResponsesByUser(int $id)
     {
-        return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', $id)->restore();
+        return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', [$id])->restore();
     }
 
 
