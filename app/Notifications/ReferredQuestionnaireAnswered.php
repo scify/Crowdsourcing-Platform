@@ -41,12 +41,12 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
         return parent::objectToMail(
             $this->badgeVM,
             __("notifications.thank_you_for_referral",[],$this->locale),
-            __("notifications.making_impact"[],$this->locale),
-            __("notifications.someone_answered_to_questionnaire"[],$this->locale) . "<b>" . $this->title . "</b><br>",
+            __("notifications.making_impact",[],$this->locale),
+            __("notifications.someone_answered_to_questionnaire",[],$this->locale) . "<b>" . $this->title . "</b><br>",
             $this->badge->getEmailBody(),
             '',
-            __("notifications.increase_your_impact"[],$this->locale),
-            __("notifications.visit_your_dashboard_and_invite"[],$this->locale),
+            __("notifications.increase_your_impact",[],$this->locale),
+            __("notifications.visit_your_dashboard_and_invite",[],$this->locale),
             $this->locale);
     }
 

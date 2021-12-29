@@ -126,7 +126,7 @@ class CrowdSourcingProjectController extends Controller {
         return (
             isset($request->questionnaireId) &&
             isset($request->referrerId) &&
-            Auth::check());
+            Auth::check()); //TODO: DISCUSS, why user should be logged in for this?
     }
 
     public function clone(int $id): RedirectResponse {
