@@ -303,11 +303,13 @@ class CrowdSourcingProjectManager {
         $contributorBadgeVM = new GamificationBadgeVM($contributorBadge);
         $questionnaire = $this->questionnaireRepository->getModelInstance();
 
-        $notification = (new QuestionnaireResponded(
+
+        $templateForNotification = (new QuestionnaireResponded(
             $questionnaire->defaultFieldsTranslation,
             $contributorBadge,
             $contributorBadgeVM,
-            $project->defaultTranslation
+            $project->defaultTranslation,
+            app()->getLocale()
         ))->toMail(null)->render();
         $translations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
         return new CreateEditCrowdSourcingProject(
@@ -315,7 +317,7 @@ class CrowdSourcingProjectManager {
             $translations,
             $statusesLkp,
             $this->languageRepository->all(),
-            $notification
+            $templateForNotification
         );
     }
 

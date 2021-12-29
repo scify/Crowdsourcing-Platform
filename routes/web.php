@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/questionnaires/{questionnaire}/colors', 'QuestionnaireStatisticsController@saveStatisticsColors')->name('statistics-colors')->middleware("can:manage-crowd-sourcing-projects");
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
 
+
     Route::get('/communication/mailchimp', 'CommunicationController@getMailChimpIntegration')->name('mailchimp-integration.get')->middleware("can:manage-platform");
     Route::post('/communication/mailchimp', 'CommunicationController@storeMailChimpListsIds')->name('mailchimp-integration')->middleware("can:manage-platform");
 });
