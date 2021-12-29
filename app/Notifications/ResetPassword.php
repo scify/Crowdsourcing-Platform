@@ -24,7 +24,7 @@ class ResetPassword extends Notification
         return (new MailMessage)
             ->subject(__("email_messages.reset_password"))
             ->line(__("email_messages.email_reset_password"))
-            ->action(__("email_messages.reset_password"), url('password/reset', $this->token))
+            ->action(__("email_messages.reset_password"), url(app()->getLocale().'/password/reset', $this->token))
             ->line(__("email_messages.no_further_action"));
     }
 }
