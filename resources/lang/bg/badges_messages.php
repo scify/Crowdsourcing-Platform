@@ -20,9 +20,9 @@ return [
     'gain_contributor_badge'         => 'Напишете какво мислите<br/> и спечелете "Contributor" badge!',
     'gain_badge_by_inviting'         => 'Спечелете тази значка като поканите и други да участват. Споделете във Facebook и Twitter!',
     'communicator_title'             => 'Communicator',
-    'clicks_on_shared_questionnaires'=> 'Other users have clicked on your shared questionnaires',
-    'time'                           => 'time',
-    'times'                          => 'times',
+    'clicks_on_shared_questionnaires'=> 'Други участници са кликнали на Вашия въпросник',
+    'time'                           => 'път',
+    'times'                          => 'пъти',
     'become_a_communicator'          => 'Поканете още приятели <br> и станете "Communicator" Ниво :level', // Invite more friends to answer and become a level 2 Communicator!
     'gain_communicator_badge'        => 'Поканете приятелите Ви да участват и получете "Communicator" badge!',
     'you_are_a_communicator'          => 'Достигнахте Ниво :level "Communicator"! Продължавайте все така!', 
