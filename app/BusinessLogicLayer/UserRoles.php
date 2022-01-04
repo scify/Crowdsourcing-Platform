@@ -8,4 +8,5 @@ abstract class UserRoles {
     const ADMIN = 1;
     const CONTENT_MANAGER = 2;
     const REGISTERED_USER = 3;
+    const ANSWERS_MODERATOR =4;
 }

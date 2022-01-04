@@ -55,20 +55,20 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         });
     };
 
-    let viewResponseTableBtnHandler = function () {
-        $('body').on('click', '.response-table-btn', function (e) {
-            const respondentUserId = $(this).data('respondentUserId');
-            const respondentUserData = $(this).data('respondentUserData');
-            const answer = getResponseJSONByRespondentId(respondentUserId);
-            $('#respondent-answers-table-modal-title').html(respondentUserData);
-            let panelEl = document.getElementById("respondent-answers-table-panel");
-            panelEl.innerHTML = "";
-            Tabulator.haveCommercialLicense = true;
-            const surveyAnalyticsTabulator = new Tabulator(survey, [answer], {});
-            surveyAnalyticsTabulator.render(panelEl);
-            $('#respondent-answers-table-modal').modal();
-        });
-    };
+    // let viewResponseTableBtnHandler = function () {
+    //     $('body').on('click', '.response-table-btn', function (e) {
+    //         const respondentUserId = $(this).data('respondentUserId');
+    //         const respondentUserData = $(this).data('respondentUserData');
+    //         const answer = getResponseJSONByRespondentId(respondentUserId);
+    //         $('#respondent-answers-table-modal-title').html(respondentUserData);
+    //         let panelEl = document.getElementById("respondent-answers-table-panel");
+    //         panelEl.innerHTML = "";
+    //         Tabulator.haveCommercialLicense = true;
+    //         const surveyAnalyticsTabulator = new Tabulator(survey, [answer], {});
+    //         surveyAnalyticsTabulator.render(panelEl);
+    //         $('#respondent-answers-table-modal').modal();
+    //     });
+    // };
 
     let deleteResponseBtnHandler = function () {
         const body = $('body');
@@ -190,7 +190,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
         initializeDataTables();
-        initializeQuestionnaireResponsesReport();
+        //initializeQuestionnaireResponsesReport();
         loader.addClass('d-none');
     };
 
@@ -199,14 +199,14 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             "paging": true,
             "searching": true,
             "responsive": true,
-            "pageLength": 10,
-            "order": [[1, "desc"]],
-            "columns": [
-                {"width": "30%"},
-                {"width": "30%"},
-                {"width": "30%"},
-                {"width": "10%"}
-            ]
+            "pageLength": 50//,
+            // "order": [[1, "desc"]],
+            // "columns": [
+            //     {"width": "30%"},
+            //     {"width": "30%"},
+            //     {"width": "30%"},
+            //     {"width": "10%"}
+            // ]
         });
 
         let usersTable = $("#usersTable");
@@ -237,14 +237,14 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         });
     };
 
-    let initializeQuestionnaireResponsesReport = function () {
-        let panelEl = document.getElementById("questionnaire-responses-report");
-        panelEl.innerHTML = "";
-        Tabulator.haveCommercialLicense = true;
-        const answersForSurveyTabulator = _.map(answers, 'response_json').map(JSON.parse);
-        const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {});
-        surveyAnalyticsTabulator.render(panelEl);
-    };
+    // let initializeQuestionnaireResponsesReport = function () {
+    //     let panelEl = document.getElementById("questionnaire-responses-report");
+    //     panelEl.innerHTML = "";
+    //     Tabulator.haveCommercialLicense = true;
+    //     const answersForSurveyTabulator = _.map(answers, 'response_json').map(JSON.parse);
+    //     const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {});
+    //     surveyAnalyticsTabulator.render(panelEl);
+    // };
 
     let init = function () {
         loader = $("#loader")
@@ -254,7 +254,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         answersBtnHandler();
         triggerSearch();
         viewResponseBtnHandler();
-        viewResponseTableBtnHandler();
+        //viewResponseTableBtnHandler();
         deleteResponseBtnHandler();
     };
 
