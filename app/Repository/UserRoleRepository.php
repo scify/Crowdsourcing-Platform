@@ -14,7 +14,7 @@ class UserRoleRepository
     }
 
     function getAllPlatformSpecificRoles() {
-        return UserRoleLookup::whereIn("id",[1,2])->get();
+        return UserRoleLookup::whereIn("id",[1,2,4])->get();
     }
     function getAllUserRoles() {
         return UserRoleLookup::all();

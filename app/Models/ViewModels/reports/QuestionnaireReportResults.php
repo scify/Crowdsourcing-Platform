@@ -7,10 +7,12 @@ class QuestionnaireReportResults {
 
     public $responses;
     public $respondentsRows;
+    public $questionnaireId;
 
-    public function __construct($responses, $respondentsRows) {
+    public function __construct($responses, $respondentsRows,$questionnaireId) {
         $this->responses = $responses;
         $this->respondentsRows = $respondentsRows;
+        $this->questionnaireId =$questionnaireId;
     }
 
 }

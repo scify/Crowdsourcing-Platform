@@ -1,5 +1,18 @@
 <div class="card card-info">
     <div class="card-header">
+        <h3 class="card-title">Statistics</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                Click <a href="{{ route('questionnaire.statistics', ['questionnaire' =>  $reportViewModel->questionnaireId ]) }}" target="_blank">here</a> to view the results and the translated answers.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-info">
+    <div class="card-header">
         <h3 class="card-title">Respondents Summary</h3>
     </div>
     <div class="card-body">
@@ -10,8 +23,11 @@
                     <tr>
                         <th>Email/Name</th>
                         <th>Answered at</th>
+                        <th>Related Project</th>
                         <th class="text-center">Response</th>
-                        <th class="text-center">Action</th>
+                        @can("manage-crowd-sourcing-projects")
+                            <th class="text-center">Action</th>
+                        @endcan
                     </tr>
                     </thead>
                     <tbody>
@@ -19,32 +35,37 @@
                         <tr id="questionnaire_response_{{ $response->id }}">
                             <td>{{ $response->respondent_email }} / {{ $response->respondent_nickname }}</td>
                             <td data-sort="{{ strtotime($response->answered_at) }}">{{ $response->answered_at ? date('d/m/Y h:i:s', strtotime($response->answered_at)) : '' }}</td>
+                           <td class="">
+                              {{ $response->project_name }}
+                           </td>
                             <td class="text-center">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-12">
                                             <button class="btn btn-outline-primary response-btn w-100"
                                                     data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"
                                                     data-respondent-user-id="{{ $response->respondent_user_id }}">View
                                                 Response
                                             </button>
                                         </div>
-                                        <div class="col-6">
-                                            <button class="btn btn-outline-primary response-table-btn w-100"
-                                                    data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"
-                                                    data-respondent-user-id="{{ $response->respondent_user_id }}">View
-                                                Table
-                                            </button>
-                                        </div>
+{{--                                        <div class="col-6">--}}
+{{--                                            <button class="btn btn-outline-primary response-table-btn w-100"--}}
+{{--                                                    data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"--}}
+{{--                                                    data-respondent-user-id="{{ $response->respondent_user_id }}">View--}}
+{{--                                                Table--}}
+{{--                                            </button>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
 
                             </td>
-                            <td class="text-center">
-                                <button class="btn btn-outline-danger delete-response-btn"
-                                        data-questionnaire-response-id="{{ $response->id }}">Delete
-                                </button>
-                            </td>
+                            @can("manage-crowd-sourcing-projects")
+                                <td class="text-center">
+                                    <button class="btn btn-outline-danger delete-response-btn"
+                                            data-questionnaire-response-id="{{ $response->id }}">Delete
+                                    </button>
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                     </tbody>
@@ -53,18 +74,18 @@
         </div>
     </div>
 </div>
-<div class="card card-info">
-    <div class="card-header">
-        <h3 class="card-title">Answers Report</h3>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                <div id="questionnaire-responses-report" class="responses-report"></div>
-            </div>
-        </div>
-    </div>
-</div>
+{{--<div class="card card-info">--}}
+{{--    <div class="card-header">--}}
+{{--        <h3 class="card-title">Answers Report</h3>--}}
+{{--    </div>--}}
+{{--    <div class="card-body">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-12">--}}
+{{--                <div id="questionnaire-responses-report" class="responses-report"></div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <div class="modal-overflow">
     <div class="modal fade" id="respondent-answers-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
          aria-hidden="true">
