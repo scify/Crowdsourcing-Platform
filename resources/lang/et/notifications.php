@@ -29,7 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Külasta oma töölauda, et kutsuda rohkem sõpru',
     'thanks_message'                    => 'Täname, et liitusid koosloome platvormiga!',
     'make_an_impact'                    => 'Kas oled valmis kaasa lööma?',
-    'visit_your_dashboard_contribute'   => 'Mine oma töölauale ja vaata, kuidas saad panustada:'
+    'visit_your_dashboard_contribute'   => 'Mine oma töölauale ja vaata, kuidas saad panustada:',
+    'cookies_and_privacy_policy'        => 'See veebileht kasutab küpsiseid, et saaksid parima kasutajakogemuse. Vaata lähemalt meie „Privaatsuspoliitikat“.',
+    'code_of_conduct'                   => 'Tutvu enne vastamist kindlasti meie käitumiskoodeksiga!',
+    'agree_privacy_policy'              => 'Nõustun<a href="https://crowdsourcing.ecas.org/et/terms-and-privacy" target="_blank"> privaatsuspoliitikaga.',
+    'ok' 
 
 
 

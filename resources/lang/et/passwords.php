@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => 'Salasõnas peab olema vähemalt 6 tähemärki ja see peab kattuma kinnitusega.',
+    'reset' => 'Sinu salasõna on lähtestatud!',
+    'sent' => 'Saatsime sulle salasõna lähtestamise lingi!',
+    'token' => 'See parooli lähtestamise luba on kehtetu.',
+    'user' => "Me ei suuda tuvastada sellise maili-aadressiga kasutajat.",
 
 ];

@@ -21,21 +21,21 @@
                         <a class="btn btn-primary btn-lg nextStepActionBtn dropdown-toggle" href="#" role="button"
                            id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Contribute
+                           {{ __("badges_messages.contribute") }}
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             @foreach($nextStepVM->projects as $project)
                                 <a href="{{route("project.landing-page", $project->slug) . "?open=1"}}"
                                    class="btn btn-light w-100 mb-2 text-left">
-                                    Contribute for {{ $project->defaultTranslation->name }}
+                                   {{ __("badges_messages.contribute_for") }} {{ $project->defaultTranslation->name }}
                                 </a>
                             @endforeach
                         </div>
                     </div>
                 @else
                     <a href="{{route("project.landing-page", $nextStepVM->projects->get(0)->slug) . "?open=1"}}"
-                       class="btn btn-primary btn-lg nextStepActionBtn">Contribute</a>
+                       class="btn btn-primary btn-lg nextStepActionBtn">{{ __("badges_messages.contribute") }}</a>
                 @endif
 
             @endif
