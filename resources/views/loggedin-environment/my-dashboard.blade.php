@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card card-success card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}. You get more badges by responding and inviting others to do so!</h3>
+                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}. {{ __("badges_messages.get_more_badges") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
