@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             DefaultProjectSeeder::class,
             QuestionnaireStatisticsPageVisibilityLkpSeeder::class,
             MailChimpListsTableSeeder::class,
-            ProduceAPITokenForDefaultAdmin::class,
-            CrowdSourcingProjectColorsSeeder::class
+            CrowdSourcingProjectColorsSeeder::class,
+            UserRoleLkpTableSeederAddAnswersModerator::class
         ]);
     }
 }
