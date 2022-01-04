@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                Click <a href="{{ route('questionnaire.statistics', ['questionnaire' =>  $reportViewModel->questionnaireId ]) }}" target="_blank">here</a> to view the results and the translated answers.
+                Click <a href="{{ route('questionnaire.statistics', ['questionnaire' =>  $reportViewModel->questionnaireId ]) }}" target="_blank">here</a> to view and moderate the responses.
             </div>
         </div>
     </div>

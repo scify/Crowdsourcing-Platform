@@ -17,7 +17,7 @@
                                     {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
                                 </a>
                             @else
-                                <a href="{{ route('questionnaire.statistics', $project->latestQuestionnaire->id) }}"
+                                <a href="/{{app()->getLocale() .'/'.$project->slug}}"
                                    class="btn btn-block btn-success call-to-action action-success">Vote
                                 </a>
                             @endif
