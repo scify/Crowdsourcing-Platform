@@ -46,7 +46,8 @@ return [
     'project_no_active_questionnaire' => 'Ce projet n\'a pas encore de questionnaire actif.',
     'no_active_projects' => 'Il n\'y a actuellement aucun projet actif.',
     'check_what_other_respondents' => 'Avant de répondre au questionnaire, vérifiez ce que les autres répondants ont dit en cliquant',
-    'here' => 'ici'
+    'here' => 'ici',
+    'select_language' => 'Select language'
 
 
 

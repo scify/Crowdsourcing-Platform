@@ -45,7 +45,8 @@ return [
     'project_no_active_questionnaire' => 'Ennek a projektnek nincs aktív kérdőíve.',
     'no_active_projects' => 'Jelenleg nincsenek aktív projektek.',
     'check_what_other_respondents' => 'Mielőtt válaszolna a kérdőívre, kattintson ide és nézze meg, hogy mit mondott a többi',
-    'here' => 'válaszadó'
+    'here' => 'válaszadó',
+    'select_language' => 'Select language'
 
 
 

@@ -45,7 +45,8 @@ return [
     'project_no_active_questionnaire' => 'Dit project heeft nog geen actieve vragenlijst.',
     'no_active_projects' => 'Op dit moment zijn er nog geen actieve vragenlijsten.',
     'check_what_other_respondents' => 'Voordat je de vragenlijst beantwoordt kun je zien wat anderen hebben gezegd. Klik daarvoor',
-    'here' => 'hier'
+    'here' => 'hier',
+    'select_language' => 'Select language'
 
 
 
