@@ -106,7 +106,7 @@ class UserRepository extends Repository
             $query = $query->where('email', 'like', '%' . $filters['email'] . '%');
 
         $query->whereHas("userRoles",function($userRoleQuery){
-            $userRoleQuery->whereIn("role_id",[1,2]); //platform admin and content manager
+            $userRoleQuery->whereIn("role_id",[1,2,4]); //platform admin and content manager
         });
 
         if($paginationNumber)

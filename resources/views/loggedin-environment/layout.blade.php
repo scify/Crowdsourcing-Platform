@@ -20,7 +20,7 @@
         <![endif]-->
         @include('analytics')
     </head>
-    <body class="logged-in-env {{ app(\Illuminate\Contracts\Auth\Access\Gate::class)->check("manage-crowd-sourcing-projects")? "display-admin-menu": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
+    <body class="logged-in-env {{ app(\Illuminate\Contracts\Auth\Access\Gate::class)->check("moderate-results")? "display-admin-menu": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
         <div id="app" class="wrapper">
             @if(Auth::check())
                 @include("loggedin-environment.partials.menu")
