@@ -30,7 +30,7 @@ class QuestionnaireReportManager {
 
 
     public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null): QuestionnaireReportFilters {
-        $allQuestionnaires = $this->questionnaireRepository->all();
+        $allQuestionnaires = $this->questionnaireRepository->all(array('*'), $orderColumn = "id", $order = "desc");
         return new QuestionnaireReportFilters($allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 
@@ -38,7 +38,7 @@ class QuestionnaireReportManager {
         $questionnaireId = $input['questionnaireId'];
         $respondentsRows = $this->questionnaireReportRepository->getRespondentsData($questionnaireId);
         $responses = $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaireId]);
-        return new QuestionnaireReportResults($responses, $respondentsRows);
+        return new QuestionnaireReportResults($responses, $respondentsRows,$questionnaireId);
     }
 
 }

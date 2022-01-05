@@ -36,6 +36,13 @@ class UserRoleManager {
         Gate::define('change-status-crowd-sourcing-projects', function ($user) {
             return $this->userHasAdminRole($user);
         });
+
+
+        Gate::define('moderate-results', function ($user) {
+            return $this->userHasAdminRole($user)
+                || $this->userHasContentManagerRole($user)
+                || $this->userHasModeratorRole($user);
+        });
     }
 
     public function assignRegisteredUserRoleTo($user) {
@@ -53,6 +60,16 @@ class UserRoleManager {
     }
 
     /**
+     * Checks if a given @see User has the Answers Moderator role
+     *
+     * @param User $user the @see User instance
+     * @return bool
+     */
+    public function userHasModeratorRole(User $user) {
+        return $this->userHasRole($user, UserRolesLkp::ANSWERS_MODERATOR, 'user_is_moderator');
+    }
+
+    /**
      * Checks if a given @see User has the content manager role
      *
      * @param User $user the @see User instance
@@ -65,15 +82,15 @@ class UserRoleManager {
     /**
      * Checks if a given @param User $user the @see User instance
      * @param int $roleId
-     * @param string $roleKey
+     * @param string $roleKeyForCache
      * @return bool
      * @see User has the admin role
      *
      */
-    public function userHasRole(User $user, int $roleId, string $roleKey) {
+    public function userHasRole(User $user, int $roleId, string $roleKeyForCache) {
         if($user == null)
             return false;
-        return $this->checkCacheOrDBForRoleAndStore($roleKey, $user, $roleId);
+        return $this->checkCacheOrDBForRoleAndStore($roleKeyForCache, $user, $roleId);
     }
 
     /**
