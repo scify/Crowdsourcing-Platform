@@ -46,7 +46,7 @@ return [
     'no_active_projects' => 'Pašlaik nav aktīvu projektu.',
     'check_what_other_respondents' => 'Pirms atbildi uz anketas jautājumiem, noskaidro, ko teikuši citi respondenti, klikšķinot ',
     'here' => 'šeit',
-    'select_language' => 'Select language'
+    'select_language' => 'Izvēlies valodu'
 
 
 

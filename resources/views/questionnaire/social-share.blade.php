@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <h4 class="title" style="margin-bottom: 20px">{{ __("my-dashboard.share_questionnaire")}}</h4>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 mb-3">
             @include('questionnaire.social-share-media',
             ['viewModel' => $viewModel, 'projects' => $nextStepVM->projects, 'mediumName' => "Facebook", 'fontAwesomeBtnClass' => 'fa-facebook-f'])
         </div>
