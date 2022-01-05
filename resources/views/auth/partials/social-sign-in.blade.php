@@ -10,12 +10,12 @@
                         <a class="socialSignIn" href="{{url('login/social/facebook')}}"><i
                                     class="fab fa-facebook-square"></i></a>
                     </div>
-                    <div class="col-2 p-0 text-center">
+                    <div class="col-2 p-0 text-center me-1">
                         <a class="socialSignIn" href="{{url('login/social/twitter')}}"><i
                                     class="fab fa-twitter-square"></i></a>
 
                     </div>
-                    <div class="col-2 whole px-0 text-center">
+                    <div class="col-2 whole px-0 text-center me-1">
                         <a class="socialSignIn google" href="{{url('login/social/google')}}"><i
                                     class="fab fa-google"></i></a>
                     </div>
