@@ -34,7 +34,7 @@
                                            class="w-100 row table table-striped table-hover table-responsive-md">
                                         <tbody class="w-100">
                                         @foreach($viewModel->questionnaires as $questionnaire)
-                                            <tr class="d-flex">
+                                            <tr class="d-flex flex-wrap justify-content-center">
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="container-fluid">
 

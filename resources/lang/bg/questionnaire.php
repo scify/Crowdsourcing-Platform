@@ -46,7 +46,7 @@ return [
     'no_active_projects' => 'В момента няма активни проекти.',
     'check_what_other_respondents' => 'Преди да попълните въпросника, проверете какво са казали други участници, като кликнете',
     'here' => 'тук',
-    'select_language' => 'Select language'
+    'select_language' => 'Изберете език'
 
 
 

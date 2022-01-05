@@ -46,7 +46,7 @@ return [
     'no_active_projects' => 'Hetkel ei ole aktiivseid projekte.',
     'check_what_other_respondents' => 'Enne kui vastad küsimustikule, vaata mida teised on öelnud',
     'here' => 'siit',
-    'select_language' => 'Select language'
+    'select_language' => 'Vali keel'
 
 
 

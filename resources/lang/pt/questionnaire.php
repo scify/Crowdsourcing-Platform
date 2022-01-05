@@ -46,7 +46,7 @@ return [
     'no_active_projects' => 'Atualmente não há projetos ativos.',
     'check_what_other_respondents' => 'Antes de responder ao questionário, veja o que outros participantes têm dito clicando',
     'here' => 'aqui',
-    'select_language' => 'Select language'
+    'select_language' => 'Selecione o idioma'
 
 
 
