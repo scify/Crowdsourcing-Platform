@@ -21,7 +21,7 @@ return [
     'sign_up' => 'Melden Sie sich an',
     'thank_you' => 'Vielen Dank!',
     'visit_dashboard_and_invite' => 'Besuchen Sie Ihr Dashboard, um Ihre Freund:innen einzuladen',
-    'go_to_dashboard'                   => 'Zum Dashboard',
+    'go_to_dashboard'                   => 'Zum Dashboard gehen',
     'answers_saved_anonymously' => 'Ihre Antworten wurden anonym gespeichert.',
     'login_to_complete_submission' =>  'Bitte melden Sie sich an, um Ihren Beitrag zu vervollständigen!',
     'by_registering_you' => 'Durch Ihre Registrierung<sup>*</sup>:',
