@@ -45,7 +45,8 @@ return [
     'project_no_active_questionnaire' => 'Αυτό το έργο δεν έχει ενεργό ερωτηματολόγιο ακόμα.',
     'no_active_projects' => 'Αυτή τη στιγμή δεν υπάρχουν ενεργά έργα.',
     'check_what_other_respondents' => 'Πριν απαντήσετε το ερωτηματολόγιο, δείτε τι έχουν πει άλλοι ερωτηθέντες πατώντας',
-    'here' => 'εδώ'
+    'here' => 'εδώ',
+    'select_language' => 'Select language'
 
 
 

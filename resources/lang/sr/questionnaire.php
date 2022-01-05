@@ -45,7 +45,8 @@ return [
     'project_no_active_questionnaire' => 'Ovaj projekat još uvijek nema aktivan upitnik.',
     'no_active_projects' => 'Trenutno nema aktivnih projekata.',
     'check_what_other_respondents' => 'Prije nego što odgovorite na upitnik, provjerite šta su drugi ispitanici rekli klikom',
-    'here' => 'ovdje'
+    'here' => 'ovdje',
+    'select_language' => 'Select language'
 
 
 
