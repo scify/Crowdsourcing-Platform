@@ -29,8 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Visitez votre tableau de bord et invitez d\'autres amis',
     'thanks_message'                    => 'Merci de rejoindre la plateforme de crowdsourcing!',
     'make_an_impact'                    => 'Êtes-vous prêt à avoir un impact?',
-    'visit_your_dashboard_contribute'   => 'Visitez votre tableau de bord pour voir comment vous pouvez contribuer:'
-
+    'visit_your_dashboard_contribute'   => 'Visitez votre tableau de bord pour voir comment vous pouvez contribuer:',
+    'cookies_and_privacy_policy'        => 'Ce site Web utilise des cookies pour vous garantir la meilleure expérience possible sur notre site.  Voir notre "politique de confidentialité" pour plus de détails.',
+    'code_of_conduct'                   => 'Assurez-vous de vous conformer à notre code de conduite avant de répondre!',
+    'agree_privacy_policy'              => 'J\'accepte la politique de <a href="https://crowdsourcing.ecas.org/fr/terms-and-privacy" target="_blank"> confidentialité.',
+    'ok'   
 
 
 
