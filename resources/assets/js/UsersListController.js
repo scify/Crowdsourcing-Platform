@@ -3,7 +3,6 @@ window.UsersListController = function () {
 
 window.UsersListController.prototype = function () {
     var usersCriteria = {},
-        pageNum = 1,
         searchBtnHandler = function () {
             $("#searchBtn").on("click", function () {
                 getUsersByFilters.call(this);
@@ -12,8 +11,8 @@ window.UsersListController.prototype = function () {
         paginateUsersBtnHandler = function () {
             $("body").on("click", "#usersList .pagination a", function (e) {
                 e.preventDefault();
-                pageNum = $(this).attr("href").replace('#?page=', '');
-                if(!$(this).parent().hasClass("active")) {
+
+                if (!$(this).parent().hasClass("active")) {
                     $("#usersFilters").find("#searchBtn").trigger("click");
                 }
             });
@@ -21,7 +20,9 @@ window.UsersListController.prototype = function () {
         getUsersByFilters = function () {
             // button pressed that triggered this function
             let self = this;
-            usersCriteria.page = pageNum;
+            let pageParam = $(this).attr("href").split('#?page=')[1];
+            console.log(pageParam);
+            usersCriteria.page = pageParam ? pageParam : 1;
             usersCriteria.email = $('input[name=filter_email]').val();
             $.ajax({
                 method: "GET",
@@ -33,14 +34,14 @@ window.UsersListController.prototype = function () {
                     $("#usersBottomLoader").removeClass("invisible");
                 },
                 success: function (response) {
-                    $('.refresh-container').fadeOut(500, function() {
+                    $('.refresh-container').fadeOut(500, function () {
                         $('.refresh-container').remove();
                     });
                     parseSuccessData(response);
                     $("#mentorsBottomLoader").addClass("invisible");
                 },
                 error: function (xhr, status, errorThrown) {
-                    $('.refresh-container').fadeOut(500, function() {
+                    $('.refresh-container').fadeOut(500, function () {
                         $('.refresh-container').remove();
                     });
                     console.log(xhr.responseText);
@@ -51,7 +52,7 @@ window.UsersListController.prototype = function () {
                 }
             });
         },
-        parseSuccessData = function(response) {
+        parseSuccessData = function (response) {
             let responseObj = JSON.parse(response);
             //if operation was unsuccessful
             if (responseObj.status === 2) {
@@ -75,22 +76,22 @@ window.UsersListController.prototype = function () {
                 "responsive": true,
                 "searching": false,
                 "columns": [
-                    { "width": "25%" },
-                    { "width": "25%" },
-                    { "width": "25%" },
-                    { "width": "25%" }
+                    {"width": "25%"},
+                    {"width": "25%"},
+                    {"width": "25%"},
+                    {"width": "25%"}
                 ]
             });
         },
         init = function (currentRouteName) {
-            $(document).ready(function() {
+            $(document).ready(function () {
                 searchBtnHandler();
                 paginateUsersBtnHandler();
                 initDataTables();
             });
 
         };
-        return {
-            init: init
-        }
+    return {
+        init: init
+    }
 }();
