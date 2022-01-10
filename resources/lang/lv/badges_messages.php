@@ -42,12 +42,12 @@ return [
     'received_all_badges'            => 'Apsveicam! Tu esi saņēmis visas pieejamās badges!',
     'huge_impact'                    => 'Šajā aptaujā tev ir bijusi milzīga ietekme!',
     'all_star_crowdsourcer'          => 'Apsveicam! Tu esi saņēmis visas pieejamās badges! ',
-    'get_more_badges'                => 'You get more badges by responding and inviting others to do so!',
-    'no_badges_yet'                  => 'You don\'t have any badges, yet! Click on each badge to view it\'s description and understand how to gain it.',
-    'you_have_badges'                => '{1} You have <span class="numOfBadges">1</span> badge so far. Click on each badge to view it\'s description and understand how to gain it. |[2,*] You have <span class="numOfBadges">:count</span> badges so far. Click on each badge to view it\'s description and understand how to gain it.',
-    'contribute'                     => 'Contribute',
-    'contribute_for'                 => 'Contribute for',
-    'you_do_not_own'                 => 'You don\'t own this badge',
+    'get_more_badges'                => 'Tu saņemsi vairāk nozīmītes, atbildot uz jautājumiem un aicinot citus to darīt!',
+    'no_badges_yet'                  => 'Tev vēl nav nevienas nozīmītes! Uzspied uz kādas no nozīmītēm, lai uzzinātu tās aprakstu un kā to iegūt.',
+    'you_have_badges'                => '{1} Tev šobrīd ir <span class="numOfBadges">1</span> badge. Uzspied uz kādas no nozīmītēm, lai uzzinātu tās aprakstu un kā to iegūt. |[2,*] Tev šobrīd ir <span class="numOfBadges">:count</span> badges. Uzspied uz kādas no nozīmītēm, lai uzzinātu tās aprakstu un kā to iegūt.',
+    'contribute'                     => 'Iesaisties',
+    'contribute_for'                 => 'Iesaisties par',
+    'you_do_not_own'                 => 'Tev nav šīs nozīmītes',
 
 
 
