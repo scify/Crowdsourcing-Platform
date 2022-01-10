@@ -49,7 +49,8 @@ Route::get('/code-of-conduct', function () {
 });
 
 
-
+Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('socialLoginCallback');
 
 Route::post('/newsletter', 'CommunicationController@signUpForNewsletter')->name('newsletter');
 
@@ -57,8 +58,6 @@ Route::group(['prefix' => '{locale}',
     'where' => ['locale' => $regexForLocalParameter],
     'middleware' => ['auth', 'setlocale'],
 ], function () {
-    Route::get('login/social/{driver}', 'Auth\LoginController@redirectToProvider');
-    Route::get('login/social/{driver}/callback', 'Auth\LoginController@handleProviderCallback')->name('socialLoginCallback');
     Route::get('/my-dashboard', 'UserController@myDashboard')->name('my-dashboard');
     Route::get('/my-account', 'UserController@myAccount')->name('my-account');
     Route::get('/users/history', 'UserController@showUserHistory')->name('myHistory');
