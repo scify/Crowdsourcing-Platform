@@ -342,7 +342,7 @@ export default {
         const element = $(this);
         if (instance.userId) {
           if (!userHasAlreadyUpVoted && actionIsUpvote && instance.numOfVotesByCurrentUser >= instance.questionnaire.max_votes_num)
-            return instance.displayMaxVotesMessage()
+            return instance.displayMaxVotesMessage();
           instance.performVoteCall(
               element.data('question-name'),
               parseInt(element.data('respondent-user-id')),

@@ -26,14 +26,14 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h4 class="text-lg-center text-md-center text-sm-left">
-                                You can vote up to <b>{{ $viewModel->questionnaire->max_votes_num }}</b> times for this
-                                questionnaire.
-                            </h4>
-                        </div>
-                    </div>
+{{--                    <div class="row mb-5">--}}
+{{--                        <div class="col-12">--}}
+{{--                            <h4 class="text-lg-center text-md-center text-sm-left">--}}
+{{--                                You can vote up to <b>{{ $viewModel->questionnaire->max_votes_num }}</b> times for this--}}
+{{--                                questionnaire.--}}
+{{--                            </h4>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     @if($viewModel->questionnaire->show_general_statistics)
                         @if($viewModel->questionnaireResponseStatistics->totalResponses)
                             <div class="row my-5 py-5 align-items-center bg-white">
