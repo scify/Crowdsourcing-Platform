@@ -4,7 +4,7 @@
             <div class="col-md-4">
                 <div class="inputer">
                     <div class="input-wrapper">
-                        <input name="email" class="form-control" placeholder="email" type="email" id="userEmail">
+                        <input name="filter_email" class="form-control" placeholder="email" type="email" id="userEmail">
                     </div>
                 </div>
             </div>
