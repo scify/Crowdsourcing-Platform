@@ -31,7 +31,7 @@ return [
     'no_share_information' => 'We don’t share your information to 3rd parties.',
     'during_registration' => 'During registration you are asked for an email and a nickname.',
     'already_answered' =>  'You have already answered this questionnaire.',
-    'thank_you_for_your_response' =>  'Τhank you for your response!',
+    'thank_you_for_your_response' =>  'Thank you for your response!',
     'prefer_staying_anonymous' =>  'Prefer staying anonymous?', //den ta exo brei kapou
     'feedback_about_platform' => 'Please give us feedback about our platform by answering 5 questions', //den ta exo brei kapou
     'give_us_feedback' => 'Give us feedback', //den ta exo brei kapou
