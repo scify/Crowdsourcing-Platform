@@ -42,12 +42,12 @@ return [
     'received_all_badges'            => 'Поздравления, събрахте всички значки!',
     'huge_impact'                    => 'Вашият принос към въпросника е огромен!',
     'all_star_crowdsourcer'          => 'Поздравления, Вие събрахте всички значки за този въпросник. Вие сте вече звезда на краудсорсинга!',
-    'get_more_badges'                => 'You get more badges by responding and inviting others to do so!',
-    'no_badges_yet'                  => 'You don\'t have any badges, yet! Click on each badge to view it\'s description and understand how to gain it.',
-    'you_have_badges'                => '{1} You have <span class="numOfBadges">1</span> badge so far. Click on each badge to view it\'s description and understand how to gain it. |[2,*] You have <span class="numOfBadges">:count</span> badges so far. Click on each badge to view it\'s description and understand how to gain it.',
-    'contribute'                     => 'Contribute',
-    'contribute_for'                 => 'Contribute for',
-    'you_do_not_own'                 => 'You don\'t own this badge',
+    'get_more_badges'                => 'Получавате още значки като отговорите и поканите други да отговорят!',
+    'no_badges_yet'                  => 'Все още нямате никакви значки! Кликнете върху всяка от значките, за да видите описанието й и да разберете как можете да я спечелите.',
+    'you_have_badges'                => '{1} Дотук имате <span class="numOfBadges">1</span> badge. Кликнете върху всяка от значките, за да видите описанието й и да разберете как можете да я спечелите. |[2,*] Дотук имате <span class="numOfBadges">:count</span> badges. Кликнете върху всяка от значките, за да видите описанието й и да разберете как можете да я спечелите.',
+    'contribute'                     => 'Дайте своя принос',
+    'contribute_for'                 => 'Дайте своя принос за',
+    'you_do_not_own'                 => 'Нямате тази значка',
 
 
 
