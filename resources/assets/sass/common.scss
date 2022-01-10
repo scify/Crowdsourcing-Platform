@@ -137,22 +137,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
   }
 }
-.logged-in-env .main-header{
-  padding-left:35px;
+
+.logged-in-env .main-header {
+  padding-left: 35px;
 
 }
-.logged-in-env{
-  .main-header,.content-wrapper, .main-footer{
-    margin-left:0 !important;
-    .container-fluid{
-      max-width:1440px;
-      margin:auto;
+
+.logged-in-env {
+  .main-header, .content-wrapper, .main-footer {
+    margin-left: 0 !important;
+
+    .container-fluid {
+      max-width: 1440px;
+      margin: auto;
     }
   }
 }
-.logged-in-env.display-admin-menu{
-  .main-header,.content-wrapper, .main-footer{
-    margin-left:250px !important;;
+
+.logged-in-env.display-admin-menu {
+  .main-header, .content-wrapper, .main-footer {
+    margin-left: 250px !important;;
   }
 }
 
@@ -381,7 +385,7 @@ table {
   color: black;
   font-weight: 600;
   padding-left: 3rem;
-  font-size:16px;
+  font-size: 16px;
   text-transform: uppercase;
 }
 
@@ -484,4 +488,6 @@ footer {
   border-color: $grey;
 }
 
-
+#userListTable_info {
+  display: none;
+}
