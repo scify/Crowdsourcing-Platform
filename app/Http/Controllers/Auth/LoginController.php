@@ -72,7 +72,8 @@ class LoginController extends Controller {
         try {
             return Socialite::driver($driver)->redirect();
         } catch (Exception $e) {
-            abort(Response::HTTP_INTERNAL_SERVER_ERROR, '123123');
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+            $this->exceptionHandler->report($e);
         }
         return redirect()->route('home');
     }
