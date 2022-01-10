@@ -7,10 +7,15 @@
     <div class="card-header">
         <h3 class="card-title">
             @if ($badgesVM->numOfBadges ==0)
-                You don't have any badges, yet!  Click on each badge to view it's description and understand how to gain it
+            {{ __("badges_messages.no_badges_yet") }}  
             @else
-                You have <span class="numOfBadges">{{ $badgesVM->numOfBadges }}</span> badge{{ $badgesVM->numOfBadges == 1 ? '' : 's' }} so far | Click on each badge to view it's description and understand how to gain it
+                {{-- You have <span class="numOfBadges">{{ $badgesVM->numOfBadges }}</span> badge{{ $badgesVM->numOfBadges == 1 ? '' : 's' }} so far | Click on each badge to view it's description and understand how to gain it --}}
+             {!!   trans_choice("badges_messages.you_have_badges", ["count"=>$badgesVM->numOfBadges])  !!}
             @endif
+            
+
+
+                
         </h3>
     </div>
     <div class="card-body">

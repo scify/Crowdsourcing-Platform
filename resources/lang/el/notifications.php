@@ -29,8 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Επισκεφτείτε την πλατφόρμα  σας και προσκαλέστε περισσότερους φίλους',
     'thanks_message'                    => 'Ευχαριστούμε που γίνατε μέλος της Crowdsourcing Platform!',
     'make_an_impact'                    => 'Είστε έτοιμοι να συνεισφέρετε?',
-    'visit_your_dashboard_contribute'   => 'Επισκεφτείτε την πλατφόρμα σας για να δείτε πως μπορείτε να συνεισφέρετε:'
-
+    'visit_your_dashboard_contribute'   => 'Επισκεφτείτε την πλατφόρμα σας για να δείτε πως μπορείτε να συνεισφέρετε:',
+    'cookies_and_privacy_policy'        => 'Αυτή η ιστοσελίδα χρησιμοποιεί cookies για να σας εξασφαλίσει την καλύτερη δυνατή εμπειρία στην ιστοσελίδα μας. Δείτε την “πολιτική απορρήτου” για λεπτομέρειες.',
+    'code_of_conduct'                   => 'Βεβαιωθείτε ότι συμμορφώνεστε με τον κώδικα δεοντολογίας μας πριν απαντήσετε!',
+    'agree_privacy_policy'              => 'Συμφωνώ με την<a href="https://crowdsourcing.ecas.org/el/terms-and-privacy" target="_blank"> πολιτική απορρήτου.',
+    'ok'
 
 
 

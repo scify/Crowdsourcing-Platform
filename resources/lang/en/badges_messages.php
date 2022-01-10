@@ -32,18 +32,23 @@ return [
     'influencer_title'               => 'Influencer',
     'person'                         => 'person',
     'people'                         => 'people',
-    // 'responded_to_call'              => ' responded to your call',
     'person_or_people_responded'     => '{1} 1 person responded to your call so far. |[2,*] :count people responded to your call',
     'you_are_an_influencer'          => 'You are a Level :level Influencer! Keep Going!', //You are a Level 3 Influencer! Keep Going!    
     'zero_people_responded_to_call'  => 'Zero people have responded to your call so far.<br>Write a compelling message and invite more friends!',
     'good_job'                       => '{1} Good job! 1 person has responded to your call so far.<br>Write a compelling message and invite more friends! |[2.*] Good job! :count people have responded to your call so far.<br>Write a compelling message and invite more friends!',
     'true_influencer'                => '{1} Wow, you are a true influencer!<br> 1 person has responded to your call so far. Write a compelling message and invite more friends! |[2.*] Wow, you are a true influencer!<br> :count people have responded to your call so far. Write a compelling message and invite more friends!',
-    // 'you_are_close'                  => '<br>You are close to become a level',
     'become_an_influencer'           => '<br>You are close to become a level :level Influencer!',
     'badges_completed'               => 'All badges completed',
     'received_all_badges'            => 'Congratulations! You received all available badges!',
     'huge_impact'                    => 'You made a huge impact in this questionnaire!',
     'all_star_crowdsourcer'          => 'Congratulations! You have received all available badges for this questionnaire! You are an all-star crowd-sourcer!',
+    'get_more_badges'                => 'You get more badges by responding and inviting others to do so!',
+    'no_badges_yet'                  => 'You don\'t have any badges, yet! Click on each badge to view it\'s description and understand how to gain it.',
+    'you_have_badges'                => '{1} You have <span class="numOfBadges">1</span> badge so far. Click on each badge to view it\'s description and understand how to gain it. |[2,*] You have <span class="numOfBadges">:count</span> badges so far. Click on each badge to view it\'s description and understand how to gain it.',
+    'contribute'                     => 'Contribute',
+    'contribute_for'                 => 'Contribute for',
+    'you_do_not_own'                 => 'You don\'t own this badge',
+
 
 
 

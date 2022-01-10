@@ -32,19 +32,22 @@ return [
     'influencer_title'               => 'Influencer',
     'person'                         => 'personne',
     'people'                         => 'personnes',
-    // 'responded_to_call'              => ' ont répondu à votre appel',
     'person_or_people_responded'     => '{1} 1 personne a répondu à votre appel. |[2,*] :count personnes ont répondu à votre appel',
     'you_are_an_influencer'          => 'Vous êtes un Influencer de niveau :level! Continue!',
     'zero_people_responded_to_call'  => 'Aucune personne n\'a répondu à votre appel jusqu\'à présent.<br>Rédige un message convaincant et invite d\'autres amis!',
     'good_job'                       => '{1} Bien joué! 1 personne a répondu à ton appel jusqu\'à présent.<br>Rédige un message convaincant et invite d\'autres amis! |[2.*] Bien joué! :count personnes ont répondu à ton appel jusqu\'à présent.<br>Rédige un message convaincant et invite d\'autres amis!',
     'true_influencer'                => '{1} Wow, vous êtes un vrai influenceur!<br> 1 personne a répondu à ton appel jusqu\'à présent. Rédige un message convaincant et invite d\'autres amis! |[2.*] Wow, vous êtes un vrai influenceur!<br> :count personnes ont répondu à ton appel jusqu\'à présent. Rédige un message convaincant et invite d\'autres amis!',
-    // 'you_are_close'                  => '<br>You are close to become a level',
     'become_an_influencer'           => '<br>Vous êtes sur le point de devenir un Influencer de niveau :level!',
     'badges_completed'               => 'Tous les badges sont complétés',
     'received_all_badges'            => 'Félicitations ! Vous avez reçu tous les badges disponibles!',
     'huge_impact'                    => 'Vous avez eu un impact énorme dans ce questionnaire!',
     'all_star_crowdsourcer'          => 'Félicitations ! Tu as reçu tous les badges disponibles pour ce questionnaire ! Vous êtes une star de la collecte de fonds!',
-
+    'get_more_badges'                => 'Vous obtenez plus de badges en répondant et en invitant les autres à le faire!',
+    'no_badges_yet'                  => 'Vous n\'avez pas encore de badges! Cliquez sur chaque badge pour voir sa description et comprendre comment l\'obtenir.',
+    'you_have_badges'                => '{1} Vous avez <span class="numOfBadges">1</span> badge jusqu\'à présent. Cliquez sur chaque badge pour voir sa description et comprendre comment l\'obtenir. |[2,*] Vous avez <span class="numOfBadges">:count</span> badges jusqu\'à présent. Cliquez sur chaque badge pour voir sa description et comprendre comment l\'obtenir.',
+    'contribute'                     => 'Contribuez',
+    'contribute_for'                 => 'Contribuez à',
+    'you_do_not_own'                 => 'Ce badge ne vous appartient pas',
 
 
 

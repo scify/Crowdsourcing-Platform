@@ -32,19 +32,22 @@ return [
     'influencer_title'               => 'Influencer',
     'person'                         => 'persona',
     'people'                         => 'personas',
-    // 'responded_to_call'              => ' Ir atbildējušas tavam aicinājumam piedalīties',
     'person_or_people_responded'     => '{1} 1 persona ir atsaukusies uz tavu aicinājumu. |[2,*] :count cilvēki ir atbildējuši uz tavu aicinājumu',
     'you_are_an_influencer'          => 'Tu esi :level Influencer! Turpini darboties!',
     'zero_people_responded_to_call'  => 'Līdz šim uz tavu aicinājumu nav atsauciens neviens cilvēks.<br>Uzrakstiet pārliecinošu ziņu un aiciniet vairāk draugu!',
     'good_job'                       => '{1} Lieliski! 1 persona ir atsaukusies uz tavu aicinājumu.<br>Uzrakstiet pārliecinošu ziņu un aiciniet vairāk draugu! |[2.*] Lieliski! :count cilvēki ir atbildējuši uz tavu aicinājumu.<br>Uzrakstiet pārliecinošu ziņu un aiciniet vairāk draugu!',
     'true_influencer'                => '{1} Wow, tu esi īsts influenceris!<br> 1 persona ir atsaukusies uz tavu aicinājumu. Uzrakstiet pārliecinošu ziņu un aiciniet vairāk draugu! |[2.*] Wow, tu esi īsts influenceris!<br> :count cilvēki ir atbildējuši uz tavu aicinājumu. Uzrakstiet pārliecinošu ziņu un aiciniet vairāk draugu!',
-    // 'you_are_close'                  => '<br>Tu esi tuvu tam, lai kļūtu par līmeņa nr.',
     'become_an_influencer'           => '<br>Tu esi tuvu tam, lai kļūtu par līmeņa nr. :level Influencer!',
     'badges_completed'               => 'Visas badges ir iegūtas',
     'received_all_badges'            => 'Apsveicam! Tu esi saņēmis visas pieejamās badges!',
     'huge_impact'                    => 'Šajā aptaujā tev ir bijusi milzīga ietekme!',
     'all_star_crowdsourcer'          => 'Apsveicam! Tu esi saņēmis visas pieejamās badges! ',
-
+    'get_more_badges'                => 'Tu saņemsi vairāk nozīmītes, atbildot uz jautājumiem un aicinot citus to darīt!',
+    'no_badges_yet'                  => 'Tev vēl nav nevienas nozīmītes! Uzspied uz kādas no nozīmītēm, lai uzzinātu tās aprakstu un kā to iegūt.',
+    'you_have_badges'                => '{1} Tev šobrīd ir <span class="numOfBadges">1</span> badge. Uzspied uz kādas no nozīmītēm, lai uzzinātu tās aprakstu un kā to iegūt. |[2,*] Tev šobrīd ir <span class="numOfBadges">:count</span> badges. Uzspied uz kādas no nozīmītēm, lai uzzinātu tās aprakstu un kā to iegūt.',
+    'contribute'                     => 'Iesaisties',
+    'contribute_for'                 => 'Iesaisties par',
+    'you_do_not_own'                 => 'Tev nav šīs nozīmītes',
 
 
 
