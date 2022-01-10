@@ -45,7 +45,7 @@
                         <div class="checkbox icheck">
                             <label>
                                 <input class="icheck-input" type="checkbox" required name="privacy-policy">
-                                <span class="ml-3">I agree to the <a href="{{route('terms.privacy')}}" target="_blank">the privacy policy</a></span>
+                                <span class="ml-3">{!! __("notifications.agree_privacy_policy") !!}</a></span>
                             </label>
                         </div>
                     </div>

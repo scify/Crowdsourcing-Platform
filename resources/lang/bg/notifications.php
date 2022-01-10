@@ -29,8 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Посетете таблото си за управление и поканете още приятели',
     'thanks_message'                    => 'Благодарим Ви, че се присъединихте към краудсорсинг платформата!',
     'make_an_impact'                    => 'Готови ли сте да се включите?',
-    'visit_your_dashboard_contribute'   => 'Посетете таблото си за управление, за да видите как можете да участвате:'
-
+    'visit_your_dashboard_contribute'   => 'Посетете таблото си за управление, за да видите как можете да участвате:',
+    'cookies_and_privacy_policy'        => 'This website uses cookies to ensure you get the best experience on our website.  See our "privacy policy" for details.',
+    'code_of_conduct'                   => 'Make sure you conform to our code of conduct before answering!',
+    'agree_privacy_policy'              => 'I agree to the <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy policy.',
+    'ok'  
 
 
 

@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card card-success card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}. You get more badges by responding and inviting others to do so!</h3>
+                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}. {{ __("badges_messages.get_more_badges") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -34,7 +34,7 @@
                                            class="w-100 row table table-striped table-hover table-responsive-md">
                                         <tbody class="w-100">
                                         @foreach($viewModel->questionnaires as $questionnaire)
-                                            <tr class="d-flex">
+                                            <tr class="d-flex flex-wrap justify-content-center">
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="container-fluid">
 

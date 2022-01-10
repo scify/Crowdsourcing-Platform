@@ -45,7 +45,8 @@ return [
     'project_no_active_questionnaire' => 'Šim projektam vēl nav aktīvas anketas.',
     'no_active_projects' => 'Pašlaik nav aktīvu projektu.',
     'check_what_other_respondents' => 'Pirms atbildi uz anketas jautājumiem, noskaidro, ko teikuši citi respondenti, klikšķinot ',
-    'here' => 'šeit'
+    'here' => 'šeit',
+    'select_language' => 'Izvēlies valodu'
 
 
 

@@ -21,7 +21,7 @@ return [
     'sign_up' => 'Melden Sie sich an',
     'thank_you' => 'Vielen Dank!',
     'visit_dashboard_and_invite' => 'Besuchen Sie Ihr Dashboard, um Ihre Freund:innen einzuladen',
-    'go_to_dashboard'                   => 'Zum Dashboard',
+    'go_to_dashboard'                   => 'Zum Dashboard gehen',
     'answers_saved_anonymously' => 'Ihre Antworten wurden anonym gespeichert.',
     'login_to_complete_submission' =>  'Bitte melden Sie sich an, um Ihren Beitrag zu vervollständigen!',
     'by_registering_you' => 'Durch Ihre Registrierung<sup>*</sup>:',
@@ -45,7 +45,8 @@ return [
     'project_no_active_questionnaire' => 'Für dieses Projekt gibt es noch keinen aktiven Fragebogen.',
     'no_active_projects' => 'Derzeit gibt es keine aktiven Projekte.',
     'check_what_other_respondents' => 'Bevor Sie den Fragebogen beantworten, finden Sie die Antworten von anderen Befragten',
-    'here' => 'hier.'
+    'here' => 'hier.',
+    'select_language' => 'Sprache wählen'
 
 
 
