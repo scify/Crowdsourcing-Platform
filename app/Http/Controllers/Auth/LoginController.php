@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireActionHandler;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\Controllers\Controller;
-use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use Exception;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
+use Throwable;
 
 class LoginController extends Controller {
     /*
@@ -33,8 +33,9 @@ class LoginController extends Controller {
      * @var string
      */
     protected $redirectTo = '/en/my-dashboard';
-    public function redirectTo()
-    {
+    protected $exceptionHandler;
+
+    public function redirectTo() {
         return app()->getLocale() . '/my-dashboard';
     }
 
@@ -42,8 +43,10 @@ class LoginController extends Controller {
     protected QuestionnaireResponseManager $questionnaireResponseManager;
 
 
-    public function __construct(UserManager                     $userManager,
-                                QuestionnaireResponseManager $questionnaireResponseManager) {
+    public function __construct(UserManager                  $userManager,
+                                QuestionnaireResponseManager $questionnaireResponseManager,
+                                ExceptionHandler             $handler) {
+        $this->exceptionHandler = $handler;
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
@@ -68,9 +71,15 @@ class LoginController extends Controller {
         return Socialite::driver($driver)->redirect();
     }
 
+    /**
+     * @throws Throwable
+     */
     public function handleProviderCallback(Request $request, $driver) {
-        if (isset($request['denied']) || isset($request['error']))
+        if (isset($request['denied']) || isset($request['error'])) {
+            $this->exceptionHandler->report(new Exception($request['error']));
             return redirect()->route('home');
+        }
+
         $socialUser = Socialite::driver($driver)->user();
         $user = $this->userManager->handleSocialLoginUser($socialUser);
         return $this->authenticated($request, $user);
