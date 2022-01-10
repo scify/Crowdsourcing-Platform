@@ -3,16 +3,20 @@ window.UsersListController = function () {
 
 window.UsersListController.prototype = function () {
     var usersCriteria = {},
-        searchBtnHandler = function () {
-            $("#searchBtn").on("click", function () {
-                getUsersByFilters.call(this);
-            });
-        },
+        pageNum = 1;
+    searchBtnHandler = function () {
+        $("#searchBtn").on("click", function () {
+            getUsersByFilters.call(this);
+        });
+    },
         paginateUsersBtnHandler = function () {
             $("body").on("click", "#usersList .pagination a", function (e) {
                 e.preventDefault();
 
                 if (!$(this).parent().hasClass("active")) {
+                    let pageParam = $(this).attr("href").split('#?page=')[1];
+                    console.log(pageParam);
+                    pageNum = pageParam ? pageParam : 1;
                     $("#usersFilters").find("#searchBtn").trigger("click");
                 }
             });
@@ -20,9 +24,7 @@ window.UsersListController.prototype = function () {
         getUsersByFilters = function () {
             // button pressed that triggered this function
             let self = this;
-            let pageParam = $(this).attr("href").split('#?page=')[1];
-            console.log(pageParam);
-            usersCriteria.page = pageParam ? pageParam : 1;
+            usersCriteria.page = pageNum;
             usersCriteria.email = $('input[name=filter_email]').val();
             $.ajax({
                 method: "GET",
