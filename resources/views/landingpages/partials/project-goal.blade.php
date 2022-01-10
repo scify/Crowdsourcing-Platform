@@ -1,4 +1,4 @@
-<div class="activity-title wrapper-title">
+<div class="activity-title wrapper-title mt-2">
     <p>          {!! __("questionnaire.answers_left_to_goal",  ["count"=>"<b> $questionnaireViewModel->responsesNeededToReachGoal </b>"]) !!}</p>
 </div>
 <div class="progress-container">
