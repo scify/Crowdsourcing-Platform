@@ -14,7 +14,7 @@ window.UsersListController.prototype = function () {
                 e.preventDefault();
 
                 if (!$(this).parent().hasClass("active")) {
-                    let pageParam = $(this).attr("href").split('#?page=')[1];
+                    let pageParam = $(this).attr("href").split('?page=')[1];
                     console.log(pageParam);
                     pageNum = pageParam ? pageParam : 1;
                     $("#usersFilters").find("#searchBtn").trigger("click");
