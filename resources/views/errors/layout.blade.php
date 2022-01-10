@@ -18,12 +18,8 @@
             </div>
         </div>
     </section>
-    <section id="home" class="w-100">
-        <div class="row">
-            <div class="col">
-                <a class="btn btn-primary btn-block">{{ __('badges_messages.contribute') }}</a>
-            </div>
-        </div>
+    <section id="projects" class="w-100">
+        @include('home.partials.' . config('app.installation_resources_dir') . '.projects')
     </section>
 @endsection
 
