@@ -68,13 +68,19 @@ class LoginController extends Controller {
 
 
     public function redirectToProvider($driver) {
-        return Socialite::driver($driver)->redirect();
+        try {
+            return Socialite::driver($driver)->redirect();
+        } catch (Exception $e) {
+            abort($e->getCode(), $e->getMessage());
+        }
+        return redirect()->route('home');
     }
 
     /**
      * @throws Throwable
      */
     public function handleProviderCallback(Request $request, $driver) {
+
         if (isset($request['denied']) || isset($request['error'])) {
             $this->exceptionHandler->report(new Exception($request['error']));
             return redirect()->route('home');
