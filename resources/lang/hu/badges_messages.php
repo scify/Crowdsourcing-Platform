@@ -32,19 +32,22 @@ return [
     'influencer_title'               => 'Influencer',
     'person'                         => 'személy',
     'people'                         => 'ember',
-    // 'responded_to_call'              => ' responded to your call',
     'person_or_people_responded'     => '{1} 1 személy válaszolt a hívására. |[2,*] :count ember válaszolt a hívására',
     'you_are_an_influencer'          => 'Ön egy :level. szintű Influencer! Folytassa tovább!',
     'zero_people_responded_to_call'  => 'Eddig egy ember sem válaszolt a felhívására.<br>Írjon egy meggyőző üzenetet, és hívjon meg több barátot!',
     'good_job'                       => '{1} Gratulálunk! 1 személy válaszolt eddig a felhívására.<br>Írjon egy meggyőző üzenetet, és hívjon meg több barátot! |[2.*] Gratulálunk! :count ember válaszolt eddig a felhívására.<br>Írjon egy meggyőző üzenetet, és hívjon meg több barátot!',
     'true_influencer'                => '{1} Wow, Ön egy igazi Influenszer!<br> 1 személy válaszolt eddig a felhívására. Írjon egy meggyőző üzenetet, és hívjon meg több barátot! |[2.*] Wow, Ön egy igazi Influenszer!<br> :count ember válaszolt eddig a felhívására. Írjon egy meggyőző üzenetet, és hívjon meg több barátot!',
-    // 'you_are_close'                  => '<br>You are close to become a level',
     'become_an_influencer'           => '<br>Közel áll ahhoz, hogy :level. szintű Influencer legyen!',
     'badges_completed'               => 'Minden jelvény teljesítve',
     'received_all_badges'            => 'Gratulálunk! Megkapta az összes elérhető jelvényt!',
     'huge_impact'                    => 'Hatalmas hatást ért el ebben a kérdőívben!',
     'all_star_crowdsourcer'          => 'Gratulálunk! Megkapta az összes elérhető jelvényt ehhez a kérdőívhez! Ön egy „All-star crowdsourcer”!',
-
+    'get_more_badges'                => 'Több jelvényt szerezhet, ha válaszol és másokat is meghív!',
+    'no_badges_yet'                  => 'Még nincsenek jelvényei! Kattintson az egyes jelvényekre a leírás megtekintéséhez és, hogy  a megszerzésük módjának megértéséhez.',
+    'you_have_badges'                => '{1} Eddig <span class="numOfBadges">1</span> badge van. Kattintson az egyes jelvényekre a leírás megtekintéséhez és, hogy  a megszerzésük módjának megértéséhez. |[2,*] Eddig <span class="numOfBadges">:count</span> badges van. Kattintson az egyes jelvényekre a leírás megtekintéséhez és, hogy  a megszerzésük módjának megértéséhez.',
+    'contribute'                     => 'Hozzájárulás',
+    'contribute_for'                 => 'Hozzájárulás a következőhöz',
+    'you_do_not_own'                 => 'Nincs a tulajdonában ez a jelvény',
 
 
 
