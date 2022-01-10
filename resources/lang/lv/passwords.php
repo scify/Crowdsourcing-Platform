@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => 'Parolei ir jāsastāv vismaz no sešām rakstzīmēm un tai jāatbilst apstiprinājumam.',
+    'reset' => 'Tava parole ir atjaunota!',
+    'sent' => 'Uz tavu e-pastu esam nosūtījuši paroles atjaunošanas saiti!',
+    'token' => 'Šī paroles atjaunošanas saite ir nederīga.',
+    'user' => "Mēs nevaram atrast lietotāju ar šādu e-pasta adresi.",
 
 ];
