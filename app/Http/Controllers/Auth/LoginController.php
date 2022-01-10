@@ -72,7 +72,7 @@ class LoginController extends Controller {
         try {
             return Socialite::driver($driver)->redirect();
         } catch (Exception $e) {
-            abort(Response::HTTP_INTERNAL_SERVER_ERROR, ['message' => $e->getMessage()]);
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR, '123123');
         }
         return redirect()->route('home');
     }
