@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\Response as Response;
 use Throwable;
 
 class LoginController extends Controller {
@@ -71,7 +72,7 @@ class LoginController extends Controller {
         try {
             return Socialite::driver($driver)->redirect();
         } catch (Exception $e) {
-            abort($e->getCode(), $e->getMessage());
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
         }
         return redirect()->route('home');
     }
