@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\Response as Response;
 use Throwable;
 
 class LoginController extends Controller {
@@ -68,13 +69,19 @@ class LoginController extends Controller {
 
 
     public function redirectToProvider($driver) {
-        return Socialite::driver($driver)->redirect();
+        try {
+            return Socialite::driver($driver)->redirect();
+        } catch (Exception $e) {
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR, '123123');
+        }
+        return redirect()->route('home');
     }
 
     /**
      * @throws Throwable
      */
     public function handleProviderCallback(Request $request, $driver) {
+
         if (isset($request['denied']) || isset($request['error'])) {
             $this->exceptionHandler->report(new Exception($request['error']));
             return redirect()->route('home');
