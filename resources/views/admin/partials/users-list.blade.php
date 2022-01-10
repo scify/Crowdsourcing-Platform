@@ -22,7 +22,7 @@
                 <td>
 
                     {{ $user->nickname }}
-                    @if ($user->avatat)
+                    @if ($user->avatar)
                         <img loading="lazy" src="{{$user->avatar}}"/>
                     @endif
                 </td>
