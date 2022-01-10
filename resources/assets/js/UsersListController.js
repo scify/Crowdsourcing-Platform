@@ -22,7 +22,7 @@ window.UsersListController.prototype = function () {
             // button pressed that triggered this function
             let self = this;
             usersCriteria.page = pageNum;
-            usersCriteria.email = $('input[name=email]').val();
+            usersCriteria.email = $('input[name=filter_email]').val();
             $.ajax({
                 method: "GET",
                 url: $(".filtersContainer").data("url"),
