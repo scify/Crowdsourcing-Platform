@@ -54,7 +54,7 @@ class LoginController extends Controller {
     }
 
     public function showLoginForm(Request $request) {
-        $request->session()->put("redirectTo", $request->redirectTo);
+        $request->session()->put("redirectTo", $this->redirectTo());
         return view('auth.login')->with("displayQuestionnaireLabels", $request->submitQuestionnaire != null);
     }
 
