@@ -7,7 +7,7 @@
             <div id="project-motto">
                 <h2>Let's crowdsource!<br>Taking decisions with citizens and not for them</h2>
                 <div class="w-50 mx-auto">
-                    <a href="/en/login" class="btn btn-block call-to-action">Share your ideas</a>
+                    <a href="{{ route('login') }}" class="btn btn-block call-to-action">Share your ideas</a>
                 </div>
             </div>
         </div>
