@@ -55,14 +55,14 @@
         :allow-close="true"
         @canceled="annotationModalOpen = false">
       <template v-slot:header>
-        <h5 class="modal-title pl-2">Annotate answer</h5>
+        <h5 class="modal-title pl-2">Moderate Answer</h5>
       </template>
       <template v-slot:body>
         <div class="container py-4">
           <div class="row justify-content-center">
             <div class="col-12 text-center mx-auto mb-4">
               <textarea class="form-control" rows="3" v-model="annotation.annotation_text"
-                        placeholder="Annotation text (optional)"></textarea>
+                        placeholder="A comment provided by the annotator (this is optional, but if you enter it will be publicly displayed)"></textarea>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -80,7 +80,7 @@
           <div class="row justify-content-center">
             <div class="col-12 text-center mx-auto mb-4">
               <textarea class="form-control" rows="2" v-model="annotation.admin_review_comment"
-                        placeholder="Review status (optional)"></textarea>
+                        placeholder="A private note for the moderator (this is not visible to users)"></textarea>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -342,7 +342,7 @@ export default {
         const element = $(this);
         if (instance.userId) {
           if (!userHasAlreadyUpVoted && actionIsUpvote && instance.numOfVotesByCurrentUser >= instance.questionnaire.max_votes_num)
-            return instance.displayMaxVotesMessage()
+            return instance.displayMaxVotesMessage();
           instance.performVoteCall(
               element.data('question-name'),
               parseInt(element.data('respondent-user-id')),
