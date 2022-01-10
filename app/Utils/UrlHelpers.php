@@ -21,7 +21,7 @@ function getNameOfRoute($currentRoute) {
 
 function SetParameterAndGetAll($currentRoute, $parameter, $key) {
     if ($currentRoute == null) //if we have a 404, the route name is null
-        return "errors.404";
+        return "home";
 
     $currentRoute->setParameter($parameter, $key);
     return $currentRoute->parameters();
