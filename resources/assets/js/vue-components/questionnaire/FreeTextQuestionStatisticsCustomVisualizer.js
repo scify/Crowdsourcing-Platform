@@ -182,6 +182,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     function getOrderingFactorForAnswer(annotation, upVotesNum, downVotesNum) {
+        //
         let orderingFactor = 0;
         if (annotation) {
             if (annotation.admin_review_status_id === 2)
@@ -193,6 +194,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             orderingFactor += (2 * upVotesNum);
         if (downVotesNum)
             orderingFactor -= (2 * downVotesNum);
+
+        //calibrate scores to be from 0 - 1
         return sigmoid(orderingFactor);
     }
 
