@@ -14,7 +14,7 @@
 
     @include('analytics')
 </head>
-<body class="hold-transition background-page @yield('body_class')"
+<body class="hold-transition background-page @yield('body_class') container-fluid"
       style="background-image: url('{{ asset('images/active_participation.png') }}');">
 @if (App::environment('staging'))
     <div class="sticky-top w-100 staging-warning py-2 text-center">
