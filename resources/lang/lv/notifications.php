@@ -30,8 +30,8 @@ return [
     'thanks_message'                    => 'Paldies, ka pievienojies ideju vākšanas platformai!',
     'make_an_impact'                    => 'Vai esi gatavs mainīt pasauli uz labu?',
     'visit_your_dashboard_contribute'   => 'Apmeklē savu rīku paneli, lai uzzinātu, kā vari sniegt savu ieguldījumu:',
-    'cookies_and_privacy_policy'        => 'Šajā mājaslapā tiek izmantotas sīkdatnes, lai nodrošinātu vislabāko lietošanas pieredzi. Sīkāku informāciju skatiet mūsu "Privātuma politikā".',
-    'code_of_conduct'                   => 'Pirms atbildes iesniegšanas, pārliecinies, ka apstiprinat mūsu rīcības kodeksu!',
+    'cookies_and_privacy_policy'        => 'Šajā mājaslapā tiek izmantotas sīkdatnes. Sīkāku informāciju skati mūsu "Privātuma politikā".',
+    'code_of_conduct'                   => 'Pirms atbildes iesniegšanas, pārliecinies, ka tā atbilst mūsu rīcības kodeksam!',
     'agree_privacy_policy'              => 'Es piekrītu <a href="https://crowdsourcing.ecas.org/lv/terms-and-privacy" target="_blank">privātuma politikai.',
     'ok'                                => 'Labi'
 

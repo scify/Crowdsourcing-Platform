@@ -29,7 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Visite o seu painel e convide mais amigos',
     'thanks_message'                    => 'Obrigado por se juntar à Plataforma de Crowdsourcing!',
     'make_an_impact'                    => 'Está pronto para causar um impacto?',
-    'visit_your_dashboard_contribute'   => 'Visite o seu Painel para ver como pode contribuir:'
+    'visit_your_dashboard_contribute'   => 'Visite o seu Painel para ver como pode contribuir:',
+    'cookies_and_privacy_policy'        => 'Esta página usa cookies para garantir a melhor experiência de utilização. Para mais detalhes veja a nossa política de privacidade.',
+    'code_of_conduct'                   => 'Verifique se a sua participação respeita o nosso código de conduta!',
+    'agree_privacy_policy'              => 'Concordo com <a href="https://crowdsourcing.ecas.org/pt/terms-and-privacy" target="_blank"> a política de privacidade.',
+    'ok'                                => 'OK'
 
 
 

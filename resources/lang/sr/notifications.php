@@ -29,7 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Posjetite svoju kontrolnu tablu i pozovite još prijatelja',
     'thanks_message'                    => 'Hvala Vam što ste se prdružili Crowdsourcing platformi!',
     'make_an_impact'                    => 'Da li ste spremni da napravite uticaj?',
-    'visit_your_dashboard_contribute'   => 'Posjetite svoju Kontrolnu tablu da vidite kako možete da doprinesete:'
+    'visit_your_dashboard_contribute'   => 'Posjetite svoju Kontrolnu tablu da vidite kako možete da doprinesete:',
+    'cookies_and_privacy_policy'        => 'Ova veb stranica koristi kolačiće kako bi vam se obezbijedilo najbolje iskustvo na našoj veb stranici. Pogledajte našu „politiku privatnosti“ za više detalja.',
+    'code_of_conduct'                   => 'Provjerite da li se pridržavate našeg kodeksa ponašanja prije nego što odgovorite!',
+    'agree_privacy_policy'              => 'Slažem se sa <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> politikom privatnosti.',
+    'ok'                                => 'OK'
 
 
 

@@ -32,19 +32,22 @@ return [
     'influencer_title'               => 'Influencer',
     'person'                         => 'persoon',
     'people'                         => 'personen',
-    // 'responded_to_call'              => ' hebben je oproep beantwoord',
     'person_or_people_responded'     => '{1} 1 persoon heeft gereageerd Op je oproep. |[2,*] :count mensen hebben gereageerd Op je oproep',
     'you_are_an_influencer'          => 'Je bent Level :level Influencer! Ga door!',
     'zero_people_responded_to_call'  => 'Nul mensen hebben tot nu toe op je oproep gereageerd.<br>Schrijf een bericht en nodig meer vrienden uit!',
     'good_job'                       => '{1} Goed gedaan! 1 persoon heeft gereageerd Op je oproep.<br>Schrijf een bericht en nodig meer vrienden uit! |[2.*] Goed gedaan! :count mensen hebben gereageerd Op je oproep.<br>Schrijf een bericht en nodig meer vrienden uit!',
     'true_influencer'                => '{1} Wauw! Je bent een echte influencer!<br> 1 persoon heeft gereageerd  Op je oproep. Schrijf een bericht en nodig meer vrienden uit! |[2.*] Wauw! Je bent een echte influencer!<br> :count mensen hebben gereageerd  Op je oproep. Schrijf een bericht en nodig meer vrienden uit!',
-    // 'you_are_close'                  => '<br>Je bent bijna een Level ',
     'become_an_influencer'           => '<br>Je bent bijna een Level :level Influencer!',
     'badges_completed'               => 'Je hebt alle badges verdient',
     'received_all_badges'            => 'Gefeliciteerd! Je hebt alle beschikbare badges ontvangen!',
     'huge_impact'                    => 'Je hebt met deze vragenlijst veel bijgedragen!',
     'all_star_crowdsourcer'          => 'Gefeliciteerd! Je hebt alle beschikbare badges verdiend voor deze vragenlijst. Je bent een top crowdsourcer!',
-
+    'get_more_badges'                => 'Je ontvangt meer batches door te reageren en mensen uit te nodigen dat ook te doen!',
+    'no_badges_yet'                  => 'Je hebt nog geen batches! Klik op elke batch om de beschrijving te zien en te lezen hoe je die kan verwerven.',
+    'you_have_badges'                => '{1} Je hebt tot nu toe <span class="numOfBadges">1</span> batch. Klik op elke batch om de beschrijving te zien en te lezen hoe je die kan verwerven. |[2,*] Je hebt tot nu toe <span class="numOfBadges">:count</span> batches. Klik op elke batch om de beschrijving te zien en te lezen hoe je die kan verwerven.',
+    'contribute'                     => 'Draag bij',
+    'contribute_for'                 => 'Draag bij aan',
+    'you_do_not_own'                 => 'Je hebt deze batch niet',
 
 
 

@@ -29,7 +29,11 @@ return [
     'visit_your_dashboard_and_invite'   => 'Bezoek je Dashboard en nodig meer vrienden uit',
     'thanks_message'                    => 'Dank je wel voor je deelname aan het Crowdsourcing Platform!',
     'make_an_impact'                    => 'Wil je nog meer bijdragen?',
-    'visit_your_dashboard_contribute'   => 'Bezoek jouw dashboard om te zien hoe je kunt bijdragen:'
+    'visit_your_dashboard_contribute'   => 'Bezoek jouw dashboard om te zien hoe je kunt bijdragen:',
+    'cookies_and_privacy_policy'        => 'Deze website gebruikt cookies om ervoor te zorgen dat je de best mogelijke ervaring hebt op onze website. Bekijk ons “privacy beleid” voor meer informatie.',
+    'code_of_conduct'                   => 'Zorg er voor dat je instemt met onze gedragscode voordat je antwoorden geeft!',
+    'agree_privacy_policy'              => 'Ik stem in met het <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy beleid.',
+    'ok'                                => 'OK'
 
 
 

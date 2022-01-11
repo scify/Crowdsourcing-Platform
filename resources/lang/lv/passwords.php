@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'password' => 'Parolei ir jāsastāv vismaz no sešām rakstzīmēm un tai jāatbilst apstiprinājumam.',
+    'password' => 'Parolei ir jāsastāv vismaz no sešām rakstzīmēm un savstarpēji jāatbilst.',
     'reset' => 'Tava parole ir atjaunota!',
     'sent' => 'Uz tavu e-pastu esam nosūtījuši paroles atjaunošanas saiti!',
     'token' => 'Šī paroles atjaunošanas saite ir nederīga.',

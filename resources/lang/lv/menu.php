@@ -9,7 +9,7 @@ return [
 
     */
 
-    'login' => 'Pieteikšanās', //??
+    'login' => 'Pieteikties', //??
     'register' => 'Reģistrēties', //??
     'dashboard' =>  'Vadības panelis', //??
     'my_dashboard' => 'Mans vadības panelis',
