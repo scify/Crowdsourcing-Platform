@@ -127,8 +127,7 @@ class UserDashboardManager
                 $nextUnlockableBadge->getNextStepMessage(),
                 $nextUnlockableBadge->imageFileName,
                 true,
-                new QuestionnaireSocialShareButtons($projectsYouCanContributeTo, $questionnaire, $user->id),
-                in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo));
+                new QuestionnaireSocialShareButtons($questionnaire, $user->id),in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo));
 
             $questionnairesToBeDisplayedInTheDashboard->push($questionnaire);
         }

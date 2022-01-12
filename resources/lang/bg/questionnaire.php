@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Започнете',
     'already_participated' => 'Вие вече сте участвали, благодарим Ви!',
-    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> души са отговорили дотук. Нека станем <b>:goal</b>!',
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> души са отговорили дотук.!',
     'latest_contributors' => 'Последни участници',
     'name_and_date_of_last_contributors' => ':name отговори на :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> отговора ни остават до постигане на целта', //1002 answers left to reach our goal

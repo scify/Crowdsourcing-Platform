@@ -14,6 +14,7 @@ use App\Models\ViewModels\CrowdSourcingProjectForLandingPage;
 use App\Models\ViewModels\CrowdSourcingProjectSocialMediaMetadata;
 use App\Models\ViewModels\CrowdSourcingProjectUnavailable;
 use App\Models\ViewModels\GamificationBadgeVM;
+use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProjectStatusHistoryRepository;
@@ -96,6 +97,7 @@ class CrowdSourcingProjectManager {
         $userId = null;
 
 
+
         // if the user is logged in, get the user id
         if (Auth::check()) {
             $userId = Auth::id();
@@ -118,17 +120,28 @@ class CrowdSourcingProjectManager {
         $questionnaireGoalVM = null;
         $latestResponses = collect([]);
 
+        $shareUrlForFacebook = "";
+        $shareUrlForTwitter = "";
         if ($questionnaire) {
             $latestResponses = $this->questionnaireRepository->getLatestResponsesForQuestionnaire($questionnaire->id);
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire,$countAll);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
+
+            $idOfUserThatCanShareTheQuestionnaire = Auth::check()? Auth::id(): null;
+            $shareButtonsModel = new QuestionnaireSocialShareButtons($questionnaire, $idOfUserThatCanShareTheQuestionnaire);
+            $shareUrlForFacebook = $shareButtonsModel->getSocialShareURL($project,"facebook");
+            $shareUrlForTwitter = $shareButtonsModel->getSocialShareURL($project,"twitter");
+
         }
         if ($feedbackQuestionnaire)
             $userFeedbackQuestionnaireResponse =
                 $this->questionnaireRepository->getUserResponseForQuestionnaire($feedbackQuestionnaire->id, $userId);
 
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
+
+
+
         return new CrowdSourcingProjectForLandingPage($project,
             $questionnaire,
             $feedbackQuestionnaire,
@@ -138,7 +151,9 @@ class CrowdSourcingProjectManager {
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
             $this->languageRepository->all(),
-            $openQuestionnaireWhenPageLoads);
+            $openQuestionnaireWhenPageLoads,
+            $shareUrlForFacebook,
+            $shareUrlForTwitter);
     }
 
 
