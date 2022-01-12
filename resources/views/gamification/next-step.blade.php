@@ -13,7 +13,7 @@
 
             @if($nextStepVM->userHasAlreadyAnsweredTheActiveQuestionnaire)
 
-                @include('questionnaire.social-share', ['viewModel' => $nextStepVM->socialShareVM])
+                @include('questionnaire.social-share', ['viewModel' => $nextStepVM->socialShareVM, 'projects'=>$nextStepVM->projects])
 
             @else
                 @if($nextStepVM->projects->count() > 1)

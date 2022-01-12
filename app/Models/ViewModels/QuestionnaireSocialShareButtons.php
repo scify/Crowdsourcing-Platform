@@ -10,19 +10,17 @@ use Illuminate\Support\Collection;
 class QuestionnaireSocialShareButtons {
 
     public $questionnaire;
-    public $projects;
+
     public $referrerId;
 
     /**
      * QuestionnaireSocialShareButtons constructor.
-     * @param $projects Collection the projects the questionnaire belongs to
      * @param $questionnaire Questionnaire the questionnaire to be shared
      * @param $referrerId int (optional) the id of the user that will share
      * the questionnaire
      */
-    public function __construct(Collection $projects, Questionnaire $questionnaire, $referrerId = null) {
-        $this->projects = $projects;
-        $this->questionnaire = $questionnaire;
+    public function __construct(Questionnaire $questionnaire, $referrerId = null) {
+           $this->questionnaire = $questionnaire;
         $this->referrerId = $referrerId;
     }
 

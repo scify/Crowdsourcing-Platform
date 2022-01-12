@@ -529,9 +529,21 @@ footer {
 
   .info {
     font-size: 30px;
-    padding: 33px;
-  }
+    padding-top: 30px;
 
+  }
+  .social-share{
+    p{
+      font-size: 30px;
+
+      color: $landing-page-primary;
+    }
+    .btn{
+      max-width:150px;
+      margin-left:4px;
+      margin-right:4px;
+    }
+  }
   .progress {
     max-width: 400px;
 

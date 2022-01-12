@@ -1,7 +1,7 @@
 <a target="_blank"
-   data-project="{{ $project->defaultTranslation->name }}"
-   data-questionnaire="{{ $questionnaire->currentFieldsTranslation->title }}"
-   data-questionnaireId="{{ $questionnaire->id }}"
+   data-project="{{ $project_name }}"
+   data-questionnaire="{{$questionnaire_title }}"
+   data-questionnaireId="{{$questionnaire_id }}"
    data-medium="facebook"
    href="{{ $socialShareURL }}"
    class="social-share-button btn {{ $additionalBtnStyleClasses }}">

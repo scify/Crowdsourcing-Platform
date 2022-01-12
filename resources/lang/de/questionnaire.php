@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Mit der Beantwortung beginnen',
     'already_participated' => 'Sie haben bereits teilgenommen, vielen Dank!',
-    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> Personen haben bisher teilgenommen. Erreichen wir gemeinsam die  <b>:goal</b>!',
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> Personen haben bisher teilgenommen.',
     'latest_contributors' => 'Neueste Beiträge',
     'name_and_date_of_last_contributors' => ':name antwortete am :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> Antworten sind noch nötig, um unser Ziel zu erreichen', //1002 answers left to reach our goal

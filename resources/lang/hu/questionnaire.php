@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Válaszadás elkezdése',
     'already_participated' => 'Ön már válaszolt, köszönjük!',
-    'answers_so_far' => 'Eddig <span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> ember mondta el véleményét. Legyen ez a szám <b>:goal</b>!',
+    'answers_so_far' => 'Eddig <span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> ember mondta el véleményét.',
     'latest_contributors' => 'Legutóbbi közreműködők',
     'name_and_date_of_last_contributors' => ':name válaszolt: :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> válaszadó hiányzik még a célunk eléréséhez', //1002 answers left to reach our goal
