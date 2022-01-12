@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Apmeklē savu rīku paneli, lai uzaicinātu draugus',
     'go_to_dashboard'                   => 'Doties uz vadības paneli',
     'answers_saved_anonymously' => 'Tavas atbildes ir saglabātas kā anonīmas.',
-    'login_to_complete_submission' =>  'Lūdzu, piesakies, lai tās iesniegtu!',
+  //  'login_to_complete_submission' =>  'Lūdzu, piesakies, lai tās iesniegtu!',
     'by_registering_you' => 'Reģistrējoties<sup>*</sup>, tu:',
     'filter_spammers' => 'Palīdzi mums <b>filtrēt</b> mēstuļu sūtītājus jeb cilvēkus, kas atbild nejauši un nesaistīti.',
     'view_your_contribution' => 'Vari <b>aplūkot</b> savas atbildes, kā arī apskatīt, kā atbildējuši citi.',

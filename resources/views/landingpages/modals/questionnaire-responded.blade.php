@@ -15,9 +15,9 @@
                     <h2 class="anonymous-answers-saved text-center">{{ __("questionnaire.answers_saved_anonymously") }}</h2>
 
                     <div class="login-invitation">
-                        <p class="dashboard-message mt-4 mb-0  w-100">
-                            {{ __("questionnaire.login_to_complete_submission") }}</p>
-                        <p class="dashboard-message w-100">{!! __("questionnaire.by_registering_you") !!}</p>
+                        {{-- <p class="dashboard-message mt-4 mb-0  w-100">
+                            {{ __("questionnaire.login_to_complete_submission") }}</p> --}}
+                        <p class="dashboard-message mt-4 mb-0 w-100">{!! __("questionnaire.by_registering_you") !!}</p>
                         <ul>
                             <li>- {!! __("questionnaire.filter_spammers") !!}</li>
                             <li>- {!! __("questionnaire.view_your_contribution") !!}</li>
