@@ -6,7 +6,11 @@ if (window.Laravel) {
         if (routes[name] === undefined) {
             console.error('Route not found ', name);
         } else {
-            return window.Laravel.baseUrl + '/' + routes[name]
+            let baseUrl = window.Laravel.baseUrl.endsWith("/");
+            if (!baseUrl.endsWith("/"))
+                baseUrl+="/";
+
+            return baseUrl + routes[name]
                 .split('/')
                 .map(s => s[0] === '{' ? args.shift() : s)
                 .join('/');
