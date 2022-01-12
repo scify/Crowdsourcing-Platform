@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Menjen a főoldalra a barátai meghívásához',
     'go_to_dashboard'                   => 'Menjen az főoldalra',
     'answers_saved_anonymously' => 'Válaszait névtelenül mentettük el.',
-    'login_to_complete_submission' =>  'Kérjük, jelentkezzen be a válaszai elküldéséhez!',
+   // 'login_to_complete_submission' =>  'Kérjük, jelentkezzen be a válaszai elküldéséhez!',
     'by_registering_you' => 'A regisztrációval<sup>*</sup> Ön:',
     'filter_spammers' => 'Segít nekünk <b>kiszűrni a</b> spammereket és azokat, akik véletlenszerűen válaszolnak.',
     'view_your_contribution' => '<b>Megnézheti</b> a hozzászólásait, <b>összehasonlíthatja a válaszait</b> másokkal.',

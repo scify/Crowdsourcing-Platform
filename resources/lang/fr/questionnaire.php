@@ -24,7 +24,7 @@ return [
     'go_to_dashboard'                   => 'Accéder au tableau de bord',
 
     'answers_saved_anonymously' => 'Vos réponses ont été sauvegardées de manière anonyme.',
-    'login_to_complete_submission' =>  'Veuillez vous connecter pour compléter votre proposition!',
+  //  'login_to_complete_submission' =>  'Veuillez vous connecter pour compléter votre proposition!',
     'by_registering_you' => 'En vous inscrivant<sup>*</sup>:',
     'filter_spammers' => 'Vous nous aidez <b>à filtrer</b> les spammeurs, les personnes qui répondent au hasard.',
     'view_your_contribution' => 'Vous pouvez <b>voir</b> votre contribution, <b>comparer vos réponses</b> avec celles des autres.',
