@@ -367,7 +367,7 @@ export default {
           let votesWord = 'vote';
           if (remainingVotes > 1)
             votesWord += 's';
-          showToast('Cool! You have ' + remainingVotes
+          showToast('You have ' + remainingVotes
               + ' ' + votesWord + ' left!', '#28a745', 'bottom-right');
         } else
           instance.displayLoginPrompt();
@@ -437,7 +437,7 @@ export default {
       }
     },
     getSignInUrl() {
-      return route('login') + '?redirectTo=' + window.location.href;
+      return route('login', window.Laravel.locale) + '?redirectTo=' + window.location.href;
     },
     saveAnnotation() {
       this.annotationSaveLoading = true;
