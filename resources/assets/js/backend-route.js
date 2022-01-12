@@ -6,7 +6,7 @@ if (window.Laravel) {
         if (routes[name] === undefined) {
             console.error('Route not found ', name);
         } else {
-            let baseUrl = window.Laravel.baseUrl.endsWith("/");
+            let baseUrl = window.Laravel.baseUrl;
             if (!baseUrl.endsWith("/"))
                 baseUrl+="/";
 
