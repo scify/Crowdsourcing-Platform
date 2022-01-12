@@ -211,13 +211,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         console.log(question);
         div.id = question.name + "_answer_container"
         contentContainer.appendChild(div);
-        new Vue({
-            el: '#' + div.id,
-            render: h => h(AnswersPresenter, {props: {
-                    answers: [],
-                    title: "hello from vue"
-                }})
-            });
 
         const table = document.createElement("table");
         table.className = "sa__matrix-table w-100 table table-striped custom-texts-table";
