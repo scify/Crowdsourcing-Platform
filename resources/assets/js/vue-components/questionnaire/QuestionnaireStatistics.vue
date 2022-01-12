@@ -160,6 +160,7 @@ export default {
           name: "statsColor"
         });
     Survey.StylesManager.applyTheme("bootstrap");
+
     SurveyAnalytics.VisualizationPanel.haveCommercialLicense = true;
     for (let i = 0; i < this.questionTypesToApplyCustomTextsTableVisualizer.length; i++) {
       const type = this.questionTypesToApplyCustomTextsTableVisualizer[i];
@@ -187,6 +188,8 @@ export default {
         .localization
         .locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
 
+    console.log(SurveyAnalytics.VisualizationManager);
+    console.log( SurveyAnalytics.VisualizerBase);
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
     this.getColorsForCrowdSourcingProject();
@@ -294,6 +297,7 @@ export default {
             {
               labelTruncateLength: -1,
               allowDynamicLayout: false,
+              allowSelection:false,
               index: i
             }
         );
@@ -502,4 +506,8 @@ export default {
 @import "~survey-jquery/modern.min.css";
 @import "~survey-analytics/survey.analytics.min.css";
 @import "resources/assets/sass/questionnaire/statistics";
+
+//.js-plotly-plot .plotly .modebar{
+//  display:none;
+//}
 </style>
