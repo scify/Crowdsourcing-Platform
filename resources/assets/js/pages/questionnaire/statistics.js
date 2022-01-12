@@ -12,6 +12,9 @@ import _ from "lodash";
     };
 
     let initQuestionnaireResponsesChart = function () {
+        if (!document.getElementById('responsesChart'))
+            return;
+
         let ctx = document.getElementById('responsesChart').getContext("2d");
         const colors = getRandomColors(2);
 
