@@ -23,7 +23,14 @@ class HomeController extends Controller {
         return view("privacy-policy.".$locale);
     }
     public function showCodeOfConductPage(){
+
+        $referrer =  request()->headers->get('referer');
+        //if refferer is the questionnaire page, we will allow to redirect back.
+        if ($referrer)
+            $goBackUrl = $referrer . "?open=1";
+
         $locale = app()->getLocale();
-        return view("code-of-conduct.".$locale);
+        return view("code-of-conduct.".$locale)
+                ->with(['goBackUrl' => $goBackUrl]);
     }
 }
