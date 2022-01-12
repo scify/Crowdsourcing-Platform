@@ -8,6 +8,10 @@
                {!! __("questionnaire.answers_so_far", ["total"=>$viewModel->totalResponses]) !!}
             @endif
 
+                @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
+                    {{ __("questionnaire.invite_your_friends_to_answer")}}
+                    @endif
+
 
         </h2>
         @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
@@ -15,8 +19,6 @@
                 <link rel="stylesheet" href="{{ mix('dist/css/social-share.css') }}">
             @endpush
             <div class="social-share text-center">
-                <p class="title">{{ __("my-dashboard.share_questionnaire")}}</p>
-
                 @include('questionnaire.social-share-button', [
                       'project_name' => $viewModel->project->currentTranslation->motto_title ,
                       'questionnaire_title' =>  $viewModel->questionnaire->currentFieldsTranslation->title ,

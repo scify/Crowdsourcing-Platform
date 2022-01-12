@@ -46,7 +46,8 @@ return [
     'no_active_projects' => 'Αυτή τη στιγμή δεν υπάρχουν ενεργά έργα.',
     'check_what_other_respondents' => 'Πριν απαντήσετε το ερωτηματολόγιο, δείτε τι έχουν πει άλλοι ερωτηθέντες πατώντας',
     'here' => 'εδώ',
-    'select_language' => 'Επιλογή γλώσσας'
+    'select_language' => 'Επιλογή γλώσσας',
+    "invite_your_friends_to_answer" => "Προσκαλέστε τους φίλους σας να απαντήσουν"
 
 
 
