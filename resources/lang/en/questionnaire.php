@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Visit your Dashboard to invite your friends',
     'go_to_dashboard'                   => 'Go to Dashboard',
     'answers_saved_anonymously' => 'Your answers have been saved anonymously.',
-    'login_to_complete_submission' =>  'Please login to complete your submission!',
+   // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'By registering<sup>*</sup> you:',
     'filter_spammers' => 'Help us <b>filter out</b> spammers, people who answer randomly.',
     'view_your_contribution' => 'Can <b>view</b> your contribution, <b>compare your answers</b> with others.',

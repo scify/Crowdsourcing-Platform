@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Bezoek je Dashboard om je vrienden uit te nodigen',
     'go_to_dashboard'                   => 'Ga naar het Dashboard',
     'answers_saved_anonymously' => 'Jouw antwoorden zijn anoniem opgeslagen.',
-    'login_to_complete_submission' =>  'Log in om je bijdrage te voltooien!',
+  //  'login_to_complete_submission' =>  'Log in om je bijdrage te voltooien!',
     'by_registering_you' => 'Door je te registreren<sup>*</sup>:',
     'filter_spammers' => 'Help je ons om <b>spammers te weren</b>.',
     'view_your_contribution' => 'Kun je <b>jouw</b> bijdrage inzien <b>en je antwoorden</b> vergelijken met anderen.',

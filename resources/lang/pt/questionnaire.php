@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Visite o seu Painel para convidar os seus amigos',
     'go_to_dashboard'                   => 'Ir para o Painel',
     'answers_saved_anonymously' => 'As suas respostas foram guardadas anonimamente.',
-    'login_to_complete_submission' =>  'Por favor, faça o login para concluir a sua submissão!',
+  //  'login_to_complete_submission' =>  'Por favor, faça o login para concluir a sua submissão!',
     'by_registering_you' => 'Ao registar-se<sup>*</sup>:',
     'filter_spammers' => 'Ajuda-nos a <b>filtrar</b> spammers, pessoas que respondem aleatoriamente.',
     'view_your_contribution' => 'Pode <b>ver</b> sua contribuição, <b>comparar suas respostas</b> com outras.',

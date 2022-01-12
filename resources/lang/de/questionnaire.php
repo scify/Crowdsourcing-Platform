@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Besuchen Sie Ihr Dashboard, um Ihre Freund:innen einzuladen',
     'go_to_dashboard'                   => 'Zum Dashboard gehen',
     'answers_saved_anonymously' => 'Ihre Antworten wurden anonym gespeichert.',
-    'login_to_complete_submission' =>  'Bitte melden Sie sich an, um Ihren Beitrag zu vervollständigen!',
+  //  'login_to_complete_submission' =>  'Bitte melden Sie sich an, um Ihren Beitrag zu vervollständigen!',
     'by_registering_you' => 'Durch Ihre Registrierung<sup>*</sup>:',
     'filter_spammers' => 'Helfen Sie uns <b>Spammer und Leute</b> die zufällig antworten, herauszufiltern.',
     'view_your_contribution' => 'Sie können Ihren <b>Beitrag einsehen</b> und Ihre Antworten mit anderen vergleichen.',
