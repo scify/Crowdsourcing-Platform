@@ -51,8 +51,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users on various
-                                subjects via questionnaires.
+                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
                                 Users can respond anonymously (without providing any personal information) or can
                                 voluntarily register
                                 in order to submit eponymous answers.
@@ -64,9 +63,7 @@
                                 of processing the legal basis is the User's prior consent.
                                 <br><br>
                                 <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary
-                                each time data in order for Data Controller to comply with obligations imposed by
-                                various legal provisions.
+                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
                                 <br><br>
                                 <b>In case of the above provisions where the legal basis is User's prior consent, the
                                     User can always withdraw his consent at any time without affecting the legitimacy of
