@@ -10,10 +10,12 @@ if (window.Laravel) {
             if (!baseUrl.endsWith("/"))
                 baseUrl+="/";
 
-            return baseUrl + routes[name]
+            var response =  baseUrl + routes[name]
                 .split('/')
                 .map(s => s[0] === '{' ? args.shift() : s)
                 .join('/');
+
+            return response;
         }
     };
 }
