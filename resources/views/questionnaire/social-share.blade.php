@@ -9,11 +9,11 @@
         </div>
         <div class="col-lg-6 mb-3">
             @include('questionnaire.social-share-media',
-            ['viewModel' => $viewModel, 'projects' => $nextStepVM->projects, 'mediumName' => "Facebook", 'fontAwesomeBtnClass' => 'fa-facebook-f'])
+            ['viewModel' => $viewModel, 'projects' => $projects, 'mediumName' => "Facebook", 'fontAwesomeBtnClass' => 'fa-facebook-f'])
         </div>
         <div class="col-lg-6">
             @include('questionnaire.social-share-media',
-            ['viewModel' => $viewModel, 'projects' => $nextStepVM->projects, 'mediumName' => "Twitter", 'fontAwesomeBtnClass' => 'fa-twitter'])
+            ['viewModel' => $viewModel, 'projects' => $projects, 'mediumName' => "Twitter", 'fontAwesomeBtnClass' => 'fa-twitter'])
         </div>
         <div class="col-md-12 share-success d-none">
             <div class="alert alert-success alert-dismissible" role="alert">

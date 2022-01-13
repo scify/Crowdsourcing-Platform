@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Alusta vastamist',
     'already_participated' => 'Oled küsimustiku juba täitnud, aitäh!',
-    'answers_so_far' => 'Praeguseks on oma arvamust avaldanud <span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> inimest. Püüame jõuda  <b>:goal</b>ni!',
+    'answers_so_far' => 'Praeguseks on oma arvamust avaldanud <span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> inimest.',
     'latest_contributors' => 'Hiljutised vastajad',
     'name_and_date_of_last_contributors' => ':name vastas :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => 'Eesmärgi saavutamiseks on vaja veel <b style="color: var(--project-primary-color);" class="number">:count</b> vastust', //1002 answers left to reach our goal
@@ -46,7 +46,8 @@ return [
     'no_active_projects' => 'Hetkel ei ole aktiivseid projekte.',
     'check_what_other_respondents' => 'Enne kui vastad küsimustikule, vaata mida teised on öelnud',
     'here' => 'siit',
-    'select_language' => 'Vali keel'
+    'select_language' => 'Vali keel',
+    "invite_your_friends_to_answer" => "Kutsu oma sõpru küsimustikule vastama"
 
 
 

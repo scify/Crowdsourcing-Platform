@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Comece a responder',
     'already_participated' => 'Já participou, obrigado!',
-    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> pessoas responderam até agora.Vamos chegar às <b>:goal</b>!',
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> pessoas responderam até agora.',
     'latest_contributors' => 'Contribuidores mais recentes',
     'name_and_date_of_last_contributors' => ':name respondeu a :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> respostas para alcançar nosso objetivo', //1002 answers left to reach our goal
@@ -46,7 +46,8 @@ return [
     'no_active_projects' => 'Atualmente não há projetos ativos.',
     'check_what_other_respondents' => 'Antes de responder ao questionário, veja o que outros participantes têm dito clicando',
     'here' => 'aqui',
-    'select_language' => 'Selecione o idioma'
+    'select_language' => 'Selecione o idioma',
+    "invite_your_friends_to_answer" => "Convide os seus amigos para responder"
 
 
 

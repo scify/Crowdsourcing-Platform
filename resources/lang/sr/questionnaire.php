@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Počnite sa odgovaranjem na pitanja',
     'already_participated' => 'Već ste učestvovali, hvala Vam!',
-    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> osobe su se do sada oglasile. Idemo do  <b>:goal</b>!',
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> osobe su se do sada oglasile.',
     'latest_contributors' => 'Posljednji koji su učestvovali',
     'name_and_date_of_last_contributors' => ':name je odgovorila :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odgovora ostalo do našeg cilja', //1002 answers left to reach our goal
@@ -46,7 +46,8 @@ return [
     'no_active_projects' => 'Trenutno nema aktivnih projekata.',
     'check_what_other_respondents' => 'Prije nego što odgovorite na upitnik, provjerite šta su drugi ispitanici rekli klikom',
     'here' => 'ovdje',
-    'select_language' => 'Odaberite jezik'
+    'select_language' => 'Odaberite jezik',
+    "invite_your_friends_to_answer" => "Pozovite svoje prijatelje da odgovore"
 
 
 
