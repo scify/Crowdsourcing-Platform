@@ -9,8 +9,11 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
     let checkForURLSearchParams = function () {
         let searchParams = new URLSearchParams(window.location.search);
         const questionnaireId = searchParams.get('questionnaireId');
-        if (questionnaireId)
+        if (questionnaireId){
             $('select[name=questionnaire_id]').val(questionnaireId);
+            triggerSearch();
+        }
+
     };
 
     let updateURLSearchParams = function (criteria) {
@@ -249,13 +252,13 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
     let init = function () {
         loader = $("#loader")
         Survey.StylesManager.applyTheme("modern");
-        checkForURLSearchParams();
+
         searchBtnHandler();
         answersBtnHandler();
-        triggerSearch();
+        //triggerSearch();
         viewResponseBtnHandler();
-        //viewResponseTableBtnHandler();
         deleteResponseBtnHandler();
+        checkForURLSearchParams();
     };
 
     $(document).ready(function () {
