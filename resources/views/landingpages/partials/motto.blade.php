@@ -14,7 +14,8 @@
             @if($viewModel->project->currentTranslation->motto_subtitle)
                 <div class="row mb-5">
                     <div class="col">
-                        <h4 id="motto-subtitle" class="text text-center">{!! $viewModel->project->currentTranslation->motto_subtitle !!}</h4>
+                        <h4 id="motto-subtitle"
+                            class="text text-center">{!! $viewModel->project->currentTranslation->motto_subtitle !!}</h4>
                     </div>
                 </div>
             @endif
@@ -27,7 +28,15 @@
                                 {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
                                 @if($viewModel->userResponse)
                                     <div class="col-12">
-                                        <h2 class="mt-3 text-center">{{ __("questionnaire.already_answered") }}<br>{{ __("questionnaire.thank_you_for_your_response") }}</h2>
+                                        <h2 class="mt-3 text-center">{{ __("questionnaire.already_answered") }}
+                                            <br>
+                                            {{ __("questionnaire.thank_you_for_your_response") }}
+
+                                            {{-- IF HE HAS  RESPONDEDED TO THE FEEDBACK ALREADY, DISPLAY THE TITLE TO INVITE TO SHARE ON SOCIAL--}}
+                                            @if (!$viewModel->displayFeedbackQuestionnaire() && $viewModel->shareUrlForFacebook!=null && $viewModel->shareUrlForTwitter!=null)
+                                                {{ __("questionnaire.invite_your_friends_to_answer")}}:
+                                            @endif
+                                        </h2>
                                     </div>
                                     {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
                                     @if ($viewModel->displayFeedbackQuestionnaire())
@@ -39,8 +48,15 @@
                                                         ])
                                         </div>
                                     @else
-                                        {{-- DISPLAY PROJECT URL --}}
-                                        @include('landingpages.partials.external-url')
+                                        <div class="col-md-5 col-sm-12 mx-auto ">
+                                            {{-- DISPLAY SHARE THE QUESTIONNARE --}}
+                                            @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
+
+
+                                                @include('landingpages.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
+
+                                            @endif
+                                        </div>
 
                                     @endif
 
@@ -51,7 +67,7 @@
                                     </div>
                                 @endif
                             @else
-                            {{-- PROJECT DOES NOT HAVE AN ACTIVE QUESTIONNAIRE --}}
+                                {{-- PROJECT DOES NOT HAVE AN ACTIVE QUESTIONNAIRE --}}
                                 @include('landingpages.partials.external-url')
                             @endif
                         </div>

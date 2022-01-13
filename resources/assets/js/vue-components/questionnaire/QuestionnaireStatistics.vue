@@ -60,12 +60,6 @@
       <template v-slot:body>
         <div class="container py-4">
           <div class="row justify-content-center">
-            <div class="col-12 text-center mx-auto mb-4">
-              <textarea class="form-control" rows="3" v-model="annotation.annotation_text"
-                        placeholder="A comment provided by the annotator (this is optional, but if you enter it will be publicly displayed)"></textarea>
-            </div>
-          </div>
-          <div class="row justify-content-center">
             <div class="col-12 text-center mx-auto mb-3">
               <select
                   v-model="annotation.admin_review_status_id"
@@ -75,6 +69,12 @@
                   {{ status.name }}
                 </option>
               </select>
+            </div>
+          </div>
+          <div v-if="displayAnnotatorPublicComment" class="row justify-content-center">
+            <div class="col-12 text-center mx-auto mb-4">
+              <textarea class="form-control" rows="3" v-model="annotation.annotation_text"
+                        placeholder="A comment provided by the annotator (this is optional, but if you enter it will be publicly displayed)"></textarea>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -95,7 +95,7 @@
             <div class="col-12 text-center mx-auto">
               <button @click="deleteAnnotation" :disabled="annotationDeleteLoading"
                       class="btn btn-outline-danger btn-lg w-100">
-                <span class="mr-2">Delete</span><span v-if="annotationDeleteLoading"
+                <span class="mr-2">Undo/Remove your action</span><span v-if="annotationDeleteLoading"
                                                       class="spinner-border spinner-border-sm"
                                                       role="status"
                                                       aria-hidden="true"></span></button>
@@ -149,6 +149,15 @@ export default {
       },
       numOfVotesByCurrentUser: 0,
       answerAnnotationAdminReviewStatuses: []
+    }
+  },
+  computed:{
+    "displayAnnotatorPublicComment": function() {
+      //if id '1', 'Reviewed by moderator - no further action',
+      // or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator and it was marked as toxic. It will never be shown in the statistics.'
+      // dont display
+      return (this.annotation.admin_review_status_id != 1
+          && this.annotation.admin_review_status_id != 4 )
     }
   },
   created() {
