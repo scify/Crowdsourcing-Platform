@@ -10,7 +10,7 @@
             <a class="nav-link" href="{{route("my-dashboard")}}"> {{ __("menu.my_dashboard") }} </a>
         </li>
         <li class="nav-item {{ UrlMatchesMenuItem("my-account")}}">
-            <a class="nav-link" href="{{route("my-account")}}"> {{ __("menu.my_account") }} </a>
+            <a class="nav-link" href="{{route("my-account")}}"> {{ __("menu.my_account_2") }} </a>
         </li>
         @if($userHasContributedToAProject)
             <li class="nav-item {{ UrlMatchesMenuItem("myHistory")}}">
