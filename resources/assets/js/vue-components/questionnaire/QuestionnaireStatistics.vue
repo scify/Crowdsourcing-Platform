@@ -80,7 +80,7 @@
           <div class="row justify-content-center">
             <div class="col-12 text-center mx-auto mb-4">
               <textarea class="form-control" rows="2" v-model="annotation.admin_review_comment"
-                        placeholder="A private note for the moderator (this is not visible to users)"></textarea>
+                        placeholder="A private note for the moderator. This is not visible to users. It is useful for you in case you want to write down to remember for later"></textarea>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -483,6 +483,7 @@ export default {
         cellElement.find(".annotate-btn").attr('data-annotation', this.annotation.annotation_text);
         cellElement.find(".annotate-btn").attr('data-annotation-admin-review-status-id', this.annotation.admin_review_status_id);
         cellElement.find(".annotate-btn").attr('data-annotation-admin-review-comment', this.annotation.admin_review_comment);
+        cellElement.find(".annotate-btn").append('<i class="fa fa-check" title="This answer has been reviewed by a moderator"></i>')
       });
     },
     deleteAnnotation() {
@@ -500,6 +501,7 @@ export default {
         this.annotationModalOpen = false;
         const cellElement = $("#" + "answer_" + this.annotation.question_name + "_" + this.annotation.respondent_user_id);
         const annotationElement = cellElement.find('.annotation-wrapper');
+        cellElement.find(".fa-check").remove();
         if (annotationElement.length)
           annotationElement.remove();
         this.annotation = {
@@ -516,6 +518,11 @@ export default {
 @import "~survey-analytics/survey.analytics.min.css";
 @import "resources/assets/sass/questionnaire/statistics";
 
+.fa-check{
+  color:green;
+  display:inline-block;
+  margin-left:5px;
+}
 //.js-plotly-plot .plotly .modebar{
 //  display:none;
 //}
