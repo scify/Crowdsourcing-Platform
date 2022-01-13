@@ -519,6 +519,14 @@ footer {
   color: $black;
 }
 
+.social-share{
+
+  .btn{
+    max-width:150px;
+    margin-left:4px;
+    margin-right:4px;
+  }
+}
 #collective-goal {
 
   .container {
@@ -533,14 +541,7 @@ footer {
 
 
   }
-  .social-share{
 
-    .btn{
-      max-width:150px;
-      margin-left:4px;
-      margin-right:4px;
-    }
-  }
   .progress {
     max-width: 400px;
 
