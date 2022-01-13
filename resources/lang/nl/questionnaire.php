@@ -11,7 +11,7 @@ return [
 
     'start_answering' => 'Begin met beantwoorden',
     'already_participated' => 'Je hebt al deelgenomen, dank je wel!',
-    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> mensen hebben hun mening gegeven. Laten we gaan voor de <b>:goal</b>!',
+    'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> mensen hebben hun mening gegeven!',
     'latest_contributors' => 'Meest recente deelnemers',
     'name_and_date_of_last_contributors' => ':name heeft gereageerd op :date', //Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> antwoorden te gaan om ons doel te bereiken', //1002 answers left to reach our goal
@@ -46,7 +46,8 @@ return [
     'no_active_projects' => 'Op dit moment zijn er nog geen actieve vragenlijsten.',
     'check_what_other_respondents' => 'Voordat je de vragenlijst beantwoordt kun je zien wat anderen hebben gezegd. Klik daarvoor',
     'here' => 'hier',
-    'select_language' => 'Kies een taal'
+    'select_language' => 'Kies een taal',
+    "invite_your_friends_to_answer" => "Nodig je vrienden"
 
 
 

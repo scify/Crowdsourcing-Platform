@@ -19,6 +19,9 @@ class CrowdSourcingProjectForLandingPage {
     public $languages;
     public $openQuestionnaireWhenPageLoads = false;
 
+    public $shareUrlForFacebook;
+    public $shareUrlForTwitter;
+
     public function __construct(
         $project,
         $questionnaire,
@@ -29,7 +32,9 @@ class CrowdSourcingProjectForLandingPage {
         $questionnaireGoalVM,
         $socialMediaMetadataVM,
         Collection $languages,
-        $openQuestionnaireWhenPageLoads)
+        $openQuestionnaireWhenPageLoads,
+        $shareUrlForFacebook,
+        $shareUrlForTwitter)
     {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
@@ -42,6 +47,9 @@ class CrowdSourcingProjectForLandingPage {
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;
         $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
+
+        $this->shareUrlForFacebook =$shareUrlForFacebook;
+        $this->shareUrlForTwitter =$shareUrlForTwitter;
     }
 
     public function getSignInURLWithParameters(): string {
