@@ -32,8 +32,8 @@ return [
     'during_registration' => 'Registreerumisel pead sisestama oma meiliaadressi ja kasutajanime.',
     'already_answered' =>  'Sa oled selle küsimustiku juba täitnud.',
     'thank_you_for_your_response' =>  'Täname sind vastamast!',
-    'prefer_staying_anonymous' =>  'Eelistad jääda anonüümseks?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Anna meile platvormi kohta tagasisidet vastates neljale küsimusele.', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Anna meile tagasisidet!', //den ta exo brei kapou
+    'feedback_about_platform' => 'Anna meile platvormi kohta tagasisidet vastates neljale küsimusele', //den ta exo brei kapou
     'give_us_feedback' => 'Anna meile tagasisidet', //den ta exo brei kapou
     'zero_answers' => 'Keegi ei ole veel oma arvamust avaldanud. Ole esimene!',
     'no_recent_activity' => 'Varasem tegevus puudub',

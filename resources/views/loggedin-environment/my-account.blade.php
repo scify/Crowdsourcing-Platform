@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @section('content-header')
-    <h1>{{ __("menu.my_account") }}</h1>
+    <h1>{{ __("my-account.my_account") }}</h1>
 @endsection
 
 @section('content')
