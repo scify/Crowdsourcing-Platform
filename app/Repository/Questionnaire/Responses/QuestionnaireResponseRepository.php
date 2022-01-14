@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Repository\Repository;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class QuestionnaireResponseRepository extends Repository
@@ -96,6 +97,18 @@ class QuestionnaireResponseRepository extends Repository
         return QuestionnaireResponse::with("questionnaire")
             ->where('user_id', $userId)
             ->get();
+    }
+
+    public function countResponsesPerProject($questionnaire_id){
+        $results = DB::select('SELECT qr.project_id, CONCAT("/",l.language_code,"/",p.slug) as slug, count(*) as total FROM questionnaire_responses qr 
+                                inner join crowd_sourcing_projects p on qr.project_id = p.id
+                                inner join languages_lkp l on l.id = p.language_id
+                                where qr.deleted_at is null and qr.questionnaire_id =?  
+                                group by qr.project_id, p.slug, l.language_code
+                                order by p.slug desc',[$questionnaire_id]);
+
+        return $results;
+
     }
 
     public function getAllResponsesGivenByUser($userId)

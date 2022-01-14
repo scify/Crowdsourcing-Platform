@@ -13,6 +13,29 @@
 
 <div class="card card-info">
     <div class="card-header">
+        <h3 class="card-title">Response counter</h3>
+    </div>
+    <div class="card-body">
+        <div class="row mt-6">
+            <div class="col-12 ">
+                <table class="table">
+                    <tr><th>Page</th><th>Number of Answers</th></tr>
+                    @foreach($reportViewModel->countResponses as $response)
+                        <tr>
+                            <td><a href="{{$response->slug}}" target="_blank">{{$response->slug}}</a></td>
+                            <td>{{$response->total}}</td>
+                        </tr>
+
+
+                    @endforeach
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-info">
+    <div class="card-header">
         <h3 class="card-title">Respondents Summary</h3>
     </div>
     <div class="card-body">
