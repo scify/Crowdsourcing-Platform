@@ -167,6 +167,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
             cache: false,
             data: criteria,
             beforeSend: function () {
+                $("#results").html("");
                 loader.removeClass('d-none');
                 errorEl.addClass('d-none');
             },

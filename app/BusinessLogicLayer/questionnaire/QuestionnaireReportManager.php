@@ -38,7 +38,8 @@ class QuestionnaireReportManager {
         $questionnaireId = $input['questionnaireId'];
         $respondentsRows = $this->questionnaireReportRepository->getRespondentsData($questionnaireId);
         $responses = $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaireId]);
-        return new QuestionnaireReportResults($responses, $respondentsRows,$questionnaireId);
+        $responsesCounts = $this->questionnaireResponseRepository->countResponsesPerProject($questionnaireId);
+        return new QuestionnaireReportResults($responses, $respondentsRows,$questionnaireId,$responsesCounts);
     }
 
 }
