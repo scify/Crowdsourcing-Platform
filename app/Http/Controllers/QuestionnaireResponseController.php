@@ -43,8 +43,8 @@ class QuestionnaireResponseController extends Controller {
         return $response;
     }
 
-    public function getResponsesForQuestionnaire(int $questionnaire_id): JsonResponse {
-        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id));
+    public function getResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter=-1): JsonResponse {
+        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id,$projectFilter));
     }
 
     public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {

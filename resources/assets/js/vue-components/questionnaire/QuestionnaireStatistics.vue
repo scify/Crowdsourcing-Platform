@@ -96,14 +96,32 @@
               <button @click="deleteAnnotation" :disabled="annotationDeleteLoading"
                       class="btn btn-outline-danger btn-lg w-100">
                 <span class="mr-2">Undo/Remove your action</span><span v-if="annotationDeleteLoading"
-                                                      class="spinner-border spinner-border-sm"
-                                                      role="status"
-                                                      aria-hidden="true"></span></button>
+                                                                       class="spinner-border spinner-border-sm"
+                                                                       role="status"
+                                                                       aria-hidden="true"></span></button>
             </div>
           </div>
         </div>
       </template>
     </modal>
+    <div v-if="userCanAnnotateAnswers && questionnaireHasManyProjects" id="moderator-toolbar">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            You are logged in as moderator.
+            <span v-if="projectFilterSelectedOption==-1">Select a project to filter the responses:</span>
+            <span v-else>You have filtered the responses, <strong> currently viewing:</strong></span>
+            <select v-model="projectFilterSelectedOption" @change="onFilterProject($event)" >
+              <option value="-1">View all</option>
+              <option v-for="p in projects"
+                      :value="p.id">
+                {{ p.slug }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -124,10 +142,20 @@ export default {
         return {}
       }
     },
+    projects: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
     userId: Number,
     userCanAnnotateAnswers: {
       type: Number,
       default: 0
+    },
+    projectFilter:{
+      type: Number,
+      default:-1
     }
   },
   data: function () {
@@ -148,16 +176,20 @@ export default {
         admin_review_comment: null
       },
       numOfVotesByCurrentUser: 0,
-      answerAnnotationAdminReviewStatuses: []
+      answerAnnotationAdminReviewStatuses: [],
+      projectFilterSelectedOption: this.$props.projectFilter
     }
   },
-  computed:{
-    "displayAnnotatorPublicComment": function() {
+  computed: {
+    "displayAnnotatorPublicComment": function () {
       //if id '1', 'Reviewed by moderator - no further action',
       // or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator and it was marked as toxic. It will never be shown in the statistics.'
       // dont display
       return (this.annotation.admin_review_status_id != 1
-          && this.annotation.admin_review_status_id != 4 )
+          && this.annotation.admin_review_status_id != 4)
+    },
+    "questionnaireHasManyProjects":function(){
+      return this.$props.projects.length>0;
     }
   },
   created() {
@@ -198,7 +230,7 @@ export default {
         .locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
 
     console.log(SurveyAnalytics.VisualizationManager);
-    console.log( SurveyAnalytics.VisualizerBase);
+    console.log(SurveyAnalytics.VisualizerBase);
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
     this.getColorsForCrowdSourcingProject();
@@ -238,7 +270,7 @@ export default {
       const instance = this;
       return new Promise(function callback(resolve, reject) {
         instance.get({
-          url: route('questionnaire.responses', instance.questionnaire.id),
+          url: route('questionnaire.responses', instance.questionnaire.id, instance.projectFilter),
           data: {},
           urlRelative: false
         }).then(response => {
@@ -306,7 +338,7 @@ export default {
             {
               labelTruncateLength: -1,
               allowDynamicLayout: false,
-              allowSelection:false,
+              allowSelection: false,
               index: i
             }
         );
@@ -508,6 +540,9 @@ export default {
           annotation_text: ''
         };
       });
+    },
+    onFilterProject(event) {
+      window.location.href = route('questionnaire.statistics',window.Laravel.locale, this.questionnaire.id, event.target.value);
     }
   }
 }
@@ -518,12 +553,27 @@ export default {
 @import "~survey-analytics/survey.analytics.min.css";
 @import "resources/assets/sass/questionnaire/statistics";
 
-.fa-check{
-  color:green;
-  display:inline-block;
-  margin-left:5px;
+.fa-check {
+  color: green;
+  display: inline-block;
+  margin-left: 5px;
 }
-//.js-plotly-plot .plotly .modebar{
-//  display:none;
-//}
+
+#moderator-toolbar {
+  text-align: center;
+  font-size:1.2rem;
+  position: fixed;
+  padding: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 35px;
+  background-color: rgba(230,230,230,1);
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+  select{
+    background-color:white;
+    border:none;
+    margin-left:5px;
+  }
+}
 </style>
