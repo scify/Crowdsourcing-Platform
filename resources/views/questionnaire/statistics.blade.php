@@ -60,7 +60,9 @@
                         <questionnaire-statistics
                                 :user-id="{{ $viewModel->current_user_id }}"
                                 :user-can-annotate-answers="{{ $viewModel->userCanAnnotateAnswers ? 1 : 0 }}"
-                                :questionnaire='@json($viewModel->questionnaire)'>
+                                :questionnaire='@json($viewModel->questionnaire)'
+                                :projects='@json($viewModel->questionnaire->projects)'
+                                :project-filter="{{$viewModel->projectFilter}}">
                         </questionnaire-statistics>
                     </div>
                 </div>

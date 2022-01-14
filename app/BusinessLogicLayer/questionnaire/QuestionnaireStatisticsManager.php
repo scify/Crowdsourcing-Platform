@@ -30,7 +30,7 @@ class QuestionnaireStatisticsManager {
         $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
     }
 
-    public function getQuestionnaireVisualizationsViewModel(Questionnaire $questionnaire): QuestionnaireStatistics {
+    public function getQuestionnaireVisualizationsViewModel(Questionnaire $questionnaire, $projectFilter): QuestionnaireStatistics {
         $questionnaireTotalResponseStatistics = $this->questionnaireStatisticsRepository
             ->getQuestionnaireResponseStatistics($questionnaire->id);
         $numberOfResponsesPerLanguage = $this->questionnaireStatisticsRepository
@@ -41,7 +41,8 @@ class QuestionnaireStatisticsManager {
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
             Gate::allows('moderate-results'),
-            Gate::allows('moderate-results')
+            Gate::allows('moderate-results'),
+            $projectFilter
         );
     }
 

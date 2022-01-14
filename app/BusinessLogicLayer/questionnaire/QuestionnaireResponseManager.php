@@ -13,8 +13,10 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextReposi
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
-class QuestionnaireResponseManager {
+class QuestionnaireResponseManager
+{
 
     protected $questionnaireRepository;
     protected $questionnaireResponseRepository;
@@ -30,7 +32,8 @@ class QuestionnaireResponseManager {
                                 LanguageManager                           $languageManager,
                                 QuestionnaireActionHandler                $questionnaireActionHandler,
                                 QuestionnaireAnswerVoteRepository         $questionnaireAnswerVoteRepository,
-                                UserManager                               $userManager) {
+                                UserManager                               $userManager)
+    {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireResponseAnswerTextRepository = $questionnaireResponseAnswerTextRepository;
@@ -40,27 +43,35 @@ class QuestionnaireResponseManager {
         $this->userManager = $userManager;
     }
 
-    public function getQuestionnaireResponsesForUser(User $user) {
+    public function getQuestionnaireResponsesForUser(User $user)
+    {
         return $this->questionnaireResponseRepository->getAllResponsesGivenByUser($user->id);
     }
 
-    public function questionnaireResponsesForUserExists($userId): bool {
+    public function questionnaireResponsesForUserExists($userId): bool
+    {
         return $this->questionnaireResponseRepository->userResponseExists($userId);
     }
 
-    public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId): bool {
+    public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId): bool
+    {
         return $this->questionnaireResponseRepository->questionnaireResponseExists($userId, $questionnaireId);
     }
 
-    public function getQuestionnaireResponsesForQuestionnaire(int $questionnaire_id): Collection {
-        return $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaire_id],array('*'),"id","desc");
+    public function getQuestionnaireResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter): Collection
+    {
+        $queryFilters = ['questionnaire_id' => $questionnaire_id];
+        // we only allow the responses to be filtered by project for logged in Answer Moderators
+        if ($projectFilter > 0 &&  Gate::allows('moderate-results'))
+            $queryFilters["project_id"] = $projectFilter;
+        return $this->questionnaireResponseRepository->allWhere($queryFilters, array('*'), "id", "desc");
     }
 
-
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser($user):int{
-        $questionnaireResponsesThatWereTransferredToUser =  $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
-        if ($questionnaireResponsesThatWereTransferredToUser){
-            foreach($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse){
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser($user): int
+    {
+        $questionnaireResponsesThatWereTransferredToUser = $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
+        if ($questionnaireResponsesThatWereTransferredToUser) {
+            foreach ($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse) {
                 $lang = $this->languageManager->getLanguageById($questionnaireResponse->language_id);
                 $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project,
                     $user, $lang);
@@ -72,7 +83,9 @@ class QuestionnaireResponseManager {
         }
         return 0;
     }
-    public function storeQuestionnaireResponse($data) {
+
+    public function storeQuestionnaireResponse($data)
+    {
         $user = $this->userManager->getLoggedInUserOrCreateAnonymousUser();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
         if (isset($data['language_code']))
@@ -99,14 +112,15 @@ class QuestionnaireResponseManager {
                 $user,
                 $language);
             // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user,  $language);
+            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
         // AnalyzeQuestionnaireResponseToxicity::dispatch($questionnaireResponse->id);
         return $questionnaireResponse;
     }
 
-    public function getFreeTypeQuestionsFromQuestionnaireJSON(string $questionnaireJSON): array {
+    public function getFreeTypeQuestionsFromQuestionnaireJSON(string $questionnaireJSON): array
+    {
         $freeTypeQuestions = [];
         $freeTypeQuestionTypes = ['text', 'comment'];
         $questionnaire = json_decode($questionnaireJSON);
@@ -119,16 +133,18 @@ class QuestionnaireResponseManager {
         return $freeTypeQuestions;
     }
 
-    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id, int $user_voter_id): Collection {
+    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id, int $user_voter_id): Collection
+    {
         return $this->questionnaireAnswerVoteRepository
             ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, $user_voter_id);
     }
 
-    public function voteAnswer(int $questionnaire_id,
+    public function voteAnswer(int    $questionnaire_id,
                                string $question_name,
-                               int $respondent_user_id,
-                               int $voter_user_id,
-                               bool $upvote) {
+                               int    $respondent_user_id,
+                               int    $voter_user_id,
+                               bool   $upvote)
+    {
         $data = [
             'questionnaire_id' => $questionnaire_id,
             'question_name' => $question_name,
@@ -142,7 +158,8 @@ class QuestionnaireResponseManager {
             return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
     }
 
-    public function deleteResponse(int $questionnaire_response_id) {
+    public function deleteResponse(int $questionnaire_response_id)
+    {
         return $this->questionnaireResponseRepository->delete($questionnaire_response_id);
     }
 }

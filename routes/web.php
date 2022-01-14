@@ -104,7 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group($localeInfo, function () {
-    Route::get('/questionnaires/{questionnaire}/statistics',
+    Route::get('/questionnaires/{questionnaire}/statistics/{projectFilter?}',
         'QuestionnaireStatisticsController@showStatisticsPageForQuestionnaire')
         ->name('questionnaire.statistics')
         ->middleware('questionnaire.page_settings');
@@ -135,7 +135,7 @@ Route::post('/questionnaire/answer-annotations/delete', [QuestionnaireAnswerAnno
 Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
 Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])
     ->name('crowd-sourcing-project.get-colors');
-Route::get('/questionnaire/responses-get/{id}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
+Route::get('/questionnaire/responses-get/{id}/{projectFilter?}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])
     ->name('questionnaire.responses');
 Route::get('/questionnaire/answer-votes-get/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])
     ->name('questionnaire.answer-votes');
