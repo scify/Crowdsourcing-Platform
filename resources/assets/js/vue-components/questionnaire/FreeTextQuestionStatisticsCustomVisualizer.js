@@ -60,13 +60,15 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     adminReviewStatusId = annotation.admin_review_status_id ? annotation.admin_review_status_id : 0;
                 const adminReviewComment = annotation ? annotation.admin_review_comment : "";
                 if (AnswersData.userCanAnnotateAnswers) {
+                    let annotationIndication = annotation? '<i class="fa fa-check" title="This answer has been reviewed by a moderator"></i>' :"";
                     td1.innerHTML = '<span class="annotation-button"><button ' +
                         'data-annotation="' + annotationText
                         + '" data-annotation-admin-review-status-id="' + adminReviewStatusId
                         + '" data-annotation-admin-review-comment="' + adminReviewComment
                         + '" data-question="' + questionName
                         + '" data-respondent="' + respondentUserId + '" '
-                        + 'class="btn annotate-btn"><i class="fa fa-edit"></i></button></span>';
+                        + 'class="btn annotate-btn"><i class="fa fa-edit"></i>' +  annotationIndication +
+                        '</button></span>';
                 }
                 if (annotationText && annotationText !== "") {
                     td1.innerHTML += '<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">'
@@ -93,11 +95,11 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
                 td2.setAttribute('data-order', getOrderingFactorForAnswer(annotation, upvotesNum, downvotesNum).toString());
                 td2.innerHTML = '<div class="container-fluid">' +
-                    '<div class="row text-center no-gutters reaction-buttons">' +
+                    '<div class="row text-center no-gutters reaction-buttons" ' +
                     '<div class="col">' +
                     '<button data-question-name="' + questionName + '" ' +
                     'data-respondent-user-id="' + respondentUserId + '" ' +
-                    'type="button" class="btn btn-outline-secondary w-100 upvote vote-btn ' + userUpvotedClass + '">' +
+                    'type="button" title="You can vote up to 10 answers" class="btn btn-outline-secondary w-100 upvote vote-btn ' + userUpvotedClass + '">' +
                     '<i class="far fa-thumbs-up"></i><span class="count">' + upvotesNum + '</span>' +
                     '</button>' +
                     '</div>' +
