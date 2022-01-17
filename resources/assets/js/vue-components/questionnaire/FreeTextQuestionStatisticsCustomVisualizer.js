@@ -210,7 +210,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     const renderContent = function (contentContainer, visualizer) {
 
         const div = document.createElement("div");
-        console.log(question);
         div.id = question.name + "_answer_container"
         contentContainer.appendChild(div);
 
