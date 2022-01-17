@@ -188,8 +188,8 @@ export default {
       return (this.annotation.admin_review_status_id != 1
           && this.annotation.admin_review_status_id != 4)
     },
-    "questionnaireHasManyProjects": function () {
-      return this.$props.projects.length > 0;
+    "questionnaireHasManyProjects":function(){
+      return this.$props.projects.length>1;
     }
   },
   created() {
