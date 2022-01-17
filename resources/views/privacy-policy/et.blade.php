@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>PRIVAATSUSPOLIITIKA</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,191 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                See privaatsuseeskiri kehtib kõikidele platvormi kasutajatele (edaspidi vastavalt <b>„kasutajad“</b> või <b>„kasutaja“</b> ja <b>„platvorm“</b>) ning moodustab platvormi veebilehe kasutustingimuste lahutamatu osa. See privaatsuseeskiri annab kasutajale üldist teavet, kuidas vastutav töötleja kasutab tema isikuandmeid ning muud andmekaitseseadustega nõutavat teavet. Edaspidiste muudatuste korral teavitatakse kasutajat vajalikest uuendustest ning antakse lisateavet, laadides platvormile privaatsuseeskirja uuendatud versiooni.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Kes on vastutav töötleja?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> Kasutaja isikuandmete vastutav töötleja (edaspidi „vastutav töötleja“) on ettevõte SCIENCE FOR YOU, aadress: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Agia Paraskevi, Kreeka, tel +30 21 1400 4192, e-post: info@scify.org.
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Vastutava töötleja kontaktandmed:</b> Kõigi käesoleva privaatsuseeskirjaga, kasutaja isikuandmete töötlemisega või kasutaja poolt platvormi kasutamiseks üles laaditud andmete töötlemisega seotud küsimuste või probleemide korral võib kasutaja ühendust võtta vastutava töötlejaga, kasutades ühte järgmistest võimalustest:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                helistades +30 21 1400 4192, esmaspäevast reedeni kella 10.00–18.00 EET (Ida-Euroopa aeg);<br>
+                                saates kirja e-posti aadressile info@scify.org; <br>
+                                saates kirja postiaadressile TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Kreeka.<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Mis on kasutaja andmete töötlemise eesmärk ja õiguslik alus?</h2>
+                                <b>2.1.</b> Platvormi tegutsemise eesmärk on koguda kasutajate arvamusi küsimustike vahendusel. Arvamusi töödeldakse, et saada ülevaadet, koguda ja esitada väärtuslikke ideid ja ettepanekuid küsimustikes käsitletud teemadel. Kasutajad saavad vastata anonüümselt (isikuandmeid esitamata) või vabatahtlikult registreerudes, esitades e-posti aadressi ja oma valitud kasutajanime. Kasutajate vastused tõlgitakse inglise keelde ja esitatakse aruannetes. Sellel eesmärgil töötlemise õiguslik alus on kasutaja eelnev nõusolek.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Kasutajale informatiivsete e-kirjade saatmine eesmärgiga teavitada teda uutest tegevustest, projektidest ja muudest huvipakkuvatest küsimustest seoses platvormiga. Sellel eesmärgil töötlemise õiguslik alus on kasutaja eelnev nõusolek.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Andmete töötlemine, mis on seotud töötleja seadusjärgsete kohustuste täitmisega. Sellistel juhtudel toimub andmete töötlemine vaid nii kaua, kui see on vajalik, et töötleja saaks täita erinevatest õigusnormidest tulenevaid kohustusi.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>Nende ülaltoodud sätete puhul, mille õiguslikuks aluseks on kasutaja eelnev nõusolek, saab kasutaja oma nõusoleku igal ajal tagasi võtta, ilma et see mõjutaks enne nõusoleku tagasivõtmist toimunud andmete töötlemise legitiimsust varem antud nõusoleku alusel.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Kogutavate andmete liigid</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Isikuandmed</h3>
+                                <b>3.1.1 Registreerimine – konto loomine:</b><br>
+                                Selleks, et kasutaja saaks platvormil vabatahtlikult konto luua, peab kasutaja sisestama vajalikud andmed: oma kasutajanime, e-posti aadressi ja salasõna.
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Küsimustikele antud vastused</b><br>
+                                Platvorm kogub kasutajate vastuseid (st arvamusi erinevatel teemadel) platvormil esitatud küsimustike küsimustele. Neid vastuseid analüüsitakse ja esitatakse küsimustiku tulemuste lehel. Kasutajalt eeldatakse, et nad järgivad „eduka osalemise käitumisjuhendit“ ning väldivad selliste isikuandmete avalikustamist, mida nad ei soovi platvormil avalikult kättesaadavaks teha.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. Kasutaja ja platvormi omavaheline suhtlus seoses platvormi lubatud viisil kasutamisega kasutaja poolt</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
+                                Selleks, et platvorm saaks ülalnimetatud eesmärkidel kasutajaga suhelda, saab töötleja töödelda kõiki kasutaja kontoga seotud andmeid, üleslaaditud sisu, ning andmeid, mis on seotud platvormi kasutamisega kasutaja poolt.
 
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
-
-
+                                <h3 class="mt-4 mb-4">3.2 Kasutusandmed</h3>
+                                Samuti võime koguda teavet selle kohta, kuidas veebilehele ligi pääseb ja kuidas seda kasutatakse („kasutusandmed“). Need kasutusandmed võivad sisaldada sellist teavet nagu sinu arvuti internetiprotokolli aadress (IP-aadress), brauseri tüüp, brauseri versioon, meie veebisaidi lehed, mida sa külastad, sinu külastuse kuupäev ja kellaaeg, nendel lehtedel veedetud aeg, unikaalse seadme identifikaatorid ja muud diagnostikaandmed.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Kuidas platvorm andmeid kogub</h2>
+                                4.1 Andmeid kogutakse järgmistel viisidel: <br>
+                                4.1.1 Kui kasutaja registreerub ja loob platvormil konto. <br>
+                                4.1.2 Kui kasutaja esitab platvormi küsimustikele vastused <br>
+                                4.1.3 Kui kasutaja külastab platvormi ja nõustub küpsiste installimisega (vastavalt platvormi küpsiste eeskirjale allpool artiklis 11) ning kasutaja isikuandmete, nagu IP-aadress, operatsioonisüsteem, tüüp ja brauseri versioon jms kogumisega.
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Kui kaua kasutaja andmeid säilitatakse ja millal need kustutatakse?</h2>
+                                <b>5.1. Kasutaja konto andmed:</b><br>
+                                Ilma et see piiraks kasutaja allpool nimetatud andmete jäädava või ajutise kustutamise õigust, säilitatakse kasutaja kontol registreeritud ja salvestatud andmeid seni, kuni kasutaja soovib platvormi ülalnimetatud eesmärgil kasutada. Kui kasutaja soovib oma konto kustutada, saab ta seda teha oma konto seadete kaudu või võttes ühendust vastutava töötlejaga ülaltoodud kontaktandmete kaudu.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. Kasutaja ja platvormi omavaheline suhtlus seoses platvormi lubatud viisil kasutamisega kasutaja poolt.</b><br>
+                                Sellise suhtluse andmeid säilitatakse ainult seni, kuni kasutaja soovib platvormi kasutada ja omab seal kontot.  Kui kasutaja soovib oma konto kustutada, saab ta seda teha oma konto seadete kaudu või võttes ühendust vastutava töötlejaga ülaltoodud kontaktandmete kaudu.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Statistiline analüüs veebisaidi optimeerimiseks</b><br>
+                                Olenemata ülalmainitud artikli 5 sätetest, säilitab ja töötleb vastutav töötleja ainult vajalikke andmeid nii kaua, kui see on vajalik tema seadusest tulenevate kohustuste (finantskohustused jms) täitmiseks.
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Isikuandmete töötlemine statistilise analüüsi eesmärgil.</b><br>
+                                Vaata allpool küpsiste eeskirja (artikkel 11).
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Millised on kasutaja õigused seoses tema andmete töötlemisega ja kuidas ta saab neid õigusi kasutada?</h2>
+                                <b>6.1</b> Vastutav töötleja austab kasutaja õigusi seoses andmetöötlusega.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> Kasutaja saab oma õigusi teostada võttes ühendust vastutava töötlejaga järgmiste kontaktandmete kaudu: tel +30 21 1400 4192, e-post: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Kasutaja jaoks asja lihtsustamiseks on kasutaja õigused koondatud järgnevasse tabelisse koos iga õiguse lühikese selgitusega (viide artiklile vastab GDPR 2016/679 artiklile):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Õigus</th>
+                                        <th>Selgitus</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Ligipääs (artikkel 15)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            Kasutaja võib paluda vastutaval töötlejal:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
+                                                <li>kinnitada, kas vastutav töötleja töötleb kasutaja isikuandmeid
                                                 </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>anda kasutajale ligipääsu andmetele, mida kasutaja ei käsuta</li>
+                                                <li>anda kasutajale muud teavet, mis on seotud kasutaja isikuandmetega, näiteks milliseid andmeid vastutav töötleja kasutab, millised on töötlemise eesmärgid, kellele neid andmeid avaldatakse, kas neid andmeid edastatakse välisriikidesse ja kuidas neid andmeid kaitstakse, kui kaua andmeid säilitatakse, millised on kasutaja õigused, kuidas saab esitada kaebust ning kust on andmed võetud, kuivõrd see teave ei sisaldu käesolevas privaatsuseeskirjas.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
-                                        <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                        <td>Parandamine (artikkel 16)</td>
+                                        <td>Kasutaja võib paluda vastutaval töötlejal ebatäpsed isikuandmed parandada.<br><br>
+                                            Vastutav töötleja võib kontrollida andmete õigsust enne nende parandamist.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Kustutamine ajutiselt/jäädavalt (artikkel 17)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            Kasutaja saab paluda töötlejal oma isikuandmed jäädavalt kustutada, kui:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>isikuandmeid ei ole enam vaja eesmärkidel, milleks need koguti;
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>kasutaja oma nõusoleku tagasi võtab;</li>
+                                                <li>isikuandmeid on töödeldud ebaseaduslikult.</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            Vastutav töötleja ei ole kohustatud täitma kasutaja taotlust oma isikuandmete kustutamiseks, kui kasutaja isikuandmete töötlemine on vajalik:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>seadusjärgse kohustuse täitmiseks;</li>
+                                                <li>mistahes muul seaduslikul eesmärgil või muul õiguslikul alusel;
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li> seadusjärgsete nõuete esitamiseks, teostamiseks või kaitsmiseks.</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Piiramine (artikkel 18)</td>
                                         <td>
-
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            Kasutaja võib paluda vastutaval töötlejal piirata kasutaja isikuandmete kasutamist (salvestada, kuid mitte töödelda), kui:<br><br>
+                                            nende õigsus on vaidlustatud (vt „Parandamine“), et töötleja saaks kontrollida isikuandmete õigsust;<br><br>
+                                            isikuandmeid on töödeldud ebaseaduslikult, kuid kasutaja on vastu isikuandmete kustutamisele;<br><br>
+                                            need ei ole enam vajalikud eesmärkidel, milleks need koguti, kuid kasutajal on neid endiselt vaja seadusjärgsete nõuete esitamiseks, teostamiseks või kaitsmiseks või on olemas mingi muu seadusjärgse töötlemise eesmärk või muu õiguslik alus.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Andmete teisaldatavus (artikkel 20)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Kui töötlemine põhineb nõusolekul ja toimub automatiseeritud vahenditega, võib kasutaja paluda vastutaval töötlejal anda talle tema isikuandmed struktureeritud üldkasutatavas ja masinloetavas vormingus või paluda need edastada otse teisele töötlejale. Sellegipoolest kehtib see õigus seaduse kohaselt ainult neile andmetele, mille on kasutaja ise esitanud, mitte aga andmetele, mida vastutav töötleja on tuletanud kasutaja esitatud andmete põhjal.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Vaidlustamine (artikkel 21)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            Kasutaja võib igal ajal vaidlustada teda puudutavate isikuandmete töötlemise, mis põhineb õigustatud huvil või avalikes huvides täidetava ülesande eesmärgil.<br><br>
+                                            Kui kasutaja kasutab oma vaidlustamisõigust, on vastutaval töötlejal õigus näidata, et andmete töötlemiseks on kaalukad õigustatud põhjused, mis kaaluvad üles kasutaja huvid, õigused ja vabaduse õigusnõuete esitamiseks, teostamiseks või kaitsmiseks.
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Nõusoleku tagasivõtmine
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            Kasutajal on õigus oma nõusolek tagasi võtta, kui nõusolek on töötlemise aluseks. Tagasivõtmine kehtib edasiulatuvalt.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Järelevalveasutus
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            Kasutajal on õigus esitada andmekaitsega seotud kaebus kohalikule järelevalveasutusele. <br><br>
+                                            Kreekas on andmekaitse järelevalveasutus Andmekaitseamet https://www.dpa.gr/
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Identiteet</td>
+                                        <td>Vastutav töötleja suhtub tõsiselt kõigi isikuandmeid sisaldavate failide konfidentsiaalsusesse, mistõttu on tal õigus nõuda kasutajalt tema isikut tõendavat dokumenti, kui kasutaja esitab nende failide kohta taotluse.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Kulud</td>
+                                        <td>Kasutaja ei pea maksma oma isikuandmetega seotud õiguste kasutamise eest, välja arvatud juhul, kui seadusest tulenevalt on tema teabele ligipääsu taotlus põhjendamatu või ülemäärane. Sellisel juhul võib töötleja nõuda kasutajalt konkreetsetel asjaoludel mõistlikku tasu. Vastutav töötleja teavitab kasutajat võimalikest tasudest enne päringu täitmist.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Ajakava</td>
+                                        <td>Vastutava töötleja eesmärk on vastata kasutaja päringutele hiljemalt ühe (1) kuu jooksul alates nende saamisest, välja arvatud juhul, kui päring on äärmiselt keeruline või kasutaja on esitanud mitu päringut, mis puhul püüab vastutav töötleja vastata neile kolme kuu jooksul. Kui vastutav töötleja vajab ülaltoodud põhjustel rohkem aega kui üks kuu, teavitab ta sellest kasutajat. Vastutav töötleja võib kasutajalt küsida, kas ta soovib oma taotlust lähemalt selgitada või mis on täpsemalt tema mure. See aitab vastutaval töötlejal seoses kasutaja päringuga kiiremini tegutseda. Igal juhul peab kasutaja mainima konkreetseid ja tõeseid andmeid ja/või fakte, et vastutav töötleja saaks kasutaja taotlusele korrektselt vastata ja/või see rahuldada. Vastasel juhul jätab vastutav töötleja endale õiguse mitte vastutada vigade eest, mis ei ole tema kontrolli all. Lisaks võib vastutav töötleja tagasi lükata taotlused, mis on põhjendamatud, ülemäärased, kuritarvitavad, pahasoovlikud või õigusnormide mõttes ebaseaduslikud.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,202 +207,137 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Kuidas on tagatud andmete turvalisus?</h2>
+                                <b>7.1</b> Vastutav töötleja rakendab isikuandmete kaitse ja konfidentsiaalsuse tagamiseks kõiki asjakohaseid turvameetmeid, mille hulka kuuluvad:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>tugevate salasõnade nõudmine kõigis serverites</li>
+                                    <li>HTTPS-protokoll APIde ja veebiklientidega suhtlemiseks</li>
+                                    <li>SSH-protokoll serveriga ühenduse loomiseks</li>
+                                    <li>korralised serveriuuendused koos uusimate turvaparandustega</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Juhime tähelepanu, et kasutaja esitatud andmeid töötlevad ainult selleks konkreetselt volitatud töötajad, kes tegutsevad vastutava töötleja alluvuses ja ainult tema korraldusel, ning vajadusel andmete saajad. Vastutav töötleja valib töötlemiseks vastava kvalifikatsiooniga isikud, kellel on konfidentsiaalsuse tagamiseks piisav tehniline pädevus ja vajalikud isikuomadused.  Vastutav töötleja rakendab kõiki vajalikke turvameetmeid isikuandmete saladuse, konfidentsiaalsuse ja terviklikkuse kaitsmiseks, seda ka oma koostööpartneritele asjakohaseid lepingulisi kohustusi seades. Veebilehe turvalisus võib siiski saada kahjustatud põhjustel, mis ei ole vastutava töötleja kontrolli all, samuti tehnilise või muu võrguprobleemi, vääramatu jõu või juhuslike asjaolude tõttu.  Sel juhul ei saa tagada isikuandmete turvalisust.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Kes on andmete saajad?</h2>
+                                <b>8.1</b> Kasutaja isikuandmete saajad on sidusettevõtted, kes pakuvad veebilehe toimimiseks tehnilist infrastruktuuri, hostingu pakkuja, ning ettevõte, kes kohustub edastama kasutajatele platvormi toimimisega seotud elektroonilist sidet.  Vajadusel ning vastavalt kehtivatele seadustele sõlmib vastutav töötleja selliste ettevõtetega lepingud turvameetmete rakendamiseks ja regulaarseks jälgimiseks. Kui andmeid edastatakse väljapoole ELi, peavad olema tagatud kõik vajalikud garantiid.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Kui vastutav töötleja saab taotluse andmed esitada või edastada seoses asjakohase haldusasutuse, advokaadi, kohtu või muu asutuse nõudmisega, võib ta need andmed esitada, et täita oma kohustust seoses avaliku huviga vastavalt asjakohastele õigussätetele (kasutajat eelnevalt teavitades või teavitamata jättes).  Kui kasutajat tuleb vastavalt seaduse sätetele eelnevalt teavitada, on kasutajal õigus selline andmete töötlemine vaidlustada, nagu on ära toodud artiklis 7.
+                                <br><br>
+                                <b>8.3.</b> Iga kasutaja ametialased andmed on ülalnimetatud eesmärkidel kättesaadavad kõigile platvormi registreeritud kasutajatele.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
-                                Email: info@scify.org
+                                <h2 class="mt-4 mb-4">9. Suhtlemine vastutava töötlejaga</h2>
+                                <b>9.1.</b> Mistahes küsimuste korral seoses selle privaatsuseeskirjaga, kasutaja andmete töötlemisega või oma õiguste teostamisega, võib kasutaja ühendust võtta vastutava töötlejaga ühel järgmistest viisidest: <br>
+                                tel: +30 21 1400 4192,<br>
+                                e-post: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                Kui kasutaja saab teada mistahes andmete rikkumise juhtumist, palutakse tal sellest viivitamatult vastutavat töötlejat teavitada.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> Käesolevaid tingimusi reguleerivad ja täiendavad kasutustingimused ning need moodustavad koos ühtse teksti.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
+                                <h2 class="mt-4 mb-4">10. Seosed teiste veebisaitidega/sotsiaalmeediaga</h2>
+                                See veebisait loob hüperlinkide kaudu ühendusi teiste veebisaitidega. Need veebisaidid ei ole seotud töötleja veebisaidiga ning nende sisu ei ole vastutava töötleja poolt kontrollitud ega soovitatud.  Seega ei saa kontrollida nende sisu ja kasutaja isikuandmete töötlemise täpsust, õiguspärasust, täielikkust või kvaliteeti ning selle kohta ei anta mingit garantiid. Vastutav töötleja ei vastuta selle eest ega kahju eest, mis võib kasutajale tekkida nende veebisaitide külastamise tõttu või pärast seda.  Vastutav töötleja ei saa kontrollida kasutaja isikuandmete töötlemist nende lingitud veebisaitide poolt ja seega ei kanna ta mingit vastutust. Kui kasutaja neile veebisaitidele siseneb, peab ta arvestama, et igal veebisaidil kehtivad selle enda tingimused. Lingitud veebisaidi sisu või kasutamisega seotud probleemide korral peab kasutaja võtma otse ühendust selle veebisaidi operaatori või administraatoriga. Vastutav töötleja ei kiida heaks ega võta omaks lingitud veebisaitide sisu ega teenuseid, millele kasutaja veebisaidi kaudu ligi pääseb.
+                                <br><br>
+                                Veebisait annab kasutajale võimaluse omal algatusel ja tahtel sotsiaalmeediaga ühendusi luua ja seal suhelda. Sellisel juhul ei vastuta vastutav töötleja kasutaja andmete töötlemise eest sotsiaalmeedias või sotsiaalmeedia kaudu. Kasutaja peab oma seaduslike õiguste teostamiseks pöörduma otse iga konkreetse sotsiaalmeedia kanali poole.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                <h2 class="mt-4 mb-4">11. Küpsised</h2>
+                                11.1. Platvorm kasutab küpsiseid selleks, et olla töökorras ja tõhusam, kasutaja navigeerimise parandamiseks, kasutajale platvormi võimaluste täielikumaks pakkumiseks, sisu õige kuvamise tagamiseks ning samuti analüütilistel ja statistilistel eesmärkidel.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Küpsised on väikesed tekstifailid, mis salvestatakse kasutaja arvutisse, kui ta külastab digitaalset platvormi, ja mida kasutatakse tema arvuti tuvastamise vahendina.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Küpsised, välja arvatud hädavajalikud küpsised, installitakse ainult juhul, kui kasutaja nõustub nende installimisega seda platvormi külastades. Platvormile sisenemisel küpsistega nõustudes kinnitab kasutaja sõnaselgelt, et ta on küpsiste installimise, funktsiooni ja eesmärgi kohta käivad konkreetsed tingimused läbi lugenud ja neist aru saanud ning annab nende kasutamiseks nõusoleku.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Teise võimalusena ei pruugi kasutaja küpsiseid lubada. Sellisel juhul paigaldatakse ainult platvormi tööks tehniliselt ja funktsionaalselt vajalikud küpsised.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. Kasutaja saab igal ajal hallata küpsiste kasutamist ja paigaldamist paneeli kaudu, kus ta saab valida, millise kategooria küpsiseid ta lubab ja milliseid mitte (või taotleda ainult tehniliselt vajalike küpsiste paigaldamist).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. Eelkõige kasutab platvorm järgmisi küpsiseid:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Küpsiste liik</th>
+                                        <th>Selgitus</th>
+                                        <th>Küpsiste näited</th>
+                                        <th>Küpsise paigaldamise kestus</th>
+                                        <th>Andmete edastamine kolmandatele isikutele</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Hädavajalikud küpsised</td>
+                                        <td>Hädavajalikud küpsised on platvormi nõuetekohaseks toimimiseks vältimatud. Need võimaldavad kasutajal sirvida ja kasutada platvormi funktsioone, nagu näiteks ligipääs turvalistele aladele. Need küpsised ei tunne ära kasutaja individuaalset identiteeti ja ilma nendeta ei ole platvormi tõrgeteta toimimine võimalik.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>CookieConsent (salvestab kasutaja küpsistega nõustumise oleku praeguse domeeni jaoks)
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (tagab külastajatele sirvimise turvalisuse, takistades saidiüleste päringute võltsimist. See küpsis on oluline veebisaidi ja külastaja turvalisuse tagamiseks)
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
+                                            ecas_lets_crowdsource_our_future_session (Kui rakendus peab platvormil navigeerimise ajal sisselogitud kasutajat „mäletama“)
 
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
+                                            Crowdsourcing_anonymous_user_id (kasutatakse anonüümsete vastuste salvestamiseks küsimustikesse, määrates vastust esitavale kasutajale numbri)
 
                                         </td>
-                                        <td>1 year
+                                        <td>1 aasta
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 päev
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Sessioon
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 aastat
                                         </td>
-                                        <td>No
+                                        <td>Ei
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Ei
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Ei
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Ei
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Statistika/
+                                            analüütilised küpsised
+                                            </td>
+                                        <td>Need on küpsised, mis hindavad, kuidas külastajad platvormi kasutavad (näiteks milliseid lehti külastatakse sagedamini ja kas nad saavad veebilehtedelt veateateid). Neid küpsiseid kasutatakse statistilistel eesmärkidel ja platvormi jõudluse parandamiseks.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analyticsi küpsiseid kasutatakse platvormil toimuva liikluse mõõtmiseks. Ainulaadne tekstistring salvestatakse, et tuvastada brauser, toimingute ajatempel ja kasutaja platvormile viinud brauser/lähteleht. Tundlikku teavet ei salvestata.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 aastat
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 minut
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 aastat
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 kuud
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 tundi
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Jah (ettevõte, mis pakub statistika- ja analüüsiteenuseid, kui seda peetakse kolmandaks osapooleks)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +345,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
-
-
+                                <h2 class="mt-4 mb-4">12. Laste privaatsus  </h2>
+                                Meie projekt ei ole suunatud alla 18-aastastele (edaspidi „lapsed“).  Me ei kogu teadlikult isikutuvastust võimaldavat teavet alla 18-aastastelt isikutelt. Kui oled lapsevanem või eestkostja ja tead, et sinu lapsed on meile isikuandmeid edastanud, võta meiega ühendust. Kui saame teada, et oleme kogunud lastelt isikuandmeid ilma vanema nõusolekuta, teeme kõik, et see teave oma serveritest eemaldada
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Käesoleva privaatsuseeskirja muudatused </h2>
+                                Vastutav töötleja jätab endale õiguse käesolevat privaatsuseeskirja muuta, näiteks kui see on vajalik kehtivate seaduste, juhiste või tehniliste nõudmistega kehtestatud uute nõuete täitmiseks, või kui vajadus tekib vastutava töötleja protsesside ja tavade ülevaatamise käigus. Kasutajat teavitatakse kõigist käesoleva privaatsuseeskirja muudatustest platvormi kaudu. Kasutaja peaks regulaarselt kontrollima, kas privaatsuseeskirjas on muudatusi tehtud.
                             </div>
                         </div>
                     </div>
