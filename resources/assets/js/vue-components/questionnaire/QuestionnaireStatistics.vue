@@ -111,7 +111,7 @@
             You are logged in as moderator.
             <span v-if="projectFilterSelectedOption==-1">Select a project to filter the responses:</span>
             <span v-else>You have filtered the responses, <strong> currently viewing:</strong></span>
-            <select v-model="projectFilterSelectedOption" @change="onFilterProject($event)" >
+            <select v-model="projectFilterSelectedOption" @change="onFilterProject($event)">
               <option value="-1">View all</option>
               <option v-for="p in projects"
                       :value="p.id">
@@ -153,9 +153,9 @@ export default {
       type: Number,
       default: 0
     },
-    projectFilter:{
+    projectFilter: {
       type: Number,
-      default:-1
+      default: -1
     }
   },
   data: function () {
@@ -229,8 +229,6 @@ export default {
         .localization
         .locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
 
-    console.log(SurveyAnalytics.VisualizationManager);
-    console.log(SurveyAnalytics.VisualizerBase);
     this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
     this.questions = this.survey.getAllQuestions();
     this.getColorsForCrowdSourcingProject();
@@ -314,11 +312,16 @@ export default {
       AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
       AnswersData.numberOfVotesForQuestionnaire = this.questionnaire.max_votes_num;
       AnswersData.languageResources = window.language[window.Laravel.locale].statistics;
+
       for (let i = 0; i < this.questions.length; i++) {
         let answersForPanel = answers;
-
-        if (!this.questionTypesToApplyCustomTextsTableVisualizer.includes(this.questions[i].getType()))
+        const currentQuestionName = this.questions[i].name;
+        if (!this.questionHasCustomVisualizer(this.questions[i])) {
           answersForPanel = _.map(answers, 'answerObj');
+          answersForPanel = Object.values(_.pickBy(answersForPanel, function (value, key) {
+            return currentQuestionName in value && value[currentQuestionName] !== undefined;
+          }));
+        }
 
         if (!this.shouldDrawStatistics(this.questions[i]))
           continue;
@@ -355,6 +358,9 @@ export default {
         visPanel.render(document.getElementById('survey-statistics-container_' + i));
       }
       this.loading = false;
+    },
+    questionHasCustomVisualizer(question) {
+      return this.questionTypesToApplyCustomTextsTableVisualizer.includes(question.getType());
     },
     shouldDrawStatistics(question) {
       return question.getType().toLowerCase() !== 'html'
@@ -542,7 +548,7 @@ export default {
       });
     },
     onFilterProject(event) {
-      window.location.href = route('questionnaire.statistics',window.Laravel.locale, this.questionnaire.id, event.target.value);
+      window.location.href = route('questionnaire.statistics', window.Laravel.locale, this.questionnaire.id, event.target.value);
     }
   }
 }
@@ -561,19 +567,20 @@ export default {
 
 #moderator-toolbar {
   text-align: center;
-  font-size:1.2rem;
+  font-size: 1.2rem;
   position: fixed;
   padding: 10px;
   bottom: 0;
   left: 0;
   right: 0;
   min-height: 35px;
-  background-color: rgba(230,230,230,1);
+  background-color: rgba(230, 230, 230, 1);
   box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
-  select{
-    background-color:white;
-    border:none;
-    margin-left:5px;
+
+  select {
+    background-color: white;
+    border: none;
+    margin-left: 5px;
   }
 }
 </style>
