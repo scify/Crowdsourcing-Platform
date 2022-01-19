@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>CODE OF CONDUCT</h1>
+                    <h1>Rīcības kodeksā</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,62 +14,60 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <p>As a crowdsourcing platform we welcome everyone, and encourage a friendly and positive environment.
-                                    This code of conduct outlines our expectations from participants to ascertain successful participation, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring environment for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the Platform or their responses can be deleted.
-                                During your participation in crowdsourcing projects:
+                                <p>Projekta "CODE Europe" komanda laipni aicina piedalīties ikvienu, veicinot draudzīgu un pozitīvu vidi! 
+                                    Šajā rīcības kodeksā ir izklāstīti mūsu lūgumi pret platformas lietotājiem, lai nodrošinātu veiksmīgu dalību, kā arī pasākumi, kā ziņot par citu lietotāju nepieņemamu uzvedību. Mēs esam apņēmušies nodrošināt visiem draudzīgu un iedvesmojošu vidi. Sagaidām, ka mūsu rīcības kodekss tiks ievērots. Ikvienam, kas pārkāpj šo rīcības kodeksu, var tikt liegta piekļuve platformai vai iesniegtās atbildes var tikt dzēstas. 
+                                    Piedaloties ideju vākšanas projektā:                                    
                                 </p>
                                 <ul>
                                     <li>
-                                        <strong>Be clear and relevant to the topic:</strong> Try to be precise and explain your thoughts and arguments with clarity. All answers must be relevant to the topic of the questionnaire. This will facilitate the platform’s moderators work, where they will have to analyze all given answers, categorize them and produce valuable insights that can have a positive impact οn the society.
+                                        <strong>Izsakieties skaidri un pieturieties pie tēmas:</strong> Centieties būt precīzs un skaidri izsakiet savas domas un argumentus. Visām atbildēm jāatbilst anketas tēmai. Tas atvieglos platformas moderatoru darbu, analizējot visas sniegtās atbildes, kategorizējot tās un sniedzot vērtīgas atziņas, kas var pozitīvi ietekmēt sabiedrību.
                                     </li>
-                                    <li><strong>Be respectful and kind:</strong> Not all of us will agree all the time, but disagreement is no excuse for poor behavior and poor manners. It’s important to remember that even though the answers you provide are anonymous, an environment where people feel uncomfortable or threatened is not a productive one. Of course harassment, insults, posting (or threatening to post) other people’s personally identifying information (“doxing”), racist or sexist terms, and other exclusionary behavior aren’t acceptable.
-                                        If you just keep “respectful and kind” in mind, you can't go wrong.
+                                    <li><strong>Esiet cieņpilns un laipns:</strong> ne visiem vienmēr būs tāds pats viedoklis, bet domstarpības nav attaisnojums sliktai uzvedībai un nepienācīgai rīcībai. Ir svarīgi atcerēties, ka, lai gan Jūsu sniegtās atbildes ir anonīmas, vide, kurā cilvēki jūtas neērti vai apdraudēti, nav produktīva. Protams, uzmākšanās, apvainojumi, citu cilvēku personu identificējošas informācijas publicēšana (vai draudi publicēt) (“doksings”), rasistiski un seksistiski termini, un cita izslēdzoša rīcība, ir nepieņemama. Jūs nekļūdīsieties, ja atcerēsieties principu - izturēties "cieņpilni un pieklājīgi". 
                                     </li>
-                                    <li><strong>Remember that your contribution is public:</strong>Your email and any personal information is not revealed by the platform.  Though the textual answers you provide in the questionnaires, the answers to open-ended questions, may be publicly available. Do not include any personal information in your responses that you do not wish to be publicly available.
+                                    <li><strong>Atcerieties, ka Jūsu ieguldījums ir publisks:</strong> platforma neatklāj Jūsu e-pastu un personisko informāciju. Savukārt no anketās sniegtajām rakstiskajām atbildēm, atbildes uz atvērtajiem jautājumiem var būt publiski pieejamas. Neiekļaujiet savās atbildēs nekādu personisku informāciju, kuru nevēlaties, lai tā būtu publiski pieejama.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Diversity Statement
+                                <h2 class="mt-4 mb-4">Paziņojums par dažādību
                                 </h2>
                             </div>
                             <div class="col-12">
-                                We encourage everyone to participate and are committed to building a community for all. Although this list cannot be exhaustive, we explicitly honor diversity in age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected characteristics above, including participants with disabilities.
+                                Mēs mudinām piedalīties ikvienu un apņemamies veidot kopienu visiem. Lai gan šis saraksts nevar būt pilnīgs, mēs nepārprotami ņemam vērā dažādību vecuma, dzimuma, dzimuma identitātes vai izpausmes, kultūras, etniskās piederības, valodas, nacionālās izcelsmes, politiskās pārliecības, profesijas, rases, reliģijas, seksuālās orientācijas, sociālekonomiskā statusa un tehnisko spēju dažādību. Mēs nepieļausim diskrimināciju pret kādu no iepriekš minētajām aizsargātajām īpašībām, tostarp dalībniekiem ar invaliditāti.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Excluding inappropriate content
+                                <h2 class="mt-4 mb-4">Nepiemērota satura izņemšana
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Platform facilitators will periodically review contributions posted by participants. Facilitators can exclude inappropriate content from the platform, and explain reasons for exclusion to the author of the excluded content.
+                                Platformas koordinatori periodiski pārskatīs dalībnieku publicēto saturu. Koordinatori var izņemt no platformas nepiemērotu saturu un izskaidrot izņemtā satura autoram izņemšanas iemeslus.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Reporting Issues
+                                <h2 class="mt-4 mb-4">Ziņošana par problēmām
                                 </h2>
                             </div>
                             <div class="col-12">
-                                If you experience or witness unacceptable behavior, or have any other concerns, please report it by contacting the organisers at info@scify.org
+                                Ja novērojat nepieņemamu uzvedību , vai Jums ir kādas citas bažas, lūdzu, ziņojiet par to, sazinoties ar organizatoriem, rakstot e-pastu uz info@scify.org.
                                 <br><br>
-                                All reports will be handled with discretion. In your report please include:<br>
-                                - Your contact information.<br>
-                                - The questionnaire response that you wish to report. Provide the name of the project, the question and the answer’s text that you want to report.
+                                Visi ziņojumi tiks apstrādāti diskrēti. Savā ziņojumā, lūdzu, iekļaujiet:<br>
+                                - savu kontaktinformāciju;<br>
+                                - anketas atbildi, par kuru vēlaties ziņot. Projekta nosaukumu, jautājumu un atbildes tekstu, par kuru vēlaties ziņot.
                                 <br><br>
-                                After filing a report, a representative will contact you personally, review the incident, follow up with any additional questions, and make a decision as to how to respond.
-
+                                Pēc ziņojuma iesniegšanas, organizācijas pārstāvis sazināsies ar Jums personīgi, izskatīs incidentu, uzdos papildu jautājumus un pieņems lēmumu, kā reaģēt.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Attribution & Acknowledgements</h2>
+                                <h2 class="mt-4 mb-4">Attiecinājumi un pateicības</h2>
                             </div>
                             <div class="col-12">
-                                This code of conduct has used elements of the Code of Conduct from the <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
+                                Šajā rīcības kodeksā ir izmantoti Rīcības kodeksa elementi no <a href="https://openlifesci.org/code-of-conduct"> Open Life Science. </a>
                             </div>
                         </div>
                     </div>
