@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>Privacybeleid</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,194 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                Dit Privacybeleid is van toepassing op alle Gebruikers van het Platform (hierna respectievelijk <b>“Gebruikers”</b> of <b>“Gebruiker”</b> en <b>“Platform”</b> genoemd) en vormt een integraal onderdeel van de Algemene Voorwaarden van de Website van het Platform. Dit Privacybeleid biedt de Gebruiker algemene informatie over hoe de Gegevensbeheerder uw persoonsgegevens gebruikt en andere informatie die vereist is door de wetgeving inzake gegevensbescherming. In het geval van toekomstige wijzigingen, zal de Gebruiker worden voorzien van de nodige updates en informatie via de update van het huidige Privacybeleid, geüpload op het Platform.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Wie is de verantwoordelijke voor de verwerking van de gegevens?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> Het bedrijf met de bedrijfsnaam "SCIENCE FOR YOU", adres: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griekenland , Telefoon: +302114004192, e-mail: info@scify.org, is de Gegevensbeheerder voor de verwerking van de Persoonsgegevens van de Gebruiker (hierna te noemen <b>"Gegevensbeheerder"</b>).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Contactgegevens van de Gegevensbeheerder:</b> Voor elke kwestie of bezorgdheid met betrekking tot het huidige Privacybeleid en tot de verwerking van de persoonsgegevens van de Gebruiker of gegevens die door de Gebruiker zijn geüpload om het Platform te gebruiken, kan de Gebruiker communiceren met de Gegevensbeheerder, door gebruik te maken van een van de volgende mogelijkheden:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                Door te bellen naar +302114004192, van maandag tot en met vrijdag van 10.00 uur tot 18.00 uur EET (Oost-Europese Tijd)<br>
+                                Door een e-mail te sturen naar het volgende e-mailadres: info@scify.org<br>
+                                Door correspondentie te sturen naar het volgende adres TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griekenland<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Wat is het doel en de rechtsgrondslag van de verwerking van Gebruiker's gegevens?</h2>
+                                <b>2.1.</b> Het operationele doel van het platform is het verzamelen van meningen van gebruikers via vragenlijsten. De meningen worden verwerkt om inzichten te verkrijgen, waardevolle ideeën en suggesties te verzamelen en te presenteren over de onderwerpen die in de vragenlijsten aan bod komen. Gebruikers kunnen anoniem antwoorden (zonder enige persoonlijke informatie te verstrekken) of kunnen zich vrijwillig registreren om gelijknamige antwoorden in te dienen, door een e-mail en een bijnaam op te geven. De antwoorden van de gebruikers worden in het Engels vertaald en in rapporten gepresenteerd. Voor het specifieke doel van de verwerking is de voorafgaande toestemming van de Gebruiker de rechtsgrondslag.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Om de Gebruiker informatieve e-mails te sturen met als doel haar te informeren over nieuwe activiteiten, projecten en andere zaken die van belang zijn voor het Platform. Voor dit doel van verwerking is de rechtsgrondslag de voorafgaande toestemming van de Gebruiker.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Verwerking van gegevens om redenen die verband houden met de naleving van wettelijke verplichtingen door de Gegevensbeheerder. In dergelijke gevallen vindt verwerking van gegevens alleen plaats voor de periode die nodig is voor Gegevensbeheerder om te voldoen aan verplichtingen die worden opgelegd door verschillende wettelijke bepalingen.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>In het geval van bovenstaande bepalingen waarbij de rechtsgrondslag de voorafgaande toestemming van de Gebruiker is, kan de Gebruiker te allen tijde zijn toestemming intrekken zonder dat dit gevolgen heeft voor de rechtmatigheid van de gegevens op basis van de toestemming voorafgaand aan de intrekking daarvan.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Soorten verzamelde gegevens</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Persoonlijke gegevens</h3>
+                                <b>3.1.1 Registratie - account aanmaken:</b><br>
+                                Om een Gebruiker vrijwillig een account te laten aanmaken in het Platform, dient de Gebruiker de nodige gegevens in te vullen: zijn bijnaam, e-mailadres, en een wachtwoord
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Ingezonden antwoorden op vragenlijsten</b><br>
+                                Het Platform verzamelt antwoorden van gebruikers (dat zijn meningen over verschillende onderwerpen) op vragen die via vragenlijsten van het Platform worden gesteld. Deze antwoorden worden geanalyseerd en gepresenteerd in een vragenlijst resultaten pagina. De gebruiker wordt ten strengste aangeraden zich te conformeren aan de "gedragscode voor succesvolle deelname" van het Platform en te vermijden persoonlijke gegevens openbaar te maken die hij niet publiekelijk beschikbaar wil maken op het Platform.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. Communicatie van het Platform om redenen die verband houden met het toegestane gebruik van het Platform door de Gebruiker.</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
-
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
+                                Om het Platform in staat te stellen met de Gebruiker te communiceren voor de bovenstaande doeleinden, kan Gegevensverwerker alle gegevens verwerken met betrekking tot de account van de Gebruiker, geüploade inhoud en gegevens met betrekking tot het gebruik van het Platform door de Gebruiker.
+                                <h3 class="mt-4 mb-4">3.2 Gebruiksgegevens</h3>
+                                Wij kunnen ook informatie verzamelen over hoe de webpagina wordt bezocht en gebruikt ("Gebruiksgegevens"). Deze Gebruiksgegevens kunnen informatie bevatten zoals het Internet Protocol-adres van uw computer (bijv. IP-adres), het type browser, browserversie, de pagina's van onze webpagina die u bezoekt, de tijd en datum van uw bezoek, de tijd die u op deze pagina's doorbrengt, unieke apparaat-id's en andere diagnostische gegevens.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Hoe het Platform gegevens verzamelt</h2>
+                                4.1 De informatie kan worden verzameld op de volgende manieren: <br>
+                                4.1.1 Wanneer de Gebruiker zich registreert en een account aanmaakt op het Platform. <br>
+                                4.1.2 Wanneer de Gebruiker antwoorden indient op de vragenlijsten van het Platform <br>
+                                4.1.3 Wanneer de gebruiker het Platform bezoekt en instemt met de installatie van cookies (volgens het Cookiebeleid van het Platform in artikel 11 hieronder) en het verzamelen van persoonlijke gegevens van de gebruiker, zoals het IP-adres, het besturingssysteem, het type en de browser-editie, enz.
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Hoe lang worden de gegevens van de gebruiker bewaard en wanneer worden ze gewist?</h2>
+                                <b>5.1. Accountgegevens van de Gebruiker:</b><br>
+                                Onverminderd het hieronder vermelde recht van de Gebruiker op verwijdering/verwijdering, worden de in het account van de Gebruiker geregistreerde en opgeslagen Gegevens bewaard zolang de Gebruiker gebruik wenst te maken van het Platform voor het hierboven vermelde doel. Indien een Gebruiker zijn account wenst te verwijderen, kan hij zijn account verwijderen via de instellingen van zijn account of contact opnemen met Gegevensverwerker via de hierboven vermelde contactgegevens.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. Communicatie van het Platform om redenen die verband houden met het toegestane gebruik van het Platform door de Gebruiker.</b><br>
+                                Gegevens met betrekking tot dergelijke communicatie zullen alleen worden opgeslagen zolang de Gebruiker het Platform wenst te gebruiken en zijn account onderhoudt. In het geval dat een Gebruiker zijn account wenst te verwijderen, kan hij zijn account verwijderen via de instellingen van zijn account of contact opnemen met Databeheerder via de hierboven vermelde contactgegevens.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Statistische analyse voor de optimalisatie van de Website</b><br>
+                                Ongeacht de hierboven vermelde bepalingen van artikel 5, zal de Databeheerder alleen noodzakelijke gegevens opslaan en verwerken voor de periode die nodig is om te voldoen aan zijn verplichtingen die telkens door de wet worden opgelegd (voldoen aan fiscale verplichtingen doeleinden enz.).
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Verwerking van persoonsgegevens ten behoeve van het uitvoeren van statistische analyses.</b><br>
+                                Zie het cookiebeleid (artikel 11 ) hieronder.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Wat zijn de rechten van Gebruiker ι met betrekking tot de verwerking van zijn gegevens en hoe kan hij deze rechten uitoefenen?</h2>
+                                <b>6.1</b> De Gegevensbeheerder respecteert het recht van de Gebruiker met betrekking tot de gegevensverwerking.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> De Gebruiker kan zijn rechten uitoefenen door contact op te nemen met de Gegevensbeheerder via de volgende contactgegevens: Telefoon: +302114004192, e-mail: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Om het de Gebruiker gemakkelijker te maken, zijn de rechten van de Gebruiker opgenomen in de volgende tabel, samen met een korte uitleg van elk recht (verwijzing naar artikelen komt overeen met artikel van GDPR 2016/679):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Recht</th>
+                                        <th>Uitleg</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Toegang (artikel 15)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            De Gebruiker kan de Gegevensbeheerder vragen om:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
+                                                <li>te bevestigen of de Gegevensbeheerder de persoonsgegevens van de Gebruiker verwerkt
                                                 </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>de Gebruiker toegang te geven tot gegevens waarover de Gebruiker niet beschikt</li>
+                                                <li>de Gebruiker andere informatie te verstrekken met betrekking tot de persoonsgegevens van de Gebruiker, zoals over welke gegevens de Gegevensbeheerder beschikt, wat de doeleinden van de verwerking zijn, aan wie deze gegevens worden verstrekt, of deze gegevens in het buitenland worden doorgegeven en hoe deze gegevens worden beschermd, hoe lang de gegevens worden bewaard, wat de rechten van de Gebruiker zijn, hoe een klacht kan worden ingediend, waar de gegevens vandaan komen, voor zover deze informatie niet in dit Privacybeleid is opgenomen.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Rectificatie (artikel 16)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            De gebruiker kan de Gegevensbeheerder verzoeken onjuiste persoonsgegevens te rectificeren.<br><br>
+                                            De Gegevensbeheerder kan trachten de juistheid van de gegevens te verifiëren alvorens deze te rectificeren.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Wissen/verwijderen (artikel17)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            De gebruiker kan de Gegevensbeheerder verzoeken om zijn persoonsgegevens te wissen:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>telkens wanneer de persoonsgegevens niet langer nodig zijn voor de doeleinden waarvoor zij werden verzameld
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>wanneer de Gebruiker zijn toestemming intrekt</li>
+                                                <li>de persoonsgegevens op onwettige wijze zijn verwerkt</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            De Gegevensbeheerder is niet verplicht in te gaan op het verzoek van de Gebruiker om zijn persoonsgegevens te wissen, indien de verwerking van de persoonsgegevens van de Gebruiker noodzakelijk is:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>voor het nakomen van een wettelijke verplichting</li>
+                                                <li>voor de verwezenlijking van een ander legitiem doel of een andere legitieme rechtsgrondslag
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>voor de vaststelling, uitoefening of verdediging van rechtsvorderingen</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Beperking (artikel 18)</td>
                                         <td>
 
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            De Gebruiker kan de Gegevensbeheerder verzoeken de persoonsgegevens van de Gebruiker te beperken (op te slaan maar niet te verwerken) wanneer:<br><br>
+                                            de juistheid ervan wordt betwist (zie rectificatie), zodat de Gegevensbeheerder de juistheid van de persoonsgegevens kan verifiëren of<br><br>
+                                            de persoonsgegevens onrechtmatig zijn verwerkt, maar de Gebruiker zich verzet tegen het wissen van de persoonsgegevens of<br><br>
+                                            zij niet langer noodzakelijk zijn voor de doeleinden waarvoor zij zijn verzameld, maar de Gebruiker ze nog nodig heeft voor de vaststelling, uitoefening of verdediging van rechtsvorderingen of wanneer er een ander legitiem doel van de verwerking of een andere rechtsgrondslag is
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Gegevensoverdraagbaarheid (artikel 20)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Wanneer de verwerking op toestemming is gebaseerd en de verwerking met geautomatiseerde middelen wordt uitgevoerd, kan de Gebruiker de Gegevensbeheerder verzoeken zijn persoonsgegevens te ontvangen in een gestructureerd, algemeen gebruikt en machineleesbaar formaat of de verantwoordelijke voor de verwerking verzoeken deze rechtstreeks van de Gegevensbeheerder aan een andere verantwoordelijke voor de verwerking door te geven. Volgens de wet heeft dit recht echter alleen betrekking op de gegevens die door de Gebruiker zelf zijn verstrekt en niet op de gegevens die door de Gegevensbeheerder worden afgeleid op basis van de gegevens die de Gebruiker heeft verstrekt.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Bezwaar (artikel 21)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            De Gebruiker kan te allen tijde bezwaar maken tegen de verwerking van hem betreffende persoonsgegevens die is gebaseerd op een gerechtvaardigd belang of de uitvoering van een taak van algemeen belang.<br><br>
+                                            Wanneer de Gebruiker gebruik maakt van zijn recht om bezwaar te maken, heeft de Gegevensbeheerder het recht aan te tonen dat er dwingende legitieme gronden voor de verwerking zijn die zwaarder wegen dan het belang, de rechten en de vrijheid van de Gebruiker of voor de vaststelling, uitoefening of verdediging van rechtsvorderingen.
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Intrekking van toestemming (opt-out)
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            De gebruiker heeft het recht zijn toestemming in te trekken wanneer toestemming de grondslag van de verwerking is. De intrekking geldt voor de toekomst.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Toezichthoudende Autoriteit
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            De gebruiker heeft het recht om een klacht in te dienen bij de lokale toezichthoudende autoriteit voor gegevensbescherming. <br><br>
+                                            In Griekenland is de toezichthoudende autoriteit voor gegevensbescherming de Gegevensbeschermingsautoriteit https://www.dpa.gr/
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Identiteit</td>
+                                        <td>De Gegevensbeheerder neemt de vertrouwelijkheid van alle bestanden waarin persoonsgegevens zijn opgenomen ernstig op, en is derhalve gerechtigd de gebruiker om bewijs van zijn identiteit te vragen indien de gebruiker een verzoek indient met betrekking tot die bestanden.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Kosten</td>
+                                        <td>De gebruiker hoeft niet te betalen voor de uitoefening van zijn rechten met betrekking tot persoonsgegevens, tenzij het verzoek om toegang tot informatie volgens de wet ongegrond of buitensporig is. In dat geval kan de Gegevensbeheerder de gebruiker een in de specifieke omstandigheden redelijke vergoeding vragen. De Gegevensbeheerder zal de Gebruiker op de hoogte brengen van eventuele kosten voordat hij het verzoek afrondt.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Tijdschema</td>
+                                        <td>De Gegevensbeheerder streeft ernaar geldige verzoeken van de Gebruiker uiterlijk binnen één (1) maand na ontvangst te beantwoorden, tenzij het verzoek zeer gecompliceerd is of de Gebruiker meerdere verzoeken heeft ingediend, in welk geval de Gegevensbeheerder ernaar streeft deze binnen drie maanden te beantwoorden. Indien de Gegevensbeheerder om bovengenoemde redenen meer dan een maand nodig heeft, zal hij de Gebruiker hiervan op de hoogte stellen. De Gegevensbeheerder kan de Gebruiker vragen uit te leggen wat hij precies wenst te ontvangen of wat zijn bezorgdheid is. Dit zal de Gegevensbeheerder helpen om sneller op het verzoek van de Gebruiker te reageren. In ieder geval dient de Gebruiker specifieke en waarheidsgetrouwe gegevens en/of feiten te vermelden, zodat de Gegevensbeheerder het verzoek van de Gebruiker accuraat kan beantwoorden en/of eraan kan voldoen. Anders behoudt de Gegevensbeheerder zich het recht voor om fouten te herstellen die buiten zijn controle vallen. Bovendien kan de verantwoordelijke verzoeken afwijzen die ongegrond, buitensporig, onrechtmatig, te kwader trouw of onwettig zijn in het kader van de wettelijke bepalingen.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,202 +210,129 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Hoe wordt de gegevensbeveiliging gewaarborgd?</h2>
+                                <b>7.1</b> De Gegevensbeheerder treft alle passende beveiligingsmaatregelen om de bescherming en vertrouwelijkheid van persoonsgegevens te waarborgen, waaronder de volgende:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Sterk wachtwoordbeleid op alle servers</li>
+                                    <li>HTTPS-protocol voor interactie met API's en webclients</li>
+                                    <li>SSH-protocol voor serververbinding</li>
+                                    <li>Periodieke serverupdates met de laatste beveiligingsfixes</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Wij wijzen u erop dat alleen specifiek geautoriseerde medewerkers van de Gegevensbeheerder, handelend onder het gezag van de Gegevensbeheerder en uitsluitend op zijn aanwijzingen, alsmede ontvangers, waar nodig, de door de Gebruiker verstrekte gegevens verwerken. Voor de verwerking kiest de Gegevensbeheerder personen met passende kwalificaties die voldoende waarborgen bieden inzake technische kennis en persoonlijke integriteit om de vertrouwelijkheid te beschermen. De Gegevensbeheerder neemt alle nodige veiligheidsmaatregelen voor de bescherming en vrijwaring van de geheimhouding, vertrouwelijkheid en integriteit van persoonsgegevens, ook door middel van relevante contractuele verbintenissen van zijn medewerkers. In elk geval kan de veiligheid van de Website worden geschonden door redenen die buiten de controle van de Gegevensbeheerder liggen, door technische of andere problemen van het net of door overmacht of toevallige feiten. In dat geval kan de veiligheid van persoonsgegevens niet worden gegarandeerd.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Wie zijn de ontvangers van de gegevens?</h2>
+                                <b>8.1</b> De ontvangers van de persoonsgegevens van de Gebruiker zijn geassocieerde bedrijven die de technische infrastructuur leveren voor de werking van de Website, hosting provider evenals het bedrijf dat zich verbindt tot het verzenden van elektronische communicatie met betrekking tot de werking van het platform aan Gebruikers. Waar nodig volgens de toepasselijke wetgeving, zal de Gegevensbeheerder overeenkomsten ondertekenen met dergelijke bedrijven, die verwijzen naar de uitvoering en regelmatige controle van veiligheidsmaatregelen. In het geval gegevens worden overgedragen buiten de EU zijn alle nodige garanties aanwezig.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Indien de Gegevensbeheerder een verzoek tot kennisgeving of overdracht van gegevens ontvangt van een bevoegde administratieve autoriteit, een advocaat, een rechtbank of een andere autoriteit, kan hij deze gegevens kennisgeving of overdracht doen om te voldoen aan zijn plicht ten behoeve van het algemeen belang tegenover deze autoriteiten (met of zonder voorafgaande kennisgeving van de gebruiker) overeenkomstig de toepasselijke wettelijke bepalingen. Indien de Gebruiker vooraf op de hoogte moet worden gebracht overeenkomstig de wettelijke bepalingen, dan heeft de Gebruiker het recht om bezwaar te maken tegen deze verwerking zoals bepaald in artikel 7 hierboven.
+                                <br><br>
+                                <b>8.3.</b> Αs de professionele gegevens van elke Gebruiker, zijn deze beschikbaar voor alle geregistreerde Gebruikers van het Platform voor de hierboven vermelde doeleinden.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
+                                <h2 class="mt-4 mb-4">9. Communicatie met de Gegevensbeheerder</h2>
+                                <b>9.1.</b> Voor elke kwestie met betrekking tot dit privacybeleid, de verwerking van gegevens door de Gebruiker en de uitoefening van rechten van de Gebruiker, kan de Gebruiker op een van de volgende manieren contact opnemen met de Gegevensbeheerder: <br>
+                                Telefoon: +302114004192, <br>
                                 Email: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                Indien de Gebruiker zich bewust wordt van een incident met betrekking tot een datalek, wordt hij vriendelijk verzocht de Gegevensbeheerder hiervan onmiddellijk op de hoogte te stellen.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> De onderhavige voorwaarden worden beheerst en aangevuld door de Algemene Voorwaarden en vormen samen met deze een uniforme tekst.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
-
-
+                                <h2 class="mt-4 mb-4">10. Verbinding met andere websites/sociale media</h2>
+                                Deze Website maakt verbinding met andere websites door middel van hyperlinks. Deze websites zijn niet gerelateerd aan de Website van de Gegevensbeheerder en hun inhoud wordt niet gecontroleerd of aanbevolen door de Gegevensbeheerder. De juistheid, rechtmatigheid, volledigheid of kwaliteit van hun inhoud en de rechtmatigheid van de verwerking van de persoonsgegevens van de Gebruiker kunnen dus niet worden gecontroleerd en er wordt geen garantie voor gegeven. De Gegevensbeheerder kan niet aansprakelijk worden gesteld voor de inhoud ervan of voor de schade die de Gebruiker zou kunnen lijden door of ten gevolge van het gebruik ervan. De verantwoordelijke voor de verwerking kan de verwerking van de persoonsgegevens van de Gebruiker door deze gelinkte websites niet controleren en draagt bijgevolg geen enkele verantwoordelijkheid. Wanneer de Gebruiker deze websites bezoekt, dient hij er rekening mee te houden dat de voorwaarden en bepalingen van elke website van toepassing zijn. Voor elk probleem dat zich met betrekking tot de inhoud of het gebruik van de gelinkte website voordoet, dient de Gebruiker rechtstreeks contact op te nemen met de exploitant of de beheerder van elke website. De Gegevensbeheerder keurt de inhoud of de diensten van de gelinkte websites, waartoe de Gebruiker via de Website toegang heeft, niet goed en omvat deze niet.<br><br>
+                                De Website biedt de Gebruiker de mogelijkheid om op eigen initiatief en naar eigen goeddunken verbinding te maken en te interageren met sociale media. In dat geval is de Gegevensbeheerder niet aansprakelijk voor de verwerking van de gegevens van de Gebruiker die plaatsvindt via of door de sociale media. De Gebruiker dient zich rechtstreeks tot elk specifiek sociaal medium te wenden om zijn legitieme rechten uit te oefenen.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                11.1. Het Platform gebruikt cookies om operationeel of efficiënter te kunnen werken, om de navigatie van de Gebruiker te verbeteren, om de Gebruiker het volledige potentieel van het Platform te bieden, om de correcte weergave van de inhoud te verzekeren, evenals voor analytische en statistische doeleinden.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Cookies zijn kleine tekstbestanden die op de computer van Gebruiker worden opgeslagen wanneer hij een digitaal platform bezoekt, en die worden gebruikt als middel om zijn computer te identificeren.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Cookies, behalve absoluut noodzakelijke cookies, worden alleen geïnstalleerd indien de Gebruiker de installatie ervan aanvaardt wanneer hij dit Platform bezoekt. Door cookies te accepteren bij het betreden van dit Platform, verklaart de Gebruiker uitdrukkelijk dat hij de specifieke voorwaarden met betrekking tot de installatie, de functie en het doel van de cookies heeft gelezen en begrepen en dat hij zijn toestemming verleent voor het gebruik ervan.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Als alternatief kan de Gebruiker geen cookies accepteren. In dat geval zullen alleen cookies worden geïnstalleerd die technisch en functioneel noodzakelijk zijn voor de werking van het Platform.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. De Gebruiker kan het gebruik en de installatie van cookies op elk moment beheren via een paneel, waar hij kan kiezen welke categorie cookies hij wil accepteren en welke niet (of verzoeken om alleen de technisch noodzakelijke cookies te installeren).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. In het bijzonder worden door het Platform de volgende cookies gebruikt:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Soort cookies</th>
+                                        <th>Uitleg</th>
+                                        <th>Voorbeelden van cookies</th>
+                                        <th>Duur van elke cookie-installatie</th>
+                                        <th>Doorgifte van gegevens aan derden</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Absoluut noodzakelijk cookies</td>
+                                        <td>De absoluut noodzakelijke cookies zijn essentieel voor de goede werking van het Platform. Deze cookies stellen de Gebruiker in staat te browsen en gebruik te maken van Platform functies zoals toegang tot beveiligde gebieden. Deze cookies herkennen niet de individuele identiteit van de Gebruiker en zonder hen, is de goede werking van het Platform niet mogelijk.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>CookieConsent (Slaat de cookie-toestemmingsstatus van de gebruiker op voor het huidige domein)
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (Zorgt voor de veiligheid van de bezoeker door het voorkomen van cross-site request forgery. Deze cookie is essentieel voor de veiligheid van de website en de bezoeker. )
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
-
+                                            ecas_lets_crowdsource_our_future_session (Wanneer de app de ingelogde gebruiker moet "onthouden" terwijl (en) hij naar het platform navigeert)
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            Crowdsourcing_anonymous_user_id (gebruikt om anonieme antwoorden op de vragenlijsten op te slaan door een geheel getal toe te kennen aan de gebruiker die het antwoord indient)
                                         </td>
-                                        <td>1 year
+                                        <td>1 jaar
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 dag
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Sessie
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 jaar
                                         </td>
-                                        <td>No
+                                        <td>Nee
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nee
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nee
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nee
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Statistieken/analytische cookies</td>
+                                        <td>Dit zijn cookies die evalueren hoe bezoekers het Platform gebruiken (bijvoorbeeld welke pagina's vaker worden bezocht en of ze foutmeldingen van webpagina's ontvangen). Deze cookies worden gebruikt voor statistische doeleinden en om de prestaties van een Platform te verbeteren.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
-
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics-cookies worden gebruikt om het verkeer op het Platform te meten. Een unieke tekststring wordt opgeslagen om de browser te identificeren, de tijdstempel voor interacties en de browser / bronpagina die de gebruiker naar het Platform heeft geleid. Er wordt geen gevoelige informatie opgeslagen.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 jaar
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 minuut
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 jaar
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 maanden
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 uur
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Ja (Onderneming die statistische en analytische diensten levert, indien beschouwd als derde partij)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +340,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Privacy van kinderen  </h2>
+                                Ons project is niet gericht op personen onder de leeftijd van 18 jaar ("Kinderen"). Wij verzamelen niet bewust persoonlijk identificeerbare informatie van personen onder de leeftijd van 18 jaar. Als u een ouder of voogd bent en u weet dat uw Kinderen Persoonsgegevens aan ons hebben verstrekt, neem dan contact met ons op. Als wij ons ervan bewust worden dat wij Persoonsgegevens van kinderen hebben verzameld zonder verificatie van ouderlijke toestemming, nemen wij stappen om die informatie van onze servers te verwijderen.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Wijzigingen in dit Privacybeleid </h2>
+                                De Gegevensbeheerder behoudt zich het recht voor om dit Privacybeleid te wijzigen, bijvoorbeeld wanneer dit noodzakelijk is om te voldoen aan nieuwe vereisten die worden opgelegd door toepasselijke wetten, richtlijnen of technische vereisten, of in de loop van een herziening van de processen en praktijken van de Gegevensbeheerder. De Gebruiker zal via het Platform op de hoogte worden gebracht van elke wijziging van dit Privacybeleid. De Gebruiker dient dit Privacybeleid regelmatig te controleren op eventuele wijzigingen.
                             </div>
                         </div>
                     </div>
