@@ -28,7 +28,8 @@ class CrowdSourcingProjectForLandingPage {
         $feedbackQuestionnaire,
         $userResponse,
         $userFeedbackQuestionnaireResponse,
-        $allResponses,
+        $latestResponses,
+        $totalResponses,
         $questionnaireGoalVM,
         $socialMediaMetadataVM,
         Collection $languages,
@@ -41,8 +42,8 @@ class CrowdSourcingProjectForLandingPage {
         $this->feedbackQuestionnaire= $feedbackQuestionnaire;
         $this->userResponse = $userResponse;
         $this->userFeedbackQuestionnaireResponse = $userFeedbackQuestionnaireResponse;
-        $this->allResponses = $allResponses;
-        $this->totalResponses = $allResponses->count();
+        $this->allResponses = $latestResponses;
+        $this->totalResponses = $totalResponses;
         $this->questionnaireGoalVM = $questionnaireGoalVM;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;

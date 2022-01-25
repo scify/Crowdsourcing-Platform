@@ -122,6 +122,7 @@ class CrowdSourcingProjectManager {
 
         $shareUrlForFacebook = "";
         $shareUrlForTwitter = "";
+        $countAll=0;
         if ($questionnaire) {
             $latestResponses = $this->questionnaireRepository->getLatestResponsesForQuestionnaire($questionnaire->id);
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
@@ -148,6 +149,7 @@ class CrowdSourcingProjectManager {
             $userResponse,
             $userFeedbackQuestionnaireResponse,
             $latestResponses,
+            $countAll,
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
             $this->languageRepository->all(),
