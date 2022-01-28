@@ -50,7 +50,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-12 justify-content-center align-self-center border-top-0">
-{{--                                                    @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])--}}
+                                                    @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     @if ($questionnaire->type_id==1)
