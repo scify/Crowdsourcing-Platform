@@ -13,7 +13,8 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <form id="form-change-password" class="w-100" role="form" method="POST" action="{{ url('/user/update') }}"
+                        <form id="form-change-password" class="w-100" role="form" method="POST"
+                              action="{{ url('/user/update') }}"
                               novalidate>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -26,13 +27,16 @@
                             <label class="col-sm-4 control-label">{{ __("login-register.nickname") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group has-feedback">
-                                    <input id="nickname" type="text" class="form-control" name="nickname"
+                                    <input id="nickname" type="text" class="form-control mb-1" name="nickname"
                                            value="{{ $viewModel->user->nickname  }}"
                                            required
                                            autofocus
                                            placeholder="Name">
                                 </div>
                             </div>
+                            <span class="help-block hidden col-sm-10 mb-2" id="nickname-help">
+                                <strong>{{ __('my-account.nickname_help') }}</strong>
+                            </span>
                             <span class="form-control-feedback"></span>
                             @if ($errors->has('nickname'))
                                 <span class="help-block">
@@ -40,26 +44,31 @@
                                     </span>
                             @endif
                             @if($viewModel->user->password)
-                                <label for="current_password" class="col-sm-4 control-label">{{ __("my-account.current_password") }}</label>
+                                <label for="current_password"
+                                       class="col-sm-4 control-label">{{ __("my-account.current_password") }}</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <input type="password" class="form-control" id="current_password"
-                                               name="current_password" placeholder="{{ __("my-account.current_password") }}">
+                                               name="current_password"
+                                               placeholder="{{ __("my-account.current_password") }}">
                                     </div>
                                 </div>
                             @endif
-                            <label for="password" class="col-sm-4 control-label">{{ __("my-account.new_password") }}</label>
+                            <label for="password"
+                                   class="col-sm-4 control-label">{{ __("my-account.new_password") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password" name="password"
                                            placeholder="{{ __("login-register.password") }}">
                                 </div>
                             </div>
-                            <label for="password_confirmation" class="col-sm-4 control-label">{{ __("my-account.re_enter_password") }}</label>
+                            <label for="password_confirmation"
+                                   class="col-sm-4 control-label">{{ __("my-account.re_enter_password") }}</label>
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <input type="password" class="form-control" id="password_confirmation"
-                                           name="password_confirmation" placeholder="{{ __("my-account.re_enter_password") }}">
+                                           name="password_confirmation"
+                                           placeholder="{{ __("my-account.re_enter_password") }}">
                                 </div>
                             </div>
 
@@ -83,7 +92,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="{{ route('downloadMyData') }}" data-widget="tooltip" title="This includes all your responses to questionnaires" target="_blank" class="btn btn-primary">{{ __("my-account.download_my_data") }}</a>
+                            <a href="{{ route('downloadMyData') }}" data-widget="tooltip"
+                               title="This includes all your responses to questionnaires" target="_blank"
+                               class="btn btn-primary">{{ __("my-account.download_my_data") }}</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +110,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="#deactivationConfirmationModal" data-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
+                            <a href="#deactivationConfirmationModal"
+                               data-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +134,8 @@
                           novalidate>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">{{ __("my-account.deactivate_my_account_2") }}</button>
+                        <button type="submit"
+                                class="btn btn-danger">{{ __("my-account.deactivate_my_account_2") }}</button>
                     </form>
                 </div>
             </div>
@@ -134,4 +147,5 @@
 
 @push('scripts')
     <script src="{{ mix('dist/js/myProfile.js')}}"></script>
+    <script src="{{ mix('dist/js/register.js')}}"></script>
 @endpush
