@@ -74,12 +74,15 @@ export default new Vuex.Store({
         post: ({commit, dispatch}, {url, data, urlRelative = true, handleError = true}) => {
             commit('setLoading', true);
             url = urlRelative ? process.env.MIX_APP_URL + url : url;
+            data = {
+                ...data,
+                lang: $('html').attr('lang')
+            }
             return new Promise(function callback(resolve, reject) {
                 axios.post(url, data,
                     {
                         headers: {
                             'Accept': 'application/json'
-                            //,'Authorization': 'Bearer ' + process.env.MIX_API_AUTH_TOKEN
                         }
                     })
                     .then(function (response) {
@@ -108,7 +111,6 @@ export default new Vuex.Store({
                     {
                         headers: {
                             'Accept': 'application/json'
-                             //,'Authorization': 'Bearer ' + process.env.MIX_API_AUTH_TOKEN
                         }
                     })
                     .then(function (response) {
