@@ -29,6 +29,7 @@ class QuestionnaireResponseController extends Controller {
     }
 
     public function store(Request $request): JsonResponse {
+        app()->setLocale($request->lang);
         $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $questionnaireResponse->user_id])->pluck('questionnaire_id')->toArray();
@@ -43,8 +44,8 @@ class QuestionnaireResponseController extends Controller {
         return $response;
     }
 
-    public function getResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter=-1): JsonResponse {
-        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id,$projectFilter));
+    public function getResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter = -1): JsonResponse {
+        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id, $projectFilter));
     }
 
     public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
