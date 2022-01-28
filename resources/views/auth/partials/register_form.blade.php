@@ -1,8 +1,11 @@
 {!! csrf_field() !!}
 <div class="form-group has-feedback {{ $errors->has('nickname') ? 'has-error' : '' }}">
-    <input type="text" name="nickname" class="form-control" value="{{ old('nickname') }}"
+    <input type="text" name="nickname" class="form-control mb-1" value="{{ old('nickname') }}"
            placeholder="{{ __("login-register.nickname") }}">
     <span class="glyphicon glyphicon-user form-control-feedback"></span>
+    <span class="help-block hidden" id="nickname-help">
+        <strong>Your nickname will be publicly displayed when you respond to questionnaires</strong>
+    </span>
     @if ($errors->has('nickname'))
         <span class="help-block">
                             <strong>{{ $errors->first('nickname') }}</strong>
