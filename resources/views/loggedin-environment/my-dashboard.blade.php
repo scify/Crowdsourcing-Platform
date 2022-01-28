@@ -38,7 +38,7 @@
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     <div class="container-fluid">
 
-                                                        <h4>  {{ $questionnaire->title }}</h4>
+                                                        <h4>  {{ $questionnaire->fieldsTranslation->title }}</h4>
                                                         @if ($questionnaire->type_id==2)
                                                             <a href="{{ route('project.landing-page',$questionnaire->projects[0]->slug) }}">
                                                                 <img loading="lazy" class="project-logo" style="max-height:70px;"
@@ -50,7 +50,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-12 justify-content-center align-self-center border-top-0">
-                                                    @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])
+{{--                                                    @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])--}}
                                                 </td>
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     @if ($questionnaire->type_id==1)

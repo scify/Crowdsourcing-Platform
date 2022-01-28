@@ -3,11 +3,11 @@
 namespace App\Models\Questionnaire;
 
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireFieldsTranslationManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Language;
 use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
 use App\Models\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkp;
+use App\Repository\LanguageRepository;
 use Awobaz\Compoships\Compoships;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -63,12 +63,31 @@ class Questionnaire extends Model {
      *
      * @var array
      */
-    protected $with = ['defaultFieldsTranslation'];
-    protected $appends = ['currentFieldsTranslation'];
+    protected $with = ['defaultFieldsTranslation', 'currentLocaleFieldsTranslation'];
+    protected $appends = ['fieldsTranslation'];
 
-    public function getCurrentFieldsTranslationAttribute() {
-        $questionnaireFieldsTranslationManager = app()->make(QuestionnaireFieldsTranslationManager::class);
-        return $questionnaireFieldsTranslationManager->getFieldsTranslationForQuestionnaire($this);
+    public function getFieldsTranslationAttribute() {
+        return $this->currentLocaleFieldsTranslation ?? $this->defaultFieldsTranslation;
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function defaultFieldsTranslation(): HasOne {
+        return $this->hasOne(QuestionnaireFieldsTranslation::class,
+            ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
+            'title' => 'Questionnaire title',
+            'description' => 'Questionnaire description'
+        ]);
+    }
+
+    public function currentLocaleFieldsTranslation(): HasOne {
+        $languageRepository = app()->make(LanguageRepository::class);
+        $language = $languageRepository->where(['language_code' => app()->getLocale()]);
+        return $this->hasOne(
+            QuestionnaireFieldsTranslation::class,
+            'questionnaire_id', 'id')
+            ->where('language_id', '=', $language->id);
     }
 
     /**
@@ -104,7 +123,7 @@ class Questionnaire extends Model {
         return $this->hasMany(QuestionnaireLanguage::class, 'questionnaire_id', 'id');
     }
 
-    public function languages() {
+    public function languages(): BelongsToMany {
         return $this->belongsToMany(
             Language::class, // target model
             QuestionnaireLanguage::class, // intermediate model
@@ -115,33 +134,22 @@ class Questionnaire extends Model {
         );
     }
 
-    public function responses() {
+    public function responses(): HasMany {
         return $this->hasMany(QuestionnaireResponse::class, 'questionnaire_id', 'id');
     }
 
-    public function statisticsPageVisibilityStatus() {
+    public function statisticsPageVisibilityStatus(): HasOne {
         return $this->hasOne(QuestionnaireStatisticsPageVisibilityLkp::class, 'id', 'statistics_page_visibility_lkp_id');
     }
 
-    public function basicStatisticsColors() {
+    public function basicStatisticsColors(): HasOne {
         return $this->hasOne(QuestionnaireBasicStatisticsColors::class, 'questionnaire_id', 'id');
-    }
-
-    /**
-     * @return HasOne
-     */
-    public function defaultFieldsTranslation() {
-        return $this->hasOne(QuestionnaireFieldsTranslation::class,
-            ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
-            'title' => 'Questionnaire title',
-            'description' => 'Questionnaire description'
-        ]);
     }
 
     /**
      * @return HasMany
      */
-    public function fieldsTranslations() {
+    public function fieldsTranslations(): HasMany {
         return $this->hasMany(QuestionnaireFieldsTranslation::class, 'questionnaire_id', 'id');
     }
 }

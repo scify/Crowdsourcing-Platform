@@ -5,7 +5,7 @@
     <div class="social-share text-center">
         @include('questionnaire.social-share-button', [
               'project_name' => $viewModel->project->currentTranslation->motto_title ,
-              'questionnaire_title' =>  $viewModel->questionnaire->currentFieldsTranslation->title ,
+              'questionnaire_title' =>  $viewModel->questionnaire->fieldsTranslation->title ,
                 'questionnaire_id' =>$viewModel->questionnaire->id,
                'socialShareURL' => $viewModel->shareUrlForFacebook,
                'additionalBtnStyleClasses' =>' facebook btn-lg btn-default',
@@ -14,7 +14,7 @@
 
         @include('questionnaire.social-share-button', [
                'project_name' =>$viewModel->project->currentTranslation->motto_title ,
-               'questionnaire_title' => $viewModel->questionnaire->currentFieldsTranslation->title,
+               'questionnaire_title' => $viewModel->questionnaire->fieldsTranslation->title,
                 'questionnaire_id' =>$viewModel->questionnaire->id,
                'socialShareURL' => $viewModel->shareUrlForTwitter,
                'additionalBtnStyleClasses' =>' twitter btn-lg btn-default',
