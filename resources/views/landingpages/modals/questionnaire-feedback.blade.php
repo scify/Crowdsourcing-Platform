@@ -2,19 +2,19 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">{{$viewModel->feedbackQuestionnaire->currentFieldsTranslation->title}}</h4>
+                <h4 class="modal-title">{{$viewModel->feedbackQuestionnaire->fieldsTranslation->title}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid mb-5">
-                    @if($viewModel->feedbackQuestionnaire->currentFieldsTranslation->description)
+                    @if($viewModel->feedbackQuestionnaire->fieldsTranslation->description)
                         <div class="row">
                             <div class="col-12">
                                 <div class="description-container">
                                     <div class="description">
-                                        <h5>{!! $viewModel->feedbackQuestionnaire->currentFieldsTranslation->description !!}</h5>
+                                        <h5>{!! $viewModel->feedbackQuestionnaire->fieldsTranslation->description !!}</h5>
                                     </div>
                                 </div>
                             </div>

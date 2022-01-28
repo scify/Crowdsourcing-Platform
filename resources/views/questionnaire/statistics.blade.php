@@ -21,7 +21,7 @@
                     <div class="row mt-5 mb-3">
                         <div class="col-12">
                             <h1 class="text-lg-center text-md-center text-sm-left">
-                                <b>{{ $viewModel->questionnaire->currentFieldsTranslation->title }}</b>
+                                <b>{{ $viewModel->questionnaire->fieldsTranslation->title }}</b>
                             </h1>
                         </div>
                     </div>

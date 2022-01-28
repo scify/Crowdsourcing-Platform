@@ -93,7 +93,7 @@ class QuestionnaireActionHandler
                 $this->questionnaireResponseReferralManager->createQuestionnaireResponseReferral($questionnaire->id, $user->id, $referrer->id);
                 $influencerBadge = $this->platformWideGamificationBadgesProvider->getInfluencerBadge($referrer->id);
                 $referrer->notify(new ReferredQuestionnaireAnswered(
-                    $questionnaire->currentFieldsTranslation,
+                    $questionnaire->fieldsTranslation,
                     $influencerBadge,
                     new GamificationBadgeVM($influencerBadge),
                     $language->language_code));
@@ -107,7 +107,7 @@ class QuestionnaireActionHandler
 
         $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
         $user->notify(new QuestionnaireShared(
-            $questionnaire->currentFieldsTranslation,
+            $questionnaire->fieldsTranslation,
             $communicatorBadge,
             new GamificationBadgeVM($communicatorBadge),
             $language->language_code));

@@ -7,11 +7,11 @@
                 <div class="text-center content-container"
                      style="background: {{ $viewModel->project->lp_primary_color }}D9">
                     <h3 class="questionnaire-section-title">
-                        {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->currentFieldsTranslation->title }}
+                        {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->fieldsTranslation->title }}
                     </h3>
                     @if(!$viewModel->userResponse)
                         <div class="questionnaire-description mb-5">
-                            {!! $viewModel->questionnaire->currentFieldsTranslation->description !!}
+                            {!! $viewModel->questionnaire->fieldsTranslation->description !!}
                         </div>
                         <div class="container-fluid">
                             <div class="row">
