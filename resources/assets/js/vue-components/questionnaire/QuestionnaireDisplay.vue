@@ -162,6 +162,11 @@ export default {
             $(".sv_complete_btn").after(
                 "<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>"
             );
+            setTimeout(() => {
+              $("textarea").each(function (index) {
+                $(this).attr("spellcheck", true);
+              });
+            }, 3000);
           });
     },
     prepareQuestionnaireForViewingResponse() {
