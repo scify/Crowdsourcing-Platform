@@ -4,7 +4,7 @@
            placeholder="{{ __("login-register.nickname") }}">
     <span class="glyphicon glyphicon-user form-control-feedback"></span>
     <span class="help-block hidden" id="nickname-help">
-        <strong>Your nickname will be publicly displayed when you respond to questionnaires</strong>
+        <strong>{{ __('my-account.nickname_help') }}</strong>
     </span>
     @if ($errors->has('nickname'))
         <span class="help-block">
