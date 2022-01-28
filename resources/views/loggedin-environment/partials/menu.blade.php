@@ -26,7 +26,7 @@
                         </li>
                     @endcan
                     @can("moderate-results")
-                        <li class="nav-item {{UrlMatchesMenuItem("questionnaires")}}">
+                        <li class="nav-item {{UrlMatchesMenuItem("questionnaires/reports")}}">
                             <a class="nav-link" href="{{ route('questionnaires.reports') }}"><i
                                         class="nav-icon fa fa-question-circle "></i>
                                 <p>Responses</p></a>
