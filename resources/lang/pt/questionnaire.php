@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Antes de responder ao questionário, veja o que outros participantes têm dito clicando',
     'here' => 'aqui',
     'select_language' => 'Selecione o idioma',
-    "invite_your_friends_to_answer" => "Convide os seus amigos para responder"
+    "invite_your_friends_to_answer" => "Convide os seus amigos para responder",
+    "go_to_homepage" => "Sim! Vá para a página inicial"
 
 
 

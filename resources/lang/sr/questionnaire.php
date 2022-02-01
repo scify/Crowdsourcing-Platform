@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Prije nego što odgovorite na upitnik, provjerite šta su drugi ispitanici rekli klikom',
     'here' => 'ovdje',
     'select_language' => 'Odaberite jezik',
-    "invite_your_friends_to_answer" => "Pozovite svoje prijatelje da odgovore"
+    "invite_your_friends_to_answer" => "Pozovite svoje prijatelje da odgovore",
+    "go_to_homepage" => "Yes! Go to homepage"
 
 
 

@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Pirms atbildi uz anketas jautājumiem, noskaidro, ko teikuši citi respondenti, klikšķinot ',
     'here' => 'šeit',
     'select_language' => 'Izvēlies valodu',
-    "invite_your_friends_to_answer" => "Uzaiciniet draugus atbildēt"
+    "invite_your_friends_to_answer" => "Uzaiciniet draugus atbildēt",
+    "go_to_homepage" => "Jā! Dodieties uz mājaslapu"
 
 
 

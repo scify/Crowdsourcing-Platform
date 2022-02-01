@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Πριν απαντήσετε το ερωτηματολόγιο, δείτε τι έχουν πει άλλοι ερωτηθέντες πατώντας',
     'here' => 'εδώ',
     'select_language' => 'Επιλογή γλώσσας',
-    "invite_your_friends_to_answer" => "Προσκαλέστε τους φίλους σας να απαντήσουν"
+    "invite_your_friends_to_answer" => "Προσκαλέστε τους φίλους σας να απαντήσουν",
+    "go_to_homepage" => "Ναι! Πήγαινε στη homepage"
 
 
 
