@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Enne kui vastad küsimustikule, vaata mida teised on öelnud',
     'here' => 'siit',
     'select_language' => 'Vali keel',
-    "invite_your_friends_to_answer" => "Kutsu oma sõpru küsimustikule vastama"
+    "invite_your_friends_to_answer" => "Kutsu oma sõpru küsimustikule vastama",
+    "go_to_homepage" => "Jah! Mine avalehele"
 
 
 

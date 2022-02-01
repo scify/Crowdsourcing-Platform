@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>PRIVĀTUMA POLITIKA</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,207 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                Šī Privātuma politika attiecas uz visiem Platformas lietotājiem (turpmāk tekstā
+                                <b>“Lietotāji”</b> vai <b>“Lietotājs”</b> un <b>“Platforma”</b>) un ir Platformas Vietnes
+                                noteikumu un nosacījumu neatņemama sastāvdaļa. Šī Privātuma politika sniedz Lietotājam
+                                vispārīgu informāciju par to, kā Datu pārzinis izmanto jūsu personas datus, un citu
+                                informāciju, ko pieprasa datu aizsardzības tiesību akti. Nākotnes grozījumu gadījumā
+                                Lietotājam tiks nodrošināti nepieciešamie atjauninājumi un informācija, izmantojot šīs
+                                Privātuma politikas atjauninājumu, kas augšupielādēts Platformā.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Kas ir Datu pārzinis?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> Uzņēmums ar uzņēmuma nosaukumu “SCIENCE FOR YOU”, adrese: TEPA Lefkippos — NCSR
+                                Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece, Tālrunis: +302114004192, e-pasts:
+                                info@scify.org, ir Datu pārzinis Lietotāja personas datu apstrādei (turpmāk tekstā <b>"Datu
+                                    pārzinis"</b>).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Datu pārziņa kontaktinformācija:</b> Ja rodas problēmas vai bažas saistībā ar šo
+                                Privātuma politiku un Lietotāja personas datu apstrādi vai Lietotāja augšupielādētajiem
+                                datiem, lai izmantotu Platformu, Lietotājs var sazināties ar Datu pārzini, izmantojot kādu
+                                no šīm alternatīvām:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
-                                <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
-                                <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
-                                <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
-
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
-                                <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
-                                <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                Zvanot pa tālruni +302114004192, no pirmdienas līdz piektdienai no 10.00 līdz 18.00 EET
+                                (Austrumeiropas laiks)
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
-
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
-
+                                Nosūtot e-pastu uz šādu e-pasta adresi: info@scify.org<br>
+                                Nosūtot korespondenci uz šādu adresi: TEPA Lefkippos — NCSR Demokritos 27, Neapoleos, 153 41
+                                Ag. Paraskevi, Greece<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4">2. Kāds ir Lietotāja datu apstrādes mērķis un tiesiskais pamats?</h2>
+                                <b>2.1.</b> Platformas darbības mērķis ir apkopot lietotāju viedokļus, izmantojot anketas. Viedokļi tiek apstrādāti, lai gūtu ieskatu, apkopotu un prezentētu vērtīgas idejas un ieteikumus par anketās apskatītajiem tematiem. Lietotāji var atbildēt anonīmi (nesniedzot nekādu personisko informāciju) vai arī brīvprātīgi reģistrēties, lai iesniegtu eponīmiskas atbildes, norādot e-pastu un lietotāja vārdu. Lietotāju atbildes tiek tulkotas angļu valodā un tiek parādītas pārskatos. Konkrētajam apstrādes mērķim tiesiskais pamats ir Lietotāja iepriekšēja piekrišana.
+                                <br><br>
+                                <b>2.2.</b> Sūtīt Lietotājam informatīvus e-pastus ar mērķi informēt viņu par jaunām aktivitātēm, projektiem un citiem Platformas interesējošiem jautājumiem. Šim apstrādes mērķim tiesiskais pamats ir Lietotāja iepriekšēja piekrišana.
+                                <br><br>
+                                <b>2.3</b> Datu apstrāde saistībā ar Datu pārziņa juridisko pienākumu izpildi. Šādos gadījumos datu apstrāde notiek tikai tik ilgi, cik nepieciešams, lai Datu pārzinis ievērotu dažādu tiesību normu uzliktos pienākumus.
+                                <br><br>
+                                <b>Iepriekšminēto noteikumu gadījumā, ja tiesiskais pamats ir Lietotāja iepriekšēja piekrišana, Lietotājs vienmēr var atsaukt savu piekrišanu jebkurā laikā, neietekmējot pirms piekrišanas atsaukšanas apstrādāto datu likumību.</b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mt-4 mb-4">3. Iegūstamo datu veidi</h2>
+
+                                <h3 class="mt-4 mb-4">3.1 Personas dati</h3>
+                                <b>3.1.1 Reģistrācija — konta izveide:</b><br>
+                                Lai Lietotājs brīvprātīgi varētu izveidot kontu Platformā, Lietotājam ir jāievada nepieciešamie dati: savs lietotāja vārds, e-pasta adrese un parole.
+                                <br><br>
+                                <b>3.1.2 Iesniegtās atbildes uz anketas jautājumiem</b><br>
+                                Platforma apkopo Lietotāja atbildes (proti, viedokļus par dažādiem tematiem) uz jautājumiem, kas uzdoti, izmantojot Platformas anketas. Šīs atbildes tiek analizētas un parādītas anketas rezultātu lapā. Lietotājam tiek stingri ieteikts ievērot platformas “uzvedības kodeksu veiksmīgai dalībai” un izvairīties no jebkādu personas datu publiskošanas, kuru publisku pieejamību Platformā tas nevēlas.
+                                <br><br>
+                                <b>3.1.3. Platformas komunikācija tādu iemeslu dēļ, kas saistīti ar Lietotāja atļauto Platformas lietošanu.</b>
+                                <br>
+                                Lai Platforma varētu sazināties ar Lietotāju iepriekšminētajiem nolūkiem, Datu pārzinis var apstrādāt visus datus, kas attiecas uz Lietotāja kontu, augšupielādēto saturu un datus, kas saistīti ar Lietotāja Platformas lietošanu.
+                                <h3 class="mt-4 mb-4">3.2 Lietojuma dati</h3>
+                                Mēs varam iegūt informāciju arī par to, kā tīmekļa vietnei tiek piekļūts un kā tā tiek lietota (turpmāk tekstā “Lietojuma dati”). Šie Lietojuma dati var ietvert tādu informāciju kā Jūsu datora interneta protokola adrese (piemēram, IP adrese), pārlūkprogrammas veids, pārlūkprogrammas versija, Jūsu apmeklētās tīmekļa vietnes lapas, Jūsu apmeklējuma laiks un datums, lapās pavadītais laiks, unikālie ierīču identifikatori un citi diagnostikas dati.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mt-4 mb-4"> 4. Kā Platforma apkopo datus</h2>
+                                4.1 Informāciju var apkopot šādos veidos: <br>
+                                4.1.1 Kad Lietotājs reģistrējas un izveido kontu Platformā. <br>
+                                4.1.2 Kad Lietotājs iesniedz atbildes Platformas anketās <br>
+                                4.1.3 Kad Lietotājs apmeklē Platformu un piekrīt sīkdatņu instalēšanai (saskaņā ar Platformas sīkdatņu politiku 11. punktā turpmāk tekstā) un Lietotāja personas datu, piemēram, IP adreses, operētājsistēmas, pārlūkprogrammas sērijas un veida utt., apkopošanai.
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Cik ilgi Lietotāja dati tiek glabāti un kad tie tiek dzēsti?
+                                </h2>
+                                <b>5.1. Lietotāja konta dati:</b><br>
+                                Neskarot turpmāk minētās Lietotāja dzēšanas tiesības/tiesības tikt aizmirstam, Lietotāja kontā reģistrētie un glabātie Dati tiks glabāti tik ilgi, kamēr Lietotājs vēlēsies izmantot Platformu iepriekšminētajam mērķim. Ja Lietotājs vēlas dzēst savu kontu, viņš var to izdarīt, izmantojot konta iestatījumus vai sazinoties ar Datu pārzini, izmantojot iepriekšminēto kontaktinformāciju.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. Platformas komunikācija tādu iemeslu dēļ, kas saistīti ar Lietotāja atļauto Platformas lietošanu.</b><br>
+                                Ar šādu saziņu saistītie dati tiks glabāti tikai tik ilgi, kamēr Lietotājs vēlēsies izmantot Platformu un saglabās savu kontu. Ja Lietotājs vēlas dzēst savu kontu, viņš var to izdarīt, izmantojot konta iestatījumus vai sazinoties ar Datu pārzini, izmantojot iepriekšminēto kontaktinformāciju.
+                                <b>5.3. Statistiskā analīze Vietnes optimizācijai</b><br>
+                                Neatkarīgi no iepriekšminētajiem 5. punkta noteikumiem, Datu pārzinis uzglabās un apstrādās tikai nepieciešamos datus tik ilgi, cik nepieciešams, lai katru reizi izpildītu likumā noteiktās saistības (fiskālo saistību izpilde utt.).
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
-                                <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Personas datu apstrāde statistiskās analīzes veikšanas nolūkos.</b><br>
+                                Lūdzu, skatiet sīkdatņu politiku (11. punktā) turpmāk tekstā.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Kādas ir Lietotāja tiesības attiecībā uz viņa datu apstrādi un kā viņš var šīs tiesības izmantot?</h2>
+                                <b>6.1</b> Datu pārzinis ievēro Lietotāja tiesības attiecībā uz datu apstrādi.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> Lietotājs var īstenot savas tiesības, sazinoties ar Datu pārzini, izmantojot šādu kontaktinformāciju: Tālrunis: +302114004192, e-pasts: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Lietotāja ērtībai Lietotāja tiesības ir iekļautas šajā tabulā kopā ar īsu skaidrojumu par katru no tiesībām (atsauce uz punktiem atbilst VDAR 2016/679 pantam):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Tiesības</th>
+                                        <th>Paskaidrojums</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Piekļuve (15. pants)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            Lietotājs var lūgt Datu pārzinim:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
+                                                <li>apstiprināt, vai Datu pārzinis apstrādā Lietotāja personas datus
                                                 </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>dot Lietotājam piekļuvi datiem, no kuriem Lietotājs neatbrīvojas</li>
+                                                <li>sniegt Lietotājam citu ar Lietotāja personas datiem saistītu informāciju, piemēram, kādi ir dati, kurus Datu pārzinis apstrādā, kādi ir apstrādes mērķi, kam šie dati tiek izpausti, vai šie dati tiek nodoti ārvalstīs un kā šie dati tiek aizsargāti, cik ilgi dati tiek glabāti, kādas ir Lietotāja tiesības, kā var iesniegt sūdzību, no kurienes ir ņemti dati, ciktāl šī informācija nav iekļauta šajā Privātuma politikā.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Labošana un dzēšana (16. pants)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            Lietotājs var lūgt Datu pārzinim izlabot neprecīzos personas datus.<br><br>
+                                            Datu pārzinis var censties pārbaudīt datu pareizību pirms to labošanas.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Tiesības uz dzēšanu (tiesības “tikt aizmirstam”) (17. pants)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            Lietotājs var lūgt Datu pārzinim dzēst viņa personas datus:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>kad personas dati vairs nav nepieciešami saistībā ar nolūkiem, kādiem tie tika vākti
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>kad Lietotājs atsauc savu piekrišanu</li>
+                                                <li>personas dati tika apstrādāti nelikumīgi</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            Datu pārzinim nav pienākuma izpildīt Lietotāja lūgumu dzēst viņa personas datus, ja Lietotāja personas datu apstrāde ir nepieciešama:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>lai izpildītu juridisku pienākumu</li>
+                                                <li>cita likumīgā mērķa vai cita likumīgā tiesiska pamata izpildei
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>lai celtu, īstenotu vai aizstāvētu likumīgas prasības</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Tiesības ierobežot apstrādi (18. pants)</td>
                                         <td>
 
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            Lietotājs var lūgt Datu pārzinim ierobežot (uzglabāt, bet neapstrādāt) Lietotāja personas datus, ja:<br><br>
+                                            to pareizība tiek apstrīdēta (skatīt labojumu), lai Datu pārzinis varētu pārbaudīt personas datu pareizību vai<br><br>
+                                            personas dati ir apstrādāti nelikumīgi, bet Lietotājs iebilst pret personas datu dzēšanu vai<br><br>
+                                            tie vairs nav nepieciešami mērķiem, kādiem tie tika apkopoti, bet Lietotājam tie joprojām ir nepieciešami juridisku prasību izvirzīšanai, īstenošanai vai aizstāvēšanai, vai arī pastāv cits likumīgs apstrādes mērķis vai cits juridisks pamats
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Tiesības uz datu pārnesamību (20. pants)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Kad apstrāde ir balstīta uz piekrišanu un apstrāde tiek veikta ar automatizētiem līdzekļiem, Lietotājs var lūgt Datu pārzinim saņemt savus personas datus strukturētā, bieži izmantotā un mašīnlasāmā formātā vai lūgt Datu pārzinim tos pārsūtīt citam pārzinim tieši no Datu pārziņa. Tomēr saskaņā ar likumu šīs tiesības attiecas tikai uz tiem datiem, kurus ir sniedzis pats Lietotājs, nevis uz tiem datiem, kurus Datu pārzinis izsecina, pamatojoties uz Lietotāja sniegtajiem datiem.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Tiesības iebilst (21. pants)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            Lietotājs jebkurā laikā var iebilst pret viņu personas datu apstrādi, kuras pamatā ir leģitīmas intereses vai sabiedrības interesēs veikta uzdevuma izpilde.<br><br>
+                                            Kad Lietotājs izmanto savas tiesības iebilst, Datu pārzinim ir tiesības pierādīt, ka apstrādei ir pārliecinoši leģitīmi iemesli, kas ir svarīgāki par Lietotāja interesēm, tiesībām un brīvībām, vai lai celtu, īstenotu vai aizstāvētu likumīgas prasības.
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Piekrišanas atsaukšana (atteikšanās)
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            Lietotājam ir tiesības atsaukt savu piekrišanu, ja piekrišana ir apstrādes pamatā. Atsaukšana ir derīga nākotnē.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Uzraudzības iestāde
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            Lietotājam ir tiesības iesniegt sūdzību vietējai uzraudzības iestādei saistībā ar datu aizsardzību. <br><br>
+                                            Grieķijā datu aizsardzības uzraudzības iestāde ir datu aizsardzības iestāde https://www.dpa.gr/
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Identitāte</td>
+                                        <td>Datu pārzinis nopietni izturas pret visu datņu, kas satur personas datus, konfidencialitāti, tāpēc viņam ir tiesības lūgt Lietotājam pierādīt viņa identitāti, ja Lietotājs iesniedz pieprasījumu saistībā ar šīm datnēm.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Izmaksas</td>
+                                        <td>Lietotājam nebūs jāmaksā par savu tiesību izmantošanu attiecībā uz personas datiem, ja vien likumā noteiktajā kārtībā pieprasījums iegūt piekļuvi informācijai ir nepamatots vai pārmērīgs. Tādā gadījumā Datu pārzinis var iekasēt no Lietotāja saprātīgu samaksu konkrētajos apstākļos. Datu pārzinis informēs Lietotāju par jebkuru iespējamo maksu, pirms viņš izpilda pieprasījumu.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Grafiks</td>
+                                        <td>Datu pārzinis uz Lietotāja pamatotiem pieprasījumiem cenšas atbildēt ne vēlāk kā viena (1) mēneša laikā no to saņemšanas, ja vien pieprasījums nav īpaši sarežģīts vai Lietotājs ir iesniedzis vairākus pieprasījumus, tādā gadījumā Datu pārzinis cenšas uz tiem atbildēt trīs mēnešu laikā. Gadījumā, ja Datu pārzinim iepriekšminēto iemeslu dēļ nepieciešams vairāk nekā viens mēnesis, viņš informēs Lietotāju. Datu pārzinis var jautāt Lietotājam, vai viņš vēlas paskaidrot, ko tieši viņš vēlas saņemt vai kādas ir viņa bažas. Tas palīdzēs Datu pārzinim ātrāk rīkoties saistībā ar Lietotāja pieprasījumu. Jebkurā gadījumā Lietotājam ir jānorāda konkrēti un patiesi dati un/vai fakti, lai Datu pārzinis varētu atbildēt un/vai precīzi apmierināt Lietotāja pieprasījumu. Pretējā gadījumā Datu pārzinis patur tiesības uz jebkādām kļūmēm, kas ir ārpus viņa kontroles. Turklāt Datu pārzinis var noraidīt pieprasījumus, kas ir nepamatoti, pārmērīgi, aizskaroši, negodprātīgi vai tiesību normu ietvaros neleģitīmi.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,202 +223,130 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Kā tiek nodrošināta datu drošība?</h2>
+                                <b>7.1</b> Datu pārzinis īsteno visus atbilstošos drošības pasākumus, lai nodrošinātu personas datu aizsardzību un konfidencialitāti, tostarp:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Spēcīgas paroles politikas visos serveros</li>
+                                    <li>HTTPS protokols mijiedarbībai ar API un tīmekļa klientiem</li>
+                                    <li>SSH protokols savienojumam ar serveri</li>
+                                    <li>Periodiski servera atjauninājumi ar jaunākajiem drošības uzlabojumiem</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Lūdzam ņemt vērā, ka ar Lietotāja iesniegtos datus apstrādā tikai īpaši pilnvaroti Datu pārziņa darbinieki, kas darbojas Datu pārziņa pakļautībā un tikai pēc viņa norādījumiem, kā arī saņēmēji, ja nepieciešams. Datu pārzinis apstrādei izvēlas personas ar atbilstošu kvalifikāciju, kas var sniegt pietiekamas garantijas attiecībā uz tehniskajām zināšanām un personas godprātīgumu, lai aizsargātu konfidencialitāti. Datu pārzinis veic visus nepieciešamos drošības pasākumus, lai aizsargātu un nodrošinātu personas datu neizpaušanu, konfidencialitāti un integritāti, arī izmantojot attiecīgās viņa partneru līgumsaistības. Jebkurā gadījumā Vietnes drošība var tikt pārkāpta tādu iemeslu dēļ, kas ir ārpus Datu pārziņa kontroles sfēras, kā arī tehnisku vai citu tīkla problēmu vai nepārvaramas varas vai nejaušu faktu dēļ. Tādā gadījumā nevar garantēt personas datu drošību.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Kas ir datu saņēmēji?</h2>
+                                <b>8.1.</b> Lietotāja personas datu saņēmēji ir saistītie uzņēmumi, kas nodrošina Vietnes darbības tehnisko infrastruktūru, mitināšanas nodrošinātājs, kā arī uzņēmums, kas apņemas nosūtīt Lietotājiem elektronisko saziņu, kas saistīta ar Platformas darbību. Nepieciešamības gadījumā saskaņā ar spēkā esošajiem tiesību aktiem Datu pārzinis slēgs līgumus ar šādiem uzņēmumiem, kas saistīti ar drošības pasākumu ieviešanu un regulāru uzraudzību. Gadījumā, ja dati tiek pārsūtīti ārpus ES, ir visas nepieciešamās garantijas.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Ja Datu pārzinis saņem pieprasījumu paziņot vai pārsūtīt datus pēc attiecīgās administratīvās iestādes, advokāta, tiesas vai citas iestādes pieprasījuma, viņš var paziņot/pārsūtīt šos datus, lai izpildītu savu pienākumu, kas veikts sabiedrības interesēs pret šīs iestādes (ar vai bez Lietotāja iepriekšēja paziņojuma) saskaņā ar attiecīgajām tiesību normām. Ja Lietotājs ir iepriekš jābrīdina saskaņā ar tiesību normām, Lietotājam ir tiesības iebilst pret šo apstrādi, kā noteikts 7. punktā iepriekš.
+                                <br><br>
+                                <b>8.3.</b> Katra Lietotāja profesionālā informācija ir pieejama visiem reģistrētajiem Platformas lietotājiem iepriekšminētajos nolūkos.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
-                                Email: info@scify.org
+                                <h2 class="mt-4 mb-4">9. Saziņa ar datu pārzini</h2>
+                                <b>9.1.</b> Par jebkuru jautājumu, kas saistīts ar šo privātuma politiku, Lietotāja datu apstrādi, kā arī Lietotāja tiesību īstenošanu, Lietotājs var sazināties ar Datu pārzini, izmantojot vienu no šiem veidiem: <br>
+                                Tālrunis: +302114004192, <br>
+                                E-pasts: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                Gadījumā, ja Lietotājs uzzina par jebkādu datu pārkāpuma incidentu, viņš tiek lūgts nekavējoties par to informēt Datu pārzini.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> Šos noteikumus regulē un papildina Noteikumi un nosacījumi, un tie kopā ar tiem veido vienotu tekstu.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
-
-
+                                <h2 class="mt-4 mb-4">10. Savienojums ar citām vietnēm/sociālajiem medijiem</h2>
+                                Šī Vietne savienojas ar citām vietnēm, izmantojot hipersaites. Šīs vietnes nav saistītas ar Datu pārziņa vietni, un to saturu Datu pārzinis nepārbauda un neiesaka. Tādējādi to satura precizitāti, likumību, pilnīgumu vai kvalitāti un Lietotāja personas datu apstrādes likumību nevar pārbaudīt un par tiem netiek sniegta nekāda garantija. Datu pārzini nevar saukt pie atbildības par tiem vai jebkādiem zaudējumiem, kas var tikt nodarīti Lietotājam to izmantošanas dēļ vai pēc tās. Datu pārzinis nevar pārbaudīt Lietotāja personas datu apstrādi šajās saistītajās Vietnēs un tādējādi neuzņemas nekādu atbildību. Kad Lietotājs piekļūst šīm vietnēm, viņam jāņem vērā, ka tiek piemēroti katras vietnes noteikumi un nosacījumi. Par jebkuru problēmu, kas var rasties attiecībā par saistītās vietnes saturu vai lietošanu, Lietotājam ir tieši jāsazinās ar katras Vietnes operatoru vai administratoru. Datu pārzinis neapstiprina un neatbalsta saistīto vietņu Saturu vai pakalpojumus, kuriem Lietotājs piekļūst, izmantojot Vietni.<br><br>
+                                Vietne sniedz Lietotājam iespēju izveidot savienojumu un mijiedarboties ar sociālajiem medijiem pēc paša iniciatīvas un gribas. Tādā gadījumā Datu pārzinis nav atbildīgs par Lietotāja datu apstrādi, kas notiek ar sociālo mediju starpniecību vai tajos. Lietotājam ir tieši jāvēršas katrā konkrētajā sociālajā medijā, lai īstenotu savas likumīgās tiesības.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                <h2 class="mt-4 mb-4">11. Sīkdatnes</h2>
+                                11.1. Platforma izmanto sīkdatnes, lai nodrošinātu pareizu vai efektīvāku darbību, lai uzlabotu Lietotāja navigāciju, sniegtu Lietotājam visas Platformas funkcionalitātes, nodrošinātu pareizu satura attēlošanu, kā arī analītiskiem un statistikas nolūkiem.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Sīkdatnes ir nelielas teksta datnes, kas tiek saglabātas Lietotāja datorā, kad viņš apmeklē digitālo platformu un tiek izmantotas kā līdzeklis datora identificēšanai.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Sīkdatnes, izņemot absolūti nepieciešamās sīkdatnes, tiek instalētas tikai tad, ja Lietotājs piekrīt to uzstādīšanai, kad viņš apmeklē šo Platformu. Apstiprinot sīkdatņu apkopošanu pie piekļuves šai Platformai, Lietotājs nepārprotami apliecina, ka ir izlasījis un sapratis konkrētos noteikumus un nosacījumus par sīkdatņu uzstādīšanu, darbību un mērķi un sniedz savu piekrišanu to lietošanai.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Lietotājs var arī nepiekrist sīkdatņu apkopošanai. Šādā gadījumā tiks instalētas tikai sīkdatnes, kas ir tehniski un funkcionāli nepieciešamas Platformas darbībai.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. Lietotājs jebkurā laikā var pārvaldīt sīkdatņu izmantošanu un uzstādīšanu, izmantojot paneli, kurā viņš var izvēlēties, kuru sīkdatņu kategoriju viņš vēlas pieņemt un kuras nevēlas (vai pieprasīt instalēt tikai tehniski nepieciešamās sīkdatnes).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. Konkrēti, Platformas izmantotās sīkdatnes ir šādas:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Sīkdatņu veids</th>
+                                        <th>Paskaidrojums</th>
+                                        <th>Sīkdatņu piemēri</th>
+                                        <th>Katras sīkdatnes uzstādīšanas ilgums</th>
+                                        <th>Datu nodošana trešajām personām</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Absolūti nepieciešamās sīkdatnes</td>
+                                        <td>Absolūti nepieciešamās sīkdatnes ir būtiskas pareizai Platformas darbībai. Šīs sīkdatnes ļauj Lietotājam pārlūkot un izmantot platformas funkcijas, piemēram, piekļuvi drošām zonām. Šīs sīkdatnes neatpazīst Lietotāja individuālo identitāti un bez tām nav iespējama vienmērīga Platformas darbība.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>Piekrišana sīkdatņu izmantošanai (saglabā lietotāja sīkdatņu piekrišanas stāvokli pašreizējam domēnam)
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (Nodrošina apmeklētāja pārlūkošanas drošību, novēršot starpvietņu pieprasījumu viltošanu. Šī sīkdatne ir būtiska vietnes un apmeklētāja drošībai.)
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
-
+                                            ecas_lets_crowdsource_our_future_session (Kad lietotnei ir “jāatceras” pieteicies Lietotājs, kamēr viņš(-i) piekļūst Platformai)
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            Crowdsourcing_anonymous_user_id (izmanto anonīmu atbilžu glabāšanai anketās, piešķirot veselu skaitli Lietotājam, kurš iesniedz atbildi)
                                         </td>
-                                        <td>1 year
+                                        <td>1 gads
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 diena
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Sesija
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 gadi
                                         </td>
-                                        <td>No
+                                        <td>Nr.
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nr.
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nr.
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nr.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Statistikas/analītiskās sīkdatnes</td>
+                                        <td>Tās ir sīkdatnes, kas novērtē, kā apmeklētāji izmanto Platformu (piemēram, kuras lapas tiek apmeklētas biežāk un vai viņi saņem kļūdu ziņojumus no tīmekļa lapām). Šīs sīkdatnes tiek izmantotas statistikas nolūkos un platformas darbības uzlabošanai.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics sīkdatnes tiek izmantotas, lai izmērītu trafiku Platformā. Tiek saglabāta unikāla teksta virkne, lai identificētu pārlūkprogrammu, mijiedarbības laikspiedolu un pārlūkprogrammu/avota lapu, kas novirzīja Lietotāju uz Platformu. Sensitīva informācija netiek saglabāta.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 gadi
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 minūte
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 gadi
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 mēneši
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 stundas
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Jā (Uzņēmums, kas sniedz statistikas un analītiskos pakalpojumus, ja tiek uzskatīts par trešo pusi)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +354,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Bērnu privātums </h2>
+                                Mūsu projekts nav orientēts uz personām, kuras nav sasniegušas 18 gadu vecumu (turpmāk tekstā ”Bērni”). Mēs apzināti neiegūstam personu identificējošu informāciju par personām, kuras nav sasniegušas 18 gadu vecumu. Ja esat vecāks vai aizbildnis un zināt, ka jūsu bērns ir sniedzis mums Personas datus, lūdzam ar mums sazināties. Ja mēs uzzinām, ka esam ieguvuši Personas datus par bērnu bez vecāku piekrišanas, mēs veicam pasākumus, lai dzēstu šādu informāciju no mūsu serveriem.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Privātuma politikas grozījumi </h2>
+                                Datu pārzinis patur tiesības grozīt šo Privātuma politiku, piemēram, ja tas ir nepieciešams, lai izpildītu jaunas prasības, ko nosaka piemērojamie tiesību akti, vadlīnijas vai tehniskās prasības, vai Datu pārziņa procesu un prakses pārskatīšanas gaitā. Lietotājs tiks informēts par jebkādiem šīs Privātuma politikas grozījumiem, izmantojot Platformu. Lietotājam regulāri jāpārbauda šī Privātuma politika attiecībā uz jebkādiem grozījumiem.
                             </div>
                         </div>
                     </div>

@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Bevor Sie den Fragebogen beantworten, finden Sie die Antworten von anderen Befragten',
     'here' => 'hier.',
     'select_language' => 'Sprache wählen',
-    "invite_your_friends_to_answer" => "Laden Sie Ihre Freund:innen ein mitzumachen"
+    "invite_your_friends_to_answer" => "Laden Sie Ihre Freund:innen ein mitzumachen",
+    "go_to_homepage" => "Ja! Gehen Sie zur Homepage"
 
 
 

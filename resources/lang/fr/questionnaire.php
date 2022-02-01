@@ -48,7 +48,8 @@ return [
     'check_what_other_respondents' => 'Avant de répondre au questionnaire, vérifiez ce que les autres répondants ont dit en cliquant',
     'here' => 'ici',
     'select_language' => 'Sélectionner la langue',
-    "invite_your_friends_to_answer" => "Invitez vos amis à répondre"
+    "invite_your_friends_to_answer" => "Invitez vos amis à répondre",
+    "go_to_homepage" => "Oui! Aller à la page d'accueil"
 
 
 

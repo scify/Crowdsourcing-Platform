@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Voordat je de vragenlijst beantwoordt kun je zien wat anderen hebben gezegd. Klik daarvoor',
     'here' => 'hier',
     'select_language' => 'Kies een taal',
-    "invite_your_friends_to_answer" => "Nodig je vrienden"
+    "invite_your_friends_to_answer" => "Nodig je vrienden",
+    "go_to_homepage" => "Ja! Ga naar homepagina"
 
 
 

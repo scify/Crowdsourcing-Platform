@@ -47,7 +47,8 @@ return [
     'check_what_other_respondents' => 'Преди да попълните въпросника, проверете какво са казали други участници, като кликнете',
     'here' => 'тук',
     'select_language' => 'Изберете език',
-    "invite_your_friends_to_answer" => "Поканете приятелите Ви да участват"
+    "invite_your_friends_to_answer" => "Поканете приятелите Ви да участват",
+    "go_to_homepage" => "Да! Отидете в началната страница"
 
 
 

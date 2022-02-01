@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>CODE OF CONDUCT</h1>
+                    <h1>Кодекс за поведение</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,62 +14,61 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <p>As a crowdsourcing platform we welcome everyone, and encourage a friendly and positive environment.
-                                    This code of conduct outlines our expectations from participants to ascertain successful participation, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring environment for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the Platform or their responses can be deleted.
-                                During your participation in crowdsourcing projects:
+                                <p>Като краудсорсинг платформа, която събира мъдростта на множеството, ние приветстваме всеки и се стремим да поддържаме приятелска и позитивна среда. 
+                                    Този кодекс за поведение очертава очакванията ни от участниците за да осигурим успешно участие, както и стъпките за докладване на неприемливо поведение. Ние се ангажираме да осигурим приветлива и вдъхновяваща среда за всички и очакваме нашия кодекс за поведение да бъде спазен. Достъпът до платформата на всеки, който нарушава този кодекс за поведение, може да бъде прекратен, или отговорите му могат да бъдат изтрити.
+                                    По време на вашето участие в краудсорсинг проекти:                                    
                                 </p>
                                 <ul>
                                     <li>
-                                        <strong>Be clear and relevant to the topic:</strong> Try to be precise and explain your thoughts and arguments with clarity. All answers must be relevant to the topic of the questionnaire. This will facilitate the platform’s moderators work, where they will have to analyze all given answers, categorize them and produce valuable insights that can have a positive impact οn the society.
+                                        <strong>Бъдете ясни и изказвайте мнения само по темата:</strong> Опитайте се да бъдете точни и да обясните ясно мислите и аргументите си. Всички отговори трябва да са по темата на въпросника. Това ще улесни работата на модераторите на платформата, където те ще трябва да анализират всички дадени отговори, да ги категоризират и да направят важни заключения, които могат да имат положително въздействие върху обществото.
                                     </li>
-                                    <li><strong>Be respectful and kind:</strong> Not all of us will agree all the time, but disagreement is no excuse for poor behavior and poor manners. It’s important to remember that even though the answers you provide are anonymous, an environment where people feel uncomfortable or threatened is not a productive one. Of course harassment, insults, posting (or threatening to post) other people’s personally identifying information (“doxing”), racist or sexist terms, and other exclusionary behavior aren’t acceptable.
-                                        If you just keep “respectful and kind” in mind, you can't go wrong.
+                                    <li><strong>Бъдете уважителни и любезни:</strong> Не всички ще се съгласяваме постоянно един с друг, но несъгласието не е извинение за лошо поведение и лошо отношение. Важно е да запомните, че въпреки, че отговорите, които предоставяте са анонимни, среда, в която хората се чувстват неудобно или застрашени, не е продуктивна. Разбира се, тормоз, обиди, публикуване (или заплахи за публикуване) на лична идентифицираща информация на други хора, расистки или сексистки термини и друго дискриминационно поведение са неприемливи. Ако се държите уважително и любезно, няма как да сгрешите.
                                     </li>
-                                    <li><strong>Remember that your contribution is public:</strong>Your email and any personal information is not revealed by the platform.  Though the textual answers you provide in the questionnaires, the answers to open-ended questions, may be publicly available. Do not include any personal information in your responses that you do not wish to be publicly available.
+                                    <li><strong>Не забравяйте, че Вашият принос е публичен:</strong> Вашият имейл и лична информация не се разкриват от платформата, въпреки че текстовите отговори, които предоставяте във въпросниците, и отговорите на отворените въпроси са публично достъпни. Не включвайте лична информация в отговорите си, която не желаете да бъде публично достъпна.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Diversity Statement
+                                <h2 class="mt-4 mb-4">Декларация за разнообразието
                                 </h2>
                             </div>
                             <div class="col-12">
-                                We encourage everyone to participate and are committed to building a community for all. Although this list cannot be exhaustive, we explicitly honor diversity in age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected characteristics above, including participants with disabilities.
+                                Ние насърчаваме всички да участват и се ангажираме да изградим общност приемлива за всеки. Въпреки че този списък не може да бъде изчерпателен, ние изрично почитаме разнообразието във възраст, род, полова идентичност или изразяване, култура, етническа принадлежност, език, национален произход, политически убеждения, професия, раса, религия, сексуална ориентация, социално-икономически статус и технически способности. Ние няма да толерираме дискриминация въз основа на някоя от характеристиките включени по-горе, както и такава насочена към участници с увреждания.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Excluding inappropriate content
+                                <h2 class="mt-4 mb-4">Премахване на съдържание, което не отговаря на този кодекс за поведение
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Platform facilitators will periodically review contributions posted by participants. Facilitators can exclude inappropriate content from the platform, and explain reasons for exclusion to the author of the excluded content.
+                                Фасилитаторите на платформата периодично ще преглеждат идеите, публикувани от участниците. Фасилитаторите имат право да премахват съдържание, което не отговаря на този кодекс за поведение от Платформата и да обяснят на автора причините за премахването на това съдържание.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Reporting Issues
+                                <h2 class="mt-4 mb-4">Докладване на проблеми
                                 </h2>
                             </div>
                             <div class="col-12">
-                                If you experience or witness unacceptable behavior, or have any other concerns, please report it by contacting the organisers at info@scify.org
+                                Ако бъдете подложен/а или станете свидетел на неприемливо поведение, или имате някакви други притеснения, моля, съобщете за това, като се свържете с организаторите на info@scify.org
                                 <br><br>
-                                All reports will be handled with discretion. In your report please include:<br>
-                                - Your contact information.<br>
-                                - The questionnaire response that you wish to report. Provide the name of the project, the question and the answer’s text that you want to report.
+                                Всички подобни сигнали ще се обработват при пълна конфиденциалност. Във Вашия сигнал, моля, включете:<br>
+                                - Вашата информация за контакт.<br>
+                                - Отговорът на въпросника, който желаете да докладвате. Посочете името на проекта, въпроса и текста на отговора, за който искате да докладвате.
                                 <br><br>
-                                After filing a report, a representative will contact you personally, review the incident, follow up with any additional questions, and make a decision as to how to respond.
+                                След подаване на сигнал, наш представител ще се свърже с Вас лично, ще прегледа случая, ще разгледа възможни допълнителни въпроси и ще вземе решение как да отговори.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Attribution & Acknowledgements</h2>
+                                <h2 class="mt-4 mb-4">Позоваване и благодарности</h2>
                             </div>
                             <div class="col-12">
-                                This code of conduct has used elements of the Code of Conduct from the <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
+                                Този кодекс използва елементи от Кодекса на поведение на <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
                             </div>
                         </div>
                     </div>
