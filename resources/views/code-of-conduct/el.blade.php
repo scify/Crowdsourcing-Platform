@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>CODE OF CONDUCT</h1>
+                    <h1>Κώδικας δεοντολογίας</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,62 +14,60 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <p>As a crowdsourcing platform we welcome everyone, and encourage a friendly and positive environment.
-                                    This code of conduct outlines our expectations from participants to ascertain successful participation, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring environment for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the Platform or their responses can be deleted.
-                                During your participation in crowdsourcing projects:
+                                <p>Σαν πλατφόρμα crowdsourcing καλο δεχόμαστε όλους, και ενθαρρύνουμε ένα φιλικό και θετικό περιβάλλον.
+                                    Αυτός ο κώδικας δεοντολογίας συνοψίζει τις προσδοκίες μας από τους συμμετέχοντες για να εξασφαλίσουν την επιτυχή συμμετοχή τους, όπως και τα βήματα για να αναφέρουν μη αποδεκτή συμπεριφορά. Δεσμευόμαστε να παρέχουμε ένα φιλόξενο περιβάλλον που να εμπνέει όλους και περιμένουμε να τιμηθεί ο κώδικας δεοντολογίας μας. Ο οποιοσδήποτε παραβιάσει αυτόν τον κώδικα δεοντολογίας μπορεί να διωχθεί από την Πλατφόρμα ή μπορεί οι απαντήσεις του να διαγραφούν.
+                                    Κατά τη συμμετοχή σας σε έργα crowdsourcing:                                    
                                 </p>
                                 <ul>
                                     <li>
-                                        <strong>Be clear and relevant to the topic:</strong> Try to be precise and explain your thoughts and arguments with clarity. All answers must be relevant to the topic of the questionnaire. This will facilitate the platform’s moderators work, where they will have to analyze all given answers, categorize them and produce valuable insights that can have a positive impact οn the society.
+                                        <strong>Να είστε ξεκάθαροι και σχετικοί με το θέμα:</strong> Προσπαθήστε να είστε ακριβείς και να εξηγήσετε τις σκέψεις σας και τα επιχειρήματά σας ξεκάθαρα. Όλες οι απαντήσεις πρέπει να είναι σχετικές με το θέμα του ερωτηματολογίου. Αυτό θα βοηθήσει τη δουλειά των διαχειριστών της Πλατφόρμας, εκεί που θα πρέπει να αναλύσουν όλες τις απαντήσεις που έχουν δοθεί, να τις κατηγοριοποιήσουν και και να πάρουν πολύτιμες πληροφορίες που μπορεί να έχουν θετικό αντίκτυπο στην κοινωνία.
                                     </li>
-                                    <li><strong>Be respectful and kind:</strong> Not all of us will agree all the time, but disagreement is no excuse for poor behavior and poor manners. It’s important to remember that even though the answers you provide are anonymous, an environment where people feel uncomfortable or threatened is not a productive one. Of course harassment, insults, posting (or threatening to post) other people’s personally identifying information (“doxing”), racist or sexist terms, and other exclusionary behavior aren’t acceptable.
-                                        If you just keep “respectful and kind” in mind, you can't go wrong.
+                                    <li><strong>Να φέρεστε με σεβασμό και ευγένεια:</strong> Δε θα συμφωνούμε πάντα όλοι, αλλά το να διαφωνείς με κάποιον δεν δικαιολογεί την κακή συμπεριφορά και τους κακούς τρόπους. Είναι σημαντικό να θυμάστε πως παρόλο που οι απαντήσεις που παρέχετε είναι ανώνυμες, ένα περιβάλλον στο οποίο τα άτομα αισθάνονται άβολα ή να απειλούνται δεν είναι παραγωγικό. Φυσικά η παρενόχληση, οι προσβολές, η ανάρτηση (ή η απειλή ανάρτησης) προσωπικών στοιχείων ταυτοποίησης άλλων ατόμων (“doxing”), ρατσιστικοί ή σεξιστικοί όροι, και όποια άλλη συμπεριφορά αποκλεισμού δεν είναι αποδεκτή. Αν απλώς έχετε στο μυαλό σας το ‘σεβασμός κι ευγένεια’, δε θα γίνει λάθος.
                                     </li>
-                                    <li><strong>Remember that your contribution is public:</strong>Your email and any personal information is not revealed by the platform.  Though the textual answers you provide in the questionnaires, the answers to open-ended questions, may be publicly available. Do not include any personal information in your responses that you do not wish to be publicly available.
+                                    <li><strong>Θυμηθείτε πως η συνεισφορά σας είναι δημόσια:</strong> Το email και η οποιαδήποτε προσωπική πληροφορία σας δεν αποκαλύπτονται από την πλατφόρμα. Οι απαντήσεις κειμένου όμως που παρέχετε στα ερωτηματολόγια, οι απαντήσεις στις ερωτήσεις ανοιχτού τύπου, μπορεί να είναι δημοσίως διαθέσιμες. Μην περιλαμβάνετε στις απαντήσεις σας την όποια προσωπική πληροφορία δε θέλετε να είναι δημοσίως διαθέσιμη.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Diversity Statement
+                                <h2 class="mt-4 mb-4">Δήλωση Διαφορετικότητας
                                 </h2>
                             </div>
                             <div class="col-12">
-                                We encourage everyone to participate and are committed to building a community for all. Although this list cannot be exhaustive, we explicitly honor diversity in age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected characteristics above, including participants with disabilities.
+                                Ενθαρρύνουμε όλους να συμμετέχουν και δεσμευόμαστε φτιάξουμε μια κοινότητα για όλους. Αν και αυτή η λίστα δε μπορεί να είναι εξαντλητικός, τιμούμε ρητά τη διαφορετικότητα ως προς την ηλικία, το φύλο, την ταυτότητα ή την έκφραση του φύλου, την κουλτούρα, την εθνικότητα, τη γλώσσα, την εθνική καταγωγή, το πολιτικά πιστεύω, το επάγγελμα, τη φυλή, τη θρησκεία, το σεξουαλικό προσανατολισμό το κοινωνικοπολιτικό στάτους και την τεχνική ικανότητα. Δε θα ανεχτούμε διακρίσεις βασισμένες σε οποιοδήποτε από τα παραπάνω προστατευόμενα χαρακτηριστικά, συμπεριλαμβανομένων και συμμετεχόντων με αναπηρίες.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Excluding inappropriate content
+                                <h2 class="mt-4 mb-4">Αποκλεισμός ακατάλληλου περιεχομένου
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Platform facilitators will periodically review contributions posted by participants. Facilitators can exclude inappropriate content from the platform, and explain reasons for exclusion to the author of the excluded content.
+                                Οι διαχειριστές της Πλατφόρμας θα επιθεωρούν περιοδικά τις συνεισφορές που αναρτούν οι συμμετέχοντες. Οι διαχειριστές μπορούν να αποκλείσουν ακατάλληλο περιεχόμενο από την Πλατφόρμα, και να εξηγήσουν τους λόγους του αποκλεισμού στο συγγραφέα του αποκλεισμένου περιεχομένου.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Reporting Issues
+                                <h2 class="mt-4 mb-4">Αναφορά προβλημάτων
                                 </h2>
                             </div>
                             <div class="col-12">
-                                If you experience or witness unacceptable behavior, or have any other concerns, please report it by contacting the organisers at info@scify.org
+                                Αν βιώσετε ή γίνετε μάρτυρας μη αποδεκτής συμπεριφοράς, ή έχετε κάποια άλλη ανησυχία, παρακαλούμε αναφέρετέ το επικοινωνώντας με τους διοργανωτές στο info@scify.org
                                 <br><br>
-                                All reports will be handled with discretion. In your report please include:<br>
-                                - Your contact information.<br>
-                                - The questionnaire response that you wish to report. Provide the name of the project, the question and the answer’s text that you want to report.
+                                Όλες οι αναφορές θα χειρίζονται με διακριτικότητα. Παρακαλούμε στην αναφορά σας να συμπεριλαμβάνεται:<br>
+                                - Τα στοιχεία επικοινωνίας σας.<br>
+                                -  Η απάντηση ερωτηματολογίου που θα θέλατε να αναφέρετε. Δώστε το όνομα του πρότζεκτ, το κείμενο της ερώτησης και της απάντησης που θα θέλατε να αναφέρετε.
                                 <br><br>
-                                After filing a report, a representative will contact you personally, review the incident, follow up with any additional questions, and make a decision as to how to respond.
-
+                                Αφού συμπληρώσετε μια αναφορά, ένας εκπρόσωπος θα επικοινωνήσει προσωπικά μαζί σας, θα επιθεωρήσει το περιστατικό, ακολουθήστε τυχόν πρόσθετες ερωτήσεις, και θα πάρει μια απόφαση σχετικά με τον τρόπο απόκρισης.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Attribution & Acknowledgements</h2>
+                                <h2 class="mt-4 mb-4">Απόδοση και Ευχαριστίες</h2>
                             </div>
                             <div class="col-12">
-                                This code of conduct has used elements of the Code of Conduct from the <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
+                                Αυτός ο κώδικας δεοντολογίας έχει χρησιμοποιήσει στοιχεία του Κώδικα Δεοντολογίας από το <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
                             </div>
                         </div>
                     </div>

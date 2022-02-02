@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>ПОЛИТИКА ЗА ПОВЕРИТЕЛНОСТ</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,194 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                Настоящата Политика за поверителност се прилага за всички потребители на Платформата (наричани по-долу <b>“Потребители”</b> или <b>“Потребител”</b> и <b>“Платформа”</b> съответно) и представлява неразделна част от Общите условия на уебсайта на Платформата. Настоящата Политика за поверителност предоставя на Потребителя обща информация относно това как Администраторът на лични данни използва вашите лични данни и друга информация, изисквана от законодателството за защита на данните. В случай на бъдещо изменение, Потребителят ще получи необходимите актуализации и информация чрез актуализацията на настоящата Политика за поверителност, качена в Платформата.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Кой е Администраторът на данни?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> Фирмата с фирмено наименование “НАУКА ЗА ВАС”, адрес: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Параскеви, Гърция, Телефон: +302114004192, имейл: info@scify.org, е администраторът на данни за обработката на личните данни на потребителя (наричан по-долу <b>"Администратор на данни"</b>).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Данни за контакт на администратора на данни: За всеки проблем или притеснение по отношение на настоящата Политика за поверителност и обработката на лични данни на потребителя или данни, качени от Потребителя за използване на Платформата, Потребителят може да се свърже с Администратора на данни, като използва един от следните начини:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
+                                Като се обади на +302114004192, от понеделник до петък от 10.00 до 18.00 часа. EET (Източноевропейско време)<br>
+                                Като изпрати имейл на следния имейл адрес: info@scify.org<br>
+                                Като изпрати кореспонденция на следния адрес: TEPA Lefkippos - NCSR Demokritos 27,
                                 Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Каква е целта и правното основание за обработката на данните на Потребителя?</h2>
+                                <b>2.1.</b> Оперативната цел на Платформата е да събира мнения на потребителите чрез въпросници. Мненията се обработват с цел получаване на познания, събиране и представяне на ценни идеи и предложения по темите, разглеждани във въпросниците. Потребителите могат да отговарят анонимно (без да предоставят лична информация) или могат доброволно да се регистрират, за да подават персонално идентифицирани отговори, като предоставят имейл и псевдоним. Отговорите на Потребителя се превеждат на английски и могат да бъдат включени в отчети. За конкретната цел на обработването, правното основание е предварителното съгласие на Потребителя.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Да изпраща информативни имейли на Потребителя с цел да го информира за нови дейности, проекти и други въпроси от интерес за Платформата. Предварителното съгласие на Потребителя е правното основание за тази цел на обработката на данните.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Обработка на данни по причини, свързани със спазването на законовите задължения от страна на Администратора на данни. В такива случаи обработването на данни се извършва само за необходимия период от време, за да може Администраторът на данни да изпълни задълженията, наложени от различни законови разпоредби.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>В горните случаи, когато правното основание е предварителното съгласие на Потребителя, Потребителят има право да оттегли това съгласието си по всяко време, без да засяга легитимността на данните, основани на съгласието преди неговото оттегляне.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Видове събирани данни</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Лични данни</h3>
+                                <b>3.1.1 Регистрация - създаване на акаунт:</b><br>
+                                За да може Потребителят да създаде доброволно акаунт в Платформата, Потребителят трябва да попълни необходимите данни: псевдоним, имейл адрес и парола
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Подадени отговори на въпросника</b><br>
+                                Платформата събира потребителски отговори (тоест мнения по различни теми) на въпроси, направени чрез въпросниците на Платформата. Тези отговори се анализират и представят на страница с резултати от въпросника. Призоваваме Потребителя да спазва стриктно Кодекса за поведение за успешно участие на Платформата и да избягва публикуването на всякакви лични данни, които не желаят да бъдат публично достъпни в Платформата.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. Свързване на Платформата с Потребителя по причини, свързани с разрешеното от Потребителя използване на Платформата.</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
+                                За да може Платформата да комуникира с Потребителя за горните цели, Администраторът на данни може да обработва всички данни, свързани с акаунта на Потребителя, каченото съдържание и данните, свързани с използването на Платформата от Потребителя.
 
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
-
-
+                                <h3 class="mt-4 mb-4">3.2 Данни за употреба</h3>
+                                Можем също така да събираме информация как се осъществява достъп и как се използва уеб страницата („Данни за използване“). Тези данни за използване може да включват информация като адреса на интернет протокола на вашия компютър (напр. IP адрес), тип браузър, версия на браузъра, страниците на нашата уеб страница, които посещавате, часа и датата на вашето посещение, времето, прекарано на тези страници, уникални идентификатори на устройства и други диагностични данни.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Как Платформата събира данни</h2>
+                                4.1 Информацията може да бъде събрана по следните начини: <br>
+                                4.1.1 Когато Потребителят се регистрира и създаде акаунт в Платформата. <br>
+                                4.1.2 Когато Потребителят подаде отговори на въпросниците на Платформата <br>
+                                4.1.3 Когато Потребителят посети Платформата и се съгласи с инсталирането на бисквитки (съгласно Политиката за бисквитки на Платформата в член 11 по-долу) и с събирането на лични данни на Потребителя, като IP адрес, операционна система, тип и издание на браузъра и т.н.
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Колко време се съхраняват данните на потребителя и кога се изтриват?</h2>
+                                <b>5.1. Данни за акаунта на потребителя:</b><br>
+                                Без да се засяга посоченото по-долу право на изтриване/премахване на Потребителя, данните, регистрирани и съхранени в акаунта на Потребителя, ще бъдат съхранявани, докато Потребителят желае да използва Платформата за целта, посочена по-горе. В случай, че Потребител желае да изтрие акаунта си, той може да изтрие акаунта си чрез настройките на акаунта или да се свърже с Администратора на данни на посочените по-горе данни за контакт.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. Свързване на Платформата с Потребителя по причини, свързани с разрешеното от Потребителя използване на Платформата.</b><br>
+                                Данните, свързани с такава комуникация, ще се съхраняват само докато Потребителят желае да използва Платформата и поддържа своя акаунт. В случай, че Потребител желае да изтрие акаунта си, той може да изтрие акаунта си чрез настройките на акаунта или да се свърже с Администратора на данни на посочените по-горе данни за контакт.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Статистически анализ за оптимизация на Уебсайта</b><br>
+                                Независимо от гореспоменатите разпоредби на член 5, Администраторът на данни ще съхранява и обработва само необходимите данни и само за периода, който е необходим, за да изпълни своите задължения, наложени от закона (спазване на фискални задължения и т.н.).
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Обработка на лични данни за целите на провеждане на статистически анализ.</b><br>
+                                Моля, вижте политиката за бисквитки (член 11) по-долу.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Какви са правата на Потребителя във връзка с обработката на неговите данни и как може да упражни тези права?</h2>
+                                <b>6.1</b> Администраторът на данни зачита правото на потребителя във връзка с обработката на данни.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> Потребителят може да упражни правата си, като се свърже с Администратора на данни на следните данни за контакт: Телефон: +302114004192, имейл: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                За улеснение на Потребителя, правата на потребителя са включени в следващата таблица заедно с кратко обяснение на всяко право (позоваването на членове съответства на член от GDPR 2016/679):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Право</th>
+                                        <th>Обяснение</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Достъп (чл. 15)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            Потребителят може да поиска от Администратора на данни:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
+                                                <li>да потвърди дали Администраторът на данни обработва личните данни на Потребителя
                                                 </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>да предостави на Потребителя достъп до данни, с които Потребителят не разполага</li>
+                                                <li>да предостави на Потребителя друга информация, свързана с личните данни на Потребителя, като например кои са данните, с които Администраторът на данни разполага, какви са целите на обработването, на кого се разкриват тези данни, дали тези данни се прехвърлят в чужди държави и как са тези данни защитени, колко време се съхраняват данните, какви са правата на Потребителя, как може да се подаде жалба, откъде са взети данните, доколкото тази информация не е включена в настоящата Политика за поверителност.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Коригиране (чл. 16)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            Потребителят може да поиска от Администратора на лични данни да коригира неточни лични данни.<br><br>
+                                            Администраторът на данни има право да провери точността на данните, преди да ги коригира.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Премахване/изтриване (чл.17)
+                                            </td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            Потребителят може да поиска от Администратора на лични данни да изтрие личните му данни:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>винаги, когато личните данни вече не са необходими за целите, за които са били събрани
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>когато Потребителят оттегли съгласието си</li>
+                                                <li>когато личните данни са били обработвани неправомерно</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            Администраторът на лични данни не е длъжен да изпълни искането на Потребителя за изтриване на личните му данни, ако обработката на личните данни на Потребителя е необходима:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>за спазване на законово задължение</li>
+                                                <li>за изпълнение на друга легитимна цел или друго легитимно правно основание
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>за установяване, упражняване или защита на правни искове.</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Ограничаване (чл. 18)</td>
                                         <td>
 
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            Потребителят може да поиска от Администратора на данни да ограничи (т.е. да съхранява, но не да обработва) личните му данни, когато:<br><br>
+                                            тяхната точност се оспорва (виж Коригиране), така, че Администраторът на данни да може да провери точността на личните данни или<br><br>
+                                            личните данни са били неправомерно използвани, но Потребителят се противопоставя на изтриването им или<br><br>
+                                            те вече не са необходими за целите, за които са събрани, но Потребителят все още се нуждае от тях за установяване, упражняване или защита на правни искове или има друга легитимна цел на обработване или друго правно основание.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Преносимост на данните (чл. 20)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Когато обработването се основава на съгласие и обработването се извършва по автоматизирани средства, Потребителят може да поиска от Администратора на данни да получи личните си данни в структуриран, често използван и машинно четим формат или да поиска от Администратора на данни да ги предаде директно към друг администратор. Въпреки това, съгласно закона, това право се отнася само до тези данни, които са предоставени от самия Потребител, а не до тези данни, които са изведени от Администратора на лични данни въз основа на данните, които Потребителят е предоставил.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Възражение (чл. 21)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
-
+                                            Потребителят може по всяко време да възрази срещу обработването на лични данни, отнасящи се до него или нея, което се основава на легитимен интерес или изпълнение на задача, извършена в обществен интерес.<br><br>
+                                            Когато Потребителят упражни правото си на възражение, Администраторът на данни има право да докаже, че са налични неоспорими законни основания за обработването на данни, които имат предимство над интереса, правата и свободите на Потребителя или над установяването, упражняването или защитата на правни искове.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Оттегляне на съгласие
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            Когато съгласието  на Потребителя е в основата на обработката на данните, Потребителят има право да го оттегли. Оттеглянето е валидно само за бъдещо обработване на данните.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Надзорен орган
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            Потребителят има право да подаде жалба до местния надзорен орган, свързан със защитата на данните. <br><br>
+                                            В Гърция надзорният орган за защита на данните е Органът за защита на данните, https://www.dpa.gr/
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Самоличност</td>
+                                        <td>Администраторът на данни се отнася сериозно към поверителността на всички файлове, които включват лични данни, поради което той има право да поиска от Потребителя доказателство за неговата самоличност, ако Потребителят подаде искане във връзка с тези файлове.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Разходи</td>
+                                        <td>Потребителят няма да плаща за упражняването на правата си във връзка с лични данни, освен ако, съгласно предвиденото в закона, искането за достъп до информация е неоснователно или прекомерно. В този случай Администраторът на данни може да начисли на Потребителя разумна такса съобразена с конкретните обстоятелства. Администраторът на данни ще информира Потребителя за евентуално таксуване, преди да завърши заявката.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Срокове</td>
+                                        <td>Администраторът на данни ще се стреми да отговори на валидни искания на Потребителя най-късно в рамките на един (1) месец от получаването им, освен ако заявката е изключително сложна или Потребителят е подал множество искания, в който случай Администраторът на данни ще се стреми да отговори на тях в рамките на три месеца . В случай, че Администраторът на данни се нуждае от повече от един месец поради горепосочените причини, той ще информира Потребителя. Администраторът на данни има право да попита Потребителя да обясни какво точно желае да получи или какво го интересува. Това ще помогне на администратора на данни да действа по-бързо във връзка с искането на потребителя. Във всеки случай, Потребителят трябва да посочи конкретни и верни данни и/или факти, за да може Администраторът да отговори и/или да удовлетвори точно искането на Потребителя. В противен случай Администраторът на данни не може да носи отговорност за всякакви грешки, които са извън неговия контрол. Освен това, Администраторът на данни може да отхвърли искания, които са неоснователни, прекомерни, злоупотребяващи, направени недобросъвестно или са извън рамките на законовите разпоредби.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,202 +210,130 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Как се гарантира сигурността на данните?</h2>
+                                <b>7.1</b> Администраторът на лични данни прилага всички подходящи мерки за сигурност, за да гарантира защитата и поверителността на личните данни, което включени следното:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Силни политики за пароли във всички сървъри</li>
+                                    <li>HTTPS протокол за взаимодействие с API и уеб клиенти</li>
+                                    <li>SSH протокол за връзка със сървъра</li>
+                                    <li>Периодични актуализации на сървъра с най-новите корекции на сигурността</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Моля, имайте предвид, че само специално упълномощени служители на Администратора на данни, действащи под ръководството на Администратора на данни и само по негови инструкции, както и получателите, където е необходимо, обработват данните, предоставени от Потребителя. За обработката Администраторът на данни избира лица с подходяща квалификация, които имат достатъчни гаранции по отношение на техническите познания и личен интегритет, за да защитят поверителността на данните. Администраторът на лични данни предприема всички необходими мерки за сигурност за защита и защита на поверителността, поверителността и целостта на личните данни, в това число чрез съответните договорни ангажименти със своите сътрудници. Във всеки случай сигурността на Уебсайта може да бъде нарушена поради причини, които са извън сферата на контрола на Администратора на данни, както и поради технически или друг проблем в мрежата или форсмажорни обстоятелства или случайни факти. В този случай сигурността на личните данни не може да бъде гарантирана.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Кои са получателите на данни?</h2>
+                                <b>8.1</b> Получатели на лични данни на Потребителя са асоциирани фирми, които предоставят техническа инфраструктура за функционирането на Уебсайта, доставчик на хостинг, както и дружеството, което се задължава да изпраща електронни съобщения, свързани с функционирането на Платформата, до Потребителите. Когато е необходимо съгласно приложимите закони, Администраторът на данни ще подписва споразумения с такива компании, които се отнасят до прилагането и редовното наблюдение на мерките за сигурност. В случай, че данните се прехвърлят извън ΕU, налице са всички необходими гаранции.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> В случай, че Администраторът на лични данни получи искане за уведомяване или прехвърляне на данни след получаване на искане от съответния административен орган, адвокат, съд или друг орган, той има право да уведоми/прехвърли тези данни, за да изпълни задължението си, изпълнено в полза на обществения интерес спрямо тези органи (със или без предварително уведомление на Потребителя) в съответствие със съответните законови разпоредби. Ако Потребителят трябва да бъде предварително уведомен в съответствие със законовите разпоредби, тогава Потребителят има право да възрази срещу тази обработка, както е предвидено в член 7 по-горе.
+                                <br><br>
+                                <b>8.3.</b> Относно професионалните данни на всеки Потребител, те са достъпни за всички регистрирани Потребители на платформата за целите, посочени по-горе.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
-                                Email: info@scify.org
+                                <h2 class="mt-4 mb-4">9. Комуникация с администратора на данни</h2>
+                                <b>9.1.</b> За всеки проблем, свързан с настоящата политика за поверителност, обработката на данни на Потребителя, както и упражняването на правата на Потребителя, Потребителят може да се свърже с Администратора на лични данни по един от следните начини: <br>
+                                Телефон: +302114004192, <br>
+                                Имейл: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                В случай, че Потребителят узнае за случай с нарушаване на данните, молим го любезно да уведоми незабавно Администратора на лични данни.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> Настоящите условия се уреждат и допълват от Общите условия и заедно с тях представляват единен текст.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
-
-
+                                <h2 class="mt-4 mb-4">10. Връзка с други уебсайтове/социални медии</h2>
+                                Този уебсайт се свързва с други уебсайтове чрез хипервръзки. Тези уебсайтове не са свързани с уебсайта на Администратора на данни и тяхното съдържание нито се проверява, нито препоръчва от Администратора на данни. Точността, легитимността, пълнотата или качеството на тяхното съдържание и легитимността на обработката на личните данни на потребителя не се проверяват и не се гарантират от Администратора. Администраторът на данни не може да носи отговорност за тях или каквито и да било щети, които могат да бъдат причинени на Потребителя поради или след тяхното използване. Администраторът на данни не може да проверява обработването на личните данни на Потребителя от тези свързани уебсайтове и не носи никаква отговорност за това. Когато Потребителят осъществява достъп до тези уебсайтове, той трябва да има предвид, че се прилагат правилата и условията на всеки уебсайт. За всеки проблем, който може да възникне по отношение на съдържанието или използването на свързания уебсайт, Потребителят трябва директно да се свърже с оператора или администратора на съответния уебсайт. Администраторът на данни не дава съгласие или одобрение за съдържанието или услугите на свързаните уебсайтове, до които Потребителят осъществява достъп чрез Уебсайта..<br><br>
+                                Уебсайтът дава на Потребителя възможност да се свързва и да взаимодейства със социалните медии по своя собствена инициатива и воля. В този случай, Администраторът на данни не носи отговорност за обработката на данните на Потребителя, извършвана чрез или от социалните медии. Потребителят трябва директно да се обърне към всяка конкретна социална медия, за да упражни своите законни права.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                <h2 class="mt-4 mb-4">11. Бисквитки</h2>
+                                11.1. Платформата използва бисквитки, с цел да бъде оперативна или по-ефективна в работата си, да подобри навигацията на Потребителя, да предостави на Потребителя пълния потенциал на Платформата, да осигури правилното показване на съдържанието, както и за аналитични и статистически цели.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Бисквитките са малки текстови файлове, съхранявани на компютъра на Потребителя, когато той посещава цифрова платформа, които се използват като средство за идентифициране на неговия компютър.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Бисквитките, освен абсолютно тези, които са необходими, се инсталират само ако Потребителят приеме инсталирането им, когато посети тази Платформа. С приемането на бисквитки при влизане в тази Платформа, Потребителят изрично заявява, че е прочел и разбрал специфичните правила и условия относно инсталирането, функцията и предназначението на бисквитките и че дава своето съгласие за използването им.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Като алтернатива, Потребителят може да не приема бисквитки. В този случай ще бъдат инсталирани само бисквитките, които са технически и функционално необходими за функционирането на Платформата.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. Потребителят може да управлява използването и инсталирането на бисквитки по всяко време чрез панел, където може да избере коя категория бисквитки желае да приеме и кои не (или да поиска да инсталира само технически необходимите бисквитки).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. По-специално бисквитките, използвани от Платформата, са следните:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Тип бисквитка</th>
+                                        <th>Обяснение</th>
+                                        <th>Пример на бисквитка</th>
+                                        <th>Продължителност на бисквитката</th>
+                                        <th>Прехвърляне на данни към трети страни</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Абсолютно необходими</td>
+                                        <td>Абсолютно необходимите бисквитки са от съществено значение за правилното функциониране на Платформата. Тези бисквитки позволяват на потребителя да разглежда и използва функции на платформата, като достъп до защитени зони. Тези бисквитки не разпознават индивидуалната самоличност на потребителя и без тях гладкото функциониране на Платформата не е възможно.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>CookieConsent (Съхранява състоянието на съгласие за бисквитки на потребителя за текущия домейн)
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (Гарантира сигурността при сърфиране на посетителите, като предотвратява фалшифициране на заявки между сайтове. Тази бисквитка е от съществено значение за сигурността на уебсайта и посетителя.)
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
-
+                                            ecas_lets_crowdsource_our_future_session (Когато приложението трябва да „запомни“ влезлия потребител, докато той ползва Платформата)
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            Crowdsourcing_anonymous_user_id (използва се за съхраняване на анонимни отговори във въпросниците чрез присвояване на цяло число на потребителя, който изпраща отговора)
                                         </td>
-                                        <td>1 year
+                                        <td>1 година
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 година
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            По време на сесията
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 години
                                         </td>
-                                        <td>No
+                                        <td>Не
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Не
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Не
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Не
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Статистически и аналитични бисквитки</td>
+                                        <td>Това са бисквитки, които оценяват начина, по който посетителите използват Платформата (например кои страници се посещават по-често и дали получават съобщения за грешка от уеб страници). Тези бисквитки се използват за статистически цели и за подобряване на производителността на една платформа.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Бисквитките на Google Analytics се използват за измерване на трафика в Платформата. Записва се уникален текстов низ за идентифициране на браузъра, времевата марка за взаимодействия и браузъра/изходната страница, която е довела потребителя до Платформата. Не се запазва чувствителна информация.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 години
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 минута
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 години
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 месеца
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 часа
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Да (компанията, която предоставя статистически и аналитични услуги, ако се счита за трета страна)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +341,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Политика на поверителността за децата  </h2>
+                                Нашият проект не е насочен към никого на възраст под 18 години („Деца“). Ние не събираме с наше знание лична информация от лица под 18-годишна възраст. Ако сте родител или настойник и знаете, че вашите деца са ни предоставили лични данни, моля, свържете се с нас. Ако разберем, че сме събрали лични данни от деца без проверка на съгласието на родителите, ние предприемаме стъпки, за да премахнем тази информация от нашите сървъри.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Изменения в тази Политика за поверителност </h2>
+                                Администраторът на данни си запазва правото да изменя настоящата Политика за поверителност, например когато това е необходимо, за да се съобразят с нови изисквания, наложени от приложими закони, насоки или технически изисквания, или в хода на преразглеждане на процесите и практиките на Администратора на лични данни. Потребителят ще бъде уведомен за всяко изменение на тази Политика за поверителност чрез Платформата. Потребителят трябва редовно да проверява тази Политика за поверителност за евентуални изменения.
                             </div>
                         </div>
                     </div>

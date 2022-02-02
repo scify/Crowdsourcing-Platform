@@ -41,7 +41,7 @@
                                         and other exclusionary behavior aren’t acceptable.
                                         If you just keep “respectful and kind” in mind, you can't go wrong.
                                     </li>
-                                    <li><strong>Remember that your contribution is public:</strong>Your email and any
+                                    <li><strong>Remember that your contribution is public:</strong> Your email and any
                                         personal information is not revealed by the platform. Though the textual answers
                                         you provide in the questionnaires, the answers to open-ended questions, may be
                                         publicly available. Do not include any personal information in your responses
