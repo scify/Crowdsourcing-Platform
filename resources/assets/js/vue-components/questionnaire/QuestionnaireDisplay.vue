@@ -228,6 +228,10 @@ export default {
           questionnaireResponded.modal({backdrop: 'static'});
           $("#pyro").addClass("pyro-on");
         }
+        window.setTimeout(function () {
+          //dirty fix. For some reason the class modal-open is missing from the body in some cases at chrome
+          $("body").addClass("modal-open");
+        }, 300);
       } else {
         //close all modals
         $('.modal').modal('hide');
