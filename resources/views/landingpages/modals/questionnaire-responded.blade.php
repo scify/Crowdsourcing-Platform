@@ -1,5 +1,5 @@
 <div class="modal fade" id="questionnaire-responded" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             @if (\Illuminate\Support\Facades\Auth::check())
                 <div class="modal-header">
