@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>ADATVÉDELMI POLITIKA</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,197 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                A jelen Adatvédelmi szabályzat a Platform valamennyi Felhasználójára (a továbbiakban: <b>“Felhasználók”</b> vagy <b>“Felhasználó”</b> illetve <b>“Platform”</b>) vonatkozik, és a Platform Honlap Általános Szerződési Feltételeinek szerves részét képezi. A jelen Adatvédelmi szabályzat általános tájékoztatást nyújt a Felhasználónak arról, hogy az Adatkezelő hogyan használja fel az Ön személyes adatait, valamint az adatvédelmi jogszabályok által előírt egyéb információkról. A jövőbeni módosítások esetén a Felhasználó a szükséges frissítéseket és információkat a jelen Adatvédelmi Szabályzatnak a Platformra feltöltött frissítésén keresztül kapja meg.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Ki az adatkezelő?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> A "SCIENCE FOR YOU" cégnévvel rendelkező társaság, cím: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Görögország , Telefon: +302114004192, email:
+                                info@scify.org, Felhasználó személyes adatainak feldolgozásáért felelős adatkezelő (a továbbiakban <b>"Adatkezelő"</b>).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Az adatkezelő elérhetőségei:</b> A jelen Adatvédelmi Szabályzattal és a Felhasználó személyes adatainak vagy a Felhasználó által a Platform használatához feltöltött adatoknak a feldolgozásával kapcsolatos bármilyen kérdés vagy aggály esetén a Felhasználó az alábbi alternatívák egyikén keresztül léphet kapcsolatba az Adatkezelővel:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                Telefonon a +302114004192-es telefonszámon, hétfőtől péntekig 10.00 és 18.00 óra között (Kelet-európai idő szerint)<br>
+                                E-mailben a következő e-mail címen: info@scify.org<br>
+                                Postai levelet a következő címre küldhet: TEPA Lefkippos - NCSR Demokritos 27,
+                                Neapoleos, 153 41 Ag. Paraskevi, Görögország<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Mi a célja és jogalapja az adatfeldolgozásnak?</h2>
+                                <b>2.1.</b> A platform működési célja a felhasználók véleményének összegyűjtése kérdőívek segítségével. A véleményeket feldolgozzuk, hogy betekintést nyerjünk, értékes ötleteket és javaslatokat gyűjtsünk és nyújtsunk be a kérdőívekben tárgyalt témákkal kapcsolatban. A felhasználók névtelenül (személyes adatok megadása nélkül) válaszolhatnak, vagy önkéntesen regisztrálhatnak, hogy névre szóló válaszokat adhassanak, egy e-mail cím és egy becenév megadásával. A felhasználók válaszait angolra fordítjuk, és jelentésekben mutatjuk be. Az adatkezelés konkrét céljára a jogalap a Felhasználó előzetes hozzájárulása.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Információs e-mailek küldése a Felhasználónak, hogy tájékoztassa őt a Platform új tevékenységeiről, projektjeiről és egyéb, a Platformot érintő kérdésekről. Az adatkezelés e céljának jogalapja a Felhasználó előzetes hozzájárulása.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Adatkezelés az Adatkezelő jogi kötelezettségeinek teljesítésével kapcsolatos okokból. Ilyen esetekben az adatkezelés csak annyi ideig történik, amennyi ahhoz szükséges, hogy az Adatkezelő eleget tegyen a különböző jogi rendelkezések által előírt kötelezettségeknek.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>A fenti rendelkezések esetében, ahol a jogalap a Felhasználó előzetes hozzájárulása, a Felhasználó bármikor visszavonhatja hozzájárulását anélkül, hogy a visszavonás előtti hozzájáruláson alapuló adatok jogszerűségét befolyásolná.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Az összegyűjtött adatok típusai</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Személyes adatok</h3>
+                                <b>3.1.1 Regisztráció - fiók létrehozása:</b><br>
+                                Ahhoz, hogy a Felhasználó önkéntesen fiókot hozzon létre a Platformon, a Felhasználónak ki kell töltenie a szükséges adatokat: becenevét, e-mail címét és jelszavát.
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Beküldött kérdőíves válaszok</b><br>
+                                Platform összegyűjti a felhasználók válaszait (azaz véleményét különböző témákról) a Platform kérdőívein keresztül feltett kérdésekre. Ezeket a válaszokat elemzik és egy kérdőív eredményoldalon mutatják be. A Felhasználónak szigorúan be kell tartania a Platformon "a sikeres részvételre vonatkozó magatartási kódex" tartalmát, továbbá el kell kerülniük olyan személyes adatok nyilvános közzétételét, amelyeket nem kíván nyilvánosan elérhetővé tenni a Platformon.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. A Platform kommunikációja a Felhasználónak a Platform engedélyezett használatával kapcsolatos okai miatt.</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
+                                Annak érdekében, hogy a Platform a fenti célokból kommunikálhasson a Felhasználóval, az Adatkezelő feldolgozhat minden, a Felhasználó fiókjával, feltöltött tartalmával és a Felhasználó Platform használatával kapcsolatos adatot.
 
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
+                                <h3 class="mt-4 mb-4">3.2 Felhasználási adatok</h3>
+                                A weboldal elérésére és használatára vonatkozó információkat is gyűjthetünk ("Használati adatok"). Ezek a használatra vonatkozó adatok olyan információkat tartalmazhatnak, mint az Ön számítógépének Internet Protocol címe (IP-cím), a böngésző típusa, a böngésző verziója, a weboldalunk meglátogatott oldalai, a látogatás időpontja és dátuma, az oldalakon töltött idő, egyedi eszközazonosítók és egyéb diagnosztikai adatok.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Hogyan gyűjti a platform az adatokat</h2>
+                                4.1 Az információk a következő módokon gyűjthetők: <br>
+                                4.1.1 Amikor a Felhasználó regisztrál és fiókot hoz létre a Platformon. <br>
+                                4.1.2 Amikor a Felhasználó a Platform kérdőíveire <br>
+                                4.1.3 Amikor a Felhasználó meglátogatja a Platformot és hozzájárul a cookie-k telepítéséhez (a Platform cookie-irányelvei szerint a 11. cikkben foglaltak szerint) és a Felhasználó személyes adatainak, mint például az IP-cím, az operációs rendszer, a böngésző típusa és kiadása stb. gyűjtéséhez
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Mennyi ideig tárolják a Felhasználó adatait, és mikor törlik azokat?</h2>
+                                <b>5.1. Felhasználó fiókjának adatai:</b><br>
+                                Felhasználó alábbiakban említett törlési/törlési jogának sérelme nélkül, a Felhasználó fiókjában regisztrált és tárolt adatok mindaddig tárolásra kerülnek, amíg a Felhasználó a fent említett célokra kívánja használni a Platformot. Amennyiben a Felhasználó törölni kívánja a fiókját, a fiók beállításain keresztül törölheti a fiókját, vagy kapcsolatba léphet az Adatkezelővel a fent említett elérhetőségeken.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. A Platform kommunikációja a Platform Felhasználó által engedélyezett használatával kapcsolatos okokból.</b><br>
+                                Az ilyen kommunikációval kapcsolatos adatokat csak addig tároljuk, amíg a Felhasználó használni kívánja a Platformot és fenntartja fiókját. Amennyiben a Felhasználó törölni kívánja a fiókját, a fiók beállításain keresztül törölheti a fiókját, vagy kapcsolatba léphet az Adatkezelővel a fent említett elérhetőségeken.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Statisztikai elemzés a Weboldal optimalizálása érdekében</b><br>
+                                Az 5. cikk fent említett rendelkezéseitől függetlenül az Adatkezelő csak a törvény által előírt kötelezettségeinek (pl. adókötelezettségek teljesítése, stb.) mindenkori teljesítéséhez szükséges ideig tárolja és kezeli a szükséges adatokat.
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Személyes adatok feldolgozása statisztikai elemzés elvégzése céljából.</b><br>
+                                Lásd a cookie-kra vonatkozó politikát (11. cikk ) alább.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Milyen jogai vannak a Felhasználónak az adatai feldolgozásával kapcsolatban, és hogyan gyakorolhatja ezeket a jogokat?</h2>
+                                <b>6.1</b> Az Adatkezelő tiszteletben tartja a Felhasználónak az adatkezeléssel kapcsolatos jogait.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> A Felhasználó a jogait az Adatkezelővel való kapcsolatfelvétel útján gyakorolhatja az alábbi elérhetőségeken: Telefon: +302114004192, e-mail: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Felhasználó tájékozódását támogatandó, a Felhasználó jogait az alábbi táblázat tartalmazza az egyes jogok rövid magyarázatával együtt (a cikkekre való hivatkozás megfelel a GDPR 2016/679 cikkének):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Jog</th>
+                                        <th>Magyarázat</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Hozzáférés (15. cikk)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            A Felhasználó kérheti az Adatkezelőt, hogy:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
-                                                </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>megerősítse, hogy az Adatkezelő kezeli-e a Felhasználó személyes adatait                                                </li>
+                                                <li>a felhasználó számára hozzáférést biztosítson olyan adatokhoz, amelyekkel a felhasználó nem rendelkezik</li>
+                                                <li>a Felhasználónak a Felhasználó személyes adataival kapcsolatos egyéb információkat adjon, például, hogy milyen adatokkal rendelkezik az Adatkezelő, melyek az adatkezelés céljai, kinek adják át ezeket az adatokat, továbbítják-e ezeket az adatokat külföldre és hogyan védik ezeket az adatokat, mennyi ideig tárolják az adatokat, milyen jogai vannak a Felhasználónak, hogyan lehet panaszt tenni, honnan származnak az adatok, amennyiben ezeket az információkat a jelen Adatvédelmi szabályzat nem tartalmazza.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Helyesbítés (16. cikk)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            A Felhasználó kérheti az Adatkezelőtől a pontatlan személyes adatok helyesbítését.<br><br>
+                                            Az Adatkezelő az adatok helyesbítése előtt kérheti az adatok pontosságának ellenőrzését.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Törlés/törlés (17. cikk)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            A Felhasználó kérheti az Adatkezelőtől személyes adatainak törlését:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>bármikor, amikor a személyes adatokra már nincs szükség azokhoz a célokhoz, amelyekhez azokat gyűjtötték
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>amikor a felhasználó visszavonja hozzájárulását</li>
+                                                <li>a személyes adatokat jogellenesen kezelték</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            Adatkezelő nem köteles eleget tenni a Felhasználó személyes adatainak törlésére irányuló kérésének, ha a Felhasználó személyes adatainak kezelése szükséges:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>jogi kötelezettség</li>
+                                                <li>egyéb jogos cél vagy egyéb jogos jogalap
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez.</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Korlátozás (18. cikk)</td>
                                         <td>
 
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            A Felhasználó kérheti az Adatkezelőt, hogy korlátozza (tárolja, de ne kezelje) a Felhasználó személyes adatait, ha:<br><br>
+                                            azok pontosságát vitatják (lásd helyesbítés), hogy az Adatkezelő ellenőrizhesse a személyes adatok pontosságát, vagy<br><br>
+                                            a személyes adatokat jogellenesen kezelték, de a Felhasználó tiltakozik a személyes adatok törlése ellen, vagy<br><br>
+                                            azok már nem szükségesek ahhoz a célhoz, amelyhez azokat gyűjtötték, de a Felhasználónak továbbra is szüksége van rájuk jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez, vagy az adatkezelésnek más jogszerű célja vagy egyéb jogalapja van
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Adathordozhatóság (20. cikk)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Ha az adatkezelés hozzájáruláson alapul, és az adatkezelés automatizált módon történik, a Felhasználó kérheti az Adatkezelőtől, hogy személyes adatait strukturált, általánosan használt és géppel olvasható formátumban kapja meg, vagy kérheti az Adatkezelőtől, hogy azokat közvetlenül az Adatkezelőtől továbbítsa egy másik adatkezelőnek. Mindazonáltal a törvény szerint ez a jog csak azokra az adatokra vonatkozik, amelyeket maga a Felhasználó adott meg, és nem vonatkozik azokra az adatokra, amelyeket az Adatkezelő a Felhasználó által megadott adatok alapján következtet.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Tiltakozás (21. cikk)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            A Felhasználó bármikor kifogásolhatja a rá vonatkozó személyes adatok jogos érdeken vagy közérdekű feladat végrehajtásán alapuló kezelését.<br><br>
+                                            Ha a Felhasználó él a kifogással való jogával, az Adatkezelő jogosult bizonyítani, hogy az adatkezelést olyan kényszerítő erejű jogos okok indokolják, amelyek elsőbbséget élveznek a Felhasználó érdekeivel, jogaival és szabadságával szemben, vagy jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez szükségesek.
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            A hozzájárulás visszavonása (opt-out)
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            A Felhasználónak joga van a hozzájárulásának visszavonására, amennyiben a hozzájárulás az adatkezelés alapja. A visszavonás a jövőre nézve érvényes.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Felügyeleti hatóság
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            A Felhasználónak joga van panaszt tenni a helyi adatvédelmi felügyeleti hatóságnál. <br><br>
+                                            Magyarországon az adatvédelmi felügyeleti hatóság a Nemzeti Adatvédelmi és Információszabadság Hatóság (https://www.naih.hu/).
+
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Identitás</td>
+                                        <td>Az Adatkezelő komolyan veszi a személyes adatokat tartalmazó valamennyi fájl bizalmas kezelését, ezért jogosult a Felhasználótól személyazonosságának igazolását kérni, ha a Felhasználó az említett fájlokkal kapcsolatban kérelmet nyújt be.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Költségek</td>
+                                        <td>A Felhasználónak nem kell fizetnie a személyes adatokkal kapcsolatos jogainak gyakorlásáért, kivéve, ha a törvényben előírtak szerint az információkhoz való hozzáférés iránti kérelem megalapozatlan vagy túlzott mértékű. Ebben az esetben az Adatkezelő az adott körülmények között ésszerű díjat számíthat fel a Felhasználónak. Az Adatkezelő a kérelem teljesítése előtt tájékoztatja a Felhasználót az esetleges díjról.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Menetrend</td>
+                                        <td>Az Adatkezelő a Felhasználó érvényes kéréseit legkésőbb a beérkezéstől számított egy (1) hónapon belül igyekszik megválaszolni, kivéve, ha a kérés rendkívül bonyolult, vagy a Felhasználó több kérelmet nyújtott be, amely esetben az Adatkezelő három hónapon belül igyekszik válaszolni. Amennyiben az Adatkezelőnek a fent említett okok miatt egy hónapnál hosszabb időre van szüksége, erről tájékoztatja a Felhasználót. Az Adatkezelő megkérheti a Felhasználót, hogy ha meg akarja magyarázni, hogy pontosan mit szeretne kapni, vagy mi a problémája. Ez segít az Adatkezelőnek abban, hogy gyorsabban tudjon eljárni a Felhasználó kérésével kapcsolatban. A Felhasználónak minden esetben konkrét és valós adatokat és/vagy tényeket kell megemlítenie, hogy az Adatkezelő pontosan tudjon válaszolni és/vagy eleget tudjon tenni a Felhasználó kérésének. Ellenkező esetben az Adatkezelő fenntartja magának a jogot az ellenőrzési körén kívül eső hibák esetén. Az Adatkezelő továbbá elutasíthatja az alaptalan, túlzó, visszaélésszerű, rosszhiszemű vagy a jogi rendelkezések értelmében jogellenes kérelmeket.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,202 +213,133 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Hogyan biztosított az adatbiztonság?</h2>
+                                <b>7.1</b> Az Adatkezelő minden megfelelő biztonsági intézkedést megtesz a személyes adatok védelme és bizalmas kezelése érdekében, amelyek között a következők szerepelnek:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Erős jelszószabályok minden kiszolgálón</li>
+                                    <li>HTTPS protokoll az API-kkal és webes ügyfelekkel való interakcióhoz</li>
+                                    <li>SSH protokoll a kiszolgálóhoz való csatlakozáshoz</li>
+                                    <li>Rendszeres szerverfrissítések a legújabb biztonsági javításokkal</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Felhívjuk figyelmét, hogy a Felhasználó által megadott adatokat kizárólag az Adatkezelő kifejezetten erre felhatalmazott alkalmazottai kezelik, akik az Adatkezelő felhatalmazása alapján és kizárólag az ő utasításai szerint járnak el, valamint szükség esetén a címzettek. Az adatkezeléshez az Adatkezelő megfelelő képesítéssel rendelkező személyeket választ, akik a technikai ismeretek és a személyes integritás tekintetében megfelelő garanciákkal rendelkeznek a titoktartás védelme érdekében. Az Adatkezelő minden szükséges biztonsági intézkedést megtesz a személyes adatok titkosságának, bizalmas jellegének és sértetlenségének védelme és megőrzése érdekében, a munkatársai vonatkozó szerződéses kötelezettségvállalásai révén is. A Weboldal biztonsága minden esetben sérülhet az Adatkezelő ellenőrzési körén kívül eső okok, valamint a hálózat technikai vagy egyéb problémája, vis maior vagy véletlenszerű események miatt. Ebben az esetben a személyes adatok biztonsága nem garantálható.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Kik az adatok címzettjei?</h2>
+                                <b>8.1</b> A Felhasználó személyes adatainak címzettjei a Honlap működéséhez szükséges technikai infrastruktúrát biztosító társult vállalatok, a tárhelyszolgáltató, valamint az a vállalat, amely vállalja, hogy a Platform működésével kapcsolatos elektronikus kommunikációt küld a Felhasználóknak. Amennyiben a vonatkozó jogszabályok szerint szükséges, az Adatkezelő az ilyen cégekkel olyan megállapodásokat köt, amelyek a biztonsági intézkedések végrehajtására és rendszeres ellenőrzésére vonatkoznak. Az adatok EU-n kívülre történő továbbítása esetén minden szükséges garancia rendelkezésre áll.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Amennyiben az Adatkezelő az illetékes közigazgatási hatóság, ügyvéd, bíróság vagy más hatóság megkeresése nyomán adatközlésre vagy adattovábbításra vonatkozó megkeresést kap, a megfelelő jogszabályi rendelkezésekkel összhangban (a Felhasználó előzetes értesítése mellett vagy anélkül) közérdekből e hatóságok felé teljesített kötelezettsége teljesítése érdekében az adatokat közölheti/továbbíthatja. Ha a Felhasználót a jogszabályi rendelkezésekkel összhangban előzetesen értesíteni kell, akkor a Felhasználónak joga van tiltakozni a fenti 7. cikkben foglaltak szerint az adatkezelés ellen.
+                                <br><br>
+                                <b>8.3.</b> Αs az egyes Felhasználók szakmai adatai a fent említett célokból a Platform minden regisztrált Felhasználója számára elérhetőek.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
+                                <h2 class="mt-4 mb-4">9. Kommunikáció az adatkezelővel</h2>
+                                <b>9.1.</b> jelen adatvédelmi irányelvekkel, a Felhasználó adatkezelésével, valamint a Felhasználó jogainak gyakorlásával kapcsolatos bármely kérdésben a Felhasználó az alábbi módok valamelyikén léphet kapcsolatba az Adatkezelővel: <br>
+                                Telefon: +302114004192, <br>
                                 Email: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                Amennyiben a Felhasználó tudomást szerez bármilyen adatvédelmi incidensről, kérjük, hogy haladéktalanul értesítse az Adatkezelőt.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> A jelen feltételeket az Általános Szerződési Feltételek szabályozzák és egészítik ki, és azokkal együtt egységes szöveget alkotnak.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
+                                <h2 class="mt-4 mb-4">10. Kapcsolódás más weboldalakhoz/közösségi médiához</h2>
+                                Ez a weboldal hiperhivatkozásokon keresztül kapcsolódik más weboldalakhoz. Ezek a weboldalak nem kapcsolódnak az Adatkezelő weboldalához, és tartalmukat az Adatkezelő nem ellenőrzi és nem ajánlja. Így azok tartalmának pontossága, jogszerűsége, teljessége vagy minősége, valamint a Felhasználó személyes adatainak feldolgozásának jogszerűsége nem ellenőrizhető, és nem vállalható rájuk garancia. Az Adatkezelő nem tehető felelőssé értük, illetve a használatuk miatt vagy azt követően a Felhasználónak esetlegesen okozott károkért. Az Adatkezelő nem tudja ellenőrizni a Felhasználó személyes adatainak a hivatkozott weboldalak általi feldolgozását, és ezért nem vállal felelősséget. Amikor a Felhasználó belép ezekre a weboldalakra, figyelembe kell vennie, hogy az egyes weboldalakra az adott weboldal feltételei vonatkoznak. Bármilyen, a hivatkozott weboldal tartalmával vagy használatával kapcsolatban felmerülő kérdésben a Felhasználónak közvetlenül az egyes weboldalak üzemeltetőjéhez vagy adminisztrátorához kell fordulnia. Az Adatkezelő nem hagyja jóvá és nem fogadja el a hivatkozott weboldalak tartalmát vagy szolgáltatásait, amelyekhez a Felhasználó a Weboldalon keresztül hozzáfér.<br><br>
+                                A Weboldal lehetőséget biztosít a Felhasználónak arra, hogy saját kezdeményezésére és akaratát követve csatlakozzon és kapcsolatba lépjen a közösségi médiával. Ebben az esetben az Adatkezelő nem felel a Felhasználó adatainak a közösségi médián keresztül vagy a közösségi média által történő feldolgozásáért. A Felhasználónak közvetlenül az egyes közösségi médiumokhoz kell fordulnia jogos jogainak gyakorlása érdekében.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                <h2 class="mt-4 mb-4">11. Sütik</h2>
+                                11.1. A Platform sütiket használ a működés vagy a hatékonyabb működés érdekében, a Felhasználó navigációjának javítása, a Platformban rejlő lehetőségek teljes körű kihasználása, a tartalom helyes megjelenítésének biztosítása, valamint elemzési és statisztikai célokra.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. A sütik olyan kis szöveges fájlok, amelyeket a Felhasználó számítógépén tárolnak, amikor a Felhasználó egy digitális platformot látogat, és amelyek a számítógépének azonosítására szolgálnak.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. A cookie-k a feltétlenül szükséges cookie-kon kívül csak akkor kerülnek telepítésre, ha a Felhasználó a Platform meglátogatásakor elfogadja a telepítésüket. A cookie-k elfogadásával a Platformra való belépéskor a Felhasználó kifejezetten kijelenti, hogy elolvasta és megértette a cookie-k telepítésére, működésére és céljára vonatkozó konkrét feltételeket, és hozzájárulását adja azok használatához.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Alternatívaként a Felhasználó nem fogadhatja el a cookie-kat. Ebben az esetben csak a Platform működéséhez technikailag és funkcionálisan szükséges cookie-k kerülnek telepítésre.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. A Felhasználó bármikor kezelheti a cookie-k használatát és telepítését egy panelen keresztül, ahol kiválaszthatja, hogy melyik kategóriájú cookie-kat szeretné elfogadni és melyeket nem (vagy kérheti, hogy csak a technikailag szükséges cookie-kat telepítsék).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. A Platform által használt cookie-k különösen a következők:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>A sütik típusa</th>
+                                        <th>Magyarázat</th>
+                                        <th>Példák a sütikre</th>
+                                        <th>Az egyes sütik telepítésének időtartama</th>
+                                        <th>Adattovábbítás harmadik félnek</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Feltétlenül szükséges cookie-k</td>
+                                        <td>A feltétlenül szükséges cookie-k engedhetetlenek a Platform megfelelő működéséhez. Ezek a cookie-k lehetővé teszik a Felhasználó számára a Platform funkcióinak böngészését és használatát, például a biztonságos területekhez való hozzáférést. Ezek a cookie-k nem ismerik fel a Felhasználó egyéni személyazonosságát, és nélkülük a Platform zavartalan működése nem lehetséges.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
-                                            <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
-                                            <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
+                                        <td>CookieConsent (Tárolja a felhasználó süti hozzájárulásának állapotát az aktuális tartományhoz )
 
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            XSRF-TOKEN (Biztosítja a látogatók böngészésének biztonságát a webhelyközi kérés meghamisításának megakadályozásával. Ez a cookie elengedhetetlen a weboldal és a látogató biztonsága szempontjából. )
+                                            <br><br>
+                                            ecas_lets_crowdsource_our_future_session (Amikor az alkalmazásnak "emlékeznie" kell a bejelentkezett felhasználóra, miközben a platformon navigál)
+                                            <br><br>
+                                            Crowdsourcing_anonymous_user_id (a kérdőívekre adott anonim válaszok tárolására szolgál a választ beküldő felhasználóhoz rendelt egész számmal)
                                         </td>
-                                        <td>1 year
+                                        <td>1 év
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 nap
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Munkamenet
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 év
                                         </td>
-                                        <td>No
+                                        <td>Nem
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nem
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nem
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Nem
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Statisztikai/analitikai sütik</td>
+                                        <td>Ezek olyan cookie-k, amelyek kiértékelik, hogy a látogatók hogyan használják a Platformot (például, hogy mely oldalakat látogatják gyakrabban, és hogy kapnak-e hibaüzeneteket a weboldalakról). Ezeket a sütiket statisztikai célokra és a Platform teljesítményének javítására használják.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookie-k: A Google Analytics sütiket a Platform forgalmának mérésére használják. Egy egyedi szövegrészletet tárolnak a böngésző azonosítására, az interakciók időbélyegét és a böngészőt/forrásoldalt, amely a felhasználót a Platformra vezette. Érzékeny információk nem kerülnek elmentésre.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 év
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 perc
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 év
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 hónap
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 óra
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Igen (statisztikai és elemzési szolgáltatásokat nyújtó vállalat, ha harmadik félnek minősül)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +347,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Gyermekek magánélete  </h2>
+                                Projektünk nem szól 18 év alattiakhoz ("Gyermekek"). Tudatosan nem gyűjtünk személyazonosításra alkalmas adatokat 18 év alattiaktól. Ha Ön szülő vagy gyám, és tudomása van arról, hogy Gyermekei személyes adatokat adtak meg nekünk, kérjük, lépjen kapcsolatba velünk. Ha tudomást szerzünk arról, hogy a szülői beleegyezés ellenőrzése nélkül gyűjtöttünk személyes adatokat gyermekektől, lépéseket teszünk annak érdekében, hogy eltávolítsuk ezeket az adatokat a szervereinkről.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. A jelen Adatvédelmi szabályzat módosításai </h2>
+                                Az Adatkezelő fenntartja magának a jogot a jelen Adatvédelmi szabályzat módosítására, például ha ez szükséges az alkalmazandó jogszabályok, irányelvek vagy technikai követelmények által előírt új követelményeknek való megfeleléshez, vagy az Adatkezelő folyamatainak és gyakorlatának felülvizsgálata során. A Felhasználó a Platformon keresztül értesítést kap a jelen Adatvédelmi szabályzat bármely módosításáról. A Felhasználónak rendszeresen ellenőriznie kell a jelen Adatvédelmi szabályzatot a módosítások tekintetében.
                             </div>
                         </div>
                     </div>
