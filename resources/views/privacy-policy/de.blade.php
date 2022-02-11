@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>DATENSCHUTZRICHTLINIE</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,191 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                Die vorliegende Datenschutzerklärung gilt für alle Nutzer*innen der Plattform (im Folgenden als <b>“Nutzer*innen”</b> oder <b>“Nutzer*in”</b> bzw. <b>“Plattform”</b> bezeichnet) und ist integraler Bestandteil der Allgemeinen Geschäftsbedingungen für die Website der Plattform. Die vorliegende Datenschutzerklärung bietet Nutzer*innen allgemeine Informationen darüber, wie Datenverantwortliche Ihre personenbezogenen Daten verwenden, sowie weitere Informationen, die von der Datenschutzgesetzgebung gefordert werden. Im Falle künftiger Änderungen werden Nutzer*innen die erforderlichen Aktualisierungen und Informationen durch die Aktualisierung der vorliegenden Datenschutzrichtlinie, die auf der Plattform hochgeladen wird, zur Verfügung gestellt.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Wer ist für die Datenverarbeitung verantwortlich?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> Die Gesellschaft mit dem Firmennamen "SCIENCE FOR YOU", Adresse: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griechenland , Telefon: +302114004192, E-Mail:
+                                info@scify.org, ist die für die Verarbeitung der personenbezogenen Daten der Nutzer*innen verantwortliche Stelle (im Folgenden als <b>"für die Datenverarbeitung verantwortliche Stelle"</b> bezeichnet).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Kontaktinformationen der für die Datenverarbeitung verantwortlichen Stelle:</b> Bei Fragen oder Bedenken in Bezug auf die vorliegende Datenschutzrichtlinie und die Verarbeitung der personenbezogenen Daten der Nutzer*innen oder von den Nutzer*innen zur Nutzung der Plattform hochgeladenen Daten kann mit der für die Datenverarbeitung verantwortlichen Stelle auf eine der folgenden Arten Kontakt aufgenommen werden:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                Per Telefon unter +302114004192, von Montag bis Freitag von 10.00 Uhr bis 18.00 Uhr EET (Osteuropäische Zeit)<br>
+                                Per E-Mail an die folgende Adresse: info@scify.org<br>
+                                Per Post an die folgende Adresse: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griechenland<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Was ist der Zweck und die Rechtsgrundlage für die Datenverarbeitung der Nutzer*innen?</h2>
+                                <b>2.1.</b> Der Zweck der Plattform besteht darin, die Meinungen der Nutzer*innen über Fragebögen zu sammeln. Die Meinungen werden ausgewertet, um Erkenntnisse zu gewinnen, wertvolle Ideen und Vorschläge zu den in den Fragebögen angesprochenen Themen zu sammeln und zu präsentieren. Die Nutzer*innen können anonym antworten (ohne Angabe personenbezogener Daten) oder sich freiwillig registrieren, um unter Angabe einer E-Mail-Adresse und eines Spitznamens anonym zu antworten. Die Antworten der Nutzer*innen werden ins Englische übersetzt und in Form von Berichten präsentiert. Die Rechtsgrundlage für den spezifischen Zweck der Verarbeitung ist die vorherige Zustimmung der Nutzer*innen.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Versand von Informations-E-Mails an die Nutzer*innen mit dem Ziel, diese über neue Aktivitäten, Projekte und andere Themen von Interesse für die Plattform zu informieren. Die Rechtsgrundlage für diesen Zweck der Verarbeitung ist die vorherige Zustimmung der Nutzer*innen.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Verarbeitung von Daten aus Gründen, die mit der Erfüllung rechtlicher Verpflichtungen der für die Datenverarbeitung verantwortlichen Stelle zusammenhängen. In solchen Fällen erfolgt die Verarbeitung der Daten nur für den Zeitraum, der erforderlich ist, damit die für die Datenverarbeitung verantwortliche Stelle ihren durch verschiedene Rechtsvorschriften auferlegten Verpflichtungen nachkommen kann.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>Im Falle der oben genannten Bestimmungen, deren Rechtsgrundlage die vorherige Einwilligung der Nutzer*innen ist, können die Nutzer*innen die jeweilige Einwilligung jederzeit widerrufen, ohne dass die Rechtmäßigkeit der auf der Einwilligung beruhenden Daten vor ihrem Widerruf berührt wird.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Arten der erhobenen Daten</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Personenbezogene Daten</h3>
+                                <b>3.1.1 Registrierung - Erstellung eines Kontos:</b><br>
+                                Damit die Nutzer*innen freiwillig ein Konto auf der Plattform erstellen können, müssen sie die erforderlichen Daten eingeben: ihren Nickname, ihre E-Mail-Adresse und ein Passwort.
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Antworten auf Fragebögen</b><br>
+                                Die Plattform sammelt die Antworten der Nutzer*innen (d.h. Meinungen zu verschiedenen Themen) auf Fragen, die über die Fragebögen der Plattform gestellt werden. Diese Antworten werden analysiert und auf einer Ergebnisseite des Fragebogens dargestellt. Den Nutzer*innen wird dringend empfohlen, sich an den "Verhaltenskodex für eine erfolgreiche Teilnahme" der Plattform zu halten und keine persönlichen Daten zu veröffentlichen, die nicht auf der Plattform öffentlich zugänglich sein sollen.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. Kommunikation der Plattform aus Gründen, die mit der erlaubten Nutzung der Plattform durch die Nutzer*innen zusammenhängen.</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
+                                Damit die Plattform mit den Nutzer*innen zu den oben genannten Zwecken kommunizieren kann, kann die für die Datenverarbeitung verantwortliche Stelle alle Daten verarbeiten, die sich auf das Konto der Nutzer*innen, die hochgeladenen Inhalte und die Daten im Zusammenhang mit der Nutzung der Plattform durch die Nutzer*innen beziehen.
 
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
-
-
+                                <h3 class="mt-4 mb-4">3.2 Nutzungsdaten</h3>
+                                Wir können auch Informationen darüber sammeln, wie auf die Webseite zugegriffen und sie genutzt wird ("Nutzungsdaten"). Diese Nutzungsdaten können Informationen wie die Internetprotokolladresse Ihres Computers (z. B. IP-Adresse), den Browsertyp, die Browserversion, die von Ihnen besuchten Seiten unserer Website, die Uhrzeit und das Datum Ihres Besuchs, die auf diesen Seiten verbrachte Zeit, eindeutige Gerätekennungen und andere Diagnosedaten umfassen.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Wie die Plattform Daten sammelt</h2>
+                                4.1 Die Informationen können auf die folgenden Arten gesammelt werden: <br>
+                                4.1.1 Wenn die Nutzer*innen sich auf der Plattform registrieren und ein Konto erstellen. <br>
+                                4.1.2 Wenn die Nutzer*innen Antworten auf die Fragebögen der Plattform übermitteln. <br>
+                                4.1.3 Wenn die Nutzer*innen die Plattform besuchen und der Installation von Cookies (gemäß der Cookie-Richtlinie der Plattform in Artikel 11 unten) und der Erfassung der persönlichen Daten der Nutzer wie IP-Adresse, Betriebssystem, Browsertyp und -version usw. zustimmen
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Wie lange werden die Daten der Nutzer*innen gespeichert und wann werden sie gelöscht?</h2>
+                                <b>5.1. Kontodaten der Nutzer*innen:</b><br>
+                                Ungeachtet des unten erwähnten Rechts der Nutzer*innen auf Löschung/Löschung werden die im Nutzer*innenkonto registrierten und gespeicherten Daten so lange gespeichert, wie der/die Nutzer*in die Plattform für den oben genannten Zweck nutzen möchte. Möchten Nutzer*innen ihr Konto löschen, können sie dies über die Kontoeinstellungen tun oder sich an die oben genannten Kontaktdaten der für die Datenverarbeitung verantwortlichen Stelle wenden.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. Kommunikation der Plattform aus Gründen, die mit der erlaubten Nutzung der Plattform durch die Nutzer*innen zusammenhängen.</b><br>
+                                Daten im Zusammenhang mit solchen Mitteilungen werden nur so lange gespeichert, wie die Nutzer*innen die Plattform nutzen möchten und ihr Konto aufrechterhalten. Falls Nutzer*innen ihr Konto löschen möchte, können sie dies über die Kontoeinstellungen tun oder sich an die oben genannten Kontaktdaten der für die Datenverarbeitung verantwortlichen Stelle wenden.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Statistische Analyse zur Optimierung der Website Ungeachtet der oben genannten Bestimmungen von Artikel 5 speichert und verarbeitet die verantwortliche Stelle nur die notwendigen Daten für den Zeitraum, der erforderlich ist, um ihren jeweiligen gesetzlichen Verpflichtungen nachzukommen (Erfüllung der steuerlichen Pflichten usw.).
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Verarbeitung personenbezogener Daten zum Zweck der Durchführung statistischer Analysen.</b><br>
+                                Siehe die Cookie-Richtlinie (Artikel 11) unten.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Welche Rechte haben die Nutzer*innen in Bezug auf die Verarbeitung ihrer Daten und wie können sie diese Rechte ausüben?</h2>
+                                <b>6.1</b> Die für die Datenverarbeitung verantwortliche Stelle respektiert die Rechte der Nutzer*innen in Bezug auf die Datenverarbeitung.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> Die Nutzer*innen können ihre Rechte ausüben, indem sie sich an die für die Datenverarbeitung verantwortliche Stelle unter den folgenden Kontaktdaten wenden: Telefon: +302114004192, E-Mail: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Zur Erleichterung für die Nutzer*innen sind ihre Rechte in der folgenden Tabelle zusammen mit einer kurzen Erläuterung der einzelnen Rechte aufgeführt (die Verweise auf die Artikel entsprechen den Artikeln der DSGVO 2016/679):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Recht</th>
+                                        <th>Erläuterung</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Zugang (Artikel 15)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            Die Nutzer*innen können den Datenverantwortlichen um Folgendes bitten:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
+                                                <li>zu bestätigen, dass die verantwortliche Stelle die personenbezogenen Daten der Nutzer*innen verarbeitet diesen Zugang zu den Daten zu gewähren, über die die Nutzer*innen nicht verfügen
                                                 </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>den Nutzer*innen andere Informationen über die personenbezogenen Daten der Nutzer*innen zu geben, wie z.B. über welche Daten die verantwortliche Stelle verfügt, zu welchen Zwecken diese verarbeitet werden, an wen diese Daten weitergegeben werden, ob diese Daten ins Ausland übermittelt werden und wie diese Daten geschützt werden, wie lange die Daten gespeichert werden, welche Rechte die Nutzer*innen haben, wie eine Beschwerde eingereicht werden kann, woher die Daten stammen, soweit diese Informationen nicht in der vorliegenden Datenschutzerklärung enthalten sind.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Berichtigung (Artikel 16)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            Die Nutzer*innen können die für die Datenverarbeitung verantwortliche Stelle auffordern, unrichtige personenbezogene Daten zu berichtigen.<br><br>
+                                            Die für die Datenverarbeitung verantwortliche Stelle kann versuchen, die Richtigkeit der Daten zu überprüfen, bevor sie sie berichtigt.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Entfernung/Löschung (Artikel 17)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            Die Nutzer*innen können die für die Datenverarbeitung verantwortliche Stelle auffordern, ihre personenbezogenen Daten zu löschen:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>immer dann, wenn die personenbezogenen Daten für die Zwecke, für die sie erhoben wurden, nicht mehr benötigt werden
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>wenn die Nutzer*innen ihre Einwilligung widerrufen</li>
+                                                <li>wenn die personenbezogenen Daten unrechtmäßig verarbeitet worden sind</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            Die verantwortliche Stelle ist nicht verpflichtet, dem Antrag der Nutzer*innen auf Löschung ihrer personenbezogenen Daten nachzukommen, wenn die Verarbeitung der personenbezogenen Daten der Nutzer*innen erforderlich ist:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>zur Erfüllung einer rechtlichen Verpflichtung</li>
+                                                <li>zur Erfüllung eines anderen legitimen Zwecks oder einer anderen legitimen Rechtsgrundlage
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>zur Begründung, Ausübung oder Verteidigung von Rechtsansprüchen</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Beschränkung (Artikel 18)</td>
                                         <td>
-
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            Die Nutzer*innen können die für die Datenverarbeitung verantwortliche Stelle bitten, die personenbezogenen Daten der Nutzer*innen einzuschränken (zu speichern, aber nicht zu verarbeiten), wenn:<br><br>
+                                            ihre Richtigkeit bestritten wird (siehe Berichtigung), so dass die für die Datenverarbeitung verantwortliche Stelle die Richtigkeit der personenbezogenen Daten überprüfen kann, oder<br><br>
+                                            die personenbezogenen Daten unrechtmäßig verarbeitet wurden, aber die Nutzer*innen die Löschung der personenbezogenen Daten ablehnen oder<br><br>
+                                            die Daten für die Zwecke, für die sie erhoben wurden, nicht mehr erforderlich sind, die Nutzer*innen sie aber noch zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen benötigen oder ein anderer legitimer Zweck für die Verarbeitung oder eine andere Rechtsgrundlage vorliegt
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Datenübertragbarkeit (Artikel 20)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Wenn die Verarbeitung auf der Grundlage einer Einwilligung erfolgt und die Verarbeitung mit automatisierten Mitteln durchgeführt wird, können die Nutzer*innen von der für die Datenverarbeitung verantwortlichen Stelle verlangen, dass sie ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format erhalten oder dass die für die Datenverarbeitung verantwortliche Stelle sie direkt von der für die Datenverarbeitung verantwortlichen Stelle an eine andere Stelle übermittelt. Nach dem Gesetz bezieht sich dieses Recht jedoch nur auf die Daten, die durch die Nutzer*innen selbst angegeben wurden, und nicht auf die Daten, die von der für die Datenverarbeitung verantwortlichen Stelle auf der Grundlage der von den Nutzer*innen angegebenen Daten abgeleitet werden.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Widerspruch (Artikel 21)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            Die Nutzer*innen können jederzeit Widerspruch gegen die Verarbeitung sie betreffender personenbezogener Daten einlegen, die auf einem berechtigten Interesse oder der Wahrnehmung einer Aufgabe im öffentlichen Interesse beruht.<br><br>
+                                            Machen die Nutzer*innen von ihrem Widerspruchsrecht Gebrauch, hat die für die Datenverarbeitung verantwortliche Stelle das Recht, zwingende schutzwürdige Gründe für die Verarbeitung nachzuweisen, die die Interessen, Rechte und Freiheiten der Nutzer*innen oder die Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen überwiegen.
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Widerruf der Zustimmung (Opt-out)
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            Die Nutzer*innen haben das Recht, ihre Einwilligung zu widerrufen, wenn die Einwilligung die Grundlage für die Verarbeitung ist. Der Widerruf gilt für die Zukunft.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Kontrollbehörde
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            Die Nutzer*innen haben das Recht, eine Beschwerde bei der örtlichen Kontrollbehörde für den Datenschutz einzureichen. <br><br>
+                                            In Griechenland ist die Kontrollbehörde für den Datenschutz die Datenschutzbehörde https://www.dpa.gr/
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Identität</td>
+                                        <td>Die für die Datenverarbeitung verantwortliche Stelle nimmt die Vertraulichkeit aller Dateien, die personenbezogene Daten enthalten, sehr ernst und ist daher berechtigt, die Nutzer*innen um einen Identitätsnachweis zu bitten, wenn diese eine Anfrage in Bezug auf ihre Dateien einreichen.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Kosten</td>
+                                        <td>Die Nutzer*innen müssen für die Ausübung ihrer Rechte in Bezug auf personenbezogene Daten nichts bezahlen, es sei denn, der Antrag auf Zugang zu den Informationen ist unbegründet oder überzogen, wie im Gesetz vorgesehen. In diesem Fall kann die für die Datenverarbeitung verantwortliche Stelle den Nutzer*innen eine unter den jeweiligen Umständen angemessene Gebühr in Rechnung stellen. Die für die Datenverarbeitung verantwortliche Stelle informiert die Nutzer*innen über etwaige Gebühren, bevor sie den Antrag ausfüllt.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Zeitplan</td>
+                                        <td>Die für die Datenverarbeitung verantwortliche Stelle ist bestrebt, gültige Anfragen der Nutzer*innen spätestens innerhalb eines (1) Monats nach deren Eingang zu beantworten, es sei denn, die Anfrage ist äußerst kompliziert oder die Nutzer*innen haben mehrere Anfragen eingereicht; in diesem Fall ist die für die Datenverarbeitung verantwortliche Stelle bestrebt, die Anfragen innerhalb von drei Monaten zu beantworten. Sollte die für die Datenverarbeitung verantwortliche Stelle aus den oben genannten Gründen mehr als einen Monat benötigen, wird sie die Nutzer*innen informieren. Die verantwortliche Stelle für die Datenverarbeitung kann die Nutzer*innen bitten, zu erläutern, was genau sie zu erhalten wünschen oder was ihr Anliegen ist. Auf diese Weise kann die für die Datenverarbeitung zuständige Stelle schneller auf die Anfrage der Nutzer*innen reagieren. Die Nutzer*innen sollten in jedem Fall konkrete und wahrheitsgemäße Daten und/oder Fakten angeben, damit die für die Datenverarbeitung verantwortliche Stelle die Anfrage der Nutzer*innen genau beantworten und/oder erfüllen kann. Andernfalls behält sich die für die Datenverarbeitung verantwortliche Stelle das Recht auf Fehler vor, die außerhalb ihrer Kontrolle liegen. Darüber hinaus kann die für die Datenverarbeitung verantwortliche Stelle Anfragen ablehnen, die unbegründet, übertrieben, missbräuchlich, in bösem Glauben gestellt oder im Rahmen der gesetzlichen Bestimmungen unrechtmäßig sind.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,91 +207,47 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Wie wird die Datensicherheit gewährleistet?</h2>
+                                <b>7.1</b> Die für die Datenverarbeitung verantwortliche Stelle ergreift alle geeigneten Sicherheitsmaßnahmen, um den Schutz und die Vertraulichkeit personenbezogener Daten zu gewährleisten, darunter die folgenden:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Starke Passwortrichtlinien auf allen Servern</li>
+                                    <li>HTTPS-Protokoll für die Interaktion mit APIs und Webclients</li>
+                                    <li>SSH-Protokoll für die Serververbindung</li>
+                                    <li>Regelmäßige Server-Updates mit den neuesten Sicherheitskorrekturen</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Bitte beachten Sie, dass nur speziell autorisierte Mitarbeiter*innen der verantwortlichen Stelle, die unter der Autorität der verantwortlichen Stelle und nur auf deren Anweisung handeln, sowie ggf. Empfänger*innen die von den Nutzer*innen übermittelten Daten verarbeiten. Für die Verarbeitung wählt die für die Datenverarbeitung verantwortliche Stelle Personen mit entsprechender Qualifikation aus, die über ausreichende Garantien in Bezug auf technische Kenntnisse und persönliche Integrität verfügen, um die Vertraulichkeit zu wahren. Die für die Datenverarbeitung verantwortliche Stelle ergreift alle erforderlichen Sicherheitsmaßnahmen zum Schutz und zur Wahrung der Geheimhaltung, Vertraulichkeit und Integrität personenbezogener Daten auch durch entsprechende vertragliche Verpflichtungen ihrer Mitarbeiter*innen. In jedem Fall kann die Sicherheit der Website aus Gründen, die außerhalb der Kontrollsphäre des für die Verarbeitung Verantwortlichen liegen, sowie aufgrund von technischen oder anderen Problemen des Netzes oder höherer Gewalt oder zufälligen Ereignissen verletzt werden. In diesem Fall kann die Sicherheit der personenbezogenen Daten nicht garantiert werden.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Von wem werden die Daten empfangen?</h2>
+                                <b>8.1</b> Die Daten der Nutzer*innen werden an Unternehmen weitergegeben, die die technische Infrastruktur für den Betrieb der Website bereitstellen, an den Hosting-Provider sowie an das Unternehmen, das die elektronische Kommunikation im Zusammenhang mit dem Betrieb der Plattform an die Nutzer*innen versendet. Soweit nach geltendem Recht erforderlich, schließt die für die Datenverarbeitung verantwortliche Stelle mit diesen Unternehmen Vereinbarungen ab, die sich auf die Umsetzung und regelmäßige Überwachung von Sicherheitsmaßnahmen beziehen. Für den Fall, dass Daten außerhalb von ΕU übertragen werden, sind alle erforderlichen Garantien vorhanden.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Erhält die für die Datenverarbeitung verantwortliche Stelle eine Aufforderung zur Mitteilung oder Übermittlung von Daten aufgrund eines Ersuchens der zuständigen Verwaltungsbehörde, Anwält*in, Gerichts oder einer anderen Behörde, kann sie diese Daten mitteilen/übermitteln, um ihre im öffentlichen Interesse ausgeübte Pflicht gegenüber diesen Behörden zu erfüllen (mit oder ohne vorherige Mitteilung der Nutzer*innen), in Übereinstimmung mit den entsprechenden gesetzlichen Bestimmungen. Die Nutzer*innen haben das Recht, dieser Verarbeitung gemäß Artikel 7 zu widersprechen, wenn sie zuvor gemäß den gesetzlichen Bestimmungen benachrichtigt wurden.
+                                <br><br>
+                                <b>8.3.</b> Die beruflichen Daten der Nutzer*innen stehen allen anderen registrierten Nutzer*innen der Plattform zu den oben genannten Zwecken zur Verfügung.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
+                                <h2 class="mt-4 mb-4">9. Kommunikation mit der für die Datenverarbeitung verantwortlichen Stelle</h2>
+                                <b>9.1.</b> Die Nutzer*innen können sich bei allen Fragen im Zusammenhang mit der vorliegenden Datenschutzpolitik, der Datenverarbeitung durch die Nutzer*innen sowie der Ausübung der Rechte der Nutzer*innen auf einem der folgenden Wege an den Datenverantwortlichen wenden
+                                Telefon: +302114004192, <br>
                                 Email: info@scify.org
+                                Die Nutzer*innen werden gebeten, die für die Datenverarbeitung verantwortliche Stelle unverzüglich zu benachrichtigen, wenn sie von einer Datenverletzung erfahren.
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
-                                <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> Die vorliegenden Bedingungen werden durch die Allgemeinen Geschäftsbedingungen geregelt und ergänzt und bilden zusammen mit diesen einen einheitlichen Text.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
+                                <h2 class="mt-4 mb-4">10. Verbindung zu anderen Websites/Sozialen Medien</h2>
+                                Diese Website ist durch Hyperlinks mit anderen Websites verbunden. Diese Websites stehen in keinem Zusammenhang mit der Website der für die Datenverarbeitung verantwortlichen Stelle und ihr Inhalt wird von der für die Datenverarbeitung verantwortlichen Stelle weder geprüft noch empfohlen. Die Richtigkeit, Rechtmäßigkeit, Vollständigkeit oder Qualität ihres Inhalts und die Rechtmäßigkeit der Verarbeitung der personenbezogenen Daten der Nutzer*innen können daher nicht überprüft werden, und es wird keine Garantie für sie übernommen. Die für die Datenverarbeitung verantwortliche Stelle kann nicht für sie oder für Schäden haftbar gemacht werden, die den Nutzer*innen aufgrund oder infolge ihrer Nutzung entstehen können. Die für die Datenverarbeitung verantwortliche Stelle kann die Verarbeitung der personenbezogenen Daten der Nutzer*innen durch diese verlinkten Websites nicht kontrollieren und übernimmt daher keine Haftung. Wenn die Nutzer*innen auf diese Websites zugreifen, sollten sie bedenken, dass die Geschäftsbedingungen der jeweiligen Website gelten. Die Nutzer*innen sollten sich bei Fragen zum Inhalt oder zur Nutzung der verlinkten Website direkt an die Betreibenden oder Administrator*innen der jeweiligen Website wenden. Die für die Datenverarbeitung verantwortliche Stelle billigt weder den Inhalt noch die Dienstleistungen der verlinkten Websites, auf die die Nutzer*innen über die Website zugreifen, und macht sich diese auch nicht zu eigen.<br><br>
+                                Die Website gibt den Nutzer*innen die Möglichkeit, sich auf eigene Initiative und nach eigenem Willen mit sozialen Medien zu verbinden und mit ihnen zu interagieren. In diesem Fall haftet die für die Datenverarbeitung verantwortliche Stelle nicht für die Verarbeitung der Daten der Nutzer*innen, die über oder durch die sozialen Medien erfolgt. Die Nutzer*innen sollten sich direkt an die einzelnen sozialen Medien wenden, um ihre legitimen Rechte geltend zu machen.
 
 
                             </div>
@@ -415,110 +255,80 @@
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                11.1. Die Plattform verwendet Cookies, um ihren Betrieb zu ermöglichen oder effizienter zu gestalten, die Navigation der Nutzer*innen zu verbessern, den Nutzer*innen das volle Potenzial der Plattform zur Verfügung zu stellen, die korrekte Darstellung der Inhalte zu gewährleisten sowie für analytische und statistische Zwecke.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Cookies sind kleine Textdateien, die auf dem Computer der Nutzer*innen gespeichert werden, wenn diese eine digitale Plattform besuchen, und die dazu dienen, ihren Computer zu identifizieren.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Cookies werden, abgesehen von absolut notwendigen Cookies, nur dann installiert, wenn die Nutzer*innen deren Installation beim Besuch dieser Plattform akzeptieren. Die Nutzer*innen erklären durch die Annahme von Cookies beim Besuch dieser Plattform ausdrücklich, dass sie die besonderen Bedingungen für die Installation, die Funktion und den Zweck der Cookies gelesen und verstanden haben und dass sie ihre Zustimmung zu deren Verwendung geben.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Alternativ können die Nutzer*innen auch keine Cookies akzeptieren. In diesem Fall werden nur Cookies installiert, die für den Betrieb der Plattform technisch und funktional notwendig sind.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. Die Nutzer*innen können die Verwendung und Installation von Cookies jederzeit über ein Panel verwalten, in dem sie wählen können, welche Kategorie von Cookies sie akzeptieren wollen und welche nicht (oder beantragen, nur die technisch notwendigen Cookies zu installieren).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. Die von der Plattform verwendeten Cookies sind insbesondere die folgenden:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Art der Cookies</th>
+                                        <th>Erläuterung</th>
+                                        <th>Beispiel der Cookies</th>
+                                        <th>Dauer der Installation jedes Cookies</th>
+                                        <th>Weitergabe von Daten an Dritte</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Absolut notwendige Cookies</td>
+                                        <td>Die absolut notwendigen Cookies sind für den ordnungsgemäßen Betrieb der Plattform unerlässlich. Die Nutzer*innen können mit diesen Cookies auf der Plattform surfen und deren Funktionen nutzen, z. B. den Zugang zu geschützten Bereichen. Diese Cookies erkennen nicht die individuelle Identität der Nutzer*innen und ohne sie ist der reibungslose Betrieb der Plattform nicht möglich.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>CookieConsent (Speichert den Cookie-Zustimmungsstatus der Nutzer*innen für die aktuelle Domain )
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (Sorgt für die Sicherheit der Besuchenden beim Surfen, indem es Cross-Site Request Forgery verhindert. Dieses Cookie ist für die Sicherheit der Website und der Besuchenden unerlässlich. )
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
-
+                                            ecas_lets_crowdsource_our_future_session (Wenn sich die App an die angemeldeten Nutzer*innen "erinnern" muss, während sie auf der Plattform navigieren)
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            Crowdsourcing_anonymous_user_id (zur Speicherung anonymer Antworten auf den Fragebögen durch Zuweisung einer ganzzahligen Nummer an die Nutzer*innen, die die Antwort abgeben)
                                         </td>
-                                        <td>1 year
+                                        <td>1 Jahr
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 Tag
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Dauer der Sitzung
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 Jahre
                                         </td>
-                                        <td>No
+                                        <td>Nein
                                             <br><br>
                                             <br><br>
-
-                                            No
+                                            Nein
                                             <br><br>
                                             <br><br>
-
-                                            No
+                                            Nein
                                             <br><br>
                                             <br><br>
-
-                                            No
+                                            Nein
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Statistische/analytische Cookies</td>
+                                        <td>Dies sind Cookies, die auswerten, wie Besuchende die Plattform nutzen (z. B. welche Seiten häufiger besucht werden und ob sie Fehlermeldungen von Webseiten erhalten). Diese Cookies werden zu statistischen Zwecken und zur Verbesserung der Leistung einer Plattform verwendet.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics-Cookies werden verwendet, um den Datenverkehr auf der Plattform zu messen. Es wird eine eindeutige Zeichenfolge zur Identifizierung des Browsers, des Zeitstempels für Interaktionen und des Browsers/der Quellseite, über die die Nutzer*innen auf die Plattform gelangt sind, gespeichert. Es werden keine sensiblen Informationen gespeichert.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 Jahre
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 Minute
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 Jahre
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 Monate
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 Stunden
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Ja (Unternehmen, das statistische und analytische Dienstleistungen erbringt, wenn es als Drittpartei betrachtet wird)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +336,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Privatsphäre von Kindern</h2>
+                                Unser Projekt richtet sich nicht an Personen unter 18 Jahren ("Kinder"). Wir sammeln nicht wissentlich personenbezogene Daten von Personen unter 18 Jahren. Wenn Sie ein Elternteil oder eine erziehungsberechtigte Person sind und wissen, dass Ihre Kinder uns personenbezogene Daten zur Verfügung gestellt haben, kontaktieren Sie uns bitte. Wenn wir erfahren, dass wir personenbezogene Daten von Kindern ohne Überprüfung der elterlichen Zustimmung erfasst haben, ergreifen wir Maßnahmen, um diese Daten von unseren Servern zu entfernen.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Änderungen der vorliegenden Datenschutzrichtlinie</h2>
+                                Die für die Datenverarbeitung verantwortliche Stelle behält sich das Recht vor, die vorliegende Datenschutzerklärung zu ändern, beispielsweise wenn dies erforderlich ist, um neuen Anforderungen durch geltende Gesetze, Richtlinien oder technische Anforderungen zu entsprechen, oder im Zuge einer Überarbeitung der Prozesse und Praktiken der für die Datenverarbeitung verantwortlichen Stelle. Die Nutzer*innen werden über die Plattform über jede Änderung dieser Datenschutzrichtlinie informiert. Die Nutzer*innen sollten diese Datenschutzrichtlinie regelmäßig auf Änderungen hin überprüfen.
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>ΠΟΛΙΤΙΚΗ ΑΠΟΡΡΗΤΟΥ</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,194 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                Η παρούσα Πολιτική Απορρήτου ισχύει για όλους τους Χρήστες της Πλατφόρμας (στο εξης θα αναφέρονται σαν ο <b>“Χρήστης”</b> ή οι <b>“Χρήστες”</b> και <b>“Πλατφόρμα”</b> αντίστοιχα) και αποτελεί αναπόσπαστο μέρος των Όρων και Προϋποθέσεων του Ιστοτόπου της Πλατφόρμας. Η παρούσα Πολιτική Απορρήτου παρέχει στο Χρήστη γενικές πληροφορίες σχετικά με το πως ο Υπεύθυνος Επεξεργασίας Δεδομένων χρησιμοποιεί τα προσωπικά δεδομένα σας και άλλες πληροφορίες που απαιτούνται από τη νομοθεσία για την προστασία δεδομένων. Σε περίπτωση μελλοντικής τροποποίησης, οι απαραίτητες ενημερώσεις και πληροφορίες θα παρέχονται στο Χρήστη μέσω της ενημέρωσης της παρούσας Πολιτικής Απορρήτου, που θα βρίσκεται ανεβασμένη στην Πλατφόρμα.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Ποιός είναι ο Υπεύθυνος Επεξεργασίας Δεδομένων;</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> Η εταιρεία με την επωνυμία «SCIENCE FOR YOU», διεύθυνση: ΤΕΠΑ Λεύκιππος -  Ε.Κ.Ε.Φ.Ε. Δημόκριτος, Νεαπόλεως 27, Αγία Παρασκευή 15341, Ελλάδα, Τηλέφωνο: 2114004192, email: info@scify.org, είναι ο Υπεύθυνος Επεξεργασίας Δεδομένων για τα Προσωπικά Δεδομένα του Χρήστη (στο εξης θα αναφέρεται <b>"Υπεύθυνος Επεξεργασίας Δεδομένων"</b>).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Στοιχεία επικοινωνίας του Υπεύθυνου Επεξεργασίας Δεδομένων:</b> Για οποιοδήποτε πρόβλημα ή ανησυχία σχετικά με την παρούσα Πολιτική Απορρήτου και την επεξεργασία προσωπικών δεδομένων του Χρήστη ή δεδομένων που ανεβάστηκαν από το Χρήστη για να χρησιμοποιήσει την Πλατφόρμα, ο Χρήστης μπορεί να επικοινωνήσει με τον Υπεύθυνο Επεξεργασίας Δεδομένων, χρησιμοποιώντας ένα από τους ακόλουθους τρόπους:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                Καλώντας στο +302114004192, από Δευτέρα εως Παρασκευή από τις 10:00 π.μ. εως τις 18:00 μ.μ. ΕΕΤ (Ώρα Ανατολικής Ευρώπης)<br>
+                                Στέλνοντας ένα email στην ακόλουθη ηλεκτρονική διεύθυνση: info@scify.org<br>
+                                Στέλνοντας αλληλογραφία στην ακόλουθη διεύθυνση: ΤΕΠΑ Λεύκιππος - Ε.Κ.Ε.Φ.Ε. Δημόκριτος, Νεαπόλεως 27, Αγ. Παρασκευή 15341, Ελλάδα<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Ποιός είναι ο σκοπός και η νομική βάση για την επεξεργασία δεδομένων του Χρήστη;</h2>
+                                <b>2.1.</b> Ο λειτουργικός σκοπός της Πλατφόρμας είναι να συλλέγει γνώμες Χρηστών μέσω ερωτηματολογίων. Οι γνώμες επεξεργάζονται ώστε να αποκτηθούν γνώσεις, να μαζευτούν και να παρουσιαστούν πολύτιμες ιδέες και προτάσεις πάνω στα θέματα που αναφέρονται στα ερωτηματολόγια. Οι Χρήστες μπορούν να απαντήσουν ανώνυμα (χωρίς να παρέχουν προσωπικές πληροφορίες) ή μπορούν να εγγραφούν εθελοντικά ώστε να υποβάλλουν επώνυμες απαντήσεις, δίνοντας μια ηλεκτρονική διεύθυνση και ένα ψευδώνυμο. Οι απαντήσεις των Χρηστών μεταφράζονται στα Αγγλικά και παρουσιάζονται σε Αναφορές. Για το συγκεκριμένο σκοπό της επεξεργασίας, η νομική βάση είναι η προηγούμενη συγκατάθεση του Χρήστη.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Για να στέλνονται στο Χρήστη ενημερωτικά email με σκοπό να τον ενημερώσουν σχετικά με νέες δραστηριότητες, έργα και άλλα θέματα ενδιαφέροντος στην Πλατφόρμα. Για αυτόν το σκοπό της επεξεργασίας, η νομική βάση είναι η προηγούμενη συγκατάθεση του Χρήστη.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Επεξεργασία δεδομένων για λόγους που έχουν να κάνουν με συμμόρφωση με τις νομικές υποχρεώσεις του Υπεύθυνου Επεξεργασίας Δεδομένων. Σε τέτοιες περιπτώσεις η επεξεργασία δεδομένων λαμβάνει χώρα μόνο για την απαραίτητη χρονική περίοδο ώστε ο Υπεύθυνος Επεξεργασίας Δεδομένων να συμμορφωθεί στις υποχρεώσεις που επιβάλλονται από διάφορες νομικές διατάξεις.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>Σε περίπτωση των παραπάνω διατάξεων όπου η νομική βάση είναι η προηγούμενη συναίνεση του Χρήστη, ο Χρήστης μπορεί πάντα να πάρει πίσω τη συγκατάθεσή του οποιαδήποτε στιγμή χωρίς να επηρεάζεται η νομιμότητα των δεδομένων που βασίζονται στη συναίνεση πριν από την απόσυρσή τους.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Τύποι δεδομένων που συλλέγονται</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Προσωπικά δεδομένα</h3>
+                                <b>3.1.1 Εγγραφή – δημιουργία λογαριασμού:</b><br>
+                                Για να δημιουργήσει ένας Χρήστης εθελοντικά λογαριασμό στην Πλατφόρμα, ο Χρήστης πρέπει να συμπληρώσει τα απαραίτητα στοιχεία: το ψευδώνυμό και την ηλεκτρονική διεύθυνση του κι έναν κωδικό πρόσβασης.
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Υποβεβλημένες απαντήσεις ερωτηματολογίου</b><br>
+                                Η Πλατφόρμα συλλέγει απαντήσεις χρηστών (δηλαδή απόψεις πάνω σε διάφορα θέματα) σε ερωτήσεις οι οποίες τίθενται μέσω ερωτηματολογίων της Πλατφόρμας. Αυτές οι απαντήσεις αναλύονται και παρουσιάζονται στη σελίδα με τα αποτελέσματα του ερωτηματολογίου. Συστήνεται αυστηρά στο Χρήστη να συμμορφώνεται με τον «Κώδικα Δεοντολογίας για επιτυχή συμμετοχή» της Πλατφόρμας και να αποφύγει να αναρτήσει δημοσίως οποιαδήποτε προσωπικά δεδομένα τα οποία δεν επιθυμεί να είναι δημοσίως διαθέσιμα στην Πλατφόρμα.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. Επικοινωνία της Πλατφόρμας για λόγους σχετικούς με την επιτρεπτή χρήση της Πλατφόρμας από το Χρήστη</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
+                                Για να επικοινωνήσει η Πλατφόρμα με το Χρήστη για τους παραπάνω σκοπούς, ο Υπεύθυνος Επεξεργασίας Δεδομένων μπορεί να επεξεργαστεί όλα τα δεδομένα που έχουν σχέση με το λογαριασμό του Χρήστη, το ανεβασμένο περιεχόμενο και δεδομένα που έχουν σχέση με τη χρήση της Πλατφόρμας από το Χρήστη.
 
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
+                                <h3 class="mt-4 mb-4">3.2 Δεδομένα χρήσης</h3>
+                                Μπορεί επισης να συλλέξουμε πληροφορίες σχετικές με το πως γίνεται η πρόσβαση και η χρήση της ιστοσελίδας («Δεδομένα Χρήσης»). Αυτά τα Δεδομένα Χρήσης μπορεί να περιλαμβάνουν πληροφορίες όπως τη διεύθυνση πρωτοκόλλου Internet του υπολογιστή σας (IP address), τον τύπο φυλλομετρητή, τις σελίδες της ιστοσελίδας μας που επισκέπτεστε, την ώρα και ημερομηνία της επίσκεψής σας, το χρόνο που περνάτε σε αυτές τις σελίδες, μοναδικά αναγνωριστικά συσκευής και άλλα διαγνωστικά δεδομένα.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Πώς συλλέγει δεδομένα η Πλατφόρμα</h2>
+                                4.1 Οι πληροφορίες μπορεί να συλλεχθούν με τους ακόλουθους τρόπους: <br>
+                                4.1.1 Όταν ο Χρήστης κάνει εγγραφή και δημιουργεί λογαριασμό στην Πλατφόρμα. <br>
+                                4.1.2 Όταν ο Χρήστης υποβάλλει απαντήσεις στα ερωτηματολόγια της Πλατφόρμας. <br>
+                                4.1.3 Όταν ο Χρήστης επισκέπτεται την Πλατφόρμα και συμφωνεί στην εγκατάσταση cookies (σύμφωνα με την Πολιτική των Cookies της Πλατφόρμας στο άρθρο 11 παρακάτω) και η συλλογή των προσωπικών δεδομένων του Χρήστη όπως η διεύθυνση IP, το λειτουργικό σύστημα, τύπος και έκδοση φυλλομετρητή κλπ.
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Για πόσο αποθηκεύονται τα δεδομένα του Χρήστη και πότε διαγράφονται;</h2>
+                                <b>5.1. Δεδομένα λογαριασμού του Χρήστη:</b><br>
+                                Με την επιφύλαξη του δικαιώματος διαγραφής/κατάργησης του Χρήστη που αναφέρεται παρακάτω, τα δεδομένα που δίνονται και αποθηκεύονται στο λογαριασμό του Χρήστη θα αποθηκεύονται για όσο ο Χρήστης επιθυμεί να κάνει χρήση της Πλατφόρμας για το σκοπό που αναφέρεται παραπάνω. Σε περίπτωση που ένας Χρήσης θελήσει να διαγράψει το λογαριασμό του, μπορεί να τον διαγράψει μέσω των ρυθμίσεων του λογαριασμού ή επικοινωνώντας με τον Υπεύθυνο Επεξεργασίας Δεδομένων στα στοιχεία επικοινωνίας που αναφέρονται παραπάνω.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. Επικοινωνία της Πλατφόρμας για λόγους σχετικούς με την επιτρεπτή χρήση της Πλατφόρμας από το Χρήστη.</b><br>
+                                Δεδομένα σχετικά με τέτοια επικοινωνία θα αποθηκεύονται μόνο για όσο ο Χρήστης επιθυμεί να κάνει χρήση της Πλατφόρμας και διατηρεί το λογαριασμό του. Σε περίπτωση που ένας Χρήστης θελήσει να διαγράψει το λογαριασμό του, μπορεί να τον διαγράψει μέσω των ρυθμίσεων του λογαριασμού ή επικοινωνώντας με τον Υπεύθυνο Επεξεργασίας Δεδομένων στα στοιχεία επικοινωνίας που αναφέρονται παραπάνω.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Στατιστική ανάλυση για τη βελτιστοποίηση του Ιστοτόπου</b><br>
+                                Ανεξάρτητα με τις παραπάνω διατάξεις που αναφέρονται στο άρθρο 5, ο Υπεύθυνος Επεξεργασίας Δεδομένων θα αποθηκεύει και θα επεξεργάζεται μόνο απαραίτητα δεδομένα για την περίοδο που απαιτείται για τη συμμόρφωσή του με τις υποχρεώσεις που επιβάλλει κάθε φορά ο νόμος (συμμόρφωση με φορολογικές υποχρεώσεις κλπ).
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Επεξεργασία προσωπικών δεδομένων για σκοπούς διεξαγωγής στατιστικής ανάλυσης.</b><br>
+                                Παρακαλούμε δείτε την πολιτική cookies (άρθρο 11) παρακάτω.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Ποιά είναι τα δικαιώματα του Χρήστη σχετικά με την επεξεργασία των δεδομένων του και πως μπορεί να ασκήσει αυτά τα δικαιώματα;</h2>
+                                <b>6.1</b> Ο Υπεύθυνος Επεξεργασίας Δεδομένων σέβεται τα δικαιώματα του Χρήστη σχετικά με την επεξεργασία δεδομένων.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> Ο Χρήστης μπορεί να ασκήσει τα δικαιώματά του επικοινωνώντας με τον Υπεύθυνο Επεξεργασίας Δεδομένων στα ακόλουθα στοιχεία επικοινωνίας: Τηλέφωνο: 2114004192, Ηλ. διεύθυνση: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Για τη διευκόλυνση του Χρήστη, τα δικαιώματα του Χρήστη περιλαμβάνονται στον ακόλουθο πίνακα μαζί με μια σύντομη εξήγηση του κάθε δικαιώματος (η αναφορά σε άρθρα αντιστοιχεί στο άρθρο του GDPR 2016/679):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Δικαίωμα </th>
+                                        <th>Εξήγηση</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Πρόσβαση (άρθρο 15)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            Ο Χρήστης μπορεί να ζητήσει από τον Υπεύθυνο Επεξεργασίας Δεδομένων να:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
-                                                </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>επιβεβαιώσει αν ο Υπεύθυνος Επεξεργασίας Δεδομένων επεξεργάζεται προσωπικά δεδομένα                                                </li>
+                                                <li>δώσει στο Χρήστη πρόσβαση σε δεδομένα που ο Χρήστης δεν διαθέτει</li>
+                                                <li>δώσει στο Χρήστη άλλες πληροφορίες σχετικά με τα προσωπικά δεδομένα του Χρήστη όπως το ποια δεδομένα διαθέτει ο Υπεύθυνος Επεξεργασίας Δεδομένων, ποιοι είναι οι σκοποί της επεξεργασίας, σε ποιον διατίθενται αυτά τα δεδομένα, αν αυτά τα δεδομένα μεταφέρονται σε ξένες χώρες και πως προστατεύονται αυτά τα δεδομένα, για πόσο αποθηκεύονται τα δεδομένα, ποια είναι τα δικαιώματα του Χρήστη, πως μπορεί να υποβληθεί μια καταγγελία, από που πήραν αυτά τα δεδομένα στον βαθμό που αυτές οι πληροφορίες δεν περιλαμβάνονται στην παρούσα Πολιτική Απορρήτου.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Διόρθωση (άρθρο 16)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            Ο Χρήστης μπορεί να ζητήσει τον Υπεύθυνο Επεξεργασίας Δεδομένων να διορθώσει ανακριβή προσωπικά δεδομένα.<br><br>
+                                            Ο Υπεύθυνος Επεξεργασίας Δεδομένων μπορεί να επιδιώξει να επαληθεύσει την ακρίβεια των δεδομένων πριν τα διορθώσει.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Διαγραφή/κατάργηση (άρθρο 17)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            Ο Χρήστης μπορεί να ζητήσει από τον Υπεύθυνο Επεξεργασίας Δεδομένων να διαγράψει τα προσωπικά του δεδομένα:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>οποιαδήποτε στιγμή, όταν τα προσωπικά δεδομένα δεν είναι πια απαραίτητα για τους σκοπούς για τους οποίους είχαν συλλεχθεί
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>όταν ο Χρήστης πάρει πίσω τη συναίνεσή του</li>
+                                                <li>τα προσωπικά δεδομένα έχουν υποστεί παράνομη επεξεργασία</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            Ο Υπεύθυνος Επεξεργασίας Δεδομένων δεν είναι αναγκασμένος να συμμορφωθεί με το αίτημα του Χρήστη να διαγράψει τα προσωπικά του δεδομένα, αν η επεξεργασία των προσωπικών δεδομένων του Χρήστη είναι απαραίτητη:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>για συμμόρφωση σε κάποια νομική υποχρέωση</li>
+                                                <li>για την εκπλήρωση άλλου θεμιτού σκοπού ή άλλης θεμιτής νομικής βάσης
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>για τη θεμελίωση, άσκηση ή υπεράσπιση νομικών αξιώσεων</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Περιορισμός (άρθρο 18)</td>
                                         <td>
 
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
+                                            Ο Χρήστης μπορεί να ζητήσει από τον Υπεύθυνο Επεξεργασίας Δεδομένων να περιορίσει (αποθήκευση, αλλά όχι επεξεργασία) τα προσωπικά δεδομένα του Χρήστη όταν:<br><br>
+                                            η ακρίβειά τους αμφισβητείται (βλ. Διόρθωση), έτσι ώστε ο Υπεύθυνος Επεξεργασίας Δεδομένων να μπορέσει να επιβεβαιώσει την ακρίβεια των προσωπικών δεδομένων ή<br><br>
+                                            τα προσωπικά δεδομένα έχουν επεξεργαστεί παράνομα, αλλά ο Χρήστης αντιτίθεται στη διαγραφή προσωπικών δεδομένων ή<br><br>
+                                            δεν είναι πια απαραίτητα για τους σκοπούς που είχαν συλλεχθεί, αλλά ο Χρήστης τα χρειάζεται για τη θεμελίωση, άσκηση ή υπεράσπιση νομικών αξιώσεων ή αν υπάρχει κάποιος άλλος θεμιτός σκοπός για την επεξεργασία ή άλλη νομική βάση
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Data portability (article 20)
+                                            Φορητότητα δεδομένων (άρθρο 20)
                                         </td>
                                         <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
+                                            Όταν η επεξεργασία βασίζεται στη συναίνεση και η επεξεργασία διεξάγεται με αυτοματοποιημένα μέσα, ο Χρήστης μπορεί να ζητήσει από τον Υπεύθυνο Επεξεργασίας Δεδομένων να παραλάβει τα προσωπικά του δεδομένα σε μια δομημένη, ευρέως χρησιμοποιούμενη και αναγνώσιμη από μηχανή μορφή ή να ζητήσει από τον Υπεύθυνο Επεξεργασίας Δεδομένων να τα μεταβιβάσει σε κάποιον άλλο χειριστή κατευθείαν από τον Υπεύθυνο Επεξεργασίας Δεδομένων. Παρ 'όλα αυτά, σύμφωνα με το νόμο, αυτό το δικαίωμα αναφέρεται μόνο σε εκείνα τα δεδομένα που δώθηκαν απ’ τον ίδιο το Χρήστη και όχι σε εκείνα τα δεδομένα που συμπεραίνονται απο τον Υπεύθυνο Επεξεργασίας Δεδομένων βάση τον δεδομένων που παρέχονται από το Χρήστη.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Objection (article 21)</td>
+                                        <td>Ένσταση (άρθρο 21)</td>
                                         <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            Ο Χρήστης μπορεί να κάνει ένσταση στην επεξεργασία προσωπικών δεδομένων που τον/την αφορουν τα οποία βασίζονται στο έννομο συμφέρον ή την εκτέλεση καθήκοντος που εκτελείται προς το δημόσιο συμφέρον.<br><br>
+                                            Όταν ο Χρήστης ασκεί το δικαίωμά του να κάνει ένσταση, ο Υπεύθυνος Επεξεργασίας Δεδομένων έχει το δικαίωμα να επιδείξει επιτακτικούς νόμιμους λόγους για την επεξεργασία που υπερισχύουν των συμφερόντων, των δικαιωμάτων και της ελευθερίας του Χρήστη ή για τη θεμελίωση, άσκηση ή υπεράσπιση νομικών αξιώσεων.
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Απόσυρση συναίνεσης (εξαίρεση)
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            Ο Χρήστης έχει το δικαίωμα να αποσύρει τη συναίνεσή του εκεί που η συναίνεση αποτελεί βάση της επεξεργασίας. Η απόσυρση ισχύει για το μέλλον.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Supervisory Authority
+                                            Εποπτική Αρχή
                                         </td>
                                         <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            Ο Χρήστης έχει το δικαίωμα να υποβάλλει καταγγελία στην τοπική εποπτική αρχή σχετική με την προστασία δεδομένων. <br><br>
+                                            Στην Ελλάδα η εποπτική αρχή για την Προστασία δεδομένων είναι η Αρχή Προστασίας Δεδομένων https://www.dpa.gr/
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>Ταυτότητα</td>
+                                        <td>Ο Υπεύθυνος Επεξεργασίας Δεδομένων παίρνει σοβαρά την εμπιστευτικότητα των εγγράφων που περιέχουν προσωπικά δεδομένα, γι’ αυτό κι έχει το δικαίωμα να ζητήσει από το Χρήστη απόδειξη της ταυτότητάς του αν ο Χρήστης υποβάλλει αίτημα σχετικά με αυτά τα έγγραφα.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>Κόστος</td>
+                                        <td>Ο Χρήστης δεν θα χρειαστεί να πληρώσει για την άσκηση των δικαιωμάτων του σχετικά με τα προσωπικά δεδομένα εκτός αν όπως προβλέπεται από το νόμο, το αίτημα να αποκτήσει πρόσβαση στις πληροφορίες είναι αβάσιμο ή υπερβολικό. Σε αυτή την περίπτωση ο Υπεύθυνος Επεξεργασίας Δεδομένων μπορεί να χρεώσει το Χρήστη μια λογική αμοιβή κάτω από τις συγκεκριμένες συνθήκες. Ο Υπεύθυνος Επεξεργασίας Δεδομένων θα ενημερώσει το Χρήστη για οποιαδήποτε τυχόν χρέωση πριν ολοκληρώσει το αίτημα.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Χρονοδιάγραμμα</td>
+                                        <td>Ο Υπεύθυνος Επεξεργασίας Δεδομένων στοχεύει στο να απαντήσει στα βάσιμα αιτήματα του Χρήστη το αργότερο ένα (1) μήνα από τη στιγμή που τα δέχεται, εκτός αν το αίτημα είναι εξαιρετικά περίπλοκο ή ο Χρήστης έχει υποβάλλει πολλαπλά αιτήματα, στην οποία περίπτωση ο Υπεύθυνος Επεξεργασίας Δεδομένων στοχεύει στο να τα απαντήσει μέσα σε τρεις (3) μήνες. Σε περίπτωση που ο Υπεύθυνος Επεξεργασίας Δεδομένων χρειάζεται πάνω από ένα μήνα για τους προαναφερθέντες λόγους, θα ενημερώσει το Χρήστη. Ο Υπεύθυνος Επεξεργασίας Δεδομένων μπορεί να ρωτήσει το Χρήστη να θέλει να εξηγήσει τι ακριβώς θέλει να παραλάβει ή ποια είναι η ανησυχία του. Αυτό θα βοηθήσει τον Υπεύθυνο Επεξεργασίας Δεδομένων να δράσει πιο γρήγορα σε σχέση με το αίτημα του Χρήστη. Σε κάθε περίπτωση, ο Χρήστης θα έπρεπε να αναφέρει συγκεκριμένα και αληθή δεδομένα ή/και γεγονότα έτσι ώστε ο Υπεύθυνος Επεξεργασίας Δεδομένων να μπορέσει να απαντήσει ή/και να ικανοποιήσει το αίτημα του Χρήστη με ακρίβεια. Διαφορετικά, ο Υπεύθυνος Επεξεργασίας Δεδομένων επιφυλάσσεται του δικαιώματός του για τυχόν λάθη που είναι πέραν του ελέγχου του. Επιπλέον ο Υπεύθυνος Επεξεργασίας Δεδομένων μπορεί να απορρίψει αιτήματα που είναι αβάσιμα, υπερβολικά, καταχρηστικά, κακοπροαίρετα ή παράνομα στο πλαίσιο των νομοθετικών διατάξεων.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,91 +210,48 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Πώς προστατεύεται η ασφάλεια δεδομένων;</h2>
+                                <b>7.1</b> Ο Υπεύθυνος Επεξεργασίας Δεδομένων εφαρμώζει όλα τα κατάλληλα μέτρα ασφάλειας για να εξασφαλίσει την προστασία και την εμπιστευτικότητα των προσωπικών δεδομένων ανάμεσα στα οποία περιλαμβάνονται και τα ακόλουθα:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Ισχυρές πολιτικές κωδικών ασφαλείας σε όλους τους σέρβερ</li>
+                                    <li>Πρωτόκολλα HTTPS για αλληλεπίδραση με API και πελάτες Ιστού</li>
+                                    <li>Πρωτόκολλα SSH για σύνδεση διακομιστή</li>
+                                    <li>Περιοδικές ενημερώσεις του σέρβερ με τις τελευταίες διορθώσεις ασφαλείας</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Επισημαίνεται πως μόνο ειδικά εξουσιοδοτημένοι υπάλληλοι του Υπεύθυνου Επεξεργασίας Δεδομένων, ενεργώντας υπό την εξουσία του Υπεύθυνου Επεξεργασίας Δεδομένων και μόνο καθ’ υπόδειξή του καθώς και αποδέκτες, όπου είναι απαραίτητο, χειρίζονται τα δεδομένα που υποβάλλει ο Χρήστης. Για την επεξεργασία, ο Υπεύθυνος Επεξεργασίας Δεδομένων επιλέγει άτομα με τις κατάλληλες πιστοποιήσεις που διαθέτουν επαρκείς διασφαλίσεις ως προς τις τεχνικές γνώσεις και προσωπική ακεραιότητα για να προστατεύσουν την εμπιστευτικότητα. Ο Υπεύθυνος Επεξεργασίας Δεδομένων επίσης παίρνει όλα τα απαραίτητα προστατευτικά μέτρα για την προστασία και τη διαφύλαξη της μυστικότητας, εμπιστευτικότητας και ακεραιότητας των προσωπικών δεδομένων μέσω σχετικών συμβατικών δεσμεύσεων των συνεργατών του. Σε οποιαδήποτε περίπτωση, η ασφάλεια της Ιστοσελίδας μπορεί να παραβιαστεί για λόγους που βρίσκονται εκτός της σφαίρας ελέγχου του Υπεύθυνου Επεξεργασίας Δεδομένων όπως και εξαιτίας τεχνικών ή άλλων προβλημάτων του δικτύου ή λόγω ανωτέρας βίας ή τυχαίων γεγονότων. Σε αυτή την περίπτωση, η ασφάλεια των προσωπικών δεδομένων δε μπορεί να εγγυηθεί.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Ποιοί είναι οι αποδέκτες των δεδομένων;</h2>
+                                <b>8.1</b> Οι αποδέκτες των προσωπικών δεδομένων των Χρηστών είναι συνεργαζόμενες εταιρείες που παρέχουν τεχνική υποδομή για τη λειτουργία του Ιστοτόπου, ο πάροχος φιλοξενίας καθώς και η εταιρεία που αναλαμβάνει να στέλνει ηλεκτρονική επικοινωνία σχετικά με τη λειτουργία της Πλατφόρμας στους Χρήστες. Όπου είναι απαραίτητο σύμφωνα με τους ισχύοντες νόμους, ο Υπεύθυνος Επεξεργασίας Δεδομένων θα υπογράψει συμφωνίες με τέτοιες εταιρείες, οι οποίες αναφέρονται στην εφαρμογή και το συχνό έλεγχο των μέτρων ασφαλείας. Σε περίπτωση μεταφοράς δεδομένων εκτός ΕΕ υπάρχουν όλες οι απαραίτητες εγγυήσεις.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Σε περίπτωση που ο Υπεύθυνος Επεξεργασίας Δεδομένων λάβει αίτηση να κοινοποιήσει ή να μεταφέρει δεδομένα μετά από αίτημα της αρμόδιας Διοικητικής Αρχής, Εισαγγελέα, Δικαστηρίου ή άλλης Αρχής, μπορεί να κοινοποιήσει/μεταφέρει αυτά τα δεδομένα ώστε να εκπληρώσει το καθήκον του που εκτελείται υπέρ του δημοσίου συμφέροντος έναντι των αρχών αυτών (με ή χωρίς να ειδοποιήσει προηγουμένως το Χρήστη) σύμφωνα με τις κατάλληλες νομικές διατάξεις. Αν ο Χρήστης θα έπρεπε να ειδοποιηθεί προηγουμένως σύμφωνα με τις νομικές διατάξεις, τότε ο Χρήστης έχει το δικαίωμα να ενσταθεί σε αυτή την επεξεργασία όπως προβλέπεται στο άρθρο 7 παραπάνω.
+                                <br><br>
+                                <b>8.3.</b> Όσων αφορά τις επαγγελματικές λεπτομέρειες του κάθε Χρήστη, είναι διαθέσιμες σε όλους τους εγγεγραμμένους Χρήστες της Πλατφόρμας για τους σκοπούς που αναφέρθηκαν παραπάνω.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
-                                Email: info@scify.org
+                                <h2 class="mt-4 mb-4">9. Επικοινωνία με τον Υπεύθυνο Επεξεργασίας Δεδομένων</h2>
+                                <b>9.1.</b> Για τυχόν θέματα σχετικά με την παρούσα πολιτική απορρήτου, την επεξεργασία των δεδομένων των Χρηστών όπως και για την άσκηση των δικαιωμάτων του Χρήστη, ο Χρήστης μπορεί να επικοινωνήσει με τον Υπεύθυνο Επεξεργασίας Δεδομένων με έναν από τους ακόλουθους τρόπους: <br>
+                                Τηλέφωνο: +302114004192, <br>
+                                Ηλ. Διεύθυνση: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                Σε περίπτωση που ο Χρήστης αντιληφθεί οποιοδήποτε περιστατικό παραβίασης δεδομένων, παρακαλείται ευγενικά να ειδοποιήσει αμέσως τον Υπεύθυνο Επεξεργασίας Δεδομένων.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> Αυτοί οι όροι διέπονται και συμπληρώνονται από τους Όρους και Προϋποθέσεις και μαζί τους αποτελούν ένα ενιαίο κείμενο.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
+                                <h2 class="mt-4 mb-4">10. Σύνδεση με άλλους Ιστότοπους/κοινωνικά δίκτυα</h2>
+                                Αυτός ο Ιστότοπος συνδέεται με άλλες ιστότοπους μέσω υπερσυνδέσμων. Αυτοί οι ιστότοποι δε σχετίζονται με τον Ιστότοπο του Υπεύθυνου Επεξεργασίας Δεδομένων και το περιεχόμενό τους δεν ελέγχεται ούτε συστήνεται από τον Υπεύθυνο Επεξεργασίας Δεδομένων. Έτσι, η ακρίβεια, νομιμότητα, πληρότητα ή ποιότητα του περιεχομένου τους και η νομιμότητα της επεξεργασίας των προσωπικών δεδομένων του Χρήστη δε μπορεί να ελεγχθεί και δεν τους παρέχεται καμία εγγύηση. Ο Υπεύθυνος Επεξεργασίας Δεδομένων δε μπορεί να θεωρηθεί υπεύθυνος για αυτούς ή για τυχόν ζημιές που μπορεί να προκληθούν στο Χρήστη λόγω ή μετά τη χρήση τους. Ο Υπεύθυνος Επεξεργασίας Δεδομένων δε μπορεί να ελέγξει την επεξεργασία των προσωπικών δεδομένων του Χρήστη από αυτούς τους συνδεδεμένους ιστότοπους και συνεπώς δε φέρει καμία ευθύνη. Όταν ο Χρήστης έχει πρόσβαση σε αυτούς τους ιστοτόπους, θα πρέπει να λαμβάνει υπόψη του ότι ισχύουν οι όροι και προϋποθέσεις κάθε ιστοτόπου. Για το όποιο θέμα που μπορεί να προκύψει ως προς το περιεχόμενο ή τη χρήση του συνδεδεμένου ιστότοπου, ο Χρήστης θα έπρεπε να επικοινωνήσει κατευθείαν με το χειριστή ή το διαχειριστή του κάθε ιστοτόπου. Ο Υπεύθυνος Επεξεργασίας Δεδομένων δεν εγκρίνει ούτε ενστερνίζεται το Περιεχόμενο ή τις υπηρεσίες των συνδεδεμένων ιστότοπων, στους οποίους έχει πρόσβαση ο Χρήστης μέσα από τον Ιστότοπο.<br><br>
+                                Ο Ιστότοπος δίνει στο Χρήστη τη δυνατότητα να συνδεθεί και να αλληλεπιδράσει με τα κοινωνικά δίκτυα μετά από δική του πρωτοβουλία και θέληση. Σε αυτή την περίπτωση, ο Υπεύθυνος Επεξεργασίας Δεδομένων δεν είναι υπεύθυνος για την επεξεργασία των δεδομένων του Χρήστη που λαμβάνει χώρα μέσα ή από τα κοινωνικά δίκτυα. Ο Χρήστης θα πρέπει να έχει πρόσβαση κατευθείαν σε κάθε κοινωνικό δίκτυο για να ασκήσει τα νομικά του δικαιώματα.
 
 
                             </div>
@@ -415,110 +259,84 @@
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                11.1. Η Πλατφόρμα χρησιμοποιεί cookies για να είναι λειτουργική ή πιο αποτελεσματική στη λειτουργία της, για να βελτιώσει την πλοήγηση του Χρήστη, για να παρέχει στο Χρήστη το πλήρες δυναμικό της Πλατφόρμας, για να εξασφαλίσει τη σωστή προβολή του περιεχομένου καθώς και για αναλυτικούς και στατιστικούς σκοπούς.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Τα cookies είναι μικρά αρχεία κειμένου που αποθηκεύονται στον υπολογιστή του Χρήστη όταν εκείνος επισκέπτεται μια ψηφιακή πλατφόρμα, που χρησιμοποιούνται σαν ένας τρόπος αναγνώρισης του υπολογιστή του.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Τα cookies, εκτός από απολύτως απαραίτητα cookies, εγκαθίστανται μόνο αν ο Χρήστης αποδεχτεί την εγκατάστασή τους όταν επισκέπτεται αυτή την Πλατφόρμα. Αποδεχόμενος τα cookies όταν μπαίνει σε αυτή την Πλατφόρμα, ο Χρήστης αναφέρει ρητά πως έχει διαβάσει και καταλάβει τους συγκεκριμένους όρους και προϋποθέσεις σχετικά με την εγκατάσταση, λειτουργία και σκοπό των cookies και πως παρέχει τη συναίνεσή του για τη χρήση τους.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Εναλλακτικά, ο Χρήστης μπορεί να μη δεχθεί τα cookies. Σε αυτή την περίπτωση, θα εγκαθίστανται μόνο cookies που είναι τεχνικά και λειτουργικά απαραίτητα για τη λειτουργία της Πλατφόρμας.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. Ο Χρήστης μπορεί να διαχειρίζεται τη χρήση και την εγκατάσταση των cookies οποιαδήποτε στιγμή μέσω ενός πίνακα, όπου μπορεί να επιλέξει ποια κατηγορία cookies θέλει να αποδεχτεί και ποιες όχι (ή να αιτηθεί να εγκατασταθούν μόνο τα τεχνικώς απαραίτητα cookies).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. Συγκεκριμένα, τα cookies που χρησιμοποιούνται από την Πλατφόρμα είναι τα ακόλουθα:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Τύπος cookies</th>
+                                        <th>Εξήγηση</th>
+                                        <th>Παραδείγματα cookies</th>
+                                        <th>Διάρκεια εγκατάστασης κάθε cookie</th>
+                                        <th>Μεταφορά δεδομένων σε τρίτα πρόσωπα</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Απολύτως απαραίτητα Cookies</td>
+                                        <td>Τα απολύτως απαραίτητα cookies είναι καθοριστικής σημασίας για τη λειτουργία της Πλατφόρμας. Αυτά τα cookies επιτρέπουν στο Χρήστη να περιηγείται και να χρησιμοποιήσει λειτουργίες της Πλατφόρμας όπως η πρόσβαση σε ασφαλείς περιοχές. Αυτά τα cookies δεν αναγνωρίζουν την ατομική ταυτότητα του Χρήστη και χωρίς αυτά, δε θα ήταν δυνατή η ομαλή λειτουργία της Πλατφόρμας.
+                                            Αυτά είναι cookies που αξιολογούν τον τρόπο με τον οποίο χρησιμοποιούν την Πλατφόρμα οι επισκέπτες (π.χ. ποιες σελίδες επισκέπτονται πιο συχνά οι χρήστες και αν λαμβάνουν μηνύματα σφάλματος από τις ιστοσελίδες). Αυτά τα cookies χρησιμοποιούνται για στατιστικούς σκοπούς και για να βελτιωθεί η επίδοση μιας πλατφόρμας.                                            
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>CookieConsent (Αποθηκεύει την κατάσταση συναίνεσης cookie του χρήστη για το συγκεκριμένο τομέα)
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (Εξασφαλίζει την ασφάλεια περιήγησης του επισκέπτη αποτρέποντας την πλαστογραφία αιτήματος μεταξύ ιστοτόπων. Αυτό το cookie είναι καθοριστικό για την ασφάλεια του ιστοτόπου και του επισκέπτη)
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
-
+                                            ecas_lets_crowdsource_our_future_session (Όταν η εφαρμογή πρέπει να ‘θυμάται’ τους συνδεδεμένους χρήστες όσο αυτοί περιηγούνται στην Πλατφόρμα)
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            Crowdsourcing_anonymous_user_id (χρησιμοποιήται για να αποθηκεύσει ανώνυμες απαντήσεις στα ερωτηματολόγια αναθέτοντας έναν ακέραιο αριθμό στο χρήστη που υποβάλλει την απάντηση)
                                         </td>
-                                        <td>1 year
+                                        <td>1 χρόνο
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 μέρα
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Συνεδρία
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 χρόνια
                                         </td>
-                                        <td>No
+                                        <td>Όχι
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Όχι
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Όχι
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Όχι
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Στατιστικά / αναλυτικά Cookies</td>
+                                        <td>Αυτά είναι cookies που αξιολογούν τον τρόπο με τον οποίο χρησιμοποιούν την Πλατφόρμα οι επισκέπτες (π.χ. ποιες σελίδες επισκέπτονται πιο συχνά οι χρήστες και αν λαμβάνουν μηνύματα σφάλματος από τις ιστοσελίδες). Αυτά τα cookies χρησιμοποιούνται για στατιστικούς σκοπούς και για να βελτιωθεί η επίδοση μιας πλατφόρμας.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Τα cookies της Google Analytics χρησιμοποιούνται για να μετρηθεί η κυκλοφορία στην Πλατφόρμα. Αποθηκεύεται μια μοναδική συμβολοσειρά κειμένου  για να αναγνωρίσει το φυλλομετρητή, τη χρονική σήμανση για αλληλεπιδράσεις και το φυλλομετρητή/σελίδα-πηγή που οδήγησε το χρήστη στην Πλατφόρμα. Δεν αποθηκεύεται καμία ευαίσθητη πληροφορία.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE:	 2 χρόνια
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat: 1 λεπτό
                                             <br><br>
-                                            _ga:2 years
+                                            _ga: 2 χρόνια
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au: 3 μήνες
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid: 24 ώρες
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Ναι (Εταιρεία που παρέχει στατιστικές και αναλυτικές υπηρεσίες αν θεωρηθεί τρίτο πρόσωπο)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +344,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Παιδικό απόρρητο</h2>
+                                Το έργο μας δεν απευθύνεται σε κανέναν κάτω της ηλικίας των 18 ετών (‘Παιδιά’). Δεν συλλέγουμε εν γνώση μας στοιχεία προσωπικής ταυτοποίησης από κανέναν κάτω της ηλικίας των 18. Αν είστε γονέας ή κηδεμόνας και γνωρίζετε πως τα Παιδιά σας μας έχουν προμηθεύσει με Προσωπικά Δεδομένα, παρακαλούμε επικοινωνήστε μαζί μας. Αν αντιληφθούμε πως έχουμε συλλέξει Προσωπικά Δεδομένα από παιδιά χωρίς επιβεβαίωση γονικής συναίνεσης, προβαίνουμε σε ενέργειες για να αφαιρέσουμε αυτά τα στοιχεία από τους σέρβερ μας.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Τροποποιήσεις στην παρούσα Πολιτική Απορρήτου</h2>
+                                Ο Υπεύθυνος Επεξεργασίας Δεδομένων διατηρεί το δικαίωμα να τροποποιήσει την παρούσα Πολιτική Απορρήτου, για παράδειγμα όταν αυτό είναι απαραίτητο για τη συμμόρφωση με νέες απαιτήσεις που επιβάλλονται από την ισχύουσα νομοθεσία, τις κατευθυντήριες γραμμές ή τις τεχνικές απαιτήσεις, ή κατά τη διάρκεια αναθεώρησης των διαδικασιών και πρακτικών του Υπεύθυνου Επεξεργασίας Δεδομένων. Ο Χρήστης θα ειδοποιηθεί για οποιαδήποτε τροποποίηση σε αυτή την Πολιτική Απορρήτου μέσω της Πλατφόρμας. Ο Χρήστης θα πρέπει να ελέγχει συχνά αυτή την Πολιτική Απορρήτου για τυχόν τροποποιήσεις.
                             </div>
                         </div>
                     </div>
