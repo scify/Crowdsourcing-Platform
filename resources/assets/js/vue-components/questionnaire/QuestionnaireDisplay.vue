@@ -133,6 +133,19 @@ export default {
         this.prepareQuestionnaireForResponding();
       else
         this.prepareQuestionnaireForViewingResponse();
+
+      //bug fix on mobile browsers.
+      // When you try to drag the rankings, the modal is scrolled so you cannot complete it.
+      // We should use a mutation observer instead of this.
+      window.setInterval(function(){
+        if ($(".sv-ranking--drag").length>0){
+          $("body,#questionnaire-modal").addClass("disable-scroll");
+        }
+        else {
+          $("body,#questionnaire-modal").removeClass("disable-scroll");
+        }
+      },300);
+
     },
     prepareQuestionnaireForResponding() {
 
@@ -328,6 +341,7 @@ export default {
   }
 }
 
+
 #questionnaire-loader {
   .spinner-border {
     width: 5rem;
@@ -337,5 +351,11 @@ export default {
     border-right-color: transparent;
   }
 }
+
+
+.disable-scroll{
+  overflow-y:hidden !important;
+}
+
 
 </style>
