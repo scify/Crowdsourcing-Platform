@@ -77,7 +77,7 @@
             @if ($goBackUrl)
                 <div class=" mt-5 col-md-4 col-sm-12 mx-auto">
                     <a href="{{$goBackUrl}}" class="btn call-to-action go-back"><i
-                                class="fas fa-long-arrow-alt-left"></i> Back to the questionnaire</a>
+                                class="fas fa-long-arrow-alt-left"></i> Назад към въпросника</a>
                 </div>
             @endif
         </div>

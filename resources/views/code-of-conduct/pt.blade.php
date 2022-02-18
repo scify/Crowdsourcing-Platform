@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>CODE OF CONDUCT</h1>
+                    <h1>Código de conduta</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,38 +14,37 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <p>As a crowdsourcing platform we welcome everyone, and encourage a friendly and positive environment.
-                                    This code of conduct outlines our expectations from participants to ascertain successful participation, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring environment for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the Platform or their responses can be deleted.
-                                During your participation in crowdsourcing projects:
+                                <p>Como plataforma de crowdsourcing, damos as boas-vindas a todos e incentivamos um ambiente amigável e positivo.
+                                    Este código de conduta descreve as nossas expectativas dos participantes para garantir uma participação bem-sucedida, bem como as etapas para relatar comportamentos inaceitáveis. Estamos comprometidos em proporcionar um ambiente acolhedor e inspirador para todos e esperamos que nosso código de conduta seja honrado. Qualquer pessoa que viole este código de conduta poderá ser banida da Plataforma ou suas respostas poderão ser deletadas.
+                                    Durante sua participação em projetos de crowdsourcing:                                    
                                 </p>
                                 <ul>
                                     <li>
-                                        <strong>Be clear and relevant to the topic:</strong> Try to be precise and explain your thoughts and arguments with clarity. All answers must be relevant to the topic of the questionnaire. This will facilitate the platform’s moderators work, where they will have to analyze all given answers, categorize them and produce valuable insights that can have a positive impact οn the society.
+                                        <strong>Seja claro e relevante para o tópico:</strong> Tente ser preciso e explique os seus pensamentos e argumentos com clareza. Todas as respostas devem ser relevantes para o tópico do questionário. Isso facilitará o trabalho dos moderadores da plataforma, onde eles terão que analisar todas as respostas dadas, categorizá-las e produzir insights valiosos que podem ter um impacto positivo na sociedade.
                                     </li>
-                                    <li><strong>Be respectful and kind:</strong> Not all of us will agree all the time, but disagreement is no excuse for poor behavior and poor manners. It’s important to remember that even though the answers you provide are anonymous, an environment where people feel uncomfortable or threatened is not a productive one. Of course harassment, insults, posting (or threatening to post) other people’s personally identifying information (“doxing”), racist or sexist terms, and other exclusionary behavior aren’t acceptable.
-                                        If you just keep “respectful and kind” in mind, you can't go wrong.
+                                    <li><strong>Seja respeitoso e gentil:</strong> nem sempre iremos concordar, mas discordar não é desculpa para mau comportamento e maus modos. É importante lembrar que, embora as respostas fornecidas sejam anónimas, um ambiente em que as pessoas se sintam desconfortáveis ou ameaçadas não é produtivo. É claro que assédio, insultos, publicações (ou ameaça de publicação) de informações de identificação pessoal de outras pessoas (“doxing”), termos racistas ou sexistas e outros comportamentos de exclusão não são aceitáveis. Se se mantiver “respeitador e amável” não há como errar.
                                     </li>
-                                    <li><strong>Remember that your contribution is public:</strong>Your email and any personal information is not revealed by the platform.  Though the textual answers you provide in the questionnaires, the answers to open-ended questions, may be publicly available. Do not include any personal information in your responses that you do not wish to be publicly available.
+                                    <li><strong>Lembre-se que sua contribuição é pública:</strong> Seu e-mail e quaisquer informações pessoais não são revelados pela plataforma. Embora as respostas textuais que você fornece nos questionários, as respostas às perguntas abertas podem estar disponíveis publicamente. Não inclua nenhuma informação pessoal em suas respostas que você não deseja que esteja disponível publicamente.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Diversity Statement
+                                <h2 class="mt-4 mb-4">Declaração de diversidade
                                 </h2>
                             </div>
                             <div class="col-12">
-                                We encourage everyone to participate and are committed to building a community for all. Although this list cannot be exhaustive, we explicitly honor diversity in age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected characteristics above, including participants with disabilities.
+                                Incentivamos todos a participar e estamos comprometidos em construir uma comunidade para todos. Embora esta lista não possa ser exaustiva, honramos explicitamente a diversidade de idade, gênero, identidade ou expressão de gênero, cultura, etnia, idioma, nacionalidade, crenças políticas, profissão, raça, religião, orientação sexual, status socioeconómico e capacidade técnica. Não toleraremos discriminação com base em nenhuma das características protegidas acima, incluindo participantes com deficiência.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Excluding inappropriate content
+                                <h2 class="mt-4 mb-4">Excluindo conteúdo impróprio
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Platform facilitators will periodically review contributions posted by participants. Facilitators can exclude inappropriate content from the platform, and explain reasons for exclusion to the author of the excluded content.
+                                Os facilitadores da plataforma irão rever periodicamente as contribuições publicadas pelos participantes. Os facilitadores podem excluir conteúdo impróprio da plataforma e explicar os motivos da exclusão ao autor do conteúdo excluído.
                             </div>
                         </div>
                         <div class="row">
@@ -54,22 +53,21 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                If you experience or witness unacceptable behavior, or have any other concerns, please report it by contacting the organisers at info@scify.org
+                                Se experienciar ou testemunhar um comportamento inaceitável, ou tiver outras preocupações, denuncie entrando em contato com os organizadores em info@scify.org
                                 <br><br>
-                                All reports will be handled with discretion. In your report please include:<br>
-                                - Your contact information.<br>
-                                - The questionnaire response that you wish to report. Provide the name of the project, the question and the answer’s text that you want to report.
+                                Todos os problemas serão tratados com discrição. No relatório, inclua:<br>
+                                - A sua informação de contato.<br>
+                                - A resposta do questionário que você deseja relatar. Forneça o nome do projeto, a pergunta e o texto da resposta que você deseja relatar.
                                 <br><br>
-                                After filing a report, a representative will contact you personally, review the incident, follow up with any additional questions, and make a decision as to how to respond.
-
+                                Depois de registrar uma denúncia, um representante entrará em contato consigo pessoalmente, analisará o incidente, fará o acompanhamento com perguntas adicionais e tomará uma decisão sobre como responder.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">Attribution & Acknowledgements</h2>
+                                <h2 class="mt-4 mb-4">Atribuições e Agradecimentos</h2>
                             </div>
                             <div class="col-12">
-                                This code of conduct has used elements of the Code of Conduct from the <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
+                                Este código de conduta usou elementos do Código de Conduta do <a href="https://openlifesci.org/code-of-conduct"> Open Life Science </a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +76,7 @@
             @if ($goBackUrl)
                 <div class=" mt-5 col-md-4 col-sm-12 mx-auto">
                     <a href="{{$goBackUrl}}" class="btn call-to-action go-back"><i
-                                class="fas fa-long-arrow-alt-left"></i> Back to the questionnaire</a>
+                                class="fas fa-long-arrow-alt-left"></i> Voltar ao questionário</a>
                 </div>
             @endif
         </div>
