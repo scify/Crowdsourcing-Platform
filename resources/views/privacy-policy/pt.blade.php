@@ -6,7 +6,7 @@
         <div class="mb-5">
             <div class="row">
                 <div class="col-12 mx-auto mb-3 text-center">
-                    <h1>PRIVACY POLICY</h1>
+                    <h1>Política de privacidade</h1>
                 </div>
             </div>
             <div class="row">
@@ -14,307 +14,195 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                The present Privacy policy applies to all Users of the Platform (hereinafter referred to
-                                as the <b>“Users”</b> or the <b>“User”</b> and <b>“Platform”</b> respectively) and forms
-                                an integral part of the Platform's Website Terms and Conditions. The present Privacy
-                                Policy provides the
-                                User with general information regarding how the Data Controller uses your personal data
-                                and other information required by data protection legislation. In case of future
-                                amendment, the User will be provided with necessary updates and information through the
-                                update of the present Privacy Policy, uploaded in the Platform.
+                                A presente Política de Privacidade aplica-se a todos os Utilizadores da Plataforma (doravante designados por <b>“Utilizadores”</b> ou <b>“Utilizador”</b> e <b>“Plataforma”</b> respetivamente) e faz parte integrante dos Termos e Condições do Site da Plataforma. A presente Política de Privacidade fornece ao utilizador informações gerais sobre como o Controlador de Dados usa seus dados pessoais e outras informações exigidas pela legislação de proteção de dados. Em caso de alteração futura, o utilizador receberá as atualizações e informações necessárias através da atualização da presente Política de Privacidade, carregada na Plataforma.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
+                                <h2 class="mt-4 mb-4">1. Quem é o Controlador de Dados?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
-                                Data (herein after referred to as <b>"Data Controller"</b>).
+                                <b>1.1.</b> A empresa com o nome de empresa “SCIENCE FOR YOU”, endereço: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Grécia, Telefone: +302114004192, email:
+                                info@scify.org, é o Controlador de Dados para o processamento dos Dados Pessoais do utilizador (doravante denominado <b>"Controlador de Dados"</b>).
                                 <br><br>
-                                <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
-                                the present Privacy Policy and to the processing of User's personal data or data
-                                uploaded by the User to use the Platform, the User can communicate with the
-                                Data Controller, by using one of the following alternatives:
+                                <b>1.2. Detalhes de contato do controlador de dados:</b> Para qualquer problema ou preocupação com relação à presente Política de Privacidade e ao processamento de dados pessoais do utilizador ou dados carregados pelo utilizador para usar a plataforma, o utilizador pode comunicar com o controlador de dados, usando um dos seguintes alternativas:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                Através do telefone +302114004192, de segunda a sexta das 10h00 às 18h00. EET (Hora do Leste Europeu)<br>
+                                Ao enviar um e-mail para o seguinte endereço de e-mail: info@scify.org<br>
+                                Enviando correspondência para o seguinte endereço: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Grécia<br>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">2. What is the purpose and the legal basis for User’s data processing?</h2>
-                                <b>2.1.</b> Platform's operational purpose is to collect opinions of users via questionnaires. The opinions are processed in order to gain insights, gather and present valuable ideas and suggestions on the topics addressed in the questionnaires.
-                                Users can respond anonymously (without providing any personal information) or can
-                                voluntarily register
-                                in order to submit eponymous answers.
-                                User's answers are translated into English and are presented in Reports.
-                                For the specific purpose of processing, the legal basis is User's prior consent.
+                                <h2 class="mt-4 mb-4">2. Qual é a finalidade e a base legal do tratamento dos dados do Utilizador?</h2>
+                                <b>2.1.</b> O objetivo operacional da plataforma é recolher opiniões dos utilizadores através de questionários. As opiniões são processadas para obter insights, reunir e apresentar ideias e sugestões valiosas sobre os temas abordados nos questionários. Os utilizadores podem responder anonimamente (sem fornecer qualquer informação pessoal) ou podem registrar -se voluntariamente para enviar respostas e-mail e um apelido. As respostas do utilizador são traduzidas para inglês e apresentadas em relatórios. Para fins específicos de processamento, a base legal é o consentimento prévio do Utilizador.
                                 <br><br>
-                                <b>2.2.</b> To send User informative emails with the purpose to inform him about
-                                new activities, projects and other issues of interest of the Platform. For this purpose
-                                of processing the legal basis is the User's prior consent.
+                                <b>2.2.</b> Enviar e-mails informativos ao Utilizador com o objetivo de informá-lo sobre novas atividades, projetos e outros assuntos de interesse da Plataforma. Para este efeito de tratamento a base legal é o consentimento prévio do Utilizador.
                                 <br><br>
-                                <b>2.3</b> Processing of data for reasons related to Data Controller's compliance with
-                                legal obligations. In such cases processing of data takes place for only the necessary time period in order for Data Controller to comply with obligations imposed by various legal provisions.
+                                <b>2.3</b> Processamento de dados por motivos relacionados com o cumprimento das obrigações legais do Controlador de Dados. Nesses casos, o processamento de dados ocorre apenas pelo período de tempo necessário para que o Controlador de Dados cumpra as obrigações impostas por várias disposições legais.
                                 <br><br>
-                                <b>In case of the above provisions where the legal basis is User's prior consent, the
-                                    User can always withdraw his consent at any time without affecting the legitimacy of
-                                    the
-                                    data based on consent prior to its withdrawal.</b>
+                                <b>No caso das disposições acima em que a base legal é o consentimento prévio do Utilizador, o Utilizador pode sempre retirar seu consentimento a qualquer momento sem afetar a legitimidade dos dados com base no consentimento prévio à sua retirada.</b>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">3. Types of data collected</h2>
+                                <h2 class="mt-4 mb-4">3. Tipos de dados recolhidos</h2>
 
-                                <h3 class="mt-4 mb-4">3.1 Personal data</h3>
-                                <b>3.1.1 Registration- account creation:</b><br>
-                                In order for a User to voluntarily create an account in the Platform, the User should
-                                fill in the necessary data: his nickname, email address, and password
+                                <h3 class="mt-4 mb-4">3.1 Dados pessoais</h3>
+                                <b>3.1.1 Registro - criação de conta:</b><br>
+                                Para que um Utilizador crie voluntariamente uma conta na Plataforma, o Utilizador deverá preencher os dados necessários: apelido, endereço de e-mail e uma palavra passe.
                                 <br><br>
-                                <b>3.1.2 Submitted questionnaire responses</b><br>
-                                The Platform collects user answers (that is opinions on various subjects) on questions
-                                made via Platform's questionnaires.
-                                These answers are analyzed and presented in a questionnaire results page.
-                                The User is strictly advised to conform the platform's "code of conduct for successful
-                                participation" and avoid
-                                posting publicly any personal data that do not wish to be publicly available on the
-                                Platform.
+                                <b>3.1.2 Respostas do questionário enviado</b><br>
+                                A Plataforma recolhe as respostas dos utilizadores (ou seja, opiniões sobre vários assuntos) em perguntas feitas através de questionários da Plataforma. Essas respostas são analisadas e apresentadas numa página de resultados do questionário. O Utilizador é estritamente aconselhado a cumprir o "código de conduta para uma participação bem-sucedida" da plataforma e evitar publicar publicamente quaisquer dados pessoais que não desejem estar disponíveis publicamente na Plataforma.
                                 <br><br>
-                                <b>3.1.3. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b>
+                                <b>3.1.3. A comunicação da Plataforma por motivos relacionados ao uso permitido da Plataforma pelo Utilizador.</b>
                                 <br>
-                                In order for the Platform to communicate with the User for the above purposes, Data
-                                Controller can process all data relating to User's account, uploaded content and data
-                                related to the User's use of the Platform.
+                                Para que a Plataforma se comunique com o Utilizador para os fins acima, o Controlador de Dados pode processar todos os dados relacionados à conta do Utilizador, conteúdo carregado e dados relacionados ao uso da Plataforma pelo Utilizador.
 
-                                <h3 class="mt-4 mb-4">3.2 Usage data</h3>
-                                We may also collect information how the webpage is accessed and used ("Usage Data").
-                                This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address),
-                                browser type, browser version, the pages of our webpage that you visit, the time and date of your visit,
-                                the time spent on those pages, unique device identifiers and other diagnostic data.
+                                <h3 class="mt-4 mb-4">3.2 Dados de uso</h3>
+                                Também podemos recolher informações sobre como a página da Web é acedida e usada ("Dados de uso"). Esses Dados de Uso podem incluir informações como o endereço do protocolo de Internet do seu computador (por exemplo, endereço IP), tipo de navegador, versão do navegador, as páginas da nossa página da Web que você visita, a hora e a data de sua visita, o tempo passado nessas páginas, identificadores de dispositivos e outros dados de diagnóstico.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4"> 4. How the Platform collects data</h2>
-                                4.1 The information can be collected by the following ways: <br>
-                                4.1.1 When the User registers and creates an account on the Platform. <br>
-                                4.1.2 When the User submits answer's on the Platform's questionnaires <br>
-                                4.1.3 When the User visits the Platform and agrees to the installation of cookies (as
-                                per the Platform's Cookie Policy in article 11 below) and the collection of the User’s
-                                personal data such as the IP address, operation system, type and browser edition
-                                etc.
+                                <h2 class="mt-4 mb-4"> 4. Como a Plataforma coleta dados</h2>
+                                4.1 As informações podem ser recolhidas das seguintes formas: <br>
+                                4.1.1 Quando o Utilizador se regista e cria uma conta na Plataforma. <br>
+                                4.1.2 Quando o Utilizador envia respostas nos questionários da Plataforma <br>
+                                4.1.3 Quando o Utilizador visita a Plataforma e concorda com a instalação de cookies (conforme a Política de Cookies da Plataforma no artigo 11 abaixo) e a recolha de dados pessoais do Utilizador, como endereço IP, sistema operacional, tipo e edição do navegador etc.
                                 <br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">5. How long are User's data stored and when are they deleted?</h2>
-                                <b>5.1. User's account data:</b><br>
-                                Without prejudice to User's deletion/erasure right mentioned below, the Data registered
-                                and stored in the User's account will be stored as long as the User wishes to make use
-                                of the Platform for the purpose mentioned above. In
-                                case a User wishes to delete his account, he can delete his account through account's
-                                settings or contact Data Controller at the above mentioned contact details.
+                                <h2 class="mt-4 mb-4">5. Por quanto tempo os dados do utilizador são armazenados e quando são excluídos?</h2>
+                                <b>5.1. Dados da conta do utilizador:</b><br>
+                                Sem prejuízo do direito de exclusão/exclusão do Utilizador mencionado abaixo, os Dados registrados e armazenados na conta do Utilizador serão armazenados enquanto o Utilizador desejar fazer uso da Plataforma para os fins mencionados acima. Caso um Utilizador deseje remover sua conta, ele pode remover sua conta através das configurações da conta ou entrar em contato com o Controlador de Dados nos detalhes de contato mencionados acima.
                                 <br><br>
-                                <b>5.2. Platform's communication for reasons related to User's permitted use of the
-                                    Platform.</b><br>
-                                Data related to such communication will be stored only as long as the User wishes to use
-                                the Platform and maintains his account. In case a User wishes to delete his account he
-                                can delete his account through account's settings or contact Data Controller at the
-                                above mentioned contact details.
+                                <b>5.2. A comunicação da Plataforma por motivos relacionados ao uso permitido da Plataforma pelo Utilizador.</b><br>
+                                Os dados relacionados a tal comunicação serão armazenados apenas enquanto o Utilizador desejar utilizar a Plataforma e manter sua conta. Caso um Utilizador deseje excluir sua conta, ele pode excluir sua conta através das configurações da conta ou entrar em contato com o Controlador de Dados nos detalhes de contato mencionados acima.
                                 <br><br>
-                                <b>5.3. Statistical analysis for the optimization of the Website</b><br>
-                                Regardless of the above mentioned provisions of article 5, Data Controller will store
-                                and process only necessary data for the period required in order to comply with its
-                                obligations imposed by law each time (compliance with fiscal obligations etc).
+                                <b>5.3. Análise estatística para a otimização do Website</b><br>
+                                Independentemente das disposições acima mencionadas do artigo 5, o Controlador de Dados armazenará e processará apenas os dados necessários pelo período necessário para cumprir suas obrigações impostas por lei (cumprimento de obrigações fiscais etc.).
                                 <br><br>
-                                <b>5.4. Processing of personal data for the purposes of conducting statistical
-                                    analysis.</b><br>
-                                Please see cookies policy (article 11 ) below.
+                                <b>5.4. Tratamento de dados pessoais para fins de análise estatística.</b><br>
+                                Consulte a política de cookies (artigo 11) abaixo.
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">6. What are User's rights ιn relation to the processing of his data and how can he exercise these rights?</h2>
-                                <b>6.1</b> The Data Controller respects User's right in relation to data processing.
+                                <h2 class="mt-4 mb-4">6. Quais são os direitos do Utilizador em relação ao tratamento dos seus dados e como pode exercer esses direitos?</h2>
+                                <b>6.1</b> O Controlador de Dados respeita o direito do Utilizador em relação ao processamento de dados.
                                 <br><br>
-                                <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                <b>6.2</b> O Utilizador pode exercer os seus direitos contactando o Controlador de Dados através dos seguintes contactos: Telefone: +302114004192, email: info@scify.org
                                 <br><br>
-                                For User's facilitation, User's rights are included in the following table along with a
-                                short explanation of each right (reference to articles corresponds to article of GDPR
-                                2016/679):
+                                Para ajudar o utilizador, os direitos do utilizador estão incluídos na tabela a seguir, juntamente com uma breve explicação de cada direito (referência aos artigos corresponde ao artigo do GDPR 2016/679):
                                 <br><br>
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Right</th>
-                                        <th>Explanation</th>
+                                        <th>Direito</th>
+                                        <th>Explicação</th>
                                     </tr>
                                     <tr>
-                                        <td>Access (article 15)</td>
+                                        <td>Acesso (artigo 15)</td>
                                         <td>
-                                            The User can ask the Data Controller to:
+                                            O Utilizador pode solicitar ao Controlador de Dados que:
                                             <ul>
-                                                <li>confirm whether the Data Controller processes User's personal data
-                                                </li>
-                                                <li>give the User access to data that the User does not dispose</li>
-                                                <li>give the User other information related to User's personal data such
-                                                    as which are the data that the Data Controller disposes, what are
-                                                    the purposes of processing, to whom are these data disclosed,
-                                                    whether these data are transferred in foreign countries and how are
-                                                    these data protected, how long are the data stored, what are the
-                                                    User's rights, how can a complaint be lodged, where were the data
-                                                    taken from to the extent this information is not included in the
-                                                    present Privacy Policy.
+                                                <li>confirmar se o Controlador de Dados processa os dados pessoais do Utilizador dar ao Utilizador acesso a dados que o Utilizador não dispõe</li>
+                                                <li>fornecer ao Utilizador outras informações relacionadas aos dados pessoais do Utilizador, como quais são os dados que o Controlador de Dados dispõe, quais são as finalidades do processamento, a quem são divulgados esses dados, se esses dados são transferidos em países estrangeiros e como são esses dados protegidos, por quanto tempo são armazenados os dados, quais são os direitos do Utilizador, como pode ser apresentada uma reclamação, de onde foram retirados os dados na medida em que esta informação não está incluída na presente Política de Privacidade.
                                                 </li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Rectification (article 16)</td>
+                                        <td>Retificação (artigo 16)</td>
                                         <td>
-                                            The User can ask the Data Controller to rectify inaccurate personal
-                                            data.<br><br>
-                                            The Data Controller can seek to verify the accuracy of the data before
-                                            rectifying them.
+                                            O Utilizador pode solicitar ao Controlador de Dados que retifique dados pessoais imprecisos.<br><br>
+                                            O Controlador de Dados pode procurar verificar a exatidão dos dados antes de retificá-los.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Erasure/deletion (article17)</td>
+                                        <td>Eliminar/remover (artigo 17)</td>
                                         <td>
-                                            The User can ask the Data Controller to erase his personal data:<br><br>
+                                            O Utilizador pode solicitar ao Controlador de Dados que apague seus dados pessoais:<br><br>
                                             <ul>
-                                                <li>whenever, when the personal data are no longer needed for the
-                                                    purposes for
-                                                    which they were collected
+                                                <li>sempre que, quando os dados pessoais não forem mais necessários para os fins para os quais foram coletados
                                                 </li>
-                                                <li>when the User withdraws his consent</li>
-                                                <li>the personal data have been unlawfully processed</li>
+                                                <li>quando o Utilizador retira seu consentimento</li>
+                                                <li>os dados pessoais foram processados ilegalmente</li>
                                             </ul>
                                             <br><br>
-                                            The Data Controller is not obliged to comply with User's request to erase
-                                            his personal data, if the processing of User's personal data is necessary:
+                                            O Controlador de Dados não é obrigado a cumprir a solicitação do Utilizador para apagar seus dados pessoais, se o processamento dos dados pessoais do Utilizador for necessário:
                                             <ul>
-                                                <li>for compliance with a legal obligation</li>
-                                                <li>for the fulfillment of another legitimate purpose or another
-                                                    legitimate
-                                                    legal basis
+                                                <li>para cumprimento de uma obrigação legal</li>
+                                                <li>para o cumprimento de outra finalidade legítima ou outra base legal legítima
                                                 </li>
-                                                <li>for the establishment, exercise or defense of legal claims</li>
+                                                <li>para o estabelecimento, exercício ou defesa de ações judiciais</li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Restriction (article 18)</td>
+                                        <td>Restrição (artigo 18)</td>
                                         <td>
 
-                                            The User can ask the Data Controller to restrict (store but not process)
-                                            User's personal data when:<br><br>
-                                            their accuracy is contested (see rectification), so that the Data Controller
-                                            can verify the accuracy of the personal data or<br><br>
-                                            the personal data have been unlawfully processed but the User opposes the
-                                            erasure of the personal data or<br><br>
-                                            they are no longer necessary for the purposes for which they were collected
-                                            but the User still needs them for the establishment, exercise or defense of
-                                            legal claims or there is another legitimate purpose of processing or other
-                                            legal basis
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Data portability (article 20)
-                                        </td>
-                                        <td>
-                                            When processing is based on consent and the processing is carried out by
-                                            automated means, the User can ask the Data Controller to receive his
-                                            personal data in a structured commonly used and machine readable format or
-                                            ask the Data Controller to transmit them to another controller directly from
-                                            the Data Controller. Nevertheless, according to the law, this right refers
-                                            only to those data that have been given by the User himself and not to those
-                                            data that are inferred by the Data Controller based on the data that the
-                                            User has provided.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Objection (article 21)</td>
-                                        <td>
-                                            The User can object at any time to the processing of personal data
-                                            concerning him or her which is based on legitimate interest or performance
-                                            of a task carried out in the public interest.<br><br>
-                                            When the User exercises his right to object, the Data Controller has the
-                                            right to demonstrate that compelling legitimate grounds for the processing
-                                            that override the interest, rights and freedom of the User or for the
-                                            establishment, exercise or defense of legal claims.
+                                            O Utilizador pode solicitar ao Controlador de Dados que restrinja (armazene, mas não processe) os dados pessoais do Utilizador quando:<br><br>
+                                            a sua exatidão é contestada (ver retificação), para que o Controlador de Dados possa verificar a exatidão dos dados pessoais ou<br><br>
+                                            os dados pessoais foram tratados de forma ilícita, mas o Utilizador opõe-se ao apagamento dos dados pessoais ou<br><br>
+                                            já não são necessários para os fins para os quais foram recolhidos, mas o Utilizador continua a precisar deles para o estabelecimento, exercício ou defesa de ações judiciais ou existe outra finalidade legítima de tratamento ou outra base legal
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Consent withdrawal (opt-out)
+                                            Portabilidade de dados (artigo 20)
                                         </td>
                                         <td>
-                                            The User has the right to withdraw his consent where consent is the basis of
-                                            processing. Withdrawal is valid for the future.
+                                            Quando o processamento é baseado no consentimento e o processamento é realizado por meios automatizados, o utilizador pode solicitar ao controlador de dados que receba seus dados pessoais em um formato estruturado comumente usado e legível por máquina ou solicitar ao controlador de dados que os transmita a outro controlador diretamente de o Controlador de Dados. No entanto, de acordo com a lei, este direito refere-se apenas aos dados que foram fornecidos pelo próprio Utilizador e não aos dados que são inferidos pelo Controlador de Dados com base nos dados que o Utilizador forneceu.
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Objeção (artigo 21)</td>
                                         <td>
-                                            Supervisory Authority
-                                        </td>
-                                        <td>
-                                            The User has the right to lodge a complaint with the local supervisory
-                                            authority related to data protection. <br><br>
-                                            In Greece the supervisory authority for Data Protection is Data Protection
-                                            Authority https://www.dpa.gr/
+                                            O Utilizador pode, a qualquer momento, opor-se ao tratamento de dados pessoais que lhe digam respeito, que se baseie em interesse legítimo ou no desempenho de uma tarefa de interesse público.<br><br>
+                                            Quando o Utilizador exerce o seu direito de objeção, o Controlador de Dados tem o direito de demonstrar motivos legítimos imperiosos para o tratamento que se sobreponham ao interesse, direitos e liberdade do Utilizador ou para o estabelecimento, exercício ou defesa de ações judiciais.
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Identity</td>
-                                        <td>The Data Controller takes seriously the confidentiality of all files that
-                                            include personal data, thus he is entitled to ask the User proof of his
-                                            identity if the User submits a request in relation to those files.
+                                        <td>
+                                            Remoção de consentimento (optar por sair)
+                                        </td>
+                                        <td>
+                                            O Utilizador tem o direito de retirar seu consentimento quando o consentimento for a base do processamento. A retirada é válida para o futuro.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Cost</td>
-                                        <td>The User will not have to pay for the exercise of his rights in relation to
-                                            personal data unless as provided by law, the request to acquire access to
-                                            information is unfounded or excessive. In that case the Data Controller can
-                                            charge the User with a reasonable fee under the specific circumstances. The
-                                            Data Controller will inform the User for any possible charge before he
-                                            completes the request.
+                                        <td>
+                                            Autoridade Supervisora
+                                        </td>
+                                        <td>
+                                            O Utilizador tem o direito de apresentar uma reclamação à autoridade supervisora local relacionada à proteção de dados. <br><br>
+                                            Em Portugal, a autoridade supervisora da Proteção de Dados é a Comissão Nacional de Proteção de Dados (CNPD) https://www.cnpd.pt/cnpd
+
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timetable</td>
-                                        <td>Data Controller aims at answering at User's valid requests the latest within
-                                            one (1) month from their receipt, unless the request is extremely
-                                            complicated or the User has submitted multiple requests, in which case the
-                                            Data Controller aims at answering to them within three months. In case the
-                                            Data Controller needs more than one month for the reasons above mentioned,
-                                            he will inform the User. The Data Controller may ask the User if he wants to
-                                            explain what exactly he wishes to receive or what is his concern. This will
-                                            help Data Controller to act more quickly in relation to User's request. In
-                                            any case the User should mention specific and true data and/or facts so that
-                                            the Data Controller can answer and/or satisfy accurately to User's request.
-                                            Otherwise, the Data Controller reserves his right for any faults that are
-                                            outside of his control. Additionally the Data Controller can reject requests
-                                            that are unfounded, excessive, abusive, made in bad faith or are
-                                            illegitimate in the framework of the legal provisions.
+                                        <td>Identidade</td>
+                                        <td>O Controlador de Dados leva a sério a confidencialidade de todos os arquivos que incluam dados pessoais, portanto, ele tem o direito de solicitar ao Utilizador prova de sua identidade se o Utilizador enviar uma solicitação em relação a esses arquivos.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Custo</td>
+                                        <td>O Utilizador não terá que pagar pelo exercício dos seus direitos em relação aos dados pessoais, a menos que, conforme previsto em lei, o pedido de acesso à informação seja infundado ou excessivo. Nesse caso, o Controlador de Dados pode cobrar ao Utilizador uma taxa razoável sob as circunstâncias específicas. O Controlador de Dados informará o Utilizador de qualquer possível cobrança antes de concluir a solicitação.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calendário</td>
+                                        <td>O Controlador de Dados visa responder às solicitações válidas do Utilizador no prazo máximo de 1 (um) mês a partir do recebimento, a menos que a solicitação seja extremamente complicada ou o Utilizador tenha enviado várias solicitações, caso em que o Controlador de dados visa respondê-las em três meses. Caso o Controlador de Dados precise de mais de um mês pelos motivos mencionados acima, ele informará o Utilizador. O Controlador de Dados pode perguntar ao Utilizador se ele deseja explicar o que exatamente deseja receber ou qual é sua preocupação. Isso ajudará o Controlador de Dados a agir mais rapidamente em relação à solicitação do Utilizador. Em qualquer caso, o Utilizador deve mencionar dados e/ou fatos específicos e verdadeiros para que o Controlador de Dados possa responder e/ou satisfazer com precisão a solicitação do Utilizador. Caso contrário, o Controlador de Dados se reserva o direito de quaisquer falhas que estejam fora de seu controle. Adicionalmente, o Responsável pelo Tratamento pode rejeitar pedidos infundados, excessivos, abusivos, feitos de má fé ou ilegítimos no quadro das disposições legais.
                                         </td>
                                     </tr>
                                 </table>
@@ -323,91 +211,47 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">7.How is data security safeguarded?</h2>
-                                <b>7.1</b> The Data Controller implements all appropriate security measures to ensure
-                                protection and confidentiality of personal data among which the following are included:
+                                <h2 class="mt-4 mb-4">7. Como a segurança dos dados é protegida?</h2>
+                                <b>7.1</b> O Controlador de Dados implementa todas as medidas de segurança apropriadas para garantir a proteção e confidencialidade dos dados pessoais, entre os quais estão incluídos:
                                 <br>
                                 <ol>
-                                    <li>Strong password policies in all servers</li>
-                                    <li>HTTPS protocol for interacting with APIs and Web clients</li>
-                                    <li>SSH protocol for server connection</li>
-                                    <li>Periodical server updates with latest security fixes</li>
+                                    <li>Políticas de senha forte em todos os servidores</li>
+                                    <li>Protocolo HTTPS para interagir com APIs e clientes Web</li>
+                                    <li>Protocolo SSH para conexão do servidor</li>
+                                    <li>Atualizações periódicas do servidor com as correções de segurança mais recentes</li>
                                 </ol>
 
                                 <br><br>
-                                <b>7.2</b> Please note that only specifically authorized employees of the Data
-                                Controller, acting under the authority of the Data Controller and only on his
-                                instructions as well as recipients, where necessary, handle the data submitted by the
-                                User. For the processing, the Data Controller chooses persons with appropriate
-                                qualifications that have sufficient safeguards as to technical knowledge and personal
-                                integrity to protect confidentiality. The Data Controller takes all necessary security
-                                measures for the protection and safeguard of secrecy, confidentiality and integrity of
-                                personal data also through relevant contractual commitments of his associates. In any
-                                case the security of the Website may be infringed due to reasons that reside outside of
-                                the Data Controller control sphere as well as due to technical or other problem of the
-                                net or force majeure or accidental facts. In that case, the security of personal data
-                                cannot be guaranteed.
+                                <b>7.2</b> Observe que apenas funcionários especificamente autorizados do Controlador de Dados, agindo sob a autoridade do Controlador de Dados e apenas sob suas instruções, bem como destinatários, quando necessário, lidam com os dados enviados pelo Utilizador. Para o processamento, o Controlador de Dados escolhe pessoas com qualificações apropriadas que tenham garantias suficientes quanto ao conhecimento técnico e integridade pessoal para proteger a confidencialidade. O Controlador de Dados toma todas as medidas de segurança necessárias para a proteção e salvaguarda do sigilo, confidencialidade e integridade dos dados pessoais também por meio de compromissos contratuais relevantes de seus associados. Em qualquer caso, a segurança do Site pode ser violada por motivos que residem fora da esfera de controle do Controlador de Dados, bem como por problemas técnicos ou outros de rede ou força maior ou fatos acidentais. Nesse caso, a segurança dos dados pessoais não pode ser garantida.
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">8. Who are the recipients of data?</h2>
-                                <b>8.1</b> The recipients of User's personal data are associate companies that provide
-                                technical infrastructure for the operation of the Website, hosting provider as well as
-                                the company that undertakes to send electronic communication related to the operation of
-                                the Platform to Users. Where necessary as per applicable laws, the Data Controller will sign agreements with such
-                                companies, which refer to the implementation and regular monitoring of security
-                                measures. In case data are transferred outside ΕU all necessary guarantees are in place.
+                                <h2 class="mt-4 mb-4">8. Quem são os destinatários dos dados?</h2>
+                                <b>8.1</b> Os destinatários dos dados pessoais do Utilizador são empresas associadas que fornecem infraestrutura técnica para o funcionamento do Site, fornecedor de alojamento, bem como a empresa que se compromete a enviar comunicação eletrónica relacionada com o funcionamento da Plataforma aos Utilizadores. Sempre que necessário, de acordo com as leis aplicáveis, o Controlador de Dados assinará acordos com essas empresas, que se referem à implementação e monitorização regular de medidas de segurança. Caso os dados sejam transferidos para fora da ΕU, todas as garantias necessárias estão em vigor.
                                 <br><br>
-                                <b>8.2.</b> In case the Data Controller receives a request to notify or transfer data
-                                following a request by the appropriate Administrative Authority, Attorney, Court or
-                                other Authority, he may notify / transfer those data in order to fulfill his duty
-                                executed in favor of the public interest towards these authorities (with or without
-                                User's previous notification) in accordance with the appropriate legal provisions. If
-                                the User should be previously notified in accordance with the legal provisions, then the
-                                User has the right to object to this processing as provided in article 7 above.
-
+                                <b>8.2.</b> Caso o Controlador de Dados receba uma solicitação para notificar ou transferir dados após solicitação da Autoridade Administrativa, Procurador, Tribunal ou outra Autoridade competente, ele poderá notificar / transferir esses dados para cumprir seu dever executado em favor do interesse público para essas autoridades (com ou sem notificação prévia do Utilizador) de acordo com as disposições legais pertinentes. Se o Utilizador for previamente notificado de acordo com as disposições legais, então o Utilizador tem o direito de se opor a esse processamento conforme previsto no artigo 7 acima.
+                                <br><br>
+                                <b>8.3.</b> Quanto aos dados profissionais de cada Utilizador, estão à disposição de todos os Utilizadores registados da Plataforma para os fins acima referidos.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">9. Communication with the Data Controller</h2>
-                                <b>9.1.</b> For any issue related to the present privacy policy, User's data processing
-                                as
-                                well as exercise of User's rights, the User can contact the Data Controller using one of
-                                the following ways: <br>
-                                Telephone: +302114004192, <br>
+                                <h2 class="mt-4 mb-4">9. Comunicação com o Controlador de Dados</h2>
+                                <b>9.1.</b> Para qualquer questão relacionada com a presente política de privacidade, tratamento de dados do Utilizador, bem como exercício dos direitos do Utilizador, o Utilizador pode contactar o Controlador de Dados através de uma das seguintes formas:
+                                Telefone: +302114004192, <br>
                                 Email: info@scify.org
                                 <br><br>
-                                In case the User becomes aware of any data breach incident, he is kindly requested to
-                                notify the Data Controller immediately.
+                                Caso o Utilizador tome conhecimento de qualquer incidente de violação de dados, ele é cordialmente solicitado a notificar o Controlador de Dados imediatamente.
                                 <br><br>
-                                <b>9.2.</b> The present terms are governed and supplemented by the Terms and Conditions
-                                and consist along with them a uniform text.
+                                <b>9.2.</b> Os presentes termos são regidos e complementados pelos Termos e Condições e consistem juntamente com eles um texto uniforme.
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">10. Connection to other Websites/social media</h2>
-                                This Website connects with other websites through hyperlinks. These websites are not
-                                related to Data Controller's Website and their content is neither checked nor
-                                recommended by the Data Controller. Thus, the accuracy, legitimacy, completeness or
-                                quality of their content and legitimacy of the processing of User’s personal data cannot
-                                be checked and no guarantee is provided for them. The Data Controller cannot be held
-                                liable for them or any damage that may be caused to the User due to or following their
-                                use. The Data Controller cannot check the processing of the User's personal data by
-                                those linked Websites and thus does not bear any liability. When the User accesses those
-                                websites he should take under consideration that terms and conditions of each website
-                                apply. For any issue that may occur as to the content or the use of the linked website,
-                                the User should directly contact the operator or administrator of each website. The Data
-                                Controller does not approve or embrace the Content or the services of the linked
-                                websites, which the User accesses through the Website.<br><br>
-                                The Website gives the User the possibility to connect and interact with social media
-                                following his own initiative and will. In that case the Data Controller is not liable
-                                for the processing of User's data taking place through or by the social media. The User
-                                should directly address each specific social media in order to exercise his legitimate
-                                rights.
+                                <h2 class="mt-4 mb-4">10. Conexão com outros sites/mídias sociais</h2>
+                                O Website dá ao Utilizador a possibilidade de se conectar e interagir com as redes sociais por iniciativa e vontade própria. Nesse caso, o Controlador de Dados não é responsável pelo processamento de dados do Utilizador que ocorra através ou pela mídia social. O Utilizador deve dirigir-se diretamente a cada mídia social específica para exercer seus direitos legítimos.
 
 
                             </div>
@@ -415,110 +259,83 @@
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">11. Cookies</h2>
-                                11.1. The Platform uses cookies to be operational or more efficient in its operation, to
-                                improve User's navigation, to provide User with the full potential of the Platform, to
-                                ensure the correct display of the content as well as for analytical and statistical
-                                purposes.
+                                11.1. A Plataforma utiliza cookies para ser operacional ou mais eficiente no seu funcionamento, para melhorar a navegação do Utilizador, para proporcionar ao Utilizador todo o potencial da Plataforma, para garantir a correta visualização dos conteúdos, bem como para fins analíticos e estatísticos.
                                 <br><br>
-                                11.2. Cookies are small text files stored on User's computer when he visits a digital
-                                platform, which are used as a means of identifying his computer.
+                                11.2. Cookies são pequenos arquivos de texto armazenados no computador do Utilizador quando este visita uma plataforma digital, que são utilizados como meio de identificação do seu computador.
                                 <br><br>
-                                11.3. Cookies apart from absolutely necessary cookies are only installed if the User
-                                accepts their installation when he visits this Platform. By accepting cookies when
-                                entering this Platform, the User expressly states that he has read and understood the
-                                specific terms and conditions regarding the installation, function and purpose of the
-                                cookies and that he provides his consent for their use.
+                                11.3. Os cookies para além dos cookies absolutamente necessários só são instalados se o Utilizador aceitar a sua instalação ao visitar esta Plataforma. Ao aceitar cookies ao entrar nesta Plataforma, o Utilizador declara expressamente que leu e compreendeu os termos e condições específicos relativos à instalação, função e finalidade dos cookies e que dá o seu consentimento para a sua utilização.
                                 <br><br>
-                                11.4. Alternatively, the User may not accept cookies. In this case, only cookies that
-                                are technically and functionally necessary for the operation of the Platform will be
-                                installed.
+                                11.4. Alternativamente, o Utilizador pode não aceitar cookies. Neste caso, serão instalados apenas os cookies que sejam técnica e funcionalmente necessários para o funcionamento da Plataforma.
                                 <br><br>
-                                11.5. The User can manage the use and installation of cookies at any time through a
-                                panel, where he can choose which category of cookies he wants to accept and which ones
-                                not (or request to install only the technically necessary cookies).
+                                11.5. O Utilizador pode gerir a utilização e instalação de cookies a qualquer momento através de um painel, onde pode escolher que categoria de cookies quer aceitar e quais não (ou solicitar a instalação apenas dos cookies tecnicamente necessários).
                                 <br><br>
-                                11.6. In particular, the cookies used by the Platform are the following:
+                                11.6. Em particular, os cookies utilizados pela Plataforma são os seguintes:
                                 <br><br>
 
                                 <table class="table table-striped table-responsive table-bordered">
                                     <tr>
-                                        <th>Type of cookies</th>
-                                        <th>Explanation</th>
-                                        <th>Examples of cookies</th>
-                                        <th>Duration of each cookie installation</th>
-                                        <th>Transfer of data to third parties</th>
+                                        <th>Tipos de cookies</th>
+                                        <th>Explicação</th>
+                                        <th>Exemplos de cookies</th>
+                                        <th>Duração da instalação de cada cookie</th>
+                                        <th>Transferência de dados para terceiros</th>
                                     </tr>
                                     <tr>
-                                        <td>Absolutely necessary Cookies</td>
-                                        <td>The absolutely necessary cookies are essential for the proper operation of
-                                            the Platform. These cookies allow User to browse and use Platform features
-                                            such as access to secure areas. These cookies do not recognize User's
-                                            individual identity and without them, the smooth operation of the Platform
-                                            is not possible.
+                                        <td>Cookies absolutamente necessários</td>
+                                        <td>Os cookies absolutamente necessários são essenciais para o bom funcionamento da Plataforma. Esses cookies permitem que o Utilizador navegue e use recursos da Plataforma, como acesso a áreas seguras. Esses cookies não reconhecem a identidade individual do Utilizador e sem eles não é possível o bom funcionamento da Plataforma.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
-                                            )
+                                        <td>CookieConsent (armazena o estado de consentimento do cookie do utilizador para o domínio atual)
                                             <br><br>
-                                            XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site
-                                            request forgery. This cookie is essential for the security of the website
-                                            and visitor. )
+                                            XSRF-TOKEN (garante a segurança da navegação do visitante, evitando a falsificação de solicitações entre sites. Este cookie é essencial para a segurança do site e do visitante. )
                                             <br><br>
-                                            ecas_lets_crowdsource_our_future_session (When the app needs to “remember” the logged in user while (s)he navigates to the Platform)
-
+                                            ecas_lets_crowdsource_our_future_session (Quando o aplicativo precisa “lembrar” o utilizador logado enquanto ele navega para a Plataforma)
                                             <br><br>
-                                            Crowdsourcing_anonymous_user_id (used to store anonymous answers on the questionnaires by assigning an integer number to user that is submitting the response)
-
+                                            Crowdsourcing_anonymous_user_id (usado para armazenar respostas anônimas nos questionários, atribuindo um número inteiro ao utilizador que está enviando a resposta)
                                         </td>
-                                        <td>1 year
+                                        <td>1 ano
                                             <br><br>
                                             <br><br>
-                                            1 day
+                                            1 ano
                                             <br><br>
                                             <br><br>
-                                            Session
+                                            Sessão
                                             <br><br>
                                             <br><br>
-                                            5 years
+                                            5 anos
                                         </td>
-                                        <td>No
+                                        <td>Não
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Não
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Não
                                             <br><br>
                                             <br><br>
 
-                                            No
+                                            Não
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Statistics/analytical Cookies</td>
-                                        <td>These are cookies that evaluate the way visitors use the Platform (for
-                                            example, which pages are visited more often and whether they receive error
-                                            messages from webpages). These cookies are used for statistical purposes and
-                                            to improve the performance of a Platform.
+                                        <td>Cookies estatísticos/analíticos</td>
+                                        <td>São cookies que avaliam a forma como os visitantes usam a Plataforma (por exemplo, quais páginas são visitadas com mais frequência e se recebem mensagens de erro de páginas da web). Esses cookies são usados para fins estatísticos e para melhorar o desempenho de uma Plataforma.
                                         </td>
-                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: Google Analytics cookies are used to measure traffic on the Platform.
-                                            A unique textstring is saved to identify browser, timestamp for interactions and the browser/sourcepage that led the user to the Platform.
-                                            No sensitive information is saved.
+                                        <td>_ga_4S9N5MK4VE, _gat,_ga, _gcl_au, _gid: os cookies do Google Analytics são usados para medir o tráfego na Plataforma. Uma string de texto exclusiva é salva para identificar o navegador, o carimbo de data/hora das interações e o navegador/página de origem que levou o utilizador à Plataforma. Nenhuma informação sensível é salva.
 
                                         </td>
-                                        <td>_ga_4S9N5MK4VE: 2 years
+                                        <td>_ga_4S9N5MK4VE: 2 anos
                                             <br><br>
-                                            _gat:1 minute
+                                            _gat:1 minutos
                                             <br><br>
-                                            _ga:2 years
+                                            _ga:2 anos
                                             <br><br>
-                                            _gcl_au:3 months
+                                            _gcl_au:3 meses
                                             <br><br>
-                                            _gid:24 hours
+                                            _gid:24 horas
                                         </td>
-                                        <td>Yes (Company that provides statistical and analytical services if considered
-                                            as third party)
+                                        <td>Sim (Empresa que presta serviços estatísticos e analíticos se considerada como terceira)
                                         </td>
                                     </tr>
                                 </table>
@@ -526,25 +343,16 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">12. Children's Privacy  </h2>
-                                Our project does not address anyone under the age of 18 ("Children").
-                                We do not knowingly collect personally identifiable information from anyone under the age of 18.
-                                If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us.
-                                If we become aware that we have collected Personal Data from children without verification of parental consent,
-                                we take steps to remove that information from our servers.
+                                <h2 class="mt-4 mb-4">12. Privacidade das Crianças</h2>
+                                O nosso projeto não se dirige a menores de 18 anos ("Crianças"). Não recolhemos intencionalmente informações de identificação pessoal de menores de 18 anos. Se você é pai ou responsável e está ciente de que seus filhos nos forneceram Dados Pessoais, entre em contato connosco. Se tomarmos conhecimento de que recolhemos Dados Pessoais de crianças sem verificação do consentimento dos pais, tomamos medidas para remover essas informações dos nossos servidores.
 
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="mt-4 mb-4">13. Amendments to this Privacy Policy </h2>
-                                The Data Controller reserves the right to amend this present Privacy Policy, for example
-                                when this is necessary to comply with new requirements imposed by applicable laws,
-                                guidelines or technical requirements, or in the course of a revision of the Data
-                                Controller's processes and practices. The User will be notified of any amendment to this
-                                Privacy Policy through the Platform. The User should regularly check this Privacy Policy
-                                for any amendments.
+                                <h2 class="mt-4 mb-4">13. Alterações a esta Política de Privacidade</h2>
+                                O Controlador de Dados reserva-se o direito de alterar esta presente Política de Privacidade, por exemplo, quando isso for necessário para cumprir novos requisitos impostos por leis, diretrizes ou requisitos técnicos aplicáveis, ou durante uma revisão dos processos e práticas do Controlador de Dados. O Utilizador será notificado de qualquer alteração a esta Política de Privacidade através da Plataforma. O Utilizador deve verificar regularmente esta Política de Privacidade para quaisquer alterações.
                             </div>
                         </div>
                     </div>
