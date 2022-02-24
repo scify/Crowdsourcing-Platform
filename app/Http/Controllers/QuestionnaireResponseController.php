@@ -50,7 +50,7 @@ class QuestionnaireResponseController extends Controller {
 
     public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
         return response()->json($this->questionnaireResponseManager
-            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, Auth::id() ?? 0));
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id));
     }
 
     public function voteAnswer(Request $request): JsonResponse {
@@ -69,5 +69,9 @@ class QuestionnaireResponseController extends Controller {
             'questionnaire_response_id' => 'required|integer|exists:questionnaire_responses,id'
         ]);
         return $this->questionnaireResponseManager->deleteResponse($request->questionnaire_response_id);
+    }
+
+    public function downloadQuestionnaireResponses(int $questionnaire_id) {
+
     }
 }

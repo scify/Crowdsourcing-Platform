@@ -16,7 +16,7 @@ class QuestionnaireAnswerVoteRepository extends Repository {
         return QuestionnaireAnswerVote::class;
     }
 
-    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id, int $user_voter_id): Collection {
+    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): Collection {
         return collect(DB::
         select("
                 select qav.question_name, 
