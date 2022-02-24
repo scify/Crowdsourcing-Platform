@@ -93,8 +93,8 @@ class QuestionnaireResponseController extends Controller {
 
             foreach ($data as $record) {
                 $row['Id'] = $record['response_id'];
-                $row['Question'] = $record['question'];
-                $row['Answer'] = $record['answer'];
+                $row['Question'] = is_string($record['question']) ? $record['question'] : $record['question']->default;
+                $row['Answer'] = is_string($record['answer']) ? $record['answer'] : "Initial answer: " . $record['answer']->initial_answer . "\n" . "Translated: " . $record['answer']->translated_answer;
                 $row['Number of votes'] = $record['num_votes'];
                 $row['Voters'] = $record['voters'];
 
