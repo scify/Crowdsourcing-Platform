@@ -272,8 +272,10 @@ export default {
           data: {},
           urlRelative: false
         }).then(response => {
+          console.log(response.data);
           const answers = _.map(response.data, function (response) {
             return {
+              answer_id: response.id,
               answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
               respondent_user_id: response.user_id
             }
