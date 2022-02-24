@@ -162,4 +162,23 @@ class QuestionnaireResponseManager
     {
         return $this->questionnaireResponseRepository->delete($questionnaire_response_id);
     }
+
+    public function getAnswersWithVotesAndVoterInfoForQuestionnaire(int $questionnaire_id): Collection {
+        $questionnaire = $this->questionnaireRepository->find($questionnaire_id);
+        $answerVotesWithVoterInfoForQuestionnaire = $this->questionnaireAnswerVoteRepository->getAnswerVotesWithVoterInfoForQuestionnaire($questionnaire_id);
+        $freeTypeQuestions = $this->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
+        $data = new Collection();
+        foreach ($answerVotesWithVoterInfoForQuestionnaire as $record) {
+            $response = [];
+            $response['response_id'] = $record->response_id;
+            $response['voters'] = $record->voters;
+            $response['num_votes'] = $record->votes;
+            $response['question'] = $freeTypeQuestions[$record->question_name]->title;
+            $response_json = json_decode($record->response_json);
+            $response_json_translated = json_decode($record->response_json_translated);
+            $response['answer'] = $response_json_translated->{$record->question_name} ?? $response_json->{$record->question_name};
+            $data->add($response);
+        }
+        return $data;
+    }
 }

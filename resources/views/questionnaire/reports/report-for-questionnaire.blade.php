@@ -3,9 +3,18 @@
         <h3 class="card-title">Statistics</h3>
     </div>
     <div class="card-body">
+        <div class="row mb-2">
+            <div class="col-12">
+                Click <a
+                        href="{{ route('questionnaire.statistics', ['questionnaire' =>  $reportViewModel->questionnaireId ]) }}"
+                        target="_blank">here</a> to view and moderate the responses.
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
-                Click <a href="{{ route('questionnaire.statistics', ['questionnaire' =>  $reportViewModel->questionnaireId ]) }}" target="_blank">here</a> to view and moderate the responses.
+                Click <a
+                        href="{{ route('questionnaire.responses.download', ['questionnaire_id' =>  $reportViewModel->questionnaireId ]) }}"
+                        target="_blank">here</a> to download the text responses as CSV.
             </div>
         </div>
     </div>
@@ -19,14 +28,15 @@
         <div class="row mt-6">
             <div class="col-12 ">
                 <table class="table">
-                    <tr><th>Page</th><th>Number of Answers</th></tr>
+                    <tr>
+                        <th>Page</th>
+                        <th>Number of Answers</th>
+                    </tr>
                     @foreach($reportViewModel->countResponses as $response)
                         <tr>
                             <td><a href="{{$response->slug}}" target="_blank">{{$response->slug}}</a></td>
                             <td>{{$response->total}}</td>
                         </tr>
-
-
                     @endforeach
                 </table>
             </div>
@@ -58,9 +68,9 @@
                         <tr id="questionnaire_response_{{ $response->id }}">
                             <td>{{ $response->respondent_email }} / {{ $response->respondent_nickname }}</td>
                             <td data-sort="{{ strtotime($response->answered_at) }}">{{ $response->answered_at ? date('d/m/Y h:i:s', strtotime($response->answered_at)) : '' }}</td>
-                           <td class="">
-                              {{ $response->project_name }}
-                           </td>
+                            <td class="">
+                                {{ $response->project_name }}
+                            </td>
                             <td class="text-center">
                                 <div class="container-fluid">
                                     <div class="row">
@@ -71,13 +81,13 @@
                                                 Response
                                             </button>
                                         </div>
-{{--                                        <div class="col-6">--}}
-{{--                                            <button class="btn btn-outline-primary response-table-btn w-100"--}}
-{{--                                                    data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"--}}
-{{--                                                    data-respondent-user-id="{{ $response->respondent_user_id }}">View--}}
-{{--                                                Table--}}
-{{--                                            </button>--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-6">--}}
+                                        {{--                                            <button class="btn btn-outline-primary response-table-btn w-100"--}}
+                                        {{--                                                    data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"--}}
+                                        {{--                                                    data-respondent-user-id="{{ $response->respondent_user_id }}">View--}}
+                                        {{--                                                Table--}}
+                                        {{--                                            </button>--}}
+                                        {{--                                        </div>--}}
                                     </div>
                                 </div>
 

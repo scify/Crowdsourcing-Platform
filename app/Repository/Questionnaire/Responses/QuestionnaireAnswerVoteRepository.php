@@ -55,4 +55,33 @@ class QuestionnaireAnswerVoteRepository extends Repository {
     public function restoreAnswerVotesByUser(int $id) {
         return QuestionnaireAnswerVote::onlyTrashed()->whereIn('voter_user_id', [$id])->restore();
     }
+
+    public function getAnswerVotesWithVoterInfoForQuestionnaire(int $questionnaire_id): Collection {
+        return collect(DB::
+        select('
+            select  qr.id as response_id,
+                    qr.response_json,
+                    qr.response_json_translated,
+                    qav.question_name,
+                    qav.respondent_user_id,
+                group_concat(concat(u.nickname, " (", u.email, ")")) as voters,
+                sum(ifnull(upvotesInfo.num_upvotes, 0)) as votes
+                from questionnaire_answer_votes qav
+                
+                left outer join (
+                    select qav3.question_name,qav3.respondent_user_id, count(*) as num_upvotes
+                    from questionnaire_answer_votes qav3
+                    where qav3.questionnaire_id = ' . $questionnaire_id . ' and qav3.upvote = 1
+                    group by qav3.question_name, qav3.respondent_user_id
+                ) as upvotesInfo on upvotesInfo.question_name = qav.question_name and upvotesInfo.respondent_user_id = qav.respondent_user_id
+                
+                inner join users u on u.id = qav.voter_user_id
+                inner join questionnaire_responses qr on qr.questionnaire_id = qav.questionnaire_id and qr.user_id = qav.respondent_user_id
+                
+                where qav.questionnaire_id = ' . $questionnaire_id . '
+                group by response_id, qr.response_json, qr.response_json_translated,
+                qav.respondent_user_id, question_name, upvotesInfo.num_upvotes
+                order by upvotesInfo.num_upvotes;
+        '));
+    }
 }

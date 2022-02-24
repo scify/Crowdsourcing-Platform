@@ -13,6 +13,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class QuestionnaireResponseController extends Controller {
 
@@ -71,7 +73,36 @@ class QuestionnaireResponseController extends Controller {
         return $this->questionnaireResponseManager->deleteResponse($request->questionnaire_response_id);
     }
 
-    public function downloadQuestionnaireResponses(int $questionnaire_id) {
+    public function downloadQuestionnaireResponses(int $questionnaire_id): StreamedResponse {
+        $data = $this->questionnaireResponseManager->getAnswersWithVotesAndVoterInfoForQuestionnaire($questionnaire_id);
+        $fileName = 'questionnaire_text_responses_' . $questionnaire_id . '.csv';
 
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+
+        $columns = array('Id', 'Question', 'Answer', 'Number of votes', 'Voters');
+
+        $callback = function () use ($data, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($data as $record) {
+                $row['Id'] = $record['response_id'];
+                $row['Question'] = $record['question'];
+                $row['Answer'] = $record['answer'];
+                $row['Number of votes'] = $record['num_votes'];
+                $row['Voters'] = $record['voters'];
+
+                fputcsv($file, array($row['Id'], $row['Question'], $row['Answer'], $row['Number of votes'], $row['Voters']));
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, ResponseAlias::HTTP_OK, $headers);
     }
 }

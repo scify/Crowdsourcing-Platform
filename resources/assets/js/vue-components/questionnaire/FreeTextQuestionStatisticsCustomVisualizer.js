@@ -41,17 +41,17 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         console.log(answers);
         answers
             .forEach(function (value) {
-                if (!value.answerObj || !value.answerObj[questionName])
+                if (!value.response_text || !value.response_text[questionName])
                     return;
-                const answerId = value.answer_id;
-                const answer = value.answerObj[questionName];
+                const responseId = value.response_id;
+                const responseText = value.response_text[questionName];
                 const respondentUserId = value.respondent_user_id;
-                if (!answer || !respondentUserId || isAnswerMarkedAsHidden(questionName, respondentUserId))
+                if (!responseText || !respondentUserId || isAnswerMarkedAsHidden(questionName, respondentUserId))
                     return;
 
                 const tr = document.createElement("tr");
                 const td0 = document.createElement("td");
-                td0.innerHTML = '<span class="answer-id">' + answerId + '</span>';
+                td0.innerHTML = '<span class="answer-id">' + responseId + '</span>';
                 tr.appendChild(td0);
                 const td1 = document.createElement("td");
                 td1.className = "answer-column";
@@ -80,13 +80,13 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                         + annotationText
                         + '</p></div><b>Original answer:</b><br>';
                 }
-                td1.innerHTML += '<p>' + getAnswerHTML(answer, 'initial_answer') + '</p>';
+                td1.innerHTML += '<p>' + getAnswerHTML(responseText, 'initial_answer') + '</p>';
 
 
-                if (!isString(answer) && answer.translated_answer !== "")
+                if (!isString(responseText) && responseText.translated_answer !== "")
                     td1.innerHTML += '<b>Translation ('
-                        + getLanguageName(answer.initial_language_detected) + '):</b><p>'
-                        + getAnswerHTML(answer, 'translated_answer') + '</p>';
+                        + getLanguageName(responseText.initial_language_detected) + '):</b><p>'
+                        + getAnswerHTML(responseText, 'translated_answer') + '</p>';
                 tr.appendChild(td1);
 
                 let userUpvotedClass = '';
