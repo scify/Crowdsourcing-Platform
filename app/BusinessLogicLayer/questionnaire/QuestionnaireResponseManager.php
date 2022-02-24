@@ -133,10 +133,10 @@ class QuestionnaireResponseManager
         return $freeTypeQuestions;
     }
 
-    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id, int $user_voter_id): Collection
+    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): Collection
     {
         return $this->questionnaireAnswerVoteRepository
-            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, $user_voter_id);
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id);
     }
 
     public function voteAnswer(int    $questionnaire_id,
