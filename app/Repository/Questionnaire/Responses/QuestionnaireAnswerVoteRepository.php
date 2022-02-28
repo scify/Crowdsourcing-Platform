@@ -65,7 +65,7 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                     qav.question_name,
                     qav.respondent_user_id,
                 group_concat(concat(u.nickname, " (", u.email, ")")) as voters,
-                sum(ifnull(upvotesInfo.num_upvotes, 0)) as votes
+                upvotesInfo.num_upvotes as votes
                 from questionnaire_answer_votes qav
                 
                 left outer join (
@@ -79,9 +79,11 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 inner join questionnaire_responses qr on qr.questionnaire_id = qav.questionnaire_id and qr.user_id = qav.respondent_user_id
                 
                 where qav.questionnaire_id = ' . $questionnaire_id . '
+                and qr.deleted_at is null
+                and u.deleted_at is null
                 group by response_id, qr.response_json, qr.response_json_translated,
-                qav.respondent_user_id, question_name, upvotesInfo.num_upvotes
-                order by upvotesInfo.num_upvotes;
+                qav.respondent_user_id, question_name
+                order by upvotesInfo.num_upvotes desc;
         '));
     }
 }
