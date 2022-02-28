@@ -82,7 +82,7 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 and qr.deleted_at is null
                 and u.deleted_at is null
                 group by response_id, qr.response_json, qr.response_json_translated,
-                qav.respondent_user_id, question_name
+                qav.respondent_user_id, question_name, upvotesInfo.num_upvotes
                 order by upvotesInfo.num_upvotes desc;
         '));
     }
