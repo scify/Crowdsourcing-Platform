@@ -14,7 +14,7 @@
             <div class="col-12">
                 Click <a
                         href="{{ route('questionnaire.responses.download', ['questionnaire_id' =>  $reportViewModel->questionnaireId ]) }}"
-                        target="_blank">here</a> to download the text responses as CSV.
+                        target="_blank">here</a> to download the votes for open-ended questions.
             </div>
         </div>
     </div>
