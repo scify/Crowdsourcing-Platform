@@ -472,34 +472,36 @@ export default {
       let json = JSON.parse(jsonStr);
       let colorIndex = 0;
       for (let i = 0; i < json.pages.length; i++) {
-        for (let j = 0; j < json.pages[i].elements.length; j++) {
-          if (json.pages[i].elements[j].choices) {
-            for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
-              if (!json.pages[i].elements[j].choices[choiceIndex].statsColor) {
-                json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
-                colorIndex++;
-                if (colorIndex === colors.length)
-                  colorIndex = 0;
+        if (json.pages[i].elements) {
+          for (let j = 0; j < json.pages[i].elements.length; j++) {
+            if (json.pages[i].elements[j].choices) {
+              for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
+                if (!json.pages[i].elements[j].choices[choiceIndex].statsColor) {
+                  json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
+                  colorIndex++;
+                  if (colorIndex === colors.length)
+                    colorIndex = 0;
+                }
               }
             }
-          }
-          if (json.pages[i].elements[j].columns) {
-            for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
-              if (!json.pages[i].elements[j].columns[colIndex].statsColor) {
-                json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
-                colorIndex++;
-                if (colorIndex === colors.length)
-                  colorIndex = 0;
+            if (json.pages[i].elements[j].columns) {
+              for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
+                if (!json.pages[i].elements[j].columns[colIndex].statsColor) {
+                  json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
+                  colorIndex++;
+                  if (colorIndex === colors.length)
+                    colorIndex = 0;
+                }
               }
             }
-          }
-          if (json.pages[i].elements[j].rows) {
-            for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
-              if (!json.pages[i].elements[j].rows[rowIndex].statsColor) {
-                json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
-                colorIndex++;
-                if (colorIndex === colors.length)
-                  colorIndex = 0;
+            if (json.pages[i].elements[j].rows) {
+              for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
+                if (!json.pages[i].elements[j].rows[rowIndex].statsColor) {
+                  json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
+                  colorIndex++;
+                  if (colorIndex === colors.length)
+                    colorIndex = 0;
+                }
               }
             }
           }
