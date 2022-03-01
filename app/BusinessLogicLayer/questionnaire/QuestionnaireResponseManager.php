@@ -64,7 +64,7 @@ class QuestionnaireResponseManager
         // we only allow the responses to be filtered by project for logged in Answer Moderators
         if ($projectFilter > 0 &&  Gate::allows('moderate-results'))
             $queryFilters["project_id"] = $projectFilter;
-        return $this->questionnaireResponseRepository->allWhere($queryFilters, array('*'), "id", "desc");
+        return $this->questionnaireResponseRepository->allWhere($queryFilters, array('*'), "id", "desc", ["project"]);
     }
 
     public function transferQuestionnaireResponsesOfAnonymousUserToUser($user): int

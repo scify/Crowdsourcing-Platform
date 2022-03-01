@@ -272,12 +272,12 @@ export default {
           data: {},
           urlRelative: false
         }).then(response => {
-          console.log(response.data);
           const answers = _.map(response.data, function (response) {
             return {
               response_id: response.id,
               response_text: JSON.parse(response.response_json_translated ?? response.response_json),
-              respondent_user_id: response.user_id
+              respondent_user_id: response.user_id,
+              project_name: response.project.default_translation.name
             }
           });
           resolve(answers);

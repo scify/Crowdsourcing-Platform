@@ -28,8 +28,11 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         header2.innerHTML = "";
         const header3 = document.createElement("th");
         header3.innerHTML = "Number of votes";
+        const header4 = document.createElement("th");
+        header4.innerHTML = "Project name";
         tr.appendChild(header2);
         tr.appendChild(header3);
+        tr.appendChild(header4);
         header.appendChild(tr);
         table.appendChild(header);
     }
@@ -38,7 +41,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         const tbody = document.createElement("tbody");
         const questionName = visualizer.question.name;
         const answers = visualizer.dataProvider.data;
-        console.log(answers);
         answers
             .forEach(function (value) {
                 if (!value.response_text || !value.response_text[questionName])
@@ -58,6 +60,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                 td1.setAttribute("id", "answer_" + questionName + "_" + respondentUserId)
                 const td2 = document.createElement("td");
                 const td3 = document.createElement("td");
+                const td4 = document.createElement("td");
                 let annotation = getAnnotationForAnswer(questionName, respondentUserId);
                 const annotationText = annotation ? annotation.annotation_text : "";
                 let adminReviewStatusId = 0;
@@ -84,7 +87,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 
 
                 if (!isString(responseText) && responseText.translated_answer !== "")
-                    td1.innerHTML += '<b>Translation ('
+                    td1.innerHTML += '<br><b>Translation ('
                         + getLanguageName(responseText.initial_language_detected) + '):</b><p>'
                         + getAnswerHTML(responseText, 'translated_answer') + '</p>';
                 tr.appendChild(td1);
@@ -119,7 +122,9 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     '</div>';
                 tr.appendChild(td2);
                 td3.innerHTML = upvotesNum;
+                td4.innerHTML = value.project_name;
                 tr.appendChild(td3);
+                tr.appendChild(td4);
                 tbody.appendChild(tr);
             });
         table.appendChild(tbody);
@@ -232,6 +237,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             {"width": "0%"},
             {"width": "80%"},
             {"width": "20%"},
+            {"width": "0%"},
             {"width": "0%"}
         ];
         const options = {
@@ -243,7 +249,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             "columnDefs": [
 
                 {
-                    "targets": [0, 2],
+                    "targets": [0, 2, 4],
                     "visible": false
                 }
             ],
@@ -257,11 +263,13 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     text: AnswersData.languageResources.download_csv,
                     filename: 'Statistics_' + new Date().getTime(),
                     exportOptions: {
-                        columns: [0, 1, 2]
+                        columns: [0, 1, 2, 4]
                     }
                 }
 
             ]
+        else
+            options.buttons = [];
         $(table).DataTable(options);
     };
     return new SurveyAnalytics.VisualizerBase(question, data, {
