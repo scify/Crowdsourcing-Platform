@@ -218,8 +218,10 @@ export default {
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
         const time = performance.now() - this.t0;
-        AnalyticsLogger.logEvent('questionnaire_respond_complete_' + this.questionnaire.default_fields_translation.title, 'respond_complete', JSON.stringify({
-          'questionnaire': this.questionnaire.default_fields_translation.title,
+        const title = this.questionnaire.default_fields_translation.title;
+        window.location.hash = 'thankyou';
+        AnalyticsLogger.logEvent('questionnaire_respond_complete_' + title, 'respond_complete', JSON.stringify({
+          'questionnaire': title,
           'project': this.project.default_translation.name,
           'language': locale,
           'time_to_complete': time

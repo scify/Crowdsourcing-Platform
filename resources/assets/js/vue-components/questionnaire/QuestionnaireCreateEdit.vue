@@ -40,8 +40,11 @@
             <div class="col-md-6 col-sm-9 col-xs-12">
               <select
                   id="questionnaire-types" v-model="questionnaire.type_id">
-                <option value="1">Main Questionnaire | The questionnaire the users are asked to respond for a project</option>
-                <option value="2">Feedback Questionnaire | The quality assessment questionnaire. User are invited to respond after they have responded to the Main questionnaire</option>
+                <option value="1">Main Questionnaire | The questionnaire the users are asked to respond for a project
+                </option>
+                <option value="2">Feedback Questionnaire | The quality assessment questionnaire. User are invited to
+                  respond after they have responded to the Main questionnaire
+                </option>
               </select>
             </div>
           </div>
@@ -203,13 +206,21 @@ export default {
     if (!this.questionnaire.statistics_page_visibility_lkp_id)
       this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id
     this.questionnaire.projectIds = _.map(this.questionnaireData.projects, 'id');
-    const langId = this.questionnaire.default_language_id;
-    this.defaultLocale = this.languages.filter(function (el) {
-      return el.id === langId;
-    })[0].language_code;
+    if (this.questionnaire.default_language_id) {
+      const langId = this.questionnaire.default_language_id;
+      this.defaultLocale = this.languages.filter(function (el) {
+        return el.id === langId;
+      })[0].language_code;
+    } else {
+      const instance = this;
+      this.defaultLocale = this.languages.filter(function (el) {
+        return el.language_code === instance.defaultLangCodeForQuestionnaireFields;
+      })[0].language_code;
+    }
   },
   mounted() {
-    this.getColorsForCrowdSourcingProject();
+    if (this.questionnaire.project_id)
+      this.getColorsForCrowdSourcingProject();
   },
   props: {
     questionnaireData: {
@@ -234,7 +245,7 @@ export default {
         goal: null,
         statistics_page_visibility_lkp_id: null,
         projectIds: [],
-        type_id:1
+        type_id: 1
       },
       surveyCreator: null,
       questionTypes: ["boolean", "checkbox", "comment", "dropdown",
@@ -401,7 +412,7 @@ export default {
         extra_fields_translations: document.getElementById('extra_translations').value,
         max_votes_num: this.questionnaire.max_votes_num,
         show_general_statistics: this.questionnaire.show_general_statistics,
-        type_id:this.questionnaire.type_id
+        type_id: this.questionnaire.type_id
       };
       $("#project-ids").val().map((x) => {
         data.project_ids.push(parseInt(x));
@@ -461,34 +472,36 @@ export default {
       let json = JSON.parse(jsonStr);
       let colorIndex = 0;
       for (let i = 0; i < json.pages.length; i++) {
-        for (let j = 0; j < json.pages[i].elements.length; j++) {
-          if (json.pages[i].elements[j].choices) {
-            for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
-              if (!json.pages[i].elements[j].choices[choiceIndex].statsColor) {
-                json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
-                colorIndex++;
-                if (colorIndex === colors.length)
-                  colorIndex = 0;
+        if (json.pages[i].elements) {
+          for (let j = 0; j < json.pages[i].elements.length; j++) {
+            if (json.pages[i].elements[j].choices) {
+              for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
+                if (!json.pages[i].elements[j].choices[choiceIndex].statsColor) {
+                  json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
+                  colorIndex++;
+                  if (colorIndex === colors.length)
+                    colorIndex = 0;
+                }
               }
             }
-          }
-          if (json.pages[i].elements[j].columns) {
-            for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
-              if (!json.pages[i].elements[j].columns[colIndex].statsColor) {
-                json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
-                colorIndex++;
-                if (colorIndex === colors.length)
-                  colorIndex = 0;
+            if (json.pages[i].elements[j].columns) {
+              for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
+                if (!json.pages[i].elements[j].columns[colIndex].statsColor) {
+                  json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
+                  colorIndex++;
+                  if (colorIndex === colors.length)
+                    colorIndex = 0;
+                }
               }
             }
-          }
-          if (json.pages[i].elements[j].rows) {
-            for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
-              if (!json.pages[i].elements[j].rows[rowIndex].statsColor) {
-                json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
-                colorIndex++;
-                if (colorIndex === colors.length)
-                  colorIndex = 0;
+            if (json.pages[i].elements[j].rows) {
+              for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
+                if (!json.pages[i].elements[j].rows[rowIndex].statsColor) {
+                  json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
+                  colorIndex++;
+                  if (colorIndex === colors.length)
+                    colorIndex = 0;
+                }
               }
             }
           }

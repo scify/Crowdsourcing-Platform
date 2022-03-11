@@ -274,8 +274,10 @@ export default {
         }).then(response => {
           const answers = _.map(response.data, function (response) {
             return {
-              answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
-              respondent_user_id: response.user_id
+              response_id: response.id,
+              response_text: JSON.parse(response.response_json_translated ?? response.response_json),
+              respondent_user_id: response.user_id,
+              project_name: response.project.default_translation.name
             }
           });
           resolve(answers);
@@ -317,7 +319,7 @@ export default {
         let answersForPanel = answers;
         const currentQuestionName = this.questions[i].name;
         if (!this.questionHasCustomVisualizer(this.questions[i])) {
-          answersForPanel = _.map(answers, 'answerObj');
+          answersForPanel = _.map(answers, 'response_text');
           answersForPanel = Object.values(_.pickBy(answersForPanel, function (value, key) {
             return currentQuestionName in value && value[currentQuestionName] !== undefined;
           }));
