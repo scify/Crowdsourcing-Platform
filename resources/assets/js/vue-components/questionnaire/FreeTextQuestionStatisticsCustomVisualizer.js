@@ -1,6 +1,4 @@
 import * as SurveyAnalytics from "survey-analytics";
-
-import Vue from 'vue';
 //import AnswersPresenter from "./AnswersPresenter.vue";
 
 require('../../lang');
@@ -19,6 +17,9 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     function renderHeader(table, visualizer) {
         const header = document.createElement("thead");
         const tr = document.createElement("tr");
+        const header0 = document.createElement("th");
+        header0.innerHTML = "Answer id";
+        tr.appendChild(header0);
         const header1 = document.createElement("th");
         header1.innerHTML = "Answer";
         tr.appendChild(header1);
@@ -27,8 +28,11 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         header2.innerHTML = "";
         const header3 = document.createElement("th");
         header3.innerHTML = "Number of votes";
+        const header4 = document.createElement("th");
+        header4.innerHTML = "Project name";
         tr.appendChild(header2);
         tr.appendChild(header3);
+        tr.appendChild(header4);
         header.appendChild(tr);
         table.appendChild(header);
     }
@@ -37,22 +41,26 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         const tbody = document.createElement("tbody");
         const questionName = visualizer.question.name;
         const answers = visualizer.dataProvider.data;
-
         answers
             .forEach(function (value) {
-                if (!value.answerObj || !value.answerObj[questionName])
+                if (!value.response_text || !value.response_text[questionName])
                     return;
-                const answer = value.answerObj[questionName];
+                const responseId = value.response_id;
+                const responseText = value.response_text[questionName];
                 const respondentUserId = value.respondent_user_id;
-                if (!answer || !respondentUserId || isAnswerMarkedAsHidden(questionName, respondentUserId))
+                if (!responseText || !respondentUserId || isAnswerMarkedAsHidden(questionName, respondentUserId))
                     return;
 
                 const tr = document.createElement("tr");
+                const td0 = document.createElement("td");
+                td0.innerHTML = '<span class="answer-id">' + responseId + '</span>';
+                tr.appendChild(td0);
                 const td1 = document.createElement("td");
                 td1.className = "answer-column";
                 td1.setAttribute("id", "answer_" + questionName + "_" + respondentUserId)
                 const td2 = document.createElement("td");
                 const td3 = document.createElement("td");
+                const td4 = document.createElement("td");
                 let annotation = getAnnotationForAnswer(questionName, respondentUserId);
                 const annotationText = annotation ? annotation.annotation_text : "";
                 let adminReviewStatusId = 0;
@@ -60,14 +68,14 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     adminReviewStatusId = annotation.admin_review_status_id ? annotation.admin_review_status_id : 0;
                 const adminReviewComment = annotation ? annotation.admin_review_comment : "";
                 if (AnswersData.userCanAnnotateAnswers) {
-                    let annotationIndication = annotation? '<i class="fa fa-check" title="This answer has been reviewed by a moderator"></i>' :"";
+                    let annotationIndication = annotation ? '<i class="fa fa-check" title="This answer has been reviewed by a moderator"></i>' : "";
                     td1.innerHTML = '<span class="annotation-button"><button ' +
                         'data-annotation="' + annotationText
                         + '" data-annotation-admin-review-status-id="' + adminReviewStatusId
                         + '" data-annotation-admin-review-comment="' + adminReviewComment
                         + '" data-question="' + questionName
                         + '" data-respondent="' + respondentUserId + '" '
-                        + 'class="btn annotate-btn"><i class="fa fa-edit"></i>' +  annotationIndication +
+                        + 'class="btn annotate-btn"><i class="fa fa-edit"></i>' + annotationIndication +
                         '</button></span>';
                 }
                 if (annotationText && annotationText !== "") {
@@ -75,13 +83,13 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                         + annotationText
                         + '</p></div><b>Original answer:</b><br>';
                 }
-                td1.innerHTML += '<p>' + getAnswerHTML(answer, 'initial_answer') + '</p>';
+                td1.innerHTML += '<p>' + getAnswerHTML(responseText, 'initial_answer') + '</p>';
 
 
-                if (!isString(answer) && answer.translated_answer !== "")
-                    td1.innerHTML += '<b>Translation ('
-                        + getLanguageName(answer.initial_language_detected) + '):</b><p>'
-                        + getAnswerHTML(answer, 'translated_answer') + '</p>';
+                if (!isString(responseText) && responseText.translated_answer !== "")
+                    td1.innerHTML += '<br><b>Translation ('
+                        + getLanguageName(responseText.initial_language_detected) + '):</b><p>'
+                        + getAnswerHTML(responseText, 'translated_answer') + '</p>';
                 tr.appendChild(td1);
 
                 let userUpvotedClass = '';
@@ -114,7 +122,9 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     '</div>';
                 tr.appendChild(td2);
                 td3.innerHTML = upvotesNum;
+                td4.innerHTML = value.project_name;
                 tr.appendChild(td3);
+                tr.appendChild(td4);
                 tbody.appendChild(tr);
             });
         table.appendChild(tbody);
@@ -224,8 +234,10 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         contentContainer.className += " custom-texts-table-container";
         AnswersData.currentIndex += 1;
         const columns = [
+            {"width": "0%"},
             {"width": "80%"},
             {"width": "20%"},
+            {"width": "0%"},
             {"width": "0%"}
         ];
         const options = {
@@ -237,7 +249,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
             "columnDefs": [
 
                 {
-                    "targets": [2],
+                    "targets": [0, 2, 4],
                     "visible": false
                 }
             ],
@@ -251,11 +263,13 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     text: AnswersData.languageResources.download_csv,
                     filename: 'Statistics_' + new Date().getTime(),
                     exportOptions: {
-                        columns: [0, 2]
+                        columns: [0, 1, 2, 4]
                     }
                 }
 
             ]
+        else
+            options.buttons = [];
         $(table).DataTable(options);
     };
     return new SurveyAnalytics.VisualizerBase(question, data, {

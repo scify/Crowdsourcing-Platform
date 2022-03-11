@@ -73,13 +73,10 @@ class QuestionnaireVMProvider {
                 $projectNames = explode(',', $questionnaire->project_names);
                 $questionnaire->urls = [];
                 foreach ($projectSlugs as $index => $projectSlug)
-                    array_push(
-                        $questionnaire->urls,
-                        [
-                            'project_name' => $projectNames[$index],
-                            'url' => $this->getQuestionnaireURL($projectSlug, $questionnaire->id)
-                        ]
-                    );
+                    $questionnaire->urls[] = [
+                        'project_name' => $projectNames[$index],
+                        'url' => $this->getQuestionnaireURL($projectSlug, $questionnaire->id)
+                    ];
             }
 
         }
