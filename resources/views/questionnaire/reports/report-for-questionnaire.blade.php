@@ -97,18 +97,18 @@
         </div>
     </div>
 </div>
-{{--<div class="card card-info">--}}
-{{--    <div class="card-header">--}}
-{{--        <h3 class="card-title">Answers Report</h3>--}}
-{{--    </div>--}}
-{{--    <div class="card-body">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-12">--}}
-{{--                <div id="questionnaire-responses-report" class="responses-report"></div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Answers </h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <div id="questionnaire-responses-report" class="responses-report"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal-overflow">
     <div class="modal fade" id="respondent-answers-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
          aria-hidden="true">
