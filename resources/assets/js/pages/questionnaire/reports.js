@@ -194,7 +194,7 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         survey.mode = 'display';
         survey.render("respondent-answers-panel");
         initializeDataTables();
-        //initializeQuestionnaireResponsesReport();
+        initializeQuestionnaireResponsesReport();
         loader.addClass('d-none');
     };
 
@@ -241,14 +241,14 @@ import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
         });
     };
 
-    // let initializeQuestionnaireResponsesReport = function () {
-    //     let panelEl = document.getElementById("questionnaire-responses-report");
-    //     panelEl.innerHTML = "";
-    //     Tabulator.haveCommercialLicense = true;
-    //     const answersForSurveyTabulator = _.map(answers, 'response_json').map(JSON.parse);
-    //     const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {});
-    //     surveyAnalyticsTabulator.render(panelEl);
-    // };
+     let initializeQuestionnaireResponsesReport = function () {
+         let panelEl = document.getElementById("questionnaire-responses-report");
+         panelEl.innerHTML = "";
+         Tabulator.haveCommercialLicense = true;
+         const answersForSurveyTabulator = _.map(answers, 'response_json').map(JSON.parse);
+         const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {});
+         surveyAnalyticsTabulator.render(panelEl);
+     };
 
     let init = function () {
         loader = $("#loader")
