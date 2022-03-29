@@ -332,13 +332,10 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                     text: AnswersData.languageResources.download_csv,
                     filename: 'Statistics_' + new Date().getTime(),
                     exportOptions: {
-                        columns: [0, 1, 2, 4]
+                        columns: questionName.includes("-Comment") ? [0, 1, 2] : [0, 1, 2, 4]
                     }
                 }
             ]
-            if (questionName.includes("-Comment")) {
-                options.buttons.exportOptions.columns = [0, 1, 2];
-            }
         } else
             options.buttons = [];
         $(table).DataTable(options);
