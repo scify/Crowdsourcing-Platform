@@ -15,6 +15,31 @@ export class AnswersData {
 
 function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     function renderHeader(table, visualizer) {
+        const questionName = visualizer.question.name;
+        if (questionName.includes("-Comment")) {
+            renderHeaderSimple(table, visualizer)
+        } else {
+            renderHeaderFull(table, visualizer);
+        }
+    }
+
+    function renderHeaderSimple(table, visualizer) {
+        const header = document.createElement("thead");
+        const tr = document.createElement("tr");
+        const header0 = document.createElement("th");
+        header0.innerHTML = "Initial Answer";
+        const header1 = document.createElement("th");
+        header1.innerHTML = "Translated Answer";
+        const header2 = document.createElement("th");
+        header2.innerHTML = "Language Detected";
+        tr.appendChild(header0);
+        tr.appendChild(header1);
+        tr.appendChild(header2);
+        header.appendChild(tr);
+        table.appendChild(header);
+    }
+
+    function renderHeaderFull(table, visualizer) {
         const header = document.createElement("thead");
         const tr = document.createElement("tr");
         const header0 = document.createElement("th");
@@ -38,6 +63,39 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
     }
 
     function renderRows(table, visualizer) {
+        const questionName = visualizer.question.name;
+        if (questionName.includes("-Comment")) {
+            renderRowsSimple(table, visualizer)
+        } else {
+            renderRowsFull(table, visualizer);
+        }
+    }
+
+    function renderRowsSimple(table, visualizer) {
+        const tbody = document.createElement("tbody");
+        const questionName = visualizer.question.name;
+        const answers = visualizer.dataProvider.data;
+        answers
+            .forEach(function (answer) {
+                const response = answer[questionName];
+                if (!response || !response.initial_answer)
+                    return;
+                const tr = document.createElement("tr");
+                const td0 = document.createElement("td");
+                const td1 = document.createElement("td");
+                const td2 = document.createElement("td");
+                td0.innerHTML = response.initial_answer;
+                td1.innerHTML = response.translated_answer;
+                td2.innerHTML = getLanguageName(response.initial_language_detected);
+                tr.appendChild(td0);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tbody.appendChild(tr);
+            });
+        table.appendChild(tbody);
+    }
+
+    function renderRowsFull(table, visualizer) {
         const tbody = document.createElement("tbody");
         const questionName = visualizer.question.name;
         const answers = visualizer.dataProvider.data;
@@ -233,30 +291,41 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
         container.appendChild(table);
         contentContainer.className += " custom-texts-table-container";
         AnswersData.currentIndex += 1;
-        const columns = [
-            {"width": "0%"},
-            {"width": "80%"},
-            {"width": "20%"},
-            {"width": "0%"},
-            {"width": "0%"}
-        ];
+        let columns;
+        const questionName = visualizer.question.name;
+        if (questionName.includes("-Comment")) {
+            columns = [
+                {"width": "45%"},
+                {"width": "45%"},
+                {"width": "10%"}
+            ];
+        } else {
+            columns = [
+                {"width": "0%"},
+                {"width": "80%"},
+                {"width": "20%"},
+                {"width": "0%"},
+                {"width": "0%"}
+            ];
+        }
         const options = {
             destroy: true,
             "paging": true,
             "responsive": true,
             "searching": true,
             "columns": columns,
-            "columnDefs": [
-
+            "order": [[(columns.length - 2), "desc"]],
+            "dom": 'Bfrtip'
+        };
+        if (!questionName.includes("-Comment")) {
+            options.columnDefs = [
                 {
                     "targets": [0, 2, 4],
                     "visible": false
                 }
-            ],
-            "order": [[(columns.length - 2), "desc"]],
-            "dom": 'Bfrtip'
-        };
-        if (AnswersData.userCanAnnotateAnswers)
+            ]
+        }
+        if (AnswersData.userCanAnnotateAnswers) {
             options.buttons = [
                 {
                     extend: 'csvHtml5',
@@ -266,9 +335,11 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
                         columns: [0, 1, 2, 4]
                     }
                 }
-
             ]
-        else
+            if (questionName.includes("-Comment")) {
+                options.buttons.exportOptions.columns = [0, 1, 2];
+            }
+        } else
             options.buttons = [];
         $(table).DataTable(options);
     };

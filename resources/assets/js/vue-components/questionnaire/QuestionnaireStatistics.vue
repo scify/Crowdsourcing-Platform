@@ -183,13 +183,14 @@ export default {
   computed: {
     "displayAnnotatorPublicComment": function () {
       //if id '1', 'Reviewed by moderator - no further action',
-      // or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator and it was marked as toxic. It will never be shown in the statistics.'
-      // dont display
-      return (this.annotation.admin_review_status_id != 1
-          && this.annotation.admin_review_status_id != 4)
+      // or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator, and it was marked as toxic.
+      // It will never be shown in the statistics.'
+      // don't display
+      return (this.annotation.admin_review_status_id !== 1
+          && this.annotation.admin_review_status_id !== 4)
     },
-    "questionnaireHasManyProjects":function(){
-      return this.$props.projects.length>1;
+    "questionnaireHasManyProjects": function () {
+      return this.$props.projects.length > 1;
     }
   },
   created() {
@@ -316,6 +317,8 @@ export default {
       AnswersData.languageResources = window.language[window.Laravel.locale].statistics;
 
       for (let i = 0; i < this.questions.length; i++) {
+        if (!this.shouldDrawStatistics(this.questions[i]))
+          continue;
         let answersForPanel = answers;
         const currentQuestionName = this.questions[i].name;
         if (!this.questionHasCustomVisualizer(this.questions[i])) {
@@ -324,9 +327,6 @@ export default {
             return currentQuestionName in value && value[currentQuestionName] !== undefined;
           }));
         }
-
-        if (!this.shouldDrawStatistics(this.questions[i]))
-          continue;
 
         const colors = this.convertColorNamesToColorCodes(this.getColorsForQuestion(this.questions[i]));
 
