@@ -14,6 +14,11 @@
         <div class="survey-statistics-container" :id="'survey-statistics-container_' + (index - 1)"></div>
       </div>
     </div>
+    <div v-if="userCanAnnotateAnswers" class="row my-5">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
+        <div id="questionnaire-responses-report" class="responses-report"></div>
+      </div>
+    </div>
     <store-modal
         :show-ok-button="true"
         @okClicked="closeModal"></store-modal>
@@ -133,6 +138,7 @@ import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTex
 import Promise from "lodash/_Promise";
 import _ from "lodash";
 import {showToast} from "../../common-utils";
+import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
 export default {
   props: {
@@ -177,7 +183,8 @@ export default {
       },
       numOfVotesByCurrentUser: 0,
       answerAnnotationAdminReviewStatuses: [],
-      projectFilterSelectedOption: this.$props.projectFilter
+      projectFilterSelectedOption: this.$props.projectFilter,
+      answersData: {},
     }
   },
   computed: {
@@ -262,7 +269,9 @@ export default {
         this.getQuestionnaireAnswerAnnotations(),
         this.getQuestionnaireAnswerAdminAnalysisStatuses()
       ]).then(results => {
-        this.initStatistics(results[0], results[1], results[2], results[3])
+        this.initStatistics(results[0], results[1], results[2], results[3]);
+        if (this.userCanAnnotateAnswers)
+          this.initializeQuestionnaireResponsesReport(results[0]);
       });
     },
     getQuestionnaireResponses() {
@@ -281,6 +290,7 @@ export default {
               project_name: response.project.default_translation.name
             }
           });
+          instance.answersData = response.data;
           resolve(answers);
         }).catch(e => reject(e));
       });
@@ -360,6 +370,14 @@ export default {
         visPanel.render(document.getElementById('survey-statistics-container_' + i));
       }
       this.loading = false;
+    },
+    initializeQuestionnaireResponsesReport() {
+      let panelEl = document.getElementById("questionnaire-responses-report");
+      panelEl.innerHTML = "";
+      Tabulator.haveCommercialLicense = true;
+      const answersForSurveyTabulator = _.map(this.answersData, 'response_json').map(JSON.parse);
+      const surveyAnalyticsTabulator = new Tabulator(this.survey, answersForSurveyTabulator, {});
+      surveyAnalyticsTabulator.render(panelEl);
     },
     questionHasCustomVisualizer(question) {
       return this.questionTypesToApplyCustomTextsTableVisualizer.includes(question.getType());
@@ -559,30 +577,7 @@ export default {
 <style lang="scss">
 @import "~survey-jquery/modern.min.css";
 @import "~survey-analytics/survey.analytics.min.css";
+@import "~survey-analytics/survey.analytics.tabulator.min.css";
+@import "~tabulator-tables/dist/css/tabulator.min.css";
 @import "resources/assets/sass/questionnaire/statistics";
-
-.fa-check {
-  color: green;
-  display: inline-block;
-  margin-left: 5px;
-}
-
-#moderator-toolbar {
-  text-align: center;
-  font-size: 1.2rem;
-  position: fixed;
-  padding: 10px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 35px;
-  background-color: rgba(230, 230, 230, 1);
-  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
-
-  select {
-    background-color: white;
-    border: none;
-    margin-left: 5px;
-  }
-}
 </style>

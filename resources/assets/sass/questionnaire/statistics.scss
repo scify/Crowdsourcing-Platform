@@ -139,3 +139,55 @@
 .page-item.active .page-link {
   z-index: 0;
 }
+
+.fa-check {
+  color: green;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#moderator-toolbar {
+  text-align: center;
+  font-size: 1.2rem;
+  position: fixed;
+  padding: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 35px;
+  background-color: rgba(230, 230, 230, 1);
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+
+  select {
+    background-color: white;
+    border: none;
+    margin-left: 5px;
+  }
+}
+
+.responses-report {
+  font-family: 'Open Sans', sans-serif;
+
+  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {
+    display: none;
+  }
+
+  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(3) {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
+
+}
