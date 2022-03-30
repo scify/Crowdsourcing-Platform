@@ -14,7 +14,12 @@
         <div class="survey-statistics-container" :id="'survey-statistics-container_' + (index - 1)"></div>
       </div>
     </div>
-    <div v-if="userCanAnnotateAnswers" class="row my-5">
+    <div v-if="userCanAnnotateAnswers" class="row mt-5 mb-1">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto text-left">
+        <h4>Download all responses</h4>
+      </div>
+    </div>
+    <div v-if="userCanAnnotateAnswers" class="row mt-2 mb-5">
       <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
         <div id="questionnaire-responses-report" class="responses-report"></div>
       </div>
