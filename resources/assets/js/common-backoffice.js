@@ -39,7 +39,8 @@ require('datatables.net-responsive');
 require('datatables.net-responsive-bs4');
 require('datatables.net-select');
 require('datatables.net-select-bs4');
-import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
+import languageBundle
+    from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
 import Clipboard from "clipboard/dist/clipboard";
 
 import Vue from 'vue';
@@ -63,7 +64,7 @@ const app = new Vue({
 
 (function () {
 
-    window.language= languageBundle;
+    window.language = languageBundle;
     Number.prototype.round = function (places) {
         return +(Math.round(this + "e+" + places) + "e-" + places);
     };
@@ -137,7 +138,7 @@ const app = new Vue({
         });
     }
 
-    let listenToReadMoreClicks = function() {
+    let listenToReadMoreClicks = function () {
         const body = $('body');
         body.on('click', '.read-more', function (e) {
             $(this).siblings(".more-text").after('<a href="javascript:void(0);" class="read-less">Read less</a>');
@@ -151,7 +152,7 @@ const app = new Vue({
         });
     }
 
-    let initializeTooltips =function(){
+    let initializeTooltips = function () {
         $('[data-toggle="tooltip"]').tooltip();
     }
     $(function () {
@@ -183,4 +184,7 @@ export function initSingleColorPicker(el) {
     });
 }
 
+export function isObject(obj) {
+    return obj != null && obj.constructor.name === "Object"
+}
 
