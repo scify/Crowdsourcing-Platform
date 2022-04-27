@@ -4,12 +4,14 @@
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
 
+
+
         }
     </style>
 @endpush
 @section('content')
-    <section id="motto" style="height: 650px;">
-        <div class="container-fluid">
+    <div class="container-fluid h-100 w-100 px-0">
+        <section id="motto" style="height: 650px;">
             <div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
                  style="background-image: url({{asset($viewModel->project->img_path)}});">
                 <div class="overlay-filter"
@@ -38,13 +40,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section>
-        @include('landingpages.partials.about')
-    </section>
-    <section id="projects" class="w-100">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.projects', ['projects' => $viewModel->projects])
-    </section>
+        </section>
+        <section>
+            @include('landingpages.partials.about')
+        </section>
+        <section id="projects" class="w-100">
+            @include('home.partials.' . config('app.installation_resources_dir') . '.projects', ['projects' => $viewModel->projects])
+        </section>
     </div>
 @endsection
