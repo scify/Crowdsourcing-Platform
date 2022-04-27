@@ -6,6 +6,7 @@
 
 
 
+
         }
     </style>
 @endpush
@@ -28,8 +29,7 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col">
-                                <h3 id="motto-subtitle"
-                                    class="text text-center">{!! $viewModel->getProjectStatusMessage() !!}</h3>
+                                <h3 class="text text-center">{!! $viewModel->getProjectStatusMessage() !!}</h3>
                             </div>
                         </div>
                         <div class="row">
