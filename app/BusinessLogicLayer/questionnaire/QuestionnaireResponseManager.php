@@ -9,7 +9,6 @@ use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +19,6 @@ class QuestionnaireResponseManager
 
     protected $questionnaireRepository;
     protected $questionnaireResponseRepository;
-    protected $questionnaireResponseAnswerTextRepository;
     protected $languageManager;
     protected $questionnaireActionHandler;
     protected $questionnaireAnswerVoteRepository;
@@ -28,7 +26,6 @@ class QuestionnaireResponseManager
 
     public function __construct(QuestionnaireRepository                   $questionnaireRepository,
                                 QuestionnaireResponseRepository           $questionnaireResponseRepository,
-                                QuestionnaireResponseAnswerTextRepository $questionnaireResponseAnswerTextRepository,
                                 LanguageManager                           $languageManager,
                                 QuestionnaireActionHandler                $questionnaireActionHandler,
                                 QuestionnaireAnswerVoteRepository         $questionnaireAnswerVoteRepository,
@@ -36,7 +33,6 @@ class QuestionnaireResponseManager
     {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->questionnaireResponseAnswerTextRepository = $questionnaireResponseAnswerTextRepository;
         $this->languageManager = $languageManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
         $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
