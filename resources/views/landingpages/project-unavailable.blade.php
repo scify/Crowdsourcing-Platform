@@ -8,40 +8,43 @@
     </style>
 @endpush
 @section('content')
-    <div class="container-fluid">
-        <div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
-             style="background-image: url({{asset($viewModel->project->img_path)}});">
-            <div class="overlay-filter"
-                 style="background-color: {{ $viewModel->project->lp_primary_color }};
+    <section id="motto" style="height: 650px;">
+        <div class="container-fluid">
+            <div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
+                 style="background-image: url({{asset($viewModel->project->img_path)}});">
+                <div class="overlay-filter"
+                     style="background-color: {{ $viewModel->project->lp_primary_color }};
                  top: @if (App::environment('staging')) 128.75px @else 93.75px @endif"></div>
-            <div class="col-lg-7 col-md-8 col-sm-11 mx-auto motto-content px-0">
-                <div class="frosted"></div>
-                <div id="project-motto" class="container-fluid">
-                    <div class="row mb-3 text-center">
-                        <div class="col">
-                            <h1 id="motto-title"
-                                class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
-                        </div>
-                    </div>
-                    {!! $viewModel->getProjectStatusMessage() !!}
-                    <div class="row">
-                        @if($viewModel->project->external_url)
-                            <div class="col-lg-2 col-md-4 col-sm-10 mx-auto">
-                                <a href="{{ $viewModel->project->external_url }}" target="_blank"
-                                   class="btn btn-primary call-to-action">
-                                    Visit Project webpage
-                                </a>
+                <div class="col-lg-7 col-md-8 col-sm-11 mx-auto motto-content px-0">
+                    <div class="frosted"></div>
+                    <div id="project-motto" class="container-fluid">
+                        <div class="row mb-3 text-center">
+                            <div class="col">
+                                <h1 id="motto-title"
+                                    class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
                             </div>
-                        @endif
+                        </div>
+                        {!! $viewModel->getProjectStatusMessage() !!}
+                        <div class="row">
+                            @if($viewModel->project->external_url)
+                                <div class="col-lg-2 col-md-4 col-sm-10 mx-auto">
+                                    <a href="{{ $viewModel->project->external_url }}" target="_blank"
+                                       class="btn btn-primary call-to-action">
+                                        Visit Project webpage
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <section>
-            @include('landingpages.partials.about')
-        </section>
-        <section id="projects" class="w-100">
-            @include('home.partials.' . config('app.installation_resources_dir') . '.projects', ['projects' => $viewModel->projects])
-        </section>
+    </section>
+    <section>
+        @include('landingpages.partials.about')
+    </section>
+    <section id="projects" class="w-100">
+        @include('home.partials.' . config('app.installation_resources_dir') . '.projects', ['projects' => $viewModel->projects])
+    </section>
     </div>
 @endsection
