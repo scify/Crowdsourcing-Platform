@@ -26,7 +26,12 @@
                                     class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
                             </div>
                         </div>
-                        {!! $viewModel->getProjectStatusMessage() !!}
+                        <div class="row mb-5">
+                            <div class="col">
+                                <h4 id="motto-subtitle"
+                                    class="text text-center">{!! $viewModel->getProjectStatusMessage() !!}</h4>
+                            </div>
+                        </div>
                         <div class="row">
                             @if($viewModel->project->external_url)
                                 <div class="col-lg-2 col-md-4 col-sm-10 mx-auto">
