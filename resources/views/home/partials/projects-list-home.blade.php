@@ -18,7 +18,7 @@
                                 </a>
                             @else
                                 <a href="/{{app()->getLocale() .'/'.$project->slug}}"
-                                   class="btn btn-block btn-success call-to-action action-success">Vote
+                                   class="btn btn-block btn-success call-to-action action-success">View
                                 </a>
                             @endif
                         </div>
