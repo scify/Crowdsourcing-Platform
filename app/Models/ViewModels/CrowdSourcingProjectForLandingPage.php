@@ -12,7 +12,6 @@ class CrowdSourcingProjectForLandingPage {
     public $feedbackQuestionnaire;
     public $userResponse;
     public $userFeedbackQuestionnaireResponse;
-    public $allResponses;
     public $totalResponses;
     public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
@@ -28,7 +27,6 @@ class CrowdSourcingProjectForLandingPage {
         $feedbackQuestionnaire,
         $userResponse,
         $userFeedbackQuestionnaireResponse,
-        $latestResponses,
         $totalResponses,
         $questionnaireGoalVM,
         $socialMediaMetadataVM,
@@ -42,7 +40,6 @@ class CrowdSourcingProjectForLandingPage {
         $this->feedbackQuestionnaire= $feedbackQuestionnaire;
         $this->userResponse = $userResponse;
         $this->userFeedbackQuestionnaireResponse = $userFeedbackQuestionnaireResponse;
-        $this->allResponses = $latestResponses;
         $this->totalResponses = $totalResponses;
         $this->questionnaireGoalVM = $questionnaireGoalVM;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
