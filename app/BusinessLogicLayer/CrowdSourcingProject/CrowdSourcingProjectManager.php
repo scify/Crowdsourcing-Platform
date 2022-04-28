@@ -118,13 +118,11 @@ class CrowdSourcingProjectManager {
         $userResponse = null;
         $userFeedbackQuestionnaireResponse = null;
         $questionnaireGoalVM = null;
-        $latestResponses = collect([]);
 
         $shareUrlForFacebook = "";
         $shareUrlForTwitter = "";
         $countAll=0;
         if ($questionnaire) {
-            $latestResponses = $this->questionnaireRepository->getLatestResponsesForQuestionnaire($questionnaire->id);
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire,$countAll);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
@@ -148,7 +146,6 @@ class CrowdSourcingProjectManager {
             $feedbackQuestionnaire,
             $userResponse,
             $userFeedbackQuestionnaireResponse,
-            $latestResponses,
             $countAll,
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
