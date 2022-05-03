@@ -19,6 +19,11 @@
         <h4>Download all responses</h4>
       </div>
     </div>
+    <div v-if="userCanAnnotateAnswers && !responsesTableShown" class="row mt-2 mb-5">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
+        <button class="btn btn-primary" @click="showResponsesTable">Show Responses Table</button>
+      </div>
+    </div>
     <div v-if="userCanAnnotateAnswers" class="row mt-2 mb-5">
       <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
         <div id="questionnaire-responses-report" class="responses-report"></div>
@@ -190,6 +195,8 @@ export default {
       answerAnnotationAdminReviewStatuses: [],
       projectFilterSelectedOption: this.$props.projectFilter,
       answersData: {},
+      responsesTableShown: false,
+      responses: []
     }
   },
   computed: {
@@ -274,9 +281,8 @@ export default {
         this.getQuestionnaireAnswerAnnotations(),
         this.getQuestionnaireAnswerAdminAnalysisStatuses()
       ]).then(results => {
+        this.responses = results[0];
         this.initStatistics(results[0], results[1], results[2], results[3]);
-        if (this.userCanAnnotateAnswers)
-          this.initializeQuestionnaireResponsesReport(results[0]);
       });
     },
     getQuestionnaireResponses() {
@@ -574,6 +580,10 @@ export default {
     },
     onFilterProject(event) {
       window.location.href = route('questionnaire.statistics', window.Laravel.locale, this.questionnaire.id, event.target.value);
+    },
+    showResponsesTable() {
+      this.initializeQuestionnaireResponsesReport(this.responses);
+      this.responsesTableShown = true;
     }
   }
 }
