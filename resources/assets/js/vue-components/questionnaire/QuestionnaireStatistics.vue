@@ -394,7 +394,8 @@ export default {
       return this.questionTypesToApplyCustomTextsTableVisualizer.includes(question.getType());
     },
     shouldDrawStatistics(question) {
-      return question.getType().toLowerCase() !== 'html' && !question.title.includes("please indicate your email");
+      const caseWhenQuestionIsSensitiveAndUserIsNotAdmin = !this.userCanAnnotateAnswers && question.title.includes("please indicate your email");
+      return question.getType().toLowerCase() !== 'html' && !(caseWhenQuestionIsSensitiveAndUserIsNotAdmin);
     },
     getColorsForQuestion(question) {
       let choices = [];
