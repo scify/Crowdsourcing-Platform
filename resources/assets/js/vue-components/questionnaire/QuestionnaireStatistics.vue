@@ -388,7 +388,7 @@ export default {
       return this.questionTypesToApplyCustomTextsTableVisualizer.includes(question.getType());
     },
     shouldDrawStatistics(question) {
-      return question.getType().toLowerCase() !== 'html'
+      return question.getType().toLowerCase() !== 'html' && !question.title.includes("please indicate your email");
     },
     getColorsForQuestion(question) {
       let choices = [];
