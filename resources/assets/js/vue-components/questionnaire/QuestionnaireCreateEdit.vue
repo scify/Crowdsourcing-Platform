@@ -53,10 +53,10 @@
               <label for="language">Statistics page visibility</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <select name="statistics_page_visibility_lkp_id" id="statistics_page_visibility_lkp_id">
+              <select v-model="questionnaire.statistics_page_visibility_lkp_id" name="statistics_page_visibility_lkp_id"
+                      id="statistics_page_visibility_lkp_id">
                 <option v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
                         :value="visibilityLkp.id"
-                        v-model="questionnaire.statistics_page_visibility_lkp_id"
                         :selected="questionnaire.statistics_page_visibility_lkp_id === visibilityLkp.id">
                   {{ visibilityLkp.title }}
                 </option>
