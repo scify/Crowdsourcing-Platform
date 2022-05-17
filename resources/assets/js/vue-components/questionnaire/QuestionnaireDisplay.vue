@@ -298,6 +298,8 @@ export default {
     },
     trans(key) {
       const keys = key.split(".");
+      if(!window.language[window.Laravel.locale])
+        return 'Language';
       return window.language[window.Laravel.locale][keys[0]][keys[1]];
     }
   }
