@@ -31,6 +31,7 @@ Route::get('/', function () {
 $regexForLocalParameter= config("app.regex_for_validating_locale_at_routes");
 //notice we use this also for /my-dashbor and /my-account
 $localeInfo = ['prefix' => '{locale}',
+               'where' => ['locale' => $regexForLocalParameter],
                'middleware' => 'setlocale'
                 ];
 Route::group($localeInfo, function () {

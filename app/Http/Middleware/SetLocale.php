@@ -28,8 +28,9 @@ class SetLocale
                 break;
             }
         }
-        if(!$locale)
+        if(!$locale) {
             $locale = "en";
+        }
         app()->setLocale($locale);
         return $next($request);
     }
