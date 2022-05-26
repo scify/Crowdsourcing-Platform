@@ -87,9 +87,9 @@ class CrowdSourcingProjectController extends Controller {
         return back()->with('flash_message_success', 'The project has been successfully updated');
     }
 
-    public function showLandingPage(Request $request ) {
+    public function showLandingPage(Request $request) {
         try {
-            $project_slug =$request->project_slug;
+            $project_slug = $request->project_slug;
             if (Gate::allows('view-landing-page', $project_slug))
                 return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
 
@@ -126,8 +126,8 @@ class CrowdSourcingProjectController extends Controller {
         return (
             isset($request->questionnaireId) &&
             isset($request->referrerId)
-            );
-            //&&  Auth::check()); //TODO: DISCUSS, why user should be logged in for this?
+        );
+        //&&  Auth::check()); //TODO: DISCUSS, why user should be logged in for this?
     }
 
     public function clone(int $id): RedirectResponse {
