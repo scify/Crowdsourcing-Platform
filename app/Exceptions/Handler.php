@@ -66,10 +66,12 @@ class Handler extends ExceptionHandler {
     public function render($request, Throwable $exception) {
 
         if ($exception instanceof NotFoundHttpException) {
+            if (!isset($urlVars[3]) || !isset($urlVars[4]))
+                return redirect("/" . app()->getLocale() . '/');
             $urlVars = explode('/', url()->current());
             $locale = $urlVars[3];
             $lastPart = $urlVars[4];
-            if(app()->getLocale() !== $locale)
+            if (app()->getLocale() !== $locale)
                 return redirect("/" . app()->getLocale() . '/' . $lastPart);
         }
 
