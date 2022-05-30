@@ -21,7 +21,6 @@ require('bootstrap-colorpicker');
 
 import 'summernote/dist/summernote-bs4';
 
-require('jquery-toast-plugin');
 require('jquery-slimscroll');
 require('survey-creator');
 
@@ -63,21 +62,6 @@ const app = new Vue({
 });
 
 (function () {
-
-    window.language = languageBundle;
-    Number.prototype.round = function (places) {
-        return +(Math.round(this + "e+" + places) + "e-" + places);
-    };
-
-    window.wa.roundNumber = function (num, places) {
-        return +(Math.round(parseFloat(num) + "e+" + places) + "e-" + places);
-    };
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     let initializeIcheck = function () {
         $('.icheck-input').iCheck({
