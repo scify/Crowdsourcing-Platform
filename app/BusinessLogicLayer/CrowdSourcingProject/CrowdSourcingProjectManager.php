@@ -198,11 +198,11 @@ class CrowdSourcingProjectManager {
             $this->crowdSourcingProjectRepository->delete($id);
         $colors = [];
         for ($i = 0; $i < count($attributes['color_codes']); $i++) {
-            array_push($colors, [
+            $colors[] = [
                 'id' => $attributes['color_ids'][$i],
                 'color_name' => $attributes['color_names'][$i],
                 'color_code' => $attributes['color_codes'][$i]
-            ]);
+            ];
         }
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(
