@@ -956,3 +956,17 @@ footer {
     margin-left: 80%;
   }
 }
+
+.project-toast {
+  line-height: 1.5rem;
+
+  h3 {
+    text-align: center;
+    font-weight: bold;
+    color: white
+  }
+}
+
+.jq-toast-wrap {
+  min-width: 450px;
+}

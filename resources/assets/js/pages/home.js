@@ -1,4 +1,4 @@
-require('../bootstrap');
+import '../bootstrap';
 
 let handleLogoutBtnClick = function () {
     $("#log-out").click(function (e) {

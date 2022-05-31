@@ -1,4 +1,4 @@
-require('jquery-toast-plugin');
+import 'jquery-toast-plugin';
 
 export function arrayMove(arr, fromIndex, toIndex) {
     const element = arr[fromIndex];
@@ -7,7 +7,7 @@ export function arrayMove(arr, fromIndex, toIndex) {
 }
 
 export function showToast(text, bgColor, position = 'top-right', hideAfter = 4000, icon = null, allowToastClose = true) {
-   const options = {
+    const options = {
         text: text,
         showHideTransition: 'slide',  // It can be plain, fade or slide
         bgColor: bgColor,              // Background color for toast
@@ -20,7 +20,7 @@ export function showToast(text, bgColor, position = 'top-right', hideAfter = 400
         // representing the left, right, top, bottom values to position the toast on page
     }
 
-    if(icon)
+    if (icon)
         options.icon = icon;
 
     $.toast(options);

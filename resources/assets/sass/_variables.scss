@@ -77,7 +77,7 @@ $html-font-size: 16px;
 $navbar-light-bg-color: #E6F6F1;
 
 @function toRem($value) {
-  $remValue: ($value / 16) + rem;
+  $remValue: calc(var($value) / 16) + rem;
   @return $remValue;
 }
 
