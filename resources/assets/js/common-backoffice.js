@@ -69,14 +69,6 @@ import {showToast} from "./common-utils";
         });
     };
 
-
-    let handleLogoutBtnClick = function () {
-        $("#log-out").click(function (e) {
-            e.preventDefault();
-            $("#logout-form").submit();
-        });
-    }
-
     let initClipboardElements = function () {
         const clipboard = new Clipboard(".copy-clipboard");
 
@@ -115,7 +107,6 @@ import {showToast} from "./common-utils";
             closeDismissableAlerts();
             initializeSelect2Inputs();
             initializeColorPicker();
-            handleLogoutBtnClick();
             initClipboardElements();
             listenToReadMoreClicks();
             initializeTooltips();
