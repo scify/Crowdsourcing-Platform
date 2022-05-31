@@ -26,20 +26,21 @@ class CrowdSourcingProjectTranslation extends Model
     protected $fillable = [
         'language_id', 'project_id', 'name', 'motto_title', 'motto_subtitle', 'description',
         'about', 'footer', 'sm_title', 'sm_description', 'sm_keywords',
-        'questionnaire_response_email_intro_text', 'questionnaire_response_email_outro_text'
+        'questionnaire_response_email_intro_text', 'questionnaire_response_email_outro_text',
+        'banner_title', 'banner_text'
     ];
 
     /**
      * @return BelongsTo
      */
-    public function project() {
+    public function project(): BelongsTo {
         return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');
     }
 
     /**
      * @return BelongsTo
      */
-    public function language() {
+    public function language(): BelongsTo {
         return $this->belongsTo(Language::class, 'language_id', 'id');
     }
 }
