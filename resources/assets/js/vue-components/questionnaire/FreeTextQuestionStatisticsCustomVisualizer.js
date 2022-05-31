@@ -1,7 +1,7 @@
 import * as SurveyAnalytics from "survey-analytics";
 //import AnswersPresenter from "./AnswersPresenter.vue";
 
-require('../../lang');
+import '../../lang';
 
 export class AnswersData {
     static answerVotes = [];
