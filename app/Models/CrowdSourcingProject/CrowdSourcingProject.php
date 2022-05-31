@@ -39,7 +39,8 @@ class CrowdSourcingProject extends Model {
         'logo_path', 'user_creator_id', 'language_id', 'status_id',
         'sm_featured_img_path', 'lp_questionnaire_img_path',
         'lp_show_speak_up_btn', 'lp_primary_color',
-        'should_send_email_after_questionnaire_response'
+        'should_send_email_after_questionnaire_response',
+        'display_landing_page_banner'
     ];
 
     /**

@@ -188,6 +188,11 @@ class CrowdSourcingProjectManager {
         $attributes['should_send_email_after_questionnaire_response'] =
             (isset($attributes['should_send_email_after_questionnaire_response'])
                 && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
+
+        $attributes['display_landing_page_banner'] =
+            (isset($attributes['display_landing_page_banner'])
+                && $attributes['display_landing_page_banner'] == 'on') ? 1 : 0;
+
         $this->crowdSourcingProjectRepository->update($attributes, $id);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
