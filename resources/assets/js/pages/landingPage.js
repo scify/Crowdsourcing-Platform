@@ -3,14 +3,6 @@ import {showToast} from "../common-utils";
 
 (function () {
 
-    let handleLogoutBtnClick = function () {
-        $("#log-out").click(function (e) {
-            e.preventDefault();
-            $("#logout-form").submit();
-        });
-    }
-
-
     let displayTranslation = function () {
 
         if ($(this).find("option:selected").data("machine-generated") === 1)
@@ -37,26 +29,31 @@ import {showToast} from "../common-utils";
         }
     };
 
-    let init = function () {
-        initEvents();
-        openQuestionnaireIfNeeded();
+    let logToAnalytics = function () {
         const projectEl = $("#project");
         if (projectEl.data("name"))
             AnalyticsLogger.logEvent('project_landing_page', 'view_' + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
+    };
 
-        handleLogoutBtnClick();
-        showToast(
-            '<div class="project-toast"><h3>DATA PRIVACY</h3><br><br>The personal data collected as part of this survey will be used for the sole ' +
-            'purpose of the crowdsourcing exercise, which is part of the Horizon2020-funded PopAi project.<br><br>' +
-            'Your data will not be used for any other purposes.<br>Please note that we are only collecting personal data that ' +
-            'is strictly necessary.<br><br>Data collected as part of our crowdsourcing platform will be destroyed as soon as they are ' +
-            'no longer needed for the purposes of this project.<br>At any time you can exercise all the rights provided by the ' +
-            'General Data Protection Regulation, including the right to withdraw your consent and the right to request the erasure of ' +
-            'your personal data before the end of the project.<br><br>To do so, please email claire.damilano@ecas.org.</div>'
-            , '#2e6da4', 'bottom-right', false, null, false)
+    let showProjectBannerIfEnabled = function () {
+        if (viewModel.project.display_landing_page_banner) {
+            let bannerTitle = viewModel.project.currentTranslation ? viewModel.project.currentTranslation.banner_title : viewModel.project.default_translation.banner_title;
+            let bannerText = viewModel.project.currentTranslation ? viewModel.project.currentTranslation.banner_text : viewModel.project.default_translation.banner_text;
+            if (bannerTitle || bannerText)
+                showToast(
+                    '<div class="project-toast"><h3>' + bannerTitle + '</h3><br><br>' + bannerText + '</div>',
+                    '#2e6da4', 'bottom-right', false, null, false);
+        }
+
+    };
+
+    let init = function () {
+        initEvents();
+        openQuestionnaireIfNeeded();
+        logToAnalytics();
+        showProjectBannerIfEnabled();
     };
     $(document).ready(function () {
         init();
-        console.log(viewModel);
     });
 })();

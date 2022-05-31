@@ -31,18 +31,26 @@ new Vue({
 (function () {
 
     window.language = languageBundle;
-    Number.prototype.round = function (places) {
-        return +(Math.round(this + "e+" + places) + "e-" + places);
-    };
-
-    window.wa.roundNumber = function (num, places) {
-        return +(Math.round(parseFloat(num) + "e+" + places) + "e-" + places);
-    };
 
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+    });
+
+    let handleLogoutBtnClick = function () {
+        $("#log-out").click(function (e) {
+            e.preventDefault();
+            $("#logout-form").submit();
+        });
+    }
+
+    let init = function () {
+      handleLogoutBtnClick();
+    };
+
+    $(document).ready(function () {
+        init();
     });
 
 })();
