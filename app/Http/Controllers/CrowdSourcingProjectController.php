@@ -7,10 +7,11 @@ use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectController extends Controller {
 
@@ -87,9 +88,18 @@ class CrowdSourcingProjectController extends Controller {
         return back()->with('flash_message_success', 'The project has been successfully updated');
     }
 
-    public function showLandingPage(Request $request ) {
+    public function showLandingPage(Request $request) {
+        $data = [
+            'project_slug' => $request->project_slug
+        ];
+        $validator = Validator::make($data, [
+            'project_slug' => 'required|different:execute_solution|exists:crowd_sourcing_projects,slug'
+        ]);
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
         try {
-            $project_slug =$request->project_slug;
+            $project_slug = $request->project_slug;
             if (Gate::allows('view-landing-page', $project_slug))
                 return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
 
@@ -97,7 +107,7 @@ class CrowdSourcingProjectController extends Controller {
                 ->with(['viewModel' => $this->crowdSourcingProjectManager->
                 getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug)]);
         } catch (ModelNotFoundException $e) {
-            abort(404);
+            abort(ResponseAlias::HTTP_NOT_FOUND);
         }
     }
 
@@ -126,8 +136,8 @@ class CrowdSourcingProjectController extends Controller {
         return (
             isset($request->questionnaireId) &&
             isset($request->referrerId)
-            );
-            //&&  Auth::check()); //TODO: DISCUSS, why user should be logged in for this?
+        );
+        //&&  Auth::check()); //TODO: DISCUSS, why user should be logged in for this?
     }
 
     public function clone(int $id): RedirectResponse {

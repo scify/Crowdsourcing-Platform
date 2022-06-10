@@ -118,13 +118,11 @@ class CrowdSourcingProjectManager {
         $userResponse = null;
         $userFeedbackQuestionnaireResponse = null;
         $questionnaireGoalVM = null;
-        $latestResponses = collect([]);
 
         $shareUrlForFacebook = "";
         $shareUrlForTwitter = "";
         $countAll=0;
         if ($questionnaire) {
-            $latestResponses = $this->questionnaireRepository->getLatestResponsesForQuestionnaire($questionnaire->id);
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire,$countAll);
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $userId);
@@ -148,7 +146,6 @@ class CrowdSourcingProjectManager {
             $feedbackQuestionnaire,
             $userResponse,
             $userFeedbackQuestionnaireResponse,
-            $latestResponses,
             $countAll,
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
@@ -191,16 +188,21 @@ class CrowdSourcingProjectManager {
         $attributes['should_send_email_after_questionnaire_response'] =
             (isset($attributes['should_send_email_after_questionnaire_response'])
                 && $attributes['should_send_email_after_questionnaire_response'] == 'on') ? 1 : 0;
+
+        $attributes['display_landing_page_banner'] =
+            (isset($attributes['display_landing_page_banner'])
+                && $attributes['display_landing_page_banner'] == 'on') ? 1 : 0;
+
         $this->crowdSourcingProjectRepository->update($attributes, $id);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED)
             $this->crowdSourcingProjectRepository->delete($id);
         $colors = [];
         for ($i = 0; $i < count($attributes['color_codes']); $i++) {
-            array_push($colors, [
+            $colors[] = [
                 'id' => $attributes['color_ids'][$i],
                 'color_name' => $attributes['color_names'][$i],
                 'color_code' => $attributes['color_codes'][$i]
-            ]);
+            ];
         }
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(

@@ -15,7 +15,7 @@
     @if (isset($viewModel->socialMediaMetadataVM))
         @include('landingpages.partials.header-meta', ['viewModel' => $viewModel->socialMediaMetadataVM])
     @else
-        <link rel="canonical" href="{{route('home')}}">
+        <link rel="canonical" href="{{route('home', ['locale' => app()->getLocale()])}}">
     @endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">

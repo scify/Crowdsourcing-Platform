@@ -48,17 +48,6 @@ class QuestionnaireRepository extends Repository {
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->where('user_id', $userId)->first();
     }
 
-    public function getLatestResponsesForQuestionnaire($questionnaireId) {
-        return DB::table('questionnaire_responses')
-            ->select('questionnaire_responses.created_at', 'u.nickname as user_name')
-            ->join('users as u', 'u.id', '=', 'questionnaire_responses.user_id')
-            ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
-            ->whereNull('questionnaire_responses.deleted_at')
-            ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get();
-    }
-
     public function countAllResponsesForQuestionnaire($questionnaireId) {
         return DB::table('questionnaire_responses')
             ->select('questionnaire_responses.id')

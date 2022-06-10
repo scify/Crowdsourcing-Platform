@@ -44,7 +44,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-sm-12 control-label" for="motto_subtitle">Project Motto Subtitle</label>
+                                    <label class="col-sm-12 control-label" for="motto_subtitle">Project Motto
+                                        Subtitle</label>
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="motto_subtitle" class="form-control" name="motto_subtitle"
@@ -54,7 +55,8 @@
                                     </div>
                                 </div>
                                 <div class="row mb">
-                                    <label class="col-md-12 control-label" for="lp_primary_color">Landing page primary color
+                                    <label class="col-md-12 control-label" for="lp_primary_color">Landing page primary
+                                        color
                                         color
                                         (<span
                                                 class="red">*</span>)<br>
@@ -162,6 +164,58 @@
                                         <textarea id="footer" class="form-control summernote" name="footer"
                                                   placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->defaultTranslation->footer }}</textarea>
                                             <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-info collapsed-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Sticky Banner</h2>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div class="row my-2">
+                                    <div class="col">
+                                        <div class="checkbox icheck">
+                                            <label>
+                                                <input
+                                                        {{$viewModel->project->display_landing_page_banner ? 'checked' : ''}}
+                                                        class="icheck-input" type="checkbox"
+                                                        name="display_landing_page_banner"><span class="ml-3">
+                                            Display Landing page banner</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <label class="col-sm-12 control-label" for="footer">Sticky Banner Title</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group has-feedback">
+                                            <input id="banner_title" type="text"
+                                                   name="banner_title"
+                                                   class="form-control"
+                                                   value="{{ old('banner_title') ? old('banner_title') :
+                                                            $viewModel->project->defaultTranslation->banner_title  }}"/>
+                                            <span class="help-block"><strong>{{ $errors->first('banner_title') }}</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-12 control-label" for="footer">Sticky Banner Text</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group has-feedback">
+                                        <textarea id="banner_text" class="form-control summernote"
+                                                  name="banner_text"
+                                                  placeholder="Footer Section">{{ old('banner_text') ? old('banner_text') : $viewModel->project->defaultTranslation->banner_text }}</textarea>
+                                            <span class="help-block"><strong>{{ $errors->first('banner_text') }}</strong></span>
                                         </div>
                                     </div>
                                 </div>

@@ -9,7 +9,6 @@ use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerTextRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +19,6 @@ class QuestionnaireResponseManager
 
     protected $questionnaireRepository;
     protected $questionnaireResponseRepository;
-    protected $questionnaireResponseAnswerTextRepository;
     protected $languageManager;
     protected $questionnaireActionHandler;
     protected $questionnaireAnswerVoteRepository;
@@ -28,7 +26,6 @@ class QuestionnaireResponseManager
 
     public function __construct(QuestionnaireRepository                   $questionnaireRepository,
                                 QuestionnaireResponseRepository           $questionnaireResponseRepository,
-                                QuestionnaireResponseAnswerTextRepository $questionnaireResponseAnswerTextRepository,
                                 LanguageManager                           $languageManager,
                                 QuestionnaireActionHandler                $questionnaireActionHandler,
                                 QuestionnaireAnswerVoteRepository         $questionnaireAnswerVoteRepository,
@@ -36,7 +33,6 @@ class QuestionnaireResponseManager
     {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->questionnaireResponseAnswerTextRepository = $questionnaireResponseAnswerTextRepository;
         $this->languageManager = $languageManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
         $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
@@ -64,7 +60,7 @@ class QuestionnaireResponseManager
         // we only allow the responses to be filtered by project for logged in Answer Moderators
         if ($projectFilter > 0 &&  Gate::allows('moderate-results'))
             $queryFilters["project_id"] = $projectFilter;
-        return $this->questionnaireResponseRepository->allWhere($queryFilters, array('*'), "id", "desc");
+        return $this->questionnaireResponseRepository->allWhere($queryFilters, array('*'), "id", "desc", ["project"]);
     }
 
     public function transferQuestionnaireResponsesOfAnonymousUserToUser($user): int
@@ -133,10 +129,10 @@ class QuestionnaireResponseManager
         return $freeTypeQuestions;
     }
 
-    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id, int $user_voter_id): Collection
+    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): Collection
     {
         return $this->questionnaireAnswerVoteRepository
-            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id, $user_voter_id);
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id);
     }
 
     public function voteAnswer(int    $questionnaire_id,
@@ -161,5 +157,24 @@ class QuestionnaireResponseManager
     public function deleteResponse(int $questionnaire_response_id)
     {
         return $this->questionnaireResponseRepository->delete($questionnaire_response_id);
+    }
+
+    public function getAnswersWithVotesAndVoterInfoForQuestionnaire(int $questionnaire_id): Collection {
+        $questionnaire = $this->questionnaireRepository->find($questionnaire_id);
+        $answerVotesWithVoterInfoForQuestionnaire = $this->questionnaireAnswerVoteRepository->getAnswerVotesWithVoterInfoForQuestionnaire($questionnaire_id);
+        $freeTypeQuestions = $this->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
+        $data = new Collection();
+        foreach ($answerVotesWithVoterInfoForQuestionnaire as $record) {
+            $response = [];
+            $response['response_id'] = $record->response_id;
+            $response['voters'] = $record->voters;
+            $response['num_votes'] = $record->votes;
+            $response['question'] = $freeTypeQuestions[$record->question_name]->title;
+            $response_json = json_decode($record->response_json);
+            $response_json_translated = json_decode($record->response_json_translated);
+            $response['answer'] = $response_json_translated->{$record->question_name} ?? $response_json->{$record->question_name};
+            $data->add($response);
+        }
+        return $data;
     }
 }

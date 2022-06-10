@@ -1,53 +1,11 @@
 import AnalyticsLogger from "../analytics-logger";
+import {showToast} from "../common-utils";
 
-//TODO: THIS EXISTS ALSO TO COMMON.JS
-window.wa = {};
-window.wa.enums = {};
-window.swal = require('bootstrap-sweetalert');
-window.Popper = require('@popperjs/core');
-window.route = require('../backend-route');
-
-require('../bootstrap');
-import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
-import Vue from 'vue';
-import store from '../store/store';
-Vue.component('modal', require('../vue-components/common/ModalComponent').default);
-Vue.component('store-modal', require('../vue-components/common/StoreModalComponent').default);
-Vue.component('questionnaire-display', require('../vue-components/questionnaire/QuestionnaireDisplay').default);
-
-const app = new Vue({
-    el: '#app',
-    store: store
-});
-//END OF TODO: THIS EXISTS ALSO TO COMMON.JS
 (function () {
-
-    //TODO: THIS EXIST ALSO TO COMMON.JS , SEPERATE TO COMMON FILE
-    window.language= languageBundle;
-    Number.prototype.round = function (places) {
-        return +(Math.round(this + "e+" + places) + "e-" + places);
-    };
-    window.wa.roundNumber = function (num, places) {
-        return +(Math.round(parseFloat(num) + "e+" + places) + "e-" + places);
-    };
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    let handleLogoutBtnClick = function () {
-        $("#log-out").click(function (e) {
-            e.preventDefault();
-            $("#logout-form").submit();
-        });
-    }
-
-    //END OF TODO: THIS EXIST ALSO TO COMMON.JS , SEPERATE TO COMMON FILE
-
 
     let displayTranslation = function () {
 
-        if ($(this).find("option:selected").data("machine-generated") == 1)
+        if ($(this).find("option:selected").data("machine-generated") === 1)
             $("#machine-translation-indicator").removeClass("hide");
         else
             $("#machine-translation-indicator").addClass("hide");
@@ -66,19 +24,34 @@ const app = new Vue({
 
     let openQuestionnaireIfNeeded = function () {
         let respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
-        if (respondQuestionnaire.first().data("open-on-load") === 1){
+        if (respondQuestionnaire.first().data("open-on-load") === 1) {
             respondQuestionnaire.first().trigger("click");
         }
+    };
+
+    let logToAnalytics = function () {
+        const projectEl = $("#project");
+        if (projectEl.data("name"))
+            AnalyticsLogger.logEvent('project_landing_page', 'view_' + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
+    };
+
+    let showProjectBannerIfEnabled = function () {
+        if (viewModel.project.display_landing_page_banner) {
+            let bannerTitle = viewModel.project.currentTranslation ? viewModel.project.currentTranslation.banner_title : viewModel.project.default_translation.banner_title;
+            let bannerText = viewModel.project.currentTranslation ? viewModel.project.currentTranslation.banner_text : viewModel.project.default_translation.banner_text;
+            if (bannerTitle || bannerText)
+                showToast(
+                    '<div class="project-toast"><h3>' + bannerTitle + '</h3><br><br>' + bannerText + '</div>',
+                    '#2e6da4', 'bottom-right', false, null, false);
+        }
+
     };
 
     let init = function () {
         initEvents();
         openQuestionnaireIfNeeded();
-        const projectEl = $("#project");
-        if (projectEl.data("name"))
-            AnalyticsLogger.logEvent('project_landing_page', 'view_' + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
-
-        handleLogoutBtnClick();
+        logToAnalytics();
+        showProjectBannerIfEnabled();
     };
     $(document).ready(function () {
         init();

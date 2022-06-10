@@ -71,6 +71,14 @@ class CreateEditCrowdSourcingProject {
                 'display_title' => 'Congratulations email outro text',
                 'required' => true,
             ],
+            'banner_title' => [
+                'display_title' => 'Landing page banner title',
+                'required' => false,
+            ],
+            'banner_text' => [
+                'display_title' => 'Landing page banner text',
+                'required' => false,
+            ],
         ];
     }
 

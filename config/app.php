@@ -86,7 +86,7 @@ return [
 
     'locale' => 'en',
     // check web.php
-    'regex_for_validating_locale_at_routes' => 'en|lv|el|et|pt|bg|hu|nl|fr|de|sr',
+    'regex_for_validating_locale_at_routes' => 'en|lv|el|et|pt|bg|hu|nl|fr|de|sr|it|hr|cs|da|fi|ga|lt|pl|ro|sk|sl|es|sv|mt|.',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,6 +120,7 @@ return [
     'google_translate_key' => env('GOOGLE_TRANSLATE_KEY'),
     'google_comment_analyzer_key' => env('GOOGLE_TRANSLATE_KEY'),
     'google_analytics_id' => env('GA_ID'),
+    'google_tag_manager_id' => env('GOOGLE_TAG_MANAGER_ID'),
     'version' => env('APP_VERSION'),
     'admin_pass_seed' => env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'),
     'mailchimp_api_key' => env('MAILCHIMP_API_KEY'),

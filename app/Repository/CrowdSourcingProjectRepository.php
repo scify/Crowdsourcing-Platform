@@ -28,8 +28,8 @@ class CrowdSourcingProjectRepository extends Repository {
                 $query->where(['status_id' => $questionnaireStatusId]);
             })
             ->with('questionnaires', function ($query) use ($questionnaireStatusId) {
-                $query->select(['id', 'title', 'prerequisite_order', 'status_id', 'default_language_id',
-                    'description', 'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created'])
+                $query->select(['id', 'prerequisite_order', 'status_id', 'default_language_id',
+                    'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created'])
                     ->where(['status_id' => $questionnaireStatusId])
                     ->withCount('responses')
                     ->orderBy('prerequisite_order')

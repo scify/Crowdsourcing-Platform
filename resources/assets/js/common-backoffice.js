@@ -1,82 +1,37 @@
-window.wa = {};
-window.wa.enums = {};
-window.swal = require('bootstrap-sweetalert');
+import 'icheck';
 
-require('icheck');
-
-//if jquery ui is loaded make sure it doesnt conflict with bootstrap button
-//$.widget.bridge('uibutton', $.ui.button);
-
-//load dependencies for template
-window.Popper = require('@popperjs/core');
-window.route = require('./backend-route');
-
-require('./bootstrap');
-require('fastclick');
-require('admin-lte'); // 'admin-lte/dist/js/app.min.js'
-require('select2');
-require('bootstrap-tagsinput');
-require('bootstrap-colorpicker');
+import './bootstrap';
+import 'fastclick';
+import 'admin-lte'; // 'admin-lte/dist/js/app.min.js'
+import 'select2';
+import 'bootstrap-tagsinput';
+import 'bootstrap-colorpicker';
 
 
 import 'summernote/dist/summernote-bs4';
 
-require('jquery-toast-plugin');
-require('jquery-slimscroll');
-require('survey-creator');
+import 'jquery-slimscroll';
+import 'survey-creator';
 
 
-require('datatables.net');
-require('datatables.net-bs4');
-require('datatables.net-buttons');
-require('datatables.net-buttons-bs4');
+import 'datatables.net';
+import 'datatables.net-bs4';
+import 'datatables.net-buttons';
+import 'datatables.net-buttons-bs4';
 
-require('datatables.net-buttons/js/buttons.colVis.js')();
-require('datatables.net-buttons/js/buttons.html5.js')();
-require('datatables.net-buttons/js/buttons.flash.js')();
-require('datatables.net-buttons/js/buttons.print.js')();
-require('datatables.net-responsive');
-require('datatables.net-responsive-bs4');
-require('datatables.net-select');
-require('datatables.net-select-bs4');
-import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
+import * as colVis from 'datatables.net-buttons/js/buttons.colVis.js';
+import * as html5Buttons from 'datatables.net-buttons/js/buttons.html5.js';
+import * as flashButtons from 'datatables.net-buttons/js/buttons.flash.js';
+import * as printButtons from 'datatables.net-buttons/js/buttons.print.js';
+import 'datatables.net-responsive';
+import 'datatables.net-responsive-bs4';
+import 'datatables.net-select';
+import 'datatables.net-select-bs4';
 import Clipboard from "clipboard/dist/clipboard";
 
-import Vue from 'vue';
-import store from './store/store';
 import {showToast} from "./common-utils";
 
-
-Vue.component('modal', require('./vue-components/common/ModalComponent').default);
-Vue.component('store-modal', require('./vue-components/common/StoreModalComponent').default);
-Vue.component('questionnaire-create-edit', require('./vue-components/questionnaire/QuestionnaireCreateEdit').default);
-Vue.component('questionnaire-languages', require('./vue-components/questionnaire/QuestionnaireLanguages').default);
-Vue.component('questionnaire-display', require('./vue-components/questionnaire/QuestionnaireDisplay').default);
-Vue.component('questionnaire-statistics', require('./vue-components/questionnaire/QuestionnaireStatistics').default);
-Vue.component('crowd-sourcing-project-colors', require('./vue-components/crowd-sourcing-project/CrowdSourcingProjectColors').default);
-Vue.component('translations-manager', require('./vue-components/common/TranslationsManager').default);
-
-const app = new Vue({
-    el: '#app',
-    store: store
-});
-
 (function () {
-
-    window.language= languageBundle;
-    Number.prototype.round = function (places) {
-        return +(Math.round(this + "e+" + places) + "e-" + places);
-    };
-
-    window.wa.roundNumber = function (num, places) {
-        return +(Math.round(parseFloat(num) + "e+" + places) + "e-" + places);
-    };
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     let initializeIcheck = function () {
         $('.icheck-input').iCheck({
@@ -114,14 +69,6 @@ const app = new Vue({
         });
     };
 
-
-    let handleLogoutBtnClick = function () {
-        $("#log-out").click(function (e) {
-            e.preventDefault();
-            $("#logout-form").submit();
-        });
-    }
-
     let initClipboardElements = function () {
         const clipboard = new Clipboard(".copy-clipboard");
 
@@ -137,7 +84,7 @@ const app = new Vue({
         });
     }
 
-    let listenToReadMoreClicks = function() {
+    let listenToReadMoreClicks = function () {
         const body = $('body');
         body.on('click', '.read-more', function (e) {
             $(this).siblings(".more-text").after('<a href="javascript:void(0);" class="read-less">Read less</a>');
@@ -151,7 +98,7 @@ const app = new Vue({
         });
     }
 
-    let initializeTooltips =function(){
+    let initializeTooltips = function () {
         $('[data-toggle="tooltip"]').tooltip();
     }
     $(function () {
@@ -160,10 +107,13 @@ const app = new Vue({
             closeDismissableAlerts();
             initializeSelect2Inputs();
             initializeColorPicker();
-            handleLogoutBtnClick();
             initClipboardElements();
             listenToReadMoreClicks();
             initializeTooltips();
+            colVis();
+            html5Buttons();
+            flashButtons();
+            printButtons();
         });
     });
 })();
@@ -183,4 +133,7 @@ export function initSingleColorPicker(el) {
     });
 }
 
+export function isObject(obj) {
+    return obj != null && obj.constructor.name === "Object"
+}
 
