@@ -1,8 +1,11 @@
 const mix = require('laravel-mix');
+const path = require("path");
+const webpack = require("webpack");
 
 mix.disableSuccessNotifications();
 
 mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
+    .js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/pages/register.js', 'public/dist/js')
     .js('resources/assets/js/pages/home.js', 'public/dist/js')
     .js('resources/assets/js/pages/myProfile.js', 'public/dist/js')
@@ -16,21 +19,33 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/questionnaireSocialShare.js', 'public/dist/js')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
     .js('resources/assets/js/UsersListController.js', 'public/dist/js')
-    // .extract([
-    //     'jquery', 'jquery-slimscroll', 'fastclick', 'admin-lte', 'bootstrap-sweetalert',
-    //     'select2', 'bootstrap', 'jquery-toast-plugin', 'bootstrap-tagsinput',
-    //     'bootstrap-colorpicker', 'survey-jquery', 'survey-knockout', 'survey-creator'
-    // ])
-    // .extract([
-    //     'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-jquery', 'survey-knockout'
-    // ])
     .extract([
         'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-knockout'
     ])
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
-        resolve: {fallback: {fs: false, path: false}}
+        resolve: {
+            alias: { jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js') },
+            fallback: {
+                fs: false,
+                path: false,
+                "stream": false,
+                "constants": false,
+                "crypto": false
+            }
+        },
+        plugins: [
+            // ProvidePlugin helps to recognize $ and jQuery words in code
+            // And replace it with require('jquery')
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery'
+            })
+        ],
+        stats: {
+            children: true,
+        },
     })
     .version()
     .vue();
@@ -61,6 +76,9 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
-        resolve: {fallback: {fs: false, path: false}}
+        resolve: {fallback: {fs: false, path: false}},
+        stats: {
+            children: true,
+        },
     })
     .version();

@@ -1,4 +1,4 @@
-let Survey = require('survey-jquery');
+import Survey from 'survey-jquery';
 
 (function () {
     let survey;

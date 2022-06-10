@@ -14,6 +14,21 @@
         <div class="survey-statistics-container" :id="'survey-statistics-container_' + (index - 1)"></div>
       </div>
     </div>
+    <div v-if="userCanAnnotateAnswers" class="row mt-5 mb-1">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto text-left">
+        <h4>Download all responses</h4>
+      </div>
+    </div>
+    <div v-if="userCanAnnotateAnswers && !responsesTableShown" class="row mt-2 mb-5">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
+        <button class="btn btn-primary" @click="showResponsesTable">Show Responses Table</button>
+      </div>
+    </div>
+    <div v-if="userCanAnnotateAnswers" class="row mt-2 mb-5">
+      <div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
+        <div id="questionnaire-responses-report" class="responses-report"></div>
+      </div>
+    </div>
     <store-modal
         :show-ok-button="true"
         @okClicked="closeModal"></store-modal>
@@ -133,6 +148,7 @@ import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTex
 import Promise from "lodash/_Promise";
 import _ from "lodash";
 import {showToast} from "../../common-utils";
+import {Tabulator} from 'survey-analytics/survey.analytics.tabulator.js';
 
 export default {
   props: {
@@ -177,19 +193,23 @@ export default {
       },
       numOfVotesByCurrentUser: 0,
       answerAnnotationAdminReviewStatuses: [],
-      projectFilterSelectedOption: this.$props.projectFilter
+      projectFilterSelectedOption: this.$props.projectFilter,
+      answersData: {},
+      responsesTableShown: false,
+      responses: []
     }
   },
   computed: {
     "displayAnnotatorPublicComment": function () {
       //if id '1', 'Reviewed by moderator - no further action',
-      // or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator and it was marked as toxic. It will never be shown in the statistics.'
-      // dont display
-      return (this.annotation.admin_review_status_id != 1
-          && this.annotation.admin_review_status_id != 4)
+      // or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator, and it was marked as toxic.
+      // It will never be shown in the statistics.'
+      // don't display
+      return (this.annotation.admin_review_status_id !== 1
+          && this.annotation.admin_review_status_id !== 4)
     },
-    "questionnaireHasManyProjects":function(){
-      return this.$props.projects.length>1;
+    "questionnaireHasManyProjects": function () {
+      return this.$props.projects.length > 1;
     }
   },
   created() {
@@ -261,7 +281,8 @@ export default {
         this.getQuestionnaireAnswerAnnotations(),
         this.getQuestionnaireAnswerAdminAnalysisStatuses()
       ]).then(results => {
-        this.initStatistics(results[0], results[1], results[2], results[3])
+        this.responses = results[0];
+        this.initStatistics(results[0], results[1], results[2], results[3]);
       });
     },
     getQuestionnaireResponses() {
@@ -274,10 +295,13 @@ export default {
         }).then(response => {
           const answers = _.map(response.data, function (response) {
             return {
-              answerObj: JSON.parse(response.response_json_translated ?? response.response_json),
-              respondent_user_id: response.user_id
+              response_id: response.id,
+              response_text: JSON.parse(response.response_json_translated ?? response.response_json),
+              respondent_user_id: response.user_id,
+              project_name: response.project.default_translation.name
             }
           });
+          instance.answersData = response.data;
           resolve(answers);
         }).catch(e => reject(e));
       });
@@ -314,17 +338,16 @@ export default {
       AnswersData.languageResources = window.language[window.Laravel.locale].statistics;
 
       for (let i = 0; i < this.questions.length; i++) {
+        if (!this.shouldDrawStatistics(this.questions[i]))
+          continue;
         let answersForPanel = answers;
         const currentQuestionName = this.questions[i].name;
         if (!this.questionHasCustomVisualizer(this.questions[i])) {
-          answersForPanel = _.map(answers, 'answerObj');
+          answersForPanel = _.map(answers, 'response_text');
           answersForPanel = Object.values(_.pickBy(answersForPanel, function (value, key) {
             return currentQuestionName in value && value[currentQuestionName] !== undefined;
           }));
         }
-
-        if (!this.shouldDrawStatistics(this.questions[i]))
-          continue;
 
         const colors = this.convertColorNamesToColorCodes(this.getColorsForQuestion(this.questions[i]));
 
@@ -359,11 +382,20 @@ export default {
       }
       this.loading = false;
     },
+    initializeQuestionnaireResponsesReport() {
+      let panelEl = document.getElementById("questionnaire-responses-report");
+      panelEl.innerHTML = "";
+      Tabulator.haveCommercialLicense = true;
+      const answersForSurveyTabulator = _.map(this.answersData, 'response_json').map(JSON.parse);
+      const surveyAnalyticsTabulator = new Tabulator(this.survey, answersForSurveyTabulator, {});
+      surveyAnalyticsTabulator.render(panelEl);
+    },
     questionHasCustomVisualizer(question) {
       return this.questionTypesToApplyCustomTextsTableVisualizer.includes(question.getType());
     },
     shouldDrawStatistics(question) {
-      return question.getType().toLowerCase() !== 'html'
+      const caseWhenQuestionIsSensitiveAndUserIsNotAdmin = !this.userCanAnnotateAnswers && question.title.includes("please indicate your email");
+      return question.getType().toLowerCase() !== 'html' && !(caseWhenQuestionIsSensitiveAndUserIsNotAdmin);
     },
     getColorsForQuestion(question) {
       let choices = [];
@@ -549,6 +581,10 @@ export default {
     },
     onFilterProject(event) {
       window.location.href = route('questionnaire.statistics', window.Laravel.locale, this.questionnaire.id, event.target.value);
+    },
+    showResponsesTable() {
+      this.initializeQuestionnaireResponsesReport(this.responses);
+      this.responsesTableShown = true;
     }
   }
 }
@@ -557,30 +593,7 @@ export default {
 <style lang="scss">
 @import "~survey-jquery/modern.min.css";
 @import "~survey-analytics/survey.analytics.min.css";
+@import "~survey-analytics/survey.analytics.tabulator.min.css";
+@import "~tabulator-tables/dist/css/tabulator.min.css";
 @import "resources/assets/sass/questionnaire/statistics";
-
-.fa-check {
-  color: green;
-  display: inline-block;
-  margin-left: 5px;
-}
-
-#moderator-toolbar {
-  text-align: center;
-  font-size: 1.2rem;
-  position: fixed;
-  padding: 10px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 35px;
-  background-color: rgba(230, 230, 230, 1);
-  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
-
-  select {
-    background-color: white;
-    border: none;
-    margin-left: 5px;
-  }
-}
 </style>

@@ -3,7 +3,6 @@
 <style>
 :root  {
     --project-primary-color: {{ $viewModel->project->lp_primary_color}}
-    
 }
 </style>
 @endpush
@@ -31,5 +30,8 @@
     </div>
 @endsection
 @push('scripts')
+    <script type="text/javascript">
+        const viewModel = @json($viewModel);
+    </script>
     <script src="{{mix('dist/js/landingPage.js')}}"></script>
 @endpush

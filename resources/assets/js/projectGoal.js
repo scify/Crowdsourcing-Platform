@@ -1,4 +1,4 @@
-//let ProjectGoal = require('progressbar.js');
+import ProjectGoal from 'progressbar.js';
 
 (function () {
     let displayProgressBar = function () {

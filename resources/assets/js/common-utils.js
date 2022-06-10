@@ -1,21 +1,29 @@
+import 'jquery-toast-plugin';
+
 export function arrayMove(arr, fromIndex, toIndex) {
     const element = arr[fromIndex];
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
 }
 
-export function showToast(text, bgColor, position = 'top-right') {
-    $.toast({
+export function showToast(text, bgColor, position = 'top-right', hideAfter = 4000, icon = null, allowToastClose = true) {
+    const options = {
         text: text,
         showHideTransition: 'slide',  // It can be plain, fade or slide
         bgColor: bgColor,              // Background color for toast
         textColor: '#eee',            // text color
-        allowToastClose: true,       // Show the close button or not
-        hideAfter: 4000,              // `false` to make it sticky or time in miliseconds to hide after
+        allowToastClose: allowToastClose,       // Show the close button or not
+        hideAfter: hideAfter,              // `false` to make it sticky or time in miliseconds to hide after
         stack: 5,                     // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once
         textAlign: 'left',            // Alignment of text i.e. left, right, center
-        position: position      // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
-    })
+        position: position      // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object
+        // representing the left, right, top, bottom values to position the toast on page
+    }
+
+    if (icon)
+        options.icon = icon;
+
+    $.toast(options);
 }
 
 export function setCookie(cname, cvalue, exdays) {
