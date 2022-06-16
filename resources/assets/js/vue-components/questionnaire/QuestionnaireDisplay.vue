@@ -137,14 +137,13 @@ export default {
       //bug fix on mobile browsers.
       // When you try to drag the rankings, the modal is scrolled so you cannot complete it.
       // We should use a mutation observer instead of this.
-      window.setInterval(function(){
-        if ($(".sv-ranking--drag").length>0){
+      window.setInterval(function () {
+        if ($(".sv-ranking--drag").length > 0) {
           $("body,#questionnaire-modal").addClass("disable-scroll");
-        }
-        else {
+        } else {
           $("body,#questionnaire-modal").removeClass("disable-scroll");
         }
-      },300);
+      }, 300);
 
     },
     prepareQuestionnaireForResponding() {
@@ -214,18 +213,17 @@ export default {
         handleError: false
       }).then((response) => {
         const anonymousUserId = response.data.anonymousUserId;
-        this.displaySuccessResponse(response.data.badgeHTML);
         if (anonymousUserId)
           setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
         const time = performance.now() - this.t0;
         const title = this.questionnaire.default_fields_translation.title;
-        window.location.hash = 'thankyou';
         AnalyticsLogger.logEvent('questionnaire_respond_complete_' + title, 'respond_complete', JSON.stringify({
           'questionnaire': title,
           'project': this.project.default_translation.name,
           'language': locale,
           'time_to_complete': time
         }), this.questionnaire.id);
+        this.displaySuccessResponse(response.data.badgeHTML);
       }).catch(error => {
         console.error(error);
         this.displayErrorResponse(error);
@@ -234,19 +232,22 @@ export default {
       });
     },
     displaySuccessResponse(badgeHTML) {
-      $(".loader-wrapper").addClass('hidden');
+      $(".respond-questionnaire").attr("disabled", true);
+      const questionnaireResponseThankYouURL = route('questionnaire.thanks', this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
+      // $(".loader-wrapper").addClass('hidden');
       if (this.idOfModalToOpenWhenSubmitted) { //if property is defined display the requested modal
         let questionnaireResponded = $("#" + this.idOfModalToOpenWhenSubmitted);
         // add badge fetched from response to the appropriate container
         if (badgeHTML) {
           questionnaireResponded.find('.badge-container').html(badgeHTML);
-          questionnaireResponded.modal({backdrop: 'static'});
+          //questionnaireResponded.modal({backdrop: 'static'});
           $("#pyro").addClass("pyro-on");
         }
-        window.setTimeout(function () {
-          //dirty fix. For some reason the class modal-open is missing from the body in some cases at chrome
-          $("body").addClass("modal-open");
-        }, 300);
+        // window.setTimeout(function () {
+        //   //dirty fix. For some reason the class modal-open is missing from the body in some cases at chrome
+        //   // $("body").addClass("modal-open");
+        // }, 500);
+        window.location = questionnaireResponseThankYouURL;
       } else {
         //close all modals
         $('.modal').modal('hide');
@@ -257,7 +258,7 @@ export default {
           confirmButtonText: "OK",
           closeOnConfirm: true
         }, function () {
-          location.reload();
+          window.location = questionnaireResponseThankYouURL;
         });
       }
 
@@ -280,7 +281,7 @@ export default {
       })
     },
     getSignInUrl() {
-      return route('login') + '?redirectTo=' + window.location.href;
+      return route('login', this.getLocaleFromURL()) + '?redirectTo=' + window.location.href;
     },
     getDefaultLocaleForQuestionnaire() {
       const locales = this.survey.getUsedLocales();
@@ -293,12 +294,18 @@ export default {
         return urlLang;
       return this.defaultLangCode;
     },
+    getLocaleFromURL() {
+      const url = window.location.href;
+      const start = this.getPosition(url, '/', 3) + 1;
+      const end = this.getPosition(url, '/', 4);
+      return url.substring(start, end);
+    },
     getPosition(string, subString, occurrence) {
       return string.split(subString, occurrence).join(subString).length;
     },
     trans(key) {
       const keys = key.split(".");
-      if(!window.language[window.Laravel.locale])
+      if (!window.language[window.Laravel.locale])
         return 'Language';
       return window.language[window.Laravel.locale][keys[0]][keys[1]];
     }
@@ -311,14 +318,21 @@ export default {
 @import "~survey-jquery/modern.min.css";
 
 .survey-container {
-  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__prev-btn {
+  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__prev-btn, .sv-btn.sv-footer__start-btn {
     background-color: $brand-primary;
-    float: left;
     border-radius: 3px;
     font-size: 20px;
     font-weight: 500;
     line-height: 1.7em;
     border: 2px solid white;
+  }
+
+  .sv-btn.sv-footer__prev-btn {
+    float: left;
+  }
+
+  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__start-btn {
+    float: right;
   }
 
   .sv-page.sv-body__page, .sv-footer {
@@ -357,8 +371,8 @@ export default {
 }
 
 
-.disable-scroll{
-  overflow-y:hidden !important;
+.disable-scroll {
+  overflow-y: hidden !important;
 }
 
 
