@@ -12,7 +12,7 @@
                 </div>
             </div>
             @if($viewModel->project->currentTranslation->motto_subtitle)
-                <div class="row mb-0">
+                <div class="row {{ $viewModel->thankYouMode ? 'mb-0' : 'mb-5' }}">
                     <div class="col">
                         <h4 id="motto-subtitle"
                             class="text text-center">{!! $viewModel->project->currentTranslation->motto_subtitle !!}</h4>
@@ -28,9 +28,26 @@
                                 {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
                                 @if($viewModel->userResponse)
                                     <div class="col-12">
-                                        <h2 class="mt-3 text-center">
+                                        <h2 class="{{ $viewModel->thankYouMode ? 'mt-0' : 'mt-3' }} text-center">
                                             @if(!$viewModel->thankYouMode)
                                                 {{ __("questionnaire.already_answered") }}
+                                            @endif
+                                            @if($viewModel->thankYouMode && isset($badge))
+                                                <div class="container mt-3">
+                                                    <div class="row mb-4">
+                                                        <div class="col-md-6 col-sm-12 mx-auto text-center">
+                                                            @include('gamification.badge-single', ['badge' => $badge])
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-9 mx-auto text-center">
+                                                            <a href="{{ route('my-dashboard') }}"
+                                                               class="btn btn-primary btn-lg w-100 dashboard-btn">
+                                                                {{ __("menu.my_dashboard") }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
                                             <br>
                                             {{ __("questionnaire.thank_you_for_your_response") }}
@@ -60,18 +77,6 @@
                                             @endif
                                         </div>
 
-                                    @endif
-                                    @if($viewModel->thankYouMode)
-                                        <div class="container mt-5">
-                                            <div class="row">
-                                                <div class="col-md-8 col-sm-12 mx-auto text-center">
-                                                    <a href="{{ route('my-dashboard') }}"
-                                                       class="btn btn-primary btn-lg">
-                                                        {{ __("menu.my_dashboard") }}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endif
                                 @else
                                     {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}

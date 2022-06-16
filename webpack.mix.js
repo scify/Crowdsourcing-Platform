@@ -73,6 +73,7 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/manage-questionnaires.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/home.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/all-projects.scss', 'public/dist/css')
+    .sass('resources/assets/sass/pages/questionnaire-thanks.scss', 'public/dist/css')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',

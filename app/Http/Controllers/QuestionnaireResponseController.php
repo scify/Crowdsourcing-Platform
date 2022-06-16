@@ -127,7 +127,10 @@ class QuestionnaireResponseController extends Controller {
             $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($response->project_id);
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->questionnaire_id, $project->slug, false);
             $viewModel->thankYouMode = true;
-            return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel]);
+            $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
+                ->allWhere(['user_id' => $response->user_id])->pluck('questionnaire_id')->toArray();
+            $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
+            return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel, 'badge' => $badge]);
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
