@@ -12,7 +12,7 @@
                 </div>
             </div>
             @if($viewModel->project->currentTranslation->motto_subtitle)
-                <div class="row mb-5">
+                <div class="row mb-0">
                     <div class="col">
                         <h4 id="motto-subtitle"
                             class="text text-center">{!! $viewModel->project->currentTranslation->motto_subtitle !!}</h4>
@@ -28,7 +28,10 @@
                                 {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
                                 @if($viewModel->userResponse)
                                     <div class="col-12">
-                                        <h2 class="mt-3 text-center">{{ __("questionnaire.already_answered") }}
+                                        <h2 class="mt-3 text-center">
+                                            @if(!$viewModel->thankYouMode)
+                                                {{ __("questionnaire.already_answered") }}
+                                            @endif
                                             <br>
                                             {{ __("questionnaire.thank_you_for_your_response") }}
 
@@ -52,14 +55,24 @@
                                             {{-- DISPLAY SHARE THE QUESTIONNARE --}}
                                             @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
 
-
                                                 @include('landingpages.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
 
                                             @endif
                                         </div>
 
                                     @endif
-
+                                    @if($viewModel->thankYouMode)
+                                        <div class="container mt-5">
+                                            <div class="row">
+                                                <div class="col-md-8 col-sm-12 mx-auto text-center">
+                                                    <a href="{{ route('my-dashboard') }}"
+                                                       class="btn btn-primary btn-lg">
+                                                        {{ __("menu.my_dashboard") }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @else
                                     {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
                                     <div class="col-md-5 col-sm-12 mx-auto">
