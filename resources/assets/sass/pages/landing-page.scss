@@ -158,6 +158,7 @@ ol {
   @include media-breakpoint-up(md) {
     padding: 7vh 10vh;
   }
+
   .content-container {
     font-size: 20px;
     color: white;
@@ -218,11 +219,12 @@ ol {
     font-weight: normal;
     text-align: center;
     font-size: 22px;
-    padding:20px;
-    width:100%;
+    padding: 20px;
+    width: 100%;
   }
-  .language-selection{
-    label,select {
+
+  .language-selection {
+    label, select {
       font-size: 1.25em;
     }
   }
@@ -230,9 +232,11 @@ ol {
   .description h5 {
     line-height: 1.6em;
   }
+
   .sv-title {
     font-family: inherit;
   }
+
   .sv_row {
     padding: 10px 25px 20px;
 
@@ -335,9 +339,11 @@ ol {
 
 #questionnaire-responded {
   z-index: 100000;
-.modal-dialog{
-  max-width:680px;
-}
+
+  .modal-dialog {
+    max-width: 680px;
+  }
+
   .modal-title {
     font-weight: normal;
     text-align: center;
@@ -363,28 +369,29 @@ ol {
     font-size: x-large;
   }
 
-  .respond-questionnaire.feedback{
+  .respond-questionnaire.feedback {
     text-decoration: underline;
-    color:$button-background-color;
+    color: $button-background-color;
   }
 
 
-  .anonymous-title{
+  .anonymous-title {
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
-    font-size:24px;
+    font-size: 24px;
   }
-  .prefer-staying-anonymous:before{
-    background-color:#F5FAFF;
-    background-image:url('../../images/anonymous.webp');
+
+  .prefer-staying-anonymous:before {
+    background-color: #F5FAFF;
+    background-image: url('../../images/anonymous.webp');
     background-repeat: no-repeat;
     min-height: 150px;
     content: "";
     display: block;
     margin-bottom: 20px;
-    padding-left:5px;
-    padding-right:5px;
+    padding-left: 5px;
+    padding-right: 5px;
     background-position: center;
   }
 
@@ -393,15 +400,18 @@ ol {
     font-size: 16px;
     text-decoration: underline;
   }
+
   .bck-color-feedback {
-    background-color:  #FFEAB5;
+    background-color: #FFEAB5;
   }
-  .login-invitation{
+
+  .login-invitation {
     text-align: center;
   }
-  .anonymous-answers-saved{
-    background-color:#F5FAFF;
-    background-image:url('../../images/sign_in.webp');
+
+  .anonymous-answers-saved {
+    background-color: #F5FAFF;
+    background-image: url('../../images/sign_in.webp');
     background-repeat: no-repeat;
     min-height: 310px;
     background-size: 260px;
@@ -414,6 +424,7 @@ ol {
     padding-top: 25px;
     font-weight: bold;
   }
+
   .dashboard-message {
     font-family: Avenir, Helvetica, sans-serif;
     box-sizing: border-box;
@@ -423,6 +434,7 @@ ol {
     margin-top: 0;
     text-align: center;
   }
+
   p {
     text-align: center;
     font-size: 20px;
@@ -528,14 +540,15 @@ footer {
   color: $black;
 }
 
-.social-share{
+.social-share {
 
-  .btn{
-    max-width:150px;
-    margin-left:4px;
-    margin-right:4px;
+  .btn {
+    max-width: 150px;
+    margin-left: 4px;
+    margin-right: 4px;
   }
 }
+
 #collective-goal {
 
   .container {
@@ -693,7 +706,7 @@ footer {
   position: relative;
 }
 
-.sweet-alert{
+.sweet-alert {
   z-index: 10001;
 }
 
@@ -973,4 +986,21 @@ footer {
 
 .jq-toast-wrap {
   min-width: 450px;
+  z-index: 10002 !important;
+
+  .close-jq-toast-single {
+    font-size: 35px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .jq-toast-wrap.bottom-right {
+    width: calc(100% - 60px);
+    min-width: auto;
+    bottom: 20px;
+    right: 30px;
+  }
+
 }

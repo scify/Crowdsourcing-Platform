@@ -42,7 +42,7 @@ import {showToast} from "../common-utils";
             if (bannerTitle || bannerText)
                 showToast(
                     '<div class="project-toast"><h3>' + bannerTitle + '</h3><br><br>' + bannerText + '</div>',
-                    '#2e6da4', 'bottom-right', false, null, false);
+                    '#2e6da4', 'bottom-right', false, null, true);
         }
 
     };
