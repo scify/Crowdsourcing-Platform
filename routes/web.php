@@ -148,7 +148,6 @@ Route::get('/questionnaire/answers-admin-analysis-statuses-get/', [Questionnaire
 Route::group($localeInfo, function () {
     Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 });
-Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
 
 
 
