@@ -28,12 +28,12 @@ Route::get('/', function () {
 });
 
 
-$regexForLocalParameter= config("app.regex_for_validating_locale_at_routes");
+$regexForLocalParameter = config("app.regex_for_validating_locale_at_routes");
 //notice we use this also for /my-dashbor and /my-account
 $localeInfo = ['prefix' => '{locale}',
-               'where' => ['locale' => $regexForLocalParameter],
-               'middleware' => 'setlocale'
-                ];
+    'where' => ['locale' => $regexForLocalParameter],
+    'middleware' => 'setlocale'
+];
 Route::group($localeInfo, function () {
     Auth::routes();
     Route::get('/', 'HomeController@showHomePage')->name('home');
@@ -42,10 +42,10 @@ Route::group($localeInfo, function () {
 });
 
 Route::get('/terms-and-privacy', function () {
-    return redirect(app()->getLocale() ."/terms-and-privacy");
+    return redirect(app()->getLocale() . "/terms-and-privacy");
 });
 Route::get('/code-of-conduct', function () {
-    return redirect(app()->getLocale() ."/code-of-conduct");
+    return redirect(app()->getLocale() . "/code-of-conduct");
 });
 
 
@@ -147,6 +147,7 @@ Route::get('/questionnaire/answers-admin-analysis-statuses-get/', [Questionnaire
 
 Route::group($localeInfo, function () {
     Route::get('/{project_slug}', 'CrowdSourcingProjectController@showLandingPage')->name('project.landing-page');
+    Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
 });
 
 

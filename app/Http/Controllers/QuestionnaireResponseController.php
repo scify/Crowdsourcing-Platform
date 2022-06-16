@@ -4,15 +4,18 @@
 namespace App\Http\Controllers;
 
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -21,13 +24,16 @@ class QuestionnaireResponseController extends Controller {
     protected $questionnaireResponseManager;
     protected $platformWideGamificationBadgesProvider;
     protected $questionnaireResponseRepository;
+    protected $crowdSourcingProjectManager;
 
     public function __construct(QuestionnaireResponseManager           $questionnaireResponseManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireResponseRepository        $questionnaireResponseRepository) {
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
+                                CrowdSourcingProjectManager            $crowdSourcingProjectManager) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
     public function store(Request $request): JsonResponse {
@@ -104,5 +110,26 @@ class QuestionnaireResponseController extends Controller {
         };
 
         return response()->stream($callback, ResponseAlias::HTTP_OK, $headers);
+    }
+
+    public function showQuestionnaireThanksForRespondingPage(Request $request) {
+        $data = [
+            'questionnaire_id' => $request->questionnaire_id
+        ];
+        $validator = Validator::make($data, [
+            'questionnaire_id' => 'required|different:execute_solution|exists:questionnaires,id'
+        ]);
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        try {
+            $response = $this->questionnaireResponseRepository->where(['questionnaire_id' => $request->questionnaire_id, 'user_id' => Auth::id()]);
+            $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($response->project_id);
+            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->questionnaire_id, $project->slug, false);
+            $viewModel->thankYouMode = true;
+            return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel]);
+        } catch (ModelNotFoundException $e) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
     }
 }
