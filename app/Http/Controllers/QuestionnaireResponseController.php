@@ -11,7 +11,6 @@ use App\BusinessLogicLayer\UserManager;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
