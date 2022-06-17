@@ -42,7 +42,6 @@
 
 @if($viewModel->questionnaire)
     @include('landingpages.modals.questionnaire')
-    @include('landingpages.modals.questionnaire-responded')
     @if ($viewModel->feedbackQuestionnaire)
         @include('landingpages.modals.questionnaire-feedback')
     @endif

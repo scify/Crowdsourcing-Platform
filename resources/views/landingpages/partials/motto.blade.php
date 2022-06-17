@@ -39,14 +39,21 @@
                                                             @include('gamification.badge-single', ['badge' => $badge])
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4 col-sm-9 mx-auto text-center">
-                                                            <a href="{{ route('my-dashboard') }}"
-                                                               class="btn btn-primary btn-lg w-100 dashboard-btn">
-                                                                {{ __("menu.my_dashboard") }}
-                                                            </a>
+                                                    @if(\Illuminate\Support\Facades\Auth::check())
+                                                        <div class="row">
+                                                            <div class="col-md-7 col-sm-12 mx-auto text-center">
+                                                                <p class="dashboard-message w-100">{{ __('questionnaire.visit_dashboard_and_invite') }}</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-9 mx-auto text-center">
+                                                                <a href="{{ route('my-dashboard') }}"
+                                                                   class="btn btn-primary btn-lg w-100 dashboard-btn">
+                                                                    {{ __("menu.my_dashboard") }}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             @endif
                                             <br>
@@ -68,7 +75,7 @@
                                                         ])
                                         </div>
                                     @else
-                                        <div class="col-md-5 col-sm-12 mx-auto ">
+                                        <div class="col-lg-7 col-md-9 col-sm-12 mx-auto ">
                                             {{-- DISPLAY SHARE THE QUESTIONNARE --}}
                                             @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
 
