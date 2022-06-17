@@ -39,11 +39,7 @@ class QuestionnaireResponseController extends Controller {
     public function store(Request $request): JsonResponse {
         app()->setLocale($request->lang);
         $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
-        $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
-            ->allWhere(['user_id' => $questionnaireResponse->user_id])->pluck('questionnaire_id')->toArray();
-        $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
         $response = response()->json([
-            'badgeHTML' => (string)view('gamification.badge-single', compact('badge')),
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id
         ]);
         if (!Auth::check()) {
@@ -123,7 +119,11 @@ class QuestionnaireResponseController extends Controller {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
         try {
-            $response = $this->questionnaireResponseRepository->where(['questionnaire_id' => $request->questionnaire_id, 'user_id' => Auth::id()]);
+            if (Auth::check())
+                $userId = Auth::id();
+            else
+                $userId = $request->anonymous_user_id;
+            $response = $this->questionnaireResponseRepository->where(['questionnaire_id' => $request->questionnaire_id, 'user_id' => $userId]);
             $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($response->project_id);
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->questionnaire_id, $project->slug, false);
             $viewModel->thankYouMode = true;

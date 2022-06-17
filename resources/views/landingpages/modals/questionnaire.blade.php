@@ -33,7 +33,6 @@
                     @endif
                     <questionnaire-display
                             survey-container-id="questionnaire_project"
-                            id-of-modal-to-open-when-submitted="questionnaire-responded"
                             :user='@json($viewModel->getLoggedInUser())'
                             :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'

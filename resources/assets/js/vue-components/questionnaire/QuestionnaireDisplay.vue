@@ -94,9 +94,6 @@ export default {
     surveyContainerId: {
       type: String
     },
-    idOfModalToOpenWhenSubmitted: {
-      type: String
-    },
     languages: []
   },
   data: function () {
@@ -144,7 +141,6 @@ export default {
           $("body,#questionnaire-modal").removeClass("disable-scroll");
         }
       }, 300);
-
     },
     prepareQuestionnaireForResponding() {
 
@@ -201,6 +197,7 @@ export default {
       const resultAsString = JSON.stringify(sender.data);
       $(".loader-wrapper").removeClass('hidden');
       $(".questionnaire-modal").modal('hide');
+      $(".respond-questionnaire").attr("disabled", true);
       this.post({
         url: route('respond-questionnaire'),
         data: {
@@ -223,7 +220,7 @@ export default {
           'language': locale,
           'time_to_complete': time
         }), this.questionnaire.id);
-        this.displaySuccessResponse(response.data.badgeHTML);
+        this.displaySuccessResponse(anonymousUserId);
       }).catch(error => {
         console.error(error);
         this.displayErrorResponse(error);
@@ -231,37 +228,13 @@ export default {
         $(".questionnaire-modal").modal('hide');
       });
     },
-    displaySuccessResponse(badgeHTML) {
-      $(".respond-questionnaire").attr("disabled", true);
-      const questionnaireResponseThankYouURL = route('questionnaire.thanks', this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
-      // $(".loader-wrapper").addClass('hidden');
-      if (this.idOfModalToOpenWhenSubmitted) { //if property is defined display the requested modal
-        let questionnaireResponded = $("#" + this.idOfModalToOpenWhenSubmitted);
-        // add badge fetched from response to the appropriate container
-        if (badgeHTML) {
-          questionnaireResponded.find('.badge-container').html(badgeHTML);
-          //questionnaireResponded.modal({backdrop: 'static'});
-          $("#pyro").addClass("pyro-on");
-        }
-        // window.setTimeout(function () {
-        //   //dirty fix. For some reason the class modal-open is missing from the body in some cases at chrome
-        //   // $("body").addClass("modal-open");
-        // }, 500);
-        window.location = questionnaireResponseThankYouURL;
-      } else {
-        //close all modals
-        $('.modal').modal('hide');
-        //display a thank you message
-        swal({
-          title: "Thank you",
-          type: "success",
-          confirmButtonText: "OK",
-          closeOnConfirm: true
-        }, function () {
-          window.location = questionnaireResponseThankYouURL;
-        });
-      }
+    displaySuccessResponse(anonymousUserId) {
+      let questionnaireResponseThankYouURL = route('questionnaire.thanks', this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
+      if (anonymousUserId)
+        questionnaireResponseThankYouURL += ('?anonymous_user_id=' + anonymousUserId);
 
+      $("#pyro").addClass("pyro-on");
+      window.location = questionnaireResponseThankYouURL;
     },
     displayErrorResponse(error) {
       swal({

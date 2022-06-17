@@ -19,6 +19,7 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/questionnaireSocialShare.js', 'public/dist/js')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
     .js('resources/assets/js/UsersListController.js', 'public/dist/js')
+    .js('resources/assets/js/pages/questionnaire/questionnaire-thanks.js', 'public/dist/js')
     .extract([
         'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-knockout'
     ])
