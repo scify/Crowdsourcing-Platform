@@ -10,6 +10,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\ViewModels\GamificationBadgeVM;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -113,7 +114,8 @@ class QuestionnaireResponseController extends Controller {
             'questionnaire_id' => $request->questionnaire_id
         ];
         $validator = Validator::make($data, [
-            'questionnaire_id' => 'required|different:execute_solution|exists:questionnaires,id'
+            'questionnaire_id' => 'required|different:execute_solution|exists:questionnaires,id',
+            'anonymous_user_id' => 'exists:users,id'
         ]);
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
@@ -131,7 +133,7 @@ class QuestionnaireResponseController extends Controller {
                 ->allWhere(['user_id' => $response->user_id])->pluck('questionnaire_id')->toArray();
             $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
             return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel, 'badge' => $badge]);
-        } catch (ModelNotFoundException $e) {
+        } catch (Exception $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
     }
