@@ -19,7 +19,15 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 
     @media (max-width: 576px) {
-      height: 850px;
+      height: 950px;
+    }
+  }
+
+  .overlay-filter.overlay-thanks {
+    height: 750px;
+
+    @media (max-width: 576px) {
+      height: 1050px;
     }
   }
 }
