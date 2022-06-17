@@ -158,10 +158,10 @@ class CrowdSourcingProjectManager {
 
     public function getSocialMediaMetadataViewModel(CrowdSourcingProject $project): CrowdSourcingProjectSocialMediaMetadata {
         return new CrowdSourcingProjectSocialMediaMetadata(
-            $project->defaultTranslation->sm_title,
-            $project->defaultTranslation->sm_description,
+            $project->currentTranslation->sm_title,
+            $project->currentTranslation->sm_description,
             $project->sm_featured_img_path,
-            $project->defaultTranslation->sm_keywords,
+            $project->currentTranslation->sm_keywords,
             $project->slug
         );
     }
