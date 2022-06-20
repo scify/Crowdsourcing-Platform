@@ -9,7 +9,7 @@
              border-radius: 10px;
              color: white; !important">
     <div class="col-md-12 badgeImg" style="text-align: center; margin-bottom: 1rem;">
-        <img loading="lazy" class="badgeImg" height="130px" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
+        <img loading="lazy" class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}">
     </div>
     <div class="col-md-12 mt-2">
         <h4 class="badgeName" style="color: {{ $badge->level == 0 ? 'black' : 'white' }}; text-align: center; margin: 0.5rem 0;">{{ $badge->badgeName }}</h4>

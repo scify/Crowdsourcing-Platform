@@ -1,8 +1,8 @@
-<div class="modal fade questionnaire-modal " id="questionnaire-modal" tabindex="-1" role="dialog">
+<div class="modal fade questionnaire-modal " id="questionnaire-modal" tabindex="-1" aria-labelledby="questionnaireModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">{{$viewModel->questionnaire->fieldsTranslation->title}}</h4>
+                <h4 class="modal-title" id="questionnaireModalTitle">{{$viewModel->questionnaire->fieldsTranslation->title}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -33,7 +33,6 @@
                     @endif
                     <questionnaire-display
                             survey-container-id="questionnaire_project"
-                            id-of-modal-to-open-when-submitted="questionnaire-responded"
                             :user='@json($viewModel->getLoggedInUser())'
                             :user-response='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
