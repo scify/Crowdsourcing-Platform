@@ -19,6 +19,7 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/questionnaireSocialShare.js', 'public/dist/js')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
     .js('resources/assets/js/UsersListController.js', 'public/dist/js')
+    .js('resources/assets/js/pages/questionnaire/questionnaire-thanks.js', 'public/dist/js')
     .extract([
         'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-knockout'
     ])
@@ -73,6 +74,7 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/manage-questionnaires.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/home.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/all-projects.scss', 'public/dist/css')
+    .sass('resources/assets/sass/pages/questionnaire-thanks.scss', 'public/dist/css')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',

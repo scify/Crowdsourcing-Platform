@@ -17,9 +17,9 @@ class CrowdSourcingProjectForLandingPage {
     public $socialMediaMetadataVM;
     public $languages;
     public $openQuestionnaireWhenPageLoads = false;
-
     public $shareUrlForFacebook;
     public $shareUrlForTwitter;
+    public $thankYouMode;
 
     public function __construct(
         $project,
@@ -33,11 +33,10 @@ class CrowdSourcingProjectForLandingPage {
         Collection $languages,
         $openQuestionnaireWhenPageLoads,
         $shareUrlForFacebook,
-        $shareUrlForTwitter)
-    {
+        $shareUrlForTwitter) {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
-        $this->feedbackQuestionnaire= $feedbackQuestionnaire;
+        $this->feedbackQuestionnaire = $feedbackQuestionnaire;
         $this->userResponse = $userResponse;
         $this->userFeedbackQuestionnaireResponse = $userFeedbackQuestionnaireResponse;
         $this->totalResponses = $totalResponses;
@@ -45,9 +44,9 @@ class CrowdSourcingProjectForLandingPage {
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;
         $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
-
-        $this->shareUrlForFacebook =$shareUrlForFacebook;
-        $this->shareUrlForTwitter =$shareUrlForTwitter;
+        $this->shareUrlForFacebook = $shareUrlForFacebook;
+        $this->shareUrlForTwitter = $shareUrlForTwitter;
+        $this->thankYouMode = false;
     }
 
     public function getSignInURLWithParameters(): string {
@@ -60,14 +59,13 @@ class CrowdSourcingProjectForLandingPage {
     }
 
 
-    public function displayFeedbackQuestionnaire():bool
-    {
+    public function displayFeedbackQuestionnaire(): bool {
         // if user has responded to the main questionnaire,
         // and a feedback questionnaire exists
         // and the feedback questionnare has not been answered
-        return $this->userResponse !=null &&
-            $this->feedbackQuestionnaire !=null
-            && $this->userFeedbackQuestionnaireResponse ==null;
+        return $this->userResponse != null &&
+            $this->feedbackQuestionnaire != null
+            && $this->userFeedbackQuestionnaireResponse == null;
     }
 
     public function shouldShowQuestionnaireStatisticsLink(): bool {
