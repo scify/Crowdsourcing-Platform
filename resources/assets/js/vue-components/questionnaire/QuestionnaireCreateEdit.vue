@@ -457,7 +457,7 @@ export default {
 
     },
     formInvalid(data) {
-      return !data.title || !data.description || !data.goal || !data.project_ids.length;
+      return !data.title || !data.description || !data.goal || isNaN(data.goal) || !data.project_ids.length;
     },
     shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
