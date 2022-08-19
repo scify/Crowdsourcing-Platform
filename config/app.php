@@ -124,6 +124,7 @@ return [
     'version' => env('APP_VERSION'),
     'admin_pass_seed' => env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'),
     'mailchimp_api_key' => env('MAILCHIMP_API_KEY'),
+    'user_way_id' => env('USERWAY_ID'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
