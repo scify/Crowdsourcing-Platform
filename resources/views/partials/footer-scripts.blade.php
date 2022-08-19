@@ -11,5 +11,13 @@
 @if (isset($includeBackofficeCommonJs) && $includeBackofficeCommonJs)
     <script src="{{ mix('dist/js/common-backoffice.js')}}"></script>--> {{-- backend common code --}}
 @endif
-
+@if(config('app.user_way_id'))
+    <script>(function () {
+            var s = document.createElement("script");
+            s.setAttribute("data-account", '{{ config('app.user_way_id') }}');
+            s.setAttribute("src", "https://cdn.userway.org/widget.js");
+            document.body.appendChild(s);
+        })();</script>
+    <noscript>Enable JavaScript to ensure <a href="https://userway.org">website accessibility</a></noscript>
+@endif
 @stack('scripts')
