@@ -10,6 +10,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="{{route('home', ['locale' => app()->getLocale()])}}">
+    @foreach ($languages as $language)
+        <link rel="alternate" hreflang="{{ $language->language_code }}"
+              href="{{route('home', ['locale' => $language->language_code])}}"/>
+    @endforeach
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
