@@ -10,9 +10,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="{{route('home', ['locale' => app()->getLocale()])}}">
-    @foreach ($languages as $language)
-        <link rel="alternate" hreflang="{{ $language->language_code }}"
-              href="{{route('home', ['locale' => $language->language_code])}}"/>
+    @foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language)
+        @if(strlen($language) === 2)
+            <link rel="alternate" hreflang="{{ $language }}"
+                  href="{{route('home', ['locale' => $language])}}"/>
+        @endif
     @endforeach
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
