@@ -6,7 +6,7 @@
         <div class="col-lg-5 col-md-6 col-sm-11 mx-auto motto-content px-0">
             <div class="frosted"></div>
             <div id="project-motto">
-                <h2>Let's crowdsource!<br>Taking decisions with citizens and not for them</h2>
+                <h1>Let's crowdsource!<br>Taking decisions with citizens and not for them</h1>
                 <div class="w-50 mx-auto">
                     <a href="{{route('login')}}" class="btn btn-block call-to-action">Share your ideas</a>
                 </div>
