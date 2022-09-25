@@ -1,7 +1,7 @@
 <div @if (App::environment('staging')) class="header-margin-top" @endif>
     <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light fixed-top navbar-default navbar-fixed-top m-0"
          style="z-index: 100000;">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" {{route('home', ['locale' => app()->getLocale()])}}>
             <img loading="lazy" alt="ECAS" src="{{asset('images/projects/ecas/ecas_logo_scaled.png')}}">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-menu-content"
