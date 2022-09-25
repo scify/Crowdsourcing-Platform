@@ -1,7 +1,7 @@
 @import "../variables";
 $colorForTabs: $brand-primary;
 section {
-  h2 {
+  h1, h2 {
     font-size: 28px;
     @media screen and (max-width: 950px) {
       padding: 0 15px;
