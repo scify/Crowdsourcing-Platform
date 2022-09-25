@@ -20,3 +20,4 @@ public/fonts
 public/vendor
 .phpunit.result.cache
 .env.testing
+public/sitemap.xml

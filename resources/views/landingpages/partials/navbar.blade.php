@@ -6,7 +6,7 @@
                 <img loading="lazy" alt="{{$viewModel->project->currentTranslation->name}}" src="{{asset($viewModel->project->logo_path)}}">
             </a>
         @else
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="{{route('home', ['locale' => app()->getLocale()])}}">
                 <img loading="lazy" alt="homepage"
                      src="{{asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png')}}">
             </a>
