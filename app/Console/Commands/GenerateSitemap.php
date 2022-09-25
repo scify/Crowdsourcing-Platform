@@ -63,7 +63,7 @@ class GenerateSitemap extends Command {
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
 
         foreach ($projects as $project) {
-            $link = Url::create('/en/' . $project->slug)->addImage(asset($project->img_path));
+            $link = Url::create('/en/' . $project->slug);
             foreach ($alternateLanguages as $alternateLanguage) {
                 $link->addAlternate('/' . $alternateLanguage . '/' . $project->slug, $alternateLanguage);
             }
@@ -72,7 +72,7 @@ class GenerateSitemap extends Command {
 
         foreach ($translatablePublicPages as $translatablePublicPage) {
 
-            $link = Url::create($translatablePublicPage . 'en')->addImage(asset('images/active_participation.png'));
+            $link = Url::create($translatablePublicPage . 'en');
             $languagesToCrawl = $translatablePublicPagesAvailability[$translatablePublicPage] ?? $alternateLanguages;
             foreach ($languagesToCrawl as $alternateLanguage) {
                 $link->addAlternate($alternateLanguage . $translatablePublicPage, $alternateLanguage);
