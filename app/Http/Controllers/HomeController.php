@@ -9,34 +9,34 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
     private $crowdSourcingProjectManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager)
-    {
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
-    public function showHomePage()
-    {
+    public function showHomePage() {
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
         $pastProjects = $this->crowdSourcingProjectManager->getPastCrowdSourcingProjectsForHomePage();
         return view('home.home')->with(['projects' => $projects, 'pastProjects' => $pastProjects]);
     }
 
-    public function showTermsAndPrivacyPage()
-    {
+    public function showTermsAndPrivacyPage() {
         $locale = app()->getLocale();
-        return view("privacy-policy." . $locale);
+        if (view()->exists("privacy-policy." . $locale))
+            return view("privacy-policy." . $locale);
+        return view("privacy-policy.en");
     }
 
-    public function showCodeOfConductPage()
-    {
+    public function showCodeOfConductPage() {
         $goBackUrl = $this->getRedirectBackUrl();
 
         $locale = app()->getLocale();
-        return view("code-of-conduct." . $locale)
+        if (view()->exists("code-of-conduct." . $locale))
+            return view("code-of-conduct." . $locale)
+                ->with(['goBackUrl' => $goBackUrl]);
+        return view("code-of-conduct.en")
             ->with(['goBackUrl' => $goBackUrl]);
     }
 
@@ -44,8 +44,7 @@ class HomeController extends Controller
      * If referrer URL belongs to the application and is the questionnaire page,
      * provide the option to redirect back to the questionnaire.
      */
-    private function getRedirectBackUrl()
-    {
+    private function getRedirectBackUrl() {
         $referrer = request()->headers->get('referer');
         //if referer is the questionnaire page, we will allow to redirect back.
         $goBackUrl = null;
