@@ -1,7 +1,7 @@
 const mix = require('laravel-mix');
 const path = require("path");
 const webpack = require("webpack");
-
+mix.setResourceRoot('../');
 mix.disableSuccessNotifications();
 
 mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
