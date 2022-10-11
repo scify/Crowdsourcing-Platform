@@ -74,7 +74,7 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script src="{{ mix('dist/js/common.js')}}"></script>--> {{-- our application common code --}}
+    <script src="{{ mix('dist/js/common.js')}}"></script> {{-- our application common code --}}
     <script type="text/javascript" src="{{mix('dist/js/common-backoffice.js')}}"></script>
     <script type="text/javascript" src="{{mix('dist/js/statistics.js')}}"></script>
 @endpush
