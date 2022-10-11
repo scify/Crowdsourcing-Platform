@@ -1,19 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class AddDeletedAtToTables extends Migration
-{
+class AddDeletedAtToTables extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-
+    public function up() {
         Schema::table('user_role_lkp', function ($table) {
             $table->softDeletes();
         });
@@ -25,7 +21,6 @@ class AddDeletedAtToTables extends Migration
         Schema::table('users', function ($table) {
             $table->softDeletes();
         });
-
     }
 
     /**
@@ -33,8 +28,7 @@ class AddDeletedAtToTables extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         //
     }
 }

@@ -2,11 +2,9 @@
 
 namespace App\BusinessLogicLayer\gamification;
 
-
 class GamificationBadgeIdsEnum {
-
-    const CONTRUBUTOR_BADGE_ID = "contributor";
-    const COMMUNICATOR_BADGE_ID = "communicator";
-    const INFLUENCER_BADGE_ID = "influencer";
-    const ALL_BADGES_COMPLETED_BADGE_ID = "allbadger";
+    const CONTRUBUTOR_BADGE_ID = 'contributor';
+    const COMMUNICATOR_BADGE_ID = 'communicator';
+    const INFLUENCER_BADGE_ID = 'influencer';
+    const ALL_BADGES_COMPLETED_BADGE_ID = 'allbadger';
 }

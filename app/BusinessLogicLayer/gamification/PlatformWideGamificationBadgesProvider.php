@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\BusinessLogicLayer\gamification;
-
 
 use App\Models\ViewModels\GamificationBadgesWithLevels;
 use App\Models\ViewModels\GamificationBadgeVM;
@@ -13,17 +11,15 @@ use App\Repository\UserQuestionnaireShareRepository;
 use Illuminate\Support\Collection;
 
 class PlatformWideGamificationBadgesProvider {
-
     protected $questionnaireRepository;
     protected $userQuestionnaireShareRepository;
     protected $questionnaireResponseReferralRepository;
     protected $questionnaireResponseRepository;
 
-
-    public function __construct(QuestionnaireRepository                 $questionnaireRepository,
-                                UserQuestionnaireShareRepository        $userQuestionnaireShareRepository,
+    public function __construct(QuestionnaireRepository $questionnaireRepository,
+                                UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
                                 QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
-                                QuestionnaireResponseRepository         $questionnaireResponseRepository) {
+                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->userQuestionnaireShareRepository = $userQuestionnaireShareRepository;
         $this->questionnaireResponseReferralRepository = $questionnaireResponseReferralRepository;
@@ -37,13 +33,13 @@ class PlatformWideGamificationBadgesProvider {
         $badges->push($this->getInfluencerBadge($userId));
 
         $badgesVM = new Collection();
-        foreach ($badges as $badge)
+        foreach ($badges as $badge) {
             $badgesVM->push(new GamificationBadgeVM($badge));
+        }
         $gamificationPointsCalculator = new GamificationPointsCalculator();
 
         return new GamificationBadgesWithLevels($badgesVM, $gamificationPointsCalculator->calculateTotalGamificationPoints($badges));
     }
-
 
     public function getContributorBadge(array $questionnaireIdsUserHasAnsweredTo): ContributorBadge {
         return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), count($questionnaireIdsUserHasAnsweredTo));
@@ -57,6 +53,7 @@ class PlatformWideGamificationBadgesProvider {
 
     public function getInfluencerBadge($userId): InfluencerBadge {
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUser($userId)->count();
+
         return new InfluencerBadge($totalQuestionnaireReferrals, $this->userHasAchievedInfluencerBadge($userId));
     }
 
@@ -67,5 +64,4 @@ class PlatformWideGamificationBadgesProvider {
     public function userHasAchievedInfluencerBadge($userId): bool {
         return $this->questionnaireResponseReferralRepository->exists(['referrer_id' => $userId]);
     }
-
 }

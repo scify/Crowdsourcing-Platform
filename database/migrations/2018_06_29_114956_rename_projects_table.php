@@ -1,18 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class RenameProjectsTable extends Migration
-{
+class RenameProjectsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::rename('projects', 'crowd_sourcing_projects');
     }
 
@@ -21,8 +18,7 @@ class RenameProjectsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::rename('crowd_sourcing_projects', 'projects');
     }
 }

@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
 
     'go_to_dashboard'                   => 'Go to Dashboard',
     'thank_you_for_contribution'        => 'Thank you for your contribution!',
@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'This website uses cookies to ensure you get the best experience on our website.  See our "privacy policy" for details.',
     'code_of_conduct'                   => 'Make sure you conform to our code of conduct before answering!',
     'agree_privacy_policy'              => 'I agree to the <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy policy.',
-    'ok'                                => 'OK'
+    'ok'                                => 'OK',
 
 
 

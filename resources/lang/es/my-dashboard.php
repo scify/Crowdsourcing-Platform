@@ -14,7 +14,7 @@ return [
     'answers_left' => ' respuestas para alcanzar nuestra meta', 
     'view_statistics'  => 'Ver estadísticas', 
     'share_questionnaire' => 'Comparte el cuestionario:', 
-    'thank_you_for_sharing' => '¡Gracias por compartir el Cuestionario! <br> ¡Pronto recibirá un correo electrónico con su insignia!'
+    'thank_you_for_sharing' => '¡Gracias por compartir el Cuestionario! <br> ¡Pronto recibirá un correo electrónico con su insignia!',
 
 
 

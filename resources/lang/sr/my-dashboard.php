@@ -14,7 +14,7 @@ return [
     'answers_left' => ' odgovora ostalo do našeg cilja', 
     'view_statistics'  => 'Pogledajte statistiku', 
     'share_questionnaire' => 'Podijelite Upitnik:', 
-    'thank_you_for_sharing' => 'Hvala Vam što ste podijelili Upitnik! <br> Uskoro ćete dobiti imejl sa Vašom značkom!'
+    'thank_you_for_sharing' => 'Hvala Vam što ste podijelili Upitnik! <br> Uskoro ćete dobiti imejl sa Vašom značkom!',
 
 
 

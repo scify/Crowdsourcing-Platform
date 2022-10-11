@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Vragenlijst beschrijving',
     'responded' => 'Reacties',
     'actions' => 'Acties',
-    'view_response' => 'Bekijk reacties'
+    'view_response' => 'Bekijk reacties',
 
 
 

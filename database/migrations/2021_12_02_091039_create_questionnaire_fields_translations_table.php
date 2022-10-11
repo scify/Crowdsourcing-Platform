@@ -23,7 +23,7 @@ class CreateQuestionnaireFieldsTranslationsTable extends Migration {
             $table->timestamps();
         });
         if (Schema::hasColumn('questionnaires', 'title')) {
-            $sql = "insert into questionnaire_fields_translations 
+            $sql = 'insert into questionnaire_fields_translations 
                 (questionnaire_id,
                 language_id,
                 title,
@@ -33,7 +33,7 @@ class CreateQuestionnaireFieldsTranslationsTable extends Migration {
                 default_language_id,
                 title,
                 description
-                from questionnaires q";
+                from questionnaires q';
             DB::statement($sql);
         }
     }

@@ -14,14 +14,16 @@ class QuestionnaireFieldsTranslation extends CompositeKeysModel {
      * @var string
      */
     protected $table = 'questionnaire_fields_translations';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'questionnaire_id', 'language_id', 'title', 'description'
+        'questionnaire_id', 'language_id', 'title', 'description',
     ];
+
     protected $primaryKey = ['questionnaire_id', 'language_id'];
     public $incrementing = false;
 }

@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
 
     'go_to_dashboard'                   => 'Ga naar het Dashboard',
     'thank_you_for_contribution'        => 'Dank je wel voor je bijdrage!',
@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'Deze website gebruikt cookies om ervoor te zorgen dat je de best mogelijke ervaring hebt op onze website. Bekijk ons “privacy beleid” voor meer informatie.',
     'code_of_conduct'                   => 'Zorg er voor dat je instemt met onze gedragscode voordat je antwoorden geeft!',
     'agree_privacy_policy'              => 'Ik stem in met het <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy beleid.',
-    'ok'                                => 'OK'
+    'ok'                                => 'OK',
 
 
 

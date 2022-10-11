@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\User
@@ -24,6 +24,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserRoleLookup[] $roles
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserRole[] $userRoles
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User onlyTrashed()
  * @method static bool|null restore()
@@ -40,8 +41,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withoutTrashed()
  * @mixin \Eloquent
  */
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use  Notifiable, SoftDeletes;
 
     /**
@@ -50,7 +50,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nickname', 'avatar', 'email', 'password'
+        'nickname', 'avatar', 'email', 'password',
     ];
 
     /**
@@ -62,23 +62,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-
-    public function roles()
-    {
+    public function roles() {
         return $this->belongsToMany(UserRoleLookup::class, 'user_roles', 'user_id', 'role_id')
             ->wherePivot('deleted_at', null);
     }
 
-    public function userRoles()
-    {
+    public function userRoles() {
         return $this->hasMany(UserRole::class, 'user_id', 'id');
     }
 
-    public function sendPasswordResetNotification($token)
-    {
+    public function sendPasswordResetNotification($token) {
         // Your your own implementation.
         $this->notify(new ResetPassword($token));
     }
-
 }

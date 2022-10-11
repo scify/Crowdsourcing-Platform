@@ -2,11 +2,9 @@
 
 namespace App\Models\ViewModels;
 
-
 use Illuminate\Support\Collection;
 
-class UserDashboardViewModel
-{
+class UserDashboardViewModel {
     public $questionnaires;
     public $platformWideGamificationBadgesVM;
 
@@ -15,5 +13,4 @@ class UserDashboardViewModel
         $this->questionnaires = $questionnaires;
         $this->platformWideGamificationBadgesVM = $platformWideGamificationBadgesVM;
     }
-
 }

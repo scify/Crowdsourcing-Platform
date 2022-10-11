@@ -7,7 +7,6 @@ use App\Utils\Translator;
 use JsonSchema\Exception\ResourceNotFoundException;
 
 class QuestionnaireTranslator {
-
     protected $translator;
     protected $textsToTranslate;
     protected $translatableQuestionnaireFirstLevelContentIdentifiers;
@@ -31,13 +30,13 @@ class QuestionnaireTranslator {
             'pageNextText',
             'completeText',
             'previewText',
-            'editText'
+            'editText',
         ];
         $this->translatablePageFirstLevelContentIdentifiers = [
             'title',
             'description',
             'navigationTitle',
-            'navigationDescription'
+            'navigationDescription',
         ];
         $this->translatableQuestionFirstLevelContentIdentifiers = [
             'title',
@@ -58,7 +57,7 @@ class QuestionnaireTranslator {
             'labelFalse',
             'optionsCaption',
             'keyDuplicationError',
-            'totalText'
+            'totalText',
         ];
         $this->translatableQuestionSecondLevelContentIdentifiers = [
             'choices',
@@ -71,7 +70,7 @@ class QuestionnaireTranslator {
             'removeRowText',
             'emptyRowsText',
             'totalText',
-            'requiredErrorText'
+            'requiredErrorText',
         ];
         $this->translatableQuestionThirdLevelContentIdentifiers = [
             'text',
@@ -87,21 +86,25 @@ class QuestionnaireTranslator {
             'otherText',
             'totalText',
             'otherErrorText',
-            'optionsCaption'
+            'optionsCaption',
         ];
     }
 
     public function translateQuestionnaireJSONToLocales(string $json, array $locales): string {
         $translatedJSON = $json;
-        foreach ($locales as $locale)
-            if (!empty($locale))
+        foreach ($locales as $locale) {
+            if (! empty($locale)) {
                 $translatedJSON = $this->translateQuestionnaireJSONToLocale($translatedJSON, $locale);
+            }
+        }
+
         return $translatedJSON;
     }
 
     public function translateQuestionnaireJSONToLocale(string $json, string $locale): string {
-        if (empty($locale))
-            return "";
+        if (empty($locale)) {
+            return '';
+        }
         $translationIndex = 0;
         $this->textsToTranslate = [];
 
@@ -133,7 +136,6 @@ class QuestionnaireTranslator {
 
     protected function translateQuestionnairePagesAndQuestions(array $questionnaire, string $locale, int $translationIndex): array {
         for ($pageIndex = 0; $pageIndex < count($questionnaire['pages']); $pageIndex++) {
-
             foreach ($this->translatablePageFirstLevelContentIdentifiers as $identifier) {
                 $translatedSchema = $this->getContentTranslatedSchema(
                     $questionnaire['pages'][$pageIndex],
@@ -182,6 +184,7 @@ class QuestionnaireTranslator {
                 $questionnaire['pages'][$pageIndex]['elements'][$questionIndex] = $question;
             }
         }
+
         return $questionnaire;
     }
 
@@ -189,18 +192,17 @@ class QuestionnaireTranslator {
         foreach ($this->translatableQuestionnaireFirstLevelContentIdentifiers as $identifier) {
             if (isset($questionnaire[$identifier]) &&
                 is_array($questionnaire[$identifier])
-                && key_exists($locale, $questionnaire[$identifier])
+                && array_key_exists($locale, $questionnaire[$identifier])
                 && is_int($questionnaire[$identifier][$locale])) {
                 $questionnaire[$identifier][$locale] = $translatedTexts[$questionnaire[$identifier][$locale]]['text'];
             }
         }
 
         for ($pageIndex = 0; $pageIndex < count($questionnaire['pages']); $pageIndex++) {
-
             foreach ($this->translatablePageFirstLevelContentIdentifiers as $identifier) {
                 if (isset($questionnaire['pages'][$pageIndex][$identifier]) &&
                     is_array($questionnaire['pages'][$pageIndex][$identifier])
-                    && key_exists($locale, $questionnaire['pages'][$pageIndex][$identifier])
+                    && array_key_exists($locale, $questionnaire['pages'][$pageIndex][$identifier])
                     && is_int($questionnaire['pages'][$pageIndex][$identifier][$locale])) {
                     $questionnaire['pages'][$pageIndex][$identifier][$locale] = $translatedTexts[$questionnaire['pages'][$pageIndex][$identifier][$locale]]['text'];
                 }
@@ -211,7 +213,7 @@ class QuestionnaireTranslator {
                 foreach ($this->translatableQuestionFirstLevelContentIdentifiers as $identifier) {
                     if (isset($question[$identifier]) &&
                         is_array($question[$identifier])
-                        && key_exists($locale, $question[$identifier])
+                        && array_key_exists($locale, $question[$identifier])
                         && is_int($question[$identifier][$locale])) {
                         $question[$identifier][$locale] = $translatedTexts[$question[$identifier][$locale]]['text'];
                         $questionnaire['pages'][$pageIndex]['elements'][$questionIndex] = $question;
@@ -224,7 +226,7 @@ class QuestionnaireTranslator {
                                 && is_array($question[$identifier][$i])) {
                                 foreach ($this->translatableQuestionThirdLevelContentIdentifiers as $thirdLevelIdentifier) {
                                     if (isset($question[$identifier][$i][$thirdLevelIdentifier])
-                                        && key_exists($locale, $question[$identifier][$i][$thirdLevelIdentifier])
+                                        && array_key_exists($locale, $question[$identifier][$i][$thirdLevelIdentifier])
                                         && is_int($question[$identifier][$i][$thirdLevelIdentifier][$locale])) {
                                         $question[$identifier][$i][$thirdLevelIdentifier][$locale] = $translatedTexts[$question[$identifier][$i][$thirdLevelIdentifier][$locale]]['text'];
                                         $questionnaire['pages'][$pageIndex]['elements'][$questionIndex] = $question;
@@ -233,33 +235,35 @@ class QuestionnaireTranslator {
                             }
                         }
                     }
-
                 }
             }
         }
+
         return $questionnaire;
     }
 
-    protected
-    function getContentTranslatedSchema(array  $object, string $locale,
-                                        int    $translationIndex,
+    protected function getContentTranslatedSchema(array $object, string $locale,
+                                        int $translationIndex,
                                         string $contentIdentifier) {
-        if (!isset($object[$contentIdentifier]))
+        if (! isset($object[$contentIdentifier])) {
             return false;
+        }
         $content = $object[$contentIdentifier];
         if (is_array($content)) {
-            if (!key_exists($locale, $content) || (isset($content[$locale]) && trim($content[$locale]) === "")) {
+            if (! array_key_exists($locale, $content) || (isset($content[$locale]) && trim($content[$locale]) === '')) {
                 array_push($this->textsToTranslate, $content['default']);
                 $content[$locale] = $translationIndex;
-            } else
+            } else {
                 return false;
+            }
         } else {
             array_push($this->textsToTranslate, $object[$contentIdentifier]);
             $content = [
                 'default' => $object[$contentIdentifier],
-                $locale => $translationIndex
+                $locale => $translationIndex,
             ];
         }
+
         return $content;
     }
 
@@ -270,11 +274,13 @@ class QuestionnaireTranslator {
     public function markQuestionnaireTranslations(int $questionnaireId, array $lang_ids_to_status): bool {
         foreach ($lang_ids_to_status as $lang_id_with_status) {
             $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $lang_id_with_status['id']);
-            if (!$questionnaireLanguage)
-                throw new ResourceNotFoundException("Questionnaire Language not found. Questionnaire Id: " . $questionnaireId . " Lang id: " . $lang_id);
+            if (! $questionnaireLanguage) {
+                throw new ResourceNotFoundException('Questionnaire Language not found. Questionnaire Id: ' . $questionnaireId . ' Lang id: ' . $lang_id);
+            }
             $questionnaireLanguage->human_approved = $lang_id_with_status['status'];
             $questionnaireLanguage->save();
         }
+
         return true;
     }
 }

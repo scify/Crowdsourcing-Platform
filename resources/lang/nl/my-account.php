@@ -22,7 +22,7 @@ return [
     'current_password' => 'Huidig wachtwoord',
     'new_password' => 'Nieuw wachtwoord',
     're_enter_password' => 'Vul wachtwoord opnieuw in',
-    'nickname_help' => 'Uw bijnaam wordt openbaar weergegeven wanneer u op vragenlijsten reageert'
+    'nickname_help' => 'Uw bijnaam wordt openbaar weergegeven wanneer u op vragenlijsten reageert',
 
 
 ];

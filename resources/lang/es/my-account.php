@@ -22,6 +22,6 @@ return [
     'current_password' => 'Contraseña actual',
     'new_password' => 'Nueva contraseña',
     're_enter_password' => 'Volver a introduci la contraseña',
-    'nickname_help' => 'Your nickname will be publicly displayed when you respond to questionnaires'
+    'nickname_help' => 'Your nickname will be publicly displayed when you respond to questionnaires',
 
 ];

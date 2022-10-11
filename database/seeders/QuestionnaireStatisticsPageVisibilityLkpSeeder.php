@@ -10,13 +10,11 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
     protected $questionnaireStatisticsPageVisibilityLkpRepository;
     protected $questionnaireRepository;
 
-    public function __construct(QuestionnaireStatisticsPageVisibilityLkpRepository
-                                $questionnaireStatisticsPageVisibilityLkpRepository,
+    public function __construct(QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
                                 QuestionnaireRepository $questionnaireRepository) {
         $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
         $this->questionnaireRepository = $questionnaireRepository;
     }
-
 
     /**
      * Run the database seeds.
@@ -28,23 +26,23 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
             [
                 'id' => 1,
                 'title' => 'Public',
-                'description' => 'The Statistics page is public to everyone'
+                'description' => 'The Statistics page is public to everyone',
             ],
             [
                 'id' => 2,
                 'title' => 'Respondents only',
-                'description' => 'The Statistics page is accessible by those who have responded'
+                'description' => 'The Statistics page is accessible by those who have responded',
             ],
             [
                 'id' => 3,
                 'title' => 'Admins and Content Managers only',
-                'description' => 'The Statistics page is accessible only by admins and content managers'
-            ]
+                'description' => 'The Statistics page is accessible only by admins and content managers',
+            ],
         ];
 
         foreach ($data as $datum) {
             $this->questionnaireStatisticsPageVisibilityLkpRepository->updateOrCreate([
-                'id' => $datum['id']
+                'id' => $datum['id'],
             ], $datum);
         }
 
@@ -52,9 +50,9 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
         $questionnaires = $this->questionnaireRepository->allWhere(['statistics_page_visibility_lkp_id' => null]);
         foreach ($questionnaires as $questionnaire) {
             $this->questionnaireRepository->update([
-                'statistics_page_visibility_lkp_id' => 1
+                'statistics_page_visibility_lkp_id' => 1,
             ], $questionnaire->id);
-            echo "\n" . "Questionnaire: " . $questionnaire->id . " updated.\n";
+            echo "\n" . 'Questionnaire: ' . $questionnaire->id . " updated.\n";
         }
     }
 }

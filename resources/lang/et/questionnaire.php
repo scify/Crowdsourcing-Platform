@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Mine töölauale ja kutsu sõpru osalema',
     'go_to_dashboard'                   => 'Mine töölauale',
     'answers_saved_anonymously' => 'Sinu vastused talletatakse anonüümselt.',
-   // 'login_to_complete_submission' =>  'Täidetud küsimustiku ärasaatmiseks logi sisse!',
+    // 'login_to_complete_submission' =>  'Täidetud küsimustiku ärasaatmiseks logi sisse!',
     'by_registering_you' => 'Registreeru platvormi kasutajaks<sup>*</sup>:',
     'filter_spammers' => 'Näed oma vastuseid.',
     'view_your_contribution' => 'Saad vaadata teiste vastuseid.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Enne kui vastad küsimustikule, vaata mida teised on öelnud',
     'here' => 'siit',
     'select_language' => 'Vali keel',
-    "invite_your_friends_to_answer" => "Kutsu oma sõpru küsimustikule vastama",
-    "go_to_homepage" => "Jah! Mine avalehele"
+    'invite_your_friends_to_answer' => 'Kutsu oma sõpru küsimustikule vastama',
+    'go_to_homepage' => 'Jah! Mine avalehele',
 
 
 

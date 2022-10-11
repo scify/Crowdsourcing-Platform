@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Lozinka mora imati minimum 8 karaktera.',
     'credentials_not_match'       => 'Ovi podaci se ne poklapaju sa našom evidencijom.',
     'one_step_away'               => 'Još samo jedan korak imate!',
-    'avoid_duplicate_submissions' => 'Da bi se izbjeglo dupliranje podnošenja, samo prijavljeni korisnici mogu da doprinesu. Molimo Vas da se prijavite da biste nastavili'
+    'avoid_duplicate_submissions' => 'Da bi se izbjeglo dupliranje podnošenja, samo prijavljeni korisnici mogu da doprinesu. Molimo Vas da se prijavite da biste nastavili',
 
 
 

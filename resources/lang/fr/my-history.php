@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Description du questionnaire',
     'responded' => 'Répondu',
     'actions' => 'Actions',
-    'view_response' => 'Voir la réponse'
+    'view_response' => 'Voir la réponse',
 
 
 

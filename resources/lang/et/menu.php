@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'Minu töölaud',
     'my_account' => 'Minu konto',
     'my_history' => 'Minu ajalugu',
-    'sign_out' => 'Logi välja'
+    'sign_out' => 'Logi välja',
 
 
 ];

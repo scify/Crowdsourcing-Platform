@@ -22,7 +22,7 @@ return [
     'current_password' => 'Trenutna lozinka',
     'new_password' => 'Nova lozinka',
     're_enter_password' => 'Ponovite lozinku',
-    'nickname_help' => 'Twój pseudonim będzie wyświetlany publicznie, gdy odpowiesz na pytania w kwestionariuszach'
+    'nickname_help' => 'Twój pseudonim będzie wyświetlany publicznie, gdy odpowiesz na pytania w kwestionariuszach',
 
 
 ];

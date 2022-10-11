@@ -24,14 +24,13 @@ class UserManager {
     private $mailChimpManager;
     private $questionnaireResponseRepository;
     private $questionnaireAnswerVoteRepository;
-
     public static $USERS_PER_PAGE = 10;
     public static $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
-    public function __construct(UserRepository                    $userRepository,
-                                UserRoleRepository                $userRoleRepository,
-                                MailChimpAdaptor                  $mailChimpManager,
-                                QuestionnaireResponseRepository   $questionnaireResponseRepository,
+    public function __construct(UserRepository $userRepository,
+                                UserRoleRepository $userRoleRepository,
+                                MailChimpAdaptor $mailChimpManager,
+                                QuestionnaireResponseRepository $questionnaireResponseRepository,
                                 QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
@@ -51,6 +50,7 @@ class UserManager {
     public function getManagePlatformUsersViewModel($paginationNumber, $filters = null) {
         $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters, true);
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
+
         return new ManageUsers($users, $allRoles);
     }
 
@@ -58,6 +58,7 @@ class UserManager {
         $user = $this->userRepository->getUser($id);
         $userRoleIds = $user->roles->pluck('id');
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
+
         return new EditUser($user, $userRoleIds, $allRoles);
     }
 
@@ -91,6 +92,7 @@ class UserManager {
         if ($emailCheck) {
             // If email exists, update roles
             $this->userRepository->updateUserRoles($emailCheck->id, $roleselect);
+
             return new ActionResponse(UserActionResponses::USER_UPDATED, $emailCheck);
         } else {
             // If user email does not exist in db, notify for registration.
@@ -107,12 +109,14 @@ class UserManager {
                 Log::error($e);
             }
             $this->userRepository->updateUserRoles($user->id, $roleselect);
+
             return new ActionResponse(UserActionResponses::USER_CREATED, $user);
         }
     }
 
     /**
      * @param $data array the form data array
+     *
      * @throws HttpException
      */
     public function updateUser($data) {
@@ -120,19 +124,18 @@ class UserManager {
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
-        if (!$current_password) {
+        if (! $current_password) {
             $obj_user->password = Hash::make($data['password']);
         } else {
             if (Hash::check($data['current_password'], $current_password)) {
                 $obj_user->password = Hash::make($data['password']);
             } else {
-                throw new HttpException(500, "Current Password Incorrect.");
+                throw new HttpException(500, 'Current Password Incorrect.');
             }
         }
 
         $obj_user->save();
     }
-
 
     public function getPlatformAdminUsersWithCriteria($paginationNum, $data = []) {
         return $this->userRepository->getPlatformUsers($paginationNum, $data);
@@ -142,7 +145,7 @@ class UserManager {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.
         $registerToMailchimp = true;
-        if (!$socialUser->email) {
+        if (! $socialUser->email) {
             $socialUser->email = $socialUser->id . '@dummy.crowdsourcing.org';
             $registerToMailchimp = false;
         }
@@ -155,11 +158,13 @@ class UserManager {
         // write user to 'Registered Users' newsletter if logins for the first time
         if ($registerToMailchimp &&
             $result->status == UserActionResponses::USER_CREATED && config('app.mailchimp_api_key') !== ''
-            && config('app.mailchimp_api_key') !== null)
+            && config('app.mailchimp_api_key') !== null) {
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
+        }
         if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
             $user = $result->data;
             auth()->login($user);
+
             return $user;
         } else {
             throw new \Exception($result->status);
@@ -170,22 +175,24 @@ class UserManager {
         $data = [
             'email' => $data['email'],
             'nickname' => $data['nickname'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
         ];
-        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
+        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return $this->userRepository->create($data);
-        else {
+        } else {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
             try {
                 $existingUser = $this->userRepository->find($userId);
                 $this->userRepository->update([
                     'email' => $data['email'],
                     'nickname' => $data['nickname'],
-                    'password' => $data['password']
+                    'password' => $data['password'],
                 ], $existingUser->id);
+
                 return $this->userRepository->find($existingUser->id);
             } catch (ModelNotFoundException $e) {
                 CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+
                 return $this->createUser($data);
             }
         }
@@ -206,15 +213,16 @@ class UserManager {
                 return $this->createAnonymousUser();
             }
         }
+
         return $this->createAnonymousUser();
     }
 
     protected function createAnonymousUser(): User {
         $name = 'Anonymous_User_' . now()->timestamp;
+
         return $this->userRepository->create([
             'nickname' => $name,
-            'email' => $name . '@crowd.org'
+            'email' => $name . '@crowd.org',
         ]);
     }
 }
-

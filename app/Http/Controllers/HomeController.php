@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-
 
 class HomeController extends Controller {
     private $crowdSourcingProjectManager;
@@ -19,24 +16,29 @@ class HomeController extends Controller {
     public function showHomePage() {
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
         $pastProjects = $this->crowdSourcingProjectManager->getPastCrowdSourcingProjectsForHomePage();
+
         return view('home.home')->with(['projects' => $projects, 'pastProjects' => $pastProjects]);
     }
 
     public function showTermsAndPrivacyPage() {
         $locale = app()->getLocale();
-        if (view()->exists("privacy-policy." . $locale))
-            return view("privacy-policy." . $locale);
-        return view("privacy-policy.en");
+        if (view()->exists('privacy-policy.' . $locale)) {
+            return view('privacy-policy.' . $locale);
+        }
+
+        return view('privacy-policy.en');
     }
 
     public function showCodeOfConductPage() {
         $goBackUrl = $this->getRedirectBackUrl();
 
         $locale = app()->getLocale();
-        if (view()->exists("code-of-conduct." . $locale))
-            return view("code-of-conduct." . $locale)
+        if (view()->exists('code-of-conduct.' . $locale)) {
+            return view('code-of-conduct.' . $locale)
                 ->with(['goBackUrl' => $goBackUrl]);
-        return view("code-of-conduct.en")
+        }
+
+        return view('code-of-conduct.en')
             ->with(['goBackUrl' => $goBackUrl]);
     }
 
@@ -55,13 +57,15 @@ class HomeController extends Controller {
                 $route = collect(Route::getRoutes())->first(function ($route) use ($referrer) {
                     return $route->matches(request()->create($referrer));
                 });
-                if ($route != null && $route->getName() == "project.landing-page") {
+                if ($route != null && $route->getName() == 'project.landing-page') {
                     $goBackUrl = $referrer;
-                    if (!Str::contains($referrer, '?open'))
-                        $goBackUrl .= "?open=1"; //so user can go back and open the questionnaire
+                    if (! Str::contains($referrer, '?open')) {
+                        $goBackUrl .= '?open=1';
+                    } //so user can go back and open the questionnaire
                 }
             }
         }
+
         return $goBackUrl;
     }
 }

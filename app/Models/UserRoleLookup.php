@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $deleted_at
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRoleLookup onlyTrashed()
  * @method static bool|null restore()
@@ -25,9 +26,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRoleLookup withoutTrashed()
  * @mixin \Eloquent
  */
-class UserRoleLookup extends Model
-{
+class UserRoleLookup extends Model {
     use SoftDeletes;
+
     /**
      * The table associated with the model.
      *
@@ -41,6 +42,6 @@ class UserRoleLookup extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
     ];
 }

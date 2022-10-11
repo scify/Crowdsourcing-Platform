@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Описание на въпросника',
     'responded' => 'Отоворил/и',
     'actions' => 'Действия',
-    'view_response' => 'Вижте отговора'
+    'view_response' => 'Вижте отговора',
 
 
 

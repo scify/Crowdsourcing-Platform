@@ -17,7 +17,6 @@ class CrowdSourcingProjectAccessTest extends TestCase {
         $this->crowdSourcingProjectRepository = $this->app->make(CrowdSourcingProjectRepository::class);
     }
 
-
     /**
      * @test
      */

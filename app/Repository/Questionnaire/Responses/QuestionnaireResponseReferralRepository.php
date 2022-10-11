@@ -6,8 +6,7 @@ use App\Models\QuestionnaireResponseReferral;
 use App\Repository\Repository;
 
 class QuestionnaireResponseReferralRepository extends Repository {
-
-    function getQuestionnaireReferralsForUser($userId) {
+    public function getQuestionnaireReferralsForUser($userId) {
         return QuestionnaireResponseReferral::where('referrer_id', $userId)->get();
     }
 
@@ -15,6 +14,7 @@ class QuestionnaireResponseReferralRepository extends Repository {
         $newQuestionnaireResponseReferral = new QuestionnaireResponseReferral();
         $newQuestionnaireResponseReferral->fill($array);
         $newQuestionnaireResponseReferral->save();
+
         return $newQuestionnaireResponseReferral;
     }
 
@@ -26,7 +26,7 @@ class QuestionnaireResponseReferralRepository extends Repository {
         return QuestionnaireResponseReferral::where(['referrer_id' => $userId, 'questionnaire_id' => $questionnaireId])->get();
     }
 
-    function getModelClassName() {
+    public function getModelClassName() {
         return QuestionnaireResponseReferral::class;
     }
 }

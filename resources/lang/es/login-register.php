@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'La contraseña debe tener al menos 8 caracteres.',
     'credentials_not_match'       => 'Estas credenciales no coinciden con nuestros registros.',
     'one_step_away'               => '¡Estás a un paso!',
-    'avoid_duplicate_submissions' => 'Para evitar envíos duplicados, solo los usuarios registrados pueden contribuir. Inicie sesión para continuar'
+    'avoid_duplicate_submissions' => 'Para evitar envíos duplicados, solo los usuarios registrados pueden contribuir. Inicie sesión para continuar',
 
 
 

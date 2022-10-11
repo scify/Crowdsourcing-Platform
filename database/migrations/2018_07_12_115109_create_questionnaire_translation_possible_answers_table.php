@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionnaireTranslationPossibleAnswersTable extends Migration
-{
+class CreateQuestionnaireTranslationPossibleAnswersTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('questionnaire_translation_possible_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('questionnaire_language_id');
@@ -30,8 +28,7 @@ class CreateQuestionnaireTranslationPossibleAnswersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('questionnaire_translation_possible_answers');
     }
 }

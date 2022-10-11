@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Küsimustiku kirjelduse',
     'responded' => 'Vastanud',
     'actions' => 'Tegevused',
-    'view_response' => 'Vaata vastuseid'
+    'view_response' => 'Vaata vastuseid',
 
 
 

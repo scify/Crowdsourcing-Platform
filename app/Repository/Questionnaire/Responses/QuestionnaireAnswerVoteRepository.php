@@ -8,17 +8,15 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireAnswerVoteRepository extends Repository {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return QuestionnaireAnswerVote::class;
     }
 
     public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): Collection {
-        return collect(DB::
-        select("
+        return collect(DB::select('
                 select qav.question_name, 
                 qav.respondent_user_id,
                 qav.voter_user_id,
@@ -30,22 +28,22 @@ class QuestionnaireAnswerVoteRepository extends Repository {
                 left outer join (
                     select qav3.question_name,qav3.respondent_user_id, count(*) as num_upvotes
                     from questionnaire_answer_votes qav3
-                    where qav3.questionnaire_id = " . $questionnaire_id . " and qav3.upvote = 1
+                    where qav3.questionnaire_id = ' . $questionnaire_id . ' and qav3.upvote = 1
                     group by qav3.question_name, qav3.respondent_user_id
                 ) as upvotesInfo on upvotesInfo.question_name = qav.question_name and upvotesInfo.respondent_user_id = qav.respondent_user_id
                 
                 left outer join (
                     select qav4.question_name,qav4.respondent_user_id, count(*) as num_downvotes
                     from questionnaire_answer_votes qav4
-                    where qav4.questionnaire_id = " . $questionnaire_id . " and qav4.upvote = 0
+                    where qav4.questionnaire_id = ' . $questionnaire_id . ' and qav4.upvote = 0
                     group by qav4.question_name, qav4.respondent_user_id
                 ) as downvotesInfo on downvotesInfo.question_name = qav.question_name and downvotesInfo.respondent_user_id = qav.respondent_user_id
                 
-                where qav.questionnaire_id = " . $questionnaire_id . "
+                where qav.questionnaire_id = ' . $questionnaire_id . '
                 group by qav.question_name, qav.respondent_user_id, qav.voter_user_id,
                  qav.upvote, upvotesInfo.num_upvotes, downvotesInfo.num_downvotes
                 order by qav.question_name, qav.respondent_user_id;
-        "));
+        '));
     }
 
     public function deleteAnswerVotesByUser(int $id) {
@@ -57,8 +55,7 @@ class QuestionnaireAnswerVoteRepository extends Repository {
     }
 
     public function getAnswerVotesWithVoterInfoForQuestionnaire(int $questionnaire_id): Collection {
-        return collect(DB::
-        select('
+        return collect(DB::select('
             select  qr.id as response_id,
                     qr.response_json,
                     qr.response_json_translated,

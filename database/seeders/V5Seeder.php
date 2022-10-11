@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 class V5Seeder extends Seeder {
-
     /**
      * Run the database seeds.
      *
@@ -13,7 +12,7 @@ class V5Seeder extends Seeder {
      */
     public function run() {
         $this->call([
-            LanguagesLkpTableSeeder::class
+            LanguagesLkpTableSeeder::class,
         ]);
     }
 }

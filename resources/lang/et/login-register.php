@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Salasõna peab koosnema vähemalt 8 tähemärgist.',
     'credentials_not_match'       => 'Meie andmebaasis ei ole selliseid sisselogimisandmeid.',
     'one_step_away'               => 'Oled ühe sammu kauguse!',
-    'avoid_duplicate_submissions' => 'Et vältida korduvaid sisestusi, saavad ainult sisselogitud kasutajad vastata'
+    'avoid_duplicate_submissions' => 'Et vältida korduvaid sisestusi, saavad ainult sisselogitud kasutajad vastata',
 
 
 

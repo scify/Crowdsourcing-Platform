@@ -2,7 +2,6 @@
 
 namespace App\Models\Questionnaire;
 
-
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Language;
 use App\Models\Questionnaire\Statistics\QuestionnaireBasicStatisticsColors;
@@ -55,7 +54,7 @@ class Questionnaire extends Model {
         'questionnaire_json',
         'statistics_page_visibility_lkp_id',
         'max_votes_num',
-        'show_general_statistics'
+        'show_general_statistics',
     ];
 
     /**
@@ -64,6 +63,7 @@ class Questionnaire extends Model {
      * @var array
      */
     protected $with = ['defaultFieldsTranslation', 'currentLocaleFieldsTranslation'];
+
     protected $appends = ['fieldsTranslation'];
 
     public function getFieldsTranslationAttribute() {
@@ -76,14 +76,15 @@ class Questionnaire extends Model {
     public function defaultFieldsTranslation(): HasOne {
         return $this->hasOne(QuestionnaireFieldsTranslation::class,
             ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
-            'title' => 'Questionnaire title',
-            'description' => 'Questionnaire description'
-        ]);
+                'title' => 'Questionnaire title',
+                'description' => 'Questionnaire description',
+            ]);
     }
 
     public function currentLocaleFieldsTranslation(): HasOne {
         $languageRepository = app()->make(LanguageRepository::class);
         $language = $languageRepository->where(['language_code' => app()->getLocale()]);
+
         return $this->hasOne(
             QuestionnaireFieldsTranslation::class,
             'questionnaire_id', 'id')
@@ -105,6 +106,7 @@ class Questionnaire extends Model {
 
     /**
      * The users that belong to the role.
+     *
      * @return BelongsToMany
      */
     public function projects() {

@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Het wachtwoord moet tenminste uit 8 tekens bestaan.',
     'credentials_not_match'       => 'Deze gegevens komen niet overeen met onze database.',
     'one_step_away'               => 'Nog 1 stap!',
-    'avoid_duplicate_submissions' => 'Om dubbele inzendingen te voorkomen, kunnen alleen ingelogde gebruikers bijdragen. Log in om door te gaan'
+    'avoid_duplicate_submissions' => 'Om dubbele inzendingen te voorkomen, kunnen alleen ingelogde gebruikers bijdragen. Log in om door te gaan',
 
 
 

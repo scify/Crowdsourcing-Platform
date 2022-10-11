@@ -22,7 +22,7 @@ return [
     'current_password' => 'Password atual',
     'new_password' => 'Nova palavra passe',
     're_enter_password' => 'Reintroduza a palavra passe',
-    'nickname_help' => 'Seu apelido será exibido publicamente quando você responder a questionários'
+    'nickname_help' => 'Seu apelido será exibido publicamente quando você responder a questionários',
 
 
 ];

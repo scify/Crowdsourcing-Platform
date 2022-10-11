@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Das Passwort muss mindestens 8 Zeichen umfassen.',
     'credentials_not_match'       => 'Diese Angaben stimmen nicht mit unseren Aufzeichnungen überein.',
     'one_step_away'               => 'Sie sind nur einen Schritt davon entfernt!',
-    'avoid_duplicate_submissions' => 'Um doppelte Einsendungen zu vermeiden, können nur angemeldete Benutzer teilnehmen. Bitte melden Sie sich an, um fortzufahren'
+    'avoid_duplicate_submissions' => 'Um doppelte Einsendungen zu vermeiden, können nur angemeldete Benutzer teilnehmen. Bitte melden Sie sich an, um fortzufahren',
 
 
 

@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Opis upitnika',
     'responded' => 'Odgovoreno',
     'actions' => 'Akcije',
-    'view_response' => 'Pogledajte odgovor'
+    'view_response' => 'Pogledajte odgovor',
 
 
 

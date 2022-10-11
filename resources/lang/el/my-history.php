@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Περιγραφή ερωτηματολογίου',
     'responded' => 'Απαντήθηκε',
     'actions' => 'Δράσεις',
-    'view_response' => 'Δείτε την απάντηση'
+    'view_response' => 'Δείτε την απάντηση',
 
 
 

@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
     'crowdsource_our_future'            => 'Találjuk ki a jövőnket közösen',
     'hello'                             => 'Üdvözöljük!',
     'email_reset_password'              => 'Azért kapja ezt az e-mailt, mert jelszó-visszaállítási küldött a fiókjához.',
@@ -22,7 +22,7 @@ return [
     'thanks_message_for_answering'      => 'Köszönjük, hogy időt szakított a címben szereplő kérdőívünk megválaszolására: ',
     'thanks_message_for_contribution'   => 'Az Ön hozzájárulásának köszönhetően egy lépéssel közelebb kerültünk a célunkhoz!',
     'unlocked_new_badge'                => 'Egy új jelvényt is feloldott:', 
-    'inquiries_about_our_work'          => 'Ha bármilyen kérdése van a munkánkkal kapcsolatban, lépjen velünk kapcsolatba.'
+    'inquiries_about_our_work'          => 'Ha bármilyen kérdése van a munkánkkal kapcsolatban, lépjen velünk kapcsolatba.',
 
 
 

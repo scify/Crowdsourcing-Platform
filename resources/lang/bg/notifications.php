@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
 
     'go_to_dashboard'                   => 'Към таблото за управление',
     'thank_you_for_contribution'        => 'Благодарим Ви за приноса!',
@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'Този сайт използва бисквитки за да Ви осигури най-доброто обслужване. Вижте нашата политика за защита на личните данни за повече подробности.',
     'code_of_conduct'                   => 'Моля, съобразете се с нашия кодекс на етично поведение преди да отговорите!',
     'agree_privacy_policy'              => 'Съгласен <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> съм с политиката за защита на личните данни.',
-    'ok'                                => 'OK'
+    'ok'                                => 'OK',
 
 
 

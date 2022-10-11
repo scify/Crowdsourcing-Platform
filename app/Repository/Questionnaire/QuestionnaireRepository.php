@@ -2,7 +2,6 @@
 
 namespace App\Repository\Questionnaire;
 
-
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
@@ -13,8 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireRepository extends Repository {
-
-    function getModelClassName(){
+    public function getModelClassName() {
         return Questionnaire::class;
     }
 
@@ -23,8 +21,7 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getActiveQuestionnaires() {
-        return Questionnaire
-            ::where('status_id', QuestionnaireStatusLkp::PUBLISHED)
+        return Questionnaire::where('status_id', QuestionnaireStatusLkp::PUBLISHED)
             ->with('projects')
             ->withCount('responses')
             ->orderBy('prerequisite_order')
@@ -33,10 +30,9 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getActiveQuestionnairesForProject(int $projectId) {
-        return Questionnaire
-            ::whereHas('projects', function (Builder $query) use ($projectId) {
-                $query->where(['id' => $projectId]);
-            })
+        return Questionnaire::whereHas('projects', function (Builder $query) use ($projectId) {
+            $query->where(['id' => $projectId]);
+        })
             ->where('status_id', QuestionnaireStatusLkp::PUBLISHED)
             ->withCount('responses')
             ->orderBy('prerequisite_order')
@@ -60,14 +56,15 @@ class QuestionnaireRepository extends Repository {
                                          $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
                                          $type_id) {
         return DB::transaction(function () use (
-            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,$type_id
+            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics, $type_id
         ) {
             $questionnaire = new Questionnaire();
             $questionnaire = $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                $showGeneralStatistics,$type_id);
+                $showGeneralStatistics, $type_id);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
+
             return $questionnaire;
         });
     }
@@ -77,12 +74,13 @@ class QuestionnaireRepository extends Repository {
                                         $type_id) {
         return DB::transaction(function () use (
             $questionnaireId, $goal,
-            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,$type_id
+            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics, $type_id
         ) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
+
             return $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                $showGeneralStatistics,$type_id);
+                $showGeneralStatistics, $type_id);
         });
     }
 
@@ -103,9 +101,9 @@ class QuestionnaireRepository extends Repository {
         $questionnaireStatusHistory->comments = $comments;
         $questionnaireStatusHistory->current_json = $questionnaire->questionnaire_json;
         $questionnaireStatusHistory->save();
+
         return $questionnaireStatusHistory;
     }
-
 
     private function storeQuestionnaire($questionnaire, $goal,
                                         $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
@@ -119,13 +117,14 @@ class QuestionnaireRepository extends Repository {
         $questionnaire->show_general_statistics = $showGeneralStatistics;
         $questionnaire->type_id = $type_id;
         $questionnaire->save();
+
         return $questionnaire;
     }
 
     public function getAllQuestionnairesWithRelatedInfo(array $projectIds): array {
         $projectIdsStr = implode(',', $projectIds);
-        return DB::
-        select("SELECT 
+
+        return DB::select("SELECT 
                         q.id,
                         q.prerequisite_order,
                         q.status_id,
@@ -187,7 +186,7 @@ class QuestionnaireRepository extends Repository {
                         GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
 
                             
-                        where cspq.project_id in (" . $projectIdsStr . ") 
+                        where cspq.project_id in (" . $projectIdsStr . ') 
                         and q.deleted_at is null
                         GROUP BY q.id, q.prerequisite_order, q.status_id,
                         q.default_language_id,
@@ -203,6 +202,6 @@ class QuestionnaireRepository extends Repository {
                         dl.language_name,
                         number_of_responses,
                         languages
-                        order by q.created_at desc");
+                        order by q.created_at desc');
     }
 }

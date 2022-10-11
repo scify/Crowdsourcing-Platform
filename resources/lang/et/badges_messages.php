@@ -47,7 +47,7 @@ return [
     'you_have_badges'                => '{1} Sul on seni üks <span class="numOfBadges">1</span> badge. Kliki igal "badge", et näha kirjeldust ja selgitust, kuidas neid teenida. |[2,*] Sul on seni üks <span class="numOfBadges">:count</span> badges. Kliki igal "badge", et näha kirjeldust ja selgitust, kuidas neid teenida.',
     'contribute'                     => 'Panusta',
     'contribute_for'                 => 'Panusta',
-    'you_do_not_own'                 => 'Sul ei ole seda aumärki'
+    'you_do_not_own'                 => 'Sul ei ole seda aumärki',
 
 
 

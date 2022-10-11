@@ -19,7 +19,7 @@ return [
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
-        'endpoint' => env('MAILGUN_ENDPOINT')
+        'endpoint' => env('MAILGUN_ENDPOINT'),
     ],
 
     'ses' => [
@@ -59,13 +59,13 @@ return [
     'microsoft' => [
         'client_id' => env('MICROSOFT_CLIENT_ID'),
         'client_secret' => env('MICROSOFT_CLIENT_SECRET'),
-        'redirect' => config('app.url') . '/login/social/microsoft/callback'
+        'redirect' => config('app.url') . '/login/social/microsoft/callback',
     ],
 
     'linkedin' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => config('app.url') . '/login/social/linkedin/callback'
-    ]
+        'redirect' => config('app.url') . '/login/social/linkedin/callback',
+    ],
 
 ];

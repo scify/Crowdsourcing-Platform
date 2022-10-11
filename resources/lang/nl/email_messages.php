@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
     'crowdsource_our_future'            => 'Laten we onze toekomst crowdsourcen',
     'hello'                             => 'Hallo!',
     'email_reset_password'              => 'Je ontvangt deze e-mail omdat we een verzoek hebben ontvangen om je wachtwoord opnieuw in te stellen.',
@@ -22,7 +22,7 @@ return [
     'thanks_message_for_answering'      => 'Dank je voor het invullen van de vragenlijst met de naam: ',
     'thanks_message_for_contribution'   => 'Dank je wel voor je bijdrage! We zijn een stap dichterbij ons doel!',
     'unlocked_new_badge'                => 'Je ontvangt een nieuwe badge:', 
-    'inquiries_about_our_work'          => 'Neem contact met ons op als je vragen hebt over ons werk.'
+    'inquiries_about_our_work'          => 'Neem contact met ons op als je vragen hebt over ons werk.',
 
 
 

@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'Moja Kontrolna tabla',
     'my_account' => 'Moj nalog',
     'my_history' => 'Moja istorija',
-    'sign_out' => 'Odjava'
+    'sign_out' => 'Odjava',
 
 
 ];

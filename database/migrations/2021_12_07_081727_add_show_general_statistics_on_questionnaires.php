@@ -25,6 +25,5 @@ class AddShowGeneralStatisticsOnQuestionnaires extends Migration {
         Schema::table('questionnaires', function (Blueprint $table) {
             $table->dropColumn('show_general_statistics');
         });
-
     }
 }

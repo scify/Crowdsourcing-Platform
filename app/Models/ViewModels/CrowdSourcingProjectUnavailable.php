@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Models\ViewModels;
-
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectUnavailable {
-
     public $project;
     public $projects;
     public $statusMessage;
@@ -22,5 +19,4 @@ class CrowdSourcingProjectUnavailable {
     public function getProjectStatusMessage() {
         return $this->statusMessage;
     }
-
 }

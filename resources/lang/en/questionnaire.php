@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Visit your Dashboard to invite your friends',
     'go_to_dashboard'                   => 'Go to Dashboard',
     'answers_saved_anonymously' => 'Your answers have been saved anonymously.',
-   // 'login_to_complete_submission' =>  'Please login to complete your submission!',
+    // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'Register as a platform user<sup>*</sup>:',
     'filter_spammers' => 'You’ll <b>see</b> your answers!',
     'view_your_contribution' => 'You can <b>see</b> the answers of others.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Before answering to the questionnaire, check what the other respondents have said by clicking',
     'here' => 'here',
     'select_language' => 'Select language',
-    "invite_your_friends_to_answer" => "Invite your friends to answer",
-    "go_to_homepage" => "Yes! Go to homepage"
+    'invite_your_friends_to_answer' => 'Invite your friends to answer',
+    'go_to_homepage' => 'Yes! Go to homepage',
 
 
 

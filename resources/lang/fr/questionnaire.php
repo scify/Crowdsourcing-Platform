@@ -24,7 +24,7 @@ return [
     'go_to_dashboard'                   => 'Accéder au tableau de bord',
 
     'answers_saved_anonymously' => 'Vos réponses ont été sauvegardées de manière anonyme.',
-  //  'login_to_complete_submission' =>  'Veuillez vous connecter pour compléter votre proposition!',
+    //  'login_to_complete_submission' =>  'Veuillez vous connecter pour compléter votre proposition!',
     'by_registering_you' => 'S\'inscrire comme utilisateur de la plateforme<sup>*</sup>:',
     'filter_spammers' => 'Vous <b>verrez</b> vos réponses.',
     'view_your_contribution' => 'Vous <b>pouvez voir</b> les réponses des autres.',
@@ -48,8 +48,8 @@ return [
     'check_what_other_respondents' => 'Avant de répondre au questionnaire, vérifiez ce que les autres répondants ont dit en cliquant',
     'here' => 'ici',
     'select_language' => 'Sélectionner la langue',
-    "invite_your_friends_to_answer" => "Invitez vos amis à répondre",
-    "go_to_homepage" => "Oui! Aller à la page d'accueil"
+    'invite_your_friends_to_answer' => 'Invitez vos amis à répondre',
+    'go_to_homepage' => "Oui! Aller à la page d'accueil",
 
 
 

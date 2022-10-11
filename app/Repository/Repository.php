@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class Repository implements RepositoryInterface {
-
     /**
      * @var App
      */
@@ -17,12 +16,14 @@ abstract class Repository implements RepositoryInterface {
 
     /**
      * Query builder for this model
+     *
      * @var
      */
     protected $modelInstance;
 
     /**
-     * @param App $app
+     * @param  App  $app
+     *
      * @throws RepositoryException
      */
     public function __construct(App $app) {
@@ -35,44 +36,48 @@ abstract class Repository implements RepositoryInterface {
      *
      * @return mixed
      */
-    abstract function getModelClassName();
+    abstract public function getModelClassName();
 
-
-    public function all($columns = array('*'), $orderColumn = null, $order = null, $withRelationships = []) {
+    public function all($columns = ['*'], $orderColumn = null, $order = null, $withRelationships = []) {
         $query = $this->modelInstance;
 
-        if ($orderColumn)
+        if ($orderColumn) {
             $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
-        if (count($withRelationships) > 0)
+        }
+        if (count($withRelationships) > 0) {
             $query = $query->with($withRelationships);
+        }
 
         return $query->get($columns);
     }
 
-    public function allWithTrashed($columns = array('*'),
+    public function allWithTrashed($columns = ['*'],
                                    $orderColumn = null,
                                    $order = null,
                                    $withRelationships = []): Collection {
         $query = $this->modelInstance;
 
-        if ($orderColumn)
+        if ($orderColumn) {
             $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
-        if (count($withRelationships) > 0)
+        }
+        if (count($withRelationships) > 0) {
             $query = $query->with($withRelationships);
+        }
+
         return $query->withTrashed()->get($columns);
     }
 
     /**
-     * @param int $perPage
-     * @param array $columns
+     * @param  int  $perPage
+     * @param  array  $columns
      * @return mixed
      */
-    public function paginate($perPage = 15, $columns = array('*')) {
+    public function paginate($perPage = 15, $columns = ['*']) {
         return $this->modelInstance->orderBy('updated_at', 'desc')->paginate($perPage, $columns);
     }
 
     /**
-     * @param array $data
+     * @param  array  $data
      * @return mixed
      */
     public function create(array $data) {
@@ -80,12 +85,12 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param array $data
+     * @param  array  $data
      * @param $id
-     * @param string $attribute
+     * @param  string  $attribute
      * @return mixed
      */
-    public function update(array $data, $id, $attribute = "id") {
+    public function update(array $data, $id, $attribute = 'id') {
         return $this->modelInstance->where($attribute, '=', $id)->update($this->onlyFillable($data));
     }
 
@@ -97,14 +102,17 @@ abstract class Repository implements RepositoryInterface {
     }
 
     protected function onlyFillable(array $items) {
-        if (sizeof($this->modelInstance->getFillable()) === 0)
+        if (count($this->modelInstance->getFillable()) === 0) {
             return $items;
-
-        $qualified = array();
-        foreach ($items as $key => $val) {
-            if (in_array($key, $this->modelInstance->getFillable()))
-                $qualified[$key] = $val;
         }
+
+        $qualified = [];
+        foreach ($items as $key => $val) {
+            if (in_array($key, $this->modelInstance->getFillable())) {
+                $qualified[$key] = $val;
+            }
+        }
+
         return $qualified;
     }
 
@@ -118,13 +126,15 @@ abstract class Repository implements RepositoryInterface {
 
     /**
      * @param $id
-     * @param array $columns
+     * @param  array  $columns
      * @return mixed
      */
-    public function find($id, $columns = array('*'), array $withRelationships = []) {
+    public function find($id, $columns = ['*'], array $withRelationships = []) {
         $query = $this->modelInstance;
-        if (count($withRelationships))
+        if (count($withRelationships)) {
             $query = $query->with($withRelationships);
+        }
+
         return $query->findOrFail($id, $columns);
     }
 
@@ -138,78 +148,88 @@ abstract class Repository implements RepositoryInterface {
     /**
      * @param $field
      * @param $value
-     * @param array $columns
-     * @param bool $caseInsensitive
-     * @param array $withRelationships
+     * @param  array  $columns
+     * @param  bool  $caseInsensitive
+     * @param  array  $withRelationships
      * @return mixed
      */
-    public function findBy($field, $value, $columns = array('*'), bool $caseInsensitive = false, array $withRelationships = []) {
-        if ($caseInsensitive)
-            $query = $this->modelInstance->whereRaw("LOWER(`" . $field . "`) LIKE '" .
+    public function findBy($field, $value, $columns = ['*'], bool $caseInsensitive = false, array $withRelationships = []) {
+        if ($caseInsensitive) {
+            $query = $this->modelInstance->whereRaw('LOWER(`' . $field . "`) LIKE '" .
                 strtolower($value) . "'");
-        else
+        } else {
             $query = $this->modelInstance->where($field, '=', $value);
+        }
 
-        if (count($withRelationships) > 0)
+        if (count($withRelationships) > 0) {
             $query = $query->with($withRelationships);
+        }
 
         $model = $query->first();
 
-        if (!$model)
+        if (! $model) {
             throw new ModelNotFoundException("Model with criteria: '" . $field . "' equal to '" . $value . "' was not found.");
+        }
+
         return $model;
     }
 
     public function exists($whereArray): bool {
         $models = $this->allWhere($whereArray);
-        return !$models->isEmpty();
+
+        return ! $models->isEmpty();
     }
 
-    public function where(array $whereArray, array $columns = array('*')) {
+    public function where(array $whereArray, array $columns = ['*']) {
         return $this->modelInstance->where($whereArray)->first($columns);
     }
 
-    public function allWhere(array $whereArray, $columns = array('*'), $orderColumn = null, $order = null, $withRelationships = []) {
+    public function allWhere(array $whereArray, $columns = ['*'], $orderColumn = null, $order = null, $withRelationships = []) {
         $query = $this->modelInstance->where($whereArray);
 
-        if ($orderColumn)
+        if ($orderColumn) {
             $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
-        if (count($withRelationships) > 0)
+        }
+        if (count($withRelationships) > 0) {
             $query = $query->with($withRelationships);
+        }
 
         return $query->get($columns);
     }
 
     public function whereWithTrashed($whereArray,
-                                     $columns = array('*'),
+                                     $columns = ['*'],
                                      $orderColumn = null,
                                      $order = null,
                                      $withRelationships = []): Collection {
         $query = $this->modelInstance->where($whereArray);
 
-        if ($orderColumn)
+        if ($orderColumn) {
             $query = $query->orderBy($orderColumn, $order ? $order : 'asc');
+        }
 
-        if (count($withRelationships) > 0)
+        if (count($withRelationships) > 0) {
             $query = $query->with($withRelationships);
+        }
 
         return $query->withTrashed()->get($columns);
     }
 
     /**
      * @return Model
+     *
      * @throws RepositoryException
      * @throws BindingResolutionException
      */
     private function makeModelInstance(): Model {
         $tryToCreateModel = $this->app->make($this->getModelClassName());
 
-        if (!$tryToCreateModel instanceof Model)
+        if (! $tryToCreateModel instanceof Model) {
             throw new RepositoryException("Class {$this->getModelClassName()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+        }
 
         return $this->modelInstance = $tryToCreateModel;
     }
-
 
     public function getModelInstance() {
         return $this->app->make($this->getModelClassName());

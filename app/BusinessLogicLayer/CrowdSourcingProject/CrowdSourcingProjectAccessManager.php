@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
-
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\UserRoleManager;
@@ -13,13 +11,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 
 class CrowdSourcingProjectAccessManager {
-
     protected $crowdSourcingProjectRepository;
     protected $userRoleManager;
 
     public function registerCrowdSourcingProjectPolicies() {
         Gate::define('view-landing-page', function (?User $user, string $project_slug) {
             $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+
             return $this->shouldShowLandingPageToUser($user, $project);
         });
     }
@@ -31,27 +29,32 @@ class CrowdSourcingProjectAccessManager {
 
     public function getProjectsUserHasAccessToEdit(User $user): Collection {
         $relationships = ['creator', 'language', 'status'];
-        if($this->userRoleManager->userHasAdminRole($user) || $this->userRoleManager->userHasContentManagerRole($user))
+        if ($this->userRoleManager->userHasAdminRole($user) || $this->userRoleManager->userHasContentManagerRole($user)) {
             return $this->crowdSourcingProjectRepository
-                ->allWithTrashed(array('*'),"id", "desc", $relationships);
+                ->allWithTrashed(['*'], 'id', 'desc', $relationships);
+        }
 
-        return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id], array('*'),
-            "id", "desc", $relationships);
+        return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id], ['*'],
+            'id', 'desc', $relationships);
     }
 
     protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {
-        if(!$project)
+        if (! $project) {
             return false;
-        if($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED)
+        }
+        if ($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED) {
             return true;
+        }
+
         return $this->userHasAccessToManageProject($user, $project);
     }
 
     public function userHasAccessToManageProject($user, CrowdSourcingProject $project): bool {
-        if(!$user)
+        if (! $user) {
             return false;
+        }
+
         return $this->userRoleManager->userHasAdminRole($user) ||
             $this->userRoleManager->userHasContentManagerRole($user);
     }
-
 }

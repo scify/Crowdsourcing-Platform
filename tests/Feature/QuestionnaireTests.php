@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Tests\Feature;
-
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use Tests\TestCase;
 
 class QuestionnaireTests extends TestCase {
-
     protected $questionnaireTranslationRepository;
     protected $questionnaireResponseManager;
 
@@ -20,7 +17,6 @@ class QuestionnaireTests extends TestCase {
     }
 
     public function test_questionnaire_free_type_questions() {
-
         $questionnaireJSON = '
         {
            "pages":[
@@ -131,8 +127,9 @@ class QuestionnaireTests extends TestCase {
         $answers = json_decode($responseJSON);
 
         foreach ($answers as $questionName => $answer) {
-            if(isset($freeTypeQuestions[$questionName]))
+            if (isset($freeTypeQuestions[$questionName])) {
                 self::assertEquals($questionName, $freeTypeQuestions[$questionName]->name);
+            }
         }
     }
 }

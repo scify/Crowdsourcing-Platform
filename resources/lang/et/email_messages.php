@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
     'crowdsource_our_future'            => 'Loome koos oma tulevikku',
     'hello'                             => 'Hei!',
     'email_reset_password'              => 'Saatsime sulle selle kirja, kuna saime sinu konto salasõna lähtestamise palve..',
@@ -22,7 +22,7 @@ return [
     'thanks_message_for_answering'      => 'Täname, et leidsid aega ja täitsid meie küsimustiku: ',
     'thanks_message_for_contribution'   => 'Tänu sinu panusele oleme oma eesmärgile sammukese lähemal!',
     'unlocked_new_badge'                => 'Oled pälvinud ka uue aumärgi:', 
-    'inquiries_about_our_work'          => 'Kui sul on meie töö kohta küsimusi, võta julgelt ühendust.'
+    'inquiries_about_our_work'          => 'Kui sul on meie töö kohta küsimusi, võta julgelt ühendust.',
 
 
 

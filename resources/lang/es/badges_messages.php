@@ -14,9 +14,9 @@ return [
     'you_have_answered'              => 'Has respondido :count',
     'questionnaire'                  => 'cuestionario',
     'questionnaires'                 => 'cuestionarios',
-    'you_are_a_contributor'          => '¡Eres un "Contributor" de nivel :level! ¡Sigue adelante!', // You are a Level 1 Contributor! Keep Going!    
+    'you_are_a_contributor'          => '¡Eres un "Contributor" de nivel :level! ¡Sigue adelante!', // You are a Level 1 Contributor! Keep Going!
     'contributor_title'              => 'Contributor',
-    'become_a_contributor'           => '¡Cuéntanos lo que piensas<br>y conviértete en "Contributor" de nivel :level!', // Tell us what you think and become a level 1 Contributor!    
+    'become_a_contributor'           => '¡Cuéntanos lo que piensas<br>y conviértete en "Contributor" de nivel :level!', // Tell us what you think and become a level 1 Contributor!
     'gain_contributor_badge'         => '¡Cuéntanos lo que piensas<br/> y obtén la insignia de "Contribuidor"!',
     'gain_badge_by_inviting'         => 'Obtenga esta insignia invitando a más personas a participar. ¡Comparte en Facebook y Twitter!',
     'communicator_title'             => 'Communicator',
@@ -33,7 +33,7 @@ return [
     'person'                         => 'persona ',
     'people'                         => 'personas ',
     'person_or_people_responded'     => '{1} 1 persona respondió a tu llamada. |[2,*] :count personas respondieron a tu llamada',
-    'you_are_an_influencer'          => '¡Eres un "Influencer" de Nivel :level! ¡Sigue adelante!', //You are a Level 3 Influencer! Keep Going!    
+    'you_are_an_influencer'          => '¡Eres un "Influencer" de Nivel :level! ¡Sigue adelante!', //You are a Level 3 Influencer! Keep Going!
     'zero_people_responded_to_call'  => 'Cero personas han respondido a su llamada hasta el momento.<br>¡Escribe un mensaje e invita a más amigos!',
     'good_job'                       => '{1} ¡Buen trabajo!  1 persona ha respondido a tu llamada hasta ahora. .<br>¡Escribe un mensaje e invita a más amigos! |[2.*] ¡Buen trabajo!  :count personas han respondido.<br>¡Escribe un mensaje e invita a más amigos!',
     'true_influencer'                => '{1} Wow, you are a true influencer!<br> 1 persona ha respondido a tu llamada hasta ahora. ¡Escribe un mensaje e invita a más amigos! |[2.*] Wow, you are a true influencer!<br> :count personas han respondido. ¡Escribe un mensaje e invita a más amigos!',

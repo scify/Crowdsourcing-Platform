@@ -6,7 +6,6 @@ use App\BusinessLogicLayer\LanguageManager;
 use Illuminate\Http\JsonResponse;
 
 class LanguageController extends Controller {
-
     protected $languageManager;
 
     public function __construct(LanguageManager $languageManager) {
@@ -15,8 +14,7 @@ class LanguageController extends Controller {
 
     public function getLanguages(): JsonResponse {
         return response()->json([
-            'languages' => $this->languageManager->getLanguagesAvailableForPlatformTranslation()
+            'languages' => $this->languageManager->getLanguagesAvailableForPlatformTranslation(),
         ]);
     }
-
 }

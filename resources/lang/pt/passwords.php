@@ -17,6 +17,6 @@ return [
     'reset' => 'A sua palavra passe foi redefinida!',
     'sent' => 'Enviámos por email o link para redefinir a password!',
     'token' => 'Este token para redefinição de palavra passe é inválido.',
-    'user' => "Este email não corresponde a nenhum utilizador.",
+    'user' => 'Este email não corresponde a nenhum utilizador.',
 
 ];

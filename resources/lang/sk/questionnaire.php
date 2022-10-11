@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Navštívte svoj informačný panel a pozvite svojich priateľov',
     'go_to_dashboard'                   => 'Prejdite na informačný panel',
     'answers_saved_anonymously' => 'Vaše odpovede boli uložené anonymne.',
-   // 'login_to_complete_submission' =>  'Please login to complete your submission!',
+    // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'Zaregistrujte sa ako užívateľ platformy<sup>*</sup>:',
     'filter_spammers' => 'Uvidíte <b>svoje</b> odpovede!',
     'view_your_contribution' => 'Môžete vidieť <b>odpovede</b> ostatných.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Pred zodpovedaním dotazníka si kliknutím sem skontrolujte, čo povedali ostatní respondenti.',
     'here' => 'sem',
     'select_language' => 'Select language',
-    "invite_your_friends_to_answer" => "Pozvite svojich priateľov, aby odpovedali",
-    "go_to_homepage" => "Yes! Go to homepage"
+    'invite_your_friends_to_answer' => 'Pozvite svojich priateľov, aby odpovedali',
+    'go_to_homepage' => 'Yes! Go to homepage',
 
 
 

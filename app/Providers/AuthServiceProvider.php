@@ -7,10 +7,7 @@ use App\BusinessLogicLayer\UserRoleManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
 
-class AuthServiceProvider extends ServiceProvider
-{
-
-
+class AuthServiceProvider extends ServiceProvider {
     /**
      * The policy mappings for the application.
      *
@@ -25,8 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         $this->registerPolicies();
 
         $permissionsManager = App::make(UserRoleManager::class);
@@ -34,6 +30,5 @@ class AuthServiceProvider extends ServiceProvider
 
         $crowdSourcingProjectAccessManager = App::make(CrowdSourcingProjectAccessManager::class);
         $crowdSourcingProjectAccessManager->registerCrowdSourcingProjectPolicies();
-
     }
 }

@@ -12,7 +12,6 @@ class CreateQuestionnaireAnswerVotesTable extends Migration {
      */
     public function up() {
         Schema::create('questionnaire_answer_votes', function (Blueprint $table) {
-
             $table->unsignedInteger('questionnaire_id');
             $table->foreign('questionnaire_id', 'questionnaire_answer_votes_questionnaire_id_foreign')
                 ->references('id')->on('questionnaires');

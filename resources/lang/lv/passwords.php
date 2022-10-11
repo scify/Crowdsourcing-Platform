@@ -17,6 +17,6 @@ return [
     'reset' => 'Tava parole ir atjaunota!',
     'sent' => 'Uz tavu e-pastu esam nosūtījuši paroles atjaunošanas saiti!',
     'token' => 'Šī paroles atjaunošanas saite ir nederīga.',
-    'user' => "Mēs nevaram atrast lietotāju ar šādu e-pasta adresi.",
+    'user' => 'Mēs nevaram atrast lietotāju ar šādu e-pasta adresi.',
 
 ];

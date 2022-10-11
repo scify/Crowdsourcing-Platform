@@ -6,11 +6,10 @@ use App\Models\Questionnaire\QuestionnaireAnswerAdminReviewLkp;
 use App\Repository\Repository;
 
 class QuestionnaireAnswerAdminReviewLkpRepository extends Repository {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return QuestionnaireAnswerAdminReviewLkp::class;
     }
 }

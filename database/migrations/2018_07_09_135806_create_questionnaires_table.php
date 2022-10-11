@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionnairesTable extends Migration
-{
+class CreateQuestionnairesTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('project_id');
@@ -33,8 +31,7 @@ class CreateQuestionnairesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('questionnaires');
     }
 }

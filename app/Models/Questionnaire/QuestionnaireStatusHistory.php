@@ -1,6 +1,6 @@
 <?php
-namespace App\Models\Questionnaire;
 
+namespace App\Models\Questionnaire;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -16,12 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * @property-read QuestionnaireStatus $status
  */
-class QuestionnaireStatusHistory extends Model
-{
+class QuestionnaireStatusHistory extends Model {
     protected $table = 'questionnaire_status_history';
 
-    public function status()
-    {
+    public function status() {
         return $this->hasOne(QuestionnaireStatus::class, 'id', 'status_id');
     }
 }

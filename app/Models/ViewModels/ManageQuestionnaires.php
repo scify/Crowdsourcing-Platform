@@ -2,7 +2,6 @@
 
 namespace App\Models\ViewModels;
 
-
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 
 class ManageQuestionnaires {
@@ -11,8 +10,9 @@ class ManageQuestionnaires {
         QuestionnaireStatusLkp::PUBLISHED => 'badge-success',
         QuestionnaireStatusLkp::FINALIZED => 'badge-primary',
         QuestionnaireStatusLkp::UNPUBLISHED => 'badge-danger',
-        QuestionnaireStatusLkp::DELETED => 'badge-danger'
+        QuestionnaireStatusLkp::DELETED => 'badge-danger',
     ];
+
     public $questionnaires;
     public $statuses;
 
@@ -26,7 +26,8 @@ class ManageQuestionnaires {
     }
 
     public function isQuestionnaireArchived($questionnaire): bool {
-        $dateCreated = date("Y/m/d", strtotime($questionnaire->created_at));
+        $dateCreated = date('Y/m/d', strtotime($questionnaire->created_at));
+
         return $dateCreated < '2018/04/01';
     }
 }

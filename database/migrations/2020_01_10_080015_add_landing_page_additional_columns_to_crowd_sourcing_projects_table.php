@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class AddLandingPageAdditionalColumnsToCrowdSourcingProjectsTable extends Migration
-{
+class AddLandingPageAdditionalColumnsToCrowdSourcingProjectsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->string('lp_questionnaire_btn_color')->nullable()->after('lp_questionnaire_color');
             $table->string('lp_questionnaire_btn_bg_color')->nullable()->after('lp_questionnaire_btn_color');
@@ -32,8 +30,7 @@ class AddLandingPageAdditionalColumnsToCrowdSourcingProjectsTable extends Migrat
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->dropColumn([
                 'lp_questionnaire_btn_color', 'lp_questionnaire_btn_bg_color',
@@ -41,7 +38,7 @@ class AddLandingPageAdditionalColumnsToCrowdSourcingProjectsTable extends Migrat
                 'lp_questionnaire_goal_bg_color', 'lp_newsletter_bg_color',
                 'lp_newsletter_title_color', 'lp_newsletter_color',
                 'lp_newsletter_bg_color', 'lp_newsletter_btn_color',
-                'lp_newsletter_btn_bg_color'
+                'lp_newsletter_btn_bg_color',
             ]);
         });
     }

@@ -11,11 +11,10 @@ use App\Utils\Helpers;
 use Illuminate\Database\Seeder;
 
 class DefaultProjectSeeder extends Seeder {
-
     protected $projectRepository;
     protected $projectTranslationRepository;
 
-    public function __construct(CrowdSourcingProjectRepository            $crowdSourcingProjectRepository,
+    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
                                 CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
         $this->projectRepository = $crowdSourcingProjectRepository;
         $this->projectTranslationRepository = $crowdSourcingProjectTranslationRepository;
@@ -53,7 +52,7 @@ class DefaultProjectSeeder extends Seeder {
             </p>',
                 'user_creator_id' => 1,
                 'language_id' => 6,
-                'status_id' => CrowdSourcingProjectStatusLkp::DRAFT
+                'status_id' => CrowdSourcingProjectStatusLkp::DRAFT,
             ],
             [
                 'id' => 2,
@@ -83,8 +82,8 @@ class DefaultProjectSeeder extends Seeder {
             </p>',
                 'user_creator_id' => 1,
                 'language_id' => 6,
-                'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED
-            ]
+                'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED,
+            ],
         ];
 
         foreach ($data as $project) {
@@ -92,7 +91,7 @@ class DefaultProjectSeeder extends Seeder {
                 Helpers::getFilteredAttributes($project, (new CrowdSourcingProject())->getFillable()));
             $this->projectTranslationRepository->updateOrCreate(['project_id' => $project['id'], 'language_id' => $project['language_id']],
                 Helpers::getFilteredAttributes($project, (new CrowdSourcingProjectTranslation())->getFillable()));
-            echo "\nAdded Project: " . $project['name'] . " with slug: " . $project->slug . "\n";
+            echo "\nAdded Project: " . $project['name'] . ' with slug: ' . $project->slug . "\n";
         }
     }
 }

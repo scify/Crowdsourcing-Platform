@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Questionnaire $questionnaire
  * @property-read \App\Models\User $referrer
  * @property-read \App\Models\User $respondent
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\QuestionnaireResponseReferral onlyTrashed()
  * @method static bool|null restore()
@@ -32,35 +33,32 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\QuestionnaireResponseReferral withoutTrashed()
  * @mixin \Eloquent
  */
-class QuestionnaireResponseReferral extends Model
-{
+class QuestionnaireResponseReferral extends Model {
     use SoftDeletes;
 
-
     protected $fillable = [
-        'respondent_id', 'referrer_id', 'questionnaire_id'
+        'respondent_id', 'referrer_id', 'questionnaire_id',
     ];
 
     /**
      * The user who answered the questionnaire by following the link
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function respondent()
-    {
+    public function respondent() {
         return $this->belongsTo(User::class, 'respondent_id', 'id');
     }
 
     /**
      * The user who shared the questionnaire and invited users to respond to it.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function referrer()
-    {
+    public function referrer() {
         return $this->belongsTo(User::class, 'referrer_id', 'id');
     }
 
-    public function questionnaire()
-    {
+    public function questionnaire() {
         return $this->belongsTo(Questionnaire::class);
     }
 }

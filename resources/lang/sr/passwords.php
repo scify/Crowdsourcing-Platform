@@ -17,6 +17,6 @@ return [
     'reset' => 'Vaša lozinka je resetovana!',
     'sent' => 'Poslali smo Vam na mejl link za resetovanje Vaše lozinke!',
     'token' => 'Ovaj znak za resetovanje lozinke je neispravan.',
-    'user' => "Ne možemo naći korisnika sa tom mejl adresom.",
+    'user' => 'Ne možemo naći korisnika sa tom mejl adresom.',
 
 ];

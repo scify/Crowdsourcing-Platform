@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
 
     'go_to_dashboard'                   => 'Prejdite na informačný panel',
     'thank_you_for_contribution'        => 'Ďakujeme za váš príspevok!',
@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'Táto webová stránka používa súbory cookie, aby sme vám zabezpečili čo najlepší zážitok z našej webovej stránky. Podrobnosti nájdete v našich "zásadách ochrany osobných údajov".',
     'code_of_conduct'                   => 'Pred odpoveďou sa uistite, že dodržiavate náš kódex správania!',
     'agree_privacy_policy'              => 'Súhlasím so <a href="https://crowdsourcing.ecas.org/sk/terms-and-privacy" target="_blank"> zásadami ochrany osobných údajov.',
-    'ok'                                => 'OK'
+    'ok'                                => 'OK',
 
 
 

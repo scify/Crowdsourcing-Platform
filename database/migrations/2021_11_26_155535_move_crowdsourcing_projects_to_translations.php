@@ -5,16 +5,14 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class MoveCrowdsourcingProjectsToTranslations extends Migration
-{
+class MoveCrowdsourcingProjectsToTranslations extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        $sql = "insert into crowd_sourcing_project_translations 
+    public function up() {
+        $sql = 'insert into crowd_sourcing_project_translations 
                 (project_id,
                 language_id,
                 name,
@@ -43,7 +41,7 @@ class MoveCrowdsourcingProjectsToTranslations extends Migration
                 r.questionnaire_response_email_intro_text,
                 r.questionnaire_response_email_outro_text
                 from crowd_sourcing_projects p 
-                inner join crowd_sourcing_project_communication_resources r on p.communication_resources_id = r.id";
+                inner join crowd_sourcing_project_communication_resources r on p.communication_resources_id = r.id';
 
         DB::statement($sql);
     }
@@ -53,8 +51,7 @@ class MoveCrowdsourcingProjectsToTranslations extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::table('translations', function (Blueprint $table) {
             //
         });

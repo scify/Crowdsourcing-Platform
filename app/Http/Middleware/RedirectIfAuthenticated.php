@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
-{
+class RedirectIfAuthenticated {
     /**
      * Handle an incoming request.
      *
@@ -15,10 +14,9 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
-    {
+    public function handle($request, Closure $next, $guard = null) {
         if (Auth::guard($guard)->check()) {
-            return redirect("/".app()->getLocale().'/my-dashboard');
+            return redirect('/' . app()->getLocale() . '/my-dashboard');
         }
 
         return $next($request);

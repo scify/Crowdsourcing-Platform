@@ -6,8 +6,7 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\CheckQuestionnairePageVisibilitySettings;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-class Kernel extends HttpKernel
-{
+class Kernel extends HttpKernel {
     /**
      * The application's global HTTP middleware stack.
      *
@@ -85,5 +84,4 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
-
 }

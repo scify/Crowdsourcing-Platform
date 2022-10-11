@@ -22,7 +22,7 @@ return [
     'current_password' => 'Aktuelle Passwort',
     'new_password' => 'Neues Passwort',
     're_enter_password' => 'Passwort erneut eingeben',
-    'nickname_help' => 'Ihr Spitzname wird öffentlich angezeigt, wenn Sie auf Fragebögen antworten'
+    'nickname_help' => 'Ihr Spitzname wird öffentlich angezeigt, wenn Sie auf Fragebögen antworten',
 
 
 ];

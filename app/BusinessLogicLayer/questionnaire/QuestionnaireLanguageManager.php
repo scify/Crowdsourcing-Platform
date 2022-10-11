@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\BusinessLogicLayer\questionnaire;
-
 
 use App\BusinessLogicLayer\LanguageManager;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use Illuminate\Support\Collection;
 
 class QuestionnaireLanguageManager {
-
     protected $questionnaireLanguageRepository;
     protected $languageManager;
 
@@ -20,18 +17,20 @@ class QuestionnaireLanguageManager {
     }
 
     public function saveLanguagesForQuestionnaire(array $lang_codes, int $questionnaire_id) {
-        if(count($lang_codes) === 0)
+        if (count($lang_codes) === 0) {
             return;
+        }
         $existingQuestionnaireLanguages = $this->getLanguagesForQuestionnaire($questionnaire_id);
         $languagesToDelete = $existingQuestionnaireLanguages->pluck('language.language_code')->toArray();
         for ($i = 0; $i < count($lang_codes); $i++) {
-            if (in_array($lang_codes[$i], $languagesToDelete))
+            if (in_array($lang_codes[$i], $languagesToDelete)) {
                 array_splice($languagesToDelete, array_search($lang_codes[$i], $languagesToDelete), 1);
+            }
 
             $language = $this->languageManager->getLanguageByCode($lang_codes[$i]);
             $data = [
                 'questionnaire_id' => $questionnaire_id,
-                'language_id' => $language->id
+                'language_id' => $language->id,
             ];
             $this->questionnaireLanguageRepository->updateOrCreate($data, $data);
         }

@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Popis dotazníka',
     'responded' => 'Zodpovedané',
     'actions' => 'Akcie',
-    'view_response' => 'Zobraziť odpoveď'
+    'view_response' => 'Zobraziť odpoveď',
 
 
 

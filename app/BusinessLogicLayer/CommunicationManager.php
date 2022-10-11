@@ -8,35 +8,30 @@
 
 namespace App\BusinessLogicLayer;
 
-
 use App\Models\ViewModels\MailChimpIntegration;
 use App\Repository\MailChimpListRepository;
 use App\Utils\MailChimpAdaptor;
 
-class CommunicationManager
-{
+class CommunicationManager {
     private $mailChimpListRepository;
     private $mailChimpManager;
 
-    public function __construct(MailChimpListRepository $mailChimpListRepository, MailChimpAdaptor $mailChimpManager)
-    {
+    public function __construct(MailChimpListRepository $mailChimpListRepository, MailChimpAdaptor $mailChimpManager) {
         $this->mailChimpListRepository = $mailChimpListRepository;
         $this->mailChimpManager = $mailChimpManager;
     }
 
-    public function getMailChimpIntegrationViewModel()
-    {
+    public function getMailChimpIntegrationViewModel() {
         $mailChimpLists = $this->mailChimpListRepository->all();
+
         return new MailChimpIntegration($mailChimpLists);
     }
 
-    public function storeMailChimpListIds($newsletter, $registeredUsers)
-    {
+    public function storeMailChimpListIds($newsletter, $registeredUsers) {
         $this->mailChimpListRepository->storeMailChimpListIds($newsletter, $registeredUsers);
     }
 
-    public function signUpForNewsletter($firstName, $email)
-    {
+    public function signUpForNewsletter($firstName, $email) {
         $this->mailChimpManager->subscribe($email, 'newsletter', $firstName);
     }
 }

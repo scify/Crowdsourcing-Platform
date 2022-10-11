@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'Môj Dashboard',
     'my_account' => 'Môj účet',
     'my_history' => 'Moja história',
-    'sign_out' => 'odhlásiť'
+    'sign_out' => 'odhlásiť',
 
 
 ];

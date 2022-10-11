@@ -7,16 +7,15 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\Translator;
 
 class QuestionnaireResponseTranslator {
-
     protected $questionnaireResponseRepository;
     protected $questionnaireRepository;
     protected $questionnaireResponseManager;
     protected $translator;
 
     public function __construct(QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireRepository         $questionnaireRepository,
-                                QuestionnaireResponseManager    $questionnaireResponseManager,
-                                Translator                      $translator) {
+                                QuestionnaireRepository $questionnaireRepository,
+                                QuestionnaireResponseManager $questionnaireResponseManager,
+                                Translator $translator) {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseManager = $questionnaireResponseManager;

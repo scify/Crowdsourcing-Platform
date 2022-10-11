@@ -1,18 +1,15 @@
 <?php
 
-
 namespace App\Repository\CrowdSourcingProject;
-
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectColors;
 use App\Repository\Repository;
 
 class CrowdSourcingProjectColorsRepository extends Repository {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return CrowdSourcingProjectColors::class;
     }
 }

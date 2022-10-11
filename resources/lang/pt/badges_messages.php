@@ -47,7 +47,7 @@ return [
     'you_have_badges'                => '{1} Até agora tem <span class="numOfBadges">1</span> badge. Clique em cada "badge" para ver a sua descrição e perceber como pode adquiri-lo. |[2,*] Até agora tem <span class="numOfBadges">:count</span> badges. Clique em cada "badge" para ver a sua descrição e perceber como pode adquiri-lo.',
     'contribute'                     => 'Contribua',
     'contribute_for'                 => 'Contribua para',
-    'you_do_not_own'                 => 'Não possui este "badge".'
+    'you_do_not_own'                 => 'Não possui este "badge".',
 
 
 

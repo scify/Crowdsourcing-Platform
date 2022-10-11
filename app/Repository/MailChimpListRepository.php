@@ -8,27 +8,22 @@
 
 namespace App\Repository;
 
-
 use App\Models\MailChimpList;
 use Illuminate\Support\Facades\DB;
 
-class MailChimpListRepository extends Repository
-{
-
+class MailChimpListRepository extends Repository {
     /**
      * Specify Model class name
      *
      * @return mixed
      */
-    function getModelClassName()
-    {
+    public function getModelClassName() {
         return MailChimpList::class;
     }
 
-    public function storeMailChimpListIds($newsletter, $registeredUsers)
-    {
-        DB::transaction(function () use ($newsletter, $registeredUsers) {
-          /*  $this->update(['list_id' => $newsletter], 1); // Newsletter*/
+    public function storeMailChimpListIds($newsletter, $registeredUsers) {
+        DB::transaction(function () use ($registeredUsers) {
+            /*  $this->update(['list_id' => $newsletter], 1); // Newsletter*/
             $this->update(['list_id' => $registeredUsers], 2); // Registered Users
         });
     }

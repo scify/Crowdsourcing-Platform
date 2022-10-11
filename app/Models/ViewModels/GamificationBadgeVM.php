@@ -2,11 +2,9 @@
 
 namespace App\Models\ViewModels;
 
-
 use App\BusinessLogicLayer\gamification\GamificationBadge;
 
 class GamificationBadgeVM {
-
     public $badgeImageName;
     public $badgeName;
     public $level;
@@ -22,6 +20,4 @@ class GamificationBadgeVM {
         $this->statusMessage = $badge->statusMessage;
         $this->color = $badge->color;
     }
-
-
 }

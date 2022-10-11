@@ -3,7 +3,6 @@
 namespace App\Repository\Questionnaire\Statistics;
 
 class QuestionnaireResponseStatistics {
-
     public $totalResponses;
     public $goalResponses;
     public $totalResponsesColor;
@@ -15,5 +14,4 @@ class QuestionnaireResponseStatistics {
         $this->totalResponsesColor = $totalResponsesColor;
         $this->goalResponsesColor = $goalResponsesColor;
     }
-
 }

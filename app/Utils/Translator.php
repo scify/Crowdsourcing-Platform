@@ -5,15 +5,16 @@ namespace App\Utils;
 use Google\Cloud\Translate\V2\TranslateClient;
 use Illuminate\Support\Facades\Log;
 
-class Translator
-{
+class Translator {
     public const BATCH_SIZE = 100;
 
     /**
      * Translate texts to the preferred language.
-     * @param array $texts The texts that need translation
-     * @param string $lang_code The language code in which the texts will be translated
+     *
+     * @param  array  $texts The texts that need translation
+     * @param  string  $lang_code The language code in which the texts will be translated
      * @return array The translated texts
+     *
      * @throws \Exception
      */
     public static function translateTexts(array $texts, string $lang_code): array {
@@ -28,13 +29,15 @@ class Translator
                     'target' => $lang_code,
                 ]));
             } catch (\Exception $e) {
-                if (app()->bound('sentry'))
+                if (app()->bound('sentry')) {
                     app('sentry')->captureException($e);
-                else
+                } else {
                     Log::error($e->getMessage());
+                }
                 throw $e;
             }
         }
+
         return $result;
     }
 }

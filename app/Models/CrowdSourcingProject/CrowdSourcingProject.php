@@ -13,10 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 /**
  * Class CrowdSourcingProject
- * @package App\Models
  */
 class CrowdSourcingProject extends Model {
     use SoftDeletes;
@@ -40,7 +38,7 @@ class CrowdSourcingProject extends Model {
         'sm_featured_img_path', 'lp_questionnaire_img_path',
         'lp_show_speak_up_btn', 'lp_primary_color',
         'should_send_email_after_questionnaire_response',
-        'display_landing_page_banner'
+        'display_landing_page_banner',
     ];
 
     /**
@@ -59,6 +57,7 @@ class CrowdSourcingProject extends Model {
 
     /**
      * The users that belong to the role.
+     *
      * @return BelongsToMany
      */
     public function questionnaires() {
@@ -82,9 +81,9 @@ class CrowdSourcingProject extends Model {
     public function defaultTranslation() {
         return $this->hasOne(CrowdSourcingProjectTranslation::class,
             ['project_id', 'language_id'], ['id', 'language_id'])->withDefault([
-            'questionnaire_response_email_intro_text' => __("email_messages.thanks_message_for_contribution"),
-            'questionnaire_response_email_outro_text' => __("email_messages.inquiries_about_our_work")
-        ]);
+                'questionnaire_response_email_intro_text' => __('email_messages.thanks_message_for_contribution'),
+                'questionnaire_response_email_outro_text' => __('email_messages.inquiries_about_our_work'),
+            ]);
     }
 
     /**

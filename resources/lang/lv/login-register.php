@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Parolei jābūt vismaz 8 rakstzīmēm.',
     'credentials_not_match'       => 'Šādi dati nav mūsu sistēmā.',
     'one_step_away'               => 'Jūs esat viena soļa attālumā!',
-    'avoid_duplicate_submissions' => 'Lai izvairītos no dublējošiem iesniegšanas gadījumiem, piedalīties var tikai pieteikušies lietotāji. Lūdzu, piesakieties, lai turpinātu'
+    'avoid_duplicate_submissions' => 'Lai izvairītos no dublējošiem iesniegšanas gadījumiem, piedalīties var tikai pieteikušies lietotāji. Lūdzu, piesakieties, lai turpinātu',
 
 
 

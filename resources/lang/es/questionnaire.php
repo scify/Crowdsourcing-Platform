@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Visita tu Tablero para invitar a tus amigos',
     'go_to_dashboard'                   => 'Ve al Tablero',
     'answers_saved_anonymously' => 'Sus respuestas se han guardado de forma anónima.',
-   // 'login_to_complete_submission' =>  'Please login to complete your submission!',
+    // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'Regístrese como usuario de la plataforma<sup>*</sup>:',
     'filter_spammers' => 'Verá <b>sus</b> respuestas!',
     'view_your_contribution' => 'Puede <b>ver</b> las respuestas de otros.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Antes de responder al cuestionario, verifique lo que han dicho los demás encuestados haciendo clic',
     'here' => 'aquí',
     'select_language' => 'Select language',
-    "invite_your_friends_to_answer" => "¡Invita a tus amigos a responder!",
-    "go_to_homepage" => "Yes! Go to homepage"
+    'invite_your_friends_to_answer' => '¡Invita a tus amigos a responder!',
+    'go_to_homepage' => 'Yes! Go to homepage',
 
 
 

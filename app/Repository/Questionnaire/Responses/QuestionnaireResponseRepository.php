@@ -1,62 +1,50 @@
 <?php
 
-
 namespace App\Repository\Questionnaire\Responses;
-
 
 use App\BusinessLogicLayer\CookieManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Repository;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
-class QuestionnaireResponseRepository extends Repository
-{
-
-    function getModelClassName()
-    {
+class QuestionnaireResponseRepository extends Repository {
+    public function getModelClassName() {
         return QuestionnaireResponse::class;
     }
 
-    public function userResponseExists(int $userId): bool
-    {
+    public function userResponseExists(int $userId): bool {
         return $this->exists(['user_id' => $userId]);
     }
 
-    public function questionnaireResponseExists(int $questionnaireId, int $userId): bool
-    {
+    public function questionnaireResponseExists(int $questionnaireId, int $userId): bool {
         return $this->exists(['questionnaire_id' => $questionnaireId, 'user_id' => $userId]);
     }
 
-    public function deleteResponsesByUser(int $id)
-    {
+    public function deleteResponsesByUser(int $id) {
         return QuestionnaireResponse::whereIn('user_id', [$id])->delete();
     }
 
-    public function restoreResponsesByUser(int $id)
-    {
+    public function restoreResponsesByUser(int $id) {
         return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', [$id])->restore();
     }
 
-
-
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id)
-    {
-        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY]))
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id) {
+        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return null;
+        }
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
         if ($anonymousUserId === $user_id) {
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+
             return null;
         }
 
         $anonymousUser = User::find($anonymousUserId);
-        if (!$anonymousUser){
+        if (! $anonymousUser) {
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+
             return null;
         }
 
@@ -88,35 +76,31 @@ class QuestionnaireResponseRepository extends Repository
         }
         $anonymousUser->delete();
         CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
-        return $questionnairesThatWereTransferedToUser;
 
+        return $questionnairesThatWereTransferedToUser;
     }
 
-    public function getQuestionnaireResponsesOfUser($userId)
-    {
-        return QuestionnaireResponse::with("questionnaire")
+    public function getQuestionnaireResponsesOfUser($userId) {
+        return QuestionnaireResponse::with('questionnaire')
             ->where('user_id', $userId)
             ->get();
     }
 
-    public function countResponsesPerProject($questionnaire_id){
+    public function countResponsesPerProject($questionnaire_id) {
         $results = DB::select('SELECT qr.project_id, CONCAT("/",l.language_code,"/",p.slug) as slug, count(*) as total FROM questionnaire_responses qr 
                                 inner join crowd_sourcing_projects p on qr.project_id = p.id
                                 inner join languages_lkp l on l.id = p.language_id
                                 where qr.deleted_at is null and qr.questionnaire_id =?  
                                 group by qr.project_id, p.slug, l.language_code
-                                order by p.slug desc',[$questionnaire_id]);
+                                order by p.slug desc', [$questionnaire_id]);
 
         return $results;
-
     }
 
-    public function getAllResponsesGivenByUser($userId)
-    {
+    public function getAllResponsesGivenByUser($userId) {
         // here we select the columns that we want to fetch, due to this mySQL 8 bug:
         // https://bugs.mysql.com/bug.php?id=103225
-        return QuestionnaireResponse::
-        select('questionnaire_responses.id as questionnaire_response_id',
+        return QuestionnaireResponse::select('questionnaire_responses.id as questionnaire_response_id',
             'questionnaire_responses.created_at as responded_at',
             'questionnaire_responses.*',
             'qft.description as questionnaire_description',
@@ -136,7 +120,7 @@ class QuestionnaireResponseRepository extends Repository
                 $join->on('qft.questionnaire_id', '=', 'questionnaire_responses.questionnaire_id');
                 $join->on('qft.language_id', '=', 'questionnaire_responses.language_id');
             })
-            ->join('languages_lkp', function($join){
+            ->join('languages_lkp', function ($join) {
                 $join->on('languages_lkp.id', '=', 'questionnaire_responses.language_id');
             })
             ->where('user_id', $userId)

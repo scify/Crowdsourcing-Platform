@@ -3,10 +3,9 @@
 namespace App\Repository;
 
 interface RepositoryInterface {
+    public function all($columns = ['*']);
 
-    public function all($columns = array('*'));
-
-    public function paginate($perPage = 15, $columns = array('*'));
+    public function paginate($perPage = 15, $columns = ['*']);
 
     public function create(array $data);
 
@@ -14,15 +13,15 @@ interface RepositoryInterface {
 
     public function delete($id);
 
-    public function find($id, $columns = array('*'));
+    public function find($id, $columns = ['*']);
 
-    public function findBy($field, $value, $columns = array('*'));
+    public function findBy($field, $value, $columns = ['*']);
 
     public function updateOrCreate($criteria, $data);
 
     public function firstOrCreate($criteria, $data);
 
-    public function allWhere(array $whereArray, $columns = array('*'), $orderColumn = null, $order = null, $withRelationships=[]);
+    public function allWhere(array $whereArray, $columns = ['*'], $orderColumn = null, $order = null, $withRelationships = []);
 
-    public function where(array $whereArray, array $columns = array('*'));
+    public function where(array $whereArray, array $columns = ['*']);
 }

@@ -34,6 +34,7 @@ class LoginController extends Controller {
      * @var string
      */
     protected $redirectTo = '/en/my-dashboard';
+
     protected $exceptionHandler;
 
     public function redirectTo() {
@@ -43,10 +44,9 @@ class LoginController extends Controller {
     protected UserManager $userManager;
     protected QuestionnaireResponseManager $questionnaireResponseManager;
 
-
-    public function __construct(UserManager                  $userManager,
+    public function __construct(UserManager $userManager,
                                 QuestionnaireResponseManager $questionnaireResponseManager,
-                                ExceptionHandler             $handler) {
+                                ExceptionHandler $handler) {
         $this->exceptionHandler = $handler;
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
@@ -54,20 +54,21 @@ class LoginController extends Controller {
     }
 
     public function showLoginForm(Request $request, $redirectTo) {
-        $r =  $request->query("redirectTo")? $request->query("redirectTo"): $this->redirectTo();
-        $request->session()->put("redirectTo", $r);
-        return view('auth.login')->with("displayQuestionnaireLabels", $request->submitQuestionnaire != null);
+        $r = $request->query('redirectTo') ? $request->query('redirectTo') : $this->redirectTo();
+        $request->session()->put('redirectTo', $r);
+
+        return view('auth.login')->with('displayQuestionnaireLabels', $request->submitQuestionnaire != null);
     }
 
     protected function authenticated(Request $request, $user) {
         $numberOfResponsedTransfered = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
-        $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo();
-        if ($numberOfResponsedTransfered)
+        $url = session('redirectTo') ? session('redirectTo') : $this->redirectTo();
+        if ($numberOfResponsedTransfered) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
+        }
 
         return redirect($url);
     }
-
 
     public function redirectToProvider($driver) {
         try {
@@ -76,6 +77,7 @@ class LoginController extends Controller {
             abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
             $this->exceptionHandler->report($e);
         }
+
         return redirect()->route('home');
     }
 
@@ -83,14 +85,15 @@ class LoginController extends Controller {
      * @throws Throwable
      */
     public function handleProviderCallback(Request $request, $driver) {
-
         if (isset($request['denied']) || isset($request['error'])) {
             $this->exceptionHandler->report(new Exception($request['error']));
+
             return redirect()->route('home');
         }
 
         $socialUser = Socialite::driver($driver)->user();
         $user = $this->userManager->handleSocialLoginUser($socialUser);
+
         return $this->authenticated($request, $user);
     }
 
@@ -98,8 +101,7 @@ class LoginController extends Controller {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('home');
     }
-
-
 }

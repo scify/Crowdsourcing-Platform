@@ -1,13 +1,10 @@
 <?php
 
-
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
-
 
 use App\Repository\CrowdSourcingProjectStatusLkpRepository;
 
 class CrowdSourcingProjectStatusManager {
-
     protected $crowdSourcingProjectStatusRepository;
 
     public function __construct(CrowdSourcingProjectStatusLkpRepository $crowdSourcingProjectStatusRepository) {
@@ -17,5 +14,4 @@ class CrowdSourcingProjectStatusManager {
     public function getAllCrowdSourcingProjectStatusesLkp() {
         return $this->crowdSourcingProjectStatusRepository->all();
     }
-
 }

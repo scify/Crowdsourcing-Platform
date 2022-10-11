@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\BusinessLogicLayer\lkp;
-
 
 abstract class CrowdSourcingProjectStatusLkp {
     public const DRAFT = 1;

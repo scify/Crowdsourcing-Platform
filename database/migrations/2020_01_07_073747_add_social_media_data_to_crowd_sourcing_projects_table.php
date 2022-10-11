@@ -1,18 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class AddSocialMediaDataToCrowdSourcingProjectsTable extends Migration
-{
+class AddSocialMediaDataToCrowdSourcingProjectsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->string('sm_title')->nullable()->after('language_id')->comment('
             The title that will be shown when the project URL is posted to social media
@@ -34,8 +32,7 @@ class AddSocialMediaDataToCrowdSourcingProjectsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->dropColumn('sm_title');
             $table->dropColumn('sm_description');

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $deleted_at
  * @property-read \App\Models\Questionnaire $questionnaire
  * @property-read \App\Models\User $user
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserQuestionnaireShare onlyTrashed()
  * @method static bool|null restore()
@@ -29,21 +30,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserQuestionnaireShare withoutTrashed()
  * @mixin \Eloquent
  */
-class UserQuestionnaireShare extends Model
-{
+class UserQuestionnaireShare extends Model {
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'questionnaire_id'
+        'user_id', 'questionnaire_id',
     ];
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function questionnaire()
-    {
+    public function questionnaire() {
         return $this->belongsTo(Questionnaire::class);
     }
 }
