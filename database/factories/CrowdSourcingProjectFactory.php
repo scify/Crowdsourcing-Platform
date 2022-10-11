@@ -3,7 +3,6 @@
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 
 $factory->define(CrowdSourcingProject::class, function (Faker $faker) {
     return [
@@ -12,6 +11,6 @@ $factory->define(CrowdSourcingProject::class, function (Faker $faker) {
         'motto' => now(),
         'description' => $faker->text,
         'about' => $faker->text,
-        'status_id' => CrowdSourcingProjectStatusLkp::DRAFT
+        'status_id' => CrowdSourcingProjectStatusLkp::DRAFT,
     ];
 });

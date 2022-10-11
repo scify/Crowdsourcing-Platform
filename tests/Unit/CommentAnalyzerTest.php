@@ -2,14 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\BusinessLogicLayer\CommentAnalyzer\GooglePerspectiveAPIService;
 use App\BusinessLogicLayer\CommentAnalyzer\ToxicityAnalyzerService;
 use Tests\TestCase;
 
 class CommentAnalyzerTest extends TestCase {
-
     protected $analyzer;
-
 
     protected function setUp(): void {
         parent::setUp();

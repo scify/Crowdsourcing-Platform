@@ -2,7 +2,6 @@
 
 namespace App\Models\Questionnaire;
 
-
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use Carbon\Carbon;
@@ -27,14 +26,13 @@ class QuestionnaireResponse extends Model {
 
     protected $table = 'questionnaire_responses';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
-
     protected $fillable = [
         'questionnaire_id',
         'project_id',
         'user_id',
         'language_id',
         'response_json',
-        'response_json_translated'
+        'response_json_translated',
     ];
 
     public function user() {
@@ -44,7 +42,6 @@ class QuestionnaireResponse extends Model {
     public function questionnaire() {
         return $this->belongsTo(Questionnaire::class)->withTrashed();
     }
-
 
     public function project() {
         return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');

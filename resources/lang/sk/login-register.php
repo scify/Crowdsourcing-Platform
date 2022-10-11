@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Heslo musí mať aspoň 8 znakov.',
     'credentials_not_match'       => 'Tieto poverenia sa nezhodujú s našimi záznamami.',
     'one_step_away'               => 'Ste o krok ďalej! ',
-    'avoid_duplicate_submissions' => 'Aby sa predišlo duplicitným odoslaniam, môžu prispievať iba prihlásení používatelia. Ak chcete pokračovať, prihláste sa'
+    'avoid_duplicate_submissions' => 'Aby sa predišlo duplicitným odoslaniam, môžu prispievať iba prihlásení používatelia. Ak chcete pokračovať, prihláste sa',
 
 
 

@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Menjen a főoldalra a barátai meghívásához',
     'go_to_dashboard'                   => 'Menjen az főoldalra',
     'answers_saved_anonymously' => 'Válaszait névtelenül mentettük el.',
-   // 'login_to_complete_submission' =>  'Kérjük, jelentkezzen be a válaszai elküldéséhez!',
+    // 'login_to_complete_submission' =>  'Kérjük, jelentkezzen be a válaszai elküldéséhez!',
     'by_registering_you' => 'Regisztrálás a platform felhasználójaként<sup>*</sup>:',
     'filter_spammers' => '<b>Látni fogja</b> a válaszait.',
     'view_your_contribution' => '<b>Láthatja</b> mások válaszait.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Mielőtt válaszolna a kérdőívre, kattintson ide és nézze meg, hogy mit mondott a többi',
     'here' => 'válaszadó',
     'select_language' => 'Nyelv kiválasztása',
-    "invite_your_friends_to_answer" => "Hívja meg barátait",
-    "go_to_homepage" => "Igen! Menj a főoldalra"
+    'invite_your_friends_to_answer' => 'Hívja meg barátait',
+    'go_to_homepage' => 'Igen! Menj a főoldalra',
 
 
 

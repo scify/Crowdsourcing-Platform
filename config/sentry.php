@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'dsn' => config('app.sentry_dsn'),
 
     // capture release as git sha
@@ -9,5 +9,5 @@ return array(
     // Capture bindings on SQL queries
     'breadcrumbs.sql_bindings' => true,
 
-    'release' => config("app.version")
-);
+    'release' => config('app.version'),
+];

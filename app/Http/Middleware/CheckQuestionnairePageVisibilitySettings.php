@@ -7,31 +7,31 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CheckQuestionnairePageVisibilitySettings
-{
+class CheckQuestionnairePageVisibilitySettings {
     protected $questionnaireAccessManager;
 
     /**
      * CheckQuestionnairePageVisibilitySettings constructor.
+     *
      * @param $questionnaireAccessManager
      */
     public function __construct(QuestionnaireAccessManager $questionnaireAccessManager) {
         $this->questionnaireAccessManager = $questionnaireAccessManager;
     }
 
-
     /**
      * Handle an incoming request.
      *
      * @param  Request  $request
-     * @param Closure $next
+     * @param  Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
         $questionnaire = $request->route('questionnaire');
-        if($this->questionnaireAccessManager->userHasAccessToViewQuestionnaireStatisticsPage(Auth::user(), $questionnaire))
+        if ($this->questionnaireAccessManager->userHasAccessToViewQuestionnaireStatisticsPage(Auth::user(), $questionnaire)) {
             return $next($request);
+        }
+
         return redirect()->route('home');
     }
 }

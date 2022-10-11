@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'Le mot de passe doit comporter au moins 8 caractères.',
     'credentials_not_match'       => 'Ces informations d\'identification ne correspondent pas à nos registres.',
     'one_step_away'               => 'Vous n\'êtes plus qu\'à un pas!',
-    'avoid_duplicate_submissions' => 'Afin d\'éviter les soumissions en double, seuls les utilisateurs connectés peuvent contribuer. Veuillez vous connecter pour continuer.'
+    'avoid_duplicate_submissions' => 'Afin d\'éviter les soumissions en double, seuls les utilisateurs connectés peuvent contribuer. Veuillez vous connecter pour continuer.',
 
 
 

@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class QuestionnaireAnswerAnnotation extends CompositeKeysModel {
     protected $table = 'questionnaire_answer_annotations';
-
     protected $fillable = [
         'questionnaire_id',
         'question_name',
@@ -17,9 +16,8 @@ class QuestionnaireAnswerAnnotation extends CompositeKeysModel {
         'annotator_user_id',
         'annotation_text',
         'admin_review_status_id',
-        'admin_review_comment'
+        'admin_review_comment',
     ];
-
     protected $primaryKey = ['questionnaire_id', 'question_name', 'respondent_user_id'];
     public $incrementing = false;
 

@@ -3,7 +3,6 @@
 namespace App\BusinessLogicLayer\CommentAnalyzer;
 
 class ToxicityAnalyzerResponse {
-
     public $toxicityScore;
     public $toxicityAnalyzerResponse;
 
@@ -11,5 +10,4 @@ class ToxicityAnalyzerResponse {
         $this->toxicityScore = $toxicityScore;
         $this->toxicityAnalyzerResponse = $toxicityAnalyzerResponse;
     }
-
 }

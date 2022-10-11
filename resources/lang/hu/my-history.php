@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Kérdőív leírása',
     'responded' => 'Válaszolt',
     'actions' => 'Lehetőségek',
-    'view_response' => 'Válasz megtekintése'
+    'view_response' => 'Válasz megtekintése',
 
 
 

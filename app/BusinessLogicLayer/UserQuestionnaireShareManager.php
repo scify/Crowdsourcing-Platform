@@ -2,16 +2,13 @@
 
 namespace App\BusinessLogicLayer;
 
-
 use App\BusinessLogicLayer\questionnaire\QuestionnaireActionHandler;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\UserQuestionnaireShareRepository;
 use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
-class UserQuestionnaireShareManager
-{
-
+class UserQuestionnaireShareManager {
     protected $questionnaireShareRepository;
     protected $questionnaireRepository;
     protected $questionnaireActionHandler;
@@ -19,13 +16,12 @@ class UserQuestionnaireShareManager
     protected $webSessionManager;
 
     public function __construct(UserQuestionnaireShareRepository $questionnaireShareRepository,
-                                QuestionnaireRepository          $questionnaireRepository,
-                                QuestionnaireActionHandler       $questionnaireActionHandler,
-                                UserRepository                   $userRepository,
-                                WebSessionManager                $webSessionManager,
-                                LanguageManager                  $languageManager
-    )
-    {
+                                QuestionnaireRepository $questionnaireRepository,
+                                QuestionnaireActionHandler $questionnaireActionHandler,
+                                UserRepository $userRepository,
+                                WebSessionManager $webSessionManager,
+                                LanguageManager $languageManager
+    ) {
         $this->questionnaireShareRepository = $questionnaireShareRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
@@ -34,20 +30,17 @@ class UserQuestionnaireShareManager
         $this->languageManager = $languageManager;
     }
 
-    public function createQuestionnaireShare(int $userId, $questionnaireId)
-    {
+    public function createQuestionnaireShare(int $userId, $questionnaireId) {
         return $this->questionnaireShareRepository->create(['user_id' => $userId, 'questionnaire_id' => $questionnaireId]);
     }
 
-    public function handleQuestionnaireShare(array $parameters, int $referrerId)
-    {
+    public function handleQuestionnaireShare(array $parameters, int $referrerId) {
         $questionnaireId = $parameters['questionnaireId'];
         if ($this->shouldCountQuestionnaireShare($questionnaireId, $referrerId)) {
             $this->webSessionManager->setReferrerId($referrerId);
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
             if ($questionnaire &&
-                !$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $referrerId))
-            {
+                ! $this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $referrerId)) {
                 $lang = $this->languageManager->getLanguageByCode(app()->getLocale());
                 $this->createQuestionnaireShare($referrerId, $questionnaire->id);
                 $this->questionnaireActionHandler->handleQuestionnaireSharer($questionnaire,
@@ -57,17 +50,17 @@ class UserQuestionnaireShareManager
         }
     }
 
-    protected function shouldCountQuestionnaireShare(int $questionnaireId, int $referrerId)
-    {
-        return ($this->questionnaireRepository->exists(['id' => $questionnaireId])
+    protected function shouldCountQuestionnaireShare(int $questionnaireId, int $referrerId) {
+        return $this->questionnaireRepository->exists(['id' => $questionnaireId])
             && $this->userRepository->exists(['id' => $referrerId])
-            && $this->userNotLoggedInOrDifferentThanReferrer($referrerId));
+            && $this->userNotLoggedInOrDifferentThanReferrer($referrerId);
     }
 
-    protected function userNotLoggedInOrDifferentThanReferrer(int $referrerId)
-    {
-        if (!Auth::check())
+    protected function userNotLoggedInOrDifferentThanReferrer(int $referrerId) {
+        if (! Auth::check()) {
             return true;
+        }
+
         return Auth::id() !== $referrerId;
     }
 }

@@ -17,6 +17,6 @@ return [
     'reset' => 'A jelszavát visszaállítottuk!',
     'sent' => 'Elküldtük e-mailben a jelszó-visszaállítási linket!',
     'token' => 'Ez a visszaállítási jelszó érvénytelen.',
-    'user' => "Nem találunk ezzel az e-mail címmel felhasználót.",
+    'user' => 'Nem találunk ezzel az e-mail címmel felhasználót.',
 
 ];

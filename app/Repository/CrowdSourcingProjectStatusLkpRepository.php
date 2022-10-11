@@ -1,17 +1,14 @@
 <?php
 
-
 namespace App\Repository;
-
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
 
 class CrowdSourcingProjectStatusLkpRepository extends Repository {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return CrowdSourcingProjectStatusLkp::class;
     }
 }

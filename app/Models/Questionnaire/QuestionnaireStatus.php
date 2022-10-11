@@ -2,7 +2,6 @@
 
 namespace App\Models\Questionnaire;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $description
  */
-class QuestionnaireStatus extends Model
-{
+class QuestionnaireStatus extends Model {
     protected $table = 'questionnaire_statuses_lkp';
 }

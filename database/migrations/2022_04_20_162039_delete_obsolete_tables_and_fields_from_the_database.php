@@ -30,6 +30,5 @@ class DeleteObsoleteTablesAndFieldsFromTheDatabase extends Migration {
      * @return void
      */
     public function down() {
-
     }
 }

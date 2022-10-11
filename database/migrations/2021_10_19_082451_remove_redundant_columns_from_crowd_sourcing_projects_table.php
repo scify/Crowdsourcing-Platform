@@ -4,15 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveRedundantColumnsFromCrowdSourcingProjectsTable extends Migration
-{
+class RemoveRedundantColumnsFromCrowdSourcingProjectsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             $table->dropColumn([
                 'lp_motto_color',
@@ -34,7 +32,7 @@ class RemoveRedundantColumnsFromCrowdSourcingProjectsTable extends Migration
                 'lp_newsletter_btn_color',
                 'lp_newsletter_btn_bg_color',
                 'lp_footer_bg_color',
-                'lp_footer_color'
+                'lp_footer_color',
             ]);
 
             $table->renameColumn('lp_motto_overlay_color', 'lp_primary_color');
@@ -46,8 +44,7 @@ class RemoveRedundantColumnsFromCrowdSourcingProjectsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
             //
         });

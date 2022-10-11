@@ -22,6 +22,6 @@ return [
     'current_password' => 'Aktuálne heslo',
     'new_password' => 'Nové heslo',
     're_enter_password' => 'Znova zadajte heslo',
-    'nickname_help' => 'Your nickname will be publicly displayed when you respond to questionnaires'
+    'nickname_help' => 'Your nickname will be publicly displayed when you respond to questionnaires',
 
 ];

@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider {
      */
     public function boot() {
         ///validate the locale parameter
-        $regexForLocalParameter = config("app.regex_for_validating_locale_at_routes");
+        $regexForLocalParameter = config('app.regex_for_validating_locale_at_routes');
         Route::pattern('locale', $regexForLocalParameter);
 
         parent::boot();

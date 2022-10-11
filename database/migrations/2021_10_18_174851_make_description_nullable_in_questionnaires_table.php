@@ -22,6 +22,5 @@ class MakeDescriptionNullableInQuestionnairesTable extends Migration {
      * @return void
      */
     public function down() {
-
     }
 }

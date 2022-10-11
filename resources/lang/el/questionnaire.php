@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Επισκεφτείτε την πλατφόρμα  σας για να προσκαλέσετε τους φίλους σας',
     'go_to_dashboard'                   => 'Πηγαίνετε στην πλατφόρμα',
     'answers_saved_anonymously' => 'Οι απαντήσεις σας έχουν αποθηκευτεί ανώνυμα.',
-   // 'login_to_complete_submission' =>  'Παρακαλούμε συνδεθείτε για να ολοκληρώσετε την υποβολή σας!',
+    // 'login_to_complete_submission' =>  'Παρακαλούμε συνδεθείτε για να ολοκληρώσετε την υποβολή σας!',
     'by_registering_you' => 'Εγγραφείτε σαν χρήστης της πλατφόρμας<sup>*</sup>:',
     'filter_spammers' => 'Θα δείτε τις απαντήσεις σας.',
     'view_your_contribution' => 'Μπορείτε να <b>δείτε</b> τις απαντήσεις άλλων.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Πριν απαντήσετε το ερωτηματολόγιο, δείτε τι έχουν πει άλλοι ερωτηθέντες πατώντας',
     'here' => 'εδώ',
     'select_language' => 'Επιλογή γλώσσας',
-    "invite_your_friends_to_answer" => "Προσκαλέστε τους φίλους σας να απαντήσουν",
-    "go_to_homepage" => "Ναι! Πήγαινε στη homepage"
+    'invite_your_friends_to_answer' => 'Προσκαλέστε τους φίλους σας να απαντήσουν',
+    'go_to_homepage' => 'Ναι! Πήγαινε στη homepage',
 
 
 

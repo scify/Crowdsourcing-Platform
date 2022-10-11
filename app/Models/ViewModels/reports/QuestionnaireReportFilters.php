@@ -2,11 +2,9 @@
 
 namespace App\Models\ViewModels\reports;
 
-
 use Illuminate\Support\Collection;
 
 class QuestionnaireReportFilters {
-
     public $selectedProjectId;
     public $selectedQuestionnaireId;
     public $allQuestionnaires;
@@ -16,5 +14,4 @@ class QuestionnaireReportFilters {
         $this->selectedProjectId = $selectedProjectId;
         $this->selectedQuestionnaireId = $selectedQuestionnaireId;
     }
-
 }

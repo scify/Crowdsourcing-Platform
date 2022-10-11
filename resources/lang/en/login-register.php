@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'The password must be at least 8 characters.',
     'credentials_not_match'       => 'These credentials do not match our records.',
     'one_step_away'               => 'You’re one step away!',
-    'avoid_duplicate_submissions' => 'In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue'
+    'avoid_duplicate_submissions' => 'In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue',
 
 
 

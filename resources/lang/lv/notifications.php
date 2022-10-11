@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
 
     'go_to_dashboard'                   => 'Doties uz vadības paneli',
     'thank_you_for_contribution'        => 'Paldies par ieguldījumu!',
@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'Šajā mājaslapā tiek izmantotas sīkdatnes. Sīkāku informāciju skati mūsu "Privātuma politikā".',
     'code_of_conduct'                   => 'Pirms atbildes iesniegšanas, pārliecinies, ka tā atbilst mūsu rīcības kodeksam!',
     'agree_privacy_policy'              => 'Es piekrītu <a href="https://crowdsourcing.ecas.org/lv/terms-and-privacy" target="_blank">privātuma politikai.',
-    'ok'                                => 'Labi'
+    'ok'                                => 'Labi',
 
 
 

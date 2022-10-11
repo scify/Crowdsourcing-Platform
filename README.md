@@ -229,6 +229,20 @@ This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
 
 It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
 
+## PHP code style - Laravel Pint
+
+This application uses [Laravel Pint](https://laravel.com/docs/9.x/pint) in order to perform code-style.
+
+In order to run the styler, run :
+
+```bash
+
+./vendor/bin/pint --test -v # the --test will not do any changes, it will just output the changes needed
+
+./vendor/bin/pint -v # this command will actually perform the code style changes 
+
+```
+
 ## Installation-specific resources
 
 The application can be tweaked and personalized for each installation.

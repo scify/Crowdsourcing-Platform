@@ -21,7 +21,7 @@ class DropTranslatableColumnsFromCrowdSourcingProjectsTable extends Migration {
                 'footer',
                 'sm_title',
                 'sm_description',
-                'sm_keywords'
+                'sm_keywords',
             ]);
         });
     }

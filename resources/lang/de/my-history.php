@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Fragebogen-Beschreibung',
     'responded' => 'Beantwortet',
     'actions' => 'Aktivitäten',
-    'view_response' => 'Antwort anzeigen'
+    'view_response' => 'Antwort anzeigen',
 
 
 

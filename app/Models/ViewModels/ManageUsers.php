@@ -2,14 +2,11 @@
 
 namespace App\Models\ViewModels;
 
-
-class ManageUsers
-{
+class ManageUsers {
     public $users;
     public $allRoles;
 
-    public function __construct($users, $allRoles)
-    {
+    public function __construct($users, $allRoles) {
         $this->users = $users;
         $this->allRoles = $allRoles;
     }

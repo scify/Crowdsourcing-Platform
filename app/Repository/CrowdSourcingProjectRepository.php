@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -10,13 +9,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectRepository extends Repository {
-
     /**
      * Specify Model class name
      *
      * @return mixed
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return CrowdSourcingProject::class;
     }
 
@@ -29,15 +27,16 @@ class CrowdSourcingProjectRepository extends Repository {
             })
             ->with('questionnaires', function ($query) use ($questionnaireStatusId) {
                 $query->select(['id', 'prerequisite_order', 'status_id', 'default_language_id',
-                    'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created'])
+                    'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created', ])
                     ->where(['status_id' => $questionnaireStatusId])
                     ->withCount('responses')
                     ->orderBy('prerequisite_order')
                     ->orderBy('questionnaire_created', 'desc');
             });
 
-        if (count($additionalRelationships))
+        if (count($additionalRelationships)) {
             $builder = $builder->with($additionalRelationships);
+        }
 
         return $builder->get();
     }

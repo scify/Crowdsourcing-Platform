@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $deleted_at
  * @property-read \App\Models\UserRoleLookup $role
  * @property-read \App\Models\User $user
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole onlyTrashed()
  * @method static bool|null restore()
@@ -29,9 +30,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole withoutTrashed()
  * @mixin \Eloquent
  */
-class UserRole extends Model
-{
+class UserRole extends Model {
     use SoftDeletes;
+
     /**
      * The table associated with the model.
      *
@@ -45,7 +46,7 @@ class UserRole extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'role_id'
+        'user_id', 'role_id',
     ];
 
     public function user() {
@@ -55,6 +56,4 @@ class UserRole extends Model
     public function role() {
         return $this->belongsTo(UserRoleLookup::class, 'role_id', 'id');
     }
-
-
 }

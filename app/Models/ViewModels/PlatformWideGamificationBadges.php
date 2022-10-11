@@ -3,7 +3,6 @@
 namespace App\Models\ViewModels;
 
 class PlatformWideGamificationBadges {
-
     public $contributorBadge;
     public $communicatorBadge;
     public $influencerBadge;

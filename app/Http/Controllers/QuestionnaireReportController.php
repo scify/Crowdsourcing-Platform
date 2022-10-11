@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-
-use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireReportManager;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Illuminate\Database\QueryException;
@@ -13,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class QuestionnaireReportController extends Controller {
-
     protected $questionnaireReportManager;
     protected $questionnaireRepository;
 
@@ -26,7 +22,8 @@ class QuestionnaireReportController extends Controller {
     public function viewReportsPage(Request $request) {
         $selectedQuestionnaireId = $request->questionnaireId;
         $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
-        return view("questionnaire.reports.reports-with-filters", ['viewModel' => $viewModel]);
+
+        return view('questionnaire.reports.reports-with-filters', ['viewModel' => $viewModel]);
     }
 
     public function getReportDataForQuestionnaire(Request $request): JsonResponse {
@@ -43,10 +40,9 @@ class QuestionnaireReportController extends Controller {
             $responseContent = 'Error: ' . $e->getCode() . '. A Database error occurred.';
         } catch (\Exception $e) {
             $responseCode = Response::HTTP_INTERNAL_SERVER_ERROR;
-            $responseContent = 'Error: ' . $e->getCode() . "  " . $e->getMessage();
+            $responseContent = 'Error: ' . $e->getCode() . '  ' . $e->getMessage();
         } finally {
             return response()->json(['data' => $responseContent], $responseCode);
         }
     }
-
 }

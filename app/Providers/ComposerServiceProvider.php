@@ -5,15 +5,13 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ComposerServiceProvider extends ServiceProvider
-{
+class ComposerServiceProvider extends ServiceProvider {
     /**
      * Register bindings in the container.
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         View::composer('loggedin-environment.partials.menu', 'App\ViewComposers\MenuComposer');
 
         View::composer('errors::layout', 'App\ViewComposers\ErrorPagesComposer');
@@ -26,8 +24,6 @@ class ComposerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-
+    public function register() {
     }
 }

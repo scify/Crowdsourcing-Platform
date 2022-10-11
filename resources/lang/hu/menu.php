@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'Főoldal',
     'my_account' => 'Fiókom',
     'my_history' => 'Előzmények',
-    'sign_out' => 'Kijelentkezés'
+    'sign_out' => 'Kijelentkezés',
 
 
 ];

@@ -46,7 +46,7 @@ class GenerateSitemap extends Command {
         $translatablePublicPages = ['/', '/terms-and-privacy', '/code-of-conduct'];
         $translatablePublicPagesAvailability = [
             '/terms-and-privacy' => ['bg', 'de', 'el', 'en', 'es', 'et', 'fr', 'hu', 'it', 'lv', 'nl', 'pt', 'sk', 'sr'],
-            '/code-of-conduct' => ['bg', 'de', 'el', 'en', 'et', 'fr', 'hu', 'lv', 'nl', 'pt', 'sr']
+            '/code-of-conduct' => ['bg', 'de', 'el', 'en', 'et', 'fr', 'hu', 'lv', 'nl', 'pt', 'sr'],
         ];
         foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language) {
             if (strlen($language) === 2 && $language !== 'en') {
@@ -71,7 +71,6 @@ class GenerateSitemap extends Command {
         }
 
         foreach ($translatablePublicPages as $translatablePublicPage) {
-
             $link = Url::create($translatablePublicPage . 'en');
             $languagesToCrawl = $translatablePublicPagesAvailability[$translatablePublicPage] ?? $alternateLanguages;
             foreach ($languagesToCrawl as $alternateLanguage) {
@@ -83,6 +82,7 @@ class GenerateSitemap extends Command {
 
 
         $sitemapGenerator->writeToFile(public_path('sitemap.xml'));
+
         return CommandAlias::SUCCESS;
     }
 }

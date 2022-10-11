@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireActionHandler;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
-use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -47,10 +45,10 @@ class RegisterController extends Controller {
     private $crowdSourcingProjectManager;
     protected $questionnaireResponseManager;
 
-    public function __construct(UserRoleManager              $userRoleManager,
-                                UserManager                  $userManager,
-                                MailChimpAdaptor             $mailChimpManager,
-                                CrowdSourcingProjectManager  $crowdSourcingProjectManager,
+    public function __construct(UserRoleManager $userRoleManager,
+                                UserManager $userManager,
+                                MailChimpAdaptor $mailChimpManager,
+                                CrowdSourcingProjectManager $crowdSourcingProjectManager,
                                 QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
@@ -63,21 +61,21 @@ class RegisterController extends Controller {
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param array $data
+     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data) {
         return Validator::make($data, [
             'nickname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed'
+            'password' => 'required|string|min:8|confirmed',
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param array $data
+     * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data) {
@@ -88,16 +86,19 @@ class RegisterController extends Controller {
         } catch (\Exception $e) {
             Log::error($e);
         }
+
         return $user;
     }
 
     protected function registered(Request $request, $user) {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $numberOfResponsedTransfered = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
-        if ($numberOfResponsedTransfered)
+        if ($numberOfResponsedTransfered) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
+        }
 
-        $url = session("redirectTo") ? session("redirectTo") : $this->redirectTo();
+        $url = session('redirectTo') ? session('redirectTo') : $this->redirectTo();
+
         return redirect($url);
     }
 }

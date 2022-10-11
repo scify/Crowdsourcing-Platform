@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Models\ViewModels;
-
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
 use Illuminate\Support\Collection;
 
 class AllCrowdSourcingProjects {
-
     public $projects;
 
     public function __construct(Collection $projects) {

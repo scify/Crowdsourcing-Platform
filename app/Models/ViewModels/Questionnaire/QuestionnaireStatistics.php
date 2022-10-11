@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models\ViewModels\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
@@ -9,7 +8,6 @@ use App\Repository\Questionnaire\Statistics\QuestionnaireResponseStatistics;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireStatistics {
-
     public $questionnaire;
     public $userCanPrintStatistics;
     public $questionnaireResponseStatistics;
@@ -18,8 +16,8 @@ class QuestionnaireStatistics {
     public $userCanAnnotateAnswers;
     public $projectFilter;
 
-    public function __construct(Questionnaire                     $questionnaire,
-                                QuestionnaireResponseStatistics   $questionnaireResponseStatistics,
+    public function __construct(Questionnaire $questionnaire,
+                                QuestionnaireResponseStatistics $questionnaireResponseStatistics,
                                 QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
                                                                   $userCanPrintStatistics,
                                                                   $userCanAnnotateAnswers,
@@ -32,5 +30,4 @@ class QuestionnaireStatistics {
         $this->userCanAnnotateAnswers = $userCanAnnotateAnswers;
         $this->projectFilter = $projectFilter;
     }
-
 }

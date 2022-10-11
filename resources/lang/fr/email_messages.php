@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
     'crowdsource_our_future'            => 'Créons notre avenir grâce au crowdsourcing',
     'hello'                             => 'Bonjour!',
     'email_reset_password'              => 'Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.',
@@ -22,7 +22,7 @@ return [
     'thanks_message_for_answering'      => 'Merci de prendre le temps de répondre à notre questionnaire intitulé: ',
     'thanks_message_for_contribution'   => 'Grâce à votre contribution, nous nous rapprochons un peu plus de notre objectif!',
     'unlocked_new_badge'                => 'Vous avez également débloqué un nouveau badge:', 
-    'inquiries_about_our_work'          => 'Si vous avez des questions sur notre travail, n\'hésitez pas à nous contacter.'
+    'inquiries_about_our_work'          => 'Si vous avez des questions sur notre travail, n\'hésitez pas à nous contacter.',
 
 
 

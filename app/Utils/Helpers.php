@@ -3,7 +3,6 @@
 namespace App\Utils;
 
 class Helpers {
-
     public static function getFilteredAttributes(array $attributes, array $allowedKeys): array {
         return array_filter(
             $attributes,

@@ -1,17 +1,13 @@
 <?php
 
-
 namespace Tests\Unit;
-
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\Utils\Translator;
 use Tests\TestCase;
 
 class TranslatorTest extends TestCase {
-
     protected $translator;
-
 
     protected function setUp(): void {
         parent::setUp();
@@ -22,7 +18,7 @@ class TranslatorTest extends TestCase {
         $translated = $this->translator->translateTexts(
             [
                 'Καλημέρα',
-                'Καληνύχτα'
+                'Καληνύχτα',
             ],
             'en'
         );
@@ -31,7 +27,7 @@ class TranslatorTest extends TestCase {
 
     public function test_translate_single_question() {
         $questionnaireTranslator = $this->app->make(QuestionnaireTranslator::class);
-        $locales = ["", "de", "el", "fr"];
+        $locales = ['', 'de', 'el', 'fr'];
         $question = [
             'type' => 'rating',
             'name' => 'question4',
@@ -43,12 +39,11 @@ class TranslatorTest extends TestCase {
         $translatedQuestion = $questionnaireTranslator->translateQuestion($question, $locales);
 
         self::assertEquals($translatedQuestion, $question);
-
     }
 
     public function test_translate_questionnaire() {
         $questionnaireTranslator = $this->app->make(QuestionnaireTranslator::class);
-        $locales = ["", "de", "el", "fr"];
+        $locales = ['', 'de', 'el', 'fr'];
         $json = '
              {
                  "title": "sdfgsdfg",
@@ -162,5 +157,4 @@ class TranslatorTest extends TestCase {
         $translatedJSON = $questionnaireTranslator->translateQuestionnaireJSONToLocales($json, $locales);
         $this->assertEquals($translatedJSON, $expected);
     }
-
 }

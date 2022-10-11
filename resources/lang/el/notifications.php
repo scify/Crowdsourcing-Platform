@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'Αυτή η ιστοσελίδα χρησιμοποιεί cookies για να σας εξασφαλίσει την καλύτερη δυνατή εμπειρία στην ιστοσελίδα μας. Δείτε την “πολιτική απορρήτου” για λεπτομέρειες.',
     'code_of_conduct'                   => 'Βεβαιωθείτε ότι συμμορφώνεστε με τον κώδικα δεοντολογίας μας πριν απαντήσετε!',
     'agree_privacy_policy'              => 'Συμφωνώ με την<a href="https://crowdsourcing.ecas.org/el/terms-and-privacy" target="_blank"> πολιτική απορρήτου.',
-    'ok'
+    'ok',
 
 
 

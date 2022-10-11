@@ -2,9 +2,7 @@
 
 namespace App\BusinessLogicLayer;
 
-
 class WebSessionManager {
-
     const REFERRER_ID_ACTION = 'referrer-id';
 
     public function setReferrerId($referrerId) {
@@ -22,5 +20,4 @@ class WebSessionManager {
     private function get($key) {
         return session($key);
     }
-
 }

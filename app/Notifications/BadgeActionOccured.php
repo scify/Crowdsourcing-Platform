@@ -4,12 +4,13 @@ namespace App\Notifications;
 
 use App\Models\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class BadgeActionOccured extends Notification implements ShouldQueue {
     use Queueable;
+
     protected $questionnaire;
     protected $questionnaireFieldsTranslation;
     protected $badge;
@@ -18,7 +19,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable) {
@@ -42,19 +43,21 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
 
 
         $message->line('<div style="text-align: center;"><br><b>' . $beforeBadge . '</b><br><br></div>');
-        $message->line((String)view('gamification.badge-single', compact('badge')));
+        $message->line((string) view('gamification.badge-single', compact('badge')));
         $message->line('<br>' . $afterBadge);
         $message->line('<br><p style="text-align: center"><b>' . $actionText . '</b><br>' . $actionText2 . '</p>');
-        if($salutation)
+        if ($salutation) {
             $message->salutation($salutation);
-        $message->action(__("notifications.go_to_dashboard",[],$this->locale), route('my-dashboard'));
+        }
+        $message->action(__('notifications.go_to_dashboard', [], $this->locale), route('my-dashboard'));
+
         return $message;
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable) {

@@ -6,11 +6,10 @@ use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
 use App\Repository\Repository;
 
 class QuestionnaireFieldsTranslationRepository extends Repository {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return QuestionnaireFieldsTranslation::class;
     }
 }

@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'My Dashboard',
     'my_account' => 'My Account',
     'my_history' => 'My history',
-    'sign_out' => 'Sign out'
+    'sign_out' => 'Sign out',
 
 
 ];

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\BusinessLogicLayer\lkp;
 
 // these values must be the same as @class database/seeds/QuestionnaireStatisticsPageVisibilityLkpSeeder

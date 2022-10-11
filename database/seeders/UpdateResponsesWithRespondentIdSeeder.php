@@ -6,7 +6,6 @@ use App\Models\Questionnaire\QuestionnaireResponse;
 use Illuminate\Database\Seeder;
 
 class UpdateResponsesWithRespondentIdSeeder extends Seeder {
-
     /**
      * Run the database seeds.
      *

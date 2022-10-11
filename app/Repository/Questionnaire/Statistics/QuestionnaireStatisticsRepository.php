@@ -5,12 +5,11 @@ namespace App\Repository\Questionnaire\Statistics;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireStatisticsRepository {
-
     /**
      * * getQuestionnaireResponseStatistics
      * * Returns responses vs goal responses.
      * *
-     * * @param mixed $questionnaireId
+     * * @param  mixed  $questionnaireId
      * * @return QuestionnaireResponseStatistics
      * */
     public function getQuestionnaireResponseStatistics($questionnaireId): QuestionnaireResponseStatistics {
@@ -20,14 +19,13 @@ class QuestionnaireStatisticsRepository {
                     left outer join questionnaire_basic_statistics_colors as qbsc
                     on qbsc.questionnaire_id = qr.questionnaire_id
                     where qr.questionnaire_id = ? and deleted_at is null
-                    group by qbsc.total_responses_color;'
-            , [$questionnaireId]);
+                    group by qbsc.total_responses_color;', [$questionnaireId]);
         $goalResponses = DB::select(
             'select goal, qbsc.goal_responses_color from questionnaires
                     left outer join questionnaire_basic_statistics_colors as qbsc
                     on qbsc.questionnaire_id = questionnaires.id
-                    where questionnaires.id = ? and questionnaires.deleted_at is null;'
-            , [$questionnaireId]);
+                    where questionnaires.id = ? and questionnaires.deleted_at is null;', [$questionnaireId]);
+
         return new QuestionnaireResponseStatistics(
             count($totalResponses) ? $totalResponses[0]->count : 0,
             $goalResponses[0]->goal,
@@ -40,7 +38,7 @@ class QuestionnaireStatisticsRepository {
      * * getNumberOfResponsesPerLanguage
      * * Returns number of responses per language.
      * *
-     * * @param mixed $questionnaireId
+     * * @param  mixed  $questionnaireId
      * * @return QuestionnaireResponsesPerLanguage
      * */
     public function getNumberOfResponsesPerLanguage($questionnaireId) {
@@ -59,5 +57,4 @@ class QuestionnaireStatisticsRepository {
 
         return new QuestionnaireResponsesPerLanguage($query);
     }
-
 }

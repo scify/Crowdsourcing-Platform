@@ -34,7 +34,7 @@ return [
     'password_min_characters'     => 'A jelszónak legalább 8 karakterből kell állnia.',
     'credentials_not_match'       => 'A hitelesítő adatok nem egyeznek a tárolt adatokkal.',
     'one_step_away'               => 'Egy lépésre vagy!',
-    'avoid_duplicate_submissions' => 'A duplikált beküldések elkerülése érdekében csak a bejelentkezett felhasználók szólhatnak hozzá. Kérjük, jelentkezzen be a folytatáshoz'
+    'avoid_duplicate_submissions' => 'A duplikált beküldések elkerülése érdekében csak a bejelentkezett felhasználók szólhatnak hozzá. Kérjük, jelentkezzen be a folytatáshoz',
 
 
 

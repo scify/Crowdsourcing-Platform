@@ -7,17 +7,16 @@ use App\Repository\Repository;
 use Illuminate\Support\Collection;
 
 class QuestionnaireAnswerAnnotationRepository extends Repository {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return QuestionnaireAnswerAnnotation::class;
     }
 
     public function getAnswerAnnotationsForQuestionnaireAnswers(int $questionnaire_id): Collection {
         return QuestionnaireAnswerAnnotation::where([
-            'questionnaire_id' => $questionnaire_id
+            'questionnaire_id' => $questionnaire_id,
         ])->get()->groupBy(['question_name', 'respondent_user_id']);
     }
 
@@ -25,7 +24,7 @@ class QuestionnaireAnswerAnnotationRepository extends Repository {
         return QuestionnaireAnswerAnnotation::where([
             'questionnaire_id' => $questionnaire_id,
             'question_name' => $question_name,
-            'respondent_user_id' => $respondent_user_id
+            'respondent_user_id' => $respondent_user_id,
         ])->delete();
     }
 }

@@ -11,14 +11,16 @@ class CrowdSourcingProjectQuestionnaire extends Model {
      * @var string
      */
     protected $table = 'crowd_sourcing_project_questionnaires';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'project_id', 'questionnaire_id'
+        'project_id', 'questionnaire_id',
     ];
+
     protected $primaryKey = ['project_id', 'questionnaire_id'];
     public $incrementing = false;
 }

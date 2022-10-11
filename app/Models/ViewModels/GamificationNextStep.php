@@ -2,11 +2,9 @@
 
 namespace App\Models\ViewModels;
 
-
 use Illuminate\Support\Collection;
 
 class GamificationNextStep {
-
     public $title;
     public $subtitle;
     public $imgFileName;
@@ -23,6 +21,4 @@ class GamificationNextStep {
         $this->socialShareVM = $socialShareVM;
         $this->userHasAlreadyAnsweredTheActiveQuestionnaire = $userHasAlreadyAnsweredTheActiveQuestionnaire;
     }
-
-
 }

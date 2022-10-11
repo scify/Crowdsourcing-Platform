@@ -8,19 +8,15 @@
 
 namespace App\Repository;
 
-
 use App\Models\Language;
 
-class LanguageRepository extends Repository
-{
-
+class LanguageRepository extends Repository {
     /**
      * Specify Model class name
      *
      * @return mixed
      */
-    function getModelClassName()
-    {
+    public function getModelClassName() {
         return Language::class;
     }
 }

@@ -1,16 +1,13 @@
 <?php
 
-
 namespace App\Repository\Questionnaire;
-
 
 use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Repository\Repository;
 use Illuminate\Support\Collection;
 
 class QuestionnaireLanguageRepository extends Repository {
-
-    function getModelClassName() {
+    public function getModelClassName() {
         return QuestionnaireLanguage::class;
     }
 

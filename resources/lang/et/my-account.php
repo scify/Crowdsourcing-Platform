@@ -22,7 +22,7 @@ return [
     'current_password' => 'Kehtiv salasõna',
     'new_password' => 'Uus salasõna',
     're_enter_password' => 'Sisesta salasõna uuesti',
-    'nickname_help' => 'Kui vastate küsimustikele, kuvatakse teie hüüdnimi avalikult'
+    'nickname_help' => 'Kui vastate küsimustikele, kuvatakse teie hüüdnimi avalikult',
 
 
 ];

@@ -12,10 +12,10 @@ class QuestionnaireManager {
     protected $questionnaireLanguageRepository;
     protected $questionnaireFieldsTranslationManager;
 
-    public function __construct(QuestionnaireRepository                     $questionnaireRepository,
+    public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
-                                QuestionnaireLanguageRepository             $questionnaireLanguageRepository,
-                                QuestionnaireFieldsTranslationManager       $questionnaireFieldsTranslationManager) {
+                                QuestionnaireLanguageRepository $questionnaireLanguageRepository,
+                                QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
@@ -23,27 +23,28 @@ class QuestionnaireManager {
     }
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
-        $comments = is_null($comments) ? "" : $comments;
+        $comments = is_null($comments) ? '' : $comments;
         $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
     }
 
     public function storeOrUpdateQuestionnaire($data, $id = null) {
-        if (!$id)
+        if (! $id) {
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
                 $data['max_votes_num'],
-                $data['show_general_statistics'], $data["type_id"]
+                $data['show_general_statistics'], $data['type_id']
             );
-        else
+        } else {
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
                 $data['max_votes_num'],
-                $data['show_general_statistics'],$data["type_id"]);
+                $data['show_general_statistics'], $data['type_id']);
+        }
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
-            'language_id' => $questionnaire->defaultLanguage->id
+            'language_id' => $questionnaire->defaultLanguage->id,
         ];
         $this->questionnaireLanguageRepository->updateOrCreate($questionnaireData, $questionnaireData);
         $this->crowdSourcingProjectQuestionnaireRepository->setQuestionnaireToProjects($questionnaire->id, $data['project_ids']);
@@ -51,12 +52,13 @@ class QuestionnaireManager {
             'title' => $data['title'],
             'description' => $data['description'],
             'language_id' => $data['language'],
-            'questionnaire_id' => $questionnaire->id
+            'questionnaire_id' => $questionnaire->id,
         ], $questionnaire->id);
-        if (isset($data['extra_fields_translations']))
+        if (isset($data['extra_fields_translations'])) {
             $this->questionnaireFieldsTranslationManager->storeOrUpdateFieldsTranslationsForQuestionnaire(
                 json_decode($data['extra_fields_translations']), $questionnaire->id, $data['language']);
+        }
+
         return $questionnaire;
     }
-
 }

@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Visite o seu Painel para convidar os seus amigos',
     'go_to_dashboard'                   => 'Ir para o Painel',
     'answers_saved_anonymously' => 'As suas respostas foram guardadas anonimamente.',
-  //  'login_to_complete_submission' =>  'Por favor, faça o login para concluir a sua submissão!',
+    //  'login_to_complete_submission' =>  'Por favor, faça o login para concluir a sua submissão!',
     'by_registering_you' => 'Registar como utilizador da plataforma<sup>*</sup>:',
     'filter_spammers' => '<b>Verás</b> as tuas respostas',
     'view_your_contribution' => 'Podes <b>ver</b> as outras respostas.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Antes de responder ao questionário, veja o que outros participantes têm dito clicando',
     'here' => 'aqui',
     'select_language' => 'Selecione o idioma',
-    "invite_your_friends_to_answer" => "Convide os seus amigos para responder",
-    "go_to_homepage" => "Sim! Vá para a página inicial"
+    'invite_your_friends_to_answer' => 'Convide os seus amigos para responder',
+    'go_to_homepage' => 'Sim! Vá para a página inicial',
 
 
 

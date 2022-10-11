@@ -11,6 +11,7 @@ use GuzzleHttp\RequestOptions;
 class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
     private $api_key;
     private $client;
+
     const API_URL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze';
 
     public function __construct() {
@@ -27,12 +28,12 @@ class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
             $response = $this->client->post(static::API_URL . '?key=' . $this->api_key, [
                 RequestOptions::JSON => [
                     'comment' => [
-                        'text' => $text
+                        'text' => $text,
                     ],
                     'requestedAttributes' => [
-                        'TOXICITY' => new \stdClass()
-                    ]
-                ]
+                        'TOXICITY' => new \stdClass(),
+                    ],
+                ],
             ]);
         } catch (Exception $e) {
             throw new AnalyzerException(sprintf('Call to Perspective API Failed: %s', $e->getMessage()));
@@ -43,6 +44,7 @@ class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
         }
 
         $responseContent = json_decode($response->getBody());
+
         return new ToxicityAnalyzerResponse($responseContent->attributeScores->TOXICITY->summaryScore->value, $response->getBody());
     }
 }

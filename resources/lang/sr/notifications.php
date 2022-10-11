@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
 
     'go_to_dashboard'                   => 'Idite na Kontrolnu tablu',
     'thank_you_for_contribution'        => 'Hvala Vam na doprinosu!',
@@ -33,7 +33,7 @@ return [
     'cookies_and_privacy_policy'        => 'Ova veb stranica koristi kolačiće kako bi vam se obezbijedilo najbolje iskustvo na našoj veb stranici. Pogledajte našu „politiku privatnosti“ za više detalja.',
     'code_of_conduct'                   => 'Provjerite da li se pridržavate našeg kodeksa ponašanja prije nego što odgovorite!',
     'agree_privacy_policy'              => 'Slažem se sa <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> politikom privatnosti.',
-    'ok'                                => 'OK'
+    'ok'                                => 'OK',
 
 
 

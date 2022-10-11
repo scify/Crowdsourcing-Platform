@@ -18,7 +18,7 @@ return [
     'questionnaire_description' => 'Anketas apraksts',
     'responded' => 'Atbildējuši',
     'actions' => 'Darbības',
-    'view_response' => 'Apskatīt atbildi'
+    'view_response' => 'Apskatīt atbildi',
 
 
 

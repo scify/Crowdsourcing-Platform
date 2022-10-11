@@ -2,9 +2,7 @@
 
 namespace App\Models\ViewModels;
 
-
 class QuestionnaireProjectGoal {
-
     public $responsesNeededToReachGoal = 0;
     public $targetAchievedPercentage = 0;
     public $goal = 0;
@@ -14,5 +12,4 @@ class QuestionnaireProjectGoal {
         $this->targetAchievedPercentage = $targetAchievedPercentage;
         $this->goal = $goal;
     }
-
 }

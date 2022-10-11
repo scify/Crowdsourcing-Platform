@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Bezoek je Dashboard om je vrienden uit te nodigen',
     'go_to_dashboard'                   => 'Ga naar het Dashboard',
     'answers_saved_anonymously' => 'Jouw antwoorden zijn anoniem opgeslagen.',
-  //  'login_to_complete_submission' =>  'Log in om je bijdrage te voltooien!',
+    //  'login_to_complete_submission' =>  'Log in om je bijdrage te voltooien!',
     'by_registering_you' => 'Meld je aan als platformgebruiker<sup>*</sup>:',
     'filter_spammers' => 'Je zult <b>jouw antwoorden</b> zien.',
     'view_your_contribution' => 'Je kan <b>de antwoorden</b> van anderen zien.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Voordat je de vragenlijst beantwoordt kun je zien wat anderen hebben gezegd. Klik daarvoor',
     'here' => 'hier',
     'select_language' => 'Kies een taal',
-    "invite_your_friends_to_answer" => "Nodig je vrienden",
-    "go_to_homepage" => "Ja! Ga naar homepagina"
+    'invite_your_friends_to_answer' => 'Nodig je vrienden',
+    'go_to_homepage' => 'Ja! Ga naar homepagina',
 
 
 

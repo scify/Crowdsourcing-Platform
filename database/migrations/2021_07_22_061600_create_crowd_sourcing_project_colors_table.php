@@ -4,15 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCrowdSourcingProjectColorsTable extends Migration
-{
+class CreateCrowdSourcingProjectColorsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('crowd_sourcing_project_colors', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('project_id')->nullable();
@@ -28,8 +26,7 @@ class CreateCrowdSourcingProjectColorsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('crowd_sourcing_project_colors');
     }
 }

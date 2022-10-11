@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class QuestionnaireStatisticsBasicColors
- * @package App\Models\Questionnaire\Statistics
+ *
  * @property int $id
  * @property int $questionnaire_id
  * @property string $total_responses_color
  * @property string $goal_responses_color
  */
-class QuestionnaireBasicStatisticsColors extends Model
-{
+class QuestionnaireBasicStatisticsColors extends Model {
     protected $table = 'questionnaire_basic_statistics_colors';
 
     /**
@@ -22,6 +21,6 @@ class QuestionnaireBasicStatisticsColors extends Model
      * @var array
      */
     protected $fillable = [
-        'questionnaire_id', 'total_responses_color', 'goal_responses_color'
+        'questionnaire_id', 'total_responses_color', 'goal_responses_color',
     ];
 }

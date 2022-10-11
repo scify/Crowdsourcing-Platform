@@ -2,12 +2,11 @@
 
 namespace App\ViewComposers;
 
+use App\BusinessLogicLayer\UserManager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use App\BusinessLogicLayer\UserManager;
 
 class MenuComposer {
-
     protected $userManager;
 
     public function __construct(UserManager $userManager) {

@@ -15,7 +15,7 @@ return [
     'my_dashboard' => 'Mon tableau de bord',
     'my_account' => 'Mon compte',
     'my_history' => 'Mon historique',
-    'sign_out' => 'Se déconnecter'
+    'sign_out' => 'Se déconnecter',
 
 
 ];

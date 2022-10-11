@@ -7,17 +7,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuestionnaireAnswerVote extends CompositeKeysModel {
-
     protected $table = 'questionnaire_answer_votes';
-
     protected $fillable = [
         'questionnaire_id',
         'question_name',
         'respondent_user_id',
         'voter_user_id',
-        'upvote'
+        'upvote',
     ];
-
     protected $primaryKey = ['questionnaire_id', 'question_name', 'respondent_user_id', 'voter_user_id'];
     public $incrementing = false;
 

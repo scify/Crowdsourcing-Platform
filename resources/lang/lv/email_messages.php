@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
     'crowdsource_our_future'            => 'Izmantosim pūļa iesaisti savai nākotnei',
     'hello'                             => 'Sveiki!',
     'email_reset_password'              => 'Jūs saņemat šo e-pasta vēstuli, jo esam saņēmuši Jūsu konta paroles atjaunošanas pieprasījumu.',
@@ -22,7 +22,7 @@ return [
     'thanks_message_for_answering'      => 'Paldies, ka veltījāt laiku, lai atbildētu uz mūsu anketas jautājumiem ar nosaukumu: ',
     'thanks_message_for_contribution'   => 'Pateicoties Jūsu ieguldījumam, mēs esam soli tuvāk mūsu mērķim!',
     'unlocked_new_badge'                => 'Jūs arī esat ieguvis jaunu nozīmīti:', 
-    'inquiries_about_our_work'          => 'Ja Jums ir kādi jautājumi par mūsu darbu, sazinieties ar mums.'
+    'inquiries_about_our_work'          => 'Ja Jums ir kādi jautājumi par mūsu darbu, sazinieties ar mums.',
 
 
 

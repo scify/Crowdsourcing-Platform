@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Models\ViewModels;
-
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Language;
 use Illuminate\Support\Collection;
 
 class CreateEditCrowdSourcingProject {
-
     public $project;
     public $translations;
     public $projectStatusesLkp;
@@ -19,7 +16,7 @@ class CreateEditCrowdSourcingProject {
     public $defaultLanguageCode = 'en';
 
     public function __construct(CrowdSourcingProject $project, Collection $translations,
-                                Collection           $projectStatusesLkp,
+                                Collection $projectStatusesLkp,
                                 Collection $languagesLkp, string $contributorEmailView) {
         $this->project = $project;
         $this->translations = $translations;
@@ -87,9 +84,10 @@ class CreateEditCrowdSourcingProject {
     }
 
     public function shouldLanguageBeSelected(Language $language): bool {
-        if ($this->project->language_id)
+        if ($this->project->language_id) {
             return $this->project->language_id == $language->id;
+        }
+
         return $language->language_code === $this->defaultLanguageCode;
     }
-
 }

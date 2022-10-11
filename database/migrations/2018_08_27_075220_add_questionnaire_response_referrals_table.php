@@ -1,14 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class AddQuestionnaireResponseReferralsTable extends Migration
-{
-
-    public function up()
-    {
+class AddQuestionnaireResponseReferralsTable extends Migration {
+    public function up() {
         Schema::create('questionnaire_response_referrals', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('questionnaire_id');
@@ -27,8 +24,7 @@ class AddQuestionnaireResponseReferralsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('questionnaire_response_referrals');
     }
 }

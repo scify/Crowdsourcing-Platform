@@ -1,19 +1,16 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectsTranslationsTable extends Migration
-{
+class CreateProjectsTranslationsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         $sql = "CREATE TABLE `crowd_sourcing_project_translations` (
                       `id` int unsigned NOT NULL AUTO_INCREMENT,
                       `language_id` int unsigned NOT NULL DEFAULT '6',
@@ -46,8 +43,7 @@ class CreateProjectsTranslationsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('crowd_sourcing_project_translations');
     }
 }

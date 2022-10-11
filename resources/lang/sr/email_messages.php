@@ -9,7 +9,7 @@ return [
 
     */
 
-    
+
     'crowdsource_our_future'            => 'Hajde da crowdsource-ujemo našu budućnost',
     'hello'                             => 'Zdravo!',
     'email_reset_password'              => 'Dobili ste ovaj mejl zato što smo dobili zahtjev za resetovanje lozinke za Vaš nalog.',
@@ -22,7 +22,7 @@ return [
     'thanks_message_for_answering'      => 'Hvala Vam što ste odvojili vrijeme da odgovorite na naš upitnik pod nazivom: ',
     'thanks_message_for_contribution'   => 'Zahvaljujući Vašem doprinosu, korak smo bliže našem cilju!',
     'unlocked_new_badge'                => 'Takođe ste otključali novu značku:', 
-    'inquiries_about_our_work'          => 'Ako imate pitanja u vezi sa našim radom, ne oklijevajte da nas kontaktirate.'
+    'inquiries_about_our_work'          => 'Ako imate pitanja u vezi sa našim radom, ne oklijevajte da nas kontaktirate.',
 
 
 

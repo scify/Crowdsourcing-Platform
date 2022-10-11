@@ -17,6 +17,6 @@ return [
     'reset' => 'Sinu salasõna on lähtestatud!',
     'sent' => 'Saatsime sulle salasõna lähtestamise lingi!',
     'token' => 'See parooli lähtestamise luba on kehtetu.',
-    'user' => "Me ei suuda tuvastada sellise maili-aadressiga kasutajat.",
+    'user' => 'Me ei suuda tuvastada sellise maili-aadressiga kasutajat.',
 
 ];

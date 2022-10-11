@@ -1,20 +1,16 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
-class UpdateLanguagesNames3 extends Migration
-{
+class UpdateLanguagesNames3 extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        DB::statement("ALTER TABLE languages_lkp  CHANGE COLUMN `language_name` `language_name` VARCHAR(35)  NOT NULL;");
+    public function up() {
+        DB::statement('ALTER TABLE languages_lkp  CHANGE COLUMN `language_name` `language_name` VARCHAR(35)  NOT NULL;');
 
         DB::statement("update languages_lkp set language_name = 'Bulgarian (български)' where language_code = 'bg'");
         DB::statement("update languages_lkp set language_name = 'Croatian (Hrvatski)' where language_code = 'hr'");
@@ -40,7 +36,6 @@ class UpdateLanguagesNames3 extends Migration
         DB::statement("update languages_lkp set language_name = 'Turkish (Türkçe)' where language_code = 'tr'");
         DB::statement("update languages_lkp set language_name = 'Montenegrin' where language_code = 'sr'");
         DB::statement("update languages_lkp set language_name = 'Russian (русский)' where language_code = 'ru'");
-
     }
 
     /**
@@ -48,8 +43,7 @@ class UpdateLanguagesNames3 extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         //
     }
 }

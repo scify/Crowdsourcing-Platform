@@ -2,11 +2,9 @@
 
 namespace App\BusinessLogicLayer\questionnaire;
 
-
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 
 class QuestionnaireResponseReferralManager {
-
     private $questionnaireResponseReferralRepository;
 
     public function __construct(QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository) {
@@ -23,7 +21,7 @@ class QuestionnaireResponseReferralManager {
         return $this->questionnaireResponseReferralRepository->create([
             'questionnaire_id' => $questionnaireId,
             'respondent_id' => $respondentId,
-            'referrer_id' => $referrerId
+            'referrer_id' => $referrerId,
         ]);
     }
 }

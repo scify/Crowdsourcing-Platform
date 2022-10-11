@@ -22,7 +22,7 @@ return [
     'current_password' => 'Jelenlegi jelszó',
     'new_password' => 'Új jelszó',
     're_enter_password' => 'Jelszó újbóli megadása',
-    'nickname_help' => 'Beceneve nyilvánosan megjelenik, amikor válaszol a kérdőívekre'
+    'nickname_help' => 'Beceneve nyilvánosan megjelenik, amikor válaszol a kérdőívekre',
 
 
 ];

@@ -2,7 +2,6 @@
 
 namespace App\Models\ViewModels;
 
-
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,14 +49,16 @@ class CrowdSourcingProjectForLandingPage {
     }
 
     public function getSignInURLWithParameters(): string {
-        $url = "/login?submitQuestionnaire=1&redirectTo=" . urlencode($this->project->slug . "?open=1");
-        if (Request()->referrerId)
-            $url .= urlencode("&referrerId=") . Request()->referrerId;
-        if (Request()->questionnaireId)
-            $url .= urlencode("&questionnaireId=") . Request()->questionnaireId;
+        $url = '/login?submitQuestionnaire=1&redirectTo=' . urlencode($this->project->slug . '?open=1');
+        if (Request()->referrerId) {
+            $url .= urlencode('&referrerId=') . Request()->referrerId;
+        }
+        if (Request()->questionnaireId) {
+            $url .= urlencode('&questionnaireId=') . Request()->questionnaireId;
+        }
+
         return $url;
     }
-
 
     public function displayFeedbackQuestionnaire(): bool {
         // if user has responded to the main questionnaire,

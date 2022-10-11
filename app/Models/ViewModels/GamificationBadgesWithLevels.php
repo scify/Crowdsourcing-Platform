@@ -2,11 +2,9 @@
 
 namespace App\Models\ViewModels;
 
-
 use Illuminate\Support\Collection;
 
 class GamificationBadgesWithLevels {
-
     public $badgesWithLevelsList;
     public $totalPoints;
     public $numOfBadges;
@@ -20,9 +18,11 @@ class GamificationBadgesWithLevels {
     private function getNumOfBadges() {
         $i = 0;
         foreach ($this->badgesWithLevelsList as $item) {
-            if($item->level)
+            if ($item->level) {
                 $i++;
+            }
         }
+
         return $i;
     }
 }

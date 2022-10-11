@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\BusinessLogicLayer;
-
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
@@ -18,9 +16,7 @@ use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
 
-class UserDashboardManager
-{
-
+class UserDashboardManager {
     protected $questionnaireRepository;
     protected $platformWideGamificationBadgesProvider;
     protected $crowdSourcingProjectGoalManager;
@@ -29,14 +25,13 @@ class UserDashboardManager
     protected $questionnaireAccessManager;
     protected $crowdSourcingProjectTranslationManager;
 
-    public function __construct(QuestionnaireRepository                $questionnaireRepository,
+    public function __construct(QuestionnaireRepository $questionnaireRepository,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireGoalManager               $crowdSourcingProjectGoalManager,
-                                QuestionnaireBadgeProvider             $questionnaireBadgeProvider,
-                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
-                                QuestionnaireAccessManager             $questionnaireAccessManager,
-                                CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager)
-    {
+                                QuestionnaireGoalManager $crowdSourcingProjectGoalManager,
+                                QuestionnaireBadgeProvider $questionnaireBadgeProvider,
+                                QuestionnaireResponseRepository $questionnaireResponseRepository,
+                                QuestionnaireAccessManager $questionnaireAccessManager,
+                                CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->crowdSourcingProjectGoalManager = $crowdSourcingProjectGoalManager;
@@ -46,8 +41,7 @@ class UserDashboardManager
         $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
     }
 
-    private function questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses): bool
-    {
+    private function questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses): bool {
         // It's a feedback questionnaire.
         if ($questionnaire->type_id == 2) {
             // These are supposed to be answered IF and only IF the main project questionnaire is answered
@@ -55,18 +49,19 @@ class UserDashboardManager
             // IF:
             //a) they are not answered already
             $responseForThisFeedbackQuestionnaireDoesNotExist = $userResponses->first(function ($u) use ($questionnaire) {
-                    return $u->questionnaire_id == $questionnaire->id;
-                }) == null;
+                return $u->questionnaire_id == $questionnaire->id;
+            }) == null;
             //b) and user has responded to the main project questionnaire
             $responseForMainProjectQuestionnaireExists = $userResponses->first(function ($u) use ($questionnaire) {
-                    return $u->questionnaire->type_id == 1 &&
-                        $questionnaire->projects->firstWhere("id", $u->project_id) != null;
-                }) != null;
+                return $u->questionnaire->type_id == 1 &&
+                    $questionnaire->projects->firstWhere('id', $u->project_id) != null;
+            }) != null;
 
             return
                 $responseForThisFeedbackQuestionnaireDoesNotExist &&
                 $responseForMainProjectQuestionnaireExists;
         }
+
         return true;
     }
 
@@ -75,9 +70,7 @@ class UserDashboardManager
      * @param $userResponses
      * @return Collection<CrowdSourcingProject>
      */
-    private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection
-    {
-
+    private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection {
         //If user has already responded to this questionnaire, then any other actions,
         // like
         // a)  responding to the feedback questionnaire or
@@ -94,24 +87,24 @@ class UserDashboardManager
         // So what we need to do, is to find if there is response for a Main project already.
         $mainResponse = $userResponses->first(function ($u) use ($q) {
             return $u->questionnaire->type_id == 1 &&
-                $q->projects->firstWhere("id", $u->project_id) != null;
+                $q->projects->firstWhere('id', $u->project_id) != null;
         });
-        if ($mainResponse)
-            return collect([$q->projects->firstWhere("id", $mainResponse->project_id)]);
-        else
+        if ($mainResponse) {
+            return collect([$q->projects->firstWhere('id', $mainResponse->project_id)]);
+        } else {
             return $q->projects;
+        }
     }
 
-    public function getUserDashboardViewModel($user): UserDashboardViewModel
-    {
+    public function getUserDashboardViewModel($user): UserDashboardViewModel {
         $userResponses = $this->questionnaireResponseRepository->getQuestionnaireResponsesOfUser($user->id);
         $questionnaireIdsUserHasAnsweredTo = $userResponses->pluck('questionnaire_id')->toArray();
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
         $questionnairesToBeDisplayedInTheDashboard = collect([]);
         foreach ($questionnaires as $questionnaire) {
-
-            if (!$this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses))
+            if (! $this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses)) {
                 continue;
+            }
 
             $questionnaire->goalVM = $this->crowdSourcingProjectGoalManager
                 ->getQuestionnaireGoalViewModel($questionnaire, $questionnaire->responses_count);
@@ -127,7 +120,7 @@ class UserDashboardManager
                 $nextUnlockableBadge->getNextStepMessage(),
                 $nextUnlockableBadge->imageFileName,
                 true,
-                new QuestionnaireSocialShareButtons($questionnaire, $user->id),in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo));
+                new QuestionnaireSocialShareButtons($questionnaire, $user->id), in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo));
 
             $questionnairesToBeDisplayedInTheDashboard->push($questionnaire);
         }
@@ -136,5 +129,4 @@ class UserDashboardManager
 
         return new UserDashboardViewModel($questionnairesToBeDisplayedInTheDashboard, $platformWideGamificationBadgesVM);
     }
-
 }

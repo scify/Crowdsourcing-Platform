@@ -2,17 +2,15 @@
 
 namespace App\Repository;
 
-
 use App\Models\UserQuestionnaireShare;
 
 class UserQuestionnaireShareRepository extends Repository {
-
     /**
      * Specify Model class name
      *
      * @return mixed
      */
-    function getModelClassName() {
+    public function getModelClassName() {
         return UserQuestionnaireShare::class;
     }
 

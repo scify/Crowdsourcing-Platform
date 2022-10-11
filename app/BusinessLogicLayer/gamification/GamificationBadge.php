@@ -3,7 +3,6 @@
 namespace App\BusinessLogicLayer\gamification;
 
 abstract class GamificationBadge {
-
     protected $pointsPerAction = 1;
     public $badgeID;
     public $numberOfActionsPerformed = -1;
@@ -36,8 +35,10 @@ abstract class GamificationBadge {
     }
 
     private function calculateStatusMessage($requiredActionMessage) {
-        if($this->level == 0)
+        if ($this->level == 0) {
             return $requiredActionMessage;
-        return __("badges_messages.you_have_the") . $this->name . __("badges_messages.badge");
+        }
+
+        return __('badges_messages.you_have_the') . $this->name . __('badges_messages.badge');
     }
 }

@@ -23,7 +23,7 @@ return [
     'visit_dashboard_and_invite' => 'Apmeklē savu rīku paneli, lai uzaicinātu draugus',
     'go_to_dashboard'                   => 'Doties uz vadības paneli',
     'answers_saved_anonymously' => 'Tavas atbildes ir saglabātas kā anonīmas.',
-  //  'login_to_complete_submission' =>  'Lūdzu, piesakies, lai tās iesniegtu!',
+    //  'login_to_complete_submission' =>  'Lūdzu, piesakies, lai tās iesniegtu!',
     'by_registering_you' => 'Reģistrējies kā platformas lietotājs<sup>*</sup>:',
     'filter_spammers' => 'Tu <b>redzēsi</b> savas iesniegtās atbildes.',
     'view_your_contribution' => 'Tu <b>redzēsi</b> citu iesniegtās atbildes.',
@@ -47,8 +47,8 @@ return [
     'check_what_other_respondents' => 'Pirms atbildi uz anketas jautājumiem, noskaidro, ko teikuši citi respondenti, klikšķinot ',
     'here' => 'šeit',
     'select_language' => 'Izvēlies valodu',
-    "invite_your_friends_to_answer" => "Uzaiciniet draugus atbildēt",
-    "go_to_homepage" => "Jā! Dodieties uz mājaslapu"
+    'invite_your_friends_to_answer' => 'Uzaiciniet draugus atbildēt',
+    'go_to_homepage' => 'Jā! Dodieties uz mājaslapu',
 
 
 

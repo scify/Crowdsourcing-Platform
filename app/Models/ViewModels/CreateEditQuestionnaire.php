@@ -2,7 +2,6 @@
 
 namespace App\Models\ViewModels;
 
-
 use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Support\Collection;
 
@@ -17,11 +16,11 @@ class CreateEditQuestionnaire {
     public $type;
 
     public function __construct(Questionnaire $questionnaire,
-                                Collection    $projects,
-                                Collection    $languages,
-                                string        $title,
-                                Collection    $questionnaireStatisticsPageVisibilityLkp,
-                                Collection    $questionnaireFieldsTranslations) {
+                                Collection $projects,
+                                Collection $languages,
+                                string $title,
+                                Collection $questionnaireStatisticsPageVisibilityLkp,
+                                Collection $questionnaireFieldsTranslations) {
         $this->questionnaire = $questionnaire;
         $this->projects = $projects;
         $this->languages = $languages;
@@ -39,5 +38,4 @@ class CreateEditQuestionnaire {
             ],
         ];
     }
-
 }

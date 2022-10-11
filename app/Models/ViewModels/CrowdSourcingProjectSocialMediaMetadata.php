@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Models\ViewModels;
 
-
 class CrowdSourcingProjectSocialMediaMetadata {
-
     public $title;
     public $description;
     public $featuredImgPath;
@@ -19,5 +16,4 @@ class CrowdSourcingProjectSocialMediaMetadata {
         $this->keywords = $keywords;
         $this->siteName = $siteName;
     }
-
 }

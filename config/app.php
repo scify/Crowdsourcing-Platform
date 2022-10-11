@@ -182,7 +182,7 @@ return [
         //For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
-        \App\Providers\ConfigServiceProvider::class
+        \App\Providers\ConfigServiceProvider::class,
     ],
 
     /*
@@ -231,7 +231,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
