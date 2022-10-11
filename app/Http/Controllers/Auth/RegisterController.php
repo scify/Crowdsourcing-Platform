@@ -13,6 +13,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\MailChimpAdaptor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller {
@@ -46,10 +47,10 @@ class RegisterController extends Controller {
     private $crowdSourcingProjectManager;
     protected $questionnaireResponseManager;
 
-    public function __construct(UserRoleManager                 $userRoleManager,
-                                UserManager                     $userManager,
-                                MailChimpAdaptor                $mailChimpManager,
-                                CrowdSourcingProjectManager     $crowdSourcingProjectManager,
+    public function __construct(UserRoleManager              $userRoleManager,
+                                UserManager                  $userManager,
+                                MailChimpAdaptor             $mailChimpManager,
+                                CrowdSourcingProjectManager  $crowdSourcingProjectManager,
                                 QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest');
         $this->userRoleManager = $userRoleManager;
@@ -82,7 +83,11 @@ class RegisterController extends Controller {
     protected function create(array $data) {
         $user = $this->userManager->createUser($data);
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
-        $user->notify(new UserRegistered());
+        try {
+            $user->notify(new UserRegistered());
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
         return $user;
     }
 

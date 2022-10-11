@@ -13,14 +13,14 @@ function UrlMatchesMenuItem(string $urlPatternToMatch): string {
 }
 
 function getNameOfRoute($currentRoute) {
-    if ($currentRoute == null) //if we have a 404, the route name is null
+    if ($currentRoute == null || $currentRoute->getName() == null)
         return "home";
 
     return $currentRoute->getName();
 }
 
 function SetParameterAndGetAll($currentRoute, $parameter, $key) {
-    if ($currentRoute == null) //if we have a 404, the route name is null
+    if ($currentRoute == null || $currentRoute->getName() == null)
         return [];
 
     $currentRoute->setParameter($parameter, $key);

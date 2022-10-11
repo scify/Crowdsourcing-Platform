@@ -6,8 +6,8 @@
     @yield('title')
 @endsection
 @section('content')
-    <section>
-        <div class="flex-center position-ref error-container row">
+    <section class="container-fluid">
+        <div class="flex-center position-ref error-container row w-100">
             <div class="content col-md-9 col-sm-11" style="margin-top: 6rem">
                 <div class="code">
                     @yield('code')

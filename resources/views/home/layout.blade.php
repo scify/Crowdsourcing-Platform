@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Facades\Route; @endphp
+        <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -9,11 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="canonical" href="{{route(Request::route()->getName(), ['locale' => app()->getLocale()])}}">
+    <link rel="canonical" href="{{route(getNameOfRoute(Route::current()), ['locale' => app()->getLocale()])}}">
     @foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language)
         @if(strlen($language) === 2)
             <link rel="alternate" hreflang="{{ $language }}"
-                  href="{{route(Request::route()->getName(), ['locale' => $language])}}"/>
+                  href="{{route(getNameOfRoute(Route::current()), ['locale' => $language])}}"/>
         @endif
     @endforeach
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
