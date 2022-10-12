@@ -4,7 +4,6 @@ import "./bootstrap";
 import "fastclick";
 import "admin-lte"; // 'admin-lte/dist/js/app.min.js'
 import "select2";
-import "bootstrap-tagsinput";
 import "bootstrap-colorpicker";
 
 

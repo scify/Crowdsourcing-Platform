@@ -49,9 +49,11 @@
                     </label>
                     <p class="col-md-12">Type enter or comma in order to separate the keywords.</p>
                     <div class="col-md-12">
-                        <input type="text" name="sm_keywords" id="sm_keywords" class="form-control"
-                               data-role="tagsinput"
-                               value="{{ old('sm_keywords') ? old('sm_keywords') : $viewModel->project->defaultTranslation->sm_keywords  }}">
+                        <select name="sm_keywords[]" id="sm_keywords" class="form-control w-100" multiple="multiple">
+                            @foreach(explode(',', old('sm_keywords') ? old('sm_keywords') : $viewModel->project->defaultTranslation->sm_keywords) as $index => $keyword)
+                                <option selected="selected">{{ $keyword }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

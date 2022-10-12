@@ -41,16 +41,16 @@ class CrowdSourcingProjectManager {
     protected $questionnaireResponseRepository;
     protected $crowdSourcingProjectTranslationManager;
 
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
+    public function __construct(CrowdSourcingProjectRepository              $crowdSourcingProjectRepository,
+                                QuestionnaireRepository                     $questionnaireRepository,
+                                CrowdSourcingProjectStatusManager           $crowdSourcingProjectStatusManager,
+                                CrowdSourcingProjectAccessManager           $crowdSourcingProjectAccessManager,
                                 CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
-                                QuestionnaireGoalManager $questionnaireGoalManager,
-                                LanguageRepository $languageRepository,
-                                CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
+                                QuestionnaireGoalManager                    $questionnaireGoalManager,
+                                LanguageRepository                          $languageRepository,
+                                CrowdSourcingProjectColorsManager           $crowdSourcingProjectColorsManager,
+                                QuestionnaireResponseRepository             $questionnaireResponseRepository,
+                                CrowdSourcingProjectTranslationManager      $crowdSourcingProjectTranslationManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -100,7 +100,6 @@ class CrowdSourcingProjectManager {
         $userId = null;
 
 
-
         // if the user is logged in, get the user id
         if (Auth::check()) {
             $userId = Auth::id();
@@ -143,7 +142,6 @@ class CrowdSourcingProjectManager {
         }
 
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
-
 
 
         return new CrowdSourcingProjectForLandingPage($project,
@@ -219,41 +217,41 @@ class CrowdSourcingProjectManager {
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {
-        if (! isset($attributes['slug']) || ! $attributes['slug']) {
+        if (!isset($attributes['slug']) || !$attributes['slug']) {
             $attributes['slug'] = Str::slug($attributes['name'], '-');
         }
 
-        if (! isset($attributes['motto_title']) || ! $attributes['motto_title']) {
+        if (!isset($attributes['motto_title']) || !$attributes['motto_title']) {
             $attributes['motto_title'] = $attributes['name'];
         }
 
-        if (! isset($attributes['about']) || ! $attributes['about']) {
+        if (!isset($attributes['about']) || !$attributes['about']) {
             $attributes['about'] = $attributes['description'];
         }
 
-        if (! isset($attributes['footer']) || ! $attributes['footer']) {
+        if (!isset($attributes['footer']) || !$attributes['footer']) {
             $attributes['footer'] = $attributes['description'];
         }
 
-        if ((! isset($attributes['img_path']) || ! $attributes['img_path']) && (! $project || ! $project->img_path)) {
+        if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {
             $attributes['img_path'] = '/images/image_temp.png';
         }
 
-        if ((! isset($attributes['logo_path']) || ! $attributes['logo_path']) && (! $project || ! $project->logo_path)) {
+        if ((!isset($attributes['logo_path']) || !$attributes['logo_path']) && (!$project || !$project->logo_path)) {
             $attributes['logo_path'] = '/images/image_temp.png';
         }
 
-        if ((! isset($attributes['sm_featured_img_path']) || ! $attributes['sm_featured_img_path'])
-            && (! $project || ! $project->sm_featured_img_path)) {
+        if ((!isset($attributes['sm_featured_img_path']) || !$attributes['sm_featured_img_path'])
+            && (!$project || !$project->sm_featured_img_path)) {
             $attributes['sm_featured_img_path'] = '/images/image_temp.png';
         }
 
-        if ((! isset($attributes['lp_questionnaire_img_path']) || ! $attributes['lp_questionnaire_img_path'])
-            && (! $project || ! $project->lp_questionnaire_img_path)) {
+        if ((!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
+            && (!$project || !$project->lp_questionnaire_img_path)) {
             $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
         }
 
-        if (! isset($attributes['lp_show_speak_up_btn'])) {
+        if (!isset($attributes['lp_show_speak_up_btn'])) {
             $attributes['lp_show_speak_up_btn'] = false;
         }
 
@@ -261,14 +259,16 @@ class CrowdSourcingProjectManager {
     }
 
     protected function setDefaultValuesForSocialMediaFields(array $attributes): array {
-        if (! isset($attributes['sm_title']) || ! $attributes['sm_title']) {
+        if (!isset($attributes['sm_title']) || !$attributes['sm_title']) {
             $attributes['sm_title'] = $attributes['name'];
         }
-        if (! isset($attributes['sm_description']) || ! $attributes['sm_description']) {
+        if (!isset($attributes['sm_description']) || !$attributes['sm_description']) {
             $attributes['sm_description'] = $attributes['description'];
         }
-        if (! isset($attributes['sm_keywords']) || ! $attributes['sm_keywords']) {
+        if (!isset($attributes['sm_keywords']) || !$attributes['sm_keywords']) {
             $attributes['sm_keywords'] = str_replace(' ', ',', $attributes['name']);
+        } else {
+            $attributes['sm_keywords'] = implode(',', $attributes['sm_keywords']);
         }
 
         return $attributes;
@@ -281,7 +281,7 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        if (! $project->lp_primary_color) {
+        if (!$project->lp_primary_color) {
             $project->lp_primary_color = '#707070';
         }
 
@@ -289,16 +289,16 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialFileValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        if (! $project->img_path) {
+        if (!$project->img_path) {
             $project->img_path = '/images/image_temp.png';
         }
-        if (! $project->logo_path) {
+        if (!$project->logo_path) {
             $project->logo_path = '/images/image_temp.png';
         }
-        if (! $project->sm_featured_img_path) {
+        if (!$project->sm_featured_img_path) {
             $project->sm_featured_img_path = '/images/image_temp.png';
         }
-        if (! $project->lp_questionnaire_img_path) {
+        if (!$project->lp_questionnaire_img_path) {
             $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
         }
 
@@ -430,7 +430,7 @@ class CrowdSourcingProjectManager {
     }
 
     protected function copyProjectFile(string $filePath): string {
-        if (! $filePath) {
+        if (!$filePath) {
             return '';
         }
         $ext = pathinfo($filePath, PATHINFO_EXTENSION);
