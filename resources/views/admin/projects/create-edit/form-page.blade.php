@@ -23,23 +23,23 @@
                        aria-controls="basic-details" aria-selected="true">Basic Details</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#landing-page" role="tab"
+                    <a class="nav-link" id="landing-page-tab" data-toggle="tab" href="#landing-page" role="tab"
                        aria-controls="profile" aria-selected="false">Landing Page</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#social-media" role="tab"
+                    <a class="nav-link" id="social-media-tab" data-toggle="tab" href="#social-media" role="tab"
                        aria-controls="contact" aria-selected="false">Social Media</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#communication-resources" role="tab"
+                    <a class="nav-link" id="communication-tab" data-toggle="tab" href="#communication-resources" role="tab"
                        aria-controls="contact" aria-selected="false">Communication Emails</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#statistics-colors" role="tab"
+                    <a class="nav-link" id="statistics-colors-tab" data-toggle="tab" href="#statistics-colors" role="tab"
                        aria-controls="contact" aria-selected="false">Statistics Colors</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#translations" role="tab"
+                    <a class="nav-link" id="translations-tab" data-toggle="tab" href="#translations" role="tab"
                        aria-controls="contact" aria-selected="false">Translations</a>
                 </li>
             </ul>

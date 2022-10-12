@@ -72,12 +72,22 @@ import "codemirror/mode/xml/xml";
 		});
 	};
 
-	let init = function () {
+	let initializeSocialMediaKeywordsTags = function () {
+		$("#social-media-tab").one("click", function () {
+			window.setTimeout(function () {
+				$("#sm_keywords").select2({
+					tags: true
+				});
+				console.log("init!");
+			}, 200);
+		});
+	};
 
+	let init = function () {
 		initializeSubmitFormListener();
 		initializeImgFileChangePreviewHandlers();
 		initializeSummernote();
-
+		initializeSocialMediaKeywordsTags();
 	};
 	$(document).ready(function () {
 		init();

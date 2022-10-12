@@ -35,7 +35,6 @@
     "bootstrap": "^4.6.1",
     "bootstrap-colorpicker": "^3.2.0",
     "bootstrap-sweetalert": "^1.0.1",
-    "bootstrap-tagsinput": "^0.7.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
     "clipboard": "^2.0.11",
