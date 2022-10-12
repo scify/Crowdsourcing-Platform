@@ -1,7 +1,16 @@
 const mix = require('laravel-mix');
 const path = require("path");
 const webpack = require("webpack");
+const ESLintPlugin = require('eslint-webpack-plugin');
+
 mix.disableSuccessNotifications();
+
+mix.webpackConfig({
+    plugins: [new ESLintPlugin({
+        fix: true,
+        extensions: ['js', 'vue'],
+    })],
+});
 
 mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/common.js', 'public/dist/js/')

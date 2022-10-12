@@ -1,0 +1,4 @@
+public/
+node_modules/
+webpack.mix.js
+.eslintrc.json

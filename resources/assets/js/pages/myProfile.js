@@ -1,9 +1,9 @@
 
 (function () {
 
-    let initEvents = function() {
+	let initEvents = function() {
 
-    };
+	};
 
-    initEvents();
+	initEvents();
 })();

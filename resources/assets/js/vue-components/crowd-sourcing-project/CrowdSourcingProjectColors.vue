@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row mb-3" v-for="(color, index) in colors">
+    <div class="row mb-3" v-for="(color, index) in colors" :key="'color_' + index">
       <div class="col-5">
         <div class="input-group">
           <input type="text" name="color_names[]"
@@ -42,46 +42,46 @@ import {mapActions} from "vuex";
 import {initSingleColorPicker} from "../../common-backoffice";
 
 export default {
-  props: {
-    colorData: []
-  },
-  data: function () {
-    return {
-      colors: []
-    }
-  },
-  created() {
-    this.colors = this.colorData;
-  },
-  mounted() {
-  },
-  methods: {
-    ...mapActions([
-      'get',
-      'handleError',
-      'closeModal'
-    ]),
-    addColor() {
-      this.colors.push({
-        'color_name': 'color-' + (this.colors.length + 1),
-        'color_code': this.generateRandomColor()
-      });
-      let instance = this;
-      setTimeout(function () {
-        initSingleColorPicker($('#color_' + (instance.colors.length - 1)));
-      }, 500);
-    },
-    generateRandomColor() {
-      return '#' + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
-    },
-    removeColor(index) {
-      this.colors.splice(index, 1);
-      for (let i = 0; i < this.colors.length; i++) {
-        $('#color_' + i).colorpicker('setValue', this.colors[i].color_code);
-      }
-    }
-  }
-}
+	props: {
+		colorData: []
+	},
+	data: function () {
+		return {
+			colors: []
+		};
+	},
+	created() {
+		this.colors = this.colorData;
+	},
+	mounted() {
+	},
+	methods: {
+		...mapActions([
+			"get",
+			"handleError",
+			"closeModal"
+		]),
+		addColor() {
+			this.colors.push({
+				"color_name": "color-" + (this.colors.length + 1),
+				"color_code": this.generateRandomColor()
+			});
+			let instance = this;
+			setTimeout(function () {
+				initSingleColorPicker($("#color_" + (instance.colors.length - 1)));
+			}, 500);
+		},
+		generateRandomColor() {
+			return "#" + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
+		},
+		removeColor(index) {
+			this.colors.splice(index, 1);
+			for (let i = 0; i < this.colors.length; i++) {
+				$("#color_" + i).colorpicker("setValue", this.colors[i].color_code);
+			}
+		}
+	}
+};
 </script>
 
 <style lang="scss">

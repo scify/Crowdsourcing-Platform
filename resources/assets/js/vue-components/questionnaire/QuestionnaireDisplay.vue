@@ -53,237 +53,235 @@ import {arrayMove, setCookie} from "../../common-utils";
 import AnalyticsLogger from "../../analytics-logger";
 
 export default {
-  created() {
-    this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
-  },
-  components: {
-    AnalyticsLogger
-  },
-  mounted() {
-    this.initQuestionnaireDisplay();
-    //this.displayLoginPrompt = !(this.user && this.user.id);
-    this.displayLoginPrompt = false;
-    if (!this.displayLoginPrompt)
-      this.skipLogin();
-  },
-  props: {
-    user: {
-      type: Object,
-      default: function () {
-        return {}
-      }
-    },
-    questionnaire: {
-      type: Object,
-      default: function () {
-        return {}
-      }
-    },
-    project: {
-      type: Object,
-      default: function () {
-        return {}
-      }
-    },
-    userResponse: {
-      type: Object,
-      default: function () {
-        return {}
-      }
-    },
-    surveyContainerId: {
-      type: String
-    },
-    languages: []
-  },
-  data: function () {
-    return {
-      surveyCreator: null,
-      survey: null,
-      surveyLocales: [],
-      questionnaireLocalStorageKey: '',
-      displayLoginPrompt: true,
-      loading: false,
-      t0: null,
-      defaultLangCode: 'en'
-    }
-  },
-  methods: {
-    ...mapActions([
-      'get',
-      'handleError',
-      'post'
-    ]),
-    skipLogin() {
-      this.displayLoginPrompt = false;
-      const instance = this;
-      this.loading = true;
-      let surveyContainerId = this.$props.surveyContainerId;
-      setTimeout(function () {
-        instance.survey.render(surveyContainerId);
-      }, 500);
-    },
-    initQuestionnaireDisplay() {
-      Survey.StylesManager.applyTheme("modern");
-      this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
-      if (!this.userResponse)
-        this.prepareQuestionnaireForResponding();
-      else
-        this.prepareQuestionnaireForViewingResponse();
+	created() {
+		this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
+	},
+	mounted() {
+		this.initQuestionnaireDisplay();
+		//this.displayLoginPrompt = !(this.user && this.user.id);
+		this.displayLoginPrompt = false;
+		if (!this.displayLoginPrompt)
+			this.skipLogin();
+	},
+	props: {
+		user: {
+			type: Object,
+			default: function () {
+				return {};
+			}
+		},
+		questionnaire: {
+			type: Object,
+			default: function () {
+				return {};
+			}
+		},
+		project: {
+			type: Object,
+			default: function () {
+				return {};
+			}
+		},
+		userResponse: {
+			type: Object,
+			default: function () {
+				return {};
+			}
+		},
+		surveyContainerId: {
+			type: String
+		},
+		languages: []
+	},
+	data: function () {
+		return {
+			surveyCreator: null,
+			survey: null,
+			surveyLocales: [],
+			questionnaireLocalStorageKey: "",
+			displayLoginPrompt: true,
+			loading: false,
+			t0: null,
+			defaultLangCode: "en"
+		};
+	},
+	methods: {
+		...mapActions([
+			"get",
+			"handleError",
+			"post"
+		]),
+		skipLogin() {
+			this.displayLoginPrompt = false;
+			const instance = this;
+			this.loading = true;
+			let surveyContainerId = this.$props.surveyContainerId;
+			setTimeout(function () {
+				instance.survey.render(surveyContainerId);
+			}, 500);
+		},
+		initQuestionnaireDisplay() {
+			Survey.StylesManager.applyTheme("modern");
+			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
+			if (!this.userResponse)
+				this.prepareQuestionnaireForResponding();
+			else
+				this.prepareQuestionnaireForViewingResponse();
 
-      //bug fix on mobile browsers.
-      // When you try to drag the rankings, the modal is scrolled so you cannot complete it.
-      // We should use a mutation observer instead of this.
-      window.setInterval(function () {
-        if ($(".sv-ranking--drag").length > 0) {
-          $("body,#questionnaire-modal").addClass("disable-scroll");
-        } else {
-          $("body,#questionnaire-modal").removeClass("disable-scroll");
-        }
-      }, 300);
-    },
-    prepareQuestionnaireForResponding() {
+			//bug fix on mobile browsers.
+			// When you try to drag the rankings, the modal is scrolled, so you cannot complete it.
+			// We should use a mutation observer instead of this.
+			window.setInterval(function () {
+				if ($(".sv-ranking--drag").length > 0) {
+					$("body,#questionnaire-modal").addClass("disable-scroll");
+				} else {
+					$("body,#questionnaire-modal").removeClass("disable-scroll");
+				}
+			}, 300);
+		},
+		prepareQuestionnaireForResponding() {
 
-      const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
-      if (responseJSON && JSON.parse(responseJSON))
-        this.survey.data = JSON.parse(responseJSON);
-      const locales = this.survey.getUsedLocales();
-      // set the default questionnaire language as first, in order to be loaded first.
-      this.defaultLangCode = this.getDefaultLocaleForQuestionnaire();
-      arrayMove(locales, locales.indexOf(this.defaultLangCode), 0);
-      for (let i = 0; i < locales.length; i++) {
-        const locale = this.getLanguageFromCode(locales[i]);
-        if (locale)
-          this.surveyLocales.push({
-            code: locales[i],
-            name: locale.language_name
-          });
-      }
-      this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
-      this.survey.onComplete.add(this.saveQuestionnaireResponse);
-      this.survey.locale = this.surveyLocales[0].code;
-      const instance = this;
-      this.survey
-          .onAfterRenderSurvey
-          .add(function () {
-            instance.loading = false;
-            $(".sv_complete_btn").after(
-                "<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>"
-            );
-            setTimeout(() => {
-              $("textarea").each(function (index) {
-                $(this).attr("spellcheck", true);
-              });
-            }, 3000);
-          });
-    },
-    prepareQuestionnaireForViewingResponse() {
-      this.survey.data = JSON.parse(this.userResponse.response_json);
-      this.survey.mode = 'display';
-    },
-    saveQuestionnaireResponseProgress(sender, options) {
-      const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
-      if (!responseJSON || !JSON.parse(responseJSON))
-        AnalyticsLogger.logEvent('questionnaire_respond_begin_' + this.questionnaire.default_fields_translation.title, 'respond_begin', this.questionnaire.title, this.questionnaire.id);
-      window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
-      if (!this.t0)
-        this.t0 = performance.now();
-    },
-    saveQuestionnaireResponse(sender) {
-      let locale = sender.locale;
-      if (!locale)
-        locale = this.surveyLocales[0].code;
+			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
+			if (responseJSON && JSON.parse(responseJSON))
+				this.survey.data = JSON.parse(responseJSON);
+			const locales = this.survey.getUsedLocales();
+			// set the default questionnaire language as first, in order to be loaded first.
+			this.defaultLangCode = this.getDefaultLocaleForQuestionnaire();
+			arrayMove(locales, locales.indexOf(this.defaultLangCode), 0);
+			for (let i = 0; i < locales.length; i++) {
+				const locale = this.getLanguageFromCode(locales[i]);
+				if (locale)
+					this.surveyLocales.push({
+						code: locales[i],
+						name: locale.language_name
+					});
+			}
+			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
+			this.survey.onComplete.add(this.saveQuestionnaireResponse);
+			this.survey.locale = this.surveyLocales[0].code;
+			const instance = this;
+			this.survey
+				.onAfterRenderSurvey
+				.add(function () {
+					instance.loading = false;
+					$(".sv_complete_btn").after(
+						"<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>"
+					);
+					setTimeout(() => {
+						$("textarea").each(function () {
+							$(this).attr("spellcheck", true);
+						});
+					}, 3000);
+				});
+		},
+		prepareQuestionnaireForViewingResponse() {
+			this.survey.data = JSON.parse(this.userResponse.response_json);
+			this.survey.mode = "display";
+		},
+		// eslint-disable-next-line no-unused-vars
+		saveQuestionnaireResponseProgress(sender, options) {
+			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
+			if (!responseJSON || !JSON.parse(responseJSON))
+				AnalyticsLogger.logEvent("questionnaire_respond_begin_" + this.questionnaire.default_fields_translation.title, "respond_begin", this.questionnaire.title, this.questionnaire.id);
+			window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
+			if (!this.t0)
+				this.t0 = performance.now();
+		},
+		saveQuestionnaireResponse(sender) {
+			let locale = sender.locale;
+			if (!locale)
+				locale = this.surveyLocales[0].code;
 
-      const resultAsString = JSON.stringify(sender.data);
-      $(".loader-wrapper").removeClass('hidden');
-      $(".questionnaire-modal").modal('hide');
-      $(".respond-questionnaire").attr("disabled", true);
-      this.post({
-        url: route('respond-questionnaire'),
-        data: {
-          questionnaire_id: this.questionnaire.id,
-          project_id: this.project.id,
-          language_code: locale,
-          response: resultAsString
-        },
-        urlRelative: false,
-        handleError: false
-      }).then((response) => {
-        const anonymousUserId = response.data.anonymousUserId;
-        if (anonymousUserId)
-          setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
-        const time = performance.now() - this.t0;
-        const title = this.questionnaire.default_fields_translation.title;
-        AnalyticsLogger.logEvent('questionnaire_respond_complete_' + title, 'respond_complete', JSON.stringify({
-          'questionnaire': title,
-          'project': this.project.default_translation.name,
-          'language': locale,
-          'time_to_complete': time
-        }), this.questionnaire.id);
-        this.displaySuccessResponse(anonymousUserId);
-      }).catch(error => {
-        console.error(error);
-        this.displayErrorResponse(error);
-      }).finally(() => {
-        $(".questionnaire-modal").modal('hide');
-      });
-    },
-    displaySuccessResponse(anonymousUserId) {
-      let questionnaireResponseThankYouURL = route('questionnaire.thanks', this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
-      if (anonymousUserId)
-        questionnaireResponseThankYouURL += ('?anonymous_user_id=' + anonymousUserId);
+			const resultAsString = JSON.stringify(sender.data);
+			$(".loader-wrapper").removeClass("hidden");
+			$(".questionnaire-modal").modal("hide");
+			$(".respond-questionnaire").attr("disabled", true);
+			this.post({
+				url: window.route("respond-questionnaire"),
+				data: {
+					questionnaire_id: this.questionnaire.id,
+					project_id: this.project.id,
+					language_code: locale,
+					response: resultAsString
+				},
+				urlRelative: false,
+				handleError: false
+			}).then((response) => {
+				const anonymousUserId = response.data.anonymousUserId;
+				if (anonymousUserId)
+					setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
+				const time = performance.now() - this.t0;
+				const title = this.questionnaire.default_fields_translation.title;
+				AnalyticsLogger.logEvent("questionnaire_respond_complete_" + title, "respond_complete", JSON.stringify({
+					"questionnaire": title,
+					"project": this.project.default_translation.name,
+					"language": locale,
+					"time_to_complete": time
+				}), this.questionnaire.id);
+				this.displaySuccessResponse(anonymousUserId);
+			}).catch(error => {
+				console.error(error);
+				this.displayErrorResponse(error);
+			}).finally(() => {
+				$(".questionnaire-modal").modal("hide");
+			});
+		},
+		displaySuccessResponse(anonymousUserId) {
+			let questionnaireResponseThankYouURL = window.route("questionnaire.thanks", this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
+			if (anonymousUserId)
+				questionnaireResponseThankYouURL += ("?anonymous_user_id=" + anonymousUserId);
 
-      $("#pyro").addClass("pyro-on");
-      window.location = questionnaireResponseThankYouURL;
-    },
-    displayErrorResponse(error) {
-      swal({
-        title: "Oops!",
-        text: "An error occurred:" + error.toString(),
-        type: "error",
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "OK",
-      });
-    },
-    onLanguageChange(event) {
-      this.survey.locale = event.target.value;
-    },
-    getLanguageFromCode(code) {
-      return _.find(this.languages, function (l) {
-        return l.language_code === code;
-      })
-    },
-    getSignInUrl() {
-      return route('login', this.getLocaleFromURL()) + '?redirectTo=' + window.location.href;
-    },
-    getDefaultLocaleForQuestionnaire() {
-      const locales = this.survey.getUsedLocales();
-      // the lang in URl is between the 3rd and the 4rth slash characters
-      const url = window.location.href;
-      const start = this.getPosition(url, '/', 3) + 1;
-      const end = this.getPosition(url, '/', 4);
-      const urlLang = url.substring(start, end);
-      if (locales.indexOf(urlLang) !== -1)
-        return urlLang;
-      return this.defaultLangCode;
-    },
-    getLocaleFromURL() {
-      const url = window.location.href;
-      const start = this.getPosition(url, '/', 3) + 1;
-      const end = this.getPosition(url, '/', 4);
-      return url.substring(start, end);
-    },
-    getPosition(string, subString, occurrence) {
-      return string.split(subString, occurrence).join(subString).length;
-    },
-    trans(key) {
-      const keys = key.split(".");
-      if (!window.language[window.Laravel.locale])
-        return 'Language';
-      return window.language[window.Laravel.locale][keys[0]][keys[1]];
-    }
-  }
-}
+			$("#pyro").addClass("pyro-on");
+			window.location = questionnaireResponseThankYouURL;
+		},
+		displayErrorResponse(error) {
+			window.swal({
+				title: "Oops!",
+				text: "An error occurred:" + error.toString(),
+				type: "error",
+				confirmButtonClass: "btn-danger",
+				confirmButtonText: "OK",
+			});
+		},
+		onLanguageChange(event) {
+			this.survey.locale = event.target.value;
+		},
+		getLanguageFromCode(code) {
+			return _.find(this.languages, function (l) {
+				return l.language_code === code;
+			});
+		},
+		getSignInUrl() {
+			return window.route("login", this.getLocaleFromURL()) + "?redirectTo=" + window.location.href;
+		},
+		getDefaultLocaleForQuestionnaire() {
+			const locales = this.survey.getUsedLocales();
+			// the lang in URl is between the 3rd and the 4rth slash characters
+			const url = window.location.href;
+			const start = this.getPosition(url, "/", 3) + 1;
+			const end = this.getPosition(url, "/", 4);
+			const urlLang = url.substring(start, end);
+			if (locales.indexOf(urlLang) !== -1)
+				return urlLang;
+			return this.defaultLangCode;
+		},
+		getLocaleFromURL() {
+			const url = window.location.href;
+			const start = this.getPosition(url, "/", 3) + 1;
+			const end = this.getPosition(url, "/", 4);
+			return url.substring(start, end);
+		},
+		getPosition(string, subString, occurrence) {
+			return string.split(subString, occurrence).join(subString).length;
+		},
+		trans(key) {
+			const keys = key.split(".");
+			if (!window.language[window.Laravel.locale])
+				return "Language";
+			return window.language[window.Laravel.locale][keys[0]][keys[1]];
+		}
+	}
+};
 </script>
 
 <style lang="scss">

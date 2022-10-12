@@ -28,30 +28,39 @@
 <script>
 
 export default {
-  props: {
-    allowClose: Boolean,
-    open: false,
-    hideHeader: false,
-    additionalClasses: 'modal-lg'
-  },
-  data: function () {
-    return {}
-  },
-  methods: {
-    cancel() {
-      this.$emit("canceled");
-    },
-    submit() {
-      this.$emit("submit");
-    },
-    hasSlot(name = 'default') {
-      return !!this.$slots[name] || !!this.$scopedSlots[name];
-    }
-  },
-  mounted() {
+	props: {
+		allowClose: Boolean,
+		open: {
+			type: Boolean,
+			default: false,
+		},
+		hideHeader: {
+			type: Boolean,
+			default: false,
+		},
+		additionalClasses: {
+			type: String,
+			default: "modal-lg",
+		}
+	},
+	data: function () {
+		return {};
+	},
+	methods: {
+		cancel() {
+			this.$emit("canceled");
+		},
+		submit() {
+			this.$emit("submit");
+		},
+		hasSlot(name = "default") {
+			return !!this.$slots[name] || !!this.$slots[name];
+		}
+	},
+	mounted() {
 
-  }
-}
+	}
+};
 </script>
 <style scoped lang="scss">
 
