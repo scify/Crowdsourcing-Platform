@@ -47,29 +47,32 @@
 </template>
 <script>
 
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 
 export default {
-  props: {
-    showOkButton: false
-  },
-  data: function () {
-    return {}
-  },
-  methods: {
-    close() {
-      this.$store.dispatch('closeModal');
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'modal'
-    ])
-  },
-  mounted() {
+	props: {
+		showOkButton: {
+			type: Boolean,
+			default: false,
+		}
+	},
+	data: function () {
+		return {};
+	},
+	methods: {
+		close() {
+			this.$store.dispatch("closeModal");
+		}
+	},
+	computed: {
+		...mapGetters([
+			"modal"
+		])
+	},
+	mounted() {
 
-  }
-}
+	}
+};
 </script>
 <style scoped lang="scss">
 

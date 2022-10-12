@@ -1,6 +1,6 @@
 <template>
   <div class="modal-component">
-    <modal
+    <common-modal
         :open="modalOpen"
         :allow-close="true"
         :classes="''"
@@ -59,7 +59,7 @@
           </div>
         </div>
       </template>
-    </modal>
+    </common-modal>
   </div>
 </template>
 
@@ -70,63 +70,66 @@ import _ from "lodash";
 import {showToast} from "../../common-utils";
 
 export default {
-  name: "QuestionnaireLanguages",
-  props: {
-    modalOpen: false,
-    questionnaireId: null
-  },
-  data: function () {
-    return {
-      questionnaireLanguages: [],
-      saveLoading: false,
-      contentLoading: false
-    }
-  },
-  watch: {
-    'modalOpen'() {
-      if (this.modalOpen)
-        this.getQuestionnaireLanguages();
-    }
-  },
-  methods: {
-    ...mapActions([
-      'get',
-      'handleError',
-      'post'
-    ]),
-    getQuestionnaireLanguages() {
-      this.contentLoading = true;
-      this.get({
-        url: route('questionnaire.languages') + '?questionnaire_id=' + this.questionnaireId,
-        urlRelative: false
-      }).then(response => {
-        this.questionnaireLanguages = response.data.questionnaire_languages;
-        this.contentLoading = false;
-      });
-    },
-    saveQuestionnaireLanguagesStatus() {
-      this.saveLoading = true;
-      const mapped = _.map(this.questionnaireLanguages, function f(el) {
-        return {
-          id: el.language.id,
-          status: el.human_approved
-        };
-      });
-      this.post({
-        url: route('questionnaire.mark-translations'),
-        data: {
-          questionnaire_id: this.questionnaireId,
-          lang_ids_to_status: mapped
-        },
-        urlRelative: false
-      }).then(response => {
-        console.log(response.data);
-        this.saveLoading = false;
-        showToast('Languages updated!', '#28a745');
-      });
-    }
-  }
-}
+	name: "QuestionnaireLanguages",
+	props: {
+		modalOpen: {
+			type: Boolean,
+			default: false,
+		},
+		questionnaireId: null
+	},
+	data: function () {
+		return {
+			questionnaireLanguages: [],
+			saveLoading: false,
+			contentLoading: false
+		};
+	},
+	watch: {
+		"modalOpen"() {
+			if (this.modalOpen)
+				this.getQuestionnaireLanguages();
+		}
+	},
+	methods: {
+		...mapActions([
+			"get",
+			"handleError",
+			"post"
+		]),
+		getQuestionnaireLanguages() {
+			this.contentLoading = true;
+			this.get({
+				url: window.route("questionnaire.languages") + "?questionnaire_id=" + this.questionnaireId,
+				urlRelative: false
+			}).then(response => {
+				this.questionnaireLanguages = response.data.questionnaire_languages;
+				this.contentLoading = false;
+			});
+		},
+		saveQuestionnaireLanguagesStatus() {
+			this.saveLoading = true;
+			const mapped = _.map(this.questionnaireLanguages, function f(el) {
+				return {
+					id: el.language.id,
+					status: el.human_approved
+				};
+			});
+			this.post({
+				url: window.route("questionnaire.mark-translations"),
+				data: {
+					questionnaire_id: this.questionnaireId,
+					lang_ids_to_status: mapped
+				},
+				urlRelative: false
+			}).then(response => {
+				console.log(response.data);
+				this.saveLoading = false;
+				showToast("Languages updated!", "#28a745");
+			});
+		}
+	}
+};
 </script>
 
 <style scoped>
