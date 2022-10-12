@@ -78,7 +78,6 @@ import "codemirror/mode/xml/xml";
 				$("#sm_keywords").select2({
 					tags: true
 				});
-				console.log("init!");
 			}, 200);
 		});
 	};
