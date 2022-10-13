@@ -9,11 +9,11 @@ window._ = _;
  */
 import "bootstrap";
 import * as Popper from "@popperjs/core";
-import jquery from "jquery";
+import $ from "jquery";
 
 try {
 	window.Popper = Popper;
-	window.$ = window.jQuery = jquery;
+	window.$ = window.jQuery = $;
 } catch (e) {
 	console.error(e);
 }
