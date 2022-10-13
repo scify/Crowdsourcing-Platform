@@ -33,9 +33,9 @@ class LoginController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/en/my-dashboard';
+    protected string $redirectTo = '/en/my-dashboard';
 
-    protected $exceptionHandler;
+    protected ExceptionHandler $exceptionHandler;
 
     public function redirectTo() {
         return app()->getLocale() . '/my-dashboard';
@@ -74,11 +74,9 @@ class LoginController extends Controller {
         try {
             return Socialite::driver($driver)->redirect();
         } catch (Exception $e) {
-            abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
             $this->exceptionHandler->report($e);
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
         }
-
-        return redirect()->route('home');
     }
 
     /**
