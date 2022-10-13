@@ -9,6 +9,7 @@
         "ext-libxml": "*",
         "ext-simplexml": "*",
         "ext-zip": "*",
+        "accentinteractive/laravel-logcleaner": "^1.1",
         "awobaz/compoships": "^2.1",
         "cocur/slugify": "^3.1",
         "doctrine/dbal": "^2.9",

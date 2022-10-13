@@ -23,6 +23,7 @@ class Kernel extends ConsoleKernel {
      */
     protected function schedule(Schedule $schedule) {
         $schedule->command('translate:questionnaire_answer_texts')->hourly();
+        $schedule->command('logcleaner:run')->daily()->at('01:00');
     }
 
     /**
