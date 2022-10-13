@@ -4,8 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e66dfc0bc7b2a16259e9b9315baf401e",
+    "content-hash": "4e3ebc2a324b415caa4287411ae19889",
     "packages": [
+        {
+            "name": "accentinteractive/laravel-logcleaner",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/accentinteractive/laravel-logcleaner.git",
+                "reference": "ca1caa398a9a65d1cc60c3931925f4292523ab7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/accentinteractive/laravel-logcleaner/zipball/ca1caa398a9a65d1cc60c3931925f4292523ab7e",
+                "reference": "ca1caa398a9a65d1cc60c3931925f4292523ab7e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/filesystem": "^6.0|^7.0|^8.0|^9.0",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "4.*|5.*|6.*|^7.0",
+                "phpunit/phpunit": "^8.4|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Accentinteractive\\LaravelLogcleaner\\LaravelLogcleanerServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelLogcleaner": "Accentinteractive\\LaravelLogcleaner\\LaravelLogcleanerFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Accentinteractive\\LaravelLogcleaner\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joost van Veen",
+                    "email": "joost@accentinteractive.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Keep your laravel logs small and tidy.",
+            "homepage": "https://github.com/accentinteractive/laravel-logcleaner",
+            "keywords": [
+                "accentinteractive",
+                "laravel-logcleaner"
+            ],
+            "support": {
+                "issues": "https://github.com/accentinteractive/laravel-logcleaner/issues",
+                "source": "https://github.com/accentinteractive/laravel-logcleaner/tree/v1.1.0"
+            },
+            "time": "2022-02-10T07:42:22+00:00"
+        },
         {
             "name": "awobaz/compoships",
             "version": "2.1.4",
