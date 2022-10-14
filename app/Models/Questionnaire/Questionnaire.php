@@ -55,6 +55,7 @@ class Questionnaire extends Model {
         'statistics_page_visibility_lkp_id',
         'max_votes_num',
         'show_general_statistics',
+        'respondent_auth_required'
     ];
 
     /**

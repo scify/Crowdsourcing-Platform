@@ -51,7 +51,7 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
-        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($request->all());
+        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data);
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
 
         return $questionnaire;

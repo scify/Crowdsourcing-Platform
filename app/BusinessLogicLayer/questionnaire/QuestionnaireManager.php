@@ -12,10 +12,10 @@ class QuestionnaireManager {
     protected $questionnaireLanguageRepository;
     protected $questionnaireFieldsTranslationManager;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
+    public function __construct(QuestionnaireRepository                     $questionnaireRepository,
                                 CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
-                                QuestionnaireLanguageRepository $questionnaireLanguageRepository,
-                                QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {
+                                QuestionnaireLanguageRepository             $questionnaireLanguageRepository,
+                                QuestionnaireFieldsTranslationManager       $questionnaireFieldsTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
@@ -28,19 +28,23 @@ class QuestionnaireManager {
     }
 
     public function storeOrUpdateQuestionnaire($data, $id = null) {
-        if (! $id) {
+        if (!$id) {
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
                 $data['max_votes_num'],
-                $data['show_general_statistics'], $data['type_id']
+                $data['show_general_statistics'],
+                $data['type_id'],
+                $data['respondent_auth_required']
             );
         } else {
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
                 $data['max_votes_num'],
-                $data['show_general_statistics'], $data['type_id']);
+                $data['show_general_statistics'],
+                $data['type_id'],
+                $data['respondent_auth_required']);
         }
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
