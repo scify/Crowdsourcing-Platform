@@ -15,7 +15,6 @@ mix.webpackConfig({
 mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/pages/register.js', 'public/dist/js')
-    .js('resources/assets/js/pages/home.js', 'public/dist/js')
     .js('resources/assets/js/questionnaire/manage-questionnaires.js', 'public/dist/js')
     .js('resources/assets/js/project/landing-page.js', 'public/dist/js')
     .js('resources/assets/js/project/manage-project.js', 'public/dist/js')
