@@ -87,8 +87,3 @@
     </div>
 
 @endsection
-
-@push('scripts')
-    <script src="{{ mix('dist/js/myProfile.js')}}"></script>
-    <script src="{{ mix('dist/js/projectGoal.js')}}"></script>
-@endpush

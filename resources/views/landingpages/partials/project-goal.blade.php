@@ -7,8 +7,5 @@
          data-target="{{$questionnaireViewModel->targetAchievedPercentage}}">
     </div>
 </div>
-@push('scripts')
-    <script src="{{ mix('dist/js/projectGoal.js')}}"></script>
-@endpush
 
 

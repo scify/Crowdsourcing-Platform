@@ -86,5 +86,5 @@
     <script>
         const responses = Object.values(@json($responses));
     </script>
-    <script src="{{ mix('dist/js/myQuestionnaireResponses.js') }}"></script>
+    <script src="{{ mix('dist/js/my-questionnaire-responses.js') }}"></script>
 @endpush
