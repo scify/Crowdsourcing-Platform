@@ -21,3 +21,5 @@ public/vendor
 .phpunit.result.cache
 .env.testing
 public/sitemap.xml
+resources/assets/sass/*.css
+resources/assets/sass/*.map
