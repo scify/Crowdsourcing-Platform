@@ -49,7 +49,6 @@
 </div>
 
 @include('partials.footer-scripts')
-<script src="{{mix('dist/js/home.js')}}"></script>
 
 </body>
 </html>
