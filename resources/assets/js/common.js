@@ -5,6 +5,16 @@ import route from "./backend-route";
 
 window.route = route;
 
+axios.get("/" + window.Laravel.locale + "/app-translations",
+	{
+		headers: {
+			"Accept": "application/json"
+		}
+	})
+	.then(function (response) {
+		window.translations = response.data.translations;
+	});
+
 import "./bootstrap";
 
 import Vue from "vue";
@@ -23,16 +33,6 @@ new Vue({
 	el: "#app",
 	store: store
 });
-
-axios.get("/" + window.Laravel.locale + "/app-translations",
-	{
-		headers: {
-			"Accept": "application/json"
-		}
-	})
-	.then(function (response) {
-		window.translations = response.data.translations;
-	});
 
 (function () {
 
