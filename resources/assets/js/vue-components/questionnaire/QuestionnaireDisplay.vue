@@ -17,7 +17,7 @@
       <div class="row" v-if="!userResponse">
         <div class="col-md-12 language-selection">
           <div class="form-group">
-            <label for="language-select">{{ trans('questionnaire.select_language') }}</label>
+            <label for="language-select">{{ window.trans('questionnaire.select_language') }}</label>
             <select class="form-control" @change="onLanguageChange($event)" id="language-select">
               <option :selected="language.code === defaultLangCode"
                       :value="language.code" v-for="(language, index) in surveyLocales"
@@ -273,12 +273,6 @@ export default {
 		},
 		getPosition(string, subString, occurrence) {
 			return string.split(subString, occurrence).join(subString).length;
-		},
-		trans(key) {
-			const keys = key.split(".");
-			if (!window.language[window.Laravel.locale])
-				return "Language";
-			return window.language[window.Laravel.locale][keys[0]][keys[1]];
 		}
 	}
 };

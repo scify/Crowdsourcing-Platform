@@ -38,6 +38,7 @@ Route::group($localeInfo, function () {
     Route::get('/', 'HomeController@showHomePage')->name('home');
     Route::get('/terms-and-privacy', 'HomeController@showTermsAndPrivacyPage')->name('terms.privacy');
     Route::get('/code-of-conduct', 'HomeController@showCodeOfConductPage')->name('codeOfConduct');
+    Route::get('/app-translations', [LanguageController::class, 'getAppTranslations'])->name('app.translations');
 });
 
 Route::get('/terms-and-privacy', function () {

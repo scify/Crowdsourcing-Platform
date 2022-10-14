@@ -1,10 +1,6 @@
-import languageBundle from "@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader";
-
 window.wa = {};
 window.wa.enums = {};
 window.swal = import("bootstrap-sweetalert");
-
-import "@popperjs/core";
 import route from "./backend-route";
 
 window.route = route;
@@ -28,9 +24,17 @@ new Vue({
 	store: store
 });
 
-(function () {
+axios.get("/" + window.Laravel.locale + "/app-translations",
+	{
+		headers: {
+			"Accept": "application/json"
+		}
+	})
+	.then(function (response) {
+		window.translations = response.data.translations;
+	});
 
-	window.language = languageBundle;
+(function () {
 
 	$.ajaxSetup({
 		headers: {
