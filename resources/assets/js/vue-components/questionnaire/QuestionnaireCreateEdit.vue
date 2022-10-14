@@ -54,7 +54,7 @@
               <label for="language">Statistics page visibility</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <select v-model="questionnaire.statistics_page_visibility_lkp_id" name="statistics_page_visibility_lkp_id"
+              <select v-model="questionnaire.statistics_page_visibility_lkp_id"
                       id="statistics_page_visibility_lkp_id">
                 <option v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
                         :key="'visibility_' + visibilityLkp.id"
@@ -67,10 +67,30 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="language">Allow anonymous responses</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <select v-model="questionnaire.respondent_auth_required"
+                      id="questionnaire_respondent_auth_level">
+                <option
+                    :value="0"
+                    :selected="!questionnaire.respondent_auth_required">
+                  Users can respond either with their account or anonymously
+                </option>
+                <option
+                    :value="1"
+                    :selected="questionnaire.respondent_auth_required">
+                  Users must be registered in order to respond
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label for="title">Questionnaire's Title</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="text" class="form-control" name="title" id="title"
+              <input type="text" class="form-control" id="title"
                      placeholder="Insert questionnaire's title"
                      v-model="questionnaire.default_fields_translation.title">
             </div>
@@ -80,7 +100,7 @@
               <label>Description</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-                            <textarea class="form-control" name="description" id="description"
+                            <textarea class="form-control" id="description"
                                       v-model="questionnaire.default_fields_translation.description"
                                       placeholder="Insert questionnaire's description">
                             </textarea>
@@ -91,7 +111,7 @@
               <label for="goal">Responses Goal</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="number" class="form-control" name="goal" id="goal"
+              <input type="number" class="form-control" id="goal"
                      required
                      placeholder="Insert questionnaire's goal"
                      v-model="questionnaire.goal">
@@ -102,7 +122,7 @@
               <label for="goal">Max number of votes (statistics page)</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="number" class="form-control" name="max_votes_num" id="max_votes_num"
+              <input type="number" class="form-control" id="max_votes_num"
                      required
                      v-model="questionnaire.max_votes_num">
             </div>
@@ -112,7 +132,7 @@
               <label for="goal">Show general statistics</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="checkbox" class="form-control checkbox" name="show_general_statistics"
+              <input type="checkbox" class="form-control checkbox"
                      id="show_general_statistics"
                      v-model="questionnaire.show_general_statistics">
             </div>
@@ -158,8 +178,13 @@
         </div>
         <div class="card-footer">
           <div class="row">
-            <div class="col-md-offset-10 col-md-2">
-              <button @click="saveQuestionnaire" class="btn btn-block btn-primary btn-lg w-100">Save</button>
+            <div class="col-md-2">
+              <button :disabled="loading" @click="saveQuestionnaire" class="btn btn-block btn-primary btn-lg w-100">
+                Save
+              </button>
+            </div>
+            <div class="col-md-1 p-0" v-if="loading">
+              <div class="spinner-border text-primary" style="margin-top: 5px"></div>
             </div>
           </div>
         </div>
@@ -260,7 +285,8 @@ export default {
 			modalMessage: null,
 			defaultLocale: null,
 			questionnaireLanguagesModalOpen: false,
-			defaultLangCodeForQuestionnaireFields: "en"
+			defaultLangCodeForQuestionnaireFields: "en",
+			loading: false
 		};
 	},
 	methods: {
@@ -416,7 +442,8 @@ export default {
 				extra_fields_translations: document.getElementById("extra_translations").value,
 				max_votes_num: this.questionnaire.max_votes_num,
 				show_general_statistics: this.questionnaire.show_general_statistics,
-				type_id: this.questionnaire.type_id
+				type_id: this.questionnaire.type_id,
+				respondent_auth_required: this.questionnaire.respondent_auth_required
 			};
 			$("#project-ids").val().map((x) => {
 				data.project_ids.push(parseInt(x));
@@ -430,7 +457,7 @@ export default {
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
-
+			this.loading = true;
 			this.post({
 				url: this.questionnaire.id
 					? window.route("update-questionnaire", this.questionnaire.id)
@@ -439,6 +466,7 @@ export default {
 				urlRelative: false,
 				handleError: false
 			}).then((response) => {
+				this.loading = false;
 				window.swal({
 					title: "Success!",
 					text: "The questionnaire has been successfully stored.",
@@ -449,6 +477,7 @@ export default {
 					window.location = window.route("edit-questionnaire", response.data.id);
 				});
 			}).catch(error => {
+				this.loading = false;
 				window.swal({
 					title: "Oops!",
 					text: "An error occurred, please try again later." + error.toString(),
