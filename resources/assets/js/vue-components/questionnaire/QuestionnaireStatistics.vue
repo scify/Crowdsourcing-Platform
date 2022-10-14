@@ -337,7 +337,7 @@ export default {
 			AnswersData.userId = this.userId;
 			AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
 			AnswersData.numberOfVotesForQuestionnaire = this.questionnaire.max_votes_num;
-			AnswersData.languageResources = window.language[window.Laravel.locale].statistics;
+			AnswersData.languageResources = window.trans("statistics");
 
 			for (let i = 0; i < this.questions.length; i++) {
 				if (!this.shouldDrawStatistics(this.questions[i]))

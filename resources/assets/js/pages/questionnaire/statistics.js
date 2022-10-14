@@ -45,8 +45,8 @@ import _ from "lodash";
 			}],
 
 			labels: [
-				window.language[window.Laravel.locale].statistics.goal_responses,
-				window.language[window.Laravel.locale].statistics.actual_responses
+				window.trans("statistics.goal_responses"),
+				window.trans("statistics.actual_responses")
 			]
 		};
 
