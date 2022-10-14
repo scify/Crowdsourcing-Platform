@@ -16,18 +16,16 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/common.js', 'public/dist/js/')
     .js('resources/assets/js/pages/register.js', 'public/dist/js')
     .js('resources/assets/js/pages/home.js', 'public/dist/js')
-    .js('resources/assets/js/pages/myProfile.js', 'public/dist/js')
-    .js('resources/assets/js/pages/manageQuestionnaires.js', 'public/dist/js')
-    .js('resources/assets/js/pages/landingPage.js', 'public/dist/js')
-    .js('resources/assets/js/projectGoal.js', 'public/dist/js')
-    .js('resources/assets/js/pages/manageProject.js', 'public/dist/js')
-    .js('resources/assets/js/pages/myQuestionnaireResponses.js', 'public/dist/js')
-    .js('resources/assets/js/pages/questionnaire/reports.js', 'public/dist/js')
-    .js('resources/assets/js/pages/questionnaire/statistics.js', 'public/dist/js')
-    .js('resources/assets/js/questionnaireSocialShare.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/manage-questionnaires.js', 'public/dist/js')
+    .js('resources/assets/js/project/landing-page.js', 'public/dist/js')
+    .js('resources/assets/js/project/manage-project.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/my-questionnaire-responses.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/reports.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/statistics.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/questionnaire-social-share.js', 'public/dist/js')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
-    .js('resources/assets/js/UsersListController.js', 'public/dist/js')
-    .js('resources/assets/js/pages/questionnaire/questionnaire-thanks.js', 'public/dist/js')
+    .js('resources/assets/js/pages/manage-users.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/questionnaire-thanks.js', 'public/dist/js')
     .extract([
         'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-knockout'
     ])
@@ -35,7 +33,7 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .webpackConfig({
         devtool: 'source-map',
         resolve: {
-            alias: { jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js') },
+            alias: {jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js')},
             fallback: {
                 fs: false,
                 path: false,
@@ -74,15 +72,15 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/questionnaire/reports.scss', 'public/dist/css')
     .sass('resources/assets/sass/questionnaire/statistics.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/my-dashboard.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/my-questionnaire-responses.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/projects-list.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/landing-page.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/create-edit-project.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/create-questionnaire.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/manage-questionnaires.scss', 'public/dist/css')
+    .sass('resources/assets/sass/questionnaire/my-questionnaire-responses.scss', 'public/dist/css')
+    .sass('resources/assets/sass/project/projects-list.scss', 'public/dist/css')
+    .sass('resources/assets/sass/project/landing-page.scss', 'public/dist/css')
+    .sass('resources/assets/sass/project/create-edit-project.scss', 'public/dist/css')
+    .sass('resources/assets/sass/questionnaire/create-questionnaire.scss', 'public/dist/css')
+    .sass('resources/assets/sass/questionnaire/manage-questionnaires.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/home.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/all-projects.scss', 'public/dist/css')
-    .sass('resources/assets/sass/pages/questionnaire-thanks.scss', 'public/dist/css')
+    .sass('resources/assets/sass/project/all-projects.scss', 'public/dist/css')
+    .sass('resources/assets/sass/questionnaire/questionnaire-thanks.scss', 'public/dist/css')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',

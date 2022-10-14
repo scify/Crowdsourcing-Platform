@@ -33,5 +33,5 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script src="{{mix('dist/js/landingPage.js')}}"></script>
+    <script src="{{mix('dist/js/landing-page.js')}}"></script>
 @endpush

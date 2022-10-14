@@ -153,5 +153,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{mix('/dist/js/manageQuestionnaires.js')}}"></script>
+    <script src="{{mix('/dist/js/manage-questionnaires.js')}}"></script>
 @endpush

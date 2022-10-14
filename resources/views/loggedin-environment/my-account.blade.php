@@ -146,6 +146,5 @@
 
 
 @push('scripts')
-    <script src="{{ mix('dist/js/myProfile.js')}}"></script>
     <script src="{{ mix('dist/js/register.js')}}"></script>
 @endpush

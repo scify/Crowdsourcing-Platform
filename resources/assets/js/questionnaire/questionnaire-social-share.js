@@ -1,4 +1,4 @@
-import AnalyticsLogger from "./analytics-logger";
+import AnalyticsLogger from "../analytics-logger";
 
 (function () {
 
