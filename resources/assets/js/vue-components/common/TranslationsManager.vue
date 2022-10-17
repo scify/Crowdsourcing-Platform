@@ -82,6 +82,7 @@ import _ from "lodash";
 import {mapActions} from "vuex";
 
 export default {
+	name: "TranslationsManager",
 	props: ["existingTranslations", "modelMetaData", "defaultLangId"],
 	data: function () {
 		return {

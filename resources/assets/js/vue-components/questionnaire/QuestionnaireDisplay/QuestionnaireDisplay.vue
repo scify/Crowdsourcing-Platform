@@ -1,14 +1,18 @@
 <template>
   <div class="component mt-3">
     <div v-if="displayLoginPrompt" class="container-fluid p-0">
-      <div class="row mb-5">
-        <h3>You can create an account in order to see more questionnaires that need answering</h3>
+      <div class="row mb-5 pt-3">
+        <div class="col text-center">
+          <h3 v-html="getQuestionnaireLoginPromptMessage()"></h3>
+        </div>
       </div>
       <div class="row">
-        <div class="col-5 text-center pl-0">
-          <a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">Sign in</a>
+        <div class="col-5 text-center pl-0 mx-auto">
+          <a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">{{
+              trans("questionnaire.sign_in")
+            }}</a>
         </div>
-        <div class="col-5 offset-2 text-center pr-0">
+        <div class="col-5 offset-2 text-center pr-0" v-if="!questionnaire.respondent_auth_required">
           <button @click="skipLogin()" class="btn btn-primary btn-lg w-100">Answer anonymously</button>
         </div>
       </div>
@@ -17,7 +21,7 @@
       <div class="row" v-if="!userResponse">
         <div class="col-md-12 language-selection">
           <div class="form-group">
-            <label for="language-select">{{ window.trans('questionnaire.select_language') }}</label>
+            <label for="language-select">{{ trans("questionnaire.select_language") }}</label>
             <select class="form-control" @change="onLanguageChange($event)" id="language-select">
               <option :selected="language.code === defaultLangCode"
                       :value="language.code" v-for="(language, index) in surveyLocales"
@@ -49,20 +53,11 @@
 <script>
 import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
-import {arrayMove, setCookie} from "../../common-utils";
-import AnalyticsLogger from "../../analytics-logger";
+import {arrayMove, setCookie} from "../../../common-utils";
+import AnalyticsLogger from "../../../analytics-logger";
 
 export default {
-	created() {
-		this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
-	},
-	mounted() {
-		this.initQuestionnaireDisplay();
-		//this.displayLoginPrompt = !(this.user && this.user.id);
-		this.displayLoginPrompt = false;
-		if (!this.displayLoginPrompt)
-			this.skipLogin();
-	},
+	name: "QuestionnaireDisplay",
 	props: {
 		user: {
 			type: Object,
@@ -98,12 +93,31 @@ export default {
 			surveyCreator: null,
 			survey: null,
 			surveyLocales: [],
-			questionnaireLocalStorageKey: "",
-			displayLoginPrompt: true,
-			loading: false,
+			questionnaireLocalStorageKey: {
+				type: String,
+				default: "",
+			},
+			displayLoginPrompt: {
+				type: Boolean,
+				default: true,
+			},
+			loading: {
+				type: Boolean,
+				default: false,
+			},
 			t0: null,
 			defaultLangCode: "en"
 		};
+	},
+	created() {
+		this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
+	},
+	mounted() {
+		this.displayLoginPrompt = !(this.user && this.user.id);
+		this.initQuestionnaireDisplay();
+
+		if (!this.displayLoginPrompt)
+			this.skipLogin();
 	},
 	methods: {
 		...mapActions([
@@ -119,6 +133,11 @@ export default {
 			setTimeout(function () {
 				instance.survey.render(surveyContainerId);
 			}, 500);
+		},
+		getQuestionnaireLoginPromptMessage() {
+			if (this.questionnaire.respondent_auth_required)
+				return "You must be logged in in order to respond to this questionnaire";
+			return "You can create an account in order to see more questionnaires that need answering";
 		},
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
@@ -273,72 +292,14 @@ export default {
 		},
 		getPosition(string, subString, occurrence) {
 			return string.split(subString, occurrence).join(subString).length;
+		},
+		trans(key) {
+			return window.trans(key);
 		}
 	}
 };
 </script>
 
 <style lang="scss">
-@import "resources/assets/sass/variables";
-@import "~survey-jquery/modern.min.css";
-
-.survey-container {
-  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__prev-btn, .sv-btn.sv-footer__start-btn {
-    background-color: $brand-primary;
-    border-radius: 3px;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.7em;
-    border: 2px solid white;
-  }
-
-  .sv-btn.sv-footer__prev-btn {
-    float: left;
-  }
-
-  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__start-btn {
-    float: right;
-  }
-
-  .sv-page.sv-body__page, .sv-footer {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .sv-root-modern .sv-question__title--answer {
-    background-color: rgba(0, 119, 255, 0.2);
-  }
-
-  .sv-root-modern .sv-rating__item--selected .sv-rating__item-text {
-    background-color: $brand-primary;
-    color: rgb(255, 255, 255);
-    border-color: $brand-primary;
-  }
-
-  .sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
-    background-color: $brand-primary;
-  }
-
-  .sv-root-modern ::-webkit-scrollbar-thumb {
-    background: $brand-primary;
-  }
-}
-
-
-#questionnaire-loader {
-  .spinner-border {
-    width: 5rem;
-    height: 5rem;
-    border-width: 0.5rem;
-    border-color: $brand-primary;
-    border-right-color: transparent;
-  }
-}
-
-
-.disable-scroll {
-  overflow-y: hidden !important;
-}
-
-
+@import "QuestionnaireDisplay";
 </style>

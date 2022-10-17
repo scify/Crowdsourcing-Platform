@@ -28,8 +28,12 @@
 <script>
 
 export default {
+	name: "CommonModal",
 	props: {
-		allowClose: Boolean,
+		allowClose: {
+			type: Boolean,
+			default: false,
+		},
 		open: {
 			type: Boolean,
 			default: false,

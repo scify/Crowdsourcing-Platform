@@ -68,9 +68,13 @@
 import {mapActions} from "vuex";
 import _ from "lodash";
 import {showToast} from "../../common-utils";
+import CommonModal from "../common/ModalComponent";
 
 export default {
 	name: "QuestionnaireLanguages",
+	components: {
+		CommonModal
+	},
 	props: {
 		modalOpen: {
 			type: Boolean,

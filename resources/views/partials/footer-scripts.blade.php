@@ -1,8 +1,23 @@
+@php
+    use Illuminate\Support\Facades\Cache;
+    use Illuminate\Support\Facades\File;
+    $currentLocale = app()->getLocale();
+    $langPath = base_path('lang/' . $currentLocale);
+    $translations = Cache::rememberForever('translations_' . $currentLocale, function () use ($langPath) {
+        return collect(File::allFiles($langPath))->flatMap(function ($file) {
+            return [
+                $translation = $file->getBasename('.php') => trans($translation),
+            ];
+        })->toJson();
+    });
+@endphp
+
 <script>
     window.Laravel = {!! json_encode([
                 'baseUrl' => url("/"),
                 'locale' => app()->getLocale(),
-                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; })
+                'routes' => collect(\Route::getRoutes())->mapWithKeys(function ($route) { return [$route->getName() => $route->uri()]; }),
+                'translations' => json_decode($translations)
             ]) !!};
 </script>
 <script type="module" src="{{ mix('dist/js/manifest.js') }}"></script> {{-- The Webpack manifest runtime--}}

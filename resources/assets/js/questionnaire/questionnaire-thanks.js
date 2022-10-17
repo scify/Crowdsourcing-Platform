@@ -1,5 +1,4 @@
 (function () {
-
 	let init = function () {
 		$("#pyro").addClass("pyro-on");
 		const anonymousResponseModal = $(".anonymous-response");
@@ -10,11 +9,8 @@
 				$("body").addClass("modal-open");
 			}, 500);
 		}
-		// remove the anonymous user id from the URL
-		//window.history.pushState({}, document.title, window.location.pathname);
 	};
 	$(document).ready(function () {
 		init();
 	});
-
 })();
