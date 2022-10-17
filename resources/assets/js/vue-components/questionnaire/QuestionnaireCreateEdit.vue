@@ -225,31 +225,16 @@ import * as SurveyCreator from "survey-creator";
 import _ from "lodash";
 import {arrayMove, showToast} from "../../common-utils";
 import {isObject} from "../../common-backoffice";
+import QuestionnaireLanguages from "./QuestionnaireLanguages";
+import CommonModal from "../common/ModalComponent";
+import TranslationsManager from "../common/TranslationsManager";
 
 export default {
-	created() {
-		this.questionnaire = this.questionnaireData;
-
-		if (!this.questionnaire.project_id)
-			this.questionnaire.project_id = this.projects[0].id;
-		if (!this.questionnaire.statistics_page_visibility_lkp_id)
-			this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id;
-		this.questionnaire.projectIds = _.map(this.questionnaireData.projects, "id");
-		if (this.questionnaire.default_language_id) {
-			const langId = this.questionnaire.default_language_id;
-			this.defaultLocale = this.languages.filter(function (el) {
-				return el.id === langId;
-			})[0].language_code;
-		} else {
-			const instance = this;
-			this.defaultLocale = this.languages.filter(function (el) {
-				return el.language_code === instance.defaultLangCodeForQuestionnaireFields;
-			})[0].language_code;
-		}
-	},
-	mounted() {
-		if (this.questionnaire.project_id)
-			this.getColorsForCrowdSourcingProject();
+	name: "QuestionnaireCreateEdit",
+	components: {
+		QuestionnaireLanguages,
+		CommonModal,
+		TranslationsManager
 	},
 	props: {
 		questionnaireData: {
@@ -288,6 +273,30 @@ export default {
 			defaultLangCodeForQuestionnaireFields: "en",
 			loading: false
 		};
+	},
+	created() {
+		this.questionnaire = this.questionnaireData;
+
+		if (!this.questionnaire.project_id)
+			this.questionnaire.project_id = this.projects[0].id;
+		if (!this.questionnaire.statistics_page_visibility_lkp_id)
+			this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id;
+		this.questionnaire.projectIds = _.map(this.questionnaireData.projects, "id");
+		if (this.questionnaire.default_language_id) {
+			const langId = this.questionnaire.default_language_id;
+			this.defaultLocale = this.languages.filter(function (el) {
+				return el.id === langId;
+			})[0].language_code;
+		} else {
+			const instance = this;
+			this.defaultLocale = this.languages.filter(function (el) {
+				return el.language_code === instance.defaultLangCodeForQuestionnaireFields;
+			})[0].language_code;
+		}
+	},
+	mounted() {
+		if (this.questionnaire.project_id)
+			this.getColorsForCrowdSourcingProject();
 	},
 	methods: {
 		...mapActions([

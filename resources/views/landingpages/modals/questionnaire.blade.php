@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid mb-5">
-                    @if($viewModel->questionnaire->fieldsTranslation->description)
+                    @if($viewModel->questionnaire->fieldsTranslation->description && $viewModel->questionnaire->fieldsTranslation->description !== $viewModel->questionnaire->fieldsTranslation->title)
                         <div class="row">
                             <div class="col-12">
                                 <div class="description-container">

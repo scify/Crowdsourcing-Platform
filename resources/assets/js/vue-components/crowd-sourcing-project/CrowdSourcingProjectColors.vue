@@ -42,6 +42,7 @@ import {mapActions} from "vuex";
 import {initSingleColorPicker} from "../../common-backoffice";
 
 export default {
+	name: "CrowdSourcingProjectColors",
 	props: {
 		colorData: []
 	},

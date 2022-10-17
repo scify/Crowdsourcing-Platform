@@ -50,6 +50,7 @@
 import {mapGetters} from "vuex";
 
 export default {
+	name: "StoreModal",
 	props: {
 		showOkButton: {
 			type: Boolean,

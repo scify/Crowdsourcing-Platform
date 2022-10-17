@@ -150,9 +150,16 @@ import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTex
 import Promise from "lodash/_Promise";
 import _ from "lodash";
 import {showToast} from "../../common-utils";
-import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
+import {Tabulator} from "survey-analytics/survey.analytics.tabulator";
+import CommonModal from "../common/ModalComponent";
+import StoreModal from "../common/StoreModalComponent";
 
 export default {
+	name: "QuestionnaireStatistics",
+	components: {
+		CommonModal,
+		StoreModal
+	},
 	props: {
 		questionnaire: {
 			type: Object,
