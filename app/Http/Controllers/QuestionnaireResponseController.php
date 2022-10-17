@@ -18,10 +18,10 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class QuestionnaireResponseController extends Controller {
-    protected $questionnaireResponseManager;
-    protected $platformWideGamificationBadgesProvider;
-    protected $questionnaireResponseRepository;
-    protected $crowdSourcingProjectManager;
+    protected QuestionnaireResponseManager $questionnaireResponseManager;
+    protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
+    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
     public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
