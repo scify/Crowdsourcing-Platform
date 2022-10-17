@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserManager {
-    private $userRepository;
-    private $userRoleRepository;
-    private $mailChimpManager;
-    private $questionnaireResponseRepository;
-    private $questionnaireAnswerVoteRepository;
-    public static $USERS_PER_PAGE = 10;
-    public static $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
+    private UserRepository $userRepository;
+    private UserRoleRepository $userRoleRepository;
+    private MailChimpAdaptor $mailChimpManager;
+    private QuestionnaireResponseRepository $questionnaireResponseRepository;
+    private QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
+    public static int $USERS_PER_PAGE = 10;
+    public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
@@ -86,7 +86,7 @@ class UserManager {
         $this->userRepository->reActivateUser($user);
     }
 
-    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect) {
+    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect): ActionResponse {
         $emailCheck = $this->userRepository->getUserByEmail($email);
         // Check if email exists in db
         if ($emailCheck) {
@@ -119,7 +119,7 @@ class UserManager {
      *
      * @throws HttpException
      */
-    public function updateUser($data) {
+    public function updateUser(array $data): void {
         $user_id = Auth::id();
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
@@ -198,7 +198,7 @@ class UserManager {
         }
     }
 
-    public function userHasContributedToAProject($userId) {
+    public function userHasContributedToAProject($userId): bool {
         return $this->questionnaireResponseRepository->userResponseExists($userId);
     }
 
