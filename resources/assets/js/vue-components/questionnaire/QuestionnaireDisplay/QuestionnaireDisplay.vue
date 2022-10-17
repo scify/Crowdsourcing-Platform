@@ -55,6 +55,7 @@ import {mapActions} from "vuex";
 import * as Survey from "survey-knockout";
 import {arrayMove, setCookie} from "../../../common-utils";
 import AnalyticsLogger from "../../../analytics-logger";
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 export default {
 	name: "QuestionnaireDisplay",
@@ -112,12 +113,16 @@ export default {
 	created() {
 		this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
 	},
-	mounted() {
-		this.displayLoginPrompt = !(this.user && this.user.id);
+	async mounted() {
+		this.displayLoginPrompt = !this.userLoggedIn();
 		this.initQuestionnaireDisplay();
-
 		if (!this.displayLoginPrompt)
 			this.skipLogin();
+		const fpPromise = FingerprintJS.load();
+		const id = await fpPromise
+			.then(fp => fp.get())
+			.then(result => result.visitorId);
+		console.log(id);
 	},
 	methods: {
 		...mapActions([
@@ -125,6 +130,9 @@ export default {
 			"handleError",
 			"post"
 		]),
+		userLoggedIn() {
+			return (this.user && this.user.id);
+		},
 		skipLogin() {
 			this.displayLoginPrompt = false;
 			const instance = this;
@@ -206,22 +214,31 @@ export default {
 			if (!this.t0)
 				this.t0 = performance.now();
 		},
-		saveQuestionnaireResponse(sender) {
+		async saveQuestionnaireResponse(sender) {
+			let data = {};
+			if (!this.userLoggedIn()) {
+				const fpPromise = FingerprintJS.load();
+				data.browser_fingerprint_id = await fpPromise
+					.then(fp => fp.get())
+					.then(result => result.visitorId);
+			}
+			data.response = JSON.stringify(sender.data);
 			let locale = sender.locale;
 			if (!locale)
 				locale = this.surveyLocales[0].code;
-
-			const resultAsString = JSON.stringify(sender.data);
+			data.language_code = locale;
 			$(".loader-wrapper").removeClass("hidden");
 			$(".questionnaire-modal").modal("hide");
 			$(".respond-questionnaire").attr("disabled", true);
+			this.postResponseDataAndShowResult(data);
+		},
+		postResponseDataAndShowResult(data) {
 			this.post({
 				url: window.route("respond-questionnaire"),
 				data: {
+					...data,
 					questionnaire_id: this.questionnaire.id,
 					project_id: this.project.id,
-					language_code: locale,
-					response: resultAsString
 				},
 				urlRelative: false,
 				handleError: false
@@ -234,7 +251,7 @@ export default {
 				AnalyticsLogger.logEvent("questionnaire_respond_complete_" + title, "respond_complete", JSON.stringify({
 					"questionnaire": title,
 					"project": this.project.default_translation.name,
-					"language": locale,
+					"language": data.locale,
 					"time_to_complete": time
 				}), this.questionnaire.id);
 				this.displaySuccessResponse(anonymousUserId);
