@@ -56,6 +56,7 @@ import * as Survey from "survey-knockout";
 import {arrayMove, setCookie} from "../../../common-utils";
 import AnalyticsLogger from "../../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import _ from "lodash";
 
 export default {
 	name: "QuestionnaireDisplay",
@@ -78,10 +79,10 @@ export default {
 				return {};
 			}
 		},
-		userResponse: {
+		userResponseData: {
 			type: Object,
 			default: function () {
-				return {};
+				return null;
 			}
 		},
 		surveyContainerId: {
@@ -94,6 +95,8 @@ export default {
 			surveyCreator: null,
 			survey: null,
 			surveyLocales: [],
+			userResponse: {},
+			browserFingerprintId: null,
 			questionnaireLocalStorageKey: {
 				type: String,
 				default: "",
@@ -114,15 +117,19 @@ export default {
 		this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
 	},
 	async mounted() {
+		this.userResponse = this.userResponseData;
+		const fpPromise = FingerprintJS.load();
+		this.browserFingerprintId = await fpPromise
+			.then(fp => fp.get())
+			.then(result => result.visitorId);
 		this.displayLoginPrompt = !this.userLoggedIn();
+		if (!this.userLoggedIn()) {
+			const response = await this.getAnonymousUserResponse();
+			this.userResponse = response.data.questionnaire_response ?? null;
+		}
 		this.initQuestionnaireDisplay();
 		if (!this.displayLoginPrompt)
 			this.skipLogin();
-		const fpPromise = FingerprintJS.load();
-		const id = await fpPromise
-			.then(fp => fp.get())
-			.then(result => result.visitorId);
-		console.log(id);
 	},
 	methods: {
 		...mapActions([
@@ -140,7 +147,7 @@ export default {
 			let surveyContainerId = this.$props.surveyContainerId;
 			setTimeout(function () {
 				instance.survey.render(surveyContainerId);
-			}, 500);
+			}, 1000);
 		},
 		getQuestionnaireLoginPromptMessage() {
 			if (this.questionnaire.respondent_auth_required)
@@ -150,12 +157,12 @@ export default {
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
 			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
-			if (!this.userResponse)
+			if (_.isEmpty(this.userResponse))
 				this.prepareQuestionnaireForResponding();
 			else
 				this.prepareQuestionnaireForViewingResponse();
 
-			//bug fix on mobile browsers.
+			// bug fix on mobile browsers.
 			// When you try to drag the rankings, the modal is scrolled, so you cannot complete it.
 			// We should use a mutation observer instead of this.
 			window.setInterval(function () {
@@ -167,7 +174,6 @@ export default {
 			}, 300);
 		},
 		prepareQuestionnaireForResponding() {
-
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
 			if (responseJSON && JSON.parse(responseJSON))
 				this.survey.data = JSON.parse(responseJSON);
@@ -216,12 +222,7 @@ export default {
 		},
 		async saveQuestionnaireResponse(sender) {
 			let data = {};
-			if (!this.userLoggedIn()) {
-				const fpPromise = FingerprintJS.load();
-				data.browser_fingerprint_id = await fpPromise
-					.then(fp => fp.get())
-					.then(result => result.visitorId);
-			}
+			data.browser_fingerprint_id = this.browserFingerprintId;
 			data.response = JSON.stringify(sender.data);
 			let locale = sender.locale;
 			if (!locale)
@@ -312,6 +313,12 @@ export default {
 		},
 		trans(key) {
 			return window.trans(key);
+		},
+		async getAnonymousUserResponse() {
+			return await this.get({
+				url: window.route("questionnaire.response-anonymous") + "?browser_fingerprint_id=" + this.browserFingerprintId + "&questionnaire_id=" + this.questionnaire.id,
+				urlRelative: false
+			});
 		}
 	}
 };

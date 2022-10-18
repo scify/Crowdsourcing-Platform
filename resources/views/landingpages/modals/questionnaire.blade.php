@@ -34,7 +34,7 @@
                     <questionnaire-display
                             survey-container-id="questionnaire_project"
                             :user='@json($viewModel->getLoggedInUser())'
-                            :user-response='@json($viewModel->userResponse)'
+                            :user-response-data='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
                             :project='@json($viewModel->project)'
                             :languages='@json($viewModel->languages)'>

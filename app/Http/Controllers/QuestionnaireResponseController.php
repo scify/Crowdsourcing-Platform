@@ -23,10 +23,10 @@ class QuestionnaireResponseController extends Controller {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
-    public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
+    public function __construct(QuestionnaireResponseManager           $questionnaireResponseManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
+                                CrowdSourcingProjectManager            $crowdSourcingProjectManager) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
@@ -34,12 +34,19 @@ class QuestionnaireResponseController extends Controller {
     }
 
     public function store(Request $request): JsonResponse {
+        $this->validate($request, [
+            'browser_fingerprint_id' => 'required|string',
+            'questionnaire_id' => 'required|integer',
+            'project_id' => 'required|integer'
+        ]);
         app()->setLocale($request->lang);
-        $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($request->all());
+        $data = $request->all();
+        $data['ip'] = $request->getClientIp();
+        $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($data);
         $response = response()->json([
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id,
         ]);
-        if (! Auth::check()) {
+        if (!Auth::check()) {
             $response->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $questionnaireResponse->user_id));
         }
 
@@ -136,5 +143,18 @@ class QuestionnaireResponseController extends Controller {
         } catch (Exception $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+    }
+
+    public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {
+        $this->validate($request, [
+            'browser_fingerprint_id' => 'required|string',
+            'questionnaire_id' => 'required|integer'
+        ]);
+        return response()->json([
+            'questionnaire_response' => $this->questionnaireResponseManager->getAnonymousUserResponseForQuestionnaire(
+                $request->questionnaire_id,
+                $request->getClientIp(),
+                $request->browser_fingerprint_id)
+        ]);
     }
 }

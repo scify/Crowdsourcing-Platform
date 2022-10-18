@@ -32,7 +32,7 @@ class QuestionnaireResponseRepository extends Repository {
     }
 
     public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id): ?Collection {
-        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return null;
         }
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
@@ -43,7 +43,7 @@ class QuestionnaireResponseRepository extends Repository {
         }
 
         $anonymousUser = User::find($anonymousUserId);
-        if (! $anonymousUser) {
+        if (!$anonymousUser) {
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
 
             return null;
@@ -118,5 +118,14 @@ class QuestionnaireResponseRepository extends Repository {
             ->where('user_id', $userId)
             ->get()
             ->sortByDesc('responded_at');
+    }
+
+    public function getResponseByAnonymousData(int $questionnaire_id, string $ip, string $browser_fingerprint_id) {
+        return QuestionnaireResponse::where([
+            'questionnaire_id' => $questionnaire_id
+        ])->where(function ($query) use ($ip, $browser_fingerprint_id) {
+            $query->where('browser_ip', $ip)
+                ->orWhere('browser_fingerprint_id', $browser_fingerprint_id);
+        })->first();
     }
 }

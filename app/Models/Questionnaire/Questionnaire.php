@@ -101,7 +101,7 @@ class Questionnaire extends Model {
         return 'id';
     }
 
-    public function defaultLanguage() {
+    public function defaultLanguage(): HasOne {
         return $this->hasOne(Language::class, 'id', 'default_language_id');
     }
 
@@ -110,7 +110,7 @@ class Questionnaire extends Model {
      *
      * @return BelongsToMany
      */
-    public function projects() {
+    public function projects(): BelongsToMany {
         return $this->belongsToMany(
             CrowdSourcingProject::class,
             'crowd_sourcing_project_questionnaires',
@@ -118,11 +118,11 @@ class Questionnaire extends Model {
             'project_id');
     }
 
-    public function statusHistory() {
+    public function statusHistory(): HasMany {
         return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
     }
 
-    public function questionnaireLanguages() {
+    public function questionnaireLanguages(): HasMany {
         return $this->hasMany(QuestionnaireLanguage::class, 'questionnaire_id', 'id');
     }
 
