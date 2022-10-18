@@ -7,7 +7,6 @@ use App\BusinessLogicLayer\UserManager;
 use App\Jobs\TranslateQuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
-use App\Repository\Questionnaire\Responses\QuestionnaireAnonymousResponseRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
@@ -22,22 +21,19 @@ class QuestionnaireResponseManager {
     protected QuestionnaireActionHandler $questionnaireActionHandler;
     protected QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
     protected UserManager $userManager;
-    protected QuestionnaireAnonymousResponseRepository $questionnaireAnonymousResponseRepository;
 
-    public function __construct(QuestionnaireRepository                  $questionnaireRepository,
-                                QuestionnaireResponseRepository          $questionnaireResponseRepository,
-                                LanguageManager                          $languageManager,
-                                QuestionnaireActionHandler               $questionnaireActionHandler,
-                                QuestionnaireAnswerVoteRepository        $questionnaireAnswerVoteRepository,
-                                UserManager                              $userManager,
-                                QuestionnaireAnonymousResponseRepository $questionnaireAnonymousResponseRepository) {
+    public function __construct(QuestionnaireRepository           $questionnaireRepository,
+                                QuestionnaireResponseRepository   $questionnaireResponseRepository,
+                                LanguageManager                   $languageManager,
+                                QuestionnaireActionHandler        $questionnaireActionHandler,
+                                QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository,
+                                UserManager                       $userManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->languageManager = $languageManager;
         $this->questionnaireActionHandler = $questionnaireActionHandler;
         $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
         $this->userManager = $userManager;
-        $this->questionnaireAnonymousResponseRepository = $questionnaireAnonymousResponseRepository;
     }
 
     public function getQuestionnaireResponsesForUser(User $user) {
@@ -93,6 +89,8 @@ class QuestionnaireResponseManager {
             array_merge($queryData, [
                 'language_id' => $language->id,
                 'response_json' => json_encode(json_decode($data['response'])),
+                'browser_fingerprint_id' => $data['browser_fingerprint_id'],
+                'browser_ip' => $data['ip']
             ])
         );
         if (Auth::check()) {
@@ -102,13 +100,6 @@ class QuestionnaireResponseManager {
                 $language);
             // if the user got invited by another user to answer the questionnaire, also award the referrer user.
             $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
-        } else {
-            $ip = Request::ip();
-            $this->questionnaireAnonymousResponseRepository->create([
-                'response_id' => $questionnaireResponse->id,
-                'browser_fingerprint_id' => $data['browser_fingerprint_id'],
-                'browser_ip' => $ip
-            ]);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
         return $questionnaireResponse;
@@ -176,5 +167,9 @@ class QuestionnaireResponseManager {
         }
 
         return $data;
+    }
+
+    public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $ip, string $browser_fingerprint_id) {
+        return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $ip, $browser_fingerprint_id);
     }
 }
