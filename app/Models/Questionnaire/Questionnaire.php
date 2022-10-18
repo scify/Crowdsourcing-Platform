@@ -29,6 +29,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $goal
  * @property string $questionnaire_json
  * @property int $statistics_page_visibility_lkp_id
+ * @property int $max_votes_num
+ * @property boolean $show_general_statistics
+ * @property boolean $respondent_auth_required
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
@@ -77,9 +80,9 @@ class Questionnaire extends Model {
     public function defaultFieldsTranslation(): HasOne {
         return $this->hasOne(QuestionnaireFieldsTranslation::class,
             ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
-                'title' => 'Questionnaire title',
-                'description' => 'Questionnaire description',
-            ]);
+            'title' => 'Questionnaire title',
+            'description' => 'Questionnaire description',
+        ]);
     }
 
     public function currentLocaleFieldsTranslation(): HasOne {

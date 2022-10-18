@@ -263,7 +263,7 @@ export default {
 			},
 			surveyCreator: null,
 			questionTypes: ["boolean", "checkbox", "comment", "dropdown",
-				"html", "matrix", "matrixdropdown", "radiogroup", "rating", "text", "ranking"],
+				"html", "matrix", "matrixdropdown", "radiogroup", "rating", "text", "ranking", "file"],
 			colors: [],
 			isTranTabInitialised: false,
 			modalOpen: false,
