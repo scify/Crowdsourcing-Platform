@@ -25,9 +25,8 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/partials/newsletter-signup.js', 'public/dist/js')
     .js('resources/assets/js/pages/manage-users.js', 'public/dist/js')
     .js('resources/assets/js/questionnaire/questionnaire-thanks.js', 'public/dist/js')
-    .extract([
-        'jquery', 'bootstrap-sweetalert', 'bootstrap', 'survey-knockout'
-    ])
+    .js('resources/assets/js/questionnaire/questionnaire-create-edit.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/questionnaire-feedback.js', 'public/dist/js')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
@@ -62,6 +61,7 @@ mix.autoload({
 
 
 mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
+    .sass('resources/assets/sass/common-backoffice.scss', 'public/dist/css')
     .sass('resources/assets/sass/gamification/badges.scss', 'public/dist/css')
     .sass('resources/assets/sass/gamification/badge-single.scss', 'public/dist/css')
     .sass('resources/assets/sass/gamification/next-step.scss', 'public/dist/css')

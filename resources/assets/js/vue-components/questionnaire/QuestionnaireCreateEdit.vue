@@ -228,6 +228,9 @@ import {isObject} from "../../common-backoffice";
 import QuestionnaireLanguages from "./QuestionnaireLanguages";
 import CommonModal from "../common/ModalComponent";
 import TranslationsManager from "../common/TranslationsManager";
+import "select2";
+
+const FILE_MAX_SIZE_BYTES = 2097152; // 2MB;
 
 export default {
 	name: "QuestionnaireCreateEdit",
@@ -297,6 +300,9 @@ export default {
 	mounted() {
 		if (this.questionnaire.project_id)
 			this.getColorsForCrowdSourcingProject();
+		$(".select2").each(function (i, obj) {
+			$(obj).select2();
+		});
 	},
 	methods: {
 		...mapActions([
@@ -339,6 +345,12 @@ export default {
 					isRequired: false
 				});
 
+			Survey
+				.Serializer
+				.findProperty("question", "name")
+				.readOnly = true;
+
+
 			const options = {
 				// show the embedded survey tab. It is hidden by default
 				showEmbeddedSurveyTab: false,
@@ -353,6 +365,16 @@ export default {
 			this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
 			this.surveyCreator.render("questionnaire-editor");
 			this.surveyCreator.haveCommercialLicense = true;
+			this.surveyCreator.onQuestionAdded.add(function (sender, options) {
+				const question = options.question;
+				const type = question.getType();
+				if (type === "file") {
+					question.maxSize = FILE_MAX_SIZE_BYTES;
+					question.waitForUpload = true;
+					question.allowImagesPreview = true;
+					question.storeDataAsText = false;
+				}
+			});
 
 
 			if (this.questionnaireData.questionnaire_json)
@@ -401,18 +423,20 @@ export default {
 					return i;
 			throw "Default locale not found";
 		},
-		translateQuestionnaireToLocales(locales) {
+		async translateQuestionnaireToLocales(locales) {
 			locales = locales.filter(function (el) {
 				return el !== "";
 			});
-			if (!locales.length)
-				return window.swal({
+			if (!locales.length) {
+				const swal = (await import("bootstrap-sweetalert")).default;
+				return swal({
 					title: "Languages Missing!",
 					text: "Please provide at least one language from the dropdown menu.",
 					type: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
+			}
 			this.modalOpen = true;
 			this.modalMessage = "Please wait while the translations are generated...";
 			const data = {
@@ -434,7 +458,7 @@ export default {
 				this.modalOpen = false;
 			});
 		},
-		saveQuestionnaire() {
+		async saveQuestionnaire() {
 			let locales = this.surveyCreator.translationValue.getSelectedLocales();
 			if (locales[0] === "") {
 				locales = [];
@@ -458,14 +482,17 @@ export default {
 				data.project_ids.push(parseInt(x));
 			});
 
-			if (this.formInvalid(data))
-				return window.swal({
+			if (this.formInvalid(data)) {
+				const swal = (await import("bootstrap-sweetalert")).default;
+
+				return swal({
 					title: "Fields Missing!",
 					text: "Please provide a title, description, goal, and at least one project.",
 					type: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
+			}
 			this.loading = true;
 			this.post({
 				url: this.questionnaire.id
@@ -474,9 +501,10 @@ export default {
 				data: data,
 				urlRelative: false,
 				handleError: false
-			}).then((response) => {
+			}).then(async (response) => {
 				this.loading = false;
-				window.swal({
+				const swal = (await import("bootstrap-sweetalert")).default;
+				swal({
 					title: "Success!",
 					text: "The questionnaire has been successfully stored.",
 					type: "success",
@@ -485,9 +513,10 @@ export default {
 				}, function () {
 					window.location = window.route("edit-questionnaire", response.data.id);
 				});
-			}).catch(error => {
+			}).catch(async error => {
 				this.loading = false;
-				window.swal({
+				const swal = (await import("bootstrap-sweetalert")).default;
+				swal({
 					title: "Oops!",
 					text: "An error occurred, please try again later." + error.toString(),
 					type: "error",
@@ -557,6 +586,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "resources/assets/sass/variables";
+@import "resources/assets/sass/select2-custom.scss";
+@import '~survey-jquery/survey.min.css';
 
+.sjs-cb-switch input:checked {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+}
 
+.svd-survey-placeholder-root .svd-survey-placeholder .svd-empty-message-container .svd-empty-message {
+  color: $brand-primary
+}
+
+.svd_container .icon-gearactive .svd-svg-icon, .svd_container .icon-dotsactive .svd-svg-icon {
+  fill: $brand-primary
+}
 </style>

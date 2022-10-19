@@ -1,6 +1,7 @@
 !.gitignore
 !project_img
 !project_img/fair-eu-bg.png
+!project_img/fair-eu-bg.webp
 !project_logos
 !project_logos/ecas_logo_scaled.png
 !project_questionnaire_bg_img

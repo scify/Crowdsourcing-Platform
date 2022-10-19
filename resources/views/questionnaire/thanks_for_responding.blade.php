@@ -85,5 +85,5 @@
     @endpush
 @endif
 @push('scripts')
-    <script src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
+    <script defer src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
 @endpush

@@ -26,5 +26,5 @@
     </div>
 </div>
 @push('scripts')
-    <script src="{{ mix('dist/js/questionnaire-social-share.js')}}"></script>
+    <script defer src="{{ mix('dist/js/questionnaire-social-share.js')}}"></script>
 @endpush

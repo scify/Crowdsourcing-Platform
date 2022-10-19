@@ -42,30 +42,31 @@ window.UsersListController.prototype = function () {
 				$("#mentorsBottomLoader").addClass("invisible");
 			},
 			error: function (xhr, status, errorThrown) {
+				const errorMsgEl = $("#errorMsg");
 				$(".refresh-container").fadeOut(500, function () {
 					$(".refresh-container").remove();
 				});
-				console.log(xhr.responseText);
-				$("#errorMsg").removeClass("hidden");
+				errorMsgEl.removeClass("hidden");
 				//The message added to Response object in Controller can be retrieved as following.
-				$("#errorMsg").html(errorThrown);
+				errorMsgEl.html(errorThrown);
 				$("#mentorsBottomLoader").addClass("invisible");
 			}
 		});
 	};
 	let parseSuccessData = function (response) {
+		const errorMsgEl = $("#errorMsg");
 		let responseObj = JSON.parse(response);
 		//if operation was unsuccessful
 		if (responseObj.status === 2) {
 			$(".loader").addClass("hidden");
-			$("#errorMsg").removeClass("hidden");
-			$("#errorMsg").html(responseObj.data);
+			errorMsgEl.removeClass("hidden");
+			errorMsgEl.html(responseObj.data);
 			$("#usersList").html("");
 		} else {
-			$("#usersList").html("");
+			errorMsgEl.html("");
 			$("#errorMsg").addClass("hidden");
 			$(".loader").addClass("hidden");
-			$("#usersList").html(responseObj.data);
+			errorMsgEl.html(responseObj.data);
 		}
 	};
 	let initDataTables = function () {

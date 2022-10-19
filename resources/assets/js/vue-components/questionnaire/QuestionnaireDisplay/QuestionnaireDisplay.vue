@@ -177,7 +177,9 @@ export default {
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
 			if (responseJSON && JSON.parse(responseJSON))
 				this.survey.data = JSON.parse(responseJSON);
-			const locales = this.survey.getUsedLocales();
+			let locales = this.survey.getUsedLocales();
+			if (!locales)
+				locales = ["en"];
 			// set the default questionnaire language as first, in order to be loaded first.
 			this.defaultLangCode = this.getDefaultLocaleForQuestionnaire();
 			arrayMove(locales, locales.indexOf(this.defaultLangCode), 0);
@@ -191,6 +193,7 @@ export default {
 			}
 			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
 			this.survey.onComplete.add(this.saveQuestionnaireResponse);
+			this.survey.onUploadFiles.add(this.onUploadSurveyFile);
 			this.survey.locale = this.surveyLocales[0].code;
 			const instance = this;
 			this.survey
@@ -219,6 +222,31 @@ export default {
 			window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
 			if (!this.t0)
 				this.t0 = performance.now();
+		},
+		onUploadSurveyFile(sender, options) {
+			let data = new FormData();
+			for (let i = 0; i < options.files.length; i++) {
+				data.append("files[" + i + "]", options.files[i]);
+			}
+			const config = {
+				headers: {
+					"content-type": "multipart/form-data",
+					"Accept": "application/json"
+				}
+			};
+			axios.post(window.route("files.upload"), data, config)
+				.then(function (response) {
+					options.callback("success", options.files.map(file => {
+						return {
+							file: file,
+							content: response.data[file.name]
+						};
+					}));
+				})
+				.catch(function (err) {
+					console.error(err);
+					options.callback("error");
+				});
 		},
 		async saveQuestionnaireResponse(sender) {
 			let data = {};
@@ -261,6 +289,7 @@ export default {
 				this.displayErrorResponse(error);
 			}).finally(() => {
 				$(".questionnaire-modal").modal("hide");
+				window.localStorage.removeItem(this.questionnaireLocalStorageKey);
 			});
 		},
 		displaySuccessResponse(anonymousUserId) {
@@ -271,8 +300,9 @@ export default {
 			$("#pyro").addClass("pyro-on");
 			window.location = questionnaireResponseThankYouURL;
 		},
-		displayErrorResponse(error) {
-			window.swal({
+		async displayErrorResponse(error) {
+			const swal = (await import("bootstrap-sweetalert")).default;
+			swal({
 				title: "Oops!",
 				text: "An error occurred:" + error.toString(),
 				type: "error",

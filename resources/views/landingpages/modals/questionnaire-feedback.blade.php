@@ -34,3 +34,6 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script defer src="{{mix('dist/js/questionnaire-feedback.js')}}"></script>
+@endpush
