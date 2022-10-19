@@ -67,7 +67,7 @@
                                     </div>
                                     {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
                                     @if ($viewModel->displayFeedbackQuestionnaire())
-                                        <div class="col-md-5 col-sm-12 mx-auto">
+                                        <div class="col-md-5 col-sm-12 mx-auto mt-5">
                                             @include("landingpages.partials.open-feedback-questionnaire-button",
                                                         [
                                                             "css_class"=> "btn btn-primary w-100 call-to-action ",
@@ -87,7 +87,7 @@
                                     @endif
                                 @else
                                     {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
-                                    <div class="col-md-5 col-sm-12 mx-auto">
+                                    <div class="col-md-5 col-sm-12 mx-auto mt-5">
                                         @include("landingpages.partials.open-questionnaire-button", ["label"=>  __("questionnaire.answer_the_questionnaire") ])
                                     </div>
                                 @endif
