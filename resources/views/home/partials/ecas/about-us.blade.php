@@ -49,7 +49,3 @@
         </div>
     </div>
 </div>
-
-{{--@push('scripts')--}}
-{{--<script src="{{mix('dist/js/landingPageController.js')}}?{{env("APP_VERSION")}}"></script>--}}
-{{--@endpush--}}

@@ -4,9 +4,6 @@
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
 
-
-
-
         }
     </style>
 @endpush

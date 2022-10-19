@@ -70,6 +70,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 			const questionnaireResponseId = $("input[name=questionnaire_response_id]").val();
 			const loader = $("#delete-response-loader");
 			const errorEl = $("#delete-response-error");
+			const swal = import("bootstrap-sweetalert");
 			$.ajax({
 				method: "POST",
 				url: window.route("questionnaire_response.destroy"),
@@ -90,7 +91,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 						.draw();
 
 					$("#delete-response-modal").modal("hide");
-					window.swal({
+					swal({
 						title: "Response deleted!",
 						text: "",
 						type: "success",

@@ -30,8 +30,8 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript">
+    <script defer type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script src="{{mix('dist/js/landing-page.js')}}"></script>
+    <script defer src="{{mix('dist/js/landing-page.js')}}"></script>
 @endpush

@@ -299,7 +299,7 @@ class CrowdSourcingProjectManager {
             $project->sm_featured_img_path = '/images/image_temp.png';
         }
         if (!$project->lp_questionnaire_img_path) {
-            $project->lp_questionnaire_img_path = '/images/bgsectionnaire.png';
+            $project->lp_questionnaire_img_path = '/images/bgsectionnaire.webp';
         }
 
         return $project;

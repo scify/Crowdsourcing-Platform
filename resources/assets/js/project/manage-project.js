@@ -1,6 +1,21 @@
 import CodeMirror from "codemirror/lib/codemirror";
-
+import "select2";
 import "codemirror/mode/xml/xml";
+
+import Vue from "vue";
+import store from "../store/store";
+
+import TranslationsManager from "../vue-components/common/TranslationsManager";
+import CrowdSourcingProjectColors from "../vue-components/crowd-sourcing-project/CrowdSourcingProjectColors";
+
+new Vue({
+	el: "#app",
+	store: store,
+	components: {
+		TranslationsManager,
+		CrowdSourcingProjectColors
+	}
+});
 
 (function () {
 

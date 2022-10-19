@@ -146,5 +146,5 @@
 
 
 @push('scripts')
-    <script src="{{ mix('dist/js/register.js')}}"></script>
+    <script defer src="{{ mix('dist/js/register.js')}}"></script>
 @endpush

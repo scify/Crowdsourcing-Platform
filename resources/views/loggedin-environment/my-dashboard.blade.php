@@ -1,11 +1,11 @@
 @extends('loggedin-environment.layout')
 
-@section('content-header')
-    {{-- <h1 class="m-0 text-dark">{{ __("menu.my_dashboard") }}</h1>--}}
-@endsection
-
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/my-dashboard.css') }}">
+    <link rel="preload" href="{{ mix('dist/css/my-dashboard.css') }}" as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{{ mix('dist/css/my-dashboard.css') }}">
+    </noscript>
 @endpush
 
 @section('content')

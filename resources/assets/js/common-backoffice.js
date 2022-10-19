@@ -1,9 +1,7 @@
 import "icheck";
 
-import "./bootstrap";
 import "fastclick";
 import "admin-lte"; // 'admin-lte/dist/js/app.min.js'
-import "select2";
 import "bootstrap-colorpicker";
 
 
@@ -50,18 +48,6 @@ import {showToast} from "./common-utils";
 		}, 3000);
 	};
 
-	let initializeSelect2Inputs = function () {
-		$(".select2-tags").each(function (i, obj) {
-			$(obj).select2({
-				tags: true
-			});
-		});
-
-		$(".select2").each(function (i, obj) {
-			$(obj).select2();
-		});
-	};
-
 	let initializeColorPicker = function () {
 		$(".color-picker").each(function (i, el) {
 			initSingleColorPicker(el);
@@ -104,7 +90,6 @@ import {showToast} from "./common-utils";
 		$(document).ready(function () {
 			initializeIcheck();
 			closeDismissableAlerts();
-			initializeSelect2Inputs();
 			initializeColorPicker();
 			initClipboardElements();
 			listenToReadMoreClicks();

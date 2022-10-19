@@ -126,8 +126,7 @@ export default {
 					lang_ids_to_status: mapped
 				},
 				urlRelative: false
-			}).then(response => {
-				console.log(response.data);
+			}).then(() => {
 				this.saveLoading = false;
 				showToast("Languages updated!", "#28a745");
 			});

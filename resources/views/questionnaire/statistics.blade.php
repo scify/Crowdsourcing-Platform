@@ -1,4 +1,4 @@
-@extends('landingpages.layout')
+@extends('landingpages.layout', ['includeBackofficeCommonJs' => true])
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{mix('dist/css/statistics.css')}}">
 @endpush
@@ -26,14 +26,6 @@
                         </div>
                     </div>
                     <hr>
-{{--                    <div class="row mb-5">--}}
-{{--                        <div class="col-12">--}}
-{{--                            <h4 class="text-lg-center text-md-center text-sm-left">--}}
-{{--                                You can vote up to <b>{{ $viewModel->questionnaire->max_votes_num }}</b> times for this--}}
-{{--                                questionnaire.--}}
-{{--                            </h4>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     @if($viewModel->questionnaire->show_general_statistics)
                         @if($viewModel->questionnaireResponseStatistics->totalResponses)
                             <div class="row my-5 py-5 align-items-center bg-white">
@@ -74,7 +66,5 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script src="{{ mix('dist/js/common.js')}}"></script> {{-- our application common code --}}
-    <script type="text/javascript" src="{{mix('dist/js/common-backoffice.js')}}"></script>
-    <script type="text/javascript" src="{{mix('dist/js/statistics.js')}}"></script>
+    <script defer type="text/javascript" src="{{mix('dist/js/statistics.js')}}"></script>
 @endpush

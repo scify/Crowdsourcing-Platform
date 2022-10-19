@@ -1,6 +1,6 @@
 <!-- Google Analytics -->
 @if(config('app.google_analytics_id'))
-    <script>
+    <script defer async>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
@@ -21,7 +21,7 @@
 @endif
 <!-- End Google Analytics -->
 <!-- Google Tag Manager -->
-<script>(function (w, d, s, l, i) {
+<script defer async>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push(
             {'gtm.start': new Date().getTime(), event: 'gtm.js'}

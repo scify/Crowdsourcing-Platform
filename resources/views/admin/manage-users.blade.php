@@ -29,9 +29,9 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="{{ mix('dist/js/manage-users.js')}}"></script>
-    <script>
-            let controller = new window.UsersListController();
-            controller.init();
+    <script defer>
+        let controller = new window.UsersListController();
+        controller.init();
     </script>
+    <script defer src="{{ mix('dist/js/manage-users.js')}}"></script>
 @endpush

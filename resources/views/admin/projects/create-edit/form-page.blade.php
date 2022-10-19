@@ -83,5 +83,5 @@
 @endsection
 
 @push('scripts')
-    <script type="application/javascript" src="{{mix('dist/js/manage-project.js')}}"></script>
+    <script defer type="application/javascript" src="{{mix('dist/js/manage-project.js')}}"></script>
 @endpush
