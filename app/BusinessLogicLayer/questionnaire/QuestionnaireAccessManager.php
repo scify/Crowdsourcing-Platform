@@ -21,14 +21,14 @@ class QuestionnaireAccessManager {
             case QuestionnaireStatisticsPageVisibilityLkp::PUBLIC:
                 return true;
             case QuestionnaireStatisticsPageVisibilityLkp::RESPONDENTS_ONLY:
-                if (! $user) {
+                if (!$user) {
                     return false;
                 }
 
                 return $this->questionnaireResponseManager->questionnaireResponsesForUserAndQuestionnaireExists($user->id, $questionnaire->id)
                     || $this->userIsAdminOrContentManager($user);
             case QuestionnaireStatisticsPageVisibilityLkp::ADMIN_AND_CONTENT_MANAGERS_ONLY:
-                if (! $user) {
+                if (!$user) {
                     return false;
                 }
 

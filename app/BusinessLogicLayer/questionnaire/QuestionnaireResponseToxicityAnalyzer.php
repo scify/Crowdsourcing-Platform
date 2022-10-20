@@ -50,6 +50,6 @@ class QuestionnaireResponseToxicityAnalyzer {
 
     protected function shouldAnalyzeAnswer(string $questionName, $answer, array $freeTypeQuestions): bool {
         return strpos($questionName, '-Comment') !== false || array_key_exists($questionName, $freeTypeQuestions)
-            && is_string($answer) && ! empty(trim($answer));
+            && is_string($answer) && !empty(trim($answer));
     }
 }

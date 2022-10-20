@@ -36,7 +36,7 @@ class InfluencerBadge extends GamificationBadge {
 
         // ??
     public function getNextStepMessage() {
-        if (! $this->questionnaireReferralsNum) {
+        if (!$this->questionnaireReferralsNum) {
             $title = __('badges_messages.zero_people_responded_to_call');
         } elseif ($this->questionnaireReferralsNum < 2) {
             // $peopleStr = $this->questionnaireReferralsNum == 1 ? __("badges_messages.person_has_responded") : __("badges_messages.people_have_responded");

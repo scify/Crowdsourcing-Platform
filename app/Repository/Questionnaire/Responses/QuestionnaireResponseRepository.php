@@ -122,7 +122,7 @@ class QuestionnaireResponseRepository extends Repository {
 
     public function getResponseByAnonymousData(int $questionnaire_id, string $ip, string $browser_fingerprint_id) {
         return QuestionnaireResponse::where([
-            'questionnaire_id' => $questionnaire_id
+            'questionnaire_id' => $questionnaire_id,
         ])->where(function ($query) use ($ip, $browser_fingerprint_id) {
             $query->where('browser_ip', $ip)
                 ->orWhere('browser_fingerprint_id', $browser_fingerprint_id);

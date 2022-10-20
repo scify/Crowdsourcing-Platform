@@ -37,7 +37,7 @@ class QuestionnaireResponseController extends Controller {
         $this->validate($request, [
             'browser_fingerprint_id' => 'required|string',
             'questionnaire_id' => 'required|integer',
-            'project_id' => 'required|integer'
+            'project_id' => 'required|integer',
         ]);
         app()->setLocale($request->lang);
         $data = $request->all();
@@ -148,13 +148,14 @@ class QuestionnaireResponseController extends Controller {
     public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {
         $this->validate($request, [
             'browser_fingerprint_id' => 'required|string',
-            'questionnaire_id' => 'required|integer'
+            'questionnaire_id' => 'required|integer',
         ]);
+
         return response()->json([
             'questionnaire_response' => $this->questionnaireResponseManager->getAnonymousUserResponseForQuestionnaire(
                 $request->questionnaire_id,
                 $request->getClientIp(),
-                $request->browser_fingerprint_id)
+                $request->browser_fingerprint_id),
         ]);
     }
 }

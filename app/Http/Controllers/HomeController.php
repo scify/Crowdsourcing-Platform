@@ -59,7 +59,7 @@ class HomeController extends Controller {
                 });
                 if ($route != null && $route->getName() == 'project.landing-page') {
                     $goBackUrl = $referrer;
-                    if (! Str::contains($referrer, '?open')) {
+                    if (!Str::contains($referrer, '?open')) {
                         $goBackUrl .= '?open=1';
                     } //so user can go back and open the questionnaire
                 }
