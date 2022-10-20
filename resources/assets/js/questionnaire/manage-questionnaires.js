@@ -1,4 +1,6 @@
 
+import "admin-lte/plugins/datatables/jquery.dataTables.min";
+
 (function () {
 
 	let init = function () {

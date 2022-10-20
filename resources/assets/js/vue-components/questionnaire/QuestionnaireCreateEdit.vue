@@ -589,6 +589,7 @@ export default {
 @import "resources/assets/sass/variables";
 @import "resources/assets/sass/select2-custom.scss";
 @import '~survey-jquery/survey.min.css';
+@import '~survey-creator/survey-creator.min.css';
 
 .sjs-cb-switch input:checked {
   background-color: $brand-primary;

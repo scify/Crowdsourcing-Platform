@@ -1,15 +1,10 @@
 import "icheck";
 
 import "fastclick";
-import "admin-lte"; // 'admin-lte/dist/js/app.min.js'
-import "bootstrap-colorpicker";
-
-
-import "summernote/dist/summernote-bs4";
+import "admin-lte/dist/js/adminlte.min"; // 'admin-lte/dist/js/app.min.js'
 
 import "jquery-slimscroll";
-import "survey-creator";
-
+import "bootstrap";
 
 import "datatables.net";
 import "datatables.net-bs4";
@@ -48,12 +43,6 @@ import {showToast} from "./common-utils";
 		}, 3000);
 	};
 
-	let initializeColorPicker = function () {
-		$(".color-picker").each(function (i, el) {
-			initSingleColorPicker(el);
-		});
-	};
-
 	let initClipboardElements = function () {
 		const clipboard = new Clipboard(".copy-clipboard");
 
@@ -90,7 +79,6 @@ import {showToast} from "./common-utils";
 		$(document).ready(function () {
 			initializeIcheck();
 			closeDismissableAlerts();
-			initializeColorPicker();
 			initClipboardElements();
 			listenToReadMoreClicks();
 			initializeTooltips();
@@ -101,21 +89,6 @@ import {showToast} from "./common-utils";
 		});
 	});
 })();
-
-
-export function initSingleColorPicker(el) {
-	$(el).colorpicker({
-		horizontal: true
-	});
-
-	$(el).on("colorpickerCreate", function (event) {
-		$(el).find(".input-group-addon").css("background-color", event.color.toString());
-	});
-
-	$(el).on("colorpickerChange", function (event) {
-		$(el).find(".input-group-addon").css("background-color", event.color.toString());
-	});
-}
 
 export function isObject(obj) {
 	return obj != null && obj.constructor.name === "Object";
