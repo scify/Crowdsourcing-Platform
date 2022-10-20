@@ -153,6 +153,7 @@ import {showToast} from "../../common-utils";
 import {Tabulator} from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent";
 import StoreModal from "../common/StoreModalComponent";
+import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
 
 export default {
 	name: "QuestionnaireStatistics",
@@ -253,8 +254,16 @@ export default {
 				.VisualizationManager
 				.registerVisualizer(type, wordCloud);
 		}
-		let fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType("file");
-		console.log(fileVisualizers);
+		const fileType = "file";
+		let fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(fileType);
+		if (fileVisualizers && fileVisualizers.length) {
+			SurveyAnalytics
+				.VisualizationManager
+				.unregisterVisualizer(fileType, fileVisualizers[0]);
+			SurveyAnalytics
+				.VisualizationManager
+				.registerVisualizer(fileType, FileQuestionStatisticsCustomVisualizer);
+		}
 		// Set localized title of this visualizer
 		SurveyAnalytics
 			.localization
