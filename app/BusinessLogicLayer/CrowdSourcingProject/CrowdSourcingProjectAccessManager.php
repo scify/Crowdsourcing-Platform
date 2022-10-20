@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 
 class CrowdSourcingProjectAccessManager {
-    protected $crowdSourcingProjectRepository;
-    protected $userRoleManager;
+    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
+    protected UserRoleManager $userRoleManager;
 
-    public function registerCrowdSourcingProjectPolicies() {
+    public function registerCrowdSourcingProjectPolicies(): void {
         Gate::define('view-landing-page', function (?User $user, string $project_slug) {
             $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
 
@@ -34,22 +34,22 @@ class CrowdSourcingProjectAccessManager {
                 ->allWithTrashed(['*'], 'id', 'desc', $relationships);
         }
 
-        return $this->crowdSourcingProjectRepository->whereWithTrashed($whereArray = ['user_creator_id' => $user->id], ['*'],
+        return $this->crowdSourcingProjectRepository->whereWithTrashed(['user_creator_id' => $user->id], ['*'],
             'id', 'desc', $relationships);
     }
 
     protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {
-        if (!$project) {
+        if (!$project->id) {
             return false;
         }
         if ($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED) {
             return true;
         }
 
-        return $this->userHasAccessToManageProject($user, $project);
+        return $this->userHasAccessToManageProjects($user);
     }
 
-    public function userHasAccessToManageProject($user, CrowdSourcingProject $project): bool {
+    public function userHasAccessToManageProjects($user): bool {
         if (!$user) {
             return false;
         }
