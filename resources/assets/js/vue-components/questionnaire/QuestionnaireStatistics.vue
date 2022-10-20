@@ -253,9 +253,9 @@ export default {
 				.VisualizationManager
 				.registerVisualizer(type, wordCloud);
 		}
-    let fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType("file");
-    console.log(fileVisualizers);
-    // Set localized title of this visualizer
+		let fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType("file");
+		console.log(fileVisualizers);
+		// Set localized title of this visualizer
 		SurveyAnalytics
 			.localization
 			.locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";

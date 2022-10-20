@@ -1,6 +1,20 @@
 "use strict";
 import Chart from "chart.js";
 import _ from "lodash";
+import "admin-lte/plugins/datatables/jquery.dataTables.min";
+
+import Vue from "vue";
+import store from "../store/store";
+
+import QuestionnaireStatistics from "../vue-components/questionnaire/QuestionnaireStatistics";
+
+new Vue({
+	el: "#app",
+	store: store,
+	components: {
+		QuestionnaireStatistics
+	}
+});
 
 (function () {
 	let init = function () {
@@ -55,6 +69,8 @@ import _ from "lodash";
 
 	let initQuestionnaireResponsesPerLanguageChart = function () {
 		let element = document.getElementById("responsesPerLanguageChart");
+		if (!element)
+			return;
 		let ctx = element.getContext("2d");
 		// eslint-disable-next-line no-undef
 		let colors = getRandomColors(viewModel.numberOfResponsesPerLanguage.data.length);
