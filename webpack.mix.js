@@ -27,6 +27,7 @@ mix.js('resources/assets/js/common-backoffice.js', 'public/dist/js/')
     .js('resources/assets/js/questionnaire/questionnaire-thanks.js', 'public/dist/js')
     .js('resources/assets/js/questionnaire/questionnaire-create-edit.js', 'public/dist/js')
     .js('resources/assets/js/questionnaire/questionnaire-feedback.js', 'public/dist/js')
+    .js('resources/assets/js/questionnaire/questionnaire-statistics-colors.js', 'public/dist/js')
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
@@ -80,6 +81,8 @@ mix.sass('resources/assets/sass/common.scss', 'public/dist/css')
     .sass('resources/assets/sass/pages/home.scss', 'public/dist/css')
     .sass('resources/assets/sass/project/all-projects.scss', 'public/dist/css')
     .sass('resources/assets/sass/questionnaire/questionnaire-thanks.scss', 'public/dist/css')
+    .sass('resources/assets/sass/questionnaire/questionnaire-statistics-colors.scss', 'public/dist/css')
+
     .sourceMaps()
     .webpackConfig({
         devtool: 'source-map',
