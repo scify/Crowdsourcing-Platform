@@ -32,7 +32,7 @@ class ConfigServiceProvider extends ServiceProvider {
     private function makeAbsoluteUrls() {
         //dd(app('url')->to(\Config::get('services')['facebook']['redirect']));
         foreach (Config::get('services') as $key => $config) {
-            if (! isset($config['redirect'])) {
+            if (!isset($config['redirect'])) {
                 continue;
             }
             Config::set("services.$key.redirect", url($config['redirect']));

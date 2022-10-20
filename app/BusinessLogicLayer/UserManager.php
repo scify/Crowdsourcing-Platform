@@ -124,7 +124,7 @@ class UserManager {
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
-        if (! $current_password) {
+        if (!$current_password) {
             $obj_user->password = Hash::make($data['password']);
         } else {
             if (Hash::check($data['current_password'], $current_password)) {
@@ -145,7 +145,7 @@ class UserManager {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.
         $registerToMailchimp = true;
-        if (! $socialUser->email) {
+        if (!$socialUser->email) {
             $socialUser->email = $socialUser->id . '@dummy.crowdsourcing.org';
             $registerToMailchimp = false;
         }
@@ -177,7 +177,7 @@ class UserManager {
             'nickname' => $data['nickname'],
             'password' => Hash::make($data['password']),
         ];
-        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return $this->userRepository->create($data);
         } else {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);

@@ -21,7 +21,7 @@ class CrowdSourcingProjectTranslationManager {
 
     public function getFieldsTranslationForProject(CrowdSourcingProject $project): CrowdSourcingProjectTranslation {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
-        if (! $language) {
+        if (!$language) {
             return $project->defaultTranslation;
         }
         $fieldsTranslation = $this->crowdSourcingProjectTranslationRepository->where([
@@ -33,7 +33,7 @@ class CrowdSourcingProjectTranslationManager {
     }
 
     public function getTranslationsForProject(CrowdSourcingProject $project): Collection {
-        if (! $project->id) {
+        if (!$project->id) {
             return new Collection();
         }
 
@@ -57,7 +57,7 @@ class CrowdSourcingProjectTranslationManager {
         foreach ($attributesArray as $attributes) {
             $attributes = json_decode(json_encode($attributes), true);
             foreach ($attributes as $key => $value) {
-                if (! $value) {
+                if (!$value) {
                     $attributes[$key] = $defaultLanguageContentForProject[$key];
                 }
             }

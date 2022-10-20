@@ -34,7 +34,7 @@ class QuestionnaireResponse extends Model {
         'response_json',
         'response_json_translated',
         'browser_fingerprint_id',
-        'browser_ip'
+        'browser_ip',
     ];
 
     public function user() {

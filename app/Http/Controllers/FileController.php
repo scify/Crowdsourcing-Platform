@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
 class FileController extends Controller {
-
     public function uploadFiles(Request $request): JsonResponse {
         $request->validate([
-            'files.*' => 'required|file|max:200000'
+            'files.*' => 'required|file|max:200000',
         ]);
         $dirToStoreFileInUploads = $request->directory ?? 'default';
         $responseFilePaths = [];
@@ -22,7 +21,7 @@ class FileController extends Controller {
             $uploadedFilePath = config('app.url') . FileUploader::uploadAndGetPath($uploadedFile, $dirToStoreFileInUploads);
             $responseFilePaths[$originalFileName] = $uploadedFilePath;
         }
+
         return response()->json($responseFilePaths);
     }
-
 }

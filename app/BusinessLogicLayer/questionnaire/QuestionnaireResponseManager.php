@@ -89,7 +89,7 @@ class QuestionnaireResponseManager {
                 'language_id' => $language->id,
                 'response_json' => json_encode(json_decode($data['response'])),
                 'browser_fingerprint_id' => $data['browser_fingerprint_id'],
-                'browser_ip' => $data['ip']
+                'browser_ip' => $data['ip'],
             ])
         );
         if (Auth::check()) {
@@ -101,6 +101,7 @@ class QuestionnaireResponseManager {
             $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
+
         return $questionnaireResponse;
     }
 

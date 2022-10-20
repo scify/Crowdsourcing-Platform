@@ -39,7 +39,7 @@ class CrowdSourcingProjectAccessManager {
     }
 
     protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {
-        if (! $project) {
+        if (!$project) {
             return false;
         }
         if ($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED) {
@@ -50,7 +50,7 @@ class CrowdSourcingProjectAccessManager {
     }
 
     public function userHasAccessToManageProject($user, CrowdSourcingProject $project): bool {
-        if (! $user) {
+        if (!$user) {
             return false;
         }
 
