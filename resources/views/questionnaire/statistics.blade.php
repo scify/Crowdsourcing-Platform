@@ -1,7 +1,4 @@
 @extends('landingpages.layout', ['includeBackofficeCommonJs' => true])
-@push('css')
-    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/statistics.css')}}">
-@endpush
 
 @section('content')
     <div class="container-fluid py-5">
@@ -66,5 +63,5 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script defer type="text/javascript" src="{{mix('dist/js/statistics.js')}}"></script>
+    <script defer type="text/javascript" src="{{mix('dist/js/questionnaire-statistics.js')}}"></script>
 @endpush

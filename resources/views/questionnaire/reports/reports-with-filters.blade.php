@@ -70,5 +70,5 @@
     </div>
 @endpush
 @push('scripts')
-    <script defer src="{{mix('dist/js/reports.js')}}"></script>
+    <script defer src="{{mix('dist/js/questionnaire-reports.js')}}"></script>
 @endpush

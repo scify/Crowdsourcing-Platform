@@ -23,6 +23,7 @@ import "./bootstrap";
 	};
 
 	let init = function () {
+		$(".dropdown-toggle").dropdown();
 		handleLogoutBtnClick();
 	};
 
