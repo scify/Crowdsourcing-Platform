@@ -51,7 +51,8 @@
                                 :user-can-annotate-answers="{{ $viewModel->userCanAnnotateAnswers ? 1 : 0 }}"
                                 :questionnaire='@json($viewModel->questionnaire)'
                                 :projects='@json($viewModel->questionnaire->projects)'
-                                :project-filter="{{$viewModel->projectFilter}}">
+                                :project-filter="{{$viewModel->projectFilter}}"
+                                :show-file-type-questions-statistics="{{ $viewModel->userCanViewFileTypeQuestionsStatistics() }}">
                         </questionnaire-statistics>
                     </div>
                 </div>

@@ -182,6 +182,10 @@ export default {
 		projectFilter: {
 			type: Number,
 			default: -1
+		},
+		showFileTypeQuestionsStatistics: {
+			type: Number,
+			default: -1
 		}
 	},
 	data: function () {
@@ -260,9 +264,11 @@ export default {
 			SurveyAnalytics
 				.VisualizationManager
 				.unregisterVisualizer(fileType, fileVisualizers[0]);
-			SurveyAnalytics
-				.VisualizationManager
-				.registerVisualizer(fileType, FileQuestionStatisticsCustomVisualizer);
+			if (this.showFileTypeQuestionsStatistics !== -1) {
+				SurveyAnalytics
+					.VisualizationManager
+					.registerVisualizer(fileType, FileQuestionStatisticsCustomVisualizer);
+			}
 		}
 		// Set localized title of this visualizer
 		SurveyAnalytics
@@ -416,6 +422,8 @@ export default {
 		},
 		shouldDrawStatistics(question) {
 			const caseWhenQuestionIsSensitiveAndUserIsNotAdmin = !this.userCanAnnotateAnswers && question.title.includes("please indicate your email");
+			if (question.getType() === "file")
+				return this.showFileTypeQuestionsStatistics !== -1;
 			return question.getType().toLowerCase() !== "html" && !(caseWhenQuestionIsSensitiveAndUserIsNotAdmin);
 		},
 		getColorsForQuestion(question) {
