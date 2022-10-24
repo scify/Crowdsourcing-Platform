@@ -37,7 +37,7 @@ new Vue({
 	let openQuestionnaireIfNeeded = function () {
 		let respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
 		if (respondQuestionnaire.first().data("open-on-load") === 1) {
-			respondQuestionnaire.first().trigger("click");
+			window.$("#questionnaire-modal").modal("show");
 		}
 	};
 

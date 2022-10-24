@@ -53,7 +53,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 			if (answer) {
 				$("#respondent-answers-modal-title").html(respondentUserData);
 				survey.data = answer;
-				$("#respondent-answers-modal").modal();
+				window.$("#respondent-answers-modal").modal();
 			}
 		});
 	};
@@ -63,7 +63,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 		body.on("click", ".delete-response-btn", function () {
 			const questionnaireResponseId = $(this).data("questionnaireResponseId");
 			$("input[name=questionnaire_response_id]").val(questionnaireResponseId);
-			$("#delete-response-modal").modal();
+			window.$("#delete-response-modal").modal();
 		});
 
 		body.on("click", "#delete-response-form-btn", function () {
@@ -90,7 +90,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 						.remove()
 						.draw();
 
-					$("#delete-response-modal").modal("hide");
+					window.$("#delete-response-modal").modal("hide");
 					swal({
 						title: "Response deleted!",
 						text: "",
@@ -133,7 +133,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 				order: [[1, "desc"]]
 			});
 			$("#questionTitle").html(question);
-			$("#answersModal").modal();
+			window.$("#answersModal").modal();
 		});
 	};
 
