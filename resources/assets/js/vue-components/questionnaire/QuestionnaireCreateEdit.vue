@@ -67,6 +67,26 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Show general statistics charts</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="checkbox" class="form-control checkbox"
+                     id="show_general_statistics"
+                     v-model="questionnaire.show_general_statistics">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Show file-type question statistics</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="checkbox" class="form-control checkbox"
+                     id="show_file_type_questions_to_statistics_page_audience"
+                     v-model="questionnaire.show_file_type_questions_to_statistics_page_audience">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label for="language">Allow anonymous responses</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -125,16 +145,6 @@
               <input type="number" class="form-control" id="max_votes_num"
                      required
                      v-model="questionnaire.max_votes_num">
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="goal">Show general statistics</label>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="checkbox" class="form-control checkbox"
-                     id="show_general_statistics"
-                     v-model="questionnaire.show_general_statistics">
             </div>
           </div>
           <div class="row form-group">
@@ -476,7 +486,8 @@ export default {
 				max_votes_num: this.questionnaire.max_votes_num,
 				show_general_statistics: this.questionnaire.show_general_statistics,
 				type_id: this.questionnaire.type_id,
-				respondent_auth_required: this.questionnaire.respondent_auth_required
+				respondent_auth_required: this.questionnaire.respondent_auth_required,
+				show_file_type_questions_to_statistics_page_audience: this.questionnaire.show_file_type_questions_to_statistics_page_audience
 			};
 			$("#project-ids").val().map((x) => {
 				data.project_ids.push(parseInt(x));

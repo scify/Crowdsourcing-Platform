@@ -7,10 +7,10 @@ use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 
 class QuestionnaireManager {
-    protected $questionnaireRepository;
-    protected $crowdSourcingProjectQuestionnaireRepository;
-    protected $questionnaireLanguageRepository;
-    protected $questionnaireFieldsTranslationManager;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository;
+    protected QuestionnaireLanguageRepository $questionnaireLanguageRepository;
+    protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
 
     public function __construct(QuestionnaireRepository                     $questionnaireRepository,
                                 CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
@@ -22,7 +22,7 @@ class QuestionnaireManager {
         $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
     }
 
-    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
+    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments): void {
         $comments = is_null($comments) ? '' : $comments;
         $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
     }
@@ -35,7 +35,8 @@ class QuestionnaireManager {
                 $data['max_votes_num'],
                 $data['show_general_statistics'],
                 $data['type_id'],
-                $data['respondent_auth_required']
+                $data['respondent_auth_required'],
+                $data['show_file_type_questions_to_statistics_page_audience']
             );
         } else {
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
@@ -44,7 +45,8 @@ class QuestionnaireManager {
                 $data['max_votes_num'],
                 $data['show_general_statistics'],
                 $data['type_id'],
-                $data['respondent_auth_required']);
+                $data['respondent_auth_required'],
+                $data['show_file_type_questions_to_statistics_page_audience']);
         }
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,

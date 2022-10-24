@@ -47,6 +47,7 @@ class QuestionnaireVMProvider {
             $questionnaire->max_votes_num = 10;
             $questionnaire->show_general_statistics = true;
             $questionnaire->respondent_auth_required = 0;
+            $questionnaire->show_file_type_questions_to_statistics_page_audience = 0;
             $title = 'Create Questionnaire';
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
