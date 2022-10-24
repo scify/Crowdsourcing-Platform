@@ -257,7 +257,7 @@ export default {
 				locale = this.surveyLocales[0].code;
 			data.language_code = locale;
 			$(".loader-wrapper").removeClass("hidden");
-			$(".questionnaire-modal").modal("hide");
+			window.$("#questionnaire-modal").modal("hide");
 			$(".respond-questionnaire").attr("disabled", true);
 			this.postResponseDataAndShowResult(data);
 		},
@@ -288,7 +288,7 @@ export default {
 				console.error(error);
 				this.displayErrorResponse(error);
 			}).finally(() => {
-				$(".questionnaire-modal").modal("hide");
+				window.$("#questionnaire-modal").modal("hide");
 				window.localStorage.removeItem(this.questionnaireLocalStorageKey);
 			});
 		},

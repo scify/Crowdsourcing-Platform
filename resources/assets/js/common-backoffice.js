@@ -4,7 +4,6 @@ import "fastclick";
 import "admin-lte/dist/js/adminlte.min"; // 'admin-lte/dist/js/app.min.js'
 
 import "jquery-slimscroll";
-import "bootstrap";
 
 import "datatables.net";
 import "datatables.net-bs4";

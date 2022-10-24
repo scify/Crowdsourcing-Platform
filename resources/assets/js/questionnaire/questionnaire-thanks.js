@@ -1,7 +1,7 @@
 (function () {
 	let init = function () {
 		$("#pyro").addClass("pyro-on");
-		const anonymousResponseModal = $(".anonymous-response");
+		const anonymousResponseModal = window.$(".anonymous-response");
 		if (anonymousResponseModal.length) {
 			anonymousResponseModal.modal({backdrop: "static"});
 			window.setTimeout(function () {

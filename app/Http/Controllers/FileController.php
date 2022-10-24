@@ -10,7 +10,7 @@ use Illuminate\Http\UploadedFile;
 class FileController extends Controller {
     public function uploadFiles(Request $request): JsonResponse {
         $request->validate([
-            'files.*' => 'required|file|max:200000',
+            'files.*' => 'required|file|max:52428800|mimetypes:image/*,audio/,video/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf',
         ]);
         $dirToStoreFileInUploads = $request->directory ?? 'default';
         $responseFilePaths = [];

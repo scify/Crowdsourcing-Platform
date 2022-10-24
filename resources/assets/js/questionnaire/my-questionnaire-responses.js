@@ -31,7 +31,7 @@ import Survey from "survey-jquery";
 
 	let showResponse = function (responseId) {
 		let response = getResponseById(responseId);
-		const responseModal = $("#questionnaireResponseModal");
+		const responseModal = window.$("#questionnaireResponseModal");
 		if (response) {
 			responseModal.find("#questionnaireResponse").html("");
 			responseModal.find("#questionnaireTitle").html(response.title);
