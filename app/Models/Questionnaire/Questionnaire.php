@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $max_votes_num
  * @property bool $show_general_statistics
  * @property bool $respondent_auth_required
+ * @property bool $show_file_type_questions_to_statistics_page_audience
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
