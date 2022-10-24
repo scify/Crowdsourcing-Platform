@@ -181,7 +181,22 @@
 
           <div class="row">
             <div class="col-md-12 editor-wrapper">
-              <em>Use the editor below to create your questionnaire.</em>
+              <h5 class="mb-4">Use the editor below to create your questionnaire:</h5>
+              <h6><b>Notice:</b> For the file-type questions, enter the corresponding acceptable file-type:</h6>
+              <ul class="list">
+                <li class="list-item">
+                  For <b>image</b> files => <b>image/*</b>
+                </li>
+                <li class="list-item">
+                  For <b>audio</b> files => <b>audio/*</b>
+                </li>
+                <li class="list-item">
+                  For <b>video</b> files => <b>video/*</b>
+                </li>
+                <li class="list-item">
+                  For <b>documents:</b> => <b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b>
+                </li>
+              </ul>
               <div id="questionnaire-editor"></div>
             </div>
           </div>
@@ -240,7 +255,7 @@ import CommonModal from "../common/ModalComponent";
 import TranslationsManager from "../common/TranslationsManager";
 import "select2";
 
-const FILE_MAX_SIZE_BYTES = 2097152; // 2MB;
+const FILE_MAX_SIZE_BYTES = 52428800; // 50MB;
 
 export default {
 	name: "QuestionnaireCreateEdit",
