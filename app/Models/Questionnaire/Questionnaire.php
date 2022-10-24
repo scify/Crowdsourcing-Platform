@@ -59,6 +59,7 @@ class Questionnaire extends Model {
         'max_votes_num',
         'show_general_statistics',
         'respondent_auth_required',
+        'show_file_type_questions_to_statistics_page_audience'
     ];
 
     /**
