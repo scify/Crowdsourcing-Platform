@@ -123,6 +123,10 @@ Route::group(['middleware' => 'auth'], function () {
         throw new Exception('Test Sentry error: ' . $request->message);
     })->middleware('can:manage-platform');
 
+    Route::get('/phpinfo', function (Request $request) {
+        phpinfo();
+    })->middleware('can:manage-platform');
+
     Route::get('/test-email/{email}', function (Request $request) {
         User::where(['email' => $request->email])->first()->notify(new UserRegistered());
 
