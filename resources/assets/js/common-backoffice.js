@@ -36,8 +36,8 @@ import {showToast} from "./common-utils";
 	let closeDismissableAlerts = function () {
 		setTimeout(function () {
 			/*Close any flash message after some time*/
-			$(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function () {
-				$(".alert-dismissable").alert("close");
+			window.$(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function () {
+				window.$(".alert-dismissable").alert("close");
 			});
 		}, 3000);
 	};
@@ -72,7 +72,7 @@ import {showToast} from "./common-utils";
 	};
 
 	let initializeTooltips = function () {
-		$("[data-toggle=\"tooltip\"]").tooltip();
+		window.$("[data-toggle=\"tooltip\"]").tooltip();
 	};
 	$(function () {
 		$(document).ready(function () {

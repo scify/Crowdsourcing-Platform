@@ -194,7 +194,8 @@ export default {
 			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
 			this.survey.onComplete.add(this.saveQuestionnaireResponse);
 			this.survey.onUploadFiles.add(this.onUploadSurveyFile);
-			this.survey.locale = this.surveyLocales[0].code;
+			if (this.surveyLocales && this.surveyLocales.length)
+				this.survey.locale = this.surveyLocales[0].code;
 			const instance = this;
 			this.survey
 				.onAfterRenderSurvey

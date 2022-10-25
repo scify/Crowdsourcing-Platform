@@ -1,6 +1,7 @@
 import * as Survey from "survey-knockout";
 import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
-
+import "admin-lte/plugins/datatables/jquery.dataTables.min";
+import _ from "lodash";
 
 (function () {
 
@@ -169,7 +170,6 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 	};
 
 	let parseSuccessData = function (response) {
-		console.log(response.data);
 		const resultsEl = $("#results");
 		resultsEl.html("");
 		$("#errorMsg").addClass("d-none");
