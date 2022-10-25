@@ -97,5 +97,5 @@
     </form>
 @endsection
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
+    <script defer src="{{mix('dist/js/questionnaire-statistics-colors.js')}}"></script>
 @endpush

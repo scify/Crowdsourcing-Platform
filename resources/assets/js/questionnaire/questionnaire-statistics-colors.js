@@ -1,3 +1,7 @@
+import "jquery/dist/jquery.min";
+import "bootstrap/dist/js/bootstrap.min";
+import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
+
 (function () {
 	let init = function () {
 		initializeColorPicker();
