@@ -1,3 +1,5 @@
+import "admin-lte/plugins/datatables/jquery.dataTables.min";
+
 window.UsersListController = function () {
 };
 

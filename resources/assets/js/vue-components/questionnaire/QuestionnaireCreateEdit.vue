@@ -1,4 +1,4 @@
-<template>
+<template id="questionnaire-create-edit">
   <div class="row">
     <div class="col-md-12 col-xs-12">
       <div class="card card-primary">
@@ -617,16 +617,18 @@ export default {
 @import '~survey-jquery/survey.min.css';
 @import '~survey-creator/survey-creator.min.css';
 
-.sjs-cb-switch input:checked {
-  background-color: $brand-primary;
-  border-color: $brand-primary;
-}
+#questionnaire-create-edit {
+  .sjs-cb-switch input:checked {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+  }
 
-.svd-survey-placeholder-root .svd-survey-placeholder .svd-empty-message-container .svd-empty-message {
-  color: $brand-primary
-}
+  .svd-empty-message-container .svd-empty-message {
+    color: $brand-primary
+  }
 
-.svd_container .icon-gearactive .svd-svg-icon, .svd_container .icon-dotsactive .svd-svg-icon {
-  fill: $brand-primary
+  .svd_container .icon-gearactive .svd-svg-icon, .svd_container .icon-dotsactive .svd-svg-icon {
+    fill: $brand-primary
+  }
 }
 </style>

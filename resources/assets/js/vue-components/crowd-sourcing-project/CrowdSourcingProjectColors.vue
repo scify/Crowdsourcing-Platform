@@ -39,7 +39,9 @@
 
 <script>
 import {mapActions} from "vuex";
-import "bootstrap-colorpicker";
+import "jquery/dist/jquery.min";
+import "bootstrap/dist/js/bootstrap.min";
+import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
 
 export default {
 	name: "CrowdSourcingProjectColors",

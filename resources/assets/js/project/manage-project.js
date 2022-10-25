@@ -1,7 +1,7 @@
 import CodeMirror from "codemirror/lib/codemirror";
 import "select2";
 import "codemirror/mode/xml/xml";
-import "summernote/dist/summernote-bs4";
+import "summernote/dist/summernote-bs4.min";
 
 import Vue from "vue";
 import store from "../store/store";
