@@ -103,6 +103,8 @@ class QuestionnaireResponseManager {
                 Log::info("\n\n\nContributor notified. Trying to notify referrer....\n\n\n");
                 // if the user got invited by another user to answer the questionnaire, also award the referrer user.
                 $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
+                Log::info("\n\n\nReferrer also notified. Trying to translate questionnaire response....\n\n\n");
+                TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
             } catch (\Exception $e) {
 //                if (app()->bound('sentry')) {
 //                    app('sentry')->captureException($e);
@@ -112,7 +114,7 @@ class QuestionnaireResponseManager {
                 Log::error($e->getMessage());
             }
         }
-        TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
+
 
         return $questionnaireResponse;
     }
