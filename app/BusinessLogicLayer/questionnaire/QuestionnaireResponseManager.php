@@ -12,6 +12,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class QuestionnaireResponseManager {
     protected QuestionnaireRepository $questionnaireRepository;
@@ -93,12 +94,20 @@ class QuestionnaireResponseManager {
             ])
         );
         if (Auth::check()) {
-            $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire,
-                $questionnaireResponse->project,
-                $user,
-                $language);
-            // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
+            try {
+                $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire,
+                    $questionnaireResponse->project,
+                    $user,
+                    $language);
+                // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+                $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
+            } catch (\Exception $e) {
+                if (app()->bound('sentry')) {
+                    app('sentry')->captureException($e);
+                } else {
+                    Log::error($e->getMessage());
+                }
+            }
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
 
