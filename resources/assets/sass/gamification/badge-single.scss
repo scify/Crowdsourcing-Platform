@@ -1,3 +1,53 @@
 .gamification-badge {
+  height: 300px;
+  font-family: 'Open Sans', sans-serif !important;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
 
+  .badge-level {
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 0.5rem 0 1rem;
+
+    &.badge-level-zero {
+      color: black;
+    }
+
+    .points {
+      font-weight: bold;
+    }
+  }
+
+  .badge-message {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0.5rem 0;
+
+    &.badge-message-zero {
+      color: black;
+    }
+  }
+
+
+  .badge-name {
+    text-align: center;
+    margin: 0.5rem 0;
+
+    &.badge-name-black {
+      color: black;
+    }
+
+    &.badge-name-white {
+      color: white;
+    }
+  }
+}
+
+.badge-img-container {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem
 }

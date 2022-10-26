@@ -44,7 +44,7 @@ class QuestionnaireRepository extends Repository {
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->where('user_id', $userId)->first();
     }
 
-    public function countAllResponsesForQuestionnaire($questionnaireId) {
+    public function countAllResponsesForQuestionnaire($questionnaireId): int {
         return DB::table('questionnaire_responses')
             ->select('questionnaire_responses.id')
             ->where('questionnaire_responses.questionnaire_id', $questionnaireId)
@@ -54,14 +54,16 @@ class QuestionnaireRepository extends Repository {
 
     public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,
                                          $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
-                                         $type_id) {
+                                         $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
         return DB::transaction(function () use (
-            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics, $type_id
+            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
+            $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience
         ) {
             $questionnaire = new Questionnaire();
             $questionnaire = $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                $showGeneralStatistics, $type_id);
+                $showGeneralStatistics, $type_id, $respondentAuthRequired,
+                $show_file_type_questions_to_statistics_page_audience);
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
 
@@ -71,16 +73,18 @@ class QuestionnaireRepository extends Repository {
 
     public function updateQuestionnaire($questionnaireId,
                                         $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
-                                        $type_id) {
+                                        $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
         return DB::transaction(function () use (
             $questionnaireId, $goal,
-            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics, $type_id
+            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
+            $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience
         ) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
 
             return $this->storeQuestionnaire($questionnaire,
                 $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                $showGeneralStatistics, $type_id);
+                $showGeneralStatistics, $type_id, $respondentAuthRequired,
+                $show_file_type_questions_to_statistics_page_audience);
         });
     }
 
@@ -93,7 +97,7 @@ class QuestionnaireRepository extends Repository {
         });
     }
 
-    public function saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments) {
+    public function saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments): QuestionnaireStatusHistory {
         $questionnaireStatusHistory = new QuestionnaireStatusHistory();
         $questionnaire = $this->find($questionnaireId);
         $questionnaireStatusHistory->questionnaire_id = $questionnaireId;
@@ -107,7 +111,8 @@ class QuestionnaireRepository extends Repository {
 
     private function storeQuestionnaire($questionnaire, $goal,
                                         $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                                        $showGeneralStatistics, $type_id) {
+                                        $showGeneralStatistics, $type_id, $respondentAuthRequired,
+                                        $show_file_type_questions_to_statistics_page_audience) {
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)
@@ -116,6 +121,8 @@ class QuestionnaireRepository extends Repository {
         $questionnaire->max_votes_num = $maxVotesNum;
         $questionnaire->show_general_statistics = $showGeneralStatistics;
         $questionnaire->type_id = $type_id;
+        $questionnaire->respondent_auth_required = $respondentAuthRequired;
+        $questionnaire->show_file_type_questions_to_statistics_page_audience = $show_file_type_questions_to_statistics_page_audience;
         $questionnaire->save();
 
         return $questionnaire;

@@ -150,9 +150,17 @@ import FreeTextQuestionStatisticsCustomVisualizer, {AnswersData} from "./FreeTex
 import Promise from "lodash/_Promise";
 import _ from "lodash";
 import {showToast} from "../../common-utils";
-import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
+import {Tabulator} from "survey-analytics/survey.analytics.tabulator";
+import CommonModal from "../common/ModalComponent";
+import StoreModal from "../common/StoreModalComponent";
+import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
 
 export default {
+	name: "QuestionnaireStatistics",
+	components: {
+		CommonModal,
+		StoreModal
+	},
 	props: {
 		questionnaire: {
 			type: Object,
@@ -172,6 +180,10 @@ export default {
 			default: 0
 		},
 		projectFilter: {
+			type: Number,
+			default: -1
+		},
+		showFileTypeQuestionsStatistics: {
 			type: Number,
 			default: -1
 		}
@@ -245,6 +257,18 @@ export default {
 			SurveyAnalytics
 				.VisualizationManager
 				.registerVisualizer(type, wordCloud);
+		}
+		const fileType = "file";
+		let fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(fileType);
+		if (fileVisualizers && fileVisualizers.length) {
+			SurveyAnalytics
+				.VisualizationManager
+				.unregisterVisualizer(fileType, fileVisualizers[0]);
+			if (this.showFileTypeQuestionsStatistics !== -1) {
+				SurveyAnalytics
+					.VisualizationManager
+					.registerVisualizer(fileType, FileQuestionStatisticsCustomVisualizer);
+			}
 		}
 		// Set localized title of this visualizer
 		SurveyAnalytics
@@ -337,7 +361,7 @@ export default {
 			AnswersData.userId = this.userId;
 			AnswersData.userCanAnnotateAnswers = this.userCanAnnotateAnswers;
 			AnswersData.numberOfVotesForQuestionnaire = this.questionnaire.max_votes_num;
-			AnswersData.languageResources = window.language[window.Laravel.locale].statistics;
+			AnswersData.languageResources = window.trans("statistics");
 
 			for (let i = 0; i < this.questions.length; i++) {
 				if (!this.shouldDrawStatistics(this.questions[i]))
@@ -398,6 +422,8 @@ export default {
 		},
 		shouldDrawStatistics(question) {
 			const caseWhenQuestionIsSensitiveAndUserIsNotAdmin = !this.userCanAnnotateAnswers && question.title.includes("please indicate your email");
+			if (question.getType() === "file")
+				return this.showFileTypeQuestionsStatistics !== -1;
 			return question.getType().toLowerCase() !== "html" && !(caseWhenQuestionIsSensitiveAndUserIsNotAdmin);
 		},
 		getColorsForQuestion(question) {

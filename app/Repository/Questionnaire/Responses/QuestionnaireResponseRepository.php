@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\UserManager;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use App\Repository\Repository;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireResponseRepository extends Repository {
@@ -30,8 +31,8 @@ class QuestionnaireResponseRepository extends Repository {
         return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', [$id])->restore();
     }
 
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id) {
-        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id): ?Collection {
+        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return null;
         }
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
@@ -42,24 +43,17 @@ class QuestionnaireResponseRepository extends Repository {
         }
 
         $anonymousUser = User::find($anonymousUserId);
-        if (! $anonymousUser) {
+        if (!$anonymousUser) {
             CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
 
             return null;
         }
 
         $anonymousQuestionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
-        $anonymousQuestionnaireResponseQuestionnaireIds = $anonymousQuestionnaireResponses->pluck('questionnaire_id')->toArray();
-        //find existings questionnaires of the user.
+        //find existing questionnaires of the user.
         $existingQuestionnaireResponsesOfUser = QuestionnaireResponse::where('user_id', '=', $user_id)->get();
 
-        //if this questionnaire has been answered in the past, delete it. We keep latest, the anonymous one
-        //foreach ($existingQuestionnaireResponsesOfUser as $response) {
-        //                if (in_array($response->qustionnaire_id, $anonymousQuestionnaireResponseQuestionnaireIds))
-        //                    $response->delete();
-        //  }
-
-        $questionnairesThatWereTransferedToUser = collect([]);
+        $questionnairesThatWereTransferredToUser = collect([]);
         foreach ($anonymousQuestionnaireResponses as $anonymousResponse) {
             $itHasAlreadyBeenAnswered = $existingQuestionnaireResponsesOfUser->contains(function ($existing) use ($anonymousResponse) {
                 return $existing->questionnaire_id == $anonymousResponse->questionnaire_id;
@@ -71,30 +65,28 @@ class QuestionnaireResponseRepository extends Repository {
             } else {
                 //transfer it to the new user and send email.
                 QuestionnaireResponse::where('id', '=', $anonymousResponse->id)->update(['user_id' => $user_id]);
-                $questionnairesThatWereTransferedToUser->push($anonymousResponse);
+                $questionnairesThatWereTransferredToUser->push($anonymousResponse);
             }
         }
         $anonymousUser->delete();
         CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
 
-        return $questionnairesThatWereTransferedToUser;
+        return $questionnairesThatWereTransferredToUser;
     }
 
-    public function getQuestionnaireResponsesOfUser($userId) {
+    public function getQuestionnaireResponsesOfUser($userId): \Illuminate\Database\Eloquent\Collection|array {
         return QuestionnaireResponse::with('questionnaire')
             ->where('user_id', $userId)
             ->get();
     }
 
-    public function countResponsesPerProject($questionnaire_id) {
-        $results = DB::select('SELECT qr.project_id, CONCAT("/",l.language_code,"/",p.slug) as slug, count(*) as total FROM questionnaire_responses qr 
+    public function countResponsesPerProject($questionnaire_id): array {
+        return DB::select('SELECT qr.project_id, CONCAT("/",l.language_code,"/",p.slug) as slug, count(*) as total FROM questionnaire_responses qr 
                                 inner join crowd_sourcing_projects p on qr.project_id = p.id
                                 inner join languages_lkp l on l.id = p.language_id
                                 where qr.deleted_at is null and qr.questionnaire_id =?  
                                 group by qr.project_id, p.slug, l.language_code
                                 order by p.slug desc', [$questionnaire_id]);
-
-        return $results;
     }
 
     public function getAllResponsesGivenByUser($userId) {
@@ -126,5 +118,14 @@ class QuestionnaireResponseRepository extends Repository {
             ->where('user_id', $userId)
             ->get()
             ->sortByDesc('responded_at');
+    }
+
+    public function getResponseByAnonymousData(int $questionnaire_id, string $ip, string $browser_fingerprint_id) {
+        return QuestionnaireResponse::where([
+            'questionnaire_id' => $questionnaire_id,
+        ])->where(function ($query) use ($ip, $browser_fingerprint_id) {
+            $query->where('browser_ip', $ip)
+                ->orWhere('browser_fingerprint_id', $browser_fingerprint_id);
+        })->first();
     }
 }

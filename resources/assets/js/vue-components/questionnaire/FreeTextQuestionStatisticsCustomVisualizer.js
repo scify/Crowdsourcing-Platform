@@ -1,7 +1,5 @@
 import * as SurveyAnalytics from "survey-analytics";
 
-import "../../lang";
-
 export class AnswersData {
 	static answerVotes = [];
 	static answerAnnotations = {};

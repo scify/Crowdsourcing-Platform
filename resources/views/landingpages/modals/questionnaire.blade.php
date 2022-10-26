@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid mb-5">
-                    @if($viewModel->questionnaire->fieldsTranslation->description)
+                    @if($viewModel->questionnaire->fieldsTranslation->description && $viewModel->questionnaire->fieldsTranslation->description !== $viewModel->questionnaire->fieldsTranslation->title)
                         <div class="row">
                             <div class="col-12">
                                 <div class="description-container">
@@ -34,7 +34,7 @@
                     <questionnaire-display
                             survey-container-id="questionnaire_project"
                             :user='@json($viewModel->getLoggedInUser())'
-                            :user-response='@json($viewModel->userResponse)'
+                            :user-response-data='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
                             :project='@json($viewModel->project)'
                             :languages='@json($viewModel->languages)'>

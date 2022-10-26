@@ -1,6 +1,8 @@
 {
   "preset": "laravel",
   "rules": {
+    "function_typehint_space": false,
+    "not_operator_with_successor_space": false,
     "braces": {
       "allow_single_line_anonymous_class_with_empty_body": true,
       "allow_single_line_closure": true,

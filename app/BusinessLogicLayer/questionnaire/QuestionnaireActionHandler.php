@@ -18,23 +18,23 @@ use App\Repository\UserQuestionnaireShareRepository;
 use App\Repository\UserRepository;
 
 class QuestionnaireActionHandler {
-    protected $webSessionManager;
-    protected $userRepository;
-    protected $questionnaireResponseReferralManager;
-    protected $platformWideGamificationBadgesProvider;
-    protected $questionnaireShareRepository;
-    protected $questionnaireResponseRepository;
-    protected $questionnaireFieldsTranslationManager;
-    protected $languageManager;
+    protected WebSessionManager $webSessionManager;
+    protected UserRepository $userRepository;
+    protected QuestionnaireResponseReferralManager $questionnaireResponseReferralManager;
+    protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
+    protected UserQuestionnaireShareRepository $questionnaireShareRepository;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
+    protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
+    protected LanguageManager $languageManager;
 
-    public function __construct(WebSessionManager $webSessionManager,
-                                UserRepository $userRepository,
-                                QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
+    public function __construct(WebSessionManager                      $webSessionManager,
+                                UserRepository                         $userRepository,
+                                QuestionnaireResponseReferralManager   $questionnaireResponseReferralManager,
                                 PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                UserQuestionnaireShareRepository $questionnaireShareRepository,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager,
-                                LanguageManager $languageManager) {
+                                UserQuestionnaireShareRepository       $questionnaireShareRepository,
+                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
+                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager,
+                                LanguageManager                        $languageManager) {
         $this->webSessionManager = $webSessionManager;
         $this->userRepository = $userRepository;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
@@ -45,10 +45,10 @@ class QuestionnaireActionHandler {
         $this->languageManager = $languageManager;
     }
 
-    public function handleQuestionnaireContributor(Questionnaire $questionnaire,
+    public function handleQuestionnaireContributor(Questionnaire        $questionnaire,
                                                    CrowdSourcingProject $project,
-                                                   User $user,
-                                                   Language $language) {
+                                                   User                 $user,
+                                                   Language             $language): void {
         //check if the contributor email should be sent
         if ($project->should_send_email_after_questionnaire_response) {
             $this->awardContributorBadgeToUser($questionnaire, $project, $user, $language);
@@ -56,8 +56,8 @@ class QuestionnaireActionHandler {
     }
 
     public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project,
-                                                User $user,
-                                                Language $language) {
+                                                User          $user,
+                                                Language      $language): void {
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
@@ -75,8 +75,8 @@ class QuestionnaireActionHandler {
     }
 
     public function handleQuestionnaireReferrer(Questionnaire $questionnaire,
-                                                User $user,
-                                                Language $language) {
+                                                User          $user,
+                                                Language      $language): void {
         $referrerId = $this->webSessionManager->getReferredId();
         if ($referrerId) {
             $referrer = $this->userRepository->getUser($referrerId);
@@ -93,7 +93,7 @@ class QuestionnaireActionHandler {
         }
     }
 
-    public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user, Language $language) {
+    public function handleQuestionnaireSharer(Questionnaire $questionnaire, User $user, Language $language): void {
         $communicatorBadge = $this->platformWideGamificationBadgesProvider->getCommunicatorBadge($user->id);
         $user->notify(new QuestionnaireShared(
             $questionnaire->fieldsTranslation,

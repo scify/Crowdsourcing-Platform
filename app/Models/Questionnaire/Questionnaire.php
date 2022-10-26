@@ -29,6 +29,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $goal
  * @property string $questionnaire_json
  * @property int $statistics_page_visibility_lkp_id
+ * @property int $max_votes_num
+ * @property bool $show_general_statistics
+ * @property bool $respondent_auth_required
+ * @property bool $show_file_type_questions_to_statistics_page_audience
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
@@ -55,6 +59,8 @@ class Questionnaire extends Model {
         'statistics_page_visibility_lkp_id',
         'max_votes_num',
         'show_general_statistics',
+        'respondent_auth_required',
+        'show_file_type_questions_to_statistics_page_audience'
     ];
 
     /**
@@ -100,7 +106,7 @@ class Questionnaire extends Model {
         return 'id';
     }
 
-    public function defaultLanguage() {
+    public function defaultLanguage(): HasOne {
         return $this->hasOne(Language::class, 'id', 'default_language_id');
     }
 
@@ -109,7 +115,7 @@ class Questionnaire extends Model {
      *
      * @return BelongsToMany
      */
-    public function projects() {
+    public function projects(): BelongsToMany {
         return $this->belongsToMany(
             CrowdSourcingProject::class,
             'crowd_sourcing_project_questionnaires',
@@ -117,11 +123,11 @@ class Questionnaire extends Model {
             'project_id');
     }
 
-    public function statusHistory() {
+    public function statusHistory(): HasMany {
         return $this->hasMany(QuestionnaireStatusHistory::class, 'questionnaire_id', 'id');
     }
 
-    public function questionnaireLanguages() {
+    public function questionnaireLanguages(): HasMany {
         return $this->hasMany(QuestionnaireLanguage::class, 'questionnaire_id', 'id');
     }
 

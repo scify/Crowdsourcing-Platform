@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserManager {
-    private $userRepository;
-    private $userRoleRepository;
-    private $mailChimpManager;
-    private $questionnaireResponseRepository;
-    private $questionnaireAnswerVoteRepository;
-    public static $USERS_PER_PAGE = 10;
-    public static $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
+    private UserRepository $userRepository;
+    private UserRoleRepository $userRoleRepository;
+    private MailChimpAdaptor $mailChimpManager;
+    private QuestionnaireResponseRepository $questionnaireResponseRepository;
+    private QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
+    public static int $USERS_PER_PAGE = 10;
+    public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
     public function __construct(UserRepository $userRepository,
                                 UserRoleRepository $userRoleRepository,
@@ -86,7 +86,7 @@ class UserManager {
         $this->userRepository->reActivateUser($user);
     }
 
-    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect) {
+    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect): ActionResponse {
         $emailCheck = $this->userRepository->getUserByEmail($email);
         // Check if email exists in db
         if ($emailCheck) {
@@ -119,12 +119,12 @@ class UserManager {
      *
      * @throws HttpException
      */
-    public function updateUser($data) {
+    public function updateUser(array $data): void {
         $user_id = Auth::id();
         $obj_user = User::find($user_id);
         $obj_user->nickname = $data['nickname'];
         $current_password = $obj_user->password;
-        if (! $current_password) {
+        if (!$current_password) {
             $obj_user->password = Hash::make($data['password']);
         } else {
             if (Hash::check($data['current_password'], $current_password)) {
@@ -145,7 +145,7 @@ class UserManager {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.
         $registerToMailchimp = true;
-        if (! $socialUser->email) {
+        if (!$socialUser->email) {
             $socialUser->email = $socialUser->id . '@dummy.crowdsourcing.org';
             $registerToMailchimp = false;
         }
@@ -177,7 +177,7 @@ class UserManager {
             'nickname' => $data['nickname'],
             'password' => Hash::make($data['password']),
         ];
-        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || ! intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return $this->userRepository->create($data);
         } else {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
@@ -198,7 +198,7 @@ class UserManager {
         }
     }
 
-    public function userHasContributedToAProject($userId) {
+    public function userHasContributedToAProject($userId): bool {
         return $this->questionnaireResponseRepository->userResponseExists($userId);
     }
 

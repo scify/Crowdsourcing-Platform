@@ -1,4 +1,4 @@
-<template>
+<template id="questionnaire-create-edit">
   <div class="row">
     <div class="col-md-12 col-xs-12">
       <div class="card card-primary">
@@ -54,7 +54,7 @@
               <label for="language">Statistics page visibility</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <select v-model="questionnaire.statistics_page_visibility_lkp_id" name="statistics_page_visibility_lkp_id"
+              <select v-model="questionnaire.statistics_page_visibility_lkp_id"
                       id="statistics_page_visibility_lkp_id">
                 <option v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
                         :key="'visibility_' + visibilityLkp.id"
@@ -67,10 +67,50 @@
           </div>
           <div class="row form-group">
             <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Show general statistics charts</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="checkbox" class="form-control checkbox"
+                     id="show_general_statistics"
+                     v-model="questionnaire.show_general_statistics">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="goal">Show file-type question statistics</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <input type="checkbox" class="form-control checkbox"
+                     id="show_file_type_questions_to_statistics_page_audience"
+                     v-model="questionnaire.show_file_type_questions_to_statistics_page_audience">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
+              <label for="language">Allow anonymous responses</label>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <select v-model="questionnaire.respondent_auth_required"
+                      id="questionnaire_respondent_auth_level">
+                <option
+                    :value="0"
+                    :selected="!questionnaire.respondent_auth_required">
+                  Users can respond either with their account or anonymously
+                </option>
+                <option
+                    :value="1"
+                    :selected="questionnaire.respondent_auth_required">
+                  Users must be registered in order to respond
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2 col-sm-3 col-xs-12">
               <label for="title">Questionnaire's Title</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="text" class="form-control" name="title" id="title"
+              <input type="text" class="form-control" id="title"
                      placeholder="Insert questionnaire's title"
                      v-model="questionnaire.default_fields_translation.title">
             </div>
@@ -80,7 +120,7 @@
               <label>Description</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-                            <textarea class="form-control" name="description" id="description"
+                            <textarea class="form-control" id="description"
                                       v-model="questionnaire.default_fields_translation.description"
                                       placeholder="Insert questionnaire's description">
                             </textarea>
@@ -91,7 +131,7 @@
               <label for="goal">Responses Goal</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="number" class="form-control" name="goal" id="goal"
+              <input type="number" class="form-control" id="goal"
                      required
                      placeholder="Insert questionnaire's goal"
                      v-model="questionnaire.goal">
@@ -102,19 +142,9 @@
               <label for="goal">Max number of votes (statistics page)</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="number" class="form-control" name="max_votes_num" id="max_votes_num"
+              <input type="number" class="form-control" id="max_votes_num"
                      required
                      v-model="questionnaire.max_votes_num">
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-md-2 col-sm-3 col-xs-12">
-              <label for="goal">Show general statistics</label>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="checkbox" class="form-control checkbox" name="show_general_statistics"
-                     id="show_general_statistics"
-                     v-model="questionnaire.show_general_statistics">
             </div>
           </div>
           <div class="row form-group">
@@ -151,15 +181,35 @@
 
           <div class="row">
             <div class="col-md-12 editor-wrapper">
-              <em>Use the editor below to create your questionnaire.</em>
+              <h5 class="mb-4">Use the editor below to create your questionnaire:</h5>
+              <h6><b>Notice:</b> For the file-type questions, enter the corresponding acceptable file-type:</h6>
+              <ul class="list">
+                <li class="list-item">
+                  For <b>image</b> files => <b>image/*</b>
+                </li>
+                <li class="list-item">
+                  For <b>audio</b> files => <b>audio/*</b>
+                </li>
+                <li class="list-item">
+                  For <b>video</b> files => <b>video/*</b>
+                </li>
+                <li class="list-item">
+                  For <b>documents:</b> => <b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b>
+                </li>
+              </ul>
               <div id="questionnaire-editor"></div>
             </div>
           </div>
         </div>
         <div class="card-footer">
           <div class="row">
-            <div class="col-md-offset-10 col-md-2">
-              <button @click="saveQuestionnaire" class="btn btn-block btn-primary btn-lg w-100">Save</button>
+            <div class="col-md-2">
+              <button :disabled="loading" @click="saveQuestionnaire" class="btn btn-block btn-primary btn-lg w-100">
+                Save
+              </button>
+            </div>
+            <div class="col-md-1 p-0" v-if="loading">
+              <div class="spinner-border text-primary" style="margin-top: 5px"></div>
             </div>
           </div>
         </div>
@@ -200,31 +250,19 @@ import * as SurveyCreator from "survey-creator";
 import _ from "lodash";
 import {arrayMove, showToast} from "../../common-utils";
 import {isObject} from "../../common-backoffice";
+import QuestionnaireLanguages from "./QuestionnaireLanguages";
+import CommonModal from "../common/ModalComponent";
+import TranslationsManager from "../common/TranslationsManager";
+import "select2";
+
+const FILE_MAX_SIZE_BYTES = 52428800; // 50MB;
 
 export default {
-	created() {
-		this.questionnaire = this.questionnaireData;
-
-		if (!this.questionnaire.project_id)
-			this.questionnaire.project_id = this.projects[0].id;
-		if (!this.questionnaire.statistics_page_visibility_lkp_id)
-			this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id;
-		this.questionnaire.projectIds = _.map(this.questionnaireData.projects, "id");
-		if (this.questionnaire.default_language_id) {
-			const langId = this.questionnaire.default_language_id;
-			this.defaultLocale = this.languages.filter(function (el) {
-				return el.id === langId;
-			})[0].language_code;
-		} else {
-			const instance = this;
-			this.defaultLocale = this.languages.filter(function (el) {
-				return el.language_code === instance.defaultLangCodeForQuestionnaireFields;
-			})[0].language_code;
-		}
-	},
-	mounted() {
-		if (this.questionnaire.project_id)
-			this.getColorsForCrowdSourcingProject();
+	name: "QuestionnaireCreateEdit",
+	components: {
+		QuestionnaireLanguages,
+		CommonModal,
+		TranslationsManager
 	},
 	props: {
 		questionnaireData: {
@@ -253,15 +291,43 @@ export default {
 			},
 			surveyCreator: null,
 			questionTypes: ["boolean", "checkbox", "comment", "dropdown",
-				"html", "matrix", "matrixdropdown", "radiogroup", "rating", "text", "ranking"],
+				"html", "matrix", "matrixdropdown", "radiogroup", "rating", "text", "ranking", "file"],
 			colors: [],
 			isTranTabInitialised: false,
 			modalOpen: false,
 			modalMessage: null,
 			defaultLocale: null,
 			questionnaireLanguagesModalOpen: false,
-			defaultLangCodeForQuestionnaireFields: "en"
+			defaultLangCodeForQuestionnaireFields: "en",
+			loading: false
 		};
+	},
+	created() {
+		this.questionnaire = this.questionnaireData;
+
+		if (!this.questionnaire.project_id)
+			this.questionnaire.project_id = this.projects[0].id;
+		if (!this.questionnaire.statistics_page_visibility_lkp_id)
+			this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id;
+		this.questionnaire.projectIds = _.map(this.questionnaireData.projects, "id");
+		if (this.questionnaire.default_language_id) {
+			const langId = this.questionnaire.default_language_id;
+			this.defaultLocale = this.languages.filter(function (el) {
+				return el.id === langId;
+			})[0].language_code;
+		} else {
+			const instance = this;
+			this.defaultLocale = this.languages.filter(function (el) {
+				return el.language_code === instance.defaultLangCodeForQuestionnaireFields;
+			})[0].language_code;
+		}
+	},
+	mounted() {
+		if (this.questionnaire.project_id)
+			this.getColorsForCrowdSourcingProject();
+		$(".select2").each(function (i, obj) {
+			$(obj).select2();
+		});
 	},
 	methods: {
 		...mapActions([
@@ -304,6 +370,12 @@ export default {
 					isRequired: false
 				});
 
+			Survey
+				.Serializer
+				.findProperty("question", "name")
+				.readOnly = true;
+
+
 			const options = {
 				// show the embedded survey tab. It is hidden by default
 				showEmbeddedSurveyTab: false,
@@ -318,6 +390,16 @@ export default {
 			this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
 			this.surveyCreator.render("questionnaire-editor");
 			this.surveyCreator.haveCommercialLicense = true;
+			this.surveyCreator.onQuestionAdded.add(function (sender, options) {
+				const question = options.question;
+				const type = question.getType();
+				if (type === "file") {
+					question.maxSize = FILE_MAX_SIZE_BYTES;
+					question.waitForUpload = true;
+					question.allowImagesPreview = true;
+					question.storeDataAsText = false;
+				}
+			});
 
 
 			if (this.questionnaireData.questionnaire_json)
@@ -366,18 +448,20 @@ export default {
 					return i;
 			throw "Default locale not found";
 		},
-		translateQuestionnaireToLocales(locales) {
+		async translateQuestionnaireToLocales(locales) {
 			locales = locales.filter(function (el) {
 				return el !== "";
 			});
-			if (!locales.length)
-				return window.swal({
+			if (!locales.length) {
+				const swal = (await import("bootstrap-sweetalert")).default;
+				return swal({
 					title: "Languages Missing!",
 					text: "Please provide at least one language from the dropdown menu.",
 					type: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
+			}
 			this.modalOpen = true;
 			this.modalMessage = "Please wait while the translations are generated...";
 			const data = {
@@ -399,7 +483,7 @@ export default {
 				this.modalOpen = false;
 			});
 		},
-		saveQuestionnaire() {
+		async saveQuestionnaire() {
 			let locales = this.surveyCreator.translationValue.getSelectedLocales();
 			if (locales[0] === "") {
 				locales = [];
@@ -416,21 +500,26 @@ export default {
 				extra_fields_translations: document.getElementById("extra_translations").value,
 				max_votes_num: this.questionnaire.max_votes_num,
 				show_general_statistics: this.questionnaire.show_general_statistics,
-				type_id: this.questionnaire.type_id
+				type_id: this.questionnaire.type_id,
+				respondent_auth_required: this.questionnaire.respondent_auth_required,
+				show_file_type_questions_to_statistics_page_audience: this.questionnaire.show_file_type_questions_to_statistics_page_audience
 			};
 			$("#project-ids").val().map((x) => {
 				data.project_ids.push(parseInt(x));
 			});
 
-			if (this.formInvalid(data))
-				return window.swal({
+			if (this.formInvalid(data)) {
+				const swal = (await import("bootstrap-sweetalert")).default;
+
+				return swal({
 					title: "Fields Missing!",
 					text: "Please provide a title, description, goal, and at least one project.",
 					type: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
-
+			}
+			this.loading = true;
 			this.post({
 				url: this.questionnaire.id
 					? window.route("update-questionnaire", this.questionnaire.id)
@@ -438,8 +527,10 @@ export default {
 				data: data,
 				urlRelative: false,
 				handleError: false
-			}).then((response) => {
-				window.swal({
+			}).then(async (response) => {
+				this.loading = false;
+				const swal = (await import("bootstrap-sweetalert")).default;
+				swal({
 					title: "Success!",
 					text: "The questionnaire has been successfully stored.",
 					type: "success",
@@ -448,8 +539,10 @@ export default {
 				}, function () {
 					window.location = window.route("edit-questionnaire", response.data.id);
 				});
-			}).catch(error => {
-				window.swal({
+			}).catch(async error => {
+				this.loading = false;
+				const swal = (await import("bootstrap-sweetalert")).default;
+				swal({
 					title: "Oops!",
 					text: "An error occurred, please try again later." + error.toString(),
 					type: "error",
@@ -519,6 +612,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "resources/assets/sass/variables";
+@import "resources/assets/sass/select2-custom.scss";
+@import '~survey-jquery/survey.min.css';
+@import '~survey-creator/survey-creator.min.css';
 
+#questionnaire-create-edit {
+  .sjs-cb-switch input:checked {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+  }
 
+  .svd-empty-message-container .svd-empty-message {
+    color: $brand-primary
+  }
+
+  .svd_container .icon-gearactive .svd-svg-icon, .svd_container .icon-dotsactive .svd-svg-icon {
+    fill: $brand-primary
+  }
+}
 </style>

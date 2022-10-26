@@ -21,8 +21,16 @@
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-    <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
-    <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
+    <link rel="preload" href="{{ mix('dist/css/landing-page.css') }}" as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
+    </noscript>
+    <link rel="preload" href="{{ mix('dist/css/home.css') }}" as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
+    </noscript>
     @stack('css')
 
     @include('analytics')
@@ -49,7 +57,6 @@
 </div>
 
 @include('partials.footer-scripts')
-<script src="{{mix('dist/js/home.js')}}"></script>
 
 </body>
 </html>

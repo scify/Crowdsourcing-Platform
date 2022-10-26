@@ -32,7 +32,7 @@ function SetParameterAndGetAll($currentRoute, $parameter, $key) {
 
 function getRouteParameters() {
     $fullUrl = Request::fullUrl();
-    if (! strpos($fullUrl, '?')) {
+    if (!strpos($fullUrl, '?')) {
         return '';
     }
 

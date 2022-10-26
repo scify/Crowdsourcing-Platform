@@ -1,4 +1,5 @@
 @import "../variables";
+@import "~datatables.net-dt/css/jquery.dataTables.min.css";
 
 .sa-question.sa-question-layouted {
   position: relative;
@@ -109,6 +110,12 @@
 .read-more,.read-less {
   color: $brand-primary;
   margin-left: 5px;
+}
+
+.file-link {
+  font-weight: 400;
+  font-size: medium;
+  color: $brand-primary;
 }
 
 .more-text.hidden{

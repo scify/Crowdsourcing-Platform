@@ -102,7 +102,7 @@ class UserDashboardManager {
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
         $questionnairesToBeDisplayedInTheDashboard = collect([]);
         foreach ($questionnaires as $questionnaire) {
-            if (! $this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses)) {
+            if (!$this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses)) {
                 continue;
             }
 

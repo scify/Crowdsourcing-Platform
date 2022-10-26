@@ -13,7 +13,7 @@ class CompositeKeysModel extends Model {
      */
     protected function setKeysForSaveQuery($query) {
         $keys = $this->getKeyName();
-        if (! is_array($keys)) {
+        if (!is_array($keys)) {
             return parent::setKeysForSaveQuery($query);
         }
 

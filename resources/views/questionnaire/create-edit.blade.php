@@ -18,3 +18,7 @@
             :questionnaire-fields-translations='@json($viewModel->questionnaireFieldsTranslations)'>
     </questionnaire-create-edit>
 @endsection
+
+@push('scripts')
+    <script defer src="{{mix('dist/js/questionnaire-create-edit.js')}}"></script>
+@endpush

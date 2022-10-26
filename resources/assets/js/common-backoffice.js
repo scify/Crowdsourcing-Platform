@@ -1,17 +1,9 @@
 import "icheck";
 
-import "./bootstrap";
 import "fastclick";
-import "admin-lte"; // 'admin-lte/dist/js/app.min.js'
-import "select2";
-import "bootstrap-colorpicker";
-
-
-import "summernote/dist/summernote-bs4";
+import "admin-lte/dist/js/adminlte.min"; // 'admin-lte/dist/js/app.min.js'
 
 import "jquery-slimscroll";
-import "survey-creator";
-
 
 import "datatables.net";
 import "datatables.net-bs4";
@@ -44,28 +36,10 @@ import {showToast} from "./common-utils";
 	let closeDismissableAlerts = function () {
 		setTimeout(function () {
 			/*Close any flash message after some time*/
-			$(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function () {
-				$(".alert-dismissable").alert("close");
+			window.$(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function () {
+				window.$(".alert-dismissable").alert("close");
 			});
 		}, 3000);
-	};
-
-	let initializeSelect2Inputs = function () {
-		$(".select2-tags").each(function (i, obj) {
-			$(obj).select2({
-				tags: true
-			});
-		});
-
-		$(".select2").each(function (i, obj) {
-			$(obj).select2();
-		});
-	};
-
-	let initializeColorPicker = function () {
-		$(".color-picker").each(function (i, el) {
-			initSingleColorPicker(el);
-		});
 	};
 
 	let initClipboardElements = function () {
@@ -98,14 +72,12 @@ import {showToast} from "./common-utils";
 	};
 
 	let initializeTooltips = function () {
-		$("[data-toggle=\"tooltip\"]").tooltip();
+		window.$("[data-toggle=\"tooltip\"]").tooltip();
 	};
 	$(function () {
 		$(document).ready(function () {
 			initializeIcheck();
 			closeDismissableAlerts();
-			initializeSelect2Inputs();
-			initializeColorPicker();
 			initClipboardElements();
 			listenToReadMoreClicks();
 			initializeTooltips();
@@ -116,21 +88,6 @@ import {showToast} from "./common-utils";
 		});
 	});
 })();
-
-
-export function initSingleColorPicker(el) {
-	$(el).colorpicker({
-		horizontal: true
-	});
-
-	$(el).on("colorpickerCreate", function (event) {
-		$(el).find(".input-group-addon").css("background-color", event.color.toString());
-	});
-
-	$(el).on("colorpickerChange", function (event) {
-		$(el).find(".input-group-addon").css("background-color", event.color.toString());
-	});
-}
 
 export function isObject(obj) {
 	return obj != null && obj.constructor.name === "Object";

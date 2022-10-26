@@ -13,26 +13,6 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import url("../../../node_modules/icheck/skins/square/blue.css");
 @import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
-@import url("~bootstrap-sweetalert/dist/sweetalert.css");
-
-@import "select2-custom.scss";
-
-@import '../../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css';
-@import '../../../node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css';
-@import '../../../node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css';
-@import '../../../node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css';
-
-@import '../../../node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css';
-
-//@import '../../../node_modules/bs4-summernote/dist/summernote-bs4.css';
-@import '../../../node_modules/codemirror/lib/codemirror.css';
-@import '../../../node_modules/codemirror/theme/monokai.css';
-@import '../../../node_modules/summernote/dist/summernote-bs4.css';
-
-@import '../../../node_modules/survey-jquery/survey.min.css';
-@import '../../../node_modules/survey-creator/survey-creator.min.css';
-
-@import '../../../node_modules/bs-stepper/dist/css/bs-stepper.min.css';
 @import '../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css';
 
 @import 'sidebar';
@@ -166,10 +146,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 2rem !important;
 }
 
-.select2 {
-  width: 100%;
-}
-
 table {
   tr {
     td.vertical-middle {
@@ -274,7 +250,7 @@ table {
 
   .content-wrapper:after {
     background-color: $body-bg;
-    background-image: url(../images/active_participation.png);
+    background-image: url(../images/active_participation.webp);
     background-size: cover;
     filter: grayscale(100%);
     opacity: 0.08;

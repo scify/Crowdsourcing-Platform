@@ -1,8 +1,10 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 @extends('landingpages.layout')
 @push('css')
     <style>
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
+
 
 
         }
@@ -21,7 +23,7 @@
         </section>
     </div>
 @endsection
-@if (!\Illuminate\Support\Facades\Auth::check())
+@if (!Auth::check())
     @push("modals")
         <div class="modal fade anonymous-response" id="questionnaire-responded" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -85,5 +87,5 @@
     @endpush
 @endif
 @push('scripts')
-    <script src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
+    <script defer src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
 @endpush
