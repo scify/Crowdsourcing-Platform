@@ -93,24 +93,24 @@ class QuestionnaireResponseManager {
                 'browser_ip' => $data['ip'],
             ])
         );
-        if (Auth::check()) {
-            try {
+
+        try {
+            if (Auth::check()) {
                 $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire,
                     $questionnaireResponse->project,
                     $user,
                     $language);
                 // if the user got invited by another user to answer the questionnaire, also award the referrer user.
                 $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
-                TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
-            } catch (\Exception $e) {
-                if (app()->bound('sentry')) {
-                    app('sentry')->captureException($e);
-                } else {
-                    Log::error($e->getMessage());
-                }
+            }
+            TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
+        } catch (\Exception $e) {
+            if (app()->bound('sentry')) {
+                app('sentry')->captureException($e);
+            } else {
+                Log::error($e->getMessage());
             }
         }
-
 
         return $questionnaireResponse;
     }
