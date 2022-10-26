@@ -2,7 +2,7 @@
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\File;
     $currentLocale = app()->getLocale();
-    $langPath = base_path('lang/' . $currentLocale);
+    $langPath = base_path('resources/lang/' . $currentLocale);
     $translations = Cache::rememberForever('translations_' . $currentLocale, function () use ($langPath) {
         return collect(File::allFiles($langPath))->flatMap(function ($file) {
             return [
