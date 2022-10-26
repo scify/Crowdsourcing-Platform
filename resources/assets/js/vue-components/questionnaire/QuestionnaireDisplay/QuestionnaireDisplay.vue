@@ -254,8 +254,12 @@ export default {
 			data.browser_fingerprint_id = this.browserFingerprintId;
 			data.response = JSON.stringify(sender.data);
 			let locale = sender.locale;
-			if (!locale)
-				locale = this.surveyLocales[0].code;
+			if (!locale) {
+        if(!this.surveyLocales || !this.surveyLocales.length)
+          locale = "en";
+        else
+          locale = this.surveyLocales[0].code;
+      }
 			data.language_code = locale;
 			$(".loader-wrapper").removeClass("hidden");
 			window.$("#questionnaire-modal").modal("hide");
