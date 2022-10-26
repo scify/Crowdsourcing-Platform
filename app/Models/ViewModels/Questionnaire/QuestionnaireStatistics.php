@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireStatistics {
     public Questionnaire $questionnaire;
-    public bool|null $userCanPrintStatistics;
+    public $userCanPrintStatistics;
     public QuestionnaireResponseStatistics $questionnaireResponseStatistics;
     public QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage;
-    public string|int|null $current_user_id;
-    public bool|null $userCanAnnotateAnswers;
+    public $current_user_id;
+    public $userCanAnnotateAnswers;
     public int $projectFilter;
 
     public function __construct(Questionnaire                     $questionnaire,
