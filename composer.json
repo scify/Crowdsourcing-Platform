@@ -25,7 +25,7 @@
         "sentry/sentry-laravel": "^2.8",
         "socialiteproviders/microsoft": "^4.1",
         "spatie/laravel-newsletter": "^4.2",
-        "spatie/laravel-sitemap": "^5.9",
+        "spatie/laravel-sitemap": "^5.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
