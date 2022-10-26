@@ -94,19 +94,22 @@ class QuestionnaireResponseManager {
             ])
         );
         if (Auth::check()) {
+            Log::info("\n\n\nTrying to notify users....\n\n\n");
             try {
                 $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaire,
                     $questionnaireResponse->project,
                     $user,
                     $language);
+                Log::info("\n\n\nContributor notified. Trying to notify referrer....\n\n\n");
                 // if the user got invited by another user to answer the questionnaire, also award the referrer user.
                 $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
             } catch (\Exception $e) {
-                if (app()->bound('sentry')) {
-                    app('sentry')->captureException($e);
-                } else {
-                    Log::error($e->getMessage());
-                }
+//                if (app()->bound('sentry')) {
+//                    app('sentry')->captureException($e);
+//                } else {
+//                    Log::error($e->getMessage());
+//                }
+                Log::error($e->getMessage());
             }
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
