@@ -64,21 +64,28 @@ Install graphics library
    Then run ```php artisan migrate``` to create the DB schema and
    ```php artisan db:seed --class=DatabaseSeederRunOnEmptyDB``` in order to insert the starter data to the DB
 
-2. Install laravel/back-end dependencies
+2. Generate app key
+
+```bash
+php artisan key:generate
+```
+
+3. Install laravel/back-end dependencies
 
 ```
 composer install
 
+composer dump-autoload
 ```
 
-3. Install front-end dependencies
+4. Install front-end dependencies
 
 ```
 npm install
 ```
 
-4. Create symbolic link for uploaded images
-   By default images are stored at app/storage/public. Run
+5. Create symbolic link for uploaded images
+By default images are stored at app/storage/public. Run
 
 ```
 php artisan storage:link
