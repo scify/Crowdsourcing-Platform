@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/filter', [UserController::class, 'showUsersByCriteria'])->name('filterUsers')->middleware('can:manage-users');
 
     Route::get('/users/data/download', [UserController::class, 'downloadUserData'])->name('downloadMyData');
-    Route::resource('projects', CrowdSourcingProjectController::class)->except([
+    Route::resource('projects', 'CrowdSourcingProjectController')->except([
         'destroy',
     ])->middleware('can:manage-crowd-sourcing-projects');
     Route::get('project/{id}/clone', [CrowdSourcingProjectController::class, 'clone'])->name('project.clone')->middleware('can:manage-crowd-sourcing-projects');
