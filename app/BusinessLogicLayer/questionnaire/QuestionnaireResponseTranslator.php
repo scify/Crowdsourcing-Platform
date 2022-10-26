@@ -13,9 +13,9 @@ class QuestionnaireResponseTranslator {
     protected $translator;
 
     public function __construct(QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireResponseManager $questionnaireResponseManager,
-                                Translator $translator) {
+                                QuestionnaireRepository         $questionnaireRepository,
+                                QuestionnaireResponseManager    $questionnaireResponseManager,
+                                Translator                      $translator) {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
@@ -26,6 +26,8 @@ class QuestionnaireResponseTranslator {
         $questionnaireResponse = $this->questionnaireResponseRepository->find($questionnaire_response_id);
         $questionnaire = $this->questionnaireRepository->find($questionnaireResponse->questionnaire_id);
         $freeTypeQuestions = $this->questionnaireResponseManager->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
+        if (!count($freeTypeQuestions))
+            return;
         $responseAnswers = json_decode($questionnaireResponse->response_json, true);
         $textsToTranslate = [];
         $questionNamesToTranslate = [];

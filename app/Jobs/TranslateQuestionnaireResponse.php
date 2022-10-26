@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class TranslateQuestionnaireResponse implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -38,6 +39,7 @@ class TranslateQuestionnaireResponse implements ShouldQueue {
      * @return void
      */
     public function handle(QuestionnaireResponseTranslator $questionnaireResponseTranslator) {
+        Log::info("Handle translating for: " . $this->questionnaire_response_id);
         $questionnaireResponseTranslator->translateFreeTextAnswersForQuestionnaireResponse($this->questionnaire_response_id);
     }
 }
