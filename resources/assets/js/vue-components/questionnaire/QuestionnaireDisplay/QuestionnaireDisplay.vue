@@ -115,6 +115,7 @@ export default {
 	},
 	created() {
 		this.questionnaireLocalStorageKey = "crowdsourcing_questionnaire_" + this.questionnaire.id + "_response";
+    console.log(this.languages);
 	},
 	async mounted() {
 		this.userResponse = this.userResponseData;
@@ -178,6 +179,7 @@ export default {
 			if (responseJSON && JSON.parse(responseJSON))
 				this.survey.data = JSON.parse(responseJSON);
 			let locales = this.survey.getUsedLocales();
+      console.log('getUsedLocales', locales);
 			if (!locales)
 				locales = ["en"];
 			// set the default questionnaire language as first, in order to be loaded first.
@@ -191,6 +193,7 @@ export default {
 						name: locale.language_name
 					});
 			}
+      console.log('surveyLocales', this.surveyLocales);
 			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
 			this.survey.onComplete.add(this.saveQuestionnaireResponse);
 			this.survey.onUploadFiles.add(this.onUploadSurveyFile);
