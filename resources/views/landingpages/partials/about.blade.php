@@ -14,7 +14,7 @@
                     <div class="text-center">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-5 col-sm-12 mx-auto">
+                                <div class="col-md-5 col-sm-12 mx-auto mt-5">
                                     <a style="background-color: {{ $viewModel->project->lp_primary_color }}"
                                        href="{{$viewModel->project->external_url}}" target="_blank"
                                        class="btn btn-primary visit-project-website call-to-action">

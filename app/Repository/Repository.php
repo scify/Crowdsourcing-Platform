@@ -167,7 +167,7 @@ abstract class Repository implements RepositoryInterface {
 
         $model = $query->first();
 
-        if (! $model) {
+        if (!$model) {
             throw new ModelNotFoundException("Model with criteria: '" . $field . "' equal to '" . $value . "' was not found.");
         }
 
@@ -177,7 +177,7 @@ abstract class Repository implements RepositoryInterface {
     public function exists($whereArray): bool {
         $models = $this->allWhere($whereArray);
 
-        return ! $models->isEmpty();
+        return !$models->isEmpty();
     }
 
     public function where(array $whereArray, array $columns = ['*']) {
@@ -224,7 +224,7 @@ abstract class Repository implements RepositoryInterface {
     private function makeModelInstance(): Model {
         $tryToCreateModel = $this->app->make($this->getModelClassName());
 
-        if (! $tryToCreateModel instanceof Model) {
+        if (!$tryToCreateModel instanceof Model) {
             throw new RepositoryException("Class {$this->getModelClassName()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 

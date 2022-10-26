@@ -17,5 +17,5 @@
     </div>
 </div>
 @push('scripts')
-    <script async src="{{mix('dist/js/newsletter-signup.js')}}"></script>
+    <script defer src="{{mix('dist/js/newsletter-signup.js')}}"></script>
 @endpush

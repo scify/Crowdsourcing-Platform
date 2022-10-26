@@ -1,5 +1,5 @@
 <div class="row" id="sitemap">
-    <div class="col-md-6 col-sm-11 mx-auto">
+    <div class="col-lg-8 col-md-10 col-sm-11 mx-auto">
         <div class="container-fluid p-0">
             <div class="row">
                 <div class="col-md-4 col-sm-12">

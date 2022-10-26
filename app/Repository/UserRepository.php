@@ -55,7 +55,7 @@ class UserRepository extends Repository {
     }
 
     public function userIsPlatformAdmin($user) {
-        return ! is_null(UserRole::where('role_id', 1)->where('user_id', $user->id)->first());
+        return !is_null(UserRole::where('role_id', 1)->where('user_id', $user->id)->first());
     }
 
     public function getAllUsersWithRole($roleId) {

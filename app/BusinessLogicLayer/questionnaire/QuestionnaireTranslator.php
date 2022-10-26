@@ -93,7 +93,7 @@ class QuestionnaireTranslator {
     public function translateQuestionnaireJSONToLocales(string $json, array $locales): string {
         $translatedJSON = $json;
         foreach ($locales as $locale) {
-            if (! empty($locale)) {
+            if (!empty($locale)) {
                 $translatedJSON = $this->translateQuestionnaireJSONToLocale($translatedJSON, $locale);
             }
         }
@@ -245,12 +245,12 @@ class QuestionnaireTranslator {
     protected function getContentTranslatedSchema(array $object, string $locale,
                                         int $translationIndex,
                                         string $contentIdentifier) {
-        if (! isset($object[$contentIdentifier])) {
+        if (!isset($object[$contentIdentifier])) {
             return false;
         }
         $content = $object[$contentIdentifier];
         if (is_array($content)) {
-            if (! array_key_exists($locale, $content) || (isset($content[$locale]) && trim($content[$locale]) === '')) {
+            if (!array_key_exists($locale, $content) || (isset($content[$locale]) && trim($content[$locale]) === '')) {
                 array_push($this->textsToTranslate, $content['default']);
                 $content[$locale] = $translationIndex;
             } else {
@@ -274,7 +274,7 @@ class QuestionnaireTranslator {
     public function markQuestionnaireTranslations(int $questionnaireId, array $lang_ids_to_status): bool {
         foreach ($lang_ids_to_status as $lang_id_with_status) {
             $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $lang_id_with_status['id']);
-            if (! $questionnaireLanguage) {
+            if (!$questionnaireLanguage) {
                 throw new ResourceNotFoundException('Questionnaire Language not found. Questionnaire Id: ' . $questionnaireId . ' Lang id: ' . $lang_id);
             }
             $questionnaireLanguage->human_approved = $lang_id_with_status['status'];

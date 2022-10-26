@@ -21,7 +21,7 @@ class QuestionnaireFieldsTranslationManager {
 
     public function getFieldsTranslationForQuestionnaire(Questionnaire $questionnaire): QuestionnaireFieldsTranslation {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
-        if (! $language) {
+        if (!$language) {
             return $questionnaire->defaultFieldsTranslation;
         }
         $fieldsTranslation = $this->questionnaireFieldsTranslationRepository->where([
@@ -33,7 +33,7 @@ class QuestionnaireFieldsTranslationManager {
     }
 
     public function getFieldsTranslationsForQuestionnaire(Questionnaire $questionnaire): Collection {
-        if (! $questionnaire->id) {
+        if (!$questionnaire->id) {
             return new Collection();
         }
 
@@ -57,7 +57,7 @@ class QuestionnaireFieldsTranslationManager {
         foreach ($attributesArray as $attributes) {
             $attributes = json_decode(json_encode($attributes), true);
             foreach ($attributes as $key => $value) {
-                if (! $value) {
+                if (!$value) {
                     $attributes[$key] = $defaultLanguageContentForProject[$key];
                 }
             }

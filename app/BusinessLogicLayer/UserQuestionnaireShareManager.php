@@ -40,7 +40,7 @@ class UserQuestionnaireShareManager {
             $this->webSessionManager->setReferrerId($referrerId);
             $questionnaire = $this->questionnaireRepository->find($questionnaireId);
             if ($questionnaire &&
-                ! $this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $referrerId)) {
+                !$this->questionnaireShareRepository->questionnaireShareExists($questionnaire->id, $referrerId)) {
                 $lang = $this->languageManager->getLanguageByCode(app()->getLocale());
                 $this->createQuestionnaireShare($referrerId, $questionnaire->id);
                 $this->questionnaireActionHandler->handleQuestionnaireSharer($questionnaire,
@@ -57,7 +57,7 @@ class UserQuestionnaireShareManager {
     }
 
     protected function userNotLoggedInOrDifferentThanReferrer(int $referrerId) {
-        if (! Auth::check()) {
+        if (!Auth::check()) {
             return true;
         }
 

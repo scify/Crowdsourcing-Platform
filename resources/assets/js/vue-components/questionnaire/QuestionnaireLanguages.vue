@@ -68,9 +68,13 @@
 import {mapActions} from "vuex";
 import _ from "lodash";
 import {showToast} from "../../common-utils";
+import CommonModal from "../common/ModalComponent";
 
 export default {
 	name: "QuestionnaireLanguages",
+	components: {
+		CommonModal
+	},
 	props: {
 		modalOpen: {
 			type: Boolean,
@@ -122,8 +126,7 @@ export default {
 					lang_ids_to_status: mapped
 				},
 				urlRelative: false
-			}).then(response => {
-				console.log(response.data);
+			}).then(() => {
 				this.saveLoading = false;
 				showToast("Languages updated!", "#28a745");
 			});

@@ -24,7 +24,7 @@
                     <questionnaire-display
                             survey-container-id="quest_survey"
                             :user='@json($viewModel->getLoggedInUser())'
-                            :user-response='@json($viewModel->userFeedbackQuestionnaireResponse)'
+                            :user-response-data='@json($viewModel->userFeedbackQuestionnaireResponse)'
                             :questionnaire='@json($viewModel->feedbackQuestionnaire)'
                             :project='@json($viewModel->project)'
                             :languages='@json($viewModel->languages)'>
@@ -34,3 +34,6 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script defer src="{{mix('dist/js/questionnaire-feedback.js')}}"></script>
+@endpush

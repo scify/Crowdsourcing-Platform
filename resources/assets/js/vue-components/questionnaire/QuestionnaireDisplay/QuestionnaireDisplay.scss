@@ -1,0 +1,75 @@
+@import '~survey-jquery/survey.min.css';
+@import "resources/assets/sass/variables";
+@import "~survey-jquery/modern.min.css";
+
+.survey-container {
+  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__prev-btn, .sv-btn.sv-footer__start-btn {
+    background-color: $brand-primary;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.7em;
+    border: 2px solid white;
+  }
+
+  .sv-btn.sv-footer__prev-btn {
+    float: left;
+  }
+
+  .sv-btn.sv-footer__complete-btn, .sv-btn.sv-footer__next-btn, .sv-btn.sv-footer__start-btn {
+    float: right;
+  }
+
+  .sv-page.sv-body__page, .sv-footer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .sv-root-modern .sv-question__title--answer {
+    background-color: rgba(0, 119, 255, 0.2);
+  }
+
+  .sv-root-modern .sv-rating__item--selected .sv-rating__item-text {
+    background-color: $brand-primary;
+    color: rgb(255, 255, 255);
+    border-color: $brand-primary;
+  }
+
+  .sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
+    background-color: $brand-primary;
+  }
+
+  .sv-root-modern ::-webkit-scrollbar-thumb {
+    background: $brand-primary;
+  }
+
+  .sv-file__preview {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+
+    .sv-file__remove-svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+}
+
+
+#questionnaire-loader {
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.5rem;
+    border-color: $brand-primary;
+    border-right-color: transparent;
+  }
+}
+
+
+.disable-scroll {
+  overflow-y: hidden !important;
+}

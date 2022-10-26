@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireResponseManager {
-    protected $questionnaireRepository;
-    protected $questionnaireResponseRepository;
-    protected $languageManager;
-    protected $questionnaireActionHandler;
-    protected $questionnaireAnswerVoteRepository;
-    protected $userManager;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
+    protected LanguageManager $languageManager;
+    protected QuestionnaireActionHandler $questionnaireActionHandler;
+    protected QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
+    protected UserManager $userManager;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                LanguageManager $languageManager,
-                                QuestionnaireActionHandler $questionnaireActionHandler,
+    public function __construct(QuestionnaireRepository           $questionnaireRepository,
+                                QuestionnaireResponseRepository   $questionnaireResponseRepository,
+                                LanguageManager                   $languageManager,
+                                QuestionnaireActionHandler        $questionnaireActionHandler,
                                 QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository,
-                                UserManager $userManager) {
+                                UserManager                       $userManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->languageManager = $languageManager;
@@ -37,10 +37,6 @@ class QuestionnaireResponseManager {
 
     public function getQuestionnaireResponsesForUser(User $user) {
         return $this->questionnaireResponseRepository->getAllResponsesGivenByUser($user->id);
-    }
-
-    public function questionnaireResponsesForUserExists($userId): bool {
-        return $this->questionnaireResponseRepository->userResponseExists($userId);
     }
 
     public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId): bool {
@@ -78,23 +74,22 @@ class QuestionnaireResponseManager {
     public function storeQuestionnaireResponse($data) {
         $user = $this->userManager->getLoggedInUserOrCreateAnonymousUser();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
-        if (isset($data['language_code'])) {
-            $language = $this->languageManager->getLanguageByCode($data['language_code']);
-        } else {
-            $language = $this->languageManager->getLanguage($questionnaire->default_language_id);
-        }
+        $language = isset($data['language_code'])
+            ? $this->languageManager->getLanguageByCode($data['language_code'])
+            : $this->languageManager->getLanguage($questionnaire->default_language_id);
 
         $queryData = [
             'questionnaire_id' => $data['questionnaire_id'],
             'user_id' => $user->id,
             'project_id' => $data['project_id'],
         ];
-        $responseObj = json_decode($data['response']);
         $questionnaireResponse = $this->questionnaireResponseRepository->updateOrCreate(
             $queryData,
             array_merge($queryData, [
                 'language_id' => $language->id,
-                'response_json' => json_encode($responseObj),
+                'response_json' => json_encode(json_decode($data['response'])),
+                'browser_fingerprint_id' => $data['browser_fingerprint_id'],
+                'browser_ip' => $data['ip'],
             ])
         );
         if (Auth::check()) {
@@ -106,7 +101,7 @@ class QuestionnaireResponseManager {
             $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
         }
         TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
-        // AnalyzeQuestionnaireResponseToxicity::dispatch($questionnaireResponse->id);
+
         return $questionnaireResponse;
     }
 
@@ -131,11 +126,11 @@ class QuestionnaireResponseManager {
             ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id);
     }
 
-    public function voteAnswer(int $questionnaire_id,
+    public function voteAnswer(int    $questionnaire_id,
                                string $question_name,
-                               int $respondent_user_id,
-                               int $voter_user_id,
-                               bool $upvote) {
+                               int    $respondent_user_id,
+                               int    $voter_user_id,
+                               bool   $upvote) {
         $data = [
             'questionnaire_id' => $questionnaire_id,
             'question_name' => $question_name,
@@ -172,5 +167,9 @@ class QuestionnaireResponseManager {
         }
 
         return $data;
+    }
+
+    public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $ip, string $browser_fingerprint_id) {
+        return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $ip, $browser_fingerprint_id);
     }
 }

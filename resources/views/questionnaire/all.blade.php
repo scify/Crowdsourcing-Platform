@@ -43,9 +43,15 @@
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td>{{$questionnaire->title}}</td>
                                 <td>{{ $questionnaire->project_names }}</td>
-                                <td>{{ $questionnaire->number_of_responses ?? 0 }} / {{ $questionnaire->goal }}
-                                    <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}
-                                        %)</b></td>
+                                <td>
+                                    @if($questionnaire->goal)
+                                        {{ $questionnaire->number_of_responses ?? 0 }} / {{ $questionnaire->goal }}
+                                        <b>({{ round(($questionnaire->number_of_responses / $questionnaire->goal) * 100, 1) }}
+                                            %)</b>
+                                    @else
+                                        0
+                                    @endif
+                                </td>
                                 <td>
                                     <b>{{$questionnaire->default_language_name}}</b>{{ $questionnaire->languages? ', ' : '' }}{{$questionnaire->languages}}
                                 </td>
@@ -73,7 +79,8 @@
                                                 @if(count($questionnaire->urls) === 1)
                                                     <button data-clipboard-text="{{ $questionnaire->urls[0]['url'] }}"
                                                             class="copy-clipboard action-btn dropdown-item">
-                                                        <i class="copy-questionnaire-link fa fa-link"></i> Get English Link
+                                                        <i class="copy-questionnaire-link fa fa-link"></i> Get English
+                                                        Link
                                                     </button>
                                                 @else
                                                     @foreach($questionnaire->urls as $url)
@@ -153,5 +160,5 @@
 @endpush
 
 @push('scripts')
-    <script src="{{mix('/dist/js/manageQuestionnaires.js')}}"></script>
+    <script defer src="{{mix('/dist/js/manage-questionnaires.js')}}"></script>
 @endpush

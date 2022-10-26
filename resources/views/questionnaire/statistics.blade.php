@@ -1,7 +1,4 @@
-@extends('landingpages.layout')
-@push('css')
-    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/statistics.css')}}">
-@endpush
+@extends('landingpages.layout', ['includeBackofficeCommonJs' => true])
 
 @section('content')
     <div class="container-fluid py-5">
@@ -26,14 +23,6 @@
                         </div>
                     </div>
                     <hr>
-{{--                    <div class="row mb-5">--}}
-{{--                        <div class="col-12">--}}
-{{--                            <h4 class="text-lg-center text-md-center text-sm-left">--}}
-{{--                                You can vote up to <b>{{ $viewModel->questionnaire->max_votes_num }}</b> times for this--}}
-{{--                                questionnaire.--}}
-{{--                            </h4>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     @if($viewModel->questionnaire->show_general_statistics)
                         @if($viewModel->questionnaireResponseStatistics->totalResponses)
                             <div class="row my-5 py-5 align-items-center bg-white">
@@ -62,7 +51,8 @@
                                 :user-can-annotate-answers="{{ $viewModel->userCanAnnotateAnswers ? 1 : 0 }}"
                                 :questionnaire='@json($viewModel->questionnaire)'
                                 :projects='@json($viewModel->questionnaire->projects)'
-                                :project-filter="{{$viewModel->projectFilter}}">
+                                :project-filter="{{$viewModel->projectFilter}}"
+                                :show-file-type-questions-statistics="{{ $viewModel->userCanViewFileTypeQuestionsStatistics() }}">
                         </questionnaire-statistics>
                     </div>
                 </div>
@@ -74,7 +64,5 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script src="{{ mix('dist/js/common.js')}}"></script> {{-- our application common code --}}
-    <script type="text/javascript" src="{{mix('dist/js/common-backoffice.js')}}"></script>
-    <script type="text/javascript" src="{{mix('dist/js/statistics.js')}}"></script>
+    <script defer type="text/javascript" src="{{mix('dist/js/questionnaire-statistics.js')}}"></script>
 @endpush

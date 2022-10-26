@@ -10,7 +10,6 @@
     "production": "mix --production"
   },
   "devDependencies": {
-    "@kirschbaum-development/laravel-translations-loader": "^1.4.0",
     "axios": "^0.21.4",
     "cross-env": "^5.1.4",
     "eslint": "^8.25.0",
@@ -29,9 +28,10 @@
     "vuex": "^3.6.2"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.3.6",
     "@fortawesome/fontawesome-free": "^5.12.0",
     "@popperjs/core": "^2.11.5",
-    "admin-lte": "^3.1.0",
+    "admin-lte": "3.1.0",
     "bootstrap": "^4.6.1",
     "bootstrap-colorpicker": "^3.2.0",
     "bootstrap-sweetalert": "^1.0.1",

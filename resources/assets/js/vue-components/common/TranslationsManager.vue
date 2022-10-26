@@ -82,6 +82,7 @@ import _ from "lodash";
 import {mapActions} from "vuex";
 
 export default {
+	name: "TranslationsManager",
 	props: ["existingTranslations", "modelMetaData", "defaultLangId"],
 	data: function () {
 		return {
@@ -150,18 +151,16 @@ export default {
 			this.translations.push(copy);
 		},
 		checkChanged($event, language) {
-			console.log($event, language);
-
 			if ($event.target.checked)
 				this.addNewTranslation(language);
 			else
 				this.deleteTranslation(language);
-
 		},
-		deleteTranslation(language) {
+		async deleteTranslation(language) {
 			let translation = _.find(this.translations, {"language_id": language.id});
 			let instance = this;
-			window.swal({
+			const swal = (await import("bootstrap-sweetalert")).default;
+			swal({
 				title: "Are you sure?",
 				text: "The translation will be deleted",
 				type: "warning",

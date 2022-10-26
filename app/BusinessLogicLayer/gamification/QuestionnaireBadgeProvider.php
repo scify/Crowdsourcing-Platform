@@ -28,17 +28,17 @@ class QuestionnaireBadgeProvider {
     }
 
     public function getNextUnlockableBadgeToShowForQuestionnaire(Questionnaire $questionnaire, int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadge {
-        if (! $this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire->id, $questionnaireIdsUserHasAnsweredTo)) {
+        if (!$this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire->id, $questionnaireIdsUserHasAnsweredTo)) {
             return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), count($questionnaireIdsUserHasAnsweredTo));
         }
 
-        if (! $this->userHasAchievedCommunicatorBadgeForQuestionnaire($questionnaire, $userId)) {
+        if (!$this->userHasAchievedCommunicatorBadgeForQuestionnaire($questionnaire, $userId)) {
             return new CommunicatorBadge($this->userQuestionnaireShareRepository->
             getUserQuestionnaireSharesForUserForQuestionnaire($questionnaire->id, $userId),
                 $this->platformWideGamificationBadgesProvider->userHasAchievedCommunicatorBadge($userId));
         }
 
-        if (! $this->userHasAchievedInfluencerBadgeForQuestionnaire($questionnaire, $userId)) {
+        if (!$this->userHasAchievedInfluencerBadgeForQuestionnaire($questionnaire, $userId)) {
             return new InfluencerBadge($this->questionnaireResponseReferralRepository->
             getQuestionnaireReferralsForUserForQuestionnaire($questionnaire->id, $userId)->count(),
                 $this->platformWideGamificationBadgesProvider->userHasAchievedInfluencerBadge($userId));

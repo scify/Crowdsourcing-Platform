@@ -13,21 +13,21 @@ use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilit
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireVMProvider {
-    protected $questionnaireRepository;
-    protected $crowdSourcingProjectAccessManager;
-    protected $languageManager;
-    protected $questionnaireStatisticsPageVisibilityLkpRepository;
-    protected $questionnaireTranslationRepository;
-    protected $questionnaireManager;
-    protected $questionnaireFieldsTranslationManager;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager;
+    protected LanguageManager $languageManager;
+    protected QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository;
+    protected QuestionnaireTranslationRepository $questionnaireTranslationRepository;
+    protected QuestionnaireManager $questionnaireManager;
+    protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireManager $questionnaireManager,
-                                CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-                                LanguageManager $languageManager,
+    public function __construct(QuestionnaireRepository                            $questionnaireRepository,
+                                QuestionnaireManager                               $questionnaireManager,
+                                CrowdSourcingProjectAccessManager                  $crowdSourcingProjectAccessManager,
+                                LanguageManager                                    $languageManager,
                                 QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-                                QuestionnaireTranslationRepository $questionnaireTranslationRepository,
-                                QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {
+                                QuestionnaireTranslationRepository                 $questionnaireTranslationRepository,
+                                QuestionnaireFieldsTranslationManager              $questionnaireFieldsTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
@@ -46,6 +46,8 @@ class QuestionnaireVMProvider {
             $questionnaire->prerequisite_order = 1;
             $questionnaire->max_votes_num = 10;
             $questionnaire->show_general_statistics = true;
+            $questionnaire->respondent_auth_required = 0;
+            $questionnaire->show_file_type_questions_to_statistics_page_audience = 0;
             $title = 'Create Questionnaire';
         }
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());

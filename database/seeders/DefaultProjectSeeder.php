@@ -59,7 +59,7 @@ class DefaultProjectSeeder extends Seeder {
                 'name' => 'FAIR EU',
                 'slug' => 'fair-eu',
                 'logo_path' => '/images/projects/ecas/fair-eu.png',
-                'img_path' => '/images/projects/ecas/fair-eu-bg.png',
+                'img_path' => '/images/projects/ecas/fair-eu-bg.webp',
                 'motto_title' => 'Please share with us your opinion on obstacles to free movement and <br>political participation in the EU. Your voice matters!',
                 'description' => '',
                 'about' => '<p>The FAIR EU (Fostering Awareness, Inclusion and Recognition of EU Mobile Citizens’ Political Rights)

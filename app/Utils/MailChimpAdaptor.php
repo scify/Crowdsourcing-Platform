@@ -40,7 +40,7 @@ class MailChimpAdaptor {
             if ($name) {
                 $mergeFields['FNAME'] = $name;
             }
-            if (! $this->newsletterManager->isSubscribed($email, $listName)) {
+            if (!$this->newsletterManager->isSubscribed($email, $listName)) {
                 $this->newsletterManager->subscribeOrUpdate($email, $mergeFields, $listName);
             }
         }

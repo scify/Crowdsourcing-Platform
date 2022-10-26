@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AACE,sBADoB,CACpB,kBAAkB,CAAC;EACjB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,QAAQ;CACjB;;AAJH,AAME,sBANoB,CAMpB,WAAW,CAAC;EACV,aAAa,EAAE,GAAG;CAKnB;;AAZH,AASI,sBATkB,CAMpB,WAAW,CAGT,CAAC,CAAC;EACA,YAAY,EAAE,GAAG;CAClB;;AAXL,AAcE,sBAdoB,CAcpB,MAAM,CAAC;EACL,SAAS,EAAE,GAAG;CACf",
-    "sources": [
-        "manage-questionnaires.scss"
-    ],
-    "names": [],
-    "file": "manage-questionnaires.css"
-}

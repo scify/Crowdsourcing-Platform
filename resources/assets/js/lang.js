@@ -1,5 +1,4 @@
-
-(function() {
+(function () {
 	"use strict";
 
 	/**
@@ -747,6 +746,14 @@
 		const lang = isoLangs[key];
 		return lang ? lang.nativeName : undefined;
 	};
+	const trans = function (key, replace = {}) {
+		let translation = key.split(".").reduce((t, i) => t[i] || null, window.Laravel.translations);
+		for (const placeholder in replace) {
+			translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+		}
+		return translation;
+	};
 	window.getLanguageName = getLanguageName;
 	window.getLanguageNativeName = getLanguageNativeName;
+	window.trans = trans;
 })();

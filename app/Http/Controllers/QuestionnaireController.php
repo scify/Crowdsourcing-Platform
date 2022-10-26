@@ -7,17 +7,20 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireController extends Controller {
-    protected $questionnaireManager;
-    protected $questionnaireShareManager;
-    protected $questionnaireVMProvider;
-    protected $questionnaireTranslator;
-    protected $questionnaireLanguageManager;
+    protected QuestionnaireManager $questionnaireManager;
+    protected UserQuestionnaireShareManager $questionnaireShareManager;
+    protected QuestionnaireVMProvider $questionnaireVMProvider;
+    protected QuestionnaireTranslator $questionnaireTranslator;
+    protected QuestionnaireLanguageManager $questionnaireLanguageManager;
 
     public function __construct(QuestionnaireManager $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
@@ -31,7 +34,7 @@ class QuestionnaireController extends Controller {
         $this->questionnaireLanguageManager = $questionnaireLanguageManager;
     }
 
-    public function manageQuestionnaires() {
+    public function manageQuestionnaires(): Factory|View|Application {
         $questionnairesViewModel = $this->questionnaireVMProvider->getAllQuestionnairesPageViewModel();
 
         return view('questionnaire.all')->with(['viewModel' => $questionnairesViewModel]);
@@ -43,7 +46,7 @@ class QuestionnaireController extends Controller {
         return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
     }
 
-    public function createQuestionnaire() {
+    public function createQuestionnaire(): Factory|View|Application {
         $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel();
 
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
@@ -51,13 +54,13 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
-        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($request->all());
+        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data);
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
 
         return $questionnaire;
     }
 
-    public function editQuestionnaire($id) {
+    public function editQuestionnaire($id): Factory|View|Application {
         $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel($id);
 
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);

@@ -39,9 +39,12 @@
 
 <script>
 import {mapActions} from "vuex";
-import {initSingleColorPicker} from "../../common-backoffice";
+import "jquery/dist/jquery.min";
+import "bootstrap/dist/js/bootstrap.min";
+import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
 
 export default {
+	name: "CrowdSourcingProjectColors",
 	props: {
 		colorData: []
 	},
@@ -54,6 +57,7 @@ export default {
 		this.colors = this.colorData;
 	},
 	mounted() {
+		this.initializeColorPicker();
 	},
 	methods: {
 		...mapActions([
@@ -68,7 +72,7 @@ export default {
 			});
 			let instance = this;
 			setTimeout(function () {
-				initSingleColorPicker($("#color_" + (instance.colors.length - 1)));
+				instance.initSingleColorPicker($("#color_" + (instance.colors.length - 1)));
 			}, 500);
 		},
 		generateRandomColor() {
@@ -79,6 +83,25 @@ export default {
 			for (let i = 0; i < this.colors.length; i++) {
 				$("#color_" + i).colorpicker("setValue", this.colors[i].color_code);
 			}
+		},
+		initializeColorPicker() {
+			let instance = this;
+			$(".color-picker").each(function (i, el) {
+				instance.initSingleColorPicker(el);
+			});
+		},
+		initSingleColorPicker(el) {
+			$(el).colorpicker({
+				horizontal: true
+			});
+
+			$(el).on("colorpickerCreate", function (event) {
+				$(el).find(".input-group-addon").css("background-color", event.color.toString());
+			});
+
+			$(el).on("colorpickerChange", function (event) {
+				$(el).find(".input-group-addon").css("background-color", event.color.toString());
+			});
 		}
 	}
 };
@@ -88,4 +111,5 @@ export default {
 @import "resources/assets/sass/variables";
 @import "~survey-jquery/modern.min.css";
 @import "~survey-analytics/survey.analytics.min.css";
+@import '~bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css';
 </style>
