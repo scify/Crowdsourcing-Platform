@@ -74,7 +74,7 @@ class QuestionnaireResponseRepository extends Repository {
         return $questionnairesThatWereTransferredToUser;
     }
 
-    public function getQuestionnaireResponsesOfUser($userId): \Illuminate\Database\Eloquent\Collection|array {
+    public function getQuestionnaireResponsesOfUser($userId) {
         return QuestionnaireResponse::with('questionnaire')
             ->where('user_id', $userId)
             ->get();

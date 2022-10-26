@@ -34,7 +34,7 @@ class QuestionnaireController extends Controller {
         $this->questionnaireLanguageManager = $questionnaireLanguageManager;
     }
 
-    public function manageQuestionnaires(): Factory|View|Application {
+    public function manageQuestionnaires() {
         $questionnairesViewModel = $this->questionnaireVMProvider->getAllQuestionnairesPageViewModel();
 
         return view('questionnaire.all')->with(['viewModel' => $questionnairesViewModel]);
@@ -46,7 +46,7 @@ class QuestionnaireController extends Controller {
         return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
     }
 
-    public function createQuestionnaire(): Factory|View|Application {
+    public function createQuestionnaire() {
         $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel();
 
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
@@ -60,7 +60,7 @@ class QuestionnaireController extends Controller {
         return $questionnaire;
     }
 
-    public function editQuestionnaire($id): Factory|View|Application {
+    public function editQuestionnaire($id) {
         $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel($id);
 
         return view('questionnaire.create-edit')->with(['viewModel' => $viewModel]);
