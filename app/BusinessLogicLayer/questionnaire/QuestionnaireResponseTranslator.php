@@ -26,8 +26,11 @@ class QuestionnaireResponseTranslator {
         $questionnaireResponse = $this->questionnaireResponseRepository->find($questionnaire_response_id);
         $questionnaire = $this->questionnaireRepository->find($questionnaireResponse->questionnaire_id);
         $freeTypeQuestions = $this->questionnaireResponseManager->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
-        if (!count($freeTypeQuestions))
+        if (!count($freeTypeQuestions)) {
+            $questionnaireResponse->response_json_translated = json_encode([]);
+            $questionnaireResponse->save();
             return;
+        }
         $responseAnswers = json_decode($questionnaireResponse->response_json, true);
         $textsToTranslate = [];
         $questionNamesToTranslate = [];
