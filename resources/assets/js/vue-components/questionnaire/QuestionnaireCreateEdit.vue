@@ -160,7 +160,7 @@
             </div>
 
           </div>
-          <div class="row form-group">
+          <div class="row form-group mb-5">
             <div class="col-md-2 col-sm-3 col-xs-12">
               <label>Default Language</label>
             </div>
