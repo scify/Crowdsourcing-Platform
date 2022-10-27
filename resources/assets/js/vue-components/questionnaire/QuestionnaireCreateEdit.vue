@@ -179,41 +179,66 @@
             </div>
           </div>
 
+          <div class="row mb-3">
+            <div class="col-12">
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseHelpFileType"
+                      aria-expanded="false" aria-controls="collapseHelpFileType">
+                Help for file-type questions
+              </button>
+            </div>
+          </div>
+
           <div class="row">
-            <div class="col-md-12 editor-wrapper">
-              <h5 class="mb-4">Use the editor below to create your questionnaire:</h5>
-              <h6 class="mb-2"><b>Notice:</b> For the file-type questions, enter the corresponding acceptable file-type and max-size:</h6>
-              <table class="table table-bordered">
-                <thead>
-                <tr>
-                  <th scope="col">File type</th>
-                  <th scope="col">Accepted types</th>
-                  <th scope="col">Maximum file size in bytes</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Image</td>
-                  <td><b>image/*</b></td>
-                  <td>3145728</td>
-                </tr>
-                <tr>
-                  <td>Document</td>
-                  <td><b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b></td>
-                  <td>3145728</td>
-                </tr>
-                <tr>
-                  <td>Audio</td>
-                  <td><b>audio/*</b></td>
-                  <td>6291456</td>
-                </tr>
-                <tr>
-                  <td>Video</td>
-                  <td>video/*</td>
-                  <td>52428800</td>
-                </tr>
-                </tbody>
-              </table>
+            <div class="col-md-12">
+              <div class="collapse" id="collapseHelpFileType">
+                <div class="card card-body">
+                  <h5 class="mb-4">Use the editor below to create your questionnaire:</h5>
+                  <h6 class="mb-2"><b>Notice:</b> For the file-type questions, enter the corresponding acceptable
+                    file-type and max-size:</h6>
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th scope="col">File type</th>
+                      <th scope="col">Accepted types</th>
+                      <th scope="col">Maximum file size in bytes</th>
+                      <th scope="col">Size in MB</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>Image</td>
+                      <td><b>image/*</b></td>
+                      <td>3145728</td>
+                      <td>3MB</td>
+                    </tr>
+                    <tr>
+                      <td>Document</td>
+                      <td><b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b>
+                      </td>
+                      <td>3145728</td>
+                      <td>3MB</td>
+                    </tr>
+                    <tr>
+                      <td>Audio</td>
+                      <td><b>audio/*</b></td>
+                      <td>6291456</td>
+                      <td>6MB</td>
+                    </tr>
+                    <tr>
+                      <td>Video</td>
+                      <td><b>video/*</b></td>
+                      <td>52428800</td>
+                      <td>50MB</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <p>See how to convert MB to bytes <a href="https://www.gbmb.org/mb-to-bytes" target="_blank">here.</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row editor-wrapper">
+            <div class="col-12">
               <div id="questionnaire-editor"></div>
             </div>
           </div>
