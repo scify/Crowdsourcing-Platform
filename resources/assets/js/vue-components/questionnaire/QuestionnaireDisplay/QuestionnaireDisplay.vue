@@ -244,6 +244,8 @@ export default {
 			for (let i = 0; i < options.files.length; i++) {
 				data.append("files[" + i + "]", options.files[i]);
 			}
+			data.append("project_id", this.project.id);
+			data.append("questionnaire_id", this.questionnaire.id);
 			const config = {
 				headers: {
 					"content-type": "multipart/form-data",
