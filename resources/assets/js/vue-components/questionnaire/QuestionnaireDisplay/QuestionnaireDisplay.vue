@@ -1,5 +1,18 @@
 <template>
   <div class="component mt-3">
+    <div v-if="filesUploading" id="questionnaire-files-loader-overlay"></div>
+    <div v-if="filesUploading" id="questionnaire-files-loader" class="container-fluid">
+      <div class="row" id="questionnaire-files-loader-row">
+        <div class="col mb-4 text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <p id="loader-message">Please wait. uploading files...</p>
+        </div>
+      </div>
+    </div>
     <div v-if="displayLoginPrompt" class="container-fluid p-0">
       <div class="row mb-5 pt-3">
         <div class="col text-center">
@@ -39,6 +52,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12">
           <div :id="surveyContainerId" class="survey-container">
@@ -110,7 +124,8 @@ export default {
 				default: false,
 			},
 			t0: null,
-			defaultLangCode: "en"
+			defaultLangCode: "en",
+			filesUploading: false
 		};
 	},
 	created() {
@@ -235,6 +250,8 @@ export default {
 					"Accept": "application/json"
 				}
 			};
+			this.filesUploading = true;
+			let instance = this;
 			axios.post(window.route("files.upload"), data, config)
 				.then(function (response) {
 					options.callback("success", options.files.map(file => {
@@ -247,6 +264,8 @@ export default {
 				.catch(function (err) {
 					console.error(err);
 					options.callback("error");
+				}).finally(() => {
+					instance.filesUploading = false;
 				});
 		},
 		async saveQuestionnaireResponse(sender) {
@@ -255,11 +274,11 @@ export default {
 			data.response = JSON.stringify(sender.data);
 			let locale = sender.locale;
 			if (!locale) {
-        if(!this.surveyLocales || !this.surveyLocales.length)
-          locale = "en";
-        else
-          locale = this.surveyLocales[0].code;
-      }
+				if (!this.surveyLocales || !this.surveyLocales.length)
+					locale = "en";
+				else
+					locale = this.surveyLocales[0].code;
+			}
 			data.language_code = locale;
 			$(".loader-wrapper").removeClass("hidden");
 			window.$("#questionnaire-modal").modal("hide");
