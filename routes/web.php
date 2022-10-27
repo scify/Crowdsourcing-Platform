@@ -25,10 +25,13 @@ use App\Http\Controllers\QuestionnaireReportController;
 use App\Http\Controllers\QuestionnaireResponseController;
 use App\Http\Controllers\QuestionnaireStatisticsController;
 use App\Http\Controllers\UserController;
+use App\Jobs\TranslateQuestionnaireResponse;
+use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use App\Notifications\UserRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -131,6 +134,15 @@ Route::group(['middleware' => 'auth'], function () {
         User::where(['email' => $request->email])->first()->notify(new UserRegistered());
 
         return 'Success! Email sent to: ' . $request->email;
+    })->middleware('can:manage-platform');
+
+    Route::get('/test-queue', function (Request $request) {
+        $res = QuestionnaireResponse::where(['user_id' => 1])->orderBy('created_at', 'desc')->first();
+        $sizeBefore = Queue::size('questionnaire-response-translate');
+        TranslateQuestionnaireResponse::dispatch($res->id);
+        // Get the number of jobs on the queue
+        $sizeNow = Queue::size('questionnaire-response-translate');
+        return 'Size before: ' . $sizeBefore . ' Size now: ' . $sizeNow;
     })->middleware('can:manage-platform');
 });
 
