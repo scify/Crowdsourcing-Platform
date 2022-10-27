@@ -8,20 +8,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class TranslateQuestionnaireResponse implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected static $QUEUE_NAME = 'questionnaire-response-translate';
-    protected $questionnaire_response_id;
+    protected static string $QUEUE_NAME = 'questionnaire-response-translate';
+    protected int $questionnaire_response_id;
 
     /**
      * The number of times the job may be attempted.
      *
      * @var int
      */
-    public $tries = 3;
+    public int $tries = 3;
 
     /**
      * Create a new job instance.
