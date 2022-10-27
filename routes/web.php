@@ -142,7 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
         TranslateQuestionnaireResponse::dispatch($res->id);
         // Get the number of jobs on the queue
         $sizeNow = Queue::size('questionnaire-response-translate');
-        return 'Queue connection: ' . config('queue.default') . '.Size before: ' . $sizeBefore . ' Size now: ' . $sizeNow . '. Response id: ' . $res->id;
+        return "Queue connection: " . config('queue.default') . "\nRedis client: " . config("database.redis.client") . ".\nSize before: " . $sizeBefore . "\nSize now: " . $sizeNow . ".\nResponse id: " . $res->id;
     })->middleware('can:manage-platform');
 });
 
