@@ -30,7 +30,6 @@ class TranslateQuestionnaireResponse implements ShouldQueue {
      */
     public function __construct(int $questionnaire_response_id) {
         $this->questionnaire_response_id = $questionnaire_response_id;
-        Log::info("Creating job for translating response: " . $this->questionnaire_response_id);
         $this->onQueue(self::$QUEUE_NAME);
     }
 
@@ -40,7 +39,6 @@ class TranslateQuestionnaireResponse implements ShouldQueue {
      * @return void
      */
     public function handle(QuestionnaireResponseTranslator $questionnaireResponseTranslator) {
-        Log::info("Handle translating for: " . $this->questionnaire_response_id);
         $questionnaireResponseTranslator->translateFreeTextAnswersForQuestionnaireResponse($this->questionnaire_response_id);
     }
 }
