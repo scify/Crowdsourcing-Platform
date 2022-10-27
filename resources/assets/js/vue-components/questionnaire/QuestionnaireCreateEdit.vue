@@ -182,21 +182,38 @@
           <div class="row">
             <div class="col-md-12 editor-wrapper">
               <h5 class="mb-4">Use the editor below to create your questionnaire:</h5>
-              <h6><b>Notice:</b> For the file-type questions, enter the corresponding acceptable file-type:</h6>
-              <ul class="list">
-                <li class="list-item">
-                  For <b>image</b> files => <b>image/*</b>
-                </li>
-                <li class="list-item">
-                  For <b>audio</b> files => <b>audio/*</b>
-                </li>
-                <li class="list-item">
-                  For <b>video</b> files => <b>video/*</b>
-                </li>
-                <li class="list-item">
-                  For <b>documents:</b> => <b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b>
-                </li>
-              </ul>
+              <h6 class="mb-2"><b>Notice:</b> For the file-type questions, enter the corresponding acceptable file-type and max-size:</h6>
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th scope="col">File type</th>
+                  <th scope="col">Accepted types</th>
+                  <th scope="col">Maximum file size in bytes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Image</td>
+                  <td><b>image/*</b></td>
+                  <td>2097152</td>
+                </tr>
+                <tr>
+                  <td>Document</td>
+                  <td><b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b></td>
+                  <td>2097152</td>
+                </tr>
+                <tr>
+                  <td>Audio</td>
+                  <td><b>audio/*</b></td>
+                  <td>3145728</td>
+                </tr>
+                <tr>
+                  <td>Video</td>
+                  <td>video/*</td>
+                  <td>52428800</td>
+                </tr>
+                </tbody>
+              </table>
               <div id="questionnaire-editor"></div>
             </div>
           </div>
@@ -255,7 +272,7 @@ import CommonModal from "../common/ModalComponent";
 import TranslationsManager from "../common/TranslationsManager";
 import "select2";
 
-const FILE_MAX_SIZE_BYTES = 52428800; // 50MB;
+const FILE_MAX_SIZE_BYTES = 3145728; // 3MB;
 
 export default {
 	name: "QuestionnaireCreateEdit",
