@@ -195,17 +195,17 @@
                 <tr>
                   <td>Image</td>
                   <td><b>image/*</b></td>
-                  <td>2097152</td>
+                  <td>3145728</td>
                 </tr>
                 <tr>
                   <td>Document</td>
                   <td><b>.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf</b></td>
-                  <td>2097152</td>
+                  <td>3145728</td>
                 </tr>
                 <tr>
                   <td>Audio</td>
                   <td><b>audio/*</b></td>
-                  <td>3145728</td>
+                  <td>6291456</td>
                 </tr>
                 <tr>
                   <td>Video</td>
