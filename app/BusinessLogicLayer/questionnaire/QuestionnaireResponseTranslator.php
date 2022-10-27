@@ -5,12 +5,13 @@ namespace App\BusinessLogicLayer\questionnaire;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\Translator;
+use Illuminate\Support\Facades\Log;
 
 class QuestionnaireResponseTranslator {
-    protected $questionnaireResponseRepository;
-    protected $questionnaireRepository;
-    protected $questionnaireResponseManager;
-    protected $translator;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected QuestionnaireResponseManager $questionnaireResponseManager;
+    protected Translator $translator;
 
     public function __construct(QuestionnaireResponseRepository $questionnaireResponseRepository,
                                 QuestionnaireRepository         $questionnaireRepository,
@@ -26,6 +27,7 @@ class QuestionnaireResponseTranslator {
         $questionnaireResponse = $this->questionnaireResponseRepository->find($questionnaire_response_id);
         $questionnaire = $this->questionnaireRepository->find($questionnaireResponse->questionnaire_id);
         $freeTypeQuestions = $this->questionnaireResponseManager->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
+        Log::info('Questionnaire response with id: ' . $questionnaire_response_id . ' has ' . count($freeTypeQuestions) . ' num of free text questions.');
         if (!count($freeTypeQuestions)) {
             $questionnaireResponse->response_json_translated = json_encode([]);
             $questionnaireResponse->save();
