@@ -14,10 +14,10 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectController extends Controller {
-    private $crowdSourcingProjectManager;
-    private $questionnaireShareManager;
+    private CrowdSourcingProjectManager $crowdSourcingProjectManager;
+    private UserQuestionnaireShareManager $questionnaireShareManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
+    public function __construct(CrowdSourcingProjectManager   $crowdSourcingProjectManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
@@ -36,7 +36,7 @@ class CrowdSourcingProjectController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return View
      */
     public function edit(int $id): View {
@@ -46,12 +46,12 @@ class CrowdSourcingProjectController extends Controller {
     /**
      * Create and store the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return RedirectResponse
      *
      * @throws ValidationException
      */
-    public function store(Request $request) {
+    public function store(Request $request): RedirectResponse {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_project_translations,name|max:100',
             'description' => 'required|string',
@@ -67,13 +67,13 @@ class CrowdSourcingProjectController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id the project id
+     * @param Request $request
+     * @param int $id the project id
      * @return RedirectResponse
      *
      * @throws ValidationException
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id): RedirectResponse {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_project_translations,name,' . $id . ',project_id|max:100',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
@@ -109,7 +109,7 @@ class CrowdSourcingProjectController extends Controller {
 
             return view('landingpages.project-unavailable')
                 ->with(['viewModel' => $this->crowdSourcingProjectManager->
-                getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug), ]);
+                getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug),]);
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
@@ -129,20 +129,16 @@ class CrowdSourcingProjectController extends Controller {
             return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ModelNotFoundException $e) {
             abort(404);
-
-            return '';
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
-
             return redirect()->to(route('home'));
         }
     }
 
     private function shouldHandleQuestionnaireShare($request): bool {
-        return 
+        return
             isset($request->questionnaireId) &&
             isset($request->referrerId);
-        //&&  Auth::check()); //TODO: DISCUSS, why user should be logged in for this?
     }
 
     public function clone(int $id): RedirectResponse {

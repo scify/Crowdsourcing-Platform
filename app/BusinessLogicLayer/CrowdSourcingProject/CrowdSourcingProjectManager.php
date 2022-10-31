@@ -30,16 +30,16 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
-    protected $crowdSourcingProjectRepository;
-    protected $questionnaireRepository;
-    protected $crowdSourcingProjectStatusManager;
-    protected $crowdSourcingProjectStatusHistoryRepository;
-    protected $crowdSourcingProjectAccessManager;
-    protected $questionnaireGoalManager;
-    protected $languageRepository;
-    protected $crowdSourcingProjectColorsManager;
-    protected $questionnaireResponseRepository;
-    protected $crowdSourcingProjectTranslationManager;
+    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager;
+    protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository;
+    protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager;
+    protected QuestionnaireGoalManager $questionnaireGoalManager;
+    protected LanguageRepository $languageRepository;
+    protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
+    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
 
     public function __construct(CrowdSourcingProjectRepository              $crowdSourcingProjectRepository,
                                 QuestionnaireRepository                     $questionnaireRepository,
@@ -98,7 +98,6 @@ class CrowdSourcingProjectManager {
         $project_slug,
         $openQuestionnaireWhenPageLoads): CrowdSourcingProjectForLandingPage {
         $userId = null;
-
 
         // if the user is logged in, get the user id
         if (Auth::check()) {
