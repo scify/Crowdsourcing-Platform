@@ -72,7 +72,9 @@ import _ from "lodash";
 			const loader = $("#delete-response-loader");
 			const errorEl = $("#delete-response-error");
 			const swal = import("bootstrap-sweetalert");
+			const headers = {"X-CSRF-TOKEN": $("meta[name=\"csrf-token\"]").attr("content")};
 			$.ajax({
+				headers: headers,
 				method: "POST",
 				url: window.route("questionnaire_response.destroy"),
 				cache: false,
