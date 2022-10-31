@@ -384,7 +384,7 @@ class CrowdSourcingProjectManager {
                 $message = 'This project has been archived.';
                 break;
             default:
-                $message = 'The project is not currently available';
+                $message = 'This project is not currently available';
                 break;
         }
 
