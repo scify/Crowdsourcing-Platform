@@ -300,8 +300,8 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 			columns = [
 				{"width": "0%"},
 				{"width": "80%"},
-				{"width": "20%"},
 				{"width": "0%"},
+				{"width": "20%"},
 				{"width": "0%"}
 			];
 		}
@@ -317,7 +317,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 		if (!questionName.includes("-Comment")) {
 			options.columnDefs = [
 				{
-					"targets": [0, 2, 4],
+					"targets": [0, 3, 4],
 					"visible": false
 				}
 			];
