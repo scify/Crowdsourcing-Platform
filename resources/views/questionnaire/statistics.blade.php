@@ -1,4 +1,8 @@
-@extends('landingpages.layout', ['includeBackofficeCommonJs' => true])
+@extends('landingpages.layout', [
+    'includeBackofficeCommonJs' => true,
+    'redirectLoginURL' => route("login") . '?redirectTo=' . url()->full(),
+    'redirectRegisterURL' => route("register") . '?redirectTo=' . url()->full(),
+    ])
 
 @section('content')
     <div class="container-fluid py-5">
