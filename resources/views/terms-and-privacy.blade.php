@@ -29,10 +29,9 @@
                                 <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
+                                <b>1.1.</b> The Company with the company name “ECAS - European Citizen Action Service”, address:
+                                BeCentral Cantersteen 12 B-1000 Brussels, Belgium ,
+                                Telephone: +32 (0) 2 548 04 90, email: info(at)ecas.org, is the Data Controller for the processing of the User’s Personal
                                 Data (herein after referred to as <b>"Data Controller"</b>).
                                 <br><br>
                                 <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
@@ -40,11 +39,13 @@
                                 uploaded by the User to use the Platform, the User can communicate with the
                                 Data Controller, by using one of the following alternatives:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
-                                (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                European Citizen Action Service<br>
+                                BeCentral<br>
+                                12, Cantersteen<br>
+                                1000 Brussels<br>
+                                info(at)ecas.org<br>
+                                +32 (0) 2 548 04 90<br>
+                                <br>
 
                             </div>
                         </div>
@@ -152,7 +153,7 @@
                                 <b>6.1</b> The Data Controller respects User's right in relation to data processing.
                                 <br><br>
                                 <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                following contact details: Telephone: +32 2 290 58 45, email: Belgiuminfo(at)ecas.org
                                 <br><br>
                                 For User's facilitation, User's rights are included in the following table along with a
                                 short explanation of each right (reference to articles corresponds to article of GDPR
@@ -377,8 +378,8 @@
                                 as
                                 well as exercise of User's rights, the User can contact the Data Controller using one of
                                 the following ways: <br>
-                                Telephone: +302114004192, <br>
-                                Email: info@scify.org
+                                Telephone: +32 (0) 2 548 04 90, <br>
+                                Email: info@ecas.org
                                 <br><br>
                                 In case the User becomes aware of any data breach incident, he is kindly requested to
                                 notify the Data Controller immediately.
