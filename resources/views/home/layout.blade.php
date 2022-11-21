@@ -55,8 +55,7 @@
 <div class="loader-wrapper hidden">
     <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
-
+<x-laravel-cookies-consent></x-laravel-cookies-consent>
 @include('partials.footer-scripts')
-
 </body>
 </html>
