@@ -10,13 +10,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="canonical" href="{{route(getNameOfRoute(Route::current()), ['locale' => app()->getLocale()])}}">
-    @foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language)
-        @if(strlen($language) === 2)
-            <link rel="alternate" hreflang="{{ $language }}"
-                  href="{{route(getNameOfRoute(Route::current()), ['locale' => $language])}}"/>
-        @endif
-    @endforeach
+    @if(!isset($onErrorPage))
+        <link rel="canonical" href="{{route(getNameOfRoute(Route::current()), ['locale' => app()->getLocale()])}}">
+        @foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language)
+            @if(strlen($language) === 2)
+                <link rel="alternate" hreflang="{{ $language }}"
+                      href="{{route(getNameOfRoute(Route::current()), ['locale' => $language])}}"/>
+            @endif
+        @endforeach
+    @endif
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
