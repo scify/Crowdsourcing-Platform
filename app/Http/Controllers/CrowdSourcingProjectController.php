@@ -100,7 +100,6 @@ class CrowdSourcingProjectController extends Controller {
             'project_slug' => 'required|different:execute_solution|exists:crowd_sourcing_projects,slug',
         ]);
         if ($validator->fails()) {
-            Log::info("Landing page validator failed for: " . $request->project_slug);
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
         try {
