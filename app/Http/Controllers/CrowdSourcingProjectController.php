@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -99,6 +100,7 @@ class CrowdSourcingProjectController extends Controller {
             'project_slug' => 'required|different:execute_solution|exists:crowd_sourcing_projects,slug',
         ]);
         if ($validator->fails()) {
+            Log::info("Landing page validator failed for: " . $request->project_slug);
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
         try {
