@@ -22,7 +22,9 @@
                         <a class="nav-link" href="#projects">WHAT ARE WE CROWDSOURCING?</a>
                     </li>
                 @endguest
-                @include("partials.login-menu-options")
+                @if(!isset($onErrorPage))
+                    @include("partials.login-menu-options")
+                @endif
             </ul>
         </div>
     </nav>

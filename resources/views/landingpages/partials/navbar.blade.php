@@ -3,7 +3,8 @@
          style="z-index: 100000;">
         @if(isset($viewModel->project) &&  isset($viewModel->project->external_url) && $viewModel->project->external_url !=null)
             <a class="navbar-brand" target="_blank" href="{{ $viewModel->project->external_url}}">
-                <img loading="lazy" alt="{{$viewModel->project->currentTranslation->name}}" src="{{asset($viewModel->project->logo_path)}}">
+                <img loading="lazy" alt="{{$viewModel->project->currentTranslation->name}}"
+                     src="{{asset($viewModel->project->logo_path)}}">
             </a>
         @else
             <a class="navbar-brand" href="{{route('home', ['locale' => app()->getLocale()])}}">
@@ -18,7 +19,9 @@
 
         <div class="collapse navbar-collapse pull-right" id="top-menu-content">
             <ul class="nav navbar-nav ml-auto">
-                @include("partials.login-menu-options")
+                @if(!isset($onErrorPage))
+                    @include("partials.login-menu-options")
+                @endif
             </ul>
         </div>
     </nav>
