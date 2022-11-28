@@ -25,7 +25,9 @@
                         <a class="nav-link" href="#past-projects">PAST PROJECTS</a>
                     </li>
                 @endguest
-                @include("partials.login-menu-options")
+                @if(!isset($onErrorPage))
+                    @include("partials.login-menu-options")
+                @endif
             </ul>
         </div>
     </nav>
