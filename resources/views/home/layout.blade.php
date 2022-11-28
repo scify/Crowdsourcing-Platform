@@ -48,12 +48,13 @@
 <div id="app" style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
-
-<footer>
-    <div class="container-fluid">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
-    </div>
-</footer>
+@if(!isset($onErrorPage))
+    <footer>
+        <div class="container-fluid">
+            @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
+        </div>
+    </footer>
+@endif
 <div class="loader-wrapper hidden">
     <img loading="lazy" src="{{asset('images/loading.gif')}}" alt="loading image">
 </div>
