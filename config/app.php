@@ -125,6 +125,10 @@ return [
     'admin_pass_seed' => env('DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED'),
     'mailchimp_api_key' => env('MAILCHIMP_API_KEY'),
     'user_way_id' => env('USERWAY_ID'),
+    'installation_company_name' => env('INSTALLATION_COMPANY_NAME'),
+    'installation_company_address' => env('INSTALLATION_COMPANY_ADDRESS'),
+    'installation_company_phone' => env('INSTALLATION_COMPANY_PHONE'),
+    'installation_company_email' => env('INSTALLATION_COMPANY_EMAIL'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

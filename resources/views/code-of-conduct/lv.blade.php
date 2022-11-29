@@ -53,7 +53,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Ja novērojat nepieņemamu uzvedību , vai Jums ir kādas citas bažas, lūdzu, ziņojiet par to, sazinoties ar organizatoriem, rakstot e-pastu uz info@scify.org.
+                                Ja novērojat nepieņemamu uzvedību , vai Jums ir kādas citas bažas, lūdzu, ziņojiet par to, sazinoties ar organizatoriem, rakstot e-pastu uz {{ config("app.installation_company_email") }}.
                                 <br><br>
                                 Visi ziņojumi tiks apstrādāti diskrēti. Savā ziņojumā, lūdzu, iekļaujiet:<br>
                                 - savu kontaktinformāciju;<br>

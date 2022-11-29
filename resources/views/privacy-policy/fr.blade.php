@@ -22,16 +22,15 @@
                                 <h2 class="mt-4 mb-4">1. Qui est le responsable du traitement des données?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> La société dont la raison sociale est "SCIENCE FOR YOU", adresse : TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Grèce,
-                                Téléphone: +302114004192, email:
-                                info@scify.org, est le responsable pour le traitement des données personnelles de l'utilisateur (ci-après dénommé <b>"Responsable du traitement des données"</b>).
+                                <b>1.1.</b> La société dont la raison sociale est "{{ config("app.installation_company_name") }}", adresse : {{ config("app.installation_company_address") }},
+                                Téléphone: {{ config("app.installation_company_phone") }}, email:
+                                {{ config("app.installation_company_email") }}, est le responsable pour le traitement des données personnelles de l'utilisateur (ci-après dénommé <b>"Responsable du traitement des données"</b>).
                                 <br><br>
                                 <b>1.2. Coordonnées du Responsable du traitement des données:</b> Pour toute question ou préoccupation concernant la présente Politique de confidentialité et le traitement des données personnelles de l'Utilisateur ou des données téléchargées par l'Utilisateur pour utiliser la Plateforme, l'Utilisateur peut communiquer avec le Responsable du traitement en utilisant l'une des alternatives suivantes:
                                 <br><br>
-                                En appelant au +302114004192, du lundi au vendredi de 10h00 à 18.00 HNEE (Heure Normale d'Europe de l'Est).<br>
-                                En envoyant un courriel à l’adresse suivante: info@scify.org<br>
-                                En envoyant un courrier à l'adresse suivante: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Grèce<br>
+                                En appelant au {{ config("app.installation_company_phone") }}, du lundi au vendredi de 10h00 à 18.00 HNEE (Heure Normale d'Europe de l'Est).<br>
+                                En envoyant un courriel à l’adresse suivante: {{ config("app.installation_company_email") }}<br>
+                                En envoyant un courrier à l'adresse suivante: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -98,7 +97,7 @@
                                 <h2 class="mt-4 mb-4">6. Quels sont les droits de l'Utilisateur concernant le traitement de ses données et comment peut-il exercer ces droits?</h2>
                                 <b>6.1</b> Le responsable du traitement respecte le droit de l'utilisateur en matière de traitement des données.
                                 <br><br>
-                                <b>6.2</b> L'Utilisateur peut exercer ses droits en contactant le Responsable du traitement aux coordonnées suivantes: Téléphone: +302114004192, courriel: info@scify.org
+                                <b>6.2</b> L'Utilisateur peut exercer ses droits en contactant le Responsable du traitement aux coordonnées suivantes: Téléphone: {{ config("app.installation_company_phone") }}, courriel: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Pour faciliter la tâche de l'Utilisateur, les droits de l'Utilisateur sont inclus dans le tableau suivant ainsi qu’une brève explication de chaque droit (la référence aux articles correspond à l'article du RGPD 2016/679):
                                 <br><br>
@@ -240,8 +239,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Communication avec le Responsable du traitement des données</h2>
                                 <b>9.1.</b> Pour toute question liée à la présente politique de confidentialité, au traitement des données de l'utilisateur ainsi qu'à l'exercice des droits de l'utilisateur, l'utilisateur peut contacter le responsable du traitement en utilisant l'un des moyens suivants: <br>
-                                Téléphone: +302114004192, <br>
-                                Courriel: info@scify.org
+                                Téléphone: {{ config("app.installation_company_phone") }}, <br>
+                                Courriel: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Si l'utilisateur prend connaissance d'un incident de violation de données, il est prié d'en informer immédiatement le responsable du traitement.
                                 <br><br>
@@ -283,7 +282,9 @@
                                         <td>Cookies absolument nécessaires</td>
                                         <td>Les cookies absolument nécessaires sont indispensables au bon fonctionnement de la Plateforme. Ces cookies permettent à l'Utilisateur de naviguer et d'utiliser les fonctionnalités de la Plateforme telles que l'accès à des zones sécurisées. Ces cookies ne reconnaissent pas l'identité individuelle de l'Utilisateur et sans eux, le bon fonctionnement de la Plateforme n'est pas possible.
                                         </td>
-                                        <td>CookieConsent (enregistre l'état de consentement des cookies de l'utilisateur pour le domaine actuel)
+                                        <td>crowdsourcing_app_cookies_consent_selection (enregistre l'état de consentement des cookies de l'utilisateur pour le domaine actuel)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (enregistre l'état de consentement des cookies de l'utilisateur pour le domaine actuel)
                                             <br><br>
                                             XSRF-TOKEN (Assure la sécurité de la navigation des visiteurs en empêchant la falsification des requêtes intersites. Ce cookie est essentiel pour la sécurité du site Internet et du visiteur. )
                                             <br><br>

@@ -53,7 +53,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Wenn Sie inakzeptables Verhalten erleben oder beobachten oder andere Bedenken haben, melden Sie dies bitte an die Organisator*innen unter info@scify.org
+                                Wenn Sie inakzeptables Verhalten erleben oder beobachten oder andere Bedenken haben, melden Sie dies bitte an die Organisator*innen unter {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Alle Meldungen werden mit Diskretion behandelt. Bitte geben Sie in Ihrer Meldung an:<br>
                                 - Ihre Kontaktinformationen.<br>

@@ -22,15 +22,14 @@
                                 <h2 class="mt-4 mb-4">1. Ki az adatkezelő?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> A "SCIENCE FOR YOU" cégnévvel rendelkező társaság, cím: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Görögország , Telefon: +302114004192, email:
-                                info@scify.org, Felhasználó személyes adatainak feldolgozásáért felelős adatkezelő (a továbbiakban <b>"Adatkezelő"</b>).
+                                <b>1.1.</b> A "{{ config("app.installation_company_name") }}" cégnévvel rendelkező társaság, cím: {{ config("app.installation_company_address") }} , Telefon: {{ config("app.installation_company_phone") }}, email:
+                                {{ config("app.installation_company_email") }}, Felhasználó személyes adatainak feldolgozásáért felelős adatkezelő (a továbbiakban <b>"Adatkezelő"</b>).
                                 <br><br>
                                 <b>1.2. Az adatkezelő elérhetőségei:</b> A jelen Adatvédelmi Szabályzattal és a Felhasználó személyes adatainak vagy a Felhasználó által a Platform használatához feltöltött adatoknak a feldolgozásával kapcsolatos bármilyen kérdés vagy aggály esetén a Felhasználó az alábbi alternatívák egyikén keresztül léphet kapcsolatba az Adatkezelővel:
                                 <br><br>
-                                Telefonon a +302114004192-es telefonszámon, hétfőtől péntekig 10.00 és 18.00 óra között (Kelet-európai idő szerint)<br>
-                                E-mailben a következő e-mail címen: info@scify.org<br>
-                                Postai levelet a következő címre küldhet: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Görögország<br>
+                                Telefonon a {{ config("app.installation_company_phone") }}-es telefonszámon, hétfőtől péntekig 10.00 és 18.00 óra között (Kelet-európai idő szerint)<br>
+                                E-mailben a következő e-mail címen: {{ config("app.installation_company_email") }}<br>
+                                {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -99,7 +98,7 @@
                                 <h2 class="mt-4 mb-4">6. Milyen jogai vannak a Felhasználónak az adatai feldolgozásával kapcsolatban, és hogyan gyakorolhatja ezeket a jogokat?</h2>
                                 <b>6.1</b> Az Adatkezelő tiszteletben tartja a Felhasználónak az adatkezeléssel kapcsolatos jogait.
                                 <br><br>
-                                <b>6.2</b> A Felhasználó a jogait az Adatkezelővel való kapcsolatfelvétel útján gyakorolhatja az alábbi elérhetőségeken: Telefon: +302114004192, e-mail: info@scify.org
+                                <b>6.2</b> A Felhasználó a jogait az Adatkezelővel való kapcsolatfelvétel útján gyakorolhatja az alábbi elérhetőségeken: Telefon: {{ config("app.installation_company_phone") }}, e-mail: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Felhasználó tájékozódását támogatandó, a Felhasználó jogait az alábbi táblázat tartalmazza az egyes jogok rövid magyarázatával együtt (a cikkekre való hivatkozás megfelel a GDPR 2016/679 cikkének):
                                 <br><br>
@@ -242,8 +241,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Kommunikáció az adatkezelővel</h2>
                                 <b>9.1.</b> jelen adatvédelmi irányelvekkel, a Felhasználó adatkezelésével, valamint a Felhasználó jogainak gyakorlásával kapcsolatos bármely kérdésben a Felhasználó az alábbi módok valamelyikén léphet kapcsolatba az Adatkezelővel: <br>
-                                Telefon: +302114004192, <br>
-                                Email: info@scify.org
+                                Telefon: {{ config("app.installation_company_phone") }}, <br>
+                                Email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Amennyiben a Felhasználó tudomást szerez bármilyen adatvédelmi incidensről, kérjük, hogy haladéktalanul értesítse az Adatkezelőt.
                                 <br><br>
@@ -287,8 +286,9 @@
                                         <td>Feltétlenül szükséges cookie-k</td>
                                         <td>A feltétlenül szükséges cookie-k engedhetetlenek a Platform megfelelő működéséhez. Ezek a cookie-k lehetővé teszik a Felhasználó számára a Platform funkcióinak böngészését és használatát, például a biztonságos területekhez való hozzáférést. Ezek a cookie-k nem ismerik fel a Felhasználó egyéni személyazonosságát, és nélkülük a Platform zavartalan működése nem lehetséges.
                                         </td>
-                                        <td>CookieConsent (Tárolja a felhasználó süti hozzájárulásának állapotát az aktuális tartományhoz )
-
+                                        <td>crowdsourcing_app_cookies_consent_selection (Tárolja a felhasználó süti hozzájárulásának állapotát az aktuális tartományhoz )
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Tárolja a felhasználó süti hozzájárulásának állapotát az aktuális tartományhoz )
                                             <br><br>
                                             XSRF-TOKEN (Biztosítja a látogatók böngészésének biztonságát a webhelyközi kérés meghamisításának megakadályozásával. Ez a cookie elengedhetetlen a weboldal és a látogató biztonsága szempontjából. )
                                             <br><br>

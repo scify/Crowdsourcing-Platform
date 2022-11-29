@@ -22,13 +22,13 @@
                                 <h2 class="mt-4 mb-4">1. Kes on vastutav töötleja?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> Kasutaja isikuandmete vastutav töötleja (edaspidi „vastutav töötleja“) on ettevõte SCIENCE FOR YOU, aadress: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Agia Paraskevi, Kreeka, tel +30 21 1400 4192, e-post: info@scify.org.
+                                <b>1.1.</b> Kasutaja isikuandmete vastutav töötleja (edaspidi „vastutav töötleja“) on ettevõte "{{ config("app.installation_company_name") }}", aadress: {{ config("app.installation_company_address") }}, tel {{ config("app.installation_company_phone") }}, e-post: {{ config("app.installation_company_email") }}.
                                 <br><br>
                                 <b>1.2. Vastutava töötleja kontaktandmed:</b> Kõigi käesoleva privaatsuseeskirjaga, kasutaja isikuandmete töötlemisega või kasutaja poolt platvormi kasutamiseks üles laaditud andmete töötlemisega seotud küsimuste või probleemide korral võib kasutaja ühendust võtta vastutava töötlejaga, kasutades ühte järgmistest võimalustest:
                                 <br><br>
-                                helistades +30 21 1400 4192, esmaspäevast reedeni kella 10.00–18.00 EET (Ida-Euroopa aeg);<br>
-                                saates kirja e-posti aadressile info@scify.org; <br>
-                                saates kirja postiaadressile TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Kreeka.<br>
+                                helistades {{ config("app.installation_company_phone") }}, esmaspäevast reedeni kella 10.00–18.00 EET (Ida-Euroopa aeg);<br>
+                                saates kirja e-posti aadressile {{ config("app.installation_company_email") }}; <br>
+                                saates kirja postiaadressile {{ config("app.installation_company_address") }}.<br>
 
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 <h2 class="mt-4 mb-4">6. Millised on kasutaja õigused seoses tema andmete töötlemisega ja kuidas ta saab neid õigusi kasutada?</h2>
                                 <b>6.1</b> Vastutav töötleja austab kasutaja õigusi seoses andmetöötlusega.
                                 <br><br>
-                                <b>6.2</b> Kasutaja saab oma õigusi teostada võttes ühendust vastutava töötlejaga järgmiste kontaktandmete kaudu: tel +30 21 1400 4192, e-post: info@scify.org
+                                <b>6.2</b> Kasutaja saab oma õigusi teostada võttes ühendust vastutava töötlejaga järgmiste kontaktandmete kaudu: tel {{ config("app.installation_company_phone") }}, e-post: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Kasutaja jaoks asja lihtsustamiseks on kasutaja õigused koondatud järgnevasse tabelisse koos iga õiguse lühikese selgitusega (viide artiklile vastab GDPR 2016/679 artiklile):
                                 <br><br>
@@ -236,8 +236,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Suhtlemine vastutava töötlejaga</h2>
                                 <b>9.1.</b> Mistahes küsimuste korral seoses selle privaatsuseeskirjaga, kasutaja andmete töötlemisega või oma õiguste teostamisega, võib kasutaja ühendust võtta vastutava töötlejaga ühel järgmistest viisidest: <br>
-                                tel: +30 21 1400 4192,<br>
-                                e-post: info@scify.org
+                                tel: {{ config("app.installation_company_phone") }},<br>
+                                e-post: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Kui kasutaja saab teada mistahes andmete rikkumise juhtumist, palutakse tal sellest viivitamatult vastutavat töötlejat teavitada.
                                 <br><br>
@@ -282,7 +282,9 @@
                                         <td>Hädavajalikud küpsised</td>
                                         <td>Hädavajalikud küpsised on platvormi nõuetekohaseks toimimiseks vältimatud. Need võimaldavad kasutajal sirvida ja kasutada platvormi funktsioone, nagu näiteks ligipääs turvalistele aladele. Need küpsised ei tunne ära kasutaja individuaalset identiteeti ja ilma nendeta ei ole platvormi tõrgeteta toimimine võimalik.
                                         </td>
-                                        <td>CookieConsent (salvestab kasutaja küpsistega nõustumise oleku praeguse domeeni jaoks)
+                                        <td>crowdsourcing_app_cookies_consent_selection (salvestab kasutaja küpsistega nõustumise oleku praeguse domeeni jaoks)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (salvestab kasutaja küpsistega nõustumise oleku praeguse domeeni jaoks)
                                             <br><br>
                                             XSRF-TOKEN (tagab külastajatele sirvimise turvalisuse, takistades saidiüleste päringute võltsimist. See küpsis on oluline veebisaidi ja külastaja turvalisuse tagamiseks)
                                             <br><br>

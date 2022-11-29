@@ -29,10 +29,10 @@
                                 <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “SCIENCE FOR YOU”, address:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Telephone: +302114004192, email:
-                                info@scify.org, is the Data Controller for the processing of the User’s Personal
+                                <b>1.1.</b> The Company with the company name “{{ config("app.installation_company_name") }}”, address:
+                                {{ config("app.installation_company_address") }} ,
+                                Telephone: {{ config("app.installation_company_phone") }}, email:
+                                {{ config("app.installation_company_email") }}, is the Data Controller for the processing of the User’s Personal
                                 Data (herein after referred to as <b>"Data Controller"</b>).
                                 <br><br>
                                 <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
@@ -40,11 +40,10 @@
                                 uploaded by the User to use the Platform, the User can communicate with the
                                 Data Controller, by using one of the following alternatives:
                                 <br><br>
-                                By calling at +302114004192, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
+                                By calling at {{ config("app.installation_company_phone") }}, from Monday to Friday from 10.00 a.m. to 18.00 p.m. EET
                                 (Eastern European Time)<br>
-                                By sending an email at the following email address: info@scify.org<br>
-                                By sending correspondence to the following address: TEPA Lefkippos - NCSR Demokritos 27,
-                                Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                By sending an email at the following email address: {{ config("app.installation_company_email") }}<br>
+                                By sending correspondence to the following address: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -152,7 +151,7 @@
                                 <b>6.1</b> The Data Controller respects User's right in relation to data processing.
                                 <br><br>
                                 <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +302114004192, email: info@scify.org
+                                following contact details: Telephone: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 For User's facilitation, User's rights are included in the following table along with a
                                 short explanation of each right (reference to articles corresponds to article of GDPR
@@ -377,8 +376,8 @@
                                 as
                                 well as exercise of User's rights, the User can contact the Data Controller using one of
                                 the following ways: <br>
-                                Telephone: +302114004192, <br>
-                                Email: info@scify.org
+                                Telephone: {{ config("app.installation_company_phone") }}, <br>
+                                Email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 In case the User becomes aware of any data breach incident, he is kindly requested to
                                 notify the Data Controller immediately.
@@ -456,7 +455,10 @@
                                             individual identity and without them, the smooth operation of the Platform
                                             is not possible.
                                         </td>
-                                        <td>CookieConsent (Stores the user's cookie consent state for the current domain
+                                        <td>crowdsourcing_app_cookies_consent_selection (Stores the user's cookie consent state for the current domain
+                                            )
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Stores the user's cookie consent state for the current domain
                                             )
                                             <br><br>
                                             XSRF-TOKEN (Ensures visitor browsing-security by preventing cross-site

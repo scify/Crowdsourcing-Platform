@@ -22,14 +22,14 @@
                                 <h2 class="mt-4 mb-4">1. Quem é o Controlador de Dados?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> A empresa com o nome de empresa “SCIENCE FOR YOU”, endereço: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Grécia, Telefone: +302114004192, email:
-                                info@scify.org, é o Controlador de Dados para o processamento dos Dados Pessoais do utilizador (doravante denominado <b>"Controlador de Dados"</b>).
+                                <b>1.1.</b> A empresa com o nome de empresa “{{ config("app.installation_company_name") }}”, endereço: {{ config("app.installation_company_address") }}, Telefone: {{ config("app.installation_company_phone") }}, email:
+                                {{ config("app.installation_company_email") }}, é o Controlador de Dados para o processamento dos Dados Pessoais do utilizador (doravante denominado <b>"Controlador de Dados"</b>).
                                 <br><br>
                                 <b>1.2. Detalhes de contato do controlador de dados:</b> Para qualquer problema ou preocupação com relação à presente Política de Privacidade e ao processamento de dados pessoais do utilizador ou dados carregados pelo utilizador para usar a plataforma, o utilizador pode comunicar com o controlador de dados, usando um dos seguintes alternativas:
                                 <br><br>
-                                Através do telefone +302114004192, de segunda a sexta das 10h00 às 18h00. EET (Hora do Leste Europeu)<br>
-                                Ao enviar um e-mail para o seguinte endereço de e-mail: info@scify.org<br>
-                                Enviando correspondência para o seguinte endereço: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Grécia<br>
+                                Através do telefone {{ config("app.installation_company_phone") }}, de segunda a sexta das 10h00 às 18h00. EET (Hora do Leste Europeu)<br>
+                                Ao enviar um e-mail para o seguinte endereço de e-mail: {{ config("app.installation_company_email") }}<br>
+                                Enviando correspondência para o seguinte endereço: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                 <h2 class="mt-4 mb-4">6. Quais são os direitos do Utilizador em relação ao tratamento dos seus dados e como pode exercer esses direitos?</h2>
                                 <b>6.1</b> O Controlador de Dados respeita o direito do Utilizador em relação ao processamento de dados.
                                 <br><br>
-                                <b>6.2</b> O Utilizador pode exercer os seus direitos contactando o Controlador de Dados através dos seguintes contactos: Telefone: +302114004192, email: info@scify.org
+                                <b>6.2</b> O Utilizador pode exercer os seus direitos contactando o Controlador de Dados através dos seguintes contactos: Telefone: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Para ajudar o utilizador, os direitos do utilizador estão incluídos na tabela a seguir, juntamente com uma breve explicação de cada direito (referência aos artigos corresponde ao artigo do GDPR 2016/679):
                                 <br><br>
@@ -240,8 +240,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Comunicação com o Controlador de Dados</h2>
                                 <b>9.1.</b> Para qualquer questão relacionada com a presente política de privacidade, tratamento de dados do Utilizador, bem como exercício dos direitos do Utilizador, o Utilizador pode contactar o Controlador de Dados através de uma das seguintes formas:
-                                Telefone: +302114004192, <br>
-                                Email: info@scify.org
+                                Telefone: {{ config("app.installation_company_phone") }}, <br>
+                                Email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Caso o Utilizador tome conhecimento de qualquer incidente de violação de dados, ele é cordialmente solicitado a notificar o Controlador de Dados imediatamente.
                                 <br><br>
@@ -284,7 +284,9 @@
                                         <td>Cookies absolutamente necessários</td>
                                         <td>Os cookies absolutamente necessários são essenciais para o bom funcionamento da Plataforma. Esses cookies permitem que o Utilizador navegue e use recursos da Plataforma, como acesso a áreas seguras. Esses cookies não reconhecem a identidade individual do Utilizador e sem eles não é possível o bom funcionamento da Plataforma.
                                         </td>
-                                        <td>CookieConsent (armazena o estado de consentimento do cookie do utilizador para o domínio atual)
+                                        <td>crowdsourcing_app_cookies_consent_selection (armazena o estado de consentimento do cookie do utilizador para o domínio atual)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (armazena o estado de consentimento do cookie do utilizador para o domínio atual)
                                             <br><br>
                                             XSRF-TOKEN (garante a segurança da navegação do visitante, evitando a falsificação de solicitações entre sites. Este cookie é essencial para a segurança do site e do visitante. )
                                             <br><br>
