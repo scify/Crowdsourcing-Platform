@@ -22,13 +22,13 @@
                                 <h2 class="mt-4 mb-4">1. Chi è il Titolare del trattamento?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> La Società con la denominazione sociale “European Citizen Action Service”, indirizzo: BeCentral, 12 Cantersteen, 1000 Brussels, Belgium; Telefono: +3222905845, email: info(at)ecas.org, è il Titolare del trattamento dei Dati Personali dell'Utente (di seguito denominato <b>"itolare del Trattamento"</b>).
+                                <b>1.1.</b> La Società con la denominazione sociale “{{ config("app.installation_company_name") }}”, indirizzo: {{ config("app.installation_company_address") }}; Telefono: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}, è il Titolare del trattamento dei Dati Personali dell'Utente (di seguito denominato <b>"itolare del Trattamento"</b>).
                                 <br><br>
                                 <b>1.2. Dati di contatto del Titolare:</b> Per qualsiasi questione o dubbio in relazione alla presente Privacy Policy e al trattamento dei dati personali dell'Utente o dei dati caricati dall'Utente per utilizzare la Piattaforma, l'Utente può comunicare con il Titolare, utilizzando una delle seguenti alternative:
                                 <br><br>
-                                Telefonando al +3222905845, dal lunedì al venerdì dalle 9.30 alle 17.30 CET (Central European Time)<br>
-                                Inviando un’email al seguente indirizzo: info(at)ecas.org<br>
-                                Inviando una corrispondenza al seguente indirizzo: European Citizen Action Cervice, BeCentral, 12 Cantersteen, 1000 Brussels, Belgium<br>
+                                Telefonando al {{ config("app.installation_company_phone") }}, dal lunedì al venerdì dalle 9.30 alle 17.30 CET (Central European Time)<br>
+                                Inviando un’email al seguente indirizzo: {{ config("app.installation_company_email") }}<br>
+                                Inviando una corrispondenza al seguente indirizzo: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -285,7 +285,9 @@
                                         <td>Cookie assolutamente necessari</td>
                                         <td> I cookie assolutamente necessari sono essenziali per il corretto funzionamento della Piattaforma. Questi cookie consentono all'Utente di navigare e utilizzare le funzionalità della Piattaforma come l'accesso ad aree protette. Questi cookie non riconoscono l'identità individuale dell'Utente e senza di essi il regolare funzionamento della Piattaforma non è possibile.
                                         </td>
-                                        <td>CookieConsent (Memorizza lo stato di consenso dei cookie dell'utente per il dominio corrente)
+                                        <td>crowdsourcing_app_cookies_consent_selection (Memorizza lo stato di consenso dei cookie dell'utente per il dominio corrente)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Memorizza lo stato di consenso dei cookie dell'utente per il dominio corrente)
                                             <br><br>
                                             XSRF-TOKEN (Garantisce la sicurezza della navigazione dei visitatori prevenendo la falsificazione delle richieste tra siti. Questo cookie è essenziale per la sicurezza del sito Web e del visitatore. )
                                             <br><br>

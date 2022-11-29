@@ -53,7 +53,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Als je onacceptabel gedrag ervaart of waarneemt of als je andere zorgen hebt, meldt deze dan alsjeblieft bij de organisatoren via info@scify.org.
+                                Als je onacceptabel gedrag ervaart of waarneemt of als je andere zorgen hebt, meldt deze dan alsjeblieft bij de organisatoren via {{ config("app.installation_company_email") }}.
                                 <br><br>
                                 Alle meldingen zullen met tact worden behandeld. Als je een melding maakt voeg daar dan de volgende zaken aan toe:<br>
                                 - Jouw 	contactgegevens.<br>

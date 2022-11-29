@@ -22,13 +22,13 @@
                                 <h2 class="mt-4 mb-4">1. Wie is de verantwoordelijke voor de verwerking van de gegevens?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> Het bedrijf met de bedrijfsnaam "SCIENCE FOR YOU", adres: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griekenland , Telefoon: +302114004192, e-mail: info@scify.org, is de Gegevensbeheerder voor de verwerking van de Persoonsgegevens van de Gebruiker (hierna te noemen <b>"Gegevensbeheerder"</b>).
+                                <b>1.1.</b> Het bedrijf met de bedrijfsnaam "{{ config("app.installation_company_name") }}", adres: {{ config("app.installation_company_address") }} , Telefoon: {{ config("app.installation_company_phone") }}, e-mail: {{ config("app.installation_company_email") }}, is de Gegevensbeheerder voor de verwerking van de Persoonsgegevens van de Gebruiker (hierna te noemen <b>"Gegevensbeheerder"</b>).
                                 <br><br>
                                 <b>1.2. Contactgegevens van de Gegevensbeheerder:</b> Voor elke kwestie of bezorgdheid met betrekking tot het huidige Privacybeleid en tot de verwerking van de persoonsgegevens van de Gebruiker of gegevens die door de Gebruiker zijn geüpload om het Platform te gebruiken, kan de Gebruiker communiceren met de Gegevensbeheerder, door gebruik te maken van een van de volgende mogelijkheden:
                                 <br><br>
-                                Door te bellen naar +302114004192, van maandag tot en met vrijdag van 10.00 uur tot 18.00 uur EET (Oost-Europese Tijd)<br>
-                                Door een e-mail te sturen naar het volgende e-mailadres: info@scify.org<br>
-                                Door correspondentie te sturen naar het volgende adres TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griekenland<br>
+                                Door te bellen naar {{ config("app.installation_company_phone") }}, van maandag tot en met vrijdag van 10.00 uur tot 18.00 uur EET (Oost-Europese Tijd)<br>
+                                Door een e-mail te sturen naar het volgende e-mailadres: {{ config("app.installation_company_email") }}<br>
+                                Door correspondentie te sturen naar het volgende adres {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                 <h2 class="mt-4 mb-4">6. Wat zijn de rechten van Gebruiker ι met betrekking tot de verwerking van zijn gegevens en hoe kan hij deze rechten uitoefenen?</h2>
                                 <b>6.1</b> De Gegevensbeheerder respecteert het recht van de Gebruiker met betrekking tot de gegevensverwerking.
                                 <br><br>
-                                <b>6.2</b> De Gebruiker kan zijn rechten uitoefenen door contact op te nemen met de Gegevensbeheerder via de volgende contactgegevens: Telefoon: +302114004192, e-mail: info@scify.org
+                                <b>6.2</b> De Gebruiker kan zijn rechten uitoefenen door contact op te nemen met de Gegevensbeheerder via de volgende contactgegevens: Telefoon: {{ config("app.installation_company_phone") }}, e-mail: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Om het de Gebruiker gemakkelijker te maken, zijn de rechten van de Gebruiker opgenomen in de volgende tabel, samen met een korte uitleg van elk recht (verwijzing naar artikelen komt overeen met artikel van GDPR 2016/679):
                                 <br><br>
@@ -239,8 +239,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Communicatie met de Gegevensbeheerder</h2>
                                 <b>9.1.</b> Voor elke kwestie met betrekking tot dit privacybeleid, de verwerking van gegevens door de Gebruiker en de uitoefening van rechten van de Gebruiker, kan de Gebruiker op een van de volgende manieren contact opnemen met de Gegevensbeheerder: <br>
-                                Telefoon: +302114004192, <br>
-                                Email: info@scify.org
+                                Telefoon: {{ config("app.installation_company_phone") }}, <br>
+                                Email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Indien de Gebruiker zich bewust wordt van een incident met betrekking tot een datalek, wordt hij vriendelijk verzocht de Gegevensbeheerder hiervan onmiddellijk op de hoogte te stellen.
                                 <br><br>
@@ -282,7 +282,9 @@
                                         <td>Absoluut noodzakelijk cookies</td>
                                         <td>De absoluut noodzakelijke cookies zijn essentieel voor de goede werking van het Platform. Deze cookies stellen de Gebruiker in staat te browsen en gebruik te maken van Platform functies zoals toegang tot beveiligde gebieden. Deze cookies herkennen niet de individuele identiteit van de Gebruiker en zonder hen, is de goede werking van het Platform niet mogelijk.
                                         </td>
-                                        <td>CookieConsent (Slaat de cookie-toestemmingsstatus van de gebruiker op voor het huidige domein)
+                                        <td>crowdsourcing_app_cookies_consent_selection (Slaat de cookie-toestemmingsstatus van de gebruiker op voor het huidige domein)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Slaat de cookie-toestemmingsstatus van de gebruiker op voor het huidige domein)
                                             <br><br>
                                             XSRF-TOKEN (Zorgt voor de veiligheid van de bezoeker door het voorkomen van cross-site request forgery. Deze cookie is essentieel voor de veiligheid van de website en de bezoeker. )
                                             <br><br>

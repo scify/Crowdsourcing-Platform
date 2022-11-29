@@ -22,13 +22,13 @@
                                 <h2 class="mt-4 mb-4">1. Ko je kontrolor podataka?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> Kompanija pod nazivom „SCIENCE FOR YOU“, adresa: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Grčka, telefon: +302114004192, email: info@scifi.org, je Kontrolor podataka za obradu ličnih podataka korisnika (u daljem tekstu <b>"Kontrolor podataka"</b>).
+                                <b>1.1.</b> Kompanija pod nazivom „{{ config("app.installation_company_name") }}“, adresa: {{ config("app.installation_company_address") }}, telefon: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}, je Kontrolor podataka za obradu ličnih podataka korisnika (u daljem tekstu <b>"Kontrolor podataka"</b>).
                                 <br><br>
                                 <b>1.2. Kontakt podaci Kontrolora podataka:</b> Za bilo koje pitanje ili zabrinutost u vezi sa ovom Politikom privatnosti i obradom ličnih podataka Korisnika ili podataka koje je Korisnik postavio pri korišćenju Platforme, Korisnik može da komunicira sa Kontrolorom podataka, koristeći jednu od sljedećih opcija:
                                 <br><br>
-                                Pozivom na broj +302114004192, od ponedjeljka do petka od 10.00 do 18.00 po IEV (istočno-evropsko vrijeme)<br>
-                                Slanjem mejla na sljedeću email adresu: info@scify.org<br>
-                                Slanjem korespondencije na sljedeću adresu: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece<br>
+                                Pozivom na broj {{ config("app.installation_company_phone") }}, od ponedjeljka do petka od 10.00 do 18.00 po IEV (istočno-evropsko vrijeme)<br>
+                                Slanjem mejla na sljedeću email adresu: {{ config("app.installation_company_email") }}<br>
+                                Slanjem korespondencije na sljedeću adresu: {{ config("app.installation_company_address") }}<br>
                             </div>
                         </div>
                         <div class="row">
@@ -94,7 +94,7 @@
                                 <h2 class="mt-4 mb-4">6. Koja su prava korisnika u vezi sa obradom njegovih podataka i kako može da ostvari ta prava?</h2>
                                 <b>6.1</b> Kontrolor podataka poštuje prava Korisnika u vezi sa obradom podataka.
                                 <br><br>
-                                <b>6.2</b> Korisnik može ostvariti svoja prava kontaktiranjem Kontrolora podataka koristeći sljedeće kontakt podatke: Telefon: +302114004192, email: info@scify.org
+                                <b>6.2</b> Korisnik može ostvariti svoja prava kontaktiranjem Kontrolora podataka koristeći sljedeće kontakt podatke: Telefon: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Radi olakšavanja Korisniku, prava Korisnika su uključena u sljedeću tabelu zajedno sa kratkim objašnjenjem svakog prava (referenca na članove odgovara članu GDPR 2016/679):
                                 <br><br>
@@ -236,14 +236,14 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Komunikacija sa Kontrolorom podataka</h2>
                                 <b>9.1.</b> Za bilo koje pitanje u vezi sa ovom politikom privatnosti, obradom podataka Korisnika kao i ostvarivanjem prava Korisnika, Korisnik može kontaktirati Kontrolora podataka na jedan od sljedećih načina: <br>
-                                Telefon: +302114004192, <br>
-                                Email: info@scify.org
+                                Telefon: {{ config("app.installation_company_phone") }}, <br>
+                                Email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 U slučaju da Korisnik sazna za bilo kakav slučaj povrede podataka, ljubazno od njega tražimo da odmah obavijesti Kontrolora podataka.
                                 <br><br>
                                 <b>9.2.</b> Ovi uslovi su regulisani i dopunjeni Odredbama i uslovima i zajedno sa njima čine jedinstveni tekst.
                             </div>
-                        </div>
+                        </div>F
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">10. Konekcija  sa drugim veb stranicama/društvenim mrežama</h2>
@@ -281,7 +281,9 @@
                                         <td>Apsolutno neophodni kolačići</td>
                                         <td>Apsolutno neophodni kolačići su esencijalni za pravilan rad Platforme. Ovi kolačići omogućavaju Korisniku da pregleda i koristi funkcije Platforme kao što je pristup sigurnim oblastima. Ovi kolačići ne prepoznaju individualni identitet korisnika i bez njih, nesmetan rad Platforme nije moguć.
                                         </td>
-                                        <td>SaglasnostZaKolačiće (Čuva status saglasnosti korisnika za kolačiće za trenutni domen)
+                                        <td>crowdsourcing_app_cookies_consent_selection (Čuva status saglasnosti korisnika za kolačiće za trenutni domen)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Čuva status saglasnosti korisnika za kolačiće za trenutni domen)
                                             <br><br>
                                             XSRF-TOKEN (Obezbjeđuje sigurnost pregledanja posjetilaca sprečavanjem falsifikovanja zahtjeva na više lokacija. Ovaj kolačić je neophodan za sigurnost veb stranice i posjetioca.)
                                             <br><br>

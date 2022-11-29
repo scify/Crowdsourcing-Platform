@@ -22,14 +22,14 @@
                                 <h2 class="mt-4 mb-4">1. Wer ist für die Datenverarbeitung verantwortlich?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> Die Gesellschaft mit dem Firmennamen "SCIENCE FOR YOU", Adresse: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griechenland , Telefon: +302114004192, E-Mail:
-                                info@scify.org, ist die für die Verarbeitung der personenbezogenen Daten der Nutzer*innen verantwortliche Stelle (im Folgenden als <b>"für die Datenverarbeitung verantwortliche Stelle"</b> bezeichnet).
+                                <b>1.1.</b> Die Gesellschaft mit dem Firmennamen "{{ config("app.installation_company_name") }}", Adresse: {{ config("app.installation_company_address") }} , Telefon: {{ config("app.installation_company_phone") }}, E-Mail:
+                                {{ config("app.installation_company_email") }}, ist die für die Verarbeitung der personenbezogenen Daten der Nutzer*innen verantwortliche Stelle (im Folgenden als <b>"für die Datenverarbeitung verantwortliche Stelle"</b> bezeichnet).
                                 <br><br>
                                 <b>1.2. Kontaktinformationen der für die Datenverarbeitung verantwortlichen Stelle:</b> Bei Fragen oder Bedenken in Bezug auf die vorliegende Datenschutzrichtlinie und die Verarbeitung der personenbezogenen Daten der Nutzer*innen oder von den Nutzer*innen zur Nutzung der Plattform hochgeladenen Daten kann mit der für die Datenverarbeitung verantwortlichen Stelle auf eine der folgenden Arten Kontakt aufgenommen werden:
                                 <br><br>
-                                Per Telefon unter +302114004192, von Montag bis Freitag von 10.00 Uhr bis 18.00 Uhr EET (Osteuropäische Zeit)<br>
-                                Per E-Mail an die folgende Adresse: info@scify.org<br>
-                                Per Post an die folgende Adresse: TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Griechenland<br>
+                                Per Telefon unter {{ config("app.installation_company_phone") }}, von Montag bis Freitag von 10.00 Uhr bis 18.00 Uhr EET (Osteuropäische Zeit)<br>
+                                Per E-Mail an die folgende Adresse: {{ config("app.installation_company_email") }}<br>
+                                Per Post an die folgende Adresse: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -80,10 +80,10 @@
                                 <b>5.1. Kontodaten der Nutzer*innen:</b><br>
                                 Ungeachtet des unten erwähnten Rechts der Nutzer*innen auf Löschung/Löschung werden die im Nutzer*innenkonto registrierten und gespeicherten Daten so lange gespeichert, wie der/die Nutzer*in die Plattform für den oben genannten Zweck nutzen möchte. Möchten Nutzer*innen ihr Konto löschen, können sie dies über die Kontoeinstellungen tun oder sich an die oben genannten Kontaktdaten der für die Datenverarbeitung verantwortlichen Stelle wenden.
                                 <br><br>
-                                <b>5.2. Kommunikation der Plattform aus Gründen, die mit der erlaubten Nutzung der Plattform durch die Nutzer*innen zusammenhängen.</b><br>
+                                <b>5.2.</b> Kommunikation der Plattform aus Gründen, die mit der erlaubten Nutzung der Plattform durch die Nutzer*innen zusammenhängen.</b><br>
                                 Daten im Zusammenhang mit solchen Mitteilungen werden nur so lange gespeichert, wie die Nutzer*innen die Plattform nutzen möchten und ihr Konto aufrechterhalten. Falls Nutzer*innen ihr Konto löschen möchte, können sie dies über die Kontoeinstellungen tun oder sich an die oben genannten Kontaktdaten der für die Datenverarbeitung verantwortlichen Stelle wenden.
                                 <br><br>
-                                <b>5.3. Statistische Analyse zur Optimierung der Website Ungeachtet der oben genannten Bestimmungen von Artikel 5 speichert und verarbeitet die verantwortliche Stelle nur die notwendigen Daten für den Zeitraum, der erforderlich ist, um ihren jeweiligen gesetzlichen Verpflichtungen nachzukommen (Erfüllung der steuerlichen Pflichten usw.).
+                                <b>5.3.</b> Statistische Analyse zur Optimierung der Website Ungeachtet der oben genannten Bestimmungen von Artikel 5 speichert und verarbeitet die verantwortliche Stelle nur die notwendigen Daten für den Zeitraum, der erforderlich ist, um ihren jeweiligen gesetzlichen Verpflichtungen nachzukommen (Erfüllung der steuerlichen Pflichten usw.).
                                 <br><br>
                                 <b>5.4. Verarbeitung personenbezogener Daten zum Zweck der Durchführung statistischer Analysen.</b><br>
                                 Siehe die Cookie-Richtlinie (Artikel 11) unten.
@@ -95,7 +95,7 @@
                                 <h2 class="mt-4 mb-4">6. Welche Rechte haben die Nutzer*innen in Bezug auf die Verarbeitung ihrer Daten und wie können sie diese Rechte ausüben?</h2>
                                 <b>6.1</b> Die für die Datenverarbeitung verantwortliche Stelle respektiert die Rechte der Nutzer*innen in Bezug auf die Datenverarbeitung.
                                 <br><br>
-                                <b>6.2</b> Die Nutzer*innen können ihre Rechte ausüben, indem sie sich an die für die Datenverarbeitung verantwortliche Stelle unter den folgenden Kontaktdaten wenden: Telefon: +302114004192, E-Mail: info@scify.org
+                                <b>6.2</b> Die Nutzer*innen können ihre Rechte ausüben, indem sie sich an die für die Datenverarbeitung verantwortliche Stelle unter den folgenden Kontaktdaten wenden: Telefon: {{ config("app.installation_company_phone") }}, E-Mail: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Zur Erleichterung für die Nutzer*innen sind ihre Rechte in der folgenden Tabelle zusammen mit einer kurzen Erläuterung der einzelnen Rechte aufgeführt (die Verweise auf die Artikel entsprechen den Artikeln der DSGVO 2016/679):
                                 <br><br>
@@ -236,8 +236,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Kommunikation mit der für die Datenverarbeitung verantwortlichen Stelle</h2>
                                 <b>9.1.</b> Die Nutzer*innen können sich bei allen Fragen im Zusammenhang mit der vorliegenden Datenschutzpolitik, der Datenverarbeitung durch die Nutzer*innen sowie der Ausübung der Rechte der Nutzer*innen auf einem der folgenden Wege an den Datenverantwortlichen wenden
-                                Telefon: +302114004192, <br>
-                                Email: info@scify.org
+                                Telefon: {{ config("app.installation_company_phone") }}, <br>
+                                Email: {{ config("app.installation_company_email") }}<br>
                                 Die Nutzer*innen werden gebeten, die für die Datenverarbeitung verantwortliche Stelle unverzüglich zu benachrichtigen, wenn sie von einer Datenverletzung erfahren.
                                 <br><br>
                                 <b>9.2.</b> Die vorliegenden Bedingungen werden durch die Allgemeinen Geschäftsbedingungen geregelt und ergänzt und bilden zusammen mit diesen einen einheitlichen Text.
@@ -280,7 +280,9 @@
                                         <td>Absolut notwendige Cookies</td>
                                         <td>Die absolut notwendigen Cookies sind für den ordnungsgemäßen Betrieb der Plattform unerlässlich. Die Nutzer*innen können mit diesen Cookies auf der Plattform surfen und deren Funktionen nutzen, z. B. den Zugang zu geschützten Bereichen. Diese Cookies erkennen nicht die individuelle Identität der Nutzer*innen und ohne sie ist der reibungslose Betrieb der Plattform nicht möglich.
                                         </td>
-                                        <td>CookieConsent (Speichert den Cookie-Zustimmungsstatus der Nutzer*innen für die aktuelle Domain )
+                                        <td>crowdsourcing_app_cookies_consent_selection (Speichert den Cookie-Zustimmungsstatus der Nutzer*innen für die aktuelle Domain )
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Speichert den Cookie-Zustimmungsstatus der Nutzer*innen für die aktuelle Domain )
                                             <br><br>
                                             XSRF-TOKEN (Sorgt für die Sicherheit der Besuchenden beim Surfen, indem es Cross-Site Request Forgery verhindert. Dieses Cookie ist für die Sicherheit der Website und der Besuchenden unerlässlich. )
                                             <br><br>

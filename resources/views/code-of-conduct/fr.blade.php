@@ -53,7 +53,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Si vous êtes témoin d'un comportement inacceptable ou si vous avez d'autres préoccupations, veuillez les signaler en contactant les organisateurs à l'adresse info@scify.org
+                                Si vous êtes témoin d'un comportement inacceptable ou si vous avez d'autres préoccupations, veuillez les signaler en contactant les organisateurs à l'adresse {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Tous les rapports seront traités avec discrétion. Dans votre rapport, veuillez inclure:<br>
                                 - Vos coordonnées.<br>

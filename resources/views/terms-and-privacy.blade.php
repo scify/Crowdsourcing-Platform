@@ -29,9 +29,9 @@
                                 <h2 class="mt-4 mb-4">1. Who is the Data Controller?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> The Company with the company name “ECAS - European Citizen Action Service”, address:
-                                BeCentral Cantersteen 12 B-1000 Brussels, Belgium ,
-                                Telephone: +32 (0) 2 548 04 90, email: info(at)ecas.org, is the Data Controller for the processing of the User’s Personal
+                                <b>1.1.</b> The Company with the company name “{{ config("app.installation_company_name") }}”, address:
+                                {{ config("app.installation_company_address") }} ,
+                                Telephone: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}, is the Data Controller for the processing of the User’s Personal
                                 Data (herein after referred to as <b>"Data Controller"</b>).
                                 <br><br>
                                 <b>1.2. Data Controller's Contact details:</b> For any issue or concern with regards to
@@ -39,12 +39,10 @@
                                 uploaded by the User to use the Platform, the User can communicate with the
                                 Data Controller, by using one of the following alternatives:
                                 <br><br>
-                                European Citizen Action Service<br>
-                                BeCentral<br>
-                                12, Cantersteen<br>
-                                1000 Brussels<br>
-                                info(at)ecas.org<br>
-                                +32 (0) 2 548 04 90<br>
+                                {{ config("app.installation_company_name") }}<br>
+                                {{ config("app.installation_company_address") }}
+                                {{ config("app.installation_company_email") }}<br>
+                                {{ config("app.installation_company_phone") }}<br>
                                 <br>
 
                             </div>
@@ -153,7 +151,7 @@
                                 <b>6.1</b> The Data Controller respects User's right in relation to data processing.
                                 <br><br>
                                 <b>6.2</b> The User can exercise his rights by contacting the Data Controller at the
-                                following contact details: Telephone: +32 2 290 58 45, email: Belgiuminfo(at)ecas.org
+                                following contact details: Telephone: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 For User's facilitation, User's rights are included in the following table along with a
                                 short explanation of each right (reference to articles corresponds to article of GDPR

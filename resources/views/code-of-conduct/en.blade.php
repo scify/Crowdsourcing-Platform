@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-12">
                                 If you experience or witness unacceptable behavior, or have any other concerns, please
-                                report it by contacting the organisers at info@scify.org
+                                report it by contacting the organisers at {{ config("app.installation_company_email") }}
                                 <br><br>
                                 All reports will be handled with discretion. In your report please include:<br>
                                 - Your contact information.<br>

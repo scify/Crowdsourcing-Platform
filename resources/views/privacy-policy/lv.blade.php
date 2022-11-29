@@ -28,9 +28,8 @@
                                 <h2 class="mt-4 mb-4">1. Kas ir Datu pārzinis?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> Uzņēmums ar uzņēmuma nosaukumu “SCIENCE FOR YOU”, adrese: TEPA Lefkippos — NCSR
-                                Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece, Tālrunis: +302114004192, e-pasts:
-                                info@scify.org, ir Datu pārzinis Lietotāja personas datu apstrādei (turpmāk tekstā <b>"Datu
+                                <b>1.1.</b> Uzņēmums ar uzņēmuma nosaukumu “{{ config("app.installation_company_name") }}”, adrese: {{ config("app.installation_company_address") }}, Tālrunis: {{ config("app.installation_company_phone") }}, e-pasts:
+                                {{ config("app.installation_company_email") }}, ir Datu pārzinis Lietotāja personas datu apstrādei (turpmāk tekstā <b>"Datu
                                     pārzinis"</b>).
                                 <br><br>
                                 <b>1.2. Datu pārziņa kontaktinformācija:</b> Ja rodas problēmas vai bažas saistībā ar šo
@@ -38,12 +37,11 @@
                                 datiem, lai izmantotu Platformu, Lietotājs var sazināties ar Datu pārzini, izmantojot kādu
                                 no šīm alternatīvām:
                                 <br><br>
-                                Zvanot pa tālruni +302114004192, no pirmdienas līdz piektdienai no 10.00 līdz 18.00 EET
+                                Zvanot pa tālruni {{ config("app.installation_company_phone") }}, no pirmdienas līdz piektdienai no 10.00 līdz 18.00 EET
                                 (Austrumeiropas laiks)
                                 <br>
-                                Nosūtot e-pastu uz šādu e-pasta adresi: info@scify.org<br>
-                                Nosūtot korespondenci uz šādu adresi: TEPA Lefkippos — NCSR Demokritos 27, Neapoleos, 153 41
-                                Ag. Paraskevi, Greece<br>
+                                Nosūtot e-pastu uz šādu e-pasta adresi: {{ config("app.installation_company_email") }}<br>
+                                Nosūtot korespondenci uz šādu adresi: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -109,7 +107,7 @@
                                 <h2 class="mt-4 mb-4">6. Kādas ir Lietotāja tiesības attiecībā uz viņa datu apstrādi un kā viņš var šīs tiesības izmantot?</h2>
                                 <b>6.1</b> Datu pārzinis ievēro Lietotāja tiesības attiecībā uz datu apstrādi.
                                 <br><br>
-                                <b>6.2</b> Lietotājs var īstenot savas tiesības, sazinoties ar Datu pārzini, izmantojot šādu kontaktinformāciju: Tālrunis: +302114004192, e-pasts: info@scify.org
+                                <b>6.2</b> Lietotājs var īstenot savas tiesības, sazinoties ar Datu pārzini, izmantojot šādu kontaktinformāciju: Tālrunis: {{ config("app.installation_company_phone") }}, e-pasts: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Lietotāja ērtībai Lietotāja tiesības ir iekļautas šajā tabulā kopā ar īsu skaidrojumu par katru no tiesībām (atsauce uz punktiem atbilst VDAR 2016/679 pantam):
                                 <br><br>
@@ -252,8 +250,8 @@
                             <div class="col-12">
                                 <h2 class="mt-4 mb-4">9. Saziņa ar datu pārzini</h2>
                                 <b>9.1.</b> Par jebkuru jautājumu, kas saistīts ar šo privātuma politiku, Lietotāja datu apstrādi, kā arī Lietotāja tiesību īstenošanu, Lietotājs var sazināties ar Datu pārzini, izmantojot vienu no šiem veidiem: <br>
-                                Tālrunis: +302114004192, <br>
-                                E-pasts: info@scify.org
+                                Tālrunis: {{ config("app.installation_company_phone") }}, <br>
+                                E-pasts: {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Gadījumā, ja Lietotājs uzzina par jebkādu datu pārkāpuma incidentu, viņš tiek lūgts nekavējoties par to informēt Datu pārzini.
                                 <br><br>
@@ -295,7 +293,9 @@
                                         <td>Absolūti nepieciešamās sīkdatnes</td>
                                         <td>Absolūti nepieciešamās sīkdatnes ir būtiskas pareizai Platformas darbībai. Šīs sīkdatnes ļauj Lietotājam pārlūkot un izmantot platformas funkcijas, piemēram, piekļuvi drošām zonām. Šīs sīkdatnes neatpazīst Lietotāja individuālo identitāti un bez tām nav iespējama vienmērīga Platformas darbība.
                                         </td>
-                                        <td>Piekrišana sīkdatņu izmantošanai (saglabā lietotāja sīkdatņu piekrišanas stāvokli pašreizējam domēnam)
+                                        <td>crowdsourcing_app_cookies_consent_selection sīkdatņu izmantošanai (saglabā lietotāja sīkdatņu piekrišanas stāvokli pašreizējam domēnam)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting sīkdatņu izmantošanai (saglabā lietotāja sīkdatņu piekrišanas stāvokli pašreizējam domēnam)
                                             <br><br>
                                             XSRF-TOKEN (Nodrošina apmeklētāja pārlūkošanas drošību, novēršot starpvietņu pieprasījumu viltošanu. Šī sīkdatne ir būtiska vietnes un apmeklētāja drošībai.)
                                             <br><br>

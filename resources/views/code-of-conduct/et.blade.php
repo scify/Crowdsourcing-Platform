@@ -54,7 +54,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Kui koged või märkad vastuvõetamatut käitumist või sul on mingeid muid muresid, anna sellest teada aadressile info@scify.org.
+                                Kui koged või märkad vastuvõetamatut käitumist või sul on mingeid muid muresid, anna sellest teada aadressile {{ config("app.installation_company_email") }}.
                                 <br><br>
                                 Kõiki teateid käsitletakse diskreetselt. Lisa oma teatesse:<br>
                                 - oma kontaktandmed.<br>

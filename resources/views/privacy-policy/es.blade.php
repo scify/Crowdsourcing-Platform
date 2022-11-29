@@ -22,16 +22,16 @@
                                 <h2 class="mt-4 mb-4">1. ¿Quién es el Responsable del Tratamiento?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> La empresa con el nombre de empresa “SCIENCE FOR YOU”, dirección:
-                                TEPA Lefkippos - NCSR Demokritos 27, Neapoleos, 153 41 Ag. Paraskevi, Greece ,
-                                Teléfono: +302114004192, correo electrónico:
-                                info@scify.org, es el Controlador de datos para el procesamiento de los Datos personales del Usuario (en lo sucesivo, <b>"Controlador de datos"</b>).
+                                <b>1.1.</b> La empresa con el nombre de empresa “{{ config("app.installation_company_name") }}”, dirección:
+                                {{ config("app.installation_company_address") }} ,
+                                Teléfono: {{ config("app.installation_company_phone") }}, correo electrónico:
+                                {{ config("app.installation_company_email") }}, es el Controlador de datos para el procesamiento de los Datos personales del Usuario (en lo sucesivo, <b>"Controlador de datos"</b>).
                                 <br><br>
                                 <b>1.2. Datos de contacto del Controlador de datos:</b> para cualquier problema o inquietud con respecto a la presente Política de privacidad y al procesamiento de los datos personales del Usuario o los datos cargados por el Usuario para usar la Plataforma, el Usuario puede comunicarse con el Controlador de datos, utilizando uno de los siguientes alternativas
                                 <br><br>
-                                Llamando al 3222905845, de lunes a viernes de 9.30 a 17.30 horas EET (Central European Time)<br>
-                                Enviando un correo electrónico a la siguiente dirección de correo electrónico: info(at)ecas.org<br>
-                                Enviando correspondencia postal a la siguiente dirección: European Citizen Action Cervice, BeCentral, 12 Cantersteen, 1000 Brussels, Belgium<br>
+                                Llamando al {{ config("app.installation_company_phone") }}, de lunes a viernes de 9.30 a 17.30 horas EET (Central European Time)<br>
+                                Enviando un correo electrónico a la siguiente dirección de correo electrónico: {{ config("app.installation_company_email") }}<br>
+                                Enviando correspondencia postal a la siguiente dirección: {{ config("app.installation_company_address") }}<br>
 
                             </div>
                         </div>
@@ -292,7 +292,9 @@
                                         <td>Cookies</td>
                                         <td>absolutamente necesarias Las cookies absolutamente necesarias son imprescindibles para el correcto funcionamiento de la Plataforma. Estas cookies permiten al Usuario navegar y utilizar funciones de la Plataforma como el acceso a áreas seguras. Estas cookies no reconocen la identidad individual del Usuario y sin ellas no es posible el buen funcionamiento de la Plataforma.
                                         </td>
-                                        <td>CookieConsent (Almacena el estado de consentimiento de cookies del usuario para el dominio actual)
+                                        <td>crowdsourcing_app_cookies_consent_selection (Almacena el estado de consentimiento de cookies del usuario para el dominio actual)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Almacena el estado de consentimiento de cookies del usuario para el dominio actual)
                                             <br><br>
                                             XSRF-TOKEN (Garantiza la seguridad de navegación del visitante al evitar la falsificación de solicitudes entre sitios. Esta cookie es esencial para la seguridad de la página web y del visitante).
                                             <br><br>

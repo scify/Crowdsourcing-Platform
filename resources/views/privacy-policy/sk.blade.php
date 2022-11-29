@@ -22,14 +22,13 @@
                                 <h2 class="mt-4 mb-4">1. Kto je správcom údajov?</h2>
                             </div>
                             <div class="col-12">
-                                <b>1.1.</b> Spoločnosť s názvom " European Citizen Action Service“, adresa: BeCentral, 12 Cantersteen, 1000 Brussels, Belgium, Telefón: +3222905845, email: info(at)ecas.org, je Prevádzkovateľom pre spracúvanie Osobných údajov Užívateľa (ďalej len <b>"Správca údajov"</b>).
+                                <b>1.1.</b> Spoločnosť s názvom "{{ config("app.installation_company_name") }}", adresa: {{ config("app.installation_company_address") }}, Telefón: {{ config("app.installation_company_phone") }}, email: {{ config("app.installation_company_email") }}, je Prevádzkovateľom pre spracúvanie Osobných údajov Užívateľa (ďalej len <b>"Správca údajov"</b>).
                                 <br><br>
                                 <b>1.2. Kontaktné údaje prevádzkovateľa údajov:</b> V prípade akéhokoľvek problému alebo obáv v súvislosti s týmito zásadami ochrany osobných údajov a so spracovaním osobných údajov používateľa alebo údajov nahraných používateľom pri  používaní platformy, môže používateľ komunikovať s prevádzkovateľom údajov pomocou jednej z nasledujúcich alternatív:
                                 <br><br>
-                                Zavolaním na číslo +3222905845, od pondelka do piatku od 9.30 do 17.30 CET<br>
-                                Zaslaním e-mailu na túto e-mailovú adresu: info(at)ecas.org<br>
-                                Zaslaním korešpondencie na nasledujúcu adresu: European Citizen Action Service, BeCentral, 12 Cantersteen, 1000 Brussels, Belgium<br>
-
+                                Zavolaním na číslo {{ config("app.installation_company_phone") }}, od pondelka do piatku od 9.30 do 17.30 CET<br>
+                                Zaslaním e-mailu na túto e-mailovú adresu: {{ config("app.installation_company_email") }}<br>
+                                Zaslaním korešpondencie na nasledujúcu adresu: {{ config("app.installation_company_address") }}<br>
                             </div>
                         </div>
                         <div class="row">
@@ -283,7 +282,9 @@
                                         <td>Absolútne nevyhnutné Cookies</td>
                                         <td>Absolútne nevyhnutné cookies sú nevyhnutné pre správne fungovanie platformy. Tieto súbory cookie umožňujú používateľovi prehliadať a používať funkcie platformy, ako je napríklad prístup do zabezpečených oblastí. Tieto cookies nerozpoznávajú individuálnu identitu Používateľa a bez nich nie je možné bezproblémové fungovanie Platformy.
                                         </td>
-                                        <td>CookieConsent (Ukladá stav súhlasu používateľa so súbormi cookie pre aktuálnu doménu)
+                                        <td>crowdsourcing_app_cookies_consent_selection (Ukladá stav súhlasu používateľa so súbormi cookie pre aktuálnu doménu)
+                                            <br><br>
+                                            crowdsourcing_app_cookies_consent_targeting (Ukladá stav súhlasu používateľa so súbormi cookie pre aktuálnu doménu)
                                             <br><br>
                                             XSRF-TOKEN (Zabezpečuje bezpečnosť prehliadania návštevníka tým, že zabraňuje falšovaniu požiadaviek medzi stránkami. Tento súbor cookie je nevyhnutný pre bezpečnosť webovej lokality a návštevníka. )
                                             <br><br>

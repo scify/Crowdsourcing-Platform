@@ -54,7 +54,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Ha elfogadhatatlan viselkedést tapasztal, vagy annak tanúja, vagy bármilyen más aggálya van, kérjük, jelezze azt a szervezőknek a info@scify.org
+                                Ha elfogadhatatlan viselkedést tapasztal, vagy annak tanúja, vagy bármilyen más aggálya van, kérjük, jelezze azt a szervezőknek a {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Minden bejelentést diszkréten kezelünk. A jelentésben kérjük, tüntesse fel a következőket:<br>
                                 - Az Ön elérhetőségét.<br>

@@ -53,7 +53,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                Se experienciar ou testemunhar um comportamento inaceitável, ou tiver outras preocupações, denuncie entrando em contato com os organizadores em info@scify.org
+                                Se experienciar ou testemunhar um comportamento inaceitável, ou tiver outras preocupações, denuncie entrando em contato com os organizadores em {{ config("app.installation_company_email") }}
                                 <br><br>
                                 Todos os problemas serão tratados com discrição. No relatório, inclua:<br>
                                 - A sua informação de contato.<br>
