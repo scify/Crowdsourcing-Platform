@@ -5824,16 +5824,16 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "3.57.3",
+            "version": "3.57.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "6dbd43cc3e8f35879e1add2fba6801aa97443e12"
+                "reference": "554c3e566fde8c47ad1ac9be47eaeb9a84c4dfe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/6dbd43cc3e8f35879e1add2fba6801aa97443e12",
-                "reference": "6dbd43cc3e8f35879e1add2fba6801aa97443e12",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/554c3e566fde8c47ad1ac9be47eaeb9a84c4dfe2",
+                "reference": "554c3e566fde8c47ad1ac9be47eaeb9a84c4dfe2",
                 "shasum": ""
             },
             "require": {
@@ -5878,7 +5878,7 @@
                 "webpage"
             ],
             "support": {
-                "source": "https://github.com/spatie/browsershot/tree/3.57.3"
+                "source": "https://github.com/spatie/browsershot/tree/3.57.4"
             },
             "funding": [
                 {
@@ -5886,7 +5886,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-25T08:30:53+00:00"
+            "time": "2022-11-21T11:50:10+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -8177,16 +8177,16 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.26.0",
+            "version": "v1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "cfa0ae98841b9e461207c13ab093d76b0fa7bace"
+                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/cfa0ae98841b9e461207c13ab093d76b0fa7bace",
-                "reference": "cfa0ae98841b9e461207c13ab093d76b0fa7bace",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
                 "shasum": ""
             },
             "require": {
@@ -8195,7 +8195,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.26-dev"
+                    "dev-main": "1.27-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -8240,7 +8240,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.26.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -8256,7 +8256,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-10T07:21:04+00:00"
+            "time": "2022-11-03T14:55:06+00:00"
         },
         {
             "name": "symfony/polyfill-php81",
