@@ -223,7 +223,7 @@ sudo service apache2 restart
 ## SEO - Generate Sitemap
 
 This application uses [Spatie - Laravel Sitemap](https://github.com/spatie/laravel-sitemap) plugin, in order to create
-the `public/sitemap.xml` file that will be crawled by the search engines.
+the `public/sitemap.xml` file (which is excluded from git), that will be crawled by the search engines.
 In order to run the generator for the current application installation, run the embedded Laravel command:
 
 ```bash
