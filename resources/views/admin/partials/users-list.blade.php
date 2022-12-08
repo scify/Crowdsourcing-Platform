@@ -31,7 +31,9 @@
                 </td>
                 <td>
                     @foreach($user->roles as $role)
-                        {{ $role->name }}@if(!$loop->last), @endif
+                        {{ $role->name }}@if(!$loop->last)
+                            ,
+                        @endif
                     @endforeach
                 </td>
                 <td>
@@ -65,4 +67,7 @@
         </tbody>
     </table>
     {{ method_exists($users, 'links') ? $users->links() : '' }}
+    <div id="users-list-loader" class="spinner-border loader hidden" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
 </div>
