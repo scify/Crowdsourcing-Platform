@@ -34,14 +34,14 @@ window.UsersListController.prototype = function () {
 			data: usersCriteria,
 			beforeSend: function () {
 				$(self).parents(".panel-body").first().append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
-				$("#usersBottomLoader").removeClass("invisible");
+				$("#users-list-loader").removeClass("hidden");
 			},
 			success: function (response) {
 				$(".refresh-container").fadeOut(500, function () {
 					$(".refresh-container").remove();
 				});
 				parseSuccessData(response);
-				$("#mentorsBottomLoader").addClass("invisible");
+				$("#users-list-loader").addClass("hidden");
 			},
 			error: function (xhr, status, errorThrown) {
 				const errorMsgEl = $("#errorMsg");
@@ -51,24 +51,26 @@ window.UsersListController.prototype = function () {
 				errorMsgEl.removeClass("hidden");
 				//The message added to Response object in Controller can be retrieved as following.
 				errorMsgEl.html(errorThrown);
-				$("#mentorsBottomLoader").addClass("invisible");
+				$("#users-list-loader").addClass("hidden");
 			}
 		});
 	};
 	let parseSuccessData = function (response) {
 		const errorMsgEl = $("#errorMsg");
+		const usersListEl = $("#usersList");
+		const loaderEl = $("#users-list-loader");
 		let responseObj = JSON.parse(response);
 		//if operation was unsuccessful
 		if (responseObj.status === 2) {
-			$(".loader").addClass("hidden");
+			loaderEl.addClass("hidden");
 			errorMsgEl.removeClass("hidden");
 			errorMsgEl.html(responseObj.data);
-			$("#usersList").html("");
+			usersListEl.html("");
 		} else {
 			errorMsgEl.html("");
-			$("#errorMsg").addClass("hidden");
-			$(".loader").addClass("hidden");
-			errorMsgEl.html(responseObj.data);
+			errorMsgEl.addClass("hidden");
+			loaderEl.addClass("hidden");
+			usersListEl.html(responseObj.data);
 		}
 	};
 	let initDataTables = function () {

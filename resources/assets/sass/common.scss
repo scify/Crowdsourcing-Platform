@@ -465,3 +465,18 @@ footer {
 #userListTable_info {
   display: none;
 }
+
+#usersList {
+  nav {
+    float: left;
+  }
+
+  #users-list-loader {
+    margin-left: 25px;
+    margin-top: 3px;
+  }
+}
+
+.hidden {
+  display: none;
+}
