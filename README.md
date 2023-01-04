@@ -80,6 +80,8 @@ composer dump-autoload
 
 4. Front-end dependencies
 
+It is very easy to install multiple versions of NodeJS and npm, by using [Node Version Manager (nvm)](https://github.com/creationix/nvm).
+
 If you are using [`nvm`](https://github.com/nvm-sh/nvm), run this command in order to sync to the correct NodeJS version for the project:
 
 ```bash
