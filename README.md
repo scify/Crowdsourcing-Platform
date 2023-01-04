@@ -56,7 +56,7 @@ Offering the code under open source licenses includes many benefits. Of those, t
 Install graphics library
 
 ```
- sudo apt-get install php7.4-gd
+ sudo apt-get install php-gd
 ```
 
 1. After cloning the project, create an .env file (should be a copy of .env.example),
@@ -72,26 +72,36 @@ php artisan key:generate
 
 3. Install laravel/back-end dependencies
 
-```
+```bash
 composer install
 
 composer dump-autoload
 ```
 
-4. Install front-end dependencies
+4. Front-end dependencies
 
+If you are using [`nvm`](https://github.com/nvm-sh/nvm), run this command in order to sync to the correct NodeJS version for the project:
+
+```bash
+nvm use
 ```
+
+Then, install and compile the front-end dependencies:
+
+```bash
 npm install
+
+npm run dev
 ```
 
 5. Create symbolic link for uploaded images
 By default images are stored at app/storage/public. Run
 
-```
+```bash
 php artisan storage:link
 ```
 
-to link this folder with the public directory
+in order to link this folder with the public directory
 
 ## Database Considerations
 
@@ -142,32 +152,36 @@ sudo service mysql restart
 
 Make the symbolic link:
 
-```
-% cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/crowdsourcing.conf
+```bash
+cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/crowdsourcing.conf
 ```
 
 Enable mod_rewrite, mod_ssl and restart apache:
 
-```
-% sudo a2enmod rewrite && sudo a2enmod ssl && sudo service apache2 restart
+```bash
+sudo a2enmod rewrite && sudo a2enmod ssl && sudo service apache2 restart
 ```
 
 Fix permissions for storage directory:
 
-```
+```bash
 sudo chown -R user:www-data storage
+
 chmod 775 storage
+
 cd storage/
+
 find . -type f -exec chmod 664 {} \;
+
 find . -type d -exec chmod 775 {} \;
 ```
 
-Change hosts file so dev.crowdsourcing points to to localhost
+Change hosts file so `dev.crowdsourcing` points to localhost
 
 ```$xslt
 sudo nano /etc/hosts
-127.0.0.1       dev.crowdsourcing
 
+127.0.0.1       dev.crowdsourcing
 ```
 
 ## Social Login - Sign Up with Socialite
@@ -194,8 +208,10 @@ And then reference the 2 files generated in the crowdsourcing.conf file of the a
 Make sure you change the port to 443 as shown below:
 
 ```
-% sudo touch /etc/apache2/sites-available/crowdsourcing.conf
-% sudo nano /etc/apache2/sites-available/crowdsourcing.conf
+sudo touch /etc/apache2/sites-available/crowdsourcing.conf
+
+sudo nano /etc/apache2/sites-available/crowdsourcing.conf
+
 <VirtualHost *:443>
 	SSLEngine on
 	SSLCertificateFile "/etc/apache2/sites-available/dev.crowdsourcing.crt"
