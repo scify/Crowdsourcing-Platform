@@ -7,6 +7,14 @@ window.route = route;
 
 import "./bootstrap";
 
+import * as Sentry from "@sentry/browser";
+
+if (process.env.MIX_SENTRY_DSN_PUBLIC) {
+	Sentry.init({
+		dsn: process.env.MIX_SENTRY_DSN_PUBLIC,
+	});
+}
+
 (function () {
 
 	$.ajaxSetup({
