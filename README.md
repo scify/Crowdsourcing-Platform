@@ -93,10 +93,28 @@ Then, install and compile the front-end dependencies:
 ```bash
 npm install
 
-npm run dev
+npm run dev # (if in development mode)
+
+npm run prod # (if in production mode)
+
+npm run watch # (if in development mode and you want to have live changes)
 ```
 
-5. Create symbolic link for uploaded images
+5. Set up the Database **(only if in new installation)**
+
+Run the Laravel migrations:
+
+```bash
+php artisan migrate
+```
+
+Run the Database seeder:
+
+```bash
+php artisan db:seed
+```
+
+6. Create symbolic link for uploaded images
 By default images are stored at app/storage/public. Run
 
 ```bash
@@ -176,6 +194,14 @@ cd storage/
 find . -type f -exec chmod 664 {} \;
 
 find . -type d -exec chmod 775 {} \;
+```
+
+The above steps can also be done in a better way, by using the companion script:
+
+```bash
+chmod +x set-file-permissions.sh
+
+sudo ./set-file-permissions.sh www-data USER .
 ```
 
 Change hosts file so `dev.crowdsourcing` points to localhost
