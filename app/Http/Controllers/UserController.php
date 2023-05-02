@@ -65,7 +65,7 @@ class UserController extends Controller {
         $this->userManager->anonymizeUser(Auth::user());
         Auth::logout();
 
-        return redirect()->route('home');
+        return redirect()->route('home', ['locale' => app()->getLocale()]);
     }
 
     public function restore(Request $request) {

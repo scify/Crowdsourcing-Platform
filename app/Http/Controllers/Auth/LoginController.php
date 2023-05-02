@@ -86,7 +86,7 @@ class LoginController extends Controller {
         if (isset($request['denied']) || isset($request['error'])) {
             $this->exceptionHandler->report(new Exception($request['error']));
 
-            return redirect()->route('home');
+            return redirect()->route('home', ['locale' => app()->getLocale()]);
         }
 
         $socialUser = Socialite::driver($driver)->user();
@@ -100,6 +100,6 @@ class LoginController extends Controller {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route('home', ['locale' => app()->getLocale()]);
     }
 }
