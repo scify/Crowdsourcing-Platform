@@ -132,7 +132,7 @@ class CrowdSourcingProjectController extends Controller {
             abort(404);
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
-            return redirect()->to(route('home'));
+            return redirect()->to(route('home', ['locale' => app()->getLocale()]));
         }
     }
 
