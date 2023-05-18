@@ -2,33 +2,30 @@
 . 'cookies_consent_targeting']))
     <!-- Google Analytics -->
     @if(config('app.google_analytics_id'))
-        <script defer async>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        <!-- Google tag (gtag.js) -->
+        <script async
+                src="https://www.googletagmanager.com/gtag/js?id={{ config('app.google_analytics_id') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-            window.ga('create', '{{ config('app.google_analytics_id') }}', 'auto');
-            window.ga('set', 'anonymizeIp', true);
-            window.ga('send', 'pageview');
+            function gtag() {
+                dataLayer.push(arguments);
+            }
 
+            gtag('js', new Date());
+
+            gtag('config', '{{ config('app.google_analytics_id') }}', {'anonymize_ip': true});
         </script>
     @endif
     <!-- End Google Analytics -->
     <!-- Google Tag Manager -->
-    <script defer async>(function (w, d, s, l, i) {
+    <script>(function (w, d, s, l, i) {
             w[l] = w[l] || [];
-            w[l].push(
-                {'gtm.start': new Date().getTime(), event: 'gtm.js'}
-            );
-            const f = d.getElementsByTagName(s)[0],
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l !== 'dataLayer' ? '&l=' + l : '';
             j.async = true;
             j.src =
