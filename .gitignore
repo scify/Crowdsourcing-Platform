@@ -23,3 +23,4 @@ public/vendor
 public/sitemap.xml
 resources/assets/sass/*.css
 resources/assets/sass/*.map
+public/*.html
