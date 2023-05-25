@@ -15,6 +15,7 @@
             gtag('js', new Date());
 
             gtag('config', '{{ config('app.google_analytics_id') }}', {'anonymize_ip': true});
+            window.gtag = gtag;
         </script>
     @endif
     <!-- End Google Analytics -->

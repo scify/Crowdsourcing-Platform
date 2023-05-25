@@ -1,20 +1,20 @@
 class AnalyticsLogger {
 
-	static logEvent(category, action, label, value) {
-		if (this.isGoogleAnalyticsLoaded()) {
-			window.ga("send", {
-				hitType: "event",
-				eventCategory: category,
-				eventAction: action,
-				eventLabel: label,
-				eventValue: value
-			});
-		}
-	}
+    static logEvent(category, action, label, value) {
+        if (this.isGoogleAnalyticsLoaded()) {
+            console.log("gtag enabled");
+            window.gtag("event", "screen_view", {
+                eventCategory: category,
+                eventAction: action,
+                eventLabel: label,
+                eventValue: value
+            });
+        }
+    }
 
-	static isGoogleAnalyticsLoaded() {
-		return typeof ga === "function";
-	}
+    static isGoogleAnalyticsLoaded() {
+        return window.gtag !== undefined;
+    }
 
 }
 
