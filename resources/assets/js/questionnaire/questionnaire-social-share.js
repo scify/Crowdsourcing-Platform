@@ -12,7 +12,7 @@ import AnalyticsLogger from "../analytics-logger";
 			const questionnaireId = $(this).data("questionnaireid");
 			const medium = $(this).data("medium");
 			const url = $(this).attr("href");
-			AnalyticsLogger.logEvent("questionnaire_share_" + questionnaire, "share", JSON.stringify({
+			AnalyticsLogger.logEvent("user_engagement", "questionnaire_share_" + questionnaire, "share", JSON.stringify({
 				"questionnaire": questionnaire,
 				"project": project,
 				"medium": medium,

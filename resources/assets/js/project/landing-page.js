@@ -44,7 +44,7 @@ new Vue({
 	let logToAnalytics = function () {
 		const projectEl = $("#project");
 		if (projectEl.data("name"))
-			AnalyticsLogger.logEvent("project_landing_page", "view_" + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
+			AnalyticsLogger.logEvent("page_view","project_landing_page", "view_" + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
 	};
 
 	let showProjectBannerIfEnabled = function () {
