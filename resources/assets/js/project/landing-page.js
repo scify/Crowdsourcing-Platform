@@ -45,12 +45,6 @@ new Vue({
 		const projectEl = $("#project");
 		if (projectEl.data("name"))
 			AnalyticsLogger.logEvent("page_view","project_landing_page", "view_" + projectEl.data("name"), projectEl.data("name"), parseInt(projectEl.data("id")));
-		AnalyticsLogger.logEvent("user_engagement", "questionnaire_share_123", "share", JSON.stringify({
-			"questionnaire": {"test": "123"},
-			"project": {"project": 1},
-			"medium": "fb",
-			"url": "123"
-		}), 123);
 	};
 
 	let showProjectBannerIfEnabled = function () {
