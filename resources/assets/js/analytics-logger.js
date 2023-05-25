@@ -1,9 +1,9 @@
 class AnalyticsLogger {
 
-    static logEvent(category, action, label, value) {
+    static logEvent(eventType, category, action, label, value) {
         if (this.isGoogleAnalyticsLoaded()) {
             console.log("gtag enabled");
-            window.gtag("event", "screen_view", {
+            window.gtag("event", eventType, {
                 eventCategory: category,
                 eventAction: action,
                 eventLabel: label,
