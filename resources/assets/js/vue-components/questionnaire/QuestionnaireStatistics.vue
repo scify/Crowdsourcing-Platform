@@ -154,7 +154,8 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent";
 import StoreModal from "../common/StoreModalComponent";
 import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
-
+window.jsPDF = jsPDF;
+window.XLSX = XLSX;
 export default {
 	name: "QuestionnaireStatistics",
 	components: {
