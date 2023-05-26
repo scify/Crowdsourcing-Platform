@@ -415,8 +415,8 @@ export default {
 			Tabulator.haveCommercialLicense = true;
 			const answersForSurveyTabulator = _.map(this.answersData, "response_json").map(JSON.parse);
 			const surveyAnalyticsTabulator = new Tabulator(this.survey, answersForSurveyTabulator, {
-        downloadButtons: ["csv"],
-      });
+				downloadButtons: ["csv"],
+			});
 			surveyAnalyticsTabulator.render(panelEl);
 		},
 		questionHasCustomVisualizer(question) {
