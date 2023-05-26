@@ -32,9 +32,11 @@
 .responses-report {
   font-family: 'Open Sans', sans-serif;
 
-  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {
-    display: none;
-  }
+  // This is to hide the download buttons:
+
+  //.sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {
+  //  display: none;
+  //}
 
   .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(3) {
     color: #fff;

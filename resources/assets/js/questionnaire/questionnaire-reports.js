@@ -2,7 +2,8 @@ import * as Survey from "survey-knockout";
 import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 import "admin-lte/plugins/datatables/jquery.dataTables.min";
 import _ from "lodash";
-
+window.jsPDF = jsPDF;
+window.XLSX = XLSX;
 (function () {
 
 	let table, respondentsTable, questionnaire, answers, survey, loader;
