@@ -23,7 +23,7 @@
                                         class="fa fa-plus"></i> Create new questionnaire</a>
                         </div>
                     </div>
-                    <table class="w-100 table table-striped" id="questionnaires-table" cellspacing="0">
+                    <table class="w-100 table table-striped table-bordered" id="questionnaires-table" cellspacing="0">
                         <thead>
                         <tr>
                             <th class="text-center">#</th>
