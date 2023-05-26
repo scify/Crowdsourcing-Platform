@@ -154,8 +154,7 @@ import {Tabulator} from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent";
 import StoreModal from "../common/StoreModalComponent";
 import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
-window.jsPDF = jsPDF;
-window.XLSX = XLSX;
+
 export default {
 	name: "QuestionnaireStatistics",
 	components: {
@@ -416,7 +415,7 @@ export default {
 			Tabulator.haveCommercialLicense = true;
 			const answersForSurveyTabulator = _.map(this.answersData, "response_json").map(JSON.parse);
 			const surveyAnalyticsTabulator = new Tabulator(this.survey, answersForSurveyTabulator, {
-        downloadButtons: ["xlsx", "csv"],
+        downloadButtons: ["csv"],
       });
 			surveyAnalyticsTabulator.render(panelEl);
 		},
