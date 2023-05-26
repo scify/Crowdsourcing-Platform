@@ -232,7 +232,9 @@ import _ from "lodash";
 		panelEl.innerHTML = "";
 		Tabulator.haveCommercialLicense = true;
 		const answersForSurveyTabulator = _.map(answers, "response_json").map(JSON.parse);
-		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {});
+		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
+			downloadButtons: ["xlsx", "csv"]
+		});
 		surveyAnalyticsTabulator.render(panelEl);
 	};
 
