@@ -2,8 +2,7 @@ import * as Survey from "survey-knockout";
 import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
 import "admin-lte/plugins/datatables/jquery.dataTables.min";
 import _ from "lodash";
-window.jsPDF = jsPDF;
-window.XLSX = XLSX;
+
 (function () {
 
 	let table, respondentsTable, questionnaire, answers, survey, loader;
@@ -234,7 +233,7 @@ window.XLSX = XLSX;
 		Tabulator.haveCommercialLicense = true;
 		const answersForSurveyTabulator = _.map(answers, "response_json").map(JSON.parse);
 		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
-			downloadButtons: ["xlsx", "csv"]
+			downloadButtons: ["csv"]
 		});
 		surveyAnalyticsTabulator.render(panelEl);
 	};
