@@ -30,7 +30,7 @@
                     <div class="footer-grp">
                         <h3>Get in touch</h3>
                         <div>
-                            <b>Phone:</b> +32 (0) 2 548 04 90
+                            <b>Phone:</b> +32 (0) 2 290 58 45
                         </div>
                         <div>
                             <b>E-mail:</b> info(at)ecas.org
@@ -48,6 +48,9 @@
                             </a>
                             <a href="https://www.youtube.com/user/ECASBrussels/featured" title="Youtube"
                                class="social-btn youtube" target="_blank"><i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.instagram.com/ecas_europe" title="Instagram"
+                               class="social-btn instagram" target="_blank"><i class="fab fa-instagram"></i>
                             </a>
                             <a href="https://ecas.org/feed/" title="RSS" class="social-btn rss" target="_blank"><span
                                         class="fas fa-rss"></span>
