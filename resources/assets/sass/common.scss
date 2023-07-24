@@ -114,6 +114,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       max-height: 50px;
     }
   }
+  .language-selector .dropdown-menu{
+    left: -90px;
+  }
 }
 
 .logged-in-env .main-header {

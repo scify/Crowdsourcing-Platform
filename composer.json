@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.4",
         "ext-libxml": "*",
         "ext-simplexml": "*",
         "ext-zip": "*",
