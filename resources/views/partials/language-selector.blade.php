@@ -1,5 +1,5 @@
 @php use Illuminate\Support\Facades\Route; @endphp
-<li class="nav-item dropdown">
+<li class="nav-item dropdown language-selector">
     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
         {{ strtoupper(app()->getLocale()) }}
         <i class="fas fa-caret-down"></i>
