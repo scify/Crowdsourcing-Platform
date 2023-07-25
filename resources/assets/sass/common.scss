@@ -114,6 +114,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
       max-height: 50px;
     }
   }
+  .language-selector {
+    //hide the language selection for now, as of 25 July 2023
+    display:none;
+  }
   .language-selector .dropdown-menu{
     left: -90px;
   }
