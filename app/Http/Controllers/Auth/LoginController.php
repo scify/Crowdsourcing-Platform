@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\Controllers\Controller;
+use AWS\CRT\Log;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -75,6 +76,7 @@ class LoginController extends Controller {
             return Socialite::driver($driver)->redirect();
         } catch (Exception $e) {
             $this->exceptionHandler->report($e);
+            \Log::error($e);
             abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
         }
     }
