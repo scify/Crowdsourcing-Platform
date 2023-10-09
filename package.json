@@ -59,7 +59,7 @@
         "jquery-ui": "^1.13.2",
         "jszip": "^3.10.1",
         "pdfmake": "^0.2.7",
-        "progressbar.js": "^1.1.0",
+        "progressbar.js": "^1.1.1",
         "select2": "^4.0.13",
         "stream-browserify": "^3.0.0",
         "summernote": "^0.8.20",
