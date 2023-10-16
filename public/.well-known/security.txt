@@ -1,0 +1,6 @@
+Contact: mailto:info@scify.org
+Expires: 2999-12-31T10:00:00.000Z
+Preferred-Languages: en,el
+Canonical: https://crowdsourcing.ecas.org/.well-known/security.txt
+Policy: https://crowdsourcing.ecas.org/en/terms-and-privacy
+
