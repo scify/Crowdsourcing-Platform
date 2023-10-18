@@ -309,13 +309,14 @@ export default {
 					"language": data.locale,
 					"time_to_complete": time
 				}), this.questionnaire.id);
+        // clear local storage from the questionnaire response
+        window.localStorage.removeItem(this.questionnaireLocalStorageKey);
 				this.displaySuccessResponse(anonymousUserId);
 			}).catch(error => {
 				console.error(error);
 				this.displayErrorResponse(error);
 			}).finally(() => {
 				window.$("#questionnaire-modal").modal("hide");
-				window.localStorage.removeItem(this.questionnaireLocalStorageKey);
 			});
 		},
 		displaySuccessResponse(anonymousUserId) {
