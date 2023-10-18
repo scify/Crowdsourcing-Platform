@@ -20,10 +20,10 @@
         "lodash": "^4.17.21",
         "postcss": "^8.4.31",
         "resolve-url-loader": "^5.0.0",
-        "sass": "^1.69.3",
+        "sass": "^1.69.4",
         "sass-loader": "^13.3.2",
         "vue": "^2.7.14",
-        "vue-loader": "^15.9.8",
+        "vue-loader": "^15.11.0",
         "vue-template-compiler": "^2.7.14",
         "vuex": "^3.6.2"
     },
@@ -31,7 +31,7 @@
         "@fingerprintjs/fingerprintjs": "^3.4.1",
         "@fortawesome/fontawesome-free": "^5.12.1",
         "@popperjs/core": "^2.11.8",
-        "@sentry/browser": "^7.74.0",
+        "@sentry/browser": "^7.74.1",
         "admin-lte": "3.1.0",
         "bootstrap": "^4.6.2",
         "bootstrap-colorpicker": "^3.4.0",
@@ -63,9 +63,9 @@
         "select2": "^4.0.13",
         "stream-browserify": "^3.0.0",
         "summernote": "^0.8.20",
-        "survey-analytics": "^1.9.112",
-        "survey-creator": "^1.9.112",
-        "survey-jquery": "^1.9.112",
-        "survey-knockout": "^1.9.112"
+        "survey-analytics": "^1.9.113",
+        "survey-creator": "^1.9.113",
+        "survey-jquery": "^1.9.113",
+        "survey-knockout": "^1.9.113"
     }
 }
