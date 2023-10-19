@@ -45,5 +45,4 @@
     @if ($viewModel->feedbackQuestionnaire)
         @include('landingpages.modals.questionnaire-feedback')
     @endif
-
 @endif

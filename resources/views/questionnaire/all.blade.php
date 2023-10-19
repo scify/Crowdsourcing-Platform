@@ -92,6 +92,16 @@
                                                     @endforeach
                                                 @endif
                                             @endif
+                                            @if (!$viewModel->isQuestionnaireArchived($questionnaire) && $questionnaire->project_slugs)
+                                                @foreach(explode(",", $questionnaire->project_slugs) as $project_slug)
+                                                    <a class="action-btn dropdown-item"
+                                                       href="{{route('questionnaire-moderator-add-response',
+                                                        ['questionnaire' => $questionnaire->id, 'project_slug' => $project_slug])}}"><i
+                                                                class="fas fa-plus"></i> Add Response
+                                                        | {{ explode(",", $questionnaire->project_names)[$loop->index] }}
+                                                    </a>
+                                                @endforeach
+                                            @endif
                                             <hr>
                                             <a class="action-btn dropdown-item"
                                                href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i

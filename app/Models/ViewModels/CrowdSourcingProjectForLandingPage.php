@@ -19,6 +19,7 @@ class CrowdSourcingProjectForLandingPage {
     public $shareUrlForFacebook;
     public $shareUrlForTwitter;
     public $thankYouMode;
+    public $moderator;
 
     public function __construct(
         $project,
@@ -46,6 +47,7 @@ class CrowdSourcingProjectForLandingPage {
         $this->shareUrlForFacebook = $shareUrlForFacebook;
         $this->shareUrlForTwitter = $shareUrlForTwitter;
         $this->thankYouMode = false;
+        $this->moderator = false;
     }
 
     public function getSignInURLWithParameters(): string {

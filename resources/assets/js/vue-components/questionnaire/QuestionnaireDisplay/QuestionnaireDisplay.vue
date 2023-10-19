@@ -102,7 +102,13 @@ export default {
 		surveyContainerId: {
 			type: String
 		},
-		languages: []
+		languages: [],
+		moderator: {
+			type: Boolean,
+			default: function () {
+				return false;
+			}
+		},
 	},
 	data: function () {
 		return {
@@ -274,6 +280,7 @@ export default {
 			let data = {};
 			data.browser_fingerprint_id = this.browserFingerprintId;
 			data.response = JSON.stringify(sender.data);
+			data.moderator = this.moderator;
 			let locale = sender.locale;
 			if (!locale) {
 				if (!this.surveyLocales || !this.surveyLocales.length)
@@ -309,8 +316,8 @@ export default {
 					"language": data.locale,
 					"time_to_complete": time
 				}), this.questionnaire.id);
-        // clear local storage from the questionnaire response
-        window.localStorage.removeItem(this.questionnaireLocalStorageKey);
+				// clear local storage from the questionnaire response
+				window.localStorage.removeItem(this.questionnaireLocalStorageKey);
 				this.displaySuccessResponse(anonymousUserId);
 			}).catch(error => {
 				console.error(error);
@@ -320,12 +327,16 @@ export default {
 			});
 		},
 		displaySuccessResponse(anonymousUserId) {
-			let questionnaireResponseThankYouURL = window.route("questionnaire.thanks", this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
-			if (anonymousUserId)
-				questionnaireResponseThankYouURL += ("?anonymous_user_id=" + anonymousUserId);
+			if (this.moderator) {
+				history.back();
+			} else {
+				let questionnaireResponseThankYouURL = window.route("questionnaire.thanks", this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
+				if (anonymousUserId)
+					questionnaireResponseThankYouURL += ("?anonymous_user_id=" + anonymousUserId);
 
-			$("#pyro").addClass("pyro-on");
-			window.location = questionnaireResponseThankYouURL;
+				$("#pyro").addClass("pyro-on");
+				window.location = questionnaireResponseThankYouURL;
+			}
 		},
 		async displayErrorResponse(error) {
 			const swal = (await import("bootstrap-sweetalert")).default;

@@ -7,6 +7,8 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -22,11 +24,11 @@ class QuestionnaireController extends Controller {
     protected QuestionnaireTranslator $questionnaireTranslator;
     protected QuestionnaireLanguageManager $questionnaireLanguageManager;
 
-    public function __construct(QuestionnaireManager $questionnaireManager,
+    public function __construct(QuestionnaireManager          $questionnaireManager,
                                 UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireVMProvider $questionnaireVMProvider,
-                                QuestionnaireTranslator $questionnaireTranslator,
-                                QuestionnaireLanguageManager $questionnaireLanguageManager) {
+                                QuestionnaireVMProvider       $questionnaireVMProvider,
+                                QuestionnaireTranslator       $questionnaireTranslator,
+                                QuestionnaireLanguageManager  $questionnaireLanguageManager) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;
@@ -113,5 +115,11 @@ class QuestionnaireController extends Controller {
         $this->questionnaireShareManager->createQuestionnaireShare($userId, $questionnaireId);
 
         return response()->json(['status' => '__SUCCESS']);
+    }
+
+    public function showAddResponseAsModeratorToQuestionnaire(Questionnaire $questionnaire, string $project_slug) {
+        $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($questionnaire, $project_slug);
+
+        return view('questionnaire.moderator-add-response')->with(['viewModel' => $viewModel]);
     }
 }

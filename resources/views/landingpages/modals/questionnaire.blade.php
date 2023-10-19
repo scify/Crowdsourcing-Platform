@@ -37,7 +37,8 @@
                             :user-response-data='@json($viewModel->userResponse)'
                             :questionnaire='@json($viewModel->questionnaire)'
                             :project='@json($viewModel->project)'
-                            :languages='@json($viewModel->languages)'>
+                            :languages='@json($viewModel->languages)'
+                            :moderator='@json($viewModel->moderator)'>
                     </questionnaire-display>
                 </div>
             </div>

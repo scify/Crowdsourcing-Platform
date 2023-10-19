@@ -115,6 +115,28 @@ class QuestionnaireResponseManager {
         return $questionnaireResponse;
     }
 
+    public function storeQuestionnaireResponseForModerator($data) {
+        $user = Auth::user();
+        $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
+        $language = isset($data['language_code'])
+            ? $this->languageManager->getLanguageByCode($data['language_code'])
+            : $this->languageManager->getLanguage($questionnaire->default_language_id);
+
+        $queryData = [
+            'questionnaire_id' => $data['questionnaire_id'],
+            'user_id' => $user->id,
+            'project_id' => $data['project_id'],
+        ];
+        return $this->questionnaireResponseRepository->create(
+            array_merge($queryData, [
+                'language_id' => $language->id,
+                'response_json' => json_encode(json_decode($data['response'])),
+                'browser_fingerprint_id' => $data['browser_fingerprint_id'],
+                'browser_ip' => $data['ip'],
+            ])
+        );
+    }
+
     public function getFreeTypeQuestionsFromQuestionnaireJSON(string $questionnaireJSON): array {
         $freeTypeQuestions = [];
         $freeTypeQuestionTypes = ['text', 'comment'];
