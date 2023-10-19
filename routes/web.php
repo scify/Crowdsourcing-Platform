@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
     Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])
         ->name('questionnaire.responses.download');
+    Route::get('/questionnaires/{questionnaire}/{project_slug}/moderator-add-answer', [QuestionnaireController::class, 'showAddResponseAsModeratorToQuestionnaire'])->name('questionnaire-moderator-add-response')->middleware('can:moderate-results');
 
     Route::get('/communication/mailchimp', [CommunicationController::class, 'getMailChimpIntegration'])->name('mailchimp-integration.get')->middleware('can:manage-platform');
     Route::post('/communication/mailchimp', [CommunicationController::class, 'storeMailChimpListsIds'])->name('mailchimp-integration')->middleware('can:manage-platform');

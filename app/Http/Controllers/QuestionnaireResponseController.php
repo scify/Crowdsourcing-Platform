@@ -42,7 +42,10 @@ class QuestionnaireResponseController extends Controller {
         app()->setLocale($request->lang);
         $data = $request->all();
         $data['ip'] = $request->getClientIp();
-        $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($data);
+        if ($data['moderator'])
+            $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponseForModerator($data);
+        else
+            $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($data);
         $response = response()->json([
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id,
         ]);

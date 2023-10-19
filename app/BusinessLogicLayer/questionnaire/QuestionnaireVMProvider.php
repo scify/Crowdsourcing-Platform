@@ -3,14 +3,19 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
+use App\Models\ViewModels\Questionnaire\QuestionnaireModeratorAddResponse;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Util\Exception;
 
 class QuestionnaireVMProvider {
     protected QuestionnaireRepository $questionnaireRepository;
@@ -20,6 +25,7 @@ class QuestionnaireVMProvider {
     protected QuestionnaireTranslationRepository $questionnaireTranslationRepository;
     protected QuestionnaireManager $questionnaireManager;
     protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
+    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
     public function __construct(QuestionnaireRepository                            $questionnaireRepository,
                                 QuestionnaireManager                               $questionnaireManager,
@@ -27,7 +33,8 @@ class QuestionnaireVMProvider {
                                 LanguageManager                                    $languageManager,
                                 QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
                                 QuestionnaireTranslationRepository                 $questionnaireTranslationRepository,
-                                QuestionnaireFieldsTranslationManager              $questionnaireFieldsTranslationManager) {
+                                QuestionnaireFieldsTranslationManager              $questionnaireFieldsTranslationManager,
+                                CrowdSourcingProjectManager                        $crowdSourcingProjectManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
@@ -35,6 +42,7 @@ class QuestionnaireVMProvider {
         $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null): CreateEditQuestionnaire {
@@ -83,6 +91,19 @@ class QuestionnaireVMProvider {
         $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
 
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
+    }
+
+    public function getViewModelForQuestionnaireResponseModeratorPage(Questionnaire $questionnaire, string $project_slug): QuestionnaireModeratorAddResponse {
+        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($project_slug);
+        $activeQuestionnairesForThisProject = $this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
+        $questionnaire = $activeQuestionnairesForThisProject->firstWhere('id', '=', $questionnaire->id);
+
+        if (!$questionnaire)
+            throw new Exception("This project does not have any active questionnaires");
+
+        $languages = $this->languageManager->getAllLanguages();
+
+        return new QuestionnaireModeratorAddResponse($project, $questionnaire, $languages);
     }
 
     protected function shouldShowLinkForQuestionnaire($questionnaire): bool {
