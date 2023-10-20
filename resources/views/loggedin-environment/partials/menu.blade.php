@@ -19,13 +19,13 @@
                                         class="nav-icon fa fa-plus "></i>
                                 <p>Create new Project</p></a>
                         </li>
+                    @endcan
+                    @can("moderate-results")
                         <li class="nav-item {{UrlMatchesMenuItem("questionnaires")}}">
                             <a class="nav-link" href="{{ route('questionnaires.all') }}"><i
                                         class="nav-icon fa fa-question-circle "></i>
                                 <p>Questionnaires</p></a>
                         </li>
-                    @endcan
-                    @can("moderate-results")
                         <li class="nav-item {{UrlMatchesMenuItem("questionnaires/reports")}}">
                             <a class="nav-link" href="{{ route('questionnaires.reports') }}"><i
                                         class="nav-icon fa fa-question-circle "></i>
