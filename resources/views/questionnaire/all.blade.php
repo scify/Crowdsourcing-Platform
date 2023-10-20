@@ -66,15 +66,18 @@
                                                 data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            @if (!$viewModel->isQuestionnaireArchived($questionnaire))
+                                            @can("manage-crowd-sourcing-projects")
+                                                @if (!$viewModel->isQuestionnaireArchived($questionnaire))
+                                                    <a class="action-btn dropdown-item"
+                                                       href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                                class="far fa-edit"></i> Edit Questionnaire</a>
+                                                @endif
+                                            @endcan
+                                            @can("manage-crowd-sourcing-projects")
                                                 <a class="action-btn dropdown-item"
-                                                   href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
-                                                            class="far fa-edit"></i> Edit Questionnaire</a>
-                                            @endif
-                                            <a class="action-btn dropdown-item"
-                                               href="{{route('statistics-colors-page', ['questionnaire' => $questionnaire->id])}}"><i
-                                                        class="fas fa-palette"></i> Basic Statistics Colors</a>
-
+                                                   href="{{route('statistics-colors-page', ['questionnaire' => $questionnaire->id])}}"><i
+                                                            class="fas fa-palette"></i> Basic Statistics Colors</a>
+                                            @endcan
                                             @if(isset($questionnaire->urls))
                                                 @if(count($questionnaire->urls) === 1)
                                                     <button data-clipboard-text="{{ $questionnaire->urls[0]['url'] }}"
