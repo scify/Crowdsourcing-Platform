@@ -22,9 +22,10 @@ find "$folder"/storage -type d -exec chmod 775 {} \;
 # Update permissions for all storage folders
 find "$folder"/storage/framework -type d -exec chmod 775 {} \;
 
-# Update permissions for all storage folders
+# Update permissions for all storage sub folders
 find "$folder"/storage/framework/cache -type d -exec chmod 775 {} \;
-# Update permissions for all storage folders
+
+# Update permissions for all storage sub folders
 find "$folder"/storage/framework/cache/data -type d -exec chmod 775 {} \;
 
 # Change owner group to webserver group user for storage and bootstrap cache folder
