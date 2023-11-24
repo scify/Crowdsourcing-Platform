@@ -64,9 +64,16 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
-        $projectsWithActiveQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus();
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus();
         $projectsWithFinalizedQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus([], QuestionnaireStatusLkp::FINALIZED);
-        $projects = $projectsWithActiveQuestionnaires->concat($projectsWithFinalizedQuestionnaires);
+        // for each project in the finalized ones,
+        // if it does not exist in the collection of the projects with active questionnaires,
+        // add it there.
+        foreach ($projectsWithFinalizedQuestionnaires as $project) {
+            if (!$projects->contains('id', $project->id))
+                $projects->push($project);
+        }
+
         foreach ($projects as $project) {
             $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
             $project->latestQuestionnaire = $project->questionnaires->last();
