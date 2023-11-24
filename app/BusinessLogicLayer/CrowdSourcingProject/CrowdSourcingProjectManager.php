@@ -66,7 +66,7 @@ class CrowdSourcingProjectManager {
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $projectsWithActiveQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus();
         $projectsWithFinalizedQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus([], QuestionnaireStatusLkp::FINALIZED);
-        $projects = $projectsWithActiveQuestionnaires->merge($projectsWithFinalizedQuestionnaires);
+        $projects = $projectsWithActiveQuestionnaires->concat($projectsWithFinalizedQuestionnaires);
         foreach ($projects as $project) {
             $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
             $project->latestQuestionnaire = $project->questionnaires->last();
