@@ -16,12 +16,9 @@ class FileController extends Controller {
             'questionnaire_id' => 'required|int',
         ]);
         $responseFilePaths = [];
-        Log::info($request);
-        Log::info($request->files);
-        Log::info($request->file('files'));
-        Log::info("Uploading files: " . count($request->files));
+        Log::info("Uploading files: " . count($request->file('files')));
 
-        foreach ($request->files as $fileObject) {
+        foreach ($request->file('files') as $fileObject) {
             Log::info("New file");
             $symfonyFile = $fileObject[0];
             Log::info($symfonyFile);
