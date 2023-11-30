@@ -51,6 +51,7 @@ import _ from "lodash";
 			const respondentUserId = $(this).data("respondentUserId");
 			const respondentUserData = $(this).data("respondentUserData");
 			const answer = getResponseJSONByRespondentId(respondentUserId);
+			console.log(answer);
 			if (answer) {
 				$("#respondent-answers-modal-title").html(respondentUserData);
 				survey.data = answer;
