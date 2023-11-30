@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller {
@@ -15,15 +16,22 @@ class FileController extends Controller {
             'questionnaire_id' => 'required|int',
         ]);
         $responseFilePaths = [];
+        Log::info("Uploading files");
+
         foreach ($request->files as $fileObject) {
+            Log::info("New file");
             $symfonyFile = $fileObject[0];
+            Log::info($symfonyFile);
             $uploadedFile = UploadedFile::createFromBase($symfonyFile);
+            Log::info($uploadedFile);
             $originalFileName = $uploadedFile->getClientOriginalName();
+            Log::info($originalFileName);
             $path = Storage::disk('s3')->put('uploads/project_' . $request->project_id . '/questionnaire_' . $request->questionnaire_id, $uploadedFile);
+            Log::info($path);
             $uploadedFilePath = Storage::disk('s3')->url($path);
             $responseFilePaths[$originalFileName] = $uploadedFilePath;
         }
-
+        Log::info($responseFilePaths);
         return response()->json($responseFilePaths);
     }
 }
