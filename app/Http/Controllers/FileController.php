@@ -20,11 +20,8 @@ class FileController extends Controller {
 
         foreach ($request->file('files') as $fileObject) {
             $uploadedFile = UploadedFile::createFromBase($fileObject);
-            Log::info($uploadedFile);
             $originalFileName = $uploadedFile->getClientOriginalName();
-            Log::info($originalFileName);
             $path = Storage::disk('s3')->put('uploads/project_' . $request->project_id . '/questionnaire_' . $request->questionnaire_id, $uploadedFile);
-            Log::info($path);
             $uploadedFilePath = Storage::disk('s3')->url($path);
             $responseFilePaths[$originalFileName] = $uploadedFilePath;
         }
