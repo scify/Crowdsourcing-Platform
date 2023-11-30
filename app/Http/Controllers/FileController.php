@@ -19,10 +19,7 @@ class FileController extends Controller {
         Log::info("Uploading files: " . count($request->file('files')));
 
         foreach ($request->file('files') as $fileObject) {
-            Log::info("New file");
-            $symfonyFile = $fileObject[0];
-            Log::info($symfonyFile);
-            $uploadedFile = UploadedFile::createFromBase($symfonyFile);
+            $uploadedFile = UploadedFile::createFromBase($fileObject);
             Log::info($uploadedFile);
             $originalFileName = $uploadedFile->getClientOriginalName();
             Log::info($originalFileName);
@@ -31,7 +28,6 @@ class FileController extends Controller {
             $uploadedFilePath = Storage::disk('s3')->url($path);
             $responseFilePaths[$originalFileName] = $uploadedFilePath;
         }
-        Log::info($responseFilePaths);
         return response()->json($responseFilePaths);
     }
 }
