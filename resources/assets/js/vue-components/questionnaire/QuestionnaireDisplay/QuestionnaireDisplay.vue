@@ -247,6 +247,7 @@ export default {
 		},
 		onUploadSurveyFile(sender, options) {
 			let data = new FormData();
+      console.log(options.files);
 			for (let i = 0; i < options.files.length; i++) {
 				data.append("files[" + i + "]", options.files[i]);
 			}

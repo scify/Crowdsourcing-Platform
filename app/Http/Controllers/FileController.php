@@ -16,7 +16,7 @@ class FileController extends Controller {
             'questionnaire_id' => 'required|int',
         ]);
         $responseFilePaths = [];
-        Log::info("Uploading files");
+        Log::info("Uploading files: " . sizeof($request->files));
 
         foreach ($request->files as $fileObject) {
             Log::info("New file");
