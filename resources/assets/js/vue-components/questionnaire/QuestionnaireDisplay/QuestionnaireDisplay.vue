@@ -246,7 +246,7 @@ export default {
 				this.t0 = performance.now();
 		},
 		onUploadSurveyFile(sender, options) {
-      if(options.files.length > 5)
+      if(options.files.length > 8)
         return;
 			let data = new FormData();
 			for (let i = 0; i < options.files.length; i++) {
