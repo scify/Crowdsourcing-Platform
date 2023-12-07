@@ -17,7 +17,6 @@ class FileController extends Controller {
             'questionnaire_id' => 'required|int',
         ]);
         $responseFilePaths = [];
-        Log::info("Uploading files: " . count($request->file('files')));
 
         foreach ($request->file('files') as $fileObject) {
             $uploadedFile = UploadedFile::createFromBase($fileObject);
