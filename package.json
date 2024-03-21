@@ -64,7 +64,7 @@
         "stream-browserify": "^3.0.0",
         "summernote": "^0.8.20",
         "survey-analytics": "^1.9.113",
-        "survey-creator": "^1.9.113",
+        "survey-creator": "^1.9.133",
         "survey-jquery": "^1.9.113",
         "survey-knockout": "^1.9.113"
     }
