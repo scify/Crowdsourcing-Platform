@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class FileController extends Controller {
     public function uploadFiles(Request $request): JsonResponse {
         $request->validate([
-            'files.*' => 'required|file|max:524288|mimetypes:image/*,audio/,video/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf',
+            'files.*' => 'required|file|max:100000|mimetypes:image/*,audio/,video/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf',
             'files' => 'max:8', //maximum number of files: 5
             'project_id' => 'required|int',
             'questionnaire_id' => 'required|int',
