@@ -1,39 +1,40 @@
-html, body {
-  background-color: #fff;
-  color: #616161;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 100;
-  height: 100vh;
-  margin: 0;
+html,
+body {
+	background-color: #fff;
+	color: #616161;
+	font-family: "Nunito", sans-serif;
+	font-weight: 100;
+	height: 100vh;
+	margin: 0;
 }
 
 .flex-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+	align-items: center;
+	display: flex;
+	justify-content: center;
 }
 
 .position-ref {
-  position: relative;
+	position: relative;
 }
 
 .content {
-  text-align: center;
-  background-color: #E0E0E0;
-  opacity: 0.8;
-  border-radius: 15px;
+	text-align: center;
+	background-color: #e0e0e0;
+	opacity: 0.8;
+	border-radius: 15px;
 }
 
 .code {
-  font-size: 58px;
-  padding: 20px;
+	font-size: 58px;
+	padding: 20px;
 }
 
 .title {
-  font-size: 36px;
-  padding: 20px;
+	font-size: 36px;
+	padding: 20px;
 }
 
 .error-container {
-  height: 50vh;
+	height: 50vh;
 }

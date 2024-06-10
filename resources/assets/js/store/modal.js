@@ -1,5 +1,4 @@
 export default {
-
 	allowClose: true,
 	open: false,
 	loading: false,
@@ -8,7 +7,6 @@ export default {
 	title: null,
 	link: {
 		url: null,
-		title: null
-	}
-
+		title: null,
+	},
 };

@@ -7,6 +7,6 @@ new Vue({
 	el: "#app",
 	store: store,
 	components: {
-		QuestionnaireDisplay
-	}
+		QuestionnaireDisplay,
+	},
 });

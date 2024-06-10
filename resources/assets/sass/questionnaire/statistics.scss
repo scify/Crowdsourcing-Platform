@@ -2,199 +2,199 @@
 @import "~datatables.net-dt/css/jquery.dataTables.min.css";
 
 .sa-question.sa-question-layouted {
-  position: relative;
-  margin: 0 auto;
+	position: relative;
+	margin: 0 auto;
 }
 
 .sa-visualizer__toolbar {
-  .sa-toolbar {
-    .sa-toolbar__button {
-      display: none;
-    }
-    margin-bottom: 10px;
-  }
+	.sa-toolbar {
+		.sa-toolbar__button {
+			display: none;
+		}
+		margin-bottom: 10px;
+	}
 }
 
-.js-plotly-plot .plotly, .js-plotly-plot .plotly div {
-  margin: 0 auto;
+.js-plotly-plot .plotly,
+.js-plotly-plot .plotly div {
+	margin: 0 auto;
 }
 
 .sa-visualizer__content {
-  text-align: center;
+	text-align: center;
 }
 
 .plot-container.plotly {
-  .user-select-none.svg-container {
-    margin: 0 auto;
-  }
+	.user-select-none.svg-container {
+		margin: 0 auto;
+	}
 }
 
 .loader-container {
+	margin-top: 5rem;
+	margin-bottom: 5rem;
 
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-
-  .spinner-border {
-    width: 10rem;
-    height: 10rem;
-    color: $primary;
-    border-width: 0.5rem;
-  }
+	.spinner-border {
+		width: 10rem;
+		height: 10rem;
+		color: $primary;
+		border-width: 0.5rem;
+	}
 }
 
 .survey-statistics-container {
-  .sa-question {
-    .sa-question__content {
-      .sa-question__title {
-        font-size: 2rem;
-        font-family: "Oswald", Arial, Sans-Serif, serif;
-        color: $primary;
-        font-weight: 500;
-        line-height: 1.2;
-      }
-    }
+	.sa-question {
+		.sa-question__content {
+			.sa-question__title {
+				font-size: 2rem;
+				font-family: "Oswald", Arial, Sans-Serif, serif;
+				color: $primary;
+				font-weight: 500;
+				line-height: 1.2;
+			}
+		}
 
-    .sa-visualizer__content {
-      .sa-text-table__cell {
-        text-align: left;
-        padding: 0.75rem;
-        font-size: 14px;
-      }
-    }
-  }
+		.sa-visualizer__content {
+			.sa-text-table__cell {
+				text-align: left;
+				padding: 0.75rem;
+				font-size: 14px;
+			}
+		}
+	}
 }
 
 .custom-texts-table-container {
-  .custom-texts-table {
-    th, td {
-      text-align: left;
+	.custom-texts-table {
+		th,
+		td {
+			text-align: left;
 
-      .vote-btn {
+			.vote-btn {
+				&.upvote:hover {
+					border-color: $brand-primary;
+				}
 
-        &.upvote:hover {
-          border-color: $brand-primary;
-        }
+				&.downvote:hover {
+					border-color: $brand-danger;
+				}
 
-        &.downvote:hover {
-          border-color: $brand-danger;
-        }
+				.count {
+					font-size: small;
+					margin-bottom: 0;
+					padding-left: 5px;
+				}
+			}
 
-        .count {
-          font-size: small;
-          margin-bottom: 0;
-          padding-left: 5px;
-        }
-      }
+			.vote-btn.user-upvoted {
+				color: $brand-primary;
+				border-color: $brand-primary;
+			}
 
-      .vote-btn.user-upvoted {
-        color: $brand-primary;
-        border-color: $brand-primary;
-      }
+			.vote-btn.user-downvoted {
+				color: $brand-danger;
+			}
+		}
+	}
 
-      .vote-btn.user-downvoted {
-        color: $brand-danger;
-      }
-
-    }
-  }
-
-  .dataTables_length, .dataTables_info {
-    text-align: left;
-  }
+	.dataTables_length,
+	.dataTables_info {
+		text-align: left;
+	}
 }
 
 .dataTables_wrapper.dt-bootstrap4.no-footer {
-  text-align: left;
+	text-align: left;
 }
 
-.read-more,.read-less {
-  color: $brand-primary;
-  margin-left: 5px;
+.read-more,
+.read-less {
+	color: $brand-primary;
+	margin-left: 5px;
 }
 
 .file-link {
-  font-weight: 400;
-  font-size: medium;
-  color: $brand-primary;
+	font-weight: 400;
+	font-size: medium;
+	color: $brand-primary;
 }
 
-.more-text.hidden{
-  display: none;
+.more-text.hidden {
+	display: none;
 }
 
 .annotation-button {
-  float: left;
+	float: left;
 }
 
 .answer-column {
-  width: 80%;
+	width: 80%;
 }
 
 [data-toggle="collapse"] {
-  &.collapsed .if-not-collapsed {
-    display: none;
-  }
-  &:not(.collapsed) .if-collapsed {
-    display: none;
-  }
+	&.collapsed .if-not-collapsed {
+		display: none;
+	}
+	&:not(.collapsed) .if-collapsed {
+		display: none;
+	}
 }
 
 .toggle-collapse {
-  width: 200px;
+	width: 200px;
 }
 
 .page-item.active .page-link {
-  z-index: 0;
+	z-index: 0;
 }
 
 .fa-check {
-  color: green;
-  display: inline-block;
-  margin-left: 5px;
+	color: green;
+	display: inline-block;
+	margin-left: 5px;
 }
 
 #moderator-toolbar {
-  text-align: center;
-  font-size: 1.2rem;
-  position: fixed;
-  padding: 10px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 35px;
-  background-color: rgba(230, 230, 230, 1);
-  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+	text-align: center;
+	font-size: 1.2rem;
+	position: fixed;
+	padding: 10px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	min-height: 35px;
+	background-color: rgba(230, 230, 230, 1);
+	box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
 
-  select {
-    background-color: white;
-    border: none;
-    margin-left: 5px;
-  }
+	select {
+		background-color: white;
+		border: none;
+		margin-left: 5px;
+	}
 }
 
 .responses-report {
-  font-family: 'Open Sans', sans-serif;
+	font-family: "Open Sans", sans-serif;
 
-  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {
-    display: none;
-  }
+	.sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(-n + 2) {
+		display: none;
+	}
 
-  .sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(3) {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-  }
-
+	.sa-table__btn.sa-table__btn--small.sa-table__btn--gray:nth-child(3) {
+		color: #fff;
+		background-color: #6c757d;
+		border-color: #6c757d;
+		display: inline-block;
+		font-weight: 400;
+		text-align: center;
+		vertical-align: middle;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		padding: 0.375rem 0.75rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		border-radius: 0.25rem;
+	}
 }

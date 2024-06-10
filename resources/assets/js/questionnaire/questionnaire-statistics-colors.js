@@ -7,15 +7,15 @@ import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
 		initializeColorPicker();
 	};
 
-	let initializeColorPicker = function() {
+	let initializeColorPicker = function () {
 		$(".color-picker").each(function (i, el) {
 			initSingleColorPicker(el);
 		});
 	};
 
-	let initSingleColorPicker = function(el) {
+	let initSingleColorPicker = function (el) {
 		$(el).colorpicker({
-			horizontal: true
+			horizontal: true,
 		});
 		$(el).on("colorpickerCreate", function (event) {
 			$(el).find(".input-group-addon").css("background-color", event.color.toString());

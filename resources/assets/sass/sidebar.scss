@@ -1,59 +1,65 @@
 .skin-white {
-  .wrapper, .main-sidebar, .left-side {
-    .sidebar {
-      a {
-        color: #b8c7ce;
-      }
+	.wrapper,
+	.main-sidebar,
+	.left-side {
+		.sidebar {
+			a {
+				color: #b8c7ce;
+			}
 
-      .active a {
-        color: white;
-        border-left: 3px solid white;
-        background-color: rgba(255, 255, 255, 0.1) !important;
-      }
+			.active a {
+				color: white;
+				border-left: 3px solid white;
+				background-color: rgba(255, 255, 255, 0.1) !important;
+			}
 
-      .nav-item {
-        font-size: 1.15rem;
-      }
-    }
+			.nav-item {
+				font-size: 1.15rem;
+			}
+		}
 
-    .sidebar > li:hover > a,
-    .sidebar > li.active > a,
-    .sidebar > li.menu-open > a {
-      background-color: $bg-color-navbar;
-    }
+		.sidebar > li:hover > a,
+		.sidebar > li.active > a,
+		.sidebar > li.menu-open > a {
+			background-color: $bg-color-navbar;
+		}
 
-    &.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar > li:hover > a > span:not(.pull-right),
-    &.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar > li:hover > .treeview-menu {
-      width: 250px;
-    }
+		&.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse
+			.sidebar
+			> li:hover
+			> a
+			> span:not(.pull-right),
+		&.sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar > li:hover > .treeview-menu {
+			width: 250px;
+		}
 
-    .sidebar > li.header {
-      color: rgba($color-navbar-head, .6);
-      background: #1a2226;
-    }
+		.sidebar > li.header {
+			color: rgba($color-navbar-head, 0.6);
+			background: #1a2226;
+		}
 
-    .main-sidebar {
-      .brand-link {
-        height: calc(3.4rem + 1px);
-      }
-    }
+		.main-sidebar {
+			.brand-link {
+				height: calc(3.4rem + 1px);
+			}
+		}
 
-    .main-header {
-      .logo, .logo:hover {
-        background-color: $header-background-color;
-      }
+		.main-header {
+			.logo,
+			.logo:hover {
+				background-color: $header-background-color;
+			}
 
-      .navbar {
-        background-color: $header-background-color;
+			.navbar {
+				background-color: $header-background-color;
 
-        .sidebar-toggle,
-        .sidebar-toggle:hover,
-        .nav > li > a,
-        .nav > li > a:hover
-        .nav > li > a:focus {
-          color: $header-font-color;
-        }
-      }
-    }
-  }
+				.sidebar-toggle,
+				.sidebar-toggle:hover,
+				.nav > li > a,
+				.nav > li > a:hover .nav > li > a:focus {
+					color: $header-font-color;
+				}
+			}
+		}
+	}
 }

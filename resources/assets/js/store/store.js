@@ -6,7 +6,6 @@ Vue.use(Vuex);
 import modal from "./modal";
 import Promise from "lodash/_Promise";
 
-
 export default new Vuex.Store({
 	strict: true,
 	state: {
@@ -14,10 +13,10 @@ export default new Vuex.Store({
 		loading: false,
 	},
 	getters: {
-		modal: state => {
+		modal: (state) => {
 			return state.modal;
 		},
-		loading: state => {
+		loading: (state) => {
 			return state.loading;
 		},
 	},
@@ -46,104 +45,104 @@ export default new Vuex.Store({
 		},
 		setModalAllowClose(state, status) {
 			this.state.modal.allowClose = status;
-		}
+		},
 	},
 
 	actions: {
-		openModal: ({commit}) => {
+		openModal: ({ commit }) => {
 			commit("openModal");
 		},
-		closeModal: ({commit}) => {
+		closeModal: ({ commit }) => {
 			commit("closeModal");
 		},
-		setLoading: ({commit}, status) => {
+		setLoading: ({ commit }, status) => {
 			commit("setLoading", status);
 		},
-		setMessage: ({commit}, message) => {
+		setMessage: ({ commit }, message) => {
 			commit("setMessage", message);
 		},
-		setTitle: ({commit}, title) => {
+		setTitle: ({ commit }, title) => {
 			commit("setTitle", title);
 		},
-		setModalLink: ({commit}, link) => {
+		setModalLink: ({ commit }, link) => {
 			commit("setModalLink", link);
 		},
-		setModalAllowClose: ({commit}, status) => {
+		setModalAllowClose: ({ commit }, status) => {
 			commit("setModalAllowClose", status);
 		},
-		post: ({commit, dispatch}, {url, data, urlRelative = true, handleError = true}) => {
+		post: ({ commit, dispatch }, { url, data, urlRelative = true, handleError = true }) => {
 			commit("setLoading", true);
 			url = urlRelative ? process.env.MIX_APP_URL + url : url;
 			data = {
 				...data,
-				lang: $("html").attr("lang")
+				lang: $("html").attr("lang"),
 			};
 			return new Promise(function callback(resolve, reject) {
-				axios.post(url, data,
-					{
+				axios
+					.post(url, data, {
 						headers: {
-							"Accept": "application/json"
-						}
+							Accept: "application/json",
+						},
 					})
 					.then(function (response) {
 						if (response.status > 300) {
 							reject(response);
-							if (handleError)
-								dispatch("handleError", response);
+							if (handleError) dispatch("handleError", response);
 						} else {
 							commit("setLoading", false);
 							commit("closeModal");
 							resolve(response);
 						}
-					}).catch(function (error) {
-						if (handleError)
-							dispatch("handleError", error);
-						else
-							reject(error);
+					})
+					.catch(function (error) {
+						if (handleError) dispatch("handleError", error);
+						else reject(error);
 					});
 			});
 		},
-		get: ({commit, dispatch}, {url, urlRelative = true, handleError = true}) => {
+		get: ({ commit, dispatch }, { url, urlRelative = true, handleError = true }) => {
 			commit("setLoading", true);
 			url = urlRelative ? process.env.MIX_APP_URL + url : url;
 			return new Promise(function callback(resolve, reject) {
-				axios.get(url,
-					{
+				axios
+					.get(url, {
 						headers: {
-							"Accept": "application/json"
-						}
+							Accept: "application/json",
+						},
 					})
 					.then(function (response) {
 						if (response.status > 300) {
 							reject(response);
-							if (handleError)
-								dispatch("handleError", response);
+							if (handleError) dispatch("handleError", response);
 						} else {
 							commit("setLoading", false);
 							commit("closeModal");
 							resolve(response);
 						}
-					}).catch(function (error) {
-						if (handleError)
-							dispatch("handleError", error);
-						else
-							reject(error);
+					})
+					.catch(function (error) {
+						if (handleError) dispatch("handleError", error);
+						else reject(error);
 					});
 			});
 		},
-		handleError: ({commit}, error) => {
+		handleError: ({ commit }, error) => {
 			console.error(error);
 			commit("setLoading", false);
 			commit("openModal");
 			commit("setModalAllowClose", true);
 			if (error.response && error.response.data) {
-				commit("setMessage", error.response.data.message !== "" ? error.response.data.message : error.response.statusText);
-			} else if (error)
-				commit("setMessage", error);
+				commit(
+					"setMessage",
+					error.response.data.message !== "" ? error.response.data.message : error.response.statusText,
+				);
+			} else if (error) commit("setMessage", error);
 			else
-				commit("setMessage", "We are experiencing some difficulties" +
-                    " handling your request right now.<br>Please try again later.");
+				commit(
+					"setMessage",
+					"We are experiencing some difficulties" +
+						" handling your request right now.<br>Please try again later.",
+				);
 		},
-	}
-
+	},
 });

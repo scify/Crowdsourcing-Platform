@@ -20,25 +20,26 @@ import "datatables.net-select";
 import "datatables.net-select-bs4";
 import Clipboard from "clipboard/dist/clipboard";
 
-import {showToast} from "./common-utils";
+import { showToast } from "./common-utils";
 
 (function () {
-
 	let initializeIcheck = function () {
 		$(".icheck-input").iCheck({
 			checkboxClass: "icheckbox_square-blue",
 			radioClass: "iradio_square-blue",
-			increaseArea: "20%" // optional
+			increaseArea: "20%", // optional
 		});
 	};
-
 
 	let closeDismissableAlerts = function () {
 		setTimeout(function () {
 			/*Close any flash message after some time*/
-			window.$(".alert-dismissable").fadeTo(4000, 500).slideUp(500, function () {
-				window.$(".alert-dismissable").alert("close");
-			});
+			window
+				.$(".alert-dismissable")
+				.fadeTo(4000, 500)
+				.slideUp(500, function () {
+					window.$(".alert-dismissable").alert("close");
+				});
 		}, 3000);
 	};
 
@@ -60,19 +61,19 @@ import {showToast} from "./common-utils";
 	let listenToReadMoreClicks = function () {
 		const body = $("body");
 		body.on("click", ".read-more", function () {
-			$(this).siblings(".more-text").after("<a href=\"javascript:void(0);\" class=\"read-less\">Read less</a>");
+			$(this).siblings(".more-text").after('<a href="javascript:void(0);" class="read-less">Read less</a>');
 			$(this).siblings(".more-text").removeClass("hidden");
 			$(this).remove();
 		});
 		body.on("click", ".read-less", function () {
-			$(this).siblings(".more-text").before("<a href=\"javascript:void(0);\" class=\"read-more\">Read more...</a>");
+			$(this).siblings(".more-text").before('<a href="javascript:void(0);" class="read-more">Read more...</a>');
 			$(this).siblings(".more-text").addClass("hidden");
 			$(this).remove();
 		});
 	};
 
 	let initializeTooltips = function () {
-		window.$("[data-toggle=\"tooltip\"]").tooltip();
+		window.$('[data-toggle="tooltip"]').tooltip();
 	};
 	$(function () {
 		$(document).ready(function () {
@@ -92,4 +93,3 @@ import {showToast} from "./common-utils";
 export function isObject(obj) {
 	return obj != null && obj.constructor.name === "Object";
 }
-

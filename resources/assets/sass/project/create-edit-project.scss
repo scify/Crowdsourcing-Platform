@@ -1,52 +1,56 @@
-@import '~summernote/dist/summernote-bs4.css';
-@import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import "~summernote/dist/summernote-bs4.css";
+@import "~bs-stepper/dist/css/bs-stepper.min.css";
 @import "../variables";
 
 .input-file-wrapper {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .image-preview-container {
-  text-align: center;
-  .selected-image-preview {
-    max-height: 200px;
-    max-width: 100%;
-    padding: 20px 0;
-  }
+	text-align: center;
+	.selected-image-preview {
+		max-height: 200px;
+		max-width: 100%;
+		padding: 20px 0;
+	}
 }
 
 .box {
-  .row {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
+	.row {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
 }
 
 .card {
-  .card-header {
-    h2, h3, .fa, .fas {
-      font-size: 1.2rem;
-    }
-  }
+	.card-header {
+		h2,
+		h3,
+		.fa,
+		.fas {
+			font-size: 1.2rem;
+		}
+	}
 }
 
 #form-error-message {
-  color: $danger;
+	color: $danger;
 }
 
 #communication-resources {
-  table.content {
-    display: block;
-    text-align: center;
+	table.content {
+		display: block;
+		text-align: center;
 
-    tbody {
-      display: inline-block;
+		tbody {
+			display: inline-block;
 
-      #intro_text, #outro_text {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        background-color: yellow;
-      }
-    }
-  }
+			#intro_text,
+			#outro_text {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				background-color: yellow;
+			}
+		}
+	}
 }

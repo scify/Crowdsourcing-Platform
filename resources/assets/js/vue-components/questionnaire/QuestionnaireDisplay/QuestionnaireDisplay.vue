@@ -1,73 +1,74 @@
 <template>
-  <div class="component mt-3">
-    <div v-if="filesUploading" id="questionnaire-files-loader-overlay"></div>
-    <div v-if="filesUploading" id="questionnaire-files-loader" class="container-fluid">
-      <div class="row" id="questionnaire-files-loader-row">
-        <div class="col mb-4 text-center">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-        <div class="col-12 text-center">
-          <p id="loader-message">Please wait. uploading files...</p>
-        </div>
-      </div>
-    </div>
-    <div v-if="displayLoginPrompt" class="container-fluid p-0">
-      <div class="row mb-5 pt-3">
-        <div class="col text-center">
-          <h3 v-html="getQuestionnaireLoginPromptMessage()"></h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-5 text-center pl-0 mx-auto">
-          <a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">{{
-              trans("questionnaire.sign_in")
-            }}</a>
-        </div>
-        <div class="col-5 offset-2 text-center pr-0" v-if="!questionnaire.respondent_auth_required">
-          <button @click="skipLogin()" class="btn btn-primary btn-lg w-100">Answer anonymously</button>
-        </div>
-      </div>
-    </div>
-    <div v-else class="container-fluid">
-      <div class="row" v-if="!userResponse">
-        <div class="col-md-12 language-selection">
-          <div class="form-group">
-            <label for="language-select">{{ trans("questionnaire.select_language") }}</label>
-            <select class="form-control" @change="onLanguageChange($event)" id="language-select">
-              <option :selected="language.code === defaultLangCode"
-                      :value="language.code" v-for="(language, index) in surveyLocales"
-                      :key="index">
-                {{ language.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div v-if="loading" id="questionnaire-loader" class="row my-5">
-        <div class="col text-center">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-      </div>
+	<div class="component mt-3">
+		<div v-if="filesUploading" id="questionnaire-files-loader-overlay"></div>
+		<div v-if="filesUploading" id="questionnaire-files-loader" class="container-fluid">
+			<div class="row" id="questionnaire-files-loader-row">
+				<div class="col mb-4 text-center">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
+				<div class="col-12 text-center">
+					<p id="loader-message">Please wait. uploading files...</p>
+				</div>
+			</div>
+		</div>
+		<div v-if="displayLoginPrompt" class="container-fluid p-0">
+			<div class="row mb-5 pt-3">
+				<div class="col text-center">
+					<h3 v-html="getQuestionnaireLoginPromptMessage()"></h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-5 text-center pl-0 mx-auto">
+					<a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">{{
+						trans("questionnaire.sign_in")
+					}}</a>
+				</div>
+				<div class="col-5 offset-2 text-center pr-0" v-if="!questionnaire.respondent_auth_required">
+					<button @click="skipLogin()" class="btn btn-primary btn-lg w-100">Answer anonymously</button>
+				</div>
+			</div>
+		</div>
+		<div v-else class="container-fluid">
+			<div class="row" v-if="!userResponse">
+				<div class="col-md-12 language-selection">
+					<div class="form-group">
+						<label for="language-select">{{ trans("questionnaire.select_language") }}</label>
+						<select class="form-control" @change="onLanguageChange($event)" id="language-select">
+							<option
+								:selected="language.code === defaultLangCode"
+								:value="language.code"
+								v-for="(language, index) in surveyLocales"
+								:key="index"
+							>
+								{{ language.name }}
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div v-if="loading" id="questionnaire-loader" class="row my-5">
+				<div class="col text-center">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
+			</div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div :id="surveyContainerId" class="survey-container">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+			<div class="row">
+				<div class="col-md-12">
+					<div :id="surveyContainerId" class="survey-container"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 import * as Survey from "survey-knockout";
-import {arrayMove, setCookie} from "../../../common-utils";
+import { arrayMove, setCookie } from "../../../common-utils";
 import AnalyticsLogger from "../../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import _ from "lodash";
@@ -79,35 +80,35 @@ export default {
 			type: Object,
 			default: function () {
 				return {};
-			}
+			},
 		},
 		questionnaire: {
 			type: Object,
 			default: function () {
 				return {};
-			}
+			},
 		},
 		project: {
 			type: Object,
 			default: function () {
 				return {};
-			}
+			},
 		},
 		userResponseData: {
 			type: Object,
 			default: function () {
 				return null;
-			}
+			},
 		},
 		surveyContainerId: {
-			type: String
+			type: String,
 		},
 		languages: [],
 		moderator: {
 			type: Boolean,
 			default: function () {
 				return false;
-			}
+			},
 		},
 	},
 	data: function () {
@@ -131,7 +132,7 @@ export default {
 			},
 			t0: null,
 			defaultLangCode: "en",
-			filesUploading: false
+			filesUploading: false,
 		};
 	},
 	created() {
@@ -140,26 +141,19 @@ export default {
 	async mounted() {
 		this.userResponse = this.userResponseData;
 		const fpPromise = FingerprintJS.load();
-		this.browserFingerprintId = await fpPromise
-			.then(fp => fp.get())
-			.then(result => result.visitorId);
+		this.browserFingerprintId = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
 		this.displayLoginPrompt = !this.userLoggedIn();
 		if (!this.userLoggedIn()) {
 			const response = await this.getAnonymousUserResponse();
 			this.userResponse = response.data.questionnaire_response ?? null;
 		}
 		this.initQuestionnaireDisplay();
-		if (!this.displayLoginPrompt)
-			this.skipLogin();
+		if (!this.displayLoginPrompt) this.skipLogin();
 	},
 	methods: {
-		...mapActions([
-			"get",
-			"handleError",
-			"post"
-		]),
+		...mapActions(["get", "handleError", "post"]),
 		userLoggedIn() {
-			return (this.user && this.user.id);
+			return this.user && this.user.id;
 		},
 		skipLogin() {
 			this.displayLoginPrompt = false;
@@ -178,10 +172,8 @@ export default {
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
 			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
-			if (_.isEmpty(this.userResponse))
-				this.prepareQuestionnaireForResponding();
-			else
-				this.prepareQuestionnaireForViewingResponse();
+			if (_.isEmpty(this.userResponse)) this.prepareQuestionnaireForResponding();
+			else this.prepareQuestionnaireForViewingResponse();
 
 			// bug fix on mobile browsers.
 			// When you try to drag the rankings, the modal is scrolled, so you cannot complete it.
@@ -196,11 +188,9 @@ export default {
 		},
 		prepareQuestionnaireForResponding() {
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
-			if (responseJSON && JSON.parse(responseJSON))
-				this.survey.data = JSON.parse(responseJSON);
+			if (responseJSON && JSON.parse(responseJSON)) this.survey.data = JSON.parse(responseJSON);
 			let locales = this.survey.getUsedLocales();
-			if (!locales)
-				locales = ["en"];
+			if (!locales) locales = ["en"];
 			// set the default questionnaire language as first, in order to be loaded first.
 			this.defaultLangCode = this.getDefaultLocaleForQuestionnaire();
 			arrayMove(locales, locales.indexOf(this.defaultLangCode), 0);
@@ -209,28 +199,25 @@ export default {
 				if (locale)
 					this.surveyLocales.push({
 						code: locales[i],
-						name: locale.language_name
+						name: locale.language_name,
 					});
 			}
 			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
 			this.survey.onComplete.add(this.saveQuestionnaireResponse);
 			this.survey.onUploadFiles.add(this.onUploadSurveyFile);
-			if (this.surveyLocales && this.surveyLocales.length)
-				this.survey.locale = this.surveyLocales[0].code;
+			if (this.surveyLocales && this.surveyLocales.length) this.survey.locale = this.surveyLocales[0].code;
 			const instance = this;
-			this.survey
-				.onAfterRenderSurvey
-				.add(function () {
-					instance.loading = false;
-					$(".sv_complete_btn").after(
-						"<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>"
-					);
-					setTimeout(() => {
-						$("textarea").each(function () {
-							$(this).attr("spellcheck", true);
-						});
-					}, 3000);
-				});
+			this.survey.onAfterRenderSurvey.add(function () {
+				instance.loading = false;
+				$(".sv_complete_btn").after(
+					"<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>",
+				);
+				setTimeout(() => {
+					$("textarea").each(function () {
+						$(this).attr("spellcheck", true);
+					});
+				}, 3000);
+			});
 		},
 		prepareQuestionnaireForViewingResponse() {
 			this.survey.data = JSON.parse(this.userResponse.response_json);
@@ -240,14 +227,18 @@ export default {
 		saveQuestionnaireResponseProgress(sender, options) {
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
 			if (!responseJSON || !JSON.parse(responseJSON))
-				AnalyticsLogger.logEvent("user_engagement", "questionnaire_respond_begin_" + this.questionnaire.default_fields_translation.title, "respond_begin", this.questionnaire.title, this.questionnaire.id);
+				AnalyticsLogger.logEvent(
+					"user_engagement",
+					"questionnaire_respond_begin_" + this.questionnaire.default_fields_translation.title,
+					"respond_begin",
+					this.questionnaire.title,
+					this.questionnaire.id,
+				);
 			window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
-			if (!this.t0)
-				this.t0 = performance.now();
+			if (!this.t0) this.t0 = performance.now();
 		},
 		onUploadSurveyFile(sender, options) {
-      if(options.files.length > 8)
-        return;
+			if (options.files.length > 8) return;
 			let data = new FormData();
 			for (let i = 0; i < options.files.length; i++) {
 				data.append("files[" + i + "]", options.files[i]);
@@ -257,24 +248,29 @@ export default {
 			const config = {
 				headers: {
 					"content-type": "multipart/form-data",
-					"Accept": "application/json"
-				}
+					Accept: "application/json",
+				},
 			};
 			this.filesUploading = true;
 			let instance = this;
-			axios.post(window.route("files.upload"), data, config)
+			axios
+				.post(window.route("files.upload"), data, config)
 				.then(function (response) {
-					options.callback("success", options.files.map(file => {
-						return {
-							file: file,
-							content: response.data[file.name]
-						};
-					}));
+					options.callback(
+						"success",
+						options.files.map((file) => {
+							return {
+								file: file,
+								content: response.data[file.name],
+							};
+						}),
+					);
 				})
 				.catch(function (err) {
 					console.error(err);
 					options.callback("error");
-				}).finally(() => {
+				})
+				.finally(() => {
 					instance.filesUploading = false;
 				});
 		},
@@ -285,10 +281,8 @@ export default {
 			data.moderator = this.moderator;
 			let locale = sender.locale;
 			if (!locale) {
-				if (!this.surveyLocales || !this.surveyLocales.length)
-					locale = "en";
-				else
-					locale = this.surveyLocales[0].code;
+				if (!this.surveyLocales || !this.surveyLocales.length) locale = "en";
+				else locale = this.surveyLocales[0].code;
 			}
 			data.language_code = locale;
 			$(".loader-wrapper").removeClass("hidden");
@@ -305,36 +299,48 @@ export default {
 					project_id: this.project.id,
 				},
 				urlRelative: false,
-				handleError: false
-			}).then((response) => {
-				const anonymousUserId = response.data.anonymousUserId;
-				if (anonymousUserId)
-					setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
-				const time = performance.now() - this.t0;
-				const title = this.questionnaire.default_fields_translation.title;
-				AnalyticsLogger.logEvent("user_engagement", "questionnaire_respond_complete_" + title, "respond_complete", JSON.stringify({
-					"questionnaire": title,
-					"project": this.project.default_translation.name,
-					"language": data.locale,
-					"time_to_complete": time
-				}), this.questionnaire.id);
-				// clear local storage from the questionnaire response
-				window.localStorage.removeItem(this.questionnaireLocalStorageKey);
-				this.displaySuccessResponse(anonymousUserId);
-			}).catch(error => {
-				console.error(error);
-				this.displayErrorResponse(error);
-			}).finally(() => {
-				window.$("#questionnaire-modal").modal("hide");
-			});
+				handleError: false,
+			})
+				.then((response) => {
+					const anonymousUserId = response.data.anonymousUserId;
+					if (anonymousUserId) setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
+					const time = performance.now() - this.t0;
+					const title = this.questionnaire.default_fields_translation.title;
+					AnalyticsLogger.logEvent(
+						"user_engagement",
+						"questionnaire_respond_complete_" + title,
+						"respond_complete",
+						JSON.stringify({
+							questionnaire: title,
+							project: this.project.default_translation.name,
+							language: data.locale,
+							time_to_complete: time,
+						}),
+						this.questionnaire.id,
+					);
+					// clear local storage from the questionnaire response
+					window.localStorage.removeItem(this.questionnaireLocalStorageKey);
+					this.displaySuccessResponse(anonymousUserId);
+				})
+				.catch((error) => {
+					console.error(error);
+					this.displayErrorResponse(error);
+				})
+				.finally(() => {
+					window.$("#questionnaire-modal").modal("hide");
+				});
 		},
 		displaySuccessResponse(anonymousUserId) {
 			if (this.moderator) {
 				history.back();
 			} else {
-				let questionnaireResponseThankYouURL = window.route("questionnaire.thanks", this.getDefaultLocaleForQuestionnaire(), this.project.slug, this.questionnaire.id);
-				if (anonymousUserId)
-					questionnaireResponseThankYouURL += ("?anonymous_user_id=" + anonymousUserId);
+				let questionnaireResponseThankYouURL = window.route(
+					"questionnaire.thanks",
+					this.getDefaultLocaleForQuestionnaire(),
+					this.project.slug,
+					this.questionnaire.id,
+				);
+				if (anonymousUserId) questionnaireResponseThankYouURL += "?anonymous_user_id=" + anonymousUserId;
 
 				$("#pyro").addClass("pyro-on");
 				window.location = questionnaireResponseThankYouURL;
@@ -368,8 +374,7 @@ export default {
 			const start = this.getPosition(url, "/", 3) + 1;
 			const end = this.getPosition(url, "/", 4);
 			const urlLang = url.substring(start, end);
-			if (locales.indexOf(urlLang) !== -1)
-				return urlLang;
+			if (locales.indexOf(urlLang) !== -1) return urlLang;
 			return this.defaultLangCode;
 		},
 		getLocaleFromURL() {
@@ -386,11 +391,16 @@ export default {
 		},
 		async getAnonymousUserResponse() {
 			return await this.get({
-				url: window.route("questionnaire.response-anonymous") + "?browser_fingerprint_id=" + this.browserFingerprintId + "&questionnaire_id=" + this.questionnaire.id,
-				urlRelative: false
+				url:
+					window.route("questionnaire.response-anonymous") +
+					"?browser_fingerprint_id=" +
+					this.browserFingerprintId +
+					"&questionnaire_id=" +
+					this.questionnaire.id,
+				urlRelative: false,
 			});
-		}
-	}
+		},
+	},
 };
 </script>
 

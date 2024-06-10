@@ -1,19 +1,19 @@
 #questionnaire-thanks {
-  .gamification-badge {
-    .badgeImg {
-      height: 90px;
-    }
-  }
+	.gamification-badge {
+		.badgeImg {
+			height: 90px;
+		}
+	}
 
-  .dashboard-btn {
-    font-size: 1.5rem;
-  }
+	.dashboard-btn {
+		font-size: 1.5rem;
+	}
 
-  #motto {
-    height: 750px;
+	#motto {
+		height: 750px;
 
-    @media (max-width: 768px) {
-      height: 1050px;
-    }
-  }
+		@media (max-width: 768px) {
+			height: 1050px;
+		}
+	}
 }

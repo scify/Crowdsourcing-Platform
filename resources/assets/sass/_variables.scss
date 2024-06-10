@@ -5,8 +5,6 @@
 // Body
 $body-bg: #ecf0f5;
 
-
-
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;
@@ -15,11 +13,11 @@ $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
 // Brands
-$brand-primary: #0077FF;
+$brand-primary: #0077ff;
 $brand-success: $success;
 $brand-warning: $success;
 $brand-danger: $danger;
-$landing-page-primary:#232323;
+$landing-page-primary: #232323;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
@@ -27,13 +25,13 @@ $font-family-sans-serif: "Open Sans", sans-serif;
 $text-color: #636b6f;
 
 //header
-$header-font-color:black;
-$header-background-color:white;
+$header-font-color: black;
+$header-background-color: white;
 
 //navbar
 $bg-color-navbar: #262626;
 $color-navbar-head: #b8c7ce;
-$navbar-brand-font-size:16px;
+$navbar-brand-font-size: 16px;
 
 $red: $danger;
 $green: $success;
@@ -43,7 +41,7 @@ $button-background-color-hover: #367fa9;
 $button-border-color: #2e6da4;
 $link-hover-decoration: none;
 
-$green: #39BA6E;
+$green: #39ba6e;
 $green-light: #71c6ac;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
@@ -62,30 +60,30 @@ $line-height-base: 1.6;
 $font-color: $body-color;
 
 $colors: (
-        "blue": $blue,
-        "orange": $orange,
-        "gray": $grey
+	"blue": $blue,
+	"orange": $orange,
+	"gray": $grey,
 );
 
 $theme-colors: (
-        "primary": $blue,
-        "danger": $red,
-        "success": $green
+	"primary": $blue,
+	"danger": $red,
+	"success": $green,
 );
 
 $html-font-size: 16px;
-$navbar-light-bg-color: #E6F6F1;
+$navbar-light-bg-color: #e6f6f1;
 
 @function toRem($value) {
-  $remValue: calc(var($value) / 16) + rem;
-  @return $remValue;
+	$remValue: calc(var($value) / 16) + rem;
+	@return $remValue;
 }
 
 $display-font-sizes: (
-        1: toRem(50px),
-        2: 4.5rem,
-        3: 4rem,
-        4: 3.5rem,
-        5: 3rem,
-        6: 2.5rem
+	1: toRem(50px),
+	2: 4.5rem,
+	3: 4rem,
+	4: 3.5rem,
+	5: 3rem,
+	6: 2.5rem,
 );

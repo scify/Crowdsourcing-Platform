@@ -1,9 +1,8 @@
 import "admin-lte/plugins/datatables/jquery.dataTables.min";
 
-window.UsersListController = function () {
-};
+window.UsersListController = function () {};
 
-window.UsersListController.prototype = function () {
+window.UsersListController.prototype = (function () {
 	let usersCriteria = {},
 		pageNum = 1;
 	let searchBtnHandler = function () {
@@ -33,7 +32,10 @@ window.UsersListController.prototype = function () {
 			cache: false,
 			data: usersCriteria,
 			beforeSend: function () {
-				$(self).parents(".panel-body").first().append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
+				$(self)
+					.parents(".panel-body")
+					.first()
+					.append('<div class="refresh-container"><div class="loading-bar indeterminate"></div></div>');
 				$("#users-list-loader").removeClass("hidden");
 			},
 			success: function (response) {
@@ -52,7 +54,7 @@ window.UsersListController.prototype = function () {
 				//The message added to Response object in Controller can be retrieved as following.
 				errorMsgEl.html(errorThrown);
 				$("#users-list-loader").addClass("hidden");
-			}
+			},
 		});
 	};
 	let parseSuccessData = function (response) {
@@ -78,15 +80,10 @@ window.UsersListController.prototype = function () {
 
 		table.DataTable({
 			destroy: true,
-			"paging": false,
-			"responsive": true,
-			"searching": false,
-			"columns": [
-				{"width": "25%"},
-				{"width": "25%"},
-				{"width": "25%"},
-				{"width": "25%"}
-			]
+			paging: false,
+			responsive: true,
+			searching: false,
+			columns: [{ width: "25%" }, { width: "25%" }, { width: "25%" }, { width: "25%" }],
 		});
 	};
 	let init = function () {
@@ -97,6 +94,6 @@ window.UsersListController.prototype = function () {
 		});
 	};
 	return {
-		init: init
+		init: init,
 	};
-}();
+})();
