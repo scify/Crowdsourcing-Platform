@@ -10,7 +10,7 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 
-Laravel 8 Web Application for Crowdsourcing Projects and Questionnaires
+Laravel 9 Web Application for Crowdsourcing Projects and Questionnaires
 
 # Features
 
@@ -51,7 +51,7 @@ Offering the code under open source licenses includes many benefits. Of those, t
 
 ## First time install (setup database and install dependencies)
 
-0. Make sure php 7.4 (or newer) is installed.
+0. Make sure php 8.0 (or newer) is installed.
 
 Install graphics library
 
