@@ -9,8 +9,9 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
+[![GitHub release](https://img.shields.io/github/release/scify/Crowdsourcing-Platform.svg)](https://github.com/scify/Crowdsourcing-Platform/releases/tag/v7.7)
 
-Laravel 9 Web Application for Crowdsourcing Projects and Questionnaires
+[Laravel](https://laravel.com/) 9 Web Application for Crowdsourcing Projects and Questionnaires
 
 # Features
 
@@ -80,9 +81,11 @@ composer dump-autoload
 
 4. Front-end dependencies
 
-It is very easy to install multiple versions of NodeJS and npm, by using [Node Version Manager (nvm)](https://github.com/creationix/nvm).
+It is very easy to install multiple versions of NodeJS and npm, by
+using [Node Version Manager (nvm)](https://github.com/creationix/nvm).
 
-If you are using [`nvm`](https://github.com/nvm-sh/nvm), run this command in order to sync to the correct NodeJS version for the project:
+If you are using [`nvm`](https://github.com/nvm-sh/nvm), run this command in order to sync to the correct NodeJS version
+for the project:
 
 ```bash
 nvm use
@@ -115,7 +118,7 @@ php artisan db:seed
 ```
 
 6. Create symbolic link for uploaded images
-By default images are stored at app/storage/public. Run
+   By default images are stored at app/storage/public. Run
 
 ```bash
 php artisan storage:link
@@ -323,3 +326,24 @@ php artisan db:seed --env=testing --class=DatabaseSeeder
 - At Chrome
   install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
 - At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"
+
+## Contributing
+
+To contribute to MyEIC Common Library, follow these steps:
+
+1. Fork this repository.
+2. Read the [CONTRIBUTING](CONTRIBUTING.md) file.
+3. Create a branch: `git checkout -b <branch_name>`.
+4. Make your changes and commit them: `git commit -m '<commit_message>'`
+5. Push to the original branch: `git push origin <project_name>/<location>`
+6. Create the pull request.
+
+## License
+
+This project is open-sourced software licensed under
+the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+## Credits
+
+This project is developed by [SciFY](https://www.scify.org/) and [ECAS](https://ecas.org/) and is based on
+the [Laravel](https://laravel.com/) framework. The project is maintained by [SciFY](https://www.scify.org/).
