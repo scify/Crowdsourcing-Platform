@@ -72,7 +72,7 @@ export default new Vuex.Store({
 		},
 		post: ({ commit, dispatch }, { url, data, urlRelative = true, handleError = true }) => {
 			commit("setLoading", true);
-			url = urlRelative ? process.env.MIX_APP_URL + url : url;
+			url = urlRelative ? import.meta.env.VITE_APP_URL + url : url;
 			data = {
 				...data,
 				lang: $("html").attr("lang"),
@@ -102,7 +102,7 @@ export default new Vuex.Store({
 		},
 		get: ({ commit, dispatch }, { url, urlRelative = true, handleError = true }) => {
 			commit("setLoading", true);
-			url = urlRelative ? process.env.MIX_APP_URL + url : url;
+			url = urlRelative ? import.meta.env.VITE_APP_URL + url : url;
 			return new Promise(function callback(resolve, reject) {
 				axios
 					.get(url, {
