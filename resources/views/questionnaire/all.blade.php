@@ -5,7 +5,7 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/manage-questionnaires.css')}}">
+    @vite('resources/dist/css/manage-questionnaires.css')
 @endpush
 
 @section('content')
@@ -173,5 +173,5 @@
 @endpush
 
 @push('scripts')
-    <script defer src="{{mix('/dist/js/manage-questionnaires.js')}}"></script>
+    @vite('resources/dist/js/manage-questionnaires.js')
 @endpush

@@ -68,5 +68,5 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script defer type="text/javascript" src="{{mix('dist/js/questionnaire-statistics.js')}}"></script>
+    @vite('resources/dist/js/questionnaire-statistics.js')
 @endpush

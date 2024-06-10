@@ -1,10 +1,9 @@
 @extends('loggedin-environment.layout')
 
 @push('css')
-    <link rel="preload" href="{{ mix('dist/css/my-dashboard.css') }}" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+    @vite('resources/dist/css/my-dashboard.css')
     <noscript>
-        <link rel="stylesheet" href="{{ mix('dist/css/my-dashboard.css') }}">
+        @vite('resources/dist/css/my-dashboard.css')
     </noscript>
 @endpush
 
