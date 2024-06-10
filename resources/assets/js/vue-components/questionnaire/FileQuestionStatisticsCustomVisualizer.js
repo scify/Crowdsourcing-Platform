@@ -17,21 +17,24 @@ function FileQuestionStatisticsCustomVisualizer(question, data) {
 		const tbody = document.createElement("tbody");
 		const questionName = visualizer.question.name;
 		const answers = visualizer.dataProvider.data;
-		answers
-			.forEach(function (answer) {
-				const response = answer[questionName];
-				if (!response || !response.length || !response[0])
-					return;
-				const fileName = response[0].name;
-				const fileURL = response[0].content;
-				const tr = document.createElement("tr");
-				const td0 = document.createElement("td");
+		answers.forEach(function (answer) {
+			const response = answer[questionName];
+			if (!response || !response.length || !response[0]) return;
+			const fileName = response[0].name;
+			const fileURL = response[0].content;
+			const tr = document.createElement("tr");
+			const td0 = document.createElement("td");
 
-				td0.innerHTML = "<a class='file-link' href=\"" + fileURL + "\" target=\"_blank\" rel=\"nofollow\">" + fileName + " <i class=\"fas fa-external-link-alt ml-2\"></i></a>";
+			td0.innerHTML =
+				"<a class='file-link' href=\"" +
+				fileURL +
+				'" target="_blank" rel="nofollow">' +
+				fileName +
+				' <i class="fas fa-external-link-alt ml-2"></i></a>';
 
-				tr.appendChild(td0);
-				tbody.appendChild(tr);
-			});
+			tr.appendChild(td0);
+			tbody.appendChild(tr);
+		});
 		table.appendChild(tbody);
 	}
 
@@ -49,24 +52,27 @@ function FileQuestionStatisticsCustomVisualizer(question, data) {
 		contentContainer.appendChild(container);
 		container.appendChild(table);
 		contentContainer.className += " custom-texts-table-container";
-		const columns = [
-			{"width": "100%"},
-		];
+		const columns = [{ width: "100%" }];
 		const options = {
 			destroy: true,
-			"paging": true,
-			"responsive": true,
-			"searching": false,
-			"columns": columns,
-			"dom": "Bfrtip"
+			paging: true,
+			responsive: true,
+			searching: false,
+			columns: columns,
+			dom: "Bfrtip",
 		};
 		options.buttons = [];
 		$(table).DataTable(options);
 	};
 
-	return new SurveyAnalytics.VisualizerBase(question, data, {
-		renderContent: renderContent
-	}, "fileVisualizer");
+	return new SurveyAnalytics.VisualizerBase(
+		question,
+		data,
+		{
+			renderContent: renderContent,
+		},
+		"fileVisualizer",
+	);
 }
 
 export default FileQuestionStatisticsCustomVisualizer;

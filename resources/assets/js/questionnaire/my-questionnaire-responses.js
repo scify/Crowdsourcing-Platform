@@ -7,19 +7,13 @@ import "admin-lte/plugins/datatables/jquery.dataTables.min";
 		let usersTable = $("#responsesTable");
 		if (usersTable.length)
 			usersTable.DataTable({
-				"paging": true,
-				"searching": true,
-				"responsive": true,
-				"pageLength": 10,
+				paging: true,
+				searching: true,
+				responsive: true,
+				pageLength: 10,
 				/* No ordering applied by DataTables during initialisation */
-				"order": [],
-				"columns": [
-					{"width": "20%"},
-					{"width": "20%"},
-					{"width": "40%"},
-					{"width": "10%"},
-					{"width": "10%"},
-				],
+				order: [],
+				columns: [{ width: "20%" }, { width: "20%" }, { width: "40%" }, { width: "10%" }, { width: "10%" }],
 			});
 	};
 

@@ -1,8 +1,6 @@
-
 import "admin-lte/plugins/datatables/jquery.dataTables.min";
 
 (function () {
-
 	let init = function () {
 		changeQuestionnaireStatusBtnHandler();
 		initializeDataTable();
@@ -24,27 +22,25 @@ import "admin-lte/plugins/datatables/jquery.dataTables.min";
 	};
 
 	let initializeDataTable = function () {
-
 		setTimeout(function () {
 			let table = $("#questionnaires-table");
 			table.DataTable({
 				destroy: true,
-				"paging": true,
-				"responsive": true,
-				"searching": true,
-				"columns": [
-					{"width": "5%"},
-					{"width": "30%"},
-					{"width": "10%"},
-					{"width": "10%"},
-					{"width": "20%"},
-					{"width": "10%"},
-					{"width": "5%"},
-					{"width": "10%"},
-				]
+				paging: true,
+				responsive: true,
+				searching: true,
+				columns: [
+					{ width: "5%" },
+					{ width: "30%" },
+					{ width: "10%" },
+					{ width: "10%" },
+					{ width: "20%" },
+					{ width: "10%" },
+					{ width: "5%" },
+					{ width: "10%" },
+				],
 			});
 		}, 1000);
-
 	};
 
 	$(document).ready(function () {

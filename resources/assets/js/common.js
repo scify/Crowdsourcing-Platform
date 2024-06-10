@@ -16,11 +16,10 @@ if (process.env.MIX_SENTRY_DSN_PUBLIC) {
 }
 
 (function () {
-
 	$.ajaxSetup({
 		headers: {
-			"X-CSRF-TOKEN": $("meta[name=\"csrf-token\"]").attr("content")
-		}
+			"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+		},
 	});
 
 	let handleLogoutBtnClick = function () {
@@ -38,5 +37,4 @@ if (process.env.MIX_SENTRY_DSN_PUBLIC) {
 	$(document).ready(function () {
 		init();
 	});
-
 })();

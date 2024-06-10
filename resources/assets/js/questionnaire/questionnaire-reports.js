@@ -1,27 +1,28 @@
 import * as Survey from "survey-knockout";
-import {Tabulator} from "survey-analytics/survey.analytics.tabulator.js";
+import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
 import "admin-lte/plugins/datatables/jquery.dataTables.min";
 import _ from "lodash";
 
 (function () {
-
 	let table, respondentsTable, questionnaire, answers, survey, loader;
 
 	let checkForURLSearchParams = function () {
 		let searchParams = new URLSearchParams(window.location.search);
 		const questionnaireId = searchParams.get("questionnaireId");
-		if (questionnaireId){
+		if (questionnaireId) {
 			$("select[name=questionnaire_id]").val(questionnaireId);
 			triggerSearch();
 		}
-
 	};
 
 	let updateURLSearchParams = function (criteria) {
 		let searchParams = new URLSearchParams(window.location.search);
 		let newURL = "";
 		if (searchParams.has("questionnaireId")) {
-			newURL = location.href.replace("questionnaireId=" + searchParams.get("questionnaireId"), "questionnaireId=" + criteria.questionnaireId);
+			newURL = location.href.replace(
+				"questionnaireId=" + searchParams.get("questionnaireId"),
+				"questionnaireId=" + criteria.questionnaireId,
+			);
 		} else {
 			newURL = location.href += "?questionnaireId=" + criteria.questionnaireId;
 		}
@@ -31,13 +32,11 @@ import _ from "lodash";
 		}
 	};
 
-
 	let searchBtnHandler = function () {
 		$("#searchBtn").on("click", function () {
 			let criteria = {};
 			criteria.questionnaireId = $("select[name=questionnaire_id]").val();
-			if (criteria.questionnaireId)
-				updateURLSearchParams(criteria);
+			if (criteria.questionnaireId) updateURLSearchParams(criteria);
 			getReportsForCriteria(criteria);
 		});
 	};
@@ -72,14 +71,16 @@ import _ from "lodash";
 			const loader = $("#delete-response-loader");
 			const errorEl = $("#delete-response-error");
 			const swal = import("bootstrap-sweetalert");
-			const headers = {"X-CSRF-TOKEN": $("meta[name=\"csrf-token\"]").attr("content")};
+			const headers = {
+				"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+			};
 			$.ajax({
 				headers: headers,
 				method: "POST",
 				url: window.route("questionnaire_response.destroy"),
 				cache: false,
 				data: {
-					questionnaire_response_id: questionnaireResponseId
+					questionnaire_response_id: questionnaireResponseId,
 				},
 				beforeSend: function () {
 					loader.removeClass("d-none");
@@ -88,10 +89,7 @@ import _ from "lodash";
 				success: function () {
 					loader.addClass("d-none");
 					const tableRow = $("#questionnaire_response_" + questionnaireResponseId);
-					respondentsTable
-						.row(tableRow)
-						.remove()
-						.draw();
+					respondentsTable.row(tableRow).remove().draw();
 
 					window.$("#delete-response-modal").modal("hide");
 					swal({
@@ -106,15 +104,14 @@ import _ from "lodash";
 					loader.addClass("d-none");
 					errorEl.removeClass("d-none");
 					errorEl.html(error.responseJSON.data);
-				}
+				},
 			});
 		});
 	};
 
 	let getResponseJSONByRespondentId = function (id) {
 		for (let i = 0; i < answers.length; i++)
-			if (answers[i].user_id === id)
-				return JSON.parse(answers[i].response_json);
+			if (answers[i].user_id === id) return JSON.parse(answers[i].response_json);
 	};
 
 	let answersBtnHandler = function () {
@@ -123,17 +120,16 @@ import _ from "lodash";
 			let question = $(this).data("question");
 			let data = $(this).data("answers");
 			data = prepareDataForAnswersTable(data);
-			if (table)
-				table.destroy();
+			if (table) table.destroy();
 			table = $("#answerTextsTable").DataTable({
 				data: data,
 				responsive: true,
 				columns: [
-					{title: "Original answer", width: "45%"},
-					{title: "English automatic translation", width: "45%"},
-					{title: "Initial language detected", width: "10%"}
+					{ title: "Original answer", width: "45%" },
+					{ title: "English automatic translation", width: "45%" },
+					{ title: "Initial language detected", width: "10%" },
 				],
-				order: [[1, "desc"]]
+				order: [[1, "desc"]],
 			});
 			$("#questionTitle").html(question);
 			window.$("#answersModal").modal();
@@ -167,7 +163,7 @@ import _ from "lodash";
 				loader.addClass("d-none");
 				errorEl.removeClass("d-none");
 				errorEl.html(error.responseJSON.data);
-			}
+			},
 		});
 	};
 
@@ -188,10 +184,10 @@ import _ from "lodash";
 
 	let initializeDataTables = function () {
 		respondentsTable = $("#respondentsTable").DataTable({
-			"paging": true,
-			"searching": true,
-			"responsive": true,
-			"pageLength": 50//,
+			paging: true,
+			searching: true,
+			responsive: true,
+			pageLength: 50, //,
 			// "order": [[1, "desc"]],
 			// "columns": [
 			//     {"width": "30%"},
@@ -203,26 +199,29 @@ import _ from "lodash";
 
 		let usersTable = $("#usersTable");
 		usersTable.DataTable({
-			"paging": true,
-			"searching": true,
-			"responsive": true,
-			"pageLength": 10,
-			"dom": "Bfrtip",
-			"buttons": [
+			paging: true,
+			searching: true,
+			responsive: true,
+			pageLength: 10,
+			dom: "Bfrtip",
+			buttons: [
 				{
 					extend: "csvHtml5",
 					text: window.trans("statistics.download_csv"),
-					filename: "Respondents_Questionnaire_" + $("select[name=questionnaire_id]").val() + "_" + new Date().getTime()
-				}
-
+					filename:
+						"Respondents_Questionnaire_" +
+						$("select[name=questionnaire_id]").val() +
+						"_" +
+						new Date().getTime(),
+				},
 			],
-			"columns": [
-				{"width": "7%"},
-				{"width": "7%"},
-				{"width": "35%"},
-				{"width": "23%"},
-				{"width": "23%"},
-				{"width": "2%"},
+			columns: [
+				{ width: "7%" },
+				{ width: "7%" },
+				{ width: "35%" },
+				{ width: "23%" },
+				{ width: "23%" },
+				{ width: "2%" },
 			],
 		});
 	};
@@ -233,7 +232,7 @@ import _ from "lodash";
 		Tabulator.haveCommercialLicense = true;
 		const answersForSurveyTabulator = _.map(answers, "response_json").map(JSON.parse);
 		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
-			downloadButtons: ["csv"]
+			downloadButtons: ["csv"],
 		});
 		surveyAnalyticsTabulator.render(panelEl);
 	};

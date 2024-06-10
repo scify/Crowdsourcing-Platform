@@ -1,45 +1,41 @@
 @import "../variables";
 
 #available-projects {
-  .project-logo {
-    height: auto;
-  }
+	.project-logo {
+		height: auto;
+	}
 
-  tr {
-    border-top: 1px solid #666666;
-  }
+	tr {
+		border-top: 1px solid #666666;
+	}
 
-  tr:first-child {
-    border-top: none;
-  }
-
-
+	tr:first-child {
+		border-top: none;
+	}
 }
 
 .location-btn {
-  margin: 10px auto 0;
-  width: 200px;
+	margin: 10px auto 0;
+	width: 200px;
 }
 
-@media only screen and (min-width : 992px) {
-  .gamification-box {
-    .box-body {
-      height: 300px;
-      position: relative;
-      padding: 20px;
-    }
-  }
+@media only screen and (min-width: 992px) {
+	.gamification-box {
+		.box-body {
+			height: 300px;
+			position: relative;
+			padding: 20px;
+		}
+	}
 }
-
 
 .progress-container {
-  margin: 20px auto;
-  float: none !important;
+	margin: 20px auto;
+	float: none !important;
 }
 
-
 .gamification-badge {
-  .badgeImg {
-    height: 130px;
-  }
+	.badgeImg {
+		height: 130px;
+	}
 }

@@ -1,7 +1,6 @@
 import AnalyticsLogger from "../analytics-logger";
 
 (function () {
-
 	let socialShareHandler = function () {
 		$("body").on("click", ".social-share-button", function () {
 			setTimeout(function () {
@@ -12,12 +11,18 @@ import AnalyticsLogger from "../analytics-logger";
 			const questionnaireId = $(this).data("questionnaireid");
 			const medium = $(this).data("medium");
 			const url = $(this).attr("href");
-			AnalyticsLogger.logEvent("user_engagement", "questionnaire_share_" + questionnaire, "share", JSON.stringify({
-				"questionnaire": questionnaire,
-				"project": project,
-				"medium": medium,
-				"url": url
-			}), questionnaireId);
+			AnalyticsLogger.logEvent(
+				"user_engagement",
+				"questionnaire_share_" + questionnaire,
+				"share",
+				JSON.stringify({
+					questionnaire: questionnaire,
+					project: project,
+					medium: medium,
+					url: url,
+				}),
+				questionnaireId,
+			);
 		});
 	};
 

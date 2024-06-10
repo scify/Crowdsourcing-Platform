@@ -1,36 +1,36 @@
 .social-share {
-  .btn {
-    background-color: transparent;
-    width: 100%;
-    i {
-      margin-right: 10px;
-    }
-  }
+	.btn {
+		background-color: transparent;
+		width: 100%;
+		i {
+			margin-right: 10px;
+		}
+	}
 
-  .facebook {
-    color: #3b5998;
-    border-color: #3b5998;
-  }
+	.facebook {
+		color: #3b5998;
+		border-color: #3b5998;
+	}
 
-  .twitter {
-    color: #1da1f2;
-    border-color: #1da1f2;
-  }
+	.twitter {
+		color: #1da1f2;
+		border-color: #1da1f2;
+	}
 
-  .facebook,
-  .twitter {
-    @media (max-width: 1085px) {
-      padding: 0.3rem;
-    }
-  }
+	.facebook,
+	.twitter {
+		@media (max-width: 1085px) {
+			padding: 0.3rem;
+		}
+	}
 
-  .share-success {
-    margin-top: 20px;
-    font-size: large;
+	.share-success {
+		margin-top: 20px;
+		font-size: large;
 
-    .close {
-      color: white !important;
-      opacity: 0.8;
-    }
-  }
+		.close {
+			color: white !important;
+			opacity: 0.8;
+		}
+	}
 }

@@ -14,24 +14,23 @@ new Vue({
 	store: store,
 	components: {
 		TranslationsManager,
-		CrowdSourcingProjectColors
-	}
+		CrowdSourcingProjectColors,
+	},
 });
 
 (function () {
-
 	let initializeSummernote = function () {
 		window.setTimeout(function () {
 			$(".summernote").summernote({
-				height: 150,   //set editable area's height
-				codemirror: { // codemirror options
+				height: 150, //set editable area's height
+				codemirror: {
+					// codemirror options
 					CodeMirrorConstructor: CodeMirror,
-					theme: "monokai"
-				}
+					theme: "monokai",
+				},
 			});
 			initializeCommunicationResourcesHandlers();
 		}, 2000);
-
 	};
 
 	let initializeSubmitFormListener = function () {
@@ -69,7 +68,6 @@ new Vue({
 		});
 	};
 
-
 	let initializeCommunicationResourcesHandlers = function () {
 		initializeSummernoteAndUpdateElementOnKeyup($("#questionnaire_response_email_intro_text"), $("#intro_text"));
 		initializeSummernoteAndUpdateElementOnKeyup($("#questionnaire_response_email_outro_text"), $("#outro_text"));
@@ -83,8 +81,8 @@ new Vue({
 					setTimeout(function () {
 						targetEl.html(contents);
 					}, 50);
-				}
-			}
+				},
+			},
 		});
 	};
 
@@ -92,7 +90,7 @@ new Vue({
 		$("#social-media-tab").one("click", function () {
 			window.setTimeout(function () {
 				$("#sm_keywords").select2({
-					tags: true
+					tags: true,
 				});
 			}, 200);
 		});

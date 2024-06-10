@@ -7,13 +7,15 @@ if (window.Laravel) {
 			console.error("Route not found ", name);
 		} else {
 			let baseUrl = window.Laravel.baseUrl;
-			if (!baseUrl.endsWith("/"))
-				baseUrl+="/";
+			if (!baseUrl.endsWith("/")) baseUrl += "/";
 
-			return baseUrl + routes[name]
-				.split("/")
-				.map(s => s[0] === "{" ? args.shift() : s)
-				.join("/");
+			return (
+				baseUrl +
+				routes[name]
+					.split("/")
+					.map((s) => (s[0] === "{" ? args.shift() : s))
+					.join("/")
+			);
 		}
 	};
 }
