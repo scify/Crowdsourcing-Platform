@@ -1,15 +1,10 @@
 {
     "private": false,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production",
         "lint": "eslint --ext .js,.vue resources/assets/js",
-        "format": "prettier --write \"resources/assets/\""
+        "format": "prettier --write \"resources/assets/\"",
+        "dev": "vite",
+        "build": "vite build"
     },
     "devDependencies": {
         "axios": "^1.7.2",

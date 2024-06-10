@@ -95,9 +95,9 @@ npm install
 
 npm run dev # (if in development mode)
 
-npm run prod # (if in production mode)
+npm run build # (if in production mode)
 
-npm run watch # (if in development mode and you want to have live changes)
+npm run dev # (if in development mode and you want to have live changes)
 ```
 
 5. Set up the Database **(only if in new installation)**
