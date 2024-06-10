@@ -11,7 +11,7 @@ class QuestionnaireAccessManager {
     protected $userRoleManager;
 
     public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
-                                UserRoleManager $userRoleManager) {
+        UserRoleManager $userRoleManager) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->userRoleManager = $userRoleManager;
     }

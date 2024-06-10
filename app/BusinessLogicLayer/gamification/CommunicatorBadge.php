@@ -23,9 +23,9 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     // protected function getBadgeMessageForLevel() {
-//     $word = $this->numberOfActionsPerformed == 1 ? __("badges_messages.time") : __("badges_messages.times");
-//     return __("badges_messages.clicks_on_shared_questionnaires", ["level"=>"<b> $this->numberOfActionsPerformed </b>"]) . $word;
-// }
+    //     $word = $this->numberOfActionsPerformed == 1 ? __("badges_messages.time") : __("badges_messages.times");
+    //     return __("badges_messages.clicks_on_shared_questionnaires", ["level"=>"<b> $this->numberOfActionsPerformed </b>"]) . $word;
+    // }
 
     public function getEmailBody() {
         if ($this->level == 1) {
@@ -37,10 +37,10 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     // public function getEmailBody() {
-//     if($this->level == 1)
-//         return __("email_messages.unlocked_new_badge");
-//     return __("badges_messages.become_level_2_communicator", ["level"=>"<b> $this->level </b>"])  ;
-// }
+    //     if($this->level == 1)
+    //         return __("email_messages.unlocked_new_badge");
+    //     return __("badges_messages.become_level_2_communicator", ["level"=>"<b> $this->level </b>"])  ;
+    // }
 
     public function getNextStepMessage() {
         if ($this->userHasAchievedBadgePlatformWide) {
@@ -50,9 +50,9 @@ class CommunicatorBadge extends GamificationBadge {
         return __('badges_messages.gain_communicator_badge');
 
         // public function getNextStepMessage() {
-    //     if($this->userHasAchievedBadgePlatformWide)
-    //         return __("badges_messages.become_level_2_communicator") . " <b>" . ($this->calculateLevel() + 1) . "</b> " . __("email_messages.communicator_title") . "!";
-    //     return __("badges_messages.gain_communicator_badge");
+        //     if($this->userHasAchievedBadgePlatformWide)
+        //         return __("badges_messages.become_level_2_communicator") . " <b>" . ($this->calculateLevel() + 1) . "</b> " . __("email_messages.communicator_title") . "!";
+        //     return __("badges_messages.gain_communicator_badge");
         // }
     }
 }

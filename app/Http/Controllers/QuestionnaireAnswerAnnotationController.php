@@ -12,7 +12,7 @@ class QuestionnaireAnswerAnnotationController extends Controller {
     protected $questionnaireAnswerAdminReviewStatusesRepository;
 
     public function __construct(QuestionnaireAnswerAnnotator $questionnaireAnswerAnnotator,
-                                QuestionnaireAnswerAdminReviewLkpRepository $adminAnalysisLkpRepository) {
+        QuestionnaireAnswerAdminReviewLkpRepository $adminAnalysisLkpRepository) {
         $this->questionnaireAnswerAnnotator = $questionnaireAnswerAnnotator;
         $this->questionnaireAnswerAdminReviewStatusesRepository = $adminAnalysisLkpRepository;
     }

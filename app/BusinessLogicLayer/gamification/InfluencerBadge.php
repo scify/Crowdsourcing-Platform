@@ -20,7 +20,7 @@ class InfluencerBadge extends GamificationBadge {
 
     // ??
     public function getBadgeMessageForLevel() {
-        return  trans_choice('badges_messages.person_or_people_responded', $this->numberOfActionsPerformed, ['count' =>  $this->numberOfActionsPerformed]);
+        return trans_choice('badges_messages.person_or_people_responded', $this->numberOfActionsPerformed, ['count' =>  $this->numberOfActionsPerformed]);
 
         // $word = $this->numberOfActionsPerformed == 1 ? __("badges_messages.person") : __("badges_messages.people");
         // return $this->numberOfActionsPerformed . ' ' . $word .  __("badges_messages.responded_to_call");
@@ -34,7 +34,7 @@ class InfluencerBadge extends GamificationBadge {
         return __('badges_messages.you_are_an_influencer', ['level' => "<b> $this->level </b>"]);
     }
 
-        // ??
+    // ??
     public function getNextStepMessage() {
         if (!$this->questionnaireReferralsNum) {
             $title = __('badges_messages.zero_people_responded_to_call');

@@ -16,15 +16,12 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
     protected $badgeVM;
 
     /**
-     * @param  QuestionnaireFieldsTranslation  $questionnaireFieldsTranslation
-     * @param  GamificationBadge  $badge
-     * @param  GamificationBadgeVM  $badgeVM
      * @param  string  $locale We add the locale here because this notification may be trigger by an api.web action.
      */
     public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
-                                GamificationBadge $badge,
-                                GamificationBadgeVM $badgeVM,
-                                string $locale) {
+        GamificationBadge $badge,
+        GamificationBadgeVM $badgeVM,
+        string $locale) {
         $this->title = $questionnaireFieldsTranslation->title;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;

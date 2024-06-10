@@ -16,14 +16,10 @@ abstract class Repository implements RepositoryInterface {
 
     /**
      * Query builder for this model
-     *
-     * @var
      */
     protected $modelInstance;
 
     /**
-     * @param  App  $app
-     *
      * @throws RepositoryException
      */
     public function __construct(App $app) {
@@ -52,9 +48,9 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function allWithTrashed($columns = ['*'],
-                                   $orderColumn = null,
-                                   $order = null,
-                                   $withRelationships = []): Collection {
+        $orderColumn = null,
+        $order = null,
+        $withRelationships = []): Collection {
         $query = $this->modelInstance;
 
         if ($orderColumn) {
@@ -77,7 +73,6 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param  array  $data
      * @return mixed
      */
     public function create(array $data) {
@@ -85,8 +80,6 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param  array  $data
-     * @param $id
      * @param  string  $attribute
      * @return mixed
      */
@@ -117,7 +110,6 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param $id
      * @return mixed
      */
     public function delete($id) {
@@ -125,7 +117,6 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param $id
      * @param  array  $columns
      * @return mixed
      */
@@ -146,11 +137,7 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param $field
-     * @param $value
      * @param  array  $columns
-     * @param  bool  $caseInsensitive
-     * @param  array  $withRelationships
      * @return mixed
      */
     public function findBy($field, $value, $columns = ['*'], bool $caseInsensitive = false, array $withRelationships = []) {
@@ -198,10 +185,10 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function whereWithTrashed($whereArray,
-                                     $columns = ['*'],
-                                     $orderColumn = null,
-                                     $order = null,
-                                     $withRelationships = []): Collection {
+        $columns = ['*'],
+        $orderColumn = null,
+        $order = null,
+        $withRelationships = []): Collection {
         $query = $this->modelInstance->where($whereArray);
 
         if ($orderColumn) {
@@ -216,8 +203,6 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @return Model
-     *
      * @throws RepositoryException
      * @throws BindingResolutionException
      */

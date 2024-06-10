@@ -27,14 +27,14 @@ class QuestionnaireActionHandler {
     protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
     protected LanguageManager $languageManager;
 
-    public function __construct(WebSessionManager                      $webSessionManager,
-                                UserRepository                         $userRepository,
-                                QuestionnaireResponseReferralManager   $questionnaireResponseReferralManager,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                UserQuestionnaireShareRepository       $questionnaireShareRepository,
-                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
-                                QuestionnaireFieldsTranslationManager  $questionnaireFieldsTranslationManager,
-                                LanguageManager                        $languageManager) {
+    public function __construct(WebSessionManager $webSessionManager,
+        UserRepository $userRepository,
+        QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
+        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
+        UserQuestionnaireShareRepository $questionnaireShareRepository,
+        QuestionnaireResponseRepository $questionnaireResponseRepository,
+        QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager,
+        LanguageManager $languageManager) {
         $this->webSessionManager = $webSessionManager;
         $this->userRepository = $userRepository;
         $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
@@ -45,10 +45,10 @@ class QuestionnaireActionHandler {
         $this->languageManager = $languageManager;
     }
 
-    public function handleQuestionnaireContributor(Questionnaire        $questionnaire,
-                                                   CrowdSourcingProject $project,
-                                                   User                 $user,
-                                                   Language             $language): void {
+    public function handleQuestionnaireContributor(Questionnaire $questionnaire,
+        CrowdSourcingProject $project,
+        User $user,
+        Language $language): void {
         //check if the contributor email should be sent
         if ($project->should_send_email_after_questionnaire_response) {
             $this->awardContributorBadgeToUser($questionnaire, $project, $user, $language);
@@ -56,8 +56,8 @@ class QuestionnaireActionHandler {
     }
 
     public function awardContributorBadgeToUser(Questionnaire $questionnaire, CrowdSourcingProject $project,
-                                                User          $user,
-                                                Language      $language): void {
+        User $user,
+        Language $language): void {
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
         $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
@@ -75,8 +75,8 @@ class QuestionnaireActionHandler {
     }
 
     public function handleQuestionnaireReferrer(Questionnaire $questionnaire,
-                                                User          $user,
-                                                Language      $language): void {
+        User $user,
+        Language $language): void {
         $referrerId = $this->webSessionManager->getReferredId();
         if ($referrerId) {
             $referrer = $this->userRepository->getUser($referrerId);

@@ -20,7 +20,6 @@ class MailChimpAdaptor {
     /**
      * MailChimpAdaptor constructor.
      *
-     * @param  MailChimpListRepository  $mailChimpListRepository
      *
      * @throws \Exception
      */

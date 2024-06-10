@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CrowdSourcingProjectTranslation extends Model {
-    use SoftDeletes;
     use Compoships;
+    use SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -31,16 +31,10 @@ class CrowdSourcingProjectTranslation extends Model {
         'banner_title', 'banner_text',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function project(): BelongsTo {
         return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function language(): BelongsTo {
         return $this->belongsTo(Language::class, 'language_id', 'id');
     }

@@ -15,7 +15,7 @@ class DefaultProjectSeeder extends Seeder {
     protected $projectTranslationRepository;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-                                CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
+        CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
         $this->projectRepository = $crowdSourcingProjectRepository;
         $this->projectTranslationRepository = $crowdSourcingProjectTranslationRepository;
     }

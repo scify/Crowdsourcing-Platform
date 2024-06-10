@@ -26,12 +26,12 @@ class UserDashboardManager {
     protected $crowdSourcingProjectTranslationManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireGoalManager $crowdSourcingProjectGoalManager,
-                                QuestionnaireBadgeProvider $questionnaireBadgeProvider,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireAccessManager $questionnaireAccessManager,
-                                CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
+        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
+        QuestionnaireGoalManager $crowdSourcingProjectGoalManager,
+        QuestionnaireBadgeProvider $questionnaireBadgeProvider,
+        QuestionnaireResponseRepository $questionnaireResponseRepository,
+        QuestionnaireAccessManager $questionnaireAccessManager,
+        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->crowdSourcingProjectGoalManager = $crowdSourcingProjectGoalManager;
@@ -67,7 +67,6 @@ class UserDashboardManager {
 
     /**
      * @param $questionnaire
-     * @param $userResponses
      * @return Collection<CrowdSourcingProject>
      */
     private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection {

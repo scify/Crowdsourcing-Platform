@@ -22,12 +22,12 @@ class QuestionnaireResponseManager {
     protected QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
     protected UserManager $userManager;
 
-    public function __construct(QuestionnaireRepository           $questionnaireRepository,
-                                QuestionnaireResponseRepository   $questionnaireResponseRepository,
-                                LanguageManager                   $languageManager,
-                                QuestionnaireActionHandler        $questionnaireActionHandler,
-                                QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository,
-                                UserManager                       $userManager) {
+    public function __construct(QuestionnaireRepository $questionnaireRepository,
+        QuestionnaireResponseRepository $questionnaireResponseRepository,
+        LanguageManager $languageManager,
+        QuestionnaireActionHandler $questionnaireActionHandler,
+        QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository,
+        UserManager $userManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->languageManager = $languageManager;
@@ -127,6 +127,7 @@ class QuestionnaireResponseManager {
             'user_id' => $user->id,
             'project_id' => $data['project_id'],
         ];
+
         return $this->questionnaireResponseRepository->create(
             array_merge($queryData, [
                 'language_id' => $language->id,
@@ -158,11 +159,11 @@ class QuestionnaireResponseManager {
             ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id);
     }
 
-    public function voteAnswer(int    $questionnaire_id,
-                               string $question_name,
-                               int    $respondent_user_id,
-                               int    $voter_user_id,
-                               bool   $upvote) {
+    public function voteAnswer(int $questionnaire_id,
+        string $question_name,
+        int $respondent_user_id,
+        int $voter_user_id,
+        bool $upvote) {
         $data = [
             'questionnaire_id' => $questionnaire_id,
             'question_name' => $question_name,

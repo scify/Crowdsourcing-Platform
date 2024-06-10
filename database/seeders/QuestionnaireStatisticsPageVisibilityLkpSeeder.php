@@ -11,7 +11,7 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
     protected $questionnaireRepository;
 
     public function __construct(QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-                                QuestionnaireRepository $questionnaireRepository) {
+        QuestionnaireRepository $questionnaireRepository) {
         $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
         $this->questionnaireRepository = $questionnaireRepository;
     }

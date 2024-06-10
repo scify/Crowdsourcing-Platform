@@ -60,23 +60,22 @@ class Handler extends ExceptionHandler {
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
      * @return Application|RedirectResponse|Response|Redirector
      *
      * @throws Throwable
      */
     public function render($request, Throwable $exception) {
-//        if ($exception instanceof NotFoundHttpException) {
-//            if (!isset($urlVars[3]) || !isset($urlVars[4])) {
-//                return redirect('/' . app()->getLocale() . '/');
-//            }
-//            $urlVars = explode('/', url()->current());
-//            $locale = $urlVars[3];
-//            $lastPart = $urlVars[4];
-//            if (app()->getLocale() !== $locale) {
-//                return redirect('/' . app()->getLocale() . '/' . $lastPart);
-//            }
-//        }
+        //        if ($exception instanceof NotFoundHttpException) {
+        //            if (!isset($urlVars[3]) || !isset($urlVars[4])) {
+        //                return redirect('/' . app()->getLocale() . '/');
+        //            }
+        //            $urlVars = explode('/', url()->current());
+        //            $locale = $urlVars[3];
+        //            $lastPart = $urlVars[4];
+        //            if (app()->getLocale() !== $locale) {
+        //                return redirect('/' . app()->getLocale() . '/' . $lastPart);
+        //            }
+        //        }
 
         return parent::render($request, $exception);
     }

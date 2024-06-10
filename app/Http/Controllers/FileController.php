@@ -24,6 +24,7 @@ class FileController extends Controller {
             $uploadedFilePath = Storage::disk('s3')->url($path);
             $responseFilePaths[$originalFileName] = $uploadedFilePath;
         }
+
         return response()->json($responseFilePaths);
     }
 }

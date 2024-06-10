@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -18,8 +17,8 @@ class CrowdSourcingProjectController extends Controller {
     private CrowdSourcingProjectManager $crowdSourcingProjectManager;
     private UserQuestionnaireShareManager $questionnaireShareManager;
 
-    public function __construct(CrowdSourcingProjectManager   $crowdSourcingProjectManager,
-                                UserQuestionnaireShareManager $questionnaireShareManager) {
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
+        UserQuestionnaireShareManager $questionnaireShareManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
     }
@@ -36,9 +35,6 @@ class CrowdSourcingProjectController extends Controller {
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return View
      */
     public function edit(int $id): View {
         return view('admin.projects.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
@@ -47,8 +43,6 @@ class CrowdSourcingProjectController extends Controller {
     /**
      * Create and store the specified resource in storage.
      *
-     * @param Request $request
-     * @return RedirectResponse
      *
      * @throws ValidationException
      */
@@ -68,9 +62,7 @@ class CrowdSourcingProjectController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
      * @param int $id the project id
-     * @return RedirectResponse
      *
      * @throws ValidationException
      */
@@ -110,7 +102,7 @@ class CrowdSourcingProjectController extends Controller {
 
             return view('landingpages.project-unavailable')
                 ->with(['viewModel' => $this->crowdSourcingProjectManager->
-                getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug),]);
+                getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug), ]);
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
@@ -132,6 +124,7 @@ class CrowdSourcingProjectController extends Controller {
             abort(404);
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
             return redirect()->to(route('home', ['locale' => app()->getLocale()]));
         }
     }

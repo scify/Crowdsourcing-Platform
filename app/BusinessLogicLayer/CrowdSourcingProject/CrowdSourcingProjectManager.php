@@ -41,16 +41,16 @@ class CrowdSourcingProjectManager {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
 
-    public function __construct(CrowdSourcingProjectRepository              $crowdSourcingProjectRepository,
-                                QuestionnaireRepository                     $questionnaireRepository,
-                                CrowdSourcingProjectStatusManager           $crowdSourcingProjectStatusManager,
-                                CrowdSourcingProjectAccessManager           $crowdSourcingProjectAccessManager,
-                                CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
-                                QuestionnaireGoalManager                    $questionnaireGoalManager,
-                                LanguageRepository                          $languageRepository,
-                                CrowdSourcingProjectColorsManager           $crowdSourcingProjectColorsManager,
-                                QuestionnaireResponseRepository             $questionnaireResponseRepository,
-                                CrowdSourcingProjectTranslationManager      $crowdSourcingProjectTranslationManager) {
+    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
+        QuestionnaireRepository $questionnaireRepository,
+        CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
+        CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
+        CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
+        QuestionnaireGoalManager $questionnaireGoalManager,
+        LanguageRepository $languageRepository,
+        CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager,
+        QuestionnaireResponseRepository $questionnaireResponseRepository,
+        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -70,8 +70,9 @@ class CrowdSourcingProjectManager {
         // if it does not exist in the collection of the projects with active questionnaires,
         // add it there.
         foreach ($projectsWithFinalizedQuestionnaires as $project) {
-            if (!$projects->contains('id', $project->id))
+            if (!$projects->contains('id', $project->id)) {
                 $projects->push($project);
+            }
         }
 
         foreach ($projects as $project) {
@@ -222,7 +223,7 @@ class CrowdSourcingProjectManager {
         }
     }
 
-    protected function setDefaultValuesForCommonProjectFields(array $attributes, CrowdSourcingProject $project = null): array {
+    protected function setDefaultValuesForCommonProjectFields(array $attributes, ?CrowdSourcingProject $project = null): array {
         if (!isset($attributes['slug']) || !$attributes['slug']) {
             $attributes['slug'] = Str::slug($attributes['name'], '-');
         }
@@ -337,7 +338,7 @@ class CrowdSourcingProjectManager {
         ]);
     }
 
-    public function getCreateEditProjectViewModel(int $id = null): CreateEditCrowdSourcingProject {
+    public function getCreateEditProjectViewModel(?int $id = null): CreateEditCrowdSourcingProject {
         if ($id) {
             $project = $this->getCrowdSourcingProject($id);
         } else {

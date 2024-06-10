@@ -12,9 +12,9 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
     use Queueable;
 
     public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
-                                GamificationBadge $badge,
-                                GamificationBadgeVM $badgeVM,
-                                string $locale) {
+        GamificationBadge $badge,
+        GamificationBadgeVM $badgeVM,
+        string $locale) {
         $this->title = $questionnaireFieldsTranslation->title;
         $this->badge = $badge;
         $this->badgeVM = $badgeVM;

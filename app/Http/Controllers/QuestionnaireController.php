@@ -7,11 +7,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
-use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,11 +20,11 @@ class QuestionnaireController extends Controller {
     protected QuestionnaireTranslator $questionnaireTranslator;
     protected QuestionnaireLanguageManager $questionnaireLanguageManager;
 
-    public function __construct(QuestionnaireManager          $questionnaireManager,
-                                UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireVMProvider       $questionnaireVMProvider,
-                                QuestionnaireTranslator       $questionnaireTranslator,
-                                QuestionnaireLanguageManager  $questionnaireLanguageManager) {
+    public function __construct(QuestionnaireManager $questionnaireManager,
+        UserQuestionnaireShareManager $questionnaireShareManager,
+        QuestionnaireVMProvider $questionnaireVMProvider,
+        QuestionnaireTranslator $questionnaireTranslator,
+        QuestionnaireLanguageManager $questionnaireLanguageManager) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;

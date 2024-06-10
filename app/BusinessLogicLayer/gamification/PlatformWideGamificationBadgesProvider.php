@@ -17,9 +17,9 @@ class PlatformWideGamificationBadgesProvider {
     protected $questionnaireResponseRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
-                                UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
-                                QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
+        UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
+        QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
+        QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->userQuestionnaireShareRepository = $userQuestionnaireShareRepository;
         $this->questionnaireResponseReferralRepository = $questionnaireResponseReferralRepository;
