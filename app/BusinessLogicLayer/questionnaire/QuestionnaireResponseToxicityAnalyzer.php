@@ -15,10 +15,10 @@ class QuestionnaireResponseToxicityAnalyzer {
     protected $questionnaireResponseRepository;
 
     public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
-                                ToxicityAnalyzerService $toxicityAnalyzerService,
-                                QuestionnaireResponseToxicityRepository $questionnaireResponseToxicityRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository) {
+        ToxicityAnalyzerService $toxicityAnalyzerService,
+        QuestionnaireResponseToxicityRepository $questionnaireResponseToxicityRepository,
+        QuestionnaireRepository $questionnaireRepository,
+        QuestionnaireResponseRepository $questionnaireResponseRepository) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->toxicityAnalyzerService = $toxicityAnalyzerService;
         $this->questionnaireResponseToxicityRepository = $questionnaireResponseToxicityRepository;

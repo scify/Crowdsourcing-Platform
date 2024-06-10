@@ -16,12 +16,12 @@ class QuestionnaireStatistics {
     public $userCanAnnotateAnswers;
     public int $projectFilter;
 
-    public function __construct(Questionnaire                     $questionnaire,
-                                QuestionnaireResponseStatistics   $questionnaireResponseStatistics,
-                                QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
-                                bool                              $userCanPrintStatistics,
-                                bool                              $userCanAnnotateAnswers,
-                                int                               $projectFilter) {
+    public function __construct(Questionnaire $questionnaire,
+        QuestionnaireResponseStatistics $questionnaireResponseStatistics,
+        QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
+        bool $userCanPrintStatistics,
+        bool $userCanAnnotateAnswers,
+        int $projectFilter) {
         $this->questionnaire = $questionnaire;
         $this->current_user_id = Auth::check() ? Auth::id() : 0;
         $this->userCanPrintStatistics = $userCanPrintStatistics;

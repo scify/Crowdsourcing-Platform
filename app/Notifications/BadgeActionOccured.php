@@ -27,15 +27,15 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
     }
 
     public function objectToMail(GamificationBadgeVM $badge,
-                                 $subject,
-                                 $greeting,
-                                 $title,
-                                 $beforeBadge,
-                                 $afterBadge,
-                                 $actionText,
-                                 $actionText2,
-                                 $salutation = null
-                                 ) {
+        $subject,
+        $greeting,
+        $title,
+        $beforeBadge,
+        $afterBadge,
+        $actionText,
+        $actionText2,
+        $salutation = null
+    ) {
         $message = (new MailMessage)
             ->subject('Crowdsourcing Platform | ' . $subject)
             ->greeting($greeting)

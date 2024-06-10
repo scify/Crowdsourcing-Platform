@@ -15,7 +15,7 @@ abstract class GamificationBadge {
     protected $userHasAchievedBadgePlatformWide;
 
     public function __construct($name, $imageFileName, $requiredActionMessage,
-                                $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction = 1) {
+        $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction = 1) {
         $this->name = $name;
         $this->imageFileName = $imageFileName;
         $this->numberOfActionsPerformed = $numberOfActionsPerformed;

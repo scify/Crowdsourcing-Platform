@@ -8,9 +8,6 @@ class ActionResponse {
 
     /**
      * ActionResponse constructor.
-     *
-     * @param $status
-     * @param $data
      */
     public function __construct($status, $data) {
         $this->status = $status;

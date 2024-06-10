@@ -5,7 +5,6 @@ namespace App\Models\ViewModels\Questionnaire;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireModeratorAddResponse {
-
     public $project;
     public $questionnaire;
     public $languages;
@@ -15,11 +14,6 @@ class QuestionnaireModeratorAddResponse {
     public $feedbackQuestionnaire;
     public $moderator = true;
 
-    /**
-     * @param $project
-     * @param $questionnaire
-     * @param $languages
-     */
     public function __construct($project, $questionnaire, $languages) {
         $this->project = $project;
         $this->questionnaire = $questionnaire;

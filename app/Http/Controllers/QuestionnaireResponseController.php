@@ -23,10 +23,10 @@ class QuestionnaireResponseController extends Controller {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
-    public function __construct(QuestionnaireResponseManager           $questionnaireResponseManager,
-                                PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-                                QuestionnaireResponseRepository        $questionnaireResponseRepository,
-                                CrowdSourcingProjectManager            $crowdSourcingProjectManager) {
+    public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
+        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
+        QuestionnaireResponseRepository $questionnaireResponseRepository,
+        CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
@@ -42,10 +42,11 @@ class QuestionnaireResponseController extends Controller {
         app()->setLocale($request->lang);
         $data = $request->all();
         $data['ip'] = $request->getClientIp();
-        if ($data['moderator'])
+        if ($data['moderator']) {
             $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponseForModerator($data);
-        else
+        } else {
             $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($data);
+        }
         $response = response()->json([
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id,
         ]);

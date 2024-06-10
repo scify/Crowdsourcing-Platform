@@ -42,7 +42,7 @@ use Illuminate\Notifications\Notifiable;
  * @mixin \Eloquent
  */
 class User extends Authenticatable {
-    use  Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

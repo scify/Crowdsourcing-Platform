@@ -16,11 +16,11 @@ class UserQuestionnaireShareManager {
     protected $webSessionManager;
 
     public function __construct(UserQuestionnaireShareRepository $questionnaireShareRepository,
-                                QuestionnaireRepository $questionnaireRepository,
-                                QuestionnaireActionHandler $questionnaireActionHandler,
-                                UserRepository $userRepository,
-                                WebSessionManager $webSessionManager,
-                                LanguageManager $languageManager
+        QuestionnaireRepository $questionnaireRepository,
+        QuestionnaireActionHandler $questionnaireActionHandler,
+        UserRepository $userRepository,
+        WebSessionManager $webSessionManager,
+        LanguageManager $languageManager
     ) {
         $this->questionnaireShareRepository = $questionnaireShareRepository;
         $this->questionnaireRepository = $questionnaireRepository;

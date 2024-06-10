@@ -10,7 +10,6 @@ class QuestionnaireStatisticsRepository {
      * * Returns responses vs goal responses.
      * *
      * * @param  mixed  $questionnaireId
-     * * @return QuestionnaireResponseStatistics
      * */
     public function getQuestionnaireResponseStatistics($questionnaireId): QuestionnaireResponseStatistics {
         $totalResponses = DB::select(

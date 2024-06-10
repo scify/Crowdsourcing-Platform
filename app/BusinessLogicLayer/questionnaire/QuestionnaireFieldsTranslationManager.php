@@ -14,7 +14,7 @@ class QuestionnaireFieldsTranslationManager {
     protected $languageRepository;
 
     public function __construct(QuestionnaireFieldsTranslationRepository $questionnaireFieldsTranslationRepository,
-                                LanguageRepository $languageRepository) {
+        LanguageRepository $languageRepository) {
         $this->questionnaireFieldsTranslationRepository = $questionnaireFieldsTranslationRepository;
         $this->languageRepository = $languageRepository;
     }
