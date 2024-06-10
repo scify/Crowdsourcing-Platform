@@ -383,7 +383,7 @@ export default {
 					answersForPanel = _.map(answers, "response_text");
 					// eslint-disable-next-line no-unused-vars
 					answersForPanel = Object.values(
-						_.pickBy(answersForPanel, function (value, key) {
+						_.pickBy(answersForPanel, function (value) {
 							return currentQuestionName in value && value[currentQuestionName] !== undefined;
 						}),
 					);

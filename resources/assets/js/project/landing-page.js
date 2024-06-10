@@ -55,12 +55,16 @@ new Vue({
 		if (viewModel.project.display_landing_page_banner) {
 			// eslint-disable-next-line no-undef
 			let bannerTitle = viewModel.project.currentTranslation
-				? viewModel.project.currentTranslation.banner_title
-				: viewModel.project.default_translation.banner_title;
+				? // eslint-disable-next-line no-undef
+					viewModel.project.currentTranslation.banner_title
+				: // eslint-disable-next-line no-undef
+					viewModel.project.default_translation.banner_title;
 			// eslint-disable-next-line no-undef
 			let bannerText = viewModel.project.currentTranslation
-				? viewModel.project.currentTranslation.banner_text
-				: viewModel.project.default_translation.banner_text;
+				? // eslint-disable-next-line no-undef
+					viewModel.project.currentTranslation.banner_text
+				: // eslint-disable-next-line no-undef
+					viewModel.project.default_translation.banner_text;
 			if (bannerTitle || bannerText)
 				showToast(
 					'<div class="project-toast"><h3>' + bannerTitle + "</h3><br><br>" + bannerText + "</div>",

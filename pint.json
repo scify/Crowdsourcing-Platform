@@ -1,6 +1,9 @@
 {
   "preset": "laravel",
   "rules": {
+    "statement_indentation": true,
+    "phpdoc_align": false,
+    "phpdoc_separation": false,
     "function_typehint_space": false,
     "not_operator_with_successor_space": false,
     "braces": {
