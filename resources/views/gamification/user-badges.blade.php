@@ -1,6 +1,6 @@
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/badges.css') }}">
-    <link rel="stylesheet" href="{{ mix('dist/css/next-step.css') }}">
+    @vite('resources/dist/css/badges.css')
+    @vite('resources/dist/css/next-step.css')
 @endpush
 
 <div class="card card-danger card-outline">

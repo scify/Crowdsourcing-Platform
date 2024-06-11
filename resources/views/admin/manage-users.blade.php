@@ -29,7 +29,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="{{ mix('dist/js/manage-users.js')}}"></script>
+    @vite('resources/dist/js/manage-users.js')
     <script>
         let controller = new window.UsersListController();
         controller.init();

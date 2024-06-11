@@ -9,7 +9,7 @@
 
         }
     </style>
-    <link rel="stylesheet" href="{{ mix('dist/css/questionnaire-thanks.css') }}">
+    @vite('resources/dist/css/questionnaire-thanks.css')
 @endpush
 
 @section('content')
@@ -87,5 +87,5 @@
     @endpush
 @endif
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
+    @vite('resources/dist/js/questionnaire-thanks.js')
 @endpush

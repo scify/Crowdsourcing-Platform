@@ -5,7 +5,7 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{mix('dist/css/reports.css')}}">
+    @vite('resources/dist/css/reports.css')
 @endpush
 
 @section('content')
@@ -70,5 +70,5 @@
     </div>
 @endpush
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-reports.js')}}"></script>
+    @vite('resources/dist/js/questionnaire-reports.js')
 @endpush

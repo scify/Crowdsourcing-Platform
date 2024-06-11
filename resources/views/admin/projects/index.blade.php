@@ -5,10 +5,9 @@
 @endsection
 
 @push('css')
-    <link rel="preload" href="{{ mix('dist/css/all-projects.css') }}" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+    @vite('resources/dist/css/all-projects.css')
     <noscript>
-        <link rel="stylesheet" href="{{ mix('dist/css/all-projects.css') }}">
+        @vite('resources/dist/css/all-projects.css')
     </noscript>
 @endpush
 

@@ -17,5 +17,5 @@
     </div>
 </div>
 @push('scripts')
-    <script defer src="{{mix('dist/js/newsletter-signup.js')}}"></script>
+    @vite('resources/dist/js/newsletter-signup.js')
 @endpush
