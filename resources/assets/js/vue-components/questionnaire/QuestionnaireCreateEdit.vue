@@ -336,9 +336,9 @@ import * as SurveyCreator from "survey-creator";
 import _ from "lodash";
 import { arrayMove, showToast } from "../../common-utils";
 import { isObject } from "../../common-backoffice";
-import QuestionnaireLanguages from "./QuestionnaireLanguages";
-import CommonModal from "../common/ModalComponent";
-import TranslationsManager from "../common/TranslationsManager";
+import QuestionnaireLanguages from "./QuestionnaireLanguages.vue";
+import CommonModal from "../common/ModalComponent.vue";
+import TranslationsManager from "../common/TranslationsManager.vue";
 import "select2";
 
 const FILE_MAX_SIZE_BYTES = 3145728; // 3MB;

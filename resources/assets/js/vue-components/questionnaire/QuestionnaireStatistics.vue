@@ -178,8 +178,8 @@ import Promise from "lodash/_Promise";
 import _ from "lodash";
 import { showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
-import CommonModal from "../common/ModalComponent";
-import StoreModal from "../common/StoreModalComponent";
+import CommonModal from "../common/ModalComponent.vue";
+import StoreModal from "../common/StoreModalComponent.vue";
 import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
 
 export default {
