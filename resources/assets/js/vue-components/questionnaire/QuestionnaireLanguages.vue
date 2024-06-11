@@ -83,7 +83,7 @@
 import { mapActions } from "vuex";
 import _ from "lodash";
 import { showToast } from "../../common-utils";
-import CommonModal from "../common/ModalComponent";
+import CommonModal from "../common/ModalComponent.vue";
 
 export default {
 	name: "QuestionnaireLanguages",
