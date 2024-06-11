@@ -1,5 +1,5 @@
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/next-step.css') }}">
+    @vite('resources/dist/css/next-step.css')
 @endpush
 
 <div class="container-fluid nextStepContainer h-100 p-2">

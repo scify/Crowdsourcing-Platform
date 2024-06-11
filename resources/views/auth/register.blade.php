@@ -17,5 +17,5 @@
     </div>
 @endsection
 @push('scripts')
-    <script defer src="{{ mix('dist/js/register.js') }}"></script>
+    @vite('resources/dist/js/register.js')
 @endpush
