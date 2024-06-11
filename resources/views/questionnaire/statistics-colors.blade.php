@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/questionnaire-statistics-colors.css') }}">
+    @vite('resources/dist/css/questionnaire-statistics-colors.css')
 @endpush
 
 @section('content')
@@ -97,5 +97,5 @@
     </form>
 @endsection
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-statistics-colors.js')}}"></script>
+    @vite('resources/dist/js/questionnaire-statistics-colors.js')
 @endpush

@@ -1,6 +1,6 @@
 @extends('home.layout', ['onErrorPage' => true])
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/errors.css') }}">
+    @vite('resources/dist/css/errors.css')
 @endpush
 @section('title_prefix')
     @yield('title')
