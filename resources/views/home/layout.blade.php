@@ -22,16 +22,14 @@
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-    <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-    <link rel="preload" href="{{ mix('dist/css/landing-page.css') }}" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+    @vite('resources/dist/css/common.css')
+    @vite('resources/dist/css/landing-page.css')
     <noscript>
-        <link rel="stylesheet" href="{{ mix('dist/css/landing-page.css') }}">
+        @vite('resources/dist/css/landing-page.css')
     </noscript>
-    <link rel="preload" href="{{ mix('dist/css/home.css') }}" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+    @vite('resources/dist/css/home.css')
     <noscript>
-        <link rel="stylesheet" href="{{ mix('dist/css/home.css') }}">
+        @vite('resources/dist/css/home.css')
     </noscript>
     @stack('css')
 
