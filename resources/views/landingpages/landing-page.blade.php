@@ -33,5 +33,5 @@
     <script defer type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    <script defer src="{{mix('dist/js/landing-page.js')}}"></script>
+    @vite('resources/dist/js/landing-page.js')
 @endpush
