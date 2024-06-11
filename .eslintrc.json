@@ -11,7 +11,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:vue/vue3-essential"
+    "plugin:vue/vue3-essential",
+    "prettier"
   ],
   "overrides": [
   ],
@@ -26,15 +27,15 @@
     "vue/no-use-v-if-with-v-for": "off",
     "indent": [
       "error",
-      "tab"
+      "tab",
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": ["ConditionalExpression"]
+      }
     ],
     "linebreak-style": [
       "error",
       "unix"
-    ],
-    "quotes": [
-      "error",
-      "double"
     ],
     "semi": [
       "error",

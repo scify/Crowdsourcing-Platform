@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class CrowdSourcingProject
  */
 class CrowdSourcingProject extends Model {
-    use SoftDeletes;
     use Compoships;
+    use SoftDeletes;
 
     /**
      * The table associated with the model.

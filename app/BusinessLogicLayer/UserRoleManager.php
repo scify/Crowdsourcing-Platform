@@ -78,8 +78,6 @@ class UserRoleManager {
     /**
      * Checks if a given @param  User  $user the @see User instance
      *
-     * @param  int  $roleId
-     * @param  string  $roleKeyForCache
      * @return bool
      *
      * @see User has the admin role

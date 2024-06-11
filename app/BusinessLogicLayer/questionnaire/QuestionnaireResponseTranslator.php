@@ -14,9 +14,9 @@ class QuestionnaireResponseTranslator {
     protected Translator $translator;
 
     public function __construct(QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireRepository         $questionnaireRepository,
-                                QuestionnaireResponseManager    $questionnaireResponseManager,
-                                Translator                      $translator) {
+        QuestionnaireRepository $questionnaireRepository,
+        QuestionnaireResponseManager $questionnaireResponseManager,
+        Translator $translator) {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
@@ -31,6 +31,7 @@ class QuestionnaireResponseTranslator {
         if (!count($freeTypeQuestions)) {
             $questionnaireResponse->response_json_translated = json_encode([]);
             $questionnaireResponse->save();
+
             return;
         }
         $responseAnswers = json_decode($questionnaireResponse->response_json, true);
@@ -61,8 +62,8 @@ class QuestionnaireResponseTranslator {
     }
 
     protected function shouldAcceptTranslatedAnswer($answer,
-                                                    array $translations,
-                                                    int $i): bool {
+        array $translations,
+        int $i): bool {
         return strcmp(trim($translations[$i]['text']), trim($answer)) !== 0;
     }
 

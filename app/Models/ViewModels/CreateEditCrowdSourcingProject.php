@@ -16,8 +16,8 @@ class CreateEditCrowdSourcingProject {
     public $defaultLanguageCode = 'en';
 
     public function __construct(CrowdSourcingProject $project, Collection $translations,
-                                Collection $projectStatusesLkp,
-                                Collection $languagesLkp, string $contributorEmailView) {
+        Collection $projectStatusesLkp,
+        Collection $languagesLkp, string $contributorEmailView) {
         $this->project = $project;
         $this->translations = $translations;
         $this->projectStatusesLkp = $projectStatusesLkp;

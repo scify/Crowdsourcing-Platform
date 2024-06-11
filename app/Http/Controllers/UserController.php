@@ -16,8 +16,8 @@ class UserController extends Controller {
     protected $userDashboardManager;
 
     public function __construct(UserManager $userManager,
-                                QuestionnaireResponseManager $questionnaireResponseManager,
-                                UserDashboardManager $userDashboardManager) {
+        QuestionnaireResponseManager $questionnaireResponseManager,
+        UserDashboardManager $userDashboardManager) {
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->userDashboardManager = $userDashboardManager;

@@ -18,9 +18,9 @@ class QuestionnaireStatisticsManager {
     protected $crowdSourcingProjectQuestionnaireRepository;
 
     public function __construct(QuestionnaireStatisticsRepository $questionnaireStatisticsRepository,
-                                QuestionnaireBasicStatisticsColorsRepository $questionnaireBasicStatisticsColorsRepository,
-                                QuestionnaireLanguageRepository $questionnaireLanguageRepository,
-                                CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository) {
+        QuestionnaireBasicStatisticsColorsRepository $questionnaireBasicStatisticsColorsRepository,
+        QuestionnaireLanguageRepository $questionnaireLanguageRepository,
+        CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository) {
         $this->questionnaireStatisticsRepository = $questionnaireStatisticsRepository;
         $this->questionnaireBasicStatisticsColorsRepository = $questionnaireBasicStatisticsColorsRepository;
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;

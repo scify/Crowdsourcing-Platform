@@ -11,7 +11,7 @@ class QuestionnaireLanguageManager {
     protected $languageManager;
 
     public function __construct(QuestionnaireLanguageRepository $questionnaireLanguageRepository,
-                                LanguageManager $languageManager) {
+        LanguageManager $languageManager) {
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
         $this->languageManager = $languageManager;
     }

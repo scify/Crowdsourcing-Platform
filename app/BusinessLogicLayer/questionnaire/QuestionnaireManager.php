@@ -12,10 +12,10 @@ class QuestionnaireManager {
     protected QuestionnaireLanguageRepository $questionnaireLanguageRepository;
     protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
 
-    public function __construct(QuestionnaireRepository                     $questionnaireRepository,
-                                CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
-                                QuestionnaireLanguageRepository             $questionnaireLanguageRepository,
-                                QuestionnaireFieldsTranslationManager       $questionnaireFieldsTranslationManager) {
+    public function __construct(QuestionnaireRepository $questionnaireRepository,
+        CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
+        QuestionnaireLanguageRepository $questionnaireLanguageRepository,
+        QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
         $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;

@@ -9,7 +9,7 @@ class UserDashboardViewModel {
     public $platformWideGamificationBadgesVM;
 
     public function __construct(Collection $questionnaires,
-                                GamificationBadgesWithLevels $platformWideGamificationBadgesVM) {
+        GamificationBadgesWithLevels $platformWideGamificationBadgesVM) {
         $this->questionnaires = $questionnaires;
         $this->platformWideGamificationBadgesVM = $platformWideGamificationBadgesVM;
     }
