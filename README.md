@@ -329,7 +329,7 @@ php artisan db:seed --env=testing --class=DatabaseSeeder
 
 ## Contributing
 
-To contribute to MyEIC Common Library, follow these steps:
+To contribute to the application, follow these steps:
 
 1. Fork this repository.
 2. Read the [CONTRIBUTING](CONTRIBUTING.md) file.
