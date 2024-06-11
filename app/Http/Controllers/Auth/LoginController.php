@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Http\Controllers\Controller;
-use AWS\CRT\Log;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -31,8 +30,6 @@ class LoginController extends Controller {
 
     /**
      * Where to redirect users after login.
-     *
-     * @var string
      */
     protected string $redirectTo = '/en/my-dashboard';
 
@@ -46,8 +43,8 @@ class LoginController extends Controller {
     protected QuestionnaireResponseManager $questionnaireResponseManager;
 
     public function __construct(UserManager $userManager,
-                                QuestionnaireResponseManager $questionnaireResponseManager,
-                                ExceptionHandler $handler) {
+        QuestionnaireResponseManager $questionnaireResponseManager,
+        ExceptionHandler $handler) {
         $this->exceptionHandler = $handler;
         $this->middleware('guest')->except('logout');
         $this->userManager = $userManager;
@@ -86,6 +83,7 @@ class LoginController extends Controller {
     public function handleProviderCallback(Request $request, $driver) {
         if (isset($request['denied']) || isset($request['error'])) {
             $this->exceptionHandler->report(new Exception($request['error']));
+
             return redirect()->route('home', ['locale' => app()->getLocale()]);
         }
 

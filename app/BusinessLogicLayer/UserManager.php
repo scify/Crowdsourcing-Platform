@@ -28,10 +28,10 @@ class UserManager {
     public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
     public function __construct(UserRepository $userRepository,
-                                UserRoleRepository $userRoleRepository,
-                                MailChimpAdaptor $mailChimpManager,
-                                QuestionnaireResponseRepository $questionnaireResponseRepository,
-                                QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
+        UserRoleRepository $userRoleRepository,
+        MailChimpAdaptor $mailChimpManager,
+        QuestionnaireResponseRepository $questionnaireResponseRepository,
+        QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->mailChimpManager = $mailChimpManager;

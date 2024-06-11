@@ -53,8 +53,8 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,
-                                         $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
-                                         $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
+        $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
+        $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
         return DB::transaction(function () use (
             $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
             $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience
@@ -72,8 +72,8 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function updateQuestionnaire($questionnaireId,
-                                        $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
-                                        $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
+        $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
+        $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
         return DB::transaction(function () use (
             $questionnaireId, $goal,
             $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
@@ -110,9 +110,9 @@ class QuestionnaireRepository extends Repository {
     }
 
     private function storeQuestionnaire($questionnaire, $goal,
-                                        $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                                        $showGeneralStatistics, $type_id, $respondentAuthRequired,
-                                        $show_file_type_questions_to_statistics_page_audience) {
+        $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
+        $showGeneralStatistics, $type_id, $respondentAuthRequired,
+        $show_file_type_questions_to_statistics_page_audience) {
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)

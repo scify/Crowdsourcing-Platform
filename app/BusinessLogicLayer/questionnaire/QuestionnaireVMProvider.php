@@ -6,7 +6,6 @@ use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManage
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
-use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
@@ -27,14 +26,14 @@ class QuestionnaireVMProvider {
     protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
-    public function __construct(QuestionnaireRepository                            $questionnaireRepository,
-                                QuestionnaireManager                               $questionnaireManager,
-                                CrowdSourcingProjectAccessManager                  $crowdSourcingProjectAccessManager,
-                                LanguageManager                                    $languageManager,
-                                QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-                                QuestionnaireTranslationRepository                 $questionnaireTranslationRepository,
-                                QuestionnaireFieldsTranslationManager              $questionnaireFieldsTranslationManager,
-                                CrowdSourcingProjectManager                        $crowdSourcingProjectManager) {
+    public function __construct(QuestionnaireRepository $questionnaireRepository,
+        QuestionnaireManager $questionnaireManager,
+        CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
+        LanguageManager $languageManager,
+        QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
+        QuestionnaireTranslationRepository $questionnaireTranslationRepository,
+        QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager,
+        CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
@@ -98,8 +97,9 @@ class QuestionnaireVMProvider {
         $activeQuestionnairesForThisProject = $this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
         $questionnaire = $activeQuestionnairesForThisProject->firstWhere('id', '=', $questionnaire->id);
 
-        if (!$questionnaire)
-            throw new Exception("This project does not have any active questionnaires");
+        if (!$questionnaire) {
+            throw new Exception('This project does not have any active questionnaires');
+        }
 
         $languages = $this->languageManager->getAllLanguages();
 

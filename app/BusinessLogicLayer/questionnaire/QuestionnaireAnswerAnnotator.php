@@ -17,12 +17,12 @@ class QuestionnaireAnswerAnnotator {
     }
 
     public function annotateQuestionnaireAnswer(int $questionnaire_id,
-                                                string $question_name,
-                                                int $respondent_user_id,
-                                                int $annotator_user_id,
-                                                       $annotation_text,
-                                                int $admin_review_status_id,
-                                                       $admin_review_comment) {
+        string $question_name,
+        int $respondent_user_id,
+        int $annotator_user_id,
+        $annotation_text,
+        int $admin_review_status_id,
+        $admin_review_comment) {
         $data = [
             'questionnaire_id' => $questionnaire_id,
             'question_name' => $question_name,
@@ -40,7 +40,7 @@ class QuestionnaireAnswerAnnotator {
     }
 
     public function deleteAnswerAnnotation(int $questionnaire_id, string $question_name,
-                                           int $respondent_user_id) {
+        int $respondent_user_id) {
         return $this->questionnaireAnswerAnnotationRepository->deleteAnswerAnnotation($questionnaire_id, $question_name, $respondent_user_id);
     }
 }

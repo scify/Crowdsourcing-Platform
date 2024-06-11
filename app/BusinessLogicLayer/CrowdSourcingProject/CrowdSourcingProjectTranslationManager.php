@@ -14,7 +14,7 @@ class CrowdSourcingProjectTranslationManager {
     protected $languageRepository;
 
     public function __construct(CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository,
-                                LanguageRepository $languageRepository) {
+        LanguageRepository $languageRepository) {
         $this->crowdSourcingProjectTranslationRepository = $crowdSourcingProjectTranslationRepository;
         $this->languageRepository = $languageRepository;
     }

@@ -44,8 +44,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read QuestionnaireBasicStatisticsColors $basicStatisticsColors
  */
 class Questionnaire extends Model {
-    use SoftDeletes;
     use Compoships;
+    use SoftDeletes;
 
     protected $table = 'questionnaires';
     protected $fillable = [
@@ -60,7 +60,7 @@ class Questionnaire extends Model {
         'max_votes_num',
         'show_general_statistics',
         'respondent_auth_required',
-        'show_file_type_questions_to_statistics_page_audience'
+        'show_file_type_questions_to_statistics_page_audience',
     ];
 
     /**
@@ -76,9 +76,6 @@ class Questionnaire extends Model {
         return $this->currentLocaleFieldsTranslation ?? $this->defaultFieldsTranslation;
     }
 
-    /**
-     * @return HasOne
-     */
     public function defaultFieldsTranslation(): HasOne {
         return $this->hasOne(QuestionnaireFieldsTranslation::class,
             ['questionnaire_id', 'language_id'], ['id', 'default_language_id'])->withDefault([
@@ -112,8 +109,6 @@ class Questionnaire extends Model {
 
     /**
      * The users that belong to the role.
-     *
-     * @return BelongsToMany
      */
     public function projects(): BelongsToMany {
         return $this->belongsToMany(
@@ -154,9 +149,6 @@ class Questionnaire extends Model {
         return $this->hasOne(QuestionnaireBasicStatisticsColors::class, 'questionnaire_id', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
     public function fieldsTranslations(): HasMany {
         return $this->hasMany(QuestionnaireFieldsTranslation::class, 'questionnaire_id', 'id');
     }

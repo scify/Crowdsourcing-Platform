@@ -243,8 +243,8 @@ class QuestionnaireTranslator {
     }
 
     protected function getContentTranslatedSchema(array $object, string $locale,
-                                        int $translationIndex,
-                                        string $contentIdentifier) {
+        int $translationIndex,
+        string $contentIdentifier) {
         if (!isset($object[$contentIdentifier])) {
             return false;
         }

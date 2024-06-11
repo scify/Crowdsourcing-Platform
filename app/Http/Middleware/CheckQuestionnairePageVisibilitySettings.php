@@ -12,8 +12,6 @@ class CheckQuestionnairePageVisibilitySettings {
 
     /**
      * CheckQuestionnairePageVisibilitySettings constructor.
-     *
-     * @param $questionnaireAccessManager
      */
     public function __construct(QuestionnaireAccessManager $questionnaireAccessManager) {
         $this->questionnaireAccessManager = $questionnaireAccessManager;
@@ -23,7 +21,6 @@ class CheckQuestionnairePageVisibilitySettings {
      * Handle an incoming request.
      *
      * @param  Request  $request
-     * @param  Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next) {

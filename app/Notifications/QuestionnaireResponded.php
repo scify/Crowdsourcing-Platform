@@ -15,10 +15,10 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
     protected $questionnaire_response_email_intro_text;
 
     public function __construct($questionnaireFieldsTranslation,
-                                GamificationBadge $badge,
-                                GamificationBadgeVM $badgeVM,
-                                $crowdSourcingProjectTranslation,
-                                string $locale) {
+        GamificationBadge $badge,
+        GamificationBadgeVM $badgeVM,
+        $crowdSourcingProjectTranslation,
+        string $locale) {
         $this->title = $questionnaireFieldsTranslation->title;
         $this->questionnaire_response_email_intro_text = $crowdSourcingProjectTranslation->questionnaire_response_email_intro_text;
         $this->questionnaire_response_email_outro_text = $crowdSourcingProjectTranslation->questionnaire_response_email_outro_text;

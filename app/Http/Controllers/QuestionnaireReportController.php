@@ -14,7 +14,7 @@ class QuestionnaireReportController extends Controller {
     protected $questionnaireRepository;
 
     public function __construct(QuestionnaireReportManager $questionnaireReportManager,
-                                QuestionnaireRepository $questionnaireRepository) {
+        QuestionnaireRepository $questionnaireRepository) {
         $this->questionnaireReportManager = $questionnaireReportManager;
         $this->questionnaireRepository = $questionnaireRepository;
     }
