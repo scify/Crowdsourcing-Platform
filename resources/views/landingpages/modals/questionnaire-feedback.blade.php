@@ -35,5 +35,5 @@
     </div>
 </div>
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-feedback.js')}}"></script>
+    @vite('resources/assets/js/questionnaire/questionnaire-feedback.js')
 @endpush

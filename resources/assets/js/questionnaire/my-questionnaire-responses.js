@@ -1,5 +1,4 @@
 import * as Survey from "survey-knockout";
-import "admin-lte/plugins/datatables/jquery.dataTables.min";
 
 (function () {
 	let survey;

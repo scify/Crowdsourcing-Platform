@@ -7,7 +7,7 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/create-edit-project.css') }}">
+    @vite('resources/assets/sass/project/create-edit-project.scss')
 @endpush
 
 @section('content')
@@ -83,5 +83,5 @@
 @endsection
 
 @push('scripts')
-    <script defer type="application/javascript" src="{{mix('dist/js/manage-project.js')}}"></script>
+    @vite('resources/assets/js/project/manage-project.js')
 @endpush

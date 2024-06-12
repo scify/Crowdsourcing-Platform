@@ -1,4 +1,6 @@
 import * as SurveyAnalytics from "survey-analytics";
+import "datatables.net-buttons-bs4";
+import "datatables.net-buttons/js/buttons.html5.mjs";
 
 export class AnswersData {
 	static answerVotes = [];
@@ -19,6 +21,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 			renderHeaderFull(table, visualizer);
 		}
 	}
+
 	// eslint-disable-next-line no-unused-vars
 	function renderHeaderSimple(table, visualizer) {
 		const header = document.createElement("thead");
@@ -35,6 +38,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 		header.appendChild(tr);
 		table.appendChild(header);
 	}
+
 	// eslint-disable-next-line no-unused-vars
 	function renderHeaderFull(table, visualizer) {
 		const header = document.createElement("thead");
@@ -347,17 +351,21 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 			];
 		}
 		if (AnswersData.userCanAnnotateAnswers) {
-			options.buttons = [
-				{
-					extend: "csvHtml5",
-					text: AnswersData.languageResources.download_csv,
-					filename: "Statistics_" + new Date().getTime(),
-					exportOptions: {
-						columns: questionName.includes("-Comment") ? [0, 1, 2] : [0, 1, 2, 4],
-					},
+			options.layout = {
+				topStart: {
+					buttons: [
+						{
+							extend: "csvHtml5",
+							text: AnswersData.languageResources.download_csv,
+							title: "Statistics_" + new Date().getTime(),
+							exportOptions: {
+								columns: questionName.includes("-Comment") ? [0, 1, 2] : [0, 1, 2, 4],
+							},
+						},
+					],
 				},
-			];
-		} else options.buttons = [];
+			};
+		} else options.layout = {};
 		$(table).DataTable(options);
 	};
 	return new SurveyAnalytics.VisualizerBase(

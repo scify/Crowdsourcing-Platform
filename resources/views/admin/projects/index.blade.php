@@ -5,11 +5,7 @@
 @endsection
 
 @push('css')
-    <link rel="preload" href="{{ mix('dist/css/all-projects.css') }}" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="{{ mix('dist/css/all-projects.css') }}">
-    </noscript>
+    @vite('resources/assets/sass/project/all-projects.scss')
 @endpush
 
 @section('content')

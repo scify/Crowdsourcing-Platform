@@ -5,11 +5,9 @@
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
 
-
-
         }
     </style>
-    <link rel="stylesheet" href="{{ mix('dist/css/questionnaire-thanks.css') }}">
+    @vite('resources/assets/sass/questionnaire/questionnaire-thanks.scss')
 @endpush
 
 @section('content')
@@ -87,5 +85,5 @@
     @endpush
 @endif
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-thanks.js')}}"></script>
+    @vite('resources/assets/js/questionnaire/questionnaire-thanks.js')
 @endpush

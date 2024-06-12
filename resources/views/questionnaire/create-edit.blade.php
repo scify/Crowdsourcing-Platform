@@ -5,7 +5,7 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/create-questionnaire.css') }}">
+    @vite('resources/assets/sass/questionnaire/create-questionnaire.scss')
 @endpush
 
 @section('content')
@@ -20,5 +20,5 @@
 @endsection
 
 @push('scripts')
-    <script defer src="{{mix('dist/js/questionnaire-create-edit.js')}}"></script>
+    @vite('resources/assets/js/questionnaire/questionnaire-create-edit.js')
 @endpush

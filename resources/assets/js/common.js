@@ -1,17 +1,20 @@
 window.wa = {};
 window.wa.enums = {};
 import "./lang";
-import route from "./backend-route";
+import routeFunction from "./backend-route";
 
-window.route = route;
+window.route = routeFunction;
+import $ from "jquery";
+
+window.$ = $;
 
 import "./bootstrap";
 
 import * as Sentry from "@sentry/browser";
 
-if (process.env.MIX_SENTRY_DSN_PUBLIC) {
+if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 	Sentry.init({
-		dsn: process.env.MIX_SENTRY_DSN_PUBLIC,
+		dsn: import.meta.env.VITE_SENTRY_DSN_PUBLIC,
 	});
 }
 
@@ -35,6 +38,7 @@ if (process.env.MIX_SENTRY_DSN_PUBLIC) {
 	};
 
 	$(document).ready(function () {
+		console.log("common.js loaded");
 		init();
 	});
 })();

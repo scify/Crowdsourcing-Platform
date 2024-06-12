@@ -1,4 +1,8 @@
+@import "survey-jquery/survey.min.css";
+@import "survey-creator/survey-creator.min.css";
 @import "../_variables.scss";
+@import "../select2-custom";
+@import "questionnaire-display";
 
 .warning-wrapper {
 	font-weight: bold;

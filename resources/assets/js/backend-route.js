@@ -1,6 +1,6 @@
-if (window.Laravel) {
-	const routes = window.Laravel.routes;
-	module.exports = function () {
+function routeFunction() {
+	if (window.Laravel) {
+		const routes = window.Laravel.routes;
 		let args = Array.prototype.slice.call(arguments);
 		let name = args.shift();
 		if (routes[name] === undefined) {
@@ -17,5 +17,7 @@ if (window.Laravel) {
 					.join("/")
 			);
 		}
-	};
+	}
 }
+
+export default routeFunction;
