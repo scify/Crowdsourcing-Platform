@@ -5,7 +5,7 @@
 @endsection
 
 @push('css')
-    @vite('resources/dist/css/manage-questionnaires.css')
+    @vite('resources/assets/sass/questionnaire/manage-questionnaires.scss')
 @endpush
 
 @section('content')
@@ -173,5 +173,5 @@
 @endpush
 
 @push('scripts')
-    @vite('resources/dist/js/manage-questionnaires.js')
+    @vite('resources/assets/js/questionnaire/manage-questionnaires.js')
 @endpush

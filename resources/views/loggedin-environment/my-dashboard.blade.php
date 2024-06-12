@@ -1,10 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @push('css')
-    @vite('resources/dist/css/my-dashboard.css')
-    <noscript>
-        @vite('resources/dist/css/my-dashboard.css')
-    </noscript>
+    @vite('resources/assets/sass/pages/my-dashboard.scss')
 @endpush
 
 @section('content')
@@ -19,7 +16,8 @@
         <div class="col-md-12">
             <div class="card card-success card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}. {{ __("badges_messages.get_more_badges") }}</h3>
+                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}
+                        . {{ __("badges_messages.get_more_badges") }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -40,7 +38,8 @@
                                                         <h4>  {{ $questionnaire->fieldsTranslation->title }}</h4>
                                                         @if ($questionnaire->type_id==2)
                                                             <a href="{{ route('project.landing-page',$questionnaire->projects[0]->slug) }}">
-                                                                <img loading="lazy" class="project-logo" style="max-height:70px;"
+                                                                <img loading="lazy" class="project-logo"
+                                                                     style="max-height:70px;"
                                                                      alt="Project logo for {{$questionnaire->projects[0]->defaultTranslation->name}}"
                                                                      src="{{asset($questionnaire->projects[0]->logo_path)}}">
                                                                 <br>

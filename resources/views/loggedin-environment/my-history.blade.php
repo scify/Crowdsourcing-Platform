@@ -6,10 +6,7 @@
 
 @push('css')
     @push('css')
-        @vite('resources/dist/css/my-questionnaire-responses.css')
-        <noscript>
-            @vite('resources/dist/css/my-questionnaire-responses.css')
-        </noscript>
+        @vite('resources/assets/sass/questionnaire/my-questionnaire-responses.scss')
     @endpush
 @endpush
 
@@ -89,5 +86,5 @@
     <script>
         const responses = Object.values(@json($responses));
     </script>
-    @vite('resources/dist/js/my-questionnaire-responses.js')
+    @vite('resources/assets/js/questionnaire/my-questionnaire-responses.js')
 @endpush

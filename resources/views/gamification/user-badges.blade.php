@@ -1,6 +1,6 @@
 @push('css')
-    @vite('resources/dist/css/badges.css')
-    @vite('resources/dist/css/next-step.css')
+    @vite('resources/assets/sass/gamification/badges.scss')
+    @vite('resources/assets/sass/gamification/next-step.scss')
 @endpush
 
 <div class="card card-danger card-outline">

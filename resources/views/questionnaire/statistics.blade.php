@@ -68,5 +68,5 @@
     <script type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    @vite('resources/dist/js/questionnaire-statistics.js')
+    @vite('resources/assets/js/questionnaire/questionnaire-statistics.js')
 @endpush

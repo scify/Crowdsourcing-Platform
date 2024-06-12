@@ -1,7 +1,7 @@
 @import "resources/assets/sass/variables";
-@import "~survey-analytics/survey.analytics.tabulator.min.css";
-@import "~tabulator-tables/dist/css/tabulator.min.css";
-@import "~survey-jquery/modern.min.css";
+@import "survey-analytics/survey.analytics.tabulator.min.css";
+@import "tabulator-tables/dist/css/tabulator.min.css";
+@import "survey-jquery/modern.min.css";
 
 .reports {
 	.search-btn {
@@ -23,10 +23,6 @@
 			font-size: 50px;
 		}
 	}
-}
-
-.more-btn {
-	margin-left: 5px;
 }
 
 .responses-report {

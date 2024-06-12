@@ -29,9 +29,5 @@
     </div>
 @endsection
 @push('scripts')
-    @vite('resources/dist/js/manage-users.js')
-    <script>
-        let controller = new window.UsersListController();
-        controller.init();
-    </script>
+    @vite('resources/assets/js/pages/manage-users.js')
 @endpush

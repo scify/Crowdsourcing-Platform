@@ -7,7 +7,7 @@
 @endsection
 
 @push('css')
-    @vite('resources/dist/css/create-edit-project.css')
+    @vite('resources/assets/sass/project/create-edit-project.scss')
 @endpush
 
 @section('content')
@@ -83,5 +83,5 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/dist/js/manage-project.js')
+    @vite('resources/assets/js/project/manage-project.js')
 @endpush

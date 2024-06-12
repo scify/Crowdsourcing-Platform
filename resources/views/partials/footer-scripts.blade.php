@@ -22,9 +22,9 @@
                 'translations' => json_decode($translations)
             ]) !!};
 </script>
-@vite('resources/dist/js/common.js') {{-- our application common code --}}
+@vite('resources/assets/js/common.js') {{-- our application common code --}}
 @if (isset($includeBackofficeCommonJs) && $includeBackofficeCommonJs)
-    @vite('resources/dist/js/common-backoffice.js') {{-- backend common code --}}
+    @vite('resources/assets/js/common-backoffice.js') {{-- backend common code --}}
 @endif
 @if(config('app.user_way_id'))
     <script defer async>(function () {

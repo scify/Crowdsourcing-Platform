@@ -1,6 +1,6 @@
 @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
     @push('css')
-        @vite('resources/dist/css/social-share.css')
+        @vite('resources/assets/sass/questionnaire/social-share.scss')
     @endpush
     <div class="social-share text-center">
         @include('questionnaire.social-share-button', [
