@@ -146,5 +146,5 @@
 
 
 @push('scripts')
-    <script defer src="{{ mix('dist/js/register.js')}}"></script>
+    @vite('resources/assets/js/pages/register.js')
 @endpush

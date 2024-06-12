@@ -6,11 +6,7 @@
 
 @push('css')
     @push('css')
-        <link rel="preload" href="{{ mix('dist/css/my-questionnaire-responses.css') }}" as="style"
-              onload="this.onload=null;this.rel='stylesheet'">
-        <noscript>
-            <link rel="stylesheet" href="{{ mix('dist/css/my-questionnaire-responses.css') }}">
-        </noscript>
+        @vite('resources/assets/sass/questionnaire/my-questionnaire-responses.scss')
     @endpush
 @endpush
 
@@ -90,5 +86,5 @@
     <script>
         const responses = Object.values(@json($responses));
     </script>
-    <script defer src="{{ mix('dist/js/my-questionnaire-responses.js') }}"></script>
+    @vite('resources/assets/js/questionnaire/my-questionnaire-responses.js')
 @endpush

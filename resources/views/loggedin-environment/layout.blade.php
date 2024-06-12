@@ -11,15 +11,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-    <link rel="stylesheet" href="{{ mix('dist/css/common.css') }}">
-    <link rel="preload" href="{{ mix('dist/css/common-backoffice.css') }}" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="{{ mix('dist/css/common-backoffice.css') }}">
-    </noscript>
+    @vite('resources/assets/sass/common.scss')
+    @vite('resources/assets/sass/common-backoffice.scss')
     @stack('css')
-
-        <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script defer src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script defer src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 

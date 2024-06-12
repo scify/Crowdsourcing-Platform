@@ -1,11 +1,12 @@
 @push('css')
-    <link rel="stylesheet" href="{{ mix('dist/css/badge-single.css') }}">
+    @vite('resources/assets/sass/gamification/badge-single.scss')
 @endpush
 
 <div class="col-md-12 gamification-badge {{ $badge->level == 0 ? 'locked' : 'unlocked' }}"
      style="background-color: {{ $badge->color }};">
     <div class="col-md-12 badge-img-container">
-        <img loading="lazy" class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}" alt="badge image">
+        <img loading="lazy" class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}"
+             alt="badge image">
     </div>
     <div class="col-md-12 mt-2">
         <h4 class="badge-name badge-name-{{ $badge->level == 0 ? 'black' : 'white' }}">{{ $badge->badgeName }}</h4>

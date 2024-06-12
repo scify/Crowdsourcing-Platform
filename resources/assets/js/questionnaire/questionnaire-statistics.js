@@ -6,7 +6,7 @@ import "admin-lte/plugins/datatables/jquery.dataTables.min";
 import Vue from "vue";
 import store from "../store/store";
 
-import QuestionnaireStatistics from "../vue-components/questionnaire/QuestionnaireStatistics";
+import QuestionnaireStatistics from "../vue-components/questionnaire/QuestionnaireStatistics.vue";
 
 new Vue({
 	el: "#app",
