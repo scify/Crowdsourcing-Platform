@@ -405,5 +405,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "QuestionnaireDisplay";
+@import "../../../../sass/questionnaire/questionnaire-display";
 </style>

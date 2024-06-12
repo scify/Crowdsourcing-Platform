@@ -2,10 +2,12 @@
 @extends('landingpages.layout')
 @push('css')
     <style>
-        :root  {
+        :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
-}
+
+        }
     </style>
+    @vite('resources/assets/sass/questionnaire/questionnaire-display.scss')
 @endpush
 @section('content')
     <div class="container-fluid h-100 w-100 px-0" id="questionnaire-thanks">
@@ -23,7 +25,7 @@
 @endsection
 @push('scripts')
     <script defer type="text/javascript">
-        const viewModel = @json($viewModel);
+		const viewModel = @json($viewModel);
     </script>
-    @vite('resources/dist/js/landing-page.js')
+    @vite('resources/assets/js/project/landing-page.js')
 @endpush

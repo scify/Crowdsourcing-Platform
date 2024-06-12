@@ -6,8 +6,12 @@ import "summernote/dist/summernote-bs4.min";
 import Vue from "vue";
 import store from "../store/store";
 
-import TranslationsManager from "../vue-components/common/TranslationsManager";
-import CrowdSourcingProjectColors from "../vue-components/crowd-sourcing-project/CrowdSourcingProjectColors";
+import TranslationsManager from "../vue-components/common/TranslationsManager.vue";
+import CrowdSourcingProjectColors from "../vue-components/crowd-sourcing-project/CrowdSourcingProjectColors.vue";
+
+import select2 from "select2";
+
+select2($);
 
 new Vue({
 	el: "#app",

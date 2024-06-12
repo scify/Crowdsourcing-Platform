@@ -1,10 +1,11 @@
 import * as Survey from "survey-knockout";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
-import "admin-lte/plugins/datatables/jquery.dataTables.min";
 import _ from "lodash";
+import "datatables.net-buttons-bs4";
+import "datatables.net-buttons/js/buttons.html5.mjs";
 
 (function () {
-	let table, respondentsTable, questionnaire, answers, survey, loader;
+	let respondentsTable, questionnaire, answers, survey, loader;
 
 	let checkForURLSearchParams = function () {
 		let searchParams = new URLSearchParams(window.location.search);
@@ -114,36 +115,6 @@ import _ from "lodash";
 			if (answers[i].user_id === id) return JSON.parse(answers[i].response_json);
 	};
 
-	let answersBtnHandler = function () {
-		$("body").on("click", ".more-btn", function (e) {
-			e.preventDefault();
-			let question = $(this).data("question");
-			let data = $(this).data("answers");
-			data = prepareDataForAnswersTable(data);
-			if (table) table.destroy();
-			table = $("#answerTextsTable").DataTable({
-				data: data,
-				responsive: true,
-				columns: [
-					{ title: "Original answer", width: "45%" },
-					{ title: "English automatic translation", width: "45%" },
-					{ title: "Initial language detected", width: "10%" },
-				],
-				order: [[1, "desc"]],
-			});
-			$("#questionTitle").html(question);
-			window.$("#answersModal").modal();
-		});
-	};
-
-	let prepareDataForAnswersTable = function (data) {
-		let dataToShow = [];
-		for (let i = 0; i < data.length; i++) {
-			dataToShow.push([data[i].answer, data[i].english_translation, data[i].initial_language_detected]);
-		}
-		return dataToShow;
-	};
-
 	let getReportsForCriteria = function (criteria) {
 		const errorEl = $("#errorMsg");
 		$.ajax({
@@ -187,42 +158,27 @@ import _ from "lodash";
 			paging: true,
 			searching: true,
 			responsive: true,
-			pageLength: 50, //,
-			// "order": [[1, "desc"]],
-			// "columns": [
-			//     {"width": "30%"},
-			//     {"width": "30%"},
-			//     {"width": "30%"},
-			//     {"width": "10%"}
-			// ]
-		});
-
-		let usersTable = $("#usersTable");
-		usersTable.DataTable({
-			paging: true,
-			searching: true,
-			responsive: true,
-			pageLength: 10,
-			dom: "Bfrtip",
-			buttons: [
-				{
-					extend: "csvHtml5",
-					text: window.trans("statistics.download_csv"),
-					filename:
-						"Respondents_Questionnaire_" +
-						$("select[name=questionnaire_id]").val() +
-						"_" +
-						new Date().getTime(),
+			pageLength: 25,
+			layout: {
+				topStart: {
+					buttons: [
+						{
+							extend: "csvHtml5",
+							text: "CSV",
+							title:
+								"Questionnaire_Respondents_" +
+								$("select[name=questionnaire_id]").val() +
+								"_" +
+								new Date().getTime(),
+							exportOptions: {
+								modifier: {
+									search: "none",
+								},
+							},
+						},
+					],
 				},
-			],
-			columns: [
-				{ width: "7%" },
-				{ width: "7%" },
-				{ width: "35%" },
-				{ width: "23%" },
-				{ width: "23%" },
-				{ width: "2%" },
-			],
+			},
 		});
 	};
 
@@ -242,8 +198,6 @@ import _ from "lodash";
 		Survey.StylesManager.applyTheme("modern");
 
 		searchBtnHandler();
-		answersBtnHandler();
-		//triggerSearch();
 		viewResponseBtnHandler();
 		deleteResponseBtnHandler();
 		checkForURLSearchParams();

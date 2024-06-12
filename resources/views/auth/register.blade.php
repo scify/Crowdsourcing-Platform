@@ -17,5 +17,5 @@
     </div>
 @endsection
 @push('scripts')
-    @vite('resources/dist/js/register.js')
+    @vite('resources/assets/js/pages/register.js')
 @endpush

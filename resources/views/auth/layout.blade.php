@@ -8,8 +8,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-    @vite('resources/dist/css/common.css')
-    @vite('resources/dist/css/auth.css')
+    @vite('resources/assets/sass/common.scss')
+    @vite('resources/assets/sass/auth.scss')
     @stack('css')
 
     @include('analytics')

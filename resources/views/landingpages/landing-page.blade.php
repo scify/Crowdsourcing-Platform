@@ -5,6 +5,7 @@
     --project-primary-color: {{ $viewModel->project->lp_primary_color}}
 }
 </style>
+    @vite('resources/assets/sass/questionnaire/questionnaire-display.scss')
 @endpush
 
 @section('content')
@@ -33,5 +34,5 @@
     <script defer type="text/javascript">
         const viewModel = @json($viewModel);
     </script>
-    @vite('resources/dist/js/landing-page.js')
+    @vite('resources/assets/js/project/landing-page.js')
 @endpush

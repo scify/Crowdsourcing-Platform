@@ -1,6 +1,7 @@
-@import "~summernote/dist/summernote-bs4.css";
-@import "~bs-stepper/dist/css/bs-stepper.min.css";
+@import "summernote/dist/summernote-bs4.css";
+@import "bs-stepper/dist/css/bs-stepper.min.css";
 @import "../variables";
+@import "../select2-custom";
 
 .input-file-wrapper {
 	overflow: hidden;
@@ -8,6 +9,7 @@
 
 .image-preview-container {
 	text-align: center;
+
 	.selected-image-preview {
 		max-height: 200px;
 		max-width: 100%;

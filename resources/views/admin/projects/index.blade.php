@@ -5,10 +5,7 @@
 @endsection
 
 @push('css')
-    @vite('resources/dist/css/all-projects.css')
-    <noscript>
-        @vite('resources/dist/css/all-projects.css')
-    </noscript>
+    @vite('resources/assets/sass/project/all-projects.scss')
 @endpush
 
 @section('content')

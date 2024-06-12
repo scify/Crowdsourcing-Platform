@@ -1,5 +1,5 @@
 @push('css')
-    @vite('resources/dist/css/social-share.css')
+    @vite('resources/assets/sass/questionnaire/social-share.scss')
 @endpush
 
 <div class="container-fluid">
@@ -26,5 +26,5 @@
     </div>
 </div>
 @push('scripts')
-    @vite('resources/dist/js/questionnaire-social-share.js')
+    @vite('resources/assets/js/questionnaire/questionnaire-social-share.js')
 @endpush

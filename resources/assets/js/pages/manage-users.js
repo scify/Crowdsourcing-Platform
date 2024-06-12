@@ -1,4 +1,5 @@
-import "admin-lte/plugins/datatables/jquery.dataTables.min";
+import "datatables.net-buttons-bs4";
+import "datatables.net-buttons/js/buttons.html5.mjs";
 
 window.UsersListController = function () {};
 
@@ -84,6 +85,22 @@ window.UsersListController.prototype = (function () {
 			responsive: true,
 			searching: false,
 			columns: [{ width: "25%" }, { width: "25%" }, { width: "25%" }, { width: "25%" }],
+			layout: {
+				topEnd: {
+					buttons: [
+						{
+							extend: "csv",
+							text: "CSV",
+							title: "Users_" + new Date().getTime(),
+							exportOptions: {
+								modifier: {
+									search: "none",
+								},
+							},
+						},
+					],
+				},
+			},
 		});
 	};
 	let init = function () {
@@ -97,3 +114,6 @@ window.UsersListController.prototype = (function () {
 		init: init,
 	};
 })();
+
+let usersListController = new window.UsersListController();
+usersListController.init();

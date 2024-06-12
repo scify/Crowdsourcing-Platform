@@ -102,7 +102,7 @@ export default {
 
 <style lang="scss">
 @import "resources/assets/sass/variables";
-@import "~survey-jquery/modern.min.css";
-@import "~survey-analytics/survey.analytics.min.css";
-@import "~bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";
+@import "survey-jquery/modern.min.css";
+@import "survey-analytics/survey.analytics.min.css";
+@import "bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";
 </style>

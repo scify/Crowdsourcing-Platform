@@ -10,16 +10,12 @@ import "datatables.net-bs4";
 import "datatables.net-buttons";
 import "datatables.net-buttons-bs4";
 
-import * as colVis from "datatables.net-buttons/js/buttons.colVis.js";
-import * as html5Buttons from "datatables.net-buttons/js/buttons.html5.js";
-import * as flashButtons from "datatables.net-buttons/js/buttons.flash.js";
-import * as printButtons from "datatables.net-buttons/js/buttons.print.js";
 import "datatables.net-responsive";
 import "datatables.net-responsive-bs4";
 import "datatables.net-select";
 import "datatables.net-select-bs4";
 import Clipboard from "clipboard/dist/clipboard";
-
+import $ from "jquery";
 import { showToast } from "./common-utils";
 
 (function () {
@@ -31,7 +27,7 @@ import { showToast } from "./common-utils";
 		});
 	};
 
-	let closeDismissableAlerts = function () {
+	let closeDismissibleAlerts = function () {
 		setTimeout(function () {
 			/*Close any flash message after some time*/
 			window
@@ -75,18 +71,14 @@ import { showToast } from "./common-utils";
 	let initializeTooltips = function () {
 		window.$('[data-toggle="tooltip"]').tooltip();
 	};
-	$(function () {
-		$(document).ready(function () {
-			initializeIcheck();
-			closeDismissableAlerts();
-			initClipboardElements();
-			listenToReadMoreClicks();
-			initializeTooltips();
-			colVis();
-			html5Buttons();
-			flashButtons();
-			printButtons();
-		});
+
+	$(document).ready(function () {
+		console.log("common-backoffice.js loaded");
+		initializeIcheck();
+		closeDismissibleAlerts();
+		initClipboardElements();
+		listenToReadMoreClicks();
+		initializeTooltips();
 	});
 })();
 

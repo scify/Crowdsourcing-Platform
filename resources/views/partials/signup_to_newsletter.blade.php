@@ -17,5 +17,5 @@
     </div>
 </div>
 @push('scripts')
-    @vite('resources/dist/js/newsletter-signup.js')
+    @vite('resources/assets/js/partials/newsletter-signup.js')
 @endpush

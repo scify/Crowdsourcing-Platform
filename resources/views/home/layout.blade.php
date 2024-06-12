@@ -15,24 +15,17 @@
         @foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language)
             @if(strlen($language) === 2)
                 <link rel="alternate" hreflang="{{ $language }}"
-                      href="{{route(getNameOfRoute(Route::current()), ['locale' => $language])}}"/>
+                      href="{{route(getNameOfRoute(Route::current()), ['locale' => $language])}}" />
             @endif
         @endforeach
     @endif
     @include('home.partials.' . config('app.installation_resources_dir') . '.head-meta')
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
-    @vite('resources/dist/css/common.css')
-    @vite('resources/dist/css/landing-page.css')
-    <noscript>
-        @vite('resources/dist/css/landing-page.css')
-    </noscript>
-    @vite('resources/dist/css/home.css')
-    <noscript>
-        @vite('resources/dist/css/home.css')
-    </noscript>
+    @vite('resources/assets/sass/common.scss')
+    @vite('resources/assets/sass/project/landing-page.scss')
+    @vite('resources/assets/sass/pages/home.scss')
     @stack('css')
-
     @include('analytics')
 </head>
 <body class="container-fluid p-0">

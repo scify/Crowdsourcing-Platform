@@ -339,8 +339,9 @@ import { isObject } from "../../common-backoffice";
 import QuestionnaireLanguages from "./QuestionnaireLanguages.vue";
 import CommonModal from "../common/ModalComponent.vue";
 import TranslationsManager from "../common/TranslationsManager.vue";
-import "select2";
+import select2 from "select2";
 
+select2($);
 const FILE_MAX_SIZE_BYTES = 3145728; // 3MB;
 
 export default {
@@ -420,9 +421,11 @@ export default {
 		}
 	},
 	mounted() {
-		if (this.questionnaire.project_id) this.getColorsForCrowdSourcingProject();
-		$(".select2").each(function (i, obj) {
-			$(obj).select2();
+		this.$nextTick(function () {
+			if (this.questionnaire.project_id) this.getColorsForCrowdSourcingProject();
+			$(".select2").each(function (i, obj) {
+				$(obj).select2();
+			});
 		});
 	},
 	methods: {
@@ -713,10 +716,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "resources/assets/sass/variables";
-@import "resources/assets/sass/select2-custom.scss";
-@import "~survey-jquery/survey.min.css";
-@import "~survey-creator/survey-creator.min.css";
+@import "../../../sass/variables.scss";
 
 #questionnaire-create-edit {
 	.sjs-cb-switch input:checked {

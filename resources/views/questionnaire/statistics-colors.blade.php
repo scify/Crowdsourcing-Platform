@@ -1,7 +1,7 @@
 @extends('loggedin-environment.layout')
 
 @push('css')
-    @vite('resources/dist/css/questionnaire-statistics-colors.css')
+    @vite('resources/assets/sass/questionnaire/questionnaire-statistics-colors.scss')
 @endpush
 
 @section('content')
@@ -97,5 +97,5 @@
     </form>
 @endsection
 @push('scripts')
-    @vite('resources/dist/js/questionnaire-statistics-colors.js')
+    @vite('resources/assets/js/questionnaire/questionnaire-statistics-colors.js')
 @endpush

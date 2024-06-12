@@ -35,5 +35,5 @@
     </div>
 </div>
 @push('scripts')
-    @vite('resources/dist/js/questionnaire-feedback.js')
+    @vite('resources/assets/js/questionnaire/questionnaire-feedback.js')
 @endpush

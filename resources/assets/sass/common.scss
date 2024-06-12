@@ -1,15 +1,12 @@
 @import "_variables.scss";
-@import "~bootstrap/scss/bootstrap.scss";
-@import "~bootstrap/scss/functions";
-@import "~admin-lte/build/scss/adminlte";
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/functions";
+@import "admin-lte/build/scss/adminlte.raw";
 
 // Fonts
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/css/all.css";
 @import url("../../../node_modules/icheck/skins/square/blue.css");
-@import url("~jquery-toast-plugin/dist/jquery.toast.min.css");
+@import url("jquery-toast-plugin/dist/jquery.toast.min.css");
 @import "../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css";
 
 @import "sidebar";
@@ -33,27 +30,6 @@ h6,
 .h5,
 .h6 {
 	font-family: "Open Sans", sans-serif;
-}
-
-@font-face {
-	font-family: "FontAwesome";
-	font-weight: normal;
-	font-style: normal;
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg");
-
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2");
-
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2");
-
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff");
-	src: url("../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2");
 }
 
 @media print {
