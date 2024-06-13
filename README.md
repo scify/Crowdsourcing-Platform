@@ -126,6 +126,7 @@ To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
 
 ```bash
 sudo apt update
+
 sudo apt install php php-cli php-fpm php-mysql php-xml php-mbstring php-curl php-gd php-zip php-bcmath
 ```
 
@@ -217,6 +218,7 @@ Enable the configuration:
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/crowdsourcing /etc/nginx/sites-enabled/
+
 sudo systemctl restart nginx
 ```
 
@@ -457,7 +459,6 @@ This application uses [Laravel Pint](https://laravel.com/docs/9.x/pint) in order
 In order to run the styler, run :
 
 ```bash
-
 ./vendor/bin/pint --test -v # the --test will not do any changes, it will just output the changes needed
 
 ./vendor/bin/pint -v # this command will actually perform the code style changes 
