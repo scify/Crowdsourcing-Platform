@@ -11,7 +11,7 @@
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 [![GitHub release](https://img.shields.io/github/release/scify/Crowdsourcing-Platform.svg)](https://github.com/scify/Crowdsourcing-Platform/releases/tag/v7.7)
 
-# Introduction
+## Introduction
 
 This is a [Laravel](https://laravel.com/) 9 Web Application for Crowdsourcing Projects and Questionnaires.
 
