@@ -11,26 +11,71 @@
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
 [![GitHub release](https://img.shields.io/github/release/scify/Crowdsourcing-Platform.svg)](https://github.com/scify/Crowdsourcing-Platform/releases/tag/v7.7)
 
-[Laravel](https://laravel.com/) 9 Web Application for Crowdsourcing Projects and Questionnaires
+# Introduction
 
-# Features
+This is a [Laravel](https://laravel.com/) 9 Web Application for Crowdsourcing Projects and Questionnaires.
 
-- Administration panel to set up of questionnaires & projects
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
+- [Installation Instructions](#installation-instructions)
+    - [Method 1: Docker Compose](#method-1-docker-compose)
+        - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
+        - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
+        - [Step 3: Launch the Application](#step-3-launch-the-application)
+    - [Method 2: Manual Installation](#method-2-manual-installation)
+        - [Step 1: Install PHP, Composer, Node.js, and MySQL](#step-1-install-php-composer-nodejs-and-mysql)
+        - [Step 2: Install Composer](#step-2-install-composer)
+        - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
+        - [Step 4: Install Nginx](#step-4-install-nginx)
+            - [Nginx Configuration](#nginx-configuration)
+        - [Step 5: Install MySQL](#step-5-install-mysql)
+            - [Database Considerations](#database-considerations)
+    - [Method 3: Ddev](#method-3-ddev)
+        - [Step 1: Install Ddev](#step-1-install-ddev)
+        - [Step 2: Start Ddev](#step-2-start-ddev)
+- [Run the Laravel Application commands](#run-the-laravel-application-commands)
+    - [Step 1: Create the `.env` file](#step-1-create-the-env-file)
+    - [Step 2: Generate the application key](#step-2-generate-the-application-key)
+    - [Step 3: Install Laravel (back-end) dependencies](#step-3-install-laravel-back-end-dependencies)
+    - [Step 4: Install and compile the front-end dependencies:](#step-4-install-and-compile-the-front-end-dependencies)
+    - [Step 5: Set up the Database **(only if in new installation)
+      **](#step-5-set-up-the-database-only-if-in-new-installation)
+    - [Step 6: Create symbolic link for uploaded files](#step-6-create-symbolic-link-for-uploaded-files)
+    - [Step 7: Fix permissions for storage directory](#step-7-fix-permissions-for-storage-directory)
+- [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
+- [SEO - Generate Sitemap](#seo---generate-sitemap)
+- [Related HTML Template](#related-html-template)
+- [PHP code style - Laravel Pint](#php-code-style---laravel-pint)
+- [Installation-specific resources](#installation-specific-resources)
+- [Run Tests](#run-tests)
+- [How to debug](#how-to-debug)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
+- [Credits](#credits)
+- [Contact](#contact)
+
+## Features
+
+- Administration panel to set up questionnaires & projects
 - Questionnaires with and without login: Questionnaires can be responded anonymously or eponymoysly
 - The questionnaires can be automatically translated via google translations (to facilitate the manual translations)
 - The citizen responses are automatically translated via google translations  (and at the results you can see both the
   original and the translated)
 - Setting targets for goals (number of responses needed for the questionnaire) to be reached
-- Gamifications elements: The platform motivates users to respond to questionnaires or invite others to respond
-- Mailchimp integration: All the email of registered users are collected to a mailchimp list
+- Gamification elements: The platform motivates users to respond to questionnaires or invite others to respond
+- Mailchimp integration: All the emails of registered users are collected to a mailchimp list
 - Google Analytics integration (with anonymized settings turned on) with custom events: We track anonymously people who
   do actions in the website
 - Voting mechanism for provided answers: Users can vote the best answers, Platform moderators can highlight the most
   interesting answers and reject/demote the not interesting ones
-- Extract the results2021_12_20_115932_add_social_image_to_projects_table: You can download the answers to excel
+- Extract the results: You can download the answers to excel
 - View statistics
-- Login function with fb, g+, linkedin, twitter, windows
-- Platform is available in many languages (and new translations can be added with relative low cost)
+- Login function with Facebook, Google, LinkedIn, Twitter, Microsoft
+- The platform is available in many languages (and new translations can be added with relative low cost)
 - GDPR compliant
 
 ## Benefits of Open Source applications
@@ -46,87 +91,142 @@ Offering the code under open source licenses includes many benefits. Of those, t
 
 [ECAS official installation](https://crowdsourcing.ecas.org/en)
 
-[SciFY's official installation](https://crowdsourcing.scify.org/)
+[SciFY official installation](https://crowdsourcing.scify.org/)
 
-# Installation Instructions:
+# Installation Instructions
 
-## First time install (setup database and install dependencies)
+## Method 1: Docker Compose
 
-0. Make sure php 8.0 (or newer) is installed.
+### Step 1: Install Docker and Docker Compose
 
-Install graphics library
+- **Docker**: Follow the installation guide for your operating system on
+  the [Docker website](https://docs.docker.com/get-docker/).
+- **Docker Compose**: Docker Compose is included with Docker Desktop for Windows and Mac. For Linux, follow the
+  instructions [here](https://docs.docker.com/compose/install/).
 
+### Step 2: Build and Run Containers
+
+Run the following command to build and start the containers:
+
+```sh
+docker-compose up --build
 ```
- sudo apt-get install php-gd
-```
 
-1. After cloning the project, create an .env file (should be a copy of .env.example),
-   containing the information about your database name and credentials.
-   Then run ```php artisan migrate``` to create the DB schema and
-   ```php artisan db:seed --class=DatabaseSeederRunOnEmptyDB``` in order to insert the starter data to the DB
+### Step 3: Launch the Application
 
-2. Generate app key
+The application will be available at [http://localhost:8080](http://localhost:8080).
+To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
+
+## Method 2: Manual Installation
+
+### Step 1: Install PHP, Composer, Node.js, and MySQL
+
+- **PHP**: Install PHP 8.0 or newer. You can follow the installation guide for your operating system on
+  the [PHP website](https://www.php.net/manual/en/install.php).
 
 ```bash
-php artisan key:generate
+sudo apt update
+sudo apt install php php-cli php-fpm php-mysql php-xml php-mbstring php-curl php-gd php-zip php-bcmath
 ```
 
-3. Install laravel/back-end dependencies
+### Step 2: Install Composer
+
+- **Composer**: Install Composer by following the instructions on
+  the [Composer website](https://getcomposer.org/download/).
 
 ```bash
-composer install
-
-composer dump-autoload
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
 ```
 
-4. Front-end dependencies
+### Step 3: Install Node.js and npm
 
-It is very easy to install multiple versions of NodeJS and npm, by
-using [Node Version Manager (nvm)](https://github.com/creationix/nvm).
+- **Node.js**: Install Node.js and npm by following the instructions on
+  the [Node.js website](https://nodejs.org/en/download/).
 
-If you are using [`nvm`](https://github.com/nvm-sh/nvm), run this command in order to sync to the correct NodeJS version
-for the project:
+```bash
+sudo apt install nodejs npm
+```
+
+Or, if using [nnm](https://github.com/nvm-sh/nvm), run the following command:
 
 ```bash
 nvm use
 ```
 
-Then, install and compile the front-end dependencies:
+### Step 4: Install Nginx
+
+- **Nginx**: Install Nginx by following the instructions on the [Nginx website](https://nginx.org/en/docs/install.html).
 
 ```bash
-npm install
-
-npm run dev # (if in development mode)
-
-npm run build # (if in production mode)
-
-npm run dev # (if in development mode and you want to have live changes)
+sudo apt install nginx
 ```
 
-5. Set up the Database **(only if in new installation)**
+#### Nginx Configuration
 
-Run the Laravel migrations:
+Create an Nginx configuration file for your Laravel project:
 
 ```bash
-php artisan migrate
+sudo nano /etc/nginx/sites-available/crowdsourcing
 ```
 
-Run the Database seeder:
+Add the necessary configuration to the file. Refer to the Nginx documentation for detailed configuration.
+
+Example configuration:
+
+```nginx
+server {
+    listen 80;
+    server_name crowdsourcing.local;
+    root /var/www/crowdsourcing/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+Enable the configuration:
 
 ```bash
-php artisan db:seed
+sudo ln -s /etc/nginx/sites-available/crowdsourcing /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
 ```
 
-6. Create symbolic link for uploaded images
-   By default images are stored at app/storage/public. Run
+### Step 5: Install MySQL
+
+- **MySQL**: Install MySQL by following the instructions on
+  the [MySQL website](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/).
 
 ```bash
-php artisan storage:link
+sudo apt install mysql-server
 ```
 
-in order to link this folder with the public directory
-
-## Database Considerations
+#### Database Considerations
 
 If you are running MySQL version 8.0 and above, there is a certain [bug](https://bugs.mysql.com/bug.php?id=103465)
 regarding memory overflow when trying to sort results in tables that have columns of JSON data type.
@@ -152,40 +252,97 @@ After you save the file, restart the MySQL service:
 sudo service mysql restart
 ```
 
-## Apache configuration:
+## Method 3: Ddev
 
-```
-% sudo touch /etc/apache2/sites-available/crowdsourcing.conf
-% sudo nano /etc/apache2/sites-available/crowdsourcing.conf
-<VirtualHost *:80>
-       
-        ServerName dev.crowdsourcing
-        ServerAlias dev.crowdsourcing
-        DocumentRoot "/home/path/to/project/public"
-        <Directory "/home/path/to/project/public">
-            Require all granted
-            AllowOverride all
-        </Directory>
-       
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
+### Step 1: Install Ddev
 
-</VirtualHost>
-```
+- **Ddev**: Install Ddev by following the instructions on the [Ddev website](https://ddev.readthedocs.io/en/stable/).
 
-Make the symbolic link:
+### Step 2: Start Ddev
+
+Run the following command to start Ddev:
 
 ```bash
-cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/crowdsourcing.conf
+ddev start
 ```
 
-Enable mod_rewrite, mod_ssl and restart apache:
+## Run the Laravel Application commands
+
+Depending on the installation method, you should run the following commands either in the Docker container or on your
+local machine.
+
+For example, if you have already started the Docker containers, you can run the following command to access the PHP
+container:
 
 ```bash
-sudo a2enmod rewrite && sudo a2enmod ssl && sudo service apache2 restart
+docker exec -it crowdsourcing-php bash
 ```
 
-Fix permissions for storage directory:
+and then run the following commands.
+
+If you are running the commands on your local machine, you can run the following commands directly.
+
+If you have started Ddev, you should run all the commands prefixed with `ddev exec`.
+
+### Step 1: Create the `.env` file
+
+After cloning the project, create an .env file (should be a copy of .env.example):
+
+```bash
+cp .env.example .env
+```
+
+### Step 2: Generate the application key
+
+```bash
+php artisan key:generate
+```
+
+### Step 3: Install Laravel (back-end) dependencies
+
+```bash
+composer install
+
+composer dump-autoload
+```
+
+### Step 4: Install and compile the front-end dependencies:
+
+```bash
+npm install
+
+npm run dev # (if in development mode)
+
+npm run build # (if in production mode)
+
+npm run dev # (if in development mode and you want to have live changes)
+```
+
+### Step 5: Set up the Database **(only if in new installation)**
+
+Run the Laravel migrations:
+
+```bash
+php artisan migrate
+```
+
+Run the Database seeder:
+
+```bash
+php artisan db:seed
+```
+
+### Step 6: Create symbolic link for uploaded files
+
+By default, images are stored at app/storage/public. Run
+
+```bash
+php artisan storage:link
+```
+
+in order to link this folder with the public directory
+
+### Step 7: Fix permissions for storage directory
 
 ```bash
 sudo chown -R user:www-data storage
@@ -205,14 +362,6 @@ The above steps can also be done in a better way, by using the companion script:
 chmod +x set-file-permissions.sh
 
 sudo ./set-file-permissions.sh www-data USER .
-```
-
-Change hosts file so `dev.crowdsourcing` points to localhost
-
-```$xslt
-sudo nano /etc/hosts
-
-127.0.0.1       dev.crowdsourcing
 ```
 
 ## Social Login - Sign Up with Socialite
@@ -235,36 +384,51 @@ openssl req -new -sha256 -newkey rsa:2048 -nodes \
 -out dev.crowdsourcing.crt
 ```
 
-And then reference the 2 files generated in the crowdsourcing.conf file of the application.
+And then reference the 2 generated files in the Nginx configuration file of the application.
 Make sure you change the port to 443 as shown below:
 
+```nginx
+server {
+    listen 443 ssl;
+    server_name dev.crowdsourcing;
+
+    ssl_certificate /path/to/dev.crowdsourcing.crt;
+    ssl_certificate_key /path/to/dev.crowdsourcing.key;
+
+    root /var/www/crowdsourcing/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
 ```
-sudo touch /etc/apache2/sites-available/crowdsourcing.conf
 
-sudo nano /etc/apache2/sites-available/crowdsourcing.conf
-
-<VirtualHost *:443>
-	SSLEngine on
-	SSLCertificateFile "/etc/apache2/sites-available/dev.crowdsourcing.crt"
-	SSLCertificateKeyFile "/etc/apache2/sites-available/dev.crowdsourcing.key"
-
-        ServerName dev.crowdsourcing
-        ServerAlias dev.crowdsourcing
-        DocumentRoot "/home/path/to/project/public"
-        <Directory "/home/path/to/project/public">
-            Require all granted
-            AllowOverride all
-        </Directory>
-       
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
-Also, make sure to restart Apache, by running
+Also, make sure to restart Nginx, by running
 
 ```bash
-sudo service apache2 restart
+sudo systemctl restart nginx
 ```
 
 ## SEO - Generate Sitemap
@@ -327,6 +491,17 @@ php artisan db:seed --env=testing --class=DatabaseSeeder
   install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
 - At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"
 
+## Troubleshooting
+
+If you encounter any issues, refer to the following steps:
+
+1. Check container logs if using Docker Compose: `docker-compose logs`
+2. Verify Nginx and PHP-FPM status: `systemctl status nginx` and `systemctl status php-fpm`
+3. Review Laravel logs located in `storage/logs/laravel.log`
+4. Ensure your `.env` file has the correct database credentials
+5. Verify the MySQL service is running: `systemctl status mysql`
+6. Check the Nginx configuration: `nginx -t`
+
 ## Contributing
 
 To contribute to the application, follow these steps:
@@ -347,3 +522,10 @@ the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 This project is developed by [SciFY](https://www.scify.org/) and [ECAS](https://ecas.org/) and is based on
 the [Laravel](https://laravel.com/) framework. The project is maintained by [SciFY](https://www.scify.org/).
+
+## Contact
+
+Feel free to contact the project maintainers:
+
+- [SciFY](https://www.scify.org/)
+- [ECAS](https://ecas.org/)
