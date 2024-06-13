@@ -95,7 +95,7 @@ Offering the code under open source licenses includes many benefits. Of those, t
 
 # Installation Instructions
 
-## Method 1: Docker Compose
+## Method 1: Docker Compose (recommended)
 
 ### Step 1: Install Docker and Docker Compose
 
