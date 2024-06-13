@@ -26,7 +26,7 @@ This is a [Laravel](https://laravel.com/) 9 Web Application for Crowdsourcing Pr
         - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
         - [Step 3: Launch the Application](#step-3-launch-the-application)
     - [Method 2: Manual Installation](#method-2-manual-installation)
-        - [Step 1: Install PHP, Composer, Node.js, and MySQL](#step-1-install-php-composer-nodejs-and-mysql)
+        - [Step 1: Install PHP](#step-1-install-php)
         - [Step 2: Install Composer](#step-2-install-composer)
         - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
         - [Step 4: Install Nginx](#step-4-install-nginx)
@@ -119,7 +119,7 @@ To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
 
 ## Method 2: Manual Installation
 
-### Step 1: Install PHP, Composer, Node.js, and MySQL
+### Step 1: Install PHP
 
 - **PHP**: Install PHP 8.0 or newer. You can follow the installation guide for your operating system on
   the [PHP website](https://www.php.net/manual/en/install.php).
