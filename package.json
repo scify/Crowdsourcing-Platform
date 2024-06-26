@@ -18,13 +18,13 @@
         "postcss": "^8.4.38",
         "prettier": "^3.3.2",
         "resolve-url-loader": "^5.0.0",
-        "sass": "^1.77.5",
+        "sass": "^1.77.6",
         "sass-loader": "^14.2.1",
         "vue": "^2.7.14",
         "vue-loader": "^17.4.2",
         "vue-template-compiler": "^2.7.16",
         "vuex": "^3.6.2",
-        "vite": "^3.0.2",
+        "vite": "^5.3.1",
         "laravel-vite-plugin": "^0.6.0",
         "@vitejs/plugin-vue2": "^1.1.2"
     },
@@ -33,7 +33,7 @@
         "@fingerprintjs/fingerprintjs": "^3.4.2",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@popperjs/core": "^2.11.8",
-        "@sentry/browser": "^8.9.1",
+        "@sentry/browser": "^8.12.0",
         "admin-lte": "3.1.0",
         "bootstrap": "^4.6.2",
         "bootstrap-colorpicker": "^3.4.0",
@@ -62,10 +62,10 @@
         "progressbar.js": "^1.1.1",
         "select2": "^4.0.13",
         "summernote": "^0.8.20",
-        "survey-analytics": "^1.11.2",
-        "survey-core": "^1.11.2",
-        "survey-creator": "^1.11.2",
-        "survey-jquery": "^1.11.2",
-        "survey-knockout": "^1.11.2"
+        "survey-analytics": "^1.11.4",
+        "survey-core": "^1.11.4",
+        "survey-creator": "^1.11.4",
+        "survey-jquery": "^1.11.4",
+        "survey-knockout": "^1.11.4"
     }
 }
