@@ -147,11 +147,10 @@ export default {
 		},
 		getAlreadySelectedLanguages() {
 			const checkedLanguages = [];
-			this.availableLanguages.filter((lang) => {
-				// if you can find in the translations.
-				const result = this.existingTranslations.find({
-					language_id: lang.id,
-				});
+			if (!Array.isArray(this.existingTranslations) || this.existingTranslations.length === 0)
+				return checkedLanguages;
+			this.availableLanguages.forEach((lang) => {
+				const result = this.existingTranslations.find((translation) => translation.language_id === lang.id);
 				if (result) checkedLanguages.push(lang);
 			});
 			return checkedLanguages;
