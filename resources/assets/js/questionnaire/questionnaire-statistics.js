@@ -1,6 +1,5 @@
 "use strict";
 import Chart from "chart.js";
-import _ from "lodash";
 import "admin-lte/plugins/datatables/jquery.dataTables.min";
 
 import Vue from "vue";
@@ -72,13 +71,12 @@ new Vue({
 		const data = {
 			datasets: [
 				{
-					data: _.map(viewModel.numberOfResponsesPerLanguage.data, "num_responses"),
-
-					backgroundColor: _.map(viewModel.numberOfResponsesPerLanguage.data, "color"),
+					data: viewModel.numberOfResponsesPerLanguage.data.map(item => item.num_responses),
+					backgroundColor: viewModel.numberOfResponsesPerLanguage.data.map(item => item.color),
 				},
 			],
 
-			labels: _.map(viewModel.numberOfResponsesPerLanguage.data, "language_name"),
+			labels: viewModel.numberOfResponsesPerLanguage.data.map(item => item.language_name),
 		};
 
 		createChart(ctx, data, "bar");

@@ -71,7 +71,6 @@ import * as Survey from "survey-knockout";
 import { arrayMove, setCookie } from "../../../common-utils";
 import AnalyticsLogger from "../../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
-import _ from "lodash";
 
 export default {
 	name: "QuestionnaireDisplay",
@@ -178,7 +177,7 @@ export default {
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
 			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
-			if (_.isEmpty(this.userResponse)) this.prepareQuestionnaireForResponding();
+			if (!this.userResponse || Object.keys(this.userResponse).length === 0) this.prepareQuestionnaireForResponding();
 			else this.prepareQuestionnaireForViewingResponse();
 
 			// bug fix on mobile browsers.
@@ -366,9 +365,7 @@ export default {
 			this.survey.locale = event.target.value;
 		},
 		getLanguageFromCode(code) {
-			return _.find(this.languages, function (l) {
-				return l.language_code === code;
-			});
+			return this.languages.find(l => l.language_code === code);
 		},
 		getSignInUrl() {
 			return window.route("login", this.getLocaleFromURL()) + "?redirectTo=" + window.location.href;

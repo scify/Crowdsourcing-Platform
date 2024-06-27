@@ -81,7 +81,6 @@
 
 <script>
 import { mapActions } from "vuex";
-import _ from "lodash";
 import { showToast } from "../../common-utils";
 import CommonModal from "../common/ModalComponent.vue";
 
@@ -126,7 +125,7 @@ export default {
 		},
 		saveQuestionnaireLanguagesStatus() {
 			this.saveLoading = true;
-			const mapped = _.map(this.questionnaireLanguages, function f(el) {
+			const mapped = this.questionnaireLanguages.map(el => {
 				return {
 					id: el.language.id,
 					status: el.human_approved,

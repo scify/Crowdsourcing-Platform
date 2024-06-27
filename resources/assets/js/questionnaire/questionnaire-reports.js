@@ -1,6 +1,5 @@
 import * as Survey from "survey-knockout";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
-import _ from "lodash";
 import "datatables.net-buttons-bs4";
 import "datatables.net-buttons/js/buttons.html5.mjs";
 
@@ -190,7 +189,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		const panelEl = document.getElementById("questionnaire-responses-report");
 		panelEl.innerHTML = "";
 		Tabulator.haveCommercialLicense = true;
-		const answersForSurveyTabulator = _.map(answers, "response_json").map(JSON.parse);
+		const answersForSurveyTabulator = answers.map(answer => JSON.parse(answer.response_json));
 		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
 			downloadButtons: ["csv"],
 		});
