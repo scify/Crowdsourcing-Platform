@@ -333,7 +333,6 @@
 import { mapActions } from "vuex";
 import * as Survey from "survey-knockout";
 import * as SurveyCreator from "survey-creator";
-import _ from "lodash";
 import { arrayMove, showToast } from "../../common-utils";
 import { isObject } from "../../common-backoffice";
 import QuestionnaireLanguages from "./QuestionnaireLanguages.vue";
@@ -432,7 +431,7 @@ export default {
 		if (!this.questionnaire.project_id) this.questionnaire.project_id = this.projects[0].id;
 		if (!this.questionnaire.statistics_page_visibility_lkp_id)
 			this.questionnaire.statistics_page_visibility_lkp_id = this.questionnaireStatisticsPageVisibilityLkp[0].id;
-		this.questionnaire.projectIds = _.map(this.questionnaireData.projects, "id");
+		this.questionnaire.projectIds = this.questionnaireData.projects.map(project => project.id);
 		if (this.questionnaire.default_language_id) {
 			const langId = this.questionnaire.default_language_id;
 			this.defaultLocale = this.languages.filter(function (el) {
@@ -468,7 +467,7 @@ export default {
 				data: {},
 				urlRelative: false,
 			}).then((response) => {
-				this.colors = _.map(response.data, "color_name").sort();
+				this.colors = response.data.map(item => item.color_name).sort();
 				this.initQuestionnaireEditor(this.defaultLocale);
 			});
 		},
@@ -547,7 +546,7 @@ export default {
 			this.defaultLocale = locale;
 			// show default language as the first language
 			arrayMove(this.languages, this.getIndexOfDefaultLocale(), 0);
-			Survey.surveyLocalization.supportedLocales = _.map(this.languages, "language_code");
+			Survey.surveyLocalization.supportedLocales = this.languages.map(language => language.language_code);
 			Survey.surveyLocalization.defaultLocale = this.defaultLocale;
 			SurveyCreator.editorLocalization.currentLocale = this.defaultLocale;
 			for (let i = 0; i < this.languages.length; i++)

@@ -174,8 +174,6 @@ import * as Survey from "survey-knockout";
 import * as SurveyAnalytics from "survey-analytics";
 import { mapActions } from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, { AnswersData } from "./FreeTextQuestionStatisticsCustomVisualizer";
-import Promise from "lodash/_Promise";
-import _ from "lodash";
 import { showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
@@ -336,7 +334,7 @@ export default {
 						urlRelative: false,
 					})
 					.then((response) => {
-						const answers = _.map(response.data, function (response) {
+						const answers = response.data.map((response) => {
 							return {
 								response_id: response.id,
 								response_text: JSON.parse(response.response_json_translated ?? response.response_json),
@@ -373,9 +371,7 @@ export default {
 		},
 		initStatistics(answers, answerVotes, answerAnnotations, adminAnalysisStatuses) {
 			this.answerAnnotationAdminReviewStatuses = adminAnalysisStatuses;
-			this.numOfVotesByCurrentUser = _.filter(answerVotes, {
-				voter_user_id: this.userId,
-			}).length;
+			this.numOfVotesByCurrentUser = answerVotes.filter((vote) => vote.voter_user_id === this.userId).length;
 			AnswersData.answerVotes = answerVotes;
 			AnswersData.answerAnnotations = answerAnnotations;
 			AnswersData.userId = this.userId;
@@ -388,12 +384,15 @@ export default {
 				let answersForPanel = answers;
 				const currentQuestionName = this.questions[i].name;
 				if (!this.questionHasCustomVisualizer(this.questions[i])) {
-					answersForPanel = _.map(answers, "response_text");
+					answersForPanel = answers.map((answer) => answer.response_text);
 
 					answersForPanel = Object.values(
-						_.pickBy(answersForPanel, function (value) {
-							return currentQuestionName in value && value[currentQuestionName] !== undefined;
-						}),
+						answersForPanel.reduce((acc, value) => {
+							if (currentQuestionName in value && value[currentQuestionName] !== undefined) {
+								acc[currentQuestionName] = value[currentQuestionName];
+							}
+							return acc;
+						}, {}),
 					);
 				}
 
@@ -430,7 +429,7 @@ export default {
 			const panelEl = document.getElementById("questionnaire-responses-report");
 			panelEl.innerHTML = "";
 			Tabulator.haveCommercialLicense = true;
-			const answersForSurveyTabulator = _.map(this.answersData, "response_json").map(JSON.parse);
+			const answersForSurveyTabulator = this.answersData.map((response) => JSON.parse(response.response_json));
 			const surveyAnalyticsTabulator = new Tabulator(this.survey, answersForSurveyTabulator, {
 				downloadButtons: ["csv"],
 			});
@@ -451,12 +450,12 @@ export default {
 			else if (question.columns) choices = question.columns;
 			else return [];
 
-			return _.map(choices, "statsColor");
+			return choices.map((choice) => choice.statsColor);
 		},
 		convertColorNamesToColorCodes(colorNames) {
 			const colorCodes = [];
 			for (let i = 0; i < colorNames.length; i++) {
-				const color = _.find(this.colors, ["color_name", colorNames[i]]);
+				const color = this.colors.find((color) => color.color_name === colorNames[i]);
 				if (color) colorCodes.push(color.color_code);
 			}
 			return colorCodes;

@@ -99,7 +99,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import { mapActions } from "vuex";
 
 export default {
@@ -148,9 +147,9 @@ export default {
 		},
 		getAlreadySelectedLanguages() {
 			const checkedLanguages = [];
-			_.filter(this.availableLanguages, (lang) => {
+			this.availableLanguages.filter((lang) => {
 				// if you can find in the translations.
-				const result = _.find(this.existingTranslations, {
+				const result = this.existingTranslations.find({
 					language_id: lang.id,
 				});
 				if (result) checkedLanguages.push(lang);
@@ -167,7 +166,7 @@ export default {
 		},
 		getLanguageName(languageId) {
 			// find the name from availableLanguages
-			const lang = _.find(this.availableLanguages, { id: languageId });
+			const lang = this.availableLanguages.find((lang) => lang.id === languageId);
 			return lang.language_name;
 		},
 		addNewTranslation(language) {
@@ -186,7 +185,7 @@ export default {
 			else this.deleteTranslation(language);
 		},
 		async deleteTranslation(language) {
-			const translation = _.find(this.translations, { language_id: language.id });
+			const translation = this.translations.find((t) => t.language_id === language.id);
 			const instance = this;
 			const swal = (await import("bootstrap-sweetalert")).default;
 			swal(
@@ -210,9 +209,7 @@ export default {
 			);
 		},
 		getOriginalEnglishTranslation() {
-			return _.find(this.existingTranslations, {
-				language_id: this.defaultLangId,
-			});
+			return this.existingTranslations.find((t) => t.language_id === this.defaultLangId);
 		},
 	},
 };
