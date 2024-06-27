@@ -1,9 +1,9 @@
 (function () {
-	let signUpForNewsletter = function () {
-		let wrapper = $(".sign-up");
-		let url = wrapper.data("url");
-		let first_name = wrapper.find("[name='first_name']").val();
-		let email = wrapper.find("[name='email']").val();
+	const signUpForNewsletter = function () {
+		const wrapper = $(".sign-up");
+		const url = wrapper.data("url");
+		const first_name = wrapper.find("[name='first_name']").val();
+		const email = wrapper.find("[name='email']").val();
 		$.ajax({
 			method: "post",
 			url: url,
@@ -31,11 +31,11 @@
 		});
 	};
 
-	let initEvents = function () {
+	const initEvents = function () {
 		$(".signup-btn").click(signUpForNewsletter);
 	};
 
-	let init = function () {
+	const init = function () {
 		initEvents();
 	};
 

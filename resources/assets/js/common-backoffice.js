@@ -19,7 +19,7 @@ import $ from "jquery";
 import { showToast } from "./common-utils";
 
 (function () {
-	let initializeIcheck = function () {
+	const initializeIcheck = function () {
 		$(".icheck-input").iCheck({
 			checkboxClass: "icheckbox_square-blue",
 			radioClass: "iradio_square-blue",
@@ -27,9 +27,9 @@ import { showToast } from "./common-utils";
 		});
 	};
 
-	let closeDismissibleAlerts = function () {
+	const closeDismissibleAlerts = function () {
 		setTimeout(function () {
-			/*Close any flash message after some time*/
+			/* Close any flash message after some time*/
 			window
 				.$(".alert-dismissable")
 				.fadeTo(4000, 500)
@@ -39,7 +39,7 @@ import { showToast } from "./common-utils";
 		}, 3000);
 	};
 
-	let initClipboardElements = function () {
+	const initClipboardElements = function () {
 		const clipboard = new Clipboard(".copy-clipboard");
 
 		clipboard.on("success", function (e) {
@@ -54,7 +54,7 @@ import { showToast } from "./common-utils";
 		});
 	};
 
-	let listenToReadMoreClicks = function () {
+	const listenToReadMoreClicks = function () {
 		const body = $("body");
 		body.on("click", ".read-more", function () {
 			$(this).siblings(".more-text").after('<a href="javascript:void(0);" class="read-less">Read less</a>');
@@ -68,7 +68,7 @@ import { showToast } from "./common-utils";
 		});
 	};
 
-	let initializeTooltips = function () {
+	const initializeTooltips = function () {
 		window.$('[data-toggle="tooltip"]').tooltip();
 	};
 

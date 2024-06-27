@@ -2,8 +2,8 @@ import * as Survey from "survey-knockout";
 
 (function () {
 	let survey;
-	let initializeDataTable = function () {
-		let usersTable = $("#responsesTable");
+	const initializeDataTable = function () {
+		const usersTable = $("#responsesTable");
 		if (usersTable.length)
 			usersTable.DataTable({
 				paging: true,
@@ -16,15 +16,15 @@ import * as Survey from "survey-knockout";
 			});
 	};
 
-	let viewResponseHandler = function () {
+	const viewResponseHandler = function () {
 		$("body").on("click", ".viewResponseBtn", function () {
-			let responseId = $(this).data("responseid");
+			const responseId = $(this).data("responseid");
 			showResponse(responseId);
 		});
 	};
 
-	let showResponse = function (responseId) {
-		let response = getResponseById(responseId);
+	const showResponse = function (responseId) {
+		const response = getResponseById(responseId);
 		const responseModal = window.$("#questionnaireResponseModal");
 		if (response) {
 			responseModal.find("#questionnaireResponse").html("");
@@ -38,18 +38,15 @@ import * as Survey from "survey-knockout";
 		}
 	};
 
-	let getResponseById = function (responseId) {
-		// eslint-disable-next-line no-undef
+	const getResponseById = function (responseId) {
 		for (let i = 0; i < responses.length; i++) {
-			// eslint-disable-next-line no-undef
 			if (responses[i].questionnaire_response_id === responseId) {
-				// eslint-disable-next-line no-undef
 				return responses[i];
 			}
 		}
 	};
 
-	let init = function () {
+	const init = function () {
 		Survey.StylesManager.applyTheme("modern");
 		survey = new Survey.Model();
 		$(document).ready(function () {

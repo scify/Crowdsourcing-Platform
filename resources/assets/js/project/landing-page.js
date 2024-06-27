@@ -5,6 +5,12 @@ import Vue from "vue";
 import store from "../store/store";
 import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay/QuestionnaireDisplay.vue";
 
+import DOMPurify from "dompurify";
+
+Vue.directive("sane-html", (el, binding) => {
+	el.innerHTML = DOMPurify.sanitize(binding.value);
+});
+
 new Vue({
 	el: "#app",
 	store: store,
@@ -14,31 +20,31 @@ new Vue({
 });
 
 (function () {
-	let displayTranslation = function () {
+	const displayTranslation = function () {
 		if ($(this).find("option:selected").data("machine-generated") === 1)
 			$("#machine-translation-indicator").removeClass("hide");
 		else $("#machine-translation-indicator").addClass("hide");
 	};
 
-	let refreshPageToTheQuestionnaireSection = function () {
-		let split = window.location.toString().split("#");
+	const refreshPageToTheQuestionnaireSection = function () {
+		const split = window.location.toString().split("#");
 		window.location = split[0] + "#questionnaire";
 		window.location.reload();
 	};
 
-	let initEvents = function () {
+	const initEvents = function () {
 		$("#questionnaire-lang-selector").on("change", displayTranslation);
 		$("#questionnaire-responded").find(".refresh-page").on("click", refreshPageToTheQuestionnaireSection);
 	};
 
-	let openQuestionnaireIfNeeded = function () {
-		let respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
+	const openQuestionnaireIfNeeded = function () {
+		const respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
 		if (respondQuestionnaire.first().data("open-on-load") === 1) {
 			window.$("#questionnaire-modal").modal("show");
 		}
 	};
 
-	let logToAnalytics = function () {
+	const logToAnalytics = function () {
 		const projectEl = $("#project");
 		if (projectEl.data("name"))
 			AnalyticsLogger.logEvent(
@@ -50,21 +56,15 @@ new Vue({
 			);
 	};
 
-	let showProjectBannerIfEnabled = function () {
-		// eslint-disable-next-line no-undef
+	const showProjectBannerIfEnabled = function () {
 		if (viewModel.project.display_landing_page_banner) {
-			// eslint-disable-next-line no-undef
-			let bannerTitle = viewModel.project.currentTranslation
-				? // eslint-disable-next-line no-undef
-					viewModel.project.currentTranslation.banner_title
-				: // eslint-disable-next-line no-undef
-					viewModel.project.default_translation.banner_title;
-			// eslint-disable-next-line no-undef
-			let bannerText = viewModel.project.currentTranslation
-				? // eslint-disable-next-line no-undef
-					viewModel.project.currentTranslation.banner_text
-				: // eslint-disable-next-line no-undef
-					viewModel.project.default_translation.banner_text;
+			const bannerTitle = viewModel.project.currentTranslation
+				? viewModel.project.currentTranslation.banner_title
+				: viewModel.project.default_translation.banner_title;
+
+			const bannerText = viewModel.project.currentTranslation
+				? viewModel.project.currentTranslation.banner_text
+				: viewModel.project.default_translation.banner_text;
 			if (bannerTitle || bannerText)
 				showToast(
 					'<div class="project-toast"><h3>' + bannerTitle + "</h3><br><br>" + bannerText + "</div>",
@@ -77,7 +77,7 @@ new Vue({
 		}
 	};
 
-	let init = function () {
+	const init = function () {
 		initEvents();
 		openQuestionnaireIfNeeded();
 		logToAnalytics();

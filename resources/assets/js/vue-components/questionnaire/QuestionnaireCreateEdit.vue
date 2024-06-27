@@ -4,7 +4,7 @@
 			<div class="card card-primary">
 				<div class="card-header">Questionnaire Info</div>
 				<div class="card-body">
-					<div class="row" v-if="questionnaire.id">
+					<div v-if="questionnaire.id" class="row">
 						<div class="col-md-12">
 							<div class="warning-wrapper">
 								<i class="glyphicon glyphicon-alert"></i>
@@ -54,8 +54,8 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
-								v-model="questionnaire.statistics_page_visibility_lkp_id"
 								id="statistics_page_visibility_lkp_id"
+								v-model="questionnaire.statistics_page_visibility_lkp_id"
 							>
 								<option
 									v-for="visibilityLkp in questionnaireStatisticsPageVisibilityLkp"
@@ -74,10 +74,10 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
-								type="checkbox"
-								class="form-control checkbox"
 								id="show_general_statistics"
 								v-model="questionnaire.show_general_statistics"
+								type="checkbox"
+								class="form-control checkbox"
 							/>
 						</div>
 					</div>
@@ -87,10 +87,10 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
-								type="checkbox"
-								class="form-control checkbox"
 								id="show_file_type_questions_to_statistics_page_audience"
 								v-model="questionnaire.show_file_type_questions_to_statistics_page_audience"
+								type="checkbox"
+								class="form-control checkbox"
 							/>
 						</div>
 					</div>
@@ -100,8 +100,8 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
-								v-model="questionnaire.respondent_auth_required"
 								id="questionnaire_respondent_auth_level"
+								v-model="questionnaire.respondent_auth_required"
 							>
 								<option :value="0" :selected="!questionnaire.respondent_auth_required">
 									Users can respond either with their account or anonymously
@@ -118,11 +118,11 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
+								id="title"
+								v-model="questionnaire.default_fields_translation.title"
 								type="text"
 								class="form-control"
-								id="title"
 								placeholder="Insert questionnaire's title"
-								v-model="questionnaire.default_fields_translation.title"
 							/>
 						</div>
 					</div>
@@ -132,9 +132,9 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<textarea
-								class="form-control"
 								id="description"
 								v-model="questionnaire.default_fields_translation.description"
+								class="form-control"
 								placeholder="Insert questionnaire's description"
 							>
 							</textarea>
@@ -146,12 +146,12 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
+								id="goal"
+								v-model="questionnaire.goal"
 								type="number"
 								class="form-control"
-								id="goal"
 								required
 								placeholder="Insert questionnaire's goal"
-								v-model="questionnaire.goal"
 							/>
 						</div>
 					</div>
@@ -161,11 +161,11 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
+								id="max_votes_num"
+								v-model="questionnaire.max_votes_num"
 								type="number"
 								class="form-control"
-								id="max_votes_num"
 								required
-								v-model="questionnaire.max_votes_num"
 							/>
 						</div>
 					</div>
@@ -187,9 +187,9 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
+								id="language"
 								class="language-select"
 								@change="initQuestionnaireEditor($event.target.value)"
-								id="language"
 							>
 								<option
 									v-for="language in languages"
@@ -220,7 +220,7 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<div class="collapse" id="collapseHelpFileType">
+							<div id="collapseHelpFileType" class="collapse">
 								<div class="card card-body">
 									<h5 class="mb-4">Use the editor below to create your questionnaire:</h5>
 									<h6 class="mb-2">
@@ -286,13 +286,13 @@
 						<div class="col-md-2">
 							<button
 								:disabled="loading"
-								@click="saveQuestionnaire"
 								class="btn btn-block btn-primary btn-lg w-100"
+								@click="saveQuestionnaire"
 							>
 								Save
 							</button>
 						</div>
-						<div class="col-md-1 p-0" v-if="loading">
+						<div v-if="loading" class="col-md-1 p-0">
 							<div class="spinner-border text-primary" style="margin-top: 5px"></div>
 						</div>
 					</div>
@@ -301,7 +301,7 @@
 		</div>
 		<div class="modal-component">
 			<common-modal :hide-header="true" :open="modalOpen" :allow-close="false">
-				<template v-slot:body>
+				<template #body>
 					<div class="container">
 						<div class="row justify-content-center">
 							<div class="col-10 text-center mx-auto">
@@ -312,8 +312,8 @@
 								></span>
 								<h4
 									v-if="modalMessage"
+									v-sane-html="modalMessage"
 									class="mt-0 p-0 mb-5 text-center message"
-									v-html="modalMessage"
 								></h4>
 							</div>
 						</div>
@@ -358,11 +358,36 @@ export default {
 				return {};
 			},
 		},
-		projects: [],
-		languages: [],
-		questionnaireStatisticsPageVisibilityLkp: [],
-		translationMetaData: [],
-		questionnaireFieldsTranslations: [],
+		projects: {
+			type: Array,
+			default: function () {
+				return [];
+			},
+		},
+		languages: {
+			type: Array,
+			default: function () {
+				return [];
+			},
+		},
+		questionnaireStatisticsPageVisibilityLkp: {
+			type: Array,
+			default: function () {
+				return [];
+			},
+		},
+		translationMetaData: {
+			type: Object,
+			default: function () {
+				return {};
+			},
+		},
+		questionnaireFieldsTranslations: {
+			type: Array,
+			default: function () {
+				return [];
+			},
+		},
 	},
 	data: function () {
 		return {
@@ -490,8 +515,8 @@ export default {
 
 			if (this.questionnaireData.questionnaire_json)
 				this.surveyCreator.text = this.assignRandomColorsToChoices(this.questionnaireData.questionnaire_json);
-			let instance = this;
-			let usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
+			const instance = this;
+			const usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
 
 			if (!this.isTranTabInitialised) {
 				if (usedLocales.length) this.surveyCreator.translation.setSelectedLocales(usedLocales);
@@ -661,7 +686,7 @@ export default {
 		},
 		assignRandomColorsToChoices(jsonStr) {
 			const colors = this.shuffle(this.colors);
-			let json = JSON.parse(jsonStr);
+			const json = JSON.parse(jsonStr);
 			let colorIndex = 0;
 			for (let i = 0; i < json.pages.length; i++) {
 				if (json.pages[i].elements) {

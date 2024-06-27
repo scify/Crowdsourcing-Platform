@@ -2,7 +2,7 @@
 	<div class="component mt-3">
 		<div v-if="filesUploading" id="questionnaire-files-loader-overlay"></div>
 		<div v-if="filesUploading" id="questionnaire-files-loader" class="container-fluid">
-			<div class="row" id="questionnaire-files-loader-row">
+			<div id="questionnaire-files-loader-row" class="row">
 				<div class="col mb-4 text-center">
 					<div class="spinner-border" role="status">
 						<span class="sr-only">Loading...</span>
@@ -16,7 +16,7 @@
 		<div v-if="displayLoginPrompt" class="container-fluid p-0">
 			<div class="row mb-5 pt-3">
 				<div class="col text-center">
-					<h3 v-html="getQuestionnaireLoginPromptMessage()"></h3>
+					<h3 v-sane-html="getQuestionnaireLoginPromptMessage()"></h3>
 				</div>
 			</div>
 			<div class="row">
@@ -25,22 +25,22 @@
 						trans("questionnaire.sign_in")
 					}}</a>
 				</div>
-				<div class="col-5 offset-2 text-center pr-0" v-if="!questionnaire.respondent_auth_required">
-					<button @click="skipLogin()" class="btn btn-primary btn-lg w-100">Answer anonymously</button>
+				<div v-if="!questionnaire.respondent_auth_required" class="col-5 offset-2 text-center pr-0">
+					<button class="btn btn-primary btn-lg w-100" @click="skipLogin()">Answer anonymously</button>
 				</div>
 			</div>
 		</div>
 		<div v-else class="container-fluid">
-			<div class="row" v-if="!userResponse">
+			<div v-if="!userResponse" class="row">
 				<div class="col-md-12 language-selection">
 					<div class="form-group">
 						<label for="language-select">{{ trans("questionnaire.select_language") }}</label>
-						<select class="form-control" @change="onLanguageChange($event)" id="language-select">
+						<select id="language-select" class="form-control" @change="onLanguageChange($event)">
 							<option
-								:selected="language.code === defaultLangCode"
-								:value="language.code"
 								v-for="(language, index) in surveyLocales"
 								:key="index"
+								:selected="language.code === defaultLangCode"
+								:value="language.code"
 							>
 								{{ language.name }}
 							</option>
@@ -102,8 +102,14 @@ export default {
 		},
 		surveyContainerId: {
 			type: String,
+			default: null,
 		},
-		languages: [],
+		languages: {
+			type: Array,
+			default: function () {
+				return [];
+			},
+		},
 		moderator: {
 			type: Boolean,
 			default: function () {
@@ -159,7 +165,7 @@ export default {
 			this.displayLoginPrompt = false;
 			const instance = this;
 			this.loading = true;
-			let surveyContainerId = this.$props.surveyContainerId;
+			const surveyContainerId = this.$props.surveyContainerId;
 			setTimeout(function () {
 				instance.survey.render(surveyContainerId);
 			}, 1000);
@@ -223,7 +229,7 @@ export default {
 			this.survey.data = JSON.parse(this.userResponse.response_json);
 			this.survey.mode = "display";
 		},
-		// eslint-disable-next-line no-unused-vars
+
 		saveQuestionnaireResponseProgress(sender, options) {
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
 			if (!responseJSON || !JSON.parse(responseJSON))
@@ -239,7 +245,7 @@ export default {
 		},
 		onUploadSurveyFile(sender, options) {
 			if (options.files.length > 8) return;
-			let data = new FormData();
+			const data = new FormData();
 			for (let i = 0; i < options.files.length; i++) {
 				data.append("files[" + i + "]", options.files[i]);
 			}
@@ -252,7 +258,7 @@ export default {
 				},
 			};
 			this.filesUploading = true;
-			let instance = this;
+			const instance = this;
 			axios
 				.post(window.route("files.upload"), data, config)
 				.then(function (response) {
@@ -275,7 +281,7 @@ export default {
 				});
 		},
 		async saveQuestionnaireResponse(sender) {
-			let data = {};
+			const data = {};
 			data.browser_fingerprint_id = this.browserFingerprintId;
 			data.response = JSON.stringify(sender.data);
 			data.moderator = this.moderator;
@@ -383,8 +389,8 @@ export default {
 			const end = this.getPosition(url, "/", 4);
 			return url.substring(start, end);
 		},
-		getPosition(string, subString, occurrence) {
-			return string.split(subString, occurrence).join(subString).length;
+		getPosition(str, subString, occurrence) {
+			return str.split(subString, occurrence).join(subString).length;
 		},
 		trans(key) {
 			return window.trans(key);

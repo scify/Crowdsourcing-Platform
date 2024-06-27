@@ -4,27 +4,27 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 window.UsersListController = function () {};
 
 window.UsersListController.prototype = (function () {
-	let usersCriteria = {},
-		pageNum = 1;
-	let searchBtnHandler = function () {
+	const usersCriteria = {};
+	let pageNum = 1;
+	const searchBtnHandler = function () {
 		$("#searchBtn").on("click", function () {
 			getUsersByFilters.call(this);
 		});
 	};
-	let paginateUsersBtnHandler = function () {
+	const paginateUsersBtnHandler = function () {
 		$("body").on("click", "#usersList .pagination a", function (e) {
 			e.preventDefault();
 
 			if (!$(this).parent().hasClass("active")) {
-				let pageParam = $(this).attr("href").split("?page=")[1];
+				const pageParam = $(this).attr("href").split("?page=")[1];
 				pageNum = pageParam ? pageParam : 1;
 				$("#usersFilters").find("#searchBtn").trigger("click");
 			}
 		});
 	};
-	let getUsersByFilters = function () {
+	const getUsersByFilters = function () {
 		// button pressed that triggered this function
-		let self = this;
+		const self = this;
 		usersCriteria.page = pageNum;
 		usersCriteria.email = $("input[name=filter_email]").val();
 		$.ajax({
@@ -52,18 +52,18 @@ window.UsersListController.prototype = (function () {
 					$(".refresh-container").remove();
 				});
 				errorMsgEl.removeClass("hidden");
-				//The message added to Response object in Controller can be retrieved as following.
+				// The message added to Response object in Controller can be retrieved as following.
 				errorMsgEl.html(errorThrown);
 				$("#users-list-loader").addClass("hidden");
 			},
 		});
 	};
-	let parseSuccessData = function (response) {
+	const parseSuccessData = function (response) {
 		const errorMsgEl = $("#errorMsg");
 		const usersListEl = $("#usersList");
 		const loaderEl = $("#users-list-loader");
-		let responseObj = JSON.parse(response);
-		//if operation was unsuccessful
+		const responseObj = JSON.parse(response);
+		// if operation was unsuccessful
 		if (responseObj.status === 2) {
 			loaderEl.addClass("hidden");
 			errorMsgEl.removeClass("hidden");
@@ -76,8 +76,8 @@ window.UsersListController.prototype = (function () {
 			usersListEl.html(responseObj.data);
 		}
 	};
-	let initDataTables = function () {
-		let table = $("#userListTable");
+	const initDataTables = function () {
+		const table = $("#userListTable");
 
 		table.DataTable({
 			destroy: true,
@@ -103,7 +103,7 @@ window.UsersListController.prototype = (function () {
 			},
 		});
 	};
-	let init = function () {
+	const init = function () {
 		$(document).ready(function () {
 			searchBtnHandler();
 			paginateUsersBtnHandler();
@@ -115,5 +115,5 @@ window.UsersListController.prototype = (function () {
 	};
 })();
 
-let usersListController = new window.UsersListController();
+const usersListController = new window.UsersListController();
 usersListController.init();
