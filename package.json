@@ -1,5 +1,14 @@
 {
     "private": false,
+    "author": "SciFY",
+    "description": "A modern Web Application for Crowd-sourcing Projects and Questionnaires",
+    "license": "Apache-2.0",
+    "homepage": "https://crowdsourcing.ecas.org/",
+    "repository": "https://github.com/scify/Crowdsourcing-Platform",
+    "name": "Crowdsourcing-Platform",
+    "version": "8.0.0",
+    "packageManager": "npm",
+    "readme": "README.md",
     "scripts": {
         "lint": "eslint resources/assets",
         "format": "prettier --write \"resources/assets/\"",
