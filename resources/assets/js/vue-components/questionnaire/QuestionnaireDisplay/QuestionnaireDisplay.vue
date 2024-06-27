@@ -67,7 +67,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import * as Survey from "survey-knockout";
+import * as Survey from "survey-jquery";
 import { arrayMove, setCookie } from "../../../common-utils";
 import AnalyticsLogger from "../../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
