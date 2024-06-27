@@ -1,14 +1,14 @@
 (function () {
-	let init = function () {
+	const init = function () {
 		changeQuestionnaireStatusBtnHandler();
 		initializeDataTable();
 	};
 
-	let changeQuestionnaireStatusBtnHandler = function () {
+	const changeQuestionnaireStatusBtnHandler = function () {
 		$("body").on("click", ".change-status", updateFieldsInChangeStatusModal);
 	};
 
-	let updateFieldsInChangeStatusModal = function () {
+	const updateFieldsInChangeStatusModal = function () {
 		const parent = $(this).closest("tr");
 		const questionnaireId = parent.data("id");
 		const title = parent.data("title");
@@ -19,9 +19,9 @@
 		$("#comments").val("");
 	};
 
-	let initializeDataTable = function () {
+	const initializeDataTable = function () {
 		setTimeout(function () {
-			let table = $("#questionnaires-table");
+			const table = $("#questionnaires-table");
 			table.DataTable({
 				destroy: true,
 				paging: true,

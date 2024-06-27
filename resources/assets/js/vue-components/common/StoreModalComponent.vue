@@ -1,17 +1,17 @@
 <template>
-	<transition name="modal" v-if="modal.open">
-		<div class="modal-mask" v-if="modal.open">
+	<transition v-if="modal.open" name="modal">
+		<div v-if="modal.open" class="modal-mask">
 			<div class="modal-wrapper">
 				<div class="modal-container">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" v-if="modal.title">
+								<h5 v-if="modal.title" class="modal-title">
 									{{ modal.title }}
 								</h5>
 								<button
-									tabindex="-1"
 									v-if="modal.allowClose"
+									tabindex="-1"
 									type="button"
 									class="close"
 									@click.prevent="close"
@@ -30,9 +30,9 @@
 												aria-hidden="true"
 											></span>
 											<h4
-												class="m-0 p-3 text-center message"
 												v-if="modal.message"
-												v-html="modal.message"
+												v-sane-html="modal.message"
+												class="m-0 p-3 text-center message"
 											></h4>
 										</div>
 									</div>
@@ -45,7 +45,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="modal-footer" v-if="showOkButton">
+							<div v-if="showOkButton" class="modal-footer">
 								<button
 									tabindex="-1"
 									type="button"
@@ -76,15 +76,15 @@ export default {
 	data: function () {
 		return {};
 	},
+	computed: {
+		...mapGetters(["modal"]),
+	},
+	mounted() {},
 	methods: {
 		close() {
 			this.$store.dispatch("closeModal");
 		},
 	},
-	computed: {
-		...mapGetters(["modal"]),
-	},
-	mounted() {},
 };
 </script>
 <style scoped lang="scss">

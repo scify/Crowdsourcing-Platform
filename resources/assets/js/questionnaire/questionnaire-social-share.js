@@ -1,7 +1,7 @@
 import AnalyticsLogger from "../analytics-logger";
 
 (function () {
-	let socialShareHandler = function () {
+	const socialShareHandler = function () {
 		$("body").on("click", ".social-share-button", function () {
 			setTimeout(function () {
 				$(".share-success").removeClass("d-none");
@@ -26,7 +26,7 @@ import AnalyticsLogger from "../analytics-logger";
 		});
 	};
 
-	let init = function () {
+	const init = function () {
 		socialShareHandler();
 	};
 

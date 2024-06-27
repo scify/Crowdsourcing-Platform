@@ -9,9 +9,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" v-for="index in questions.length" :key="'question_' + index">
+		<div v-for="index in questions.length" :key="'question_' + index" class="row">
 			<div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
-				<div class="survey-statistics-container" :id="'survey-statistics-container_' + (index - 1)"></div>
+				<div :id="'survey-statistics-container_' + (index - 1)" class="survey-statistics-container"></div>
 			</div>
 		</div>
 		<div v-if="userCanAnnotateAnswers" class="row mt-5 mb-1">
@@ -36,7 +36,7 @@
 			:allow-close="true"
 			@canceled="signInModalOpen = false"
 		>
-			<template v-slot:body>
+			<template #body>
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-10 text-center mx-auto py-5">
@@ -53,7 +53,7 @@
 			:allow-close="true"
 			@canceled="maxVotesModalOpen = false"
 		>
-			<template v-slot:body>
+			<template #body>
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-10 text-center mx-auto py-5">
@@ -72,16 +72,16 @@
 			:allow-close="true"
 			@canceled="annotationModalOpen = false"
 		>
-			<template v-slot:header>
+			<template #header>
 				<h5 class="modal-title pl-2">Moderate Answer</h5>
 			</template>
-			<template v-slot:body>
+			<template #body>
 				<div class="container py-4">
 					<div class="row justify-content-center">
 						<div class="col-12 text-center mx-auto mb-3">
 							<select
-								v-model="annotation.admin_review_status_id"
 								id="annotation-admin-review-status-id"
+								v-model="annotation.admin_review_status_id"
 								class="form-control"
 							>
 								<option
@@ -97,9 +97,9 @@
 					<div v-if="displayAnnotatorPublicComment" class="row justify-content-center">
 						<div class="col-12 text-center mx-auto mb-4">
 							<textarea
+								v-model="annotation.annotation_text"
 								class="form-control"
 								rows="3"
-								v-model="annotation.annotation_text"
 								placeholder="A comment provided by the annotator (this is optional, but if you enter it will be publicly displayed)"
 							></textarea>
 						</div>
@@ -107,9 +107,9 @@
 					<div class="row justify-content-center">
 						<div class="col-12 text-center mx-auto mb-4">
 							<textarea
+								v-model="annotation.admin_review_comment"
 								class="form-control"
 								rows="2"
-								v-model="annotation.admin_review_comment"
 								placeholder="A private note for the moderator. This is not visible to users. It is useful for you in case you want to write down to remember for later"
 							></textarea>
 						</div>
@@ -117,9 +117,9 @@
 					<div class="row justify-content-center">
 						<div class="col-12 text-center mx-auto mb-3">
 							<button
-								@click="saveAnnotation"
 								:disabled="annotationSaveLoading"
 								class="btn btn-primary btn-lg w-100"
+								@click="saveAnnotation"
 							>
 								<span class="mr-2">Save</span
 								><span
@@ -132,9 +132,9 @@
 						</div>
 						<div class="col-12 text-center mx-auto">
 							<button
-								@click="deleteAnnotation"
 								:disabled="annotationDeleteLoading"
 								class="btn btn-outline-danger btn-lg w-100"
+								@click="deleteAnnotation"
 							>
 								<span class="mr-2">Undo/Remove your action</span
 								><span
@@ -181,6 +181,11 @@ import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
 import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
+import DOMPurify from "dompurify";
+
+Vue.directive("sane-html", (el, binding) => {
+	el.innerHTML = DOMPurify.sanitize(binding.value);
+});
 
 export default {
 	name: "QuestionnaireStatistics",
@@ -201,7 +206,10 @@ export default {
 				return [];
 			},
 		},
-		userId: Number,
+		userId: {
+			type: Number,
+			default: null,
+		},
 		userCanAnnotateAnswers: {
 			type: Number,
 			default: 0,
@@ -242,7 +250,7 @@ export default {
 	},
 	computed: {
 		displayAnnotatorPublicComment: function () {
-			//if id '1', 'Reviewed by moderator - no further action',
+			// if id '1', 'Reviewed by moderator - no further action',
 			// or id '4', 'Toxic - always hide answer', 'The answer was reviewed by a moderator, and it was marked as toxic.
 			// It will never be shown in the statistics.'
 			// don't display
@@ -263,7 +271,7 @@ export default {
 		for (let i = 0; i < this.questionTypesToApplyCustomTextsTableVisualizer.length; i++) {
 			const type = this.questionTypesToApplyCustomTextsTableVisualizer[i];
 			// Register custom visualizer for the free text question type
-			let visualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(type);
+			const visualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(type);
 			// arrange visualizers
 			const wordCloud = visualizers[0];
 			const simpleTable = visualizers[1];
@@ -274,7 +282,7 @@ export default {
 			SurveyAnalytics.VisualizationManager.registerVisualizer(type, wordCloud);
 		}
 		const fileType = "file";
-		let fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(fileType);
+		const fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(fileType);
 		if (fileVisualizers && fileVisualizers.length) {
 			SurveyAnalytics.VisualizationManager.unregisterVisualizer(fileType, fileVisualizers[0]);
 			if (this.showFileTypeQuestionsStatistics !== -1) {
@@ -381,7 +389,7 @@ export default {
 				const currentQuestionName = this.questions[i].name;
 				if (!this.questionHasCustomVisualizer(this.questions[i])) {
 					answersForPanel = _.map(answers, "response_text");
-					// eslint-disable-next-line no-unused-vars
+
 					answersForPanel = Object.values(
 						_.pickBy(answersForPanel, function (value) {
 							return currentQuestionName in value && value[currentQuestionName] !== undefined;
@@ -398,7 +406,7 @@ export default {
 					this.statsPanelIndexToColors.set(i, colors);
 				}
 
-				let visPanel = new SurveyAnalytics.VisualizationPanel([this.questions[i]], answersForPanel, {
+				const visPanel = new SurveyAnalytics.VisualizationPanel([this.questions[i]], answersForPanel, {
 					labelTruncateLength: -1,
 					allowDynamicLayout: false,
 					allowSelection: false,
@@ -406,7 +414,7 @@ export default {
 				});
 				visPanel.showHeader = false;
 
-				let instance = this;
+				const instance = this;
 				visPanel.visualizers.forEach((visualizer) => {
 					if (!visualizer.onAnswersDataReady) return;
 					visualizer.onAnswersDataReady.add((sender, options) => {
@@ -419,7 +427,7 @@ export default {
 			this.loading = false;
 		},
 		initializeQuestionnaireResponsesReport() {
-			let panelEl = document.getElementById("questionnaire-responses-report");
+			const panelEl = document.getElementById("questionnaire-responses-report");
 			panelEl.innerHTML = "";
 			Tabulator.haveCommercialLicense = true;
 			const answersForSurveyTabulator = _.map(this.answersData, "response_json").map(JSON.parse);
@@ -446,7 +454,7 @@ export default {
 			return _.map(choices, "statsColor");
 		},
 		convertColorNamesToColorCodes(colorNames) {
-			let colorCodes = [];
+			const colorCodes = [];
 			for (let i = 0; i < colorNames.length; i++) {
 				const color = _.find(this.colors, ["color_name", colorNames[i]]);
 				if (color) colorCodes.push(color.color_code);
@@ -531,7 +539,7 @@ export default {
 			this.maxVotesModalOpen = true;
 		},
 		updateCountElement(element, className, oppositeClassName, oppositeButtonClassName) {
-			let countEl = element.find(".count:first");
+			const countEl = element.find(".count:first");
 			let count = parseInt(countEl.html());
 			if (element.hasClass(className)) {
 				count -= 1;
@@ -541,11 +549,11 @@ export default {
 			countEl.html(count);
 
 			const parent = element.closest(".reaction-buttons");
-			let oppositeButtonEl = parent.find("." + oppositeButtonClassName + ":first");
+			const oppositeButtonEl = parent.find("." + oppositeButtonClassName + ":first");
 			if (oppositeButtonEl && oppositeButtonEl.hasClass(oppositeClassName)) {
 				oppositeButtonEl.removeClass(oppositeClassName);
-				let countEl = oppositeButtonEl.find(".count:first");
-				let count = parseInt(countEl.html()) - 1;
+				const countEl = oppositeButtonEl.find(".count:first");
+				const count = parseInt(countEl.html()) - 1;
 				countEl.html(count);
 			}
 		},

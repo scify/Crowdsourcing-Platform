@@ -3,17 +3,17 @@ import "bootstrap/dist/js/bootstrap.min";
 import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
 
 (function () {
-	let init = function () {
+	const init = function () {
 		initializeColorPicker();
 	};
 
-	let initializeColorPicker = function () {
+	const initializeColorPicker = function () {
 		$(".color-picker").each(function (i, el) {
 			initSingleColorPicker(el);
 		});
 	};
 
-	let initSingleColorPicker = function (el) {
+	const initSingleColorPicker = function (el) {
 		$(el).colorpicker({
 			horizontal: true,
 		});

@@ -1,7 +1,6 @@
 import * as SurveyAnalytics from "survey-analytics";
 
 function FileQuestionStatisticsCustomVisualizer(question, data) {
-	// eslint-disable-next-line no-unused-vars
 	function renderHeader(table, visualizer) {
 		const header = document.createElement("thead");
 		const tr = document.createElement("tr");
@@ -12,7 +11,6 @@ function FileQuestionStatisticsCustomVisualizer(question, data) {
 		table.appendChild(header);
 	}
 
-	// eslint-disable-next-line no-unused-vars
 	function renderRows(table, visualizer) {
 		const tbody = document.createElement("tbody");
 		const questionName = visualizer.question.name;

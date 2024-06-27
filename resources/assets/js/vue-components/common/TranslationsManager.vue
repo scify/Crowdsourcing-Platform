@@ -6,20 +6,20 @@
 					id="extra_translations"
 					type="hidden"
 					name="extra_translations"
-					:value="JSON.stringify(this.translations)"
+					:value="JSON.stringify(translations)"
 				/>
 
 				<div
-					class="float-left mr-2 lang"
 					v-for="language in availableLanguages"
 					v-if="language.id !== defaultLangId"
 					:key="'avail_lang_' + language.id"
+					class="float-left mr-2 lang"
 				>
 					<label>
 						<input
+							v-model="checkedLanguages"
 							type="checkbox"
 							:value="language"
-							v-model="checkedLanguages"
 							@change="checkChanged($event, language)"
 						/>
 						{{ language.language_name }}
@@ -29,19 +29,19 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<ul class="nav nav-tabs mt-4" id="translations-tab" role="tablist">
+				<ul id="translations-tab" class="nav nav-tabs mt-4" role="tablist">
 					<li
-						v-for="(translation, index) in this.translations"
+						v-for="(translation, index) in translations"
 						:key="'translation_item_' + index"
 						class="nav-item"
 						role="presentation"
 					>
 						<a
-							v-bind:class="{ 'nav-link': true, active: index === 0 }"
+							:id="'language-' + translation.language_id + '-tab'"
+							:class="{ 'nav-link': true, active: index === 0 }"
 							aria-selected="false"
 							role="tab"
 							data-toggle="tab"
-							:id="'language-' + translation.language_id + '-tab'"
 							:href="'#language-' + translation.language_id"
 							:aria-controls="'language-' + translation.language_id"
 						>
@@ -53,13 +53,13 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<div class="tab-content" id="translation_tabs">
+				<div id="translation_tabs" class="tab-content">
 					<div
-						v-for="(translation, index) in this.translations"
-						:key="'translation_' + index"
-						v-bind:class="{ 'tab-pane fade': true, 'show active': index === 0 }"
-						role="tabpanel"
+						v-for="(translation, index) in translations"
 						:id="'language-' + translation.language_id"
+						:key="'translation_' + index"
+						:class="{ 'tab-pane fade': true, 'show active': index === 0 }"
+						role="tabpanel"
 						:aria-labelledby="'language-' + translation.language_id + '-tab'"
 					>
 						<table class="table table-striped">
@@ -104,7 +104,20 @@ import { mapActions } from "vuex";
 
 export default {
 	name: "TranslationsManager",
-	props: ["existingTranslations", "modelMetaData", "defaultLangId"],
+	props: {
+		existingTranslations: {
+			type: Array,
+			default: () => [],
+		},
+		modelMetaData: {
+			type: Object,
+			default: () => {},
+		},
+		defaultLangId: {
+			type: [String, Number],
+			default: "",
+		},
+	},
 	data: function () {
 		return {
 			translations: [],
@@ -145,20 +158,20 @@ export default {
 			return checkedLanguages;
 		},
 		removeDefaultTranslation() {
-			let translations = [];
-			let instance = this;
+			const translations = [];
+			const instance = this;
 			this.existingTranslations.forEach(function (t) {
 				if (t.language_id !== instance.defaultLangId) translations.push(t);
 			});
 			return translations;
 		},
 		getLanguageName(languageId) {
-			//find the name from availableLanguages
-			let lang = _.find(this.availableLanguages, { id: languageId });
+			// find the name from availableLanguages
+			const lang = _.find(this.availableLanguages, { id: languageId });
 			return lang.language_name;
 		},
 		addNewTranslation(language) {
-			//copy the original translation
+			// copy the original translation
 			const copy = { ...this.originalTranslation };
 			for (const property in copy) {
 				if (typeof property === "string" || property instanceof String) {
@@ -173,8 +186,8 @@ export default {
 			else this.deleteTranslation(language);
 		},
 		async deleteTranslation(language) {
-			let translation = _.find(this.translations, { language_id: language.id });
-			let instance = this;
+			const translation = _.find(this.translations, { language_id: language.id });
+			const instance = this;
 			const swal = (await import("bootstrap-sweetalert")).default;
 			swal(
 				{
@@ -191,7 +204,7 @@ export default {
 				function (isConfirm) {
 					if (isConfirm) {
 						instance.translations.splice(instance.translations.indexOf(translation), 1);
-					} //restore the checked option
+					} // restore the checked option
 					else instance.checkedLanguages.push(language);
 				},
 			);

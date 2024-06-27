@@ -1,19 +1,19 @@
 <template>
-	<transition name="modal" v-if="open" @click="cancel">
-		<div class="modal-mask" v-if="open">
+	<transition v-if="open" name="modal" @click="cancel">
+		<div v-if="open" class="modal-mask">
 			<div class="modal-wrapper">
 				<div class="modal-container">
 					<div class="modal-dialog modal-dialog-scrollable" :class="additionalClasses">
 						<div class="modal-content">
-							<div class="modal-header" v-if="!hideHeader">
+							<div v-if="!hideHeader" class="modal-header">
 								<slot name="header"></slot>
 								<button
 									v-if="allowClose"
-									@click="cancel"
 									type="button"
 									class="close"
 									data-dismiss="modal"
 									aria-label="Close"
+									@click="cancel"
 								>
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -55,6 +55,7 @@ export default {
 	data: function () {
 		return {};
 	},
+	mounted() {},
 	methods: {
 		cancel() {
 			this.$emit("canceled");
@@ -66,7 +67,6 @@ export default {
 			return !!this.$slots[name] || !!this.$slots[name];
 		},
 	},
-	mounted() {},
 };
 </script>
 <style scoped lang="scss">

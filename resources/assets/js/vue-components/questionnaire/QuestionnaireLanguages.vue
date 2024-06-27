@@ -1,7 +1,7 @@
 <template>
 	<div class="modal-component">
 		<common-modal :open="modalOpen" :allow-close="true" :classes="''" @canceled="$emit('canceled')">
-			<template v-slot:header>
+			<template #header>
 				<h5 class="modal-title pl-2">
 					Mark Questionnaire Languages<span
 						v-if="contentLoading"
@@ -11,7 +11,7 @@
 					></span>
 				</h5>
 			</template>
-			<template v-slot:body>
+			<template #body>
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col">
@@ -24,18 +24,18 @@
 								</thead>
 								<tbody>
 									<tr
-										class="d-flex"
 										v-for="(questionnaireLang, index) in questionnaireLanguages"
 										:key="index"
+										class="d-flex"
 									>
 										<td class="col-8">
 											{{ questionnaireLang.language.language_name }}
 										</td>
 										<td class="col-4 text-center">
 											<input
+												v-model="questionnaireLang.human_approved"
 												class="form-check-input"
 												type="checkbox"
-												v-model="questionnaireLang.human_approved"
 											/>
 										</td>
 									</tr>
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</template>
-			<template v-slot:footer>
+			<template #footer>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-3 offset-6 pr-0">
@@ -95,7 +95,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		questionnaireId: null,
+		questionnaireId: {
+			type: Number,
+			default: null,
+		},
 	},
 	data: function () {
 		return {

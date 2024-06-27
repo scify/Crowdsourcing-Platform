@@ -1,8 +1,8 @@
 function routeFunction() {
 	if (window.Laravel) {
 		const routes = window.Laravel.routes;
-		let args = Array.prototype.slice.call(arguments);
-		let name = args.shift();
+		const args = Array.prototype.slice.call(arguments);
+		const name = args.shift();
 		if (routes[name] === undefined) {
 			console.error("Route not found ", name);
 		} else {

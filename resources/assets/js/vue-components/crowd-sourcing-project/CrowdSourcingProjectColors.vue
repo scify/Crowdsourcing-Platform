@@ -1,6 +1,6 @@
 <template>
 	<div class="container-fluid">
-		<div class="row mb-3" v-for="(color, index) in colors" :key="'color_' + index">
+		<div v-for="(color, index) in colors" :key="'color_' + index" class="row mb-3">
 			<div class="col-5">
 				<div class="input-group">
 					<input type="text" name="color_names[]" class="form-control" :value="color.color_name" />
@@ -8,20 +8,20 @@
 				</div>
 			</div>
 			<div class="col-6">
-				<div class="input-group colorpicker-component color-picker" :id="'color_' + index">
+				<div :id="'color_' + index" class="input-group colorpicker-component color-picker">
 					<input type="text" name="color_codes[]" class="form-control" :value="color.color_code" />
 					<span class="input-group-addon"><i></i></span>
 				</div>
 			</div>
 			<div class="col-1">
-				<div @click="removeColor(index)" class="btn btn-block btn-outline-danger w-100">
+				<div class="btn btn-block btn-outline-danger w-100" @click="removeColor(index)">
 					<i class="fas fa-minus"></i>
 				</div>
 			</div>
 		</div>
 		<div class="row mt-4">
 			<div class="col-2">
-				<div @click="addColor" class="btn btn-block btn-primary btn-lg w-100 mt-0">
+				<div class="btn btn-block btn-primary btn-lg w-100 mt-0" @click="addColor">
 					<i class="fas fa-plus"></i>
 				</div>
 			</div>
@@ -38,7 +38,12 @@ import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
 export default {
 	name: "CrowdSourcingProjectColors",
 	props: {
-		colorData: [],
+		colorData: {
+			type: Array,
+			default: function () {
+				return [];
+			},
+		},
 	},
 	data: function () {
 		return {
@@ -58,7 +63,7 @@ export default {
 				color_name: "color-" + (this.colors.length + 1),
 				color_code: this.generateRandomColor(),
 			});
-			let instance = this;
+			const instance = this;
 			setTimeout(function () {
 				instance.initSingleColorPicker($("#color_" + (instance.colors.length - 1)));
 			}, 500);
@@ -78,7 +83,7 @@ export default {
 			}
 		},
 		initializeColorPicker() {
-			let instance = this;
+			const instance = this;
 			$(".color-picker").each(function (i, el) {
 				instance.initSingleColorPicker(el);
 			});

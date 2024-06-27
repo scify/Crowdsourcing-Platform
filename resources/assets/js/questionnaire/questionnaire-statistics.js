@@ -17,40 +17,35 @@ new Vue({
 });
 
 (function () {
-	let init = function () {
-		// eslint-disable-next-line no-undef
+	const init = function () {
 		if (viewModel.questionnaireResponseStatistics.totalResponses) initQuestionnaireResponsesChart();
-		// eslint-disable-next-line no-undef
+
 		if (viewModel.numberOfResponsesPerLanguage.data.length > 1) initQuestionnaireResponsesPerLanguageChart();
 		printPageBtnHandler();
 	};
 
-	let initQuestionnaireResponsesChart = function () {
+	const initQuestionnaireResponsesChart = function () {
 		if (!document.getElementById("responsesChart")) return;
 
-		let ctx = document.getElementById("responsesChart").getContext("2d");
+		const ctx = document.getElementById("responsesChart").getContext("2d");
 		const colors = getRandomColors(2);
-		// eslint-disable-next-line no-undef
+
 		if (!viewModel.questionnaireResponseStatistics.totalResponsesColor)
-			// eslint-disable-next-line no-undef
 			viewModel.questionnaireResponseStatistics.totalResponsesColor = colors[0];
-		// eslint-disable-next-line no-undef
+
 		if (!viewModel.questionnaireResponseStatistics.goalResponsesColor)
-			// eslint-disable-next-line no-undef
 			viewModel.questionnaireResponseStatistics.goalResponsesColor = colors[1];
 		const data = {
 			datasets: [
 				{
 					data: [
-						// eslint-disable-next-line no-undef
 						viewModel.questionnaireResponseStatistics.goalResponses,
-						// eslint-disable-next-line no-undef
+
 						viewModel.questionnaireResponseStatistics.totalResponses,
 					],
 					backgroundColor: [
-						// eslint-disable-next-line no-undef
 						viewModel.questionnaireResponseStatistics.goalResponsesColor,
-						// eslint-disable-next-line no-undef
+
 						viewModel.questionnaireResponseStatistics.totalResponsesColor,
 					],
 					borderWidth: 1,
@@ -63,37 +58,34 @@ new Vue({
 		createChart(ctx, data, "pie");
 	};
 
-	let initQuestionnaireResponsesPerLanguageChart = function () {
-		let element = document.getElementById("responsesPerLanguageChart");
+	const initQuestionnaireResponsesPerLanguageChart = function () {
+		const element = document.getElementById("responsesPerLanguageChart");
 		if (!element) return;
-		let ctx = element.getContext("2d");
-		// eslint-disable-next-line no-undef
-		let colors = getRandomColors(viewModel.numberOfResponsesPerLanguage.data.length);
-		// eslint-disable-next-line no-undef
+		const ctx = element.getContext("2d");
+
+		const colors = getRandomColors(viewModel.numberOfResponsesPerLanguage.data.length);
+
 		for (let i = 0; i < viewModel.numberOfResponsesPerLanguage.data.length; i++) {
-			// eslint-disable-next-line no-undef
 			if (!viewModel.numberOfResponsesPerLanguage.data[i].color)
-				// eslint-disable-next-line no-undef
 				viewModel.numberOfResponsesPerLanguage.data[i].color = colors[i];
 		}
 		const data = {
 			datasets: [
 				{
-					// eslint-disable-next-line no-undef
 					data: _.map(viewModel.numberOfResponsesPerLanguage.data, "num_responses"),
-					// eslint-disable-next-line no-undef
+
 					backgroundColor: _.map(viewModel.numberOfResponsesPerLanguage.data, "color"),
 				},
 			],
-			// eslint-disable-next-line no-undef
+
 			labels: _.map(viewModel.numberOfResponsesPerLanguage.data, "language_name"),
 		};
 
 		createChart(ctx, data, "bar");
 	};
 
-	let createChart = function (canvasContext, data, chartType) {
-		let options = getChartCommonOptions(chartType);
+	const createChart = function (canvasContext, data, chartType) {
+		const options = getChartCommonOptions(chartType);
 		if (chartType === "pie") options.legend = { display: true };
 		return new Chart(canvasContext, {
 			type: chartType,
@@ -102,8 +94,8 @@ new Vue({
 		});
 	};
 
-	let getChartCommonOptions = function (chartType) {
-		let options = {
+	const getChartCommonOptions = function (chartType) {
+		const options = {
 			legend: { display: false },
 			tooltips: {
 				enabled: true,
@@ -167,9 +159,9 @@ new Vue({
 		return options;
 	};
 
-	let getResponsesPercentageDataLabels = function (value, ctx) {
+	const getResponsesPercentageDataLabels = function (value, ctx) {
 		let sum = 0;
-		let dataArr = ctx.chart.data.datasets[0].data;
+		const dataArr = ctx.chart.data.datasets[0].data;
 		dataArr.map((data) => {
 			sum += data;
 		});
@@ -177,7 +169,7 @@ new Vue({
 		return value + " responses\n" + percentage;
 	};
 
-	let getRandomColors = function (num) {
+	const getRandomColors = function (num) {
 		const array = [
 			"#ef5350",
 			"#ab47bc",
@@ -201,7 +193,7 @@ new Vue({
 		return array.sort(() => Math.random() - Math.random()).slice(0, num);
 	};
 
-	let printPageBtnHandler = function () {
+	const printPageBtnHandler = function () {
 		$("#print-page").click(function () {
 			window.print();
 		});

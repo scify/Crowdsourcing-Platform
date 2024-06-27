@@ -749,7 +749,9 @@
 	const trans = function (key, replace = {}) {
 		let translation = key.split(".").reduce((t, i) => t[i] || null, window.Laravel.translations);
 		for (const placeholder in replace) {
-			translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+			if (replace.hasOwnProperty(placeholder)) {
+				translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+			}
 		}
 		return translation;
 	};

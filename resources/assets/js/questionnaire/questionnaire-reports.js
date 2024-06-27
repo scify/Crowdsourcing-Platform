@@ -5,10 +5,14 @@ import "datatables.net-buttons-bs4";
 import "datatables.net-buttons/js/buttons.html5.mjs";
 
 (function () {
-	let respondentsTable, questionnaire, answers, survey, loader;
+	let respondentsTable;
+	let questionnaire;
+	let answers;
+	let survey;
+	let loader;
 
-	let checkForURLSearchParams = function () {
-		let searchParams = new URLSearchParams(window.location.search);
+	const checkForURLSearchParams = function () {
+		const searchParams = new URLSearchParams(window.location.search);
 		const questionnaireId = searchParams.get("questionnaireId");
 		if (questionnaireId) {
 			$("select[name=questionnaire_id]").val(questionnaireId);
@@ -16,9 +20,9 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		}
 	};
 
-	let updateURLSearchParams = function (criteria) {
-		let searchParams = new URLSearchParams(window.location.search);
-		let newURL = "";
+	const updateURLSearchParams = function (criteria) {
+		const searchParams = new URLSearchParams(window.location.search);
+		let newURL;
 		if (searchParams.has("questionnaireId")) {
 			newURL = location.href.replace(
 				"questionnaireId=" + searchParams.get("questionnaireId"),
@@ -33,20 +37,20 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		}
 	};
 
-	let searchBtnHandler = function () {
+	const searchBtnHandler = function () {
 		$("#searchBtn").on("click", function () {
-			let criteria = {};
+			const criteria = {};
 			criteria.questionnaireId = $("select[name=questionnaire_id]").val();
 			if (criteria.questionnaireId) updateURLSearchParams(criteria);
 			getReportsForCriteria(criteria);
 		});
 	};
 
-	let triggerSearch = function () {
+	const triggerSearch = function () {
 		$("#searchBtn").trigger("click");
 	};
 
-	let viewResponseBtnHandler = function () {
+	const viewResponseBtnHandler = function () {
 		$("body").on("click", ".response-btn", function () {
 			const respondentUserId = $(this).data("respondentUserId");
 			const respondentUserData = $(this).data("respondentUserData");
@@ -59,7 +63,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		});
 	};
 
-	let deleteResponseBtnHandler = function () {
+	const deleteResponseBtnHandler = function () {
 		const body = $("body");
 		body.on("click", ".delete-response-btn", function () {
 			const questionnaireResponseId = $(this).data("questionnaireResponseId");
@@ -110,12 +114,12 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		});
 	};
 
-	let getResponseJSONByRespondentId = function (id) {
+	const getResponseJSONByRespondentId = function (id) {
 		for (let i = 0; i < answers.length; i++)
 			if (answers[i].user_id === id) return JSON.parse(answers[i].response_json);
 	};
 
-	let getReportsForCriteria = function (criteria) {
+	const getReportsForCriteria = function (criteria) {
 		const errorEl = $("#errorMsg");
 		$.ajax({
 			method: "GET",
@@ -138,7 +142,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		});
 	};
 
-	let parseSuccessData = function (response) {
+	const parseSuccessData = function (response) {
 		const resultsEl = $("#results");
 		resultsEl.html("");
 		$("#errorMsg").addClass("d-none");
@@ -153,7 +157,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		loader.addClass("d-none");
 	};
 
-	let initializeDataTables = function () {
+	const initializeDataTables = function () {
 		respondentsTable = $("#respondentsTable").DataTable({
 			paging: true,
 			searching: true,
@@ -182,8 +186,8 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		});
 	};
 
-	let initializeQuestionnaireResponsesReport = function () {
-		let panelEl = document.getElementById("questionnaire-responses-report");
+	const initializeQuestionnaireResponsesReport = function () {
+		const panelEl = document.getElementById("questionnaire-responses-report");
 		panelEl.innerHTML = "";
 		Tabulator.haveCommercialLicense = true;
 		const answersForSurveyTabulator = _.map(answers, "response_json").map(JSON.parse);
@@ -193,7 +197,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		surveyAnalyticsTabulator.render(panelEl);
 	};
 
-	let init = function () {
+	const init = function () {
 		loader = $("#loader");
 		Survey.StylesManager.applyTheme("modern");
 

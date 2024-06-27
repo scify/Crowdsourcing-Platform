@@ -22,7 +22,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 		}
 	}
 
-	// eslint-disable-next-line no-unused-vars
 	function renderHeaderSimple(table, visualizer) {
 		const header = document.createElement("thead");
 		const tr = document.createElement("tr");
@@ -39,7 +38,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 		table.appendChild(header);
 	}
 
-	// eslint-disable-next-line no-unused-vars
 	function renderHeaderFull(table, visualizer) {
 		const header = document.createElement("thead");
 		const tr = document.createElement("tr");
@@ -115,14 +113,14 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 			const td2 = document.createElement("td");
 			const td3 = document.createElement("td");
 			const td4 = document.createElement("td");
-			let annotation = getAnnotationForAnswer(questionName, respondentUserId);
+			const annotation = getAnnotationForAnswer(questionName, respondentUserId);
 			const annotationText = annotation ? annotation.annotation_text : "";
 			let adminReviewStatusId = 0;
 			if (annotation)
 				adminReviewStatusId = annotation.admin_review_status_id ? annotation.admin_review_status_id : 0;
 			const adminReviewComment = annotation ? annotation.admin_review_comment : "";
 			if (AnswersData.userCanAnnotateAnswers) {
-				let annotationIndication = annotation
+				const annotationIndication = annotation
 					? '<i class="fa fa-check" title="This answer has been reviewed by a moderator"></i>'
 					: "";
 				td1.innerHTML =
@@ -301,7 +299,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 		if (upVotesNum) orderingFactor += 2 * upVotesNum;
 		if (downVotesNum) orderingFactor -= 2 * downVotesNum;
 
-		//calibrate scores to be from 0 - 1
+		// calibrate scores to be from 0 - 1
 		return sigmoid(orderingFactor);
 	}
 
