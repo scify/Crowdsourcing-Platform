@@ -74,7 +74,6 @@
         "survey-analytics": "^1.11.4",
         "survey-core": "^1.11.4",
         "survey-creator": "^1.11.4",
-        "survey-jquery": "^1.11.4",
-        "survey-knockout": "^1.11.4"
+        "survey-jquery": "^1.11.4"
     }
 }
