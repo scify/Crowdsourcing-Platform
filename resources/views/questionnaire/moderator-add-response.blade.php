@@ -7,7 +7,6 @@
 
         }
     </style>
-    @vite('resources/assets/sass/questionnaire/questionnaire-display.scss')
 @endpush
 @section('content')
     <div class="container-fluid h-100 w-100 px-0" id="questionnaire-thanks">

@@ -5,7 +5,6 @@
     --project-primary-color: {{ $viewModel->project->lp_primary_color}}
 }
 </style>
-    @vite('resources/assets/sass/questionnaire/questionnaire-display.scss')
 @endpush
 
 @section('content')
