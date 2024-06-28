@@ -38,7 +38,6 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 	};
 
 	$(document).ready(function () {
-		console.log("common.js loaded");
 		init();
 	});
 })();

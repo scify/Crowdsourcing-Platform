@@ -1,6 +1,4 @@
-import CodeMirror from "codemirror/lib/codemirror";
 import "select2";
-import "codemirror/mode/xml/xml";
 import "summernote/dist/summernote-bs4.min";
 
 import Vue from "vue";
@@ -27,11 +25,7 @@ new Vue({
 		window.setTimeout(function () {
 			$(".summernote").summernote({
 				height: 150, // set editable area's height
-				codemirror: {
-					// codemirror options
-					CodeMirrorConstructor: CodeMirror,
-					theme: "monokai",
-				},
+				prettifyHtml: true,
 			});
 			initializeCommunicationResourcesHandlers();
 		}, 2000);
