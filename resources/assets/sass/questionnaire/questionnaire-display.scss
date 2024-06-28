@@ -1,4 +1,5 @@
 @import "../variables";
+@import "survey-jquery/survey.min.css";
 
 .survey-container {
 	.sv-btn.sv-footer__complete-btn,
@@ -58,6 +59,11 @@
 			width: 25px;
 			height: 25px;
 		}
+	}
+
+	.sv_main {
+		font-size: large;
+		font-family: "Open Sans", sans-serif;
 	}
 }
 
