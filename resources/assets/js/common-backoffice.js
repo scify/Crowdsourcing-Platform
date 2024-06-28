@@ -73,7 +73,6 @@ import { showToast } from "./common-utils";
 	};
 
 	$(document).ready(function () {
-		console.log("common-backoffice.js loaded");
 		initializeIcheck();
 		closeDismissibleAlerts();
 		initClipboardElements();
