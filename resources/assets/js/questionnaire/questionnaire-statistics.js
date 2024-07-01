@@ -209,8 +209,11 @@ app.mount("#app");
 			"#00C853",
 			"#FFFF00",
 		];
-		// return the array but shuffled
-		return array.sort(() => Math.random() - 0.5).slice(0, num);
+		// Copy the array and sort the copy
+		const sortedArray = array.slice().sort(() => Math.random() - 0.5);
+
+		// Return the first 'num' elements of the sorted array
+		return sortedArray.slice(0, num);
 	};
 
 	const printPageBtnHandler = function () {
