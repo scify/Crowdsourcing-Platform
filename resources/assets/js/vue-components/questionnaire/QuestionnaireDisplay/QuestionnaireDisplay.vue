@@ -66,8 +66,7 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from "vue";
-import { mapActions } from "vuex";
+import { onMounted, ref } from "vue";
 import * as Survey from "survey-jquery";
 import { arrayMove, setCookie } from "../../../common-utils";
 import AnalyticsLogger from "../../../analytics-logger";
