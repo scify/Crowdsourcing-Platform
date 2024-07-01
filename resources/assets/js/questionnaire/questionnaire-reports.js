@@ -160,7 +160,6 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		respondentsTable = $("#respondentsTable").DataTable({
 			paging: true,
 			searching: true,
-			responsive: true,
 			pageLength: 25,
 			layout: {
 				topStart: {

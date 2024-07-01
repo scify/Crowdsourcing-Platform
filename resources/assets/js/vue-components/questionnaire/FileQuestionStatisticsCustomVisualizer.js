@@ -54,7 +54,6 @@ function FileQuestionStatisticsCustomVisualizer(question, data) {
 		const options = {
 			destroy: true,
 			paging: true,
-			responsive: true,
 			searching: false,
 			columns: columns,
 			dom: "Bfrtip",

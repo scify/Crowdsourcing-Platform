@@ -82,7 +82,6 @@ window.UsersListController.prototype = (function () {
 		table.DataTable({
 			destroy: true,
 			paging: false,
-			responsive: true,
 			searching: false,
 			columns: [{ width: "25%" }, { width: "25%" }, { width: "25%" }, { width: "25%" }],
 			layout: {

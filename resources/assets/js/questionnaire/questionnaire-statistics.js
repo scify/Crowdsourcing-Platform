@@ -1,11 +1,18 @@
 "use strict";
-import Chart from "chart.js";
-import "admin-lte/plugins/datatables/jquery.dataTables.min";
+import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+// Register the plugin to all charts:
+Chart.register(ChartDataLabels);
 
 import Vue from "vue";
 import store from "../store/store";
 
 import QuestionnaireStatistics from "../vue-components/questionnaire/QuestionnaireStatistics.vue";
+import DOMPurify from "dompurify";
+
+Vue.directive("sane-html", (el, binding) => {
+	el.innerHTML = DOMPurify.sanitize(binding.value);
+});
 
 new Vue({
 	el: "#app",
@@ -47,7 +54,9 @@ new Vue({
 
 						viewModel.questionnaireResponseStatistics.totalResponsesColor,
 					],
-					borderWidth: 1,
+					border: {
+						width: 1,
+					}
 				},
 			],
 
@@ -85,15 +94,18 @@ new Vue({
 	const createChart = function (canvasContext, data, chartType) {
 		const options = getChartCommonOptions(chartType);
 		if (chartType === "pie") options.legend = { display: true };
-		return new Chart(canvasContext, {
+		const config = {
 			type: chartType,
 			data: data,
 			options: options,
-		});
+		}
+		if(chartType === "bar" || chartType === "horizontalBar") config.borderWidth = 1;
+		return new Chart(canvasContext, config);
 	};
 
 	const getChartCommonOptions = function (chartType) {
 		const options = {
+			responsive: true,
 			legend: { display: false },
 			tooltips: {
 				enabled: true,
@@ -134,6 +146,7 @@ new Vue({
 						},
 					],
 				};
+				options.indexAxis = "y";
 				break;
 			case "bar":
 				options.scales = {
@@ -152,6 +165,7 @@ new Vue({
 						},
 					],
 				};
+				options.indexAxis = "x";
 				break;
 		}
 		return options;

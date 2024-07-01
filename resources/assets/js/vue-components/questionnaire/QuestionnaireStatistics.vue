@@ -174,16 +174,11 @@ import * as Survey from "survey-jquery";
 import * as SurveyAnalytics from "survey-analytics";
 import { mapActions } from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, { AnswersData } from "./FreeTextQuestionStatisticsCustomVisualizer";
+import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
 import { showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
-import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
-import DOMPurify from "dompurify";
-
-Vue.directive("sane-html", (el, binding) => {
-	el.innerHTML = DOMPurify.sanitize(binding.value);
-});
 
 export default {
 	name: "QuestionnaireStatistics",
@@ -370,6 +365,16 @@ export default {
 			}).then((res) => res.data);
 		},
 		initStatistics(answers, answerVotes, answerAnnotations, adminAnalysisStatuses) {
+			// remove from the questions array the questions that should not be displayed in the statistics
+			const questionsWithNoCustomVisualizer = this.questions.filter(
+				(question) => this.shouldDrawStatistics(question) && !this.questionHasCustomVisualizer(question),
+			);
+			const questionsWithCustomVisualizer = this.questions.filter(
+				(question) => this.shouldDrawStatistics(question) && this.questionHasCustomVisualizer(question),
+			);
+			const questionsWithNoCustomVisualizerResponses = answers.map((answer) => answer.response_text);
+			const questionsWithCustomVisualizerResponses = answers;
+
 			this.answerAnnotationAdminReviewStatuses = adminAnalysisStatuses;
 			this.numOfVotesByCurrentUser = answerVotes.filter((vote) => vote.voter_user_id === this.userId).length;
 			AnswersData.answerVotes = answerVotes;
@@ -380,50 +385,48 @@ export default {
 			AnswersData.languageResources = window.trans("statistics");
 
 			for (let i = 0; i < this.questions.length; i++) {
-				if (!this.shouldDrawStatistics(this.questions[i])) continue;
-				let answersForPanel = answers;
-				const currentQuestionName = this.questions[i].name;
-				if (!this.questionHasCustomVisualizer(this.questions[i])) {
-					answersForPanel = answers.map((answer) => answer.response_text);
-
-					answersForPanel = Object.values(
-						answersForPanel.reduce((acc, value) => {
-							if (currentQuestionName in value && value[currentQuestionName] !== undefined) {
-								acc[currentQuestionName] = value[currentQuestionName];
-							}
-							return acc;
-						}, {}),
-					);
-				}
-
 				const colors = this.convertColorNamesToColorCodes(this.getColorsForQuestion(this.questions[i]));
-
 				if (colors.length) {
 					if (this.questions[i].otherItem) {
 						colors.unshift("blue");
 					}
 					this.statsPanelIndexToColors.set(i, colors);
 				}
+			}
 
-				const visPanel = new SurveyAnalytics.VisualizationPanel([this.questions[i]], answersForPanel, {
+			this.visualizeQuestions(
+				questionsWithNoCustomVisualizer,
+				questionsWithNoCustomVisualizerResponses,
+				"survey-statistics-container_0",
+			);
+			this.visualizeQuestions(
+				questionsWithCustomVisualizer,
+				questionsWithCustomVisualizerResponses,
+				"survey-statistics-container_1",
+			);
+			this.loading = false;
+		},
+		visualizeQuestions(questionsWithNoCustomVisualizer, questionsWithNoCustomVisualizerResponses, elementId) {
+			const visPanel = new SurveyAnalytics.VisualizationPanel(
+				questionsWithNoCustomVisualizer,
+				questionsWithNoCustomVisualizerResponses,
+				{
 					labelTruncateLength: -1,
 					allowDynamicLayout: false,
 					allowSelection: false,
-					index: i,
-				});
-				visPanel.showHeader = false;
+				},
+			);
+			visPanel.showHeader = false;
 
-				const instance = this;
-				visPanel.visualizers.forEach((visualizer) => {
-					if (!visualizer.onAnswersDataReady) return;
-					visualizer.onAnswersDataReady.add((sender, options) => {
-						if (instance.statsPanelIndexToColors.has(sender.options.index))
-							options.colors = instance.statsPanelIndexToColors.get(sender.options.index);
-					});
+			const instance = this;
+			visPanel.visualizers.forEach((visualizer) => {
+				if (!visualizer.onAnswersDataReady) return;
+				visualizer.onAnswersDataReady.add((sender, options) => {
+					if (instance.statsPanelIndexToColors.has(sender.options.index))
+						options.colors = instance.statsPanelIndexToColors.get(sender.options.index);
 				});
-				visPanel.render(document.getElementById("survey-statistics-container_" + i));
-			}
-			this.loading = false;
+			});
+			visPanel.render(document.getElementById(elementId));
 		},
 		initializeQuestionnaireResponsesReport() {
 			const panelEl = document.getElementById("questionnaire-responses-report");
