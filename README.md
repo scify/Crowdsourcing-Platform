@@ -13,7 +13,7 @@
 
 ## Introduction
 
-This is a [Laravel](https://laravel.com/) 9 Web Application for Crowdsourcing Projects and Questionnaires.
+This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Projects and Questionnaires.
 
 ## Table of Contents
 
@@ -121,7 +121,7 @@ To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
 
 ### Step 1: Install PHP
 
-- **PHP**: Install PHP 8.0 or newer. You can follow the installation guide for your operating system on
+- **PHP**: Install PHP 8.2 or newer. You can follow the installation guide for your operating system on
   the [PHP website](https://www.php.net/manual/en/install.php).
 
 ```bash
