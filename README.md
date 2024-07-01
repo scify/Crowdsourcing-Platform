@@ -21,7 +21,7 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
 - [Features](#features)
 - [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
 - [Installation Instructions](#installation-instructions)
-    - [Method 1: Docker Compose](#method-1-docker-compose)
+    - [Method 1: Docker Compose](#method-1-docker-compose-recommended)
         - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
         - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
         - [Step 3: Launch the Application](#step-3-launch-the-application)
