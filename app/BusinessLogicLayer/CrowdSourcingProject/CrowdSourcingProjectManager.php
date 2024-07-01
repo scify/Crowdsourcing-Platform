@@ -30,6 +30,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
+
+    const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
+
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected QuestionnaireRepository $questionnaireRepository;
     protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager;
@@ -241,21 +244,21 @@ class CrowdSourcingProjectManager {
         }
 
         if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {
-            $attributes['img_path'] = '/images/image_temp.png';
+            $attributes['img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
         if ((!isset($attributes['logo_path']) || !$attributes['logo_path']) && (!$project || !$project->logo_path)) {
-            $attributes['logo_path'] = '/images/image_temp.png';
+            $attributes['logo_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
         if ((!isset($attributes['sm_featured_img_path']) || !$attributes['sm_featured_img_path'])
             && (!$project || !$project->sm_featured_img_path)) {
-            $attributes['sm_featured_img_path'] = '/images/image_temp.png';
+            $attributes['sm_featured_img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
         if ((!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
             && (!$project || !$project->lp_questionnaire_img_path)) {
-            $attributes['lp_questionnaire_img_path'] = '/images/image_temp.png';
+            $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
         if (!isset($attributes['lp_show_speak_up_btn'])) {
@@ -297,13 +300,13 @@ class CrowdSourcingProjectManager {
 
     public function populateInitialFileValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         if (!$project->img_path) {
-            $project->img_path = '/images/image_temp.png';
+            $project->img_path = self::DEFAULT_IMAGE_PATH;
         }
         if (!$project->logo_path) {
-            $project->logo_path = '/images/image_temp.png';
+            $project->logo_path = self::DEFAULT_IMAGE_PATH;
         }
         if (!$project->sm_featured_img_path) {
-            $project->sm_featured_img_path = '/images/image_temp.png';
+            $project->sm_featured_img_path = self::DEFAULT_IMAGE_PATH;
         }
         if (!$project->lp_questionnaire_img_path) {
             $project->lp_questionnaire_img_path = '/images/bgsectionnaire.webp';
