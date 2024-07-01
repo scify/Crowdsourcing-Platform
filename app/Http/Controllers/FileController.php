@@ -6,12 +6,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class FileController extends Controller {
     public function uploadFiles(Request $request): JsonResponse {
         $request->validate([
             'files.*' => 'required|file|max:100000|mimetypes:image/*,audio/,video/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf',
-            'files' => 'max:8', //maximum number of files: 5
+            'files' => 'max:8', //maximum number of files: 8
             'project_id' => 'required|int',
             'questionnaire_id' => 'required|int',
         ]);
@@ -20,7 +21,8 @@ class FileController extends Controller {
         foreach ($request->file('files') as $fileObject) {
             $uploadedFile = UploadedFile::createFromBase($fileObject);
             $originalFileName = $uploadedFile->getClientOriginalName();
-            $path = Storage::disk('s3')->put('uploads/project_' . $request->project_id . '/questionnaire_' . $request->questionnaire_id, $uploadedFile);
+            $uniqueId = Str::uuid(); // Generate a unique ID for each file
+            $path = Storage::disk('s3')->put('uploads/' . $uniqueId, $uploadedFile);
             $uploadedFilePath = Storage::disk('s3')->url($path);
             $responseFilePaths[$originalFileName] = $uploadedFilePath;
         }
