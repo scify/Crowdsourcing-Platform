@@ -209,7 +209,8 @@ app.mount("#app");
 			"#00C853",
 			"#FFFF00",
 		];
-		return array.sort(() => Math.random() - Math.random()).slice(0, num);
+		// return the array but shuffled
+		return array.sort(() => Math.random() - 0.5).slice(0, num);
 	};
 
 	const printPageBtnHandler = function () {
