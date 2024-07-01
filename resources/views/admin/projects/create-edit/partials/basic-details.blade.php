@@ -4,14 +4,14 @@
             <div class="card-body">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="row image-input-container">
-                    <label class="col-sm-12 control-label">Project Logo</label>
+                    <label for="projectLogo" class="col-sm-12 control-label">Project Logo</label>
                     <div class="col-sm-12">
                         <div class="form-group has-feedback input-file-wrapper">
-                            <label class=" control-label"> In order to update the currently selected image, please
+                            <small class="control-label"> In order to update the currently selected image, please
                                 choose a new image by
-                                clicking the button below.</label><Br>
+                                clicking the button below.</small><Br>
 
-                            <input type="file" name="logo" class="image-input" accept="image/*">
+                            <input id="projectLogo" type="file" name="logo" class="image-input" accept="image/*">
                             <span class="help-block"><strong>{{ $errors->first('logo') }}</strong></span>
                         </div>
                         <div class="image-preview-container">

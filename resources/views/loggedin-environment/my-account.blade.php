@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <form id="form-change-password" class="w-100" role="form" method="POST"
+                        <form id="form-change-password" class="w-100" method="POST"
                               action="{{ url('/user/update') }}"
                               novalidate>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -130,7 +130,7 @@
                     <p class="text-danger">{!! __("my-account.warning_for_deactivation") !!}</p>
                 </div>
                 <div class="modal-footer">
-                    <form role="form" method="POST" action="{{ url('/user/deactivate') }}"
+                    <form method="POST" action="{{ url('/user/deactivate') }}"
                           novalidate>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
