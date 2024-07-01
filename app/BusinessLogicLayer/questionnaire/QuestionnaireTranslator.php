@@ -9,12 +9,12 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 class QuestionnaireTranslator {
     protected Translator $translator;
     protected $textsToTranslate;
-    protected $translatableQuestionnaireFirstLevelContentIdentifiers;
-    protected $translatablePageFirstLevelContentIdentifiers;
-    protected $translatableQuestionFirstLevelContentIdentifiers;
-    protected $translatableQuestionSecondLevelContentIdentifiers;
-    protected $questionnaireTranslationRepository;
-    protected $translatableQuestionThirdLevelContentIdentifiers;
+    protected array $translatableQuestionnaireFirstLevelContentIdentifiers;
+    protected array $translatablePageFirstLevelContentIdentifiers;
+    protected array $translatableQuestionFirstLevelContentIdentifiers;
+    protected array $translatableQuestionSecondLevelContentIdentifiers;
+    protected QuestionnaireTranslationRepository $questionnaireTranslationRepository;
+    protected array $translatableQuestionThirdLevelContentIdentifiers;
 
     public function __construct(Translator $translator, QuestionnaireTranslationRepository $questionnaireTranslationRepository) {
         $this->translator = $translator;
@@ -251,13 +251,13 @@ class QuestionnaireTranslator {
         $content = $object[$contentIdentifier];
         if (is_array($content)) {
             if (!array_key_exists($locale, $content) || (isset($content[$locale]) && trim($content[$locale]) === '')) {
-                array_push($this->textsToTranslate, $content['default']);
+                $this->textsToTranslate[] = $content['default'];
                 $content[$locale] = $translationIndex;
             } else {
                 return false;
             }
         } else {
-            array_push($this->textsToTranslate, $object[$contentIdentifier]);
+            $this->textsToTranslate[] = $object[$contentIdentifier];
             $content = [
                 'default' => $object[$contentIdentifier],
                 $locale => $translationIndex,
