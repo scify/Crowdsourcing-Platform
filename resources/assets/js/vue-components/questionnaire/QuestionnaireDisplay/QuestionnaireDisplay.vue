@@ -16,12 +16,14 @@
 		<div v-if="displayLoginPrompt" class="container-fluid p-0">
 			<div class="row mb-5 pt-3">
 				<div class="col text-center">
-					<h3 v-html="getQuestionnaireLoginPromptMessage()"></h3>
+					<h3 v-sane-html="getQuestionnaireLoginPromptMessage()"></h3>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-5 text-center pl-0 mx-auto">
-					<a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">{{ trans("questionnaire.sign_in") }}</a>
+					<a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">{{
+						trans("questionnaire.sign_in")
+					}}</a>
 				</div>
 				<div v-if="!questionnaire.respondent_auth_required" class="col-5 offset-2 text-center pr-0">
 					<button class="btn btn-primary btn-lg w-100" @click="skipLogin()">Answer anonymously</button>
@@ -64,16 +66,16 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from 'vue';
-import { mapActions } from 'vuex';
-import * as Survey from 'survey-jquery';
-import { arrayMove, setCookie } from '../../../common-utils';
-import AnalyticsLogger from '../../../analytics-logger';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import axios from 'axios';
+import { ref, onMounted, nextTick } from "vue";
+import { mapActions } from "vuex";
+import * as Survey from "survey-jquery";
+import { arrayMove, setCookie } from "../../../common-utils";
+import AnalyticsLogger from "../../../analytics-logger";
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import axios from "axios";
 
 export default {
-	name: 'QuestionnaireDisplay',
+	name: "QuestionnaireDisplay",
 	props: {
 		user: {
 			type: Object,
@@ -114,13 +116,13 @@ export default {
 		const displayLoginPrompt = ref(true);
 		const loading = ref(false);
 		const t0 = ref(null);
-		const defaultLangCode = ref('en');
+		const defaultLangCode = ref("en");
 		const filesUploading = ref(false);
 
 		onMounted(async () => {
 			userResponse.value = props.userResponseData;
 			const fpPromise = FingerprintJS.load();
-			browserFingerprintId.value = await fpPromise.then(fp => fp.get()).then(result => result.visitorId);
+			browserFingerprintId.value = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
 			displayLoginPrompt.value = !userLoggedIn();
 			if (!userLoggedIn()) {
 				const response = await getAnonymousUserResponse();
@@ -146,13 +148,13 @@ export default {
 
 		const getQuestionnaireLoginPromptMessage = () => {
 			if (props.questionnaire.respondent_auth_required) {
-				return 'You must be logged in in order to respond to this questionnaire';
+				return "You must be logged in in order to respond to this questionnaire";
 			}
-			return 'You can create an account in order to see more questionnaires that need answering';
+			return "You can create an account in order to see more questionnaires that need answering";
 		};
 
 		const initQuestionnaireDisplay = () => {
-			Survey.StylesManager.applyTheme('modern');
+			Survey.StylesManager.applyTheme("modern");
 			survey.value = new Survey.Model(props.questionnaire.questionnaire_json);
 			if (!userResponse.value || Object.keys(userResponse.value).length === 0) {
 				prepareQuestionnaireForResponding();
@@ -161,10 +163,10 @@ export default {
 			}
 
 			window.setInterval(() => {
-				if ($('.sv-ranking--drag').length > 0) {
-					$('body,#questionnaire-modal').addClass('disable-scroll');
+				if ($(".sv-ranking--drag").length > 0) {
+					$("body,#questionnaire-modal").addClass("disable-scroll");
 				} else {
-					$('body,#questionnaire-modal').removeClass('disable-scroll');
+					$("body,#questionnaire-modal").removeClass("disable-scroll");
 				}
 			}, 300);
 		};
@@ -176,7 +178,7 @@ export default {
 			}
 			let locales = survey.value.getUsedLocales();
 			if (!locales) {
-				locales = ['en'];
+				locales = ["en"];
 			}
 			defaultLangCode.value = getDefaultLocaleForQuestionnaire();
 			arrayMove(locales, locales.indexOf(defaultLangCode.value), 0);
@@ -198,10 +200,12 @@ export default {
 			const instance = this;
 			survey.value.onAfterRenderSurvey.add(() => {
 				loading.value = false;
-				$('.sv_complete_btn').after("<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>");
+				$(".sv_complete_btn").after(
+					"<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>",
+				);
 				setTimeout(() => {
-					$('textarea').each(function () {
-						$(this).attr('spellcheck', true);
+					$("textarea").each(function () {
+						$(this).attr("spellcheck", true);
 					});
 				}, 3000);
 			});
@@ -209,16 +213,16 @@ export default {
 
 		const prepareQuestionnaireForViewingResponse = () => {
 			survey.value.data = JSON.parse(userResponse.value.response_json);
-			survey.value.mode = 'display';
+			survey.value.mode = "display";
 		};
 
 		const saveQuestionnaireResponseProgress = (sender, options) => {
 			const responseJSON = window.localStorage.getItem(questionnaireLocalStorageKey.value);
 			if (!responseJSON || !JSON.parse(responseJSON)) {
 				AnalyticsLogger.logEvent(
-					'user_engagement',
+					"user_engagement",
 					`questionnaire_respond_begin_${props.questionnaire.default_fields_translation.title}`,
-					'respond_begin',
+					"respond_begin",
 					props.questionnaire.title,
 					props.questionnaire.id,
 				);
@@ -237,37 +241,37 @@ export default {
 			for (let i = 0; i < options.files.length; i++) {
 				data.append(`files[${i}]`, options.files[i]);
 			}
-			data.append('project_id', props.project.id);
-			data.append('questionnaire_id', props.questionnaire.id);
+			data.append("project_id", props.project.id);
+			data.append("questionnaire_id", props.questionnaire.id);
 			const config = {
 				headers: {
-					'content-type': 'multipart/form-data',
-					Accept: 'application/json',
+					"content-type": "multipart/form-data",
+					Accept: "application/json",
 				},
 			};
 			filesUploading.value = true;
 			const instance = this;
 			axios
-				.post(window.route('files.upload'), data, config)
-				.then(response => {
+				.post(window.route("files.upload"), data, config)
+				.then((response) => {
 					options.callback(
-						'success',
-						options.files.map(file => ({
+						"success",
+						options.files.map((file) => ({
 							file: file,
 							content: response.data[file.name],
 						})),
 					);
 				})
-				.catch(err => {
+				.catch((err) => {
 					console.error(err);
-					options.callback('error');
+					options.callback("error");
 				})
 				.finally(() => {
 					filesUploading.value = false;
 				});
 		};
 
-		const saveQuestionnaireResponse = sender => {
+		const saveQuestionnaireResponse = (sender) => {
 			const data = {};
 			data.browser_fingerprint_id = browserFingerprintId.value;
 			data.response = JSON.stringify(sender.data);
@@ -275,21 +279,21 @@ export default {
 			let locale = sender.locale;
 			if (!locale) {
 				if (!surveyLocales.value || !surveyLocales.value.length) {
-					locale = 'en';
+					locale = "en";
 				} else {
 					locale = surveyLocales.value[0].code;
 				}
 			}
 			data.language_code = locale;
-			$('.loader-wrapper').removeClass('hidden');
-			window.$('#questionnaire-modal').modal('hide');
-			$('.respond-questionnaire').attr('disabled', true);
+			$(".loader-wrapper").removeClass("hidden");
+			window.$("#questionnaire-modal").modal("hide");
+			$(".respond-questionnaire").attr("disabled", true);
 			postResponseDataAndShowResult(data);
 		};
 
-		const postResponseDataAndShowResult = data => {
+		const postResponseDataAndShowResult = (data) => {
 			post({
-				url: window.route('respond-questionnaire'),
+				url: window.route("respond-questionnaire"),
 				data: {
 					...data,
 					questionnaire_id: props.questionnaire.id,
@@ -298,17 +302,17 @@ export default {
 				urlRelative: false,
 				handleError: false,
 			})
-				.then(response => {
+				.then((response) => {
 					const anonymousUserId = response.data.anonymousUserId;
 					if (anonymousUserId) {
-						setCookie('crowdsourcing_anonymous_user_id', anonymousUserId, 3650);
+						setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
 					}
 					const time = performance.now() - t0.value;
 					const title = props.questionnaire.default_fields_translation.title;
 					AnalyticsLogger.logEvent(
-						'user_engagement',
+						"user_engagement",
 						`questionnaire_respond_complete_${title}`,
-						'respond_complete',
+						"respond_complete",
 						JSON.stringify({
 							questionnaire: title,
 							project: props.project.default_translation.name,
@@ -320,21 +324,21 @@ export default {
 					window.localStorage.removeItem(questionnaireLocalStorageKey.value);
 					displaySuccessResponse(anonymousUserId);
 				})
-				.catch(error => {
+				.catch((error) => {
 					console.error(error);
 					displayErrorResponse(error);
 				})
 				.finally(() => {
-					window.$('#questionnaire-modal').modal('hide');
+					window.$("#questionnaire-modal").modal("hide");
 				});
 		};
 
-		const displaySuccessResponse = anonymousUserId => {
+		const displaySuccessResponse = (anonymousUserId) => {
 			if (props.moderator) {
 				history.back();
 			} else {
 				let questionnaireResponseThankYouURL = window.route(
-					'questionnaire.thanks',
+					"questionnaire.thanks",
 					getDefaultLocaleForQuestionnaire(),
 					props.project.slug,
 					props.questionnaire.id,
@@ -343,39 +347,39 @@ export default {
 					questionnaireResponseThankYouURL += `?anonymous_user_id=${anonymousUserId}`;
 				}
 
-				$('#pyro').addClass('pyro-on');
+				$("#pyro").addClass("pyro-on");
 				window.location = questionnaireResponseThankYouURL;
 			}
 		};
 
-		const displayErrorResponse = async error => {
-			const { default: swal } = await import('bootstrap-sweetalert');
+		const displayErrorResponse = async (error) => {
+			const { default: swal } = await import("bootstrap-sweetalert");
 			swal({
-				title: 'Oops!',
+				title: "Oops!",
 				text: `An error occurred: ${error.toString()}`,
-				type: 'error',
-				confirmButtonClass: 'btn-danger',
-				confirmButtonText: 'OK',
+				type: "error",
+				confirmButtonClass: "btn-danger",
+				confirmButtonText: "OK",
 			});
 		};
 
-		const onLanguageChange = event => {
+		const onLanguageChange = (event) => {
 			survey.value.locale = event.target.value;
 		};
 
-		const getLanguageFromCode = code => {
-			return props.languages.find(l => l.language_code === code);
+		const getLanguageFromCode = (code) => {
+			return props.languages.find((l) => l.language_code === code);
 		};
 
 		const getSignInUrl = () => {
-			return window.route('login', getLocaleFromURL()) + `?redirectTo=${window.location.href}`;
+			return window.route("login", getLocaleFromURL()) + `?redirectTo=${window.location.href}`;
 		};
 
 		const getDefaultLocaleForQuestionnaire = () => {
 			const locales = survey.value.getUsedLocales();
 			const url = window.location.href;
-			const start = getPosition(url, '/', 3) + 1;
-			const end = getPosition(url, '/', 4);
+			const start = getPosition(url, "/", 3) + 1;
+			const end = getPosition(url, "/", 4);
 			const urlLang = url.substring(start, end);
 			if (locales.indexOf(urlLang) !== -1) {
 				return urlLang;
@@ -385,8 +389,8 @@ export default {
 
 		const getLocaleFromURL = () => {
 			const url = window.location.href;
-			const start = getPosition(url, '/', 3) + 1;
-			const end = getPosition(url, '/', 4);
+			const start = getPosition(url, "/", 3) + 1;
+			const end = getPosition(url, "/", 4);
 			return url.substring(start, end);
 		};
 
@@ -394,13 +398,14 @@ export default {
 			return str.split(subString, occurrence).join(subString).length;
 		};
 
-		const trans = key => {
+		const trans = (key) => {
 			return window.trans(key);
 		};
 
 		const getAnonymousUserResponse = async () => {
 			return await get({
-				url: window.route('questionnaire.response-anonymous') +
+				url:
+					window.route("questionnaire.response-anonymous") +
 					`?browser_fingerprint_id=${browserFingerprintId.value}&questionnaire_id=${props.questionnaire.id}`,
 				urlRelative: false,
 			});
@@ -429,5 +434,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../../sass/questionnaire/questionnaire-display';
+@import "../../../../sass/questionnaire/questionnaire-display";
 </style>

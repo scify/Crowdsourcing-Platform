@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from 'vue';
-import $ from 'jquery';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min';
+import { ref, onMounted, nextTick } from "vue";
+import $ from "jquery";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
 
 export default {
 	name: "CrowdSourcingProjectColors",
@@ -47,7 +47,12 @@ export default {
 		const colors = ref([...props.colorData]);
 
 		const generateRandomColor = () => {
-			return "#" + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
+			return (
+				"#" +
+				Math.floor(Math.random() * 16777215)
+					.toString(16)
+					.toUpperCase()
+			);
 		};
 
 		const addColor = async () => {
@@ -62,7 +67,7 @@ export default {
 		const removeColor = (index) => {
 			colors.value.splice(index, 1);
 			colors.value.forEach((color, i) => {
-				$(`#color_${i}`).colorpicker('setValue', color.color_code);
+				$(`#color_${i}`).colorpicker("setValue", color.color_code);
 			});
 		};
 

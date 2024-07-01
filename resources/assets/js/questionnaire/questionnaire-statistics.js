@@ -1,33 +1,33 @@
 "use strict";
-import Chart from 'chart.js/auto';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import Chart from "chart.js/auto";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 // Register the plugin to all charts:
 Chart.register(ChartDataLabels);
 
-import { createApp } from 'vue';
-import store from '../store/store';
+import { createApp } from "vue";
+import store from "../store/store";
 
-import QuestionnaireStatistics from '../vue-components/questionnaire/QuestionnaireStatistics.vue';
-import DOMPurify from 'dompurify';
+import QuestionnaireStatistics from "../vue-components/questionnaire/QuestionnaireStatistics.vue";
+import DOMPurify from "dompurify";
 
 const app = createApp({
 	components: {
 		QuestionnaireStatistics,
-	}
+	},
 });
 
 // Register the "sane-html" directive globally
-app.directive('sane-html', {
+app.directive("sane-html", {
 	updated(el, binding) {
 		el.innerHTML = DOMPurify.sanitize(binding.value);
 	},
 	mounted(el, binding) {
 		el.innerHTML = DOMPurify.sanitize(binding.value);
-	}
+	},
 });
 
 app.use(store);
-app.mount('#app');
+app.mount("#app");
 
 (function () {
 	const init = function () {
@@ -63,7 +63,7 @@ app.mount('#app');
 					],
 					border: {
 						width: 1,
-					}
+					},
 				},
 			],
 
@@ -87,12 +87,12 @@ app.mount('#app');
 		const data = {
 			datasets: [
 				{
-					data: viewModel.numberOfResponsesPerLanguage.data.map(item => item.num_responses),
-					backgroundColor: viewModel.numberOfResponsesPerLanguage.data.map(item => item.color),
+					data: viewModel.numberOfResponsesPerLanguage.data.map((item) => item.num_responses),
+					backgroundColor: viewModel.numberOfResponsesPerLanguage.data.map((item) => item.color),
 				},
 			],
 
-			labels: viewModel.numberOfResponsesPerLanguage.data.map(item => item.language_name),
+			labels: viewModel.numberOfResponsesPerLanguage.data.map((item) => item.language_name),
 		};
 
 		createChart(ctx, data, "bar");
@@ -105,8 +105,8 @@ app.mount('#app');
 			type: chartType,
 			data: data,
 			options: options,
-		}
-		if(chartType === "bar" || chartType === "horizontalBar") config.borderWidth = 1;
+		};
+		if (chartType === "bar" || chartType === "horizontalBar") config.borderWidth = 1;
 		return new Chart(canvasContext, config);
 	};
 

@@ -1,8 +1,8 @@
-import { createStore } from 'vuex';
-import axios from 'axios';
+import { createStore } from "vuex";
+import axios from "axios";
 
 // Import your modules if you have any
-import modal from './modal';
+import modal from "./modal";
 
 export default createStore({
 	strict: true,
@@ -11,8 +11,8 @@ export default createStore({
 		loading: false,
 	},
 	getters: {
-		modal: state => state.modal,
-		loading: state => state.loading,
+		modal: (state) => state.modal,
+		loading: (state) => state.loading,
 	},
 	mutations: {
 		openModal(state) {
@@ -42,28 +42,28 @@ export default createStore({
 	},
 	actions: {
 		openModal({ commit }) {
-			commit('openModal');
+			commit("openModal");
 		},
 		closeModal({ commit }) {
-			commit('closeModal');
+			commit("closeModal");
 		},
 		setLoading({ commit }, status) {
-			commit('setLoading', status);
+			commit("setLoading", status);
 		},
 		setMessage({ commit }, message) {
-			commit('setMessage', message);
+			commit("setMessage", message);
 		},
 		setTitle({ commit }, title) {
-			commit('setTitle', title);
+			commit("setTitle", title);
 		},
 		setModalLink({ commit }, link) {
-			commit('setModalLink', link);
+			commit("setModalLink", link);
 		},
 		setModalAllowClose({ commit }, status) {
-			commit('setModalAllowClose', status);
+			commit("setModalAllowClose", status);
 		},
 		async post({ commit, dispatch }, { url, data, urlRelative = true, handleError = true }) {
-			commit('setLoading', true);
+			commit("setLoading", true);
 			url = urlRelative ? import.meta.env.VITE_APP_URL + url : url;
 			data = {
 				...data,
@@ -72,41 +72,41 @@ export default createStore({
 			try {
 				const response = await axios.post(url, data, {
 					headers: {
-						Accept: 'application/json',
+						Accept: "application/json",
 					},
 				});
 				if (response.status > 300) {
 					throw response;
 				}
-				commit('setLoading', false);
-				commit('closeModal');
+				commit("setLoading", false);
+				commit("closeModal");
 				return response;
 			} catch (error) {
 				if (handleError) {
-					dispatch('handleError', error);
+					dispatch("handleError", error);
 				} else {
 					throw error;
 				}
 			}
 		},
 		async get({ commit, dispatch }, { url, urlRelative = true, handleError = true }) {
-			commit('setLoading', true);
+			commit("setLoading", true);
 			url = urlRelative ? import.meta.env.VITE_APP_URL + url : url;
 			try {
 				const response = await axios.get(url, {
 					headers: {
-						Accept: 'application/json',
+						Accept: "application/json",
 					},
 				});
 				if (response.status > 300) {
 					throw response;
 				}
-				commit('setLoading', false);
-				commit('closeModal');
+				commit("setLoading", false);
+				commit("closeModal");
 				return response;
 			} catch (error) {
 				if (handleError) {
-					dispatch('handleError', error);
+					dispatch("handleError", error);
 				} else {
 					throw error;
 				}
@@ -114,15 +114,21 @@ export default createStore({
 		},
 		handleError({ commit }, error) {
 			console.error(error);
-			commit('setLoading', false);
-			commit('openModal');
-			commit('setModalAllowClose', true);
+			commit("setLoading", false);
+			commit("openModal");
+			commit("setModalAllowClose", true);
 			if (error.response && error.response.data) {
-				commit('setMessage', error.response.data.message !== '' ? error.response.data.message : error.response.statusText);
+				commit(
+					"setMessage",
+					error.response.data.message !== "" ? error.response.data.message : error.response.statusText,
+				);
 			} else if (error) {
-				commit('setMessage', error);
+				commit("setMessage", error);
 			} else {
-				commit('setMessage', 'We are experiencing some difficulties handling your request right now.<br>Please try again later.');
+				commit(
+					"setMessage",
+					"We are experiencing some difficulties handling your request right now.<br>Please try again later.",
+				);
 			}
 		},
 	},

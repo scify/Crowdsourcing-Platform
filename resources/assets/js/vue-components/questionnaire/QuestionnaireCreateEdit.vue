@@ -330,22 +330,22 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { mapActions } from 'vuex';
-import * as Survey from 'survey-jquery';
-import * as SurveyCreator from 'survey-creator';
-import { arrayMove, showToast } from '../../common-utils';
-import { isObject } from '../../common-backoffice';
-import QuestionnaireLanguages from './QuestionnaireLanguages.vue';
-import CommonModal from '../common/ModalComponent.vue';
-import TranslationsManager from '../common/TranslationsManager.vue';
-import select2 from 'select2';
+import { defineComponent } from "vue";
+import { mapActions } from "vuex";
+import * as Survey from "survey-jquery";
+import * as SurveyCreator from "survey-creator";
+import { arrayMove, showToast } from "../../common-utils";
+import { isObject } from "../../common-backoffice";
+import QuestionnaireLanguages from "./QuestionnaireLanguages.vue";
+import CommonModal from "../common/ModalComponent.vue";
+import TranslationsManager from "../common/TranslationsManager.vue";
+import select2 from "select2";
 
 select2($);
 const FILE_MAX_SIZE_BYTES = 3145728; // 3MB;
 
 export default defineComponent({
-	name: 'QuestionnaireCreateEdit',
+	name: "QuestionnaireCreateEdit",
 	components: {
 		QuestionnaireLanguages,
 		CommonModal,
@@ -391,18 +391,18 @@ export default defineComponent({
 			},
 			surveyCreator: null,
 			questionTypes: [
-				'boolean',
-				'checkbox',
-				'comment',
-				'dropdown',
-				'html',
-				'matrix',
-				'matrixdropdown',
-				'radiogroup',
-				'rating',
-				'text',
-				'ranking',
-				'file',
+				"boolean",
+				"checkbox",
+				"comment",
+				"dropdown",
+				"html",
+				"matrix",
+				"matrixdropdown",
+				"radiogroup",
+				"rating",
+				"text",
+				"ranking",
+				"file",
 			],
 			colors: [],
 			isTranTabInitialised: false,
@@ -410,7 +410,7 @@ export default defineComponent({
 			modalMessage: null,
 			defaultLocale: null,
 			questionnaireLanguagesModalOpen: false,
-			defaultLangCodeForQuestionnaireFields: 'en',
+			defaultLangCodeForQuestionnaireFields: "en",
 			loading: false,
 		};
 	},
@@ -428,7 +428,9 @@ export default defineComponent({
 			this.defaultLocale = this.languages.find((el) => el.id === langId).language_code;
 		} else {
 			const instance = this;
-			this.defaultLocale = this.languages.find((el) => el.language_code === instance.defaultLangCodeForQuestionnaireFields).language_code;
+			this.defaultLocale = this.languages.find(
+				(el) => el.language_code === instance.defaultLangCodeForQuestionnaireFields,
+			).language_code;
 		}
 	},
 	mounted() {
@@ -440,7 +442,7 @@ export default defineComponent({
 		});
 	},
 	methods: {
-		...mapActions(['get', 'handleError', 'post']),
+		...mapActions(["get", "handleError", "post"]),
 		isProjectSelected(projectId) {
 			return this.questionnaire.projectIds.includes(projectId);
 		},
@@ -451,7 +453,7 @@ export default defineComponent({
 		async getColorsForCrowdSourcingProject() {
 			try {
 				const response = await this.get({
-					url: window.route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
+					url: window.route("crowd-sourcing-project.get-colors", this.questionnaire.project_id),
 					data: {},
 					urlRelative: false,
 				});
@@ -466,14 +468,14 @@ export default defineComponent({
 
 			this.initLocaleForQuestionnaireEditor(locale);
 
-			Survey.JsonObject.metaData.addProperty('itemvalue', {
-				name: 'statsColor',
-				title: 'Stats Color',
+			Survey.JsonObject.metaData.addProperty("itemvalue", {
+				name: "statsColor",
+				title: "Stats Color",
 				choices: this.colors,
 				isRequired: false,
 			});
 
-			Survey.Serializer.findProperty('question', 'name').readOnly = true;
+			Survey.Serializer.findProperty("question", "name").readOnly = true;
 
 			const options = {
 				showEmbeddedSurveyTab: false,
@@ -484,12 +486,12 @@ export default defineComponent({
 			};
 
 			this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
-			this.surveyCreator.render('questionnaire-editor');
+			this.surveyCreator.render("questionnaire-editor");
 			this.surveyCreator.haveCommercialLicense = true;
 			this.surveyCreator.onQuestionAdded.add((sender, options) => {
 				const question = options.question;
 				const type = question.getType();
-				if (type === 'file') {
+				if (type === "file") {
 					question.maxSize = FILE_MAX_SIZE_BYTES;
 					question.waitForUpload = true;
 					question.allowImagesPreview = true;
@@ -507,18 +509,20 @@ export default defineComponent({
 				this.isTranTabInitialised = true;
 				this.surveyCreator.translation.mergeLocaleWithDefault();
 				this.surveyCreator.translation.toolbarItems.push({
-					id: 'auto-translate',
+					id: "auto-translate",
 					visible: true,
-					title: 'Translate Survey Now',
+					title: "Translate Survey Now",
 					action: () => {
-						instance.translateQuestionnaireToLocales(instance.surveyCreator.translation.getSelectedLocales());
+						instance.translateQuestionnaireToLocales(
+							instance.surveyCreator.translation.getSelectedLocales(),
+						);
 					},
 				});
 				if (this.questionnaire.id)
 					this.surveyCreator.translation.toolbarItems.push({
-						id: 'questionnaire-languages',
+						id: "questionnaire-languages",
 						visible: true,
-						title: 'Mark languages as approved',
+						title: "Mark languages as approved",
 						action: () => {
 							instance.questionnaireLanguagesModalOpen = true;
 						},
@@ -538,29 +542,29 @@ export default defineComponent({
 		getIndexOfDefaultLocale() {
 			for (let i = 0; i < this.languages.length; i++)
 				if (this.languages[i].language_code === this.defaultLocale) return i;
-			throw new Error('Default locale not found');
+			throw new Error("Default locale not found");
 		},
 		async translateQuestionnaireToLocales(locales) {
-			locales = locales.filter((el) => el !== '');
+			locales = locales.filter((el) => el !== "");
 			if (!locales.length) {
-				const { default: swal } = await import('bootstrap-sweetalert');
+				const { default: swal } = await import("bootstrap-sweetalert");
 				return swal({
-					title: 'Languages Missing!',
-					text: 'Please provide at least one language from the dropdown menu.',
-					type: 'warning',
-					confirmButtonClass: 'btn-danger',
-					confirmButtonText: 'OK',
+					title: "Languages Missing!",
+					text: "Please provide at least one language from the dropdown menu.",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
 				});
 			}
 			this.modalOpen = true;
-			this.modalMessage = 'Please wait while the translations are generated...';
+			this.modalMessage = "Please wait while the translations are generated...";
 			const data = {
 				questionnaire_json: this.surveyCreator.text,
 				locales: locales,
 			};
 			try {
 				const response = await this.post({
-					url: window.route('questionnaire.translate'),
+					url: window.route("questionnaire.translate"),
 					data: data,
 					urlRelative: false,
 					handleError: false,
@@ -568,7 +572,7 @@ export default defineComponent({
 				this.surveyCreator.changeText(response.data.translation);
 				this.surveyCreator.showTranslationEditor();
 				this.modalOpen = false;
-				showToast('Translations generated!', '#28a745', 'bottom-right');
+				showToast("Translations generated!", "#28a745", "bottom-right");
 			} catch (error) {
 				console.error(error);
 				this.modalOpen = false;
@@ -576,7 +580,7 @@ export default defineComponent({
 		},
 		async saveQuestionnaire() {
 			let locales = this.surveyCreator.translationValue.getSelectedLocales();
-			if (locales[0] === '') {
+			if (locales[0] === "") {
 				locales = [];
 			}
 			const data = {
@@ -588,12 +592,13 @@ export default defineComponent({
 				statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
 				content: this.surveyCreator.text,
 				lang_codes: locales,
-				extra_fields_translations: document.getElementById('extra_translations').value,
+				extra_fields_translations: document.getElementById("extra_translations").value,
 				max_votes_num: this.questionnaire.max_votes_num,
 				show_general_statistics: this.questionnaire.show_general_statistics,
 				type_id: this.questionnaire.type_id,
 				respondent_auth_required: this.questionnaire.respondent_auth_required,
-				show_file_type_questions_to_statistics_page_audience: this.questionnaire.show_file_type_questions_to_statistics_page_audience,
+				show_file_type_questions_to_statistics_page_audience:
+					this.questionnaire.show_file_type_questions_to_statistics_page_audience,
 			};
 			$("#project-ids")
 				.val()
@@ -602,48 +607,48 @@ export default defineComponent({
 				});
 
 			if (this.formInvalid(data)) {
-				const { default: swal } = await import('bootstrap-sweetalert');
+				const { default: swal } = await import("bootstrap-sweetalert");
 				return swal({
-					title: 'Fields Missing!',
-					text: 'Please provide a title, description, goal, and at least one project.',
-					type: 'warning',
-					confirmButtonClass: 'btn-danger',
-					confirmButtonText: 'OK',
+					title: "Fields Missing!",
+					text: "Please provide a title, description, goal, and at least one project.",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
 				});
 			}
 			this.loading = true;
 			try {
 				const response = await this.post({
 					url: this.questionnaire.id
-						? window.route('update-questionnaire', this.questionnaire.id)
-						: window.route('store-questionnaire'),
+						? window.route("update-questionnaire", this.questionnaire.id)
+						: window.route("store-questionnaire"),
 					data: data,
 					urlRelative: false,
 					handleError: false,
 				});
 				this.loading = false;
-				const { default: swal } = await import('bootstrap-sweetalert');
+				const { default: swal } = await import("bootstrap-sweetalert");
 				swal(
 					{
-						title: 'Success!',
-						text: 'The questionnaire has been successfully stored.',
-						type: 'success',
-						confirmButtonClass: 'btn-success',
-						confirmButtonText: 'OK',
+						title: "Success!",
+						text: "The questionnaire has been successfully stored.",
+						type: "success",
+						confirmButtonClass: "btn-success",
+						confirmButtonText: "OK",
 					},
 					() => {
-						window.location = window.route('edit-questionnaire', response.data.id);
+						window.location = window.route("edit-questionnaire", response.data.id);
 					},
 				);
 			} catch (error) {
 				this.loading = false;
-				const { default: swal } = await import('bootstrap-sweetalert');
+				const { default: swal } = await import("bootstrap-sweetalert");
 				swal({
-					title: 'Oops!',
-					text: 'An error occurred, please try again later.' + error.toString(),
-					type: 'error',
-					confirmButtonClass: 'btn-danger',
-					confirmButtonText: 'OK',
+					title: "Oops!",
+					text: "An error occurred, please try again later." + error.toString(),
+					type: "error",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
 				});
 			}
 		},
@@ -667,8 +672,15 @@ export default defineComponent({
 				if (json.pages[i].elements) {
 					for (let j = 0; j < json.pages[i].elements.length; j++) {
 						if (json.pages[i].elements[j].choices && Array.isArray(json.pages[i].elements[j].choices)) {
-							for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
-								if (isObject(json.pages[i].elements[j].choices[choiceIndex]) && !json.pages[i].elements[j].choices[choiceIndex].statsColor) {
+							for (
+								let choiceIndex = 0;
+								choiceIndex < json.pages[i].elements[j].choices.length;
+								choiceIndex++
+							) {
+								if (
+									isObject(json.pages[i].elements[j].choices[choiceIndex]) &&
+									!json.pages[i].elements[j].choices[choiceIndex].statsColor
+								) {
 									json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
 									colorIndex++;
 									if (colorIndex === colors.length) colorIndex = 0;
@@ -677,7 +689,10 @@ export default defineComponent({
 						}
 						if (json.pages[i].elements[j].columns && Array.isArray(json.pages[i].elements[j].columns)) {
 							for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
-								if (isObject(json.pages[i].elements[j].columns[colIndex]) && !json.pages[i].elements[j].columns[colIndex].statsColor) {
+								if (
+									isObject(json.pages[i].elements[j].columns[colIndex]) &&
+									!json.pages[i].elements[j].columns[colIndex].statsColor
+								) {
 									json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
 									colorIndex++;
 									if (colorIndex === colors.length) colorIndex = 0;
@@ -686,7 +701,10 @@ export default defineComponent({
 						}
 						if (json.pages[i].elements[j].rows && Array.isArray(json.pages[i].elements[j].rows)) {
 							for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
-								if (isObject(json.pages[i].elements[j].rows[rowIndex]) && !json.pages[i].elements[j].rows[rowIndex].statsColor) {
+								if (
+									isObject(json.pages[i].elements[j].rows[rowIndex]) &&
+									!json.pages[i].elements[j].rows[rowIndex].statsColor
+								) {
 									json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
 									colorIndex++;
 									if (colorIndex === colors.length) colorIndex = 0;

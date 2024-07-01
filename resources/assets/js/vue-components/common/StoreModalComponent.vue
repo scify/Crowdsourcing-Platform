@@ -63,8 +63,8 @@
 	</transition>
 </template>
 <script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
 	name: "StoreModal",
@@ -79,7 +79,7 @@ export default {
 		const modal = computed(() => store.getters.modal);
 
 		const close = () => {
-			store.dispatch('closeModal');
+			store.dispatch("closeModal");
 		};
 
 		return {

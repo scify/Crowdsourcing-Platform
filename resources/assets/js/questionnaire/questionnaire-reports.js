@@ -188,7 +188,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		const panelEl = document.getElementById("questionnaire-responses-report");
 		panelEl.innerHTML = "";
 		Tabulator.haveCommercialLicense = true;
-		const answersForSurveyTabulator = answers.map(answer => JSON.parse(answer.response_json));
+		const answersForSurveyTabulator = answers.map((answer) => JSON.parse(answer.response_json));
 		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
 			downloadButtons: ["csv"],
 		});

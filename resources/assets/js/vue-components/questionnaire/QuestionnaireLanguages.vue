@@ -80,13 +80,13 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { mapActions } from 'vuex';
-import { showToast } from '../../common-utils';
-import CommonModal from '../common/ModalComponent.vue';
+import { defineComponent } from "vue";
+import { mapActions } from "vuex";
+import { showToast } from "../../common-utils";
+import CommonModal from "../common/ModalComponent.vue";
 
 export default defineComponent({
-	name: 'QuestionnaireLanguages',
+	name: "QuestionnaireLanguages",
 	components: {
 		CommonModal,
 	},
@@ -118,12 +118,12 @@ export default defineComponent({
 		},
 	},
 	methods: {
-		...mapActions(['get', 'handleError', 'post']),
+		...mapActions(["get", "handleError", "post"]),
 		async getQuestionnaireLanguages() {
 			this.contentLoading = true;
 			try {
 				const response = await this.get({
-					url: window.route('questionnaire.languages') + '?questionnaire_id=' + this.questionnaireId,
+					url: window.route("questionnaire.languages") + "?questionnaire_id=" + this.questionnaireId,
 					urlRelative: false,
 				});
 				this.questionnaireLanguages = response.data.questionnaire_languages;
@@ -141,14 +141,14 @@ export default defineComponent({
 			}));
 			try {
 				await this.post({
-					url: window.route('questionnaire.mark-translations'),
+					url: window.route("questionnaire.mark-translations"),
 					data: {
 						questionnaire_id: this.questionnaireId,
 						lang_ids_to_status: mapped,
 					},
 					urlRelative: false,
 				});
-				showToast('Languages updated!', '#28a745');
+				showToast("Languages updated!", "#28a745");
 			} catch (error) {
 				this.handleError(error);
 			} finally {
