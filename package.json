@@ -39,7 +39,7 @@
     "vuex": "^4.1.0"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs": "^3.4.2",
+    "@fingerprintjs/fingerprintjs": "^4.4.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.8",
     "@sentry/browser": "^8.13.0",

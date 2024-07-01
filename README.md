@@ -297,6 +297,12 @@ After cloning the project, create an .env file (should be a copy of .env.example
 cp .env.example .env
 ```
 
+And then persist the `.env` settings to Laravel Cache:
+
+```bash
+php artisan config:cache
+```
+
 ### Step 2: Generate the application key
 
 ```bash
@@ -316,11 +322,11 @@ composer dump-autoload
 ```bash
 npm install
 
-npm run dev # (if in development mode)
+npm run dev # (if in development mode, use for live changes)
 
-npm run build # (if in production mode)
+npm run build # (if in development mode)
 
-npm run dev # (if in development mode and you want to have live changes)
+npm run prod # (if in production mode)
 ```
 
 ### Step 5: Set up the Database **(only if in new installation)**
