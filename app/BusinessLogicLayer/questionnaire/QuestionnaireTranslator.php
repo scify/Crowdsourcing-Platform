@@ -4,10 +4,10 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Utils\Translator;
-use JsonSchema\Exception\ResourceNotFoundException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class QuestionnaireTranslator {
-    protected $translator;
+    protected Translator $translator;
     protected $textsToTranslate;
     protected $translatableQuestionnaireFirstLevelContentIdentifiers;
     protected $translatablePageFirstLevelContentIdentifiers;
@@ -275,6 +275,7 @@ class QuestionnaireTranslator {
         foreach ($lang_ids_to_status as $lang_id_with_status) {
             $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $lang_id_with_status['id']);
             if (!$questionnaireLanguage) {
+                $lang_id = $lang_id_with_status['id'];
                 throw new ResourceNotFoundException('Questionnaire Language not found. Questionnaire Id: ' . $questionnaireId . ' Lang id: ' . $lang_id);
             }
             $questionnaireLanguage->human_approved = $lang_id_with_status['status'];
