@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
-import vue from "@vitejs/plugin-vue2";
+import vue from "@vitejs/plugin-vue";
 import path from "path";
 
 export default defineConfig({
@@ -66,7 +66,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			jQuery: path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
-			vue: "vue/dist/vue.esm.js",
+			vue: "vue/dist/vue.esm-bundler.js",
 		},
 		fallback: {
 			fs: false,

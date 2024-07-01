@@ -80,12 +80,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { showToast } from "../../common-utils";
-import CommonModal from "../common/ModalComponent.vue";
+import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
+import { showToast } from '../../common-utils';
+import CommonModal from '../common/ModalComponent.vue';
 
-export default {
-	name: "QuestionnaireLanguages",
+export default defineComponent({
+	name: 'QuestionnaireLanguages',
 	components: {
 		CommonModal,
 	},
@@ -99,7 +100,7 @@ export default {
 			default: null,
 		},
 	},
-	data: function () {
+	data() {
 		return {
 			questionnaireLanguages: [],
 			saveLoading: false,
@@ -107,44 +108,55 @@ export default {
 		};
 	},
 	watch: {
-		modalOpen() {
-			if (this.modalOpen) this.getQuestionnaireLanguages();
+		modalOpen: {
+			handler(val) {
+				if (val) {
+					this.getQuestionnaireLanguages();
+				}
+			},
+			immediate: true,
 		},
 	},
 	methods: {
-		...mapActions(["get", "handleError", "post"]),
-		getQuestionnaireLanguages() {
+		...mapActions(['get', 'handleError', 'post']),
+		async getQuestionnaireLanguages() {
 			this.contentLoading = true;
-			this.get({
-				url: window.route("questionnaire.languages") + "?questionnaire_id=" + this.questionnaireId,
-				urlRelative: false,
-			}).then((response) => {
+			try {
+				const response = await this.get({
+					url: window.route('questionnaire.languages') + '?questionnaire_id=' + this.questionnaireId,
+					urlRelative: false,
+				});
 				this.questionnaireLanguages = response.data.questionnaire_languages;
+			} catch (error) {
+				this.handleError(error);
+			} finally {
 				this.contentLoading = false;
-			});
+			}
 		},
-		saveQuestionnaireLanguagesStatus() {
+		async saveQuestionnaireLanguagesStatus() {
 			this.saveLoading = true;
-			const mapped = this.questionnaireLanguages.map(el => {
-				return {
-					id: el.language.id,
-					status: el.human_approved,
-				};
-			});
-			this.post({
-				url: window.route("questionnaire.mark-translations"),
-				data: {
-					questionnaire_id: this.questionnaireId,
-					lang_ids_to_status: mapped,
-				},
-				urlRelative: false,
-			}).then(() => {
+			const mapped = this.questionnaireLanguages.map((el) => ({
+				id: el.language.id,
+				status: el.human_approved,
+			}));
+			try {
+				await this.post({
+					url: window.route('questionnaire.mark-translations'),
+					data: {
+						questionnaire_id: this.questionnaireId,
+						lang_ids_to_status: mapped,
+					},
+					urlRelative: false,
+				});
+				showToast('Languages updated!', '#28a745');
+			} catch (error) {
+				this.handleError(error);
+			} finally {
 				this.saveLoading = false;
-				showToast("Languages updated!", "#28a745");
-			});
+			}
 		},
 	},
-};
+});
 </script>
 
 <style scoped></style>

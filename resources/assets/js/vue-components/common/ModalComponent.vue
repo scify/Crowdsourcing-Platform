@@ -31,8 +31,11 @@
 		</div>
 	</transition>
 </template>
+
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
 	name: "CommonModal",
 	props: {
 		allowClose: {
@@ -52,10 +55,6 @@ export default {
 			default: "modal-lg",
 		},
 	},
-	data: function () {
-		return {};
-	},
-	mounted() {},
 	methods: {
 		cancel() {
 			this.$emit("canceled");
@@ -64,11 +63,12 @@ export default {
 			this.$emit("submit");
 		},
 		hasSlot(name = "default") {
-			return !!this.$slots[name] || !!this.$slots[name];
+			return !!this.$slots[name];
 		},
 	},
-};
+});
 </script>
+
 <style scoped lang="scss">
 @import "resources/assets/sass/variables";
 @import "resources/assets/sass/modal";

@@ -1,23 +1,30 @@
 import AnalyticsLogger from "../analytics-logger";
 import { showToast } from "../common-utils";
 
-import Vue from "vue";
-import store from "../store/store";
-import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay/QuestionnaireDisplay.vue";
+import { createApp } from 'vue';
+import store from '../store/store';
+import QuestionnaireDisplay from '../vue-components/questionnaire/QuestionnaireDisplay/QuestionnaireDisplay.vue';
 
-import DOMPurify from "dompurify";
+import DOMPurify from 'dompurify';
 
-Vue.directive("sane-html", (el, binding) => {
-	el.innerHTML = DOMPurify.sanitize(binding.value);
-});
-
-new Vue({
-	el: "#app",
-	store: store,
+const app = createApp({
 	components: {
 		QuestionnaireDisplay,
-	},
+	}
 });
+
+// Register the "sane-html" directive globally
+app.directive('sane-html', {
+	updated(el, binding) {
+		el.innerHTML = DOMPurify.sanitize(binding.value);
+	},
+	mounted(el, binding) {
+		el.innerHTML = DOMPurify.sanitize(binding.value);
+	}
+});
+
+app.use(store);
+app.mount('#app');
 
 (function () {
 	const displayTranslation = function () {

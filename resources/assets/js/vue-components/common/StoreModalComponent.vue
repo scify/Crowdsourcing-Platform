@@ -63,7 +63,8 @@
 	</transition>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
 	name: "StoreModal",
@@ -73,20 +74,22 @@ export default {
 			default: false,
 		},
 	},
-	data: function () {
-		return {};
-	},
-	computed: {
-		...mapGetters(["modal"]),
-	},
-	mounted() {},
-	methods: {
-		close() {
-			this.$store.dispatch("closeModal");
-		},
+	setup() {
+		const store = useStore();
+		const modal = computed(() => store.getters.modal);
+
+		const close = () => {
+			store.dispatch('closeModal');
+		};
+
+		return {
+			modal,
+			close,
+		};
 	},
 };
 </script>
+
 <style scoped lang="scss">
 @import "../../../sass/modal";
 </style>
