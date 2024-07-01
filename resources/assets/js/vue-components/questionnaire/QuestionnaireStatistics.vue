@@ -9,9 +9,14 @@
 				</div>
 			</div>
 		</div>
-		<div v-for="index in questions.length" :key="'question_' + index" class="row">
+		<div class="row">
 			<div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
-				<div :id="'survey-statistics-container_' + (index - 1)" class="survey-statistics-container"></div>
+				<div id="survey-statistics-container_default_visualizer" class="survey-statistics-container"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-11 col-md-12 col-sm-12 mx-auto">
+				<div id="survey-statistics-container_custom_visualizer" class="survey-statistics-container"></div>
 			</div>
 		</div>
 		<div v-if="userCanAnnotateAnswers" class="row mt-5 mb-1">
@@ -366,13 +371,13 @@ export default {
 		},
 		initStatistics(answers, answerVotes, answerAnnotations, adminAnalysisStatuses) {
 			// remove from the questions array the questions that should not be displayed in the statistics
-			const questionsWithNoCustomVisualizer = this.questions.filter(
+			const questionsWithDefaultVisualizer = this.questions.filter(
 				(question) => this.shouldDrawStatistics(question) && !this.questionHasCustomVisualizer(question),
 			);
 			const questionsWithCustomVisualizer = this.questions.filter(
 				(question) => this.shouldDrawStatistics(question) && this.questionHasCustomVisualizer(question),
 			);
-			const questionsWithNoCustomVisualizerResponses = answers.map((answer) => answer.response_text);
+			const questionsWithDefaultVisualizerResponses = answers.map((answer) => answer.response_text);
 			const questionsWithCustomVisualizerResponses = answers;
 
 			this.answerAnnotationAdminReviewStatuses = adminAnalysisStatuses;
@@ -395,14 +400,14 @@ export default {
 			}
 
 			this.visualizeQuestions(
-				questionsWithNoCustomVisualizer,
-				questionsWithNoCustomVisualizerResponses,
-				"survey-statistics-container_0",
+				questionsWithDefaultVisualizer,
+				questionsWithDefaultVisualizerResponses,
+				"survey-statistics-container_default_visualizer",
 			);
 			this.visualizeQuestions(
 				questionsWithCustomVisualizer,
 				questionsWithCustomVisualizerResponses,
-				"survey-statistics-container_1",
+				"survey-statistics-container_custom_visualizer",
 			);
 			this.loading = false;
 		},
