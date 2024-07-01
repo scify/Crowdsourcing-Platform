@@ -22,7 +22,6 @@ class AddOrderIdInQuestionnaireQuestionsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::table('questionnaire_questions', function (Blueprint $table) {
-        });
+        Schema::table('questionnaire_questions', function (Blueprint $table) {});
     }
 }
