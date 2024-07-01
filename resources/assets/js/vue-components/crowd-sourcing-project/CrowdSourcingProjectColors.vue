@@ -30,77 +30,70 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import "jquery/dist/jquery.min";
-import "bootstrap/dist/js/bootstrap.min";
-import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
+import { ref, onMounted, nextTick } from 'vue';
+import $ from 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min';
 
 export default {
 	name: "CrowdSourcingProjectColors",
 	props: {
 		colorData: {
 			type: Array,
-			default: function () {
-				return [];
-			},
+			default: () => [],
 		},
 	},
-	data: function () {
-		return {
-			colors: [],
+	setup(props) {
+		const colors = ref([...props.colorData]);
+
+		const generateRandomColor = () => {
+			return "#" + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
 		};
-	},
-	created() {
-		this.colors = this.colorData;
-	},
-	mounted() {
-		this.initializeColorPicker();
-	},
-	methods: {
-		...mapActions(["get", "handleError", "closeModal"]),
-		addColor() {
-			this.colors.push({
-				color_name: "color-" + (this.colors.length + 1),
-				color_code: this.generateRandomColor(),
-			});
-			const instance = this;
-			setTimeout(function () {
-				instance.initSingleColorPicker($("#color_" + (instance.colors.length - 1)));
-			}, 500);
-		},
-		generateRandomColor() {
-			return (
-				"#" +
-				Math.floor(Math.random() * 16777215)
-					.toString(16)
-					.toUpperCase()
-			);
-		},
-		removeColor(index) {
-			this.colors.splice(index, 1);
-			for (let i = 0; i < this.colors.length; i++) {
-				$("#color_" + i).colorpicker("setValue", this.colors[i].color_code);
-			}
-		},
-		initializeColorPicker() {
-			const instance = this;
-			$(".color-picker").each(function (i, el) {
-				instance.initSingleColorPicker(el);
-			});
-		},
-		initSingleColorPicker(el) {
-			$(el).colorpicker({
-				horizontal: true,
-			});
 
-			$(el).on("colorpickerCreate", function (event) {
+		const addColor = async () => {
+			colors.value.push({
+				color_name: "color-" + (colors.value.length + 1),
+				color_code: generateRandomColor(),
+			});
+			await nextTick();
+			initSingleColorPicker($(`#color_${colors.value.length - 1}`));
+		};
+
+		const removeColor = (index) => {
+			colors.value.splice(index, 1);
+			colors.value.forEach((color, i) => {
+				$(`#color_${i}`).colorpicker('setValue', color.color_code);
+			});
+		};
+
+		const initSingleColorPicker = (el) => {
+			$(el).colorpicker({ horizontal: true });
+
+			$(el).on("colorpickerCreate", (event) => {
 				$(el).find(".input-group-addon").css("background-color", event.color.toString());
 			});
 
-			$(el).on("colorpickerChange", function (event) {
+			$(el).on("colorpickerChange", (event) => {
 				$(el).find(".input-group-addon").css("background-color", event.color.toString());
 			});
-		},
+		};
+
+		const initializeColorPicker = () => {
+			$(".color-picker").each((i, el) => {
+				initSingleColorPicker(el);
+			});
+		};
+
+		onMounted(initializeColorPicker);
+
+		return {
+			colors,
+			addColor,
+			removeColor,
+			generateRandomColor,
+			initializeColorPicker,
+			initSingleColorPicker,
+		};
 	},
 };
 </script>

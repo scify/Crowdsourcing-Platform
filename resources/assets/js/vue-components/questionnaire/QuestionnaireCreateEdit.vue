@@ -330,21 +330,22 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import * as Survey from "survey-jquery";
-import * as SurveyCreator from "survey-creator";
-import { arrayMove, showToast } from "../../common-utils";
-import { isObject } from "../../common-backoffice";
-import QuestionnaireLanguages from "./QuestionnaireLanguages.vue";
-import CommonModal from "../common/ModalComponent.vue";
-import TranslationsManager from "../common/TranslationsManager.vue";
-import select2 from "select2";
+import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
+import * as Survey from 'survey-jquery';
+import * as SurveyCreator from 'survey-creator';
+import { arrayMove, showToast } from '../../common-utils';
+import { isObject } from '../../common-backoffice';
+import QuestionnaireLanguages from './QuestionnaireLanguages.vue';
+import CommonModal from '../common/ModalComponent.vue';
+import TranslationsManager from '../common/TranslationsManager.vue';
+import select2 from 'select2';
 
 select2($);
 const FILE_MAX_SIZE_BYTES = 3145728; // 3MB;
 
-export default {
-	name: "QuestionnaireCreateEdit",
+export default defineComponent({
+	name: 'QuestionnaireCreateEdit',
 	components: {
 		QuestionnaireLanguages,
 		CommonModal,
@@ -353,42 +354,30 @@ export default {
 	props: {
 		questionnaireData: {
 			type: Object,
-			default: function () {
-				return {};
-			},
+			default: () => ({}),
 		},
 		projects: {
 			type: Array,
-			default: function () {
-				return [];
-			},
+			default: () => [],
 		},
 		languages: {
 			type: Array,
-			default: function () {
-				return [];
-			},
+			default: () => [],
 		},
 		questionnaireStatisticsPageVisibilityLkp: {
 			type: Array,
-			default: function () {
-				return [];
-			},
+			default: () => [],
 		},
 		translationMetaData: {
 			type: Object,
-			default: function () {
-				return {};
-			},
+			default: () => ({}),
 		},
 		questionnaireFieldsTranslations: {
 			type: Array,
-			default: function () {
-				return [];
-			},
+			default: () => [],
 		},
 	},
-	data: function () {
+	data() {
 		return {
 			questionnaire: {
 				title: null,
@@ -402,18 +391,18 @@ export default {
 			},
 			surveyCreator: null,
 			questionTypes: [
-				"boolean",
-				"checkbox",
-				"comment",
-				"dropdown",
-				"html",
-				"matrix",
-				"matrixdropdown",
-				"radiogroup",
-				"rating",
-				"text",
-				"ranking",
-				"file",
+				'boolean',
+				'checkbox',
+				'comment',
+				'dropdown',
+				'html',
+				'matrix',
+				'matrixdropdown',
+				'radiogroup',
+				'rating',
+				'text',
+				'ranking',
+				'file',
 			],
 			colors: [],
 			isTranTabInitialised: false,
@@ -421,7 +410,7 @@ export default {
 			modalMessage: null,
 			defaultLocale: null,
 			questionnaireLanguagesModalOpen: false,
-			defaultLangCodeForQuestionnaireFields: "en",
+			defaultLangCodeForQuestionnaireFields: 'en',
 			loading: false,
 		};
 	},
@@ -436,26 +425,22 @@ export default {
 			: [];
 		if (this.questionnaire.default_language_id) {
 			const langId = this.questionnaire.default_language_id;
-			this.defaultLocale = this.languages.filter(function (el) {
-				return el.id === langId;
-			})[0].language_code;
+			this.defaultLocale = this.languages.find((el) => el.id === langId).language_code;
 		} else {
 			const instance = this;
-			this.defaultLocale = this.languages.filter(function (el) {
-				return el.language_code === instance.defaultLangCodeForQuestionnaireFields;
-			})[0].language_code;
+			this.defaultLocale = this.languages.find((el) => el.language_code === instance.defaultLangCodeForQuestionnaireFields).language_code;
 		}
 	},
 	mounted() {
-		this.$nextTick(function () {
+		this.$nextTick(() => {
 			if (this.questionnaire.project_id) this.getColorsForCrowdSourcingProject();
-			$(".select2").each(function (i, obj) {
+			$(".select2").each((i, obj) => {
 				$(obj).select2();
 			});
 		});
 	},
 	methods: {
-		...mapActions(["get", "handleError", "post"]),
+		...mapActions(['get', 'handleError', 'post']),
 		isProjectSelected(projectId) {
 			return this.questionnaire.projectIds.includes(projectId);
 		},
@@ -463,50 +448,48 @@ export default {
 			if (this.questionnaire.default_language_id) return this.questionnaire.default_language_id === language.id;
 			return language.language_code === this.defaultLangCodeForQuestionnaireFields;
 		},
-		getColorsForCrowdSourcingProject() {
-			this.get({
-				url: window.route("crowd-sourcing-project.get-colors", this.questionnaire.project_id),
-				data: {},
-				urlRelative: false,
-			}).then((response) => {
+		async getColorsForCrowdSourcingProject() {
+			try {
+				const response = await this.get({
+					url: window.route('crowd-sourcing-project.get-colors', this.questionnaire.project_id),
+					data: {},
+					urlRelative: false,
+				});
 				this.colors = response.data.map((item) => item.color_name).sort();
 				this.initQuestionnaireEditor(this.defaultLocale);
-			});
+			} catch (error) {
+				console.error(error);
+			}
 		},
 		initQuestionnaireEditor(locale) {
-			this.questionnaire.default_language_id = this.languages.filter(function (el) {
-				return el.language_code === locale;
-			})[0].id;
+			this.questionnaire.default_language_id = this.languages.find((el) => el.language_code === locale).id;
 
 			this.initLocaleForQuestionnaireEditor(locale);
 
-			Survey.JsonObject.metaData.addProperty("itemvalue", {
-				name: "statsColor",
-				title: "Stats Color",
+			Survey.JsonObject.metaData.addProperty('itemvalue', {
+				name: 'statsColor',
+				title: 'Stats Color',
 				choices: this.colors,
 				isRequired: false,
 			});
 
-			Survey.Serializer.findProperty("question", "name").readOnly = true;
+			Survey.Serializer.findProperty('question', 'name').readOnly = true;
 
 			const options = {
-				// show the embedded survey tab. It is hidden by default
 				showEmbeddedSurveyTab: false,
-				// hide the test survey tab. It is shown by default
 				showTestSurveyTab: true,
-				// hide the JSON text editor tab. It is shown by default
 				showJSONEditorTab: true,
 				showTranslationTab: true,
 				questionTypes: this.questionTypes,
 			};
 
 			this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
-			this.surveyCreator.render("questionnaire-editor");
+			this.surveyCreator.render('questionnaire-editor');
 			this.surveyCreator.haveCommercialLicense = true;
-			this.surveyCreator.onQuestionAdded.add(function (sender, options) {
+			this.surveyCreator.onQuestionAdded.add((sender, options) => {
 				const question = options.question;
 				const type = question.getType();
-				if (type === "file") {
+				if (type === 'file') {
 					question.maxSize = FILE_MAX_SIZE_BYTES;
 					question.waitForUpload = true;
 					question.allowImagesPreview = true;
@@ -524,21 +507,19 @@ export default {
 				this.isTranTabInitialised = true;
 				this.surveyCreator.translation.mergeLocaleWithDefault();
 				this.surveyCreator.translation.toolbarItems.push({
-					id: "auto-translate",
+					id: 'auto-translate',
 					visible: true,
-					title: "Translate Survey Now",
-					action: function () {
-						instance.translateQuestionnaireToLocales(
-							instance.surveyCreator.translation.getSelectedLocales(),
-						);
+					title: 'Translate Survey Now',
+					action: () => {
+						instance.translateQuestionnaireToLocales(instance.surveyCreator.translation.getSelectedLocales());
 					},
 				});
 				if (this.questionnaire.id)
 					this.surveyCreator.translation.toolbarItems.push({
-						id: "questionnaire-languages",
+						id: 'questionnaire-languages',
 						visible: true,
-						title: "Mark languages as approved",
-						action: function () {
+						title: 'Mark languages as approved',
+						action: () => {
 							instance.questionnaireLanguagesModalOpen = true;
 						},
 					});
@@ -546,7 +527,6 @@ export default {
 		},
 		initLocaleForQuestionnaireEditor(locale) {
 			this.defaultLocale = locale;
-			// show default language as the first language
 			arrayMove(this.languages, this.getIndexOfDefaultLocale(), 0);
 			Survey.surveyLocalization.supportedLocales = this.languages.map((language) => language.language_code);
 			Survey.surveyLocalization.defaultLocale = this.defaultLocale;
@@ -558,48 +538,45 @@ export default {
 		getIndexOfDefaultLocale() {
 			for (let i = 0; i < this.languages.length; i++)
 				if (this.languages[i].language_code === this.defaultLocale) return i;
-			throw "Default locale not found";
+			throw new Error('Default locale not found');
 		},
 		async translateQuestionnaireToLocales(locales) {
-			locales = locales.filter(function (el) {
-				return el !== "";
-			});
+			locales = locales.filter((el) => el !== '');
 			if (!locales.length) {
-				const swal = (await import("bootstrap-sweetalert")).default;
+				const { default: swal } = await import('bootstrap-sweetalert');
 				return swal({
-					title: "Languages Missing!",
-					text: "Please provide at least one language from the dropdown menu.",
-					type: "warning",
-					confirmButtonClass: "btn-danger",
-					confirmButtonText: "OK",
+					title: 'Languages Missing!',
+					text: 'Please provide at least one language from the dropdown menu.',
+					type: 'warning',
+					confirmButtonClass: 'btn-danger',
+					confirmButtonText: 'OK',
 				});
 			}
 			this.modalOpen = true;
-			this.modalMessage = "Please wait while the translations are generated...";
+			this.modalMessage = 'Please wait while the translations are generated...';
 			const data = {
 				questionnaire_json: this.surveyCreator.text,
 				locales: locales,
 			};
-			this.post({
-				url: window.route("questionnaire.translate"),
-				data: data,
-				urlRelative: false,
-				handleError: false,
-			})
-				.then((response) => {
-					this.surveyCreator.changeText(response.data.translation);
-					this.surveyCreator.showTranslationEditor();
-					this.modalOpen = false;
-					showToast("Translations generated!", "#28a745", "bottom-right");
-				})
-				.catch((error) => {
-					console.error(error);
-					this.modalOpen = false;
+			try {
+				const response = await this.post({
+					url: window.route('questionnaire.translate'),
+					data: data,
+					urlRelative: false,
+					handleError: false,
 				});
+				this.surveyCreator.changeText(response.data.translation);
+				this.surveyCreator.showTranslationEditor();
+				this.modalOpen = false;
+				showToast('Translations generated!', '#28a745', 'bottom-right');
+			} catch (error) {
+				console.error(error);
+				this.modalOpen = false;
+			}
 		},
 		async saveQuestionnaire() {
 			let locales = this.surveyCreator.translationValue.getSelectedLocales();
-			if (locales[0] === "") {
+			if (locales[0] === '') {
 				locales = [];
 			}
 			const data = {
@@ -611,13 +588,12 @@ export default {
 				statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
 				content: this.surveyCreator.text,
 				lang_codes: locales,
-				extra_fields_translations: document.getElementById("extra_translations").value,
+				extra_fields_translations: document.getElementById('extra_translations').value,
 				max_votes_num: this.questionnaire.max_votes_num,
 				show_general_statistics: this.questionnaire.show_general_statistics,
 				type_id: this.questionnaire.type_id,
 				respondent_auth_required: this.questionnaire.respondent_auth_required,
-				show_file_type_questions_to_statistics_page_audience:
-					this.questionnaire.show_file_type_questions_to_statistics_page_audience,
+				show_file_type_questions_to_statistics_page_audience: this.questionnaire.show_file_type_questions_to_statistics_page_audience,
 			};
 			$("#project-ids")
 				.val()
@@ -626,52 +602,50 @@ export default {
 				});
 
 			if (this.formInvalid(data)) {
-				const swal = (await import("bootstrap-sweetalert")).default;
-
+				const { default: swal } = await import('bootstrap-sweetalert');
 				return swal({
-					title: "Fields Missing!",
-					text: "Please provide a title, description, goal, and at least one project.",
-					type: "warning",
-					confirmButtonClass: "btn-danger",
-					confirmButtonText: "OK",
+					title: 'Fields Missing!',
+					text: 'Please provide a title, description, goal, and at least one project.',
+					type: 'warning',
+					confirmButtonClass: 'btn-danger',
+					confirmButtonText: 'OK',
 				});
 			}
 			this.loading = true;
-			this.post({
-				url: this.questionnaire.id
-					? window.route("update-questionnaire", this.questionnaire.id)
-					: window.route("store-questionnaire"),
-				data: data,
-				urlRelative: false,
-				handleError: false,
-			})
-				.then(async (response) => {
-					this.loading = false;
-					const swal = (await import("bootstrap-sweetalert")).default;
-					swal(
-						{
-							title: "Success!",
-							text: "The questionnaire has been successfully stored.",
-							type: "success",
-							confirmButtonClass: "btn-success",
-							confirmButtonText: "OK",
-						},
-						function () {
-							window.location = window.route("edit-questionnaire", response.data.id);
-						},
-					);
-				})
-				.catch(async (error) => {
-					this.loading = false;
-					const swal = (await import("bootstrap-sweetalert")).default;
-					swal({
-						title: "Oops!",
-						text: "An error occurred, please try again later." + error.toString(),
-						type: "error",
-						confirmButtonClass: "btn-danger",
-						confirmButtonText: "OK",
-					});
+			try {
+				const response = await this.post({
+					url: this.questionnaire.id
+						? window.route('update-questionnaire', this.questionnaire.id)
+						: window.route('store-questionnaire'),
+					data: data,
+					urlRelative: false,
+					handleError: false,
 				});
+				this.loading = false;
+				const { default: swal } = await import('bootstrap-sweetalert');
+				swal(
+					{
+						title: 'Success!',
+						text: 'The questionnaire has been successfully stored.',
+						type: 'success',
+						confirmButtonClass: 'btn-success',
+						confirmButtonText: 'OK',
+					},
+					() => {
+						window.location = window.route('edit-questionnaire', response.data.id);
+					},
+				);
+			} catch (error) {
+				this.loading = false;
+				const { default: swal } = await import('bootstrap-sweetalert');
+				swal({
+					title: 'Oops!',
+					text: 'An error occurred, please try again later.' + error.toString(),
+					type: 'error',
+					confirmButtonClass: 'btn-danger',
+					confirmButtonText: 'OK',
+				});
+			}
 		},
 		formInvalid(data) {
 			return !data.title || !data.description || !data.goal || isNaN(data.goal) || !data.project_ids.length;
@@ -693,15 +667,8 @@ export default {
 				if (json.pages[i].elements) {
 					for (let j = 0; j < json.pages[i].elements.length; j++) {
 						if (json.pages[i].elements[j].choices && Array.isArray(json.pages[i].elements[j].choices)) {
-							for (
-								let choiceIndex = 0;
-								choiceIndex < json.pages[i].elements[j].choices.length;
-								choiceIndex++
-							) {
-								if (
-									isObject(json.pages[i].elements[j].choices[choiceIndex]) &&
-									!json.pages[i].elements[j].choices[choiceIndex].statsColor
-								) {
+							for (let choiceIndex = 0; choiceIndex < json.pages[i].elements[j].choices.length; choiceIndex++) {
+								if (isObject(json.pages[i].elements[j].choices[choiceIndex]) && !json.pages[i].elements[j].choices[choiceIndex].statsColor) {
 									json.pages[i].elements[j].choices[choiceIndex].statsColor = colors[colorIndex];
 									colorIndex++;
 									if (colorIndex === colors.length) colorIndex = 0;
@@ -710,10 +677,7 @@ export default {
 						}
 						if (json.pages[i].elements[j].columns && Array.isArray(json.pages[i].elements[j].columns)) {
 							for (let colIndex = 0; colIndex < json.pages[i].elements[j].columns.length; colIndex++) {
-								if (
-									isObject(json.pages[i].elements[j].columns[colIndex]) &&
-									!json.pages[i].elements[j].columns[colIndex].statsColor
-								) {
+								if (isObject(json.pages[i].elements[j].columns[colIndex]) && !json.pages[i].elements[j].columns[colIndex].statsColor) {
 									json.pages[i].elements[j].columns[colIndex].statsColor = colors[colorIndex];
 									colorIndex++;
 									if (colorIndex === colors.length) colorIndex = 0;
@@ -722,10 +686,7 @@ export default {
 						}
 						if (json.pages[i].elements[j].rows && Array.isArray(json.pages[i].elements[j].rows)) {
 							for (let rowIndex = 0; rowIndex < json.pages[i].elements[j].rows.length; rowIndex++) {
-								if (
-									isObject(json.pages[i].elements[j].rows[rowIndex]) &&
-									!json.pages[i].elements[j].rows[rowIndex].statsColor
-								) {
+								if (isObject(json.pages[i].elements[j].rows[rowIndex]) && !json.pages[i].elements[j].rows[rowIndex].statsColor) {
 									json.pages[i].elements[j].rows[rowIndex].statsColor = colors[colorIndex];
 									colorIndex++;
 									if (colorIndex === colors.length) colorIndex = 0;
@@ -738,7 +699,7 @@ export default {
 			return JSON.stringify(json);
 		},
 	},
-};
+});
 </script>
 
 <style scoped lang="scss">

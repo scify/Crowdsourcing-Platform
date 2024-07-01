@@ -184,8 +184,9 @@ import { showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
 	name: "QuestionnaireStatistics",
 	components: {
 		CommonModal,
@@ -371,13 +372,13 @@ export default {
 		},
 		initStatistics(answers, answerVotes, answerAnnotations, adminAnalysisStatuses) {
 			// remove from the questions array the questions that should not be displayed in the statistics
-			const questionsWithDefaultVisualizer = this.questions.filter(
+			const questionsWithNoCustomVisualizer = this.questions.filter(
 				(question) => this.shouldDrawStatistics(question) && !this.questionHasCustomVisualizer(question),
 			);
 			const questionsWithCustomVisualizer = this.questions.filter(
 				(question) => this.shouldDrawStatistics(question) && this.questionHasCustomVisualizer(question),
 			);
-			const questionsWithDefaultVisualizerResponses = answers.map((answer) => answer.response_text);
+			const questionsWithNoCustomVisualizerResponses = answers.map((answer) => answer.response_text);
 			const questionsWithCustomVisualizerResponses = answers;
 
 			this.answerAnnotationAdminReviewStatuses = adminAnalysisStatuses;
@@ -400,8 +401,8 @@ export default {
 			}
 
 			this.visualizeQuestions(
-				questionsWithDefaultVisualizer,
-				questionsWithDefaultVisualizerResponses,
+				questionsWithNoCustomVisualizer,
+				questionsWithNoCustomVisualizerResponses,
 				"survey-statistics-container_default_visualizer",
 			);
 			this.visualizeQuestions(
@@ -650,7 +651,7 @@ export default {
 			this.responsesTableShown = true;
 		},
 	},
-};
+});
 </script>
 
 <style lang="scss">

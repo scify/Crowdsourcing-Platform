@@ -11,7 +11,7 @@
 
 				<div
 					v-for="language in availableLanguages"
-					v-if="language.id !== defaultLangId"
+					v-if="language?.id !== defaultLangId"
 					:key="'avail_lang_' + language.id"
 					class="float-left mr-2 lang"
 				>
@@ -64,31 +64,31 @@
 					>
 						<table class="table table-striped">
 							<thead>
-								<tr>
-									<th scope="col">Field</th>
-									<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
-									<th scope="col">
-										Translation in
-										{{ getLanguageName(translation.language_id) }}
-									</th>
-								</tr>
+							<tr>
+								<th scope="col">Field</th>
+								<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
+								<th scope="col">
+									Translation in
+									{{ getLanguageName(translation.language_id) }}
+								</th>
+							</tr>
 							</thead>
 							<tbody>
-								<tr
-									v-for="(value, property) in translation"
-									v-if="modelMetaData[property]"
-									:key="'translation_row_' + property"
-								>
-									<td class="field">
-										{{ getDisplayTitleForProperty(property) }}
-									</td>
-									<td class="original-translation">
-										{{ originalTranslation[property] }}
-									</td>
-									<td>
-										<textarea v-model="translation[property]"></textarea>
-									</td>
-								</tr>
+							<tr
+								v-for="(value, property) in translation"
+								v-if="modelMetaData[property]"
+								:key="'translation_row_' + property"
+							>
+								<td class="field">
+									{{ getDisplayTitleForProperty(property) }}
+								</td>
+								<td class="original-translation">
+									{{ originalTranslation[property] }}
+								</td>
+								<td>
+									<textarea v-model="translation[property]"></textarea>
+								</td>
+							</tr>
 							</tbody>
 						</table>
 					</div>
@@ -99,7 +99,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
 	name: "TranslationsManager",
@@ -110,82 +111,77 @@ export default {
 		},
 		modelMetaData: {
 			type: Object,
-			default: () => {},
+			default: () => ({}),
 		},
 		defaultLangId: {
 			type: [String, Number],
 			default: "",
 		},
 	},
-	data: function () {
-		return {
-			translations: [],
-			originalTranslation: [],
-			checkedLanguages: [],
-			availableLanguages: [],
+	setup(props) {
+		const store = useStore();
+		const translations = ref([]);
+		const originalTranslation = ref({});
+		const checkedLanguages = ref([]);
+		const availableLanguages = ref([]);
+
+		const getAvailableLanguagesAndInit = async () => {
+			try {
+				const response = await store.dispatch('get', {
+					url: window.route("languages.get"),
+					data: {},
+					urlRelative: false,
+				});
+				availableLanguages.value = response.data.languages;
+				translations.value = removeDefaultTranslation();
+				originalTranslation.value = getOriginalEnglishTranslation();
+				checkedLanguages.value = getAlreadySelectedLanguages();
+			} catch (error) {
+				store.dispatch('handleError', error);
+			}
 		};
-	},
-	mounted() {
-		this.getAvailableLanguagesAndInit();
-	},
-	methods: {
-		...mapActions(["get", "handleError"]),
-		getAvailableLanguagesAndInit() {
-			this.get({
-				url: window.route("languages.get"),
-				data: {},
-				urlRelative: false,
-			}).then((response) => {
-				this.availableLanguages = response.data.languages;
-				this.translations = this.removeDefaultTranslation();
-				this.originalTranslation = this.getOriginalEnglishTranslation();
-				this.checkedLanguages = this.getAlreadySelectedLanguages();
+
+		const getDisplayTitleForProperty = (property) => {
+			return props.modelMetaData[property]?.display_title || 'Unknown';
+		};
+
+		const getAlreadySelectedLanguages = () => {
+			const checkedLanguagesList = [];
+			if (!Array.isArray(props.existingTranslations) || props.existingTranslations.length === 0) return checkedLanguagesList;
+			availableLanguages.value.forEach((lang) => {
+				const result = props.existingTranslations.find((translation) => translation.language_id === lang.id);
+				if (result) checkedLanguagesList.push(lang);
 			});
-		},
-		getDisplayTitleForProperty(property) {
-			return this.modelMetaData[property].display_title;
-		},
-		getAlreadySelectedLanguages() {
-			const checkedLanguages = [];
-			if (!Array.isArray(this.existingTranslations) || this.existingTranslations.length === 0)
-				return checkedLanguages;
-			this.availableLanguages.forEach((lang) => {
-				const result = this.existingTranslations.find((translation) => translation.language_id === lang.id);
-				if (result) checkedLanguages.push(lang);
-			});
-			return checkedLanguages;
-		},
-		removeDefaultTranslation() {
-			const translations = [];
-			const instance = this;
-			this.existingTranslations.forEach(function (t) {
-				if (t.language_id !== instance.defaultLangId) translations.push(t);
-			});
-			return translations;
-		},
-		getLanguageName(languageId) {
-			// find the name from availableLanguages
-			const lang = this.availableLanguages.find((lang) => lang.id === languageId);
-			return lang.language_name;
-		},
-		addNewTranslation(language) {
-			// copy the original translation
-			const copy = { ...this.originalTranslation };
+			return checkedLanguagesList;
+		};
+
+		const removeDefaultTranslation = () => {
+			return props.existingTranslations.filter(t => t.language_id !== props.defaultLangId);
+		};
+
+		const getLanguageName = (languageId) => {
+			const lang = availableLanguages.value.find((lang) => lang.id === languageId);
+			return lang ? lang.language_name : 'Unknown';
+		};
+
+		const addNewTranslation = (language) => {
+			const copy = { ...originalTranslation.value };
 			for (const property in copy) {
-				if (typeof property === "string" || property instanceof String) {
+				if (typeof copy[property] === "string" || copy[property] instanceof String) {
 					copy[property] = null;
 				}
 			}
 			copy.language_id = language.id;
-			this.translations.push(copy);
-		},
-		checkChanged($event, language) {
-			if ($event.target.checked) this.addNewTranslation(language);
-			else this.deleteTranslation(language);
-		},
-		async deleteTranslation(language) {
-			const translation = this.translations.find((t) => t.language_id === language.id);
-			const instance = this;
+			translations.value.push(copy);
+		};
+
+		const checkChanged = ($event, language) => {
+			if ($event.target.checked) addNewTranslation(language);
+			else deleteTranslation(language);
+		};
+
+		const deleteTranslation = async (language) => {
+			const translation = translations.value.find((t) => t.language_id === language.id);
 			const swal = (await import("bootstrap-sweetalert")).default;
 			swal(
 				{
@@ -199,17 +195,31 @@ export default {
 					closeOnConfirm: true,
 					closeOnCancel: true,
 				},
-				function (isConfirm) {
+				(isConfirm) => {
 					if (isConfirm) {
-						instance.translations.splice(instance.translations.indexOf(translation), 1);
-					} // restore the checked option
-					else instance.checkedLanguages.push(language);
+						translations.value.splice(translations.value.indexOf(translation), 1);
+					} else {
+						checkedLanguages.value.push(language);
+					}
 				},
 			);
-		},
-		getOriginalEnglishTranslation() {
-			return this.existingTranslations.find((t) => t.language_id === this.defaultLangId);
-		},
+		};
+
+		const getOriginalEnglishTranslation = () => {
+			return props.existingTranslations.find((t) => t.language_id === props.defaultLangId) || {};
+		};
+
+		onMounted(getAvailableLanguagesAndInit);
+
+		return {
+			translations,
+			originalTranslation,
+			checkedLanguages,
+			availableLanguages,
+			getDisplayTitleForProperty,
+			getLanguageName,
+			checkChanged,
+		};
 	},
 };
 </script>

@@ -1,147 +1,129 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from 'vuex';
+import axios from 'axios';
 
-Vue.use(Vuex);
+// Import your modules if you have any
+import modal from './modal';
 
-import modal from "./modal";
-
-export default new Vuex.Store({
+export default createStore({
 	strict: true,
 	state: {
-		modal,
+		modal: modal,
 		loading: false,
 	},
 	getters: {
-		modal: (state) => {
-			return state.modal;
-		},
-		loading: (state) => {
-			return state.loading;
-		},
+		modal: state => state.modal,
+		loading: state => state.loading,
 	},
-
 	mutations: {
-		openModal() {
-			this.state.modal.open = true;
+		openModal(state) {
+			state.modal.open = true;
 		},
-		closeModal() {
-			this.state.modal.link = {};
-			this.state.modal.open = false;
+		closeModal(state) {
+			state.modal.link = {};
+			state.modal.open = false;
 		},
 		setLoading(state, status) {
-			this.state.modal.link = {};
-			this.state.loading = status;
-			this.state.modal.loading = status;
+			state.modal.link = {};
+			state.loading = status;
+			state.modal.loading = status;
 		},
 		setMessage(state, message) {
-			this.state.modal.message = message;
+			state.modal.message = message;
 		},
 		setTitle(state, title) {
-			this.state.modal.title = title;
+			state.modal.title = title;
 		},
 		setModalLink(state, link) {
-			this.state.modal.link = link;
+			state.modal.link = link;
 		},
 		setModalAllowClose(state, status) {
-			this.state.modal.allowClose = status;
+			state.modal.allowClose = status;
 		},
 	},
-
 	actions: {
-		openModal: ({ commit }) => {
-			commit("openModal");
+		openModal({ commit }) {
+			commit('openModal');
 		},
-		closeModal: ({ commit }) => {
-			commit("closeModal");
+		closeModal({ commit }) {
+			commit('closeModal');
 		},
-		setLoading: ({ commit }, status) => {
-			commit("setLoading", status);
+		setLoading({ commit }, status) {
+			commit('setLoading', status);
 		},
-		setMessage: ({ commit }, message) => {
-			commit("setMessage", message);
+		setMessage({ commit }, message) {
+			commit('setMessage', message);
 		},
-		setTitle: ({ commit }, title) => {
-			commit("setTitle", title);
+		setTitle({ commit }, title) {
+			commit('setTitle', title);
 		},
-		setModalLink: ({ commit }, link) => {
-			commit("setModalLink", link);
+		setModalLink({ commit }, link) {
+			commit('setModalLink', link);
 		},
-		setModalAllowClose: ({ commit }, status) => {
-			commit("setModalAllowClose", status);
+		setModalAllowClose({ commit }, status) {
+			commit('setModalAllowClose', status);
 		},
-		post: ({ commit, dispatch }, { url, data, urlRelative = true, handleError = true }) => {
-			commit("setLoading", true);
+		async post({ commit, dispatch }, { url, data, urlRelative = true, handleError = true }) {
+			commit('setLoading', true);
 			url = urlRelative ? import.meta.env.VITE_APP_URL + url : url;
 			data = {
 				...data,
-				lang: $("html").attr("lang"),
+				lang: document.documentElement.lang,
 			};
-			return new Promise(function callback(resolve, reject) {
-				axios
-					.post(url, data, {
-						headers: {
-							Accept: "application/json",
-						},
-					})
-					.then(function (response) {
-						if (response.status > 300) {
-							reject(response);
-							if (handleError) dispatch("handleError", response);
-						} else {
-							commit("setLoading", false);
-							commit("closeModal");
-							resolve(response);
-						}
-					})
-					.catch(function (error) {
-						if (handleError) dispatch("handleError", error);
-						else reject(error);
-					});
-			});
+			try {
+				const response = await axios.post(url, data, {
+					headers: {
+						Accept: 'application/json',
+					},
+				});
+				if (response.status > 300) {
+					throw response;
+				}
+				commit('setLoading', false);
+				commit('closeModal');
+				return response;
+			} catch (error) {
+				if (handleError) {
+					dispatch('handleError', error);
+				} else {
+					throw error;
+				}
+			}
 		},
-		get: ({ commit, dispatch }, { url, urlRelative = true, handleError = true }) => {
-			commit("setLoading", true);
+		async get({ commit, dispatch }, { url, urlRelative = true, handleError = true }) {
+			commit('setLoading', true);
 			url = urlRelative ? import.meta.env.VITE_APP_URL + url : url;
-			return new Promise(function callback(resolve, reject) {
-				axios
-					.get(url, {
-						headers: {
-							Accept: "application/json",
-						},
-					})
-					.then(function (response) {
-						if (response.status > 300) {
-							reject(response);
-							if (handleError) dispatch("handleError", response);
-						} else {
-							commit("setLoading", false);
-							commit("closeModal");
-							resolve(response);
-						}
-					})
-					.catch(function (error) {
-						if (handleError) dispatch("handleError", error);
-						else reject(error);
-					});
-			});
+			try {
+				const response = await axios.get(url, {
+					headers: {
+						Accept: 'application/json',
+					},
+				});
+				if (response.status > 300) {
+					throw response;
+				}
+				commit('setLoading', false);
+				commit('closeModal');
+				return response;
+			} catch (error) {
+				if (handleError) {
+					dispatch('handleError', error);
+				} else {
+					throw error;
+				}
+			}
 		},
-		handleError: ({ commit }, error) => {
+		handleError({ commit }, error) {
 			console.error(error);
-			commit("setLoading", false);
-			commit("openModal");
-			commit("setModalAllowClose", true);
+			commit('setLoading', false);
+			commit('openModal');
+			commit('setModalAllowClose', true);
 			if (error.response && error.response.data) {
-				commit(
-					"setMessage",
-					error.response.data.message !== "" ? error.response.data.message : error.response.statusText,
-				);
-			} else if (error) commit("setMessage", error);
-			else
-				commit(
-					"setMessage",
-					"We are experiencing some difficulties" +
-						" handling your request right now.<br>Please try again later.",
-				);
+				commit('setMessage', error.response.data.message !== '' ? error.response.data.message : error.response.statusText);
+			} else if (error) {
+				commit('setMessage', error);
+			} else {
+				commit('setMessage', 'We are experiencing some difficulties handling your request right now.<br>Please try again later.');
+			}
 		},
 	},
 });

@@ -4,23 +4,30 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 // Register the plugin to all charts:
 Chart.register(ChartDataLabels);
 
-import Vue from "vue";
-import store from "../store/store";
+import { createApp } from 'vue';
+import store from '../store/store';
 
-import QuestionnaireStatistics from "../vue-components/questionnaire/QuestionnaireStatistics.vue";
-import DOMPurify from "dompurify";
+import QuestionnaireStatistics from '../vue-components/questionnaire/QuestionnaireStatistics.vue';
+import DOMPurify from 'dompurify';
 
-Vue.directive("sane-html", (el, binding) => {
-	el.innerHTML = DOMPurify.sanitize(binding.value);
-});
-
-new Vue({
-	el: "#app",
-	store: store,
+const app = createApp({
 	components: {
 		QuestionnaireStatistics,
-	},
+	}
 });
+
+// Register the "sane-html" directive globally
+app.directive('sane-html', {
+	updated(el, binding) {
+		el.innerHTML = DOMPurify.sanitize(binding.value);
+	},
+	mounted(el, binding) {
+		el.innerHTML = DOMPurify.sanitize(binding.value);
+	}
+});
+
+app.use(store);
+app.mount('#app');
 
 (function () {
 	const init = function () {
