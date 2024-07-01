@@ -395,7 +395,9 @@ openssl req -new -sha256 -newkey rsa:2048 -nodes \
 -out dev.crowdsourcing.crt
 ```
 
-And then reference the 2 generated files in the Nginx configuration file of the application.
+### Nginx Configuration for Social Login (only for Non-Docker installations)
+
+Reference the 2 generated files in the Nginx configuration file of the application.
 Make sure you change the port to 443 as shown below:
 
 ```nginx
@@ -452,13 +454,9 @@ In order to run the generator for the current application installation, run the 
 php artisan sitemap:generate
 ```
 
-## Related HTML Template
+## Code Linting & Formatting
 
-This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
-
-It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
-
-## PHP code style - Laravel Pint
+### PHP code style - Laravel Pint
 
 This application uses [Laravel Pint](https://laravel.com/docs/9.x/pint) in order to perform code-style.
 
@@ -468,8 +466,25 @@ In order to run the styler, run :
 ./vendor/bin/pint --test -v # the --test will not do any changes, it will just output the changes needed
 
 ./vendor/bin/pint -v # this command will actually perform the code style changes 
-
 ```
+
+### JavaScript && CSS code style - ESLint && Prettier
+
+This application uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) in order to perform code-style.
+
+In order to run the styler & formatter, run :
+
+```bash
+npm run lint # this command will check the code style
+
+npm run format # this command will format the code style
+```
+
+## Related HTML Template
+
+This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
+
+It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
 
 ## Installation-specific resources
 
