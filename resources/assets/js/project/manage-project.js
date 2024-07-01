@@ -1,14 +1,14 @@
 import "select2";
 import "summernote/dist/summernote-bs4.min";
 
-import { createApp } from 'vue';
-import store from '../store/store';
+import { createApp } from "vue";
+import store from "../store/store";
 
-import TranslationsManager from '../vue-components/common/TranslationsManager.vue';
-import CrowdSourcingProjectColors from '../vue-components/crowd-sourcing-project/CrowdSourcingProjectColors.vue';
+import TranslationsManager from "../vue-components/common/TranslationsManager.vue";
+import CrowdSourcingProjectColors from "../vue-components/crowd-sourcing-project/CrowdSourcingProjectColors.vue";
 
-import select2 from 'select2';
-import $ from 'jquery';
+import select2 from "select2";
+import $ from "jquery";
 
 select2($);
 
@@ -16,12 +16,11 @@ const app = createApp({
 	components: {
 		TranslationsManager,
 		CrowdSourcingProjectColors,
-	}
+	},
 });
 
 app.use(store);
-app.mount('#app');
-
+app.mount("#app");
 
 (function () {
 	const initializeSummernote = function () {

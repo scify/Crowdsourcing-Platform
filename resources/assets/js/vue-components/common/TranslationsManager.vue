@@ -64,31 +64,31 @@
 					>
 						<table class="table table-striped">
 							<thead>
-							<tr>
-								<th scope="col">Field</th>
-								<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
-								<th scope="col">
-									Translation in
-									{{ getLanguageName(translation.language_id) }}
-								</th>
-							</tr>
+								<tr>
+									<th scope="col">Field</th>
+									<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
+									<th scope="col">
+										Translation in
+										{{ getLanguageName(translation.language_id) }}
+									</th>
+								</tr>
 							</thead>
 							<tbody>
-							<tr
-								v-for="(value, property) in translation"
-								v-if="modelMetaData[property]"
-								:key="'translation_row_' + property"
-							>
-								<td class="field">
-									{{ getDisplayTitleForProperty(property) }}
-								</td>
-								<td class="original-translation">
-									{{ originalTranslation[property] }}
-								</td>
-								<td>
-									<textarea v-model="translation[property]"></textarea>
-								</td>
-							</tr>
+								<tr
+									v-for="(value, property) in translation"
+									v-if="modelMetaData[property]"
+									:key="'translation_row_' + property"
+								>
+									<td class="field">
+										{{ getDisplayTitleForProperty(property) }}
+									</td>
+									<td class="original-translation">
+										{{ originalTranslation[property] }}
+									</td>
+									<td>
+										<textarea v-model="translation[property]"></textarea>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -99,8 +99,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import { useStore } from 'vuex';
+import { ref, onMounted } from "vue";
+import { useStore } from "vuex";
 
 export default {
 	name: "TranslationsManager",
@@ -127,7 +127,7 @@ export default {
 
 		const getAvailableLanguagesAndInit = async () => {
 			try {
-				const response = await store.dispatch('get', {
+				const response = await store.dispatch("get", {
 					url: window.route("languages.get"),
 					data: {},
 					urlRelative: false,
@@ -137,17 +137,18 @@ export default {
 				originalTranslation.value = getOriginalEnglishTranslation();
 				checkedLanguages.value = getAlreadySelectedLanguages();
 			} catch (error) {
-				store.dispatch('handleError', error);
+				store.dispatch("handleError", error);
 			}
 		};
 
 		const getDisplayTitleForProperty = (property) => {
-			return props.modelMetaData[property]?.display_title || 'Unknown';
+			return props.modelMetaData[property]?.display_title || "Unknown";
 		};
 
 		const getAlreadySelectedLanguages = () => {
 			const checkedLanguagesList = [];
-			if (!Array.isArray(props.existingTranslations) || props.existingTranslations.length === 0) return checkedLanguagesList;
+			if (!Array.isArray(props.existingTranslations) || props.existingTranslations.length === 0)
+				return checkedLanguagesList;
 			availableLanguages.value.forEach((lang) => {
 				const result = props.existingTranslations.find((translation) => translation.language_id === lang.id);
 				if (result) checkedLanguagesList.push(lang);
@@ -156,12 +157,12 @@ export default {
 		};
 
 		const removeDefaultTranslation = () => {
-			return props.existingTranslations.filter(t => t.language_id !== props.defaultLangId);
+			return props.existingTranslations.filter((t) => t.language_id !== props.defaultLangId);
 		};
 
 		const getLanguageName = (languageId) => {
 			const lang = availableLanguages.value.find((lang) => lang.id === languageId);
-			return lang ? lang.language_name : 'Unknown';
+			return lang ? lang.language_name : "Unknown";
 		};
 
 		const addNewTranslation = (language) => {

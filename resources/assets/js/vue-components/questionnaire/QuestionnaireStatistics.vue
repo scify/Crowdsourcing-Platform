@@ -184,7 +184,7 @@ import { showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
 	name: "QuestionnaireStatistics",
