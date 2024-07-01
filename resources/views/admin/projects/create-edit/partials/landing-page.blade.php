@@ -20,7 +20,7 @@
                                         <div class="image-preview-container">
                                             <img loading="lazy" class="selected-image-preview"
                                                  src="{{asset($viewModel->project->img_path) ? asset($viewModel->project->img_path) : ''}}"
-                                                 alt="Selected motto background image">
+                                                 alt="Selected motto background">
                                         </div>
                                         <div class="form-group has-feedback input-file-wrapper">
                                             <small>In order to update the currently selected image, please choose a new
@@ -128,7 +128,7 @@
                                         <div class="image-preview-container">
                                             <img loading="lazy" class="selected-image-preview"
                                                  src="{{asset($viewModel->project->lp_questionnaire_img_path)}}"
-                                                 alt="Selected questionnaire background image">
+                                                 alt="Selected questionnaire background">
                                         </div>
                                         <div class="form-group has-feedback input-file-wrapper">
                                             <small>In order to update the currently selected image, please choose a new

@@ -11,7 +11,7 @@
 @endpush
 
 @section('content')
-    <form id="project-form" enctype="multipart/form-data" role="form" method="POST"
+    <form id="project-form" enctype="multipart/form-data" method="POST"
           action="{{ $viewModel->isEditMode() ? route('projects.update', $viewModel->project) : route('projects.store') }}">
         @if($viewModel->isEditMode())
             @method('PUT')

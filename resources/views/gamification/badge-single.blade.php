@@ -6,7 +6,7 @@
      style="background-color: {{ $badge->color }};">
     <div class="col-md-12 badge-img-container">
         <img loading="lazy" class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}"
-             alt="badge image">
+             alt="Badge">
     </div>
     <div class="col-md-12 mt-2">
         <h4 class="badge-name badge-name-{{ $badge->level == 0 ? 'black' : 'white' }}">{{ $badge->badgeName }}</h4>

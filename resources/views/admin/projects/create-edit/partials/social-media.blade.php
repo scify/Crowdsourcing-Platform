@@ -3,19 +3,19 @@
         <div class="card">
             <div class="card-body">
                 <div class="row image-input-container">
-                    <label class="col-sm-12 control-label">Featured Image </label>
+                    <label for="sm_featured_img" class="col-sm-12 control-label">Featured Image </label>
                     <div class="col-sm-12">
                         <div class="image-preview-container">
                             <img loading="lazy" class="selected-image-preview"
                                  src="{{$viewModel->project->sm_featured_img_path ? asset($viewModel->project->sm_featured_img_path) : ''}}"
-                                 alt="Social media featured image">
+                                 alt="Social media featured">
                         </div>
                         <div class="form-group has-feedback input-file-wrapper">
                             <small>In order to update the currently selected image, please choose a new
                                 image by
                                 clicking the button below.
                             </small>
-                            <input type="file" name="sm_featured_img" class="image-input" accept="image/*">
+                            <input id="sm_featured_img" type="file" name="sm_featured_img" class="image-input" accept="image/*">
                             <span class="help-block"><strong>{{ $errors->first('sm_featured_img') }}</strong></span>
                         </div>
                     </div>

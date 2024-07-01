@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group has-feedback">
-                            <label>Email</label>
+                            <label for="email">Email</label>
                             <input id="email" type="text" class="form-control" name="email"
                                    value="{{ $viewModel->user->email }}"
                                    required
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group has-feedback">
-                            <label>Nickname</label>
+                            <label for="nickname">Nickname</label>
                             <input id="nickname" type="text" class="form-control" name="nickname"
                                    value="{{ $viewModel->user->nickname  }}"
                                    required
@@ -44,8 +44,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>User roles</label>
-                            <select class="form-control" name="roleselect[]">
+                            <label for="rolesselect">User roles</label>
+                            <select class="form-control" name="roleselect[]" id="rolesselect">
                                 @foreach ($viewModel->allRoles as $role)
                                     <option
                                             @if ($viewModel->userRoleIds->contains($role->id))
