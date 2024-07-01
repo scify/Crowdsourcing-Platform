@@ -334,7 +334,6 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 		const options = {
 			destroy: true,
 			paging: true,
-			responsive: true,
 			searching: true,
 			columns: columns,
 			order: [[columns.length - 2, "desc"]],

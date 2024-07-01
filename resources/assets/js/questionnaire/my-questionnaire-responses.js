@@ -8,7 +8,6 @@ import * as Survey from "survey-jquery";
 			usersTable.DataTable({
 				paging: true,
 				searching: true,
-				responsive: true,
 				pageLength: 10,
 				/* No ordering applied by DataTables during initialisation */
 				order: [],

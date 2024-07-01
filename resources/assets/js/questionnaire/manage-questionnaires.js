@@ -25,7 +25,6 @@
 			table.DataTable({
 				destroy: true,
 				paging: true,
-				responsive: true,
 				searching: true,
 				columns: [
 					{ width: "5%" },

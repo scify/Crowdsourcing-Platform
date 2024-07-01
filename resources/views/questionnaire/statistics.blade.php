@@ -30,21 +30,30 @@
                     @if($viewModel->questionnaire->show_general_statistics)
                         @if($viewModel->questionnaireResponseStatistics->totalResponses)
                             <div class="row my-5 py-5 align-items-center bg-white">
-                                <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                                    <h2>{{ __("statistics.total_responses")}}:</h2>
+                                <div class="col-xl-6 col-lg-9 col-md-12 col-sm-12 mx-auto">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
+                                            <h2>{{ __("statistics.total_responses")}}:</h2>
+                                        </div>
+                                        <div class="col-lg-7 col-md-6 col-sm-12">
+                                            <canvas id="responsesChart"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-7 col-md-6 col-sm-12">
-                                    <canvas id="responsesChart"></canvas>
-                                </div>
+
                             </div>
                         @endif
                         @if (sizeof($viewModel->numberOfResponsesPerLanguage->data) > 1)
                             <div class="row my-5 py-5 align-items-center bg-white">
-                                <div class="col-lg-3 col-md-6 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
-                                    <h2>{{ __("statistics.responses_per_language")}}:</h2>
-                                </div>
-                                <div class="col-lg-7 col-md-6 col-sm-12">
-                                    <canvas id="responsesPerLanguageChart"></canvas>
+                                <div class="col-xl-6 col-lg-9 col-md-12 col-sm-12 mx-auto">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 mb-4 mb-lg-0 mb-md-0">
+                                            <h2>{{ __("statistics.responses_per_language")}}:</h2>
+                                        </div>
+                                        <div class="col-lg-7 col-md-6 col-sm-12">
+                                            <canvas id="responsesPerLanguageChart"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endif
@@ -66,7 +75,7 @@
 @endsection
 @push('scripts')
     <script type="text/javascript">
-        const viewModel = @json($viewModel);
+		const viewModel = @json($viewModel);
     </script>
     @vite('resources/assets/js/questionnaire/questionnaire-statistics.js')
 @endpush
