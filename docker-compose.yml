@@ -1,0 +1,90 @@
+version: "3.5"
+services:
+
+  ####################################################################################################
+  # PHP
+  ####################################################################################################
+  php:
+    build: ./docker/php
+    # user: 'www-data:www-data'
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/var/www:cached
+    container_name: crowdsourcing_platform_server
+    networks:
+      - docker_crowdsourcing_platform_net
+    extra_hosts:
+      # we need this to connect to the host machine from the container,
+      # so that we can access the Internet from the container
+      - "host.docker.internal:host-gateway"
+
+  ####################################################################################################
+  # Web Server (Nginx)
+  ####################################################################################################
+  nginx:
+    image: nginx
+    ports:
+      - "89:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - docker_crowdsourcing_platform_net
+    depends_on:
+      - php
+
+  ####################################################################################################
+  # DATABASE (MySQL)
+  ####################################################################################################
+  db:
+    build: ./docker/db
+    container_name: crowdsourcing_platform_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3316:3306"
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/logs:/var/log/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    networks:
+      - docker_crowdsourcing_platform_net
+
+  ####################################################################################################
+  # Redis
+  ####################################################################################################
+  redis:
+    image: redis:latest
+    command: redis-server --appendonly yes
+    volumes:
+      - ./docker/redis/data:/data
+    ports:
+      - "6389:6379"
+    networks:
+      - docker_crowdsourcing_platform_net
+
+  ####################################################################################################
+  # SMTP Server (Mailhog) - for testing emails
+  ####################################################################################################
+  mailhog:
+    platform: linux/x86_64
+    image: mailhog/mailhog
+    container_name: smtp_mailhog_server
+    logging:
+      driver: 'none' # disable saving logs to the disk
+    ports:
+      - "1025:1025" # smtp server
+      - "8100:8025" # web interface
+    networks:
+      - docker_crowdsourcing_platform_net # connect to the same network as the app
+
+networks:
+  docker_crowdsourcing_platform_net:
+    external: false
+    name: docker_crowdsourcing_platform_net
