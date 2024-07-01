@@ -12,8 +12,6 @@
 */
 
 
-Route::middleware(['throttle:api-internal'])->group(function () {
-});
+Route::middleware(['throttle:api-internal'])->group(function () {});
 
-Route::middleware(['throttle:api-internal'])->group(function () {
-});
+Route::middleware(['throttle:api-internal'])->group(function () {});

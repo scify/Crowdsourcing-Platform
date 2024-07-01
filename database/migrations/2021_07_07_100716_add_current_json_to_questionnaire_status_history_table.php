@@ -22,7 +22,6 @@ class AddCurrentJsonToQuestionnaireStatusHistoryTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::table('questionnaire_status_history', function (Blueprint $table) {
-        });
+        Schema::table('questionnaire_status_history', function (Blueprint $table) {});
     }
 }

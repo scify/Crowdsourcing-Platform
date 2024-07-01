@@ -30,7 +30,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
-
     const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
 
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;

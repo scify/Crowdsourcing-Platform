@@ -23,7 +23,6 @@ class MakeImgPathNullableInCrowdSourcingProjectsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::table('crowd_sourcing_projects', function (Blueprint $table) {
-        });
+        Schema::table('crowd_sourcing_projects', function (Blueprint $table) {});
     }
 }
