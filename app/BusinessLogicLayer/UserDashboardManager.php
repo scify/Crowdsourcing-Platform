@@ -9,6 +9,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireAccessManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
+use App\Models\User;
 use App\Models\ViewModels\GamificationNextStep;
 use App\Models\ViewModels\QuestionnaireSocialShareButtons;
 use App\Models\ViewModels\UserDashboardViewModel;
@@ -95,7 +96,7 @@ class UserDashboardManager {
         }
     }
 
-    public function getUserDashboardViewModel($user): UserDashboardViewModel {
+    public function getUserDashboardViewModel(User $user): UserDashboardViewModel {
         $userResponses = $this->questionnaireResponseRepository->getQuestionnaireResponsesOfUser($user->id);
         $questionnaireIdsUserHasAnsweredTo = $userResponses->pluck('questionnaire_id')->toArray();
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
