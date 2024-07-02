@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireLanguageManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
@@ -9,6 +11,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,11 +24,11 @@ class QuestionnaireController extends Controller {
     protected QuestionnaireTranslator $questionnaireTranslator;
     protected QuestionnaireLanguageManager $questionnaireLanguageManager;
 
-    public function __construct(QuestionnaireManager $questionnaireManager,
-        UserQuestionnaireShareManager $questionnaireShareManager,
-        QuestionnaireVMProvider $questionnaireVMProvider,
-        QuestionnaireTranslator $questionnaireTranslator,
-        QuestionnaireLanguageManager $questionnaireLanguageManager) {
+    public function __construct(QuestionnaireManager          $questionnaireManager,
+                                UserQuestionnaireShareManager $questionnaireShareManager,
+                                QuestionnaireVMProvider       $questionnaireVMProvider,
+                                QuestionnaireTranslator       $questionnaireTranslator,
+                                QuestionnaireLanguageManager  $questionnaireLanguageManager) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;
@@ -115,7 +118,7 @@ class QuestionnaireController extends Controller {
     }
 
     /**
-     * @throws \Exception if the user is not allowed to access the questionnaire
+     * @throws Exception if the user is not allowed to access the questionnaire
      */
     public function showAddResponseAsModeratorToQuestionnaire(CrowdSourcingProject $project, Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($project, $questionnaire);
@@ -124,11 +127,18 @@ class QuestionnaireController extends Controller {
     }
 
     public function showQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire) {
-        // TODO we need to perform some checks here:
         // 1. if the questionnaire is not active, we should not allow the user to see it
-        // 2. if the user has already answered the questionnaire, we should not allow the user to see it
-        // 3. if the questionnaire does not belong to the project, we should not allow the user to see it
-        // 4. if the project is not active, we should not allow the user to see it
+        if ($questionnaire->status_id !== QuestionnaireStatusLkp::PUBLISHED) {
+            return redirect()->back()->with(['flash_message_error' => 'The questionnaire is not active.']);
+        }
+        // 2. if the questionnaire does not belong to the project, we should not allow the user to see it
+        if (!$questionnaire->projects->contains($project)) {
+            return redirect()->back()->with(['flash_message_error' => 'The questionnaire does not belong to the project.']);
+        }
+        // 3. if the project is not active, we should not allow the user to see it
+        if ($project->status_id !== CrowdSourcingProjectStatusLkp::PUBLISHED) {
+            return redirect()->back()->with(['flash_message_error' => 'The project is not active.']);
+        }
         $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnairePage($project, $questionnaire);
 
         return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);
