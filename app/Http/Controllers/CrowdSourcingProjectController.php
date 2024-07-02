@@ -100,7 +100,7 @@ class CrowdSourcingProjectController extends Controller {
                 return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
             }
 
-            return view('landingpages.project-unavailable')
+            return view('crowdsourcing-project.project-unavailable')
                 ->with(['viewModel' => $this->crowdSourcingProjectManager->
                 getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug), ]);
         } catch (ModelNotFoundException $e) {
@@ -112,14 +112,13 @@ class CrowdSourcingProjectController extends Controller {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 $request->questionnaireId ?? null,
-                $project_slug,
-                $request->open);
+                $project_slug);
 
             if ($this->shouldHandleQuestionnaireShare($request)) {
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $request->referrerId);
             }
 
-            return view('landingpages.landing-page')->with(['viewModel' => $viewModel]);
+            return view('crowdsourcing-project.landing-page')->with(['viewModel' => $viewModel]);
         } catch (ModelNotFoundException $e) {
             abort(404);
         } catch (\Exception $e) {

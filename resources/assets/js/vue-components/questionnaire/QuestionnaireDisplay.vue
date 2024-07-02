@@ -1,5 +1,5 @@
 <template>
-	<div class="component mt-3">
+	<div id="questionnaire-display" class="component mt-3">
 		<div v-if="filesUploading" id="questionnaire-files-loader-overlay"></div>
 		<div v-if="filesUploading" id="questionnaire-files-loader" class="container-fluid">
 			<div id="questionnaire-files-loader-row" class="row">
@@ -30,11 +30,13 @@
 				</div>
 			</div>
 		</div>
-		<div v-else class="container-fluid">
+		<div v-else class="container-fluid p-0">
 			<div v-if="!userResponse" class="row">
 				<div class="col-md-12 language-selection">
 					<div class="form-group">
-						<label for="language-select">{{ trans("questionnaire.select_language") }}</label>
+						<label class="language-selector" for="language-select">{{
+							trans("questionnaire.select_language")
+						}}</label>
 						<select id="language-select" class="form-control" @change="onLanguageChange($event)">
 							<option
 								v-for="(language, index) in surveyLocales"
@@ -68,8 +70,8 @@
 <script>
 import { onMounted, ref } from "vue";
 import * as Survey from "survey-jquery";
-import { arrayMove, setCookie } from "../../../common-utils";
-import AnalyticsLogger from "../../../analytics-logger";
+import { arrayMove, setCookie } from "../../common-utils";
+import AnalyticsLogger from "../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import axios from "axios";
 
@@ -104,6 +106,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		locale: {
+			type: String,
+			default: "en",
+		},
 	},
 	setup(props) {
 		const surveyCreator = ref(null);
@@ -112,7 +118,7 @@ export default {
 		const userResponse = ref({});
 		const browserFingerprintId = ref(null);
 		const questionnaireLocalStorageKey = ref(`crowdsourcing_questionnaire_${props.questionnaire.id}_response`);
-		const displayLoginPrompt = ref(true);
+		const displayLoginPrompt = ref(false);
 		const loading = ref(false);
 		const t0 = ref(null);
 		const defaultLangCode = ref("en");
@@ -123,12 +129,12 @@ export default {
 			const fpPromise = FingerprintJS.load();
 			browserFingerprintId.value = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
 			displayLoginPrompt.value = !userLoggedIn();
+			if (!displayLoginPrompt.value) skipLogin();
 			if (!userLoggedIn()) {
 				const response = await getAnonymousUserResponse();
 				userResponse.value = response.data.questionnaire_response ?? null;
 			}
 			initQuestionnaireDisplay();
-			if (!displayLoginPrompt.value) skipLogin();
 		});
 
 		const userLoggedIn = () => {
@@ -137,7 +143,6 @@ export default {
 
 		const skipLogin = () => {
 			displayLoginPrompt.value = false;
-			const instance = this;
 			loading.value = true;
 			const surveyContainerId = props.surveyContainerId;
 			setTimeout(() => {
@@ -196,7 +201,6 @@ export default {
 			if (surveyLocales.value && surveyLocales.value.length) {
 				survey.value.locale = surveyLocales.value[0].code;
 			}
-			const instance = this;
 			survey.value.onAfterRenderSurvey.add(() => {
 				loading.value = false;
 				$(".sv_complete_btn").after(
@@ -249,7 +253,6 @@ export default {
 				},
 			};
 			filesUploading.value = true;
-			const instance = this;
 			axios
 				.post(window.route("files.upload"), data, config)
 				.then((response) => {
@@ -284,9 +287,6 @@ export default {
 				}
 			}
 			data.language_code = locale;
-			$(".loader-wrapper").removeClass("hidden");
-			window.$("#questionnaire-modal").modal("hide");
-			$(".respond-questionnaire").attr("disabled", true);
 			postResponseDataAndShowResult(data);
 		};
 
@@ -371,7 +371,7 @@ export default {
 		};
 
 		const getSignInUrl = () => {
-			return window.route("login", getLocaleFromURL()) + `?redirectTo=${window.location.href}`;
+			return window.route("login", props.locale) + `?redirectTo=${window.location.href}`;
 		};
 
 		const getDefaultLocaleForQuestionnaire = () => {
@@ -386,13 +386,6 @@ export default {
 			return defaultLangCode.value;
 		};
 
-		const getLocaleFromURL = () => {
-			const url = window.location.href;
-			const start = getPosition(url, "/", 3) + 1;
-			const end = getPosition(url, "/", 4);
-			return url.substring(start, end);
-		};
-
 		const getPosition = (str, subString, occurrence) => {
 			return str.split(subString, occurrence).join(subString).length;
 		};
@@ -402,12 +395,16 @@ export default {
 		};
 
 		const getAnonymousUserResponse = async () => {
-			return await get({
-				url:
-					window.route("questionnaire.response-anonymous") +
-					`?browser_fingerprint_id=${browserFingerprintId.value}&questionnaire_id=${props.questionnaire.id}`,
-				urlRelative: false,
-			});
+			try {
+				return await axios.get(window.route("questionnaire.response-anonymous"), {
+					params: {
+						browser_fingerprint_id: browserFingerprintId.value,
+						questionnaire_id: props.questionnaire.id,
+					},
+				});
+			} catch (error) {
+				console.error(error);
+			}
 		};
 
 		return {
@@ -433,5 +430,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../../sass/questionnaire/questionnaire-display";
+@import "../../../sass/questionnaire/questionnaire-display";
 </style>

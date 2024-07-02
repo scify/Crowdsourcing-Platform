@@ -1,4 +1,4 @@
-@extends('landingpages.layout', [
+@extends('crowdsourcing-project.layout', [
     'includeBackofficeCommonJs' => true,
     'redirectLoginURL' => route("login") . '?redirectTo=' . url()->full(),
     'redirectRegisterURL' => route("register") . '?redirectTo=' . url()->full(),

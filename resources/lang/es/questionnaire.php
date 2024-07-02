@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Visita tu Tablero para invitar a tus amigos',
     'go_to_dashboard'                   => 'Ve al Tablero',
     'answers_saved_anonymously' => 'Sus respuestas se han guardado de forma anónima.',
-    // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'Regístrese como usuario de la plataforma<sup>*</sup>:',
     'filter_spammers' => 'Verá <b>sus</b> respuestas!',
     'view_your_contribution' => 'Puede <b>ver</b> las respuestas de otros.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'Durante el registro se le solicita un correo electrónico y un alias.',
     'already_answered' =>  'Ya ha contestado este cuestionario.',
     'thank_you_for_your_response' =>  '¡Gracias por su respuesta!',
-    'prefer_staying_anonymous' =>  '¿Prefieres permanecer en el anonimato?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Envíenos su opinión sobre nuestra plataforma respondiendo a 5 preguntas', //den ta exo brei kapou
-    'give_us_feedback' => 'Envíenos su opinión', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  '¿Prefieres permanecer en el anonimato?',
+    'feedback_about_platform' => 'Envíenos su opinión sobre nuestra plataforma respondiendo a 5 preguntas',
+    'give_us_feedback' => 'Envíenos su opinión',
     'zero_answers' => 'Ninguna persona se ha pronunciado hasta ahora. ¡Sé el primero!',
     'no_recent_activity' => 'No se encontró actividad reciente',
     'visit_projects_site' => 'Visita la web del proyecto',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => '¡Invita a tus amigos a responder!',
     'go_to_homepage' => 'Yes! Go to homepage',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Responde al cuestionario de retroalimentación',
+    'user_feedback_given_message' => '¡Gracias por tu retroalimentación!',
 ];

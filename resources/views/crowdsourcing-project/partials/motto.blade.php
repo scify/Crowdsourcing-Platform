@@ -67,8 +67,8 @@
                                     </div>
                                     {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
                                     @if ($viewModel->displayFeedbackQuestionnaire())
-                                        <div class="col-md-5 col-sm-12 mx-auto mt-5">
-                                            @include("landingpages.partials.open-feedback-questionnaire-button",
+                                        <div class="col-md-9 col-sm-12 mx-auto mt-5">
+                                            @include("crowdsourcing-project.partials.open-feedback-questionnaire-button",
                                                         [
                                                             "css_class"=> "btn btn-primary w-100 call-to-action ",
                                                             "label"=>  __("questionnaire.give_us_feedback")
@@ -79,7 +79,7 @@
                                             {{-- DISPLAY SHARE THE QUESTIONNARE --}}
                                             @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
 
-                                                @include('landingpages.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
+                                                @include('crowdsourcing-project.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
 
                                             @endif
                                         </div>
@@ -87,13 +87,17 @@
                                     @endif
                                 @else
                                     {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
-                                    <div class="col-md-5 col-sm-12 mx-auto mt-5">
-                                        @include("landingpages.partials.open-questionnaire-button", ["label"=>  __("questionnaire.answer_the_questionnaire") ])
+                                    <div class="col-md-9 col-sm-12 mx-auto mt-5">
+                                        <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
+                                           class="btn btn-primary w-100 respond-questionnaire call-to-action
+                                            {{ !$viewModel->project->lp_show_speak_up_btn ? 'hidden' : '' }}">
+                                            {{__("questionnaire.answer_the_questionnaire")}}
+                                        </a>
                                     </div>
                                 @endif
                             @else
                                 {{-- PROJECT DOES NOT HAVE AN ACTIVE QUESTIONNAIRE --}}
-                                @include('landingpages.partials.external-url')
+                                @include('crowdsourcing-project.partials.external-url')
                             @endif
                         </div>
                     </div>

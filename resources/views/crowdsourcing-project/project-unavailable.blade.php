@@ -1,8 +1,9 @@
-@extends('landingpages.layout')
+@extends('crowdsourcing-project.layout')
 @push('css')
     <style>
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
+
 
         }
     </style>
@@ -44,7 +45,7 @@
             </div>
         </section>
         <section>
-            @include('landingpages.partials.about')
+            @include('crowdsourcing-project.partials.about')
         </section>
         <section id="projects" class="w-100">
             @include('home.partials.' . config('app.installation_resources_dir') . '.projects', ['projects' => $viewModel->projects])

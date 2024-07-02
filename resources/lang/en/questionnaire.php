@@ -13,7 +13,7 @@ return [
     'already_participated' => 'You have already participated, thank you!',
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> people has spoken up so far!',
     'latest_contributors' => 'Latest contributors',
-    'name_and_date_of_last_contributors' => ':name responded at :date', //Maria responded at November 23, 2021
+    'name_and_date_of_last_contributors' => ':name responded at :date',
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> answers left to reach our goal', //1002 answers left to reach our goal
     'newsletter' => 'Newsletter',
     'learn_about_new_projects' => 'Learn about all our new projects, get updates on active ones and contribute where it is most needed!',
@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Visit your Dashboard to invite your friends',
     'go_to_dashboard'                   => 'Go to Dashboard',
     'answers_saved_anonymously' => 'Your answers have been saved anonymously.',
-    // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'Register as a platform user<sup>*</sup>:',
     'filter_spammers' => 'You’ll <b>see</b> your answers!',
     'view_your_contribution' => 'You can <b>see</b> the answers of others.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'During registration you are asked for an email and a nickname.',
     'already_answered' =>  'You have already answered this questionnaire.',
     'thank_you_for_your_response' =>  'Thank you for your response!',
-    'prefer_staying_anonymous' =>  'Prefer staying anonymous?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Please give us feedback about our platform by answering 5 questions', //den ta exo brei kapou
-    'give_us_feedback' => 'Give us feedback', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Prefer staying anonymous?',
+    'feedback_about_platform' => 'Please give us feedback about our platform by answering 5 questions',
+    'give_us_feedback' => 'Give us feedback',
     'zero_answers' => 'Zero people have spoken up so far. Be the first!',
     'no_recent_activity' => 'No recent activity found',
     'visit_projects_site' => 'Visit project’s site',
@@ -44,14 +43,11 @@ return [
     'answer_the_questionnaire' => 'Answer the questionnaire',
     'project_no_active_questionnaire' => 'This project does not have an active questionnaire yet.',
     'no_active_projects' => 'There are currently no active projects.',
-    'check_what_other_respondents' => 'Before answering to the questionnaire, check what the other respondents have said by clicking',
+    'check_what_other_respondents' => 'Before answering to the questionnaire, you can check what the other respondents have said by clicking',
     'here' => 'here',
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => 'Invite your friends to answer',
     'go_to_homepage' => 'Yes! Go to homepage',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Answer to feedback questionnaire',
+    'user_feedback_given_message' => 'Thank you for your feedback!',
 ];

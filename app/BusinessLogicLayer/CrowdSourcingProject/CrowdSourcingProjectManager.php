@@ -105,8 +105,7 @@ class CrowdSourcingProjectManager {
 
     public function getCrowdSourcingProjectViewModelForLandingPage(
         $questionnaireIdRequestedInTheURL,
-        $project_slug,
-        $openQuestionnaireWhenPageLoads): CrowdSourcingProjectForLandingPage {
+        $project_slug): CrowdSourcingProjectForLandingPage {
         $userId = null;
 
         // if the user is logged in, get the user id
@@ -162,7 +161,6 @@ class CrowdSourcingProjectManager {
             $questionnaireGoalVM,
             $socialMediaMetadataVM,
             $this->languageRepository->all(),
-            $openQuestionnaireWhenPageLoads,
             $shareUrlForFacebook,
             $shareUrlForTwitter);
     }

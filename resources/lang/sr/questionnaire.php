@@ -21,20 +21,19 @@ return [
     'sign_up' => 'Prijavite se',
     'thank_you' => 'Hvala Vam!',
     'visit_dashboard_and_invite' => 'Posjetite Vašu Kontrolnu tablu kako biste pozvali svoje prijatelje',
-    'go_to_dashboard'                   => 'Idite na Kontrolnu tablu',
+    'go_to_dashboard' => 'Idite na Kontrolnu tablu',
     'answers_saved_anonymously' => 'Vaši odgovori su sačuvani anonimno.',
-    // 'login_to_complete_submission' =>  'Molimo da se prijavite kako biste dovršili svoju prijavu!',
     'by_registering_you' => 'Registrujte se kao korisnik platforme<sup>*</sup>:',
     'filter_spammers' => 'Vidjećete sve Vaše odgovore.',
     'view_your_contribution' => 'Možete vidjeti odgovore drugih.',
     'vote_thumbs_up' => 'Možete biti informisani o daljim aktivnostima i rezultatima projekta.',
     'no_share_information' => 'Vaše podatke ne dijelimo sa trećim licima.',
     'during_registration' => 'Prilikom registracije od vas se traži mejl i nadimak (nickname).',
-    'already_answered' =>  'Već ste odgovorili na ovaj upitnik.',
-    'thank_you_for_your_response' =>  'Hvala Vam na odgovoru!',
-    'prefer_staying_anonymous' =>  'Želite da ostanete anonimni?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Molimo Vas da nam date povratnu informaciju o našoj platformi odgovaranjem na 5 pitanja', //den ta exo brei kapou
-    'give_us_feedback' => 'Dajte nam povratnu informaciju', //den ta exo brei kapou
+    'already_answered' => 'Već ste odgovorili na ovaj upitnik.',
+    'thank_you_for_your_response' => 'Hvala Vam na odgovoru!',
+    'prefer_staying_anonymous' => 'Želite da ostanete anonimni?',
+    'feedback_about_platform' => 'Molimo Vas da nam date povratnu informaciju o našoj platformi odgovaranjem na 5 pitanja',
+    'give_us_feedback' => 'Dajte nam povratnu informaciju',
     'zero_answers' => 'Nijedna osoba se do sada nije oglasila. Budite prvi!',
     'no_recent_activity' => 'Nije pronađena nedavna aktivnost',
     'visit_projects_site' => 'Posjetite web stranicu projekta',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Odaberite jezik',
     'invite_your_friends_to_answer' => 'Pozovite svoje prijatelje da odgovore',
     'go_to_homepage' => 'Yes! Go to homepage',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Odgovorite na upitnik o povratnim informacijama',
+    'user_feedback_given_message' => 'Hvala Vam na povratnoj informaciji!',
 ];

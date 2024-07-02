@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import store from "../store/store";
 
-import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay/QuestionnaireDisplay.vue";
+import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay.vue";
 import DOMPurify from "dompurify";
 
 const app = createApp({

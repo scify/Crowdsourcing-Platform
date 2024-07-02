@@ -1,5 +1,13 @@
 {
   "preset": "laravel",
+  "exclude": [
+    "docker",
+    "public",
+    "storage",
+    "vendor",
+    "node_modules",
+    "bootstrap/cache"
+  ],
   "rules": {
     "statement_indentation": true,
     "phpdoc_align": false,
@@ -41,10 +49,11 @@
       }
     },
     "class_definition": {
-      "multi_line_extends_each_single_line": false,
+      "multi_line_extends_each_single_line": true,
       "space_before_parenthesis": false,
-      "inline_constructor_arguments": false
+      "inline_constructor_arguments": true
     },
+    "type_declaration_spaces" : true,
     "concat_space": {
       "spacing": "one"
     }
