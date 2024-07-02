@@ -22,9 +22,7 @@ return [
     'thank_you' => 'Merci!',
     'visit_dashboard_and_invite' => 'Visitez votre tableau de bord pour inviter vos amis',
     'go_to_dashboard'                   => 'Accéder au tableau de bord',
-
     'answers_saved_anonymously' => 'Vos réponses ont été sauvegardées de manière anonyme.',
-    //  'login_to_complete_submission' =>  'Veuillez vous connecter pour compléter votre proposition!',
     'by_registering_you' => 'S\'inscrire comme utilisateur de la plateforme<sup>*</sup>:',
     'filter_spammers' => 'Vous <b>verrez</b> vos réponses.',
     'view_your_contribution' => 'Vous <b>pouvez voir</b> les réponses des autres.',
@@ -33,9 +31,9 @@ return [
     'during_registration' => 'Lors de l\'inscription, il vous est demandé de fournir une adresse électronique et un pseudonyme.',
     'already_answered' =>  'Vous avez déjà répondu à ce questionnaire.',
     'thank_you_for_your_response' =>  'Nous vous remercions de votre réponse!',
-    'prefer_staying_anonymous' =>  'Vous préférez rester anonyme?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Veuillez nous donner votre avis sur notre plateforme en répondant à 5 questions', //den ta exo brei kapou
-    'give_us_feedback' => 'Donnez-nous votre avis', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Vous préférez rester anonyme?',
+    'feedback_about_platform' => 'Veuillez nous donner votre avis sur notre plateforme en répondant à 5 questions',
+    'give_us_feedback' => 'Donnez-nous votre avis',
     'zero_answers' => 'Aucune personne ne s\'est exprimée jusqu\'à présent. Soyez le premier!',
     'no_recent_activity' => 'Aucune activité récente trouvée',
     'visit_projects_site' => 'Visitez le site du projet',
@@ -50,9 +48,6 @@ return [
     'select_language' => 'Sélectionner la langue',
     'invite_your_friends_to_answer' => 'Invitez vos amis à répondre',
     'go_to_homepage' => "Oui! Aller à la page d'accueil",
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Répondez au questionnaire de rétroaction',
+    'user_feedback_given_message' => 'Merci pour votre rétroaction!',
 ];

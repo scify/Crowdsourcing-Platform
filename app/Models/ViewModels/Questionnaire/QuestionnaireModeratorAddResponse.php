@@ -10,7 +10,6 @@ class QuestionnaireModeratorAddResponse {
     public $languages;
     public $thankYouMode;
     public $userResponse;
-    public $openQuestionnaireWhenPageLoads;
     public $feedbackQuestionnaire;
     public $moderator = true;
 
@@ -20,7 +19,6 @@ class QuestionnaireModeratorAddResponse {
         $this->languages = $languages;
         $this->thankYouMode = false;
         $this->userResponse = null;
-        $this->openQuestionnaireWhenPageLoads = true;
         $this->feedbackQuestionnaire = null;
     }
 

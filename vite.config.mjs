@@ -45,7 +45,7 @@ export default defineConfig({
 				"resources/assets/js/questionnaire/manage-questionnaires.js",
 				"resources/assets/js/questionnaire/my-questionnaire-responses.js",
 				"resources/assets/js/questionnaire/questionnaire-create-edit.js",
-				"resources/assets/js/questionnaire/questionnaire-feedback.js",
+				"resources/assets/js/questionnaire/questionnaire-page.js",
 				"resources/assets/js/questionnaire/questionnaire-reports.js",
 				"resources/assets/js/questionnaire/questionnaire-social-share.js",
 				"resources/assets/js/questionnaire/questionnaire-statistics-colors.js",

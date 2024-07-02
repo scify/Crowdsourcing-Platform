@@ -137,7 +137,7 @@ class QuestionnaireResponseController extends Controller {
             }
             $response = $this->questionnaireResponseRepository->where(['questionnaire_id' => $request->questionnaire_id, 'user_id' => $userId]);
             $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($response->project_id);
-            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->questionnaire_id, $project->slug, false);
+            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->questionnaire_id, $project->slug);
             $viewModel->thankYouMode = true;
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $response->user_id])->pluck('questionnaire_id')->toArray();

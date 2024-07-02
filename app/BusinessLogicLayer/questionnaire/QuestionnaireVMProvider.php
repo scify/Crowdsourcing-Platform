@@ -4,17 +4,18 @@ namespace App\BusinessLogicLayer\questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\ViewModels\CreateEditQuestionnaire;
 use App\Models\ViewModels\ManageQuestionnaires;
-use App\Models\ViewModels\Questionnaire\QuestionnaireModeratorAddResponse;
+use App\Models\ViewModels\Questionnaire\QuestionnairePage;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
 use Illuminate\Support\Facades\Auth;
-use PHPUnit\Util\Exception;
 
 class QuestionnaireVMProvider {
     protected QuestionnaireRepository $questionnaireRepository;
@@ -25,6 +26,7 @@ class QuestionnaireVMProvider {
     protected QuestionnaireManager $questionnaireManager;
     protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
+    private CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
         QuestionnaireManager $questionnaireManager,
@@ -33,7 +35,8 @@ class QuestionnaireVMProvider {
         QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
         QuestionnaireTranslationRepository $questionnaireTranslationRepository,
         QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+        CrowdSourcingProjectManager $crowdSourcingProjectManager,
+        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
         $this->languageManager = $languageManager;
@@ -42,6 +45,7 @@ class QuestionnaireVMProvider {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
     }
 
     public function getCreateEditQuestionnaireViewModel($id = null): CreateEditQuestionnaire {
@@ -82,7 +86,7 @@ class QuestionnaireVMProvider {
                 foreach ($projectSlugs as $index => $projectSlug) {
                     $questionnaire->urls[] = [
                         'project_name' => $projectNames[$index],
-                        'url' => $this->getQuestionnaireURL($projectSlug, $questionnaire->id),
+                        'url' => $this->getQuestionnaireURL(trim($projectSlug), $questionnaire->id),
                     ];
                 }
             }
@@ -92,25 +96,31 @@ class QuestionnaireVMProvider {
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
-    public function getViewModelForQuestionnaireResponseModeratorPage(Questionnaire $questionnaire, string $project_slug): QuestionnaireModeratorAddResponse {
-        $project = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($project_slug);
-        $activeQuestionnairesForThisProject = $this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
-        $questionnaire = $activeQuestionnairesForThisProject->firstWhere('id', '=', $questionnaire->id);
-
-        if (!$questionnaire) {
-            throw new Exception('This project does not have any active questionnaires');
-        }
+    public function getViewModelForQuestionnaireResponseModeratorPage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
 
         $languages = $this->languageManager->getAllLanguages();
 
-        return new QuestionnaireModeratorAddResponse($project, $questionnaire, $languages);
+        return new QuestionnairePage($questionnaire, null, $project, $languages, false);
     }
 
     protected function shouldShowLinkForQuestionnaire($questionnaire): bool {
         return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
     }
 
-    protected function getQuestionnaireURL($projectSlug, $questionnaireId): string {
-        return url('/en/' . trim($projectSlug)) . '?open=1&questionnaireId=' . $questionnaireId;
+    protected function getQuestionnaireURL(string $projectSlug, int $questionnaireId): string {
+        return route('show-questionnaire-page', ['project' => $projectSlug, 'questionnaire' => $questionnaireId]);
+    }
+
+    public function getViewModelForQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        $user = Auth::user();
+        $userResponse = null;
+        if ($user) {
+            $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $user->id);
+        }
+        $languages = $this->languageManager->getAllLanguages();
+
+        return new QuestionnairePage($questionnaire, $userResponse, $project, $languages, false);
     }
 }

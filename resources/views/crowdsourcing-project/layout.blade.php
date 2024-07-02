@@ -13,11 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @if (isset($viewModel->socialMediaMetadataVM))
-        @include('landingpages.partials.header-meta', ['viewModel' => $viewModel->socialMediaMetadataVM])
+        @include('crowdsourcing-project.partials.header-meta', ['viewModel' => $viewModel->socialMediaMetadataVM])
     @else
         <link rel="canonical" href="{{route('home', ['locale' => app()->getLocale()])}}">
     @endif
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic,600italic">
     @vite('resources/assets/sass/common.scss')
     @vite('resources/assets/sass/project/landing-page.scss')
     @vite('resources/assets/sass/pages/home.scss')
@@ -26,7 +27,7 @@
 </head>
 <body class="container-fluid p-0">
 @include('partials.staging-indicator')
-@include('landingpages.partials.navbar')
+@include('crowdsourcing-project.partials.navbar')
 @include('partials.flash-messages-and-errors')
 <div id="app" style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')

@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Menjen a főoldalra a barátai meghívásához',
     'go_to_dashboard'                   => 'Menjen az főoldalra',
     'answers_saved_anonymously' => 'Válaszait névtelenül mentettük el.',
-    // 'login_to_complete_submission' =>  'Kérjük, jelentkezzen be a válaszai elküldéséhez!',
     'by_registering_you' => 'Regisztrálás a platform felhasználójaként<sup>*</sup>:',
     'filter_spammers' => '<b>Látni fogja</b> a válaszait.',
     'view_your_contribution' => '<b>Láthatja</b> mások válaszait.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'A regisztráció során meg kell adnia egy e-mail címet és egy becenevet..',
     'already_answered' =>  'Ön már válaszolt erre a kérdőívre.',
     'thank_you_for_your_response' =>  'Köszönjük a válaszát!',
-    'prefer_staying_anonymous' =>  'Inkább névtelen szeretne maradni?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Kérjük, adjon nekünk visszajelzést a platformunkról 5 kérdés megválaszolásával', //den ta exo brei kapou
-    'give_us_feedback' => 'Küldjön visszajelzést', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Inkább névtelen szeretne maradni?',
+    'feedback_about_platform' => 'Kérjük, adjon nekünk visszajelzést a platformunkról 5 kérdés megválaszolásával',
+    'give_us_feedback' => 'Küldjön visszajelzést',
     'zero_answers' => 'Eddig egyetlen ember sem szólalt meg. Legyen Ön az első!!',
     'no_recent_activity' => 'Nincs friss aktivitás',
     'visit_projects_site' => 'Látogasson el a projekt oldalára',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Nyelv kiválasztása',
     'invite_your_friends_to_answer' => 'Hívja meg barátait',
     'go_to_homepage' => 'Igen! Menj a főoldalra',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Válaszoljon a visszajelzési kérdőívünkre',
+    'user_feedback_given_message' => 'Köszönjük a visszajelzését!',
 ];

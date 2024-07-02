@@ -1,27 +1,28 @@
-@extends('landingpages.layout')
+@extends('crowdsourcing-project.layout')
 @push('css')
-<style>
-:root  {
-    --project-primary-color: {{ $viewModel->project->lp_primary_color}}
-}
-</style>
+    <style>
+        :root {
+            --project-primary-color: {{ $viewModel->project->lp_primary_color}}
+
+        }
+    </style>
 @endpush
 
 @section('content')
     <div class="container-fluid h-100 w-100 px-0">
         @include('partials.flash-messages-and-errors')
         <section id="motto" style="height: 650px;">
-            @include('landingpages.partials.motto')
+            @include('crowdsourcing-project.partials.motto')
         </section>
         <section>
-            @include('landingpages.partials.about')
+            @include('crowdsourcing-project.partials.about')
         </section>
         <section>
-            @include('landingpages.partials.questionnaire')
+            @include('crowdsourcing-project.partials.questionnaire')
         </section>
         @if($viewModel->questionnaire)
             <section id="collective-goal">
-                @include('landingpages.partials.goal-and-activity')
+                @include('crowdsourcing-project.partials.goal-and-activity')
             </section>
         @endif
         <section>
@@ -31,7 +32,7 @@
 @endsection
 @push('scripts')
     <script defer type="text/javascript">
-        const viewModel = @json($viewModel);
+		const viewModel = @json($viewModel);
     </script>
     @vite('resources/assets/js/project/landing-page.js')
 @endpush

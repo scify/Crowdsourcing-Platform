@@ -476,3 +476,11 @@ footer {
 .hidden {
 	display: none;
 }
+
+a.link {
+	color: $button-background-color;
+	&:hover {
+		color: $button-background-color-hover;
+		cursor: pointer;
+	}
+}

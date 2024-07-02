@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Apmeklē savu rīku paneli, lai uzaicinātu draugus',
     'go_to_dashboard'                   => 'Doties uz vadības paneli',
     'answers_saved_anonymously' => 'Tavas atbildes ir saglabātas kā anonīmas.',
-    //  'login_to_complete_submission' =>  'Lūdzu, piesakies, lai tās iesniegtu!',
     'by_registering_you' => 'Reģistrējies kā platformas lietotājs<sup>*</sup>:',
     'filter_spammers' => 'Tu <b>redzēsi</b> savas iesniegtās atbildes.',
     'view_your_contribution' => 'Tu <b>redzēsi</b> citu iesniegtās atbildes.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'Reģistrācijas laikā tev tiek lūgts norādīt e-pastu un lietotājvārdu.',
     'already_answered' =>  'Tu jau esi aizpildījis šo anketu.',
     'thank_you_for_your_response' =>  'Paldies par atbildi!',
-    'prefer_staying_anonymous' =>  'Vai vēlies palikt anonīms?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Lūdzu, sniedz atsauksmes par mūsu platformu, atbildot uz 5 jautājumiem', //den ta exo brei kapou
-    'give_us_feedback' => 'Sniegt atsauksmi', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Vai vēlies palikt anonīms?',
+    'feedback_about_platform' => 'Lūdzu, sniedz atsauksmes par mūsu platformu, atbildot uz 5 jautājumiem',
+    'give_us_feedback' => 'Sniegt atsauksmi',
     'zero_answers' => 'Līdz šim neviens nav izteicis savas domas. Esi pirmais!',
     'no_recent_activity' => 'Nav nesen veiktu darbību',
     'visit_projects_site' => 'Apmeklēt projekta vietni',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Izvēlies valodu',
     'invite_your_friends_to_answer' => 'Uzaiciniet draugus atbildēt',
     'go_to_homepage' => 'Jā! Dodieties uz mājaslapu',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Atbildi uz atsauksmju anketu',
+    'user_feedback_given_message' => 'Paldies par atsauksmēm!',
 ];

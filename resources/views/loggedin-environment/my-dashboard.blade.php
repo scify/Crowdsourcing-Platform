@@ -53,7 +53,7 @@
                                                 <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
                                                     @if ($questionnaire->type_id==1)
                                                         <div class="progress-container">
-                                                            @include('landingpages.partials.project-goal',
+                                                            @include('crowdsourcing-project.partials.project-goal',
                                                             ['questionnaireId' => $questionnaire->id, 'questionnaireViewModel' => $questionnaire->goalVM, 'project' => $questionnaire->projects->get(0)])
                                                             @if ($questionnaire->userHasAccessToViewStatisticsPage)
                                                                 <div class="row">

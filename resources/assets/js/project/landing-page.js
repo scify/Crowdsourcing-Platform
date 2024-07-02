@@ -3,7 +3,7 @@ import { showToast } from "../common-utils";
 
 import { createApp } from "vue";
 import store from "../store/store";
-import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay/QuestionnaireDisplay.vue";
+import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay.vue";
 
 import DOMPurify from "dompurify";
 
@@ -44,13 +44,6 @@ app.mount("#app");
 		$("#questionnaire-responded").find(".refresh-page").on("click", refreshPageToTheQuestionnaireSection);
 	};
 
-	const openQuestionnaireIfNeeded = function () {
-		const respondQuestionnaire = $("#project-motto").find(".respond-questionnaire");
-		if (respondQuestionnaire.first().data("open-on-load") === 1) {
-			window.$("#questionnaire-modal").modal("show");
-		}
-	};
-
 	const logToAnalytics = function () {
 		const projectEl = $("#project");
 		if (projectEl.data("name"))
@@ -86,7 +79,6 @@ app.mount("#app");
 
 	const init = function () {
 		initEvents();
-		openQuestionnaireIfNeeded();
 		logToAnalytics();
 		showProjectBannerIfEnabled();
 	};

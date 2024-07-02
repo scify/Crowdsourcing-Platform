@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -113,9 +114,23 @@ class QuestionnaireController extends Controller {
         return response()->json(['status' => '__SUCCESS']);
     }
 
-    public function showAddResponseAsModeratorToQuestionnaire(Questionnaire $questionnaire, string $project_slug) {
-        $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($questionnaire, $project_slug);
+    /**
+     * @throws \Exception if the user is not allowed to access the questionnaire
+     */
+    public function showAddResponseAsModeratorToQuestionnaire(CrowdSourcingProject $project, Questionnaire $questionnaire) {
+        $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($project, $questionnaire);
 
-        return view('questionnaire.moderator-add-response')->with(['viewModel' => $viewModel]);
+        return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);
+    }
+
+    public function showQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire) {
+        // TODO we need to perform some checks here:
+        // 1. if the questionnaire is not active, we should not allow the user to see it
+        // 2. if the user has already answered the questionnaire, we should not allow the user to see it
+        // 3. if the questionnaire does not belong to the project, we should not allow the user to see it
+        // 4. if the project is not active, we should not allow the user to see it
+        $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnairePage($project, $questionnaire);
+
+        return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);
     }
 }

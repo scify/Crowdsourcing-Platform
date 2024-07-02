@@ -1,9 +1,10 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-@extends('landingpages.layout')
+@extends('crowdsourcing-project.layout')
 @push('css')
     <style>
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}}
+
 
         }
     </style>
@@ -14,10 +15,10 @@
     <div class="container-fluid h-100 w-100 px-0" id="questionnaire-thanks">
         @include('partials.flash-messages-and-errors')
         <section id="motto">
-            @include('landingpages.partials.motto')
+            @include('crowdsourcing-project.partials.motto')
         </section>
         <section>
-            @include('landingpages.partials.about')
+            @include('crowdsourcing-project.partials.about')
         </section>
     </div>
 @endsection
@@ -65,7 +66,7 @@
                             </div>
                             <div class="text-center p-4 bck-color-feedback">
                                 <label>{!! __('questionnaire.feedback_about_platform') !!}</label><br>
-                                @include("landingpages.partials.open-feedback-questionnaire-button",
+                                @include("crowdsourcing-project.partials.open-feedback-questionnaire-button",
                                 [
                                 "css_class"=> "",
                                 "label"=> __("questionnaire.give_us_feedback")

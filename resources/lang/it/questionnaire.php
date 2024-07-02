@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Visita la dashboard per invitare i tuoi amici',
     'go_to_dashboard'                   => 'Vai alla dashboard',
     'answers_saved_anonymously' => 'Le tue risposte sono state salvate in modo anonimo.',
-
     'by_registering_you' => 'Registrati come utente della piattaforma<sup>*</sup>:',
     'filter_spammers' => '<b>Vedrai</b> le tue risposte!',
     'view_your_contribution' => 'Puoi <b>vedere</b> le risposte degli altri.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'In fase di registrazione viene richiesta una mail e un nickname.',
     'already_answered' =>  'Hai già risposto a questo questionario.',
     'thank_you_for_your_response' =>  'Grazie per la vostra risposta!',
-    'prefer_staying_anonymous' =>  'Preferisci rimanere anonimo?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Inviaci un feedback sulla nostra piattaforma rispondendo a 5 domande', //den ta exo brei kapou
-    'give_us_feedback' => 'Inviaci un feedback', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Preferisci rimanere anonimo?',
+    'feedback_about_platform' => 'Inviaci un feedback sulla nostra piattaforma rispondendo a 5 domande',
+    'give_us_feedback' => 'Inviaci un feedback',
     'zero_answers' => 'Nessuna persona ha risposto finora. Sii il primo!',
     'no_recent_activity' => 'Nessuna attività recente trovata',
     'visit_projects_site' => 'Visita il sito del progetto',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => 'Invita i tuoi amici a rispondere',
     'go_to_homepage' => 'Yes! Go to homepage',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Rispondi al questionario di feedback',
+    'user_feedback_given_message' => 'Grazie per il tuo feedback!',
 ];

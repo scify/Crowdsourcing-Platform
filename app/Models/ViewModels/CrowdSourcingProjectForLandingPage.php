@@ -15,7 +15,6 @@ class CrowdSourcingProjectForLandingPage {
     public $questionnaireGoalVM;
     public $socialMediaMetadataVM;
     public $languages;
-    public $openQuestionnaireWhenPageLoads = false;
     public $shareUrlForFacebook;
     public $shareUrlForTwitter;
     public $thankYouMode;
@@ -31,7 +30,6 @@ class CrowdSourcingProjectForLandingPage {
         $questionnaireGoalVM,
         $socialMediaMetadataVM,
         Collection $languages,
-        $openQuestionnaireWhenPageLoads,
         $shareUrlForFacebook,
         $shareUrlForTwitter) {
         $this->project = $project;
@@ -43,7 +41,6 @@ class CrowdSourcingProjectForLandingPage {
         $this->questionnaireGoalVM = $questionnaireGoalVM;
         $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;
-        $this->openQuestionnaireWhenPageLoads = $openQuestionnaireWhenPageLoads;
         $this->shareUrlForFacebook = $shareUrlForFacebook;
         $this->shareUrlForTwitter = $shareUrlForTwitter;
         $this->thankYouMode = false;
@@ -72,7 +69,7 @@ class CrowdSourcingProjectForLandingPage {
     }
 
     public function shouldShowQuestionnaireStatisticsLink(): bool {
-        return false;
+        return true;
     }
 
     public function getLoggedInUser() {

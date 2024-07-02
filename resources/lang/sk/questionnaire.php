@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Navštívte svoj informačný panel a pozvite svojich priateľov',
     'go_to_dashboard'                   => 'Prejdite na informačný panel',
     'answers_saved_anonymously' => 'Vaše odpovede boli uložené anonymne.',
-    // 'login_to_complete_submission' =>  'Please login to complete your submission!',
     'by_registering_you' => 'Zaregistrujte sa ako užívateľ platformy<sup>*</sup>:',
     'filter_spammers' => 'Uvidíte <b>svoje</b> odpovede!',
     'view_your_contribution' => 'Môžete vidieť <b>odpovede</b> ostatných.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'Počas registrácie budete požiadaní o zadanie e-mailu a prezývky.',
     'already_answered' =>  'Na tento dotazník ste už odpovedali.',
     'thank_you_for_your_response' =>  'Ďakujem za Vašu odpoveď!',
-    'prefer_staying_anonymous' =>  'Uprednostňujete zostať v anonymite?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Poskytnite nám spätnú väzbu o našej platforme zodpovedaním 4 otázok.', //den ta exo brei kapou
-    'give_us_feedback' => 'Poskytnite nám spätnú väzbu', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Uprednostňujete zostať v anonymite?',
+    'feedback_about_platform' => 'Poskytnite nám spätnú väzbu o našej platforme zodpovedaním 4 otázok.',
+    'give_us_feedback' => 'Poskytnite nám spätnú väzbu',
     'zero_answers' => 'Zatiaľ na nikto neozval. Buďte prvý!',
     'no_recent_activity' => 'Nenašla sa žiadna nedávna aktivita',
     'visit_projects_site' => 'Navštívte stránku projektu',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => 'Pozvite svojich priateľov, aby odpovedali',
     'go_to_homepage' => 'Yes! Go to homepage',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Odpovedzte na dotazník o spätných väzbách',
+    'user_feedback_given_message' => 'Ďakujeme za Vašu spätnú väzbu!',
 ];

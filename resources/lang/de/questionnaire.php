@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Besuchen Sie Ihr Dashboard, um Ihre Freund:innen einzuladen',
     'go_to_dashboard'                   => 'Zum Dashboard gehen',
     'answers_saved_anonymously' => 'Ihre Antworten wurden anonym gespeichert.',
-    //  'login_to_complete_submission' =>  'Bitte melden Sie sich an, um Ihren Beitrag zu vervollständigen!',
     'by_registering_you' => 'Registrieren Sie sich als Nutzer:in auf der Plattform<sup>*</sup>:',
     'filter_spammers' => 'Sie können ihre <b>Antworten ansehen</b>!',
     'view_your_contribution' => 'Sie können die <b>Antworten von anderen Personen ansehen</b>.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'Bei der Registrierung werden Sie nach einer E-Mail-Adresse und einem Nutzer:innenname gefragt.',
     'already_answered' =>  'Sie haben diesen Fragebogen bereits beantwortet.',
     'thank_you_for_your_response' =>  'Vielen Dank für Ihre Antwort!',
-    'prefer_staying_anonymous' =>  'Möchten Sie lieber anonym bleiben?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Bitte geben Sie uns ein Feedback zu unserer Plattform, indem Sie 5 Fragen beantworten', //den ta exo brei kapou
-    'give_us_feedback' => 'Geben Sie uns Feedback', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Möchten Sie lieber anonym bleiben?',
+    'feedback_about_platform' => 'Bitte geben Sie uns ein Feedback zu unserer Plattform, indem Sie 5 Fragen beantworten',
+    'give_us_feedback' => 'Geben Sie uns Feedback',
     'zero_answers' => 'Bislang hat niemand auf teilgenomme. Seien Sie der/die Erste!',
     'no_recent_activity' => 'Keine kürzlichen Aktivitäten gefunden',
     'visit_projects_site' => 'Besuchen Sie die Projektseite',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Sprache wählen',
     'invite_your_friends_to_answer' => 'Laden Sie Ihre Freund:innen ein mitzumachen',
     'go_to_homepage' => 'Ja! Gehen Sie zur Homepage',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Antworten Sie auf den Feedback-Fragebogen',
+    'user_feedback_given_message' => 'Vielen Dank für Ihr Feedback!',
 ];

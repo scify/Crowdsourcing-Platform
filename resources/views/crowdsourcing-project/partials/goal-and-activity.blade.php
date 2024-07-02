@@ -14,7 +14,7 @@
 
 
         </h2>
-        @include('landingpages.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
+        @include('crowdsourcing-project.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
 
 
     </div>

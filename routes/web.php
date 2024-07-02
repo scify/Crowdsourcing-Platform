@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
     Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])
         ->name('questionnaire.responses.download');
-    Route::get('/questionnaires/{questionnaire}/{project_slug}/moderator-add-answer', [QuestionnaireController::class, 'showAddResponseAsModeratorToQuestionnaire'])->name('questionnaire-moderator-add-response')->middleware('can:moderate-results');
+    Route::get('/{project:slug}/questionnaire/{questionnaire:id}/moderator-add-answer', [QuestionnaireController::class, 'showAddResponseAsModeratorToQuestionnaire'])->name('questionnaire-moderator-add-response')->middleware('can:moderate-results');
 
     Route::get('/communication/mailchimp', [CommunicationController::class, 'getMailChimpIntegration'])->name('mailchimp-integration.get')->middleware('can:manage-platform');
     Route::post('/communication/mailchimp', [CommunicationController::class, 'storeMailChimpListsIds'])->name('mailchimp-integration')->middleware('can:manage-platform');
@@ -158,6 +158,7 @@ Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::cla
 Route::post('/questionnaire/answer-annotations', [QuestionnaireAnswerAnnotationController::class, 'annotateAnswer'])->name('questionnaire.answer-annotations.create');
 Route::post('/questionnaire/answer-annotations/delete', [QuestionnaireAnswerAnnotationController::class, 'deleteAnswerAnnotation'])->name('questionnaire.answer-annotations.delete');
 
+Route::get('/{project:slug}/questionnaire/{questionnaire:id}/respond', [QuestionnaireController::class, 'showQuestionnairePage'])->name('show-questionnaire-page');
 Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('respond-questionnaire');
 Route::get('/questionnaire/response-anonymous', [QuestionnaireResponseController::class, 'getAnonymousUserResponseForQuestionnaire'])->name('questionnaire.response-anonymous');
 Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])

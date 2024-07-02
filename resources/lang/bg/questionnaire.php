@@ -23,7 +23,6 @@ return [
     'visit_dashboard_and_invite' => 'Посетете своето табло за управление, за да поканите своите приятели',
     'go_to_dashboard'                   => 'Към таблото за управление',
     'answers_saved_anonymously' => 'Вашите отговори бяха записани анонимно.',
-    // 'login_to_complete_submission' =>  'Моля, регистрирайте се, за да довършите тяхното подаване!',
     'by_registering_you' => 'Регистрирайте се като ползвател на платформата<sup>*</sup>:',
     'filter_spammers' => 'Ще видите отговорите си.',
     'view_your_contribution' => 'Можете да видите отговорите на други участници.',
@@ -32,9 +31,9 @@ return [
     'during_registration' => 'за регистрация ще Ви трябва и-мейл адрес и име или ник.',
     'already_answered' =>  'Вие вече сте попълнили този въпросник.',
     'thank_you_for_your_response' =>  'Благодарим Ви за отговорите!',
-    'prefer_staying_anonymous' =>  'Предпочитате на останете анонимни?', //den ta exo brei kapou
-    'feedback_about_platform' => 'Моля, дайте ни мнението си за платформата като отговорите на 5 въпроса', //den ta exo brei kapou
-    'give_us_feedback' => 'Дайте ни мнението си', //den ta exo brei kapou
+    'prefer_staying_anonymous' =>  'Предпочитате на останете анонимни?',
+    'feedback_about_platform' => 'Моля, дайте ни мнението си за платформата като отговорите на 5 въпроса',
+    'give_us_feedback' => 'Дайте ни мнението си',
     'zero_answers' => 'Още никой не се е изказал, бъдете първият!',
     'no_recent_activity' => 'Няма регистрирано скорошно участие',
     'visit_projects_site' => 'Посетете сайта на инициативата',
@@ -49,9 +48,6 @@ return [
     'select_language' => 'Изберете език',
     'invite_your_friends_to_answer' => 'Поканете приятелите Ви да участват',
     'go_to_homepage' => 'Да! Отидете в началната страница',
-
-
-
-
-
+    'answer_to_feedback_questionnaire' => 'Отговорете на анкетата за обратна връзка',
+    'user_feedback_given_message' => 'Благодарим Ви за обратната връзка!',
 ];
