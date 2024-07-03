@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller {
-    private $crowdSourcingProjectManager;
+    private CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
     public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
@@ -46,13 +46,13 @@ class HomeController extends Controller {
      * If referrer URL belongs to the application and is the questionnaire page,
      * provide the option to redirect back to the questionnaire.
      */
-    private function getRedirectBackUrl() {
+    private function getRedirectBackUrl(): string {
         $referrer = request()->headers->get('referer');
         //if referer is the questionnaire page, we will allow to redirect back.
         $goBackUrl = null;
         if ($referrer) {
             $host = parse_url($referrer, PHP_URL_HOST);
-            $current_host = parse_url(env('APP_URL'), PHP_URL_HOST);
+            $current_host = parse_url(config('app.url'), PHP_URL_HOST);
             if ($host == $current_host) {
                 $route = collect(Route::getRoutes())->first(function ($route) use ($referrer) {
                     return $route->matches(request()->create($referrer));

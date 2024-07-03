@@ -548,6 +548,8 @@ the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 This project is developed by [SciFY](https://www.scify.org/) and [ECAS](https://ecas.org/) and is based on
 the [Laravel](https://laravel.com/) framework. The project is maintained by [SciFY](https://www.scify.org/).
 
+Some of the images used in the application are from [Freepik](https://www.freepik.com/).
+
 ## Contact
 
 Feel free to contact the project maintainers:

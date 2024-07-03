@@ -17,12 +17,18 @@ class DatabaseSeeder extends Seeder {
             UserRolesTableSeeder::class,
             LanguagesLkpTableSeeder::class,
             CrowdSourcingProjectStatusesLkpTableSeeder::class,
-            QuestionnaireStatusesLkpTableSeeder::class,
             DefaultProjectSeeder::class,
+            QuestionnaireStatusesLkpTableSeeder::class,
             QuestionnaireStatisticsPageVisibilityLkpSeeder::class,
             MailChimpListsTableSeeder::class,
             CrowdSourcingProjectColorsSeeder::class,
-            UserRoleLkpTableSeederAddAnswersModerator::class,
+            QuestionnaireAnswerAdminAnalysisLkpTableSeeder::class,
+            QuestionnaireTypesSeeder::class,
+            QuestionnaireStatisticsPageVisibilityLkpSeeder::class,
+            QuestionnaireStatusesLkpTableSeeder::class,
+            QuestionnaireSeeder::class,
+            QuestionnaireStatusHistoryTableSeeder::class,
+            QuestionnaireResponsesSeeder::class,
         ]);
     }
 }
