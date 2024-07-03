@@ -6,7 +6,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireAnswerAdminReviewLkpRepo
 use Illuminate\Database\Seeder;
 
 class QuestionnaireAnswerAdminAnalysisLkpTableSeeder extends Seeder {
-    protected $repository;
+    protected QuestionnaireAnswerAdminReviewLkpRepository $repository;
 
     public function __construct(QuestionnaireAnswerAdminReviewLkpRepository $repository) {
         $this->repository = $repository;

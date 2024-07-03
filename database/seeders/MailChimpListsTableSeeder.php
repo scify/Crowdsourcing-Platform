@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\MailChimpList;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class MailChimpListsTableSeeder extends Seeder {
     /**
@@ -12,8 +12,7 @@ class MailChimpListsTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        DB::table('mailchimp_lists')->delete();
-        DB::table('mailchimp_lists')->insert([
+        $mailchimp_lists = [
             [
                 'id' => 1,
                 'list_name' => 'Newsletter',
@@ -24,6 +23,10 @@ class MailChimpListsTableSeeder extends Seeder {
                 'list_name' => 'Registered Users',
                 'list_id' => '4d3220b2cb',
             ],
-        ]);
+        ];
+
+        foreach ($mailchimp_lists as $list) {
+            MailChimpList::updateOrCreate(['id' => $list['id']], $list);
+        }
     }
 }

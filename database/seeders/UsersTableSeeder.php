@@ -26,18 +26,21 @@ class UsersTableSeeder extends Seeder {
                 'nickname' => 'Platform Admin',
                 'email' => 'platform-admin@crowd.com',
                 'password' => bcrypt(config('app.admin_pass_seed')),
+                'avatar' => '/images/user.webp',
             ],
             [
                 'id' => 2,
                 'nickname' => 'Content Manager',
                 'email' => 'content-manager@crowd.com',
                 'password' => bcrypt(config('app.admin_pass_seed')),
+                'avatar' => '/images/user.webp',
             ],
             [
                 'id' => 3,
                 'nickname' => 'Registered User',
                 'email' => 'user@crowd.com',
                 'password' => bcrypt(config('app.admin_pass_seed')),
+                'avatar' => '/images/user.webp',
             ],
         ];
 

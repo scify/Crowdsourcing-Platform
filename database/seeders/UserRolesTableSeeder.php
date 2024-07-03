@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserRole;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UserRolesTableSeeder extends Seeder {
     /**
@@ -12,8 +12,7 @@ class UserRolesTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        DB::table('user_roles')->delete();
-        DB::table('user_roles')->insert([
+        $user_roles = [
             [
                 'id' => 1,
                 'user_id' => 1,
@@ -29,6 +28,10 @@ class UserRolesTableSeeder extends Seeder {
                 'user_id' => 3,
                 'role_id' => 3,
             ],
-        ]);
+        ];
+
+        foreach ($user_roles as $user_role) {
+            UserRole::updateOrCreate(['id' => $user_role['id']], $user_role);
+        }
     }
 }

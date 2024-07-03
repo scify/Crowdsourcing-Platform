@@ -2,21 +2,27 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserRoleLookup;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UserRoleLkpTableSeeder extends Seeder {
+
+
     /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run() {
-        DB::table('user_role_lkp')->delete();
-        DB::table('user_role_lkp')->insert([
+        $user_roles = [
             ['id'=> 1, 'name'=>'Platform Administrator'],
             ['id'=> 2, 'name'=>'Content Manager'],
             ['id'=> 3, 'name'=>'Registered User'],
-        ]);
+            ['id'=> 4, 'name'=>'Answers Moderator'],
+        ];
+
+        foreach ($user_roles as $user_role) {
+            UserRoleLookup::updateOrCreate(['id' => $user_role['id']], $user_role);
+        }
     }
 }

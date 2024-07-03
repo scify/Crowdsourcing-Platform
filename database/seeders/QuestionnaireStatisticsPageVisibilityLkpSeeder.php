@@ -7,8 +7,8 @@ use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilit
 use Illuminate\Database\Seeder;
 
 class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
-    protected $questionnaireStatisticsPageVisibilityLkpRepository;
-    protected $questionnaireRepository;
+    protected QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository;
+    protected QuestionnaireRepository $questionnaireRepository;
 
     public function __construct(QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
         QuestionnaireRepository $questionnaireRepository) {

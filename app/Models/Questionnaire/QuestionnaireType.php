@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $description
  */
-class QuestionnaireStatus extends Model {
+class QuestionnaireType extends Model {
     public $timestamps = false;
-    protected $table = 'questionnaire_statuses_lkp';
+    protected $table = 'questionnaire_types';
 }
