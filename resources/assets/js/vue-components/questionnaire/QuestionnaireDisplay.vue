@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
 import * as Survey from "survey-jquery";
 import { arrayMove, setCookie } from "../../common-utils";
 import AnalyticsLogger from "../../analytics-logger";
@@ -111,59 +110,61 @@ export default {
 			default: "en",
 		},
 	},
-	setup(props) {
-		const surveyCreator = ref(null);
-		const survey = ref(null);
-		const surveyLocales = ref([]);
-		const userResponse = ref({});
-		const browserFingerprintId = ref(null);
-		const questionnaireLocalStorageKey = ref(`crowdsourcing_questionnaire_${props.questionnaire.id}_response`);
-		const displayLoginPrompt = ref(false);
-		const loading = ref(false);
-		const t0 = ref(null);
-		const defaultLangCode = ref("en");
-		const filesUploading = ref(false);
-
-		onMounted(async () => {
-			userResponse.value = props.userResponseData;
+	data() {
+		return {
+			surveyCreator: null,
+			survey: null,
+			surveyLocales: [],
+			userResponse: {},
+			browserFingerprintId: null,
+			questionnaireLocalStorageKey: `crowdsourcing_questionnaire_${this.questionnaire.id}_response`,
+			displayLoginPrompt: false,
+			loading: false,
+			t0: null,
+			defaultLangCode: "en",
+			filesUploading: false,
+		};
+	},
+	mounted() {
+		this.onMounted();
+	},
+	methods: {
+		async onMounted() {
+			this.userResponse = this.userResponseData;
 			const fpPromise = FingerprintJS.load();
-			browserFingerprintId.value = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
-			displayLoginPrompt.value = !userLoggedIn();
-			if (!displayLoginPrompt.value) skipLogin();
-			if (!userLoggedIn()) {
-				const response = await getAnonymousUserResponse();
-				userResponse.value = response.data.questionnaire_response ?? null;
+			this.browserFingerprintId = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
+			this.displayLoginPrompt = !this.userLoggedIn();
+			if (!this.displayLoginPrompt) this.skipLogin();
+			if (!this.userLoggedIn()) {
+				const response = await this.getAnonymousUserResponse();
+				this.userResponse = response.data.questionnaire_response ?? null;
 			}
-			initQuestionnaireDisplay();
-		});
-
-		const userLoggedIn = () => {
-			return props.user && props.user.id;
-		};
-
-		const skipLogin = () => {
-			displayLoginPrompt.value = false;
-			loading.value = true;
-			const surveyContainerId = props.surveyContainerId;
+			this.initQuestionnaireDisplay();
+		},
+		userLoggedIn() {
+			return this.user && this.user.id;
+		},
+		skipLogin() {
+			this.displayLoginPrompt = false;
+			this.loading = true;
+			const surveyContainerId = this.surveyContainerId;
 			setTimeout(() => {
-				survey.value.render(surveyContainerId);
+				this.survey.render(surveyContainerId);
 			}, 1000);
-		};
-
-		const getQuestionnaireLoginPromptMessage = () => {
-			if (props.questionnaire.respondent_auth_required) {
+		},
+		getQuestionnaireLoginPromptMessage() {
+			if (this.questionnaire.respondent_auth_required) {
 				return "You must be logged in in order to respond to this questionnaire";
 			}
 			return "You can create an account in order to see more questionnaires that need answering";
-		};
-
-		const initQuestionnaireDisplay = () => {
+		},
+		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
-			survey.value = new Survey.Model(props.questionnaire.questionnaire_json);
-			if (!userResponse.value || Object.keys(userResponse.value).length === 0) {
-				prepareQuestionnaireForResponding();
+			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
+			if (!this.userResponse || Object.keys(this.userResponse).length === 0) {
+				this.prepareQuestionnaireForResponding();
 			} else {
-				prepareQuestionnaireForViewingResponse();
+				this.prepareQuestionnaireForViewingResponse();
 			}
 
 			window.setInterval(() => {
@@ -173,36 +174,35 @@ export default {
 					$("body,#questionnaire-modal").removeClass("disable-scroll");
 				}
 			}, 300);
-		};
-
-		const prepareQuestionnaireForResponding = () => {
-			const responseJSON = window.localStorage.getItem(questionnaireLocalStorageKey.value);
+		},
+		prepareQuestionnaireForResponding() {
+			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
 			if (responseJSON && JSON.parse(responseJSON)) {
-				survey.value.data = JSON.parse(responseJSON);
+				this.survey.data = JSON.parse(responseJSON);
 			}
-			let locales = survey.value.getUsedLocales();
+			let locales = this.survey.getUsedLocales();
 			if (!locales) {
 				locales = ["en"];
 			}
-			defaultLangCode.value = getDefaultLocaleForQuestionnaire();
-			arrayMove(locales, locales.indexOf(defaultLangCode.value), 0);
+			this.defaultLangCode = this.getDefaultLocaleForQuestionnaire();
+			arrayMove(locales, locales.indexOf(this.defaultLangCode), 0);
 			for (let i = 0; i < locales.length; i++) {
-				const locale = getLanguageFromCode(locales[i]);
+				const locale = this.getLanguageFromCode(locales[i]);
 				if (locale) {
-					surveyLocales.value.push({
+					this.surveyLocales.push({
 						code: locales[i],
 						name: locale.language_name,
 					});
 				}
 			}
-			survey.value.onValueChanged.add(saveQuestionnaireResponseProgress);
-			survey.value.onComplete.add(saveQuestionnaireResponse);
-			survey.value.onUploadFiles.add(onUploadSurveyFile);
-			if (surveyLocales.value && surveyLocales.value.length) {
-				survey.value.locale = surveyLocales.value[0].code;
+			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
+			this.survey.onComplete.add(this.saveQuestionnaireResponse);
+			this.survey.onUploadFiles.add(this.onUploadSurveyFile);
+			if (this.surveyLocales && this.surveyLocales.length) {
+				this.survey.locale = this.surveyLocales[0].code;
 			}
-			survey.value.onAfterRenderSurvey.add(() => {
-				loading.value = false;
+			this.survey.onAfterRenderSurvey.add(() => {
+				this.loading = false;
 				$(".sv_complete_btn").after(
 					"<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>",
 				);
@@ -212,31 +212,28 @@ export default {
 					});
 				}, 3000);
 			});
-		};
-
-		const prepareQuestionnaireForViewingResponse = () => {
-			survey.value.data = JSON.parse(userResponse.value.response_json);
-			survey.value.mode = "display";
-		};
-
-		const saveQuestionnaireResponseProgress = (sender, options) => {
-			const responseJSON = window.localStorage.getItem(questionnaireLocalStorageKey.value);
+		},
+		prepareQuestionnaireForViewingResponse() {
+			this.survey.data = JSON.parse(this.userResponse.response_json);
+			this.survey.mode = "display";
+		},
+		saveQuestionnaireResponseProgress(sender, options) {
+			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
 			if (!responseJSON || !JSON.parse(responseJSON)) {
 				AnalyticsLogger.logEvent(
 					"user_engagement",
-					`questionnaire_respond_begin_${props.questionnaire.default_fields_translation.title}`,
+					`questionnaire_respond_begin_${this.questionnaire.default_fields_translation.title}`,
 					"respond_begin",
-					props.questionnaire.title,
-					props.questionnaire.id,
+					this.questionnaire.title,
+					this.questionnaire.id,
 				);
 			}
-			window.localStorage.setItem(questionnaireLocalStorageKey.value, JSON.stringify(sender.data));
-			if (!t0.value) {
-				t0.value = performance.now();
+			window.localStorage.setItem(this.questionnaireLocalStorageKey, JSON.stringify(sender.data));
+			if (!this.t0) {
+				this.t0 = performance.now();
 			}
-		};
-
-		const onUploadSurveyFile = (sender, options) => {
+		},
+		onUploadSurveyFile(sender, options) {
 			if (options.files.length > 8) {
 				return;
 			}
@@ -244,15 +241,15 @@ export default {
 			for (let i = 0; i < options.files.length; i++) {
 				data.append(`files[${i}]`, options.files[i]);
 			}
-			data.append("project_id", props.project.id);
-			data.append("questionnaire_id", props.questionnaire.id);
+			data.append("project_id", this.project.id);
+			data.append("questionnaire_id", this.questionnaire.id);
 			const config = {
 				headers: {
 					"content-type": "multipart/form-data",
 					Accept: "application/json",
 				},
 			};
-			filesUploading.value = true;
+			this.filesUploading = true;
 			axios
 				.post(window.route("files.upload"), data, config)
 				.then((response) => {
@@ -269,78 +266,76 @@ export default {
 					options.callback("error");
 				})
 				.finally(() => {
-					filesUploading.value = false;
+					this.filesUploading = false;
 				});
-		};
-
-		const saveQuestionnaireResponse = (sender) => {
+		},
+		saveQuestionnaireResponse(sender) {
 			const data = {};
-			data.browser_fingerprint_id = browserFingerprintId.value;
+			data.browser_fingerprint_id = this.browserFingerprintId;
 			data.response = JSON.stringify(sender.data);
-			data.moderator = props.moderator;
+			data.moderator = this.moderator;
 			let locale = sender.locale;
 			if (!locale) {
-				if (!surveyLocales.value || !surveyLocales.value.length) {
+				if (!this.surveyLocales || !this.surveyLocales.length) {
 					locale = "en";
 				} else {
-					locale = surveyLocales.value[0].code;
+					locale = this.surveyLocales[0].code;
 				}
 			}
 			data.language_code = locale;
-			postResponseDataAndShowResult(data);
-		};
-
-		const postResponseDataAndShowResult = (data) => {
-			post({
-				url: window.route("respond-questionnaire"),
-				data: {
-					...data,
-					questionnaire_id: props.questionnaire.id,
-					project_id: props.project.id,
-				},
-				urlRelative: false,
-				handleError: false,
-			})
+			this.postResponseDataAndShowResult(data);
+		},
+		postResponseDataAndShowResult(data) {
+			this.$store
+				.dispatch("post", {
+					url: window.route("respond-questionnaire"),
+					data: {
+						...data,
+						questionnaire_id: this.questionnaire.id,
+						project_id: this.project.id,
+					},
+					urlRelative: false,
+					handleError: false,
+				})
 				.then((response) => {
 					const anonymousUserId = response.data.anonymousUserId;
 					if (anonymousUserId) {
 						setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
 					}
-					const time = performance.now() - t0.value;
-					const title = props.questionnaire.default_fields_translation.title;
+					const time = performance.now() - this.t0;
+					const title = this.questionnaire.default_fields_translation.title;
 					AnalyticsLogger.logEvent(
 						"user_engagement",
 						`questionnaire_respond_complete_${title}`,
 						"respond_complete",
 						JSON.stringify({
 							questionnaire: title,
-							project: props.project.default_translation.name,
+							project: this.project.default_translation.name,
 							language: data.locale,
 							time_to_complete: time,
 						}),
-						props.questionnaire.id,
+						this.questionnaire.id,
 					);
-					window.localStorage.removeItem(questionnaireLocalStorageKey.value);
-					displaySuccessResponse(anonymousUserId);
+					window.localStorage.removeItem(this.questionnaireLocalStorageKey);
+					this.displaySuccessResponse(anonymousUserId);
 				})
 				.catch((error) => {
 					console.error(error);
-					displayErrorResponse(error);
+					this.displayErrorResponse(error);
 				})
 				.finally(() => {
 					window.$("#questionnaire-modal").modal("hide");
 				});
-		};
-
-		const displaySuccessResponse = (anonymousUserId) => {
-			if (props.moderator) {
+		},
+		displaySuccessResponse(anonymousUserId) {
+			if (this.moderator) {
 				history.back();
 			} else {
 				let questionnaireResponseThankYouURL = window.route(
 					"questionnaire.thanks",
-					getDefaultLocaleForQuestionnaire(),
-					props.project.slug,
-					props.questionnaire.id,
+					this.getDefaultLocaleForQuestionnaire(),
+					this.project.slug,
+					this.questionnaire.id,
 				);
 				if (anonymousUserId) {
 					questionnaireResponseThankYouURL += `?anonymous_user_id=${anonymousUserId}`;
@@ -349,9 +344,8 @@ export default {
 				$("#pyro").addClass("pyro-on");
 				window.location = questionnaireResponseThankYouURL;
 			}
-		};
-
-		const displayErrorResponse = async (error) => {
+		},
+		async displayErrorResponse(error) {
 			const { default: swal } = await import("bootstrap-sweetalert");
 			swal({
 				title: "Oops!",
@@ -360,71 +354,45 @@ export default {
 				confirmButtonClass: "btn-danger",
 				confirmButtonText: "OK",
 			});
-		};
-
-		const onLanguageChange = (event) => {
-			survey.value.locale = event.target.value;
-		};
-
-		const getLanguageFromCode = (code) => {
-			return props.languages.find((l) => l.language_code === code);
-		};
-
-		const getSignInUrl = () => {
-			return window.route("login", props.locale) + `?redirectTo=${window.location.href}`;
-		};
-
-		const getDefaultLocaleForQuestionnaire = () => {
-			const locales = survey.value.getUsedLocales();
+		},
+		onLanguageChange(event) {
+			this.survey.locale = event.target.value;
+		},
+		getLanguageFromCode(code) {
+			return this.languages.find((l) => l.language_code === code);
+		},
+		getSignInUrl() {
+			return window.route("login", this.locale) + `?redirectTo=${window.location.href}`;
+		},
+		getDefaultLocaleForQuestionnaire() {
+			const locales = this.survey.getUsedLocales();
 			const url = window.location.href;
-			const start = getPosition(url, "/", 3) + 1;
-			const end = getPosition(url, "/", 4);
+			const start = this.getPosition(url, "/", 3) + 1;
+			const end = this.getPosition(url, "/", 4);
 			const urlLang = url.substring(start, end);
 			if (locales.indexOf(urlLang) !== -1) {
 				return urlLang;
 			}
-			return defaultLangCode.value;
-		};
-
-		const getPosition = (str, subString, occurrence) => {
+			return this.defaultLangCode;
+		},
+		getPosition(str, subString, occurrence) {
 			return str.split(subString, occurrence).join(subString).length;
-		};
-
-		const trans = (key) => {
+		},
+		trans(key) {
 			return window.trans(key);
-		};
-
-		const getAnonymousUserResponse = async () => {
+		},
+		async getAnonymousUserResponse() {
 			try {
 				return await axios.get(window.route("questionnaire.response-anonymous"), {
 					params: {
-						browser_fingerprint_id: browserFingerprintId.value,
-						questionnaire_id: props.questionnaire.id,
+						browser_fingerprint_id: this.browserFingerprintId,
+						questionnaire_id: this.questionnaire.id,
 					},
 				});
 			} catch (error) {
 				console.error(error);
 			}
-		};
-
-		return {
-			surveyCreator,
-			survey,
-			surveyLocales,
-			userResponse,
-			browserFingerprintId,
-			questionnaireLocalStorageKey,
-			displayLoginPrompt,
-			loading,
-			t0,
-			defaultLangCode,
-			filesUploading,
-			skipLogin,
-			getQuestionnaireLoginPromptMessage,
-			onLanguageChange,
-			getSignInUrl,
-			trans,
-		};
+		},
 	},
 };
 </script>
