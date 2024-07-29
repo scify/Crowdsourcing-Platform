@@ -17,7 +17,7 @@ class QuestionnaireAccessManager {
         $this->userRoleManager = $userRoleManager;
     }
 
-    public function userHasAccessToViewQuestionnaireStatisticsPage(User $user, Questionnaire $questionnaire): bool {
+    public function userHasAccessToViewQuestionnaireStatisticsPage(?User $user, Questionnaire $questionnaire): bool {
         return match ($questionnaire->statistics_page_visibility_lkp_id) {
             QuestionnaireStatisticsPageVisibilityLkp::PUBLIC => true,
             QuestionnaireStatisticsPageVisibilityLkp::RESPONDENTS_ONLY => $this->questionnaireResponseManager->questionnaireResponsesForUserAndQuestionnaireExists($user->id, $questionnaire->id)
