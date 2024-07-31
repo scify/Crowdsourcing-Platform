@@ -331,17 +331,47 @@ npm run prod # (if in production mode)
 
 ### Step 5: Set up the Database **(only if in new installation)**
 
-Run the Laravel migrations:
+**Note:** If you are using Docker Compose, you will need first to enter the PHP container:
+
+```bash
+docker exec -it crowdsourcing_platform_server bash
+```
+
+And then follow the steps below.
+
+#### Option 1: Use a new database and seed the included data
+
+Create a new MySQL database and add the database credentials to the `.env` file.
+
+Then, run the migrations and seed the database:
+
+1. Run the Laravel migrations:
 
 ```bash
 php artisan migrate
 ```
 
-Run the Database seeder:
+2. Run the Database seeder:
 
 ```bash
 php artisan db:seed
 ```
+
+#### Option 2: Use an existing database (MySQL dump)
+
+If you have a MySQL dump file, you can import it into the database:
+
+```bash
+mysql -u username -p database_name < dump.sql
+```
+
+**Note:** When using Docker Compose, you can import the dump file into the MySQL container:
+
+```bash
+docker exec -i crowdsourcing_platform_db mysql -u username -p database_name < dump.sql
+```
+
+(`database_name` should be the name of the database you have created in the `.env` file)
 
 ### Step 6: Create symbolic link for uploaded files
 
