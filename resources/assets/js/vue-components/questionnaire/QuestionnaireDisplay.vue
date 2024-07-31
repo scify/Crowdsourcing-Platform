@@ -133,11 +133,12 @@ export default {
 			this.userResponse = this.userResponseData;
 			const fpPromise = FingerprintJS.load();
 			this.browserFingerprintId = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
-			this.displayLoginPrompt = !this.userLoggedIn();
+			this.displayLoginPrompt = !this.userLoggedIn() && !this.userResponse;
 			if (!this.displayLoginPrompt) this.skipLogin();
 			if (!this.userLoggedIn()) {
 				const response = await this.getAnonymousUserResponse();
 				this.userResponse = response.data.questionnaire_response ?? null;
+				this.displayLoginPrompt = !this.userResponse;
 			}
 			this.initQuestionnaireDisplay();
 		},
@@ -216,6 +217,11 @@ export default {
 		prepareQuestionnaireForViewingResponse() {
 			this.survey.data = JSON.parse(this.userResponse.response_json);
 			this.survey.mode = "display";
+			const surveyContainerId = this.surveyContainerId;
+			setTimeout(() => {
+				this.survey.render(surveyContainerId);
+				this.loading = false;
+			}, 1000);
 		},
 		saveQuestionnaireResponseProgress(sender, options) {
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
