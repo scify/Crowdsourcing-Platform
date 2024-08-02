@@ -43,6 +43,8 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
     - [Step 4: Install and compile the front-end dependencies:](#step-4-install-and-compile-the-front-end-dependencies)
     - [Step 5: Set up the Database **(only if in new installation)
       **](#step-5-set-up-the-database-only-if-in-new-installation)
+        - [Option 1: Use a new database and seed the included data](#option-1-use-a-new-database-and-seed-the-included-data)
+        - [Option 2: Use an existing database (MySQL dump)](#option-2-use-an-existing-database-mysql-dump)
     - [Step 6: Create symbolic link for uploaded files](#step-6-create-symbolic-link-for-uploaded-files)
     - [Step 7: Fix permissions for storage directory](#step-7-fix-permissions-for-storage-directory)
 - [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
@@ -276,11 +278,10 @@ ddev start
 Depending on the installation method, you should run the following commands either in the Docker container or on your
 local machine.
 
-For example, if you have already started the Docker containers, you can run the following command to access the PHP
-container:
+**Note:** If you are using Docker Compose, you will need first to enter the PHP container:
 
 ```bash
-docker exec -it crowdsourcing-php bash
+docker exec -it crowdsourcing_platform_server bash
 ```
 
 and then run the following commands.
