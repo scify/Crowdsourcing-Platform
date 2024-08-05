@@ -6,6 +6,7 @@ use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use Awobaz\Compoships\Compoships;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CrowdSourcingProject extends Model {
     use Compoships;
     use SoftDeletes;
+    use HasFactory;
 
     /**
      * The table associated with the model.

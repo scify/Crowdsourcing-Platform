@@ -381,26 +381,15 @@ class CrowdSourcingProjectManager {
     public function getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug): CrowdSourcingProjectUnavailable {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $projects = $this->getCrowdSourcingProjectsForHomePage();
-        switch ($project->status_id) {
-            case CrowdSourcingProjectStatusLkp::FINALIZED:
-                $message = 'This project is finalized.<br>Thank you for your contribution!';
-                break;
-            case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
-                $message = 'This project is unpublished.';
-                break;
-            case CrowdSourcingProjectStatusLkp::DELETED:
-                $message = 'This project has been archived.';
-                break;
-            default:
-                $message = 'This project is not currently available';
-                break;
-        }
+        // TODO translate the messages below
+        $message = match ($project->status_id) {
+            CrowdSourcingProjectStatusLkp::FINALIZED => 'This project is finalized.<br>Thank you for your contribution!',
+            CrowdSourcingProjectStatusLkp::UNPUBLISHED => 'This project is unpublished.',
+            CrowdSourcingProjectStatusLkp::DELETED => 'This project has been archived.',
+            default => 'This project is not currently available',
+        };
 
         return new CrowdSourcingProjectUnavailable($project, $projects, $message);
-    }
-
-    public function getAllCrowdSourcingProjects(): Collection {
-        return $this->crowdSourcingProjectRepository->all();
     }
 
     public function cloneProject(int $id): CrowdSourcingProject {

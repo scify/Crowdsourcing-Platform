@@ -26,3 +26,4 @@ resources/assets/sass/*.css
 resources/assets/sass/*.map
 public/*.html
 .ddev
+.phpunit.cache

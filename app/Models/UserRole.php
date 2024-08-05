@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,27 +15,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $user_id
  * @property int $role_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property-read \App\Models\UserRoleLookup $role
- * @property-read \App\Models\User $user
+ * @property-read UserRoleLookup $role
+ * @property-read User $user
  *
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|UserRole onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereRoleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserRole whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\UserRole withoutTrashed()
- * @mixin \Eloquent
+ * @method static Builder|UserRole whereCreatedAt($value)
+ * @method static Builder|UserRole whereDeletedAt($value)
+ * @method static Builder|UserRole whereId($value)
+ * @method static Builder|UserRole whereRoleId($value)
+ * @method static Builder|UserRole whereUpdatedAt($value)
+ * @method static Builder|UserRole whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|UserRole withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|UserRole withoutTrashed()
+ * @mixin Eloquent
  */
 class UserRole extends Model {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.

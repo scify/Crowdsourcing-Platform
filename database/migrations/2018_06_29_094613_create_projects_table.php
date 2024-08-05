@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration {
             $table->longText('description');
             $table->string('img_path');
             $table->unsignedInteger('user_creator_id');
+            $table->boolean('should_send_email_after_questionnaire_response')->default(1);
             $table->foreign('user_creator_id')->references('id')->on('users');
             $table->timestamps();
         });

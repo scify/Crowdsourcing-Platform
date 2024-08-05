@@ -10,7 +10,6 @@ class UpdateLanguagesNames3 extends Migration {
      * @return void
      */
     public function up() {
-        DB::statement('ALTER TABLE languages_lkp  CHANGE COLUMN `language_name` `language_name` VARCHAR(35)  NOT NULL;');
 
         DB::statement("update languages_lkp set language_name = 'Bulgarian (български)' where language_code = 'bg'");
         DB::statement("update languages_lkp set language_name = 'Croatian (Hrvatski)' where language_code = 'hr'");
