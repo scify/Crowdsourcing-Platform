@@ -14,7 +14,7 @@ class CreateLanguagesLkpTable extends Migration {
         Schema::create('languages_lkp', function (Blueprint $table) {
             $table->increments('id');
             $table->string('language_code', 5)->unique();
-            $table->string('language_name', 20);
+            $table->string('language_name', 35);
         });
     }
 
