@@ -15,7 +15,7 @@ npm-debug.log
 yarn-error.log
 .env
 _ide_helper.php
-storage/database_testing.sqlite
+storage/database_testing.sqlite*
 public/images/vendor
 public/fonts
 public/vendor
