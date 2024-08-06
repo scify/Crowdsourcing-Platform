@@ -6,7 +6,6 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use Illuminate\Database\Seeder;
 
 class QuestionnaireResponsesSeeder extends Seeder {
-
     private QuestionnaireResponseRepository $questionnaireResponseRepository;
 
     public function __construct(QuestionnaireResponseRepository $questionnaireResponseRepository) {
@@ -26,5 +25,4 @@ class QuestionnaireResponsesSeeder extends Seeder {
             $this->questionnaireResponseRepository->updateOrCreate(['id' => $questionnaireResponse['id']], $questionnaireResponse);
         }
     }
-
 }

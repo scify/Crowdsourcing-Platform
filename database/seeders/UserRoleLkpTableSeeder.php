@@ -6,8 +6,6 @@ use App\Models\UserRoleLookup;
 use Illuminate\Database\Seeder;
 
 class UserRoleLkpTableSeeder extends Seeder {
-
-
     /**
      * Run the database seeds.
      *

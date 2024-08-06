@@ -132,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->middleware('can:manage-platform');
 
     Route::get('/test-email/{email}', function (Request $request) {
-        User::where(['email' => $request->email])->first()->notify(new UserRegistered());
+        User::where(['email' => $request->email])->first()->notify(new UserRegistered);
 
         return 'Success! Email sent to: ' . $request->email;
     })->middleware('can:manage-platform');

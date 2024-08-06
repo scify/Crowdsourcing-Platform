@@ -44,7 +44,7 @@ class QuestionnaireBadgeProvider {
                 $this->platformWideGamificationBadgesProvider->userHasAchievedInfluencerBadge($userId));
         }
 
-        return new AllBadgesCompletedBadge();
+        return new AllBadgesCompletedBadge;
     }
 
     protected function userHasAchievedContributorBadgeForQuestionnaire(int $questionnaire_id, array $questionnaireIdsUserHasAnsweredTo): bool {

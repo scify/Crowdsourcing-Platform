@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider {
      */
     public function register() {
         $this->app->singleton(ToxicityAnalyzerService::class, function ($app) {
-            return new GooglePerspectiveAPIService();
+            return new GooglePerspectiveAPIService;
         });
     }
 }

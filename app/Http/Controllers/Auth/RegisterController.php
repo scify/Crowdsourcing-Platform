@@ -80,7 +80,7 @@ class RegisterController extends Controller {
         $user = $this->userManager->createUser($data);
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
         try {
-            $user->notify(new UserRegistered());
+            $user->notify(new UserRegistered);
         } catch (\Exception $e) {
             Log::error($e);
         }

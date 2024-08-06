@@ -16,7 +16,7 @@ class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
 
     public function __construct() {
         $this->api_key = config('app.google_comment_analyzer_key');
-        $this->client = new Client();
+        $this->client = new Client;
     }
 
     /**
@@ -31,7 +31,7 @@ class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
                         'text' => $text,
                     ],
                     'requestedAttributes' => [
-                        'TOXICITY' => new \stdClass(),
+                        'TOXICITY' => new \stdClass,
                     ],
                 ],
             ]);

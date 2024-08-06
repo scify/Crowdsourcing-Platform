@@ -186,7 +186,7 @@ class QuestionnaireResponseManager {
         $questionnaire = $this->questionnaireRepository->find($questionnaire_id);
         $answerVotesWithVoterInfoForQuestionnaire = $this->questionnaireAnswerVoteRepository->getAnswerVotesWithVoterInfoForQuestionnaire($questionnaire_id);
         $freeTypeQuestions = $this->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
-        $data = new Collection();
+        $data = new Collection;
         foreach ($answerVotesWithVoterInfoForQuestionnaire as $record) {
             $response = [];
             $response['response_id'] = $record->response_id;
