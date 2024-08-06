@@ -92,7 +92,9 @@ class QuestionnaireSeeder extends Seeder {
                 'project_id' => $questionnaire['project_id'],
                 'questionnaire_id' => $questionnaire['id'],
             ]);
-            echo "\nAdded Questionnaire: " . $questionnaire['id'] . "\n";
+            if (app()->environment() !== 'testing') {
+                echo "\nAdded Questionnaire: " . $questionnaire['id'] . "\n";
+            }
         }
 
         foreach ($questionnaire_fields_translations as $questionnaire_fields_translation) {
@@ -107,7 +109,9 @@ class QuestionnaireSeeder extends Seeder {
                 'questionnaire_id' => $questionnaire_fields_translation['questionnaire_id'],
                 'language_id' => $questionnaire_fields_translation['language_id'],
             ], $questionnaire_fields_translation);
-            echo "\nAdded Questionnaire Translation for questionnaire: " . $questionnaire_fields_translation['questionnaire_id'] . ' and language: ' . $questionnaire_fields_translation['language_id'] . "\n";
+            if (app()->environment() !== 'testing') {
+                echo "\nAdded Questionnaire Translation for questionnaire: " . $questionnaire_fields_translation['questionnaire_id'] . ' and language: ' . $questionnaire_fields_translation['language_id'] . "\n";
+            }
         }
     }
 }

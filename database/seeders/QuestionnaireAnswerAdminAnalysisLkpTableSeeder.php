@@ -48,7 +48,9 @@ class QuestionnaireAnswerAdminAnalysisLkpTableSeeder extends Seeder {
                     'description' => $datum['description'],
                 ]
             );
-            echo "\nAdded Questionnaire Annotation Answer Status: " . $datum['name'] . "\n";
+            if (app()->environment() !== 'testing') {
+                echo "\nAdded Questionnaire Annotation Answer Status: " . $datum['name'] . "\n";
+            }
         }
     }
 }
