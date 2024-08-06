@@ -52,7 +52,9 @@ class QuestionnaireStatisticsPageVisibilityLkpSeeder extends Seeder {
             $this->questionnaireRepository->update([
                 'statistics_page_visibility_lkp_id' => 1,
             ], $questionnaire->id);
-            echo "\n" . 'Questionnaire: ' . $questionnaire->id . " updated.\n";
+            if (app()->environment() !== 'testing') {
+                echo "\n" . 'Questionnaire: ' . $questionnaire->id . " updated.\n";
+            }
         }
     }
 }

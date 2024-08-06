@@ -17,9 +17,10 @@ class UsersTableSeeder extends Seeder {
      *
      * @return void
      */
-    public function run() {
-        echo "\nRunning User Seeder... pass: " . config('app.admin_pass_seed') . "\n";
-
+    public function run(): void {
+        if (app()->environment() !== 'testing') {
+            echo "\nRunning User Seeder... pass: " . config('app.admin_pass_seed') . "\n";
+        }
         $data = [
             [
                 'id' => 1,
@@ -47,7 +48,9 @@ class UsersTableSeeder extends Seeder {
         foreach ($data as $user) {
             $user = $this->userRepository->updateOrCreate(['id' => $user['id']],
                 $user);
-            echo "\nAdded User: " . $user->name . ' with email: ' . $user->email . "\n";
+            if (app()->environment() !== 'testing') {
+                echo "\nAdded User: " . $user->name . ' with email: ' . $user->email . "\n";
+            }
         }
     }
 }

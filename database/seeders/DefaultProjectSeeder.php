@@ -180,13 +180,17 @@ class DefaultProjectSeeder extends Seeder {
         foreach ($data as $project) {
             $project = $this->projectRepository->updateOrCreate(['id' => $project['id']],
                 Helpers::getFilteredAttributes($project, (new CrowdSourcingProject())->getFillable()));
-            echo "\nAdded Project: " . $project['name'] . ' with slug: ' . $project->slug . "\n";
+            if (app()->environment() !== 'testing') {
+                echo "\nAdded Project: " . $project['name'] . ' with slug: ' . $project->slug . "\n";
+            }
         }
 
         foreach ($project_translations as $project_translation) {
             $this->projectTranslationRepository->updateOrCreate(['id' => $project_translation['id']],
                 Helpers::getFilteredAttributes($project_translation, (new CrowdSourcingProjectTranslation())->getFillable()));
-            echo "\nAdded Project Translation: " . $project_translation['name'] . ' with id: ' . $project_translation['id'] . "\n";
+            if (app()->environment() !== 'testing') {
+                echo "\nAdded Project Translation: " . $project_translation['name'] . ' with id: ' . $project_translation['id'] . "\n";
+            }
         }
     }
 }

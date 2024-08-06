@@ -72,7 +72,10 @@ class CrowdSourcingProjectColorsSeeder extends Seeder {
                 'color_name' => $color['color_name'],
             ], $color);
         }
-        echo "\nDefault colors were created.\n";
+        // only echo if not in test environment
+        if (app()->environment() !== 'testing') {
+            echo "\nDefault colors were created.\n";
+        }
 
         $projects = CrowdSourcingProject::all();
         foreach ($projects as $project) {
