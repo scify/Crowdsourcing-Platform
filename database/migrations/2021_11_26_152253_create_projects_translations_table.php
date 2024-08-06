@@ -34,4 +34,3 @@ class CreateProjectsTranslationsTable extends Migration {
         Schema::dropIfExists('crowd_sourcing_project_translations');
     }
 }
-

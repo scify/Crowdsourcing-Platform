@@ -11,7 +11,7 @@ class QuestionnaireResponseReferralRepository extends Repository {
     }
 
     public function create(array $array) {
-        $newQuestionnaireResponseReferral = new QuestionnaireResponseReferral();
+        $newQuestionnaireResponseReferral = new QuestionnaireResponseReferral;
         $newQuestionnaireResponseReferral->fill($array);
         $newQuestionnaireResponseReferral->save();
 

@@ -24,11 +24,11 @@ class QuestionnaireController extends Controller {
     protected QuestionnaireTranslator $questionnaireTranslator;
     protected QuestionnaireLanguageManager $questionnaireLanguageManager;
 
-    public function __construct(QuestionnaireManager          $questionnaireManager,
-                                UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireVMProvider       $questionnaireVMProvider,
-                                QuestionnaireTranslator       $questionnaireTranslator,
-                                QuestionnaireLanguageManager  $questionnaireLanguageManager) {
+    public function __construct(QuestionnaireManager $questionnaireManager,
+        UserQuestionnaireShareManager $questionnaireShareManager,
+        QuestionnaireVMProvider $questionnaireVMProvider,
+        QuestionnaireTranslator $questionnaireTranslator,
+        QuestionnaireLanguageManager $questionnaireLanguageManager) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;

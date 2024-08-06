@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
 use App\Repository\LanguageRepository;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class LanguagesLkpTableSeeder extends Seeder {
     protected $languagesRepository;

@@ -157,29 +157,29 @@ class DefaultProjectSeeder extends Seeder {
 
             ],
             [
-            'id' => 5,
-            'language_id' => 6,
-            'project_id' => 3,
-            'name' => 'Test Project',
-            'motto_title' => 'Please share with us your opinion on thie matter. Your voice matters!',
-            'motto_subtitle' => 'Test Project! Share your opinion with us!',
-            'description' => 'Lorem ipsum dolor site amet',
-            'about' => '<p>The European Elections project serves as a demonstration mechanism for the various Crowdsourcing beneficial results and a showcase. <a href="https://www.scify.gr/site/en/">Learn more about our project.</a></p>',
-            'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                'id' => 5,
+                'language_id' => 6,
+                'project_id' => 3,
+                'name' => 'Test Project',
+                'motto_title' => 'Please share with us your opinion on thie matter. Your voice matters!',
+                'motto_subtitle' => 'Test Project! Share your opinion with us!',
+                'description' => 'Lorem ipsum dolor site amet',
+                'about' => '<p>The European Elections project serves as a demonstration mechanism for the various Crowdsourcing beneficial results and a showcase. <a href="https://www.scify.gr/site/en/">Learn more about our project.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
                     <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Terms of use</a>&nbsp;|&nbsp;
                     <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Privacy Policy</a>&nbsp;|&nbsp;
                     <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Cookie Policy</a>',
-            'sm_title' => 'European Elections',
-            'sm_description' => 'Please share with us your opinion on this important subject. Your voice matters!',
-            'sm_keywords' => 'Social Media Keywords',
-            'questionnaire_response_email_intro_text' => '<p>Thanks to your contribution we are one step closer to understanding the problem.<br></p>',
-            'questionnaire_response_email_outro_text' => '<p>Thank you for your time and effort.<br></p>',
-        ],
+                'sm_title' => 'European Elections',
+                'sm_description' => 'Please share with us your opinion on this important subject. Your voice matters!',
+                'sm_keywords' => 'Social Media Keywords',
+                'questionnaire_response_email_intro_text' => '<p>Thanks to your contribution we are one step closer to understanding the problem.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Thank you for your time and effort.<br></p>',
+            ],
         ];
 
         foreach ($data as $project) {
             $project = $this->projectRepository->updateOrCreate(['id' => $project['id']],
-                Helpers::getFilteredAttributes($project, (new CrowdSourcingProject())->getFillable()));
+                Helpers::getFilteredAttributes($project, (new CrowdSourcingProject)->getFillable()));
             if (app()->environment() !== 'testing') {
                 echo "\nAdded Project: " . $project['name'] . ' with slug: ' . $project->slug . "\n";
             }
@@ -187,7 +187,7 @@ class DefaultProjectSeeder extends Seeder {
 
         foreach ($project_translations as $project_translation) {
             $this->projectTranslationRepository->updateOrCreate(['id' => $project_translation['id']],
-                Helpers::getFilteredAttributes($project_translation, (new CrowdSourcingProjectTranslation())->getFillable()));
+                Helpers::getFilteredAttributes($project_translation, (new CrowdSourcingProjectTranslation)->getFillable()));
             if (app()->environment() !== 'testing') {
                 echo "\nAdded Project Translation: " . $project_translation['name'] . ' with id: ' . $project_translation['id'] . "\n";
             }

@@ -34,14 +34,14 @@ class CrowdSourcingProjectTranslationManager {
 
     public function getTranslationsForProject(CrowdSourcingProject $project): Collection {
         if (!$project->id) {
-            return new Collection();
+            return new Collection;
         }
 
         return $this->crowdSourcingProjectTranslationRepository->allWhere(['project_id' => $project->id]);
     }
 
     public function storeOrUpdateDefaultTranslationForProject(array $attributes, int $project_id) {
-        $allowedKeys = (new CrowdSourcingProjectTranslation())->getFillable();
+        $allowedKeys = (new CrowdSourcingProjectTranslation)->getFillable();
         $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
         $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
             ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
@@ -53,7 +53,7 @@ class CrowdSourcingProjectTranslationManager {
         $defaultLanguageContentForProject = $this->crowdSourcingProjectTranslationRepository->where([
             'project_id' => $project_id, 'language_id' => $language_id, ])
             ->toArray();
-        $allowedKeys = (new CrowdSourcingProjectTranslation())->getFillable();
+        $allowedKeys = (new CrowdSourcingProjectTranslation)->getFillable();
         foreach ($attributesArray as $attributes) {
             $attributes = json_decode(json_encode($attributes), true);
             foreach ($attributes as $key => $value) {

@@ -104,7 +104,7 @@ class UserManager {
             ]);
             $user->save();
             try {
-                $user->notify(new UserRegistered());
+                $user->notify(new UserRegistered);
             } catch (\Exception $e) {
                 Log::error($e);
             }

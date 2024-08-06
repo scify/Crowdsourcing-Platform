@@ -27,16 +27,16 @@ class PlatformWideGamificationBadgesProvider {
     }
 
     public function getPlatformWideGamificationBadgesListVM(int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadgesWithLevels {
-        $badges = new Collection();
+        $badges = new Collection;
         $badges->push($this->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
         $badges->push($this->getCommunicatorBadge($userId));
         $badges->push($this->getInfluencerBadge($userId));
 
-        $badgesVM = new Collection();
+        $badgesVM = new Collection;
         foreach ($badges as $badge) {
             $badgesVM->push(new GamificationBadgeVM($badge));
         }
-        $gamificationPointsCalculator = new GamificationPointsCalculator();
+        $gamificationPointsCalculator = new GamificationPointsCalculator;
 
         return new GamificationBadgesWithLevels($badgesVM, $gamificationPointsCalculator->calculateTotalGamificationPoints($badges));
     }

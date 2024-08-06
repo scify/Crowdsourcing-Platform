@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CrowdSourcingProjectFactory extends Factory {
     protected $model = CrowdSourcingProject::class;
+
     public function definition() {
         return [
             'status_id' => 1,
