@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -483,5 +484,29 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['name', 'description', 'status_id', 'language_id']);
+    }
+
+    /**
+     * @test
+     */
+    public function adminCannotViewLandingPageDueToException() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $project = CrowdSourcingProject::factory()->create([
+            'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED,
+        ]);
+
+        $this->mock(CrowdSourcingProjectManager::class, function ($mock) {
+            $mock->shouldReceive('getCrowdSourcingProjectViewModelForLandingPage')
+                ->andThrow(new \Exception('Test Exception'));
+        });
+
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('flash_message_failure', 'Error: 0  Test Exception');
     }
 }
