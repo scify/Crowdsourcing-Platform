@@ -387,4 +387,101 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['name', 'description', 'status_id', 'language_id']);
     }
+
+    /**
+     * @test
+     */
+    public function guestCannotUpdateProject() {
+        $project = CrowdSourcingProject::factory()->create();
+
+        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+            'name' => 'Updated Project',
+            'description' => 'Updated Description',
+            'status_id' => 1,
+            'slug' => 'updated-project',
+            'language_id' => 1,
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('login', ['locale' => 'en']));
+    }
+
+    /**
+     * @test
+     */
+    public function authenticatedUserCannotUpdateProject() {
+        $user = User::factory()->make();
+        $this->be($user);
+
+        $project = CrowdSourcingProject::factory()->create();
+
+        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+            'name' => 'Updated Project',
+            'description' => 'Updated Description',
+            'status_id' => 1,
+            'slug' => 'updated-project',
+            'language_id' => 1,
+        ]);
+
+        $response->assertStatus(403);
+    }
+
+    /**
+     * @test
+     */
+    public function adminCanUpdateProjectWithValidData() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $project = CrowdSourcingProject::factory()->create();
+        $faker = Faker::create();
+        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+            'name' => 'Updated Project',
+            'description' => 'Updated Description',
+            'status_id' => 1,
+            'slug' => 'updated-project',
+            'language_id' => 1,
+            'color_ids' => [1],
+            'color_names' => [$faker->name],
+            'color_codes' => [$faker->hexColor],
+            'motto_subtitle' => $faker->text,
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('flash_message_success', 'The project has been successfully updated');
+        $this->assertDatabaseHas('crowd_sourcing_projects', [
+            'id' => $project->id,
+            'slug' => 'updated-project',
+        ]);
+        $this->assertDatabaseHas('crowd_sourcing_project_translations', [
+            'project_id' => $project->id,
+            'name' => 'Updated Project',
+            'description' => 'Updated Description',
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function adminCannotUpdateProjectWithInvalidData() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $project = CrowdSourcingProject::factory()->create();
+
+        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+            'name' => '',
+            'description' => '',
+            'status_id' => 'invalid',
+            'slug' => '',
+            'language_id' => 'invalid',
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors(['name', 'description', 'status_id', 'language_id']);
+    }
 }

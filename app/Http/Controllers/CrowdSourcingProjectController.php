@@ -119,8 +119,6 @@ class CrowdSourcingProjectController extends Controller {
             }
 
             return view('crowdsourcing-project.landing-page')->with(['viewModel' => $viewModel]);
-        } catch (ModelNotFoundException $e) {
-            abort(404);
         } catch (\Exception $e) {
             session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
