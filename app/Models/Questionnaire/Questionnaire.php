@@ -10,6 +10,7 @@ use App\Repository\LanguageRepository;
 use Awobaz\Compoships\Compoships;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -45,6 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Questionnaire extends Model {
     use Compoships;
+    use HasFactory;
     use SoftDeletes;
 
     protected $table = 'questionnaires';

@@ -43,6 +43,9 @@ class QuestionnaireController extends Controller {
     }
 
     public function saveQuestionnaireStatus(Request $request): RedirectResponse {
+        $this->validate($request, [
+            'status_id' => 'required|integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
+        ]);
         $this->questionnaireManager->updateQuestionnaireStatus($request->questionnaire_id, $request->status_id, $request->comments);
 
         return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
@@ -56,6 +59,16 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
+        $this->validate($request, [
+            'type_id' => 'required|integer',
+            'language' => 'required',
+            'statistics_page_visibility_lkp_id' => 'required',
+            'goal' => 'required|integer',
+            'lang_codes' => 'required|array',
+            'content' => 'required',
+            'status_id' => 'required|integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
+            'project_ids' => 'required|array',
+        ]);
         $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data);
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
 
@@ -69,6 +82,16 @@ class QuestionnaireController extends Controller {
     }
 
     public function update(Request $request, $id) {
+        $this->validate($request, [
+            'type_id' => 'required|integer',
+            'language' => 'required',
+            'statistics_page_visibility_lkp_id' => 'required',
+            'goal' => 'required|integer',
+            'lang_codes' => 'required|array',
+            'content' => 'required',
+            'status_id' => 'required|integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
+            'project_ids' => 'required|array',
+        ]);
         $data = $request->all();
         $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $id);
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
