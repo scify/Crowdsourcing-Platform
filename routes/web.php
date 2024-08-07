@@ -111,6 +111,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/communication/mailchimp', [CommunicationController::class, 'getMailChimpIntegration'])->name('mailchimp-integration.get')->middleware('can:manage-platform');
     Route::post('/communication/mailchimp', [CommunicationController::class, 'storeMailChimpListsIds'])->name('mailchimp-integration')->middleware('can:manage-platform');
+
+    Route::post('/questionnaire/new', [QuestionnaireController::class, 'store'])->name('store-questionnaire')->middleware('can:manage-crowd-sourcing-projects');
+    Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('update-questionnaire')->middleware('can:manage-crowd-sourcing-projects');
+    Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('questionnaire.translate')->middleware('can:manage-crowd-sourcing-projects');
+    Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('questionnaire.mark-translations')->middleware('can:manage-crowd-sourcing-projects');
 });
 
 
@@ -148,11 +153,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->middleware('can:manage-platform');
 });
 
-Route::post('/questionnaire/new', [QuestionnaireController::class, 'store'])->name('store-questionnaire');
-Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('update-questionnaire');
-Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('questionnaire.translate')->middleware('can:manage-crowd-sourcing-projects');
 Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('questionnaire.languages');
-Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('questionnaire.mark-translations');
 Route::get('/languages', [LanguageController::class, 'getLanguages'])->name('languages.get');
 Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.create');
 Route::post('/questionnaire/answer-annotations', [QuestionnaireAnswerAnnotationController::class, 'annotateAnswer'])->name('questionnaire.answer-annotations.create');
