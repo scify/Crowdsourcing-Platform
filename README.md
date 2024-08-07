@@ -111,7 +111,7 @@ Offering the code under open source licenses includes many benefits. Of those, t
 Run the following command to build and start the containers:
 
 ```sh
-docker-compose up --build
+docker compose up --build
 ```
 
 ### Step 3: Launch the Application
@@ -558,7 +558,7 @@ php artisan db:seed --env=testing --class=DatabaseSeeder
 
 If you encounter any issues, refer to the following steps:
 
-1. Check container logs if using Docker Compose: `docker-compose logs`
+1. Check container logs if using Docker Compose: `docker compose logs`
 2. Verify Nginx and PHP-FPM status: `systemctl status nginx` and `systemctl status php-fpm`
 3. Review Laravel logs located in `storage/logs/laravel.log`
 4. Ensure your `.env` file has the correct database credentials
