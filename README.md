@@ -116,6 +116,11 @@ docker-compose up --build
 
 ### Step 3: Launch the Application
 
+In order to run the application, you will need to run the Laravel commands inside the Docker container.
+So see the [Run the Laravel Application commands](#run-the-laravel-application-commands) section.
+
+After you have run these commands, you can access the application in your browser:
+
 The application will be available at [http://localhost:8080](http://localhost:8080).
 To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
 
