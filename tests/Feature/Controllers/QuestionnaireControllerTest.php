@@ -2,9 +2,12 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Models\User;
 use App\Models\UserRole;
 use App\Utils\Translator;
@@ -359,5 +362,144 @@ class QuestionnaireControllerTest extends TestCase {
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['questionnaire_json', 'locales']);
+    }
+
+    /**
+     * @test
+     */
+    public function getLanguagesForQuestionnaire() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $response = $this->get(route('questionnaire.languages', ['questionnaire_id' => 1]));
+
+        $response->assertStatus(200);
+        $response->assertJsonStructure(['questionnaire_languages']);
+    }
+
+    /**
+     * @test
+     */
+    public function adminCanMarkQuestionnaireTranslations() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $questionnaire = Questionnaire::factory()->create();
+
+        // also create some questionnaire languages for this questionnaire, through the questionnaire language factory
+        $questionnaireLanguage = QuestionnaireLanguage::factory()->create([
+            'questionnaire_id' => $questionnaire->id,
+            'language_id' => 1,
+            'human_approved' => 1,
+            'color' => '#000000',
+        ]);
+
+
+        $response = $this->post(route('questionnaire.mark-translations'), [
+            'questionnaire_id' => $questionnaire->id,
+            'lang_ids_to_status' => [
+                ['id' => 1, 'status' => true],
+            ],
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson(['success' => true]);
+    }
+
+    /**
+     * @test
+     */
+    public function itCanShowQuestionnairePage() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        // create a project and a questionnaire with "active" status
+        $project = CrowdSourcingProject::factory()->create([
+            'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED,
+        ]);
+        $questionnaire = Questionnaire::factory()->create([
+            'status_id' => QuestionnaireStatusLkp::PUBLISHED,
+        ]);
+
+        // Associate the project and questionnaire
+        $project->questionnaires()->attach($questionnaire->id);
+
+        // Check if the project and questionnaire exist in the database
+        $this->assertDatabaseHas('crowd_sourcing_projects', ['id' => $project->id]);
+        $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
+
+
+        $response = $this->get(route('show-questionnaire-page', ['project' => $project->slug, 'questionnaire' => $questionnaire->id]));
+
+        $response->assertStatus(200);
+        $response->assertViewIs('questionnaire.questionnaire-page');
+    }
+
+    /**
+     * @test
+     */
+    public function itCannotShowQuestionnairePageForNonPublishedQuestionnaire() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        // create a project and a questionnaire with "active" status
+        $project = CrowdSourcingProject::factory()->create([
+            'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED,
+        ]);
+        $questionnaire = Questionnaire::factory()->create([
+            'status_id' => QuestionnaireStatusLkp::DRAFT,
+        ]);
+
+        // Associate the project and questionnaire
+        $project->questionnaires()->attach($questionnaire->id);
+
+        // Check if the project and questionnaire exist in the database
+        $this->assertDatabaseHas('crowd_sourcing_projects', ['id' => $project->id]);
+        $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
+
+
+        $response = $this->get(route('show-questionnaire-page', ['project' => $project->slug, 'questionnaire' => $questionnaire->id]));
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('flash_message_error', 'The questionnaire is not active.');
+    }
+
+    /**
+     * @test
+     */
+    public function itCannotShowQuestionnairePageForNonPublishedProject() {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        // create a project and a questionnaire with "active" status
+        $project = CrowdSourcingProject::factory()->create([
+            'status_id' => CrowdSourcingProjectStatusLkp::DRAFT,
+        ]);
+        $questionnaire = Questionnaire::factory()->create([
+            'status_id' => QuestionnaireStatusLkp::PUBLISHED,
+        ]);
+
+        // Associate the project and questionnaire
+        $project->questionnaires()->attach($questionnaire->id);
+
+        // Check if the project and questionnaire exist in the database
+        $this->assertDatabaseHas('crowd_sourcing_projects', ['id' => $project->id]);
+        $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
+
+
+        $response = $this->get(route('show-questionnaire-page', ['project' => $project->slug, 'questionnaire' => $questionnaire->id]));
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('flash_message_error', 'The project is not active.');
     }
 }
