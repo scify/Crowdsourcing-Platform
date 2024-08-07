@@ -303,6 +303,23 @@ After cloning the project, create an .env file (should be a copy of .env.example
 cp .env.example .env
 ```
 
+In case of a Docker environment, enter the `crowdsourcing_platform_db` container, and create a Database named `crowdsourcing_db_docker`:
+
+```mysql
+CREATE DATABASE IF NOT EXISTS crowdsourcing_db_docker;
+```
+
+Then, add the following to the `.env` file:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=crowdsourcing_db_docker
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
 ### Step 2: Install Laravel (back-end) dependencies
 
 ```bash
