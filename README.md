@@ -303,24 +303,18 @@ After cloning the project, create an .env file (should be a copy of .env.example
 cp .env.example .env
 ```
 
-And then persist the `.env` settings to Laravel Cache:
-
-```bash
-php artisan config:cache
-```
-
-### Step 2: Generate the application key
-
-```bash
-php artisan key:generate
-```
-
-### Step 3: Install Laravel (back-end) dependencies
+### Step 2: Install Laravel (back-end) dependencies
 
 ```bash
 composer install
 
 composer dump-autoload
+```
+
+### Step 3: Generate the application key
+
+```bash
+php artisan key:generate
 ```
 
 ### Step 4: Install and compile the front-end dependencies:
@@ -387,9 +381,17 @@ By default, images are stored at app/storage/public. Run
 php artisan storage:link
 ```
 
+### Step 7: Cache the `.env` settings
+
+And then persist the `.env` settings to Laravel Cache:
+
+```bash
+php artisan config:cache
+```
+
 in order to link this folder with the public directory
 
-### Step 7: Fix permissions for storage directory
+### Step 8: Fix permissions for storage directory
 
 ```bash
 sudo chown -R user:www-data storage
