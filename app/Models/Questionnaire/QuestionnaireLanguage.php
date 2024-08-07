@@ -4,6 +4,7 @@ namespace App\Models\Questionnaire;
 
 use App\Models\Language;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Language $language
  */
 class QuestionnaireLanguage extends Model {
+    use HasFactory;
     use SoftDeletes;
 
     protected $table = 'questionnaire_languages';
