@@ -333,6 +333,12 @@ If you have an existing MySQL dump file, make sure that is in the current direct
 mysql -u username -p crowdsourcing_db_docker < dump.sql
 ```
 
+You can do this also without entering the DB container, by running:
+
+```bash
+docker exec -i crowdsourcing_platform_db mysql -u root -p crowdsourcing_db_docker < dump.sql
+```
+
 Then, add the following to the `.env` file:
 
 ```bash
@@ -380,7 +386,7 @@ npm run prod # (if in production mode)
 
 ### Step 6: Set up the Database **(only if in new installation)**
 
-**Note:** If you are using Docker Compose, you will need first to enter the PHP container:
+**Note:** If you are using Docker Compose, you will need first to enter the **server** container:
 
 ```bash
 docker exec -it crowdsourcing_platform_server bash
