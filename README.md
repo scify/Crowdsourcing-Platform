@@ -281,21 +281,6 @@ ddev start
 
 ## Run the Laravel Application commands
 
-Depending on the installation method, you should run the following commands either in the Docker container or on your
-local machine.
-
-**Note:** If you are using Docker Compose, you will need first to enter the PHP container:
-
-```bash
-docker exec -it crowdsourcing_platform_server bash
-```
-
-and then run the following commands.
-
-If you are running the commands on your local machine, you can run the following commands directly.
-
-If you have started Ddev, you should run all the commands prefixed with `ddev exec`.
-
 ### Step 1: Fix permissions for storage directory
 
 These commands should be run **outside** any Docker container:
@@ -319,6 +304,21 @@ chmod +x set-file-permissions.sh
 
 sudo ./set-file-permissions.sh www-data `whoami` .
 ```
+
+Depending on the installation method, you should run the rest of the steps either in the Docker container or on your
+local machine.
+
+**Note:** If you are using Docker Compose, you will need first to enter the PHP container:
+
+```bash
+docker exec -it crowdsourcing_platform_server bash
+```
+
+and then run the following commands.
+
+If you are running the commands on your local machine, you can run the following commands directly.
+
+If you have started Ddev, you should run all the commands prefixed with `ddev exec`.
 
 ### Step 2: Create the `.env` file
 
