@@ -122,7 +122,7 @@ So see the [Run the Laravel Application commands](#run-the-laravel-application-c
 
 After you have run these commands, you can access the application in your browser:
 
-The application will be available at [http://localhost:8080](http://localhost:8080).
+The application will be available at [http://localhost:89](http://localhost:89).
 To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
 
 ## Method 2: Manual Installation
