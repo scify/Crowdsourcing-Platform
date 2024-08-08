@@ -40,14 +40,14 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
     - [Step 1: Fix permissions for storage directory](#step-1-fix-permissions-for-storage-directory)
     - [Step 2: Create the `.env` file](#step-2-create-the-env-file)
     - [Step 3: Create A Database](#step-3-create-a-database)
-        - [Use an existing database (MySQL dump)](#use-an-existing-database-mysql-dump)
+        - [Add the DB schema and the DB data](#add-the-db-schema-and-the-db-data)
+            - [Option 1: Use an existing database (MySQL dump)](#option-1-use-an-existing-database-mysql-dump)
+            - [Option 2: Run the migrations and seed the database](#option-2-run-the-migrations-and-seed-the-database)
     - [Step 4: Install Laravel (back-end) dependencies](#step-4-install-laravel-back-end-dependencies)
     - [Step 5: Generate the application key](#step-5-generate-the-application-key)
     - [Step 6: Install and compile the front-end dependencies:](#step-6-install-and-compile-the-front-end-dependencies)
-    - [Step 7: Set up the Database **(only if in new installation)
-      **](#step-7-set-up-the-database-only-if-in-new-installation)
-    - [Step 8: Create symbolic link for uploaded files](#step-8-create-symbolic-link-for-uploaded-files)
-    - [Step 9: Cache the `.env` settings](#step-9-cache-the-env-settings)
+    - [Step 7: Create symbolic link for uploaded files](#step-7-create-symbolic-link-for-uploaded-files)
+    - [Step 8: Cache the `.env` settings](#step-8-cache-the-env-settings)
 - [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
 - [SEO - Generate Sitemap](#seo---generate-sitemap)
 - [Related HTML Template](#related-html-template)
@@ -281,6 +281,8 @@ ddev start
 
 ## Run the Laravel Application commands
 
+Regardless of the installation method, you will need to run the following commands to set up the application.
+
 ### Step 1: Fix permissions for storage directory
 
 These commands should be run **outside** any Docker container:
@@ -297,24 +299,16 @@ find . -type f -exec chmod 664 {} \;
 find . -type d -exec chmod 775 {} \;
 ```
 
-The above steps can also be done using the companion script:
-
-```bash
-chmod +x set-file-permissions.sh
-
-sudo ./set-file-permissions.sh www-data `whoami` .
-```
-
 Depending on the installation method, you should run the rest of the steps either in the Docker container or on your
 local machine.
 
-**Note:** If you are using Docker Compose, you will need first to enter the PHP container:
+**Note:** If you are using Docker Compose, you will first need first to enter the PHP container:
 
 ```bash
 docker exec -it crowdsourcing_platform_server bash
 ```
 
-and then run the following commands.
+and then run the rest of the commands.
 
 If you are running the commands on your local machine, you can run the following commands directly.
 
@@ -329,6 +323,8 @@ cp .env.example .env
 ```
 
 ### Step 3: Create A Database
+
+In case of a manual installation, you will need to create a Database for the application.
 
 In case of a Docker environment, enter the `crowdsourcing_platform_db` container, and create a Database
 named `crowdsourcing_db_docker`:
@@ -349,7 +345,9 @@ Then, run the following MySQL command:
 CREATE DATABASE IF NOT EXISTS crowdsourcing_db_docker;
 ```
 
-#### Use an existing database (MySQL dump)
+#### Add the DB schema and the DB data
+
+##### Option 1: Use an existing database (MySQL dump)
 
 First you will need to enter the DB container:
 
@@ -372,6 +370,26 @@ DB_PORT=3306
 DB_DATABASE=crowdsourcing_db_docker
 DB_USERNAME=root
 DB_PASSWORD=root
+```
+
+##### Option 2: Run the migrations and seed the database
+
+**Note:** If you are using Docker Compose, you will need first to enter the **server** container:
+
+```bash
+docker exec -it crowdsourcing_platform_server bash
+```
+
+1. Run the Laravel migrations:
+
+```bash
+php artisan migrate
+```
+
+2. Run the Database seeder:
+
+```bash
+php artisan db:seed
 ```
 
 ### Step 4: Install Laravel (back-end) dependencies
@@ -408,29 +426,7 @@ npm run build # (if in development mode)
 npm run prod # (if in production mode)
 ```
 
-### Step 7: Set up the built-in Database **(only if in new installation)**
-
-**Note:** If you are using Docker Compose, you will need first to enter the **server** container:
-
-```bash
-docker exec -it crowdsourcing_platform_server bash
-```
-
-And then follow the steps below.
-
-1. Run the Laravel migrations:
-
-```bash
-php artisan migrate
-```
-
-2. Run the Database seeder:
-
-```bash
-php artisan db:seed
-```
-
-### Step 8: Create symbolic link for uploaded files
+### Step 7: Create symbolic link for uploaded files
 
 By default, images are stored at app/storage/public. Run
 
@@ -438,7 +434,7 @@ By default, images are stored at app/storage/public. Run
 php artisan storage:link
 ```
 
-### Step 9: Cache the `.env` settings
+### Step 8: Cache the `.env` settings
 
 And then persist the `.env` settings to Laravel Cache:
 
