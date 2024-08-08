@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 8/6/18
- * Time: 12:56 PM
- */
 
 namespace App\Repository;
 
@@ -21,7 +15,7 @@ class MailChimpListRepository extends Repository {
         return MailChimpList::class;
     }
 
-    public function storeMailChimpListIds($newsletter, $registeredUsers) {
+    public function storeMailChimpListIds($registeredUsers): void {
         DB::transaction(function () use ($registeredUsers) {
             /*  $this->update(['list_id' => $newsletter], 1); // Newsletter*/
             $this->update(['list_id' => $registeredUsers], 2); // Registered Users

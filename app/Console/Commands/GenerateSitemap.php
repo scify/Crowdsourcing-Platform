@@ -78,7 +78,6 @@ class GenerateSitemap extends Command {
             }
             $sitemapGenerator->add($link);
         }
-        $sitemapGenerator->add(Url::create('/newsletter'));
 
 
         $sitemapGenerator->writeToFile(public_path('sitemap.xml'));

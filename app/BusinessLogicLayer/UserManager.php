@@ -141,6 +141,9 @@ class UserManager {
         return $this->userRepository->getPlatformUsers($paginationNum, $data);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function handleSocialLoginUser($socialUser) {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.

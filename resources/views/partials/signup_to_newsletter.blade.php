@@ -16,6 +16,3 @@
         </div>
     </div>
 </div>
-@push('scripts')
-    @vite('resources/assets/js/partials/newsletter-signup.js')
-@endpush

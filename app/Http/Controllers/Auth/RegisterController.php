@@ -9,6 +9,7 @@ use App\BusinessLogicLayer\UserRoleManager;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
 use App\Utils\MailChimpAdaptor;
+use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -30,10 +31,8 @@ class RegisterController extends Controller {
 
     /**
      * Where to redirect users after registration.
-     *
-     * @var string
      */
-    protected $redirectTo = '/en/my-dashboard';
+    protected string $redirectTo = '/en/my-dashboard';
 
     public function redirectTo() {
         return app()->getLocale() . '/my-dashboard';
@@ -81,17 +80,20 @@ class RegisterController extends Controller {
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
         try {
             $user->notify(new UserRegistered);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
         }
 
         return $user;
     }
 
+    /**
+     * @throws Exception
+     */
     protected function registered(Request $request, $user) {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
-        $numberOfResponsedTransfered = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
-        if ($numberOfResponsedTransfered) {
+        $numberOfResponseTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
+        if ($numberOfResponseTransferred) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }
 

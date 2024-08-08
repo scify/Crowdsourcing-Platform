@@ -40,7 +40,6 @@ export default defineConfig({
 				"resources/assets/js/common.js",
 				"resources/assets/js/pages/manage-users.js",
 				"resources/assets/js/pages/register.js",
-				"resources/assets/js/partials/newsletter-signup.js",
 				"resources/assets/js/project/landing-page.js",
 				"resources/assets/js/project/manage-project.js",
 				"resources/assets/js/questionnaire/manage-questionnaires.js",
