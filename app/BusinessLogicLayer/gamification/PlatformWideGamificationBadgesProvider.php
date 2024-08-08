@@ -2,12 +2,12 @@
 
 namespace App\BusinessLogicLayer\gamification;
 
-use App\Models\ViewModels\GamificationBadgesWithLevels;
-use App\Models\ViewModels\GamificationBadgeVM;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserQuestionnaireShareRepository;
+use App\ViewModels\GamificationBadgesWithLevels;
+use App\ViewModels\GamificationBadgeVM;
 use Illuminate\Support\Collection;
 
 class PlatformWideGamificationBadgesProvider {

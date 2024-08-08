@@ -4,7 +4,7 @@ namespace App\Notifications;
 
 use App\BusinessLogicLayer\gamification\GamificationBadge;
 use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
-use App\Models\ViewModels\GamificationBadgeVM;
+use App\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

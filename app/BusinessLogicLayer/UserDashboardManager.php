@@ -10,11 +10,11 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
-use App\Models\ViewModels\GamificationNextStep;
-use App\Models\ViewModels\QuestionnaireSocialShareButtons;
-use App\Models\ViewModels\UserDashboardViewModel;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use App\ViewModels\GamificationNextStep;
+use App\ViewModels\QuestionnaireSocialShareButtons;
+use App\ViewModels\UserDashboardViewModel;
 use Illuminate\Support\Collection;
 
 class UserDashboardManager {

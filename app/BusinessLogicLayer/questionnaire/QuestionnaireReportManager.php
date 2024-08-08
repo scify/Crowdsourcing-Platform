@@ -2,18 +2,18 @@
 
 namespace App\BusinessLogicLayer\questionnaire;
 
-use App\Models\ViewModels\reports\QuestionnaireReportFilters;
-use App\Models\ViewModels\reports\QuestionnaireReportResults;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use App\ViewModels\reports\QuestionnaireReportFilters;
+use App\ViewModels\reports\QuestionnaireReportResults;
 
 class QuestionnaireReportManager {
-    protected $questionnaireRepository;
-    protected $questionnaireReportRepository;
-    protected $questionnaireResponseAnswerRepository;
-    protected $questionnaireResponseRepository;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected QuestionnaireReportRepository $questionnaireReportRepository;
+    protected QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
 
     public function __construct(
         QuestionnaireRepository $questionnaireRepository,

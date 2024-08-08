@@ -6,7 +6,7 @@
  * Time: 1:29 PM
  */
 
-namespace App\Models\ViewModels;
+namespace App\ViewModels;
 
 class MailChimpIntegration {
     public $newsletterList;

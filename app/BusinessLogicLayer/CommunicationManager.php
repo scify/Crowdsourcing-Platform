@@ -8,9 +8,9 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\Models\ViewModels\MailChimpIntegration;
 use App\Repository\MailChimpListRepository;
 use App\Utils\MailChimpAdaptor;
+use App\ViewModels\MailChimpIntegration;
 
 class CommunicationManager {
     private $mailChimpListRepository;

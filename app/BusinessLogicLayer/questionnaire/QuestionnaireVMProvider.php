@@ -9,12 +9,12 @@ use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\ViewModels\CreateEditQuestionnaire;
-use App\Models\ViewModels\ManageQuestionnaires;
-use App\Models\ViewModels\Questionnaire\QuestionnairePage;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
+use App\ViewModels\CreateEditQuestionnaire;
+use App\ViewModels\ManageQuestionnaires;
+use App\ViewModels\Questionnaire\QuestionnairePage;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireVMProvider {
