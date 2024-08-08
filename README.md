@@ -351,16 +351,16 @@ CREATE DATABASE IF NOT EXISTS crowdsourcing_db_docker;
 
 #### Use an existing database (MySQL dump)
 
+First you will need to enter the DB container:
+
+```bash
+docker exec -it crowdsourcing_platform_db bash
+```
+
 If you have an existing MySQL dump file, make sure that is in the current directory, and import it into the database:
 
 ```bash
-mysql -u username -p crowdsourcing_db_docker < dump.sql
-```
-
-You can do this also without entering the DB container, by running:
-
-```bash
-docker exec -i crowdsourcing_platform_db mysql -u root -p crowdsourcing_db_docker < dump.sql
+mysql -u root -p crowdsourcing_db_docker < dump.sql
 ```
 
 Then, add the following to the `.env` file:
@@ -408,7 +408,7 @@ npm run build # (if in development mode)
 npm run prod # (if in production mode)
 ```
 
-### Step 7: Set up the Database **(only if in new installation)**
+### Step 7: Set up the built-in Database **(only if in new installation)**
 
 **Note:** If you are using Docker Compose, you will need first to enter the **server** container:
 
@@ -429,14 +429,6 @@ php artisan migrate
 ```bash
 php artisan db:seed
 ```
-
-**Note:** When using Docker Compose, you can import the dump file into the MySQL container:
-
-```bash
-docker exec -i crowdsourcing_platform_db mysql -u root -p database_name < dump.sql
-```
-
-(`database_name` should be the name of the database you have created in the `.env` file)
 
 ### Step 8: Create symbolic link for uploaded files
 
