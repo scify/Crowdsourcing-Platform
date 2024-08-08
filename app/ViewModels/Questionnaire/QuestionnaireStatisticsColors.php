@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ViewModels\Questionnaire;
+namespace App\ViewModels\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireLanguage;

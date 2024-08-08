@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ViewModels;
+namespace App\ViewModels;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;

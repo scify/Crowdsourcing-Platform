@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ViewModels;
+namespace App\ViewModels;
 
 class ManageUsers {
     public $users;

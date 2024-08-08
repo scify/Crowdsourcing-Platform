@@ -3,12 +3,12 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\ViewModels\Questionnaire\QuestionnaireStatistics;
-use App\Models\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectQuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireBasicStatisticsColorsRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsRepository;
+use App\ViewModels\Questionnaire\QuestionnaireStatistics;
+use App\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireStatisticsManager {

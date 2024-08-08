@@ -3,15 +3,15 @@
 namespace App\BusinessLogicLayer;
 
 use App\Models\User;
-use App\Models\ViewModels\EditUser;
-use App\Models\ViewModels\ManageUsers;
-use App\Models\ViewModels\UserProfile;
 use App\Notifications\UserRegistered;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
+use App\ViewModels\EditUser;
+use App\ViewModels\ManageUsers;
+use App\ViewModels\UserProfile;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

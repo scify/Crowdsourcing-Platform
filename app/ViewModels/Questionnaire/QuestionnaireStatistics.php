@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ViewModels\Questionnaire;
+namespace App\ViewModels\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\Statistics\QuestionnaireResponsesPerLanguage;
@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireStatistics {
     public Questionnaire $questionnaire;
-    public $userCanPrintStatistics;
+    public bool $userCanPrintStatistics;
     public QuestionnaireResponseStatistics $questionnaireResponseStatistics;
     public QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage;
     public $current_user_id;
-    public $userCanAnnotateAnswers;
+    public bool $userCanAnnotateAnswers;
     public int $projectFilter;
 
     public function __construct(Questionnaire $questionnaire,

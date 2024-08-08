@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\ViewModels\Questionnaire;
+namespace App\ViewModels\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;

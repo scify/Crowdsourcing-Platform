@@ -3,7 +3,7 @@
 namespace App\BusinessLogicLayer\questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\ViewModels\QuestionnaireProjectGoal;
+use App\ViewModels\QuestionnaireProjectGoal;
 
 class QuestionnaireGoalManager {
     public function getQuestionnaireGoalViewModel(Questionnaire $questionnaire, int $responses_count): QuestionnaireProjectGoal {

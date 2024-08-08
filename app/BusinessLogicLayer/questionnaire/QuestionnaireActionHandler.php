@@ -9,13 +9,13 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
-use App\Models\ViewModels\GamificationBadgeVM;
 use App\Notifications\QuestionnaireResponded;
 use App\Notifications\QuestionnaireShared;
 use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserQuestionnaireShareRepository;
 use App\Repository\UserRepository;
+use App\ViewModels\GamificationBadgeVM;
 
 class QuestionnaireActionHandler {
     protected WebSessionManager $webSessionManager;
