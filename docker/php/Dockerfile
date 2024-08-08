@@ -86,6 +86,8 @@ RUN chmod -R 755 /var/www/storage/framework
 RUN chmod -R 755 /var/www/storage/framework/sessions
 RUN chmod -R 755 /var/www/bootstrap
 
+RUN chown -R www-data:www-data /var/www
+
 WORKDIR /root
 RUN git clone https://github.com/seebi/dircolors-solarized
 
