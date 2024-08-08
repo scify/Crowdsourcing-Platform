@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: snik
- * Date: 8/6/18
- * Time: 1:29 PM
- */
 
 namespace App\ViewModels;
 

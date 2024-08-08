@@ -59,9 +59,9 @@ class LoginController extends Controller {
     }
 
     protected function authenticated(Request $request, $user) {
-        $numberOfResponsedTransfered = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
+        $numberOfResponsesTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         $url = session('redirectTo') ? session('redirectTo') : $this->redirectTo();
-        if ($numberOfResponsedTransfered) {
+        if ($numberOfResponsesTransferred) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }
 

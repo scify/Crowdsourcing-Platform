@@ -62,8 +62,6 @@ Route::post('/files/upload', [FileController::class, 'uploadFiles'])->name('file
 Route::get('login/social/{driver}', [LoginController::class, 'redirectToProvider']);
 Route::get('login/social/{driver}/callback', [LoginController::class, 'handleProviderCallback'])->name('socialLoginCallback');
 
-Route::post('/newsletter', [CommunicationController::class, 'signUpForNewsletter'])->name('newsletter');
-
 Route::group(['prefix' => '{locale}',
     'where' => ['locale' => $regexForLocalParameter],
     'middleware' => ['auth', 'setlocale'],
