@@ -8,6 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\CrowdSourcingProjectTranslation
+ *
+ * @property int $language_id
+ * @property int $project_id
+ * @property string $name
+ * @property string $motto_title
+ * @property string $motto_subtitle
+ * @property string $description
+ * @property string $about
+ * @property string $footer
+ * @property string $sm_title
+ * @property string $sm_description
+ * @property string $sm_keywords
+ * @property string $questionnaire_response_email_intro_text
+ * @property string $questionnaire_response_email_outro_text
+ * @property string $banner_title
+ * @property string $banner_text
+ */
 class CrowdSourcingProjectTranslation extends Model {
     use Compoships;
     use SoftDeletes;

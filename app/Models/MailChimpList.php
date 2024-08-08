@@ -8,6 +8,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,11 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $list_name
  * @property string $list_id
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MailChimpList whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MailChimpList whereListId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\MailChimpList whereListName($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class MailChimpList extends Model {
     protected $table = 'mailchimp_lists';

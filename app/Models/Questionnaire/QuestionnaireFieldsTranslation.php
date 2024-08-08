@@ -5,6 +5,14 @@ namespace App\Models\Questionnaire;
 use App\Models\CompositeKeysModel;
 use Awobaz\Compoships\Compoships;
 
+/**
+ * App\Models\QuestionnaireFieldsTranslation
+ *
+ * @property string $questionnaire_id
+ * @property string $language_id
+ * @property string $title
+ * @property string $description
+ */
 class QuestionnaireFieldsTranslation extends CompositeKeysModel {
     use Compoships;
 

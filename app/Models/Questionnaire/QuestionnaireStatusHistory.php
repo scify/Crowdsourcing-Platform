@@ -4,6 +4,7 @@ namespace App\Models\Questionnaire;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Models\QuestionnaireStatusHistory
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 class QuestionnaireStatusHistory extends Model {
     protected $table = 'questionnaire_status_history';
 
-    public function status() {
+    public function status(): HasOne {
         return $this->hasOne(QuestionnaireStatus::class, 'id', 'status_id');
     }
 }

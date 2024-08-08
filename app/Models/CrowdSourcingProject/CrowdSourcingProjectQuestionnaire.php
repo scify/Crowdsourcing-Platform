@@ -4,6 +4,12 @@ namespace App\Models\CrowdSourcingProject;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\CrowdSourcingProject\CrowdSourcingProjectQuestionnaire
+ *
+ * @property int $project_id
+ * @property int $questionnaire_id
+ */
 class CrowdSourcingProjectQuestionnaire extends Model {
     /**
      * The table associated with the model.
