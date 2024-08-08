@@ -6,6 +6,18 @@ use App\Models\CompositeKeysModel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * App\Models\QuestionnaireAnswerVote
+ *
+ * @property string $questionnaire_id
+ * @property string $question_name
+ * @property string $respondent_user_id
+ * @property string $voter_user_id
+ * @property bool $upvote
+ * @property-read User $voter
+ * @property-read User $respondent
+ * @property-read Questionnaire $questionnaire
+ */
 class QuestionnaireAnswerVote extends CompositeKeysModel {
     protected $table = 'questionnaire_answer_votes';
     protected $fillable = [

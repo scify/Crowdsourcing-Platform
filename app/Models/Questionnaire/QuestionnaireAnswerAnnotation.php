@@ -7,6 +7,21 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * App\Models\QuestionnaireAnswerAnnotation
+ *
+ * @property string $questionnaire_id
+ * @property string $question_name
+ * @property string $respondent_user_id
+ * @property string $annotator_user_id
+ * @property string $annotation_text
+ * @property string $admin_review_status_id
+ * @property string $admin_review_comment
+ * @property-read User $annotator
+ * @property-read User $respondent
+ * @property-read Questionnaire $questionnaire
+ * @property-read QuestionnaireAnswerAdminReviewLkp $adminReviewStatusLkp
+ */
 class QuestionnaireAnswerAnnotation extends CompositeKeysModel {
     protected $table = 'questionnaire_answer_annotations';
     protected $fillable = [

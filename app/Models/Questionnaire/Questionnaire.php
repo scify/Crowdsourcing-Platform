@@ -9,6 +9,7 @@ use App\Models\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkp
 use App\Repository\LanguageRepository;
 use Awobaz\Compoships\Compoships;
 use Carbon\Carbon;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -86,6 +87,9 @@ class Questionnaire extends Model {
             ]);
     }
 
+    /**
+     * @throws BindingResolutionException
+     */
     public function currentLocaleFieldsTranslation(): HasOne {
         $languageRepository = app()->make(LanguageRepository::class);
         $language = $languageRepository->where(['language_code' => app()->getLocale()]);
@@ -98,10 +102,8 @@ class Questionnaire extends Model {
 
     /**
      * Get the route key for the model.
-     *
-     * @return string
      */
-    public function getRouteKeyName() {
+    public function getRouteKeyName(): string {
         return 'id';
     }
 

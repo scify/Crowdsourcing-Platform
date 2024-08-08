@@ -15,7 +15,22 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class CrowdSourcingProject
+ * App\Models\CrowdSourcingProject
+ *
+ * @property int $id
+ * @property string $slug
+ * @property string $external_url
+ * @property string $img_path
+ * @property string $logo_path
+ * @property int $user_creator_id
+ * @property int $language_id
+ * @property int $status_id
+ * @property string $sm_featured_img_path
+ * @property string $lp_questionnaire_img_path
+ * @property int $lp_show_speak_up_btn
+ * @property string $lp_primary_color
+ * @property int $should_send_email_after_questionnaire_response
+ * @property int $display_landing_page_banner
  */
 class CrowdSourcingProject extends Model {
     use Compoships;
@@ -50,19 +65,14 @@ class CrowdSourcingProject extends Model {
      */
     protected $with = ['defaultTranslation'];
 
-    /**
-     * @return BelongsTo
-     */
-    public function creator() {
+    public function creator(): BelongsTo {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
     }
 
     /**
      * The users that belong to the role.
-     *
-     * @return BelongsToMany
      */
-    public function questionnaires() {
+    public function questionnaires(): BelongsToMany {
         return $this->belongsToMany(
             Questionnaire::class,
             'crowd_sourcing_project_questionnaires',
@@ -71,17 +81,11 @@ class CrowdSourcingProject extends Model {
             ->orderBy('questionnaires.created_at');
     }
 
-    /**
-     * @return HasOne
-     */
-    public function language() {
+    public function language(): HasOne {
         return $this->hasOne(Language::class, 'id', 'language_id');
     }
 
-    /**
-     * @return HasOne
-     */
-    public function defaultTranslation() {
+    public function defaultTranslation(): HasOne {
         return $this->hasOne(CrowdSourcingProjectTranslation::class,
             ['project_id', 'language_id'], ['id', 'language_id'])->withDefault([
                 'questionnaire_response_email_intro_text' => __('email_messages.thanks_message_for_contribution'),
@@ -89,24 +93,15 @@ class CrowdSourcingProject extends Model {
             ]);
     }
 
-    /**
-     * @return HasMany
-     */
-    public function translations() {
+    public function translations(): HasMany {
         return $this->hasMany(CrowdSourcingProjectTranslation::class, 'project_id', 'id');
     }
 
-    /**
-     * @return HasOne
-     */
-    public function status() {
+    public function status(): HasOne {
         return $this->hasOne(CrowdSourcingProjectStatusLkp::class, 'id', 'status_id');
     }
 
-    /**
-     * @return HasMany
-     */
-    public function colors() {
+    public function colors(): HasMany {
         return $this->hasMany(CrowdSourcingProjectColors::class, 'project_id', 'id');
     }
 }

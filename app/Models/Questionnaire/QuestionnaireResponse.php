@@ -6,6 +6,7 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -37,15 +38,15 @@ class QuestionnaireResponse extends Model {
         'browser_ip',
     ];
 
-    public function user() {
+    public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
 
-    public function questionnaire() {
+    public function questionnaire(): BelongsTo {
         return $this->belongsTo(Questionnaire::class)->withTrashed();
     }
 
-    public function project() {
+    public function project(): BelongsTo {
         return $this->belongsTo(CrowdSourcingProject::class, 'project_id', 'id');
     }
 }

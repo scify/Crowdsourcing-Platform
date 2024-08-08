@@ -6,6 +6,7 @@ use App\Models\Language;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -34,7 +35,7 @@ class QuestionnaireLanguage extends Model {
         'color',
     ];
 
-    public function language() {
+    public function language(): HasOne {
         return $this->hasOne(Language::class, 'id', 'language_id');
     }
 }
