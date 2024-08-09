@@ -14,7 +14,7 @@ class QuestionnaireStatisticsController extends Controller {
         $this->questionnaireStatisticsManager = $questionnaireStatisticsManager;
     }
 
-    public function showStatisticsPageForQuestionnaire(string $lang, Questionnaire $questionnaire,
+    public function showStatisticsPageForQuestionnaire(Questionnaire $questionnaire,
         int $projectFilter = -1) {
         $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModel($questionnaire, $projectFilter);
 
