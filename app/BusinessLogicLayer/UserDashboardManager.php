@@ -18,13 +18,13 @@ use App\ViewModels\UserDashboardViewModel;
 use Illuminate\Support\Collection;
 
 class UserDashboardManager {
-    protected $questionnaireRepository;
-    protected $platformWideGamificationBadgesProvider;
-    protected $crowdSourcingProjectGoalManager;
-    protected $questionnaireBadgeProvider;
-    protected $questionnaireResponseRepository;
-    protected $questionnaireAccessManager;
-    protected $crowdSourcingProjectTranslationManager;
+    protected QuestionnaireRepository $questionnaireRepository;
+    protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
+    protected QuestionnaireGoalManager $crowdSourcingProjectGoalManager;
+    protected QuestionnaireBadgeProvider $questionnaireBadgeProvider;
+    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
+    protected QuestionnaireAccessManager $questionnaireAccessManager;
+    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
         PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
@@ -67,7 +67,8 @@ class UserDashboardManager {
     }
 
     /**
-     * @param $questionnaire
+     * @param Questionnaire $q
+     * @param $userResponses
      * @return Collection<CrowdSourcingProject>
      */
     private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection {

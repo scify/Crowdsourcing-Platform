@@ -4,6 +4,7 @@ namespace App\Models\Questionnaire;
 
 use App\Models\CompositeKeysModel;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Questionnaire $questionnaire
  */
 class QuestionnaireAnswerVote extends CompositeKeysModel {
+    use HasFactory;
+
     protected $table = 'questionnaire_answer_votes';
     protected $fillable = [
         'questionnaire_id',
