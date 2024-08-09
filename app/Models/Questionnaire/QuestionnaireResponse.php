@@ -5,6 +5,7 @@ namespace App\Models\Questionnaire;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read User $user
  */
 class QuestionnaireResponse extends Model {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'questionnaire_responses';
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

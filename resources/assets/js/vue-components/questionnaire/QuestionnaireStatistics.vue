@@ -529,7 +529,7 @@ export default defineComponent({
 		},
 		performVoteCall(questionName, respondentUserId, upvote) {
 			this.post({
-				url: window.route("questionnaire.answer-votes.create"),
+				url: window.route("questionnaire.answer-votes.store"),
 				data: {
 					questionnaire_id: this.questionnaire.id,
 					question_name: questionName,
