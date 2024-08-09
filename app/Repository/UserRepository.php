@@ -20,7 +20,7 @@ class UserRepository extends Repository {
     }
 
     public function getUserWithTrashed($id) {
-        return User::withTrashed()->find($id);
+        return User::withTrashed()->findOrFail($id);
     }
 
     public function getSingleUserRole($id) {

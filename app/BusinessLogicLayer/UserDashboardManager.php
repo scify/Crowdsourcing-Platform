@@ -67,8 +67,6 @@ class UserDashboardManager {
     }
 
     /**
-     * @param Questionnaire $q
-     * @param $userResponses
      * @return Collection<CrowdSourcingProject>
      */
     private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection {
