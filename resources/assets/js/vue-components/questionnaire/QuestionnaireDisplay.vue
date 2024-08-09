@@ -294,7 +294,7 @@ export default {
 		postResponseDataAndShowResult(data) {
 			this.$store
 				.dispatch("post", {
-					url: window.route("respond-questionnaire"),
+					url: window.route("questionnaire-responses.store"),
 					data: {
 						...data,
 						questionnaire_id: this.questionnaire.id,

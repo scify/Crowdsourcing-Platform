@@ -38,6 +38,7 @@ class QuestionnaireResponseController extends Controller {
             'browser_fingerprint_id' => 'required|string',
             'questionnaire_id' => 'required|integer',
             'project_id' => 'required|integer',
+            'response' => 'required|json',
         ]);
         app()->setLocale($request->lang);
         $data = $request->all();

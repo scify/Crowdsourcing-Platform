@@ -3,19 +3,23 @@
 namespace Tests\Feature;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
-use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Tests\TestCase;
 
 class QuestionnaireTests extends TestCase {
-    protected $questionnaireTranslationRepository;
-    protected $questionnaireResponseManager;
+    protected QuestionnaireResponseManager $questionnaireResponseManager;
 
+    /**
+     * @throws BindingResolutionException
+     */
     protected function setUp(): void {
         parent::setUp();
-        $this->questionnaireTranslationRepository = $this->app->make(QuestionnaireTranslationRepository::class);
         $this->questionnaireResponseManager = $this->app->make(QuestionnaireResponseManager::class);
     }
 
+    /**
+     * @test
+     */
     public function test_questionnaire_free_type_questions() {
         $questionnaireJSON = '
         {
