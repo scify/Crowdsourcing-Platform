@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class QuestionnaireStatisticsController extends Controller {
-    protected $questionnaireStatisticsManager;
+    protected QuestionnaireStatisticsManager $questionnaireStatisticsManager;
 
     public function __construct(QuestionnaireStatisticsManager $questionnaireStatisticsManager) {
         $this->questionnaireStatisticsManager = $questionnaireStatisticsManager;

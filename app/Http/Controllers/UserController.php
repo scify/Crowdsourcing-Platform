@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller {
-    private $userManager;
-    private $questionnaireResponseManager;
-    protected $userDashboardManager;
+    private UserManager $userManager;
+    private QuestionnaireResponseManager $questionnaireResponseManager;
+    protected UserDashboardManager $userDashboardManager;
 
     public function __construct(UserManager $userManager,
         QuestionnaireResponseManager $questionnaireResponseManager,
