@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
+use App\Http\Controllers\Controller;
 use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,8 +15,7 @@ class QuestionnaireStatisticsController extends Controller {
         $this->questionnaireStatisticsManager = $questionnaireStatisticsManager;
     }
 
-    public function showStatisticsPageForQuestionnaire(Questionnaire $questionnaire,
-        int $projectFilter = -1) {
+    public function showStatisticsPageForQuestionnaire(string $locale, Questionnaire $questionnaire, int $projectFilter = -1) {
         $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModel($questionnaire, $projectFilter);
 
         return view('questionnaire.statistics', compact(['viewModel']));

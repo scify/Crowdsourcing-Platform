@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireAnswerAnnotator;
+use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerAdminReviewLkpRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

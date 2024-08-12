@@ -75,7 +75,7 @@
                                             @endcan
                                             @can("manage-crowd-sourcing-projects")
                                                 <a class="action-btn dropdown-item"
-                                                   href="{{route('statistics-colors-page', ['questionnaire' => $questionnaire->id])}}"><i
+                                                   href="{{route('questionnaire.statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
                                                             class="fas fa-palette"></i> Basic Statistics Colors</a>
                                             @endcan
                                             @if(isset($questionnaire->urls))

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireReportManager;
+use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
