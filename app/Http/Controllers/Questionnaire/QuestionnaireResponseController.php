@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\UserManager;
+use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\ViewModels\GamificationBadgeVM;
 use Exception;

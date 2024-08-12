@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-    <form action="{{ route('statistics-colors', $viewModel->questionnaire) }}"
+    <form action="{{ route('questionnaire.statistics-colors.store', $viewModel->questionnaire) }}"
           method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="card card-primary">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
@@ -9,6 +9,7 @@ use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\Http\Controllers\Controller;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use Exception;
