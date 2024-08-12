@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
 use Illuminate\Contracts\Container\BindingResolutionException;

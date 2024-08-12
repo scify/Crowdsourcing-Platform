@@ -81,12 +81,21 @@ class QuestionnaireResponseRepository extends Repository {
     }
 
     public function countResponsesPerProject($questionnaire_id): array {
-        return DB::select('SELECT qr.project_id, CONCAT("/",l.language_code,"/",p.slug) as slug, count(*) as total FROM questionnaire_responses qr 
-                                inner join crowd_sourcing_projects p on qr.project_id = p.id
-                                inner join languages_lkp l on l.id = p.language_id
-                                where qr.deleted_at is null and qr.questionnaire_id =?  
-                                group by qr.project_id, p.slug, l.language_code
-                                order by p.slug desc', [$questionnaire_id]);
+        $driver = DB::connection()->getDriverName();
+        $concatExpression = $driver === 'sqlite'
+            ? '"/" || l.language_code || "/" || p.slug'
+            : 'CONCAT("/", l.language_code, "/", p.slug)';
+
+        return DB::table('questionnaire_responses as qr')
+            ->select('qr.project_id', DB::raw($concatExpression . ' as slug'), DB::raw('count(*) as total'))
+            ->join('crowd_sourcing_projects as p', 'qr.project_id', '=', 'p.id')
+            ->join('languages_lkp as l', 'l.id', '=', 'p.language_id')
+            ->whereNull('qr.deleted_at')
+            ->where('qr.questionnaire_id', $questionnaire_id)
+            ->groupBy('qr.project_id', 'p.slug', 'l.language_code')
+            ->orderBy('p.slug', 'desc')
+            ->get()
+            ->toArray();
     }
 
     public function getAllResponsesGivenByUser($userId) {

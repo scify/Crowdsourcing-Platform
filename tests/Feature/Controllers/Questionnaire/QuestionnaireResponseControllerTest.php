@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Controllers;
+namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -8,7 +8,6 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Cookie;
 use Tests\TestCase;
 
 class QuestionnaireResponseControllerTest extends TestCase {
