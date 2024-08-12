@@ -116,14 +116,14 @@ class UserControllerTest extends TestCase {
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
         $this->be($user);
-
+        $now = now()->toDateTimeString();
         $response = $this->post(route('deleteUser'), ['id' => $user->id]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'User deleted.');
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
-            'deleted_at' => now()->toDateTimeString(),
+            'deleted_at' => $now,
         ]);
     }
 
