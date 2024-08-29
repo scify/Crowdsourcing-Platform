@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->default('/images/user.webp')->change();
+            $table->string('avatar', 2048)->default('/images/user.webp')->change();
         });
     }
 };
