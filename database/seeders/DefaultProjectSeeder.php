@@ -30,7 +30,7 @@ class DefaultProjectSeeder extends Seeder {
             [
                 'id' => 1,
                 'slug' => 'european-elections',
-                'external_url' => 'https://www.scify.gr/site/en/',
+                'external_url' => null,
                 'img_path' => '/images/projects/european-elections/logo-bg.webp',
                 'logo_path' => '/images/projects/european-elections/logo.webp',
                 'user_creator_id' => 1,
@@ -46,7 +46,7 @@ class DefaultProjectSeeder extends Seeder {
             [
                 'id' => 2,
                 'slug' => 'european-democracy',
-                'external_url' => 'https://www.scify.gr/site/en/',
+                'external_url' => null,
                 'img_path' => '/images/projects/european-democracy/logo-bg.webp',
                 'logo_path' => '/images/projects/european-democracy/logo.webp',
                 'user_creator_id' => 1,
