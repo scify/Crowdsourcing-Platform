@@ -77,20 +77,21 @@ class CrowdSourcingProjectManager {
             }
         }
 
-        $projectsToReturn = new Collection;
         foreach ($projects as $project) {
             $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
-            if ($project->currentTranslation && $project->currentTranslation->motto_title) {
-                $project->latestQuestionnaire = $project->questionnaires->last();
-                $projectsToReturn->push($project);
-            }
+            $project->latestQuestionnaire = $project->questionnaires->last();
         }
 
-        return $projectsToReturn;
+        return $projects;
     }
 
     public function getPastCrowdSourcingProjectsForHomePage(): Collection {
-        return $this->crowdSourcingProjectRepository->getPastProjects();
+        $projects = $this->crowdSourcingProjectRepository->getPastProjects();
+        foreach ($projects as $project) {
+            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        }
+
+        return $projects;
     }
 
     public function getCrowdSourcingProject(int $id): CrowdSourcingProject {
