@@ -11,7 +11,7 @@
                             {!! $project->currentTranslation->motto_title !!}
                         </div>
                         <div class="project-visit-btn">
-                            @if($project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED)
+                            @if($project->latestQuestionnaire && $project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED)
                                 <a href="/{{app()->getLocale() .'/'.$project->slug}}"
                                    class="btn btn-block btn-primary call-to-action action-dark">
                                     {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
