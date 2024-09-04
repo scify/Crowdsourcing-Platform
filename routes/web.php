@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('questionnaire.languages');
 Route::get('/languages', [LanguageController::class, 'getLanguages'])->name('languages.get');
+Route::post('/languages/setlocale', [LanguageController::class, 'setLocale'])->name('languages.setlocale');
 Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('questionnaire.answer-votes.store');
 Route::post('/questionnaire/answer-annotations', [QuestionnaireAnswerAnnotationController::class, 'annotateAnswer'])->name('questionnaire.answer-annotations.create');
 Route::post('/questionnaire/answer-annotations/delete', [QuestionnaireAnswerAnnotationController::class, 'deleteAnswerAnnotation'])->name('questionnaire.answer-annotations.delete');
