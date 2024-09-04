@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -95,6 +96,16 @@ class CrowdSourcingProject extends Model {
 
     public function translations(): HasMany {
         return $this->hasMany(CrowdSourcingProjectTranslation::class, 'project_id', 'id');
+    }
+
+    public function languages(): HasManyThrough {
+        return $this->hasManyThrough(Language::class,
+            CrowdSourcingProjectTranslation::class,
+            'project_id',
+            'id',
+            'id',
+            'language_id'
+        );
     }
 
     public function status(): HasOne {
