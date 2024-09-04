@@ -18,7 +18,7 @@
                 'questionnaire_id' =>$viewModel->questionnaire->id,
                'socialShareURL' => $viewModel->shareUrlForTwitter,
                'additionalBtnStyleClasses' =>' twitter btn-lg btn-default',
-               'btnText' => '<i class="fab fa-twitter"></i> Twitter'
+               'btnText' => '<i class="fab fa-twitter"></i> X.com'
            ])
 
     </div>
