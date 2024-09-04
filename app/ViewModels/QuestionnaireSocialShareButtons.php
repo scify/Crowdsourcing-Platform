@@ -27,7 +27,7 @@ class QuestionnaireSocialShareButtons {
                 $url = 'https://www.facebook.com/sharer/sharer.php?u=';
                 break;
             case 'twitter':
-                $url = 'https://twitter.com/share?url=';
+                $url = 'https://x.com/share?url=';
                 break;
             default:
                 $url = '';

@@ -37,6 +37,22 @@ h6,
 	}
 }
 
+.fa.fa-twitter{
+	font-family:sans-serif;
+}
+.fa.fa-twitter::before{
+	content:"𝕏";
+	font-size:1.2em;
+}
+
+.fab.fa-twitter{
+	font-family:sans-serif;
+}
+.fab.fa-twitter::before{
+	content:"𝕏";
+	font-size:1.2em;
+}
+
 .header-margin-top {
 	.main-header {
 		margin-top: 35px !important;
