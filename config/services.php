@@ -62,10 +62,10 @@ return [
         'redirect' => config('app.url') . '/login/social/microsoft/callback',
     ],
 
-    'linkedin' => [
+    'linkedin-openid' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => config('app.url') . '/login/social/linkedin/callback',
+        'redirect' => config('app.url') . '/login/social/linkedin-openid/callback',
     ],
 
 ];

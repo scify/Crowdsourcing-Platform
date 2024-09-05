@@ -19,12 +19,8 @@
                         <a class="socialSignIn google" href="{{url('login/social/google')}}"><i
                                     class="fab fa-google"></i></a>
                     </div>
-{{--                    <div class="col-2 whole px-0 text-center">--}}
-{{--                        <a class="socialSignIn microsoft" href="{{url('login/social/microsoft')}}"><i--}}
-{{--                                    class="fab fa-windows"></i></a>--}}
-{{--                    </div>--}}
                     <div class="col-2 px-0 text-center">
-                        <a class="socialSignIn linkedin" href="{{url('login/social/linkedin')}}"><i
+                        <a class="socialSignIn linkedin" href="{{url('login/social/linkedin-openid')}}"><i
                                     class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
