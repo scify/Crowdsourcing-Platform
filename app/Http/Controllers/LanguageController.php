@@ -38,6 +38,7 @@ class LanguageController extends Controller {
         $domain = $request->getSchemeAndHttpHost();
         // replace the locale in the URL:
         $url = $domain . '/' . $locale . '/' . $restOfUrl;
+
         // redirect to the new URL:
         return redirect($url);
     }

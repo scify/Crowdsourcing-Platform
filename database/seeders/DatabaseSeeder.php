@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder {
             QuestionnaireSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
             QuestionnaireResponsesSeeder::class,
+            CrowdSourcingProjectProblemStatusLkpSeeder::class,
+            CrowdSourcingProjectProblemSolutionStatusLkpSeeder::class,
         ]);
     }
 }
