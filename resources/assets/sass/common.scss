@@ -53,6 +53,13 @@ h6,
 	font-size:1.2em;
 }
 
+.fab.fa-twitter-square{
+	font-family:sans-serif;
+}
+.fab.fa-twitter-square::before{
+	content:"𝕏";
+}
+
 .header-margin-top {
 	.main-header {
 		margin-top: 35px !important;

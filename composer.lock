@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "532784042165f834d263e85e719ad74a",
+    "content-hash": "d816cf2124bec51aedbb4f80fc0f5653",
     "packages": [
         {
             "name": "accentinteractive/laravel-logcleaner",
@@ -6014,28 +6014,28 @@
             "time": "2024-05-04T07:57:39+00:00"
         },
         {
-            "name": "socialiteproviders/microsoft",
-            "version": "4.5.1",
+            "name": "socialiteproviders/twitter",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/SocialiteProviders/Microsoft.git",
-                "reference": "9f55e544f183c36096a14b2e61b5d6c9dc23961e"
+                "url": "https://github.com/SocialiteProviders/Twitter.git",
+                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Microsoft/zipball/9f55e544f183c36096a14b2e61b5d6c9dc23961e",
-                "reference": "9f55e544f183c36096a14b2e61b5d6c9dc23961e",
+                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/54ddc36c1475bbdc111a89edee1468e3c9cf1229",
+                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": "^8.0",
-                "socialiteproviders/manager": "^4.4"
+                "php": "^7.4 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SocialiteProviders\\Microsoft\\": ""
+                    "SocialiteProviders\\Twitter\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6048,20 +6048,20 @@
                     "email": "hello@brianfaust.de"
                 }
             ],
-            "description": "Microsoft OAuth2 Provider for Laravel Socialite",
+            "description": "Twitter OAuth1 Provider for Laravel Socialite",
             "keywords": [
                 "laravel",
-                "microsoft",
                 "oauth",
                 "provider",
-                "socialite"
+                "socialite",
+                "twitter"
             ],
             "support": {
-                "docs": "https://socialiteproviders.com/microsoft",
+                "docs": "https://socialiteproviders.com/twitter",
                 "issues": "https://github.com/socialiteproviders/providers/issues",
                 "source": "https://github.com/socialiteproviders/providers"
             },
-            "time": "2024-07-12T02:43:55+00:00"
+            "time": "2023-05-25T23:12:53+00:00"
         },
         {
             "name": "spatie/browsershot",

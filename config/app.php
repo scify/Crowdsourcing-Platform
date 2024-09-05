@@ -185,8 +185,8 @@ return [
         \App\Providers\ComposerServiceProvider::class,
         //For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
-        \SocialiteProviders\Manager\ServiceProvider::class,
         \App\Providers\ConfigServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
     /*
