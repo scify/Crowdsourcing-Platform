@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectController;
+use App\Http\Controllers\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
@@ -54,7 +55,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => config('app.regex_
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/manage-users', [AdminController::class, 'manageUsers'])->name('manage-users')->middleware('can:manage-users');
-    Route::get('/admin/edit-user/{id}', [AdminController::class, 'EditUserForm'])->name('edit-user')->middleware('can:manage-users');
+    Route::get('/admin/edit-user/{id}', [AdminController::class, 'editUserForm'])->name('edit-user')->middleware('can:manage-users');
     Route::post('/admin/add-user', [AdminController::class, 'addUserToPlatform'])->middleware('can:manage-users');
     Route::post('admin/update-user', [AdminController::class, 'updateUserRoles'])->middleware('can:manage-platform');
     Route::post('/user/update', [UserController::class, 'patch'])->name('updateUser');
@@ -114,4 +115,5 @@ Route::get('/questionnaire/answers-admin-analysis-statuses-get/', [Questionnaire
 Route::group($localeInfo, function () {
     Route::get('/{project_slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
     Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
+    Route::get('/{project_slug}/problems', [CrowdSourcingProjectProblemController::class, 'showProblemsPage'])->name('project.problems-page');
 });
