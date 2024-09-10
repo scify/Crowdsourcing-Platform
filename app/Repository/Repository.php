@@ -48,9 +48,9 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function allWithTrashed($columns = ['*'],
-        $orderColumn = null,
-        $order = null,
-        $withRelationships = []): Collection {
+                                   $orderColumn = null,
+                                   $order = null,
+                                   $withRelationships = []): Collection {
         $query = $this->modelInstance;
 
         if ($orderColumn) {
@@ -64,8 +64,8 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param  int  $perPage
-     * @param  array  $columns
+     * @param int $perPage
+     * @param array $columns
      * @return mixed
      */
     public function paginate($perPage = 15, $columns = ['*']) {
@@ -80,7 +80,7 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param  string  $attribute
+     * @param string $attribute
      * @return mixed
      */
     public function update(array $data, $id, $attribute = 'id') {
@@ -117,7 +117,7 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param  array  $columns
+     * @param array $columns
      * @return mixed
      */
     public function find($id, $columns = ['*'], array $withRelationships = []) {
@@ -137,19 +137,20 @@ abstract class Repository implements RepositoryInterface {
     }
 
     /**
-     * @param  array  $columns
+     * @param array $columns
      * @return mixed
      */
     public function findBy($field, $value, $columns = ['*'], bool $caseInsensitive = false, array $withRelationships = []) {
-        if ($caseInsensitive) {
-            $query = $this->modelInstance->whereRaw('LOWER(`' . $field . "`) LIKE '" .
-                strtolower($value) . "'");
-        } else {
-            $query = $this->modelInstance->where($field, '=', $value);
-        }
-
+        $query = $this->modelInstance;
         if (count($withRelationships) > 0) {
             $query = $query->with($withRelationships);
+        }
+
+        if ($caseInsensitive) {
+            $query = $query->whereRaw('LOWER(`' . $field . "`) LIKE '" .
+                strtolower($value) . "'");
+        } else {
+            $query = $query->where($field, '=', $value);
         }
 
         $model = $query->first();
@@ -185,10 +186,10 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function whereWithTrashed($whereArray,
-        $columns = ['*'],
-        $orderColumn = null,
-        $order = null,
-        $withRelationships = []): Collection {
+                                     $columns = ['*'],
+                                     $orderColumn = null,
+                                     $order = null,
+                                     $withRelationships = []): Collection {
         $query = $this->modelInstance->where($whereArray);
 
         if ($orderColumn) {
