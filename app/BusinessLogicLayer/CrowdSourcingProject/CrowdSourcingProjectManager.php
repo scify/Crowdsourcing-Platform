@@ -101,8 +101,8 @@ class CrowdSourcingProjectManager {
         return $project;
     }
 
-    public function getCrowdSourcingProjectBySlug($project_slug) {
-        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+    public function getCrowdSourcingProjectBySlug($project_slug, $withRelationships = []) {
+        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug, ['*'], false, $withRelationships);
         $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
 
         return $project;
