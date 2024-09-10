@@ -6,7 +6,7 @@ use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\UserRoleManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
-use App\Repository\CrowdSourcingProjectRepository;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 

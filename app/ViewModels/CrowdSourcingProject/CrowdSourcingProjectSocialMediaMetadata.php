@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ViewModels;
+namespace App\ViewModels\CrowdSourcingProject;
 
 class CrowdSourcingProjectSocialMediaMetadata {
     public $title;

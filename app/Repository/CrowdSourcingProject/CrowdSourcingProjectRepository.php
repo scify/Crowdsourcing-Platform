@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Repository\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 

@@ -8,7 +8,7 @@ use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use App\Models\UserRole;
-use App\Repository\CrowdSourcingProjectRepository;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

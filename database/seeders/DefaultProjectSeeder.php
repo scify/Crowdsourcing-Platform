@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
-use App\Repository\CrowdSourcingProjectRepository;
 use App\Utils\Helpers;
 use Illuminate\Database\Seeder;
 

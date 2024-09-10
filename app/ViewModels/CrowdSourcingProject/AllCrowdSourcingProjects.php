@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ViewModels;
+namespace App\ViewModels\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
 use Illuminate\Support\Collection;
