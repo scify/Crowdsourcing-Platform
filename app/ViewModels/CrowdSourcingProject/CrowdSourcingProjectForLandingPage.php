@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ViewModels;
+namespace App\ViewModels\CrowdSourcingProject;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;

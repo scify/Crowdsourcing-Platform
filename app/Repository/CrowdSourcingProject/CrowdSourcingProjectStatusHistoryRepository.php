@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusHistory;
+use App\Repository\Repository;
 
 class CrowdSourcingProjectStatusHistoryRepository extends Repository {
     /**

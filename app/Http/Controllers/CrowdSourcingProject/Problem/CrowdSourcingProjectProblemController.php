@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\CrowdSourcingProject\Problem;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectProblemController extends Controller {
-    private CrowdSourcingProjectManager $crowdSourcingProjectManager;
+    private CrowdSourcingProjectProblemManager $crowdSourcingProjectProblemManager;
 
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+    public function __construct(CrowdSourcingProjectProblemManager $crowdSourcingProjectProblemManager) {
+        $this->crowdSourcingProjectProblemManager = $crowdSourcingProjectProblemManager;
     }
 
     public function showProblemsPage(Request $request) {
@@ -26,10 +26,10 @@ class CrowdSourcingProjectProblemController extends Controller {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
         try {
-            $crowdSourcingProject = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($request->project_slug, ['creator']);
+            $viewModel = $this->crowdSourcingProjectProblemManager->getCrowdSourcingProjectProblemsLandingPageViewModel($request->project_slug);
 
             // dd($crowdSourcingProject->creator);
-            return $crowdSourcingProject->creator->nickname;
+            return $viewModel->crowdSourcingProject->creator->nickname;
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }

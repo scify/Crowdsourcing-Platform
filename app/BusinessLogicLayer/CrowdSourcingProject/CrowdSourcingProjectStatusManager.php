@@ -2,7 +2,7 @@
 
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
-use App\Repository\CrowdSourcingProjectStatusLkpRepository;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectStatusLkpRepository;
 
 class CrowdSourcingProjectStatusManager {
     protected $crowdSourcingProjectStatusRepository;
