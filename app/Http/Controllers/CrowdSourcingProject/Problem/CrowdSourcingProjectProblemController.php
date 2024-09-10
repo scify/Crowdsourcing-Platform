@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\CrowdSourcingProject\Problem;
 
-use App\Http\Controllers\Controller;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
+use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -27,6 +27,7 @@ class CrowdSourcingProjectProblemController extends Controller {
         }
         try {
             $crowdSourcingProject = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($request->project_slug, ['creator']);
+
             // dd($crowdSourcingProject->creator);
             return $crowdSourcingProject->creator->nickname;
         } catch (ModelNotFoundException $e) {
