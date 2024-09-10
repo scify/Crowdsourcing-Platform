@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\CrowdSourcingProject\Problem;
 
 use App\Http\Controllers\Controller;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectProblemController extends Controller {
+    private CrowdSourcingProjectManager $crowdSourcingProjectManager;
+
+    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+    }
+
     public function showProblemsPage(Request $request) {
         $validator = Validator::make([
             'project_slug' => $request->project_slug,
@@ -19,7 +26,9 @@ class CrowdSourcingProjectProblemController extends Controller {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
         try {
-            return 'success';
+            $crowdSourcingProject = $this->crowdSourcingProjectManager->getCrowdSourcingProjectBySlug($request->project_slug, ['creator']);
+            // dd($crowdSourcingProject->creator);
+            return $crowdSourcingProject->creator->nickname;
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
