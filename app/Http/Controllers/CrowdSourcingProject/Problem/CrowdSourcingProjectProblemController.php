@@ -28,8 +28,7 @@ class CrowdSourcingProjectProblemController extends Controller {
         try {
             $viewModel = $this->crowdSourcingProjectProblemManager->getCrowdSourcingProjectProblemsLandingPageViewModel($request->project_slug);
 
-            // dd($crowdSourcingProject->creator);
-            return $viewModel->crowdSourcingProject->creator->nickname;
+            return view('crowdsourcing-project.problems.landing-page', ['viewModel' => $viewModel]);
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }

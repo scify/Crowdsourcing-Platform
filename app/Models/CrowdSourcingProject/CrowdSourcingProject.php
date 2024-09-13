@@ -2,6 +2,7 @@
 
 namespace App\Models\CrowdSourcingProject;
 
+use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
@@ -114,5 +115,9 @@ class CrowdSourcingProject extends Model {
 
     public function colors(): HasMany {
         return $this->hasMany(CrowdSourcingProjectColors::class, 'project_id', 'id');
+    }
+
+    public function problems(): HasMany {
+        return $this->hasMany(CrowdSourcingProjectProblem::class, 'project_id', 'id');
     }
 }
