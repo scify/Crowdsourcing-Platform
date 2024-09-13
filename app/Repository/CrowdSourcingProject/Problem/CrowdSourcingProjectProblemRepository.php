@@ -15,7 +15,6 @@ class CrowdSourcingProjectProblemRepository extends Repository {
     }
 
     public function getProjectWithProblemsByProjectSlug(string $project_slug): CrowdSourcingProject {
-        // TODO here add the relationship names to be loaded
-        return CrowdSourcingProject::where('slug', $project_slug)->with([])->first();
+        return CrowdSourcingProject::where('slug', $project_slug)->with(['problems'])->first();
     }
 }

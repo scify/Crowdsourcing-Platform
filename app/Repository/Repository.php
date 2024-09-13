@@ -48,9 +48,9 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function allWithTrashed($columns = ['*'],
-                                   $orderColumn = null,
-                                   $order = null,
-                                   $withRelationships = []): Collection {
+        $orderColumn = null,
+        $order = null,
+        $withRelationships = []): Collection {
         $query = $this->modelInstance;
 
         if ($orderColumn) {
@@ -186,10 +186,10 @@ abstract class Repository implements RepositoryInterface {
     }
 
     public function whereWithTrashed($whereArray,
-                                     $columns = ['*'],
-                                     $orderColumn = null,
-                                     $order = null,
-                                     $withRelationships = []): Collection {
+        $columns = ['*'],
+        $orderColumn = null,
+        $order = null,
+        $withRelationships = []): Collection {
         $query = $this->modelInstance->where($whereArray);
 
         if ($orderColumn) {
