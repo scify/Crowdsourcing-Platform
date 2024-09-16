@@ -32,13 +32,8 @@ class LanguageController extends Controller {
         // replace the locale in the URL:
         // get the previous URL:
         $url = url()->previous();
-        // get everything after the last slash:
-        $restOfUrl = substr($url, strrpos($url, '/') + 1);
-        // get the domain name with the protocol:
-        $domain = $request->getSchemeAndHttpHost();
-        // replace the locale in the URL:
-        $url = $domain . '/' . $locale . '/' . $restOfUrl;
-
+        // replace the locale in the URL. The URL is always in the format: http://domain/{locale}/...
+        $url = preg_replace('/\/[a-z]{2}\//', "/$locale/", $url);
         // redirect to the new URL:
         return redirect($url);
     }
