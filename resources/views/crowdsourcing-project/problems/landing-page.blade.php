@@ -11,14 +11,11 @@
 @section('content')
     <div class="container-fluid h-100 w-100 px-0">
         @include('partials.flash-messages-and-errors')
-        <section id="problems-hero">
+        <section id="problems-hero" style="height: 650px;">
             @include('crowdsourcing-project.problems.partials.problems-hero')
         </section>
         <section id="problems-list">
             @include('crowdsourcing-project.problems.partials.problems-list')
-        </section>
-        <section>
-            {{-- @include('partials.signup_to_newsletter') --}}
         </section>
     </div>
 @endsection
