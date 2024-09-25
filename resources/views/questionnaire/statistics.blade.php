@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-10 col-md-12 mx-auto">
                 <div class="container-fluid px-0">
-                    @can('manage-crowd-sourcing-projects')
+                    @can('manage-platform-content')
                         <div class="row my-5">
                             <div class="col">
                                 <button id="print-page" class="btn btn-primary btn-lg hidden-print"><i

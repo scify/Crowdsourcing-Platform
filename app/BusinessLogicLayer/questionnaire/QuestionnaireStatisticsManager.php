@@ -38,8 +38,8 @@ class QuestionnaireStatisticsManager {
             $questionnaire,
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
-            Gate::allows('moderate-results'),
-            Gate::allows('moderate-results'),
+            Gate::allows('moderate-content-by-users'),
+            Gate::allows('moderate-content-by-users'),
             $projectFilter
         );
     }

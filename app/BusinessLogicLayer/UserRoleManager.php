@@ -25,16 +25,11 @@ class UserRoleManager {
             return $this->userHasAdminRole($user);
         });
 
-        Gate::define('manage-crowd-sourcing-projects', function ($user) {
+        Gate::define('manage-platform-content', function ($user) {
             return $this->userHasAdminRole($user) || $this->userHasContentManagerRole($user);
         });
 
-        Gate::define('change-status-crowd-sourcing-projects', function ($user) {
-            return $this->userHasAdminRole($user);
-        });
-
-
-        Gate::define('moderate-results', function ($user) {
+        Gate::define('moderate-content-by-users', function ($user) {
             return $this->userHasAdminRole($user)
                 || $this->userHasContentManagerRole($user)
                 || $this->userHasModeratorRole($user);

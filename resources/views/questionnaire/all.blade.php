@@ -66,14 +66,14 @@
                                                 data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            @can("manage-crowd-sourcing-projects")
+                                            @can("manage-platform-content")
                                                 @if (!$viewModel->isQuestionnaireArchived($questionnaire))
                                                     <a class="action-btn dropdown-item"
                                                        href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
                                                                 class="far fa-edit"></i> Edit Questionnaire</a>
                                                 @endif
                                             @endcan
-                                            @can("manage-crowd-sourcing-projects")
+                                            @can("manage-platform-content")
                                                 <a class="action-btn dropdown-item"
                                                    href="{{route('questionnaire.statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
                                                             class="fas fa-palette"></i> Basic Statistics Colors</a>
@@ -113,7 +113,7 @@
                                                target="_blank"
                                                href="{{route('questionnaire.statistics', ['questionnaire' => $questionnaire->id])}}">
                                                 <i class="fas fa-chart-pie"></i> Statistics</a>
-                                            @can('change-status-crowd-sourcing-projects')
+                                            @can('manage-platform-content')
                                                 <hr>
                                                 <a class="action-btn dropdown-item change-status"
                                                    href="javascript:void(0)"

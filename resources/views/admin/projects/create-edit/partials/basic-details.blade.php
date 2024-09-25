@@ -25,14 +25,14 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="status_id">Project status</label>
-                            @if(!Gate::check('change-status-crowd-sourcing-projects'))
+                            @if(!Gate::check('manage-platform-content'))
                                 <small class="text-blue">(The project status can only be changed by a platform
                                     administrator.)</small>
                             @endif
                             <select id="status_id" class="form-control" name="status_id">
                                 @foreach ($viewModel->projectStatusesLkp as $status)
                                     <option
-                                            @if(!Gate::allows('change-status-crowd-sourcing-projects'))
+                                            @if(!Gate::allows('manage-platform-content'))
                                             disabled
                                             @endif
                                             @if ($viewModel->project->status_id == $status->id || old('status_id') == $status->id)
