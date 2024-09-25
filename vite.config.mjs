@@ -36,6 +36,7 @@ export default defineConfig({
 				"resources/assets/sass/questionnaire/reports.scss",
 				"resources/assets/sass/questionnaire/social-share.scss",
 				"resources/assets/sass/questionnaire/statistics.scss",
+				"resources/assets/sass/project/problem/landing-page.scss",
 				"resources/assets/js/common-backoffice.js",
 				"resources/assets/js/common.js",
 				"resources/assets/js/pages/manage-users.js",

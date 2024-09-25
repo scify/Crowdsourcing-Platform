@@ -15,10 +15,10 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
         $problems = [
             [
                 'id' => 1,
-                'project_id' => 1, 
-                'slug' => 'european-elections-problem-1', 
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED, 
-                'img_url' => 'https://placehold.co/601x401', 
+                'project_id' => 1,
+                'slug' => 'european-elections-problem-1',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => '/storage/uploads/project_problem_img/panda_square.jpg',
                 'default_language_id' => 6,
                 'translations' => [
                     [
@@ -35,10 +35,10 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
             ],
             [
                 'id' => 2,
-                'project_id' => 1, 
-                'slug' => 'european-elections-problem-2', 
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED, 
-                'img_url' => 'https://placehold.co/602x402', 
+                'project_id' => 1,
+                'slug' => 'european-elections-problem-2',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
+                'img_url' => '/storage/uploads/project_problem_img/panda_tall.jpg',
                 'default_language_id' => 6,
                 'translations' => [
                     [
@@ -55,10 +55,10 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
             ],
             [
                 'id' => 3,
-                'project_id' => 1, 
-                'slug' => 'european-elections-problem-3', 
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED, 
-                'img_url' => 'https://placehold.co/603x403', 
+                'project_id' => 1,
+                'slug' => 'european-elections-problem-3',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => '/storage/uploads/project_problem_img/panda_wide.jpg',
                 'default_language_id' => 12,
                 'translations' => [
                     [
@@ -70,10 +70,10 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
             ],
             [
                 'id' => 4,
-                'project_id' => 2, 
-                'slug' => 'european-democracy-problem-1', 
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED, 
-                'img_url' => 'https://placehold.co/604x405', 
+                'project_id' => 2,
+                'slug' => 'european-democracy-problem-1',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => '/storage/uploads/project_problem_img/giant-panda-eating_4x3.jpg',
                 'default_language_id' => 12,
                 'translations' => [
                     [
@@ -90,10 +90,10 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
             ],
             [
                 'id' => 5,
-                'project_id' => 2, 
-                'slug' => 'european-democracy-problem-2', 
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED, 
-                'img_url' => 'https://placehold.co/605x405', 
+                'project_id' => 2,
+                'slug' => 'european-democracy-problem-2',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
+                'img_url' => 'https://placehold.co/605x405',
                 'default_language_id' => 6,
                 'translations' => [
                     [

@@ -1,0 +1,221 @@
+@import "bootstrap_4point6_custom_xxl";
+
+// Supports weights 100-900
+@import '@fontsource-variable/noto-sans';
+
+// Supports weights 200-900
+@import '@fontsource-variable/nunito-sans';
+
+// bookmark - how/where to include fonts? google or from Anna? google url or stored on-server? licensing? no need for italics? variable font files or static?
+
+:root {
+    --clr-page-bg-clr-grey: #fdfffc;
+    --clr-primary-yellow: #f5ba16;
+    --primary-white: #fdfffc;
+    --primary-black: #000000 ;
+    --secondary-ochre: #b08307;
+    --clr-secondary-light-grey: #e8e9eb;
+    --clr-secondary-grey: #4d5359;
+}
+
+#app {
+    background-color: var(--clr-page-bg-clr-grey);
+}
+
+.project-problem-page {
+
+    #problems-overview {
+        margin-bottom: 3.25rem;
+    }
+
+    #problems-list {
+        background-image: url("/images/problems/bg-noise-sample.png");
+        background-repeat: repeat;
+    }
+
+    .project-title {
+        padding-left: 7px; // 7px // bookmark - calulate in rem
+        padding-right: 7px; // 7px // bookmark - calulate in rem
+        font-family: "Noto Sans Variable", sans-serif;
+        font-weight: 600;
+        font-size: 24px; // 24px // bookmark - calulate in rem
+        line-height: 32.69px; // 32.69px // bookmark - calculate in rem
+        text-align: left;
+    }
+
+    .project-overview {
+        padding-left: 7px; // 7px // bookmark - calulate in rem
+        padding-right: 7px; // 7px // bookmark - calulate in rem
+    }
+
+    .project-overview p {
+        font-family: "Nunito Sans Variable", sans-serif;
+        font-weight: 400;
+        font-size: 16px; // 16px // bookmark - calulate in rem
+        line-height: 21.82px; // 21.82px // bookmark - calulate in rem
+        text-align: left;
+    }
+
+    .go-back-link {
+        display: inline-block;
+    }
+    .go-back-link a {
+        display: inline-block;
+        border-radius: 0.2rem;
+        
+        &:focus-visible {
+            outline: 2px solid black;
+        }
+    }
+    .go-back-link a i {
+        font-size: 4rem;
+        vertical-align: middle;
+        padding-right: 0.3rem;
+    }
+    .go-back-link a span {
+        font-family: "Noto Sans Variable", sans-serif;
+        font-weight: 400;
+        font-size: 1.714rem; // 24px
+        line-height: 2.335rem; // 32.69px
+        text-align: left;
+        position: relative;
+        top: 0.3rem;
+        padding-right: 0.2rem;
+    }
+
+    section {
+        p, h1, h2 {
+            padding: unset;
+        }
+    }
+
+    #problems-list {
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 4px 0 #00000040;
+            
+            &:hover {
+                box-shadow: 0 4px 4px 0 #00000040, 0 4px 4px 0 #00000040;
+
+                img {
+                    // background-color: var(--clr-primary-yellow); // bookmark - implement this
+                }
+            }
+        }
+
+        a.card-link {
+            display: block;
+            border-radius: 1rem;
+
+            &:hover {
+                color: unset;
+            }
+
+            &:focus-visible {
+                border-radius: 1rem;
+                outline: 4px solid black; // bookmark - calculate in rem
+            }
+        }
+
+        .card-body {
+            background-color: var(--clr-secondary-light-grey);
+
+            .card-title {
+                font-family: "Noto Sans Variable", sans-serif;
+                font-weight: 500;
+                font-size: 24px; // 24px // bookmark - calulate in rem
+                line-height: 29.34px; // 29.34px // bookmark - calulate in rem
+            }
+            .card-text {
+                font-family: "Noto Sans Variable", sans-serif;
+                font-weight: 400;
+                font-size: 16px; // 16px // bookmark - calulate in rem
+                line-height: 20.4px; // 20.4px // bookmark - calulate in rem
+            }
+        }
+
+        button.share-circle-btn {
+            border: none;
+            padding: 0;
+            border-radius: 50%;
+            overflow: clip;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+
+            &:hover {
+                box-shadow: 0 4px 4px 0 #00000040;
+            }
+
+            &:focus-visible {
+                outline: 3px solid black; // bookmark - calculate in rem
+            }
+        }
+
+        button.cta-btn {
+            width: auto;
+            padding: 1.9rem 4.3rem;
+            background-color: var(--clr-primary-yellow);
+            border: none;
+            border-radius: 1.5rem; // 21px
+            box-shadow: 0 4px 4px 0 #00000040;
+            font-family: "Noto Sans Variable", sans-serif;
+            font-weight: 600;
+            font-size: 20px; // 20px // bookmark - calulate in rem
+            line-height: 27.24px; // 27.24px // bookmark - calulate in rem
+
+            &:hover {
+                box-shadow: 0 4px 4px 0 #00000040, 0 4px 4px 0 #00000040;
+            }
+
+            &:focus-visible {
+                outline: 4px solid black; // bookmark - calculate in rem
+            }
+        }
+
+    }
+
+}
+
+@media (max-width: 575.98px) {
+    #problems-list {
+        ul {
+            display: block;
+        }
+        li {
+            width: 22.8rem;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+
+    .project-problem-page {
+
+        #problems-overview {
+            margin-bottom: 7.5rem;
+        }
+    
+        .project-title {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 2.286rem; // 32px
+            line-height: 3.113rem; // 43.58px
+
+        }
+
+        .project-overview {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .project-overview p {
+            font-size: 1.429rem; // 20px
+            line-height: 1.949rem; // 27.28px
+        }
+
+    }
+
+}
