@@ -58,7 +58,7 @@
                         <th>Answered at</th>
                         <th>Related Project</th>
                         <th class="text-center">Response</th>
-                        @can("manage-crowd-sourcing-projects")
+                        @can("manage-platform-content")
                             <th class="text-center">Action</th>
                         @endcan
                     </tr>
@@ -92,7 +92,7 @@
                                 </div>
 
                             </td>
-                            @can("manage-crowd-sourcing-projects")
+                            @can("manage-platform-content")
                                 <td class="text-center">
                                     <button class="btn btn-outline-danger delete-response-btn"
                                             data-questionnaire-response-id="{{ $response->id }}">Delete

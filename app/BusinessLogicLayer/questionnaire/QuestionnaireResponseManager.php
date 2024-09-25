@@ -47,7 +47,7 @@ class QuestionnaireResponseManager {
     public function getQuestionnaireResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter): Collection {
         $queryFilters = ['questionnaire_id' => $questionnaire_id];
         // we only allow the responses to be filtered by project for logged in Answer Moderators
-        if ($projectFilter > 0 && Gate::allows('moderate-results')) {
+        if ($projectFilter > 0 && Gate::allows('moderate-content-by-users')) {
             $queryFilters['project_id'] = $projectFilter;
         }
 

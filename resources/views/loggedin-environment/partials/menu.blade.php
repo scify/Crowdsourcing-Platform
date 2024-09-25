@@ -1,12 +1,12 @@
 @include("loggedin-environment.partials.header-controls")
 
-@canany(['moderate-results'])
+@canany(['moderate-content-by-users'])
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <div class="sidebar">
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                    @can("manage-crowd-sourcing-projects")
+                    @can("manage-platform-content")
                         <li class="nav-header">CONTENT MANAGEMENT</li>
 
                         <li class="nav-item {{UrlMatchesMenuItem('projects')}}">
@@ -20,7 +20,7 @@
                                 <p>Create new Project</p></a>
                         </li>
                     @endcan
-                    @can("moderate-results")
+                    @can("moderate-content-by-users")
                         <li class="nav-item {{UrlMatchesMenuItem("questionnaires")}}">
                             <a class="nav-link" href="{{ route('questionnaires.all') }}"><i
                                         class="nav-icon fa fa-question-circle "></i>
