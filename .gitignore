@@ -28,3 +28,4 @@ public/*.html
 .phpunit.cache
 
 bootstrap/cache/*
+public/fonts/vendor
