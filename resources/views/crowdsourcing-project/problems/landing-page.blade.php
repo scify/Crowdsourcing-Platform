@@ -25,15 +25,17 @@
 
     </div>
 
-    <div class="fixed-bottom"> <!-- bookmark - for use only during development -->
-        <div class="alert alert-danger text-center font-weight-bold" style="top: -40px; width: 160px; margin: 0 auto; opacity: 0.25">
-            <div class="d-block d-sm-none">xs (default)</div>
-            <div class="d-none d-sm-block d-md-none">sm</div>
-            <div class="d-none d-md-block d-lg-none">md</div>
-            <div class="d-none d-lg-block d-xl-none">lg</div>
-            <div class="d-none d-xl-block d-custom_xxl-none">xl</div>
-            <div class="d-none d-custom_xxl-block">custom_xxl</div>
+    @if (App::environment('local'))
+        <div class="fixed-bottom"> <!-- bookmark - for use only during development -->
+            <div class="alert alert-danger text-center font-weight-bold" style="top: -40px; width: 160px; margin: 0 auto; opacity: 0.25">
+                <div class="d-block d-sm-none">xs (default)</div>
+                <div class="d-none d-sm-block d-md-none">sm</div>
+                <div class="d-none d-md-block d-lg-none">md</div>
+                <div class="d-none d-lg-block d-xl-none">lg</div>
+                <div class="d-none d-xl-block d-custom_xxl-none">xl</div>
+                <div class="d-none d-custom_xxl-block">custom_xxl</div>
+            </div>
         </div>
-    </div>
+    @endif
 
 @endsection

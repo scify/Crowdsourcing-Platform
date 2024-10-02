@@ -17,7 +17,7 @@ return new class extends Migration {
 
             $table->string('slug')->unique();
 
-            $table->string('img_url');
+            $table->string('img_url')->nullable();
 
             $table->unsignedInteger('default_language_id');
             $table->foreign('default_language_id')->references('id')->on('languages_lkp');

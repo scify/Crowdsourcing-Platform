@@ -41,7 +41,7 @@
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^4.4.3",
     "@fontsource-variable/noto-sans": "^5.1.0",
-    "@fontsource-variable/nunito-sans": "^5.1.0",
+    "@fontsource-variable/open-sans": "^5.1.0",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.8",
     "@sentry/browser": "^8.28.0",
