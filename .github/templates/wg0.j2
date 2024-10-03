@@ -1,0 +1,10 @@
+[Interface]
+Address = 10.10.0.19/32
+ListenPort = 48123
+PrivateKey = {{ WIREGUARD_PRIVATE_KEY }}
+
+[Peer]
+PublicKey = {{ VPN_SERVER_PUBLIC_KEY }}
+AllowedIPs = 10.10.0.0/24
+Endpoint = pegasus.scify.org:1194
+PersistentKeepalive = 25

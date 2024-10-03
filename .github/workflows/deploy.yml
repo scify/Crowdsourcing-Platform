@@ -1,0 +1,109 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+  push:
+
+    branches:
+
+      - staging_sec_data
+
+env:
+  PHP_VERSION: '8.2'
+  SERVER_HOSTNAME: 'staging.scify.org'
+  REMOTE_USER: 'project_crowdsourcing_sec_data'
+  PROJECT_URL: 'crowcrowdsourcing-ecas.staging.scify.org'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3.2.0
+      
+      - name: Install wireguard
+        run: sudo apt install wireguard
+
+      - name: Create wg0 file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: .github/templates/wg0.j2
+          output_file: wg0.conf
+          variables: |
+            WIREGUARD_PRIVATE_KEY=${{ secrets.WIREGUARD_PRIVATE_KEY }}
+            VPN_SERVER_PUBLIC_KEY=${{ secrets.VPN_SERVER_PUBLIC_KEY }}
+      
+      
+
+      - name: Move wg0.conf to /etc/wireguard
+        run: sudo mv wg0.conf /etc/wireguard/wg0.conf
+
+      - name: Start wireguard
+        run: sudo wg-quick up wg0
+
+      - name: Checkout repo
+        uses: actions/checkout@v3.2.0
+
+      - name: Add frodo to etc hosts
+        run: echo "10.10.0.100 frodo.scify.org" | sudo tee -a /etc/hosts
+
+      - name: read password from vault
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://frodo.scify.org:8200
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          method: userpass
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          secrets: |
+            Projects/crowdsourcing/scify-installation-together/staging_sec_data/database db_name | DB_NAME ;
+            Projects/crowdsourcing/scify-installation-together/staging_sec_data/database db_user | DB_USER ;
+            Projects/crowdsourcing/scify-installation-together/staging_sec_data/database password | DB_PASSWORD ;
+      
+    
+
+
+    - name: Create .env file
+      uses: cuchi/jinja2-action@v1.2.0
+      with:
+        template: .github/templates/.env.j2
+        output_file: .env
+        variables: |
+          DB_NAME=${{ secrets.DB_NAME }}
+          DB_USER=${{ secrets.DB_USER }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+  
+    
+    - name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: '.nvmrc'
+
+    - name: Install node dependencies
+      run: npm install
+
+    - name: Build assets
+      run: npm run build
+
+  
+    - name: SCP files to staging server
+      uses: easingthemes/ssh-deploy@v3.0.1
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING_SERVER }}
+          REMOTE_PORT: 222
+          SOURCE: "./"
+          REMOTE_HOST: ${{ env.SERVER_HOSTNAME }}
+          REMOTE_USER: ${{ env.REMOTE_USER }}
+          TARGET: "/home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}"
+
+
+    - name: Run composer install on remote server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ env.PRODUCTION_SERVER_HOSTNAME }}
+        username: ${{ env.REMOTE_USER }}
+        key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
+        script: |
+          cd /home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}
+          composer install --no-dev --no-interaction --no-progress --optimize-autoloader
