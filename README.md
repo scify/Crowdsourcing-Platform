@@ -563,6 +563,53 @@ that represents a directory name in the `resourcess/views/home/partials` directo
 the `resourcess/views/home/partials/together` directory. This directory must contain the partial blade files for the
 installation.
 
+## Development Guidelines
+
+### Directory Structure
+
+This part of the documentation describes the directory structure of the Laravel application.
+
+It is mostly scoped to the custom directories and files that are used in the application. For the general Laravel
+directory structure, please refer to the [official documentation](https://laravel.com/docs/11.x/structure).
+
+```text
+├── app                         # Laravel application directory
+│   ├── BusinessLogicLayer      # Business Logic Layer classes (services that contain the business logic and delegate from Controllers towards the Data Access Layer)  
+│   ├── Http/Controllers        # Controllers directory (classes that handle the HTTP requests, perform the necessary validations/operations and return the responses)
+│   ├── Http/Middleware         # Middleware directory (classes that handle the HTTP requests before they reach the Controllers)
+│   ├── Models                  # Models directory (ORM classes that represent the database tables and contain the relationships between them)
+│   ├── Notifications           # Notifications directory (classes that handle the notifications, like emails)
+│   ├── ViewModels              # View Models directory (classes that contain the data that will be passed to the views)
+│   ├── Repository              # Repository directory (classes that handle the database operations and contain the DB/ORM queries)
+│   resources                   # Resources directory (contains the views, assets, front-end files, and other resources)
+│   ├── views                   # Views directory (contains the blade files that are used to render the HTML)
+│   ├── assets                  # Assets directory (contains the front-end assets like CSS, JS, images, etc.)
+│       ├── js                  # JavaScript files (contains the Vue.js components and other JS files)
+│       ├── sass                # SASS files (contains the SASS files that are compiled to CSS)
+│   ├── lang                    # Language files (contains the language files for the translations)
+```
+
+### About the Repository Pattern
+
+The application uses the Repository Pattern to separate the business logic from the data access logic.
+
+All the database operations are handled by the Repository classes, which contain the DB/ORM queries.
+
+These classes are located in the `app/Repository` directory, and they all extend the `app/Repository/Repository` class.
+
+Each child class represents a database table/entity and contains the queries for that table. This entity is defined in
+the `app/Models` directory, and is referenced by the child Repository class, in the `getModelClassName` method.
+
+So, we can use the base methods that are defined in the `Repository` class, like `getAll`, `getById`, `create`,
+`update`, without having to write the same queries in each child class. We can also define custom queries in the child
+classes, or override the base methods if needed.
+
+The Repository classes are used by the Business Logic Layer classes, which contain the business logic and delegate from
+the Controllers towards the Data Access Layer.
+
+More information about the Repository Pattern can be
+found [here](https://designpatternsphp.readthedocs.io/en/latest/More/Repository/README.html).
+
 ## Run Tests
 
 You may use a separate MySQL database, for testing purposes.
