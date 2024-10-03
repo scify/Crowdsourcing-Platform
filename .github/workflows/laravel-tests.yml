@@ -23,7 +23,7 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
       - name: Copy .env
-        run: cp .env.testing.example .env.testing
+        run: cp .env.testing.example .env.testing && cp .env.testing .env
       - name: Generate key
         run: php artisan key:generate
       - name: Directory Permissions
