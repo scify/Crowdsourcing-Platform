@@ -99,6 +99,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ env.SERVER_HOSTNAME }}
+          port: 222
           username: ${{ env.REMOTE_USER }}
           key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
           script: |
