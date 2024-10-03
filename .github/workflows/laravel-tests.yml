@@ -20,6 +20,11 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
           coverage: none
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
       - name: Run composer install
         run: composer install -n --prefer-dist --no-ansi --no-progress --no-suggest --no-interaction --no-scripts
 
