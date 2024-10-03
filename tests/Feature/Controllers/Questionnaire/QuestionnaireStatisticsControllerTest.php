@@ -10,9 +10,14 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use App\Models\UserRole;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class QuestionnaireStatisticsControllerTest extends TestCase {
+    use RefreshDatabase;
+
+    protected $seed = true;
+
     /** @test */
     public function showStatisticsPageForQuestionnaireReturnsCorrectView() {
         $user = User::factory()->create();
