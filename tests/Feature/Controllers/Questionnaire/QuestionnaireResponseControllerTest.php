@@ -13,6 +13,8 @@ use Tests\TestCase;
 class QuestionnaireResponseControllerTest extends TestCase {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     /** @test */
     public function testStoreInvalidData() {
         $user = User::factory()->create();

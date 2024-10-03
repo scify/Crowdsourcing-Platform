@@ -5,12 +5,9 @@ namespace Tests\Feature\Controllers;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\User;
 use App\Models\UserRole;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
-    use RefreshDatabase;
-
     /** @test */
     public function myDashboardDisplaysDashboardForAuthenticated_user() {
         $user = User::factory()->create();
