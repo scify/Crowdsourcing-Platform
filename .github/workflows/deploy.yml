@@ -10,7 +10,7 @@ env:
   PHP_VERSION: '8.2'
   SERVER_HOSTNAME: 'staging.scify.org'
   REMOTE_USER: 'project_crowdsourcing_sec_data'
-  PROJECT_URL: 'crowcrowdsourcing-ecas.staging.scify.org'
+  PROJECT_URL: 'crowdsourcing-ecas.staging.scify.org'
 
 jobs:
   deploy:
