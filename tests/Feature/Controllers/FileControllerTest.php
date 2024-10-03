@@ -2,11 +2,16 @@
 
 namespace Tests\Feature\Controllers;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class FileControllerTest extends TestCase {
+    use RefreshDatabase;
+
+    protected $seed = true;
+
     /** @test */
     public function uploadFilesSuccessfullyUploadsFiles() {
         Storage::fake('s3');

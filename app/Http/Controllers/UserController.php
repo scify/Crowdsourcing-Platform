@@ -94,7 +94,7 @@ class UserController extends Controller {
         return view('loggedin-environment.my-history', ['responses' => $responses]);
     }
 
-    public function downloadUserData() {
+    public function downloadMyData() {
         $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename=file' . time() . '.csv',
