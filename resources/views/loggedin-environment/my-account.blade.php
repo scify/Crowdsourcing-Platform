@@ -92,7 +92,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="{{ route('downloadMyData') }}" data-widget="tooltip"
+                            <a href="{{ route('my-data.download') }}" data-widget="tooltip"
                                title="This includes all your responses to questionnaires" target="_blank"
                                class="btn btn-primary">{{ __("my-account.download_my_data") }}</a>
                         </div>

@@ -18,6 +18,8 @@ use Tests\TestCase;
 class QuestionnaireControllerTest extends TestCase {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     /**
      * @test
      */

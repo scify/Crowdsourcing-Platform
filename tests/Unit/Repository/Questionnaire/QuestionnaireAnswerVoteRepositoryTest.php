@@ -7,9 +7,14 @@ use App\Models\Questionnaire\QuestionnaireAnswerVote;
 use App\Models\User;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
+    use RefreshDatabase;
+
+    protected $seed = true;
+
     /** @test
      * @throws BindingResolutionException
      */
