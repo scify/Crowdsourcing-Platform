@@ -54,9 +54,9 @@ jobs:
           username: ${{ secrets.VAULT_USER }}
           password: ${{ secrets.VAULT_PASSWORD }}
           secrets: |
-            Projects/crowdsourcing/scify-installation-together/staging_sec_data/database db_name | DB_NAME ;
-            Projects/crowdsourcing/scify-installation-together/staging_sec_data/database db_user | DB_USER ;
-            Projects/crowdsourcing/scify-installation-together/staging_sec_data/database password | DB_PASSWORD ;
+            Projects/crowdsourcing/staging_sec_data/database db_name | DB_NAME ;
+            Projects/crowdsourcingstaging_sec_data/database db_user | DB_USER ;
+            Projects/crowdsourcing/staging_sec_data/database password | DB_PASSWORD ;
       
     
 
