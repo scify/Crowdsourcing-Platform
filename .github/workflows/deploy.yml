@@ -98,7 +98,7 @@ jobs:
       - name: Run composer install on remote server
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ env.PRODUCTION_SERVER_HOSTNAME }}
+          host: ${{ env.SERVER_HOSTNAME }}
           username: ${{ env.REMOTE_USER }}
           key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
           script: |
