@@ -3,9 +3,7 @@ name: Deploy to Production
 on:
   workflow_dispatch:
   push:
-
     branches:
-
       - staging_sec_data
 
 env:
@@ -18,7 +16,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout repo
         uses: actions/checkout@v3.2.0
       
@@ -64,46 +61,46 @@ jobs:
     
 
 
-    - name: Create .env file
-      uses: cuchi/jinja2-action@v1.2.0
-      with:
-        template: .github/templates/.env.j2
-        output_file: .env
-        variables: |
-          DB_NAME=${{ secrets.DB_NAME }}
-          DB_USER=${{ secrets.DB_USER }}
-          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-  
+      - name: Create .env file
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: .github/templates/.env.j2
+          output_file: .env
+          variables: |
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
     
-    - name: Setup node
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: '.nvmrc'
+      
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
 
-    - name: Install node dependencies
-      run: npm install
+      - name: Install node dependencies
+        run: npm install
 
-    - name: Build assets
-      run: npm run build
+      - name: Build assets
+        run: npm run build
 
-  
-    - name: SCP files to staging server
-      uses: easingthemes/ssh-deploy@v3.0.1
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING_SERVER }}
-          REMOTE_PORT: 222
-          SOURCE: "./"
-          REMOTE_HOST: ${{ env.SERVER_HOSTNAME }}
-          REMOTE_USER: ${{ env.REMOTE_USER }}
-          TARGET: "/home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}"
+    
+      - name: SCP files to staging server
+        uses: easingthemes/ssh-deploy@v3.0.1
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING_SERVER }}
+            REMOTE_PORT: 222
+            SOURCE: "./"
+            REMOTE_HOST: ${{ env.SERVER_HOSTNAME }}
+            REMOTE_USER: ${{ env.REMOTE_USER }}
+            TARGET: "/home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}"
 
 
-    - name: Run composer install on remote server
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ env.PRODUCTION_SERVER_HOSTNAME }}
-        username: ${{ env.REMOTE_USER }}
-        key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
-        script: |
-          cd /home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}
-          composer install --no-dev --no-interaction --no-progress --optimize-autoloader
+      - name: Run composer install on remote server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ env.PRODUCTION_SERVER_HOSTNAME }}
+          username: ${{ env.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
+          script: |
+            cd /home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}
+            composer install --no-dev --no-interaction --no-progress --optimize-autoloader
