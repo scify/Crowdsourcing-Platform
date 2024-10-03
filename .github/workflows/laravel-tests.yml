@@ -21,7 +21,7 @@ jobs:
           coverage: none
 
       - name: Run composer install
-        run: composer install -n --prefer-dist
+        run: composer install -n --prefer-dist --no-ansi --no-progress --no-suggest --no-interaction --no-scripts
       - name: Copy .env
         run: cp .env.testing.example .env.testing && cp .env.testing .env
       - name: Generate key
