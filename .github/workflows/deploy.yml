@@ -103,5 +103,6 @@ jobs:
           username: ${{ env.REMOTE_USER }}
           key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
           script: |
+            source /home/${{ env.REMOTE_USER }}/.profile
             cd /home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}
             composer install --no-dev --no-interaction --no-progress --optimize-autoloader
