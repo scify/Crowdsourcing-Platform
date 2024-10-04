@@ -68,11 +68,10 @@
                                     {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
                                     @if ($viewModel->displayFeedbackQuestionnaire())
                                         <div class="col-md-9 col-sm-12 mx-auto mt-5">
-                                            @include("crowdsourcing-project.partials.open-feedback-questionnaire-button",
-                                                        [
-                                                            "css_class"=> "btn btn-primary w-100 call-to-action ",
-                                                            "label"=>  __("questionnaire.give_us_feedback")
-                                                        ])
+                                            <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->feedbackQuestionnaire->id]) }}"
+                                               class="btn btn-primary w-100 respond-questionnaire call-to-action">
+                                                {{__("questionnaire.give_us_feedback")}}
+                                            </a>
                                         </div>
                                     @else
                                         <div class="col-lg-7 col-md-9 col-sm-12 mx-auto ">
