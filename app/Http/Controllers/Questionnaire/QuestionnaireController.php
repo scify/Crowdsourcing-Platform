@@ -25,11 +25,11 @@ class QuestionnaireController extends Controller {
     protected QuestionnaireTranslator $questionnaireTranslator;
     protected QuestionnaireLanguageManager $questionnaireLanguageManager;
 
-    public function __construct(QuestionnaireManager          $questionnaireManager,
-                                UserQuestionnaireShareManager $questionnaireShareManager,
-                                QuestionnaireVMProvider       $questionnaireVMProvider,
-                                QuestionnaireTranslator       $questionnaireTranslator,
-                                QuestionnaireLanguageManager  $questionnaireLanguageManager) {
+    public function __construct(QuestionnaireManager $questionnaireManager,
+        UserQuestionnaireShareManager $questionnaireShareManager,
+        QuestionnaireVMProvider $questionnaireVMProvider,
+        QuestionnaireTranslator $questionnaireTranslator,
+        QuestionnaireLanguageManager $questionnaireLanguageManager) {
         $this->questionnaireManager = $questionnaireManager;
         $this->questionnaireShareManager = $questionnaireShareManager;
         $this->questionnaireVMProvider = $questionnaireVMProvider;
@@ -60,8 +60,9 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
-        if (!isset($data['status_id']))
+        if (!isset($data['status_id'])) {
             $data['status_id'] = QuestionnaireStatusLkp::DRAFT;
+        }
 
         $this->validate($request, [
             'type_id' => 'required|integer',
@@ -74,8 +75,9 @@ class QuestionnaireController extends Controller {
             'project_ids' => 'required|array',
         ]);
         $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data);
-        if (isset($data['lang_codes']) && count($data['lang_codes']) > 0)
+        if (isset($data['lang_codes']) && count($data['lang_codes']) > 0) {
             $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        }
 
         return $questionnaire;
     }
