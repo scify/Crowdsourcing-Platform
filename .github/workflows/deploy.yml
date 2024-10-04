@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Deploy to Secondary Staging Server
 
 on:
   workflow_dispatch:
@@ -57,6 +57,9 @@ jobs:
             Projects/data/crowdsourcing/staging_sec_data/database db_name | DB_NAME ;
             Projects/data/crowdsourcing/staging_sec_data/database db_user | DB_USER ;
             Projects/data/crowdsourcing/staging_sec_data/database password | DB_PASSWORD ;
+            Projects/data/crowdsourcing/staging_sec_data/google_client_secrets google_client_id | GOOGLE_CLIENT_ID ;
+            Projects/data/crowdsourcing/production/email/laravel_mailgun_env_variables MAILGUN_SECRET | MAILGUN_SECRET ;
+
       
     
 
@@ -71,6 +74,29 @@ jobs:
             DB_USER=${{ env.DB_USER }}
             DB_PASSWORD=${{ env.DB_PASSWORD }}
             LARAVEL_STAGING_SEC_DATA_APP_KEY=${{ secrets.LARAVEL_STAGING_SEC_DATA_APP_KEY }}
+            PROJECT_URL=${{ env.PROJECT_URL }}
+            MAILGUN_SECRET=${{ env.MAILGUN_SECRET }}
+            PERSONAL_CLIENT_ID=${{ secrets.PERSONAL_CLIENT_ID }}
+            PERSONAL_CLIENT_SECRET=${{ secrets.PERSONAL_CLIENT_SECRET }}
+            FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }}
+            FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }}
+            TWITTER_CLIENT_ID=${{ secrets.TWITTER_CLIENT_ID }}
+            TWITTER_CLIENT_SECRET=${{ secrets.TWITTER_CLIENT_SECRET }}
+            GOOGLE_CLIENT_ID=${{ env.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+            MICROSOFT_CLIENT_ID=${{ secrets.MICROSOFT_CLIENT_ID }}
+            MICROSOFT_CLIENT_SECRET=${{ secrets.MICROSOFT_CLIENT_SECRET }}
+            LINKEDIN_CLIENT_ID=${{ secrets.LINKEDIN_CLIENT_ID }}
+            LINKEDIN_CLIENT_SECRET=${{ secrets.LINKEDIN_CLIENT_SECRET }}
+            DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED=${{ secrets.DEFAULT_ADMIN_USER_PASSWORD_FOR_SEED }}
+            GOOGLE_TRANSLATE_KEY=${{ secrets.GOOGLE_TRANSLATE_KEY }}
+            MAILCHIMP_API_KEY=${{ secrets.MAILCHIMP_API_KEY }}
+            SENTRY_LARAVEL_DSN=${{ secrets.SENTRY_LARAVEL_DSN }}
+            API_AUTH_TOKEN=${{ secrets.API_AUTH_TOKEN }}
+            USERWAY_ID=${{ secrets.USERWAY_ID }}
+            AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     
       
       - name: Setup node
