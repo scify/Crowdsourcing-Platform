@@ -18,7 +18,7 @@
             </li>
         @endif
         <li class="nav-item dropdown user user-menu">
-            <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a class="nav-link py-0" href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if (Auth::user()->avatar)
                     <img loading="lazy" src="{{ Auth::user()->avatar}}" class="user-image">
                 @endif

@@ -17,18 +17,15 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        @if(isset($viewModel->project))
-            <div class="collapse navbar-collapse pull-right" id="top-menu-content">
-                <ul class="nav navbar"
-                <div class=" collapse navbar-collapse pull-right
-                " id="top-menu-content">
-                    <ul class="nav navbar-nav ml-auto">
-                        @if(!isset($onErrorPage))
-                            @include("partials.login-menu-options")
-                        @endif
-                        @include('partials.content-languages', ['languages' => $viewModel->project->languages])
-                    </ul>
-                </div>
-        @endif
+        <div class="collapse navbar-collapse pull-right" id="top-menu-content">
+            <ul class="nav navbar-nav ml-auto">
+                @if(!isset($onErrorPage))
+                    @include("partials.login-menu-options")
+                @endif
+                @if(isset($viewModel->project))
+                    @include('partials.content-languages', ['languages' => $viewModel->project->languages])
+                @endif
+            </ul>
+        </div>
     </nav>
 </div>
