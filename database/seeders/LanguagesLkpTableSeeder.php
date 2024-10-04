@@ -182,8 +182,9 @@ class LanguagesLkpTableSeeder extends Seeder {
                 'available_for_platform_translation' => false,
             ],
         ];
+        $index = 1;
         foreach ($languages as $languageObj) {
-            $this->languagesRepository->updateOrCreate(['language_code' => $languageObj['code']],
+            $this->languagesRepository->updateOrCreate(['id' => $index++],
                 [
                     'language_code' => $languageObj['code'],
                     'language_name' => $languageObj['name'],
