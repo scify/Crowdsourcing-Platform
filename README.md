@@ -620,9 +620,15 @@ Then, run the `migrate` and `seed` commands for the testing Database:
 ```bash
 cp .env.testing.example .env.testing
 
-php artisan migrate --env=testing
+php artisan migrate --env=testing --database=sqlite_testing
 
-php artisan db:seed --env=testing --class=DatabaseSeeder
+php artisan db:seed --env=testing --database=sqlite_testing --class=DatabaseSeeder
+```
+
+Then, you can run the tests:
+
+```bash
+php artisan test
 ```
 
 ## How to debug

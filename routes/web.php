@@ -97,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/user/deactivate', [UserController::class, 'deactivateLoggedInUser'])->name('deactivateUser');
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
     Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download');
+    Route::get('/user/my-data/download', [UserController::class, 'downloadMyData'])->name('my-data.download');
 });
 
 Route::group($localeInfo, function () {

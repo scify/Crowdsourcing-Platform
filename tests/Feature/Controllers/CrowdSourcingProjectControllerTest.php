@@ -16,6 +16,7 @@ use Tests\TestCase;
 class CrowdSourcingProjectControllerTest extends TestCase {
     use RefreshDatabase;
 
+    protected $seed = true;
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
 
     protected function setUp(): void {
