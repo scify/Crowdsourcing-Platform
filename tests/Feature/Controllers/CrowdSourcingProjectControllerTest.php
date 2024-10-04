@@ -11,13 +11,9 @@ use App\Models\User;
 use App\Models\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CrowdSourcingProjectControllerTest extends TestCase {
-    use RefreshDatabase;
-
-    protected $seed = true;
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
 
     protected function setUp(): void {
@@ -299,9 +295,9 @@ class CrowdSourcingProjectControllerTest extends TestCase {
     /**
      * @test
      */
-    public function authenticatedUserCannotStoreProject() {
+    public function nonAdminUserCannotStoreProject() {
         $user = User::factory()->create();
-        $this->actingAs($user);
+        $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
             ->post(route('projects.store'), [
