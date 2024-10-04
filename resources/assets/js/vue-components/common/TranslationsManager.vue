@@ -11,11 +11,10 @@
 
 				<div
 					v-for="language in availableLanguages"
-					v-if="language?.id !== defaultLangId"
 					:key="'avail_lang_' + language.id"
 					class="float-left mr-2 lang"
 				>
-					<label>
+					<label v-if="language?.id !== defaultLangId">
 						<input
 							v-model="checkedLanguages"
 							type="checkbox"
@@ -64,31 +63,31 @@
 					>
 						<table class="table table-striped">
 							<thead>
-								<tr>
-									<th scope="col">Field</th>
-									<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
-									<th scope="col">
-										Translation in
-										{{ getLanguageName(translation.language_id) }}
-									</th>
-								</tr>
+							<tr>
+								<th scope="col">Field</th>
+								<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
+								<th scope="col">
+									Translation in
+									{{ getLanguageName(translation.language_id) }}
+								</th>
+							</tr>
 							</thead>
 							<tbody>
-								<tr
-									v-for="(value, property) in translation"
-									v-if="modelMetaData[property]"
-									:key="'translation_row_' + property"
-								>
-									<td class="field">
-										{{ getDisplayTitleForProperty(property) }}
-									</td>
-									<td class="original-translation">
-										{{ originalTranslation[property] }}
-									</td>
-									<td>
-										<textarea v-model="translation[property]"></textarea>
-									</td>
-								</tr>
+							<tr
+								v-for="(value, property) in translation"
+								v-if="modelMetaData[property]"
+								:key="'translation_row_' + property"
+							>
+								<td class="field">
+									{{ getDisplayTitleForProperty(property) }}
+								</td>
+								<td class="original-translation">
+									{{ originalTranslation[property] }}
+								</td>
+								<td>
+									<textarea v-model="translation[property]"></textarea>
+								</td>
+							</tr>
 							</tbody>
 						</table>
 					</div>
