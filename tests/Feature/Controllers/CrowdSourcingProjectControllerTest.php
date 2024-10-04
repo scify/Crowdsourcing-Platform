@@ -5,6 +5,7 @@ namespace Tests\Feature\Controllers;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\User;
 use App\Models\UserRole;
@@ -282,13 +283,14 @@ class CrowdSourcingProjectControllerTest extends TestCase {
      * @test
      */
     public function guestCannotStoreProject() {
-        $response = $this->post(route('projects.store'), [
-            'name' => 'Test Project',
-            'description' => 'Test Description',
-            'status_id' => 1,
-            'slug' => 'test-project',
-            'language_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('projects.store'), [
+                'name' => 'Test Project',
+                'description' => 'Test Description',
+                'status_id' => 1,
+                'slug' => 'test-project',
+                'language_id' => 1,
+            ]);
 
         $response->assertStatus(302);
         $response->assertRedirect(route('login', ['locale' => 'en']));
@@ -298,16 +300,17 @@ class CrowdSourcingProjectControllerTest extends TestCase {
      * @test
      */
     public function authenticatedUserCannotStoreProject() {
-        $user = User::factory()->make();
-        $this->be($user);
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-        $response = $this->post(route('projects.store'), [
-            'name' => 'Test Project',
-            'description' => 'Test Description',
-            'status_id' => 1,
-            'slug' => 'test-project',
-            'language_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
+            ->post(route('projects.store'), [
+                'name' => 'Test Project',
+                'description' => 'Test Description',
+                'status_id' => 1,
+                'slug' => 'test-project',
+                'language_id' => 1,
+            ]);
 
         $response->assertStatus(403);
     }
@@ -323,17 +326,18 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $faker = Faker::create();
 
-        $response = $this->post(route('projects.store'), [
-            'name' => 'Valid Project',
-            'description' => 'Valid Description',
-            'status_id' => 1,
-            'slug' => 'valid-project',
-            'language_id' => 1,
-            'color_ids' => [1],
-            'color_names' => [$faker->name],
-            'color_codes' => [$faker->hexColor],
-            'motto_subtitle' => $faker->text,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('projects.store'), [
+                'name' => 'Valid Project',
+                'description' => 'Valid Description',
+                'status_id' => 1,
+                'slug' => 'valid-project',
+                'language_id' => 1,
+                'color_ids' => [1],
+                'color_names' => [$faker->name],
+                'color_codes' => [$faker->hexColor],
+                'motto_subtitle' => $faker->text,
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'The project has been successfully created');
@@ -357,7 +361,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $project = CrowdSourcingProject::factory()->create();
 
-        $response = $this->post(route('projects.store'), [
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->post(route('projects.store'), [
             'name' => $project->defaultTranslation->name,
             'description' => $project->defaultTranslation->description,
             'status_id' => $project->status_id,
@@ -378,7 +382,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->post(route('projects.store'), [
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->post(route('projects.store'), [
             'name' => '',
             'description' => '',
             'status_id' => 'invalid',
@@ -396,7 +400,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
     public function guestCannotUpdateProject() {
         $project = CrowdSourcingProject::factory()->create();
 
-        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
             'name' => 'Updated Project',
             'description' => 'Updated Description',
             'status_id' => 1,
@@ -417,7 +421,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $project = CrowdSourcingProject::factory()->create();
 
-        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
             'name' => 'Updated Project',
             'description' => 'Updated Description',
             'status_id' => 1,
@@ -439,7 +443,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $project = CrowdSourcingProject::factory()->create();
         $faker = Faker::create();
-        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
             'name' => 'Updated Project',
             'description' => 'Updated Description',
             'status_id' => 1,
@@ -475,7 +479,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $project = CrowdSourcingProject::factory()->create();
 
-        $response = $this->put(route('projects.update', ['project' => $project->id]), [
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
             'name' => '',
             'description' => '',
             'status_id' => 'invalid',
