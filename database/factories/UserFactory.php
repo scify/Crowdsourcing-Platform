@@ -15,7 +15,6 @@ class UserFactory extends Factory {
      */
     public function definition() {
         return [
-            'id' => $this->faker->unique()->numberBetween(1, 10000),
             'nickname' => $this->faker->name,
             'avatar' => $this->faker->imageUrl(),
             'email' => $this->faker->unique()->safeEmail,
