@@ -34,7 +34,7 @@
                             @endforeach
                         </div>
                     </div>
-                @else
+                @elseif($nextStepVM->projects->count() == 1)
                     <a href="{{route("project.landing-page", $questionnaire->projects->get(0)->slug) . "?open=1"}}"
                        class="btn btn-primary btn-lg nextStepActionBtn">{{ __("badges_messages.contribute") }}</a>
                 @endif
