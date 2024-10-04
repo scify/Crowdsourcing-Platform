@@ -4,7 +4,6 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
-use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -67,28 +66,12 @@ class CrowdSourcingProjectManager {
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus();
-        $projectsWithFinalizedQuestionnaires = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus([], QuestionnaireStatusLkp::FINALIZED);
-        // for each project in the finalized ones,
-        // if it does not exist in the collection of the projects with active questionnaires,
-        // add it there.
-        foreach ($projectsWithFinalizedQuestionnaires as $project) {
-            if (!$projects->contains('id', $project->id)) {
-                $projects->push($project);
+
+        foreach ($projects as $project) {
+            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+            if ($project->questionnaires->count() > 0) {
+                $project->latestQuestionnaire = $project->questionnaires->last();
             }
-        }
-
-        foreach ($projects as $project) {
-            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
-            $project->latestQuestionnaire = $project->questionnaires->last();
-        }
-
-        return $projects;
-    }
-
-    public function getPastCrowdSourcingProjectsForHomePage(): Collection {
-        $projects = $this->crowdSourcingProjectRepository->getPastProjects();
-        foreach ($projects as $project) {
-            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
         }
 
         return $projects;

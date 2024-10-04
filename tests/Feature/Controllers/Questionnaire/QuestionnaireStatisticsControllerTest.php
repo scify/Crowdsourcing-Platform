@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
@@ -63,11 +64,12 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $this->be($user);
 
         $questionnaire = Questionnaire::factory()->create();
-        $response = $this->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
-            'goal_responses_color' => '#FFFFFF',
-            'actual_responses_color' => '#000000',
-            'total_responses_color' => '#111111',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+                'goal_responses_color' => '#FFFFFF',
+                'actual_responses_color' => '#000000',
+                'total_responses_color' => '#111111',
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'Colors saved!');
@@ -81,15 +83,16 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $this->be($user);
 
         $questionnaire = Questionnaire::factory()->create();
-        $response = $this->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
-            'goal_responses_color' => '#FFFFFF',
-            'actual_responses_color' => '#000000',
-            'total_responses_color' => '#111111',
-            'lang_colors' => [
-                '1' => '#000000',
-                '2' => '#111111',
-            ],
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+                'goal_responses_color' => '#FFFFFF',
+                'actual_responses_color' => '#000000',
+                'total_responses_color' => '#111111',
+                'lang_colors' => [
+                    '1' => '#000000',
+                    '2' => '#111111',
+                ],
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'Colors saved!');
@@ -103,10 +106,11 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $this->be($user);
 
         $questionnaire = Questionnaire::factory()->create();
-        $response = $this->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
-            'color1' => '#FFFFFF',
-            'color2' => '#000000',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+                'color1' => '#FFFFFF',
+                'color2' => '#000000',
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_failure', 'Error: 0  Undefined array key "goal_responses_color"');
@@ -124,10 +128,11 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
             $mock->shouldReceive('saveStatisticsColors')->andThrow(new \Exception('Test Exception', 123));
         });
 
-        $response = $this->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
-            'color1' => '#FFFFFF',
-            'color2' => '#000000',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+                'color1' => '#FFFFFF',
+                'color2' => '#000000',
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_failure', 'Error: 123  Test Exception');
