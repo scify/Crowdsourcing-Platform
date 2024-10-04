@@ -6,9 +6,15 @@ use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\User;
 use App\Models\UserRole;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
+
+    use RefreshDatabase;
+
+    protected $seed = true;
+
     /** @test */
     public function myDashboardDisplaysDashboardForAuthenticated_user() {
         $user = User::factory()->create();
