@@ -78,6 +78,7 @@ jobs:
             MAILGUN_SECRET=${{ env.MAILGUN_SECRET }}
             PERSONAL_CLIENT_ID=${{ secrets.PERSONAL_CLIENT_ID }}
             PERSONAL_CLIENT_SECRET=${{ secrets.PERSONAL_CLIENT_SECRET }}
+            PASSWORD_CLIENT_SECRET=${{ secrets.PASSWORD_CLIENT_SECRET }}
             FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }}
             FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }}
             TWITTER_CLIENT_ID=${{ secrets.TWITTER_CLIENT_ID }}
