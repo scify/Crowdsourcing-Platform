@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\UserManager;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
@@ -20,11 +21,12 @@ class QuestionnaireResponseControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this->postJson(route('questionnaire-responses.store'), [
-            'browser_fingerprint_id' => '',
-            'questionnaire_id' => 'invalid',
-            'project_id' => 'invalid',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson(route('questionnaire-responses.store'), [
+                'browser_fingerprint_id' => '',
+                'questionnaire_id' => 'invalid',
+                'project_id' => 'invalid',
+            ]);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['browser_fingerprint_id', 'questionnaire_id', 'project_id']);
@@ -34,21 +36,22 @@ class QuestionnaireResponseControllerTest extends TestCase {
     public function testStoreWithoutAuthenticationForNonModerator() {
         $questionnaire = Questionnaire::factory()->create();
 
-        $response = $this->postJson(route('questionnaire-responses.store'), [
-            'browser_fingerprint_id' => 'test_fingerprint',
-            'questionnaire_id' => $questionnaire->id,
-            'project_id' => 1,
-            'lang' => 'en',
-            'moderator' => false,
-            'response' => json_encode([
-                'question1' => 5,
-                'question5' => 'item1',
-                'question4' => [
-                    'item1' => 'answer1',
-                    'item2' => 'answer2',
-                ],
-            ]),
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson(route('questionnaire-responses.store'), [
+                'browser_fingerprint_id' => 'test_fingerprint',
+                'questionnaire_id' => $questionnaire->id,
+                'project_id' => 1,
+                'lang' => 'en',
+                'moderator' => false,
+                'response' => json_encode([
+                    'question1' => 5,
+                    'question5' => 'item1',
+                    'question4' => [
+                        'item1' => 'answer1',
+                        'item2' => 'answer2',
+                    ],
+                ]),
+            ]);
 
         // since in case of non-logged in user we create an anonymous user, the user that responded is the
         // latest user inserted in the Database.
@@ -90,7 +93,8 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ];
 
         // Send POST request to store endpoint
-        $response = $this->post(route('questionnaire-responses.store'), $requestData);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire-responses.store'), $requestData);
 
         // Assert response status
         $response->assertStatus(200);
@@ -130,7 +134,8 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ];
 
         // Send POST request to store endpoint
-        $response = $this->post(route('questionnaire-responses.store'), $requestData);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire-responses.store'), $requestData);
 
         // Assert response status
         $response->assertStatus(200);
@@ -193,7 +198,8 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ];
 
         // Send POST request to voteAnswer endpoint
-        $response = $this->post(route('questionnaire.answer-votes.store'), $requestData);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire.answer-votes.store'), $requestData);
 
         // Assert response status
         $response->assertStatus(200);
@@ -227,7 +233,8 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ];
 
         // Send POST request to voteAnswer endpoint
-        $response = $this->post(route('questionnaire.answer-votes.store'), $requestData);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('questionnaire.answer-votes.store'), $requestData);
 
         // Assert response status
         $response->assertStatus(200);

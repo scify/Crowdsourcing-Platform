@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -20,11 +21,12 @@ class FileControllerTest extends TestCase {
             UploadedFile::fake()->image('photo2.jpg'),
         ];
 
-        $response = $this->postJson('/files/upload', [
-            'files' => $files,
-            'project_id' => 1,
-            'questionnaire_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson('/files/upload', [
+                'files' => $files,
+                'project_id' => 1,
+                'questionnaire_id' => 1,
+            ]);
 
         $response->assertStatus(200);
         $response->assertJsonCount(2);
@@ -42,11 +44,12 @@ class FileControllerTest extends TestCase {
             UploadedFile::fake()->create('document.txt', 100),
         ];
 
-        $response = $this->postJson('/files/upload', [
-            'files' => $files,
-            'project_id' => 1,
-            'questionnaire_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson('/files/upload', [
+                'files' => $files,
+                'project_id' => 1,
+                'questionnaire_id' => 1,
+            ]);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['files.0']);
@@ -57,11 +60,12 @@ class FileControllerTest extends TestCase {
         Storage::fake('s3');
         $files = array_fill(0, 9, UploadedFile::fake()->image('photo.jpg'));
 
-        $response = $this->postJson('/files/upload', [
-            'files' => $files,
-            'project_id' => 1,
-            'questionnaire_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson('/files/upload', [
+                'files' => $files,
+                'project_id' => 1,
+                'questionnaire_id' => 1,
+            ]);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['files']);
@@ -74,10 +78,11 @@ class FileControllerTest extends TestCase {
             UploadedFile::fake()->image('photo.jpg'),
         ];
 
-        $response = $this->postJson('/files/upload', [
-            'files' => $files,
-            'questionnaire_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson('/files/upload', [
+                'files' => $files,
+                'questionnaire_id' => 1,
+            ]);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['project_id']);
@@ -90,10 +95,11 @@ class FileControllerTest extends TestCase {
             UploadedFile::fake()->image('photo.jpg'),
         ];
 
-        $response = $this->postJson('/files/upload', [
-            'files' => $files,
-            'project_id' => 1,
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->postJson('/files/upload', [
+                'files' => $files,
+                'project_id' => 1,
+            ]);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['questionnaire_id']);
