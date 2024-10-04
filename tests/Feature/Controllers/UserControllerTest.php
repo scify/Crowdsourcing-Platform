@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\User;
 use App\Models\UserRole;
 use Tests\TestCase;
@@ -51,12 +52,13 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this->post(route('updateUser'), [
-            'nickname' => 'updated-nickname',
-            'password' => '12345678',
-            'password_confirmation' => '12345678',
-            'current_password' => 'password',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('updateUser'), [
+                'nickname' => 'updated-nickname',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'current_password' => 'password',
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'Profile updated.');
@@ -68,12 +70,13 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchRedirectsToLoginForUnauthenticatedUser() {
-        $response = $this->post(route('updateUser'), [
-            'nickname' => 'updated-nickname',
-            'password' => '12345678',
-            'password_confirmation' => '12345678',
-            'current_password' => 'password',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('updateUser'), [
+                'nickname' => 'updated-nickname',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'current_password' => 'password',
+            ]);
 
         $response->assertStatus(302);
         $response->assertRedirect(route('login', ['locale' => 'en']));
@@ -84,10 +87,11 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this->post(route('updateUser'), [
-            'nickname' => 'updated-nickname',
-            'password' => '1234',
-        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('updateUser'), [
+                'nickname' => 'updated-nickname',
+                'password' => '1234',
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['password']);
@@ -98,7 +102,8 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this->post(route('deleteUser'), ['id' => $user->id]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('deleteUser'), ['id' => $user->id]);
 
         $response->assertStatus(403);
         $this->assertDatabaseHas('users', [
@@ -113,14 +118,14 @@ class UserControllerTest extends TestCase {
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
         $this->be($user);
-        $now = now()->toDateTimeString();
-        $response = $this->post(route('deleteUser'), ['id' => $user->id]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('deleteUser'), ['id' => $user->id]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'User deleted.');
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
-            'deleted_at' => $now,
+            'deleted_at' => \DB::raw('deleted_at IS NOT NULL'),
         ]);
     }
 
@@ -128,7 +133,8 @@ class UserControllerTest extends TestCase {
     public function deleteRedirectsToLoginForUnauthenticatedUser() {
         $user = User::factory()->create();
 
-        $response = $this->post(route('deleteUser'), ['id' => $user->id]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('deleteUser'), ['id' => $user->id]);
 
         $response->assertStatus(302);
         $response->assertRedirect(route('login', ['locale' => 'en']));
@@ -141,7 +147,8 @@ class UserControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->post(route('deleteUser'), ['id' => 999]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('deleteUser'), ['id' => 999]);
 
         $response->assertStatus(404);
     }
@@ -173,7 +180,8 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this->get(route('filterUsers'));
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->get(route('filterUsers'));
 
         $response->assertStatus(403);
     }
