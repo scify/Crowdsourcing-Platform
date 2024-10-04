@@ -580,6 +580,7 @@ export default defineComponent({
 		},
 		async saveQuestionnaire() {
 			let locales = this.surveyCreator.translationValue.getSelectedLocales();
+			console.log(locales);
 			if (locales[0] === "") {
 				locales = [];
 			}
