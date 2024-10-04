@@ -305,10 +305,10 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
             ->post(route('projects.store'), [
-                'name' => 'Test Project',
+                'name' => 'Test Project ' . rand(1, 100),
                 'description' => 'Test Description',
                 'status_id' => 1,
-                'slug' => 'test-project',
+                'slug' => 'test-project-' . rand(1, 100),
                 'language_id' => 1,
             ]);
 
