@@ -2,9 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemSolutionStatusLkp;
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
+use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
+use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
+use App\Models\CrowdSourcingProject\Problem\Solution\CrowdSourcingProjectProblemSolution;
+use App\Models\CrowdSourcingProject\Problem\Solution\CrowdSourcingProjectProblemSolutionTranslation;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
 use App\Utils\Helpers;
@@ -92,6 +98,224 @@ class AirQualityProjectSeeder extends Seeder {
             if (app()->environment() !== 'testing') {
                 echo "\nAdded Project Translation: " . $project_translation['name'] . ' with lang id: ' . $project_translation['language_id'] . "\n";
             }
+        }
+
+        // call the CrowdSourcingProjectProblemStatusLkpSeeder
+        $this->call(CrowdSourcingProjectProblemStatusLkpSeeder::class);
+        $this->call(CrowdSourcingProjectProblemSolutionStatusLkpSeeder::class);
+
+        $problems = [
+            [
+                'project_id' => 4,
+                'slug' => 'air-quality-europe-problem-1',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => '/images/projects/air-quality-europe/problem-1.png',
+                'default_language_id' => 6,
+                'translations' => [
+                    [
+                        'language_id' => 6,
+                        'title' => 'Health Issues',
+                        'description' => 'Cancer, mental health problems, asthma, headaches: the list of health problems from air pollution is long! How can we ensure that citizens stay healthy?',
+                    ],
+                    [
+                        'language_id' => 12,
+                        'title' => 'Προβλήματα Υγείας',
+                        'description' => 'Καρκίνος, ψυχικές διαταραχές, άσθμα, πονοκέφαλοι: ο κατάλογος των προβλημάτων υγείας από την ατμοσφαιρική ρύπανση είναι μακρύς! Πώς μπορούμε να διασφαλίσουμε ότι οι πολίτες θα παραμείνουν υγιείς;',
+                    ],
+                ],
+                'solutions' => [
+                    [
+                        'user_creator_id' => 1,
+                        'slug' => 'air-quality-solution-1',
+                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
+                        'img_url' => 'https://placehold.co/615x415',
+                        'translations' => [
+                            [
+                                'language_id' => 6,
+                                'title' => 'Proper Air Pollution Management',
+                                'description' => 'Poorly designed urban management (lack of local consultation before creating projects, identifying solutions) and poor access to information about air pollution sources, health risks, and mitigation strategies can lead to ineffective policies that fail to address the root causes of pollution, exacerbating environmental and public health issues in urban areas.',
+                            ],
+                            [
+                                'language_id' => 12,
+                                'title' => 'Σωστή Διαχείριση της Ατμοσφαιρικής Ρύπανσης',
+                                'description' => 'Η κακώς σχεδιασμένη αστική διαχείριση (έλλειψη τοπικής διαβούλευσης πριν από τη δημιουργία έργων, τον εντοπισμό λύσεων) και η κακή πρόσβαση σε πληροφορίες σχετικά με πηγές ατμοσφαιρικής ρύπανσης, κινδύνους για την υγεία και στρατηγικές μετριασμού μπορεί να οδηγήσει σε αναποτελεσματικές πολιτικές που αποτυγχάνουν να αντιμετωπίσουν τις βασικές αιτίες της ρύπανσης, επιδεινώνοντας το περιβάλλον και ζητήματα δημόσιας υγείας στις αστικές περιοχές.',
+                            ],
+                        ],
+                    ],
+                    [
+                        'user_creator_id' => 1,
+                        'slug' => 'air-wuality-solution-2',
+                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
+                        'img_url' => 'https://placehold.co/615x415',
+                        'translations' => [
+                            [
+                                'language_id' => 6,
+                                'title' => 'Improving Public Transportation',
+                                'description' => 'Encouraging the use of public transportation, cycling, and walking can reduce the number of cars on the road, decreasing air pollution and improving public health. Investing in public transportation infrastructure and creating pedestrian-friendly urban spaces can help reduce emissions and improve air quality in cities.',
+                            ],
+                            [
+                                'language_id' => 12,
+                                'title' => 'Βελτίωση των Δημόσιων Μεταφορών',
+                                'desciption' => 'Η ενθάρρυνση της χρήσης των δημόσιων μέσων μεταφοράς, η ποδηλασία και το περπάτημα μπορεί να μειώσει τον αριθμό των αυτοκινήτων στο δρόμο, να μειώσει την ατμοσφαιρική ρύπανση και να βελτιώσει τη δημόσια υγεία. Η επένδυση σε υποδομές δημόσιων μεταφορών και η δημιουργία αστικών χώρων φιλικών για τους πεζούς μπορεί να συμβάλει στη μείωση των εκπομπών και στη βελτίωση της ποιότητας του αέρα στις πόλεις.',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'project_id' => 4,
+                'slug' => 'air-quality-europe-problem-2',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => '/images/projects/air-quality-europe/problem-2.png',
+                'default_language_id' => 12,
+                'translations' => [
+                    [
+                        'language_id' => 6,
+                        'title' => 'Proper Air Pollution Management',
+                        'description' => 'Poorly designed urban management (lack of local consultation before creating projects, identifying solutions) and poor access to information about air pollution sources, health risks, and mitigation strategies can lead to ineffective policies that fail to address the root causes of pollution, exacerbating environmental and public health issues in urban areas.',
+                    ],
+                    [
+                        'language_id' => 12,
+                        'title' => 'Σωστή Διαχείριση της Ατμοσφαιρικής Ρύπανσης',
+                        'description' => 'Η κακώς σχεδιασμένη διαχείριση των αστικών περιοχών (έλλειψη τοπικών διαβουλεύσεων πριν τη δημιουργία έργων, αναγνώριση λύσεων) και η ανεπαρκής πρόσβαση σε πληροφορίες σχετικά με τις πηγές ατμοσφαιρικής ρύπανσης, τους κινδύνους για την υγεία και τις στρατηγικές μετριασμού, μπορεί να οδηγήσουν σε αναποτελεσματικές πολιτικές που δεν αντιμετωπίζουν τα βασικά αίτια της ρύπανσης, επιδεινώνοντας τα περιβαλλοντικά και τα ζητήματα δημόσιας υγείας στις αστικές περιοχές.',
+                    ],
+                ],
+                'solutions' => [
+                    [
+                        'user_creator_id' => 1,
+                        'slug' => 'air-quality-solution-3',
+                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
+                        'img_url' => 'https://placehold.co/615x415',
+                        'translations' => [
+                            [
+                                'language_id' => 6,
+                                'title' => 'Health Issues',
+                                'description' => 'Cancer, mental health problems, asthma, headaches: the list of health problems from air pollution is long! How can we ensure that citizens stay healthy?',
+                            ],
+                            [
+                                'language_id' => 12,
+                                'title' => 'Προβλήματα Υγείας',
+                                'description' => 'Καρκίνος, προβλήματα ψυχικής υγείας, άσθμα, πονοκέφαλοι: μακρύς ο κατάλογος των προβλημάτων υγείας από την ατμοσφαιρική ρύπανση! Πώς μπορούμε να διασφαλίσουμε ότι οι πολίτες παραμένουν υγιείς;',
+                            ],
+                        ],
+                    ],
+                    [
+                        'user_creator_id' => 1,
+                        'slug' => 'air-quality-solution-4',
+                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::UNPUBLISHED,
+                        'img_url' => 'https://placehold.co/615x415',
+                        'translations' => [
+                            [
+                                'language_id' => 6,
+                                'title' => 'Better Urban Planning',
+                                'description' => 'Poorly designed urban spaces can lead to increased air pollution, traffic congestion, and public health issues. Creating green spaces, pedestrian zones, and bike lanes can help reduce emissions, improve air quality, and create healthier and more sustainable cities for all citizens.',
+                            ],
+                            [
+                                'language_id' => 12,
+                                'title' => 'Καλύτερος Αστικός Σχεδιασμός',
+                                'description' => 'Οι κακοσχεδιασμένοι αστικοί χώροι μπορούν να οδηγήσουν σε αυξημένη ατμοσφαιρική ρύπανση, κυκλοφοριακή συμφόρηση και ζητήματα δημόσιας υγείας. Η δημιουργία χώρων πρασίνου, πεζόδρομων και ποδηλατοδρόμων μπορεί να συμβάλει στη μείωση των εκπομπών, στη βελτίωση της ποιότητας του αέρα και στη δημιουργία πιο υγιεινών και πιο βιώσιμων πόλεων για όλους τους πολίτες.',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'project_id' => 4,
+                'slug' => 'air-quality-europe-problem-3',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => null,
+                'default_language_id' => 12,
+                'translations' => [
+                    [
+                        'language_id' => 6,
+                        'title' => 'Forest Wildfires',
+                        'description' => 'In recent years, increasing wildfires across southern and central Europe have significantly worsened air quality, releasing large amounts of pollutants like fine particulate matter (PM2.5) and carbon monoxide into the atmosphere. These fires, exacerbated by climate change and prolonged heatwaves, are affecting public health, agriculture, and ecosystems. Efforts to control emissions and improve early warning systems are critical in mitigating the growing environmental and health impacts across the continent.',
+                    ],
+                    [
+                        'language_id' => 12,
+                        'title' => 'Δασικές Πυρκαγιές',
+                        'description' => 'Τα τελευταία χρόνια, οι αυξανόμενες δασικές πυρκαγιές στη νότια και κεντρική Ευρώπη έχουν επιδεινώσει σημαντικά την ποιότητα του αέρα, απελευθερώνοντας μεγάλες ποσότητες ρύπων όπως τα αιωρούμενα σωματίδια (PM2.5) και το μονοξείδιο του άνθρακα στην ατμόσφαιρα. Αυτές οι πυρκαγιές, που επιδεινώνονται από την κλιματική αλλαγή και τους παρατεταμένους καύσωνες, επηρεάζουν τη δημόσια υγεία, τη γεωργία και τα οικοσυστήματα. Οι προσπάθειες ελέγχου των εκπομπών και η βελτίωση των συστημάτων έγκαιρης προειδοποίησης είναι κρίσιμες για την αντιμετώπιση των αυξανόμενων περιβαλλοντικών και υγειονομικών επιπτώσεων σε όλη την ήπειρο.',
+                    ],
+                ],
+            ],
+            [
+                'project_id' => 4,
+                'slug' => 'air-quality-europe-problem-4',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'img_url' => '/images/projects/air-quality-europe/problem-4.png',
+                'default_language_id' => 6,
+                'translations' => [
+                    [
+                        'language_id' => 6,
+                        'title' => 'Air Pollution due to Domestic Heating',
+                        'description' => 'Are there coal and wood heating systems in your neighborhood? Direct exposure to their fumes or their penetration into your home can harm your health and the environment.',
+                    ],
+                    [
+                        'language_id' => 12,
+                        'title' => 'Ατμοσφαιρική Ρύπανση από Θέρμανση Κατοικιών',
+                        'description' => 'Υπάρχουν συστήματα θέρμανσης με ξύλο και άνθρακα στη γειτονιά σας; Η άμεση έκθεση στους καπνούς τους ή η διείσδυσή τους στο σπίτι σας μπορεί να βλάψει την υγεία σας και το περιβάλλον.',
+                    ],
+                ],
+            ],
+        ];
+
+        foreach ($problems as $problem) {
+            $problem = CrowdSourcingProjectProblem::updateOrCreate(['project_id' => $problem['project_id'], 'slug' => $problem['slug']], [
+                'project_id' => $problem['project_id'],
+                'slug' => $problem['slug'],
+                'status_id' => $problem['status_id'],
+                'img_url' => $problem['img_url'],
+                'default_language_id' => $problem['default_language_id'],
+            ]);
+            if (isset($problem['translations'])) {
+                foreach ($problem['translations'] as $translation) {
+                    CrowdSourcingProjectProblemTranslation::updateOrCreate(
+                        [
+                            'problem_id' => $problem->id,
+                            'language_id' => $translation['language_id'],
+                        ],
+                        [
+                            'problem_id' => $problem->id,
+                            'language_id' => $translation['language_id'],
+                            'title' => $translation['title'],
+                            'description' => $translation['description'],
+                        ]
+                    );
+                }
+            }
+
+            if (isset($problem['solutions'])) {
+                foreach ($problem['solutions'] as $solution) {
+                    $solution = CrowdSourcingProjectProblemSolution::updateOrCreate(
+                        ['problem_id' => $problem->id, 'slug' => $solution['slug']], [
+                            'problem_id' => $problem->id,
+                            'user_creator_id' => $solution['user_creator_id'],
+                            'slug' => $solution['slug'],
+                            'status_id' => $solution['status_id'],
+                            'img_url' => $solution['img_url'],
+                        ]);
+                    if (isset($solution['translations'])) {
+                        foreach ($solution['translations'] as $translation) {
+                            CrowdSourcingProjectProblemSolutionTranslation::updateOrCreate(
+                                [
+                                    'solution_id' => $solution['id'],
+                                    'language_id' => $translation['language_id'],
+                                ],
+                                [
+                                    'solution_id' => $solution['id'],
+                                    'language_id' => $translation['language_id'],
+                                    'title' => $translation['title'],
+                                    'description' => $translation['description'],
+                                ]
+                            );
+                        }
+                    }
+                }
+            }
+        }
+
+        if (app()->environment() !== 'testing') {
+            echo "\nAdded Problems and Solutions for Project: " . $project['slug'] . "\n";
         }
     }
 }
