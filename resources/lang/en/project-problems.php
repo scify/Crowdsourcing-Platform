@@ -6,4 +6,5 @@ return [
     'list_of_problems' => 'List of Problems',
     'see_all_problems' => 'See all problems',
     'solutions_for' => 'Solutions for',
+    'project_landing_page_problems_action_button' => 'See all problems',
 ];

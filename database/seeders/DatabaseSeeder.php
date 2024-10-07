@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
             LanguagesLkpTableSeeder::class,
             CrowdSourcingProjectStatusesLkpTableSeeder::class,
             DefaultProjectSeeder::class,
+            AirQualityProjectSeeder::class,
             QuestionnaireStatusesLkpTableSeeder::class,
             QuestionnaireStatisticsPageVisibilityLkpSeeder::class,
             MailChimpListsTableSeeder::class,
