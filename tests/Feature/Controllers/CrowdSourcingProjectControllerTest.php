@@ -12,6 +12,7 @@ use App\Models\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 class CrowdSourcingProjectControllerTest extends TestCase {
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
@@ -301,9 +302,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $faker = Faker::create();
         // we need a name with no special characters
         $name = $faker->name;
-        $slug = str_replace(' ', '-', strtolower($name));
-        // remove dots from the slug
-        $slug = str_replace('.', '', $slug);
+        $slug = Str::slug($name);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
             ->post(route('projects.store'), [
                 'name' => $name,
@@ -327,7 +326,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $faker = Faker::create();
         $name = $faker->name;
-        $slug = str_replace(' ', '-', strtolower($name));
+        $slug = Str::slug($name);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->post(route('projects.store'), [
@@ -425,8 +424,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
         $faker = Faker::create();
         $name = $faker->name;
-        $slug = str_replace(' ', '-', strtolower($name));
-        $slug = str_replace('.', '', $slug);
+        $slug = Str::slug($name);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
             'name' => $name,
             'description' => 'Updated Description',
@@ -450,7 +448,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
         $faker = Faker::create();
         $name = $faker->name;
-        $slug = str_replace(' ', '-', strtolower($name));
+        $slug = Str::slug($name);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
             'name' => $name,
             'description' => 'Updated Description',
