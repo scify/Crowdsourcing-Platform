@@ -43,7 +43,6 @@ class AirQualityProjectSeeder extends Seeder {
 
         $project_translations = [
             [
-                'id' => 6,
                 'language_id' => 6,
                 'project_id' => 4,
                 'name' => 'Air Quality in Europe',
@@ -62,7 +61,6 @@ class AirQualityProjectSeeder extends Seeder {
                 'questionnaire_response_email_outro_text' => '<p>Thank you for your time and effort.<br></p>',
             ],
             [
-                'id' => 7,
                 'language_id' => 12,
                 'project_id' => 4,
                 'name' => 'Η Ποιότητα του Αέρα στην Ευρώπη',
@@ -89,10 +87,10 @@ class AirQualityProjectSeeder extends Seeder {
         }
 
         foreach ($project_translations as $project_translation) {
-            $this->projectTranslationRepository->updateOrCreate(['id' => $project_translation['id']],
+            $this->projectTranslationRepository->updateOrCreate(['project_id' => $project_translation['project_id'], 'language_id' => $project_translation['language_id']],
                 Helpers::getFilteredAttributes($project_translation, (new CrowdSourcingProjectTranslation)->getFillable()));
             if (app()->environment() !== 'testing') {
-                echo "\nAdded Project Translation: " . $project_translation['name'] . ' with id: ' . $project_translation['id'] . "\n";
+                echo "\nAdded Project Translation: " . $project_translation['name'] . ' with lang id: ' . $project_translation['language_id'] . "\n";
             }
         }
     }

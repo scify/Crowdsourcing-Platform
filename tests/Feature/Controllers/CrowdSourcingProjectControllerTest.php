@@ -11,8 +11,8 @@ use App\Models\User;
 use App\Models\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
-use Tests\TestCase;
 use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class CrowdSourcingProjectControllerTest extends TestCase {
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
