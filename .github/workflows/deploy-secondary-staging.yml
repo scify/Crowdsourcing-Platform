@@ -1,4 +1,4 @@
-name: Deploy to Secondary Staging Server
+name: Deploy to Secondary Staging Server (ECAS Installation)
 
 on:
   workflow_dispatch:

@@ -12,6 +12,7 @@ use App\Models\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 class CrowdSourcingProjectControllerTest extends TestCase {
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
@@ -298,13 +299,16 @@ class CrowdSourcingProjectControllerTest extends TestCase {
     public function nonAdminUserCannotStoreProject() {
         $user = User::factory()->create();
         $this->be($user);
-
+        $faker = Faker::create();
+        // we need a name with no special characters
+        $name = $faker->name;
+        $slug = Str::slug($name);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
             ->post(route('projects.store'), [
-                'name' => 'Test Project ' . rand(1, 100),
+                'name' => $name,
                 'description' => 'Test Description',
                 'status_id' => 1,
-                'slug' => 'test-project-' . rand(1, 100),
+                'slug' => $slug,
                 'language_id' => 1,
             ]);
 
@@ -321,13 +325,15 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $this->be($user);
 
         $faker = Faker::create();
+        $name = $faker->name;
+        $slug = Str::slug($name);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->post(route('projects.store'), [
-                'name' => 'Valid Project',
+                'name' => $name,
                 'description' => 'Valid Description',
                 'status_id' => 1,
-                'slug' => 'valid-project',
+                'slug' => $slug,
                 'language_id' => 1,
                 'color_ids' => [1],
                 'color_names' => [$faker->name],
@@ -338,10 +344,10 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_success', 'The project has been successfully created');
         $this->assertDatabaseHas('crowd_sourcing_projects', [
-            'slug' => 'valid-project',
+            'slug' => $slug,
         ]);
         $this->assertDatabaseHas('crowd_sourcing_project_translations', [
-            'name' => 'Valid Project',
+            'name' => $name,
             'description' => 'Valid Description',
         ]);
     }
@@ -416,12 +422,14 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $this->be($user);
 
         $project = CrowdSourcingProject::factory()->create();
-
+        $faker = Faker::create();
+        $name = $faker->name;
+        $slug = Str::slug($name);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
-            'name' => 'Updated Project',
+            'name' => $name,
             'description' => 'Updated Description',
             'status_id' => 1,
-            'slug' => 'updated-project',
+            'slug' => $slug,
             'language_id' => 1,
         ]);
 
@@ -439,11 +447,13 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $project = CrowdSourcingProject::factory()->create();
         $faker = Faker::create();
+        $name = $faker->name;
+        $slug = Str::slug($name);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update', ['project' => $project->id]), [
-            'name' => 'Updated Project',
+            'name' => $name,
             'description' => 'Updated Description',
             'status_id' => 1,
-            'slug' => 'updated-project',
+            'slug' => $slug,
             'language_id' => 1,
             'color_ids' => [1],
             'color_names' => [$faker->name],
@@ -455,11 +465,11 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertSessionHas('flash_message_success', 'The project has been successfully updated');
         $this->assertDatabaseHas('crowd_sourcing_projects', [
             'id' => $project->id,
-            'slug' => 'updated-project',
+            'slug' => $slug,
         ]);
         $this->assertDatabaseHas('crowd_sourcing_project_translations', [
             'project_id' => $project->id,
-            'name' => 'Updated Project',
+            'name' => $name,
             'description' => 'Updated Description',
         ]);
     }

@@ -94,8 +94,12 @@
                                         </a>
                                     </div>
                                 @endif
+                            @elseif($viewModel->projectHasPublishedProblems)
+                                <a href="{{ route('project.problems-page', ['project_slug' => $viewModel->project->slug]) }}"
+                                   class="btn btn-primary w-100 call-to-action">
+                                    {{__("project-problems.project_landing_page_problems_action_button")}} <i
+                                            class="fas fa-arrow-right"></i></a>
                             @else
-                                {{-- PROJECT DOES NOT HAVE AN ACTIVE QUESTIONNAIRE --}}
                                 @include('crowdsourcing-project.partials.external-url')
                             @endif
                         </div>

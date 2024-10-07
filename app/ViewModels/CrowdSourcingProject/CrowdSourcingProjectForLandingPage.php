@@ -9,6 +9,7 @@ class CrowdSourcingProjectForLandingPage {
     public $project;
     public $questionnaire;
     public $feedbackQuestionnaire;
+    public $projectHasPublishedProblems;
     public $userResponse;
     public $userFeedbackQuestionnaireResponse;
     public $totalResponses;
@@ -24,6 +25,7 @@ class CrowdSourcingProjectForLandingPage {
         $project,
         $questionnaire,
         $feedbackQuestionnaire,
+        $projectHasPublishedProblems,
         $userResponse,
         $userFeedbackQuestionnaireResponse,
         $totalResponses,
@@ -35,6 +37,7 @@ class CrowdSourcingProjectForLandingPage {
         $this->project = $project;
         $this->questionnaire = $questionnaire;
         $this->feedbackQuestionnaire = $feedbackQuestionnaire;
+        $this->projectHasPublishedProblems = $projectHasPublishedProblems;
         $this->userResponse = $userResponse;
         $this->userFeedbackQuestionnaireResponse = $userFeedbackQuestionnaireResponse;
         $this->totalResponses = $totalResponses;

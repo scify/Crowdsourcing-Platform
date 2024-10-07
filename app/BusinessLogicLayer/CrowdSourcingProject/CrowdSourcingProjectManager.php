@@ -10,6 +10,7 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectStatusHistoryRepository;
+use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
@@ -41,6 +42,7 @@ class CrowdSourcingProjectManager {
     protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager;
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
+    protected CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
         QuestionnaireRepository $questionnaireRepository,
@@ -51,7 +53,8 @@ class CrowdSourcingProjectManager {
         LanguageRepository $languageRepository,
         CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager,
         QuestionnaireResponseRepository $questionnaireResponseRepository,
-        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
+        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
+        CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -62,6 +65,7 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
+        $this->crowdSourcingProjectProblemRepository = $crowdSourcingProjectProblemRepository;
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
@@ -94,15 +98,7 @@ class CrowdSourcingProjectManager {
     public function getCrowdSourcingProjectViewModelForLandingPage(
         $questionnaireIdRequestedInTheURL,
         $project_slug): CrowdSourcingProjectForLandingPage {
-        $userId = null;
-
-        // if the user is logged in, get the user id
-        if (Auth::check()) {
-            $userId = Auth::id();
-        } // else, check if the user is anonymous (by checking the cookie) and get the user id
-        elseif (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
-            $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
-        }
+        $userId = Auth::id() ?? intval($_COOKIE[UserManager::$USER_COOKIE_KEY] ?? 0);
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
 
@@ -122,6 +118,7 @@ class CrowdSourcingProjectManager {
         $shareUrlForFacebook = '';
         $shareUrlForTwitter = '';
         $countAll = 0;
+        $projectHasPublishedProblems = false;
         if ($questionnaire) {
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire, $countAll);
@@ -131,6 +128,9 @@ class CrowdSourcingProjectManager {
             $shareButtonsModel = new QuestionnaireSocialShareButtons($questionnaire, $idOfUserThatCanShareTheQuestionnaire);
             $shareUrlForFacebook = $shareButtonsModel->getSocialShareURL($project, 'facebook');
             $shareUrlForTwitter = $shareButtonsModel->getSocialShareURL($project, 'twitter');
+        } else {
+            // if there is no questionnaire, we need to check if this project has published problems
+            $projectHasPublishedProblems = $this->crowdSourcingProjectProblemRepository->projectHasPublishedProblems($project->id);
         }
         if ($feedbackQuestionnaire) {
             $userFeedbackQuestionnaireResponse =
@@ -143,6 +143,7 @@ class CrowdSourcingProjectManager {
         return new CrowdSourcingProjectForLandingPage($project,
             $questionnaire,
             $feedbackQuestionnaire,
+            $projectHasPublishedProblems,
             $userResponse,
             $userFeedbackQuestionnaireResponse,
             $countAll,

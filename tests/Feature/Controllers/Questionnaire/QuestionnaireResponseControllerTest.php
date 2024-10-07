@@ -8,14 +8,9 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class QuestionnaireResponseControllerTest extends TestCase {
-    use RefreshDatabase;
-
-    protected $seed = true;
-
     /** @test */
     public function testStoreInvalidData() {
         $user = User::factory()->create();
