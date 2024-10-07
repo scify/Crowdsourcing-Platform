@@ -260,7 +260,7 @@ class AirQualityProjectSeeder extends Seeder {
         ];
 
         foreach ($problems as $problem) {
-            $problem = CrowdSourcingProjectProblem::updateOrCreate(['project_id' => $problem['project_id'], 'slug' => $problem['slug']], [
+            $problemRecord = CrowdSourcingProjectProblem::updateOrCreate(['project_id' => $problem['project_id'], 'slug' => $problem['slug']], [
                 'project_id' => $problem['project_id'],
                 'slug' => $problem['slug'],
                 'status_id' => $problem['status_id'],
@@ -271,11 +271,11 @@ class AirQualityProjectSeeder extends Seeder {
                 foreach ($problem['translations'] as $translation) {
                     CrowdSourcingProjectProblemTranslation::updateOrCreate(
                         [
-                            'problem_id' => $problem->id,
+                            'problem_id' => $problemRecord->id,
                             'language_id' => $translation['language_id'],
                         ],
                         [
-                            'problem_id' => $problem->id,
+                            'problem_id' => $problemRecord->id,
                             'language_id' => $translation['language_id'],
                             'title' => $translation['title'],
                             'description' => $translation['description'],
@@ -289,9 +289,9 @@ class AirQualityProjectSeeder extends Seeder {
                     if (app()->environment() !== 'testing') {
                         echo "\nAdding Solution: " . $solution['title'] . ' for Problem: ' . $problem['slug'] . "\n";
                     }
-                    $solution = CrowdSourcingProjectProblemSolution::updateOrCreate(
-                        ['problem_id' => $problem->id, 'slug' => $solution['slug']], [
-                            'problem_id' => $problem->id,
+                    $solutionRecord = CrowdSourcingProjectProblemSolution::updateOrCreate(
+                        ['problem_id' => $problemRecord->id, 'slug' => $solution['slug']], [
+                            'problem_id' => $problemRecord->id,
                             'user_creator_id' => $solution['user_creator_id'],
                             'slug' => $solution['slug'],
                             'status_id' => $solution['status_id'],
@@ -304,11 +304,11 @@ class AirQualityProjectSeeder extends Seeder {
                             }
                             CrowdSourcingProjectProblemSolutionTranslation::updateOrCreate(
                                 [
-                                    'solution_id' => $solution->id,
+                                    'solution_id' => $solutionRecord->id,
                                     'language_id' => $translation['language_id'],
                                 ],
                                 [
-                                    'solution_id' => $solution->id,
+                                    'solution_id' => $solutionRecord->id,
                                     'language_id' => $translation['language_id'],
                                     'title' => $translation['title'],
                                     'description' => $translation['description'],
