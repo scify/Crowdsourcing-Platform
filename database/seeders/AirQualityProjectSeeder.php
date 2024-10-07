@@ -287,7 +287,7 @@ class AirQualityProjectSeeder extends Seeder {
             if (isset($problem['solutions'])) {
                 foreach ($problem['solutions'] as $solution) {
                     if (app()->environment() !== 'testing') {
-                        echo "\nAdding Solution: " . $solution['title'] . ' for Problem: ' . $problem['slug'] . "\n";
+                        echo "\nAdding Solution: " . $solution['slug'] . ' for Problem: ' . $problem['slug'] . "\n";
                     }
                     $solutionRecord = CrowdSourcingProjectProblemSolution::updateOrCreate(
                         ['problem_id' => $problemRecord->id, 'slug' => $solution['slug']], [
