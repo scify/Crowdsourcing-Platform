@@ -10,7 +10,6 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Tests\TestCase;
 
 class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
-
     /** @test
      * @throws BindingResolutionException
      */
