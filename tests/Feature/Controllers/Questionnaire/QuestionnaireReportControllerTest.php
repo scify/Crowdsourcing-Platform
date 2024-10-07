@@ -9,14 +9,9 @@ use App\Models\UserRole;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Exception;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class QuestionnaireReportControllerTest extends TestCase {
-    use RefreshDatabase;
-
-    protected $seed = true;
-
     /** @test */
     public function viewReportsPageReturnsCorrectView() {
         $user = User::factory()

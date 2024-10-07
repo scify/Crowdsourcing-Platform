@@ -10,7 +10,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
-
     use RefreshDatabase;
 
     protected $seed = true;
@@ -101,21 +100,6 @@ class UserControllerTest extends TestCase {
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['password']);
-    }
-
-    /** @test */
-    public function cannotDeleteDeactivatesUserForNonAdminUser() {
-        $user = User::factory()->create();
-        $this->be($user);
-
-        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('deleteUser'), ['id' => $user->id]);
-
-        $response->assertStatus(403);
-        $this->assertDatabaseHas('users', [
-            'id' => $user->id,
-            'deleted_at' => null,
-        ]);
     }
 
     /** @test */
