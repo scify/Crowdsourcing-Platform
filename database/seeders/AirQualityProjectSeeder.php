@@ -20,8 +20,8 @@ class AirQualityProjectSeeder extends Seeder {
     protected $projectRepository;
     protected $projectTranslationRepository;
 
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-        CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
+    public function __construct(CrowdSourcingProjectRepository            $crowdSourcingProjectRepository,
+                                CrowdSourcingProjectTranslationRepository $crowdSourcingProjectTranslationRepository) {
         $this->projectRepository = $crowdSourcingProjectRepository;
         $this->projectTranslationRepository = $crowdSourcingProjectTranslationRepository;
     }
@@ -286,23 +286,29 @@ class AirQualityProjectSeeder extends Seeder {
 
             if (isset($problem['solutions'])) {
                 foreach ($problem['solutions'] as $solution) {
+                    if (app()->environment() !== 'testing') {
+                        echo "\nAdding Solution: " . $solution['title'] . ' for Problem: ' . $problem['slug'] . "\n";
+                    }
                     $solution = CrowdSourcingProjectProblemSolution::updateOrCreate(
                         ['problem_id' => $problem->id, 'slug' => $solution['slug']], [
-                            'problem_id' => $problem->id,
-                            'user_creator_id' => $solution['user_creator_id'],
-                            'slug' => $solution['slug'],
-                            'status_id' => $solution['status_id'],
-                            'img_url' => $solution['img_url'],
-                        ]);
+                        'problem_id' => $problem->id,
+                        'user_creator_id' => $solution['user_creator_id'],
+                        'slug' => $solution['slug'],
+                        'status_id' => $solution['status_id'],
+                        'img_url' => $solution['img_url'],
+                    ]);
                     if (isset($solution['translations'])) {
                         foreach ($solution['translations'] as $translation) {
+                            if (app()->environment() !== 'testing') {
+                                echo "\nAdding Solution Translation: " . $translation['title'] . ' for Solution: ' . $solution['slug'] . "\n";
+                            }
                             CrowdSourcingProjectProblemSolutionTranslation::updateOrCreate(
                                 [
-                                    'solution_id' => $solution['id'],
+                                    'solution_id' => $solution->id,
                                     'language_id' => $translation['language_id'],
                                 ],
                                 [
-                                    'solution_id' => $solution['id'],
+                                    'solution_id' => $solution->id,
                                     'language_id' => $translation['language_id'],
                                     'title' => $translation['title'],
                                     'description' => $translation['description'],
