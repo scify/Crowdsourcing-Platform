@@ -73,7 +73,7 @@ jobs:
             DB_NAME=${{ env.DB_NAME }}
             DB_USER=${{ env.DB_USER }}
             DB_PASSWORD=${{ env.DB_PASSWORD }}
-            LARAVEL_STAGING_SCIFY_APP_KEY=${{ secrets.LARAVEL_STAGING_SCIFY_APP_KEY }}
+            LARAVEL_APP_KEY=${{ secrets.LARAVEL_STAGING_SCIFY_APP_KEY }}
             PROJECT_URL=${{ env.PROJECT_URL }}
             MAILGUN_SECRET=${{ env.MAILGUN_SECRET }}
             PERSONAL_CLIENT_ID=${{ secrets.PERSONAL_CLIENT_ID }}
@@ -97,7 +97,11 @@ jobs:
             USERWAY_ID=${{ secrets.USERWAY_ID }}
             AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+            INSTALLATION_COMPANY_NAME="SciFY"
+            INSTALLATION_COMPANY_ADDRESS="TEPA LEFKIPPOS - NCSR Demokritos 27 Neapoleos Str, 15341 Agia Paraskevi, Greece"
+            INSTALLATION_COMPANY_PHONE="+30 2114004192"
+            INSTALLATION_COMPANY_EMAIL="info(at)scify.org"
+            INSTALLATION_RESOURCES_DIR=together
     
       
       - name: Setup node
@@ -133,5 +137,5 @@ jobs:
           script: |
             source /home/${{ env.REMOTE_USER }}/.profile
             cd /home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}
-            composer install --no-interaction --no-progress --optimize-autoloader 
+            composer install --no-interaction --no-progress --optimize-autoloader
   # --no-dev 

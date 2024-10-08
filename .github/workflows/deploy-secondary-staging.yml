@@ -73,7 +73,7 @@ jobs:
             DB_NAME=${{ env.DB_NAME }}
             DB_USER=${{ env.DB_USER }}
             DB_PASSWORD=${{ env.DB_PASSWORD }}
-            LARAVEL_STAGING_SEC_DATA_APP_KEY=${{ secrets.LARAVEL_STAGING_SEC_DATA_APP_KEY }}
+            LARAVEL_APP_KEY=${{ secrets.LARAVEL_STAGING_SEC_DATA_APP_KEY }}
             PROJECT_URL=${{ env.PROJECT_URL }}
             MAILGUN_SECRET=${{ env.MAILGUN_SECRET }}
             PERSONAL_CLIENT_ID=${{ secrets.PERSONAL_CLIENT_ID }}
@@ -97,8 +97,13 @@ jobs:
             USERWAY_ID=${{ secrets.USERWAY_ID }}
             AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-    
+            INSTALLATION_COMPANY_NAME="ECAS - European Citizen Action Service"
+            INSTALLATION_COMPANY_ADDRESS="BeCentral Cantersteen 12 B-1000 Brussels, Belgium"
+            INSTALLATION_COMPANY_PHONE="+32 (0) 2 548 04 90"
+            INSTALLATION_COMPANY_EMAIL="info(at)ecas.org"
+            INSTALLATION_RESOURCES_DIR=ecas
+            
+            
       
       - name: Setup node
         uses: actions/setup-node@v4
