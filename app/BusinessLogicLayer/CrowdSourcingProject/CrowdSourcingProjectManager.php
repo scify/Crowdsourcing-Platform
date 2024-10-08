@@ -69,10 +69,17 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
-        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus();
+        $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus($language->id);
 
         foreach ($projects as $project) {
-            $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+            // if the model has a "translations" relationship and the first item is not null,
+            // then set it as the current translation.
+            // otherwise, set the default translation as the current translation
+
+            $project->currentTranslation = $project->translations->first() ?? $project->defaultTranslation;
+
+
             if ($project->questionnaires->count() > 0) {
                 $project->latestQuestionnaire = $project->questionnaires->last();
             }
