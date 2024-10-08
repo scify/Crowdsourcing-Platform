@@ -299,7 +299,6 @@ class AirQualityProjectSeeder extends Seeder {
                         ]);
                     if (isset($solution['translations'])) {
                         foreach ($solution['translations'] as $translation) {
-
                             if (app()->environment() !== 'testing') {
                                 echo "\nAdding Solution Translation: " . $translation['title'] . ' for Solution: ' . $solution['slug'] . "\n";
                             }
