@@ -115,7 +115,7 @@ jobs:
       - name: SCP files to staging server
         uses: easingthemes/ssh-deploy@v3.0.1
         env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING_SERVER }}
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING_SERVER_SCIFY }}
             REMOTE_PORT: 222
             SOURCE: "./"
             REMOTE_HOST: ${{ env.SERVER_HOSTNAME }}
@@ -129,7 +129,7 @@ jobs:
           host: ${{ env.SERVER_HOSTNAME }}
           port: 222
           username: ${{ env.REMOTE_USER }}
-          key: ${{ secrets.SSH_KEY_STAGING_SERVER }}
+          key: ${{ secrets.SSH_KEY_STAGING_SERVER_SCIFY }}
           script: |
             source /home/${{ env.REMOTE_USER }}/.profile
             cd /home/${{ env.REMOTE_USER }}/www/${{ env.PROJECT_URL }}
