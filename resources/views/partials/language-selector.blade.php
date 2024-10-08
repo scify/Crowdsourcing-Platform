@@ -6,12 +6,17 @@
     </a>
 
     <ul class="dropdown-menu">
-        @foreach ($languages as $language)
-            <li>
-                <a class="dropdown-item"
-                   href="{{ $language->currentRouteLink }}"
-                   @if (app()->getLocale() == $language->language_code) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($language->language_code) . ", ".strtoupper($language->language_name) }}</a>
-            </li>
+        @foreach($languages as $language)
+            <form id="set-locale-{{$language->language_code}}" action="{{route('languages.setlocale')}}" method="POST"
+                  style="display: none;">
+                @csrf
+                <input type="hidden" name="locale" value="{{$language->language_code}}">
+            </form>
+            <a class="dropdown-item" href="#"
+               @if (app()->getLocale() == $language->language_code) style="font-weight: bold; text-decoration: underline" @endif
+               onclick="event.preventDefault(); document.getElementById('set-locale-{{$language->language_code}}').submit();">
+                {{$language->language_name}}
+            </a>
         @endforeach
     </ul>
 </li>
