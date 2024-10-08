@@ -43,7 +43,7 @@ class AirQualityProjectSeeder extends Seeder {
             'lp_questionnaire_image_path' => '/images/projects/air-quality-europe/logo.webp',
             'lp_show_speak_up_btn' => 1,
             'sm_featured_img_path' => '/images/projects/air-quality-europe/logo.webp',
-            'display_landing_page_banner' => 1,
+            'display_landing_page_banner' => 0,
             'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED,
         ];
 
