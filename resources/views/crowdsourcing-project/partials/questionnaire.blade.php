@@ -4,8 +4,7 @@
              class="align-items-center mx-0"
              style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
             @if ($viewModel->questionnaire)
-                <div class="text-center content-container"
-                     style="background: {{ $viewModel->project->lp_primary_color }}D9">
+                <div class="text-center content-container">
                     <h3 class="questionnaire-section-title">
                         {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->fieldsTranslation->title }}
                     </h3>
@@ -13,6 +12,9 @@
                         <div class="questionnaire-description mb-5">
                             {!! $viewModel->questionnaire->fieldsTranslation->description !!}
                         </div>
+
+                        <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; width: 70%; aspect-ratio: 2.782;"></div>
+
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-10 col-md-10 col-sm-11 mx-auto">

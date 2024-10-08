@@ -1,8 +1,7 @@
 <div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
      style="background-image: url({{asset($viewModel->project->img_path)}});">
     <div class="overlay-filter {{ $viewModel->thankYouMode ? 'overlay-thanks' : '' }}"
-         style="background-color: {{ $viewModel->project->lp_primary_color }};
-                 top: @if (App::environment('staging')) 128.75px @else 93.75px @endif"></div>
+         style="top: @if (App::environment('staging')) 128.75px @else 93.75px @endif"></div>
     <div class="col-lg-7 col-md-8 col-sm-11 mx-auto motto-content px-0">
         <div class="frosted"></div>
         <div id="project-motto" class="container-fluid">
@@ -96,7 +95,7 @@
                                 @endif
                             @elseif($viewModel->projectHasPublishedProblems)
                                 <a href="{{ route('project.problems-page', ['project_slug' => $viewModel->project->slug]) }}"
-                                   class="btn btn-primary w-100 call-to-action">
+                                   class="btn btn-primary call-to-action mx-auto">
                                     {{__("project-problems.project_landing_page_problems_action_button")}} <i
                                             class="fas fa-arrow-right"></i></a>
                             @else

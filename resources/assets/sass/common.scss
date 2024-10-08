@@ -8,6 +8,12 @@
 @import url("jquery-toast-plugin/dist/jquery.toast.min.css");
 @import "../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css";
 
+// Supports weights 100-900
+@import '@fontsource-variable/noto-sans';
+
+// Supports weights 300-800
+@import '@fontsource-variable/open-sans';
+
 @import "sidebar";
 
 html,
@@ -28,7 +34,12 @@ h6,
 .h4,
 .h5,
 .h6 {
-	font-family: "Open Sans", sans-serif;
+
+	font-family: "Noto Sans Variable", sans-serif;
+}
+
+p {
+	font-family: "Open Sans Variable", sans-serif;
 }
 
 @media print {
@@ -438,21 +449,39 @@ footer {
 }
 
 .call-to-action {
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	border-radius: 3px;
-	background-color: $white;
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 1.7em;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	border: none;
+	border-radius: 21px;
+	background-color: var(--project-primary-color);
+	padding: 27px 30px;
+	min-width: 283px;
+	font-family: "Noto Sans Variable", sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 27px;
 	color: $black;
 	transition: all 0.2s;
-	padding: toRem(12) toRem(30);
-	width: 100%;
 
 	&:hover {
+		background-color: var(--project-primary-color);
 		box-shadow:
-			0 14px 28px rgba(0, 0, 0, 0.25),
-			0 10px 10px rgba(0, 0, 0, 0.22);
+			0 4px 4px rgba(0, 0, 0, 0.25),
+			0 4px 4px rgba(0, 0, 0, 0.25);
+		color: $black;
+	}
+
+	&.focus,
+	&:focus,
+	&:focus-visible {
+		outline: 4px solid black;
+		color: $black;
+		background-color: var(--project-primary-color);
+		box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	}
+
+	&:active {
+		color: $black !important;
+		background-color: var(--project-primary-color) !important;
 	}
 }
 
@@ -464,14 +493,6 @@ footer {
 .call-to-action.action-success {
 	background-color: $success;
 	color: $white;
-}
-
-.call-to-action.btn-primary.focus,
-.call-to-action.btn-primary:focus,
-.call-to-action.btn-primary:hover {
-	background-color: $grey-light;
-	color: $black;
-	border-color: $grey;
 }
 
 #userListTable_info {
