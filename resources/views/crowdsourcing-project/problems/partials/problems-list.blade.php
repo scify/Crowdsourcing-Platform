@@ -44,10 +44,13 @@
             </ul>
         </div>
     </div>
+
+{{--
     <div class="row pb-5">
         <div class="col-12 d-flex justify-content-center">
             <button class="cta-btn">{{ __("project-problems.list_of_problems") }}</button> <!-- bookmark - add click handler / or hide for now -->
         </div>
     </div>
+--}}
 
 </div>

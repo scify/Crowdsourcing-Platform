@@ -6,7 +6,6 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Open Sans", sans-serif;
 	color: $landing-page-primary;
 }
 
@@ -87,7 +86,7 @@ body {
 		overflow: hidden;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(255, 255, 255, 0.8);
+		background-color: rgba(255, 255, 255, 0.60);
 		content: "";
 		top: 0;
 		left: 0;
@@ -134,9 +133,26 @@ section {
 		text-align: center;
 	}
 
-	.content-container {
+	#about .content-container {
 		padding: 10vh 5%;
 		font-size: 20px;
+
+		h1,
+		h2 {
+			text-align: left;
+			font-size: 32px;
+			line-height: 44px;
+			margin-bottom: 7px;
+
+			&~h2 {
+				margin-top: 60px;
+			}
+		}
+
+		p {
+			font-size: 16px;
+			line-height: 22px;
+		}
 	}
 }
 
@@ -146,15 +162,9 @@ ol {
 	}
 }
 
-#about {
-	.btn.btn-primary {
-		color: white;
-	}
-}
-
 #questionnaire-section,
 #collective-goal {
-	background-color: #efefef;
+	background-color: #e8e9eb;
 }
 
 #questionnaire-section {
@@ -164,8 +174,7 @@ ol {
 }
 
 #questionnaire-wrapper {
-	background-color: #efefef;
-	padding-top: 7rem;
+	background-color: #e8e9eb;
 }
 
 #questionnaire {
@@ -173,14 +182,13 @@ ol {
 	width: 100%;
 	@include media-breakpoint-up(md) {
 		padding: 7vh 10vh;
+		padding-bottom: 0;
 	}
 
 	.content-container {
 		font-size: 20px;
-		color: white;
 		@include media-breakpoint-up(md) {
 			padding: 5vh 12vh;
-			min-height: 340px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -192,8 +200,7 @@ ol {
 	}
 
 	.questionnaire-description {
-		font-size: 1.3rem;
-		margin: auto;
+		margin: 0 auto 2rem;
 		text-align: justify;
 	}
 
@@ -204,7 +211,6 @@ ol {
 		margin-right: auto;
 		text-align: center;
 		font-weight: bold;
-		color: $white;
 	}
 
 	.wrapper-box {
