@@ -2,7 +2,7 @@
 
 @section('content')
     <section id="motto" class="w-100" style="height: 650px;">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.motto')
+        @include('home.partials.motto')
     </section>
     <section id="about" class="container-fluid w-100">
         @include('home.partials.' . config('app.installation_resources_dir') . '.about-us')
@@ -11,7 +11,7 @@
         @include('home.partials.' . config('app.installation_resources_dir') . '.projects')
     </section>
     <section id="features" class="container-fluid w-100">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.features')
+        @include('home.partials.features')
     </section>
 
 @endsection

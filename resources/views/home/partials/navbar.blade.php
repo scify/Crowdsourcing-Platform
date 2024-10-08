@@ -1,8 +1,8 @@
 <div @if (App::environment('staging')) class="header-margin-top" @endif>
     <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light fixed-top navbar-default navbar-fixed-top m-0"
          style="z-index: 100000;">
-        <a class="navbar-brand" href="#">
-            <img loading="lazy" alt="Together" src="{{asset('images/projects/together/logo.png')}}">
+        <a class="navbar-brand" href="{{route('home', ['locale' => app()->getLocale()])}}">
+            <img loading="lazy" alt="ECAS" src="{{ $logoPath }}">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-menu-content"
                 aria-controls="top-menu-content" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,13 +21,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#projects">WHAT ARE WE CROWDSOURCING?</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#past-projects">PAST PROJECTS</a>
-                    </li>
                 @endguest
                 @if(!isset($onErrorPage))
                     @include("partials.login-menu-options")
                 @endif
+                @include("partials.language-selector")
             </ul>
         </div>
     </nav>
