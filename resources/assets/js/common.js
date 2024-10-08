@@ -35,6 +35,10 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 	const init = function () {
 		$(".dropdown-toggle").dropdown();
 		handleLogoutBtnClick();
+		$(".smooth-goto").on("click", function () {
+			$("html, body").animate({ scrollTop: $(this.hash).offset().top - 100 }, 1000);
+			return false;
+		});
 	};
 
 	$(document).ready(function () {
