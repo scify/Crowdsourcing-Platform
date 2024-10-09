@@ -192,7 +192,7 @@ $colorForTabs: $brand-primary;
 			margin-bottom: 30px;
 			padding: 25px;
 			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-			
+
 			.project-logo {
 				text-align: center;
 				padding: 15px;
@@ -320,4 +320,13 @@ footer {
 .call-to-action.go-back {
 	color: white;
 	background-color: rgb(0, 119, 255);
+}
+
+.title-row {
+	h1 {
+		// break point for mobile
+		@media screen and (max-width: 768px) {
+			font-size: 2rem;
+		}
+	}
 }
