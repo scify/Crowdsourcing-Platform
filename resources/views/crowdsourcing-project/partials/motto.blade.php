@@ -6,8 +6,8 @@
         <div class="frosted"></div>
         <div id="project-motto" class="h-100">
             <div class="container">
-                <div class="row mb-3 text-center">
-                    <div class="col-12 px-5 pt-5">
+                <div class="row title-row mb-3 text-center">
+                    <div class="col-12 px-5">
                         <h1 id="motto-title"
                             class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
                         @if($viewModel->project->currentTranslation->motto_subtitle)

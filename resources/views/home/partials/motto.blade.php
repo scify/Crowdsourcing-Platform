@@ -6,8 +6,8 @@
             <div class="frosted"></div>
             <div id="project-motto" class="h-100">
                 <div class="container h-100">
-                    <div class="row h-50">
-                        <div class="col px-5 pt-5">
+                    <div class="row title-row h-50">
+                        <div class="col px-5">
                             <h1>Let's crowdsource!<br>Taking decisions with citizens and not for them</h1>
                         </div>
                     </div>
