@@ -23,7 +23,7 @@
                     @include("partials.login-menu-options")
                 @endif
                 @if(isset($viewModel->project))
-                    @include('partials.content-languages', ['languages' => $viewModel->project->languages])
+                    @include("partials.language-selector")
                 @endif
             </ul>
         </div>

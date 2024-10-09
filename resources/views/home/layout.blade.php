@@ -32,7 +32,7 @@
 @include('partials.staging-indicator')
 <div class="row">
     <div class="col-12">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.navbar')
+        @include('home.partials.navbar', ['logoPath' => asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png')])
     </div>
 </div>
 @include('partials.flash-messages-and-errors')

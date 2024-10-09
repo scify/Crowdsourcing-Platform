@@ -4,3 +4,66 @@
 @import "../../../node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css";
 @import "../../../node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css";
 @import "../../../node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css";
+
+.skin-white {
+  .wrapper,
+  .main-sidebar,
+  .left-side {
+    background-color: $bg-color-navbar;
+  }
+
+  .content-header {
+    background: transparent;
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
+
+  .content-wrapper:after {
+    background-color: $body-bg;
+    background-image: url(../images/active_participation.webp);
+    background-size: cover;
+    filter: grayscale(100%);
+    opacity: 0.08;
+    position: absolute;
+    z-index: -1;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .content-wrapper {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: relative;
+  }
+
+  .main-footer {
+    font-size: 12px;
+  }
+}
+
+.logged-in-env .main-header {
+  padding-left: 35px;
+}
+
+.logged-in-env {
+  .main-header,
+  .content-wrapper,
+  .main-footer {
+    margin-left: 0 !important;
+
+    .container-fluid {
+      max-width: 1440px;
+      margin: auto;
+    }
+  }
+}
+
+.logged-in-env.display-admin-menu {
+  .main-header,
+  .content-wrapper,
+  .main-footer {
+    margin-left: 250px !important;
+  }
+}

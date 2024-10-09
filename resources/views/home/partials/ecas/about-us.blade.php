@@ -1,10 +1,10 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-11 col-sm-12 mx-auto">
         <div class="content-container">
             <div class="row">
                 <div class="col-md-4">
                     <h2 class="text-center">Who we are</h2>
-                    <p >The European Citizen Action Service (ECAS) is an international,
+                    <p>The European Citizen Action Service (ECAS) is an international,
                         Brussels-based non-profit organisation with a pan-European membership and 27 years of experience in
                         empowering citizens.
                         ECAS believes in an <strong>inclusive, transparent, citizen-centric and democratic European
