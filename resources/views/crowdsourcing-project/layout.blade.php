@@ -32,7 +32,6 @@
 <div id="app" style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
-
 @if(isset($viewModel->project))
     <footer class="py-5">
         <div class="container">

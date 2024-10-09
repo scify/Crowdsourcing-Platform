@@ -1,30 +1,5 @@
 @import "../variables";
 $colorForTabs: $brand-primary;
-section {
-	h1,
-	h2 {
-		font-size: 28px;
-		@media screen and (max-width: 950px) {
-			padding: 0 15px;
-		}
-	}
-
-	p {
-		font-size: 20px;
-		@media screen and (max-width: 950px) {
-			padding: 0 15px;
-		}
-	}
-
-	ul {
-		padding: 0;
-		list-style: none;
-
-		li p {
-			margin-bottom: 0;
-		}
-	}
-}
 
 .sv_q_checkbox {
 	p {
@@ -64,6 +39,7 @@ section {
 
 .motto-content {
 	z-index: 10001;
+	padding: 0px;
 }
 
 #about {
@@ -73,7 +49,12 @@ section {
 	}
 
 	p {
-		font-size: 17px;
+		font-size: 16px;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
 	}
 }
 
@@ -84,27 +65,30 @@ section {
 		}
 
 		li {
-			float: unset;
-			display: inline-block;
-			border: 1px solid $colorForTabs;
-			background-color: white;
-			margin-bottom: 5px;
 
 			a {
 				color: $colorForTabs;
 				border: none !important;
 				font-size: 16px;
-				border-radius: 0;
-
-				&:hover,
-				&:focus {
-					color: $colorForTabs;
-				}
+				border-radius: 21px;
+				padding: 22px 34px;
+				transition: all 0.2s;
+				font-family: "Noto Sans Variable", sans-serif;
+				width: 250px;
+				text-align: center;
 
 				&.active {
 					border: 1px solid $colorForTabs;
 					background-color: $colorForTabs;
 					color: white !important;
+
+					&:hover,
+					&:focus {
+						box-shadow:
+										0 4px 4px rgba(0, 0, 0, 0.25),
+										0 4px 4px rgba(0, 0, 0, 0.25);
+						background-color: lighten($button-background-color, 10%);
+					}
 				}
 			}
 		}
@@ -187,21 +171,34 @@ section {
 }
 
 #projects {
+
+	background-color: $grey;
+
+	.content-container {
+		padding: 15px 0;
+
+		p {
+			text-align: center;
+		}
+	}
+
 	.projects-container {
 		margin-top: 50px;
 
 		.project-wrapper {
 			border: 1px solid #efefef;
+			border-radius: 12px;
 			background-color: #fff;
 			margin-bottom: 30px;
-
+			padding: 25px;
+			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+			
 			.project-logo {
 				text-align: center;
 				padding: 15px;
 
 				img {
-					height: 100px;
-					max-width: 100%;
+					width: 100px;
 				}
 			}
 
@@ -214,7 +211,7 @@ section {
 				min-height: 100px;
 
 				p {
-					font-size: 1rem;
+					font-size: 18px;
 				}
 			}
 
@@ -230,12 +227,9 @@ section {
 			}
 
 			.project-visit-btn {
-				margin-top: 3rem;
-				padding: 0 15px 15px;
+				margin-top: 1rem;
 
 				a {
-					width: 200px;
-					padding: 15px;
 					margin: auto;
 				}
 			}
