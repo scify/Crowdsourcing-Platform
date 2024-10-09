@@ -39,6 +39,7 @@ $colorForTabs: $brand-primary;
 
 .motto-content {
 	z-index: 10001;
+	padding: 0px;
 }
 
 #about {
@@ -48,7 +49,12 @@ $colorForTabs: $brand-primary;
 	}
 
 	p {
-		font-size: 17px;
+		font-size: 16px;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
 	}
 }
 
@@ -59,27 +65,30 @@ $colorForTabs: $brand-primary;
 		}
 
 		li {
-			float: unset;
-			display: inline-block;
-			border: 1px solid $colorForTabs;
-			background-color: white;
-			margin-bottom: 5px;
 
 			a {
 				color: $colorForTabs;
 				border: none !important;
 				font-size: 16px;
-				border-radius: 0;
-
-				&:hover,
-				&:focus {
-					color: $colorForTabs;
-				}
+				border-radius: 21px;
+				padding: 22px 34px;
+				transition: all 0.2s;
+				font-family: "Noto Sans Variable", sans-serif;
+				width: 250px;
+				text-align: center;
 
 				&.active {
 					border: 1px solid $colorForTabs;
 					background-color: $colorForTabs;
 					color: white !important;
+
+					&:hover,
+					&:focus {
+						box-shadow:
+										0 4px 4px rgba(0, 0, 0, 0.25),
+										0 4px 4px rgba(0, 0, 0, 0.25);
+						background-color: lighten($button-background-color, 10%);
+					}
 				}
 			}
 		}
@@ -162,21 +171,33 @@ $colorForTabs: $brand-primary;
 }
 
 #projects {
+
+	background-color: $grey;
+
+	.content-container {
+		padding: 15px 0;
+
+		p {
+			text-align: center;
+		}
+	}
+
 	.projects-container {
 		margin-top: 50px;
 
 		.project-wrapper {
 			border: 1px solid #efefef;
+			border-radius: 12px;
 			background-color: #fff;
 			margin-bottom: 30px;
+			padding: 25px;
 
 			.project-logo {
 				text-align: center;
 				padding: 15px;
 
 				img {
-					height: 100px;
-					max-width: 100%;
+					width: 100px;
 				}
 			}
 
@@ -189,7 +210,7 @@ $colorForTabs: $brand-primary;
 				min-height: 100px;
 
 				p {
-					font-size: 1rem;
+					font-size: 18px;
 				}
 			}
 
@@ -206,11 +227,8 @@ $colorForTabs: $brand-primary;
 
 			.project-visit-btn {
 				margin-top: 3rem;
-				padding: 0 15px 15px;
 
 				a {
-					width: 200px;
-					padding: 15px;
 					margin: auto;
 				}
 			}
