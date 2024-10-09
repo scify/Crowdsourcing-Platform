@@ -1,0 +1,20 @@
+.navbar-nav > .user-menu > .dropdown-menu {
+  width: 100%;
+}
+
+.navbar-expand {
+  .navbar-nav {
+    .nav-link {
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+    }
+  }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+  font-weight: 600;
+  padding-left: 3rem;
+  font-size: 16px;
+  text-transform: uppercase;
+}

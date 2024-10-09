@@ -27,7 +27,7 @@
                                 {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
                                 @if($viewModel->userResponse)
                                     <div class="col-12">
-                                        <h2 class="{{ $viewModel->thankYouMode ? 'mt-0' : 'mt-3' }} text-center">
+                                        <h2 class="{{ $viewModel->thankYouMode ? 'mt-0' : 'mt-3' }} mb-4 text-center">
                                             @if(!$viewModel->thankYouMode)
                                                 {{ __("questionnaire.already_answered") }}
                                             @endif
