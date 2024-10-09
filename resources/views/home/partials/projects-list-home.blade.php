@@ -5,22 +5,28 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="project-wrapper">
                         <div class="project-logo">
-                            <img loading="lazy" src="{{$project->logo_path}}" alt="logo of project">
+                            <img loading="lazy" src="{{$project->logo_path}}" alt="logo of the project">
                         </div>
                         <div class="project-info">
-                            {!! $project->currentTranslation->motto_title !!}
+                            <p>{!! $project->currentTranslation->motto_title !!}</p>
                         </div>
-                        <div class="project-visit-btn">
-                            @if(($project->latestQuestionnaire && $project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED) || $project->problems)
-                                <a href="/{{app()->getLocale() .'/'.$project->slug}}"
-                                   class="btn btn-block btn-primary call-to-action action-dark">
-                                    {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
-                                </a>
-                            @else
-                                <a href="/{{app()->getLocale() .'/'.$project->slug}}"
-                                   class="btn btn-block btn-success call-to-action action-success">View
-                                </a>
-                            @endif
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-9 col-sm-12 mx-auto">
+                                    <div class="project-visit-btn">
+                                        @if(($project->latestQuestionnaire && $project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED) || $project->problems)
+                                            <a href="/{{app()->getLocale() .'/'.$project->slug}}"
+                                               class="btn btn-block btn-primary call-to-action action-dark">
+                                                {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
+                                            </a>
+                                        @else
+                                            <a href="/{{app()->getLocale() .'/'.$project->slug}}"
+                                               class="btn btn-block btn-success call-to-action action-success">View
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
