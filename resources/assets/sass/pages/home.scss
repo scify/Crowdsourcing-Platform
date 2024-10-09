@@ -191,7 +191,8 @@ $colorForTabs: $brand-primary;
 			background-color: #fff;
 			margin-bottom: 30px;
 			padding: 25px;
-
+			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+			
 			.project-logo {
 				text-align: center;
 				padding: 15px;
@@ -226,7 +227,7 @@ $colorForTabs: $brand-primary;
 			}
 
 			.project-visit-btn {
-				margin-top: 3rem;
+				margin-top: 1rem;
 
 				a {
 					margin: auto;
