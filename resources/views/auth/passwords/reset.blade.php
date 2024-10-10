@@ -39,9 +39,15 @@
                         </span>
                 @endif
             </div>
-            <button type="submit"
-                    class="btn btn-primary btn-block btn-flat"
-            >{{ __("email_messages.reset_password")}}</button>
+            <div class="container-fluid">
+                <div class="row auth-btn-container">
+                    <div class="col-md-6 col-sm-11 mx-auto">
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-flat m-0"
+                        >{{ __("email_messages.reset_password")}}</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 @endsection
