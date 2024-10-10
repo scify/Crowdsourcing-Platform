@@ -22,9 +22,15 @@
                         </span>
                 @endif
             </div>
-            <button type="submit"
-                    class="btn btn-primary btn-block btn-flat"
-            >{{ __("login-register.send_password_reset_link") }}</button>
+            <div class="container-fluid">
+                <div class="row auth-btn-container">
+                    <div class="col-md-6 col-sm-11 mx-auto">
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-flat m-0"
+                        >{{ __("login-register.send_password_reset_link")}}</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 @endsection
