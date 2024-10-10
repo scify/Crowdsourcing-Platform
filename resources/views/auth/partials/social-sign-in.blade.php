@@ -1,9 +1,9 @@
 <div class="socialSignInContainer">
     <div class="row mb-sm-2 mb-md-0">
-        <div class="col-sm-4 title">
+        <div class="col-sm-5 title">
             {{ __("login-register.login_with") }}
         </div>
-        <div class="col-sm-8 align-left">
+        <div class="col-sm-7 align-left">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-2 p-0 text-center offset-md-4 offset-sm-0">
