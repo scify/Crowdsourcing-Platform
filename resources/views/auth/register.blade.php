@@ -6,8 +6,14 @@
         <p class="welcome-msg">{{ __("login-register.create_your_account") }}</p>
         <form action="{{ route('register') }}" method="post">
             @include('auth.partials.register_form')
-            <button type="submit"
-                    class="btn btn-primary btn-block btn-flat btn-lg">{{ __("login-register.register") }}</button>
+            <div class="container-fluid">
+                <div class="row auth-btn-container">
+                    <div class="col">
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-flat btn-lg m-0">{{ __("login-register.register") }}</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
     @include('auth.partials.social-sign-in')

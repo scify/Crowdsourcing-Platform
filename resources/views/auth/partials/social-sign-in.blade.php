@@ -1,12 +1,12 @@
 <div class="socialSignInContainer">
-    <div class="row">
+    <div class="row mb-sm-2 mb-md-0">
         <div class="col-sm-4 title">
             {{ __("login-register.login_with") }}
         </div>
         <div class="col-sm-8 align-left">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-2 p-0 text-center offset-4">
+                    <div class="col-2 p-0 text-center offset-md-4 offset-sm-0">
                         <a class="socialSignIn" href="{{url('login/social/facebook')}}"><i
                                     class="fab fa-facebook-square"></i></a>
                     </div>

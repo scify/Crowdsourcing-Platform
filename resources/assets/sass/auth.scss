@@ -3,153 +3,168 @@
 
 body,
 html {
-	height: 100% !important;
-	font-family: "Open Sans", sans-serif;
+  height: 100% !important;
+  font-family: "Open Sans", sans-serif;
 }
 
 .auth-links {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .login-box {
-	margin: 0 auto;
-	width: 90%;
-	max-width: 90%;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 90%;
 }
 
 .login-box-msg {
-	text-align: left;
-	padding: 0 0 20px 0px;
+  text-align: left;
+  padding: 0 0 20px 0px;
 }
 
 .socialSignIn {
-	display: inline-block;
+  display: inline-block;
 
-	i {
-		font-size: 50px;
+  i {
+    font-size: 50px;
 
-		@media (max-width: 1400px) {
-			font-size: 42px;
-		}
+    @media (max-width: 1400px) {
+      font-size: 42px;
+    }
 
-		@media (max-width: 1100px) {
-			font-size: 40px;
-		}
+    @media (max-width: 1100px) {
+      font-size: 40px;
+    }
 
-		@media (max-width: 700px) {
-			font-size: 35px;
-		}
-	}
+    @media (max-width: 700px) {
+      font-size: 35px;
+    }
+  }
 }
 
 .whole {
-	padding-top: 3px;
+  padding-top: 3px;
 
-	.socialSignIn.google {
-		background-color: #db4437;
-	}
+  .socialSignIn.google {
+    background-color: #db4437;
+  }
 
-	.socialSignIn.microsoft {
-		background-color: #00adef;
-	}
+  .socialSignIn.microsoft {
+    background-color: #00adef;
+  }
 
-	.socialSignIn {
-		border-radius: 5px;
-		height: calc(100% - 3px);
-		width: 45px;
-		padding-top: 4px;
-		text-align: center;
+  .socialSignIn {
+    border-radius: 5px;
+    height: calc(100% - 3px);
+    width: 45px;
+    padding-top: 4px;
+    text-align: center;
 
-		@media (max-width: 1400px) {
-			width: 40px;
-		}
+    @media (max-width: 1400px) {
+      width: 40px;
+    }
 
-		@media (max-width: 1250px) {
-			width: 35px;
-		}
+    @media (max-width: 1250px) {
+      width: 35px;
+    }
 
-		@media (max-width: 700px) {
-			width: 28px;
-		}
+    @media (max-width: 700px) {
+      width: 28px;
+    }
 
-		i {
-			color: $white;
-			font-size: 35px;
+    i {
+      color: $white;
+      font-size: 35px;
 
-			@media (max-width: 1400px) {
-				font-size: 30px;
-			}
+      @media (max-width: 1400px) {
+        font-size: 30px;
+      }
 
-			@media (max-width: 1100px) {
-				font-size: 25px;
-			}
+      @media (max-width: 1100px) {
+        font-size: 25px;
+      }
 
-			@media (max-width: 700px) {
-				font-size: 20px;
-			}
-		}
-	}
+      @media (max-width: 700px) {
+        font-size: 20px;
+      }
+    }
+  }
 }
 
 .form-wrapper,
 .socialSignInContainer,
 .auth-links,
 .reset {
-	padding: 25px;
-	padding-bottom: 0;
+  padding: 25px;
+  padding-bottom: 0;
 }
 
 .socialSignInContainer {
-	padding-top: 0;
+  padding-top: 0;
 
-	.title {
-		text-align: left;
-		margin-top: 13px;
-	}
+  .title {
+    text-align: left;
+    margin-top: 13px;
+  }
 
-	.fa-facebook-square {
-		color: #3b5998;
-	}
+  .fa-facebook-square {
+    color: #3b5998;
+  }
 
-	.fa-twitter-square {
-		color: #000000;
-	}
+  .fa-twitter-square {
+    color: #000000;
+  }
 
-	.fa-linkedin {
-		color: #0077b5;
-	}
+  .fa-linkedin {
+    color: #0077b5;
+  }
 }
 
 .account-type-btn {
-	padding: 50px 25px;
+  padding: 50px 25px;
 
-	img {
-		max-width: 50px;
-	}
+  img {
+    max-width: 50px;
+  }
 
-	&.active-selection {
-		background-color: #00a7d0;
-	}
+  &.active-selection {
+    background-color: #00a7d0;
+  }
 }
 
 .form-wrapper {
-	button[type="submit"] {
-		margin-bottom: 105px;
-	}
+  button[type="submit"] {
+    margin-bottom: 105px;
+  }
 }
 
 .auth-links {
-	text-align: left;
+  text-align: left;
 }
 
 .login-box-body {
-	color: black;
-	background-color: rgba(255, 255, 255, 0.95);
-	border-radius: 10px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
 
-	h1 {
-		text-align: center;
-		font-size: 26px;
-		padding-bottom: 0;
-	}
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    padding-bottom: 0;
+  }
+}
+
+
+.auth-btn-container {
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+  }
+
 }
