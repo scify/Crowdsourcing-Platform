@@ -41,16 +41,6 @@
                     @endif
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-12">
-                        <div class="checkbox icheck">
-                            <label>
-                                <input class="icheck-input" type="checkbox" required name="privacy-policy">
-                                <span class="ml-3">{!! __("notifications.agree_privacy_policy") !!}</a></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2">
                     <div class="col-md-6 col-sm-10">
                         <div class="checkbox icheck">
                             <label>
