@@ -41,16 +41,18 @@
                     @endif
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6 col-sm-10">
+                    <div class="col-md-6 col-sm-12">
                         <div class="checkbox icheck">
                             <label>
                                 <input class="icheck-input" type="checkbox" name="remember"><span class="ml-3">{{ __("login-register.remember_me") }}</span>
                             </label>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-10">
+                </div>
+                <div class="row auth-btn-container">
+                    <div class="col-md-6 col-sm-11 mx-auto">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat btn-lg">{{ __("questionnaire.sign_in")}}
+                                class="btn btn-primary btn-block btn-flat btn-lg my-0">{{ __("questionnaire.sign_in")}}
                         </button>
                     </div>
                 </div>
@@ -59,7 +61,7 @@
         @include('auth.partials.social-sign-in')
         <div class="auth-links">
             <a href="{{ route('register') }}"
-               class="text-center"
+               class="text-center mb-sm-2"
             >{{ __("login-register.register_option") }}</a>
             <br>
             <a href="{{ route('password.request') }}"
