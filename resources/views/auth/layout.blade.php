@@ -23,7 +23,7 @@
 @endif
 <div id="app" class="row h-100 justify-content-center align-items-center">
     <div class="login-box col-xl-5 col-lg-6 col-md-9 col-sm-9">
-        <div class="login-box-body p-5 w-100">
+        <div class="login-box-body px-md-5 px-sm-2 py-5 w-100">
             @yield('auth-form')
         </div>
     </div>

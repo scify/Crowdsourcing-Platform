@@ -4,6 +4,17 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 
 export default defineConfig({
+	server: {
+		host: '0.0.0.0', // Allow Vite to listen on all network interfaces
+		port: 5173, // Vite development server port (use this for hot-reloading)
+		hmr: {
+			host: 'localhost',
+			port: 5173, // Same as above, make sure it's exposed in Docker
+		},
+		watch: {
+			usePolling: true, // Useful for file changes in Docker
+		},
+	},
 	plugins: [
 		laravel({
 			input: [

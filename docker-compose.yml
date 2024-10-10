@@ -8,7 +8,7 @@ services:
     build: ./docker/php
     # user: 'www-data:www-data'
     ports:
-      - "5173:5173"
+      - "5173:5173" # Vite development server for hot-reload
     volumes:
       - .:/var/www:cached
     container_name: crowdsourcing_platform_server
@@ -25,7 +25,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - "89:80"
+      - "89:80" # Laravel app will be available at http://localhost:89
     volumes:
       - .:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf

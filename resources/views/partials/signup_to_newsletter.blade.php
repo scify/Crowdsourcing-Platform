@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12 mx-auto d-flex justify-content-center">
                         <a href="https://ecas.org/#gform_wrapper_1" target="_blank"
-                           class="btn signup-btn call-to-action">{{ __("questionnaire.sign_up") }}</a>
+                           class="btn btn-primary signup-btn call-to-action w-100">{{ __("questionnaire.sign_up") }}</a>
                     </div>
                 </div>
             </div>
