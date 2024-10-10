@@ -2,7 +2,7 @@
      style="background-image: url({{asset($viewModel->project->img_path)}});">
     <div class="overlay-filter {{ $viewModel->thankYouMode ? 'overlay-thanks' : '' }}"
          style="top: @if (App::environment('staging')) 128.75px @else 93.75px @endif"></div>
-    <div class="col-lg-7 col-md-8 col-sm-11 mx-auto motto-content h-75">
+    <div class="col-lg-7 col-md-8 col-sm-11 mx-auto motto-content">
         <div class="frosted"></div>
         <div id="project-motto" class="h-100">
             <div class="container">
@@ -25,42 +25,42 @@
                                     {{-- USER RESPONDED TO THE QUESTIONNAIRE --}}
                                     @if($viewModel->userResponse)
                                         <div class="col-12">
-                                            <h2 class="{{ $viewModel->thankYouMode ? 'mt-0' : 'mt-3' }} mb-4 text-center">
+                                            <h4 class="{{ $viewModel->thankYouMode ? 'mt-0' : 'mt-3' }} mb-4 text-center">
                                                 @if(!$viewModel->thankYouMode)
                                                     {{ __("questionnaire.already_answered") }}
                                                 @endif
-                                                @if($viewModel->thankYouMode && isset($badge))
-                                                    <div class="container mt-3">
-                                                        <div class="row mb-4">
-                                                            <div class="col-md-6 col-sm-12 mx-auto text-center">
-                                                                @include('gamification.badge-single', ['badge' => $badge])
-                                                            </div>
-                                                        </div>
-                                                        @if(\Illuminate\Support\Facades\Auth::check())
-                                                            <div class="row">
-                                                                <div class="col-md-7 col-sm-12 mx-auto text-center">
-                                                                    <h2 class="dashboard-message w-100">{{ __('questionnaire.visit_dashboard_and_invite') }}</h2>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4 col-sm-9 mx-auto text-center">
-                                                                    <a href="{{ route('my-dashboard') }}"
-                                                                       class="btn btn-primary btn-lg w-100 dashboard-btn">
-                                                                        {{ __("menu.my_dashboard") }}
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                @endif
-                                                <br>
                                                 {{ __("questionnaire.thank_you_for_your_response") }}
 
                                                 {{-- IF HE HAS  RESPONDEDED TO THE FEEDBACK ALREADY, DISPLAY THE TITLE TO INVITE TO SHARE ON SOCIAL--}}
                                                 @if (!$viewModel->displayFeedbackQuestionnaire() && $viewModel->shareUrlForFacebook!=null && $viewModel->shareUrlForTwitter!=null)
                                                     {{ __("questionnaire.invite_your_friends_to_answer")}}:
                                                 @endif
-                                            </h2>
+                                            </h4>
+                                            @if($viewModel->thankYouMode && isset($badge))
+                                                <div class="container mt-3">
+                                                    <div class="row mb-4">
+                                                        <div class="col-md-6 col-sm-12 mx-auto text-center">
+                                                            @include('gamification.badge-single', ['badge' => $badge])
+                                                        </div>
+                                                    </div>
+                                                    @if(\Illuminate\Support\Facades\Auth::check())
+                                                        <div class="row">
+                                                            <div class="col-md-7 col-sm-12 mx-auto text-center">
+                                                                <h3 class="dashboard-message w-100">{{ __('questionnaire.visit_dashboard_and_invite') }}</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4 col-sm-9 mx-auto text-center">
+                                                                <a href="{{ route('my-dashboard') }}"
+                                                                   class="btn btn-primary btn-lg w-100 dashboard-btn">
+                                                                    {{ __("menu.my_dashboard") }}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endif
+                                            <br>
                                         </div>
                                         {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
                                         @if ($viewModel->displayFeedbackQuestionnaire())
