@@ -33,9 +33,6 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
             - [Nginx Configuration](#nginx-configuration)
         - [Step 5: Install MySQL](#step-5-install-mysql)
             - [Database Considerations](#database-considerations)
-    - [Method 3: Ddev](#method-3-ddev)
-        - [Step 1: Install Ddev](#step-1-install-ddev)
-        - [Step 2: Start Ddev](#step-2-start-ddev)
 - [Run the Laravel Application commands](#run-the-laravel-application-commands)
     - [Step 1: Fix permissions for storage directory](#step-1-fix-permissions-for-storage-directory)
     - [Step 2: Create the `.env` file](#step-2-create-the-env-file)
@@ -266,20 +263,6 @@ After you save the file, restart the MySQL service:
 
 ```bash
 sudo service mysql restart
-```
-
-## Method 3: Ddev
-
-### Step 1: Install Ddev
-
-- **Ddev**: Install Ddev by following the instructions on the [Ddev website](https://ddev.readthedocs.io/en/stable/).
-
-### Step 2: Start Ddev
-
-Run the following command to start Ddev:
-
-```bash
-ddev start
 ```
 
 ## Run the Laravel Application commands

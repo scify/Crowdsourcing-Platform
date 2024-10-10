@@ -91,5 +91,6 @@ RUN chown -R www-data:www-data /var/www
 WORKDIR /root
 RUN git clone https://github.com/seebi/dircolors-solarized
 
-EXPOSE 5173
+# Expose ports for Laravel and Vite
+EXPOSE 80 3000 5173
 WORKDIR /var/www
