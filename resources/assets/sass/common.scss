@@ -9,10 +9,10 @@
 @import "../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css";
 
 // Supports weights 100-900
-@import '@fontsource-variable/noto-sans';
+@import "@fontsource-variable/noto-sans";
 
 // Supports weights 300-800
-@import '@fontsource-variable/open-sans';
+@import "@fontsource-variable/open-sans";
 
 @import "sidebar";
 
@@ -24,6 +24,13 @@
 @import "common/alert";
 @import "common/social";
 @import "common/footer";
+
+:root {
+  --clr-primary-white: #fdfffc;
+  --clr-primary-black: #000000 ;
+  --clr-secondary-light-grey: #e8e9eb;
+  --clr-secondary-grey: #4d5359;
+}
 
 html,
 body {
@@ -301,4 +308,17 @@ a.link {
     height: 35px;
     margin-right: 5px;
   }
+}
+
+.bg-clr-primary-white {
+  background-color: var(--clr-primary-white);
+}
+
+.bg-clr-secondary-light-grey {
+  background-color: var(--clr-secondary-light-grey);
+}
+
+.bg-image-noise {
+  background-image: url("/images/problems/bg-noise-sample.png");
+  background-repeat: repeat;
 }
