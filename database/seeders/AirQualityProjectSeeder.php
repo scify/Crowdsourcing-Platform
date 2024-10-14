@@ -111,6 +111,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-1.png',
                 'default_language_id' => 6,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -168,6 +169,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-2.png',
                 'default_language_id' => 12,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -225,6 +227,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => null,
                 'default_language_id' => 12,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -244,6 +247,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-4.png',
                 'default_language_id' => 6,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -266,6 +270,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'status_id' => $problem['status_id'],
                 'img_url' => $problem['img_url'],
                 'default_language_id' => $problem['default_language_id'],
+                'user_creator_id' => $problem['user_creator_id'],
             ]);
             if (isset($problem['translations'])) {
                 foreach ($problem['translations'] as $translation) {

@@ -5,10 +5,11 @@ namespace App\Models\CrowdSourcingProject\Problem;
 use App\Models\CompositeKeysModel;
 use App\Models\Language;
 use Awobaz\Compoships\Compoships;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CrowdSourcingProjectProblemTranslation extends CompositeKeysModel {
-    use Compoships;
+    use Compoships, HasFactory;
 
     protected $table = 'crowd_sourcing_project_problem_translations';
     protected $fillable = ['problem_id', 'language_id', 'title', 'description'];

@@ -20,6 +20,7 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => 'https://placehold.co/600x400',
                 'default_language_id' => 6,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -40,6 +41,7 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
                 'img_url' => 'https://placehold.co/600x400',
                 'default_language_id' => 6,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -60,6 +62,7 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => 'https://placehold.co/600x400',
                 'default_language_id' => 12,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -80,6 +83,7 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
                 'img_url' => 'https://placehold.co/600x400',
                 'default_language_id' => 12,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -100,6 +104,7 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
                 'img_url' => 'https://placehold.co/600x400',
                 'default_language_id' => 6,
+                'user_creator_id' => 1,
                 'translations' => [
                     [
                         'language_id' => 6,
@@ -123,6 +128,7 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 'status_id' => $problem['status_id'],
                 'img_url' => $problem['img_url'],
                 'default_language_id' => $problem['default_language_id'],
+                'user_creator_id' => $problem['user_creator_id'],
             ]);
             if (isset($problem['translations'])) {
                 foreach ($problem['translations'] as $translation) {
