@@ -3,7 +3,7 @@
     @vite('resources/assets/sass/project/problem/landing-page.scss')
     <style>
         :root {
-            --project-primary-color: {{ $viewModel->project->lp_primary_color}}
+            --project-primary-color: {{ $viewModel->project->lp_primary_color}};
 
         }
     </style>
@@ -11,15 +11,15 @@
 
 @section('content')
 
-    <div class="project-problem-page">
+    <div id="project-problem-page">
 
         @include('partials.flash-messages-and-errors')
 
-        <section id="problems-overview">
+        <section id="problems-overview" class="bg-clr-primary-white">
             @include('crowdsourcing-project.problems.partials.problems-overview')
         </section>
 
-        <section id="problems-list">
+        <section id="problems-list" class="bg-clr-primary-white bg-image-noise">
             @include('crowdsourcing-project.problems.partials.problems-list')
         </section>
 
