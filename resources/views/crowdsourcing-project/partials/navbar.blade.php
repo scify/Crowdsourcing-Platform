@@ -19,6 +19,11 @@
 
         <div class="collapse navbar-collapse pull-right" id="top-menu-content">
             <ul class="nav navbar-nav ml-auto">
+                @if(isset($viewModel->project))
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{ app()->getLocale() }}/{{ $viewModel->project->slug }}">{{ __("menu.the_campaign")}}</a>
+                </li>
+                @endif
                 @if(!isset($onErrorPage))
                     @include("partials.login-menu-options")
                 @endif

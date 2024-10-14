@@ -9,10 +9,10 @@
 @import "../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css";
 
 // Supports weights 100-900
-@import '@fontsource-variable/noto-sans';
+@import "@fontsource-variable/noto-sans";
 
 // Supports weights 300-800
-@import '@fontsource-variable/open-sans';
+@import "@fontsource-variable/open-sans";
 
 @import "sidebar";
 
@@ -24,6 +24,13 @@
 @import "common/alert";
 @import "common/social";
 @import "common/footer";
+
+:root {
+  --clr-primary-white: #fdfffc;
+  --clr-primary-black: #000000 ;
+  --clr-secondary-light-grey: #e8e9eb;
+  --clr-secondary-grey: #4d5359;
+}
 
 html,
 body {
@@ -300,5 +307,70 @@ a.link {
   .user-image {
     height: 35px;
     margin-right: 5px;
+  }
+}
+
+.bg-clr-primary-white {
+  background-color: var(--clr-primary-white);
+}
+
+.bg-clr-secondary-light-grey {
+  background-color: var(--clr-secondary-light-grey);
+}
+
+.bg-image-noise {
+  background-image: url("/images/problems/bg-noise-sample.png");
+  background-repeat: repeat;
+}
+
+.project-layout {
+
+  .btn.btn-primary.call-to-action {
+    background-color: var(--project-primary-color);
+    color: black;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    padding: 25px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+  
+    &:hover {
+      box-shadow:
+              0 4px 4px rgba(0, 0, 0, 0.25),
+              0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  
+    &:focus,
+    &:focus-visible {
+      outline: 4px solid black;
+      box-shadow:
+              0 4px 4px rgba(0, 0, 0, 0.25),
+              0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  
+  .btn.btn-outline-primary.call-to-action {
+    background-color: transparent;
+    color: black;
+    outline: 2px solid black;
+    border: none;
+    padding: 25px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+  
+    &:hover,
+    &:active,
+    &:not(:disabled):not(.disabled):active,
+    &:focus,
+    &:focus-visible {
+      background-color: transparent !important;
+      color: black;
+      outline: 4px solid black;
+      box-shadow:
+              0 4px 4px rgba(0, 0, 0, 0.25),
+              0 4px 4px rgba(0, 0, 0, 0.25);
+    }
   }
 }

@@ -1,34 +1,9 @@
-@import "bootstrap_4point6_custom_xxl";
+@import "bootstrap_4point6_custom_xxl"; // this page uses custom styles to support one more bootstrap size: xxl from 1260px and UP
 
-// Supports weights 100-900
-@import '@fontsource-variable/noto-sans';
-
-// Supports weights 300-800
-@import '@fontsource-variable/open-sans';
-
-:root {
-    --clr-page-bg-clr-grey: #fdfffc;
-    --clr-primary-yellow: #f5ba16;
-    --primary-white: #fdfffc;
-    --primary-black: #000000 ;
-    --secondary-ochre: #b08307;
-    --clr-secondary-light-grey: #e8e9eb;
-    --clr-secondary-grey: #4d5359;
-}
-
-#app {
-    background-color: var(--clr-page-bg-clr-grey);
-}
-
-.project-problem-page {
+#project-problem-page {
 
     #problems-overview {
-        margin-bottom: 3.25rem;
-    }
-
-    #problems-list {
-        background-image: url("/images/problems/bg-noise-sample.png");
-        background-repeat: repeat;
+        padding-bottom: 3.25rem;
     }
 
     .project-title {
@@ -103,7 +78,7 @@
                 box-shadow: 0 4px 4px 0 #00000040, 0 4px 4px 0 #00000040;
 
                 svg {
-                    color: var(--clr-primary-yellow);
+                    color: var(--project-primary-color);
                 }
             }
         }
@@ -194,6 +169,7 @@
             top: 1rem;
             right: 2rem;
             background-color: transparent;
+            color: var(--project-primary-color);
 
             &:hover {
                 box-shadow: 0 4px 4px 0 #00000040;
@@ -207,7 +183,7 @@
         button.cta-btn {
             width: auto;
             padding: 1.9rem 4.3rem;
-            background-color: var(--clr-primary-yellow);
+            background-color: var(--project-primary-color);
             border: none;
             border-radius: 1.5rem; // 21px
             box-shadow: 0 4px 4px 0 #00000040;
@@ -232,10 +208,10 @@
 // from "sm" and UP
 @media (min-width: 576px) {
 
-    .project-problem-page {
+    #project-problem-page {
 
         #problems-overview {
-            margin-bottom: 7.5rem;
+            padding-bottom: 7.5rem;
         }
     
         .project-title {
@@ -263,7 +239,7 @@
 // from "md" and UP
 @media (min-width: 768px) {
 
-    .project-problem-page #problems-list h2 {
+    #project-problem-page #problems-list h2 {
         margin-top: 7.5rem;
     }
 }

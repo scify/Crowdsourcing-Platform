@@ -16,6 +16,7 @@ return [
     'my_account' => 'My Account',
     'my_history' => 'My history',
     'sign_out' => 'Sign out',
+    'the_campaign' => 'The Campaign',
 
 
 ];
