@@ -7,13 +7,33 @@
 		.sv-btn.sv-footer__next-btn,
 		.sv-btn.sv-footer__prev-btn,
 		.sv-btn.sv-footer__start-btn,
-		.sv_nav_btn {
-			background-color: $brand-primary;
-			border-radius: 3px;
+		.sv_nav_btn {			
+			background-color: var(--project-primary-color);
+			color: black;
+			border-radius: 21px;
+			border: none;
+			width: 270px;
+			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+			border: none;
+			padding: 25px 30px;
 			font-size: 20px;
-			font-weight: 500;
-			line-height: 1.7em;
-			border: 2px solid white;
+			font-weight: 600;
+			line-height: 25px;
+		  
+			&:hover {
+			  box-shadow:
+					  0 4px 4px rgba(0, 0, 0, 0.25),
+					  0 4px 4px rgba(0, 0, 0, 0.25);
+			}
+		  
+			&:focus,
+			&:focus-visible {
+			  outline: 4px solid black;
+			  box-shadow:
+					  0 4px 4px rgba(0, 0, 0, 0.25),
+					  0 4px 4px rgba(0, 0, 0, 0.25);
+			}
+
 		}
 
 		.sv-btn.sv-footer__prev-btn {
@@ -27,7 +47,7 @@
 		}
 
 		.sv_main.sv_default_css .sv_body {
-			border-color: $brand-primary;
+			border-color: var(--project-primary-color);
 		}
 
 		.sv_main .sv_body {
@@ -125,4 +145,10 @@
 		font-size: large;
 		font-weight: bold;
 	}
+}
+
+.sv-action-bar.sv-action-bar--default-size-mode.sv_nav {
+	margin: 0 auto;
+	padding-left: 0;
+	overflow: visible;
 }
