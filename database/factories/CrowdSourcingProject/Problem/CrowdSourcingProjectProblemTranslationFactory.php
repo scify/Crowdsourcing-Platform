@@ -16,5 +16,4 @@ class CrowdSourcingProjectProblemTranslationFactory extends Factory {
             'description' => $this->faker->paragraph,
         ];
     }
-
 }
