@@ -322,3 +322,51 @@ a.link {
   background-image: url("/images/problems/bg-noise-sample.png");
   background-repeat: repeat;
 }
+
+.btn.btn-primary.call-to-action {
+  background-color: var(--project-primary-color);
+  color: black;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 25px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+
+  &:hover {
+    box-shadow:
+            0 4px 4px rgba(0, 0, 0, 0.25),
+            0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px solid black;
+    box-shadow:
+            0 4px 4px rgba(0, 0, 0, 0.25),
+            0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+.btn.btn-outline-primary.call-to-action {
+  background-color: transparent;
+  color: black;
+  outline: 2px solid black;
+  border: none;
+  padding: 25px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+
+  &:hover,
+  &:active,
+  &:not(:disabled):not(.disabled):active,
+  &:focus,
+  &:focus-visible {
+    background-color: transparent !important;
+    color: black;
+    outline: 4px solid black;
+    box-shadow:
+            0 4px 4px rgba(0, 0, 0, 0.25),
+            0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}

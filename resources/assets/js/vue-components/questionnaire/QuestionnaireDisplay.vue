@@ -19,14 +19,24 @@
 					<h3 v-sane-html="getQuestionnaireLoginPromptMessage()"></h3>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-5 text-center pl-0 mx-auto">
-					<a class="btn btn-outline-primary btn-lg w-100" :href="getSignInUrl()">{{
+			<div class="row justify-content-center d-none d-md-flex">
+				<div class="col-5">
+					<a class="btn btn-outline-primary btn-lg call-to-action w-100" :href="getSignInUrl()">{{
 						trans("questionnaire.sign_in")
 					}}</a>
 				</div>
-				<div v-if="!questionnaire.respondent_auth_required" class="col-5 offset-2 text-center pr-0">
-					<button class="btn btn-primary btn-lg w-100" @click="skipLogin()">Answer anonymously</button>
+				<div v-if="!questionnaire.respondent_auth_required" class="col-5">
+					<button class="btn btn-primary btn-lg call-to-action w-100" @click="skipLogin()">Answer anonymously</button>
+				</div>
+			</div>
+			<div class="row justify-content-center d-flex d-md-none">
+				<div class="col-10">
+					<a class="btn btn-outline-primary btn-lg call-to-action w-100" :href="getSignInUrl()">{{
+						trans("questionnaire.sign_in")
+					}}</a>
+				</div>
+				<div v-if="!questionnaire.respondent_auth_required" class="col-10">
+					<button class="btn btn-primary btn-lg call-to-action w-100 my-4" @click="skipLogin()">Answer anonymously</button>
 				</div>
 			</div>
 		</div>
