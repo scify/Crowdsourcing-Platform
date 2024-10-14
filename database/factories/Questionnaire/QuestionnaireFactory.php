@@ -2,6 +2,8 @@
 
 namespace Database\Factories\Questionnaire;
 
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
+use App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp;
 use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -12,8 +14,8 @@ class QuestionnaireFactory extends Factory {
         return [
             'project_id' => 1,
             'prerequisite_order' => 1,
-            'status_id' => 1,
-            'type_id' => 1,
+            'status_id' => QuestionnaireStatusLkp::DRAFT,
+            'type_id' => QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE,
             'default_language_id' => 1,
             'goal' => 10,
             'questionnaire_json' => json_encode([
