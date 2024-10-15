@@ -9,11 +9,13 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('csp_problem_statuses_lkp', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 30);
-            $table->string('description', 200);
-        });
+        if (!Schema::hasTable('csp_problem_statuses_lkp')) {
+            Schema::create('csp_problem_statuses_lkp', function (Blueprint $table) {
+                $table->id();
+                $table->string('title', 30);
+                $table->string('description', 200);
+            });
+        }
     }
 
     /**

@@ -9,19 +9,21 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('crowd_sourcing_project_problem_solutions', function (Blueprint $table) {
-            $table->id();
+        if (!Schema::hasTable('crowd_sourcing_project_problem_solutions')) {
+            Schema::create('crowd_sourcing_project_problem_solutions', function (Blueprint $table) {
+                $table->id();
 
-            $table->unsignedBigInteger('problem_id');
-            $table->foreign('problem_id')->references('id')->on('crowd_sourcing_project_problems');
+                $table->unsignedBigInteger('problem_id');
+                $table->foreign('problem_id')->references('id')->on('crowd_sourcing_project_problems');
 
-            $table->string('slug')->unique();
+                $table->string('slug')->unique();
 
-            $table->string('img_url');
+                $table->string('img_url');
 
-            $table->timestamps();
-            $table->softDeletes();
-        });
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**
