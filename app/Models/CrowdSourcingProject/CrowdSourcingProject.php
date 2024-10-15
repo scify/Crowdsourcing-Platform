@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $lp_questionnaire_img_path
  * @property int $lp_show_speak_up_btn
  * @property string $lp_primary_color
+ * @property string $lp_btn_text_color_theme
  * @property int $should_send_email_after_questionnaire_response
  * @property int $display_landing_page_banner
  */
@@ -49,13 +50,15 @@ class CrowdSourcingProject extends Model {
     /**
      * The attributes that are mass assignable.
      *
+     * Note: in the lp_* fields, lp stands for landing page
+     *
      * @var array
      */
     protected $fillable = [
         'slug', 'external_url', 'img_path',
         'logo_path', 'user_creator_id', 'language_id', 'status_id',
         'sm_featured_img_path', 'lp_questionnaire_img_path',
-        'lp_show_speak_up_btn', 'lp_primary_color',
+        'lp_show_speak_up_btn', 'lp_primary_color', 'lp_btn_text_color_theme',
         'should_send_email_after_questionnaire_response',
         'display_landing_page_banner',
     ];

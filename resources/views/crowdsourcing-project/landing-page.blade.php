@@ -2,8 +2,8 @@
 @push('css')
     <style>
         :root {
-            --project-primary-color: {{ $viewModel->project->lp_primary_color}}
-
+            --project-primary-color: {{ $viewModel->project->lp_primary_color}};
+            --btn-text-color: {{ $viewModel->project->lp_btn_text_color_theme == "light" ? "#ffffff" : "#212529"}};
         }
     </style>
 @endpush
