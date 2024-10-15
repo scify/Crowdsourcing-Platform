@@ -29,13 +29,20 @@
 @include('partials.staging-indicator')
 @include('crowdsourcing-project.partials.navbar')
 @include('partials.flash-messages-and-errors')
-<div id="app" class="project-layout" style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
+<div id="app" class="project-layout"
+     style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
-@if(isset($viewModel->project))
+@if(isset($viewModel->project) && $viewModel->project->defaultTranslation->footer)
     <footer class="py-5">
         <div class="container">
             {!! $viewModel->project->defaultTranslation->footer !!}
+        </div>
+    </footer>
+@else
+    <footer class="pt-5">
+        <div class="container-fluid">
+            @include('home.partials.' . config('app.installation_resources_dir') . '.footer')
         </div>
     </footer>
 @endif
