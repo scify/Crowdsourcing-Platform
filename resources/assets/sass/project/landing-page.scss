@@ -396,7 +396,11 @@ ol {
 
   .modal-dialog {
     max-width: 680px;
-    margin-top: 150px;
+    margin-top: 60px;
+  }
+
+  .modal-header {
+    border-bottom: none;
   }
 
   .modal-title {
@@ -406,22 +410,9 @@ ol {
   }
 
   .btn {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-family: Avenir, Helvetica, sans-serif;
-    box-sizing: border-box;
-    border-radius: 3px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
-    color: #fff;
-    display: inline-block;
-    text-decoration: none;
-    -webkit-text-size-adjust: none;
-    background-color: $button-background-color;
-    border-top: 10px solid $button-background-color;
-    border-right: 18px solid $button-background-color;
-    border-bottom: 10px solid $button-background-color;
-    border-left: 18px solid $button-background-color;
-    font-size: x-large;
+    width: 16.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   .respond-questionnaire.feedback {
@@ -461,37 +452,52 @@ ol {
 
   .login-invitation {
     text-align: center;
+    font-weight: normal;
+    font-family: "Open Sans Variable", sans-serif;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
   }
 
   .anonymous-answers-saved {
-    background-color: #f5faff;
-    background-image: url("../../images/sign_in.webp");
+    background-color: var(--clr-secondary-light-grey);
+    background-image: url("../../images/answered_anonymously.webp");
     background-repeat: no-repeat;
-    min-height: 310px;
-    background-size: 260px;
-    background-position: bottom;
-    margin-left: -14px;
-    margin-right: -14px;
-    margin-top: -14px;
-    border-radius: 7px;
+    min-height: 330px;
+    background-size: 180px;
+    background-position: center 80%;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: -16px;
     text-align: center;
     padding-top: 25px;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   .dashboard-message {
-    font-family: Avenir, Helvetica, sans-serif;
+    font-family: "Noto Sans Variable", sans-serif;
     box-sizing: border-box;
-    color: $button-background-color;
-    font-size: toRem(22);
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
     line-height: 1.5em;
     margin-top: 0;
     text-align: center;
+    margin-bottom: 1rem;
   }
 
   p {
     text-align: center;
     font-size: 20px;
+  }
+
+  label,
+  i {
+    font-size: 14px;
+    font-weight: 300;
+    color: #4d5359;
   }
 
   .modal-body {
@@ -519,9 +525,17 @@ ol {
   }
 
   .modal-footer {
+    border-top: none;
+    justify-content: center;
+
     .refresh-page {
       max-width: 100px;
       margin: auto;
+    }
+    .dashboard-message {
+      font-family: "Open Sans Variable", sans-serif;
+      font-size: 20px;
+      font-weight: 400;
     }
   }
 
