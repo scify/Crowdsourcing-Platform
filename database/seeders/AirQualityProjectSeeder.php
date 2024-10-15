@@ -40,6 +40,7 @@ class AirQualityProjectSeeder extends Seeder {
             'language_id' => 6,
             'should_send_email_after_questionnaire_response' => 1,
             'lp_primary_color' => '#f5ba16',
+            'lp_btn_text_color_theme' => 'dark',
             'lp_questionnaire_image_path' => '/images/projects/air-quality-europe/logo.webp',
             'lp_show_speak_up_btn' => 1,
             'sm_featured_img_path' => '/images/projects/air-quality-europe/logo.webp',
