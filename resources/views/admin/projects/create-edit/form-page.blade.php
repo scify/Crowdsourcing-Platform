@@ -72,12 +72,16 @@
                 </div>
             </div>
             <div>
-                <input class="btn btn-primary btn-lg  mt-3 mb-3"
-                       id="submit-form"
-                       type="submit" value="Save">
+                <div class="container-fluid p-0">
+                    <div class="row p-0">
+                        <div class="col-lg-2 col-md-3 col-sm-12">
+                            <input class="btn btn-primary btn-lg w-100  mt-3 mb-3"
+                                   id="submit-form"
+                                   type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
         </div>
     </form>
 @endsection
