@@ -42,7 +42,7 @@
                         <div class="login-invitation">
                             {{-- <p class="dashboard-message mt-4 mb-0  w-100">
                                 {{ __("questionnaire.login_to_complete_submission") }}</p> --}}
-                            <p class="dashboard-message mt-4 mb-0 w-100">{!! __('questionnaire.by_registering_you') !!}</p>
+                            <p class="dashboard-message mt-4 w-100">{!! __('questionnaire.by_registering_you') !!}</p>
                             <ul>
                                 <li>- {!! __('questionnaire.filter_spammers') !!}</li>
                                 <li>- {!! __('questionnaire.view_your_contribution') !!}</li>
@@ -76,7 +76,7 @@
                     <div class="modal-footer">
                         <p class="dashboard-message w-100">{{ __('questionnaire.learn_about_new_projects') }}</p>
                         <a href="{{ route('register') }}"
-                           class="btn btn-lg btn-block btn-primary">{{ __('questionnaire.sign_up') }}
+                           class="btn btn-primary">{{ __('questionnaire.sign_up') }}
                             / {{ __('questionnaire.sign_in') }}</a>
                     </div>
                 </div>
