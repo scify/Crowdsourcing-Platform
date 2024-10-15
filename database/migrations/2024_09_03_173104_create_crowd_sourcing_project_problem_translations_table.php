@@ -9,20 +9,22 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('crowd_sourcing_project_problem_translations', function (Blueprint $table) {
-            $table->unsignedBigInteger('problem_id');
-            $table->foreign('problem_id')->references('id')->on('crowd_sourcing_project_problems');
+        if (!Schema::hasTable('crowd_sourcing_project_problem_translations')) {
+            Schema::create('crowd_sourcing_project_problem_translations', function (Blueprint $table) {
+                $table->unsignedBigInteger('problem_id');
+                $table->foreign('problem_id')->references('id')->on('crowd_sourcing_project_problems');
 
-            $table->unsignedInteger('language_id');
-            $table->foreign('language_id')->references('id')->on('languages_lkp');
+                $table->unsignedInteger('language_id');
+                $table->foreign('language_id')->references('id')->on('languages_lkp');
 
-            $table->primary(['problem_id', 'language_id'], 'crowd_sourcing_project_problem_translations_primary');
+                $table->primary(['problem_id', 'language_id'], 'crowd_sourcing_project_problem_translations_primary');
 
-            $table->string('title', 250);
-            $table->text('description');
+                $table->string('title', 250);
+                $table->text('description');
 
-            $table->timestamps();
-        });
+                $table->timestamps();
+            });
+        }
     }
 
     /**

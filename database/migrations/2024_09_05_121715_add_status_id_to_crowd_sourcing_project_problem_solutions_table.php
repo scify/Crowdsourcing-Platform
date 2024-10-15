@@ -9,6 +9,9 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
+        if (Schema::hasColumn('crowd_sourcing_project_problem_solutions', 'status_id')) {
+            return;
+        }
         Schema::table('crowd_sourcing_project_problem_solutions', function (Blueprint $table) {
             $table->unsignedBigInteger('status_id')->after('slug')->nullable(false);
             $table->foreign('status_id')->references('id')->on('csp_problem_solution_statuses_lkp');

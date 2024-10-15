@@ -9,6 +9,9 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
+        if (Schema::hasColumn('crowd_sourcing_project_problem_solutions', 'user_creator_id')) {
+            return;
+        }
         Schema::table('crowd_sourcing_project_problem_solutions', function (Blueprint $table) {
             $table->unsignedInteger('user_creator_id')->after('problem_id')->nullable(false);
             $table->foreign('user_creator_id')->references('id')->on('users');
