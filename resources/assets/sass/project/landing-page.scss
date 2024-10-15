@@ -1384,7 +1384,7 @@ footer {
 
 .project-layout a.btn {
   background-color: var(--project-primary-color);
-  color: black;
+  color: var(--btn-text-color);
 }
 
 .project-layout {
@@ -1395,7 +1395,7 @@ footer {
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled):active:focus {
       background-color: var(--project-primary-color);
-      color: black;
+      color: var(--btn-text-color);
       box-shadow: 0 4px 4px #00000040,0 4px 4px #00000040;
     }
     

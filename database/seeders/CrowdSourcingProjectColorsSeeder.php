@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectColorsRepository;
 use Illuminate\Database\Seeder;
 
 class CrowdSourcingProjectColorsSeeder extends Seeder {
-    protected $crowdSourcingProjectColorsRepository;
+    protected CrowdSourcingProjectColorsRepository $crowdSourcingProjectColorsRepository;
 
     public function __construct(CrowdSourcingProjectColorsRepository $crowdSourcingProjectColorsRepository) {
         $this->crowdSourcingProjectColorsRepository = $crowdSourcingProjectColorsRepository;
@@ -75,12 +74,6 @@ class CrowdSourcingProjectColorsSeeder extends Seeder {
         // only echo if not in test environment
         if (app()->environment() !== 'testing') {
             echo "\nDefault colors were created.\n";
-        }
-
-        $projects = CrowdSourcingProject::all();
-        foreach ($projects as $project) {
-            $project->lp_primary_color = '#707070';
-            $project->save();
         }
     }
 }

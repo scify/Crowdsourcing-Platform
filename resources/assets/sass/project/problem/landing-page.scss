@@ -172,11 +172,11 @@
             color: var(--project-primary-color);
 
             &:hover {
-                box-shadow: 0 4px 4px 0 #00000040;
+                box-shadow: 0 4px 4px 0 var(--btn-text-color);
             }
 
             &:focus-visible {
-                outline: 3px solid black; // bookmark - calculate in rem
+                outline: 3px solid var(--btn-text-color); // bookmark - calculate in rem
             }
         }
 
@@ -184,6 +184,7 @@
             width: auto;
             padding: 1.9rem 4.3rem;
             background-color: var(--project-primary-color);
+            color: var(--btn-text-color);
             border: none;
             border-radius: 1.5rem; // 21px
             box-shadow: 0 4px 4px 0 #00000040;
