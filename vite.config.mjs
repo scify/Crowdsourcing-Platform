@@ -14,6 +14,7 @@ export default defineConfig({
 		watch: {
 			usePolling: true, // Useful for file changes in Docker
 		},
+		https: false,
 	},
 	plugins: [
 		laravel({

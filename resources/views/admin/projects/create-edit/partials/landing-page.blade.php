@@ -57,7 +57,6 @@
                                 <div class="row mb">
                                     <label class="col-md-12 control-label" for="lp_primary_color">Landing page primary
                                         color
-                                        color
                                         (<span
                                                 class="red">*</span>)<br>
                                     </label>
@@ -66,8 +65,31 @@
                                             <input id="lp_primary_color" type="text" name="lp_primary_color"
                                                    class="form-control"
                                                    value="{{ old('lp_primary_color') ? old('lp_primary_color') :
-                                                            $viewModel->project->lp_primary_color  }}"/>
+                                                            $viewModel->project->lp_primary_color  }}" />
                                             <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb">
+                                    <label class="col-md-12 control-label" for="lp_btn_text_color_theme">Landing page
+                                        button text
+                                        theme
+                                        (<span
+                                                class="red">*</span>)<br>
+                                    </label>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="input-group colorpicker-component color-picker">
+                                            <select id="lp_btn_text_color_theme" name="lp_btn_text_color_theme"
+                                                    class="form-control">
+                                                <option value="light"
+                                                        {{ old('lp_btn_text_color_theme') == 'light' ? 'selected' : ($viewModel->project->lp_btn_text_color_theme == 'light' ? 'selected' : '') }}>
+                                                    Light
+                                                </option>
+                                                <option value="dark"
+                                                        {{ old('lp_btn_text_color_theme') == 'dark' ? 'selected' : ($viewModel->project->lp_btn_text_color_theme == 'dark' ? 'selected' : '') }}>
+                                                    Dark
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +224,7 @@
                                                    name="banner_title"
                                                    class="form-control"
                                                    value="{{ old('banner_title') ? old('banner_title') :
-                                                            $viewModel->project->defaultTranslation->banner_title  }}"/>
+                                                            $viewModel->project->defaultTranslation->banner_title  }}" />
                                             <span class="help-block"><strong>{{ $errors->first('banner_title') }}</strong></span>
                                         </div>
                                     </div>

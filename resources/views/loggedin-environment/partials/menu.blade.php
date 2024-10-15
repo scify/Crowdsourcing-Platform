@@ -33,12 +33,12 @@
                         </li>
                     @endcan
                     @can("manage-platform")
-                        <li class="nav-header">COMMUNICATION MANAGEMENT</li>
+                        <li class="nav-header">COMMUNICATION</li>
 
                         <li class="nav-item {{UrlMatchesMenuItem("communication/mailchimp")}}">
                             <a class="nav-link" href="{{ route('mailchimp-integration.get') }}"><i
                                         class="nav-icon fa fa-envelope"></i>
-                                <p>MailChimp Integration</p></a>
+                                <p>MailChimp</p></a>
                         </li>
                     @endcan
                     @can("manage-users")
