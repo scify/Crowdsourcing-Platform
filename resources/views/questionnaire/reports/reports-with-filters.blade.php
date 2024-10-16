@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-2 offset-md-1 col-sm-12 justify-content-center align-items-center">
                             <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg"
-                                    data-url="{{ route('questionnaire.get-report-data') }}"><i
+                                    data-url="{{ route('api.questionnaire.report-data.get') }}"><i
                                         class="fas fa-search mr-1"></i> View
                             </button>
                         </div>

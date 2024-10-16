@@ -1,5 +1,5 @@
 <div class="panel">
-        <div class="panel-body filtersContainer noInputStyles" id="usersFilters" data-url="{{ route('filterUsers') }}">
+        <div class="panel-body filtersContainer noInputStyles" id="usersFilters" data-url="{{ route('api.users.get-filtered') }}">
         <div class="row">
             <div class="col-md-4">
                 <div class="inputer">
