@@ -17,76 +17,89 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-success card-outline">
-                <div class="card-header">
-                    <h3 class="card-title">{{ __("my-dashboard.contribution") }}
-                        . {{ __("badges_messages.get_more_badges") }}</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <div class="container-fluid table-responsive">
-                                @if($viewModel->questionnaires->isEmpty())
-                                    <div class="no-projects-found">{{ __("questionnaire.no_active_projects")}}
-                                    </div>
-                                @else
-                                    <table id="available-projects"
-                                           class="w-100 row table table-striped table-hover table-responsive-md">
-                                        <tbody class="w-100">
-                                        @foreach($viewModel->questionnaires as $questionnaire)
-                                            <tr class="d-flex flex-wrap justify-content-center">
-                                                <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
-                                                    <div class="container-fluid">
 
-                                                        <h4>  {{ $questionnaire->fieldsTranslation->title }}</h4>
-                                                        @if ($questionnaire->type_id==2)
-                                                            <a href="{{ route('project.landing-page',$questionnaire->projects[0]->slug) }}">
-                                                                <img loading="lazy" class="project-logo"
-                                                                     style="max-height:70px;"
-                                                                     alt="Project logo for {{$questionnaire->projects[0]->defaultTranslation->name}}"
-                                                                     src="{{asset($questionnaire->projects[0]->logo_path)}}">
-                                                                <br>
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                                <td class="h-75 col-md-4 col-sm-12 justify-content-center align-self-center border-top-0">
-                                                    @include('gamification.next-step', ['nextStepVM' => $questionnaire->gamificationNextStepVM])
-                                                </td>
-                                                <td class="h-75 col-md-4 col-sm-6 justify-content-center align-self-center border-top-0">
-                                                    @if ($questionnaire->type_id==1)
-                                                        <div class="progress-container">
-                                                            @include('crowdsourcing-project.partials.project-goal',
-                                                            ['questionnaireId' => $questionnaire->id, 'questionnaireViewModel' => $questionnaire->goalVM, 'project' => $questionnaire->projects->get(0)])
-                                                            @if ($questionnaire->userHasAccessToViewStatisticsPage)
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <a class="btn btn-primary" target="_blank"
-                                                                           href="{{ route('questionnaire.statistics', $questionnaire) }}">
-                                                                            <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    @endif
+    <div id="dashboard-actions-sections">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <div class="col">
+                    <div class="accordion" id="projects-with-questionnaires">
+                        <div class="card">
+                            <div class="card-header" id="projects-with-questionnaires-header">
+                                <a href="#" class="btn btn-header-link" data-toggle="collapse" data-target="#projects-with-questionnaires-content"
+                                   aria-expanded="true" aria-controls="faq1">{{ __('my-dashboard.contribution') }}</a>
+                            </div>
 
-                                                </td>
+                            <div id="projects-with-questionnaires-content" class="collapse show"
+                                 aria-labelledby="projects-with-questionnaires-header" data-parent="#projects-with-questionnaires">
+                                <div class="card-body px-2">
+                                    @include('loggedin-environment.projects-with-active-questionnaires', ['questionnaires' => $viewModel->questionnaires])
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="projects-with-problems">
+                                <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse"
+                                   data-target="#faq2"
+                                   aria-expanded="true" aria-controls="faq2">S.S.S</a>
+                            </div>
 
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                @endif
+                            <div id="faq2" class="collapse" aria-labelledby="faqhead2" data-parent="#faq">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid.
+                                    3 wolf
+                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                    laborum
+                                    eiusmod.
+                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
+                                    nulla
+                                    assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                    nesciunt
+                                    sapiente ea
+                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                    farm-to-table, raw
+                                    denim
+                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore
+                                    sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="faqhead3">
+                                <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse"
+                                   data-target="#faq3"
+                                   aria-expanded="true" aria-controls="faq3">S.S.S</a>
+                            </div>
+
+                            <div id="faq3" class="collapse" aria-labelledby="faqhead3" data-parent="#faq">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid.
+                                    3 wolf
+                                    moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                    laborum
+                                    eiusmod.
+                                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
+                                    nulla
+                                    assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                                    nesciunt
+                                    sapiente ea
+                                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                    farm-to-table, raw
+                                    denim
+                                    aesthetic synth nesciunt you probably haven't heard of them accusamus labore
+                                    sustainable VHS.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-
     </div>
-
 @endsection
+
+

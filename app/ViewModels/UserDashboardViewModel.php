@@ -11,9 +11,10 @@ class UserDashboardViewModel {
     public User $user;
 
     public function __construct(Collection $questionnaires,
-        GamificationBadgesWithLevels $platformWideGamificationBadgesVM) {
+        GamificationBadgesWithLevels $platformWideGamificationBadgesVM,
+        User $user) {
         $this->questionnaires = $questionnaires;
         $this->platformWideGamificationBadgesVM = $platformWideGamificationBadgesVM;
-        $this->user = auth()->user();
+        $this->user = $user;
     }
 }

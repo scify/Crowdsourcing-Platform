@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectQuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
@@ -30,8 +31,8 @@ class QuestionnaireSeeder extends Seeder {
             [
                 'id' => 1,
                 'project_id' => 1,
-                'type_id' => 1,
-                'status_id' => QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE,
+                'type_id' => QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE,
+                'status_id' => QuestionnaireStatusLkp::PUBLISHED,
                 'default_language_id' => 6,
                 'goal' => 100,
                 'max_votes_num' => 10,
@@ -44,8 +45,8 @@ class QuestionnaireSeeder extends Seeder {
             [
                 'id' => 2,
                 'project_id' => 2,
-                'type_id' => 1,
-                'status_id' => QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE,
+                'type_id' => QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE,
+                'status_id' => QuestionnaireStatusLkp::PUBLISHED,
                 'default_language_id' => 6,
                 'goal' => 50,
                 'max_votes_num' => 5,

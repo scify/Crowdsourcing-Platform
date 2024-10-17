@@ -6,16 +6,30 @@
     <div class="row justify-content-center align-self-center">
 
         <div class="col-md-12">
-            <h4 class="title">{!! $nextStepVM->title !!}</h4>
-            <div class="nextStepImgContainer">
-                <img alt="Next Step Badge" loading="lazy" class="nextStepImg"
-                     src="{{asset("images/badges/" . $nextStepVM->imgFileName)}}">
+            <div class="project-img-container">
+                <a href="{{ route('project.landing-page',$questionnaire->projects[0]->slug) }}">
+                    <img loading="lazy" class="project-logo"
+                         alt="Project logo for {{$questionnaire->projects[0]->defaultTranslation->name}}"
+                         src="{{asset($questionnaire->projects[0]->logo_path)}}">
+                    <br>
+                </a>
             </div>
-
+            <p class="title my-2">
+                @if($questionnaire->type_id == \App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp::FEEDBACK_QUESTIONNAIRE)
+                    {{ __("questionnaire.answer_to_feedback_questionnaire") }}
+                @else
+                    {!! $nextStepVM->title !!}
+                @endif
+            </p>
             @if($nextStepVM->userHasAlreadyAnsweredTheActiveQuestionnaire)
-
-                @include('questionnaire.social-share', ['viewModel' => $nextStepVM->socialShareVM, 'projects'=>$nextStepVM->projects])
-
+                @if($questionnaire->type_id == \App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp::FEEDBACK_QUESTIONNAIRE)
+                    <a href="{{route("project.landing-page", $questionnaire->projects->get(0)->slug) . "?open=1"}}"
+                       class="btn btn-primary btn-lg nextStepActionBtn">{{ __("questionnaire.give_us_feedback") }}</a>
+                @else
+                    <div class="col-lg-6 col-md-8 col-sm-12 mx-auto social-share-container">
+                        @include('questionnaire.social-share', ['viewModel' => $nextStepVM->socialShareVM, 'projects'=>$nextStepVM->projects])
+                    </div>
+                @endif
             @else
                 @if($nextStepVM->projects->count() > 1)
                     <div class="dropdown show">
@@ -24,7 +38,6 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ __("badges_messages.contribute") }}
                         </a>
-
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             @foreach($nextStepVM->projects as $project)
                                 <a href="{{route("project.landing-page", $project->slug) . "?open=1"}}"

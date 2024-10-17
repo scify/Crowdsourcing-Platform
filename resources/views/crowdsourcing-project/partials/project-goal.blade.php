@@ -1,5 +1,6 @@
 <div class="activity-title wrapper-title mt-2">
-    <p>          {!! __("questionnaire.answers_left_to_goal",  ["count"=>"<b> $questionnaireViewModel->responsesNeededToReachGoal </b>"]) !!}</p>
+    <p>{!! __("questionnaire.answers_left_to_goal",  ["count"=>"$questionnaireViewModel->responsesNeededToReachGoal"]) !!}
+        !</p>
 </div>
 <div class="progress-container">
     <div class="progress-bar-circle" id="questionnaire-progress-{{ $questionnaireId }}"
@@ -7,5 +8,3 @@
          data-target="{{$questionnaireViewModel->targetAchievedPercentage}}">
     </div>
 </div>
-
-

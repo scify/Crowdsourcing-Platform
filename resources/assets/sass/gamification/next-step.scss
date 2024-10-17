@@ -10,12 +10,20 @@
 		height: 86px;
 	}
 
-	.nextStepActionBtn {
-		margin-top: 20px;
-		margin-bottom: 20px;
+	.title {
+		font-weight: bold;
 	}
 
-	.title {
-		margin-bottom: 20px;
+	.nextStepActionBtn, .social-share-button {
+		padding: 8px 20px;
+	}
+
+	.social-share-container {
+		.title {
+			font-size: large;
+		}
+		.social-share-button {
+			font-size: medium;
+		}
 	}
 }

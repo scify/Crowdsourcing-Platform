@@ -48,6 +48,6 @@ return [
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => 'Invite your friends to answer',
     'go_to_homepage' => 'Yes! Go to homepage',
-    'answer_to_feedback_questionnaire' => 'Answer to feedback questionnaire',
+    'answer_to_feedback_questionnaire' => 'Answer the feedback questionnaire',
     'user_feedback_given_message' => 'Thank you for your feedback!',
 ];
