@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Získajte tento odznak vyplnením dotazníka!',
+    'contributor_badge_points_explanation' => 'Získavate :points bodov za každý dotazník, na ktorý odpoviete, za každé riešenie problému, ktoré navrhnete, alebo za hlas, ktorý niekto dá vašemu riešeniu!',
+    'communicator_badge_points_explanation' => 'Získavate :points bodov za každý dotazník a problém, na ktorý klikne niekto z vašich zdieľaných!',
+    'influencer_badge_points_explanation' => 'Získavate :points bodov za každý príspevok na sociálnych sieťach, na ktorý niekto reaguje a prispieva!',
     'you_have_answered'              => 'Odpovedali ste na :count',
     'questionnaire'                  => 'dotazník',
     'questionnaires'                 => 'dotazníky',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Prispejte',
     'contribute_for'                 => 'Prispejte pre',
     'you_do_not_own'                 => 'Tento odznak nevlastníte',
-
+    'badges_title'                   => 'Výstava odznakov',
 
 
 

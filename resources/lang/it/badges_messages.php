@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Ottieni questo badge, rispondendo a un questionario!',
+    'contributor_badge_points_explanation' => 'Guadagni :points punti ogni volta che rispondi a un questionario, proponi una soluzione a un problema o qualcuno vota per la tua soluzione!',
+    'communicator_badge_points_explanation' => 'Guadagni :points punti ogni volta che qualcuno clicca sui tuoi questionari e problemi condivisi!',
+    'influencer_badge_points_explanation' => 'Guadagni :points punti ogni volta che qualcuno risponde ai tuoi post sui social e contribuisce!',
     'you_have_answered'              => 'Hai risposto a :count',
     'questionnaire'                  => 'questionario',
     'questionnaires'                 => 'questionari',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Contribuisci',
     'contribute_for'                 => 'Contribuisci per',
     'you_do_not_own'                 => 'Non possiedi questo badge',
-
+    'badges_title'                   => 'Mostra i badge',
 
 
 

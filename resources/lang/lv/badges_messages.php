@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Iegūstiet šo nozīmīti, atbildot uz anketas jautājumiem!',
+    'contributor_badge_points_explanation' => 'Katru reizi, kad atbildi uz anketu, iesniedz risinājumu problēmai vai kāds nobalso par tavu risinājumu, tu iegūsti :points punktus!',
+    'communicator_badge_points_explanation' => 'Katru reizi, kad kāds noklikšķina uz tavām kopīgotajām anketām un problēmām, tu iegūsti :points punktus!',
+    'influencer_badge_points_explanation' => 'Katru reizi, kad kāds reaģē uz tavām sociālajām tīklu ziņām un piedalās, tu iegūsti :points punktus!',
     'you_have_answered'              => 'Tu esi aizpildījis :count',
     'questionnaire'                  => 'anketu',
     'questionnaires'                 => 'anketas',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Iesaisties',
     'contribute_for'                 => 'Iesaisties par',
     'you_do_not_own'                 => 'Tev nav šīs "badge"',
-
+    'badges_title'                   => 'Badges Showcase',
 
 
 ];

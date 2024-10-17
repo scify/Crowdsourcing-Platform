@@ -10,7 +10,10 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Erhalte dieses "badge", indem du einen Fragebogen beantwortest!',
+    'contributor_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn Sie einen Fragebogen beantworten, eine Lösung für ein Problem einreichen oder jemand Ihre Lösung hochvotet!',
+    'communicator_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn jemand auf Ihre geteilten Fragebögen und Probleme klickt!',
+    'influencer_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn jemand auf Ihre Social-Media-Beiträge reagiert und etwas beiträgt!',
+
     'you_have_answered'              => 'Sie haben einen :count',
     'questionnaire'                  => 'Fragebogen beantwortet',
     'questionnaires'                 => 'Fragebögen beantwortet',
@@ -48,7 +51,7 @@ return [
     'contribute'                     => 'Etwas beitragen',
     'contribute_for'                 => 'Etwas beitragen für',
     'you_do_not_own'                 => 'Sie haben das Abzeichen noch nicht',
-
+    'badges_title'                   => 'Abzeichen-Showcase',
 
 
 ];

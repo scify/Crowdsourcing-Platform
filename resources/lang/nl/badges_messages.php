@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Verdien deze badge met het beantwoorden van een vragenlijst!',
+    'contributor_badge_points_explanation' => 'Verdien :points punten elke keer dat je een vragenlijst beantwoordt, een oplossing voor een probleem voorstelt of iemand voor je oplossing stemt!',
+    'communicator_badge_points_explanation' => 'Verdien :points punten elke keer dat iemand klikt op je gedeelde vragenlijsten en problemen!',
+    'influencer_badge_points_explanation' => 'Verdien :points punten elke keer dat iemand reageert op je sociale media berichten en bijdraagt!',
     'you_have_answered'              => 'Je hebt beantwoord :count',
     'questionnaire'                  => 'vragenlijst',
     'questionnaires'                 => 'vragenlijsten',
@@ -48,7 +50,6 @@ return [
     'contribute'                     => 'Draag bij',
     'contribute_for'                 => 'Draag bij aan',
     'you_do_not_own'                 => 'Je hebt deze batch niet',
-
-
+    'badges_title'                   => 'Badges Showcase',
 
 ];
