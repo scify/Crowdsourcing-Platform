@@ -4,8 +4,8 @@
 @endpush
 
 <div class="card card-success card-outline">
-    <div class="card-body pt-5">
-        <div class="container-fluid">
+    <div class="card-body pt-5 px-0">
+        <div class="container-fluid px-0">
             <div class="row">
                 <div class="col-md-12 badges-header">
                     <div class="text-center">
@@ -22,7 +22,7 @@
             </div>
             <div class="text-center badges-container row">
                 @foreach($badgesVM->badgesWithLevelsList as $badge)
-                    <div class="col-md-4 badgeContainer" data-toggle="tooltip"
+                    <div class="col-md-4 badgeContainer px-3" data-toggle="tooltip"
                          title="{{ $badge->statusMessage }}">
                         @include('gamification.badge-single', ['badge' => $badge])
                     </div>
