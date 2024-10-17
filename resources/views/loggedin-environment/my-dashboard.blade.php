@@ -5,6 +5,11 @@
 @endpush
 
 @section('content')
+    <div class="row">
+        <div class="col">
+            <h1>{{ __("common.welcome") }}, {{ $viewModel->user->nickname }}</h1>
+        </div>
+    </div>
     <div class="row gamification-box">
         <div class="col-md-12 mt-4 mb-4" style="float: none !important;">
             <div id="awards">
