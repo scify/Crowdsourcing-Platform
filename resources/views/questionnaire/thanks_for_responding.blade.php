@@ -16,9 +16,6 @@
         <section id="motto">
             @include('crowdsourcing-project.partials.motto')
         </section>
-        <section>
-            @include('crowdsourcing-project.partials.about')
-        </section>
     </div>
 @endsection
 @if (!Auth::check())

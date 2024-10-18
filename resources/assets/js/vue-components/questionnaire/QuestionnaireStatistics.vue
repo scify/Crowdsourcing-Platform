@@ -306,7 +306,7 @@ export default defineComponent({
 		...mapActions(["get", "post", "handleError", "closeModal"]),
 		getColorsForCrowdSourcingProject() {
 			this.get({
-				url: window.route("crowd-sourcing-project.get-colors", this.questionnaire.project_id),
+				url: window.route("api.crowd-sourcing-project.colors.get", this.questionnaire.project_id),
 				data: {},
 				urlRelative: false,
 			}).then((response) => {
@@ -330,7 +330,7 @@ export default defineComponent({
 			return new Promise(function callback(resolve, reject) {
 				instance
 					.get({
-						url: window.route("questionnaire.responses", instance.questionnaire.id, instance.projectFilter),
+						url: window.route("api.questionnaire.responses.get", instance.questionnaire.id, instance.projectFilter),
 						data: {},
 						urlRelative: false,
 					})
@@ -351,14 +351,14 @@ export default defineComponent({
 		},
 		getQuestionnaireAnswerVotes() {
 			return this.get({
-				url: window.route("questionnaire.answer-votes", this.questionnaire.id),
+				url: window.route("api.questionnaire.answer-votes.get", this.questionnaire.id),
 				data: {},
 				urlRelative: false,
 			}).then((res) => res.data);
 		},
 		getQuestionnaireAnswerAnnotations() {
 			return this.get({
-				url: window.route("questionnaire.answer-annotations", this.questionnaire.id),
+				url: window.route("api.questionnaire.answer-annotations.get", this.questionnaire.id),
 				data: {},
 				urlRelative: false,
 			}).then((res) => res.data);
@@ -529,7 +529,7 @@ export default defineComponent({
 		},
 		performVoteCall(questionName, respondentUserId, upvote) {
 			this.post({
-				url: window.route("questionnaire.answer-votes.store"),
+				url: window.route("api.questionnaire.answer-votes.store"),
 				data: {
 					questionnaire_id: this.questionnaire.id,
 					question_name: questionName,
@@ -571,7 +571,7 @@ export default defineComponent({
 		saveAnnotation() {
 			this.annotationSaveLoading = true;
 			this.post({
-				url: window.route("questionnaire.answer-annotations.create"),
+				url: window.route("api.questionnaire.answer-annotations.store"),
 				data: {
 					questionnaire_id: this.questionnaire.id,
 					question_name: this.annotation.question_name,
@@ -617,7 +617,7 @@ export default defineComponent({
 		deleteAnnotation() {
 			this.annotationDeleteLoading = true;
 			this.post({
-				url: window.route("questionnaire.answer-annotations.delete"),
+				url: window.route("questionnaire.answer-annotations.destroy"),
 				data: {
 					questionnaire_id: this.questionnaire.id,
 					question_name: this.annotation.question_name,

@@ -123,7 +123,7 @@ export default defineComponent({
 			this.contentLoading = true;
 			try {
 				const response = await this.get({
-					url: window.route("questionnaire.languages") + "?questionnaire_id=" + this.questionnaireId,
+					url: window.route("api.questionnaire.languages.get") + "?questionnaire_id=" + this.questionnaireId,
 					urlRelative: false,
 				});
 				this.questionnaireLanguages = response.data.questionnaire_languages;
@@ -141,7 +141,7 @@ export default defineComponent({
 			}));
 			try {
 				await this.post({
-					url: window.route("questionnaire.mark-translations"),
+					url: window.route("api.questionnaire.translations.mark"),
 					data: {
 						questionnaire_id: this.questionnaireId,
 						lang_ids_to_status: mapped,

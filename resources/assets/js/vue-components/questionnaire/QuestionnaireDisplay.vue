@@ -267,7 +267,7 @@ export default {
 			};
 			this.filesUploading = true;
 			axios
-				.post(window.route("files.upload"), data, config)
+				.post(window.route("api.files.upload"), data, config)
 				.then((response) => {
 					options.callback(
 						"success",
@@ -304,7 +304,7 @@ export default {
 		postResponseDataAndShowResult(data) {
 			this.$store
 				.dispatch("post", {
-					url: window.route("questionnaire-responses.store"),
+					url: window.route("api.questionnaire-responses.store"),
 					data: {
 						...data,
 						questionnaire_id: this.questionnaire.id,
@@ -399,7 +399,7 @@ export default {
 		},
 		async getAnonymousUserResponse() {
 			try {
-				return await axios.get(window.route("questionnaire.response-anonymous"), {
+				return await axios.get(window.route("api.questionnaire.anonymous-responses.get"), {
 					params: {
 						browser_fingerprint_id: this.browserFingerprintId,
 						questionnaire_id: this.questionnaire.id,

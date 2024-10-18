@@ -152,14 +152,14 @@ class UserControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->get(route('filterUsers', ['name' => 'John']));
+        $response = $this->get(route('api.users.get-filtered', ['name' => 'John']));
 
         $response->assertStatus(200);
     }
 
     /** @test */
     public function showUsersByCriteriaRedirectsToLoginForUnauthenticatedUser() {
-        $response = $this->get(route('filterUsers', ['name' => 'John']));
+        $response = $this->get(route('api.users.get-filtered', ['name' => 'John']));
 
         $response->assertStatus(302);
         $response->assertRedirect(route('login', ['locale' => 'en']));
@@ -171,7 +171,7 @@ class UserControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->get(route('filterUsers'));
+            ->get(route('api.users.get-filtered'));
 
         $response->assertStatus(403);
     }

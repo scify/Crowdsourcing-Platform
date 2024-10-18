@@ -24,11 +24,7 @@ h6 {
   }
 
   .overlay-filter.overlay-thanks {
-    height: 750px;
-
-    @media (max-width: 576px) {
-      height: 1050px;
-    }
+    height: 100%;
   }
 }
 
@@ -131,7 +127,7 @@ body {
         align-items: end;
 
         #motto-title {
-          padding-top: 20px;
+          padding-top: 3.5rem;
         }
       }
     }

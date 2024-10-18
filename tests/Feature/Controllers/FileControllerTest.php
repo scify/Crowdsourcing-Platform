@@ -17,7 +17,7 @@ class FileControllerTest extends TestCase {
         ];
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/files/upload', [
+            ->postJson('/api/files/upload', [
                 'files' => $files,
                 'project_id' => 1,
                 'questionnaire_id' => 1,
@@ -40,7 +40,7 @@ class FileControllerTest extends TestCase {
         ];
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/files/upload', [
+            ->postJson('/api/files/upload', [
                 'files' => $files,
                 'project_id' => 1,
                 'questionnaire_id' => 1,
@@ -56,7 +56,7 @@ class FileControllerTest extends TestCase {
         $files = array_fill(0, 9, UploadedFile::fake()->image('photo.jpg'));
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/files/upload', [
+            ->postJson('/api/files/upload', [
                 'files' => $files,
                 'project_id' => 1,
                 'questionnaire_id' => 1,
@@ -74,7 +74,7 @@ class FileControllerTest extends TestCase {
         ];
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/files/upload', [
+            ->postJson('/api/files/upload', [
                 'files' => $files,
                 'questionnaire_id' => 1,
             ]);
@@ -91,7 +91,7 @@ class FileControllerTest extends TestCase {
         ];
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/files/upload', [
+            ->postJson('/api/files/upload', [
                 'files' => $files,
                 'project_id' => 1,
             ]);

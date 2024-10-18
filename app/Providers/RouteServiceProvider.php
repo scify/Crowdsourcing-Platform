@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class RouteServiceProvider extends ServiceProvider {
     /**
@@ -62,14 +66,30 @@ class RouteServiceProvider extends ServiceProvider {
      * @return void
      */
     protected function mapApiRoutes() {
-        //        RateLimiter::for('api-internal', function (Request $request) {
-        //            return Limit::perMinute(10000)->by(optional($request->user())->id ?: $request->ip())->response(function () {
-        //                return response()->json(['status' => 'Too many requests!'],
-        //                    ResponseAlias::HTTP_TOO_MANY_REQUESTS);
-        //            });
-        //        });
+        $api_throttles = [
+            [
+                'name' => 'api-internal',
+                'limit_per_minute' => 1000,
+            ],
+            [
+                'name' => 'api-public',
+                'limit_per_minute' => 30,
+            ],
+        ];
+
+        foreach ($api_throttles as $throttle) {
+            $name = $throttle['name'];
+            $limit = $throttle['limit_per_minute'];
+            RateLimiter::for($name, function (Request $request) use ($limit) {
+                return Limit::perMinute($limit)->by(optional($request->user())->id ?: $request->ip())->response(function () {
+                    return response()->json(['status' => 'Too many requests!'],
+                        ResponseAlias::HTTP_TOO_MANY_REQUESTS);
+                });
+            });
+        }
 
         Route::middleware('api')
+            ->prefix('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
     }
