@@ -127,7 +127,7 @@ export default {
 		const getAvailableLanguagesAndInit = async () => {
 			try {
 				const response = await store.dispatch("get", {
-					url: window.route("languages.get"),
+					url: window.route("api.languages.get"),
 					data: {},
 					urlRelative: false,
 				});

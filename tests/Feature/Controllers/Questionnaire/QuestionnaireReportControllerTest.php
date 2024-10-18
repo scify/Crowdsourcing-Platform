@@ -36,7 +36,7 @@ class QuestionnaireReportControllerTest extends TestCase {
 
         $questionnaire = Questionnaire::factory()->create();
         $input = ['questionnaireId' => $questionnaire->id];
-        $response = $this->get(route('questionnaire.get-report-data', $input));
+        $response = $this->get(route('api.questionnaire.report-data.get', $input));
 
         $response->assertStatus(200);
         $response->assertJsonStructure(['data' => ['view', 'questionnaire', 'responses']]);
@@ -54,7 +54,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         });
 
         $input = ['questionnaireId' => 1];
-        $response = $this->get(route('questionnaire.get-report-data', $input));
+        $response = $this->get(route('api.questionnaire.report-data.get', $input));
 
         $response->assertStatus(500);
         $response->assertJson(['data' => 'Error: 0. A Database error occurred.']);
@@ -72,7 +72,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         });
 
         $input = ['questionnaireId' => 1];
-        $response = $this->get(route('questionnaire.get-report-data', $input));
+        $response = $this->get(route('api.questionnaire.report-data.get', $input));
 
         $response->assertStatus(500);
         $response->assertJson(['data' => 'Error: 123  Test General Exception']);

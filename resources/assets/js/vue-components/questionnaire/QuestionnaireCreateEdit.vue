@@ -453,7 +453,7 @@ export default defineComponent({
 		async getColorsForCrowdSourcingProject() {
 			try {
 				const response = await this.get({
-					url: window.route("crowd-sourcing-project.get-colors", this.questionnaire.project_id),
+					url: window.route("api.crowd-sourcing-project.colors.get", this.questionnaire.project_id),
 					data: {},
 					urlRelative: false,
 				});
@@ -564,7 +564,7 @@ export default defineComponent({
 			};
 			try {
 				const response = await this.post({
-					url: window.route("questionnaire.translate"),
+					url: window.route("api.questionnaire.translation.store"),
 					data: data,
 					urlRelative: false,
 					handleError: false,
@@ -621,8 +621,8 @@ export default defineComponent({
 			try {
 				const response = await this.post({
 					url: this.questionnaire.id
-						? window.route("update-questionnaire", this.questionnaire.id)
-						: window.route("store-questionnaire"),
+						? window.route("api.questionnaire.update", this.questionnaire.id)
+						: window.route("api.questionnaire.store"),
 					data: data,
 					urlRelative: false,
 					handleError: false,

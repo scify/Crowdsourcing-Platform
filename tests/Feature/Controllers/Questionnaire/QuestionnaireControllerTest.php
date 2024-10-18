@@ -21,7 +21,7 @@ class QuestionnaireControllerTest extends TestCase {
      */
     public function guestCannotSaveQuestionnaireStatus() {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire-status'), [
+            ->post(route('questionnaire.update-status'), [
                 'questionnaire_id' => 1,
                 'status_id' => 1,
                 'comments' => 'Test comment',
@@ -43,7 +43,7 @@ class QuestionnaireControllerTest extends TestCase {
         $questionnaire = Questionnaire::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire-status'), [
+            ->post(route('questionnaire.update-status'), [
                 'questionnaire_id' => $questionnaire->id,
                 'status_id' => QuestionnaireStatusLkp::PUBLISHED,
                 'comments' => 'Test comment',
@@ -67,7 +67,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire-status'), [
+            ->post(route('questionnaire.update-status'), [
                 'questionnaire_id' => 'invalid',
                 'status_id' => 'invalid',
                 'comments' => '',
@@ -87,7 +87,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire-status'), [
+            ->post(route('questionnaire.update-status'), [
                 'questionnaire_id' => 1,
                 'status_id' => 'invalid',
                 'comments' => '',
@@ -95,16 +95,6 @@ class QuestionnaireControllerTest extends TestCase {
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['status_id']);
-    }
-
-    /**
-     * @test
-     */
-    public function guestCannotCreateQuestionnaire() {
-        $response = $this->get(route('store-questionnaire'));
-
-        $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -131,7 +121,7 @@ class QuestionnaireControllerTest extends TestCase {
             ->create();
         $this->be($user);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('store-questionnaire'), [
+            ->post(route('api.questionnaire.store'), [
                 'title' => 'Test Questionnaire',
                 'description' => 'Test Description',
                 'project_id' => 1,
@@ -174,7 +164,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('store-questionnaire'), [
+            ->post(route('api.questionnaire.store'), [
                 'title' => 'Test Questionnaire',
                 'description' => 'Test Description',
                 'project_id' => 'invalid',
@@ -199,7 +189,7 @@ class QuestionnaireControllerTest extends TestCase {
         $questionnaire = Questionnaire::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire', ['id' => $questionnaire->id]), [
+            ->post(route('api.questionnaire.update', ['id' => $questionnaire->id]), [
                 'title' => 'Test Questionnaire',
                 'description' => 'Test Description',
                 'project_id' => 1,
@@ -239,7 +229,7 @@ class QuestionnaireControllerTest extends TestCase {
             ->create();
         $this->be($user);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire', ['id' => $questionnaire->id]), [
+            ->post(route('api.questionnaire.update', ['id' => $questionnaire->id]), [
                 'title' => 'Test Questionnaire new',
                 'description' => 'Test Description new',
                 'project_id' => 1,
@@ -289,7 +279,7 @@ class QuestionnaireControllerTest extends TestCase {
         $questionnaire = Questionnaire::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('update-questionnaire', ['id' => $questionnaire->id]), [
+            ->post(route('api.questionnaire.update', ['id' => $questionnaire->id]), [
                 'title' => 'Test Questionnaire',
                 'description' => 'Test Description',
                 'project_id' => 'invalid',
@@ -311,7 +301,7 @@ class QuestionnaireControllerTest extends TestCase {
      */
     public function guestCannotTranslateQuestionnaire() {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.translate'), [
+            ->post(route('api.questionnaire.translation.store'), [
                 'questionnaire_json' => '{}',
                 'locales' => ['en', 'fr'],
             ]);
@@ -346,7 +336,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->app->instance(Translator::class, $translatorMock);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.translate'), [
+            ->post(route('api.questionnaire.translation.store'), [
                 'questionnaire_json' => '{ "title": { "default": "What is your opinion on Democracy in EU?", "gr": "Ποιά είναι η άποψή σας για τις Εκλογές στην ΕΕ;" }, "description": { "default": "Please share your opinion with us!", "gr": "Μοιραστείτε μαζί μας τη γνώμη σας!" }, "logoPosition": "right", "pages": [ { "name": "page1", "elements": [ { "type": "radiogroup", "name": "question2", "title": { "default": "Have you ever participated in Democratic processes about the EU?", "gr": "Έχετε συμμετάσχει ποτέ σε δημοκρατικές διαδικασίες που αφορούν την ΕΕ;" }, "choices": [ { "value": "item1", "text": { "default": "Yes, more than once", "gr": "Ναι, περισσότερες από μια φορές" } }, { "value": "item2", "text": { "default": "I am not sure", "gr": "Δεν είμαι σίγουρος/η" } }, { "value": "item3", "text": { "default": "Never", "gr": "Ποτέ" } } ] }, { "type": "comment", "name": "question3", "title": { "default": "How could Democracy in EU improve?", "gr": "Πώς θα μπορούσε να βελτιωθεί η Δημοκρατία στην ΕΕ;" } } ] } ] }',
                 'locales' => ['en', 'fr'],
             ]);
@@ -365,7 +355,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.translate'), [
+            ->post(route('api.questionnaire.translation.store'), [
                 'questionnaire_json' => '',
                 'locales' => 'invalid',
             ]);
@@ -383,7 +373,7 @@ class QuestionnaireControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->get(route('questionnaire.languages', ['questionnaire_id' => 1]));
+        $response = $this->get(route('api.questionnaire.languages.get', ['questionnaire_id' => 1]));
 
         $response->assertStatus(200);
         $response->assertJsonStructure(['questionnaire_languages']);
@@ -410,7 +400,7 @@ class QuestionnaireControllerTest extends TestCase {
 
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.mark-translations'), [
+            ->post(route('api.questionnaire.translations.mark'), [
                 'questionnaire_id' => $questionnaire->id,
                 'lang_ids_to_status' => [
                     ['id' => 1, 'status' => true],

@@ -143,7 +143,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{route('update-questionnaire-status')}}" method="post">
+                <form action="{{route('questionnaire.update-status')}}" method="post">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="modal-body">
                         <input type="hidden" name="questionnaire_id" id="questionnaire-id">

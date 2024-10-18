@@ -1,7 +1,6 @@
 <div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
-     style="background-image: url({{asset($viewModel->project->img_path)}});">
-    <div class="overlay-filter {{ $viewModel->thankYouMode ? 'overlay-thanks' : '' }}"
-         style="top: @if (App::environment('staging')) 128.75px @else 93.75px @endif"></div>
+     style="background-image: url({{asset($viewModel->project->img_path)}}); position: relative;">
+    <div class="overlay-filter {{ $viewModel->thankYouMode ? 'overlay-thanks' : '' }}"></div>
     <div class="col-lg-7 col-md-8 col-sm-11 mx-auto motto-content">
         <div class="frosted"></div>
         <div id="project-motto" class="h-100">
@@ -16,7 +15,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt-3 pb-5">
                     <div class="col-md-10 col-sm-11 mx-auto">
                         <div class="container-fluid">
                             <div class="row">
@@ -37,16 +36,11 @@
                                                         {{ __("questionnaire.already_answered") }}
                                                     @endif
                                                     {{ __("questionnaire.thank_you_for_your_response") }}
-
-                                                    {{-- IF HE HAS  RESPONDEDED TO THE FEEDBACK ALREADY, DISPLAY THE TITLE TO INVITE TO SHARE ON SOCIAL--}}
-                                                    @if (!$viewModel->displayFeedbackQuestionnaire() && $viewModel->shareUrlForFacebook!=null && $viewModel->shareUrlForTwitter!=null)
-                                                        {{ __("questionnaire.invite_your_friends_to_answer") }}:
-                                                    @endif
                                                 </h4>
                                                 @if($viewModel->thankYouMode && isset($badge))
-                                                    <div class="container mt-3">
+                                                    <div class="container mt-5">
                                                         <div class="row mb-4">
-                                                            <div class="col-md-6 col-sm-12 mx-auto text-center">
+                                                            <div class="col-md-8 col-sm-12 mx-auto text-center">
                                                                 @include('gamification.badge-single', ['badge' => $badge])
                                                             </div>
                                                         </div>
@@ -87,15 +81,20 @@
                                                 </a>
                                             </div>
                                         @else
-                                            <div class="col-lg-7 col-md-9 col-sm-12 mx-auto ">
-                                                {{-- DISPLAY SHARE THE QUESTIONNARE --}}
-                                                @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
+                                            {{-- DISPLAY INVITE TO SHARE ON SOCIAL --}}
+                                            @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
 
+                                                <div class="col-12">
+                                                    <h4 class="mb-3 text-center">
+                                                        {{ __("questionnaire.invite_your_friends_to_answer") }}:
+                                                    </h4>
+                                                </div>
+
+                                                <div class="col-10 col-md-12 mx-auto d-flex flex-wrap justify-content-center social-share">
                                                     @include('crowdsourcing-project.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
+                                                </div>
 
-                                                @endif
-                                            </div>
-
+                                            @endif
                                         @endif
                                     @else
                                         {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
