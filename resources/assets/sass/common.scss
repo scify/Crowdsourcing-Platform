@@ -374,3 +374,10 @@ a.link {
     }
   }
 }
+
+.userway_buttons_wrapper {
+  // on mobile, add a margin top so that it does not collide with the burger menu
+    @media (max-width: 768px) {
+        margin-top: 80px;
+    }
+}

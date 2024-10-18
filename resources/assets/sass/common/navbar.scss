@@ -17,6 +17,11 @@
   padding-left: 3rem;
   font-size: 16px;
   text-transform: uppercase;
+
+  // on mobile remove the left padding
+    @media (max-width: 768px) {
+        padding-left: 0;
+    }
 }
 
 .nav-link {
