@@ -17,8 +17,8 @@
 		border-color: #000000;
 	}
 
-	.facebook,
-	.twitter {
+	&:not(.social-share-button).facebook,
+	&:not(.social-share-button).twitter {
 		@media (max-width: 1085px) {
 			padding: 0.3rem;
 		}

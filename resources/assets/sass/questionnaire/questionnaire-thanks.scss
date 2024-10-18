@@ -10,10 +10,14 @@
 	}
 
 	#motto {
-		height: 750px;
+		min-height: 750px;
 
 		@media (max-width: 768px) {
-			height: 1050px;
+			min-height: 1050px;
 		}
+	}
+
+	.motto-content {
+		height: 100%;
 	}
 }

@@ -4,6 +4,6 @@
    data-questionnaireId="{{$questionnaire_id }}"
    data-medium="facebook"
    href="{{ $socialShareURL }}"
-   class="social-share-button btn {{ $additionalBtnStyleClasses }}">
+   class="social-share-button {{ $additionalBtnStyleClasses }}">
     {!! $btnText !!}
 </a>
