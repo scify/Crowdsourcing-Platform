@@ -26,7 +26,7 @@
                     <a href="{{route("project.landing-page", $questionnaire->projects->get(0)->slug) . "?open=1"}}"
                        class="btn btn-primary btn-lg nextStepActionBtn">{{ __("questionnaire.give_us_feedback") }}</a>
                 @else
-                    <div class="col-lg-6 col-md-8 col-sm-12 mx-auto social-share-container">
+                    <div class="col-xl-4 col-lg-6 col-md-8 col-sm-12 mx-auto social-share-container">
                         @include('questionnaire.social-share', ['viewModel' => $nextStepVM->socialShareVM, 'projects'=>$nextStepVM->projects])
                     </div>
                 @endif
