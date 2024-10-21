@@ -1,8 +1,8 @@
 @if($viewModel->questionnaires->isEmpty())
-    <p class="no-projects-found">{{ __("questionnaire.no_active_projects")}}</p>
+    <p class="no-projects-found">{{ __("my-dashboard.no_projects_with_active_questionnaires")}}</p>
 @else
     @foreach($viewModel->questionnaires as $questionnaire)
-        <div class="container-fluid questionnaire-section py-5 my-5" id="questionnaire-section-{{$questionnaire->id}}">
+        <div class="container-fluid project-section py-5 my-5" id="project-section-{{$questionnaire->id}}">
             <div class="row">
                 <div class="col-12">
                     <h6 class="text-center">{{ $questionnaire->fieldsTranslation->title }}</h6>

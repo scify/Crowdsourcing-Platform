@@ -10,10 +10,9 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn Sie einen Fragebogen beantworten, eine Lösung für ein Problem einreichen oder jemand Ihre Lösung hochvotet!',
-    'communicator_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn jemand auf Ihre geteilten Fragebögen und Probleme klickt!',
+    'contributor_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn Sie einen Fragebogen beantworten, eine Lösung für ein Problem vorschlagen oder eine Lösung upvoten!',
+    'communicator_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn jemand auf Ihre geteilten Fragebögen und Lösungen klickt!',
     'influencer_badge_points_explanation' => 'Verdienen Sie :points Punkte jedes Mal, wenn jemand auf Ihre Social-Media-Beiträge reagiert und etwas beiträgt!',
-
     'you_have_answered'              => 'Sie haben einen :count',
     'questionnaire'                  => 'Fragebogen beantwortet',
     'questionnaires'                 => 'Fragebögen beantwortet',

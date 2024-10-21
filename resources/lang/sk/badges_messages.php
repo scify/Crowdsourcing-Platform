@@ -10,9 +10,9 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Získavate :points bodov za každý dotazník, na ktorý odpoviete, za každé riešenie problému, ktoré navrhnete, alebo za hlas, ktorý niekto dá vašemu riešeniu!',
-    'communicator_badge_points_explanation' => 'Získavate :points bodov za každý dotazník a problém, na ktorý klikne niekto z vašich zdieľaných!',
-    'influencer_badge_points_explanation' => 'Získavate :points bodov za každý príspevok na sociálnych sieťach, na ktorý niekto reaguje a prispieva!',
+    'contributor_badge_points_explanation' => 'Získajte :points bodov za každý dotazník, na ktorý odpoviete, za každé riešenie problému, ktoré predložíte alebo za hlasovanie za riešenie!',
+    'communicator_badge_points_explanation' => 'Získajte :points bodov za každý klik na dotazníky a riešenia, ktoré zdieľate!',
+    'influencer_badge_points_explanation' => 'Zistite :points bodov za každú reakciu na vaše príspevky na sociálnych sieťach a príspevky!',
     'you_have_answered'              => 'Odpovedali ste na :count',
     'questionnaire'                  => 'dotazník',
     'questionnaires'                 => 'dotazníky',

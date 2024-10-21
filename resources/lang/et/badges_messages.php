@@ -10,10 +10,9 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Saad :points punkti iga kord, kui vastad küsimustikule, esitad probleemile lahenduse või keegi hääletab sinu lahenduse poolt!',
-    'communicator_badge_points_explanation' => 'Saad :points punkti iga kord, kui keegi klõpsab sinu jagatud küsimustikul või probleemil!',
-    'influencer_badge_points_explanation' => 'Saad :points punkti iga kord, kui keegi reageerib sinu sotsiaalmeedia postitusele ja annab oma panuse!',
-
+    'contributor_badge_points_explanation' => 'Saad :points punkti iga kord, kui vastad küsimustikule, esitad lahenduse probleemile või hääletad lahenduse poolt!',
+    'communicator_badge_points_explanation' => 'Saad :points punkti iga kord, kui keegi klõpsab sinu jagatud küsimustikul ja lahendustel!',
+    'influencer_badge_points_explanation' => 'Saad :points punkti iga kord, kui keegi reageerib sinu sotsiaalmeedia postitustele ja panustab!',
     'you_have_answered'              => 'Oled täitnud :count',
     'questionnaire'                  => 'küsimustiku',
     'questionnaires'                 => 'küsimustikku',

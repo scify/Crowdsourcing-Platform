@@ -10,10 +10,9 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που απαντάς σε ένα ερωτηματολόγιο, υποβάλλεις μια λύση σε ένα πρόβλημα ή κάποιος ψηφίζει υπέρ της λύσης σου!',
-    'communicator_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που κάποιος κάνει κλικ στα ερωτηματολόγια και τα προβλήματα που μοιράζεσαι!',
-    'influencer_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που κάποιος απαντά στις αναρτήσεις σου στα κοινωνικά δίκτυα και συνεισφέρει!',
-
+    'contributor_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που απαντάς σε ένα ερωτηματολόγιο, υποβάλλεις μια λύση σε ένα πρόβλημα ή ψηφίζεις μια λύση!',
+    'communicator_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που κάποιος κάνει κλικ στα ερωτηματολόγια και τις λύσεις που μοιράζεσαι!',
+    'influencer_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που κάποιος απαντάει στα social media posts σου και συνεισφέρει!',
     'you_have_answered'              => 'Έχετε απαντήσει :count',
     'questionnaire'                  => 'ερωτηματολόγιο',
     'questionnaires'                 => 'ερωτηματολόγια',

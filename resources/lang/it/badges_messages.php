@@ -10,9 +10,9 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Guadagni :points punti ogni volta che rispondi a un questionario, proponi una soluzione a un problema o qualcuno vota per la tua soluzione!',
-    'communicator_badge_points_explanation' => 'Guadagni :points punti ogni volta che qualcuno clicca sui tuoi questionari e problemi condivisi!',
-    'influencer_badge_points_explanation' => 'Guadagni :points punti ogni volta che qualcuno risponde ai tuoi post sui social e contribuisce!',
+    'contributor_badge_points_explanation' => 'Guadagna :points punti ogni volta che rispondi a un questionario, invii una soluzione a un problema o voti una soluzione!',
+    'communicator_badge_points_explanation' => 'Guadagna :points punti ogni volta che qualcuno fa clic sui questionari e sulle soluzioni che condividi!',
+    'influencer_badge_points_explanation' => 'Guadagna :points punti ogni volta che qualcuno risponde ai tuoi post sui social media e contribuisce!',
     'you_have_answered'              => 'Hai risposto a :count',
     'questionnaire'                  => 'questionario',
     'questionnaires'                 => 'questionari',

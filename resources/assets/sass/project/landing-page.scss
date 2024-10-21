@@ -185,12 +185,12 @@ ol {
   }
 }
 
-#questionnaire-section,
+#project-section,
 #collective-goal {
   background-color: #e8e9eb;
 }
 
-#questionnaire-section {
+#project-section {
   @include media-breakpoint-up(md) {
     padding: 9vh 0;
   }
@@ -231,7 +231,7 @@ ol {
     text-align: justify;
   }
 
-  .questionnaire-section-title {
+  .project-section-title {
     font-size: 2.2rem;
     margin-bottom: 10px;
     margin-left: auto;

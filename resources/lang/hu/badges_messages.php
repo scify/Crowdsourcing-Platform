@@ -10,8 +10,8 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Keresse meg a :points pontokat minden alkalommal, amikor válaszol egy kérdőívvel, megoldást nyújt egy problémára, vagy valaki jóváhagyja a megoldását!',
-    'communicator_badge_points_explanation' => 'Keresse meg a :points pontokat minden alkalommal, amikor valaki kattint a megosztott kérdőívekre és problémákra!',
+    'contributor_badge_points_explanation' => 'Keresse meg a :points pontokat minden alkalommal, amikor válaszol egy kérdőívvel, megoldást nyújt egy problémára, vagy szavaz egy megoldásra!',
+    'communicator_badge_points_explanation' => 'Keresse meg a :points pontokat minden alkalommal, amikor valaki kattint a megosztott kérdőívekre és megoldásokra!',
     'influencer_badge_points_explanation' => 'Keresse meg a :points pontokat minden alkalommal, amikor valaki reagál a közösségi média posztjaira és hozzájárul!',
     'you_have_answered'              => 'Ön :count',
     'questionnaire'                  => 'kérdőívre válaszolt',

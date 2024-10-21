@@ -7,4 +7,5 @@ return [
     'see_all_problems' => 'Vaata kõiki probleeme',
     'solutions_for' => 'Lahendused',
     'project_landing_page_problems_action_button' => 'Vaata kõiki probleeme',
+    'suggest_solution' => 'Paku lahendus',
 ];

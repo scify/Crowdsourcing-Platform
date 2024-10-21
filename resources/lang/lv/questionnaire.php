@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Mūsu nākamā anketa ir ceļā: seko līdzi!',
     'answer_the_questionnaire' => 'Atbildi uz anketas jautājumiem',
     'project_no_active_questionnaire' => 'Šim projektam vēl nav aktīvas anketas.',
-    'no_active_projects' => 'Pašlaik nav aktīvu projektu.',
     'check_what_other_respondents' => 'Pirms atbildi uz anketas jautājumiem, noskaidro, ko teikuši citi respondenti, klikšķinot ',
     'here' => 'šeit',
     'select_language' => 'Izvēlies valodu',

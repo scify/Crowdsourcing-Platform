@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Unser nächster Fragebogen ist auf dem Weg: Bleiben Sie dran!',
     'answer_the_questionnaire' => 'Beantworten Sie den Fragebogen',
     'project_no_active_questionnaire' => 'Für dieses Projekt gibt es noch keinen aktiven Fragebogen.',
-    'no_active_projects' => 'Derzeit gibt es keine aktiven Projekte.',
     'check_what_other_respondents' => 'Bevor Sie den Fragebogen beantworten, finden Sie die Antworten von anderen Befragten',
     'here' => 'hier.',
     'select_language' => 'Sprache wählen',

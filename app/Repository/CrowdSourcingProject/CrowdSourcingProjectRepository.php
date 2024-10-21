@@ -2,6 +2,7 @@
 
 namespace App\Repository\CrowdSourcingProject;
 
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -32,6 +33,27 @@ class CrowdSourcingProjectRepository extends Repository {
                     ->orderBy('questionnaire_created', 'desc');
             })
             ->with('problems');
+
+        // Load the translations related to the project, but only the one that equals to the language with id $language_id
+        $builder = $builder->with(['translations' => function ($query) use ($language_id) {
+            $query->where('language_id', $language_id);
+        }]);
+
+        if (count($additionalRelationships)) {
+            $builder = $builder->with($additionalRelationships);
+        }
+
+        return $builder->get();
+    }
+
+    public function getActiveProjectsWithAtLeastOnePublishedProblemWithStatus(
+        $language_id,
+        $additionalRelationships = [], $problemStatusId = CrowdSourcingProjectProblemStatusLkp::PUBLISHED
+    ): Collection {
+        $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
+            ->with('problems', function ($query) use ($problemStatusId) {
+                $query->where(['status_id' => $problemStatusId]);
+            });
 
         // Load the translations related to the project, but only the one that equals to the language with id $language_id
         $builder = $builder->with(['translations' => function ($query) use ($language_id) {

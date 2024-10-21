@@ -4,7 +4,7 @@ namespace App\BusinessLogicLayer\gamification;
 
 class ContributorBadge extends GamificationBadge {
     public function __construct(int $allResponses, bool $userHasAchievedBadgePlatformWide) {
-        $this->badgeID = GamificationBadgeIdsEnum::CONTRUBUTOR_BADGE_ID;
+        $this->badgeID = GamificationBadgeIdsEnum::CONTRIBUTOR_BADGE_ID;
         $this->color = '#3F51B5';
         parent::__construct(
             __('badges_messages.contributor_title'),

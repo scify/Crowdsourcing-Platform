@@ -10,9 +10,9 @@ return [
     */
 
 
-    'contributor_badge_points_explanation' => 'Verdien :points punten elke keer dat je een vragenlijst beantwoordt, een oplossing voor een probleem voorstelt of iemand voor je oplossing stemt!',
-    'communicator_badge_points_explanation' => 'Verdien :points punten elke keer dat iemand klikt op je gedeelde vragenlijsten en problemen!',
-    'influencer_badge_points_explanation' => 'Verdien :points punten elke keer dat iemand reageert op je sociale media berichten en bijdraagt!',
+    'contributor_badge_points_explanation' => 'Verdien :points punten elke keer dat je een vragenlijst beantwoordt, een oplossing indient voor een probleem of stemt op een oplossing!',
+    'communicator_badge_points_explanation' => 'Verdien :points punten elke keer dat iemand klikt op de vragenlijsten en oplossingen die je deelt!',
+    'influencer_badge_points_explanation' => 'Verdien :points punten elke keer dat iemand reageert op je sociale mediaberichten en bijdraagt!',
     'you_have_answered'              => 'Je hebt beantwoord :count',
     'questionnaire'                  => 'vragenlijst',
     'questionnaires'                 => 'vragenlijsten',

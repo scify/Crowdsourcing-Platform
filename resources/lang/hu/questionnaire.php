@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Következő kérdőívünk hamarosan érkezik: maradjon velünk!',
     'answer_the_questionnaire' => 'Válaszoljon a kérdőívre',
     'project_no_active_questionnaire' => 'Ennek a projektnek nincs aktív kérdőíve.',
-    'no_active_projects' => 'Jelenleg nincsenek aktív projektek.',
     'check_what_other_respondents' => 'Mielőtt válaszolna a kérdőívre, kattintson ide és nézze meg, hogy mit mondott a többi',
     'here' => 'válaszadó',
     'select_language' => 'Nyelv kiválasztása',
