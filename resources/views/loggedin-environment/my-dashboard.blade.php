@@ -18,6 +18,12 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            @include('gamification.user-progress', ['badgesVM' => $viewModel->platformWideGamificationBadgesVM])
+        </div>
+    </div>
+
     <div id="dashboard-actions-sections">
         <div class="container-fluid px-0">
             <div class="row">

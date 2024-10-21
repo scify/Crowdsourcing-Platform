@@ -51,7 +51,10 @@ h6,
 .h5,
 .h6 {
   font-family: "Noto Sans Variable", sans-serif;
-  font-weight: bold;
+}
+
+h1,h2,h3,.h1,.h2,.h3 {
+  font-weight: 700;
 }
 
 h1 {

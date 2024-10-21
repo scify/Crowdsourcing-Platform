@@ -19,4 +19,6 @@ return [
     'no_projects_with_active_questionnaires' => 'There are currently no projects with active questionnaires.',
     'no_projects_with_published_problems' => 'There are currently no projects with published problems.',
     'see_the_problems_cta' => 'See the problems & suggest a solution',
+    'your_progress_title' => 'Your Progress',
+    'your_progress_description' => 'Keep contributing, sharing, and inviting others to reach your next milestone!',
 ];

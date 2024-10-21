@@ -6,17 +6,17 @@
 <div class="card card-success card-outline">
     <div class="card-body pt-5 px-0">
         <div class="container-fluid px-0">
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-md-12 badges-header">
                     <div class="text-center">
                         <h2>{{ __("badges_messages.badges_title") }}</h2>
-                        <p>
+                        <h4>
                             @if ($badgesVM->numOfBadges ==0)
                                 {{ __("badges_messages.no_badges_yet") }}
                             @else
                                 {!!   trans_choice("badges_messages.you_have_badges", ["count"=>$badgesVM->numOfBadges])  !!}
                             @endif
-                        </p>
+                        </h4>
                     </div>
                 </div>
             </div>
