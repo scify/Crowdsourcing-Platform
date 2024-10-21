@@ -7,4 +7,5 @@ return [
     'see_all_problems' => 'Bekijk alle problemen',
     'solutions_for' => 'Oplossingen voor',
     'project_landing_page_problems_action_button' => 'Bekijk alle problemen',
+    'suggest_solution' => 'Stel een oplossing voor',
 ];

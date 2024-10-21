@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Náš ďalší dotazník je na ceste: zostaňte naladení!',
     'answer_the_questionnaire' => 'Odpovedzte na dotazník',
     'project_no_active_questionnaire' => 'Tento projekt zatiaľ nemá aktívny dotazník.',
-    'no_active_projects' => 'Momentálne tu nie sú žiadne aktívne projekty.',
     'check_what_other_respondents' => 'Pred zodpovedaním dotazníka si kliknutím sem skontrolujte, čo povedali ostatní respondenti.',
     'here' => 'sem',
     'select_language' => 'Select language',

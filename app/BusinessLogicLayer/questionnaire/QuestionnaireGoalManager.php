@@ -8,6 +8,9 @@ use App\ViewModels\QuestionnaireProjectGoal;
 class QuestionnaireGoalManager {
     public function getQuestionnaireGoalViewModel(Questionnaire $questionnaire, int $responses_count): QuestionnaireProjectGoal {
         $responsesNeededToReachGoal = $questionnaire->goal - $responses_count;
+        if ($responsesNeededToReachGoal < 0) {
+            $responsesNeededToReachGoal = 0;
+        }
         if ($questionnaire->goal == 0) {
             $targetAchievedPercentage = 0;
         } else {

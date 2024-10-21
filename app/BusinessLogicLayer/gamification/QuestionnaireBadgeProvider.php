@@ -27,7 +27,7 @@ class QuestionnaireBadgeProvider {
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
     }
 
-    public function getNextUnlockableBadgeToShowForQuestionnaire(Questionnaire $questionnaire, int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadge {
+    public function getNextBadgeToUnlockForQuestionnaire(Questionnaire $questionnaire, int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadge {
         if (!$this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire->id, $questionnaireIdsUserHasAnsweredTo)) {
             return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), count($questionnaireIdsUserHasAnsweredTo));
         }

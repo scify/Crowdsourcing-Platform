@@ -74,18 +74,18 @@
 							</thead>
 							<tbody>
 							<tr
-								v-for="(value, property) in translation"
-								v-if="modelMetaData[property]"
-								:key="'translation_row_' + property"
+								v-for="(value, key) in filteredTranslations(translation)"
+								:key="'translation_row_' + key"
+								:id="'translation_row_' + value"
 							>
 								<td class="field">
-									{{ getDisplayTitleForProperty(property) }}
+									{{ getDisplayTitleForProperty(key) }}
 								</td>
 								<td class="original-translation">
-									{{ originalTranslation[property] }}
+									{{ originalTranslation[key] }}
 								</td>
 								<td>
-									<textarea v-model="translation[property]"></textarea>
+									<textarea v-model="translation[key]"></textarea>
 								</td>
 							</tr>
 							</tbody>
@@ -132,7 +132,7 @@ export default {
 					urlRelative: false,
 				});
 				availableLanguages.value = response.data.languages;
-				translations.value = removeDefaultTranslation();
+				translations.value = getTranslationsWithoutTheDefault();
 				originalTranslation.value = getOriginalEnglishTranslation();
 				checkedLanguages.value = getAlreadySelectedLanguages();
 			} catch (error) {
@@ -142,6 +142,20 @@ export default {
 
 		const getDisplayTitleForProperty = (property) => {
 			return props.modelMetaData[property]?.display_title || "Unknown";
+		};
+
+		const propertyExistsInMetadata = (value, key) => {
+			return props.modelMetaData[key] !== undefined;
+		};
+
+		const filteredTranslations = (translation) => {
+			// return an object with only the properties that exist in the model metadata
+			return Object.keys(translation).reduce((acc, key) => {
+				if (propertyExistsInMetadata(translation[key], key)) {
+					acc[key] = translation[key];
+				}
+				return acc;
+			}, {});
 		};
 
 		const getAlreadySelectedLanguages = () => {
@@ -155,7 +169,7 @@ export default {
 			return checkedLanguagesList;
 		};
 
-		const removeDefaultTranslation = () => {
+		const getTranslationsWithoutTheDefault = () => {
 			return props.existingTranslations.filter((t) => t.language_id !== props.defaultLangId);
 		};
 
@@ -219,6 +233,7 @@ export default {
 			getDisplayTitleForProperty,
 			getLanguageName,
 			checkChanged,
+			filteredTranslations,
 		};
 	},
 };

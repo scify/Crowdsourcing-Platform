@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Osvojite ovu "badge" tako što ćete odgovoriti na upitnik!',
+    'contributor_badge_points_explanation' => 'Zaradite :points poena svaki put kada odgovorite na upitnik, pošaljete rešenje za problem ili glasate za rešenje!',
+    'communicator_badge_points_explanation' => 'Zaradite :points poena svaki put kada neko klikne na upitnike i rešenja koje delite!',
+    'influencer_badge_points_explanation' => 'Zaradite :points poena svaki put kada neko reaguje na vaše postove na društvenim mrežama i doprinosi!',
     'you_have_answered'              => 'Odgovorili ste na :count',
     'questionnaire'                  => 'upitnik',
     'questionnaires'                 => 'upitnika',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Doprinesite',
     'contribute_for'                 => 'Doprinesite za',
     'you_do_not_own'                 => 'Nemate ovu "badge"',
-
+    'badges_title'                   => 'Prikaz znački',
 
 
 ];

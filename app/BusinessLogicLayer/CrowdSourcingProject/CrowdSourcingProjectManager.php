@@ -437,4 +437,23 @@ class CrowdSourcingProjectManager {
 
         return '/storage/uploads/' . $lastDirName . '/' . $newFile;
     }
+
+    public function getCrowdSourcingProjectsWithActiveProblems(): Collection {
+        $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOnePublishedProblemWithStatus($language->id);
+
+        foreach ($projects as $project) {
+            // if the model has a "translations" relationship and the first item is not null,
+            // then set it as the current translation.
+            // otherwise, set the default translation as the current translation
+
+            $project->currentTranslation = $project->translations->first() ?? $project->defaultTranslation;
+
+            if ($project->questionnaires->count() > 0) {
+                $project->latestQuestionnaire = $project->questionnaires->last();
+            }
+        }
+
+        return $projects;
+    }
 }

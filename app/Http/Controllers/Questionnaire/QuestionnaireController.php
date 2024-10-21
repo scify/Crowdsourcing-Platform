@@ -71,7 +71,6 @@ class QuestionnaireController extends Controller {
             'goal' => 'required|integer',
             'lang_codes' => 'array',
             'content' => 'required',
-            'status_id' => 'integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
             'project_ids' => 'required|array',
         ]);
         $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data);
@@ -96,7 +95,6 @@ class QuestionnaireController extends Controller {
             'goal' => 'required|integer',
             'lang_codes' => 'required|array',
             'content' => 'required',
-            'status_id' => 'required|integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
             'project_ids' => 'required|array',
         ]);
         $data = $request->all();

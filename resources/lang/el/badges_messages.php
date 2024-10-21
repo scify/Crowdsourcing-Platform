@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Κέρδισε αυτό το badge απαντώντας σε ένα ερωτηματολόγιο!',
+    'contributor_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που απαντάς σε ένα ερωτηματολόγιο, υποβάλλεις μια λύση σε ένα πρόβλημα ή ψηφίζεις μια λύση!',
+    'communicator_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που κάποιος κάνει κλικ στα ερωτηματολόγια και τις λύσεις που μοιράζεσαι!',
+    'influencer_badge_points_explanation' => 'Κέρδισε :points πόντους κάθε φορά που κάποιος απαντάει στα social media posts σου και συνεισφέρει!',
     'you_have_answered'              => 'Έχετε απαντήσει :count',
     'questionnaire'                  => 'ερωτηματολόγιο',
     'questionnaires'                 => 'ερωτηματολόγια',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Συνεισφέρω',
     'contribute_for'                 => 'Συνεισφέρω για',
     'you_do_not_own'                 => 'Δεν έχεις αυτό το badge',
-
+    'badges_title'                   => 'Τα Badges μου',
 
 
 ];
