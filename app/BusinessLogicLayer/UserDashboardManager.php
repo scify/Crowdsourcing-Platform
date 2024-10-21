@@ -2,9 +2,10 @@
 
 namespace App\BusinessLogicLayer;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\gamification\PlatformWideGamificationBadgesProvider;
 use App\BusinessLogicLayer\gamification\QuestionnaireBadgeProvider;
+use App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireAccessManager;
 use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -24,7 +25,7 @@ class UserDashboardManager {
     protected QuestionnaireBadgeProvider $questionnaireBadgeProvider;
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected QuestionnaireAccessManager $questionnaireAccessManager;
-    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
+    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
         PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
@@ -32,19 +33,20 @@ class UserDashboardManager {
         QuestionnaireBadgeProvider $questionnaireBadgeProvider,
         QuestionnaireResponseRepository $questionnaireResponseRepository,
         QuestionnaireAccessManager $questionnaireAccessManager,
-        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
+        CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->crowdSourcingProjectGoalManager = $crowdSourcingProjectGoalManager;
         $this->questionnaireBadgeProvider = $questionnaireBadgeProvider;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireAccessManager = $questionnaireAccessManager;
-        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
+        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
     private function questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses): bool {
-        // It's a feedback questionnaire.
-        if ($questionnaire->type_id == 2) {
+        // If the questionnaire is a feedback questionnaire, then we should check
+        // if the user has already answered the main project questionnaire, and has not yet answered the feedback questionnaire.
+        if ($questionnaire->type_id == QuestionnaireTypeLkp::FEEDBACK_QUESTIONNAIRE) {
             // These are supposed to be answered IF and only IF the main project questionnaire is answered
             // So we only display them the feedback questionnaire to the dashboard
             // IF:
@@ -54,7 +56,7 @@ class UserDashboardManager {
             }) == null;
             //b) and user has responded to the main project questionnaire
             $responseForMainProjectQuestionnaireExists = $userResponses->first(function ($u) use ($questionnaire) {
-                return $u->questionnaire->type_id == 1 &&
+                return $u->questionnaire->type_id == QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE &&
                     $questionnaire->projects->firstWhere('id', $u->project_id) != null;
             }) != null;
 
@@ -98,8 +100,17 @@ class UserDashboardManager {
     public function getUserDashboardViewModel(User $user): UserDashboardViewModel {
         $userResponses = $this->questionnaireResponseRepository->getQuestionnaireResponsesOfUser($user->id);
         $questionnaireIdsUserHasAnsweredTo = $userResponses->pluck('questionnaire_id')->toArray();
+        $questionnairesToBeDisplayedInTheDashboard = $this->getQuestionnairesForDashboard($user, $userResponses, $questionnaireIdsUserHasAnsweredTo);
+        $platformWideGamificationBadgesVM = $this->platformWideGamificationBadgesProvider
+            ->getPlatformWideGamificationBadgesListVM($user->id, $questionnaireIdsUserHasAnsweredTo);
+        $projectsWithActiveProblems = $this->getProjectsWithActiveProblems();
+
+        return new UserDashboardViewModel($questionnairesToBeDisplayedInTheDashboard, $projectsWithActiveProblems, $platformWideGamificationBadgesVM, $user);
+    }
+
+    protected function getQuestionnairesForDashboard(User $user, Collection $userResponses, array $questionnaireIdsUserHasAnsweredTo): Collection {
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
-        $questionnairesToBeDisplayedInTheDashboard = collect([]);
+        $questionnairesToBeDisplayedInTheDashboard = new Collection;
         foreach ($questionnaires as $questionnaire) {
             if (!$this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses)) {
                 continue;
@@ -108,24 +119,26 @@ class UserDashboardManager {
             $questionnaire->goalVM = $this->crowdSourcingProjectGoalManager
                 ->getQuestionnaireGoalViewModel($questionnaire, $questionnaire->responses_count);
 
-            $nextUnlockableBadge = $this->questionnaireBadgeProvider
-                ->getNextUnlockableBadgeToShowForQuestionnaire($questionnaire, $user->id, $questionnaireIdsUserHasAnsweredTo);
+            $nextBadgeToUnlock = $this->questionnaireBadgeProvider
+                ->getNextBadgeToUnlockForQuestionnaire($questionnaire, $user->id, $questionnaireIdsUserHasAnsweredTo);
             $questionnaire->userHasAccessToViewStatisticsPage = $this->questionnaireAccessManager
                 ->userHasAccessToViewQuestionnaireStatisticsPage($user, $questionnaire);
 
             $projectsYouCanContributeTo = $this->evaluateProjectsThatUserCanContributeTo($questionnaire, $userResponses);
             $questionnaire->gamificationNextStepVM = new GamificationNextStep(
                 $projectsYouCanContributeTo,
-                $nextUnlockableBadge->getNextStepMessage(),
-                $nextUnlockableBadge->imageFileName,
+                $nextBadgeToUnlock->getNextStepMessage(),
+                $nextBadgeToUnlock->imageFileName,
                 true,
                 new QuestionnaireSocialShareButtons($questionnaire, $user->id), in_array($questionnaire->id, $questionnaireIdsUserHasAnsweredTo));
 
             $questionnairesToBeDisplayedInTheDashboard->push($questionnaire);
         }
-        $platformWideGamificationBadgesVM = $this->platformWideGamificationBadgesProvider
-            ->getPlatformWideGamificationBadgesListVM($user->id, $questionnaireIdsUserHasAnsweredTo);
 
-        return new UserDashboardViewModel($questionnairesToBeDisplayedInTheDashboard, $platformWideGamificationBadgesVM);
+        return $questionnairesToBeDisplayedInTheDashboard;
+    }
+
+    protected function getProjectsWithActiveProblems(): Collection {
+        return $this->crowdSourcingProjectManager->getCrowdSourcingProjectsWithActiveProblems();
     }
 }

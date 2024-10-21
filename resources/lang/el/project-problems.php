@@ -7,4 +7,5 @@ return [
     'see_all_problems' => 'Δες όλα τα προβλήματα',
     'solutions_for' => 'Λύσεις για',
     'project_landing_page_problems_action_button' => 'Δες όλα τα προβλήματα',
+    'suggest_solution' => 'Πρότεινε μια λύση',
 ];

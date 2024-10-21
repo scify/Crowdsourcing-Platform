@@ -3,16 +3,16 @@
 namespace App\BusinessLogicLayer\gamification;
 
 abstract class GamificationBadge {
-    protected $pointsPerAction = 1;
-    public $badgeID;
-    public $numberOfActionsPerformed = -1;
-    public $level = 0;
-    public $name;
-    public $messageForLevel;
-    public $imageFileName;
-    public $statusMessage;
-    public $color;
-    protected $userHasAchievedBadgePlatformWide;
+    protected int $pointsPerAction = 1;
+    public string $badgeID;
+    public int $numberOfActionsPerformed = -1;
+    public int $level = 0;
+    public string $name;
+    public string $messageForLevel;
+    public string $imageFileName;
+    public string $statusMessage;
+    public string $color;
+    protected bool $userHasAchievedBadgePlatformWide;
 
     public function __construct($name, $imageFileName, $requiredActionMessage,
         $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction = 1) {
@@ -30,7 +30,7 @@ abstract class GamificationBadge {
 
     abstract public function getEmailBody();
 
-    protected function calculateLevel() {
+    protected function calculateLevel(): int {
         return $this->numberOfActionsPerformed * $this->pointsPerAction;
     }
 

@@ -42,12 +42,11 @@ return [
     'next_questionnaire' => 'Our next questionnaire is on its way: stay tuned!',
     'answer_the_questionnaire' => 'Answer the questionnaire',
     'project_no_active_questionnaire' => 'This project does not have an active questionnaire yet.',
-    'no_active_projects' => 'There are currently no active projects.',
     'check_what_other_respondents' => 'Before answering to the questionnaire, you can check what the other respondents have said by clicking',
     'here' => 'here',
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => 'Invite your friends to answer',
     'go_to_homepage' => 'Yes! Go to homepage',
-    'answer_to_feedback_questionnaire' => 'Answer to feedback questionnaire',
+    'answer_to_feedback_questionnaire' => 'Answer the feedback questionnaire',
     'user_feedback_given_message' => 'Thank you for your feedback!',
 ];

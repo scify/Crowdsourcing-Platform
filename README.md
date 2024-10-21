@@ -614,7 +614,7 @@ php artisan db:seed --env=testing --database=sqlite_testing --class=DatabaseSeed
 Then, you can run the tests:
 
 ```bash
-php artisan test
+php artisan test --env=testing
 ```
 
 ## How to debug

@@ -579,11 +579,10 @@ export default defineComponent({
 			}
 		},
 		async saveQuestionnaire() {
-			let locales = this.surveyCreator.translationValue.getSelectedLocales();
+			let locales = this.surveyCreator.translationValue.getSelectedLocales() ?? [];
+			// filter out locales that are empty strings
+			locales = locales.filter((l) => l !== "");
 			console.log(locales);
-			if (locales[0] === "") {
-				locales = [];
-			}
 			const data = {
 				title: this.questionnaire.default_fields_translation.title,
 				description: this.questionnaire.default_fields_translation.description,

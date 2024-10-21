@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => '¡Obtenga esta insignia respondiendo a un cuestionario!',
+    'contributor_badge_points_explanation' => '¡Gana :points puntos cada vez que respondas a un cuestionario, envíes una solución a un problema o votes por una solución!',
+    'communicator_badge_points_explanation' => '¡Gana :points puntos cada vez que alguien haga clic en tus cuestionarios y soluciones compartidos!',
+    'influencer_badge_points_explanation' => '¡Gana :points puntos cada vez que alguien responda a tus publicaciones en redes sociales y contribuya!',
     'you_have_answered'              => 'Has respondido :count',
     'questionnaire'                  => 'cuestionario',
     'questionnaires'                 => 'cuestionarios',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Contribuya',
     'contribute_for'                 => 'Contribuya para',
     'you_do_not_own'                 => 'No posee esta insignia',
-
+    'badges_title'                   => 'Vitrina de insignias',
 
 
 

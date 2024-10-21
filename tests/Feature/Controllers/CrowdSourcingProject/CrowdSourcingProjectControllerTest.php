@@ -31,7 +31,6 @@ class CrowdSourcingProjectControllerTest extends TestCase {
             ->findBy('status_id', CrowdSourcingProjectStatusLkp::PUBLISHED, 'slug')->first();
 
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
-
         $response->assertStatus(200);
     }
 

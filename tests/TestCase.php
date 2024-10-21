@@ -10,6 +10,11 @@ abstract class TestCase extends BaseTestCase {
     use CreatesApplication;
     use RefreshDatabase;
 
+    /**
+     * Refresh the in-memory database before each test.
+     *
+     * @return void
+     */
     protected function refreshTestDatabase() {
         if (!RefreshDatabaseState::$migrated) {
             // Run the database migrations specific to testing
