@@ -10,7 +10,9 @@ return [
     */
 
 
-    'gain_badge_by_answering'        => 'Pälvid selle "badge", kui täidad küsimustiku!',
+    'contributor_badge_points_explanation' => 'Saad :points punkti iga kord, kui vastad küsimustikule, esitad lahenduse probleemile või hääletad lahenduse poolt!',
+    'communicator_badge_points_explanation' => 'Saad :points punkti iga kord, kui keegi klõpsab sinu jagatud küsimustikul ja lahendustel!',
+    'influencer_badge_points_explanation' => 'Saad :points punkti iga kord, kui keegi reageerib sinu sotsiaalmeedia postitustele ja panustab!',
     'you_have_answered'              => 'Oled täitnud :count',
     'questionnaire'                  => 'küsimustiku',
     'questionnaires'                 => 'küsimustikku',
@@ -48,7 +50,7 @@ return [
     'contribute'                     => 'Panusta',
     'contribute_for'                 => 'Panusta',
     'you_do_not_own'                 => 'Sul ei ole seda aumärki',
-
+    'badges_title'                   => 'Aumärkide vitriin',
 
 
 ];

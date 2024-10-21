@@ -1,41 +1,98 @@
 @import "../variables";
 
-#available-projects {
-	.project-logo {
-		height: auto;
-	}
+#projects-with-next-actions {
+  .project-logo {
+    height: 120px;
+  }
 
-	tr {
-		border-top: 1px solid #666666;
-	}
+  tr {
+    border-top: 1px solid #666666;
+  }
 
-	tr:first-child {
-		border-top: none;
-	}
+  tr:first-child {
+    border-top: none;
+  }
+
+  .btn-statistics {
+    padding: 8px 15px;
+  }
+
+  .project-section {
+    background-color: $grey;
+  }
+
+  .container-fluid.project-section:first-child {
+    margin-top: 0 !important;
+  }
+
+  .container-fluid.project-section:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .card {
+    .card-header {
+
+      background-color: $brand-primary;
+
+      padding: 10px 5px;
+
+      .btn-header-link {
+        display: block;
+        text-align: left;
+        padding: 5px 15px;
+        color: white;
+        font-weight: bold;
+
+        &:focus {
+          box-shadow: none;
+        }
+
+        &:after {
+          content: "\f107";
+          font-family: 'Font Awesome 5 Free', sans-serif;
+          font-weight: 900;
+          float: right;
+        }
+
+        &.collapsed:after {
+          content: "\f106";
+        }
+      }
+    }
+  }
 }
 
 .location-btn {
-	margin: 10px auto 0;
-	width: 200px;
+  margin: 10px auto 0;
+  width: 200px;
 }
 
 @media only screen and (min-width: 992px) {
-	.gamification-box {
-		.box-body {
-			height: 300px;
-			position: relative;
-			padding: 20px;
-		}
-	}
+  .gamification-box {
+    .box-body {
+      height: 300px;
+      position: relative;
+      padding: 20px;
+    }
+  }
 }
 
 .progress-container {
-	margin: 20px auto;
-	float: none !important;
+  margin: 20px auto;
+  float: none !important;
 }
 
 .gamification-badge {
-	.badgeImg {
-		height: 130px;
-	}
+  .badgeImg {
+    height: 80px;
+  }
+}
+
+
+#main .card .card-header {
+  border: 0;
+  -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+  box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+  border-radius: 2px;
+  padding: 0;
 }

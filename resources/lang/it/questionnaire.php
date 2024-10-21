@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Il nostro prossimo questionario è in arrivo: restate sintonizzati!!',
     'answer_the_questionnaire' => 'Rispondi al questionario',
     'project_no_active_questionnaire' => 'Questo progetto non ha ancora un questionario attivo.',
-    'no_active_projects' => 'Al momento non ci sono progetti attivi.',
     'check_what_other_respondents' => 'Prima di rispondere al questionario, controlla cosa hanno detto gli altri intervistati cliccando qui',
     'here' => 'qui',
     'select_language' => 'Select language',

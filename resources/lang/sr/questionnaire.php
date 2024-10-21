@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Naš sledeći upitnik je na putu: ostanite sa nama!',
     'answer_the_questionnaire' => 'Odgovorite na upitnik',
     'project_no_active_questionnaire' => 'Ovaj projekat još uvijek nema aktivan upitnik.',
-    'no_active_projects' => 'Trenutno nema aktivnih projekata.',
     'check_what_other_respondents' => 'Prije nego što odgovorite na upitnik, provjerite šta su drugi ispitanici rekli klikom',
     'here' => 'ovdje',
     'select_language' => 'Odaberite jezik',

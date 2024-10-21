@@ -42,7 +42,6 @@ return [
     'next_questionnaire' => 'Следващият ни въпросник идва скоро, очаквайте го тук!',
     'answer_the_questionnaire' => 'Отговорете на въпросите',
     'project_no_active_questionnaire' => 'Този проект още няма активни въпросници.',
-    'no_active_projects' => 'В момента няма активни проекти.',
     'check_what_other_respondents' => 'Преди да попълните въпросника, проверете какво са казали други участници, като кликнете',
     'here' => 'тук',
     'select_language' => 'Изберете език',

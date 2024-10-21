@@ -1,52 +1,72 @@
+@import "../_variables";
+
 .gamification-badge {
-	height: 300px;
-	font-family: "Open Sans", sans-serif !important;
-	padding: 15px;
-	border-radius: 10px;
-	color: white;
+  height: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
 
-	.badge-level {
-		color: white;
-		text-align: center;
-		font-size: 1.3rem;
-		margin: 0.5rem 0 1rem;
+  .badge-level {
+    color: white;
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 0.5rem 0 1rem;
 
-		&.badge-level-zero {
-			color: black;
-		}
+    &.badge-level-black {
+      color: black;
+    }
 
-		.points {
-			font-weight: bold;
-		}
-	}
+    &.badge-level-white {
+      color: white;
+    }
+  }
 
-	.badge-message {
-		color: white;
-		font-size: 1rem;
-		text-align: center;
-		margin: 0.5rem 0;
+  .badge-message-container {
+    border-top: 1px solid white;
 
-		&.badge-message-zero {
-			color: black;
-		}
-	}
+    &.badge-message-container-black {
+      border-color: black;
+    }
 
-	.badge-name {
-		text-align: center;
-		margin: 0.5rem 0;
+    &.badge-message-container-white {
+      border-color: $laravel-border-color;
+    }
+  }
 
-		&.badge-name-black {
-			color: black;
-		}
+  .badge-message {
+    color: white;
+    font-style: italic;
+    text-align: center;
+    font-size: smaller;
+    margin: 0.5rem 0;
+    font-weight: 300;
 
-		&.badge-name-white {
-			color: white;
-		}
-	}
+    &.badge-message-black {
+      color: black;
+    }
+
+    &.badge-message-white {
+      color: $grey;
+    }
+  }
+
+  .badge-name {
+    text-align: center;
+    margin: 0.5rem 0;
+    font-weight: 400;
+
+    &.badge-name-black {
+      color: black;
+    }
+
+    &.badge-name-white {
+      color: white;
+    }
+  }
 }
 
 .badge-img-container {
-	text-align: center;
-	margin-bottom: 1rem;
-	margin-top: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }

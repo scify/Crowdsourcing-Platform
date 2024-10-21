@@ -51,7 +51,10 @@ h6,
 .h5,
 .h6 {
   font-family: "Noto Sans Variable", sans-serif;
-  font-weight: bold;
+}
+
+h1,h2,h3,.h1,.h2,.h3 {
+  font-weight: 700;
 }
 
 h1 {
@@ -373,4 +376,11 @@ a.link {
               0 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
+}
+
+.userway_buttons_wrapper {
+  // on mobile, add a margin top so that it does not collide with the burger menu
+    @media (max-width: 768px) {
+        margin-top: 80px;
+    }
 }
