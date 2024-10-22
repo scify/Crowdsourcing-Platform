@@ -84,7 +84,7 @@ class UserController extends Controller {
 
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string) view('partials.ajax_error_message', compact('errorMessage'))));
         } else {
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('admin.partials.users-list', compact('users'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('loggedin-environment.management.partials.users-list', compact('users'))));
         }
     }
 

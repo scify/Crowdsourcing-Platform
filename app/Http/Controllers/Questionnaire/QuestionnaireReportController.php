@@ -24,7 +24,7 @@ class QuestionnaireReportController extends Controller {
         $selectedQuestionnaireId = $request->questionnaireId;
         $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
 
-        return view('questionnaire.reports.reports-with-filters', ['viewModel' => $viewModel]);
+        return view('loggedin-environment.questionnaire.reports.reports-with-filters', ['viewModel' => $viewModel]);
     }
 
     public function getReportDataForQuestionnaire(Request $request): JsonResponse {
@@ -33,7 +33,7 @@ class QuestionnaireReportController extends Controller {
             $questionnaire = $this->questionnaireRepository->find($input['questionnaireId']);
             $reportViewModel = $this->questionnaireReportManager->getQuestionnaireReportViewModel($input);
             $responses = $reportViewModel->responses;
-            $view = view('questionnaire.reports.report-for-questionnaire', compact('reportViewModel'));
+            $view = view('loggedin-environment.questionnaire.reports.report-for-questionnaire', compact('reportViewModel'));
             $responseCode = ResponseAlias::HTTP_OK;
             $responseContent = ['view' => $view->render(), 'questionnaire' => $questionnaire, 'responses' => $responses];
         } catch (QueryException $e) {
