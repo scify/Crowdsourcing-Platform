@@ -25,18 +25,16 @@
 <div id="app" class="wrapper">
     @include("loggedin-environment.partials.menu")
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col">
-                        @yield("content-header")
-                    </div>
-                </div>
-            </div>
-        </div>
         <section class="content">
             <div class="container" id="main-content">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="row my-4">
+                        <div class="col p-0">
+                            @yield("content-header")
+                        </div>
+                    </div>
+                </div>
                 @include('partials.flash-messages-and-errors')
                 @yield('content')
             </div>
