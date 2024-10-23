@@ -11,7 +11,7 @@ return [
 
     'my_history' => 'Meu histórico',
     'my_contributions' => 'Minhas contribuições',
-    'number_of_questionnaires' => '{0} Contribuiu com 0 questionários |{1}  Contribuiu com 1 questionário |[2,*] Contribuiu com :count questionários"',
+    'number_of_questionnaires' => '{0} Contribuiu com <b>0 questionários</b> |{1}  Contribuiu com <b>1 questionário</b> |[2,*] Contribuiu com <b>:count questionários</b>',
     'no_questionnaires' => 'Ainda não respondeu a nenhum questionário.',
     'project' => 'Projeto',
     'questionnaire_title' => 'Título do questionário',

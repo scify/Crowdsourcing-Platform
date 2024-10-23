@@ -34,7 +34,6 @@ export default defineConfig({
 				"resources/assets/sass/project/projects-list.scss",
 				"resources/assets/sass/questionnaire/create-questionnaire.scss",
 				"resources/assets/sass/questionnaire/manage-questionnaires.scss",
-				"resources/assets/sass/questionnaire/my-questionnaire-responses.scss",
 				"resources/assets/sass/questionnaire/questionnaire-statistics-colors.scss",
 				"resources/assets/sass/questionnaire/questionnaire-thanks.scss",
 				"resources/assets/sass/questionnaire/reports.scss",

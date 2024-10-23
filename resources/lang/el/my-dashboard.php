@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Δεν υπάρχουν προς το παρόν έργα με ενεργά ερωτηματολόγια.',
     'no_projects_with_published_problems' => 'Δεν υπάρχουν προς το παρόν έργα με δημοσιευμένα προβλήματα.',
     'see_the_problems_cta' => 'Δείτε τα προβλήματα και προτείνετε μια λύση',
-
-
-
-
+    'points' => 'Πόντοι',
+    'your_level_progress' => 'Η πρόοδος του επιπέδου σας',
+    'unlock_a_gift' => 'για να ξεκλειδώσετε ένα δώρο!',
 ];

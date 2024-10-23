@@ -1,6 +1,11 @@
 <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
     <!-- Sidebar toggle button-->
     <ul class="navbar-nav">
+        @canany(['moderate-content-by-users'])
+            <li class="nav-item">
+                <a class="nav-link pl-0" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+        @endcanany
         <li class="nav-item">
             <img loading="lazy" height="40"
                  src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
@@ -20,12 +25,10 @@
             <li class="nav-item {{ UrlMatchesMenuItem('my-dashboard') }}">
                 <a class="nav-link" href="{{ route('my-dashboard') }}"> {{ __('menu.my_dashboard') }} </a>
             </li>
-            <li class="nav-item {{ UrlMatchesMenuItem('my-account') }}">
-                <a class="nav-link" href="{{ route('my-account') }}"> {{ __('menu.my_account') }} </a>
-            </li>
             @if($userHasContributedToAProject)
                 <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
-                    <a class="nav-link" href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
+                    <a class="nav-link"
+                       href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
                 </li>
             @endif
             <li class="nav-item dropdown user user-menu">
@@ -37,7 +40,7 @@
                     <span class="hidden-xs">{{ Auth::user()->nickname }}</span>
                     <i class="fas fa-caret-down"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                <div class="dropdown-menu dropdown-menu-right py-2" aria-labelledby="userMenu">
                     <!-- User image -->
                     <div class="dropdown-item user-header text-center">
                         @if (Auth::user()->avatar)
@@ -48,7 +51,8 @@
                             <small>Member since {{ Auth::user()->created_at }}</small>
                         </p>
                     </div>
-
+                    <a class="dropdown-item text-center"
+                       href="{{ route('my-account') }}"> {{ __('menu.my_account') }} </a>
                     <div class="dropdown-divider"></div>
                     <a id="log-out" href="{{ route('logout') }}"
                        class="dropdown-item text-center">{{ __('menu.sign_out') }}</a>

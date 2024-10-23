@@ -2,152 +2,159 @@
 @import "survey-jquery/survey.min.css";
 
 #questionnaire-display {
-	.survey-container {
-		.sv-btn.sv-footer__complete-btn,
-		.sv-btn.sv-footer__next-btn,
-		.sv-btn.sv-footer__prev-btn,
-		.sv-btn.sv-footer__start-btn,
-		.sv_nav_btn {			
-			background-color: var(--project-primary-color);
-			color: var(--btn-text-color);
-			border-radius: 21px;
-			border: none;
-			width: 270px;
-			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-			padding: 25px 30px;
-			font-size: 20px;
-			font-weight: 600;
-			line-height: 25px;
-		  
-			&:hover {
-			  box-shadow:
-					  0 4px 4px rgba(0, 0, 0, 0.25),
-					  0 4px 4px rgba(0, 0, 0, 0.25);
-			}
-		  
-			&:focus,
-			&:focus-visible {
-			  outline: 4px solid black;
-			  box-shadow:
-					  0 4px 4px rgba(0, 0, 0, 0.25),
-					  0 4px 4px rgba(0, 0, 0, 0.25);
-			}
+  .survey-container {
 
-		}
+    .sv-title {
+      color: $brand-primary;
 
-		.sv-btn.sv-footer__prev-btn {
-			float: left;
-		}
+      &.sv-container-modern__title {
+        margin: 0;
+      }
+    }
 
-		.sv-btn.sv-footer__complete-btn,
-		.sv-btn.sv-footer__next-btn,
-		.sv-btn.sv-footer__start-btn {
-			float: right;
-		}
+    .sv-btn.sv-footer__complete-btn,
+    .sv-btn.sv-footer__next-btn,
+    .sv-btn.sv-footer__prev-btn,
+    .sv-btn.sv-footer__start-btn,
+    .sv_nav_btn {
+      background-color: var(--project-primary-color);
+      color: var(--btn-text-color);
+      border-radius: 21px;
+      border: none;
+      width: 270px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+      padding: 25px 30px;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 25px;
 
-		.sv_main.sv_default_css .sv_body {
-			border-color: var(--project-primary-color);
-		}
+      &:hover {
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25),
+        0 4px 4px rgba(0, 0, 0, 0.25);
+      }
 
-		.sv_main .sv_body {
-			padding-left: 0;
-			padding-right: 0;
-		}
+      &:focus,
+      &:focus-visible {
+        outline: 4px solid black;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25),
+        0 4px 4px rgba(0, 0, 0, 0.25);
+      }
 
-		.sv-page.sv-body__page,
-		.sv-footer {
-			margin-left: 0;
-			margin-right: 0;
-		}
+    }
 
-		.sv-root-modern .sv-question__title--answer {
-			background-color: rgba(0, 119, 255, 0.2);
-		}
+    .sv-btn.sv-footer__prev-btn {
+      float: left;
+    }
 
-		.sv-root-modern .sv-rating__item--selected .sv-rating__item-text {
-			background-color: $brand-primary;
-			color: rgb(255, 255, 255);
-			border-color: $brand-primary;
-		}
+    .sv-btn.sv-footer__complete-btn,
+    .sv-btn.sv-footer__next-btn,
+    .sv-btn.sv-footer__start-btn {
+      float: right;
+    }
 
-		.sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
-			background-color: $brand-primary;
-		}
+    .sv_main.sv_default_css .sv_body {
+      border-color: var(--project-primary-color);
+    }
 
-		.sv-root-modern ::-webkit-scrollbar-thumb {
-			background: $brand-primary;
-		}
+    .sv_main .sv_body {
+      padding-left: 0;
+      padding-right: 0;
+    }
 
-		.sv-file__preview {
-			width: 100%;
+    .sv-page.sv-body__page,
+    .sv-footer {
+      margin-left: 0;
+      margin-right: 0;
+    }
 
-			img {
-				width: 100%;
-			}
+    .sv-root-modern .sv-question__title--answer {
+      background-color: rgba(0, 119, 255, 0.2);
+    }
 
-			.sv-file__remove-svg {
-				width: 25px;
-				height: 25px;
-			}
-		}
+    .sv-root-modern .sv-rating__item--selected .sv-rating__item-text {
+      background-color: $brand-primary;
+      color: rgb(255, 255, 255);
+      border-color: $brand-primary;
+    }
 
-		.sv_main {
-			font-size: large;
-			font-family: "Open Sans", sans-serif;
-		}
-	}
+    .sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
+      background-color: $brand-primary;
+    }
 
-	#questionnaire-loader {
-		.spinner-border {
-			width: 5rem;
-			height: 5rem;
-			border-width: 0.5rem;
-			border-color: $brand-primary;
-			border-right-color: transparent;
-		}
-	}
+    .sv-root-modern ::-webkit-scrollbar-thumb {
+      background: $brand-primary;
+    }
 
-	.disable-scroll {
-		overflow-y: hidden !important;
-	}
+    .sv-file__preview {
+      width: 100%;
 
-	#questionnaire-files-loader-overlay {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background-color: black;
-		opacity: 0.7;
-		z-index: 1;
-		left: 0;
-		top: 0;
-	}
+      img {
+        width: 100%;
+      }
 
-	#questionnaire-files-loader-row {
-		position: absolute;
-		top: calc(50% - 5rem);
-		left: calc(50% - 15rem);
-		z-index: 10;
+      .sv-file__remove-svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
 
-		.spinner-border {
-			height: 10rem;
-			width: 10rem;
-			border-width: 0.5rem;
-			color: white;
-		}
+    .sv_main {
+      font-size: large;
+      font-family: "Open Sans", sans-serif;
+    }
+  }
 
-		#loader-message {
-			color: white;
-		}
-	}
+  #questionnaire-loader {
+    .spinner-border {
+      width: 5rem;
+      height: 5rem;
+      border-width: 0.5rem;
+      border-color: $brand-primary;
+      border-right-color: transparent;
+    }
+  }
 
-	.language-selector {
-		font-size: large;
-		font-weight: bold;
-	}
+  .disable-scroll {
+    overflow-y: hidden !important;
+  }
+
+  #questionnaire-files-loader-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 1;
+    left: 0;
+    top: 0;
+  }
+
+  #questionnaire-files-loader-row {
+    position: absolute;
+    top: calc(50% - 5rem);
+    left: calc(50% - 15rem);
+    z-index: 10;
+
+    .spinner-border {
+      height: 10rem;
+      width: 10rem;
+      border-width: 0.5rem;
+      color: white;
+    }
+
+    #loader-message {
+      color: white;
+    }
+  }
+
+  .language-selector {
+    font-size: large;
+    font-weight: bold;
+  }
 }
 
 .sv-action-bar.sv-action-bar--default-size-mode.sv_nav {
-	margin: 0 auto;
-	padding-left: 0;
-	overflow: visible;
+  margin: 0 auto;
+  padding-left: 0;
+  overflow: visible;
 }
