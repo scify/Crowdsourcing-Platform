@@ -51,4 +51,7 @@ return [
     'contribute_for' => 'Contribute for',
     'you_do_not_own' => 'You don\'t own this badge',
     'badges_title' => 'Badges Showcase',
+    'contributor_bade_progress' => 'You have contributed to :count projects',
+    'communicator_bade_progress' => 'You have shared :count times so far',
+    'influencer_bade_progress' => ':count users engaged with your shared content',
 ];

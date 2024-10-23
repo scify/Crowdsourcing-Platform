@@ -193,7 +193,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.create'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('admin.projects.create-edit.form-page');
+        $response->assertViewIs('loggedin-environment.management.crowdsourcing-project.create-edit.form-page');
     }
 
     /**
@@ -230,7 +230,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.index'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('admin.projects.index');
+        $response->assertViewIs('loggedin-environment.management.crowdsourcing-project.index');
     }
 
     /**
@@ -272,7 +272,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.edit', ['project' => $project->id]));
 
         $response->assertStatus(200);
-        $response->assertViewIs('admin.projects.create-edit.form-page');
+        $response->assertViewIs('loggedin-environment.management.crowdsourcing-project.create-edit.form-page');
     }
 
     /**

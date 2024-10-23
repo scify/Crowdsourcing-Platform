@@ -12,7 +12,9 @@ class ContributorBadge extends GamificationBadge {
             __('badges_messages.contributor_badge_points_explanation'),
             $allResponses,
             $userHasAchievedBadgePlatformWide,
-            5
+            5,
+            __('badges_messages.contributor_bade_progress', ['count' => $allResponses]),
+            50
         );
     }
 

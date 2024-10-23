@@ -24,7 +24,7 @@ class QuestionnaireStatisticsController extends Controller {
     public function showEditStatisticsColorsPage(Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireStatisticsManager->getEditQuestionnaireStatisticsColorViewModel($questionnaire);
 
-        return view('questionnaire.statistics-colors', compact(['viewModel']));
+        return view('loggedin-environment.management.questionnaire.statistics-colors', compact(['viewModel']));
     }
 
     public function saveStatisticsColors(Request $request, Questionnaire $questionnaire): RedirectResponse {

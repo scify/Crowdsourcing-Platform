@@ -11,7 +11,9 @@ class CommunicatorBadge extends GamificationBadge {
         parent::__construct(__('badges_messages.communicator_title'),
             'communicator.png',
             __('badges_messages.gain_badge_by_inviting'),
-            $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, 10);
+            $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, 10,
+            __('badges_messages.communicator_bade_progress', ['count' => $numberOfActionsPerformed]),
+            60);
     }
 
     protected function getBadgeMessageForLevel(): string {

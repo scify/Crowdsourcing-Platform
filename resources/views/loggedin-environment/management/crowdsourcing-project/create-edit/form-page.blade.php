@@ -31,11 +31,13 @@
                        aria-controls="contact" aria-selected="false">Social Media</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="communication-tab" data-toggle="tab" href="#communication-resources" role="tab"
+                    <a class="nav-link" id="communication-tab" data-toggle="tab" href="#communication-resources"
+                       role="tab"
                        aria-controls="contact" aria-selected="false">Communication Emails</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="statistics-colors-tab" data-toggle="tab" href="#statistics-colors" role="tab"
+                    <a class="nav-link" id="statistics-colors-tab" data-toggle="tab" href="#statistics-colors"
+                       role="tab"
                        aria-controls="contact" aria-selected="false">Statistics Colors</a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -46,29 +48,29 @@
             <div class="tab-content " id="myTabContent">
                 <div class="tab-pane fade show active " id="basic-details" role="tabpanel"
                      aria-labelledby="basic-details-tab">
-                    @include('admin.projects.create-edit.partials.basic-details')
+                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.basic-details')
 
                 </div>
                 <div class="tab-pane fade " id="landing-page" role="tabpanel" aria-labelledby="landing-page-tab">
-                    @include('admin.projects.create-edit.partials.landing-page')
+                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.landing-page')
 
                 </div>
                 <div class="tab-pane fade " id="social-media" role="tabpanel" aria-labelledby="social-media-tab">
-                    @include('admin.projects.create-edit.partials.social-media')
+                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.social-media')
 
                 </div>
                 <div class="tab-pane fade " id="communication-resources" role="tabpanel"
                      aria-labelledby="communication-resources-tab">
-                    @include('admin.projects.create-edit.partials.communication-resources')
+                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.communication-resources')
 
                 </div>
                 <div class="tab-pane fade " id="statistics-colors" role="tabpanel"
                      aria-labelledby="statistics-colors-tab">
-                    @include('admin.projects.create-edit.partials.statistics-colors')
+                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.statistics-colors')
 
                 </div>
                 <div class="tab-pane fade " id="translations" role="tabpanel" aria-labelledby="translations-tab">
-                    @include('admin.projects.create-edit.partials.translations')
+                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.translations')
                 </div>
             </div>
             <div>
