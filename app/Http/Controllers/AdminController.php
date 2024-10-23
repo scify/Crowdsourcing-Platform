@@ -17,13 +17,13 @@ class AdminController extends Controller {
     public function manageUsers() {
         $viewModel = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
 
-        return view('admin.manage-users', ['viewModel' => $viewModel]);
+        return view('loggedin-environment.management.manage-users', ['viewModel' => $viewModel]);
     }
 
     public function editUserForm($id) {
         $viewModel = $this->userManager->getEditUserViewModel($id);
 
-        return view('admin.edit-user', ['viewModel' => $viewModel]);
+        return view('loggedin-environment.management.edit-user', ['viewModel' => $viewModel]);
     }
 
     public function updateUserRoles(Request $request) {

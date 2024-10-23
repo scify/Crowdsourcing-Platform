@@ -109,7 +109,7 @@ class QuestionnaireControllerTest extends TestCase {
         $response = $this->get(route('create-questionnaire'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('questionnaire.create-edit');
+        $response->assertViewIs('loggedin-environment.management.questionnaire.create-edit');
     }
 
     /**

@@ -12,10 +12,12 @@ abstract class GamificationBadge {
     public string $imageFileName;
     public string $statusMessage;
     public string $color;
+    public string $progressMessage;
+    public int $finalLevel;
     protected bool $userHasAchievedBadgePlatformWide;
 
     public function __construct($name, $imageFileName, $requiredActionMessage,
-        $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction = 1) {
+        $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction, $progressMessage = '', $finalLevel = 0) {
         $this->name = $name;
         $this->imageFileName = $imageFileName;
         $this->numberOfActionsPerformed = $numberOfActionsPerformed;
@@ -24,6 +26,8 @@ abstract class GamificationBadge {
         $this->messageForLevel = $this->getBadgeMessageForLevel();
         $this->statusMessage = $this->calculateStatusMessage($requiredActionMessage);
         $this->userHasAchievedBadgePlatformWide = $userHasAchievedBadgePlatformWide;
+        $this->progressMessage = $progressMessage;
+        $this->finalLevel = $finalLevel;
     }
 
     abstract protected function getBadgeMessageForLevel();

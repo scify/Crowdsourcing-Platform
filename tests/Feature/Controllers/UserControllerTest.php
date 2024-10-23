@@ -4,6 +4,8 @@ namespace Tests\Feature\Controllers;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -174,5 +176,26 @@ class UserControllerTest extends TestCase {
             ->get(route('api.users.get-filtered'));
 
         $response->assertStatus(403);
+    }
+
+    /** @test */
+    public function myDashboardDisplaysCorrectlyForUserWithNoBadges() {
+        // for this test, we want to emulate that the platform does not have any questionnaires or projects
+        // delete all questionnaires and projects
+        Questionnaire::query()->delete();
+        CrowdSourcingProject::query()->delete();
+
+        $user = User::factory()->create();
+        $this->be($user);
+
+        $response = $this->get(route('my-dashboard', ['locale' => 'en']));
+
+        $response->assertStatus(200);
+        $response->assertViewIs('loggedin-environment.my-dashboard');
+        $response->assertViewHas('viewModel');
+        $viewModel = $response->original->getData()['viewModel'];
+        $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);
+        $this->assertCount(0, $viewModel->questionnaires);
+        $this->assertCount(0, $viewModel->projectsWithActiveProblems);
     }
 }

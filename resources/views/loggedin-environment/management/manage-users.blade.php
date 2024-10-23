@@ -13,8 +13,8 @@
         </div>
         <div class="card-body">
             <div id="allUsers">
-                @include('admin.partials.user-filters')
-                @include('admin.partials.users-list', ['users' => $viewModel->users])
+                @include('loggedin-environment.management.partials.user-filters')
+                @include('loggedin-environment.management.partials.users-list', ['users' => $viewModel->users])
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <h3 class="card-title">Add new user</h3>
         </div>
         <div class="card-body">
-            @include('admin.partials.new-user-form', ['roles' => $viewModel->allRoles])
+            @include('loggedin-environment.management.partials.new-user-form', ['roles' => $viewModel->allRoles])
         </div>
     </div>
 @endsection

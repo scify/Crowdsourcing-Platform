@@ -24,8 +24,8 @@
                 <a class="nav-link" href="{{ route('my-account') }}"> {{ __('menu.my_account') }} </a>
             </li>
             @if($userHasContributedToAProject)
-                <li class="nav-item {{ UrlMatchesMenuItem('myHistory') }}">
-                    <a class="nav-link" href="{{ route('myHistory') }}"> {{ __('menu.my_history') }} </a>
+                <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
+                    <a class="nav-link" href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
                 </li>
             @endif
             <li class="nav-item dropdown user user-menu">

@@ -1,0 +1,22 @@
+@import "../_variables.scss";
+
+#progress-container {
+  background-color: $grey;
+
+  .progress-for-badge {
+    margin-bottom: 5rem;
+
+    // on mobile, the margin is smaller
+    @media (max-width: 768px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .progress {
+    background-color: rgba(#4d5359, 0.6);
+  }
+
+  .progress-bar {
+    background-color: var(--clr-secondary-grey);
+  }
+}

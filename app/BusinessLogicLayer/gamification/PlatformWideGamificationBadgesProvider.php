@@ -36,9 +36,8 @@ class PlatformWideGamificationBadgesProvider {
         foreach ($badges as $badge) {
             $badgesVM->push(new GamificationBadgeVM($badge));
         }
-        $gamificationPointsCalculator = new GamificationPointsCalculator;
 
-        return new GamificationBadgesWithLevels($badgesVM, $gamificationPointsCalculator->calculateTotalGamificationPoints($badges));
+        return new GamificationBadgesWithLevels($badgesVM);
     }
 
     public function getContributorBadge(array $questionnaireIdsUserHasAnsweredTo): ContributorBadge {

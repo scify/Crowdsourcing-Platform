@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth', 'setlocale']], function () use ($localeIn
     Route::group($localeInfo, function () {
         Route::get('/my-dashboard', [UserController::class, 'myDashboard'])->name('my-dashboard');
         Route::get('/my-account', [UserController::class, 'myAccount'])->name('my-account');
-        Route::get('/users/history', [UserController::class, 'showUserHistory'])->name('myHistory');
+        Route::get('/my-contributions', [UserController::class, 'showUserContributions'])->name('my-contributions');
     });
 });
 

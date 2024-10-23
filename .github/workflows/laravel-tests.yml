@@ -49,13 +49,13 @@ jobs:
           touch database/database.sqlite
 
       - name: Migrate
-        run: php artisan migrate --database=sqlite_testing
+        run: php artisan migrate --database=sqlite_testing --env=testing
 
       - name: Seed
-        run: php artisan db:seed --database=sqlite_testing
+        run: php artisan db:seed --database=sqlite_testing --env=testing
 
       - name: Cache
         run: php artisan config:cache --env=testing
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
-        run: php artisan test
+        run: php artisan test --env=testing
