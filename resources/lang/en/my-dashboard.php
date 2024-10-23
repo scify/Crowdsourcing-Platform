@@ -21,4 +21,7 @@ return [
     'see_the_problems_cta' => 'See the problems & suggest a solution',
     'your_progress_title' => 'Your Progress',
     'your_progress_description' => 'Keep contributing, sharing, and inviting others to reach your next milestone!',
+    'points' => 'Points',
+    'your_level_progress' => 'Your Level Progress',
+    'unlock_a_gift' => 'to unlock a gift!',
 ];

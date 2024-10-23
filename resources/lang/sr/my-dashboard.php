@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Trenutno nema projekata sa aktivnim Upitnicima.',
     'no_projects_with_published_problems' => 'Trenutno nema projekata sa objavljenim problemima.',
     'see_the_problems_cta' => 'Pogledajte probleme i predložite rešenje',
-
-
-
-
+    'points' => 'Poena',
+    'your_level_progress' => 'Vaš napredak nivoa',
+    'unlock_a_gift' => 'da otključate poklon!',
 ];
