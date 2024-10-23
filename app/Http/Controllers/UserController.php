@@ -88,7 +88,7 @@ class UserController extends Controller {
         }
     }
 
-    public function showUserHistory() {
+    public function showUserContributions() {
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
 
         return view('loggedin-environment.my-history', ['responses' => $responses]);
