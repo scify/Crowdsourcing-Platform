@@ -25,7 +25,7 @@
                                                 <h6>{{ $badge->badgeName }}</h6>
                                                 <p class="mb-1">{{ $badge->badge->progressMessage }}</p>
                                             </div>
-                                            <div class="col-md-6 col-sm-12 text-right">
+                                            <div class="col-md-6 col-sm-12 your-level-progress">
                                                 <p class="mb-1">{{ __('my-dashboard.your_level_progress') }}
                                                     : {{ $badge->level }}
                                                     /{{ $badge->badge->finalLevel }}</p>

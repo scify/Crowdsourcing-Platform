@@ -1,6 +1,11 @@
 <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
     <!-- Sidebar toggle button-->
     <ul class="navbar-nav">
+        @canany(['moderate-content-by-users'])
+            <li class="nav-item">
+                <a class="nav-link pl-0" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+        @endcanany
         <li class="nav-item">
             <img loading="lazy" height="40"
                  src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"

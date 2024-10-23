@@ -21,11 +21,9 @@
     <![endif]-->
     @include('analytics')
 </head>
-<body class="logged-in-env {{ app(Gate::class)->check("moderate-content-by-users")? "display-admin-menu": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
+<body class="logged-in-env {{ !app(Gate::class)->check("moderate-content-by-users")? "no-sidebar": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
 <div id="app" class="wrapper">
-    @if(Auth::check())
-        @include("loggedin-environment.partials.menu")
-    @endif
+    @include("loggedin-environment.partials.menu")
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -38,7 +36,7 @@
             </div>
         </div>
         <section class="content">
-            <div class="container-fluid">
+            <div class="container" id="main-content">
                 @include('partials.flash-messages-and-errors')
                 @yield('content')
             </div>

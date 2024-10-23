@@ -19,4 +19,13 @@
   .progress-bar {
     background-color: var(--clr-secondary-grey);
   }
+
+  .your-level-progress {
+    text-align: end;
+
+    // on mobile, the text is start-aligned
+    @media (max-width: 768px) {
+      text-align: start;
+    }
+  }
 }
