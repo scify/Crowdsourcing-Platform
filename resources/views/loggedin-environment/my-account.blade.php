@@ -8,76 +8,100 @@
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="card card-info card-outline">
-                <div class="card-header">
+                <div class="card-header py-3 px-5">
                     <h3 class="card-title"> {{ __("my-account.personal_details") }}</h3>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <form id="form-change-password" class="w-100" method="POST"
-                              action="{{ url('/user/update') }}"
-                              novalidate>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="card-body p-5">
+                    <div class="container-fluid p-0">
+                        <div class="row p-0">
+                            <div class="col">
+                                <form id="form-change-password" class="w-100" method="POST"
+                                      action="{{ url('/user/update') }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div class="container-fluid p-0">
+                                        <div class="row p-0">
+                                            <label class="col-12 control-label">{{ __("login-register.email") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <input id="nickname" type="email" class="form-control mb-1"
+                                                           name="nickname"
+                                                           value="{{ $viewModel->user->email  }}"
+                                                           required
+                                                           autofocus
+                                                           placeholder="Email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <label class="col-12 control-label">{{ __("login-register.nickname") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group has-feedback">
+                                                    <input id="nickname" type="text" class="form-control mb-1"
+                                                           name="nickname"
+                                                           value="{{ $viewModel->user->nickname  }}"
+                                                           required
+                                                           autofocus
+                                                           placeholder="Name">
+                                                    <span class="help-block hidden my-1" id="nickname-help">
+                                                        <small>{{ __('my-account.nickname_help') }}</small>
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                            <label class="col-sm-4 control-label">{{ __("login-register.email") }}</label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <div>{{ $viewModel->user->email  }}</div>
-                                </div>
-                            </div>
-                            <label class="col-sm-4 control-label">{{ __("login-register.nickname") }}</label>
-                            <div class="col-sm-8">
-                                <div class="form-group has-feedback">
-                                    <input id="nickname" type="text" class="form-control mb-1" name="nickname"
-                                           value="{{ $viewModel->user->nickname  }}"
-                                           required
-                                           autofocus
-                                           placeholder="Name">
-                                </div>
-                            </div>
-                            <span class="help-block hidden col-sm-10 mb-2" id="nickname-help">
-                                <strong>{{ __('my-account.nickname_help') }}</strong>
-                            </span>
-                            <span class="form-control-feedback"></span>
-                            @if ($errors->has('nickname'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('nickname') }}</strong>
-                                    </span>
-                            @endif
-                            @if($viewModel->user->password)
-                                <label for="current_password"
-                                       class="col-sm-4 control-label">{{ __("my-account.current_password") }}</label>
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="current_password"
-                                               name="current_password"
-                                               placeholder="{{ __("my-account.current_password") }}">
+                                            <span class="form-control-feedback"></span>
+                                            @if ($errors->has('nickname'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('nickname') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="row p-0">
+                                            @if($viewModel->user->password)
+                                                <label for="current_password"
+                                                       class="col-12 control-label">{{ __("my-account.current_password") }}</label>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control"
+                                                               id="current_password"
+                                                               name="current_password"
+                                                               placeholder="{{ __("my-account.current_password") }}">
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="row p-0">
+                                            <label for="password"
+                                                   class="col-12 control-label">{{ __("my-account.new_password") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="password"
+                                                           name="password"
+                                                           placeholder="{{ __("login-register.password") }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3 p-0">
+                                            <label for="password_confirmation"
+                                                   class="col-12 control-label">{{ __("my-account.re_enter_password") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control"
+                                                           id="password_confirmation"
+                                                           name="password_confirmation"
+                                                           placeholder="{{ __("my-account.re_enter_password") }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <div class="col-lg-4 col-sm-12">
+                                                <button type="submit"
+                                                        class="btn btn-primary btn-slim w-100">{{ __("my-account.update") }}</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                            <label for="password"
-                                   class="col-sm-4 control-label">{{ __("my-account.new_password") }}</label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                           placeholder="{{ __("login-register.password") }}">
-                                </div>
+                                </form>
                             </div>
-                            <label for="password_confirmation"
-                                   class="col-sm-4 control-label">{{ __("my-account.re_enter_password") }}</label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="password_confirmation"
-                                           name="password_confirmation"
-                                           placeholder="{{ __("my-account.re_enter_password") }}">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary">{{ __("my-account.update") }}</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,15 +110,17 @@
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="card card-info card-outline">
-                <div class="card-header">
+                <div class="card-header py-3 px-5">
                     <h3 class="card-title">{{ __("my-account.my_data") }}</h3>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <a href="{{ route('my-data.download') }}" data-widget="tooltip"
-                               title="This includes all your responses to questionnaires" target="_blank"
-                               class="btn btn-primary">{{ __("my-account.download_my_data") }}</a>
+                <div class="card-body p-5">
+                    <div class="container-fluid p-0">
+                        <div class="row p-0">
+                            <div class="col">
+                                <a href="{{ route('my-data.download') }}" data-widget="tooltip"
+                                   title="This includes all your responses to questionnaires" target="_blank"
+                                   class="btn btn-primary btn-slim">{{ __("my-account.download_my_data") }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,14 +130,17 @@
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="card card-default card-outline">
-                <div class="card-header">
+                <div class="card-header py-3 px-5">
                     <h3 class="card-title">{{ __("my-account.account_deactivation") }}</h3>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <a href="#deactivationConfirmationModal"
-                               data-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
+                <div class="card-body p-5">
+                    <div class="container-fluid p-0">
+                        <div class="row p-0">
+                            <div class="col-12">
+                                <a href="#deactivationConfirmationModal"
+                                   class="btn btn-outline-danger btn-slim"
+                                   data-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +149,7 @@
     </div>
 
     <div id="deactivationConfirmationModal" class="modal fade">
-        <div class="modal-dialog" style="margin-top: 10%">
+        <div class="modal-dialog modal-lg" style="margin-top: 10%">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __("my-account.are_you_sure") }}</h4>
@@ -130,12 +159,22 @@
                     <p class="text-danger">{!! __("my-account.warning_for_deactivation") !!}</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="{{ url('/user/deactivate') }}"
+                    <form method="POST" action="{{ url('/user/deactivate') }}" class="w-100"
                           novalidate>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit"
-                                class="btn btn-danger">{{ __("my-account.deactivate_my_account_2") }}</button>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <button type="button" class="btn btn-default btn-slim w-100" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <button type="submit"
+                                            class="btn btn-danger btn-slim w-100">{{ __("my-account.deactivate_my_account_2") }}</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
