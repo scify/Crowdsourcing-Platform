@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Pašlaik nav projektu ar aktīviem jautājumiem.',
     'no_projects_with_published_problems' => 'Pašlaik nav projektu ar publicētiem problēmām.',
     'see_the_problems_cta' => 'Apskatiet problēmas un ieteiktu risinājumu',
-
-
-
-
+    'points' => 'Punkti',
+    'your_level_progress' => 'Jūsu līmeņa progress',
+    'unlock_a_gift' => 'lai atbloķētu dāvanu!',
 ];

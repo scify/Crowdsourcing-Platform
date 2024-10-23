@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Momentálne nie sú žiadne projekty s aktívnymi dotazníkmi.',
     'no_projects_with_published_problems' => 'Momentálne nie sú žiadne projekty s publikovanými problémami.',
     'see_the_problems_cta' => 'Zobraziť problémy a navrhnúť riešenie',
-
-
-
-
+    'points' => 'Body',
+    'your_level_progress' => 'Vaša úroveň pokroku',
+    'unlock_a_gift' => 'pre odomknutie darčeka!',
 ];

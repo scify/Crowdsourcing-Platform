@@ -18,8 +18,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Hetkel pole projekte aktiivsete küsimustikega.',
     'no_projects_with_published_problems' => 'Hetkel pole projekte avaldatud probleemidega.',
     'see_the_problems_cta' => 'Vaata probleeme ja paku lahendusi',
-
-
-
-
+    'points' => 'Punktid',
+    'your_level_progress' => 'Sinu taseme edenemine',
+    'unlock_a_gift' => 'et avada kingitus!',
 ];

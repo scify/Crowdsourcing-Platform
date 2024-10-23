@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Er zijn momenteel geen projecten met actieve vragenlijsten.',
     'no_projects_with_published_problems' => 'Er zijn momenteel geen projecten met gepubliceerde problemen.',
     'see_the_problems_cta' => 'Bekijk de problemen en stel een oplossing voor',
-
-
-
-
+    'points' => 'Punten',
+    'your_level_progress' => 'Jouw niveauvoortgang',
+    'unlock_a_gift' => 'om een cadeau te ontgrendelen!',
 ];

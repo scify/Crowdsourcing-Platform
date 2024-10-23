@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'Il n\'y a actuellement aucun projet avec des questionnaires actifs.',
     'no_projects_with_published_problems' => 'Il n\'y a actuellement aucun projet avec des problèmes publiés.',
     'see_the_problems_cta' => 'Voir les problèmes et proposer une solution',
-
-
-
-
+    'points' => 'Points',
+    'your_level_progress' => 'Votre progression de niveau',
+    'unlock_a_gift' => 'pour débloquer un cadeau!',
 ];

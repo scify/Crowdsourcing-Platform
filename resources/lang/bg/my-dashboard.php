@@ -19,8 +19,7 @@ return [
     'no_projects_with_active_questionnaires' => 'В момента няма проекти с активни въпросници.',
     'no_projects_with_published_problems' => 'В момента няма проекти с публикувани проблеми.',
     'see_the_problems_cta' => 'Вижте проблемите и предложете решение',
-
-
-
-
+    'points' => 'Точки',
+    'your_level_progress' => 'Вашият напредък на ниво',
+    'unlock_a_gift' => 'за да отключите подарък!',
 ];

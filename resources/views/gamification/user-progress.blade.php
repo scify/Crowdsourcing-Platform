@@ -25,8 +25,9 @@
                                                 <h6>{{ $badge->badgeName }}</h6>
                                                 <p class="mb-1">{{ $badge->badge->progressMessage }}</p>
                                             </div>
-                                            <div class="col-md-6 col-sm-12 text-right">
-                                                <p class="mb-1">Your level progress: {{ $badge->level }}
+                                            <div class="col-md-6 col-sm-12 your-level-progress">
+                                                <p class="mb-1">{{ __('my-dashboard.your_level_progress') }}
+                                                    : {{ $badge->level }}
                                                     /{{ $badge->badge->finalLevel }}</p>
                                             </div>
                                             <div class="col-12">
@@ -41,11 +42,11 @@
                                     @endforeach
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 text-left">
-                                            <h6>Points</h6>
+                                            <h6>{{ __('my-dashboard.points') }}</h6>
                                         </div>
                                         <div class="col-md-6 col-sm-12 text-right">
-                                            <p class="mb-1">{{$badgesVM->getTotalPoints()}}
-                                                / {{$badgesVM->getMaxTotalPoints()}} to unlock a gift!</p>
+                                            <p class="mb-1">{{ $badgesVM->getTotalPoints() }}
+                                                / {{ $badgesVM->getMaxTotalPoints() }} {{ __('my-dashboard.unlock_a_gift') }}</p>
                                         </div>
                                         <div class="col-12">
                                             <div class="progress">
@@ -62,7 +63,8 @@
                     </div>
                     <div class="row my-5">
                         <div class="col mx-auto">
-                            <a href="{{ route('my-contributions') }}" class="btn btn-primary btn-lg">{{ __('my-history.my_contributions') }}</a>
+                            <a href="{{ route('my-contributions') }}"
+                               class="btn btn-primary btn-lg">{{ __('my-history.my_contributions') }}</a>
                         </div>
                     </div>
                 </div>
