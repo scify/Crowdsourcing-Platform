@@ -24,4 +24,5 @@ return [
     'points' => 'Points',
     'your_level_progress' => 'Your Level Progress',
     'unlock_a_gift' => 'to unlock a gift!',
+    'questionnaires' => 'Questionnaires',
 ];

@@ -11,7 +11,7 @@ return [
 
     'my_history' => 'Előzmények',
     'my_contributions' => 'Hozzászólásaim',
-    'number_of_questionnaires' => '{0} Ön 0 kérdőívet válaszolt meg |{1}  Ön 1 kérdőívet válaszolt meg |[2,*] Ön :count kérdőívet válaszolt meg"',
+    'number_of_questionnaires' => '{0} Ön <b>0 kérdőívet válaszolt meg</b> |{1}  Ön <b>1 kérdőívet válaszolt meg</b> |[2,*] Ön <b>:count kérdőívet válaszolt meg</b>',
     'no_questionnaires' => 'Még nem válaszolt egyetlen kérdőívre sem.',
     'project' => 'Projekt',
     'questionnaire_title' => 'Kérdőív címe',

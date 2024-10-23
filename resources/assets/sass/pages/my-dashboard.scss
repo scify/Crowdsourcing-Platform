@@ -1,4 +1,5 @@
 @import "../variables";
+@import "../common/accordion";
 
 #projects-with-next-actions {
   .project-logo {
@@ -34,38 +35,6 @@
   .container-fluid.project-section:last-child {
     margin-bottom: 0 !important;
   }
-
-  .card {
-    .card-header {
-
-      background-color: $brand-primary;
-
-      padding: 10px 5px;
-
-      .btn-header-link {
-        display: block;
-        text-align: left;
-        padding: 5px 15px;
-        color: white;
-        font-weight: bold;
-
-        &:focus {
-          box-shadow: none;
-        }
-
-        &:after {
-          content: "\f107";
-          font-family: 'Font Awesome 5 Free', sans-serif;
-          font-weight: 900;
-          float: right;
-        }
-
-        &.collapsed:after {
-          content: "\f106";
-        }
-      }
-    }
-  }
 }
 
 .location-btn {
@@ -92,13 +61,4 @@
   .badgeImg {
     height: 80px;
   }
-}
-
-
-#main .card .card-header {
-  border: 0;
-  -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
-  box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
-  border-radius: 2px;
-  padding: 0;
 }

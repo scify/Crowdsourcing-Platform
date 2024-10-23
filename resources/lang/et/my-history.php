@@ -11,7 +11,7 @@ return [
 
     'my_history' => 'Minu ajalugu',
     'my_contributions' => 'Minu vastused',
-    'number_of_questionnaires' => '{0} Sa oled täitnud 0 küsimustikku |{1}  Sa oled täitnud 1 küsimustiku |[2,*] Sa oled täitnud :count küsimustikku"',
+    'number_of_questionnaires' => '{0} Sa oled täitnud <b>0 küsimustikku</b> |{1}  Sa oled täitnud <b>1 küsimustiku</b> |[2,*] Sa oled täitnud <b>:count küsimustikku</b>',
     'no_questionnaires' => 'Sa ei ole täitnud veel ühtegi küsimustikku.',
     'project' => 'Projekt',
     'questionnaire_title' => 'Küsimustiku pealkiri',

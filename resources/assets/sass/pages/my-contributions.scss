@@ -1,0 +1,35 @@
+@import "../_variables";
+@import "survey-analytics/survey.analytics.tabulator.min.css";
+@import "tabulator-tables/dist/css/tabulator.min.css";
+@import "survey-jquery/modern.min.css";
+@import "../common/accordion";
+@import "../questionnaire/questionnaire-display";
+
+#questionnaireResponseModal {
+  .modal-header {
+    border: none;
+  }
+
+  .modal-body {
+    padding-top: 0;
+  }
+
+  .modal-footer {
+    .btn {
+      color: white;
+    }
+  }
+}
+
+#responsesTable {
+  th,
+  td {
+    padding: 10px 18px;
+  }
+}
+
+#responsesTable_wrapper {
+  .row {
+    width: 100%;
+  }
+}
