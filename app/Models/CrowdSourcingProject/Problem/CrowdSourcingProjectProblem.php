@@ -15,7 +15,7 @@ class CrowdSourcingProjectProblem extends Model {
     use SoftDeletes;
 
     protected $table = 'crowd_sourcing_project_problems';
-    protected $fillable = ['id', 'project_id', 'slug', 'status_id', 'img_url', 'default_language_id'];
+    protected $fillable = ['id', 'project_id', 'user_creator_id', 'slug', 'status_id', 'img_url', 'default_language_id'];
 
     public function defaultTranslation(): HasOne {
         return $this->hasOne(CrowdSourcingProjectProblemTranslation::class,
