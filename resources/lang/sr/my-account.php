@@ -23,6 +23,6 @@ return [
     'new_password' => 'Nova lozinka',
     're_enter_password' => 'Ponovite lozinku',
     'nickname_help' => 'Twój pseudonim będzie wyświetlany publicznie, gdy odpowiesz na pytania w kwestionariuszach',
-
+    'profile_image' => 'Zdjęcie profilowe',
 
 ];

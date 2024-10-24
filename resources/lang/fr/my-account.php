@@ -23,6 +23,6 @@ return [
     'new_password' => 'Nouveau mot de passe',
     're_enter_password' => 'Saisir à nouveau le mot de passe',
     'nickname_help' => 'Votre pseudo sera affiché publiquement lorsque vous répondrez aux questionnaires',
-
+    'profile_image' => 'Image de profil',
 
 ];

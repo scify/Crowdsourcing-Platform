@@ -23,6 +23,6 @@ return [
     'new_password' => 'Jaunā parole',
     're_enter_password' => 'Paroles atkārtota ievadīšana',
     'nickname_help' => 'Jūsų slapyvardis bus viešai rodomas, kai atsakysite į klausimynus',
-
+    'profile_image' => 'Profila attēls',
 
 ];
