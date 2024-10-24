@@ -23,6 +23,6 @@ return [
     'new_password' => 'Neues Passwort',
     're_enter_password' => 'Passwort erneut eingeben',
     'nickname_help' => 'Ihr Spitzname wird öffentlich angezeigt, wenn Sie auf Fragebögen antworten',
-
+    'profile_image' => 'Profilbild',
 
 ];

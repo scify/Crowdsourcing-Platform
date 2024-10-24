@@ -8,6 +8,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
+use App\Utils\FileUploader;
 use App\Utils\MailChimpAdaptor;
 use App\ViewModels\EditUser;
 use App\ViewModels\ManageUsers;
@@ -131,6 +132,11 @@ class UserManager {
             } else {
                 throw new HttpException(500, 'Current Password Incorrect.');
             }
+        }
+
+        if (isset($data['avatar']) && $data['avatar']->isValid()) {
+            $path = FileUploader::uploadAndGetPath($data['avatar'], 'user_profile_img');
+            $user->avatar = $path;
         }
 
         return $user->save();

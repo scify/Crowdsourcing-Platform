@@ -23,6 +23,6 @@ return [
     'new_password' => 'Uus salasõna',
     're_enter_password' => 'Sisesta salasõna uuesti',
     'nickname_help' => 'Kui vastate küsimustikele, kuvatakse teie hüüdnimi avalikult',
-
+    'profile_image' => 'Profiilipilt',
 
 ];

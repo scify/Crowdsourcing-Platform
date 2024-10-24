@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserRole;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
@@ -75,6 +76,98 @@ class UserControllerTest extends TestCase {
             'id' => $user->id,
             'nickname' => 'updated-nickname',
         ]);
+    }
+
+    /** @test */
+    public function patchUpdatesUserProfileWithValidDataWithImage() {
+        $user = User::factory()->create();
+        $this->be($user);
+        $faker = Faker::create();
+        $fakeImage = $faker->image(storage_path('app'), 400, 300, 'cats', false, true, 'Faker');
+        // create a fake image uploaded file, using the fake image
+        $fakeImageUploadedFile = new UploadedFile(storage_path('app') . '/' . $fakeImage, 'fake-image.jpg', 'image/jpeg', null, true);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->put(route('user.update'), [
+                'email' => $faker->email,
+                'nickname' => 'updated-nickname',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'current_password' => 'password',
+                'avatar' => $fakeImageUploadedFile,
+            ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('flash_message_success', 'Profile updated.');
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'nickname' => 'updated-nickname',
+        ]);
+
+        // assert the avatar is not null
+        $this->assertNotNull(User::find($user->id)->avatar);
+
+        // delete the image
+        \File::delete(storage_path('app') . '/' . $fakeImage);
+        // get file name with extension from the avatar (the avatar has the full path, like /storage/uploads/user_profile_img/flowerpng_1729755672.png)
+        $avatar = basename(User::find($user->id)->avatar);
+        \File::delete(storage_path('app') . '/public/uploads/user_profile_img/' . $avatar);
+    }
+
+    /** @test */
+    public function patchUpdatesUserProfileWithInvalidImage() {
+        $user = User::factory()->create();
+        $this->be($user);
+        $faker = Faker::create();
+        // create a new temporary .txt file and try to upload this file as the image
+        $fakeTxtFile = $faker->file(storage_path('app'), 'storage/app', 'test.txt');
+        $fakeImageUploadedFile = new UploadedFile($fakeTxtFile, 'fake-image.jpg', 'image/jpeg', null, true);
+
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->put(route('user.update'), [
+                'email' => $faker->email,
+                'nickname' => 'updated-nickname',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'current_password' => 'password',
+                'avatar' => $fakeImageUploadedFile,
+            ]);
+
+        // assert that the response is a redirect
+        $response->assertStatus(302);
+        // assert that the session has errors
+        $response->assertSessionHasErrors(['avatar']);
+
+        // delete the fake txt file
+        \File::delete($fakeTxtFile);
+    }
+
+    /** @test */
+    public function pathUpdatesUserProfileWithVeryBigImage() {
+        $user = User::factory()->create();
+        $this->be($user);
+        $faker = Faker::create();
+
+        // Create a large image file (e.g., 3000x3000 pixels)
+        $largeImage = $faker->image(storage_path('app'), 3000, 3000, 'cats', false, true, 'Faker');
+        $largeImageUploadedFile = new UploadedFile(storage_path('app') . '/' . $largeImage, 'fake-image.jpg', 'image/jpeg', null, true);
+
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->put(route('user.update'), [
+                'email' => $faker->email,
+                'nickname' => 'updated-nickname',
+                'password' => '12345678',
+                'password_confirmation' => '12345678',
+                'current_password' => 'password',
+                'avatar' => $largeImageUploadedFile,
+            ]);
+
+        // Assert that the response is a redirect
+        $response->assertStatus(302);
+        // Assert that the session has errors related to the avatar
+        $response->assertSessionHasErrors(['avatar']);
+
+        // Delete the large image file
+        \File::delete(storage_path('app') . '/' . $largeImage);
     }
 
     /** @test */

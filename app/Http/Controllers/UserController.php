@@ -43,12 +43,21 @@ class UserController extends Controller {
         $validationArray = [
             'nickname' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
         if ($request->password) {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
             $validationArray['current_password'] = 'required|string|min:8';
         }
-        $this->validate($request, $validationArray);
+        $customMessages = [
+            'avatar.image' => __('validation.image', ['attribute' => __('my-account.profile_image')]),
+            'avatar.mimes' => __('validation.mimes', ['attribute' => __('my-account.profile_image'), 'values' => 'jpeg, png, jpg']),
+            'avatar.max' => __('validation.max.file', ['attribute' => __('my-account.profile_image'), 'max' => '2']),
+        ];
+        $customAttributes = [
+            'avatar' => 'profile image',
+        ];
+        $this->validate($request, $validationArray, $customMessages, $customAttributes);
         $data = $request->all();
         try {
             $this->userManager->updateUser($data);

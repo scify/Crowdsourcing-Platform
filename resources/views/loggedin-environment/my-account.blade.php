@@ -16,7 +16,8 @@
                         <div class="row p-0">
                             <div class="col">
                                 <form id="form-change-password" class="w-100" method="POST"
-                                      action="{{ route('user.update') }}">
+                                      action="{{ route('user.update') }}"
+                                      enctype="multipart/form-data">
                                     @method('PUT')
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="container-fluid p-0">
@@ -30,6 +31,17 @@
                                                            required
                                                            autofocus
                                                            placeholder="{{ __("login-register.email") }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <label class="col-12 control-label">{{ __("my-account.profile_image") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <input id="avatar" type="file" class="form-control p-2 h-auto"
+                                                           name="avatar"
+                                                           accept="image/png,image/jpeg,image/jpg"
+                                                           placeholder="{{ __("my-account.profile_image") }}">
                                                 </div>
                                             </div>
                                         </div>
