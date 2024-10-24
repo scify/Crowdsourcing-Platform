@@ -15,9 +15,9 @@ class UserController extends Controller {
     private QuestionnaireResponseManager $questionnaireResponseManager;
     protected UserDashboardManager $userDashboardManager;
 
-    public function __construct(UserManager $userManager,
-        QuestionnaireResponseManager $questionnaireResponseManager,
-        UserDashboardManager $userDashboardManager) {
+    public function __construct(UserManager                  $userManager,
+                                QuestionnaireResponseManager $questionnaireResponseManager,
+                                UserDashboardManager         $userDashboardManager) {
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->userDashboardManager = $userDashboardManager;
@@ -49,6 +49,7 @@ class UserController extends Controller {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
             $validationArray['current_password'] = 'required|string|min:8';
         }
+        // here we need to add custom messages for the validation, since the field is called 'avatar' and not 'profile image'.
         $customMessages = [
             'avatar.image' => __('validation.image', ['attribute' => __('my-account.profile_image')]),
             'avatar.mimes' => __('validation.mimes', ['attribute' => __('my-account.profile_image'), 'values' => 'jpeg, png, jpg']),
@@ -99,9 +100,9 @@ class UserController extends Controller {
         if ($users->count() == 0) {
             $errorMessage = 'No Users found';
 
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string) view('partials.ajax_error_message', compact('errorMessage'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string)view('partials.ajax_error_message', compact('errorMessage'))));
         } else {
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('loggedin-environment.management.partials.users-list', compact('users'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string)view('loggedin-environment.management.partials.users-list', compact('users'))));
         }
     }
 
