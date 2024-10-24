@@ -40,18 +40,26 @@ class UserController extends Controller {
     }
 
     public function patch(Request $request) {
+        $validationArray = [
+            'nickname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ];
         if ($request->password) {
-            $this->validate($request, [
-                'password' => 'sometimes|required_with:password_confirmation|confirmed|string|min:8|confirmed',
-                'current_password' => 'sometimes|required_with:password|string|min:8',
-            ]);
+            $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
+            $validationArray['current_password'] = 'required|string|min:8';
         }
+        $this->validate($request, $validationArray);
         $data = $request->all();
+        try {
+            $this->userManager->updateUser($data);
+            session()->flash('flash_message_success', 'Profile updated.');
 
-        $this->userManager->updateUser($data);
-        session()->flash('flash_message_success', 'Profile updated.');
+            return back();
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
-        return back();
+            return back()->withInput();
+        }
     }
 
     public function delete(Request $request) {
@@ -62,7 +70,7 @@ class UserController extends Controller {
     }
 
     public function deactivateLoggedInUser() {
-        $this->userManager->anonymizeUser(Auth::user());
+        $this->userManager->anonymizeAndDeleteUser(Auth::user());
         Auth::logout();
 
         return redirect()->route('home', ['locale' => app()->getLocale()]);

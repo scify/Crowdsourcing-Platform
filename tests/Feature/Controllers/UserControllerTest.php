@@ -8,6 +8,7 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User;
 use App\Models\UserRole;
+use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -58,9 +59,10 @@ class UserControllerTest extends TestCase {
     public function patchUpdatesUserProfileWithValidData() {
         $user = User::factory()->create();
         $this->be($user);
-
+        $faker = Faker::create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('updateUser'), [
+            ->put(route('user.update'), [
+                'email' => $faker->email,
                 'nickname' => 'updated-nickname',
                 'password' => '12345678',
                 'password_confirmation' => '12345678',
@@ -77,8 +79,10 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchRedirectsToLoginForUnauthenticatedUser() {
+        $faker = Faker::create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('updateUser'), [
+            ->put(route('user.update'), [
+                'email' => $faker->email,
                 'nickname' => 'updated-nickname',
                 'password' => '12345678',
                 'password_confirmation' => '12345678',
@@ -94,14 +98,14 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('updateUser'), [
+        $response = $this
+            ->put(route('user.update'), [
                 'nickname' => 'updated-nickname',
                 'password' => '1234',
             ]);
 
         $response->assertStatus(302);
-        $response->assertSessionHasErrors(['password']);
+        $response->assertSessionHasErrors(['password', 'email']);
     }
 
     /** @test */

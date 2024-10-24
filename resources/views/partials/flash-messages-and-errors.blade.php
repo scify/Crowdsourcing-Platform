@@ -5,10 +5,10 @@
     </div>
 @endif
 
-@if(session('flash_message_failure'))
+@if(session('flash_message_error'))
     <div class="alert alert-danger alert-dismissable alert-floating">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-ban"></i> {{ session('flash_message_failure') }}</h4>
+        <h4><i class="icon fa fa-ban"></i> {{ session('flash_message_error') }}</h4>
     </div>
 @endif
 @if (count($errors) > 0 )

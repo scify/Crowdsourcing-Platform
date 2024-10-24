@@ -32,7 +32,7 @@ class QuestionnaireStatisticsController extends Controller {
             $this->questionnaireStatisticsManager->saveStatisticsColors($questionnaire, $request->all());
             session()->flash('flash_message_success', 'Colors saved!');
         } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
         } finally {
             return back();
         }

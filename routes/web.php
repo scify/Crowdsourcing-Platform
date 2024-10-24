@@ -82,8 +82,8 @@ Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], functi
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('/user/update', [UserController::class, 'patch'])->name('updateUser');
-    Route::post('/user/deactivate', [UserController::class, 'deactivateLoggedInUser'])->name('deactivateUser');
+    Route::put('/user/update', [UserController::class, 'patch'])->name('user.update');
+    Route::post('/user/deactivate', [UserController::class, 'deactivateLoggedInUser'])->name('user.deactivate');
     Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download');
     Route::get('/user/my-data/download', [UserController::class, 'downloadMyData'])->name('my-data.download');
 });

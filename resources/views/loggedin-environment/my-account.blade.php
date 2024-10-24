@@ -16,19 +16,20 @@
                         <div class="row p-0">
                             <div class="col">
                                 <form id="form-change-password" class="w-100" method="POST"
-                                      action="{{ url('/user/update') }}">
+                                      action="{{ route('user.update') }}">
+                                    @method('PUT')
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="container-fluid p-0">
                                         <div class="row p-0">
                                             <label class="col-12 control-label">{{ __("login-register.email") }}</label>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <input id="nickname" type="email" class="form-control mb-1"
-                                                           name="nickname"
+                                                    <input id="email" type="email" class="form-control mb-1"
+                                                           name="email"
                                                            value="{{ $viewModel->user->email  }}"
                                                            required
                                                            autofocus
-                                                           placeholder="Email">
+                                                           placeholder="{{ __("login-register.email") }}">
                                                 </div>
                                             </div>
                                         </div>

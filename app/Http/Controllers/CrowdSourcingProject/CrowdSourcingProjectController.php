@@ -79,7 +79,7 @@ class CrowdSourcingProjectController extends Controller {
         try {
             $this->crowdSourcingProjectManager->updateProject($id, $attributes);
         } catch (\Exception $e) {
-            return back()->with('flash_message_failure', $e->getMessage());
+            return back()->with('flash_message_error', $e->getMessage());
         }
 
         return back()->with('flash_message_success', 'The project has been successfully updated');
@@ -121,7 +121,7 @@ class CrowdSourcingProjectController extends Controller {
 
             return view('crowdsourcing-project.landing-page')->with(['viewModel' => $viewModel]);
         } catch (\Exception $e) {
-            session()->flash('flash_message_failure', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
             return redirect()->to(route('home', ['locale' => app()->getLocale()]));
         }
