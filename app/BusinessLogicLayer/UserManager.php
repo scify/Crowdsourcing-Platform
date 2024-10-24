@@ -8,6 +8,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
+use App\Utils\FileUploader;
 use App\Utils\MailChimpAdaptor;
 use App\ViewModels\EditUser;
 use App\ViewModels\ManageUsers;
@@ -66,17 +67,17 @@ class UserManager {
         $this->userRepository->updateUserRoles($userId, $roleSelect);
     }
 
-    public function deactivateUser($id) {
+    public function deactivateUser($id): void {
         $user = $this->userRepository->getUserWithTrashed($id);
         $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
         $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
         $this->userRepository->softDeleteUser($user);
     }
 
-    public function anonymizeUser($user) {
+    public function anonymizeAndDeleteUser($user): void {
         $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
         $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
-        $this->userRepository->anonymizeUser($user);
+        $this->userRepository->anonymizeAndDeleteUser($user);
     }
 
     public function reactivateUser($id) {
@@ -119,22 +120,26 @@ class UserManager {
      *
      * @throws HttpException
      */
-    public function updateUser(array $data): void {
-        $user_id = Auth::id();
-        $obj_user = User::find($user_id);
-        $obj_user->nickname = $data['nickname'];
-        $current_password = $obj_user->password;
-        if (!$current_password) {
-            $obj_user->password = Hash::make($data['password']);
-        } else {
+    public function updateUser(array $data): bool {
+        $user = Auth::user();
+        $user->nickname = $data['nickname'];
+        $user->email = $data['email'];
+
+        if (isset($data['password']) && $data['password'] != null) {
+            $current_password = $user->password;
             if (Hash::check($data['current_password'], $current_password)) {
-                $obj_user->password = Hash::make($data['password']);
+                $user->password = Hash::make($data['password']);
             } else {
                 throw new HttpException(500, 'Current Password Incorrect.');
             }
         }
 
-        $obj_user->save();
+        if (isset($data['avatar']) && $data['avatar']->isValid()) {
+            $path = FileUploader::uploadAndGetPath($data['avatar'], 'user_profile_img');
+            $user->avatar = $path;
+        }
+
+        return $user->save();
     }
 
     public function getPlatformAdminUsersWithCriteria($paginationNum, $data = []) {

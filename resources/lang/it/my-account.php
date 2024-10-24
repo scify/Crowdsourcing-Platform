@@ -23,5 +23,5 @@ return [
     'new_password' => 'Nuova password',
     're_enter_password' => 'Reinserire la password',
     'nickname_help' => 'Your nickname will be publicly displayed when you respond to questionnaires',
-
+    'profile_image' => 'Immagine del profilo',
 ];

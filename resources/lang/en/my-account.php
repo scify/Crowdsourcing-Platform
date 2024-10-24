@@ -21,7 +21,7 @@ return [
     'deactivate_my_account_2' => 'I understand, please deactivate my account',
     'current_password' => 'Current Password',
     'new_password' => 'New Password',
-    're_enter_password' => 'Re-enter Password',
+    're_enter_password' => 'Re-enter New Password',
     'nickname_help' => 'Your nickname will be publicly displayed when you respond to questionnaires',
-
+    'profile_image' => 'Profile Image',
 ];

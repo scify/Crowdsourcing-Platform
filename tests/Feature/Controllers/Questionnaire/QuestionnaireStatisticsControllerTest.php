@@ -108,7 +108,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertSessionHas('flash_message_failure', 'Error: 0  Undefined array key "goal_responses_color"');
+        $response->assertSessionHas('flash_message_error', 'Error: 0  Undefined array key "goal_responses_color"');
     }
 
     /** @test */
@@ -130,6 +130,6 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertSessionHas('flash_message_failure', 'Error: 123  Test Exception');
+        $response->assertSessionHas('flash_message_error', 'Error: 123  Test Exception');
     }
 }

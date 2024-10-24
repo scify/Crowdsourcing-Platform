@@ -69,7 +69,7 @@ class UserRepository extends Repository {
         return UserRole::with('user')->with('role')->get();
     }
 
-    public function anonymizeUser(User $user) {
+    public function anonymizeAndDeleteUser(User $user): void {
         $user->email = 'anonymous_deleted_' . $user->id;
         $user->nickname = 'anonymous_deleted_' . $user->id;
         $user->avatar = null;

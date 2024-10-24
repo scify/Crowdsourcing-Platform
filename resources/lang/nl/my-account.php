@@ -23,6 +23,6 @@ return [
     'new_password' => 'Nieuw wachtwoord',
     're_enter_password' => 'Vul wachtwoord opnieuw in',
     'nickname_help' => 'Uw bijnaam wordt openbaar weergegeven wanneer u op vragenlijsten reageert',
-
+    'profile_image' => 'Profielafbeelding',
 
 ];

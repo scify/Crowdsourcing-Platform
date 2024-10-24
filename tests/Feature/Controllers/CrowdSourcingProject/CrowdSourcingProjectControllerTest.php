@@ -517,6 +517,6 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
 
         $response->assertStatus(302);
-        $response->assertSessionHas('flash_message_failure', 'Error: 0  Test Exception');
+        $response->assertSessionHas('flash_message_error', 'Error: 0  Test Exception');
     }
 }

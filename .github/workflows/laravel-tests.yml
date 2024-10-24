@@ -54,6 +54,9 @@ jobs:
       - name: Seed
         run: php artisan db:seed --database=sqlite_testing --env=testing
 
+      - name: Storage Link
+        run: php artisan storage:link --env=testing
+
       - name: Cache
         run: php artisan config:cache --env=testing
 
