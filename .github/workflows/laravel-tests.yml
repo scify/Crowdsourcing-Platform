@@ -54,6 +54,9 @@ jobs:
       - name: Seed
         run: php artisan db:seed --database=sqlite_testing --env=testing
 
+      - name: Create storage directory
+        run: mkdir -p storage/app/public/uploads/user_profile_img
+
       - name: Storage Link
         run: php artisan storage:link --env=testing
 
