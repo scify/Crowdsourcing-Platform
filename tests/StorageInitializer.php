@@ -7,7 +7,7 @@ class StorageInitializer {
 
     public static function initialize(): void {
         // Use the storage_path() helper function directly
-        self::$lockFilePath = storage_path('storage/storage_initialized.lock');
+        self::$lockFilePath = storage_path('app/storage_initialized.lock');
 
         // Ensure the directory for the lock file exists
         $lockFileDir = dirname(self::$lockFilePath);

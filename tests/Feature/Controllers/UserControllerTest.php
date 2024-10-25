@@ -87,13 +87,15 @@ class UserControllerTest extends TestCase {
     /** @test */
     public function patchUpdatesUserProfileWithValidDataWithImage() {
         if (!is_dir(storage_path('app'))) {
-            StorageInitializer::initialize();
+            mkdir(storage_path('app'));
         }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
         $fakeImage = $faker->image(storage_path('app'), 400, 300, 'cats', false, true, 'Faker');
         // create a fake image uploaded file, using the fake image
+        echo "IMAGE: " . $fakeImage . "\n";
+        echo "PATH: " . storage_path('app') . '/' . $fakeImage;
         $fakeImageUploadedFile = new UploadedFile(storage_path('app') . '/' . $fakeImage, 'fake-image.jpg', 'image/jpeg', null, true);
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->put(route('user.update'), [
@@ -153,7 +155,7 @@ class UserControllerTest extends TestCase {
     /** @test */
     public function pathUpdatesUserProfileWithVeryBigImage() {
         if (!is_dir(storage_path('app'))) {
-            StorageInitializer::initialize();
+            mkdir(storage_path('app'));
         }
         $user = User::factory()->create();
         $this->be($user);
