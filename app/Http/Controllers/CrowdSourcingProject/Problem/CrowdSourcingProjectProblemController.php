@@ -63,25 +63,26 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        request()->validate([ // bookmark2
+        $validated = $request->validate([ // bookmark2
             'problem-title' => ['required'],
             'problem-description' => ['required'],
             'problem-status' => ['required'], // bookmark2
             'problem-default-language' => ['required'], // bookmark2
+            'problem-slug' => ['required','unique:crowd_sourcing_project_problems,slug'],
         ]);
 
         $crowdSourcingProjectProblem = CrowdSourcingProjectProblem::create([
             'project_id' => '3', // bookmark2
             'user_creator_id' => '2', // bookmark2
-            'slug' => 'test-slug-1', // bookmark2
-            'status_id' => request('problem-status'), // bookmark2
+            'slug' => $request->input('problem-slug'),
+            'status_id' => $request->input('problem-status'),
             'img_url' => 'zxcv', // bookmark2
-            'default_language_id' => request('problem-default-language'), // bookmark2 - default or generally another translation language?
+            'default_language_id' => $request->input('problem-default-language'), // bookmark2 - default or generally another translation language?
         ]);
 
         $crowdSourcingProjectProblemTranslation = $crowdSourcingProjectProblem->defaultTranslation()->create([ // bookmark2 - default or regular translation?
-            'title' => request('problem-title'),
-            'description' => request('problem-description'),
+            'title' => $request->input('problem-title'),
+            'description' => $request->input('problem-description'),
         ]);
 
         return redirect()->route('problems.index');
