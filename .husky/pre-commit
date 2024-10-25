@@ -1,0 +1,2 @@
+# Run Pint to beautify the code
+vendor/bin/pint

@@ -49,6 +49,7 @@ class UserController extends Controller {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
             $validationArray['current_password'] = 'required|string|min:8';
         }
+        // here we need to add custom messages for the validation, since the field is called 'avatar' and not 'profile image'.
         $customMessages = [
             'avatar.image' => __('validation.image', ['attribute' => __('my-account.profile_image')]),
             'avatar.mimes' => __('validation.mimes', ['attribute' => __('my-account.profile_image'), 'values' => 'jpeg, png, jpg']),

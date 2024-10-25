@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="status_id">Project Default Language</label>
+                            <label for="default_lang_id">Project Default Language</label>
                             <select id="default_lang_id" class="form-control" name="language_id">
                                 @foreach ($viewModel->languagesLkp as $language)
                                     <option

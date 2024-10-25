@@ -43,6 +43,11 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
+      - name: Create storage directories
+        run: |
+          mkdir -p storage/app
+          mkdir -p storage/app/public/uploads/user_profile_img
+
       - name: Create Database
         run: |
           mkdir -p database
