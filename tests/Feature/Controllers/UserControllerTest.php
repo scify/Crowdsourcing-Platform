@@ -16,15 +16,18 @@ use Tests\TestCase;
 class UserControllerTest extends TestCase {
     use RefreshDatabase;
 
-    protected $seed = true;
+    protected bool $seed = true;
 
     protected function setUp(): void {
         parent::setUp();
 
         // Ensure the directory exists for testing
         $storagePath = storage_path('app');
+        echo "Storage path: {$storagePath}\n";
         if (!is_dir($storagePath)) {
+            echo "Creating the directory: {$storagePath}\n";
             if (!mkdir($storagePath, 0777, true) && !is_dir($storagePath)) {
+                echo "Failed to create the directory: {$storagePath}\n";
                 $this->fail("Failed to create the directory: {$storagePath}");
             }
         }
