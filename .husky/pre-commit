@@ -1,5 +1,2 @@
-# .husky/pre-commit
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
+# Run Pint to beautify the code
 vendor/bin/pint

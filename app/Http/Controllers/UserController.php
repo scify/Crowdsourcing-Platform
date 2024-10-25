@@ -15,9 +15,9 @@ class UserController extends Controller {
     private QuestionnaireResponseManager $questionnaireResponseManager;
     protected UserDashboardManager $userDashboardManager;
 
-    public function __construct(UserManager                  $userManager,
-                                QuestionnaireResponseManager $questionnaireResponseManager,
-                                UserDashboardManager         $userDashboardManager) {
+    public function __construct(UserManager $userManager,
+        QuestionnaireResponseManager $questionnaireResponseManager,
+        UserDashboardManager $userDashboardManager) {
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->userDashboardManager = $userDashboardManager;
@@ -100,9 +100,9 @@ class UserController extends Controller {
         if ($users->count() == 0) {
             $errorMessage = 'No Users found';
 
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string)view('partials.ajax_error_message', compact('errorMessage'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string) view('partials.ajax_error_message', compact('errorMessage'))));
         } else {
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string)view('loggedin-environment.management.partials.users-list', compact('users'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('loggedin-environment.management.partials.users-list', compact('users'))));
         }
     }
 
