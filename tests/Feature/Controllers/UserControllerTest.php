@@ -16,7 +16,19 @@ use Tests\TestCase;
 class UserControllerTest extends TestCase {
     use RefreshDatabase;
 
-    protected $seed = true;
+    protected bool $seed = true;
+
+    protected function setUp(): void {
+        parent::setUp();
+
+        // Use the system's temporary directory
+        $tempDir = sys_get_temp_dir();
+
+        // Ensure the temporary directory is writable
+        if (!is_writable($tempDir)) {
+            throw new \RuntimeException("The temporary directory is not writable: {$tempDir}");
+        }
+    }
 
     /** @test */
     public function myDashboardDisplaysDashboardForAuthenticated_user() {
@@ -83,9 +95,26 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
-        $fakeImage = $faker->image(storage_path('app'), 400, 300, 'cats', false, true, 'Faker');
-        // create a fake image uploaded file, using the fake image
-        $fakeImageUploadedFile = new UploadedFile(storage_path('app') . '/' . $fakeImage, 'fake-image.jpg', 'image/jpeg', null, true);
+        // Use the system's temporary directory
+        $tempDir = sys_get_temp_dir();
+        $fakeImage = $faker->image($tempDir, 400, 300, 'cats', false, false, 'Faker');
+
+        // Check if the image was created successfully
+        if (!$fakeImage) {
+            echo "Warning: Failed to create a fake image. Using a default image.\n";
+            $defaultImagePath = public_path('images/image_temp.png');
+            $fakeImage = public_path('images/default_image_copy.png');
+            if (!copy($defaultImagePath, $fakeImage)) {
+                throw new \RuntimeException('Failed to copy the default image.');
+            }
+        } else {
+            $fakeImage = $tempDir . '/' . $fakeImage;
+        }
+
+        echo 'IMAGE: ' . $fakeImage . PHP_EOL;
+        // Create a fake image uploaded file, using the fake image
+        $fakeImageUploadedFile = new UploadedFile($fakeImage, 'fake-image.jpg', 'image/jpeg', null, true);
+
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->put(route('user.update'), [
                 'email' => $faker->email,
@@ -103,14 +132,13 @@ class UserControllerTest extends TestCase {
             'nickname' => 'updated-nickname',
         ]);
 
-        // assert the avatar is not null
+        // Assert the avatar is not null
         $this->assertNotNull(User::find($user->id)->avatar);
-
-        // delete the image
-        \File::delete(storage_path('app') . '/' . $fakeImage);
-        // get file name with extension from the avatar (the avatar has the full path, like /storage/uploads/user_profile_img/flowerpng_1729755672.png)
+        // Get file name with extension from the avatar (the avatar has the full path, like /storage/uploads/user_profile_img/flowerpng_1729755672.png)
         $avatar = basename(User::find($user->id)->avatar);
         \File::delete(storage_path('app') . '/public/uploads/user_profile_img/' . $avatar);
+        // delete the large image
+        \File::delete($fakeImage);
     }
 
     /** @test */
@@ -118,8 +146,13 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
-        // create a new temporary .txt file and try to upload this file as the image
-        $fakeTxtFile = $faker->file(storage_path('app'), 'storage/app', 'test.txt');
+
+        $defaultTextFilePath = public_path('images/test/test.txt');
+        $fakeTxtFile = public_path('images/test_copy.txt');
+        if (!copy($defaultTextFilePath, $fakeTxtFile)) {
+            throw new \RuntimeException('Failed to copy the default image.');
+        }
+
         $fakeImageUploadedFile = new UploadedFile($fakeTxtFile, 'fake-image.jpg', 'image/jpeg', null, true);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
@@ -146,10 +179,23 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
+        // Use the system's temporary directory
+        $tempDir = sys_get_temp_dir();
+        $largeImage = $faker->image($tempDir, 3000, 3000, 'cats', false, false, 'Faker');
 
-        // Create a large image file (e.g., 3000x3000 pixels)
-        $largeImage = $faker->image(storage_path('app'), 3000, 3000, 'cats', false, true, 'Faker');
-        $largeImageUploadedFile = new UploadedFile(storage_path('app') . '/' . $largeImage, 'fake-image.jpg', 'image/jpeg', null, true);
+        // Check if the image was created successfully
+        if (!$largeImage) {
+            echo "Warning: Failed to create a fake image. Using a default large image.\n";
+            $defaultImagePath = public_path('images/test/image_temp_big.jpg');
+            $largeImage = public_path('images/test/image_temp_big_copy.jpg');
+            if (!copy($defaultImagePath, $largeImage)) {
+                throw new \RuntimeException('Failed to copy the default large image.');
+            }
+        } else {
+            $largeImage = $tempDir . '/' . $largeImage;
+        }
+
+        $largeImageUploadedFile = new UploadedFile($largeImage, 'fake-image.jpg', 'image/jpeg', null, true);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->put(route('user.update'), [
@@ -165,9 +211,8 @@ class UserControllerTest extends TestCase {
         $response->assertStatus(302);
         // Assert that the session has errors related to the avatar
         $response->assertSessionHasErrors(['avatar']);
-
-        // Delete the large image file
-        \File::delete(storage_path('app') . '/' . $largeImage);
+        // delete the large image
+        \File::delete($largeImage);
     }
 
     /** @test */

@@ -1,17 +1,14 @@
 <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
-    <!-- Sidebar toggle button-->
-    <ul class="navbar-nav">
-        @canany(['moderate-content-by-users'])
-            <li class="nav-item">
-                <a class="nav-link pl-0" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-            </li>
-        @endcanany
-        <li class="nav-item">
-            <img loading="lazy" height="40"
-                 src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
-                 alt="Main Logo" class="brand-image">
-        </li>
-    </ul>
+
+    @canany(['moderate-content-by-users'])
+        <!-- Sidebar toggle button-->
+        <ul class="navbar-nav">
+            <div class="sidebar-menu-toggler-container">
+                <a id="sidebar-menu-toggler" class="nav-link p-0" data-widget="pushmenu" href="#"><i
+                            class="fa fa-chevron-left"></i></a>
+            </div>
+        </ul>
+    @endcanany
 
     <!-- Burger menu button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,15 +19,20 @@
     <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="{{ route('home') }}" class="navbar-brand">
+                    <img loading="lazy" height="30"
+                         src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
+                         alt="Main Logo" class="brand-image">
+                </a>
+            </li>
             <li class="nav-item {{ UrlMatchesMenuItem('my-dashboard') }}">
                 <a class="nav-link" href="{{ route('my-dashboard') }}"> {{ __('menu.my_dashboard') }} </a>
             </li>
-            @if($userHasContributedToAProject)
-                <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
-                    <a class="nav-link"
-                       href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
-                </li>
-            @endif
+            <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
+                <a class="nav-link"
+                   href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
+            </li>
             <li class="nav-item dropdown user user-menu">
                 <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">
