@@ -11,6 +11,7 @@ use App\Models\UserRole;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Tests\StorageInitializer;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
@@ -20,22 +21,7 @@ class UserControllerTest extends TestCase {
 
     protected function setUp(): void {
         parent::setUp();
-
-        // Ensure the directory exists for testing
-        $storagePath = storage_path('app');
-        if (!is_dir($storagePath)) {
-            echo "Storage path does not exist. Creating the directory: {$storagePath}\n";
-            if (!mkdir($storagePath, 0777, true) && !is_dir($storagePath)) {
-                echo "Failed to create the directory: {$storagePath}\n";
-                $this->fail("Failed to create the directory: {$storagePath}");
-            }
-            // also create the tree of directories for user_profile_img
-            $userProfileImgPath = $storagePath . '/public/uploads/user_profile_img';
-            if (!mkdir($userProfileImgPath, 0777, true) && !is_dir($userProfileImgPath)) {
-                echo "Failed to create the directory: {$userProfileImgPath}\n";
-                $this->fail("Failed to create the directory: {$userProfileImgPath}");
-            }
-        }
+        StorageInitializer::initialize();
     }
 
     /** @test */
@@ -100,6 +86,9 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchUpdatesUserProfileWithValidDataWithImage() {
+        if (!is_dir(storage_path('app'))) {
+            StorageInitializer::initialize();
+        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -163,6 +152,9 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function pathUpdatesUserProfileWithVeryBigImage() {
+        if (!is_dir(storage_path('app'))) {
+            StorageInitializer::initialize();
+        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();

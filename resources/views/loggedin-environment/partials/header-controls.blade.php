@@ -1,17 +1,12 @@
 <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
     <!-- Sidebar toggle button-->
-    <ul class="navbar-nav">
-        @canany(['moderate-content-by-users'])
+    @canany(['moderate-content-by-users'])
+        <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link pl-0" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
             </li>
-        @endcanany
-        <li class="nav-item">
-            <img loading="lazy" height="40"
-                 src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
-                 alt="Main Logo" class="brand-image">
-        </li>
-    </ul>
+        </ul>
+    @endcanany
 
     <!-- Burger menu button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,6 +17,13 @@
     <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="{{ route('home') }}" class="navbar-brand">
+                    <img loading="lazy" height="40"
+                         src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
+                         alt="Main Logo" class="brand-image">
+                </a>
+            </li>
             <li class="nav-item {{ UrlMatchesMenuItem('my-dashboard') }}">
                 <a class="nav-link" href="{{ route('my-dashboard') }}"> {{ __('menu.my_dashboard') }} </a>
             </li>
