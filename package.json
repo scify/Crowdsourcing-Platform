@@ -15,7 +15,7 @@
     "dev": "vite",
     "build": "vite build",
     "prod": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=7680 vite build",
-    "prepare": "husky install"
+    "prepare": "husky install && chmod +x .husky/*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
