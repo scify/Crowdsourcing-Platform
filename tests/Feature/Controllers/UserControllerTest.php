@@ -18,6 +18,18 @@ class UserControllerTest extends TestCase {
 
     protected $seed = true;
 
+    protected function setUp(): void {
+        parent::setUp();
+
+        // Ensure the directory exists for testing
+        $storagePath = storage_path('app');
+        if (!is_dir($storagePath)) {
+            if (!mkdir($storagePath, 0777, true) && !is_dir($storagePath)) {
+                $this->fail("Failed to create the directory: {$storagePath}");
+            }
+        }
+    }
+
     /** @test */
     public function myDashboardDisplaysDashboardForAuthenticated_user() {
         $user = User::factory()->create();
@@ -80,10 +92,6 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchUpdatesUserProfileWithValidDataWithImage() {
-        // Ensure the directory exists
-        if (!file_exists(storage_path('app'))) {
-            mkdir(storage_path('app'), 0777, true);
-        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -119,10 +127,6 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchUpdatesUserProfileWithInvalidImage() {
-        // Ensure the directory exists
-        if (!file_exists(storage_path('app'))) {
-            mkdir(storage_path('app'), 0777, true);
-        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -151,10 +155,6 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function pathUpdatesUserProfileWithVeryBigImage() {
-        // Ensure the directory exists
-        if (!file_exists(storage_path('app'))) {
-            mkdir(storage_path('app'), 0777, true);
-        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
