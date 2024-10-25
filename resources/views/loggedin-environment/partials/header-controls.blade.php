@@ -27,12 +27,10 @@
             <li class="nav-item {{ UrlMatchesMenuItem('my-dashboard') }}">
                 <a class="nav-link" href="{{ route('my-dashboard') }}"> {{ __('menu.my_dashboard') }} </a>
             </li>
-            @if($userHasContributedToAProject)
-                <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
-                    <a class="nav-link"
-                       href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
-                </li>
-            @endif
+            <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
+                <a class="nav-link"
+                   href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
+            </li>
             <li class="nav-item dropdown user user-menu">
                 <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false">

@@ -68,7 +68,7 @@ class CrowdSourcingProjectProblemController extends Controller {
             'problem-description' => ['required'],
             'problem-status' => ['required'], // bookmark2
             'problem-default-language' => ['required'], // bookmark2
-            'problem-slug' => ['required','unique:crowd_sourcing_project_problems,slug'],
+            'problem-slug' => ['required', 'unique:crowd_sourcing_project_problems,slug'],
         ]);
 
         $crowdSourcingProjectProblem = CrowdSourcingProjectProblem::create([
