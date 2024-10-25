@@ -70,15 +70,33 @@
 	width: 55px;
 	height: 55px;
 	padding: 10px;
+
 	#sidebar-menu-toggler {
 		text-align: center;
 		width: 100%;
 		height: 100%;
+
 		i {
 			color: var(--clr-secondary-light-grey);
 			font-size: 33px;
 			width: 100%;
 			height: 100%;
+		}
+	}
+}
+
+.main-sidebar {
+	.nav-sidebar {
+		.nav-header {
+			text-transform: uppercase;
+			text-decoration: underline;
+			font-size: medium;
+			padding: 0 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.nav-link {
+			padding: 0 0.5rem;
 		}
 	}
 }

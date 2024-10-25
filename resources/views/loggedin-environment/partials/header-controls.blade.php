@@ -1,12 +1,14 @@
 <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
 
-    <!-- Sidebar toggle button-->
-    <ul class="navbar-nav">
-        <div class="sidebar-menu-toggler-container">
-            <a id="sidebar-menu-toggler" class="nav-link p-0" data-widget="pushmenu" href="#"><i
-                        class="fa fa-chevron-left"></i></a>
-        </div>
-    </ul>
+    @canany(['moderate-content-by-users'])
+        <!-- Sidebar toggle button-->
+        <ul class="navbar-nav">
+            <div class="sidebar-menu-toggler-container">
+                <a id="sidebar-menu-toggler" class="nav-link p-0" data-widget="pushmenu" href="#"><i
+                            class="fa fa-chevron-left"></i></a>
+            </div>
+        </ul>
+    @endcanany
 
     <!-- Burger menu button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

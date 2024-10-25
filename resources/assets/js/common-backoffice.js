@@ -18,6 +18,8 @@ import Clipboard from "clipboard/dist/clipboard";
 import $ from "jquery";
 import { showToast } from "./common-utils";
 
+const MOBILE_WIDTH = 768;
+
 (function () {
 	const initializeIcheck = function () {
 		$(".icheck-input").iCheck({
@@ -73,12 +75,18 @@ import { showToast } from "./common-utils";
 	};
 
 	const toggleIconOnSidebarMenuToggle = function () {
+
+		// if on mobile, set the icon to "fa-chevron-right" by default
+		if (window.innerWidth < MOBILE_WIDTH) {
+			$("#sidebar-menu-toggler").find("i").removeClass("fa-chevron-left").addClass("fa-chevron-right");
+		}
+
 		const toggler = $("#sidebar-menu-toggler");
 		// on click, check if the button has an <i> element with a "fa-chevron-left" class.
 		// If it does, then change it to "fa-chevron-right". Otherwise, change it to "fa-chevron-left".
 		toggler.on("click", function () {
 			// check if we are not in a mobile device
-			if (window.innerWidth < 768) {
+			if (window.innerWidth < MOBILE_WIDTH) {
 				return;
 			}
 
