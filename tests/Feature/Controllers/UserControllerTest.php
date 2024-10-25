@@ -23,12 +23,17 @@ class UserControllerTest extends TestCase {
 
         // Ensure the directory exists for testing
         $storagePath = storage_path('app');
-        echo "Storage path: {$storagePath}\n";
         if (!is_dir($storagePath)) {
-            echo "Creating the directory: {$storagePath}\n";
+            echo "Storage path does not exist. Creating the directory: {$storagePath}\n";
             if (!mkdir($storagePath, 0777, true) && !is_dir($storagePath)) {
                 echo "Failed to create the directory: {$storagePath}\n";
                 $this->fail("Failed to create the directory: {$storagePath}");
+            }
+            // also create the tree of directories for user_profile_img
+            $userProfileImgPath = $storagePath . '/public/uploads/user_profile_img';
+            if (!mkdir($userProfileImgPath, 0777, true) && !is_dir($userProfileImgPath)) {
+                echo "Failed to create the directory: {$userProfileImgPath}\n";
+                $this->fail("Failed to create the directory: {$userProfileImgPath}");
             }
         }
     }
