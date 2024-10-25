@@ -63,3 +63,20 @@
 		}
 	}
 }
+
+.sidebar-menu-toggler-container {
+	background-color: var(--clr-secondary-grey);
+	border-radius: 100%;
+	width: 60px;
+	height: 60px;
+	padding: 10px;
+	#sidebar-menu-toggler {
+		text-align: center;
+		i {
+			color: var(--clr-secondary-light-grey);
+			font-size: 40px;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

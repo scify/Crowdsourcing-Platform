@@ -1,12 +1,12 @@
 <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
+
     <!-- Sidebar toggle button-->
-    @canany(['moderate-content-by-users'])
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link pl-0" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-            </li>
-        </ul>
-    @endcanany
+    <ul class="navbar-nav">
+        <div class="sidebar-menu-toggler-container">
+            <a id="sidebar-menu-toggler" class="nav-link p-0" data-widget="pushmenu" href="#"><i
+                        class="fa fa-chevron-left"></i></a>
+        </div>
+    </ul>
 
     <!-- Burger menu button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -19,7 +19,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a href="{{ route('home') }}" class="navbar-brand">
-                    <img loading="lazy" height="40"
+                    <img loading="lazy" height="30"
                          src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
                          alt="Main Logo" class="brand-image">
                 </a>

@@ -72,12 +72,32 @@ import { showToast } from "./common-utils";
 		window.$('[data-toggle="tooltip"]').tooltip();
 	};
 
+	const toggleIconOnSidebarMenuToggle = function () {
+		const toggler = $("#sidebar-menu-toggler");
+		// on click, check if the button has an <i> element with a "fa-chevron-left" class.
+		// If it does, then change it to "fa-chevron-right". Otherwise, change it to "fa-chevron-left".
+		toggler.on("click", function () {
+			// check if we are not in a mobile device
+			if (window.innerWidth < 768) {
+				return;
+			}
+
+			const icon = toggler.find("i");
+			if (icon.hasClass("fa-chevron-left")) {
+				icon.removeClass("fa-chevron-left").addClass("fa-chevron-right");
+			} else {
+				icon.removeClass("fa-chevron-right").addClass("fa-chevron-left");
+			}
+		});
+	}
+
 	$(document).ready(function () {
 		initializeIcheck();
 		closeDismissibleAlerts();
 		initClipboardElements();
 		listenToReadMoreClicks();
 		initializeTooltips();
+		toggleIconOnSidebarMenuToggle();
 	});
 })();
 
