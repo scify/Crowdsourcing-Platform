@@ -102,7 +102,7 @@ language(): BelongsTo
 <div class="row" style="display: none;{{-- bookmark2 --}}">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="problem-status-2">Problem Status</label>
+            <label for="problem-status-2">Problem Status-2</label>
             @if(!Gate::check('manage-platform-content'))
                 <small class="text-blue">(The problem status can only be changed by a platform administrator.)</small>{{-- bookmark2 - is this what we want? --}}
             @endif
@@ -147,7 +147,7 @@ language(): BelongsTo
 <div class="row" style="display: none;{{-- bookmark2 --}}">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="problem-default-language-2">Problem Default Language</label>
+            <label for="problem-default-language-2">Problem Default Language-2</label>
             <select id="problem-default-language-2" class="form-control" name="problem-default-language-2">
                 {{-- @foreach ($viewModel->languagesLkp as $language) --}}
                     <option
@@ -165,25 +165,31 @@ language(): BelongsTo
     </div>
 </div>
 
-                        {{-- <div class="row">
-                            <label class="col-md-12 control-label" for="slug">Project Slug
-                                <br>(it defines the project's url, for example:
-                                <br><i>For english | https://crowdsourcing.ecas.org/en/your-project-slug</i>)
-                                <br><i>For greek | https://crowdsourcing.ecas.org/gr/your-project-slug</i>)
-                                <br><i>For dutch | https://crowdsourcing.ecas.org/nl/your-project-slug</i>)
+                        <div class="row">
+                            <label class="col-md-12{{-- bookmark2 - md here? or sm? --}} control-label" for="problem-slug">Problem Slug (<span class="red">*</span>)
+                                <br>(it defines the problems's url, for example:
+                                <br><i>For english | https://crowdsourcing.ecas.org/en/your-problem-slug</i>)
+                                <br><i>For greek | https://crowdsourcing.ecas.org/gr/your-problem-slug</i>)
+                                <br><i>For dutch | https://crowdsourcing.ecas.org/nl/your-problem-slug</i>)
                                 <br>The url can contain only letters, numbers, and dashes.
-                                <br>If left empty, we will take care of creating the URL, based on the project name.
-                                <br>Please note that once you publish the project you <i>cannot</i> change the slug.
+                                <br>If left empty, we will take care of creating the URL, based on the problem name. {{-- bookmark2 - implement auto-creation - best done with js (client-side) --}}
+                                <br>Please note that once you publish the problem you <i>cannot</i> change the slug. {{-- bookmark2 - once published or once created? --}}
                             </label>
                             <div class="col-sm-12">
-                                <div class="form-group has-feedback {{ $errors->has('slug') ? 'has-error' : '' }}">
-                                    <input id="slug" type="text" class="form-control" name="slug"
-                                        value="{{ old('slug') ? old('slug') : $viewModel->project->slug  }}"
-                                        placeholder="Project Slug">
-                                    <span class="help-block"><strong>{{ $errors->first('slug') }}</strong></span>
+                                <div class="form-group has-feedback {{ $errors->has('problem-slug') ? 'has-error' : '' }}">
+                                    <input type="text"
+                                        id="problem-slug"
+                                        name="problem-slug"
+                                        class="form-control"
+                                        required
+                                        placeholder="Problem Slug"
+                                        {{-- value="{{ old('problem-slug') ? old('problem-slug') : $viewModel->problem->slug }}" bookmark2 --}}
+                                        value="{{ old('problem-slug') ? old('problem-slug') : ''  }}"
+                                    >
+                                    <span class="help-block"><strong>{{ $errors->first('problem-slug') }}</strong></span>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <input type="submit">
 
