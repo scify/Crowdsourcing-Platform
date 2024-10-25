@@ -42,6 +42,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      */
     public function index()
     {
+
         $viewModel = [];
         $viewModel['problems'] = CrowdSourcingProjectProblem::with('translations')->latest()->get();
         return view('loggedin-environment.management.problem.index', ['viewModel' => $viewModel]);
