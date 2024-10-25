@@ -80,6 +80,10 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchUpdatesUserProfileWithValidDataWithImage() {
+        // Ensure the directory exists
+        if (!file_exists(storage_path('app'))) {
+            mkdir(storage_path('app'), 0777, true);
+        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -115,6 +119,10 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function patchUpdatesUserProfileWithInvalidImage() {
+        // Ensure the directory exists
+        if (!file_exists(storage_path('app'))) {
+            mkdir(storage_path('app'), 0777, true);
+        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -143,6 +151,10 @@ class UserControllerTest extends TestCase {
 
     /** @test */
     public function pathUpdatesUserProfileWithVeryBigImage() {
+        // Ensure the directory exists
+        if (!file_exists(storage_path('app'))) {
+            mkdir(storage_path('app'), 0777, true);
+        }
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
