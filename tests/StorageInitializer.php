@@ -3,9 +3,9 @@
 namespace Tests;
 
 class StorageInitializer {
-    private static $lockFilePath;
+    private static string $lockFilePath;
 
-    public static function initialize() {
+    public static function initialize(): void {
         // Use the storage_path() helper function directly
         self::$lockFilePath = storage_path('storage/storage_initialized.lock');
 
@@ -18,13 +18,13 @@ class StorageInitializer {
         // Use a lock file to ensure initialization only happens once
         $lockFile = fopen(self::$lockFilePath, 'c');
         if (!$lockFile) {
-            throw new \RuntimeException("Failed to create or open the lock file: " . self::$lockFilePath);
+            throw new \RuntimeException('Failed to create or open the lock file: ' . self::$lockFilePath);
         }
 
         // Acquire an exclusive lock
         if (!flock($lockFile, LOCK_EX)) {
             fclose($lockFile);
-            throw new \RuntimeException("Failed to acquire the lock for initialization.");
+            throw new \RuntimeException('Failed to acquire the lock for initialization.');
         }
 
         // Check if the storage directories already exist
@@ -45,6 +45,7 @@ class StorageInitializer {
         // Check if the main storage directory and user profile image path exist
         $storagePath = storage_path('app');
         $userProfileImgPath = $storagePath . '/public/uploads/user_profile_img';
+
         return is_dir($storagePath) && is_dir($userProfileImgPath);
     }
 
