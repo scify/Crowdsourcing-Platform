@@ -22,6 +22,9 @@
                         <div>
                             <a href="{{ route('terms.privacy') }}" target="_blank">Platform Privacy Policy</a>
                         </div>
+                        <div>
+                            <a href="javascript:void(0);" onclick="toggleCookieBanner()">Cookies Preferences</a>
+                        </div>
                         <div><a href="https://github.com/scify/Crowdsourcing-Platform" target="_blank">Github</a></div>
                     </div>
                 </div>
