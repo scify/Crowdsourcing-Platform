@@ -5,9 +5,13 @@ namespace App\ViewModels\CrowdSourcingProject\Problem;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 
 class CreateEditProblem {
-    public CrowdSourcingProjectProblem $crowdSourcingProjectProblem;
+    public CrowdSourcingProjectProblem $problem;
 
     public function __construct(CrowdSourcingProjectProblem $crowdSourcingProjectProblem) {
-        $this->crowdSourcingProjectProblem = $crowdSourcingProjectProblem;
+        $this->problem = $crowdSourcingProjectProblem;
+    }
+
+    public function isEditMode(): bool {
+        return $this->problem->id !== null;
     }
 }
