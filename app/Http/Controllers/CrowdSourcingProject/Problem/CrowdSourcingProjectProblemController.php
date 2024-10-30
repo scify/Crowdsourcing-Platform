@@ -61,8 +61,8 @@ class CrowdSourcingProjectProblemController extends Controller {
      */
     public function store(Request $request) {
         $validated = $request->validate([ // bookmark2
-            'problem-title' => ['required'],
-            'problem-description' => ['required'],
+            'problem-title' => ['required', 'string', 'max:100'],
+            'problem-description' => ['required', 'string', 'max:200'],
             'problem-status' => ['required'], // bookmark2
             'problem-default-language' => ['required'], // bookmark2
             'problem-slug' => ['required', 'unique:crowd_sourcing_project_problems,slug'],

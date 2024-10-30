@@ -25,6 +25,7 @@
                             class="form-control {{ $errors->has('problem-title') ? 'is-invalid' : '' }}"
                             required
                             placeholder="Problem Title"
+                            maxlength="100"
                             {{ $errors->has('problem-title') ? 'aria-describedby="problem-title-feedback"' : '' }}
                             {{-- value="{{ old('problem-title') ? old('problem-title') : $viewModel->problem->defaultTranslation->title }}" bookmark2 --}}
                             value="{{ old('problem-title') ? old('problem-title') : '' }}"
@@ -43,6 +44,7 @@
                             required
                             rows="6"
                             placeholder="Problem Description"
+                            maxlength="200"
                         >{{-- {{ old('problem-description') ? old('problem-description') : $viewModel->problem->defaultTranslation->description }} bookmark2 --}}{{ old('problem-description') ? old('problem-description') : '' }}</textarea>
                         <div class="invalid-feedback"><strong>{{ $errors->first('problem-description') }}</strong></div>
                     </div>
@@ -156,7 +158,7 @@
 
                 <div class="form-row">
                     <div class="col-sm-12 mb-3">
-                        <label for="problem-image">Problem Image</label></label>
+                        <label for="problem-image">Problem Image (max-size: 2MB)</label></label>
                         <input type="file"
                             id="problem-image"
                             name="problem-image"
