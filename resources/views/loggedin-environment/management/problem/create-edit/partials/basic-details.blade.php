@@ -18,6 +18,22 @@
 
                 <div class="form-row">
                     <div class="col-sm-12 mb-3">
+                        <label for="problem-owner-project">Project the problem belongs to (<span class="red">*</span>)</label>
+                        <input type="text"
+                            id="problem-owner-project"
+                            name="problem-owner-project"
+                            class="form-control {{ $errors->has('problem-owner-project') ? 'is-invalid' : '' }}"
+                            required
+                            placeholder="Problem Owner-Project"
+                            {{-- value="{{ old('problem-owner-project') ? old('problem-owner-project') : $viewModel->problem->project_id }}" bookmark2 --}}
+                            value="{{ old('problem-owner-project') ? old('problem-owner-project') : '' }}"
+                        >
+                        <div class="invalid-feedback"><strong>{{ $errors->first('problem-owner-project') }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-sm-12 mb-3">
                         <label for="problem-title">Problem Title (<span class="red">*</span>)</label>
                         <input type="text"
                             id="problem-title"
@@ -167,22 +183,6 @@
                             placeholder="Problem Image"
                         >
                         <div class="invalid-feedback"><strong>{{ $errors->first('problem-image') }}</strong></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-sm-12 mb-3">
-                        <label for="problem-owner-project">Problem Owner-Project (<span class="red">*</span>)</label>
-                        <input type="text"
-                            id="problem-owner-project"
-                            name="problem-owner-project"
-                            class="form-control {{ $errors->has('problem-owner-project') ? 'is-invalid' : '' }}"
-                            required
-                            placeholder="Problem Owner-Project"
-                            {{-- value="{{ old('problem-owner-project') ? old('problem-owner-project') : $viewModel->problem->project_id }}" bookmark2 --}}
-                            value="{{ old('problem-owner-project') ? old('problem-owner-project') : '' }}"
-                        >
-                        <div class="invalid-feedback"><strong>{{ $errors->first('problem-owner-project') }}</strong></div>
                     </div>
                 </div>
 
