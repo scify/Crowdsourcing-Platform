@@ -13,7 +13,7 @@ fi
 # Check if USE_DOCKER is set to "true"
 if [ "$USE_DOCKER" = "true" ]; then
     echo "Running Pint in Docker..."
-    docker-compose exec -T app vendor/bin/pint
+    docker compose exec -T app vendor/bin/pint
 else
     echo "Running Pint locally..."
     vendor/bin/pint
