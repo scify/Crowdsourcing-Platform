@@ -44,7 +44,7 @@
                             required
                             rows="6"
                             placeholder="Problem Description"
-                            maxlength="200"
+                            maxlength="400"
                         >{{-- {{ old('problem-description') ? old('problem-description') : $viewModel->problem->defaultTranslation->description }} bookmark2 --}}{{ old('problem-description') ? old('problem-description') : '' }}</textarea>
                         <div class="invalid-feedback"><strong>{{ $errors->first('problem-description') }}</strong></div>
                     </div>
