@@ -8,7 +8,6 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Utils\FileUploader;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -53,6 +52,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      */
     public function create(): View {
         $viewModel = $this->crowdSourcingProjectProblemManager->getCreateEditProblemViewModel();
+
         return view('loggedin-environment.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
     }
 
@@ -84,14 +84,14 @@ class CrowdSourcingProjectProblemController extends Controller {
                 'img_url' => $imgPath,
                 'default_language_id' => $request->input('problem-default-language'), // bookmark2 - default or generally another translation language?
             ]);
-    
+
             $crowdSourcingProjectProblemTranslation = $crowdSourcingProjectProblem->defaultTranslation()->create([ // bookmark2 - default or regular translation?
                 'title' => $request->input('problem-title'),
                 'description' => $request->input('problem-description'),
             ]);
-    
+
             session()->flash('flash_message_success', 'Problem Created Successfully.');
-    
+
             return redirect()->route('problems.index');
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
@@ -105,6 +105,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      */
     public function edit(int $id): View {
         $viewModel = $this->crowdSourcingProjectProblemManager->getCreateEditProblemViewModel($id);
+
         return view('loggedin-environment.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
     }
 
