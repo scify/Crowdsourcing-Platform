@@ -8,7 +8,9 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Utils\FileUploader;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -68,7 +70,6 @@ class CrowdSourcingProjectProblemController extends Controller {
             'problem-slug' => ['required', 'unique:crowd_sourcing_project_problems,slug'],
             'problem-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'problem-owner-project' => ['required'],
-            'problem-creator-user-id' => ['required'],
         ]);
 
         try {
@@ -78,8 +79,8 @@ class CrowdSourcingProjectProblemController extends Controller {
 
             $crowdSourcingProjectProblem = CrowdSourcingProjectProblem::create([
                 'project_id' => $request->input('problem-owner-project'),
-                'user_creator_id' => $request->input('problem-creator-user-id'),
-                'slug' => $request->input('problem-slug'),
+                'user_creator_id' => Auth::user()->id,
+                'slug' => Str::slug($request->input('problem-title')),
                 'status_id' => $request->input('problem-status'),
                 'img_url' => $imgPath,
                 'default_language_id' => $request->input('problem-default-language'), // bookmark2 - default or generally another translation language?

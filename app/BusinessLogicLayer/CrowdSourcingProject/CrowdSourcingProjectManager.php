@@ -456,4 +456,10 @@ class CrowdSourcingProjectManager {
 
         return $projects;
     }
+
+    public function getAllCrowdSourcingProjectsWithDefaultTranslation(): Collection {
+        $projects = $this->crowdSourcingProjectRepository->getAllProjectsWithDefaultTranslation();
+
+        return $projects;
+    }
 }
