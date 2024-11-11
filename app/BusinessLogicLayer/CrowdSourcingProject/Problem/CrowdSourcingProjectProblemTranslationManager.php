@@ -6,6 +6,7 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslationRepository;
 use App\Repository\LanguageRepository;
+use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectProblemTranslationManager {
     protected $crowdSourcingProjectProblemTranslationRepository;
@@ -28,5 +29,13 @@ class CrowdSourcingProjectProblemTranslationManager {
         ]);
 
         return $fieldsTranslation ?: $projectProblem->defaultTranslation;
+    }
+
+    public function getTranslationsForProblem(CrowdSourcingProjectProblem $problem): Collection {
+        if (!$problem->id) {
+            return new Collection;
+        }
+
+        return $this->crowdSourcingProjectProblemTranslationRepository->allWhere(['problem_id' => $problem->id]);
     }
 }
