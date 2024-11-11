@@ -8,8 +8,11 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\LanguageRepository;
+use App\Utils\FileUploader;
 use App\ViewModels\CrowdSourcingProject\Problem\CreateEditProblem;
 use App\ViewModels\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemsLandingPage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CrowdSourcingProjectProblemManager {
     protected CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository;
@@ -73,5 +76,30 @@ class CrowdSourcingProjectProblemManager {
             $languagesLkp,
             $projects
         );
+    }
+
+    public function storeProblem(array $attributes): int {
+        if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
+            $imgPath = FileUploader::uploadAndGetPath($attributes['problem-image'], 'problem_image');
+        }
+
+        $crowdSourcingProjectProblem = CrowdSourcingProjectProblem::create([
+            'project_id' => $attributes['problem-owner-project'],
+            'user_creator_id' => Auth::id(),
+            'slug' => Str::random(16), // temporary - will be changed after record creation
+            'status_id' => $attributes['problem-status'],
+            'img_url' => $imgPath ?? null,
+            'default_language_id' => $attributes['problem-default-language'], // bookmark2 - default or generally another translation language?
+        ]);
+
+        $crowdSourcingProjectProblem->slug = Str::slug($attributes['problem-title'] . '-' . $crowdSourcingProjectProblem->id);
+        $crowdSourcingProjectProblem->save();
+
+        $crowdSourcingProjectProblemTranslation = $crowdSourcingProjectProblem->defaultTranslation()->create([ // bookmark2 - default or regular translation?
+            'title' => $attributes['problem-title'],
+            'description' => $attributes['problem-description'],
+        ]);
+
+        return $crowdSourcingProjectProblem->id;
     }
 }
