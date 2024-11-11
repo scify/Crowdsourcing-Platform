@@ -2,11 +2,10 @@
 
 .alert-dismissable.alert-floating {
   position: absolute;
-  max-width: 50%;
   z-index: 100000;
   right: 25px;
   top: 25px;
-  min-width: 400px;
+  width: min(calc(100% - 50px), 26.25rem);
 
   * {
     color: $white;
