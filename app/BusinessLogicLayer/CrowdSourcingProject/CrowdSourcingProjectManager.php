@@ -462,4 +462,13 @@ class CrowdSourcingProjectManager {
 
         return $projects;
     }
+
+    public function getCrowdSourcingProjectsForProblems(): Collection {
+        // get all projects that have at least one problem
+        return $this->crowdSourcingProjectRepository->getProjectsForProblems();
+    }
+
+    public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
+        return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForManagement($projectId);
+    }
 }

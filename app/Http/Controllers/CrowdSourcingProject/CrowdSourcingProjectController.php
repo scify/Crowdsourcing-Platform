@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\UserQuestionnaireShareManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -139,5 +140,17 @@ class CrowdSourcingProjectController extends Controller {
         return redirect()->action(
             [self::class, 'edit'], ['project' => $newProject->id]
         );
+    }
+
+    public function getCrowdSourcingProjectsForProblems(): JsonResponse {
+        return response()->json($this->crowdSourcingProjectManager->getCrowdSourcingProjectsForProblems());
+    }
+
+    public function getProblemsForCrowdSourcingProjectForManagement(): JsonResponse {
+        $this->validate(request(), [
+            'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
+        ]);
+
+        return response()->json($this->crowdSourcingProjectManager->getProblemsForCrowdSourcingProjectForManagement(request('projectId')));
     }
 }

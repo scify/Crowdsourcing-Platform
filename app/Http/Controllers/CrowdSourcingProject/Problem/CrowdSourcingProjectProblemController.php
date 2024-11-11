@@ -4,7 +4,6 @@ namespace App\Http\Controllers\CrowdSourcingProject\Problem;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemManager;
 use App\Http\Controllers\Controller;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -41,10 +40,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): View {
-        $viewModel = [];
-        $viewModel['problems'] = CrowdSourcingProjectProblem::with('translations')->latest()->get();
-
-        return view('loggedin-environment.management.problem.index', ['viewModel' => $viewModel]);
+        return view('loggedin-environment.management.problem.index');
     }
 
     /**

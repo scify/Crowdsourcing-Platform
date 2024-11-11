@@ -5,7 +5,7 @@ import { createApp } from "vue";
 import store from "../store/store";
 
 import TranslationsManager from "../vue-components/common/TranslationsManager.vue";
-import CrowdSourcingProjectColors from "../vue-components/crowd-sourcing-project/CrowdSourcingProjectColors.vue";
+import CrowdSourcingProjectColors from "../vue-components/loggedin-environment/management/crowd-sourcing-project/CrowdSourcingProjectColors.vue";
 
 import select2 from "select2";
 import $ from "jquery";
