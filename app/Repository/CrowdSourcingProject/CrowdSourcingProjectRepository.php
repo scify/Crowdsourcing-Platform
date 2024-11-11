@@ -66,4 +66,14 @@ class CrowdSourcingProjectRepository extends Repository {
 
         return $builder->get();
     }
+
+    public function getAllProjectsWithDefaultTranslation($additionalRelationships = []): Collection {
+        $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED]);
+
+        if (count($additionalRelationships)) {
+            $builder = $builder->with($additionalRelationships);
+        }
+
+        return $builder->get();
+    }
 }
