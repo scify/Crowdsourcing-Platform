@@ -75,7 +75,9 @@ class CrowdSourcingProjectProblemController extends Controller {
 
         session()->flash('flash_message_success', 'Problem Created Successfully.');
 
-        return redirect()->route('problems.edit', ['problem' => $createdProblemId]);
+        $route = route('problems.edit', ['problem' => $createdProblemId]) . '?translations=1';
+
+        return redirect($route);
     }
 
     /**
