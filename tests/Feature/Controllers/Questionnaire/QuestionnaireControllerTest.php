@@ -442,7 +442,7 @@ class QuestionnaireControllerTest extends TestCase {
      */
     public function itCannotShowQuestionnairePageForNonPublishedQuestionnaire() {
         $user = User::factory()
-            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
             ->create();
         $this->be($user);
 
@@ -473,7 +473,7 @@ class QuestionnaireControllerTest extends TestCase {
      */
     public function itCannotShowQuestionnairePageForNonPublishedProject() {
         $user = User::factory()
-            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
             ->create();
         $this->be($user);
 
