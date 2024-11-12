@@ -6,15 +6,15 @@
             @if ($viewModel->questionnaire)
                 <div class="text-center content-container">
                     <div class="content w-100 h-100">
-                        <h3 class="project-section-title">
+                        <h3 class="project-section-title text-center">
                             {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->fieldsTranslation->title }}
                         </h3>
                         @if(!$viewModel->userResponse)
-                            <div class="questionnaire-description mb-5">
+                            <div class="questionnaire-description mb-5 text-center">
                                 {!! $viewModel->questionnaire->fieldsTranslation->description !!}
                             </div>
 
-                            <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; width: 70%; aspect-ratio: 2.782;"></div>
+                            <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; width: 100%; aspect-ratio: 2.782;"></div>
 
                             <div class="container-fluid">
                                 <div class="row">
