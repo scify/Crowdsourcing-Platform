@@ -79,20 +79,6 @@ body {
       height: 100%;
   }
 
-  .frosted {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.70);
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
-
   h1,
   h2 {
     margin-bottom: 0;
@@ -143,6 +129,22 @@ body {
 
   #motto-subtitle {
     font-size: 1.2rem;
+  }
+}
+
+.motto-content {
+  .frosted {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.70);
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
   }
 }
 
@@ -201,7 +203,6 @@ ol {
   width: 100%;
   @include media-breakpoint-up(md) {
     padding: 7vh 10vh;
-    padding-bottom: 0;
   }
 
   @include media-breakpoint-down(sm) {
@@ -1424,4 +1425,27 @@ footer {
   #problems-list ul {
     list-style-type: none;
   }
+}
+
+#questionnaire {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+#questionnaire::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(10px); /* Blur effect */
+  z-index: 1;
+}
+
+#questionnaire .content-container {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
 }

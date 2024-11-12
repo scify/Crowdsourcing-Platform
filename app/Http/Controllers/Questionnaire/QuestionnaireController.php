@@ -17,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireController extends Controller {
     protected QuestionnaireManager $questionnaireManager;
@@ -156,7 +157,7 @@ class QuestionnaireController extends Controller {
 
     public function showQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire) {
         // 1. if the questionnaire is not active, we should not allow the user to see it
-        if ($questionnaire->status_id !== QuestionnaireStatusLkp::PUBLISHED) {
+        if (!Gate::allows('create-platform-content') && $questionnaire->status_id !== QuestionnaireStatusLkp::PUBLISHED) {
             return redirect()->back()->with(['flash_message_error' => 'The questionnaire is not active.']);
         }
         // 2. if the questionnaire does not belong to the project, we should not allow the user to see it
@@ -164,7 +165,7 @@ class QuestionnaireController extends Controller {
             return redirect()->back()->with(['flash_message_error' => 'The questionnaire does not belong to the project.']);
         }
         // 3. if the project is not active, we should not allow the user to see it
-        if ($project->status_id !== CrowdSourcingProjectStatusLkp::PUBLISHED) {
+        if (!Gate::allows('create-platform-content') && $project->status_id !== CrowdSourcingProjectStatusLkp::PUBLISHED) {
             return redirect()->back()->with(['flash_message_error' => 'The project is not active.']);
         }
         $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnairePage($project, $questionnaire);
