@@ -14,7 +14,7 @@
                                 {!! $viewModel->questionnaire->fieldsTranslation->description !!}
                             </div>
 
-                            <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; width: 100%; aspect-ratio: 2.782;"></div>
+                            <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; height: 200px"></div>
 
                             <div class="container-fluid">
                                 <div class="row">
