@@ -146,17 +146,27 @@
                     </div>
                 @endif
 
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-image">Problem Image (max-size: 2MB)</label></label>
-                        <input type="file"
-                            id="problem-image"
-                            name="problem-image"
-                            class="form-control p-2 h-auto {{ $errors->has('problem-image') ? 'is-invalid' : '' }}"
-                            accept="image/png,image/jpeg,image/jpg"
-                            placeholder="Problem Image"
-                        >
-                        <div id="problem-image-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-image') }}</strong></div>
+                <div class="form-row js-bookmark3-image-input-container">
+                    <div class="col-sm-12">
+                        <div class="form-group css-bookmark3-input-file-wrapper">
+                            <label for="problem-image">Problem Image (max-size: 2MB)</label></label>
+                            <small>In order to update the currently selected image, please choose a new image by clicking the button below.</small><br>
+                            <input type="file"
+                                id="problem-image"
+                                name="problem-image"
+                                class="form-control p-2 h-auto {{ $errors->has('problem-image') ? 'is-invalid' : '' }} js-bookmark3-image-input"
+                                accept="image/png,image/jpeg,image/jpg"
+                                placeholder="Problem Image"
+                            >
+                            <div id="problem-image-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-image') }}</strong></div>
+                        </div>
+                        <div class="css-bookmark3-image-preview-container">
+                            <img
+                                loading="lazy" 
+                                class="css-js-bookmark3-selected-image-preview"
+                                src="{{ asset($viewModel->problem->img_url) }}"
+                                alt="">
+                        </div>
                     </div>
                 </div>
 
