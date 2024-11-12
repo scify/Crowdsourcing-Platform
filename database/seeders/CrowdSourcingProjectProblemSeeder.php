@@ -77,6 +77,27 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
                 ],
             ],
             [
+                'id' => 6,
+                'project_id' => 1,
+                'slug' => 'european-elections-problem-4',
+                'status_id' => CrowdSourcingProjectProblemStatusLkp::DRAFT,
+                'img_url' => 'https://placehold.co/600x400',
+                'default_language_id' => 6,
+                'user_creator_id' => 1,
+                'translations' => [
+                    [
+                        'language_id' => 6,
+                        'title' => 'EU Elections Problem 4',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ratione vitae, eum numquam autem optio amet pariatur ab quisquam sit ad dolor eius magnam repellat sunt perferendis ipsum expedita. Maxime?',
+                    ],
+                    [
+                        'language_id' => 12,
+                        'title' => 'Εκλογές EU Πρόβλημα 4',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ratione vitae, eum numquam autem optio amet pariatur ab quisquam sit ad dolor eius magnam repellat sunt perferendis ipsum expedita. Maxime?',
+                    ],
+                ],
+            ],
+            [
                 'id' => 4,
                 'project_id' => 2,
                 'slug' => 'european-democracy-problem-1',
@@ -121,6 +142,10 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
         ];
 
         foreach ($problems as $problem) {
+            // if the problem already exists but is soft deleted, restore it
+            if ($existingProblem = CrowdSourcingProjectProblem::withTrashed()->find($problem['id'])) {
+                $existingProblem->restore();
+            }
             CrowdSourcingProjectProblem::updateOrCreate(['id' => $problem['id']], [
                 'id' => $problem['id'],
                 'project_id' => $problem['project_id'],

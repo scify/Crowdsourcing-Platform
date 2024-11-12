@@ -98,6 +98,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
-        //
+        // return $this->crowdSourcingProjectProblemManager->deleteProblem($id);
+        throw new \Exception('Not implemented yet');
     }
 }

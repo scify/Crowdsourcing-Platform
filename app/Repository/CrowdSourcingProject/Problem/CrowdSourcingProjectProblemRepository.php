@@ -30,6 +30,6 @@ class CrowdSourcingProjectProblemRepository extends Repository {
     }
 
     public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
-        return CrowdSourcingProjectProblem::where('project_id', $projectId)->with(['defaultTranslation', 'translations', 'status'])->get();
+        return CrowdSourcingProjectProblem::where('project_id', $projectId)->with(['defaultTranslation', 'translations', 'translations.language', 'status'])->get();
     }
 }

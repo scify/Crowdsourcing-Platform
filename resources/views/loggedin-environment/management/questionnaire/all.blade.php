@@ -62,7 +62,7 @@
                                 <td class="text-center">{{ $questionnaire->prerequisite_order }}</td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-primary btn-slim dropdown-toggle" type="button"
+                                        <button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"
                                                 data-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
                                         <div class="dropdown-menu dropdown-menu-right">

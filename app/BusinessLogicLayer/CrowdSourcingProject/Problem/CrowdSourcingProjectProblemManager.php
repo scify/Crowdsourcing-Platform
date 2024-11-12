@@ -102,4 +102,8 @@ class CrowdSourcingProjectProblemManager {
 
         return $crowdSourcingProjectProblem->id;
     }
+
+    public function deleteProblem(int $id): bool {
+        return $this->crowdSourcingProjectProblemRepository->delete($id);
+    }
 }
