@@ -40,8 +40,7 @@
                             placeholder="Problem Title"
                             maxlength="100"
                             {{ $errors->has('problem-title') ? 'aria-describedby="problem-title-feedback"' : '' }}
-                            {{-- value="{{ old('problem-title') ? old('problem-title') : $viewModel->problem->defaultTranslation->title }}" bookmark2 --}}
-                            value="{{ old('problem-title') ? old('problem-title') : '' }}"
+                            value="{{ old('problem-title') ? old('problem-title') : $viewModel->problem->defaultTranslation->title }}"
                         >
                         <div id="problem-title-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-title') }}</strong></div>
                     </div>

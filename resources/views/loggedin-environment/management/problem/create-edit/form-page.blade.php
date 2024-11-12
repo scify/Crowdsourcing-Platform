@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <form id="problem-form" enctype="multipart/form-data"{{-- bookmark2 - enctype? --}} method="POST"
+    <form id="problem-form" enctype="multipart/form-data" method="POST"
         action="{{ $viewModel->isEditMode() ? route('problems.update', $viewModel->problem) : route('problems.store') }}">
 
         @if($viewModel->isEditMode())
