@@ -58,7 +58,7 @@
                             placeholder="Problem Description"
                             maxlength="400"
                             {{ $errors->has('problem-description') ? 'aria-describedby="problem-description-feedback"' : '' }}
-                        >{{-- {{ old('problem-description') ? old('problem-description') : $viewModel->problem->defaultTranslation->description }} bookmark2 --}}{{ old('problem-description') ? old('problem-description') : '' }}</textarea>
+                        >{{ old('problem-description') ? old('problem-description') : $viewModel->problem->defaultTranslation->description }}</textarea>
                         <div id="problem-description-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-description') }}</strong></div>
                     </div>
                 </div>
