@@ -1433,7 +1433,7 @@ footer {
   background-position: center;
 }
 
-#questionnaire::before {
+#questionnaire .content-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1445,7 +1445,7 @@ footer {
   z-index: 1;
 }
 
-#questionnaire .content-container {
+#questionnaire .content-container .content {
   position: relative;
   z-index: 2; /* Ensure content is above the overlay */
 }
