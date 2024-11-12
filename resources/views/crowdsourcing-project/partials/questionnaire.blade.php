@@ -5,7 +5,7 @@
              style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
             @if ($viewModel->questionnaire)
                 <div class="text-center content-container">
-                    <div class="content">
+                    <div class="content w-100 h-100">
                         <h3 class="project-section-title">
                             {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->fieldsTranslation->title }}
                         </h3>
