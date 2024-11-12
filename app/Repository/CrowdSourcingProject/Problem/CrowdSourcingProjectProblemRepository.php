@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Repository\Repository;
+use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectProblemRepository extends Repository {
     /**
@@ -26,5 +27,9 @@ class CrowdSourcingProjectProblemRepository extends Repository {
             ->exists();
 
         return $hasPublishedProblemsWithTranslations;
+    }
+
+    public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
+        return CrowdSourcingProjectProblem::where('project_id', $projectId)->with(['defaultTranslation', 'translations', 'translations.language', 'status'])->get();
     }
 }

@@ -107,6 +107,7 @@ class AirQualityProjectSeeder extends Seeder {
 
         $problems = [
             [
+                'id' => 6,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-1',
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
@@ -146,7 +147,7 @@ class AirQualityProjectSeeder extends Seeder {
                     ],
                     [
                         'user_creator_id' => 1,
-                        'slug' => 'air-wuality-solution-2',
+                        'slug' => 'air-quality-solution-2',
                         'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
@@ -165,6 +166,7 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
             ],
             [
+                'id' => 7,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-2',
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
@@ -223,6 +225,7 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
             ],
             [
+                'id' => 8,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-3',
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
@@ -243,6 +246,7 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
             ],
             [
+                'id' => 9,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-4',
                 'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
@@ -265,7 +269,11 @@ class AirQualityProjectSeeder extends Seeder {
         ];
 
         foreach ($problems as $problem) {
-            $problemRecord = CrowdSourcingProjectProblem::updateOrCreate(['project_id' => $problem['project_id'], 'slug' => $problem['slug']], [
+            // if the problem already exists but is soft deleted, restore it
+            if ($existingProblem = CrowdSourcingProjectProblem::withTrashed()->find($problem['id'])) {
+                $existingProblem->restore();
+            }
+            $problemRecord = CrowdSourcingProjectProblem::updateOrCreate(['id' => $problem['id']], [
                 'project_id' => $problem['project_id'],
                 'slug' => $problem['slug'],
                 'status_id' => $problem['status_id'],
@@ -294,6 +302,10 @@ class AirQualityProjectSeeder extends Seeder {
                 foreach ($problem['solutions'] as $solution) {
                     if (app()->environment() !== 'testing') {
                         echo "\nAdding Solution: " . $solution['slug'] . ' for Problem: ' . $problem['slug'] . "\n";
+                    }
+                    // if the solution already exists but is soft deleted, restore it. Search by slug
+                    if ($existingSolution = CrowdSourcingProjectProblemSolution::withTrashed()->where('slug', $solution['slug'])->first()) {
+                        $existingSolution->restore();
                     }
                     $solutionRecord = CrowdSourcingProjectProblemSolution::updateOrCreate(
                         ['problem_id' => $problemRecord->id, 'slug' => $solution['slug']], [

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\CrowdSourcingProject\Problem;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemManager;
 use App\Http\Controllers\Controller;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -41,10 +40,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): View {
-        $viewModel = [];
-        $viewModel['problems'] = CrowdSourcingProjectProblem::with('translations')->latest()->get();
-
-        return view('loggedin-environment.management.problem.index', ['viewModel' => $viewModel]);
+        return view('loggedin-environment.management.problem.index');
     }
 
     /**
@@ -79,7 +75,9 @@ class CrowdSourcingProjectProblemController extends Controller {
 
         session()->flash('flash_message_success', 'Problem Created Successfully.');
 
-        return redirect()->route('problems.edit', ['problem' => $createdProblemId]);
+        $route = route('problems.edit', ['problem' => $createdProblemId]) . '?translations=1';
+
+        return redirect($route);
     }
 
     /**
@@ -102,6 +100,7 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
-        //
+        // return $this->crowdSourcingProjectProblemManager->deleteProblem($id);
+        throw new \Exception('Not implemented yet');
     }
 }
