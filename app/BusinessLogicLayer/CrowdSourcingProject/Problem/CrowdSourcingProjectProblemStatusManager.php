@@ -5,7 +5,7 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject\Problem;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemStatusLkpRepository;
 
 class CrowdSourcingProjectProblemStatusManager {
-    protected $crowdSourcingProjectProblemStatusLkpRepository;
+    protected CrowdSourcingProjectProblemStatusLkpRepository $crowdSourcingProjectProblemStatusLkpRepository;
 
     public function __construct(CrowdSourcingProjectProblemStatusLkpRepository $crowdSourcingProjectProblemStatusLkpRepository) {
         $this->crowdSourcingProjectProblemStatusLkpRepository = $crowdSourcingProjectProblemStatusLkpRepository;

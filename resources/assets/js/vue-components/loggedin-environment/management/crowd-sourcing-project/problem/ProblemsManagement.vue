@@ -126,6 +126,7 @@ export default {
 			projects: [],
 			selectedProject: "",
 			problems: [],
+			problemStatuses: [],
 			errorMessage: "",
 			showUnpublishedProblemsOnly: false,
 			filteredProblems: [],
@@ -141,10 +142,11 @@ export default {
 	computed: {
 		...mapState(["loading", "modal"]),
 	},
-	mounted() {
+	async mounted() {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
-		this.getCrowdSourcingProjectsForFiltering();
-		this.$nextTick(() => {
+		await this.getProblemStatusesForManagementPage();
+		await this.getCrowdSourcingProjectsForFiltering();
+		await this.$nextTick(() => {
 			this.dataTableInstance = $("#problemsTable").DataTable({
 				pageLength: 5,
 				data: [],
@@ -175,8 +177,22 @@ export default {
 	methods: {
 		...mapActions(["get", "post", "setLoading"]),
 
-		getCrowdSourcingProjectsForFiltering() {
-			this.get({
+		async getProblemStatusesForManagementPage() {
+			return this.get({
+				url: window.route("api.problems.statuses.management.get"),
+				data: {},
+				urlRelative: false,
+			})
+				.then((response) => {
+					this.problemStatuses = response.data;
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				});
+		},
+
+		async getCrowdSourcingProjectsForFiltering() {
+			return this.get({
 				url: window.route("api.crowd-sourcing-projects.for-problems.get"),
 				data: {},
 				urlRelative: false,
@@ -254,32 +270,13 @@ export default {
 		},
 
 		getBadgeClassForProblemStatus(problemStatus) {
-			switch (problemStatus.id) {
-				case 1:
-					return "badge-secondary";
-				case 2:
-					return "badge-success";
-				case 3:
-					return "badge-info";
-				case 4:
-					return "badge-danger";
-				default:
-					return "badge-dark";
-			}
+			// search by id in the problemStatuses array
+			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			return status ? status.badgeCSSClass : "badge-secondary";
 		},
 		getBadgeTitleForProblemStatus(problemStatus) {
-			switch (problemStatus.id) {
-				case 1:
-					return "The problem is pending";
-				case 2:
-					return "The problem is published";
-				case 3:
-					return "The problem is finalized";
-				case 4:
-					return "The problem is unpublished";
-				default:
-					return "Unknown status";
-			}
+			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			return status ? status.description : "Unknown status";
 		},
 		getProblemEditRoute(problem) {
 			return window.route("problems.edit", problem.id);
