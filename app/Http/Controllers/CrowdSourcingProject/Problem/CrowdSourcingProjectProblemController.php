@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CrowdSourcingProject\Problem;
 use App\BusinessLogicLayer\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -100,7 +101,18 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
-        // return $this->crowdSourcingProjectProblemManager->deleteProblem($id);
-        throw new \Exception('Not implemented yet');
+        return $this->crowdSourcingProjectProblemManager->deleteProblem($id);
+    }
+
+    public function getProblemStatusesForManagementPage(): JsonResponse {
+        return response()->json($this->crowdSourcingProjectProblemManager->getProblemStatusesForManagementPage());
+    }
+
+    public function updateStatus(Request $request, int $id): JsonResponse {
+        $this->validate($request, [
+            'status_id' => 'required|exists:csp_problem_statuses_lkp,id',
+        ]);
+
+        return response()->json($this->crowdSourcingProjectProblemManager->updateProblemStatus($id, $request->status_id));
     }
 }

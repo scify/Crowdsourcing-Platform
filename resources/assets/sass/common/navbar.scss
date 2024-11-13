@@ -28,3 +28,9 @@
   align-content: center;
   height: 100%;
 }
+
+.user-menu {
+  .dropdown-toggle::after {
+    display: none;
+  }
+}

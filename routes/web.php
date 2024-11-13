@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
     Route::get('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'showEditStatisticsColorsPage'])->name('questionnaire.statistics-colors');
     Route::post('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'saveStatisticsColors'])->name('questionnaire.statistics-colors.store');
     Route::resource('problems', CrowdSourcingProjectProblemController::class)->except(['show']);
+    Route::put('problems/{id}/update-status', [CrowdSourcingProjectProblemController::class, 'updateStatus'])->name('problems.update-status');
 });
 
 Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], function () {

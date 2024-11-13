@@ -71,10 +71,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" v-if="modalProblem.id">
 					<p>
-						Are you sure you want to delete the problem <b>{{ deleteProblem.title }}</b
-					>?
+						Are you sure you want to delete the problem <b>{{ modalProblem.default_translation.title }}</b
+						>?
 					</p>
 
 					<h5 class="text-danger">
@@ -83,23 +83,65 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger btn-slim" @click="confirmDelete">
-							<span
-								:class="['spinner-border spinner-border-sm mr-2', { hidden: !deleteLoading }]"
-								role="status"
-								aria-hidden="true"
-							></span
-							>In understand, Delete the problem
+					<button
+						type="button"
+						class="btn btn-danger btn-slim"
+						@click="confirmDelete"
+						:disabled="modalActionLoading"
+					>
+						<span
+							:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+							role="status"
+							aria-hidden="true"
+						></span
+						>In understand, Delete the problem
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal-component">
+	<!-- Update Problem Status Modal -->
+	<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="updateModalLabel">Update Problem Status</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" v-if="modalProblem.id && problemStatuses.length">
+					<p>
+						Select a new status for the problem <b>{{ modalProblem.default_translation.title }}</b>
+					</p>
+					<select class="form-select form-control" v-model="modalProblem.status.id">
+						<option v-for="status in problemStatuses" :key="status.id" :value="status.id">
+							{{ status.title }}
+						</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+					<button
+						type="button"
+						class="btn btn-primary btn-slim"
+						@click="confirmUpdate"
+						:disabled="modalActionLoading"
+					>
+						<span
+							:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+							role="status"
+							aria-hidden="true"
+						></span
+						>Update
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="alert-component position-relative d-none" id="problemDeletedAlert">
 		<div class="alert alert-success" role="alert">
-			The problem has been successfully deleted.
+			{{ actionSuccessMessage }}
 		</div>
 	</div>
 	<div class="alert-component position-relative d-none" id="errorAlert">
@@ -126,25 +168,27 @@ export default {
 			projects: [],
 			selectedProject: "",
 			problems: [],
+			problemStatuses: [],
 			errorMessage: "",
 			showUnpublishedProblemsOnly: false,
 			filteredProblems: [],
 			dataTableInstance: null,
-			deleteProblem: {
-				id: null,
-				title: "",
-			},
+			modalProblem: {},
 			deleteModal: null,
-			deleteLoading: false,
+			updateModal: null,
+			modalActionLoading: false,
+			actionSuccessMessage: "",
 		};
 	},
 	computed: {
 		...mapState(["loading", "modal"]),
 	},
-	mounted() {
+	async mounted() {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
-		this.getCrowdSourcingProjectsForFiltering();
-		this.$nextTick(() => {
+		this.updateModal = new Modal(document.getElementById("updateModal"));
+		await this.getProblemStatusesForManagementPage();
+		await this.getCrowdSourcingProjectsForFiltering();
+		await this.$nextTick(() => {
 			this.dataTableInstance = $("#problemsTable").DataTable({
 				pageLength: 5,
 				data: [],
@@ -164,19 +208,40 @@ export default {
 				],
 			});
 
-			// Event delegation for delete button clicks
-			$("#problemsTable tbody").on("click", ".delete-btn", (event) => {
-				const problemId = $(event.currentTarget).data("id");
-				const problemTitle = $(event.currentTarget).data("title");
-				this.openDeleteModal(problemId, problemTitle);
+			// Event listener for action items clicks
+			const actions = ["delete-btn", "update-btn"];
+			actions.forEach((action) => {
+				$("#problemsTable tbody").on("click", `.${action}`, (event) => {
+					const problemId = parseInt(event.target.getAttribute("data-id"));
+					const problem = this.problems.find((p) => p.id === problemId);
+					if (action === "delete-btn") {
+						this.openDeleteModal(problem);
+					} else if (action === "update-btn") {
+						this.openUpdateModal(problem);
+					}
+				});
 			});
 		});
 	},
 	methods: {
 		...mapActions(["get", "post", "setLoading"]),
 
-		getCrowdSourcingProjectsForFiltering() {
-			this.get({
+		async getProblemStatusesForManagementPage() {
+			return this.get({
+				url: window.route("api.problems.statuses.management.get"),
+				data: {},
+				urlRelative: false,
+			})
+				.then((response) => {
+					this.problemStatuses = response.data;
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				});
+		},
+
+		async getCrowdSourcingProjectsForFiltering() {
+			return this.get({
 				url: window.route("api.crowd-sourcing-projects.for-problems.get"),
 				data: {},
 				urlRelative: false,
@@ -243,7 +308,9 @@ export default {
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">
 											<i class="far fa-edit mr-2"></i> Edit</a>
-										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}" data-title="${problem.default_translation.title}">
+										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${problem.id}">
+											<i class="fas fa-cog mr-2"></i> Update Status</a>
+										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}">
 											<i class="fas fa-trash mr-2"></i> Delete</a>
 									</div>
 								  </div>`,
@@ -254,54 +321,38 @@ export default {
 		},
 
 		getBadgeClassForProblemStatus(problemStatus) {
-			switch (problemStatus.id) {
-				case 1:
-					return "badge-secondary";
-				case 2:
-					return "badge-success";
-				case 3:
-					return "badge-info";
-				case 4:
-					return "badge-danger";
-				default:
-					return "badge-dark";
-			}
+			// search by id in the problemStatuses array
+			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			return status ? status.badgeCSSClass : "badge-secondary";
 		},
 		getBadgeTitleForProblemStatus(problemStatus) {
-			switch (problemStatus.id) {
-				case 1:
-					return "The problem is pending";
-				case 2:
-					return "The problem is published";
-				case 3:
-					return "The problem is finalized";
-				case 4:
-					return "The problem is unpublished";
-				default:
-					return "Unknown status";
-			}
+			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			return status ? status.description : "Unknown status";
 		},
 		getProblemEditRoute(problem) {
 			return window.route("problems.edit", problem.id);
 		},
 
-		openDeleteModal(problemId, problemTitle) {
-			this.deleteProblem = {
-				id: problemId,
-				title: problemTitle,
-			};
+		openDeleteModal(problem) {
+			this.modalProblem = problem;
 			this.deleteModal.show();
 		},
 
+		openUpdateModal(problem) {
+			this.modalProblem = problem;
+			this.updateModal.show();
+		},
+
 		confirmDelete() {
-			if (!this.deleteProblem.id) return;
-			this.deleteLoading = true;
+			if (!this.modalProblem.id) return;
+			this.modalActionLoading = true;
 			axios
-				.delete(window.route("problems.destroy", this.deleteProblem.id))
+				.delete(window.route("problems.destroy", this.modalProblem.id))
 				.then(() => {
 					this.getProjectProblems();
-					this.deleteProblem.id = null;
-					this.deleteProblem.title = "";
+					this.modalProblem.id = null;
+					this.modalProblem.title = "";
+					this.actionSuccessMessage = "Problem deleted successfully!";
 					this.showSuccessAlert();
 				})
 				.catch((error) => {
@@ -309,7 +360,27 @@ export default {
 				})
 				.finally(() => {
 					this.deleteModal.hide();
-					this.deleteLoading = false;
+					this.modalActionLoading = false;
+				});
+		},
+		confirmUpdate() {
+			if (!this.modalProblem.id) return;
+			this.modalActionLoading = true;
+			axios
+				.put(window.route("problems.update-status", this.modalProblem.id), { status_id: this.modalProblem.status.id })
+				.then(() => {
+					this.getProjectProblems();
+					this.modalProblem.id = null;
+					this.modalProblem.title = "";
+					this.actionSuccessMessage = "Problem status updated successfully!";
+					this.showSuccessAlert();
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				})
+				.finally(() => {
+					this.updateModal.hide();
+					this.modalActionLoading = false;
 				});
 		},
 		showSuccessAlert() {
@@ -317,6 +388,7 @@ export default {
 			alertElement.classList.remove("d-none");
 			setTimeout(() => {
 				alertElement.classList.add("d-none");
+				this.actionSuccessMessage = "";
 			}, 5000);
 		},
 		showErrorMessage(error) {
