@@ -1,36 +1,38 @@
-<div id="questionnaire-wrapper">
+<div id="questionnaire-wrapper" class="py-5">
     <div class="container">
         <div id="questionnaire"
              class="align-items-center mx-0"
              style="background-image: url('{{ asset($viewModel->project->lp_questionnaire_img_path) }}')">
             @if ($viewModel->questionnaire)
                 <div class="text-center content-container">
-                    <h3 class="project-section-title">
-                        {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->fieldsTranslation->title }}
-                    </h3>
-                    @if(!$viewModel->userResponse)
-                        <div class="questionnaire-description mb-5">
-                            {!! $viewModel->questionnaire->fieldsTranslation->description !!}
-                        </div>
+                    <div class="content w-100 h-100">
+                        <h3 class="project-section-title text-center">
+                            {{ $viewModel->userResponse? __("questionnaire.already_participated"):   $viewModel->questionnaire->fieldsTranslation->title }}
+                        </h3>
+                        @if(!$viewModel->userResponse)
+                            <div class="questionnaire-description mb-5 text-center">
+                                {!! $viewModel->questionnaire->fieldsTranslation->description !!}
+                            </div>
 
-                        <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; width: 70%; aspect-ratio: 2.782;"></div>
+                            <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; height: 200px"></div>
 
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-10 col-md-10 col-sm-11 mx-auto">
-                                    <div class="row">
-                                        <div class="col-md-9 col-sm-12 mx-auto mt-5">
-                                            <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
-                                               class="btn btn-primary w-100 respond-questionnaire call-to-action
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-10 col-sm-11 mx-auto">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-12 mx-auto mt-5">
+                                                <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
+                                                   class="btn btn-primary w-100 respond-questionnaire call-to-action
                                             {{ !$viewModel->project->lp_show_speak_up_btn ? 'hidden' : '' }}">
-                                                {{__("questionnaire.start_answering")}}
-                                            </a>
+                                                    {{__("questionnaire.start_answering")}}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
                 @if ($viewModel->feedbackQuestionnaire)
                     <hr class="my-5">

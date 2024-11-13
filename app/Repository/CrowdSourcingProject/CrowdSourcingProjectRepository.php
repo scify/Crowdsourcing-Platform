@@ -76,4 +76,12 @@ class CrowdSourcingProjectRepository extends Repository {
 
         return $builder->get();
     }
+
+    public function getProjectsForProblems(): Collection {
+        // get all projects that are not draft, not unpublished, and have at least one problem
+        return CrowdSourcingProject::where('status_id', '!=', CrowdSourcingProjectStatusLkp::DRAFT)
+            ->where('status_id', '!=', CrowdSourcingProjectStatusLkp::UNPUBLISHED)
+            ->whereHas('problems')
+            ->get();
+    }
 }

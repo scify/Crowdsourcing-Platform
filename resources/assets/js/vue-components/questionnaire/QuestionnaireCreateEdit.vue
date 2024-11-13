@@ -322,6 +322,7 @@
 			</common-modal>
 		</div>
 		<questionnaire-languages
+			v-if="questionnaire.id"
 			:questionnaire-id="questionnaire.id"
 			:modal-open="questionnaireLanguagesModalOpen"
 			@canceled="questionnaireLanguagesModalOpen = false"

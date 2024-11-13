@@ -255,7 +255,7 @@ class CrowdSourcingProjectManager {
         }
 
         if (!isset($attributes['lp_show_speak_up_btn'])) {
-            $attributes['lp_show_speak_up_btn'] = false;
+            $attributes['lp_show_speak_up_btn'] = true;
         }
 
         return $attributes;
@@ -278,6 +278,7 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
+        $project->lp_show_speak_up_btn = true;
         $project = $this->populateInitialFileValuesForProjectIfNotSet($project);
 
         return $this->populateInitialColorValuesForProjectIfNotSet($project);
@@ -461,5 +462,14 @@ class CrowdSourcingProjectManager {
         $projects = $this->crowdSourcingProjectRepository->getAllProjectsWithDefaultTranslation();
 
         return $projects;
+    }
+
+    public function getCrowdSourcingProjectsForProblems(): Collection {
+        // get all projects that have at least one problem
+        return $this->crowdSourcingProjectRepository->getProjectsForProblems();
+    }
+
+    public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
+        return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForManagement($projectId);
     }
 }

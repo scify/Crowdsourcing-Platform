@@ -265,6 +265,15 @@ After you save the file, restart the MySQL service:
 sudo service mysql restart
 ```
 
+### Step 6: Run the application
+
+With manual installation, you will need to run the Laravel commands on your local machine.
+
+So open up a terminal and navigate to the project directory. Run `php artisan serve`, in order to start the Laravel server.
+
+**Notice:** On Google Chrome, the browser might force the HTTPS protocol. In this case, you need to access the Chrome settings at [chrome://net-internals/#hsts](chrome://net-internals/#hsts), and enter `localhost` in the `Delete domain security policies
+` field.
+
 ## Run the Laravel Application commands
 
 Regardless of the installation method, you will need to run the following commands to set up the application.

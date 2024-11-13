@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <form id="problem-form" enctype="multipart/form-data"{{-- bookmark2 - enctype? --}} method="POST"
+    <form id="problem-form" enctype="multipart/form-data" method="POST"
         action="{{ $viewModel->isEditMode() ? route('problems.update', $viewModel->problem) : route('problems.store') }}">
 
         @if($viewModel->isEditMode())
@@ -27,12 +27,19 @@
                     <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab"
                        aria-controls="basic-details" aria-selected="true">Basic Details</a>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="translations-tab" data-toggle="tab" href="#translations" role="tab"
+                       aria-controls="translations" aria-selected="false">Translations</a>
+                </li>
             </ul>
             <div class="tab-content " id="myTabContent">
                 <div class="tab-pane fade show active " id="basic-details" role="tabpanel"
                      aria-labelledby="basic-details-tab">
                     @include('loggedin-environment.management.problem.create-edit.partials.basic-details')
 
+                </div>
+                <div class="tab-pane fade " id="translations" role="tabpanel" aria-labelledby="translations-tab">
+                    @include('loggedin-environment.management.problem.create-edit.partials.translations')
                 </div>
             </div>
             <div>
@@ -50,3 +57,7 @@
     </form>
     
 @endsection
+
+@push('scripts')
+    @vite('resources/assets/js/project/problem/manage-problem.js')
+@endpush

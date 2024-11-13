@@ -29,6 +29,12 @@ class UserRoleManager {
             return $this->userHasAdminRole($user) || $this->userHasContentManagerRole($user);
         });
 
+        Gate::define('create-platform-content', function ($user) {
+            return $this->userHasAdminRole($user)
+                || $this->userHasContentManagerRole($user)
+                || $this->userHasModeratorRole($user);
+        });
+
         Gate::define('moderate-content-by-users', function ($user) {
             return $this->userHasAdminRole($user)
                 || $this->userHasContentManagerRole($user)

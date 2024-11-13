@@ -236,7 +236,7 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
 
-        $response = $this
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->put(route('user.update'), [
                 'nickname' => 'updated-nickname',
                 'password' => '1234',

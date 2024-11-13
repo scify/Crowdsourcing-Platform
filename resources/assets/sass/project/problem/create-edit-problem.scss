@@ -1,0 +1,15 @@
+@import "../../variables";
+
+.input-file-wrapper {
+	overflow: hidden;
+}
+
+.image-preview-container {
+	text-align: center;
+
+	.selected-image-preview {
+		max-height: 200px;
+		max-width: 100%;
+		padding: 20px 0;
+	}
+}

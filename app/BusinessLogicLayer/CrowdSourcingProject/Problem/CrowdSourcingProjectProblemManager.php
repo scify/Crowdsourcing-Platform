@@ -22,6 +22,8 @@ class CrowdSourcingProjectProblemManager {
     protected LanguageRepository $languageRepository;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
+    const DEFAULT_IMAGE_PATH = '/images/problem_default_image.png';
+
     public function __construct(
         CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository,
         CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
@@ -49,17 +51,20 @@ class CrowdSourcingProjectProblemManager {
         return new CrowdSourcingProjectProblemsLandingPage($crowdSourcingProject, $crowdSourcingProjectProblems);
     }
 
-    public function getCreateEditProblemViewModel(?int $id = null): CreateEditProblem {
-        // if ($id) {
-        //     $project = $this->getCrowdSourcingProject($id);
-        // } else {
-        //     $project = $this->crowdSourcingProjectRepository->getModelInstance();
-        // }
+    public function getCrowdSourcingProjectProblem(int $id): CrowdSourcingProjectProblem {
+        $problem = $this->crowdSourcingProjectProblemRepository->find($id);
 
-        // $project = $this->populateInitialValuesForProjectIfNotSet($project);
-        $problem = new CrowdSourcingProjectProblem;
-        $problem->default_language_id = 6; // @todo change with lookuptable value - bookmark2
-        $problem->setRelation('defaultTranslation', new CrowdSourcingProjectProblemTranslation); // bookmark2 - is this an "empty" relationship?
+        return $problem;
+    }
+
+    public function getCreateEditProblemViewModel(?int $id = null): CreateEditProblem {
+        if ($id) {
+            $problem = $this->getCrowdSourcingProjectProblem($id);
+        } else {
+            $problem = new CrowdSourcingProjectProblem;
+            $problem->default_language_id = 6; // @todo change with lookuptable value - bookmark2
+            $problem->setRelation('defaultTranslation', new CrowdSourcingProjectProblemTranslation); // bookmark2 - is this an "empty" relationship?
+        }
 
         $translations = $this->crowdSourcingProjectProblemTranslationManager->getTranslationsForProblem($problem);
 
@@ -81,6 +86,8 @@ class CrowdSourcingProjectProblemManager {
     public function storeProblem(array $attributes): int {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileUploader::uploadAndGetPath($attributes['problem-image'], 'problem_image');
+        } else {
+            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $crowdSourcingProjectProblem = CrowdSourcingProjectProblem::create([
@@ -101,5 +108,9 @@ class CrowdSourcingProjectProblemManager {
         ]);
 
         return $crowdSourcingProjectProblem->id;
+    }
+
+    public function deleteProblem(int $id): bool {
+        return $this->crowdSourcingProjectProblemRepository->delete($id);
     }
 }
