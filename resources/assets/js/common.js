@@ -26,7 +26,7 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 	});
 
 	const handleLogoutBtnClick = function () {
-		$("#log-out").click(function (e) {
+		$(document).on("click", "#log-out", function (e) {
 			e.preventDefault();
 			$("#logout-form").submit();
 		});
