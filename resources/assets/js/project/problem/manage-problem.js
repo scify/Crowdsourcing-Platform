@@ -51,22 +51,22 @@ import $ from "jquery";
 	// 	el.val(el.summernote("code"));
 	// };
 
-	// const initializeImgFileChangePreviewHandlers = function () {
-	// 	$(".image-input").each(function (i, obj) {
-	// 		$(obj).change(function () {
-	// 			const event = this;
-	// 			if (event.files && event.files[0]) {
-	// 				const parent = $(obj).closest(".image-input-container");
-	// 				const imgPreview = parent.find(".selected-image-preview");
-	// 				const reader = new FileReader();
-	// 				reader.onload = function (e) {
-	// 					imgPreview.attr("src", e.target.result);
-	// 				};
-	// 				reader.readAsDataURL(event.files[0]);
-	// 			}
-	// 		});
-	// 	});
-	// };
+	const initializeImgFileChangePreviewHandlers = function () {
+		$(".js-image-input").each(function (i, obj) {
+			$(obj).change(function () {
+				const event = this;
+				if (event.files && event.files[0]) {
+					const parent = $(obj).closest(".js-image-input-container");
+					const imgPreview = parent.find(".js-selected-image-preview");
+					const reader = new FileReader();
+					reader.onload = function (e) {
+						imgPreview.attr("src", e.target.result);
+					};
+					reader.readAsDataURL(event.files[0]);
+				}
+			});
+		});
+	};
 
 	// const initializeCommunicationResourcesHandlers = function () {
 	// 	initializeSummernoteAndUpdateElementOnKeyup($("#questionnaire_response_email_intro_text"), $("#intro_text"));
@@ -105,7 +105,7 @@ import $ from "jquery";
 
 	const init = function () {
 		// initializeSubmitFormListener();
-		// initializeImgFileChangePreviewHandlers();
+		initializeImgFileChangePreviewHandlers();
 		// initializeSummernote();
 		// initializeSocialMediaKeywordsTags();
         checkURLAndActivateTranslationsTab();
