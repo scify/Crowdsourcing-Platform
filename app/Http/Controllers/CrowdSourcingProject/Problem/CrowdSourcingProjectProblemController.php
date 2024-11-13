@@ -107,4 +107,12 @@ class CrowdSourcingProjectProblemController extends Controller {
     public function getProblemStatusesForManagementPage(): JsonResponse {
         return response()->json($this->crowdSourcingProjectProblemManager->getProblemStatusesForManagementPage());
     }
+
+    public function updateStatus(Request $request, int $id): JsonResponse {
+        $this->validate($request, [
+            'status_id' => 'required|exists:csp_problem_statuses_lkp,id',
+        ]);
+
+        return response()->json($this->crowdSourcingProjectProblemManager->updateProblemStatus($id, $request->status_id));
+    }
 }
