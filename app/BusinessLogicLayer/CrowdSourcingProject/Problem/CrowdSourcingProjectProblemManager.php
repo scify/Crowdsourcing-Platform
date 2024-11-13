@@ -22,6 +22,8 @@ class CrowdSourcingProjectProblemManager {
     protected LanguageRepository $languageRepository;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
+    const DEFAULT_IMAGE_PATH = '/images/problem_default_image.png';
+
     public function __construct(
         CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository,
         CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
@@ -84,6 +86,8 @@ class CrowdSourcingProjectProblemManager {
     public function storeProblem(array $attributes): int {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileUploader::uploadAndGetPath($attributes['problem-image'], 'problem_image');
+        } else {
+            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $crowdSourcingProjectProblem = CrowdSourcingProjectProblem::create([

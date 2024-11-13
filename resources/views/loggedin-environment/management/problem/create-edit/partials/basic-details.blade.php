@@ -138,33 +138,32 @@
                                 class="form-control {{ $errors->has('problem-slug') ? 'is-invalid' : '' }}"
                                 required
                                 placeholder="Problem Slug"
-                                {{-- value="{{ old('problem-slug') ? old('problem-slug') : $viewModel->problem->slug }}" bookmark2 --}}
-                                value="{{ old('problem-slug') ? old('problem-slug') : ''  }}"
+                                value="{{ old('problem-slug') ? old('problem-slug') : $viewModel->problem->slug }}"
                             >
                             <div id="problem-slug-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-slug') }}</strong></div>
                         </div>
                     </div>
                 @endif
 
-                <div class="form-row js-bookmark3-image-input-container">
+                <div class="form-row js-image-input-container">
                     <div class="col-sm-12">
-                        <div class="form-group css-bookmark3-input-file-wrapper">
+                        <div class="form-group input-file-wrapper">
                             <label for="problem-image">Problem Image (max-size: 2MB)</label></label>
                             <small>In order to update the currently selected image, please choose a new image by clicking the button below.</small><br>
                             <input type="file"
                                 id="problem-image"
                                 name="problem-image"
-                                class="form-control p-2 h-auto {{ $errors->has('problem-image') ? 'is-invalid' : '' }} js-bookmark3-image-input"
+                                class="form-control p-2 h-auto {{ $errors->has('problem-image') ? 'is-invalid' : '' }} js-image-input"
                                 accept="image/png,image/jpeg,image/jpg"
                                 placeholder="Problem Image"
                             >
                             <div id="problem-image-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-image') }}</strong></div>
                         </div>
-                        <div class="css-bookmark3-image-preview-container">
+                        <div class="image-preview-container">
                             <img
                                 loading="lazy" 
-                                class="css-js-bookmark3-selected-image-preview"
-                                src="{{ asset($viewModel->problem->img_url) }}"
+                                class="selected-image-preview js-selected-image-preview"
+                                src="{{ $viewModel->problem->img_url ? asset($viewModel->problem->img_url) : '/images/problem_default_image.png' }}"
                                 alt="">
                         </div>
                     </div>
