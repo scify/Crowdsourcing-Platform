@@ -4,6 +4,7 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject\Problem;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
@@ -11,6 +12,7 @@ use App\Repository\LanguageRepository;
 use App\Utils\FileUploader;
 use App\ViewModels\CrowdSourcingProject\Problem\CreateEditProblem;
 use App\ViewModels\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemsLandingPage;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -112,5 +114,34 @@ class CrowdSourcingProjectProblemManager {
 
     public function deleteProblem(int $id): bool {
         return $this->crowdSourcingProjectProblemRepository->delete($id);
+    }
+
+    public function getProblemStatusesForManagementPage(): Collection {
+        $problemStatuses = $this->crowdSourcingProjectProblemStatusManager->getAllCrowdSourcingProjectProblemStatusesLkp();
+        foreach ($problemStatuses as $problemStatus) {
+            switch ($problemStatus->id) {
+                case CrowdSourcingProjectStatusLkp::DRAFT:
+                    $problemStatus->badgeCSSClass = 'badge-secondary';
+                    break;
+                case CrowdSourcingProjectStatusLkp::PUBLISHED:
+                    $problemStatus->badgeCSSClass = 'badge-success';
+                    break;
+                case CrowdSourcingProjectStatusLkp::FINALIZED:
+                    $problemStatus->badgeCSSClass = 'badge-info';
+                    break;
+                case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
+                    $problemStatus->badgeCSSClass = 'badge-danger';
+                    break;
+                default:
+                    $problemStatus->badgeCSSClass = 'badge-dark';
+                    $problemStatus->description = 'The problem is in an unknown status';
+            }
+        }
+
+        return $problemStatuses;
+    }
+
+    public function updateProblemStatus(int $id, int $status_id) {
+        return $this->crowdSourcingProjectProblemRepository->update(['status_id' => $status_id], $id);
     }
 }

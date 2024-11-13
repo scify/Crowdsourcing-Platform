@@ -14,6 +14,7 @@
 
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectController;
+use App\Http\Controllers\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Questionnaire\QuestionnaireAnswerAnnotationController;
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('api.questionnaire.translations.mark');
     Route::get('/crowd-sourcing-projects/for-problems', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForProblems'])->name('api.crowd-sourcing-projects.for-problems.get');
     Route::post('/crowd-sourcing-projects/get-problems-for-management', [CrowdSourcingProjectController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.crowd-sourcing-projects.problems.get-management');
+    Route::get('/problems/statuses/management', [CrowdSourcingProjectProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {
