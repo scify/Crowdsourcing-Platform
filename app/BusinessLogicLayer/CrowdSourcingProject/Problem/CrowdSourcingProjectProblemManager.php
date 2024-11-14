@@ -125,8 +125,16 @@ class CrowdSourcingProjectProblemManager {
         $modelAttributes['img_url'] = $imgPath;
         $modelAttributes['default_language_id'] = $attributes['problem-default-language']; // bookmark2 - default or generally another translation language?
 
+        $extraTranslations = isset($attributes['extra_translations']) ? json_decode($attributes['extra_translations']) : [];
+
+        $defaultTranslation = [
+            'language_id' => $attributes['problem-default-language'],
+            'title' => $attributes['problem-title'],
+            'description' => $attributes['problem-description'],
+        ];
+
         $this->crowdSourcingProjectProblemTranslationManager
-            ->updateProblemTranslations($id, $attributes['problem-default-language'], $attributes['problem-title'], $attributes['problem-description']);
+            ->updateProblemTranslations($id, $defaultTranslation, $extraTranslations);
 
         $this->crowdSourcingProjectProblemRepository->update($modelAttributes, $id);
 

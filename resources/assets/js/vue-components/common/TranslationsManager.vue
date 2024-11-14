@@ -85,7 +85,7 @@
 									{{ originalTranslation[key] }}
 								</td>
 								<td>
-									<textarea v-model="translation[key]"></textarea>
+									<textarea class="form-control" v-model="translation[key]"></textarea>
 								</td>
 							</tr>
 							</tbody>

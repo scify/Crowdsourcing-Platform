@@ -39,16 +39,36 @@ class CrowdSourcingProjectProblemTranslationManager {
         return $this->crowdSourcingProjectProblemTranslationRepository->allWhere(['problem_id' => $problem->id]);
     }
 
-    public function updateProblemTranslations(int $problem_id, int $new_default_language_id, string $default_language_title, string $default_language_description) {
+    public function updateProblemTranslations(int $problemId, array $defaultTranslation, array $extraTranslations): void {
+        $this->updateProblemDefaultTranslation($problemId, $defaultTranslation);
+
+        $this->updateProblemExtraTranslations($problemId, $extraTranslations);
+    }
+
+    protected function updateProblemDefaultTranslation(int $problemId, array $defaultTranslation): void {
         $this->crowdSourcingProjectProblemTranslationRepository->updateOrCreate(
             [
-                'problem_id' => $problem_id,
-                'language_id' => $new_default_language_id,
+                'problem_id' => $problemId,
+                'language_id' => $defaultTranslation['language_id'],
             ],
             [
-                'title' => $default_language_title,
-                'description' => $default_language_description,
+                'title' => $defaultTranslation['title'],
+                'description' => $defaultTranslation['description'],
             ]
         );
+    }
+
+    protected function updateProblemExtraTranslations(int $problemId, array $extraTranslations) {
+        // TODO
+        // get all available translations for problem
+        // for each translation in the existing ones, check if the translation exists in the $extraTranslations array
+        // if exists
+        // update the title and description
+        // remove the entry from the $extraTranslations array (or mark it as parsed)
+        // if not exists
+        // delete the record in the DB
+
+        // foreach translation in the $extraTranslations
+        // if not parsed, create the record in the DB
     }
 }
