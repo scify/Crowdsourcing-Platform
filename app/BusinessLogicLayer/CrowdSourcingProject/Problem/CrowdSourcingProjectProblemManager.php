@@ -144,4 +144,8 @@ class CrowdSourcingProjectProblemManager {
     public function updateProblemStatus(int $id, int $status_id) {
         return $this->crowdSourcingProjectProblemRepository->update(['status_id' => $status_id], $id);
     }
+
+    public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
+        return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForManagement($projectId);
+    }
 }
