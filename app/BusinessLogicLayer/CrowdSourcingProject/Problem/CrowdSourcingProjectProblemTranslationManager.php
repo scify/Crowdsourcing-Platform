@@ -38,4 +38,17 @@ class CrowdSourcingProjectProblemTranslationManager {
 
         return $this->crowdSourcingProjectProblemTranslationRepository->allWhere(['problem_id' => $problem->id]);
     }
+
+    public function updateProblemTranslations(int $problem_id, int $new_default_language_id, string $default_language_title, string $default_language_description) {
+        $this->crowdSourcingProjectProblemTranslationRepository->updateOrCreate(
+            [
+                'problem_id' => $problem_id,
+                'language_id' => $new_default_language_id,
+            ],
+            [
+                'title' => $default_language_title,
+                'description' => $default_language_description,
+            ]
+        );
+    }
 }

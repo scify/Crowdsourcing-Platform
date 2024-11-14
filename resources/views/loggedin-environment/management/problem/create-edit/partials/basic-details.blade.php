@@ -31,7 +31,31 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-title">Problem Title (<span class="red">*</span>)</label>
+                        <label for="problem-default-language">Problem Default Language (<span class="red">*</span>)</label>
+                        <select
+                                id="problem-default-language"
+                                name="problem-default-language"
+                                class="form-control {{ $errors->has('problem-default-language') ? 'is-invalid' : '' }}"
+                                required
+                        >
+                            @foreach ($viewModel->languagesLkp as $language)
+                                <option
+                                        @if ($viewModel->shouldLanguageBeSelected($language))
+                                            selected
+                                        @endif
+                                        value="{{ $language->id }}"
+                                >
+                                    {{ $language->language_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div id="problem-default-language-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-default-language') }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="problem-title">Problem Default Title (<span class="red">*</span>)</label>
                         <input type="text"
                             id="problem-title"
                             name="problem-title"
@@ -48,7 +72,7 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-description">Problem Description (<span class="red">*</span>)</label>
+                        <label for="problem-description">Problem Default Description (<span class="red">*</span>)</label>
                         <textarea
                             id="problem-description"
                             name="problem-description"
@@ -91,30 +115,6 @@
                             @endforeach
                         </select>
                         <div id="problem-status-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-status') }}</strong></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-default-language">Problem Default Language (<span class="red">*</span>)</label>
-                        <select
-                            id="problem-default-language"
-                            name="problem-default-language"
-                            class="form-control {{ $errors->has('problem-default-language') ? 'is-invalid' : '' }}"
-                            required
-                        >
-                            @foreach ($viewModel->languagesLkp as $language)
-                                <option
-                                    @if ($viewModel->shouldLanguageBeSelected($language))
-                                        selected
-                                    @endif
-                                    value="{{ $language->id }}"
-                                >
-                                    {{ $language->language_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div id="problem-default-language-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-default-language') }}</strong></div>
                     </div>
                 </div>
 

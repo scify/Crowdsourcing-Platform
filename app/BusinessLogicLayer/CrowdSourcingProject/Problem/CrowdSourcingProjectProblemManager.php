@@ -125,14 +125,10 @@ class CrowdSourcingProjectProblemManager {
         $modelAttributes['img_url'] = $imgPath;
         $modelAttributes['default_language_id'] = $attributes['problem-default-language']; // bookmark2 - default or generally another translation language?
 
-        // $modelAttributes['title'] = $attributes['problem-title']; // bookmark4
-        // $modelAttributes['description'] = $attributes['problem-description']; // bookmark4
+        $this->crowdSourcingProjectProblemTranslationManager
+            ->updateProblemTranslations($id, $attributes['problem-default-language'], $attributes['problem-title'], $attributes['problem-description']);
 
         $this->crowdSourcingProjectProblemRepository->update($modelAttributes, $id);
-
-        // if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED) { // bookmark3 - I think DELETED status_id is not possible for problems?
-        //     $this->crowdSourcingProjectRepository->delete($id);
-        // }
 
         // $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject( // bookmark3 - what's this?
         //     $attributes, $id);
