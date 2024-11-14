@@ -29,4 +29,8 @@ class CrowdSourcingProjectProblem extends Model {
     public function status(): HasOne {
         return $this->hasOne(CrowdSourcingProjectProblemStatusLkp::class, 'id', 'status_id');
     }
+
+    public function bookmarks(): HasMany {
+        return $this->hasMany(CrowdSourcingProjectProblemUserBookmark::class, 'problem_id', 'id');
+    }
 }
