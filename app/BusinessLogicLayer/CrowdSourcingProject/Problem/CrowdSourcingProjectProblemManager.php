@@ -97,7 +97,7 @@ class CrowdSourcingProjectProblemManager {
             'user_creator_id' => Auth::id(),
             'slug' => Str::random(16), // temporary - will be changed after record creation
             'status_id' => $attributes['problem-status'],
-            'img_url' => $imgPath ?? null,
+            'img_url' => $imgPath,
             'default_language_id' => $attributes['problem-default-language'], // bookmark2 - default or generally another translation language?
         ]);
 
@@ -110,6 +110,37 @@ class CrowdSourcingProjectProblemManager {
         ]);
 
         return $crowdSourcingProjectProblem->id;
+    }
+
+    public function updateProblem(int $id, array $attributes) {
+        if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
+            $imgPath = FileUploader::uploadAndGetPath($attributes['problem-image'], 'problem_image');
+        } else {
+            $imgPath = self::DEFAULT_IMAGE_PATH;
+        }
+
+        $modelAttributes['project_id'] = $attributes['problem-owner-project'];
+        $modelAttributes['slug'] = $attributes['problem-slug'];
+        $modelAttributes['status_id'] = $attributes['problem-status'];
+        $modelAttributes['img_url'] = $imgPath;
+        $modelAttributes['default_language_id'] = $attributes['problem-default-language']; // bookmark2 - default or generally another translation language?
+
+        // $modelAttributes['title'] = $attributes['problem-title']; // bookmark4
+        // $modelAttributes['description'] = $attributes['problem-description']; // bookmark4
+
+        $this->crowdSourcingProjectProblemRepository->update($modelAttributes, $id);
+
+        // if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED) { // bookmark3 - I think DELETED status_id is not possible for problems?
+        //     $this->crowdSourcingProjectRepository->delete($id);
+        // }
+
+        // $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject( // bookmark3 - what's this?
+        //     $attributes, $id);
+
+        // if (isset($attributes['extra_translations'])) { // bookmark3 - what's this?
+        //     $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
+        //         json_decode($attributes['extra_translations']), $project->id, intval($attributes['language_id']));
+        // }
     }
 
     public function deleteProblem(int $id): bool {

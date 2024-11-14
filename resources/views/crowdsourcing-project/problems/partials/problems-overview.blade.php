@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-12 my-4 my-lg-5 pt-4">
-            <x-go-back-link href="/{{ app()->getLocale() .'/'. $viewModel->project->slug }}" class="d-none d-lg-block">{{ __("project-problems.back") }}</x-go-back-link> <!-- bookmark - app()->getLocale() // is this OK? -->
+            <x-go-back-link href="/{{ app()->getLocale() .'/'. $viewModel->project->slug }}" class="d-none d-lg-block">{{ __("project-problems.back") }}</x-go-back-link> <!-- bookmark1 - app()->getLocale() // is this OK? -->
         </div>
     </div>
 

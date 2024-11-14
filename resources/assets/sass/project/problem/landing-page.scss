@@ -11,8 +11,8 @@
         padding-right: 0.5rem;
         font-family: "Noto Sans Variable", sans-serif;
         font-weight: 600;
-        font-size: 24px; // 24px // bookmark - calulate in rem
-        line-height: 32.69px; // 32.69px // bookmark - calculate in rem
+        font-size: 24px; // 24px // bookmark1 - calulate in rem
+        line-height: 32.69px; // 32.69px // bookmark1 - calculate in rem
         text-align: left;
     }
 
@@ -24,8 +24,8 @@
     .project-overview p {
         font-family: "Open Sans Variable", sans-serif;
         font-weight: 400;
-        font-size: 16px; // 16px // bookmark - calulate in rem
-        line-height: 21.82px; // 21.82px // bookmark - calulate in rem
+        font-size: 16px; // 16px // bookmark1 - calulate in rem
+        line-height: 21.82px; // 21.82px // bookmark1 - calulate in rem
         text-align: left;
     }
 
@@ -93,7 +93,7 @@
 
             &:focus-visible {
                 border-radius: 1rem;
-                outline: 4px solid black; // bookmark - calculate in rem
+                outline: 4px solid black; // bookmark1 - calculate in rem
             }
         }
 
@@ -131,8 +131,8 @@
             .card-title {
                 font-family: "Noto Sans Variable", sans-serif;
                 font-weight: 500;
-                font-size: 24px; // 24px // bookmark - calulate in rem
-                line-height: 29.34px; // 29.34px // bookmark - calulate in rem
+                font-size: 24px; // 24px // bookmark1 - calulate in rem
+                line-height: 29.34px; // 29.34px // bookmark1 - calulate in rem
 
                 // truncate at 2 lines
                 display: -webkit-box;
@@ -146,8 +146,8 @@
             .card-text {
                 font-family: "Open Sans Variable", sans-serif;
                 font-weight: 400;
-                font-size: 16px; // 16px // bookmark - calulate in rem
-                line-height: 20.4px; // 20.4px // bookmark - calulate in rem
+                font-size: 16px; // 16px // bookmark1 - calulate in rem
+                line-height: 20.4px; // 20.4px // bookmark1 - calulate in rem
 
                 // truncate at 4 lines
                 display: -webkit-box;
@@ -176,7 +176,7 @@
             }
 
             &:focus-visible {
-                outline: 3px solid var(--btn-text-color); // bookmark - calculate in rem
+                outline: 3px solid var(--btn-text-color); // bookmark1 - calculate in rem
             }
         }
 
@@ -190,15 +190,15 @@
             box-shadow: 0 4px 4px 0 #00000040;
             font-family: "Noto Sans Variable", sans-serif;
             font-weight: 600;
-            font-size: 20px; // 20px // bookmark - calulate in rem
-            line-height: 27.24px; // 27.24px // bookmark - calulate in rem
+            font-size: 20px; // 20px // bookmark1 - calulate in rem
+            line-height: 27.24px; // 27.24px // bookmark1 - calulate in rem
 
             &:hover {
                 box-shadow: 0 4px 4px 0 #00000040, 0 4px 4px 0 #00000040;
             }
 
             &:focus-visible {
-                outline: 4px solid black; // bookmark - calculate in rem
+                outline: 4px solid black; // bookmark1 - calculate in rem
             }
         }
 

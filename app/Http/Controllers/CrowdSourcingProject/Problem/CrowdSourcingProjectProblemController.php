@@ -66,8 +66,10 @@ class CrowdSourcingProjectProblemController extends Controller {
             'problem-owner-project' => ['required'],
         ]);
 
+        $attributes = $request->all();
+
         try {
-            $createdProblemId = $this->crowdSourcingProjectProblemManager->storeProblem($request->all());
+            $createdProblemId = $this->crowdSourcingProjectProblemManager->storeProblem($attributes);
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -94,7 +96,29 @@ class CrowdSourcingProjectProblemController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id) {
-        //
+        $this->validate($request, [ // bookmark2
+            'problem-title' => ['required', 'string', 'max:100'],
+            'problem-description' => ['required', 'string', 'max:400'],
+            'problem-status' => ['required'], // bookmark2
+            'problem-default-language' => ['required'], // bookmark2
+            'problem-slug' => 'required|string|alpha_dash|unique:crowd_sourcing_project_problems,slug,' . $id . '|max:111',
+            'problem-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'problem-owner-project' => ['required'],
+        ]);
+
+        $attributes = $request->all();
+
+        try {
+            $this->crowdSourcingProjectProblemManager->updateProblem($id, $attributes);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
+        }
+
+        session()->flash('flash_message_success', 'The problem has been successfully updated.');
+
+        return back();
     }
 
     /**
