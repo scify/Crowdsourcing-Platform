@@ -31,7 +31,31 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-title">Problem Title (<span class="red">*</span>)</label>
+                        <label for="problem-default-language">Problem Default Language (<span class="red">*</span>)</label>
+                        <select
+                                id="problem-default-language"
+                                name="problem-default-language"
+                                class="form-control {{ $errors->has('problem-default-language') ? 'is-invalid' : '' }}"
+                                required
+                        >
+                            @foreach ($viewModel->languagesLkp as $language)
+                                <option
+                                        @if ($viewModel->shouldLanguageBeSelected($language))
+                                            selected
+                                        @endif
+                                        value="{{ $language->id }}"
+                                >
+                                    {{ $language->language_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div id="problem-default-language-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-default-language') }}</strong></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="problem-title">Problem Default Title (<span class="red">*</span>)</label>
                         <input type="text"
                             id="problem-title"
                             name="problem-title"
@@ -48,7 +72,7 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-description">Problem Description (<span class="red">*</span>)</label>
+                        <label for="problem-description">Problem Default Description (<span class="red">*</span>)</label>
                         <textarea
                             id="problem-description"
                             name="problem-description"
@@ -66,8 +90,8 @@
                 <div class="form-row">
                     <div class="form-group col-sm-12">
                         <label for="problem-status">Problem Status (<span class="red">*</span>)</label>
-                        @if(!Gate::check('manage-platform-content'))
-                            <small class="text-blue">(The problem status can only be changed by a platform administrator.)</small>{{-- bookmark2 - is this what we want? --}}
+                        @if(!Gate::check('manage-platform-content')){{-- bookmark2 - do we need this? --}}
+                            <small class="text-blue">(The problem status can only be changed by a platform administrator.)</small>{{-- bookmark2 - and content-manager? do we need this? --}}
                         @endif
                         <select
                             id="problem-status"
@@ -79,7 +103,7 @@
                             @foreach ($viewModel->problemStatusesLkp as $status)
                                 <option
                                     @if(!Gate::check('manage-platform-content'))
-                                        disabled{{-- bookmark2 - is this what we want? --}}
+                                        disabled{{-- bookmark2 - do we need this? --}}
                                     @endif
                                     @if ($viewModel->problem->status_id == $status->id || old('problem-status') == $status->id)
                                         selected
@@ -94,42 +118,18 @@
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-default-language">Problem Default Language (<span class="red">*</span>)</label>
-                        <select
-                            id="problem-default-language"
-                            name="problem-default-language"
-                            class="form-control {{ $errors->has('problem-default-language') ? 'is-invalid' : '' }}"
-                            required
-                        >
-                            @foreach ($viewModel->languagesLkp as $language)
-                                <option
-                                    @if ($viewModel->shouldLanguageBeSelected($language))
-                                        selected
-                                    @endif
-                                    value="{{ $language->id }}"
-                                >
-                                    {{ $language->language_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div id="problem-default-language-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-default-language') }}</strong></div>
-                    </div>
-                </div>
-
                 @if($viewModel->isEditMode())
                     <div class="form-row">
                         <div class="form-group col-sm-12">
                             <label for="problem-slug">Problem Slug (<span class="red">*</span>)
-                                <span class="text-sm">
-                                    <br>(it defines the problems's url, for example:
-                                    <br><i>For english | https://crowdsourcing.ecas.org/en/your-problem-slug</i>)
-                                    <br><i>For greek | https://crowdsourcing.ecas.org/gr/your-problem-slug</i>)
-                                    <br><i>For dutch | https://crowdsourcing.ecas.org/nl/your-problem-slug</i>)
-                                    <br>The url can contain only letters, numbers, and dashes.
-                                    <br>If left empty, we will take care of creating the URL, based on the problem name. {{-- bookmark2 - implement auto-creation - best done with js (client-side) --}}
-                                    <br>Please note that once you publish the problem you <i>cannot</i> change the slug. {{-- bookmark2 - once published or once created? --}}
+                                <span class="text-sm explanation-text">
+                                    (It defines the problems's url, for example:
+                                    <ul>
+                                        <li><i>For english | https://crowdsourcing.ecas.org/en/project-slug/problem-slug</i></li>
+                                        <li><i>For greek | https://crowdsourcing.ecas.org/gr/project-slug/problem-slug</i></li>
+                                        <li><i>For dutch | https://crowdsourcing.ecas.org/nl/project-slug/problem-slug</i></li>
+                                    </ul>
+                                    The slug must be unique and can contain only letters, numbers, and dashes.)
                                 </span>
                             </label>
                             <input type="text"
@@ -138,6 +138,7 @@
                                 class="form-control {{ $errors->has('problem-slug') ? 'is-invalid' : '' }}"
                                 required
                                 placeholder="Problem Slug"
+                                maxlength="111"
                                 value="{{ old('problem-slug') ? old('problem-slug') : $viewModel->problem->slug }}"
                             >
                             <div id="problem-slug-feedback" class="invalid-feedback"><strong>{{ $errors->first('problem-slug') }}</strong></div>
