@@ -191,19 +191,24 @@ export default {
 		await this.$nextTick(() => {
 			this.dataTableInstance = $("#problemsTable").DataTable({
 				pageLength: 5,
+				autoWidth: false,
 				data: [],
 				columns: [
-					{ title: "#", data: null },
-					{ title: "Title", data: "title" },
-					{ title: "Bookmarks", data: "bookmarks" },
-					{ title: "Languages", data: "languages" },
-					{ title: "Status", data: "status" },
-					{ title: "Actions", data: "actions" },
+					{ title: "#", data: null, width: "5%" },
+					{ title: "Title", data: "title", width: "30%" },
+					{ title: "Bookmarks", data: "bookmarks", width: "5%" },
+					{ title: "Languages", data: "languages", width: "20%" },
+					{ title: "Status", data: "status", width: "20%" },
+					{ title: "Actions", data: "actions", width: "20%" },
 				],
 				columnDefs: [
 					{
 						targets: 0,
 						render: (data, type, row, meta) => meta.row + 1,
+					},
+					{
+						targets: [0, 2, 4, 5], // Indices of columns to center
+						className: "text-center",
 					},
 				],
 			});
@@ -293,12 +298,12 @@ export default {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredProblems.map((problem, index) => ({
 						title: problem.default_translation.title,
-						bookmarks: "TODO",
+						bookmarks: problem.bookmarks.length,
 						languages: problem.translations
 							? problem.translations.map((t) => t.language.language_name).join(", ")
 							: "",
 						status: `<span title="${this.getBadgeTitleForProblemStatus(problem.status)}"
-                                  class="p-2 badge ${this.getBadgeClassForProblemStatus(problem.status)}">
+                                  class="p-2 w-75 badge ${this.getBadgeClassForProblemStatus(problem.status)}">
                                   ${problem.status.title}</span>`,
 						actions: `<div class="dropdown">
 									<button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"

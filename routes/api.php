@@ -53,7 +53,7 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('api.questionnaire.translation.store');
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('api.questionnaire.translations.mark');
     Route::get('/crowd-sourcing-projects/for-problems', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForProblems'])->name('api.crowd-sourcing-projects.for-problems.get');
-    Route::post('/crowd-sourcing-projects/get-problems-for-management', [CrowdSourcingProjectController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.crowd-sourcing-projects.problems.get-management');
+    Route::post('/crowd-sourcing-projects/get-problems-for-management', [CrowdSourcingProjectProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.crowd-sourcing-projects.problems.get-management');
     Route::get('/problems/statuses/management', [CrowdSourcingProjectProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
 });
 
