@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Controllers\CrowdSourcingProject\Problem;
+namespace Tests\Feature\Controllers\CrowdSourcingProject\Problem;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\User;
