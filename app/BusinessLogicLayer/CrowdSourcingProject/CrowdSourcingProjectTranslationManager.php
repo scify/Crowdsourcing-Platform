@@ -40,7 +40,7 @@ class CrowdSourcingProjectTranslationManager {
         return $this->crowdSourcingProjectTranslationRepository->allWhere(['project_id' => $project->id]);
     }
 
-    public function storeOrUpdateDefaultTranslationForProject(array $attributes, int $project_id) {
+    public function storeOrUpdateDefaultTranslationForProject(array $attributes, int $project_id): void {
         $allowedKeys = (new CrowdSourcingProjectTranslation)->getFillable();
         $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
         $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
@@ -49,19 +49,19 @@ class CrowdSourcingProjectTranslationManager {
         );
     }
 
-    public function storeOrUpdateTranslationsForProject(array $attributesArray, int $project_id, int $language_id) {
+    public function storeOrUpdateExtraTranslationsForProject(array $extraTranslations, int $project_id, int $language_id): void {
         $defaultLanguageContentForProject = $this->crowdSourcingProjectTranslationRepository->where([
             'project_id' => $project_id, 'language_id' => $language_id, ])
             ->toArray();
         $allowedKeys = (new CrowdSourcingProjectTranslation)->getFillable();
-        foreach ($attributesArray as $attributes) {
-            $attributes = json_decode(json_encode($attributes), true);
-            foreach ($attributes as $key => $value) {
+        foreach ($extraTranslations as $extraTranslation) {
+            $extraTranslation = json_decode(json_encode($extraTranslation), true);
+            foreach ($extraTranslation as $key => $value) {
                 if (!$value) {
-                    $attributes[$key] = $defaultLanguageContentForProject[$key];
+                    $extraTranslation[$key] = $defaultLanguageContentForProject[$key];
                 }
             }
-            $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
+            $filtered = Helpers::getFilteredAttributes($extraTranslation, $allowedKeys);
             $filtered['project_id'] = $project_id;
             $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
                 ['project_id' => $project_id, 'language_id' => $filtered['language_id']],

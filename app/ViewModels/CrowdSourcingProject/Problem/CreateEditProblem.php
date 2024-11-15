@@ -13,6 +13,7 @@ class CreateEditProblem {
     public $languagesLkp;
     public $defaultLanguageCode = 'en';
     public $projects;
+    public array $translationsMetaData;
 
     public function __construct(
         CrowdSourcingProjectProblem $crowdSourcingProjectProblem,
@@ -26,6 +27,16 @@ class CreateEditProblem {
         $this->problemStatusesLkp = $problemStatusesLkp;
         $this->languagesLkp = $languagesLkp;
         $this->projects = $projects;
+        $this->translationsMetaData = [
+            'title' => [
+                'display_title' => 'Project Name (*)',
+                'required' => true,
+            ],
+            'description' => [
+                'display_title' => 'Project description (*)',
+                'required' => true,
+            ],
+        ];
     }
 
     public function isEditMode(): bool {
