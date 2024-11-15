@@ -85,7 +85,7 @@
 									{{ originalTranslation[key] }}
 								</td>
 								<td>
-									<textarea v-model="translation[key]"></textarea>
+									<textarea class="form-control" v-model="translation[key]"></textarea>
 								</td>
 							</tr>
 							</tbody>
@@ -196,27 +196,7 @@ export default {
 
 		const deleteTranslation = async (language) => {
 			const translation = translations.value.find((t) => t.language_id === language.id);
-			const swal = (await import("bootstrap-sweetalert")).default;
-			swal(
-				{
-					title: "Are you sure?",
-					text: "The translation will be deleted",
-					type: "warning",
-					showCancelButton: true,
-					confirmButtonClass: "btn-danger",
-					confirmButtonText: "Yes, delete it!",
-					cancelButtonText: "No, cancel!",
-					closeOnConfirm: true,
-					closeOnCancel: true,
-				},
-				(isConfirm) => {
-					if (isConfirm) {
-						translations.value.splice(translations.value.indexOf(translation), 1);
-					} else {
-						checkedLanguages.value.push(language);
-					}
-				},
-			);
+			translations.value.splice(translations.value.indexOf(translation), 1);
 		};
 
 		const getOriginalEnglishTranslation = () => {

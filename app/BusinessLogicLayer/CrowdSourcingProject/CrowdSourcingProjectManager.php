@@ -214,7 +214,7 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(
             $attributes, $id);
         if (isset($attributes['extra_translations'])) {
-            $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateExtraTranslationsForProject(
                 json_decode($attributes['extra_translations']), $project->id, intval($attributes['language_id']));
         }
     }
