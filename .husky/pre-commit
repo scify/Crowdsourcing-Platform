@@ -56,7 +56,6 @@ fi
 
 # Restage all non-PHP files
 if [ -n "$OTHER_FILES" ]; then
-    echo "Restaging other files..."
     echo "$OTHER_FILES" | xargs -r git add
 fi
 
