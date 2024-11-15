@@ -26,12 +26,6 @@ else
     OTHER_FILES=""
 fi
 
-# Debugging information
-echo "PHP files:"
-echo "$PHP_FILES"
-echo "Other files:"
-echo "$OTHER_FILES"
-
 # Exit early if there are no files staged (unlikely, but for safety)
 if [ -z "$STAGED_FILES" ]; then
     echo "No files staged for commit. Exiting."
@@ -62,6 +56,7 @@ fi
 
 # Restage all non-PHP files
 if [ -n "$OTHER_FILES" ]; then
+    echo "Restaging other files..."
     echo "$OTHER_FILES" | xargs -r git add
 fi
 
