@@ -26,14 +26,13 @@ class CrowdSourcingProjectProblemTranslationRepository extends Repository {
         return CrowdSourcingProjectProblemTranslation::class;
     }
 
-    public function deleteTranslation($problem_id, $language_id) {
+    public function deleteTranslation($problem_id, $language_id): int {
         $problemDefaultTranslationId = $this->crowdSourcingProjectProblemRepository->find($problem_id)->default_language_id;
         if ($language_id === $problemDefaultTranslationId) {
             throw new RepositoryException("Cannot delete translation with ['problem_id' => {$problem_id}, 'language_id' => {$language_id}] - it is the defaultTranslation for the problem.");
         }
-        $query = DB::delete('DELETE FROM crowd_sourcing_project_problem_translations
-                             WHERE problem_id = ? and language_id = ?;', [$problem_id, $language_id]);
 
-        return $query;
+        return DB::delete('DELETE FROM crowd_sourcing_project_problem_translations
+                             WHERE problem_id = ? and language_id = ?;', [$problem_id, $language_id]);
     }
 }
