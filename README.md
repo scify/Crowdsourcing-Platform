@@ -635,10 +635,41 @@ php artisan test --env=testing
 
 ## How to debug
 
-- Install and configure Xdebug on your machine
-- At Chrome
-  install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
-- At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"
+By using Docker Compose, you can debug the application by following these steps:
+
+1. Run `docker compose up` to start the containers.
+2. In VSCode, open the project directory and install the PHP Debug extension.
+3. For the PHP Debug extension, make sure that you have a `.vscode/launch.json` file with the following contents:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www": "${workspaceFolder}"
+            },
+            "log": true
+        },
+    ]
+}
+```
+
+4. Start the debugger by navigating to the "Run and Debug" panel, and clicking on the "Listen for Xdebug" configuration.
+5. Set breakpoints in your code.
+  
+Now you can start debugging your application.
+
+For debugging the tests:
+
+1. Open the test file you want to debug.
+2. Add breakpoints in the test file.
+3. Run `docker exec -it crowdsourcing_platform_server bash` to enter the PHP container.
+4. Run `./vendor/bin/phpunit --filter {METHOD OR CLASS NAME}`. For example `./vendor/bin/phpunit --filter authenticatedNonAdminUserCannotAccessCreatePage`.
 
 ## Troubleshooting
 
