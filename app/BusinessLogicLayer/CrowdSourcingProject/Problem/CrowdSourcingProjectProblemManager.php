@@ -98,13 +98,13 @@ class CrowdSourcingProjectProblemManager {
             'slug' => Str::random(16), // temporary - will be changed after record creation
             'status_id' => $attributes['problem-status'],
             'img_url' => $imgPath,
-            'default_language_id' => $attributes['problem-default-language'], // bookmark2 - default or generally another translation language?
+            'default_language_id' => $attributes['problem-default-language'],
         ]);
 
         $crowdSourcingProjectProblem->slug = Str::slug($attributes['problem-title'] . '-' . $crowdSourcingProjectProblem->id);
         $crowdSourcingProjectProblem->save();
 
-        $crowdSourcingProjectProblemTranslation = $crowdSourcingProjectProblem->defaultTranslation()->create([ // bookmark2 - default or regular translation?
+        $crowdSourcingProjectProblem->defaultTranslation()->create([
             'title' => $attributes['problem-title'],
             'description' => $attributes['problem-description'],
         ]);
@@ -123,28 +123,17 @@ class CrowdSourcingProjectProblemManager {
         $modelAttributes['slug'] = $attributes['problem-slug'];
         $modelAttributes['status_id'] = $attributes['problem-status'];
         $modelAttributes['img_url'] = $imgPath;
-        $modelAttributes['default_language_id'] = $attributes['problem-default-language']; // bookmark2 - default or generally another translation language?
-
-        $extraTranslations = isset($attributes['extra_translations']) ? json_decode($attributes['extra_translations']) : [];
+        $modelAttributes['default_language_id'] = $attributes['problem-default-language'];
+        $this->crowdSourcingProjectProblemRepository->update($modelAttributes, $id);
 
         $defaultTranslation = [
             'language_id' => $attributes['problem-default-language'],
             'title' => $attributes['problem-title'],
             'description' => $attributes['problem-description'],
         ];
-
+        $extraTranslations = isset($attributes['extra_translations']) ? json_decode($attributes['extra_translations']) : [];
         $this->crowdSourcingProjectProblemTranslationManager
             ->updateProblemTranslations($id, $defaultTranslation, $extraTranslations);
-
-        $this->crowdSourcingProjectProblemRepository->update($modelAttributes, $id);
-
-        // $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject( // bookmark3 - what's this?
-        //     $attributes, $id);
-
-        // if (isset($attributes['extra_translations'])) { // bookmark3 - what's this?
-        //     $this->crowdSourcingProjectTranslationManager->storeOrUpdateTranslationsForProject(
-        //         json_decode($attributes['extra_translations']), $project->id, intval($attributes['language_id']));
-        // }
     }
 
     public function deleteProblem(int $id): bool {
