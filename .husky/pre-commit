@@ -13,10 +13,6 @@ fi
 # Get a list of staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=d)
 
-# Debugging information
-echo "Staged files:"
-echo "$STAGED_FILES"
-
 # Separate PHP files from other files, only if there are staged files
 if [ -n "$STAGED_FILES" ]; then
     PHP_FILES=$(echo "$STAGED_FILES" | grep '\.php$' || true)
