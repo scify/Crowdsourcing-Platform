@@ -271,11 +271,6 @@ textarea {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem 1rem;
-
-	label:hover {
-		background-color: $gray-100;
-		cursor: pointer;
-	}
 }
 
 .dropdown-item span {
