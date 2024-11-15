@@ -17,10 +17,10 @@
                 </div>
                 <div class="card-body">
                     <div class="row margin-bottom">
-                        <div class="col-md-2">
-                            <a class="btn btn-block btn-primary new-questionnaire"
+                        <div class="col-md-3 col-sm-11">
+                            <a class="btn btn-block btn-primary new-questionnaire w-100"
                                href="{{route("create-questionnaire")}}"><i
-                                        class="fa fa-plus"></i> Create new questionnaire</a>
+                                        class="fa fa-plus mr-2"></i> Create new questionnaire</a>
                         </div>
                     </div>
                     <table class="w-100 table table-striped table-bordered" id="questionnaires-table" cellspacing="0">
