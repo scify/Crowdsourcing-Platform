@@ -55,7 +55,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Tests\\": "tests/",
+      "Database\\Helpers\\": "database/helpers/"
     }
   },
   "extra": {

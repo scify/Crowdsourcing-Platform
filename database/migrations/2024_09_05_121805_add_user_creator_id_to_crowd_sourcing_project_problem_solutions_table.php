@@ -1,5 +1,6 @@
 <?php
 
+use Database\Helpers\ColumnTypeHelper;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,8 +13,17 @@ return new class extends Migration {
         if (Schema::hasColumn('crowd_sourcing_project_problem_solutions', 'user_creator_id')) {
             return;
         }
-        Schema::table('crowd_sourcing_project_problem_solutions', function (Blueprint $table) {
-            $table->unsignedInteger('user_creator_id')->after('problem_id')->nullable(false);
+
+
+        // Check the data type of the users.id column
+        $columnType = ColumnTypeHelper::getColumnType('users', 'id');
+
+        Schema::table('crowd_sourcing_project_problem_solutions', function (Blueprint $table) use ($columnType) {
+            if ($columnType === 'bigint') {
+                $table->unsignedBigInteger('user_creator_id')->after('problem_id')->nullable(false);
+            } else {
+                $table->unsignedInteger('user_creator_id')->after('problem_id')->nullable(false);
+            }
             $table->foreign('user_creator_id')->references('id')->on('users');
         });
     }
