@@ -1,7 +1,7 @@
 <template>
 	<div class="container-fluid">
 		<div class="row mb-4">
-			<div class="col">
+			<div class="col text-right">
 				<input
 					id="extra_translations"
 					type="hidden"
@@ -9,23 +9,43 @@
 					:value="JSON.stringify(translations)"
 				/>
 
-				<div
-					v-for="language in availableLanguages"
-					:key="'avail_lang_' + language.id"
-					class="float-left mr-2 lang"
-				>
-					<label v-if="language?.id !== defaultLangId">
-						<input
-							v-model="checkedLanguages"
-							type="checkbox"
-							:value="language"
-							@change="checkChanged($event, language)"
-						/>
-						{{ language.language_name }}
-					</label>
+				<!-- Language Selector Dropdown -->
+				<div class="dropdown">
+					<button
+						class="btn btn-primary btn-slim dropdown-toggle"
+						type="button"
+						id="languageDropdown"
+						data-toggle="dropdown"
+						aria-expanded="false"
+					>
+						Select Languages
+					</button>
+					<ul class="dropdown-menu p-3" aria-labelledby="languageDropdown">
+						<li
+							v-for="language in availableLanguages"
+							:key="'avail_lang_' + language.id"
+							class="dropdown-item d-flex align-items-center justify-content-between"
+						>
+							<label class="mb-0">
+								<input
+									v-model="checkedLanguages"
+									type="checkbox"
+									class="form-check-input me-2"
+									:value="language"
+									@change="checkChanged($event, language)"
+								/>
+								{{ language.language_name }}
+							</label>
+							<span v-if="checkedLanguages.includes(language)">
+								&#10003; <!-- Checkmark icon -->
+							</span>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
+
+		<!-- Rest of your tabs and translations UI remains unchanged -->
 		<div class="row">
 			<div class="col">
 				<ul id="translations-tab" class="nav nav-tabs mt-4" role="tablist">
@@ -96,6 +116,7 @@
 		</div>
 	</div>
 </template>
+
 
 <script>
 import { ref, onMounted } from "vue";
@@ -237,5 +258,32 @@ textarea {
 
 .lang {
 	width: 120px;
+}
+
+.dropdown-menu {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.dropdown-item {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1rem;
+
+	label:hover {
+		background-color: $gray-100;
+		cursor: pointer;
+	}
+}
+
+.dropdown-item span {
+	color: $brand-success;
+	font-weight: bold;
+}
+
+.dropdown-item input[type="checkbox"] {
+	margin-right: 8px;
 }
 </style>
