@@ -17,10 +17,8 @@ return new class extends Migration {
                 $table->foreign('solution_id', 'csp_problem_solution_upvotes_solution_id_foreign')->references('id')->on('crowd_sourcing_project_problem_solutions');
 
                 if ($columnType === 'bigint') {
-                    echo 'big int';
                     $table->unsignedBigInteger('user_voter_id');
                 } else {
-                    echo 'int';
                     $table->unsignedInteger('user_voter_id');
                 }
                 $table->foreign('user_voter_id', 'csp_problem_solution_upvotes_user_voter_id_foreign')->references('id')->on('users');
