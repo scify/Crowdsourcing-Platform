@@ -59,6 +59,7 @@ export default defineConfig({
 				"resources/assets/js/questionnaire/questionnaire-statistics.js",
 				"resources/assets/js/questionnaire/questionnaire-thanks.js",
 				"resources/assets/js/project/problem/manage-problem.js",
+				"resources/assets/js/project/problem/landing-page.js",
 			],
 			refresh: true,
 		}),

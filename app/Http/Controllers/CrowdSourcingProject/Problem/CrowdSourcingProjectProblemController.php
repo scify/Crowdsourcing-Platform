@@ -147,4 +147,12 @@ class CrowdSourcingProjectProblemController extends Controller {
 
         return response()->json($this->crowdSourcingProjectProblemManager->getProblemsForCrowdSourcingProjectForManagement(request('projectId')));
     }
+
+    public function getProblemsForCrowdSourcingProject(Request $request): JsonResponse {
+        $this->validate($request, [
+            'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
+        ]);
+
+        return response()->json($this->crowdSourcingProjectProblemManager->getProblemsForCrowdSourcingProjectForLandingPage($request->projectId, app()->getLocale()));
+    }
 }

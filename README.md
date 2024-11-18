@@ -17,49 +17,56 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
-- [Installation Instructions](#installation-instructions)
-    - [Method 1: Docker Compose](#method-1-docker-compose-recommended)
-        - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
-        - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
-        - [Step 3: Launch the Application](#step-3-launch-the-application)
-    - [Method 2: Manual Installation](#method-2-manual-installation)
-        - [Step 1: Install PHP](#step-1-install-php)
-        - [Step 2: Install Composer](#step-2-install-composer)
-        - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
-        - [Step 4: Install Nginx](#step-4-install-nginx)
-            - [Nginx Configuration](#nginx-configuration)
-        - [Step 5: Install MySQL](#step-5-install-mysql)
-            - [Database Considerations](#database-considerations)
-- [Run the Laravel Application commands](#run-the-laravel-application-commands)
+- [Crowdsourcing Web Application](#crowdsourcing-web-application)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Benefits of Open Source applications](#benefits-of-open-source-applications)
+  - [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
+  - [Installation Instructions](#installation-instructions)
+  - [Method 1: Docker Compose (recommended)](#method-1-docker-compose-recommended)
+    - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
+    - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
+    - [Step 3: Launch the Application](#step-3-launch-the-application)
+  - [Method 2: Manual Installation](#method-2-manual-installation)
+    - [Step 1: Install PHP](#step-1-install-php)
+    - [Step 2: Install Composer](#step-2-install-composer)
+    - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
+    - [Step 4: Install Nginx](#step-4-install-nginx)
+      - [Nginx Configuration](#nginx-configuration)
+    - [Step 5: Install MySQL](#step-5-install-mysql)
+      - [Database Considerations](#database-considerations)
+    - [Step 6: Run the application](#step-6-run-the-application)
+  - [Run the Laravel Application commands](#run-the-laravel-application-commands)
     - [Step 1: Fix permissions for storage directory](#step-1-fix-permissions-for-storage-directory)
     - [Step 2: Create the `.env` file](#step-2-create-the-env-file)
     - [Step 3: Create A Database](#step-3-create-a-database)
-        - [Add the DB schema and the DB data](#add-the-db-schema-and-the-db-data)
-            - [Option 1: Use an existing database (MySQL dump)](#option-1-use-an-existing-database-mysql-dump)
-            - [Option 2: Run the migrations and seed the database](#option-2-run-the-migrations-and-seed-the-database)
+      - [Add the DB schema and the DB data](#add-the-db-schema-and-the-db-data)
+        - [Option 1: Use an existing database (MySQL dump)](#option-1-use-an-existing-database-mysql-dump)
+        - [Option 2: Run the migrations and seed the database](#option-2-run-the-migrations-and-seed-the-database)
     - [Step 4: Install Laravel (back-end) dependencies](#step-4-install-laravel-back-end-dependencies)
     - [Step 5: Generate the application key](#step-5-generate-the-application-key)
     - [Step 6: Install and compile the front-end dependencies:](#step-6-install-and-compile-the-front-end-dependencies)
     - [Step 7: Create symbolic link for uploaded files](#step-7-create-symbolic-link-for-uploaded-files)
     - [Step 8: Cache the `.env` settings](#step-8-cache-the-env-settings)
-- [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
-- [SEO - Generate Sitemap](#seo---generate-sitemap)
-- [Related HTML Template](#related-html-template)
-- [PHP code style - Laravel Pint](#php-code-style---laravel-pint)
-- [Installation-specific resources](#installation-specific-resources)
-- [Development Guidelines](#development-guidelines)
+  - [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
+    - [Nginx Configuration for Social Login (only for Non-Docker installations)](#nginx-configuration-for-social-login-only-for-non-docker-installations)
+  - [SEO - Generate Sitemap](#seo---generate-sitemap)
+  - [Code Linting \& Formatting](#code-linting--formatting)
+    - [PHP code style - Laravel Pint](#php-code-style---laravel-pint)
+    - [JavaScript \&\& CSS code style - ESLint \&\& Prettier](#javascript--css-code-style---eslint--prettier)
+  - [Related HTML Template](#related-html-template)
+  - [Installation-specific resources](#installation-specific-resources)
+  - [Development Guidelines](#development-guidelines)
     - [Directory Structure](#directory-structure)
     - [About the Repository Pattern](#about-the-repository-pattern)
-- [Run Tests](#run-tests)
-- [How to debug](#how-to-debug)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-- [Credits](#credits)
-- [Contact](#contact)
+  - [Run Tests](#run-tests)
+  - [How to debug](#how-to-debug)
+  - [Troubleshooting](#troubleshooting)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Credits](#credits)
+  - [Contact](#contact)
 
 ## Features
 
@@ -90,13 +97,13 @@ Offering the code under open source licenses includes many benefits. Of those, t
 - Stakeholders can add features, change it, improve it, adjust to their needs.
 - New contributions are added to the existing solution so that everyone benefit
 
-# Organizations using the Crowdsourcing platform
+## Organizations using the Crowdsourcing platform
 
 [ECAS official installation](https://crowdsourcing.ecas.org/en)
 
 [SciFY official installation](https://crowdsourcing.scify.org/)
 
-# Installation Instructions
+## Installation Instructions
 
 ## Method 1: Docker Compose (recommended)
 
@@ -628,10 +635,41 @@ php artisan test --env=testing
 
 ## How to debug
 
-- Install and configure Xdebug on your machine
-- At Chrome
-  install [Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog)
-- At PhpStorm/IntelliJ click the "Start listening for PHP debug connections"
+By using Docker Compose, you can debug the application by following these steps:
+
+1. Run `docker compose up` to start the containers.
+2. In VSCode, open the project directory and install the PHP Debug extension.
+3. For the PHP Debug extension, make sure that you have a `.vscode/launch.json` file with the following contents:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www": "${workspaceFolder}"
+            },
+            "log": true
+        },
+    ]
+}
+```
+
+4. Start the debugger by navigating to the "Run and Debug" panel, and clicking on the "Listen for Xdebug" configuration.
+5. Set breakpoints in your code.
+  
+Now you can start debugging your application.
+
+For debugging the tests:
+
+1. Open the test file you want to debug.
+2. Add breakpoints in the test file.
+3. Run `docker exec -it crowdsourcing_platform_server bash` to enter the PHP container.
+4. Run `./vendor/bin/phpunit --filter {METHOD OR CLASS NAME}`. For example `./vendor/bin/phpunit --filter authenticatedNonAdminUserCannotAccessCreatePage`.
 
 ## Troubleshooting
 
