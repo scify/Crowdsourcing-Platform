@@ -9,7 +9,8 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\LanguageRepository;
-use App\Utils\FileUploader;
+use App\Repository\RepositoryException;
+use App\Utils\FileHandler;
 use App\ViewModels\CrowdSourcingProject\Problem\CreateEditProblem;
 use App\ViewModels\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemsLandingPage;
 use Illuminate\Support\Collection;
@@ -49,15 +50,9 @@ class CrowdSourcingProjectProblemManager {
         return new CrowdSourcingProjectProblemsLandingPage($crowdSourcingProject);
     }
 
-    public function getCrowdSourcingProjectProblem(int $id): CrowdSourcingProjectProblem {
-        $problem = $this->crowdSourcingProjectProblemRepository->find($id);
-
-        return $problem;
-    }
-
     public function getCreateEditProblemViewModel(?int $id = null): CreateEditProblem {
         if ($id) {
-            $problem = $this->getCrowdSourcingProjectProblem($id);
+            $problem = $this->crowdSourcingProjectProblemRepository->find($id);
         } else {
             $problem = new CrowdSourcingProjectProblem;
             $problem->default_language_id = 6; // @todo change with lookuptable value - bookmark2
@@ -83,7 +78,7 @@ class CrowdSourcingProjectProblemManager {
 
     public function storeProblem(array $attributes): int {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
-            $imgPath = FileUploader::uploadAndGetPath($attributes['problem-image'], 'problem_image');
+            $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
         } else {
             $imgPath = self::DEFAULT_IMAGE_PATH;
         }
@@ -108,9 +103,12 @@ class CrowdSourcingProjectProblemManager {
         return $crowdSourcingProjectProblem->id;
     }
 
+    /**
+     * @throws RepositoryException
+     */
     public function updateProblem(int $id, array $attributes) {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
-            $imgPath = FileUploader::uploadAndGetPath($attributes['problem-image'], 'problem_image');
+            $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
         } else {
             $imgPath = self::DEFAULT_IMAGE_PATH;
         }
@@ -133,6 +131,16 @@ class CrowdSourcingProjectProblemManager {
     }
 
     public function deleteProblem(int $id): bool {
+        $problem = $this->crowdSourcingProjectProblemRepository->find($id);
+        // if the image is not the default one
+        // and if it does not start with "/images" (meaning it is a default public image)
+        // and if it does not start with "http" (meaning it is an external image)
+        if ($problem->img_url !== self::DEFAULT_IMAGE_PATH &&
+            !str_starts_with($problem->img_url, '/images') &&
+            !str_starts_with($problem->img_url, 'http')) {
+            FileHandler::deleteUploadedFile($problem->img_url, 'problem_img');
+        }
+
         return $this->crowdSourcingProjectProblemRepository->delete($id);
     }
 
@@ -169,7 +177,7 @@ class CrowdSourcingProjectProblemManager {
         return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForManagement($projectId);
     }
 
-    public function getProblemsForCrowdSourcingProjectForLandingPage(int $projectId, string $getLocale) {
+    public function getProblemsForCrowdSourcingProjectForLandingPage(int $projectId, string $getLocale): Collection {
         $langId = $this->languageRepository->getLanguageByCode($getLocale)->id;
 
         return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForLandingPage($projectId, $langId);

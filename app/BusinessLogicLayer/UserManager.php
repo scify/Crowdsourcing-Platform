@@ -8,7 +8,7 @@ use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserRoleRepository;
-use App\Utils\FileUploader;
+use App\Utils\FileHandler;
 use App\Utils\MailChimpAdaptor;
 use App\ViewModels\EditUser;
 use App\ViewModels\ManageUsers;
@@ -135,7 +135,7 @@ class UserManager {
         }
 
         if (isset($data['avatar']) && $data['avatar']->isValid()) {
-            $path = FileUploader::uploadAndGetPath($data['avatar'], 'user_profile_img');
+            $path = FileHandler::uploadAndGetPath($data['avatar'], 'user_profile_img');
             $user->avatar = $path;
         }
 
