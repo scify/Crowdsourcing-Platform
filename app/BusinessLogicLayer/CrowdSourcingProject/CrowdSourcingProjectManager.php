@@ -14,7 +14,7 @@ use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepos
 use App\Repository\LanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
-use App\Utils\FileUploader;
+use App\Utils\FileHandler;
 use App\ViewModels\CrowdSourcingProject\AllCrowdSourcingProjects;
 use App\ViewModels\CrowdSourcingProject\CreateEditCrowdSourcingProject;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectForLandingPage;
@@ -314,18 +314,18 @@ class CrowdSourcingProjectManager {
 
     protected function storeProjectRelatedFiles(array $attributes): array {
         if (isset($attributes['logo'])) {
-            $attributes['logo_path'] = FileUploader::uploadAndGetPath($attributes['logo'], 'project_logos');
+            $attributes['logo_path'] = FileHandler::uploadAndGetPath($attributes['logo'], 'project_logos');
         }
         if (isset($attributes['img'])) {
-            $attributes['img_path'] = FileUploader::uploadAndGetPath($attributes['img'], 'project_img');
+            $attributes['img_path'] = FileHandler::uploadAndGetPath($attributes['img'], 'project_img');
         }
 
         if (isset($attributes['sm_featured_img'])) {
-            $attributes['sm_featured_img_path'] = FileUploader::uploadAndGetPath($attributes['sm_featured_img'], 'project_sm_featured_img');
+            $attributes['sm_featured_img_path'] = FileHandler::uploadAndGetPath($attributes['sm_featured_img'], 'project_sm_featured_img');
         }
 
         if (isset($attributes['lp_questionnaire_img'])) {
-            $attributes['lp_questionnaire_img_path'] = FileUploader::uploadAndGetPath($attributes['lp_questionnaire_img'], 'project_questionnaire_bg_img');
+            $attributes['lp_questionnaire_img_path'] = FileHandler::uploadAndGetPath($attributes['lp_questionnaire_img'], 'project_questionnaire_bg_img');
         }
 
         return $attributes;

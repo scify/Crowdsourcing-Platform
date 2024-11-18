@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * Class FileUploader
  */
-class FileUploader {
+class FileHandler {
     /**
      * @param UploadedFile $file The file to upload
      * @param string $directoryName The directory name to upload the file to
@@ -28,5 +28,13 @@ class FileUploader {
         }
 
         return $returnPath . $filePath;
+    }
+
+    public static function deleteUploadedFile(string $filePath, string $directoryName = ''): void {
+        $fileName = explode('/', $filePath);
+        $filePath = storage_path('app/public/uploads/' . $directoryName . '/' . end($fileName));
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
     }
 }
