@@ -29,8 +29,16 @@ class CrowdSourcingProjectProblemRepository extends Repository {
         return $hasPublishedProblemsWithTranslations;
     }
 
-    public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
+    public function getProblemsForCrowdSourcingProjectForLandingPage(int $projectId, int $langId): Collection {
         return CrowdSourcingProjectProblem::where('project_id', $projectId)
-            ->with(['defaultTranslation', 'translations', 'translations.language', 'status', 'bookmarks'])->get();
+            ->where('status_id', CrowdSourcingProjectProblemStatusLkp::PUBLISHED)
+            ->with(['defaultTranslation', 'translations' => function ($query) use ($langId) {
+                $query->where('language_id', $langId);
+            }, 'translations.language', 'status', 'bookmarks'])
+            ->get()
+            ->each(function ($problem) use ($langId) {
+                $problem->currentTranslation = $problem->translations->firstWhere('language_id', $langId)
+                    ?? $problem->defaultTranslation;
+            });
     }
 }

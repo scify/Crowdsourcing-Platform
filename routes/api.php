@@ -33,6 +33,7 @@ Route::middleware(['throttle:api-public'])->group(function () {
     Route::get('/questionnaire/answer-votes-get/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])->name('api.questionnaire.answer-votes.get');
     Route::get('/questionnaire/answer-annotations-get/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])->name('api.questionnaire.answer-annotations.get');
     Route::post('/files/upload', [FileController::class, 'uploadFiles'])->name('api.files.upload');
+    Route::get('/crowd-sourcing-projects/problems', [CrowdSourcingProjectProblemController::class, 'getProblemsForCrowdSourcingProject'])->name('api.crowd-sourcing-projects.problems.get');
 });
 
 Route::middleware(['throttle:api-internal', 'auth'])->group(function () {
