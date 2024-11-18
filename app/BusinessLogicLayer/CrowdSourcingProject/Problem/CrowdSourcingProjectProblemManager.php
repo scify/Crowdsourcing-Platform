@@ -9,6 +9,7 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\LanguageRepository;
+use App\Repository\RepositoryException;
 use App\Utils\FileHandler;
 use App\ViewModels\CrowdSourcingProject\Problem\CreateEditProblem;
 use App\ViewModels\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemsLandingPage;
@@ -102,6 +103,9 @@ class CrowdSourcingProjectProblemManager {
         return $crowdSourcingProjectProblem->id;
     }
 
+    /**
+     * @throws RepositoryException
+     */
     public function updateProblem(int $id, array $attributes) {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
@@ -130,7 +134,10 @@ class CrowdSourcingProjectProblemManager {
         $problem = $this->crowdSourcingProjectProblemRepository->find($id);
         // if the image is not the default one
         // and if it does not start with "/images" (meaning it is a default public image)
-        if ($problem->img_url !== self::DEFAULT_IMAGE_PATH && !str_starts_with($problem->img_url, '/images')) {
+        // and if it does not start with "http" (meaning it is an external image)
+        if ($problem->img_url !== self::DEFAULT_IMAGE_PATH &&
+            !str_starts_with($problem->img_url, '/images') &&
+            !str_starts_with($problem->img_url, 'http')) {
             FileHandler::deleteUploadedFile($problem->img_url, 'problem_img');
         }
 
