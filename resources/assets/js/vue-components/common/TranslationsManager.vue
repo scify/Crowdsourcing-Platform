@@ -37,7 +37,8 @@
 								{{ language.language_name }}
 							</label>
 							<span v-if="checkedLanguages.includes(language)">
-								&#10003; <!-- Checkmark icon -->
+								&#10003;
+								<!-- Checkmark icon -->
 							</span>
 						</li>
 					</ul>
@@ -57,7 +58,7 @@
 					>
 						<a
 							:id="'language-' + translation.language_id + '-tab'"
-							:class="{ 'nav-link': true, active: index === 0 }"
+							:class="{ 'nav-link': true, active: index === activeTabIndex }"
 							aria-selected="false"
 							role="tab"
 							data-toggle="tab"
@@ -77,37 +78,37 @@
 						v-for="(translation, index) in translations"
 						:id="'language-' + translation.language_id"
 						:key="'translation_' + index"
-						:class="{ 'tab-pane fade': true, 'show active': index === 0 }"
+						:class="{ 'tab-pane fade': true, 'show active': index === activeTabIndex }"
 						role="tabpanel"
 						:aria-labelledby="'language-' + translation.language_id + '-tab'"
 					>
 						<table class="table table-striped">
 							<thead>
-							<tr>
-								<th scope="col">Field</th>
-								<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
-								<th scope="col">
-									Translation in
-									{{ getLanguageName(translation.language_id) }}
-								</th>
-							</tr>
+								<tr>
+									<th scope="col">Field</th>
+									<th scope="col">Original Language ({{ getLanguageName(defaultLangId) }})</th>
+									<th scope="col">
+										Translation in
+										{{ getLanguageName(translation.language_id) }}
+									</th>
+								</tr>
 							</thead>
 							<tbody>
-							<tr
-								v-for="(value, key) in filteredTranslations(translation)"
-								:key="'translation_row_' + key"
-								:id="'translation_row_' + value"
-							>
-								<td class="field">
-									{{ getDisplayTitleForProperty(key) }}
-								</td>
-								<td class="original-translation">
-									{{ originalTranslation[key] }}
-								</td>
-								<td>
-									<textarea class="form-control" v-model="translation[key]"></textarea>
-								</td>
-							</tr>
+								<tr
+									v-for="(value, key) in filteredTranslations(translation)"
+									:key="'translation_row_' + key"
+									:id="'translation_row_' + value"
+								>
+									<td class="field">
+										{{ getDisplayTitleForProperty(key) }}
+									</td>
+									<td class="original-translation">
+										{{ originalTranslation[key] }}
+									</td>
+									<td>
+										<textarea class="form-control" v-model="translation[key]"></textarea>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -116,7 +117,6 @@
 		</div>
 	</div>
 </template>
-
 
 <script>
 import { ref, onMounted } from "vue";
@@ -144,6 +144,7 @@ export default {
 		const originalTranslation = ref({});
 		const checkedLanguages = ref([]);
 		const availableLanguages = ref([]);
+		const activeTabIndex = ref(0);
 
 		const getAvailableLanguagesAndInit = async () => {
 			try {
@@ -208,6 +209,7 @@ export default {
 			}
 			copy.language_id = language.id;
 			translations.value.push(copy);
+			activeTabIndex.value = translations.value.length - 1;
 		};
 
 		const checkChanged = ($event, language) => {
@@ -218,6 +220,7 @@ export default {
 		const deleteTranslation = async (language) => {
 			const translation = translations.value.find((t) => t.language_id === language.id);
 			translations.value.splice(translations.value.indexOf(translation), 1);
+			activeTabIndex.value = 0;
 		};
 
 		const getOriginalEnglishTranslation = () => {
@@ -231,6 +234,7 @@ export default {
 			originalTranslation,
 			checkedLanguages,
 			availableLanguages,
+			activeTabIndex,
 			getDisplayTitleForProperty,
 			getLanguageName,
 			checkChanged,
@@ -271,6 +275,13 @@ textarea {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem 1rem;
+
+	label,
+	input {
+		&:hover {
+			cursor: pointer;
+		}
+	}
 }
 
 .dropdown-item span {

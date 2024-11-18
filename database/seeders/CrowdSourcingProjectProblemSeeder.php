@@ -142,10 +142,6 @@ class CrowdSourcingProjectProblemSeeder extends Seeder {
         ];
 
         foreach ($problems as $problem) {
-            // if the problem already exists but is soft deleted, restore it
-            if ($existingProblem = CrowdSourcingProjectProblem::withTrashed()->find($problem['id'])) {
-                $existingProblem->restore();
-            }
             CrowdSourcingProjectProblem::updateOrCreate(['id' => $problem['id']], [
                 'id' => $problem['id'],
                 'project_id' => $problem['project_id'],
