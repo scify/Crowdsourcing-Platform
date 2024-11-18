@@ -45,12 +45,8 @@ class CrowdSourcingProjectProblemManager {
     public function getCrowdSourcingProjectProblemsLandingPageViewModel(string $crowdSouringProjectSlug): CrowdSourcingProjectProblemsLandingPage {
         $crowdSourcingProject = $this->crowdSourcingProjectProblemRepository->getProjectWithProblemsByProjectSlug($crowdSouringProjectSlug);
         $crowdSourcingProject->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($crowdSourcingProject);
-        $crowdSourcingProjectProblems = $crowdSourcingProject->problems ?? collect();
-        foreach ($crowdSourcingProjectProblems as $crowdSourcingProjectProblem) {
-            $crowdSourcingProjectProblem->currentTranslation = $this->crowdSourcingProjectProblemTranslationManager->getFieldsTranslationForProjectProblem($crowdSourcingProjectProblem);
-        }
 
-        return new CrowdSourcingProjectProblemsLandingPage($crowdSourcingProject, $crowdSourcingProjectProblems);
+        return new CrowdSourcingProjectProblemsLandingPage($crowdSourcingProject);
     }
 
     public function getCrowdSourcingProjectProblem(int $id): CrowdSourcingProjectProblem {
@@ -171,5 +167,11 @@ class CrowdSourcingProjectProblemManager {
 
     public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
         return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForManagement($projectId);
+    }
+
+    public function getProblemsForCrowdSourcingProjectForLandingPage(int $projectId, string $getLocale) {
+        $langId = $this->languageRepository->getLanguageByCode($getLocale)->id;
+
+        return $this->crowdSourcingProjectProblemRepository->getProblemsForCrowdSourcingProjectForLandingPage($projectId, $langId);
     }
 }

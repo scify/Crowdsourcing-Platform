@@ -7,12 +7,14 @@ use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslati
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslationRepository;
 use App\Repository\LanguageRepository;
+use App\Repository\RepositoryException;
+use Exception;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectProblemTranslationManager {
-    protected $crowdSourcingProjectProblemTranslationRepository;
-    protected $languageRepository;
-    protected $crowdSourcingProjectProblemRepository;
+    protected CrowdSourcingProjectProblemTranslationRepository $crowdSourcingProjectProblemTranslationRepository;
+    protected LanguageRepository $languageRepository;
+    protected CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository;
 
     public function __construct(
         CrowdSourcingProjectProblemTranslationRepository $crowdSourcingProjectProblemTranslationRepository,
@@ -60,12 +62,18 @@ class CrowdSourcingProjectProblemTranslationManager {
         return $this->crowdSourcingProjectProblemTranslationRepository->allWhere(['problem_id' => $id]);
     }
 
+    /**
+     * @throws RepositoryException
+     */
     public function updateProblemTranslations(int $problemId, array $defaultTranslation, array $extraTranslations): void {
         $this->updateProblemDefaultTranslation($problemId, $defaultTranslation);
 
         $this->updateProblemExtraTranslations($problemId, $extraTranslations);
     }
 
+    /**
+     * Updates the default translation for a problem.
+     */
     protected function updateProblemDefaultTranslation(int $problemId, array $defaultTranslation): void {
         $this->crowdSourcingProjectProblemTranslationRepository->updateOrCreate(
             [
@@ -79,39 +87,46 @@ class CrowdSourcingProjectProblemTranslationManager {
         );
     }
 
-    protected function updateProblemExtraTranslations(int $problemId, array $newExtraTranslations) {
+    /**
+     * Updates the extra translations for a problem.
+     *
+     * @throws \App\Repository\RepositoryException
+     */
+    protected function updateProblemExtraTranslations(int $problemId, array $newExtraTranslations): void {
         $problemDefaultTranslationId = $this->crowdSourcingProjectProblemRepository->find($problemId)->default_language_id;
         $oldExtraTranslations = $this->getTranslationsForProblem($problemId)->whereNotIn('language_id', $problemDefaultTranslationId);
         $alreadyUpdatedExtraTranslations = [];
 
-        foreach ($oldExtraTranslations as $oldExtraTranslation) { // for each of the already existing translations
-            if ($this->translationExistsInTranslationsArray($oldExtraTranslation, $newExtraTranslations)) { // if there is a new translation, update the already existing translation in DB
+        // for each of the already existing translations
+        foreach ($oldExtraTranslations as $oldExtraTranslation) {
+            // if there is a new translation, update the already existing translation in DB
+            if ($this->translationExistsInTranslationsArray($oldExtraTranslation, $newExtraTranslations)) {
                 $newExtraTranslation = $this->getTranslationFromTranslationsArrayViaLanguageId($newExtraTranslations, $oldExtraTranslation->language_id);
+                $problemAndLanguage = [
+                    'problem_id' => $problemId,
+                    'language_id' => $oldExtraTranslation['language_id'],
+                ];
                 $this->crowdSourcingProjectProblemTranslationRepository->update(
-                    [
-                        'problem_id' => $problemId,
-                        'language_id' => $oldExtraTranslation['language_id'],
+                    array_merge($problemAndLanguage, [
                         'title' => $newExtraTranslation->title,
                         'description' => $newExtraTranslation->description,
-                    ],
-                    [
-                        'problem_id' => $problemId,
-                        'language_id' => $oldExtraTranslation['language_id'],
-                    ],
-                    [
-                        'problem_id' => $problemId,
-                        'language_id' => $oldExtraTranslation['language_id'],
-                    ]
+                    ]),
+                    $problemAndLanguage,
+                    $problemAndLanguage
                 );
 
-                $alreadyUpdatedExtraTranslations[] = $newExtraTranslation; // keep track that the translation has already been updated in the DB
-            } else { // else delete the already existing translation from the DB
+                // keep track that the translation has already been updated in the DB
+                $alreadyUpdatedExtraTranslations[] = $newExtraTranslation;
+            } else {
+                // else delete the already existing translation from the DB
                 $this->crowdSourcingProjectProblemTranslationRepository->deleteTranslation($problemId, $oldExtraTranslation['language_id']);
             }
         }
 
-        foreach ($newExtraTranslations as $newExtraTranslation) { // for each of the new translations
-            if (!$this->translationExistsInTranslationsArray($newExtraTranslation, $alreadyUpdatedExtraTranslations)) { // if not already updated, create the record in the DB
+        // now we need to add the new translations
+        foreach ($newExtraTranslations as $newExtraTranslation) {
+            // if not already updated, create the record in the DB
+            if (!$this->translationExistsInTranslationsArray($newExtraTranslation, $alreadyUpdatedExtraTranslations)) {
                 $this->crowdSourcingProjectProblemTranslationRepository->create(
                     [
                         'problem_id' => $problemId,
@@ -124,7 +139,10 @@ class CrowdSourcingProjectProblemTranslationManager {
         }
     }
 
-    protected function translationExistsInTranslationsArray($inputTranslation, array $translations): bool {
+    /**
+     * Check if the translation exists in the translations array.
+     */
+    protected function translationExistsInTranslationsArray(object $inputTranslation, array $translations): bool {
         foreach ($translations as $translation) {
             if ($translation->language_id === $inputTranslation->language_id) {
                 return true;
@@ -134,13 +152,16 @@ class CrowdSourcingProjectProblemTranslationManager {
         return false;
     }
 
+    /**
+     * Get the translation from the translations array via the language_id.
+     * @throws Exception If the translation with the given language_id is not found in the translations array.
+     */
     protected function getTranslationFromTranslationsArrayViaLanguageId(array $translations, int $id): object {
         foreach ($translations as $translation) {
             if ($translation->language_id === $id) {
                 return $translation;
             }
         }
-
-        return null;
+        throw new Exception("Translation with language_id: {$id} not found in translations array.");
     }
 }

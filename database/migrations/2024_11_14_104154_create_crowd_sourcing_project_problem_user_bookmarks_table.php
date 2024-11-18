@@ -1,5 +1,6 @@
 <?php
 
+use Database\Helpers\ColumnTypeHelper;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -9,11 +10,17 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('csp_problem_user_bookmarks', function (Blueprint $table) {
+        $columnType = ColumnTypeHelper::getColumnType('users', 'id');
+
+        Schema::create('csp_problem_user_bookmarks', function (Blueprint $table) use ($columnType) {
             $table->unsignedBigInteger('problem_id');
             $table->foreign('problem_id')->references('id')->on('crowd_sourcing_project_problems');
 
-            $table->unsignedInteger('user_id');
+            if ($columnType === 'bigint') {
+                $table->unsignedBigInteger('user_id');
+            } else {
+                $table->unsignedInteger('user_id');
+            }
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->primary(['problem_id', 'user_id'], 'csp_problem_user_bookmarks_primary');
