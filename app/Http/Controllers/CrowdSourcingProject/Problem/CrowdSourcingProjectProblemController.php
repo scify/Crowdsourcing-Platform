@@ -19,6 +19,16 @@ class CrowdSourcingProjectProblemController extends Controller {
         $this->crowdSourcingProjectProblemManager = $crowdSourcingProjectProblemManager;
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $slug): View {
+        // $viewModel = $this->crowdSourcingProjectProblemManager->getCrowdSourcingProjectProblemViewModel($slug);
+
+        // return view('crowdsourcing-project.problems.show', ['viewModel' => $viewModel]);
+        return 'test';
+    }
+
     public function showProblemsPage(Request $request): View {
         $validator = Validator::make([
             'project_slug' => $request->project_slug,

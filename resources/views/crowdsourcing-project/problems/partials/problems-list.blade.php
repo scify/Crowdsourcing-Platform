@@ -6,10 +6,9 @@
         </div>
     </div>
 
-    <crowd-sourcing-project-problems :project-id='{{ $viewModel->project->id }}'>
-        <template v-slot:share-button>
-            <x-share-circle-btn />
-        </template>
+    <crowd-sourcing-project-problems
+            :project-id='{{ $viewModel->project->id }}'
+            :button-text-color-theme="{{ $viewModel->project->lp_btn_text_color_theme }}">
     </crowd-sourcing-project-problems>
 
     {{--

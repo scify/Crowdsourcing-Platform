@@ -47,7 +47,10 @@
 								</div>
 							</div>
 						</a>
-						<slot name="share-button"></slot>
+						<ShareCircleButton
+							:icon-color-theme="buttonTextColorTheme"
+							:share-url="getShareUrl(problem)"
+						></ShareCircleButton>
 					</li>
 				</ul>
 			</div>
@@ -57,13 +60,21 @@
 
 <script>
 import { mapActions } from "vuex";
+import ShareCircleButton from '../../common/ShareCircleButton.vue';
 
 export default {
 	name: "CrowdSourcingProjectProblems",
+	components: {
+		ShareCircleButton,
+	},
 	props: {
 		projectId: {
 			type: Number,
 			required: true,
+		},
+		buttonTextColorTheme: {
+			type: String,
+			default: "light",
 		},
 	},
 	data() {
@@ -107,6 +118,10 @@ export default {
 			setTimeout(() => {
 				alertElement.classList.add("d-none");
 			}, 5000);
+		},
+		getShareUrl(problem) {
+			// return the current URL with the /problem_slug appended
+			return `${window.location.href}/${problem.slug}`;
 		},
 	},
 	watch: {

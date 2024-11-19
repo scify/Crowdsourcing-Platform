@@ -101,4 +101,5 @@ Route::group($localeInfo, function () {
     Route::get('/{project_slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
     Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
     Route::get('/{project_slug}/problems', [CrowdSourcingProjectProblemController::class, 'showProblemsPage'])->name('project.problems-page');
+    Route::get('/{project_slug}/problems/{problem_slug}', [CrowdSourcingProjectProblemController::class, 'show'])->name('project.problem-page');
 });
