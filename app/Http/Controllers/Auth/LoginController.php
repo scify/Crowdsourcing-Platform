@@ -31,12 +31,12 @@ class LoginController extends Controller {
     /**
      * Where to redirect users after login.
      */
-    protected string $redirectTo = '/en/my-dashboard';
+    protected string $redirectTo = '/en/backoffice/my-dashboard';
 
     protected ExceptionHandler $exceptionHandler;
 
     public function redirectTo() {
-        return app()->getLocale() . '/my-dashboard';
+        return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
     protected UserManager $userManager;

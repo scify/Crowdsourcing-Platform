@@ -7,7 +7,7 @@
 
         <div class="col-md-12">
             <div class="project-img-container">
-                <a href="{{ route('project.landing-page',$questionnaire->projects[0]->slug) }}">
+                <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $questionnaire->projects[0]->slug]) }}">
                     <img loading="lazy" class="project-logo"
                          alt="Project logo for {{$questionnaire->projects[0]->defaultTranslation->name}}"
                          src="{{asset($questionnaire->projects[0]->logo_path)}}">

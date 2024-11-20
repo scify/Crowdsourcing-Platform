@@ -16,7 +16,6 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireController extends Controller {
@@ -82,13 +81,13 @@ class QuestionnaireController extends Controller {
         return $questionnaire;
     }
 
-    public function editQuestionnaire($id) {
-        $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel($id);
+    public function editQuestionnaire(Request $request) {
+        $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel($request->id);
 
         return view('loggedin-environment.management.questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request) {
         $this->validate($request, [
             'type_id' => 'required|integer',
             'language' => 'required',
@@ -99,7 +98,7 @@ class QuestionnaireController extends Controller {
             'project_ids' => 'required|array',
         ]);
         $data = $request->all();
-        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $id);
+        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $request->id);
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
 
         return $questionnaire;
@@ -137,19 +136,10 @@ class QuestionnaireController extends Controller {
         ]);
     }
 
-    public function storeQuestionnaireShare(Request $request): JsonResponse {
-        $userId = Auth::id();
-        $values = $request->all();
-        $questionnaireId = $values['questionnaire-id'];
-        $this->questionnaireShareManager->createQuestionnaireShare($userId, $questionnaireId);
-
-        return response()->json(['status' => '__SUCCESS']);
-    }
-
     /**
      * @throws Exception if the user is not allowed to access the questionnaire
      */
-    public function showAddResponseAsModeratorToQuestionnaire(CrowdSourcingProject $project, Questionnaire $questionnaire) {
+    public function showAddResponseAsModeratorToQuestionnaire(string $locale, CrowdSourcingProject $project, Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($project, $questionnaire);
 
         return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);

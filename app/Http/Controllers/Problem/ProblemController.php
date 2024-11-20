@@ -22,7 +22,7 @@ class ProblemController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(string $slug): View {
+    public function show(Request $request): View {
         // $viewModel = $this->crowdSourcingProjectProblemManager->getCrowdSourcingProjectProblemViewModel($slug);
 
         // return view('crowdsourcing-project.problems.show', ['viewModel' => $viewModel]);
@@ -96,8 +96,8 @@ class ProblemController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id): View {
-        $viewModel = $this->problemManager->getCreateEditProblemViewModel($id);
+    public function edit(Request $request): View {
+        $viewModel = $this->problemManager->getCreateEditProblemViewModel($request->id);
 
         return view('loggedin-environment.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
     }
@@ -134,20 +134,20 @@ class ProblemController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) {
-        return $this->problemManager->deleteProblem($id);
+    public function destroy(Request $request) {
+        return $this->problemManager->deleteProblem($request->id);
     }
 
     public function getProblemStatusesForManagementPage(): JsonResponse {
         return response()->json($this->problemManager->getProblemStatusesForManagementPage());
     }
 
-    public function updateStatus(Request $request, int $id): JsonResponse {
+    public function updateStatus(Request $request): JsonResponse {
         $this->validate($request, [
             'status_id' => 'required|exists:problem_statuses_lkp,id',
         ]);
 
-        return response()->json($this->problemManager->updateProblemStatus($id, $request->status_id));
+        return response()->json($this->problemManager->updateProblemStatus($request->id, $request->status_id));
     }
 
     public function getProblemsForCrowdSourcingProjectForManagement(): JsonResponse {

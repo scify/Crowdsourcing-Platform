@@ -26,28 +26,11 @@
                                     class="nav-icon fa fa-question-circle"></i>
                             <p>{{ __('menu.responses') }}</p></a>
                     </li>
-{{--                    <li class="nav-header mt-5">{{ __('menu.problems') }}</li>--}}
-{{--                    <li class="nav-item {{UrlMatchesMenuItem("problems")}}">--}}
-{{--                        <a class="nav-link" href="{{ route('problems.index') }}"><i--}}
-{{--                                    class="nav-icon fa fa-list"></i>--}}
-{{--                            <p>{{ __('menu.see_all_problems') }}</p></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-header mt-5">{{ __('menu.solutions') }}</li>--}}
-{{--                    <li class="nav-item {{UrlMatchesMenuItem("solutions")}}">--}}
-{{--                        <a class="nav-link" href="{{ route('problems.index') }}"><i--}}
-{{--                                    class="nav-icon fa fa-list"></i>--}}
-{{--                            <p>{{ __('menu.see_all_solutions') }}</p></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item {{UrlMatchesMenuItem("solutions")}}">--}}
-{{--                        <a class="nav-link" href="{{ route('problems.index') }}"><i--}}
-{{--                                    class="nav-icon fa fa-check"></i>--}}
-{{--                            <p>{{ __('menu.moderate_solutions') }}</p></a>--}}
-{{--                    </li>--}}
                 @endcan
                 @can("manage-users")
                     <li class="nav-header mt-5">{{ __('menu.platform_management') }}</li>
-                    <li class="nav-item {{UrlMatchesMenuItem("admin/manage-users")}}">
-                        <a class="nav-link" href="{{ url("admin/manage-users") }}"><i
+                    <li class="nav-item {{UrlMatchesMenuItem("backoffice/manage-users")}}">
+                        <a class="nav-link" href="{{ url("backoffice/manage-users") }}"><i
                                     class="nav-icon fa fa-users"></i>
                             <p>Manage Users</p></a>
                     </li>

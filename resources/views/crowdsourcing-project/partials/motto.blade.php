@@ -59,7 +59,7 @@
                                                                             <i
                                                                                     class="fas fa-arrow-right"></i></a>
                                                                     @else
-                                                                        <a href="{{ route('my-dashboard') }}"
+                                                                        <a href="{{ route('my-dashboard', ['locale' => app()->getLocale()]) }}"
                                                                            class="btn btn-primary btn-lg w-100 dashboard-btn">
                                                                             {{ __("menu.my_dashboard") }}
                                                                         </a>

@@ -20,7 +20,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         $this->be($user);
 
         $questionnaire = Questionnaire::factory()->create();
-        $response = $this->get(route('questionnaires.reports', ['questionnaireId' => $questionnaire->id]));
+        $response = $this->get(route('questionnaires.reports', ['locale' => 'en', 'questionnaireId' => $questionnaire->id]));
 
         $response->assertStatus(200);
         $response->assertViewIs('loggedin-environment.questionnaire.reports.reports-with-filters');

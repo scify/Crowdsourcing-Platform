@@ -7,7 +7,7 @@
             <div class="col-12">
                 Click <a
                         href="{{ route('questionnaire.statistics', ['questionnaire' =>  $reportViewModel->questionnaireId, 'locale' => app()->getLocale() ]) }}"
-                        target="_blank">here</a> to view and moderate the responses.
+                        target="_blank">here</a> to view the statistics and moderate the responses.
             </div>
         </div>
         <div class="row">

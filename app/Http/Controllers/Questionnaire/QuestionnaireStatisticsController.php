@@ -21,13 +21,13 @@ class QuestionnaireStatisticsController extends Controller {
         return view('questionnaire.statistics', compact(['viewModel']));
     }
 
-    public function showEditStatisticsColorsPage(Questionnaire $questionnaire) {
+    public function showEditStatisticsColorsPage(string $locale, Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireStatisticsManager->getEditQuestionnaireStatisticsColorViewModel($questionnaire);
 
         return view('loggedin-environment.management.questionnaire.statistics-colors', compact(['viewModel']));
     }
 
-    public function saveStatisticsColors(Request $request, Questionnaire $questionnaire): RedirectResponse {
+    public function saveStatisticsColors(Request $request, string $locale, Questionnaire $questionnaire): RedirectResponse {
         try {
             $this->questionnaireStatisticsManager->saveStatisticsColors($questionnaire, $request->all());
             session()->flash('flash_message_success', 'Colors saved!');

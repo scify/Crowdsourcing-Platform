@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ url('admin/update-user') }}" method="POST">
+    <form action="{{ url('backoffice/update-user') }}" method="POST">
         {{ csrf_field() }}
         <input name="userId" type="hidden" value="{{ $viewModel->user->id }}">
         <div class="row">

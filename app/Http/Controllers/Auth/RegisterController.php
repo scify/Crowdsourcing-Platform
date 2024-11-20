@@ -32,10 +32,10 @@ class RegisterController extends Controller {
     /**
      * Where to redirect users after registration.
      */
-    protected string $redirectTo = '/en/my-dashboard';
+    protected string $redirectTo = '/en/backoffice/my-dashboard';
 
     public function redirectTo() {
-        return app()->getLocale() . '/my-dashboard';
+        return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
     private $userRoleManager;

@@ -25,7 +25,7 @@ class UserController extends Controller {
     }
 
     public function home() {
-        return redirect('/' . app()->getLocale() . '/my-dashboard');
+        return redirect()->route('my-dashboard', ['locale' => app()->getLocale()]);
     }
 
     public function myDashboard() {

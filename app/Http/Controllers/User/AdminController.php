@@ -21,8 +21,8 @@ class AdminController extends Controller {
         return view('loggedin-environment.management.manage-users', ['viewModel' => $viewModel]);
     }
 
-    public function editUserForm($id) {
-        $viewModel = $this->userManager->getEditUserViewModel($id);
+    public function editUserForm(Request $request) {
+        $viewModel = $this->userManager->getEditUserViewModel($request->id);
 
         return view('loggedin-environment.management.edit-user', ['viewModel' => $viewModel]);
     }
@@ -30,7 +30,7 @@ class AdminController extends Controller {
     public function updateUserRoles(Request $request) {
         $this->userManager->updateUserRoles($request->userId, $request->roleselect);
 
-        return redirect('/admin/manage-users');
+        return redirect()->back()->with(['flash_message_success' => 'User roles have been updated.']);
     }
 
     public function addUserToPlatform(Request $request) {

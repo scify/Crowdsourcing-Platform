@@ -1,4 +1,4 @@
-<form action="{{ url('admin/add-user') }}" method="POST">
+<form action="{{ url('backoffice/add-user') }}" method="POST">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-6">
@@ -30,7 +30,7 @@
 
 
                 <div class="col-md-3 p-0 form-group">
-                    <button type="submit" class="btn btn-primary btn-block ">Add user</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-slim">Add user</button>
                 </div>
             </div>
         </div>

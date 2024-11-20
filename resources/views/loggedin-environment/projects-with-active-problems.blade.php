@@ -11,7 +11,7 @@
             <div class="row justify-content-center align-items-center my-2">
                 <div class="col-12 text-center">
                     <div class="project-img-container">
-                        <a href="{{ route('project.landing-page',$project->slug) }}">
+                        <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $project->slug]) }}">
                             <img loading="lazy" class="project-logo"
                                  alt="Project logo for {{$project->currentTranslation->name}}"
                                  src="{{asset($project->logo_path)}}">

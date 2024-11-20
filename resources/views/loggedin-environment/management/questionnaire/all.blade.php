@@ -69,13 +69,13 @@
                                             @can("manage-platform-content")
                                                 @if (!$viewModel->isQuestionnaireArchived($questionnaire))
                                                     <a class="action-btn dropdown-item"
-                                                       href="{{route('edit-questionnaire', ['id' => $questionnaire->id])}}"><i
+                                                       href="{{route('edit-questionnaire', ['locale' => app()->getLocale(), 'id' => $questionnaire->id])}}"><i
                                                                 class="far fa-edit"></i> Edit Questionnaire</a>
                                                 @endif
                                             @endcan
                                             @can("manage-platform-content")
                                                 <a class="action-btn dropdown-item"
-                                                   href="{{route('questionnaire.statistics-colors', ['questionnaire' => $questionnaire->id])}}"><i
+                                                   href="{{route('questionnaire.statistics-colors', ['locale' => app()->getLocale(), 'questionnaire' => $questionnaire->id])}}"><i
                                                             class="fas fa-palette"></i> Basic Statistics Colors</a>
                                             @endcan
                                             @if(isset($questionnaire->urls))
@@ -98,7 +98,7 @@
                                             @if (!$viewModel->isQuestionnaireArchived($questionnaire) && $questionnaire->project_slugs)
                                                 @foreach(explode(",", $questionnaire->project_slugs) as $project_slug)
                                                     <a class="action-btn dropdown-item"
-                                                       href="{{route('questionnaire-moderator-add-response', ['questionnaire' => $questionnaire->id, 'project' => $project_slug])}}"><i
+                                                       href="{{route('questionnaire-moderator-add-response', ['locale' => app()->getLocale(), 'questionnaire' => $questionnaire->id, 'project' => $project_slug])}}"><i
                                                                 class="fas fa-plus"></i> Add Response
                                                         | {{ explode(",", $questionnaire->project_names)[$loop->index] }}
                                                     </a>
@@ -106,11 +106,11 @@
                                             @endif
                                             <hr>
                                             <a class="action-btn dropdown-item"
-                                               href="{{route('questionnaires.reports', ['questionnaireId' => $questionnaire->id])}}"><i
+                                               href="{{route('questionnaires.reports', ['locale' => app()->getLocale(), 'questionnaireId' => $questionnaire->id])}}"><i
                                                         class="fas fa-list-ul"></i> Results Report</a>
                                             <a class="action-btn dropdown-item"
                                                target="_blank"
-                                               href="{{route('questionnaire.statistics', ['questionnaire' => $questionnaire->id])}}">
+                                               href="{{route('questionnaire.statistics', ['locale' => app()->getLocale(), 'questionnaire' => $questionnaire->id])}}">
                                                 <i class="fas fa-chart-pie"></i> Statistics</a>
                                             @can('manage-platform-content')
                                                 <hr>
