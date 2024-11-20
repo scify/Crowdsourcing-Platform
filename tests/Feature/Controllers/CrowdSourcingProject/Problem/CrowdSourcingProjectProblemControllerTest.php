@@ -48,17 +48,41 @@ class CrowdSourcingProjectProblemControllerTest extends TestCase {
     }
 
     /**
-     * @test An admin user can access the create page
+     * @test A contentManager user can access the create page
      */
     public function contentManagerCanAccessCreatePage() {
-        // TODO: Implement
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
+            ->create();
+        $this->be($user);
+
+        $response = $this->get(route('problems.create'));
+
+        $response->assertStatus(200);
+        $response->assertViewIs('loggedin-environment.management.problem.create-edit.form-page');
     }
 
     /**
      * @test A non-admin user cannot store a project
      */
     public function nonAdminUserCannotStoreProject() {
-        // TODO: Implement
+        $user = User::factory()->create();
+        $this->be($user);
+        $faker = Faker::create();
+        // we need a title with no special characters
+        $title = $faker->title;
+        $description = $title . ' description';
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
+            ->post(route('projects.store'), [
+                'problem-title' => $title,
+                'problem-description' => $description,
+                'problem-status' => 1,
+                'problem-default-language' => 6,
+                'problem-image' => null,
+                'problem-owner-project' => 4,
+            ]);
+
+        $response->assertStatus(403);
     }
 
     /**
@@ -92,7 +116,7 @@ class CrowdSourcingProjectProblemControllerTest extends TestCase {
     /**
      * @test A content manager cannot store a project with invalid data in the form
      */
-    public function contentManagerCanotStoreProjectWithInvalidData() {
+    public function contentManagerCannotStoreProjectWithInvalidData() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
