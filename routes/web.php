@@ -5,7 +5,7 @@ use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\Problem\CrowdSourcingProjectProblemController;
+use App\Http\Controllers\Problem\ProblemController;
 use App\Http\Controllers\Questionnaire\QuestionnaireController;
 use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
@@ -73,8 +73,8 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
     Route::post('/questionnaire/update-status', [QuestionnaireController::class, 'saveQuestionnaireStatus'])->name('questionnaire.update-status');
     Route::get('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'showEditStatisticsColorsPage'])->name('questionnaire.statistics-colors');
     Route::post('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'saveStatisticsColors'])->name('questionnaire.statistics-colors.store');
-    Route::resource('problems', CrowdSourcingProjectProblemController::class)->except(['show']);
-    Route::put('problems/{id}/update-status', [CrowdSourcingProjectProblemController::class, 'updateStatus'])->name('problems.update-status');
+    Route::resource('problems', ProblemController::class)->except(['show']);
+    Route::put('problems/{id}/update-status', [ProblemController::class, 'updateStatus'])->name('problems.update-status');
 });
 
 Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], function () {
@@ -100,6 +100,6 @@ Route::get('/{project:slug}/questionnaire/{questionnaire:id}/respond', [Question
 Route::group($localeInfo, function () {
     Route::get('/{project_slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
     Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
-    Route::get('/{project_slug}/problems', [CrowdSourcingProjectProblemController::class, 'showProblemsPage'])->name('project.problems-page');
-    Route::get('/{project_slug}/problems/{problem_slug}', [CrowdSourcingProjectProblemController::class, 'show'])->name('project.problem-page');
+    Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');
+    Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('project.problem-page');
 });

@@ -3,7 +3,7 @@
 namespace App\Models\CrowdSourcingProject;
 
 use App\Models\Language;
-use App\Models\Problem\CrowdSourcingProjectProblem;
+use App\Models\Problem\Problem;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
 use Awobaz\Compoships\Compoships;
@@ -121,6 +121,6 @@ class CrowdSourcingProject extends Model {
     }
 
     public function problems(): HasMany {
-        return $this->hasMany(CrowdSourcingProjectProblem::class, 'project_id', 'id');
+        return $this->hasMany(Problem::class, 'project_id', 'id');
     }
 }

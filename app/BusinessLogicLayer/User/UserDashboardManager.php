@@ -13,9 +13,9 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
-use App\ViewModels\GamificationNextStep;
-use App\ViewModels\QuestionnaireSocialShareButtons;
-use App\ViewModels\UserDashboardViewModel;
+use App\ViewModels\Gamification\GamificationNextStep;
+use App\ViewModels\Questionnaire\QuestionnaireSocialShareButtons;
+use App\ViewModels\User\UserDashboardViewModel;
 use Illuminate\Support\Collection;
 
 class UserDashboardManager {

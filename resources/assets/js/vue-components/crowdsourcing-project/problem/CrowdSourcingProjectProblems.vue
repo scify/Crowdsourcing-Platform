@@ -91,7 +91,7 @@ export default {
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
-				url: window.route("api.crowd-sourcing-projects.problems.get") + `?projectId=${this.projectId}`,
+				url: window.route("api.problems.get") + `?projectId=${this.projectId}`,
 				urlRelative: false,
 			})
 				.then((response) => {

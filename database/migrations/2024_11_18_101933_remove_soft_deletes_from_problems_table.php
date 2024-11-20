@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::table('crowd_sourcing_project_problems', function (Blueprint $table) {
+        Schema::table('problems', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

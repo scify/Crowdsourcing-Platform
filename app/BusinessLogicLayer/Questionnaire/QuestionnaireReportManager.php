@@ -6,8 +6,8 @@ use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
-use App\ViewModels\reports\QuestionnaireReportFilters;
-use App\ViewModels\reports\QuestionnaireReportResults;
+use App\ViewModels\Questionnaire\reports\QuestionnaireReportFilters;
+use App\ViewModels\Questionnaire\reports\QuestionnaireReportResults;
 
 class QuestionnaireReportManager {
     protected QuestionnaireRepository $questionnaireRepository;

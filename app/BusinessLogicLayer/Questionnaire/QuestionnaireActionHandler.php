@@ -15,7 +15,7 @@ use App\Notifications\ReferredQuestionnaireAnswered;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\User\UserQuestionnaireShareRepository;
 use App\Repository\User\UserRepository;
-use App\ViewModels\GamificationBadgeVM;
+use App\ViewModels\Gamification\GamificationBadgeVM;
 
 class QuestionnaireActionHandler {
     protected WebSessionManager $webSessionManager;

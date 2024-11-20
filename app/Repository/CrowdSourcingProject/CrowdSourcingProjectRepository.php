@@ -2,8 +2,8 @@
 
 namespace App\Repository\CrowdSourcingProject;
 
-use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Repository\Repository;
@@ -48,7 +48,7 @@ class CrowdSourcingProjectRepository extends Repository {
 
     public function getActiveProjectsWithAtLeastOnePublishedProblemWithStatus(
         $language_id,
-        $additionalRelationships = [], $problemStatusId = CrowdSourcingProjectProblemStatusLkp::PUBLISHED
+        $additionalRelationships = [], $problemStatusId = ProblemStatusLkp::PUBLISHED
     ): Collection {
         $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
             ->with('problems', function ($query) use ($problemStatusId) {

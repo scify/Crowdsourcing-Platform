@@ -8,7 +8,7 @@ use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
-use App\ViewModels\GamificationBadgeVM;
+use App\ViewModels\Gamification\GamificationBadgeVM;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

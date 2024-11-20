@@ -247,7 +247,7 @@ export default {
 
 		async getCrowdSourcingProjectsForFiltering() {
 			return this.get({
-				url: window.route("api.crowd-sourcing-projects.for-problems.get"),
+				url: window.route("api.problems.projects.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -264,7 +264,7 @@ export default {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
-					url: window.route("api.crowd-sourcing-projects.problems.get-management"),
+					url: window.route("api.problems.get-management"),
 					data: { projectId: this.selectedProject },
 					urlRelative: false,
 				})

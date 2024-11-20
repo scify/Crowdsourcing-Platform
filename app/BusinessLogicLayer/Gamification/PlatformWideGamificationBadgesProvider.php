@@ -6,8 +6,8 @@ use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\User\UserQuestionnaireShareRepository;
-use App\ViewModels\GamificationBadgesWithLevels;
-use App\ViewModels\GamificationBadgeVM;
+use App\ViewModels\Gamification\GamificationBadgesWithLevels;
+use App\ViewModels\Gamification\GamificationBadgeVM;
 use Illuminate\Support\Collection;
 
 class PlatformWideGamificationBadgesProvider {

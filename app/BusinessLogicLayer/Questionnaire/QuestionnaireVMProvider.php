@@ -12,8 +12,8 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
-use App\ViewModels\CreateEditQuestionnaire;
-use App\ViewModels\ManageQuestionnaires;
+use App\ViewModels\Questionnaire\CreateEditQuestionnaire;
+use App\ViewModels\Questionnaire\ManageQuestionnaires;
 use App\ViewModels\Questionnaire\QuestionnairePage;
 use Illuminate\Support\Facades\Auth;
 
