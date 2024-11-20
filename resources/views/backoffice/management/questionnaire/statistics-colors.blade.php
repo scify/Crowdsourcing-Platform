@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @push('css')
     @vite('resources/assets/sass/questionnaire/questionnaire-statistics-colors.scss')
@@ -31,7 +31,7 @@
                                         <input id="goal_responses_color" type="text" name="goal_responses_color"
                                                class="form-control"
                                                value="{{ old('goal_responses_color') ? old('goal_responses_color') :
-                                                            $viewModel->getGoalResponsesDefaultColor()  }}"/>
+                                                            $viewModel->getGoalResponsesDefaultColor()  }}" />
                                         <span class="input-group-addon"><i></i></span>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                         <input id="actual_responses_color" type="text" name="actual_responses_color"
                                                class="form-control"
                                                value="{{ old('actual_responses_color') ? old('actual_responses_color') :
-                                                            $viewModel->getActualResponsesDefaultColor()  }}"/>
+                                                            $viewModel->getActualResponsesDefaultColor()  }}" />
                                         <span class="input-group-addon"><i></i></span>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                                    name="lang_colors[{{ $questionnaireLanguage->id }}]"
                                                    class="form-control"
                                                    value="{{ old('lang_colors[' . $questionnaireLanguage->id . ']') ? old('lang_colors[' . $questionnaireLanguage->id . ']') :
-                                                            $viewModel->getColorForQuestionnaireLanguage($questionnaireLanguage)  }}"/>
+                                                            $viewModel->getColorForQuestionnaireLanguage($questionnaireLanguage)  }}" />
                                             <span class="input-group-addon"><i></i></span>
                                         </div>
                                     </div>

@@ -47,7 +47,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $response = $this->get(route('questionnaire.statistics-colors', ['locale' => 'en', 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.questionnaire.statistics-colors');
+        $response->assertViewIs('backoffice.management.questionnaire.statistics-colors');
         $response->assertViewHas('viewModel');
     }
 

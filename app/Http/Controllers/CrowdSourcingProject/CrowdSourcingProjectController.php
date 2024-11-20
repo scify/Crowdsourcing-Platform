@@ -28,18 +28,18 @@ class CrowdSourcingProjectController extends Controller {
     public function index() {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsListPageViewModel();
 
-        return view('loggedin-environment.management.crowdsourcing-project.index', ['viewModel' => $viewModel]);
+        return view('backoffice.management.crowdsourcing-project.index', ['viewModel' => $viewModel]);
     }
 
     public function create() {
-        return view('loggedin-environment.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel()]);
+        return view('backoffice.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel()]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $locale, int $id): View {
-        return view('loggedin-environment.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
+        return view('backoffice.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
     }
 
     /**

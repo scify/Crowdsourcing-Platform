@@ -23,9 +23,9 @@
 </head>
 <body class="logged-in-env {{ !app(Gate::class)->check("moderate-content-by-users")? "no-sidebar": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
 <div id="app" class="wrapper">
-    @include("loggedin-environment.partials.header-controls")
+    @include("backoffice.partials.header-controls")
     @canany(['moderate-content-by-users'])
-        @include("loggedin-environment.partials.sidebar-menu")
+        @include("backoffice.partials.sidebar-menu")
     @endcanany
     <div class="content-wrapper">
         <section class="content">

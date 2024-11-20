@@ -37,7 +37,7 @@ class UserControllerTest extends TestCase {
         $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager);
         $response = $controller->myDashboard();
 
-        $this->assertEquals('loggedin-environment.my-dashboard', $response->name());
+        $this->assertEquals('backoffice.my-dashboard', $response->name());
         $this->assertArrayHasKey('viewModel', $response->getData());
         $viewModel = $response->getData()['viewModel'];
         $this->assertCount(0, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);
@@ -52,7 +52,7 @@ class UserControllerTest extends TestCase {
         $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager);
         $response = $controller->myDashboard();
 
-        $this->assertEquals('loggedin-environment.my-dashboard', $response->name());
+        $this->assertEquals('backoffice.my-dashboard', $response->name());
         $this->assertArrayHasKey('viewModel', $response->getData());
         $viewModel = $response->getData()['viewModel'];
         $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);

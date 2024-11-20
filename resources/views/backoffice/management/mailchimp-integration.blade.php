@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @section('content-header')
     <h1>MailChimp Integration</h1>
@@ -16,7 +16,8 @@
                     <h3 class="card-title">Instructions</h3>
                 </div>
                 <div class="card-body">
-                    First, login to your MailChimp account <a href="https://login.mailchimp.com/" target="_blank">here</a>.
+                    First, login to your MailChimp account <a href="https://login.mailchimp.com/"
+                                                              target="_blank">here</a>.
                     Then, find your <b>Lists' IDs</b> by following the instructions provided by MailChimp
                     <a href="https://mailchimp.com/help/find-your-list-id/" target="_blank">here</a>.
                 </div>
@@ -34,17 +35,17 @@
                     <div class="card-body">
                         <p>Please provide the following MailChimp lists IDs (see instructions above).</p>
                         {{--<div class="form-group">--}}
-                            {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-widget="tooltip"--}}
-                                                                  {{--title="All mails subscribed to our newsletter via the landing pages will be added to this list"><span--}}
-                                            {{--class="fa fa-info-circle"></span></a></label>--}}
-                            {{--<input type="text" id="newsletter" class="form-control" name="newsletter"--}}
-                                   {{--placeholder="Insert the Newsletter's list ID"--}}
-                                   {{--value="{{isset($viewModel) && isset($viewModel->newsletterList) ? $viewModel->newsletterList->list_id : ''}}">--}}
+                        {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-widget="tooltip"--}}
+                        {{--title="All mails subscribed to our newsletter via the landing pages will be added to this list"><span--}}
+                        {{--class="fa fa-info-circle"></span></a></label>--}}
+                        {{--<input type="text" id="newsletter" class="form-control" name="newsletter"--}}
+                        {{--placeholder="Insert the Newsletter's list ID"--}}
+                        {{--value="{{isset($viewModel) && isset($viewModel->newsletterList) ? $viewModel->newsletterList->list_id : ''}}">--}}
                         {{--</div>--}}
                         <div class="form-group">
                             <label for="registered-users">Newsletter for registered users <a href="javascript:void(0)"
-                                                                              data-widget="tooltip"
-                                                                              title="All the registered users to the platform will be added to this list"><span
+                                                                                             data-widget="tooltip"
+                                                                                             title="All the registered users to the platform will be added to this list"><span
                                             class="fa fa-info-circle"></span></a></label>
                             <input type="text" id="registered-users" class="form-control" name="registered_users"
                                    placeholder="Insert the Registered Users' list ID"

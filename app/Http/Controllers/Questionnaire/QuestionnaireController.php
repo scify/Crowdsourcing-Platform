@@ -40,7 +40,7 @@ class QuestionnaireController extends Controller {
     public function manageQuestionnaires() {
         $questionnairesViewModel = $this->questionnaireVMProvider->getAllQuestionnairesPageViewModel();
 
-        return view('loggedin-environment.management.questionnaire.all')->with(['viewModel' => $questionnairesViewModel]);
+        return view('backoffice.management.questionnaire.all')->with(['viewModel' => $questionnairesViewModel]);
     }
 
     public function saveQuestionnaireStatus(Request $request): RedirectResponse {
@@ -55,7 +55,7 @@ class QuestionnaireController extends Controller {
     public function createQuestionnaire() {
         $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel();
 
-        return view('loggedin-environment.management.questionnaire.create-edit')->with(['viewModel' => $viewModel]);
+        return view('backoffice.management.questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
     public function store(Request $request) {
@@ -84,7 +84,7 @@ class QuestionnaireController extends Controller {
     public function editQuestionnaire(Request $request) {
         $viewModel = $this->questionnaireVMProvider->getCreateEditQuestionnaireViewModel($request->id);
 
-        return view('loggedin-environment.management.questionnaire.create-edit')->with(['viewModel' => $viewModel]);
+        return view('backoffice.management.questionnaire.create-edit')->with(['viewModel' => $viewModel]);
     }
 
     public function update(Request $request) {

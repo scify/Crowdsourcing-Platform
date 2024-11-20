@@ -193,7 +193,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.create', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.crowdsourcing-project.create-edit.form-page');
+        $response->assertViewIs('backoffice.management.crowdsourcing-project.create-edit.form-page');
     }
 
     /**
@@ -230,7 +230,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.index', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.crowdsourcing-project.index');
+        $response->assertViewIs('backoffice.management.crowdsourcing-project.index');
     }
 
     /**
@@ -272,7 +272,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.edit', ['locale' => 'en', 'project' => $project->id]));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.crowdsourcing-project.create-edit.form-page');
+        $response->assertViewIs('backoffice.management.crowdsourcing-project.create-edit.form-page');
     }
 
     /**

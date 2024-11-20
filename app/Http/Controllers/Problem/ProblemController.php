@@ -51,7 +51,7 @@ class ProblemController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): View {
-        return view('loggedin-environment.management.problem.index');
+        return view('backoffice.management.problem.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class ProblemController extends Controller {
     public function create(): View {
         $viewModel = $this->problemManager->getCreateEditProblemViewModel();
 
-        return view('loggedin-environment.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
+        return view('backoffice.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
     }
 
     /**
@@ -99,7 +99,7 @@ class ProblemController extends Controller {
     public function edit(Request $request): View {
         $viewModel = $this->problemManager->getCreateEditProblemViewModel($request->id);
 
-        return view('loggedin-environment.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
+        return view('backoffice.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
     }
 
     /**

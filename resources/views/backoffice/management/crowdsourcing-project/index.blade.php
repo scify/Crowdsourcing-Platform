@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 @section('title', 'home')
 @section('content-header')
     <h1>All Crowd-sourcing Projects</h1>

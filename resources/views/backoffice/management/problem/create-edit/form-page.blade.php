@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
@@ -13,7 +13,7 @@
 @section('content')
 
     <form id="problem-form" enctype="multipart/form-data" method="POST"
-        action="{{ $viewModel->isEditMode() ? route('problems.update', $viewModel->problem) : route('problems.store') }}">
+          action="{{ $viewModel->isEditMode() ? route('problems.update', $viewModel->problem) : route('problems.store') }}">
 
         @if($viewModel->isEditMode())
             @method('PUT')
@@ -35,11 +35,11 @@
             <div class="tab-content " id="myTabContent">
                 <div class="tab-pane fade show active " id="basic-details" role="tabpanel"
                      aria-labelledby="basic-details-tab">
-                    @include('loggedin-environment.management.problem.create-edit.partials.basic-details')
+                    @include('backoffice.management.problem.create-edit.partials.basic-details')
 
                 </div>
                 <div class="tab-pane fade " id="translations" role="tabpanel" aria-labelledby="translations-tab">
-                    @include('loggedin-environment.management.problem.create-edit.partials.translations')
+                    @include('backoffice.management.problem.create-edit.partials.translations')
                 </div>
             </div>
             <div>
@@ -55,7 +55,7 @@
             </div>
         </div>
     </form>
-    
+
 @endsection
 
 @push('scripts')

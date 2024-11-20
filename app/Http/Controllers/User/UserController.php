@@ -31,13 +31,13 @@ class UserController extends Controller {
     public function myDashboard() {
         $dashboardViewModel = $this->userDashboardManager->getUserDashboardViewModel(Auth::user());
 
-        return view('loggedin-environment.my-dashboard', ['viewModel' => $dashboardViewModel]);
+        return view('backoffice.my-dashboard', ['viewModel' => $dashboardViewModel]);
     }
 
     public function myAccount() {
         $userViewModel = $this->userManager->getUserProfile(Auth::user());
 
-        return view('loggedin-environment.my-account', ['viewModel' => $userViewModel]);
+        return view('backoffice.my-account', ['viewModel' => $userViewModel]);
     }
 
     public function patch(Request $request) {
@@ -103,14 +103,14 @@ class UserController extends Controller {
 
             return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string) view('partials.ajax_error_message', compact('errorMessage'))));
         } else {
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('loggedin-environment.management.partials.users-list', compact('users'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('backoffice.management.partials.users-list', compact('users'))));
         }
     }
 
     public function showUserContributions() {
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
 
-        return view('loggedin-environment.my-contributions', ['responses' => $responses]);
+        return view('backoffice.my-contributions', ['responses' => $responses]);
     }
 
     public function downloadMyData() {

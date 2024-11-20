@@ -44,7 +44,7 @@ class CrowdSourcingProjectProblemControllerTest extends TestCase {
         $response = $this->get(route('problems.create'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.problem.create-edit.form-page');
+        $response->assertViewIs('backoffice.management.problem.create-edit.form-page');
     }
 
     /**

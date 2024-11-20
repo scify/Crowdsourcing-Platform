@@ -38,7 +38,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.my-dashboard');
+        $response->assertViewIs('backoffice.my-dashboard');
     }
 
     /** @test */
@@ -57,7 +57,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-account', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.my-account');
+        $response->assertViewIs('backoffice.my-account');
     }
 
     /** @test */
@@ -333,7 +333,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.my-dashboard');
+        $response->assertViewIs('backoffice.my-dashboard');
         $response->assertViewHas('viewModel');
         $viewModel = $response->original->getData()['viewModel'];
         $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);

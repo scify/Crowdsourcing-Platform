@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @section('title', 'home')
 
@@ -13,8 +13,8 @@
         </div>
         <div class="card-body">
             <div id="allUsers">
-                @include('loggedin-environment.management.partials.user-filters')
-                @include('loggedin-environment.management.partials.users-list', ['users' => $viewModel->users])
+                @include('backoffice.management.partials.user-filters')
+                @include('backoffice.management.partials.users-list', ['users' => $viewModel->users])
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <h3 class="card-title">Add new user</h3>
         </div>
         <div class="card-body">
-            @include('loggedin-environment.management.partials.new-user-form', ['roles' => $viewModel->allRoles])
+            @include('backoffice.management.partials.new-user-form', ['roles' => $viewModel->allRoles])
         </div>
     </div>
 @endsection

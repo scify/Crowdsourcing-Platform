@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
@@ -48,29 +48,29 @@
             <div class="tab-content " id="myTabContent">
                 <div class="tab-pane fade show active " id="basic-details" role="tabpanel"
                      aria-labelledby="basic-details-tab">
-                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.basic-details')
+                    @include('backoffice.management.crowdsourcing-project.create-edit.partials.basic-details')
 
                 </div>
                 <div class="tab-pane fade " id="landing-page" role="tabpanel" aria-labelledby="landing-page-tab">
-                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.landing-page')
+                    @include('backoffice.management.crowdsourcing-project.create-edit.partials.landing-page')
 
                 </div>
                 <div class="tab-pane fade " id="social-media" role="tabpanel" aria-labelledby="social-media-tab">
-                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.social-media')
+                    @include('backoffice.management.crowdsourcing-project.create-edit.partials.social-media')
 
                 </div>
                 <div class="tab-pane fade " id="communication-resources" role="tabpanel"
                      aria-labelledby="communication-resources-tab">
-                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.communication-resources')
+                    @include('backoffice.management.crowdsourcing-project.create-edit.partials.communication-resources')
 
                 </div>
                 <div class="tab-pane fade " id="statistics-colors" role="tabpanel"
                      aria-labelledby="statistics-colors-tab">
-                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.statistics-colors')
+                    @include('backoffice.management.crowdsourcing-project.create-edit.partials.statistics-colors')
 
                 </div>
                 <div class="tab-pane fade " id="translations" role="tabpanel" aria-labelledby="translations-tab">
-                    @include('loggedin-environment.management.crowdsourcing-project.create-edit.partials.translations')
+                    @include('backoffice.management.crowdsourcing-project.create-edit.partials.translations')
                 </div>
             </div>
             <div>

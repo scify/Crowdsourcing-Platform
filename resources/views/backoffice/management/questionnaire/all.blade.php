@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @section('content-header')
     <h1>Manage Questionnaires</h1>

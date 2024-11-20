@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 
 @push('css')
     @vite('resources/assets/sass/pages/my-dashboard.scss')
@@ -41,7 +41,7 @@
                                  aria-labelledby="projects-with-questionnaires-header"
                                  data-parent="#projects-with-next-actions">
                                 <div class="card-body px-2">
-                                    @include('loggedin-environment.projects-with-active-questionnaires', ['questionnaires' => $viewModel->questionnaires])
+                                    @include('backoffice.projects-with-active-questionnaires', ['questionnaires' => $viewModel->questionnaires])
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                  aria-labelledby="projects-with-problems-header"
                                  data-parent="#projects-with-next-actions">
                                 <div class="card-body px-2">
-                                    @include('loggedin-environment.projects-with-active-problems', ['projects' => $viewModel->projectsWithActiveProblems])
+                                    @include('backoffice.projects-with-active-problems', ['projects' => $viewModel->projectsWithActiveProblems])
                                 </div>
                             </div>
                         </div>

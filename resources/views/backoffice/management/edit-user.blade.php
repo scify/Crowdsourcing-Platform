@@ -1,4 +1,4 @@
-@extends('loggedin-environment.layout')
+@extends('backoffice.layout')
 @section('title', 'home')
 @section('content-header')
     <h1>Edit User</h1>
@@ -49,7 +49,7 @@
                                 @foreach ($viewModel->allRoles as $role)
                                     <option
                                             @if ($viewModel->userRoleIds->contains($role->id))
-                                            selected
+                                                selected
                                             @endif
                                             value="{{ $role->id }}" name="roleVal[{{ $role->id }}]"
                                     >

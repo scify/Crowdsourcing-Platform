@@ -23,7 +23,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         $response = $this->get(route('questionnaires.reports', ['locale' => 'en', 'questionnaireId' => $questionnaire->id]));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.questionnaire.reports.reports-with-filters');
+        $response->assertViewIs('backoffice.questionnaire.reports.reports-with-filters');
         $response->assertViewHas('viewModel');
     }
 
