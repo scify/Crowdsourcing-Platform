@@ -8,7 +8,7 @@ use App\Models\User\UserRole;
 use Faker\Factory as Faker;
 use Tests\TestCase;
 
-class CrowdSourcingProjectProblemControllerTest extends TestCase {
+class ProblemControllerTest extends TestCase {
     /**
      * @test A guest cannot access the create page
      */
