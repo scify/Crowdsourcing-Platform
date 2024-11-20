@@ -14,14 +14,14 @@
 				</div>
 			</div>
 			<div class="col-1">
-				<div class="btn btn-block btn-outline-danger w-100" @click="removeColor(index)">
+				<div class="btn btn-block btn-outline-danger btn-slimmer w-100" @click="removeColor(index)">
 					<i class="fas fa-minus"></i>
 				</div>
 			</div>
 		</div>
 		<div class="row mt-4">
 			<div class="col-2">
-				<div class="btn btn-block btn-primary btn-lg w-100 mt-0" @click="addColor">
+				<div class="btn btn-block btn-primary btn-lg btn-slim w-100 mt-0" @click="addColor">
 					<i class="fas fa-plus"></i>
 				</div>
 			</div>
