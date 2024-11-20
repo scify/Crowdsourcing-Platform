@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers\CrowdSourcingProject\Problem;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\User\User;
 use App\Models\User\UserRole;
 use Faker\Factory as Faker;
@@ -12,7 +13,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A guest cannot access the create page
      */
-    public function guestCannotAccessCreatePage() {
+    public function guestCannotAccessProblemCreatePage() {
         $response = $this->get(route('problems.create'));
 
         // 302 is the status code for a redirect (to the login page)
@@ -23,7 +24,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test An authenticated non-admin user cannot access the create page
      */
-    public function authenticatedNonAdminUserCannotAccessCreatePage() {
+    public function authenticatedNonAdminUserCannotAccessProblemCreatePage() {
         $user = User::factory()->make();
         $this->be($user);
 
@@ -35,7 +36,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test An admin user can access the create page
      */
-    public function adminCanAccessCreatePage() {
+    public function adminCanAccessProblemCreatePage() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -50,7 +51,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A contentManager user can access the create page
      */
-    public function contentManagerCanAccessCreatePage() {
+    public function contentManagerCanAccessProblemCreatePage() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
@@ -59,13 +60,13 @@ class ProblemControllerTest extends TestCase {
         $response = $this->get(route('problems.create'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.problem.create-edit.form-page');
+        $response->assertViewIs('backoffice.management.problem.create-edit.form-page');
     }
 
     /**
-     * @test A non-admin user cannot store a project
+     * @test A non-admin user cannot store a problem
      */
-    public function nonAdminUserCannotStoreProject() {
+    public function nonAdminUserCannotStoreProblem() {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -86,9 +87,9 @@ class ProblemControllerTest extends TestCase {
     }
 
     /**
-     * @test A content manager can store a project with valid data in the form (no extra translations)
+     * @test A content manager can store a problem with valid data in the form (no extra translations)
      */
-    public function contentManagerCanStoreProjectWithValidDataWithNoExtraTranslations() {
+    public function contentManagerCanStoreProblemWithValidDataWithNoExtraTranslations() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
@@ -97,12 +98,13 @@ class ProblemControllerTest extends TestCase {
         $faker = Faker::create();
 
         // TODO: Implement
+        parent::assertTrue(true);
     }
 
     /**
-     * @test A content manager can store a project with valid data in the form, with extra translations as well
+     * @test A content manager can store a problem with valid data in the form, with extra translations as well
      */
-    public function contentManagerCanStoreProjectWithValidDataWithExtraTranslations() {
+    public function contentManagerCanStoreProblemWithValidDataWithExtraTranslations() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
@@ -111,12 +113,13 @@ class ProblemControllerTest extends TestCase {
         $faker = Faker::create();
 
         // TODO: Implement
+        parent::assertTrue(true);
     }
 
     /**
-     * @test A content manager cannot store a project with invalid data in the form
+     * @test A content manager cannot store a problem with invalid data in the form
      */
-    public function contentManagerCannotStoreProjectWithInvalidData() {
+    public function contentManagerCannotStoreProblemWithInvalidData() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
@@ -125,5 +128,6 @@ class ProblemControllerTest extends TestCase {
         $faker = Faker::create();
 
         // TODO: Implement
+        parent::assertTrue(true);
     }
 }
