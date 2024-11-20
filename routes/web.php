@@ -10,6 +10,7 @@ use App\Http\Controllers\Questionnaire\QuestionnaireController;
 use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
 use App\Http\Controllers\Questionnaire\QuestionnaireStatisticsController;
+use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\UserController;
 use App\Models\User\User;
@@ -85,6 +86,7 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
             Route::post('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'saveStatisticsColors'])->name('questionnaire.statistics-colors.store');
             Route::resource('problems', ProblemController::class)->except(['show']);
             Route::put('problems/{id}/update-status', [ProblemController::class, 'updateStatus'])->name('problems.update-status');
+            Route::resource('solutions', SolutionController::class)->except(['show']);
         });
     });
 });
