@@ -7,12 +7,12 @@ use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
+use App\Models\Problem\CrowdSourcingProjectProblem;
+use App\Models\Problem\CrowdSourcingProjectProblemTranslation;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use Tests\TestCase;
 
 class CrowdSourcingProjectLandingPageTest extends TestCase {

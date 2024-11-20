@@ -3,7 +3,7 @@
 namespace App\Models\Questionnaire;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
-use App\Models\User;
+use App\Models\User\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

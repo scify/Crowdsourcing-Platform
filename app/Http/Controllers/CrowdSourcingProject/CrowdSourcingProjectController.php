@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\BusinessLogicLayer\User\UserQuestionnaireShareManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;

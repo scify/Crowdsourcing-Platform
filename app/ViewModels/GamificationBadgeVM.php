@@ -2,7 +2,7 @@
 
 namespace App\ViewModels;
 
-use App\BusinessLogicLayer\gamification\GamificationBadge;
+use App\BusinessLogicLayer\Gamification\GamificationBadge;
 
 class GamificationBadgeVM {
     public string $badgeImageName;

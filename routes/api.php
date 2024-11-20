@@ -14,14 +14,14 @@
 
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectController;
-use App\Http\Controllers\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Problem\CrowdSourcingProjectProblemController;
 use App\Http\Controllers\Questionnaire\QuestionnaireAnswerAnnotationController;
 use App\Http\Controllers\Questionnaire\QuestionnaireController;
 use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\UserController;
 
 Route::middleware(['throttle:api-public'])->group(function () {
     Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('api.questionnaire.languages.get');

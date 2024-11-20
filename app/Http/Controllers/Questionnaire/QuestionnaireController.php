@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireLanguageManager;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireManager;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireTranslator;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireVMProvider;
-use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireLanguageManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireTranslator;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireVMProvider;
+use App\BusinessLogicLayer\User\UserQuestionnaireShareManager;
 use App\Http\Controllers\Controller;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;

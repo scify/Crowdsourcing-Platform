@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Questionnaire;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireReportManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireReportManager;
 use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Illuminate\Database\QueryException;

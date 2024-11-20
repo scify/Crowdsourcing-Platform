@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemSolutionStatusLkp;
-use App\Models\CrowdSourcingProject\Problem\Solution\CrowdSourcingProjectProblemSolution;
-use App\Models\CrowdSourcingProject\Problem\Solution\CrowdSourcingProjectProblemSolutionTranslation;
+use App\Models\Problem\Solution\CrowdSourcingProjectProblemSolution;
+use App\Models\Problem\Solution\CrowdSourcingProjectProblemSolutionTranslation;
 use Illuminate\Database\Seeder;
 
 class CrowdSourcingProjectProblemSolutionSeeder extends Seeder {

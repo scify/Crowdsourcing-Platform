@@ -3,7 +3,7 @@
 namespace App\Models\Questionnaire;
 
 use App\Models\CompositeKeysModel;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

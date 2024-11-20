@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CommunicationController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectController;
-use App\Http\Controllers\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\Problem\CrowdSourcingProjectProblemController;
 use App\Http\Controllers\Questionnaire\QuestionnaireController;
 use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
 use App\Http\Controllers\Questionnaire\QuestionnaireStatisticsController;
-use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\User\AdminController;
+use App\Http\Controllers\User\UserController;
+use App\Models\User\User;
 use App\Notifications\UserRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

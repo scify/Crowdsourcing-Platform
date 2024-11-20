@@ -4,8 +4,8 @@ namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Exception;
 use Illuminate\Database\QueryException;

@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\BusinessLogicLayer\gamification\GamificationBadge;
+use App\BusinessLogicLayer\Gamification\GamificationBadge;
 use App\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

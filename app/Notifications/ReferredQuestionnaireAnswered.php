@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\BusinessLogicLayer\gamification\GamificationBadge;
+use App\BusinessLogicLayer\Gamification\GamificationBadge;
 use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
 use App\ViewModels\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;

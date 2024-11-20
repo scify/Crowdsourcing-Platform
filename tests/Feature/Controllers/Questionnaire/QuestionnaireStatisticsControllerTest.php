@@ -5,12 +5,12 @@ namespace Tests\Feature\Controllers\Questionnaire;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireStatisticsManager;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use Tests\TestCase;
 
 class QuestionnaireStatisticsControllerTest extends TestCase {

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Controllers\Questionnaire;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Tests\TestCase;
 

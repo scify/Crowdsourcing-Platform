@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
-use App\BusinessLogicLayer\UserDashboardManager;
-use App\BusinessLogicLayer\UserManager;
-use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\User\UserDashboardManager;
+use App\BusinessLogicLayer\User\UserManager;
+use App\Http\Controllers\User\UserController;
+use App\Models\User\User;
 use App\ViewModels\GamificationBadgesWithLevels;
 use App\ViewModels\UserDashboardViewModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;

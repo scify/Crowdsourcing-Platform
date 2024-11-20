@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Repository\UserRepository;
+use App\Repository\User\UserRepository;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder {

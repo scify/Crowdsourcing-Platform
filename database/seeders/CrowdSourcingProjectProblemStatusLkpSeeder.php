@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemStatusLkp;
+use App\Models\Problem\CrowdSourcingProjectProblemStatusLkp;
 use Illuminate\Database\Seeder;
 
 class CrowdSourcingProjectProblemStatusLkpSeeder extends Seeder {

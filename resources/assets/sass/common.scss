@@ -17,13 +17,13 @@
 @import "sidebar";
 
 // import everything from the common folder
-@import "common/button";
-@import "common/card";
-@import "common/modal";
-@import "common/navbar";
-@import "common/alert";
-@import "common/social";
-@import "common/footer";
+@import "shared/button";
+@import "shared/card";
+@import "shared/modal";
+@import "shared/navbar";
+@import "shared/alert";
+@import "shared/social";
+@import "shared/footer";
 
 :root {
   --clr-primary-white: #fdfffc;

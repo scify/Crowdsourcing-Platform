@@ -3,9 +3,9 @@
 namespace App\Repository\Questionnaire\Responses;
 
 use App\BusinessLogicLayer\CookieManager;
-use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Models\Questionnaire\QuestionnaireResponse;
-use App\Models\User;
+use App\Models\User\User;
 use App\Repository\Repository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;

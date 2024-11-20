@@ -2,7 +2,7 @@
 
 namespace App\ViewModels;
 
-use App\Models\User;
+use App\Models\User\User;
 
 class UserProfile {
     public $user;

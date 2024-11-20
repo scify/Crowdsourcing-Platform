@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Questionnaire;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireStatisticsManager;
 use App\Http\Controllers\Controller;
 use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Http\RedirectResponse;

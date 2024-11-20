@@ -2,10 +2,10 @@
 
 namespace App\Models\CrowdSourcingProject;
 
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\Language;
+use App\Models\Problem\CrowdSourcingProjectProblem;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\User;
+use App\Models\User\User;
 use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

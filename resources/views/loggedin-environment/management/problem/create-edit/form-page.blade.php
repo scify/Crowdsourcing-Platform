@@ -7,7 +7,7 @@
 @endsection
 
 @push('css')
-    @vite('resources/assets/sass/project/problem/create-edit-problem.scss')
+    @vite('resources/assets/sass/problem/create-edit-problem.scss')
 @endpush
 
 @section('content')
@@ -59,5 +59,5 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/assets/js/project/problem/manage-problem.js')
+    @vite('resources/assets/js/problem/manage-problem.js')
 @endpush

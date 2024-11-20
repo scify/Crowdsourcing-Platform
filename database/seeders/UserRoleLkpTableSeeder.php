@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserRoleLookup;
+use App\Models\User\UserRoleLookup;
 use Illuminate\Database\Seeder;
 
 class UserRoleLkpTableSeeder extends Seeder {

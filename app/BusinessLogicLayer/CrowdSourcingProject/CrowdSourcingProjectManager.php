@@ -2,16 +2,16 @@
 
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
-use App\BusinessLogicLayer\gamification\ContributorBadge;
+use App\BusinessLogicLayer\Gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
-use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectStatusHistoryRepository;
-use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\LanguageRepository;
+use App\Repository\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\FileHandler;

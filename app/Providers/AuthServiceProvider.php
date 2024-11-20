@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
-use App\BusinessLogicLayer\UserRoleManager;
+use App\BusinessLogicLayer\User\UserRoleManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
 

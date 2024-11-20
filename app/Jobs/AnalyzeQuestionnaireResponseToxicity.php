@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseToxicityAnalyzer;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseToxicityAnalyzer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

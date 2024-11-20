@@ -2,8 +2,8 @@
 
 namespace App\ViewModels\CrowdSourcingProject\Problem;
 
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
 use App\Models\Language;
+use App\Models\Problem\CrowdSourcingProjectProblem;
 use Illuminate\Support\Collection;
 
 class CreateEditProblem {

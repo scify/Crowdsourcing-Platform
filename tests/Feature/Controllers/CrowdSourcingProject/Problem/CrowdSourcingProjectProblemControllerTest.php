@@ -3,8 +3,8 @@
 namespace Tests\Feature\Controllers\CrowdSourcingProject\Problem;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use Faker\Factory as Faker;
 use Tests\TestCase;
 

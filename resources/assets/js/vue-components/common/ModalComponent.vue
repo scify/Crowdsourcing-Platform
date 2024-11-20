@@ -71,5 +71,5 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "resources/assets/sass/variables";
-@import "resources/assets/sass/modal";
+@import "resources/assets/sass/shared/modal";
 </style>

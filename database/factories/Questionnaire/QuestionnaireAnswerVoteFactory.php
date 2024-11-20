@@ -4,7 +4,7 @@ namespace Database\Factories\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireAnswerVote;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 

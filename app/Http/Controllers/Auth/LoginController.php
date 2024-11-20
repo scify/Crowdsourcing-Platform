@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
-use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
