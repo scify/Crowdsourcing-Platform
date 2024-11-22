@@ -5,108 +5,54 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-owner-project">Project the problem belongs to (<span
-                                    class="red">*</span>)</label>
-                        <select
-                                id="problem-owner-project"
-                                name="problem-owner-project"
-                                class="form-control {{ $errors->has('problem-owner-project') ? 'is-invalid' : '' }}"
-                                required
-                                {{ $errors->has('problem-owner-project') ? 'aria-describedby="problem-owner-project-feedback"' : '' }}
-                        >
-                            <option disabled selected value="">Choose...</option>
-                            @foreach ($viewModel->projects as $project)
-                                <option
-                                        @if ($viewModel->problem->project_id == $project->id || old('problem-owner-project') == $project->id)
-                                            selected
-                                        @endif
-                                        value="{{ $project->id }}"
-                                >
-                                    {{ $project->defaultTranslation->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div id="problem-owner-project-feedback" class="invalid-feedback">
-                            <strong>{{ $errors->first('problem-owner-project') }}</strong></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-default-language">Problem Default Language (<span
-                                    class="red">*</span>)</label>
-                        <select
-                                id="problem-default-language"
-                                name="problem-default-language"
-                                class="form-control {{ $errors->has('problem-default-language') ? 'is-invalid' : '' }}"
-                                required
-                        >
-                            @foreach ($viewModel->languagesLkp as $language)
-                                <option
-                                        @if ($viewModel->shouldLanguageBeSelected($language))
-                                            selected
-                                        @endif
-                                        value="{{ $language->id }}"
-                                >
-                                    {{ $language->language_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div id="problem-default-language-feedback" class="invalid-feedback">
-                            <strong>{{ $errors->first('problem-default-language') }}</strong></div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-title">Problem Default Title (<span class="red">*</span>)</label>
+                        <label for="solution-title">Solution Default Title (<span class="red">*</span>)</label>
                         <input type="text"
-                               id="problem-title"
-                               name="problem-title"
-                               class="form-control {{ $errors->has('problem-title') ? 'is-invalid' : '' }}"
+                               id="solution-title"
+                               name="solution-title"
+                               class="form-control {{ $errors->has('solution-title') ? 'is-invalid' : '' }}"
                                required
-                               placeholder="Problem Title"
+                               placeholder="Solution Title"
                                maxlength="100"
-                               {{ $errors->has('problem-title') ? 'aria-describedby="problem-title-feedback"' : '' }}
-                               value="{{ old('problem-title') ? old('problem-title') : $viewModel->problem->defaultTranslation->title }}"
+                               {{ $errors->has('solution-title') ? 'aria-describedby="solution-title-feedback"' : '' }}
+                               value="{{ old('solution-title') ? old('solution-title') : $viewModel->solution->defaultTranslation->title }}"
                         >
-                        <div id="problem-title-feedback" class="invalid-feedback">
-                            <strong>{{ $errors->first('problem-title') }}</strong></div>
+                        <div id="solution-title-feedback" class="invalid-feedback">
+                            <strong>{{ $errors->first('solution-title') }}</strong></div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-description">Problem Default Description (<span
+                        <label for="solution-description">Solution Default Description (<span
                                     class="red">*</span>)</label>
                         <textarea
-                                id="problem-description"
-                                name="problem-description"
-                                class="form-control {{ $errors->has('problem-description') ? 'is-invalid' : '' }}"
+                                id="solution-description"
+                                name="solution-description"
+                                class="form-control {{ $errors->has('solution-description') ? 'is-invalid' : '' }}"
                                 required
                                 rows="6"
-                                placeholder="Problem Description"
+                                placeholder="Solution Description"
                                 maxlength="400"
-                            {{ $errors->has('problem-description') ? 'aria-describedby="problem-description-feedback"' : '' }}
-                        >{{ old('problem-description') ? old('problem-description') : $viewModel->problem->defaultTranslation->description }}</textarea>
-                        <div id="problem-description-feedback" class="invalid-feedback">
-                            <strong>{{ $errors->first('problem-description') }}</strong></div>
+                            {{ $errors->has('solution-description') ? 'aria-describedby="solution-description-feedback"' : '' }}
+                        >{{ old('solution-description') ? old('solution-description') : $viewModel->solution->defaultTranslation->description }}</textarea>
+                        <div id="solution-description-feedback" class="invalid-feedback">
+                            <strong>{{ $errors->first('solution-description') }}</strong></div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-status">Problem Status (<span class="red">*</span>)</label>
+                        <label for="solution-status">Solution Status (<span class="red">*</span>)</label>
                         <select
-                                id="problem-status"
-                                name="problem-status"
-                                class="form-control {{ $errors->has('problem-status') ? 'is-invalid' : '' }}"
+                                id="solution-status"
+                                name="solution-status"
+                                class="form-control {{ $errors->has('solution-status') ? 'is-invalid' : '' }}"
                                 required
-                                {{ $errors->has('problem-status') ? 'aria-describedby="problem-status-feedback"' : '' }}
+                                {{ $errors->has('solution-status') ? 'aria-describedby="solution-status-feedback"' : '' }}
                         >
-                            @foreach ($viewModel->problemStatusesLkp as $status)
+                            @foreach ($viewModel->solutionStatusesLkp as $status)
                                 <option
-                                        @if ($viewModel->problem->status_id == $status->id || old('problem-status') == $status->id)
+                                        @if ($viewModel->solution->status_id == $status->id || old('solution-status') == $status->id)
                                             selected
                                         @endif
                                         value="{{ $status->id }}"
@@ -115,36 +61,36 @@
                                 </option>
                             @endforeach
                         </select>
-                        <div id="problem-status-feedback" class="invalid-feedback">
-                            <strong>{{ $errors->first('problem-status') }}</strong></div>
+                        <div id="solution-status-feedback" class="invalid-feedback">
+                            <strong>{{ $errors->first('solution-status') }}</strong></div>
                     </div>
                 </div>
 
-                @if($viewModel->isEditMode())
+                @if($viewModel->isEditMode()) {{-- bookmark3 - allow edit? --}}
                     <div class="form-row">
                         <div class="form-group col-sm-12">
-                            <label for="problem-slug">Problem Slug (<span class="red">*</span>)
+                            <label for="solution-slug">Solution Slug (<span class="red">*</span>)
                                 <span class="text-sm explanation-text">
-                                    (It defines the problems's url, for example:
+                                    (It defines the solutions's url, for example:
                                     <ul>
-                                        <li><i>For english | https://crowdsourcing.ecas.org/en/project-slug/problem-slug</i></li>
-                                        <li><i>For greek | https://crowdsourcing.ecas.org/gr/project-slug/problem-slug</i></li>
-                                        <li><i>For dutch | https://crowdsourcing.ecas.org/nl/project-slug/problem-slug</i></li>
+                                        <li><i>For english | https://crowdsourcing.ecas.org/en/project-slug/problem-slug/solution-slug</i></li> {{-- bookmark3 - solution's url form? --}}
+                                        <li><i>For greek | https://crowdsourcing.ecas.org/gr/project-slug/problem-slug/solution-slug</i></li>
+                                        <li><i>For dutch | https://crowdsourcing.ecas.org/nl/project-slug/problem-slug/solution-slug</i></li>
                                     </ul>
-                                    The slug must be unique and can contain only letters, numbers, and dashes.)
+                                    The slug must be unique and can contain only letters, numbers, and dashes.) {{-- bookmark3 - leave this? --}}
                                 </span>
                             </label>
                             <input type="text"
-                                   id="problem-slug"
-                                   name="problem-slug"
-                                   class="form-control {{ $errors->has('problem-slug') ? 'is-invalid' : '' }}"
+                                   id="solution-slug"
+                                   name="solution-slug"
+                                   class="form-control {{ $errors->has('solution-slug') ? 'is-invalid' : '' }}"
                                    required
-                                   placeholder="Problem Slug"
+                                   placeholder="Solution Slug"
                                    maxlength="111"
-                                   value="{{ old('problem-slug') ? old('problem-slug') : $viewModel->problem->slug }}"
+                                   value="{{ old('solution-slug') ? old('solution-slug') : $viewModel->solution->slug }}"
                             >
-                            <div id="problem-slug-feedback" class="invalid-feedback">
-                                <strong>{{ $errors->first('problem-slug') }}</strong></div>
+                            <div id="solution-slug-feedback" class="invalid-feedback">
+                                <strong>{{ $errors->first('solution-slug') }}</strong></div>
                         </div>
                     </div>
                 @endif
@@ -152,24 +98,24 @@
                 <div class="form-row js-image-input-container">
                     <div class="col-sm-12">
                         <div class="form-group input-file-wrapper">
-                            <label for="problem-image">Problem Image (max-size: 2MB)</label></label>
+                            <label for="solution-image">Solution Image (max-size: 2MB)</label></label>
                             <small>In order to update the currently selected image, please choose a new image by
                                 clicking the button below.</small><br>
                             <input type="file"
-                                   id="problem-image"
-                                   name="problem-image"
-                                   class="form-control p-2 h-auto {{ $errors->has('problem-image') ? 'is-invalid' : '' }} js-image-input"
+                                   id="solution-image"
+                                   name="solution-image"
+                                   class="form-control p-2 h-auto {{ $errors->has('solution-image') ? 'is-invalid' : '' }} js-image-input"
                                    accept="image/png,image/jpeg,image/jpg"
-                                   placeholder="Problem Image"
+                                   placeholder="Solution Image"
                             >
-                            <div id="problem-image-feedback" class="invalid-feedback">
-                                <strong>{{ $errors->first('problem-image') }}</strong></div>
+                            <div id="solution-image-feedback" class="invalid-feedback">
+                                <strong>{{ $errors->first('solution-image') }}</strong></div>
                         </div>
                         <div class="image-preview-container">
                             <img
                                     loading="lazy"
                                     class="selected-image-preview js-selected-image-preview"
-                                    src="{{ $viewModel->problem->img_url ? asset($viewModel->problem->img_url) : '/images/problem_default_image.png' }}"
+                                    src="{{ $viewModel->solution->img_url ? asset($viewModel->solution->img_url) : '/images/solution_default_image.png' }}" {{-- bookmark3 - add solution_default_image.png --}}
                                     alt="">
                         </div>
                     </div>

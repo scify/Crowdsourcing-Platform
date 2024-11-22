@@ -2,24 +2,26 @@
 
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
-        Problem {{ $viewModel->isEditMode() ? ': ' . $viewModel->problem->defaultTranslation->name : '' }}
+        Solution {{ $viewModel->isEditMode() ? ': ' . $viewModel->solution->defaultTranslation->name : '' }}
         <small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
 @endsection
 
 @push('css')
-    @vite('resources/assets/sass/problem/create-edit-problem.scss')
+    @vite('resources/assets/sass/solution/create-edit-solution.scss')
 @endpush
 
 @section('content')
 
-    <form id="problem-form" enctype="multipart/form-data" method="POST"
-          action="{{ $viewModel->isEditMode() ? route('problems.update', $viewModel->problem) : route('problems.store') }}">
+    <form id="solution-form" enctype="multipart/form-data" method="POST"
+          action="{{ $viewModel->isEditMode() ? route('solutions.update', $viewModel->solution) : route('solutions.store') }}">
 
         @if($viewModel->isEditMode())
             @method('PUT')
         @endif
 
         @csrf
+
+        <input type="hidden" name="solution-owner-problem" value="{{ request()->problem_id}}">
 
         <div class="container-fluid p-0">
             <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
@@ -35,11 +37,11 @@
             <div class="tab-content " id="myTabContent">
                 <div class="tab-pane fade show active " id="basic-details" role="tabpanel"
                      aria-labelledby="basic-details-tab">
-                    @include('backoffice.management.problem.create-edit.partials.basic-details')
+                    @include('backoffice.management.solution.create-edit.partials.basic-details')
 
                 </div>
                 <div class="tab-pane fade " id="translations" role="tabpanel" aria-labelledby="translations-tab">
-                    @include('backoffice.management.problem.create-edit.partials.translations')
+                    @include('backoffice.management.solution.create-edit.partials.translations')
                 </div>
             </div>
             <div>
@@ -59,5 +61,5 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/assets/js/problem/manage-problem.js')
+    @vite('resources/assets/js/solution/manage-solution.js')
 @endpush

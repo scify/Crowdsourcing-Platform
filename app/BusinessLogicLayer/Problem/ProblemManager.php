@@ -56,7 +56,7 @@ class ProblemManager {
         } else {
             $problem = new Problem;
             $problem->default_language_id = 6; // @todo change with lookuptable value - bookmark2
-            $problem->setRelation('defaultTranslation', new ProblemTranslation); // bookmark2 - is this an "empty" relationship?
+            $problem->setRelation('defaultTranslation', new ProblemTranslation);
         }
 
         $translations = $this->problemTranslationManager->getTranslationsForProblem($problem);
