@@ -7,13 +7,13 @@ use App\Notifications\UserRegistered;
 use App\Utils\Translator;
 use Illuminate\Console\Command;
 
-class TestAdminTasks extends Command {
+class RunAdminTasks extends Command {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:test-admin-tasks';
+    protected $signature = 'app:run-admin-tasks';
 
     /**
      * The console command description.

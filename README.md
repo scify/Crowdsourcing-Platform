@@ -18,55 +18,55 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
 ## Table of Contents
 
 - [Crowdsourcing Web Application](#crowdsourcing-web-application)
-  - [Introduction](#introduction)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Benefits of Open Source applications](#benefits-of-open-source-applications)
-  - [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
-  - [Installation Instructions](#installation-instructions)
-  - [Method 1: Docker Compose (recommended)](#method-1-docker-compose-recommended)
-    - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
-    - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
-    - [Step 3: Launch the Application](#step-3-launch-the-application)
-  - [Method 2: Manual Installation](#method-2-manual-installation)
-    - [Step 1: Install PHP](#step-1-install-php)
-    - [Step 2: Install Composer](#step-2-install-composer)
-    - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
-    - [Step 4: Install Nginx](#step-4-install-nginx)
-      - [Nginx Configuration](#nginx-configuration)
-    - [Step 5: Install MySQL](#step-5-install-mysql)
-      - [Database Considerations](#database-considerations)
-    - [Step 6: Run the application](#step-6-run-the-application)
-  - [Run the Laravel Application commands](#run-the-laravel-application-commands)
-    - [Step 1: Fix permissions for storage directory](#step-1-fix-permissions-for-storage-directory)
-    - [Step 2: Create the `.env` file](#step-2-create-the-env-file)
-    - [Step 3: Create A Database](#step-3-create-a-database)
-      - [Add the DB schema and the DB data](#add-the-db-schema-and-the-db-data)
-        - [Option 1: Use an existing database (MySQL dump)](#option-1-use-an-existing-database-mysql-dump)
-        - [Option 2: Run the migrations and seed the database](#option-2-run-the-migrations-and-seed-the-database)
-    - [Step 4: Install Laravel (back-end) dependencies](#step-4-install-laravel-back-end-dependencies)
-    - [Step 5: Generate the application key](#step-5-generate-the-application-key)
-    - [Step 6: Install and compile the front-end dependencies:](#step-6-install-and-compile-the-front-end-dependencies)
-    - [Step 7: Create symbolic link for uploaded files](#step-7-create-symbolic-link-for-uploaded-files)
-    - [Step 8: Cache the `.env` settings](#step-8-cache-the-env-settings)
-  - [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
-    - [Nginx Configuration for Social Login (only for Non-Docker installations)](#nginx-configuration-for-social-login-only-for-non-docker-installations)
-  - [SEO - Generate Sitemap](#seo---generate-sitemap)
-  - [Code Linting \& Formatting](#code-linting--formatting)
-    - [PHP code style - Laravel Pint](#php-code-style---laravel-pint)
-    - [JavaScript \&\& CSS code style - ESLint \&\& Prettier](#javascript--css-code-style---eslint--prettier)
-  - [Related HTML Template](#related-html-template)
-  - [Installation-specific resources](#installation-specific-resources)
-  - [Development Guidelines](#development-guidelines)
-    - [Directory Structure](#directory-structure)
-    - [About the Repository Pattern](#about-the-repository-pattern)
-  - [Run Tests](#run-tests)
-  - [How to debug](#how-to-debug)
-  - [Troubleshooting](#troubleshooting)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Credits](#credits)
-  - [Contact](#contact)
+    - [Introduction](#introduction)
+    - [Table of Contents](#table-of-contents)
+    - [Features](#features)
+    - [Benefits of Open Source applications](#benefits-of-open-source-applications)
+    - [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
+    - [Installation Instructions](#installation-instructions)
+    - [Method 1: Docker Compose (recommended)](#method-1-docker-compose-recommended)
+        - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
+        - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
+        - [Step 3: Launch the Application](#step-3-launch-the-application)
+    - [Method 2: Manual Installation](#method-2-manual-installation)
+        - [Step 1: Install PHP](#step-1-install-php)
+        - [Step 2: Install Composer](#step-2-install-composer)
+        - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
+        - [Step 4: Install Nginx](#step-4-install-nginx)
+            - [Nginx Configuration](#nginx-configuration)
+        - [Step 5: Install MySQL](#step-5-install-mysql)
+            - [Database Considerations](#database-considerations)
+        - [Step 6: Run the application](#step-6-run-the-application)
+    - [Run the Laravel Application commands](#run-the-laravel-application-commands)
+        - [Step 1: Fix permissions for storage directory](#step-1-fix-permissions-for-storage-directory)
+        - [Step 2: Create the `.env` file](#step-2-create-the-env-file)
+        - [Step 3: Create A Database](#step-3-create-a-database)
+            - [Add the DB schema and the DB data](#add-the-db-schema-and-the-db-data)
+                - [Option 1: Use an existing database (MySQL dump)](#option-1-use-an-existing-database-mysql-dump)
+                - [Option 2: Run the migrations and seed the database](#option-2-run-the-migrations-and-seed-the-database)
+        - [Step 4: Install Laravel (back-end) dependencies](#step-4-install-laravel-back-end-dependencies)
+        - [Step 5: Generate the application key](#step-5-generate-the-application-key)
+        - [Step 6: Install and compile the front-end dependencies:](#step-6-install-and-compile-the-front-end-dependencies)
+        - [Step 7: Create symbolic link for uploaded files](#step-7-create-symbolic-link-for-uploaded-files)
+        - [Step 8: Cache the `.env` settings](#step-8-cache-the-env-settings)
+    - [Social Login - Sign Up with Socialite](#social-login---sign-up-with-socialite)
+        - [Nginx Configuration for Social Login (only for Non-Docker installations)](#nginx-configuration-for-social-login-only-for-non-docker-installations)
+    - [SEO - Generate Sitemap](#seo---generate-sitemap)
+    - [Code Linting \& Formatting](#code-linting--formatting)
+        - [PHP code style - Laravel Pint](#php-code-style---laravel-pint)
+        - [JavaScript \&\& CSS code style - ESLint \&\& Prettier](#javascript--css-code-style---eslint--prettier)
+    - [Related HTML Template](#related-html-template)
+    - [Installation-specific resources](#installation-specific-resources)
+    - [Development Guidelines](#development-guidelines)
+        - [Directory Structure](#directory-structure)
+        - [About the Repository Pattern](#about-the-repository-pattern)
+    - [Run Tests](#run-tests)
+    - [How to debug](#how-to-debug)
+    - [Troubleshooting](#troubleshooting)
+    - [Contributing](#contributing)
+    - [License](#license)
+    - [Credits](#credits)
+    - [Contact](#contact)
 
 ## Features
 
@@ -276,9 +276,11 @@ sudo service mysql restart
 
 With manual installation, you will need to run the Laravel commands on your local machine.
 
-So open up a terminal and navigate to the project directory. Run `php artisan serve`, in order to start the Laravel server.
+So open up a terminal and navigate to the project directory. Run `php artisan serve`, in order to start the Laravel
+server.
 
-**Notice:** On Google Chrome, the browser might force the HTTPS protocol. In this case, you need to access the Chrome settings at [chrome://net-internals/#hsts](chrome://net-internals/#hsts), and enter `localhost` in the `Delete domain security policies
+**Notice:** On Google Chrome, the browser might force the HTTPS protocol. In this case, you need to access the Chrome
+settings at [chrome://net-internals/#hsts](chrome://net-internals/#hsts), and enter `localhost` in the `Delete domain security policies
 ` field.
 
 ## Run the Laravel Application commands
@@ -614,23 +616,27 @@ found [here](https://designpatternsphp.readthedocs.io/en/latest/More/Repository/
 
 ## Run Tests
 
-You may use a separate MySQL database, for testing purposes.
-Generally, the fields for testing should be defined in a `.env.testing` file, which should start as a copy of
-the `.env.testing.example` file.
-Then, run the `migrate` and `seed` commands for the testing Database:
+There is a custom Laravel Command that runs the test suite for the application, which can be run by executing the
+following command:
 
 ```bash
-cp .env.testing.example .env.testing
-
-php artisan migrate --env=testing --database=sqlite_testing
-
-php artisan db:seed --env=testing --database=sqlite_testing --class=DatabaseSeeder
+php artisan app:test
 ```
 
-Then, you can run the tests:
+This command is located in the `app/Console/Commands/TestCommand.php` file.
+Every time you run this command, the test database will be created at `storage/database_testing.sqlite`, the suite
+will be executed, and the results will be displayed in the console.
+
+If you want to only test a specific test class or method, you can run the following command:
 
 ```bash
-php artisan test --env=testing
+php artisan app:test --filter {METHOD OR CLASS NAME}
+```
+
+Example:
+
+```bash
+php artisan app:test --filter CrowdSourcingProjectControllerTest
 ```
 
 ## How to debug
@@ -643,25 +649,25 @@ By using Docker Compose, you can debug the application by following these steps:
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Listen for Xdebug",
-            "type": "php",
-            "request": "launch",
-            "port": 9003,
-            "pathMappings": {
-                "/var/www": "${workspaceFolder}"
-            },
-            "log": true
-        },
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/var/www": "${workspaceFolder}"
+      },
+      "log": true
+    }
+  ]
 }
 ```
 
 4. Start the debugger by navigating to the "Run and Debug" panel, and clicking on the "Listen for Xdebug" configuration.
 5. Set breakpoints in your code.
-  
+
 Now you can start debugging your application.
 
 For debugging the tests:
@@ -669,7 +675,8 @@ For debugging the tests:
 1. Open the test file you want to debug.
 2. Add breakpoints in the test file.
 3. Run `docker exec -it crowdsourcing_platform_server bash` to enter the PHP container.
-4. Run `php artisan test --env=testing --filter {METHOD OR CLASS NAME}`. For example `php artisan test --env=testing --filter authenticatedNonAdminUserCannotAccessCreatePage`.
+4. Run `php artisan app:test --filter {METHOD OR CLASS NAME}`. For example
+   `php artisan app:test --filter authenticatedNonAdminUserCannotAccessCreatePage`.
 
 ## Troubleshooting
 
