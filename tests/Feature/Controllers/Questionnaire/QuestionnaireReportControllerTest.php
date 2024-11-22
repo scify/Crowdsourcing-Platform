@@ -4,8 +4,8 @@ namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -20,10 +20,10 @@ class QuestionnaireReportControllerTest extends TestCase {
         $this->be($user);
 
         $questionnaire = Questionnaire::factory()->create();
-        $response = $this->get(route('questionnaires.reports', ['questionnaireId' => $questionnaire->id]));
+        $response = $this->get(route('questionnaires.reports', ['locale' => 'en', 'questionnaireId' => $questionnaire->id]));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.questionnaire.reports.reports-with-filters');
+        $response->assertViewIs('backoffice.questionnaire.reports.reports-with-filters');
         $response->assertViewHas('viewModel');
     }
 

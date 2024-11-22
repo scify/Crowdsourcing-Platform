@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Questionnaire;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireAnswerAnnotator;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireAnswerAnnotator;
 use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerAdminReviewLkpRepository;
 use Illuminate\Http\JsonResponse;

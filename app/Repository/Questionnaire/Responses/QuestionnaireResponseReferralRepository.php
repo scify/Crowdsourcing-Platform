@@ -2,7 +2,7 @@
 
 namespace App\Repository\Questionnaire\Responses;
 
-use App\Models\QuestionnaireResponseReferral;
+use App\Models\Questionnaire\QuestionnaireResponseReferral;
 use App\Repository\Repository;
 
 class QuestionnaireResponseReferralRepository extends Repository {

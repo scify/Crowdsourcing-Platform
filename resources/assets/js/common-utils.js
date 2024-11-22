@@ -18,7 +18,7 @@ export function showToast(
 		text: text,
 		showHideTransition: "slide", // It can be plain, fade or slide
 		bgColor: bgColor, // Background color for toast
-		textColor: "#eee", // text color
+		textColor: "#ffffff", // text color
 		allowToastClose: allowToastClose, // Show the close button or not
 		hideAfter: hideAfter, // `false` to make it sticky or time in miliseconds to hide after
 		stack: 5, // `fakse` to show one stack at a time count showing the number of toasts that can be shown at once

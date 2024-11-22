@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5930ffc0dbece556f1ef3d6b25b806fa",
+    "content-hash": "b87d99482ce83486f56d4f8da2df2b59",
     "packages": [
         {
             "name": "accentinteractive/laravel-logcleaner",
@@ -5704,7 +5704,7 @@
         },
         {
             "name": "scify/laravel-cookies-consent",
-            "version": "dev-main",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scify/laravel-cookies-consent.git",
@@ -5732,7 +5732,6 @@
                 "phpunit/phpunit": "^10.4",
                 "spatie/laravel-ray": "^1.26"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -11767,9 +11766,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "scify/laravel-cookies-consent": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

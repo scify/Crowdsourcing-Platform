@@ -1,0 +1,101 @@
+@import "../_variables.scss";
+
+.btn {
+  padding: 22px 30px;
+  transition: all 0.2s;
+  font-family: "Noto Sans Variable", sans-serif;
+  border-radius: 21px;
+  font-weight: 600;
+}
+
+.btn-slim,.buttons-csv.buttons-html5 {
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.btn-slimmer {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: $brand-primary;
+  border: none;
+}
+
+.call-to-action {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 25px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+
+  &:hover {
+    box-shadow:
+            0 4px 4px rgba(0, 0, 0, 0.25),
+            0 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: lighten($button-background-color, 10%);
+  }
+
+  &.focus,
+  &:focus,
+  &:focus-visible {
+    outline: 4px solid black;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.call-to-action.action-success {
+  background-color: $success;
+}
+
+.social-share-button{
+  font-size: 1rem;
+  line-height: 1.375;
+  font-weight: 400;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 9px;
+  display: inline-block;
+  width: 100%;
+  background-color: var(--clr-primary-white);
+  text-wrap: nowrap;
+  max-width: 9.375rem;
+  min-width: 7.1875rem;
+
+  i {
+    font-size: 1.25rem;
+    padding-left: 0.3125rem;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    border-width: 2px;
+    padding: 8px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    outline: none;
+  }
+}
+
+button.share-circle-btn {
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  overflow: clip;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  background-color: transparent;
+  color: var(--project-primary-color);
+
+  &:hover {
+    box-shadow: 0 4px 4px 0 var(--btn-text-color);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--btn-text-color); // bookmark1 - calculate in rem
+  }
+}

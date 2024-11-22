@@ -1,6 +1,6 @@
 @extends('home.layout', ['onErrorPage' => true])
 @push('css')
-    @vite('resources/assets/sass/errors.scss')
+    @vite('resources/assets/sass/shared/errors.scss')
 @endpush
 @section('title_prefix')
     @yield('title')

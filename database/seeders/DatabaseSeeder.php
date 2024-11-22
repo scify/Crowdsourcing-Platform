@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder {
             QuestionnaireSeeder::class,
             QuestionnaireStatusHistoryTableSeeder::class,
             QuestionnaireResponsesSeeder::class,
-            CrowdSourcingProjectProblemStatusLkpSeeder::class,
-            CrowdSourcingProjectProblemSolutionStatusLkpSeeder::class,
-            CrowdSourcingProjectProblemSeeder::class,
-            CrowdSourcingProjectProblemSolutionSeeder::class,
+            ProblemStatusLkpSeeder::class,
+            SolutionStatusLkpSeeder::class,
+            ProblemSeeder::class,
+            SolutionSeeder::class,
         ]);
     }
 }

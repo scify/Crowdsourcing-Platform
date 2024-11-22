@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
-use App\BusinessLogicLayer\UserManager;
-use App\BusinessLogicLayer\UserRoleManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\User\UserManager;
+use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
 use App\Utils\MailChimpAdaptor;
@@ -32,10 +32,10 @@ class RegisterController extends Controller {
     /**
      * Where to redirect users after registration.
      */
-    protected string $redirectTo = '/en/my-dashboard';
+    protected string $redirectTo = '/en/backoffice/my-dashboard';
 
     public function redirectTo() {
-        return app()->getLocale() . '/my-dashboard';
+        return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
     private $userRoleManager;
@@ -73,7 +73,7 @@ class RegisterController extends Controller {
     /**
      * Create a new user instance after a valid registration.
      *
-     * @return \App\Models\User
+     * @return \App\Models\User\User
      */
     protected function create(array $data) {
         $user = $this->userManager->createUser($data);

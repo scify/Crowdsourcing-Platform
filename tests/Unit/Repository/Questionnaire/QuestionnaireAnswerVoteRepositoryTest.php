@@ -4,7 +4,7 @@ namespace Tests\Unit\Repository\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireAnswerVote;
-use App\Models\User;
+use App\Models\User\User;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Tests\TestCase;

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
-use App\BusinessLogicLayer\UserDashboardManager;
-use App\BusinessLogicLayer\UserManager;
-use App\Http\Controllers\UserController;
-use App\Models\User;
-use App\ViewModels\GamificationBadgesWithLevels;
-use App\ViewModels\UserDashboardViewModel;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\User\UserDashboardManager;
+use App\BusinessLogicLayer\User\UserManager;
+use App\Http\Controllers\User\UserController;
+use App\Models\User\User;
+use App\ViewModels\Gamification\GamificationBadgesWithLevels;
+use App\ViewModels\User\UserDashboardViewModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -37,7 +37,7 @@ class UserControllerTest extends TestCase {
         $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager);
         $response = $controller->myDashboard();
 
-        $this->assertEquals('loggedin-environment.my-dashboard', $response->name());
+        $this->assertEquals('backoffice.my-dashboard', $response->name());
         $this->assertArrayHasKey('viewModel', $response->getData());
         $viewModel = $response->getData()['viewModel'];
         $this->assertCount(0, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);
@@ -52,7 +52,7 @@ class UserControllerTest extends TestCase {
         $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager);
         $response = $controller->myDashboard();
 
-        $this->assertEquals('loggedin-environment.my-dashboard', $response->name());
+        $this->assertEquals('backoffice.my-dashboard', $response->name());
         $this->assertArrayHasKey('viewModel', $response->getData());
         $viewModel = $response->getData()['viewModel'];
         $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);

@@ -6,8 +6,8 @@ use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -38,7 +38,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.my-dashboard');
+        $response->assertViewIs('backoffice.my-dashboard');
     }
 
     /** @test */
@@ -57,7 +57,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-account', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.my-account');
+        $response->assertViewIs('backoffice.my-account');
     }
 
     /** @test */
@@ -333,7 +333,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.my-dashboard');
+        $response->assertViewIs('backoffice.my-dashboard');
         $response->assertViewHas('viewModel');
         $viewModel = $response->original->getData()['viewModel'];
         $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);
