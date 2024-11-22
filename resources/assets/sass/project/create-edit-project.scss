@@ -1,8 +1,8 @@
 @import "summernote/dist/summernote-bs4.css";
 @import "bs-stepper/dist/css/bs-stepper.min.css";
 @import "../variables";
-@import "../select2-custom";
-@import "../common/image-input-preview.scss";
+@import "../shared/select2-custom";
+@import "../shared/image-input-preview.scss";
 
 .box {
 	.row {

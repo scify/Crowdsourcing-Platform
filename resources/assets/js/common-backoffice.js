@@ -51,7 +51,7 @@ const MOBILE_WIDTH = 768;
 
 		clipboard.on("error", function (e) {
 			console.error(e);
-			showToast("Error while copying to clipboard: " + e.toString(), "#dc3545");
+			showToast(window.trans("common.copy_to_clipboard_error") + ": " + e.toString(), "#dc3545");
 			e.clearSelection();
 		});
 	};
@@ -75,7 +75,6 @@ const MOBILE_WIDTH = 768;
 	};
 
 	const toggleIconOnSidebarMenuToggle = function () {
-
 		// if on mobile, set the icon to "fa-chevron-right" by default
 		if (window.innerWidth < MOBILE_WIDTH) {
 			$("#sidebar-menu-toggler").find("i").removeClass("fa-chevron-left").addClass("fa-chevron-right");
@@ -97,7 +96,7 @@ const MOBILE_WIDTH = 768;
 				icon.removeClass("fa-chevron-right").addClass("fa-chevron-left");
 			}
 		});
-	}
+	};
 
 	$(document).ready(function () {
 		initializeIcheck();

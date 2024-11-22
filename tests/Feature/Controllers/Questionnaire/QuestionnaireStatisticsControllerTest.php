@@ -5,12 +5,12 @@ namespace Tests\Feature\Controllers\Questionnaire;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireStatisticsManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireStatisticsManager;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use Tests\TestCase;
 
 class QuestionnaireStatisticsControllerTest extends TestCase {
@@ -44,10 +44,10 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $this->be($user);
 
         $questionnaire = Questionnaire::factory()->create();
-        $response = $this->get(route('questionnaire.statistics-colors', ['questionnaire' => $questionnaire->id]));
+        $response = $this->get(route('questionnaire.statistics-colors', ['locale' => 'en', 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.questionnaire.statistics-colors');
+        $response->assertViewIs('backoffice.management.questionnaire.statistics-colors');
         $response->assertViewHas('viewModel');
     }
 
@@ -60,7 +60,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
 
         $questionnaire = Questionnaire::factory()->create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+            ->post(route('questionnaire.statistics-colors.store', ['locale' => 'en', 'questionnaire' => $questionnaire->id]), [
                 'goal_responses_color' => '#FFFFFF',
                 'actual_responses_color' => '#000000',
                 'total_responses_color' => '#111111',
@@ -79,7 +79,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
 
         $questionnaire = Questionnaire::factory()->create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+            ->post(route('questionnaire.statistics-colors.store', ['locale' => 'en', 'questionnaire' => $questionnaire->id]), [
                 'goal_responses_color' => '#FFFFFF',
                 'actual_responses_color' => '#000000',
                 'total_responses_color' => '#111111',
@@ -102,7 +102,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
 
         $questionnaire = Questionnaire::factory()->create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+            ->post(route('questionnaire.statistics-colors.store', ['locale' => 'en', 'questionnaire' => $questionnaire->id]), [
                 'color1' => '#FFFFFF',
                 'color2' => '#000000',
             ]);
@@ -124,7 +124,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         });
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.statistics-colors.store', ['questionnaire' => $questionnaire->id]), [
+            ->post(route('questionnaire.statistics-colors.store', ['locale' => 'en', 'questionnaire' => $questionnaire->id]), [
                 'color1' => '#FFFFFF',
                 'color2' => '#000000',
             ]);

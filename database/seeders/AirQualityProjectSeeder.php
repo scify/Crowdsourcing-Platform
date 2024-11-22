@@ -2,15 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemSolutionStatusLkp;
-use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
+use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
-use App\Models\CrowdSourcingProject\Problem\Solution\CrowdSourcingProjectProblemSolution;
-use App\Models\CrowdSourcingProject\Problem\Solution\CrowdSourcingProjectProblemSolutionTranslation;
+use App\Models\Problem\Problem;
+use App\Models\Problem\ProblemTranslation;
+use App\Models\Solution\Solution;
+use App\Models\Solution\SolutionTranslation;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectTranslationRepository;
 use App\Utils\Helpers;
@@ -102,15 +102,15 @@ class AirQualityProjectSeeder extends Seeder {
         }
 
         // call the CrowdSourcingProjectProblemStatusLkpSeeder
-        $this->call(CrowdSourcingProjectProblemStatusLkpSeeder::class);
-        $this->call(CrowdSourcingProjectProblemSolutionStatusLkpSeeder::class);
+        $this->call(ProblemStatusLkpSeeder::class);
+        $this->call(SolutionStatusLkpSeeder::class);
 
         $problems = [
             [
                 'id' => 6,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-1',
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-1.png',
                 'default_language_id' => 6,
                 'user_creator_id' => 1,
@@ -130,7 +130,7 @@ class AirQualityProjectSeeder extends Seeder {
                     [
                         'user_creator_id' => 1,
                         'slug' => 'air-quality-solution-1',
-                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
+                        'status_id' => SolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
                             [
@@ -148,7 +148,7 @@ class AirQualityProjectSeeder extends Seeder {
                     [
                         'user_creator_id' => 1,
                         'slug' => 'air-quality-solution-2',
-                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
+                        'status_id' => SolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
                             [
@@ -169,7 +169,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'id' => 7,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-2',
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-2.png',
                 'default_language_id' => 12,
                 'user_creator_id' => 1,
@@ -189,7 +189,7 @@ class AirQualityProjectSeeder extends Seeder {
                     [
                         'user_creator_id' => 1,
                         'slug' => 'air-quality-solution-3',
-                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::PUBLISHED,
+                        'status_id' => SolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
                             [
@@ -207,7 +207,7 @@ class AirQualityProjectSeeder extends Seeder {
                     [
                         'user_creator_id' => 1,
                         'slug' => 'air-quality-solution-4',
-                        'status_id' => CrowdSourcingProjectProblemSolutionStatusLkp::UNPUBLISHED,
+                        'status_id' => SolutionStatusLkp::UNPUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
                             [
@@ -228,7 +228,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'id' => 8,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-3',
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => null,
                 'default_language_id' => 12,
                 'user_creator_id' => 1,
@@ -249,7 +249,7 @@ class AirQualityProjectSeeder extends Seeder {
                 'id' => 9,
                 'project_id' => 4,
                 'slug' => 'air-quality-europe-problem-4',
-                'status_id' => CrowdSourcingProjectProblemStatusLkp::PUBLISHED,
+                'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-4.png',
                 'default_language_id' => 6,
                 'user_creator_id' => 1,
@@ -269,7 +269,7 @@ class AirQualityProjectSeeder extends Seeder {
         ];
 
         foreach ($problems as $problem) {
-            $problemRecord = CrowdSourcingProjectProblem::updateOrCreate(['id' => $problem['id']], [
+            $problemRecord = Problem::updateOrCreate(['id' => $problem['id']], [
                 'project_id' => $problem['project_id'],
                 'slug' => $problem['slug'],
                 'status_id' => $problem['status_id'],
@@ -279,7 +279,7 @@ class AirQualityProjectSeeder extends Seeder {
             ]);
             if (isset($problem['translations'])) {
                 foreach ($problem['translations'] as $translation) {
-                    CrowdSourcingProjectProblemTranslation::updateOrCreate(
+                    ProblemTranslation::updateOrCreate(
                         [
                             'problem_id' => $problemRecord->id,
                             'language_id' => $translation['language_id'],
@@ -300,10 +300,10 @@ class AirQualityProjectSeeder extends Seeder {
                         echo "\nAdding Solution: " . $solution['slug'] . ' for Problem: ' . $problem['slug'] . "\n";
                     }
                     // if the solution already exists but is soft deleted, restore it. Search by slug
-                    if ($existingSolution = CrowdSourcingProjectProblemSolution::withTrashed()->where('slug', $solution['slug'])->first()) {
+                    if ($existingSolution = Solution::withTrashed()->where('slug', $solution['slug'])->first()) {
                         $existingSolution->restore();
                     }
-                    $solutionRecord = CrowdSourcingProjectProblemSolution::updateOrCreate(
+                    $solutionRecord = Solution::updateOrCreate(
                         ['problem_id' => $problemRecord->id, 'slug' => $solution['slug']], [
                             'problem_id' => $problemRecord->id,
                             'user_creator_id' => $solution['user_creator_id'],
@@ -316,7 +316,7 @@ class AirQualityProjectSeeder extends Seeder {
                             if (app()->environment() !== 'testing') {
                                 echo "\nAdding Solution Translation: " . $translation['title'] . ' for Solution: ' . $solution['slug'] . "\n";
                             }
-                            CrowdSourcingProjectProblemSolutionTranslation::updateOrCreate(
+                            SolutionTranslation::updateOrCreate(
                                 [
                                     'solution_id' => $solutionRecord->id,
                                     'language_id' => $translation['language_id'],

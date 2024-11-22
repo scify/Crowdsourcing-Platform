@@ -9,8 +9,8 @@ use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireLanguage;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use App\Utils\Translator;
 use Mockery;
 use Tests\TestCase;
@@ -21,7 +21,7 @@ class QuestionnaireControllerTest extends TestCase {
      */
     public function guestCannotSaveQuestionnaireStatus() {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.update-status'), [
+            ->post(route('questionnaire.update-status', ['locale' => 'en']), [
                 'questionnaire_id' => 1,
                 'status_id' => 1,
                 'comments' => 'Test comment',
@@ -43,7 +43,7 @@ class QuestionnaireControllerTest extends TestCase {
         $questionnaire = Questionnaire::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.update-status'), [
+            ->post(route('questionnaire.update-status', ['locale' => 'en']), [
                 'questionnaire_id' => $questionnaire->id,
                 'status_id' => QuestionnaireStatusLkp::PUBLISHED,
                 'comments' => 'Test comment',
@@ -67,7 +67,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.update-status'), [
+            ->post(route('questionnaire.update-status', ['locale' => 'en']), [
                 'questionnaire_id' => 'invalid',
                 'status_id' => 'invalid',
                 'comments' => '',
@@ -87,7 +87,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->be($user);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->post(route('questionnaire.update-status'), [
+            ->post(route('questionnaire.update-status', ['locale' => 'en']), [
                 'questionnaire_id' => 1,
                 'status_id' => 'invalid',
                 'comments' => '',
@@ -106,10 +106,10 @@ class QuestionnaireControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->get(route('create-questionnaire'));
+        $response = $this->get(route('create-questionnaire', ['locale' => 'en']));
 
         $response->assertStatus(200);
-        $response->assertViewIs('loggedin-environment.management.questionnaire.create-edit');
+        $response->assertViewIs('backoffice.management.questionnaire.create-edit');
     }
 
     /**

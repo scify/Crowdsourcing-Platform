@@ -2,17 +2,17 @@
 
 namespace Feature\Controllers\CrowdSourcingProject;
 
-use App\BusinessLogicLayer\lkp\CrowdSourcingProjectProblemStatusLkp;
+use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireTypeLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblem;
-use App\Models\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemTranslation;
+use App\Models\Problem\Problem;
+use App\Models\Problem\ProblemTranslation;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
-use App\Models\User;
-use App\Models\UserRole;
+use App\Models\User\User;
+use App\Models\User\UserRole;
 use Tests\TestCase;
 
 class CrowdSourcingProjectLandingPageTest extends TestCase {
@@ -43,19 +43,19 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the Problems Call-to-Action (CTA) button
         $response->assertSee('See all problems');
@@ -87,13 +87,13 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -105,7 +105,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the Questionnaire Call-to-Action (CTA) button
         $response->assertSee('Answer the questionnaire');
@@ -139,13 +139,13 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -163,7 +163,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the Problems Call-to-Action (CTA) button
         $response->assertSee('See all problems');
@@ -197,13 +197,13 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -226,7 +226,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the Problems Call-to-Action (CTA) button
         $response->assertSee('See all problems');
@@ -260,13 +260,13 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -283,7 +283,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the Questionnaire Call-to-Action (CTA) button
         $response->assertSee('Answer the questionnaire');
@@ -321,14 +321,14 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
-            'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
+            'status_id' => ProblemStatusLkp::UNPUBLISHED,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -345,7 +345,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the external link Call-to-Action (CTA) button
         $response->assertSee('Visit project’s site');
@@ -387,14 +387,14 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
-            'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
+            'status_id' => ProblemStatusLkp::UNPUBLISHED,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -418,7 +418,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the external link Call-to-Action (CTA) button
         $response->assertSee(__('questionnaire.give_us_feedback'));
@@ -460,14 +460,14 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
-            'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
+            'status_id' => ProblemStatusLkp::UNPUBLISHED,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -503,7 +503,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the external link Call-to-Action (CTA) button
         $response->assertSee(__('questionnaire.visit_projects_site'));
@@ -541,14 +541,14 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $project = CrowdSourcingProject::factory()->create();
 
         // Create some Problems and attach them to the Campaign
-        $problems = CrowdSourcingProjectProblem::factory(3)->create([
+        $problems = Problem::factory(3)->create([
             'project_id' => $project->id,
-            'status_id' => CrowdSourcingProjectProblemStatusLkp::UNPUBLISHED,
+            'status_id' => ProblemStatusLkp::UNPUBLISHED,
         ]);
 
         // Create a Problem Translation for each Problem
         foreach ($problems as $problem) {
-            CrowdSourcingProjectProblemTranslation::factory()->create([
+            ProblemTranslation::factory()->create([
                 'problem_id' => $problem->id,
             ]);
         }
@@ -566,7 +566,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // When the user navigates in the Project Campaign page
-        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'project_slug' => $project->slug]));
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the external link Call-to-Action (CTA) button
         $response->assertSee(__('questionnaire.invite_your_friends_to_answer'));

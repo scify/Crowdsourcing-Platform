@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\ViewModels\GamificationBadgeVM;
+use App\ViewModels\Gamification\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;

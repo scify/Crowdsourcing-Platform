@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Controllers\Questionnaire;
 
-use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
-use App\Models\User;
+use App\Models\User\User;
 use Tests\TestCase;
 
 class QuestionnaireResponseControllerTest extends TestCase {

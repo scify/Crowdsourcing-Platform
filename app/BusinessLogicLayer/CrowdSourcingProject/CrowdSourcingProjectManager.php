@@ -2,16 +2,16 @@
 
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
-use App\BusinessLogicLayer\gamification\ContributorBadge;
+use App\BusinessLogicLayer\Gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
-use App\BusinessLogicLayer\questionnaire\QuestionnaireGoalManager;
-use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectStatusHistoryRepository;
-use App\Repository\CrowdSourcingProject\Problem\CrowdSourcingProjectProblemRepository;
 use App\Repository\LanguageRepository;
+use App\Repository\Problem\ProblemRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\FileHandler;
@@ -20,8 +20,8 @@ use App\ViewModels\CrowdSourcingProject\CreateEditCrowdSourcingProject;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectForLandingPage;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectSocialMediaMetadata;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectUnavailable;
-use App\ViewModels\GamificationBadgeVM;
-use App\ViewModels\QuestionnaireSocialShareButtons;
+use App\ViewModels\Gamification\GamificationBadgeVM;
+use App\ViewModels\Questionnaire\QuestionnaireSocialShareButtons;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -42,7 +42,7 @@ class CrowdSourcingProjectManager {
     protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager;
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
-    protected CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository;
+    protected ProblemRepository $crowdSourcingProjectProblemRepository;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
         QuestionnaireRepository $questionnaireRepository,
@@ -54,7 +54,7 @@ class CrowdSourcingProjectManager {
         CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager,
         QuestionnaireResponseRepository $questionnaireResponseRepository,
         CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
-        CrowdSourcingProjectProblemRepository $crowdSourcingProjectProblemRepository) {
+        ProblemRepository $crowdSourcingProjectProblemRepository) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\UserQuestionnaireShareManager;
+use App\BusinessLogicLayer\User\UserQuestionnaireShareManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -28,18 +28,18 @@ class CrowdSourcingProjectController extends Controller {
     public function index() {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsListPageViewModel();
 
-        return view('loggedin-environment.management.crowdsourcing-project.index', ['viewModel' => $viewModel]);
+        return view('backoffice.management.crowdsourcing-project.index', ['viewModel' => $viewModel]);
     }
 
     public function create() {
-        return view('loggedin-environment.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel()]);
+        return view('backoffice.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel()]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id): View {
-        return view('loggedin-environment.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
+    public function edit(string $locale, int $id): View {
+        return view('backoffice.management.crowdsourcing-project.create-edit.form-page')->with(['viewModel' => $this->crowdSourcingProjectManager->getCreateEditProjectViewModel($id)]);
     }
 
     /**
@@ -68,7 +68,7 @@ class CrowdSourcingProjectController extends Controller {
      *
      * @throws ValidationException
      */
-    public function update(Request $request, $id): RedirectResponse {
+    public function update(Request $request, string $locale, int $id): RedirectResponse {
         $this->validate($request, [
             'name' => 'required|string|unique:crowd_sourcing_project_translations,name,' . $id . ',project_id|max:100',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
@@ -88,7 +88,7 @@ class CrowdSourcingProjectController extends Controller {
 
     public function showLandingPage(Request $request) {
         $data = [
-            'project_slug' => $request->project_slug,
+            'project_slug' => $request->slug,
         ];
         $validator = Validator::make($data, [
             'project_slug' => 'required|different:execute_solution|exists:crowd_sourcing_projects,slug',
@@ -97,7 +97,7 @@ class CrowdSourcingProjectController extends Controller {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
         try {
-            $project_slug = $request->project_slug;
+            $project_slug = $request->slug;
             if (Gate::allows('view-landing-page', $project_slug)) {
                 return $this->showCrowdSourcingProjectLandingPage($request, $project_slug);
             }
@@ -110,7 +110,7 @@ class CrowdSourcingProjectController extends Controller {
         }
     }
 
-    protected function showCrowdSourcingProjectLandingPage(Request $request, $project_slug) {
+    protected function showCrowdSourcingProjectLandingPage(Request $request, string $project_slug) {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 $request->questionnaireId ?? null,
@@ -134,8 +134,8 @@ class CrowdSourcingProjectController extends Controller {
             isset($request->referrerId);
     }
 
-    public function clone(int $id): RedirectResponse {
-        $newProject = $this->crowdSourcingProjectManager->cloneProject($id);
+    public function clone(Request $request): RedirectResponse {
+        $newProject = $this->crowdSourcingProjectManager->cloneProject($request->id);
 
         return redirect()->action(
             [self::class, 'edit'], ['project' => $newProject->id]

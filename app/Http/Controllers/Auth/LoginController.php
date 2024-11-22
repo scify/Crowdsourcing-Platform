@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireResponseManager;
-use App\BusinessLogicLayer\UserManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -31,12 +31,12 @@ class LoginController extends Controller {
     /**
      * Where to redirect users after login.
      */
-    protected string $redirectTo = '/en/my-dashboard';
+    protected string $redirectTo = '/en/backoffice/my-dashboard';
 
     protected ExceptionHandler $exceptionHandler;
 
     public function redirectTo() {
-        return app()->getLocale() . '/my-dashboard';
+        return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
     protected UserManager $userManager;

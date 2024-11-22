@@ -669,7 +669,7 @@ For debugging the tests:
 1. Open the test file you want to debug.
 2. Add breakpoints in the test file.
 3. Run `docker exec -it crowdsourcing_platform_server bash` to enter the PHP container.
-4. Run `./vendor/bin/phpunit --filter {METHOD OR CLASS NAME}`. For example `./vendor/bin/phpunit --filter authenticatedNonAdminUserCannotAccessCreatePage`.
+4. Run `php artisan test --env=testing --filter {METHOD OR CLASS NAME}`. For example `php artisan test --env=testing --filter authenticatedNonAdminUserCannotAccessCreatePage`.
 
 ## Troubleshooting
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\BusinessLogicLayer\questionnaire\QuestionnaireAccessManager;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireAccessManager;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -6,7 +6,7 @@ use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;

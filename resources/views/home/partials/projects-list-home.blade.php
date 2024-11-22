@@ -15,12 +15,12 @@
                                 <div class="col-lg-9 col-md-9 col-sm-12 mx-auto">
                                     <div class="project-visit-btn">
                                         @if(($project->latestQuestionnaire && $project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED) || $project->problems)
-                                            <a href="/{{app()->getLocale() .'/'.$project->slug}}"
+                                            <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $project->slug]) }}"
                                                class="btn btn-block btn-primary call-to-action action-dark">
                                                 {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
                                             </a>
                                         @else
-                                            <a href="/{{app()->getLocale() .'/'.$project->slug}}"
+                                            <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $project->slug]) }}"
                                                class="btn btn-block btn-success call-to-action action-success">View
                                             </a>
                                         @endif
