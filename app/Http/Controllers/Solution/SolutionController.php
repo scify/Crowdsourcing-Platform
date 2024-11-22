@@ -6,7 +6,9 @@ use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class SolutionController extends Controller {
     protected SolutionManager $solutionManager;
@@ -26,12 +28,21 @@ class SolutionController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create(Request $request): View {
-        $this->validate($request, [
-            'problem_id' => ['required'],
+        $validator = Validator::make([
+            'problem_id' => $request->problem_id,
+        ], [
+            'problem_id' => 'required|different:execute_solution|exists:problems,id',
         ]);
-        $viewModel = $this->solutionManager->getCreateEditSolutionViewModel($request->problem_id);
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        try {
+            $viewModel = $this->solutionManager->getCreateEditSolutionViewModel($request->problem_id);
 
-        return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
+            return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
+        } catch (\Throwable $th) { // bookmark3 - 'ModelNotFoundException $e' or '\Exception $e' or '\Throwable $th'???
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
     }
 
     /**

@@ -3,6 +3,10 @@
         <div class="card">
             <div class="card-body">
 
+                <div class="solution-default-language-notifier">
+                    The default language for this solution is: {{ $viewModel->problem->defaultTranslation->language->language_name }}
+                </div>
+
                 <div class="form-row">
                     <div class="form-group col-sm-12">
                         <label for="solution-title">Solution Default Title (<span class="red">*</span>)</label>
@@ -54,6 +58,8 @@
                                 <option
                                         @if ($viewModel->solution->status_id == $status->id || old('solution-status') == $status->id)
                                             selected
+                                        @elseif ($viewModel->isStatusTheDefault($status->id))
+                                            selected
                                         @endif
                                         value="{{ $status->id }}"
                                 >
@@ -66,18 +72,18 @@
                     </div>
                 </div>
 
-                @if($viewModel->isEditMode()) {{-- bookmark3 - allow edit? --}}
+                @if($viewModel->isEditMode())
                     <div class="form-row">
                         <div class="form-group col-sm-12">
                             <label for="solution-slug">Solution Slug (<span class="red">*</span>)
                                 <span class="text-sm explanation-text">
                                     (It defines the solutions's url, for example:
                                     <ul>
-                                        <li><i>For english | https://crowdsourcing.ecas.org/en/project-slug/problem-slug/solution-slug</i></li> {{-- bookmark3 - solution's url form? --}}
+                                        <li><i>For english | https://crowdsourcing.ecas.org/en/project-slug/problem-slug/solution-slug</i></li>
                                         <li><i>For greek | https://crowdsourcing.ecas.org/gr/project-slug/problem-slug/solution-slug</i></li>
                                         <li><i>For dutch | https://crowdsourcing.ecas.org/nl/project-slug/problem-slug/solution-slug</i></li>
                                     </ul>
-                                    The slug must be unique and can contain only letters, numbers, and dashes.) {{-- bookmark3 - leave this? --}}
+                                    The slug must be unique and can contain only letters, numbers, and dashes.)
                                 </span>
                             </label>
                             <input type="text"
@@ -99,8 +105,8 @@
                     <div class="col-sm-12">
                         <div class="form-group input-file-wrapper">
                             <label for="solution-image">Solution Image (max-size: 2MB)</label></label>
-                            <small>In order to update the currently selected image, please choose a new image by
-                                clicking the button below.</small><br>
+                            <br><small>In order to update the currently selected image, please choose a new image by
+                                clicking the button below.</small><br> {{-- bookmark3 - fix spacing --}}
                             <input type="file"
                                    id="solution-image"
                                    name="solution-image"

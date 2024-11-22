@@ -10,6 +10,8 @@ use App\Repository\Solution\SolutionRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class SolutionManager {
@@ -67,27 +69,34 @@ class SolutionManager {
             $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
-
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
 
         $default_language_id = $this->problemRepository->find($solution_owner_problem_id)->default_language_id;
-        $solution = Solution::create([
-            'problem_id' => $solution_owner_problem_id,
-            'user_creator_id' => Auth::id(),
-            'slug' => Str::random(16), // temporary - will be changed after record creation
-            'status_id' => $attributes['solution-status'],
-            'img_url' => $imgPath,
-        ]);
 
-        $solution->slug = Str::slug($attributes['solution-title'] . '-' . $solution->id);
-        $solution->save();
+        try {
+            DB::beginTransaction();
+            $solution = Solution::create([
+                'problem_id' => $solution_owner_problem_id,
+                'user_creator_id' => Auth::id(),
+                'slug' => Str::random(16), // temporary - will be changed after record creation
+                'status_id' => $attributes['solution-status'],
+                'img_url' => $imgPath,
+            ]);
 
-        $solution->defaultTranslation()->create([
-            'title' => $attributes['solution-title'],
-            'description' => $attributes['solution-description'],
-            'language_id' => $default_language_id,
-        ]);
+            $solution->slug = Str::slug($attributes['solution-title'] . '-' . $solution->id);
+            $solution->save();
 
-        return $solution->id;
+            $solution->defaultTranslation()->create([
+                'title' => $attributes['solution-title'],
+                'description' => $attributes['solution-description'],
+                'language_id' => $default_language_id,
+            ]);
+            DB::commit();
+
+            return $solution->id;
+        } catch (\Exception $e) {
+            Log::error('Error: ' . $e->getCode() . '  ' . $e->getMessage());
+            DB::rollBack();
+        }
     }
 }
