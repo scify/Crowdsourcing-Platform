@@ -2,6 +2,7 @@
 
 namespace App\ViewModels\Solution;
 
+use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\Problem\Problem;
 use App\Models\Solution\Solution;
 use Illuminate\Support\Collection;
@@ -40,5 +41,9 @@ class CreateEditSolution {
 
     public function isEditMode(): bool {
         return $this->solution->id !== null;
+    }
+
+    public function isStatusTheDefault(int $status_id): bool {
+        return $status_id === SolutionStatusLkp::UNPUBLISHED;
     }
 }

@@ -2,8 +2,8 @@
 
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
-        Solution {{ $viewModel->isEditMode() ? ': ' . $viewModel->solution->defaultTranslation->name : '' }}
-        <small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
+        Solution for: {{ $viewModel->problem->defaultTranslation->title}}
+        <br><small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
 @endsection
 
 @push('css')

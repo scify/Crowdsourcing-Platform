@@ -96,8 +96,8 @@ class ProblemController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request): View {
-        $viewModel = $this->problemManager->getCreateEditProblemViewModel($request->id);
+    public function edit(string $locale, int $id): View {
+        $viewModel = $this->problemManager->getCreateEditProblemViewModel($id);
 
         return view('backoffice.management.problem.create-edit.form-page', ['viewModel' => $viewModel]);
     }
@@ -105,7 +105,7 @@ class ProblemController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {
+    public function update(Request $request, string $locale, int $id) {
         $this->validate($request, [ // bookmark2
             'problem-title' => ['required', 'string', 'max:100'],
             'problem-description' => ['required', 'string', 'max:400'],
@@ -134,8 +134,8 @@ class ProblemController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request) {
-        return $this->problemManager->deleteProblem($request->id);
+    public function destroy(string $locale, int $id) {
+        return $this->problemManager->deleteProblem($id);
     }
 
     public function getProblemStatusesForManagementPage(): JsonResponse {
