@@ -14,7 +14,7 @@ class ProblemControllerTest extends TestCase {
      * @test A guest cannot access the create page
      */
     public function guestCannotAccessProblemCreatePage() {
-        $response = $this->get(route('problems.create'));
+        $response = $this->get(route('problems.create', ['locale' => 'en']));
 
         // 302 is the status code for a redirect (to the login page)
         $response->assertStatus(302);
@@ -28,7 +28,7 @@ class ProblemControllerTest extends TestCase {
         $user = User::factory()->make();
         $this->be($user);
 
-        $response = $this->get(route('problems.create'));
+        $response = $this->get(route('problems.create', ['locale' => 'en']));
 
         $response->assertStatus(403);
     }
@@ -42,7 +42,7 @@ class ProblemControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->get(route('problems.create'));
+        $response = $this->get(route('problems.create', ['locale' => 'en']));
 
         $response->assertStatus(200);
         $response->assertViewIs('backoffice.management.problem.create-edit.form-page');
@@ -57,7 +57,7 @@ class ProblemControllerTest extends TestCase {
             ->create();
         $this->be($user);
 
-        $response = $this->get(route('problems.create'));
+        $response = $this->get(route('problems.create', ['locale' => 'en']));
 
         $response->assertStatus(200);
         $response->assertViewIs('backoffice.management.problem.create-edit.form-page');
@@ -74,7 +74,7 @@ class ProblemControllerTest extends TestCase {
         $title = $faker->title;
         $description = $title . ' description';
         $response = $this->withoutMiddleware(VerifyCsrfToken::class) // Disable CSRF only
-            ->post(route('projects.store'), [
+            ->post(route('problems.store', ['locale' => 'en']), [
                 'problem-title' => $title,
                 'problem-description' => $description,
                 'problem-status' => 1,

@@ -13,7 +13,7 @@ class Solution extends Model {
 
     protected $table = 'solutions';
     protected $fillable = ['id', 'problem_id', 'user_creator_id', 'slug', 'status_id', 'img_url'];
-    protected $with = ['defaultTranslation'];
+    protected $with = [];
 
     // problem relationship (a solution belongs to a problem)
     public function problem(): BelongsTo {
@@ -26,6 +26,8 @@ class Solution extends Model {
     // so we need to take the default_language_id from the problem and use it to get the translation
     public function defaultTranslation(): HasOne {
         return $this->hasOne('App\Models\Solution\SolutionTranslation', 'solution_id')
-            ->where('language_id', $this->problem->default_language_id);
+            ->join('problems', 'problems.id', '=', 'solutions.problem_id')
+            ->whereColumn('solution_translations.language_id', 'problems.default_language_id')
+            ->select('solution_translations.*'); // Ensure you only select from the translation table
     }
 }
