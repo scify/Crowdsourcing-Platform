@@ -13,9 +13,6 @@ use App\Http\Controllers\Questionnaire\QuestionnaireStatisticsController;
 use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\UserController;
-use App\Models\User\User;
-use App\Notifications\UserRegistered;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -68,9 +65,11 @@ Route::group(['middleware' => ['auth', 'can:manage-platform']], function () use 
         Route::get('/communication/mailchimp', [CommunicationController::class, 'getMailChimpIntegration'])->name('mailchimp-integration.get');
         Route::post('/communication/mailchimp', [CommunicationController::class, 'storeMailChimpListsIds'])->name('mailchimp-integration');
     });
-    Route::get('/test-sentry/{message}', fn (Request $request) => throw new Exception('Test Sentry error: ' . $request->message));
-    Route::get('/phpinfo', fn () => phpinfo());
-    Route::get('/test-email/{email}', fn (Request $request) => User::where(['email' => $request->email])->first()->notify(new UserRegistered) && 'Success! Email sent to: ' . $request->email);
+    Route::middleware(['throttle:api-public'])->group(function () {
+        Route::group(['prefix' => 'admin'], function () {
+            Route::get('/phpinfo', fn () => phpinfo());
+        });
+    });
 });
 
 Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function () use ($localeInfo, $backOfficePrefix) {
