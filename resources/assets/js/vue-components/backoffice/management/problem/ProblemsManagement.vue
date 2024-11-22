@@ -189,48 +189,52 @@ export default {
 		this.updateModal = new Modal(document.getElementById("updateModal"));
 		await this.getProblemStatusesForManagementPage();
 		await this.getCrowdSourcingProjectsForFiltering();
-		await this.$nextTick(() => {
-			this.dataTableInstance = $("#problemsTable").DataTable({
-				pageLength: 5,
-				autoWidth: false,
-				data: [],
-				columns: [
-					{ title: "#", data: null, width: "5%" },
-					{ title: "Title", data: "title", width: "30%" },
-					{ title: "Bookmarks", data: "bookmarks", width: "5%" },
-					{ title: "Languages", data: "languages", width: "20%" },
-					{ title: "Status", data: "status", width: "20%" },
-					{ title: "Actions", data: "actions", width: "20%" },
-				],
-				columnDefs: [
-					{
-						targets: 0,
-						render: (data, type, row, meta) => meta.row + 1,
-					},
-					{
-						targets: [0, 2, 4, 5], // Indices of columns to center
-						className: "text-center",
-					},
-				],
-			});
-
-			// Event listener for action items clicks
-			const actions = ["delete-btn", "update-btn"];
-			actions.forEach((action) => {
-				$("#problemsTable tbody").on("click", `.${action}`, (event) => {
-					const problemId = parseInt(event.target.getAttribute("data-id"));
-					const problem = this.problems.find((p) => p.id === problemId);
-					if (action === "delete-btn") {
-						this.openDeleteModal(problem);
-					} else if (action === "update-btn") {
-						this.openUpdateModal(problem);
-					}
-				});
-			});
-		});
+		await this.setUpDataTable();
 	},
 	methods: {
 		...mapActions(["get", "post", "setLoading"]),
+
+		async setUpDataTable() {
+			await this.$nextTick(() => {
+				this.dataTableInstance = $("#problemsTable").DataTable({
+					pageLength: 5,
+					autoWidth: false,
+					data: [],
+					columns: [
+						{ title: "#", data: null, width: "5%" },
+						{ title: "Title", data: "title", width: "30%" },
+						{ title: "Bookmarks", data: "bookmarks", width: "5%" },
+						{ title: "Languages", data: "languages", width: "20%" },
+						{ title: "Status", data: "status", width: "20%" },
+						{ title: "Actions", data: "actions", width: "20%" },
+					],
+					columnDefs: [
+						{
+							targets: 0,
+							render: (data, type, row, meta) => meta.row + 1,
+						},
+						{
+							targets: [0, 2, 4, 5], // Indices of columns to center
+							className: "text-center",
+						},
+					],
+				});
+
+				// Event listener for action items clicks
+				const actions = ["delete-btn", "update-btn"];
+				actions.forEach((action) => {
+					$("#problemsTable tbody").on("click", `.${action}`, (event) => {
+						const problemId = parseInt(event.target.getAttribute("data-id"));
+						const problem = this.problems.find((p) => p.id === problemId);
+						if (action === "delete-btn") {
+							this.openDeleteModal(problem);
+						} else if (action === "update-btn") {
+							this.openUpdateModal(problem);
+						}
+					});
+				});
+			});
+		},
 
 		async getProblemStatusesForManagementPage() {
 			return this.get({
@@ -354,7 +358,7 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(window.route("problems.destroy", this.modalProblem.id))
+				.delete(location.href + "/" + this.modalProblem.id)
 				.then(() => {
 					this.getProjectProblems();
 					this.modalProblem.id = null;
@@ -374,7 +378,7 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.put(window.route("problems.update-status", this.modalProblem.id), { status_id: this.modalProblem.status.id })
+				.put(location.href + "/update-status/" + this.modalProblem.id, { status_id: this.modalProblem.status.id })
 				.then(() => {
 					this.getProjectProblems();
 					this.modalProblem.id = null;

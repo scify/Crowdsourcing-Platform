@@ -624,19 +624,41 @@ php artisan app:test
 ```
 
 This command is located in the `app/Console/Commands/TestCommand.php` file.
-Every time you run this command, the test database will be created at `storage/database_testing.sqlite`, the suite
+
+This command takes the following options:
+
+- `--coverage`: Run the tests with coverage.
+- `--filter`: Filter the tests to run only a specific test class or method.
+- `--migrate`: Run the migrations before running the tests.
+- `--seed`: Seed the database before running the tests.
+
+Every time you run this command, the test database will be created (or used) at `storage/database_testing.sqlite`, the suite
 will be executed, and the results will be displayed in the console.
 
 If you want to only test a specific test class or method, you can run the following command:
 
 ```bash
-php artisan app:test --filter {METHOD OR CLASS NAME}
+php artisan app:test --filter={METHOD OR CLASS NAME}
 ```
 
 Example:
 
 ```bash
-php artisan app:test --filter CrowdSourcingProjectControllerTest
+php artisan app:test --filter=CrowdSourcingProjectControllerTest
+```
+
+Example of running the tests with migrations and seeding:
+
+```bash
+  php artisan app:test --migrate --seed
+```
+
+### Run the tests with coverage
+
+In order to run the tests with coverage, you can use the `--coverage` flag, like so:
+
+```bash
+php artisan app:test --coverage
 ```
 
 ## How to debug
