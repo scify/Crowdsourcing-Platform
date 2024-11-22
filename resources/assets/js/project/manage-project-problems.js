@@ -1,4 +1,4 @@
-import ProblemsManagement from "../vue-components/backoffice/management/crowd-sourcing-project/problem/ProblemsManagement.vue";
+import ProblemsManagement from "../vue-components/backoffice/management/problem/ProblemsManagement.vue";
 import { createApp } from "vue";
 import store from "../store/store";
 import DOMPurify from "dompurify";

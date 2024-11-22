@@ -1,12 +1,12 @@
 import { createApp } from "vue";
 import store from "../store/store";
-import CrowdSourcingProjectProblems from "../vue-components/crowdsourcing-project/problem/CrowdSourcingProjectProblems.vue";
+import Problems from "../vue-components/problem/Problems.vue";
 
 import DOMPurify from "dompurify";
 
 const app = createApp({
 	components: {
-		CrowdSourcingProjectProblems,
+		Problems,
 	},
 });
 

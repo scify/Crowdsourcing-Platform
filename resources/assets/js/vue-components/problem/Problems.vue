@@ -60,7 +60,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import ShareCircleButton from '../../common/ShareCircleButton.vue';
+import ShareCircleButton from '../common/ShareCircleButton.vue';
 
 export default {
 	name: "CrowdSourcingProjectProblems",

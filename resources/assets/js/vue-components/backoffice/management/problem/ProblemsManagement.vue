@@ -16,7 +16,7 @@
 									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
 									<select
 										id="projectSelect"
-										class="form-select form-control mt-3"
+										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 										v-model="selectedProject"
 										@change="getProjectProblems"
 									>
@@ -157,7 +157,7 @@ import $ from "jquery";
 import "datatables.net";
 import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
 import axios from "axios";
-import CommonModal from "../../../../common/ModalComponent.vue";
+import CommonModal from "../../../common/ModalComponent.vue";
 
 export default {
 	name: "ProblemsManagement",
@@ -178,6 +178,7 @@ export default {
 			updateModal: null,
 			modalActionLoading: false,
 			actionSuccessMessage: "",
+			projectsFetched: false,
 		};
 	},
 	computed: {
@@ -253,6 +254,7 @@ export default {
 			})
 				.then((response) => {
 					this.projects = response.data;
+					this.projectsFetched = true;
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
