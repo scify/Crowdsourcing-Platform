@@ -23,20 +23,7 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
     - [Features](#features)
     - [Benefits of Open Source applications](#benefits-of-open-source-applications)
     - [Organizations using the Crowdsourcing platform](#organizations-using-the-crowdsourcing-platform)
-    - [Installation Instructions](#installation-instructions)
-    - [Method 1: Docker Compose (recommended)](#method-1-docker-compose-recommended)
-        - [Step 1: Install Docker and Docker Compose](#step-1-install-docker-and-docker-compose)
-        - [Step 2: Build and Run Containers](#step-2-build-and-run-containers)
-        - [Step 3: Launch the Application](#step-3-launch-the-application)
-    - [Method 2: Manual Installation](#method-2-manual-installation)
-        - [Step 1: Install PHP](#step-1-install-php)
-        - [Step 2: Install Composer](#step-2-install-composer)
-        - [Step 3: Install Node.js and npm](#step-3-install-nodejs-and-npm)
-        - [Step 4: Install Nginx](#step-4-install-nginx)
-            - [Nginx Configuration](#nginx-configuration)
-        - [Step 5: Install MySQL](#step-5-install-mysql)
-            - [Database Considerations](#database-considerations)
-        - [Step 6: Run the application](#step-6-run-the-application)
+    - [Setup Instructions](#setup-instructions)
     - [Run the Laravel Application commands](#run-the-laravel-application-commands)
         - [Step 1: Fix permissions for storage directory](#step-1-fix-permissions-for-storage-directory)
         - [Step 2: Create the `.env` file](#step-2-create-the-env-file)
@@ -103,185 +90,12 @@ Offering the code under open source licenses includes many benefits. Of those, t
 
 [SciFY official installation](https://crowdsourcing.scify.org/)
 
-## Installation Instructions
+## Setup Instructions
 
-## Method 1: Docker Compose (recommended)
+The setup instructions have been divided into two sections for clarity:
 
-### Step 1: Install Docker and Docker Compose
-
-- **Docker**: Follow the installation guide for your operating system on
-  the [Docker website](https://docs.docker.com/get-docker/).
-- **Docker Compose**: Docker Compose is included with Docker Desktop for Windows and Mac. For Linux, follow the
-  instructions [here](https://docs.docker.com/compose/install/).
-
-### Step 2: Build and Run Containers
-
-Run the following command to build and start the containers:
-
-```sh
-docker compose up --build
-```
-
-### Step 3: Launch the Application
-
-In order to run the application, you will need to run the Laravel commands inside the Docker container.
-So see the [Run the Laravel Application commands](#run-the-laravel-application-commands) section.
-
-After you have run these commands, you can access the application in your browser:
-
-The application will be available at [http://localhost:89](http://localhost:89).
-To access PHPMyAdmin, visit [http://localhost:8081](http://localhost:8081).
-
-## Method 2: Manual Installation
-
-### Step 1: Install PHP
-
-- **PHP**: Install PHP 8.2 or newer. You can follow the installation guide for your operating system on
-  the [PHP website](https://www.php.net/manual/en/install.php).
-
-```bash
-sudo apt update
-
-sudo apt install php php-cli php-fpm php-mysql php-xml php-mbstring php-curl php-gd php-zip php-bcmath
-```
-
-### Step 2: Install Composer
-
-- **Composer**: Install Composer by following the instructions on
-  the [Composer website](https://getcomposer.org/download/).
-
-```bash
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-
-php composer-setup.php
-
-php -r "unlink('composer-setup.php');"
-
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-### Step 3: Install Node.js and npm
-
-- **Node.js**: Install Node.js and npm by following the instructions on
-  the [Node.js website](https://nodejs.org/en/download/).
-
-```bash
-sudo apt install nodejs npm
-```
-
-Or, if using [nnm](https://github.com/nvm-sh/nvm), run the following command:
-
-```bash
-nvm use
-```
-
-### Step 4: Install Nginx
-
-- **Nginx**: Install Nginx by following the instructions on the [Nginx website](https://nginx.org/en/docs/install.html).
-
-```bash
-sudo apt install nginx
-```
-
-#### Nginx Configuration
-
-Create an Nginx configuration file for your Laravel project:
-
-```bash
-sudo nano /etc/nginx/sites-available/crowdsourcing
-```
-
-Add the necessary configuration to the file. Refer to the Nginx documentation for detailed configuration.
-
-Example configuration:
-
-```nginx
-server {
-    listen 80;
-    server_name crowdsourcing.local;
-    root /var/www/crowdsourcing/public;
-
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Content-Type-Options "nosniff";
-
-    index index.php index.html index.htm index.nginx-debian.html;
-
-    charset utf-8;
-
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-    error_page 404 /index.php;
-
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
-    }
-
-    location ~ /\.ht {
-        deny all;
-    }
-}
-```
-
-Enable the configuration:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/crowdsourcing /etc/nginx/sites-enabled/
-
-sudo systemctl restart nginx
-```
-
-### Step 5: Install MySQL
-
-- **MySQL**: Install MySQL by following the instructions on
-  the [MySQL website](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/).
-
-```bash
-sudo apt install mysql-server
-```
-
-#### Database Considerations
-
-If you are running MySQL version 8.0 and above, there is a certain [bug](https://bugs.mysql.com/bug.php?id=103465)
-regarding memory overflow when trying to sort results in tables that have columns of JSON data type.
-
-A workaround to fix this is to tweak the memory buffer size for sorting.
-In order to do so, please follow:
-
-```bash
-sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
-```
-
-And append the following options:
-
-```bash
-[mysqld]
-sort_buffer_size = 10485760
-innodb_sort_buffer_size = 10485760
-```
-
-After you save the file, restart the MySQL service:
-
-```bash
-sudo service mysql restart
-```
-
-### Step 6: Run the application
-
-With manual installation, you will need to run the Laravel commands on your local machine.
-
-So open up a terminal and navigate to the project directory. Run `php artisan serve`, in order to start the Laravel
-server.
-
-**Notice:** On Google Chrome, the browser might force the HTTPS protocol. In this case, you need to access the Chrome
-settings at [chrome://net-internals/#hsts](chrome://net-internals/#hsts), and enter `localhost` in the `Delete domain security policies
-` field.
+- [Docker-based Setup (recommended)](./setup-docker.md)
+- [Non-Docker Setup](./setup-non-docker.md)
 
 ## Run the Laravel Application commands
 
@@ -328,7 +142,7 @@ cp .env.example .env
 
 ### Step 3: Create A Database
 
-In case of a manual installation, you will need to create a Database for the application.
+In case of a non-Docker installation, you will need to create a Database for the application.
 
 In case of a Docker environment, enter the `crowdsourcing_platform_db` container, and create a Database
 named `crowdsourcing_db_docker`:
@@ -616,6 +430,8 @@ found [here](https://designpatternsphp.readthedocs.io/en/latest/More/Repository/
 
 ## Run Tests
 
+### Method 1: PHPUnit with the Laravel Custom Command
+
 There is a custom Laravel Command that runs the test suite for the application, which can be run by executing the
 following command:
 
@@ -632,7 +448,8 @@ This command takes the following options:
 - `--migrate`: Run the migrations before running the tests.
 - `--seed`: Seed the database before running the tests.
 
-Every time you run this command, the test database will be created (or used) at `storage/database_testing.sqlite`, the suite
+Every time you run this command, the test database will be created (or used) at `storage/database_testing.sqlite`, the
+suite
 will be executed, and the results will be displayed in the console.
 
 If you want to only test a specific test class or method, you can run the following command:
@@ -640,6 +457,8 @@ If you want to only test a specific test class or method, you can run the follow
 ```bash
 php artisan app:test --filter={METHOD OR CLASS NAME}
 ```
+
+Note that unlike the PHPUnit command, you need to use the `--filter` flag with the `=` sign.
 
 Example:
 
@@ -659,6 +478,29 @@ In order to run the tests with coverage, you can use the `--coverage` flag, like
 
 ```bash
 php artisan app:test --coverage
+```
+
+### Method 2: PHPUnit with the `php artisan test` command
+
+You can also run the tests using the `php artisan test` command, which is a built-in Laravel command.
+
+First you need to run the migrations for the test database:
+
+```bash
+  php artisan migrate --env=testing --database=sqlite_testing
+```
+
+Then run the seeders:
+
+```bash
+  php artisan db:seed --env=testing --database=sqlite_testing
+```
+
+And finally, run the tests:
+
+```bash
+  # Note that you filter the tests by using the --filter flag (without the = sign)
+  php artisan test --env=testing --filter {METHOD OR CLASS NAME} --coverage
 ```
 
 ## How to debug

@@ -65,7 +65,6 @@ $colorForTabs: $brand-primary;
 		}
 
 		li {
-
 			a {
 				color: $colorForTabs;
 				border: none !important;
@@ -85,8 +84,8 @@ $colorForTabs: $brand-primary;
 					&:hover,
 					&:focus {
 						box-shadow:
-										0 4px 4px rgba(0, 0, 0, 0.25),
-										0 4px 4px rgba(0, 0, 0, 0.25);
+							0 4px 4px rgba(0, 0, 0, 0.25),
+							0 4px 4px rgba(0, 0, 0, 0.25);
 						background-color: lighten($button-background-color, 10%);
 					}
 				}
@@ -171,7 +170,6 @@ $colorForTabs: $brand-primary;
 }
 
 #projects {
-
 	background-color: $grey;
 
 	.content-container {

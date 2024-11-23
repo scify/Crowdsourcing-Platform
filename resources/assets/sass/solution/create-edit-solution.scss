@@ -2,20 +2,20 @@
 @import "../shared/image-input-preview.scss";
 
 .explanation-text {
-    font-weight: normal;
-    color: $gray-600;
-    display: block;
-    margin-left: 20px;
-    line-height: 1.25;
+	font-weight: normal;
+	color: $gray-600;
+	display: block;
+	margin-left: 20px;
+	line-height: 1.25;
 
-    ul {
-        list-style-type: none;
-        margin: 2px 2px 3px;
-        padding-left: 10px;
-    }
+	ul {
+		list-style-type: none;
+		margin: 2px 2px 3px;
+		padding-left: 10px;
+	}
 }
 
 .solution-default-language-notifier {
-    font-weight: 700;
-    margin-bottom: .5rem;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
 }

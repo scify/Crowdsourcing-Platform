@@ -1,36 +1,36 @@
 .navbar-nav > .user-menu > .dropdown-menu {
-  width: 100%;
+	width: 100%;
 }
 
 .navbar-expand {
-  .navbar-nav {
-    .nav-link {
-      padding-left: 1.2rem;
-      padding-right: 1.2rem;
-    }
-  }
+	.navbar-nav {
+		.nav-link {
+			padding-left: 1.2rem;
+			padding-right: 1.2rem;
+		}
+	}
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: black;
-  font-weight: 600;
-  padding-left: 3rem;
-  font-size: 16px;
-  text-transform: uppercase;
+	color: black;
+	font-weight: 600;
+	padding-left: 3rem;
+	font-size: 16px;
+	text-transform: uppercase;
 
-  // on mobile remove the left padding
-    @media (max-width: 768px) {
-        padding-left: 0;
-    }
+	// on mobile remove the left padding
+	@media (max-width: 768px) {
+		padding-left: 0;
+	}
 }
 
 .nav-link {
-  align-content: center;
-  height: 100%;
+	align-content: center;
+	height: 100%;
 }
 
 .user-menu {
-  .dropdown-toggle::after {
-    display: none;
-  }
+	.dropdown-toggle::after {
+		display: none;
+	}
 }

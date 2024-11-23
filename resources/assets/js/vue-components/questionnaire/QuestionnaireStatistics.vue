@@ -330,7 +330,11 @@ export default defineComponent({
 			return new Promise(function callback(resolve, reject) {
 				instance
 					.get({
-						url: window.route("api.questionnaire.responses.get", instance.questionnaire.id, instance.projectFilter),
+						url: window.route(
+							"api.questionnaire.responses.get",
+							instance.questionnaire.id,
+							instance.projectFilter,
+						),
 						data: {},
 						urlRelative: false,
 					})

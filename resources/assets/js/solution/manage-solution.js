@@ -15,7 +15,6 @@ app.use(store);
 app.mount("#app");
 
 (function () {
-
 	const initializeImgFileChangePreviewHandlers = function () {
 		$(".js-image-input").each(function (i, obj) {
 			$(obj).change(function () {
@@ -33,20 +32,22 @@ app.mount("#app");
 		});
 	};
 
-    const checkURLAndActivateTranslationsTab = function () {
-        // should check the URL for a `translations=1` variable and if set and if true, it should activate the tab.
-        if ( (window.location.search.indexOf("?translations=1") > -1) || (window.location.search.indexOf("&translations=1") > -1)) {
-            $("#translations-tab").click();
-        }
-    };
+	const checkURLAndActivateTranslationsTab = function () {
+		// should check the URL for a `translations=1` variable and if set and if true, it should activate the tab.
+		if (
+			window.location.search.indexOf("?translations=1") > -1 ||
+			window.location.search.indexOf("&translations=1") > -1
+		) {
+			$("#translations-tab").click();
+		}
+	};
 
 	const init = function () {
 		initializeImgFileChangePreviewHandlers();
-        checkURLAndActivateTranslationsTab();
+		checkURLAndActivateTranslationsTab();
 	};
 
 	$(document).ready(function () {
 		init();
 	});
-
 })();

@@ -378,7 +378,9 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.put(location.href + "/update-status/" + this.modalProblem.id, { status_id: this.modalProblem.status.id })
+				.put(location.href + "/update-status/" + this.modalProblem.id, {
+					status_id: this.modalProblem.status.id,
+				})
 				.then(() => {
 					this.getProjectProblems();
 					this.modalProblem.id = null;
