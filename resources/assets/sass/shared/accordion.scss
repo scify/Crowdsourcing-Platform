@@ -1,34 +1,33 @@
 @import "../_variables";
 
 .card {
-  .card-header {
+	.card-header {
+		background-color: $brand-primary;
 
-    background-color: $brand-primary;
+		padding: 10px 5px;
 
-    padding: 10px 5px;
+		.btn-header-link {
+			display: block;
+			text-align: left;
+			padding: 5px 15px;
+			color: white;
+			font-weight: bold;
+			font-size: x-large;
 
-    .btn-header-link {
-      display: block;
-      text-align: left;
-      padding: 5px 15px;
-      color: white;
-      font-weight: bold;
-      font-size: x-large;
+			&:focus {
+				box-shadow: none;
+			}
 
-      &:focus {
-        box-shadow: none;
-      }
+			&:after {
+				content: "\f107";
+				font-family: "Font Awesome 5 Free", sans-serif;
+				font-weight: 900;
+				float: right;
+			}
 
-      &:after {
-        content: "\f107";
-        font-family: 'Font Awesome 5 Free', sans-serif;
-        font-weight: 900;
-        float: right;
-      }
-
-      &.collapsed:after {
-        content: "\f106";
-      }
-    }
-  }
+			&.collapsed:after {
+				content: "\f106";
+			}
+		}
+	}
 }

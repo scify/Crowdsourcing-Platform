@@ -2,63 +2,63 @@
 @import "../shared/accordion";
 
 #projects-with-next-actions {
-  .project-logo {
-    height: 120px;
+	.project-logo {
+		height: 120px;
 
-    // on mobile
-    @media only screen and (max-width: 767px) {
-      height: 80px;
-      max-width: 100%;
-    }
-  }
+		// on mobile
+		@media only screen and (max-width: 767px) {
+			height: 80px;
+			max-width: 100%;
+		}
+	}
 
-  tr {
-    border-top: 1px solid #666666;
-  }
+	tr {
+		border-top: 1px solid #666666;
+	}
 
-  tr:first-child {
-    border-top: none;
-  }
+	tr:first-child {
+		border-top: none;
+	}
 
-  .btn-statistics {
-    padding: 8px 15px;
-  }
+	.btn-statistics {
+		padding: 8px 15px;
+	}
 
-  .project-section {
-    background-color: $grey;
-  }
+	.project-section {
+		background-color: $grey;
+	}
 
-  .container-fluid.project-section:first-child {
-    margin-top: 0 !important;
-  }
+	.container-fluid.project-section:first-child {
+		margin-top: 0 !important;
+	}
 
-  .container-fluid.project-section:last-child {
-    margin-bottom: 0 !important;
-  }
+	.container-fluid.project-section:last-child {
+		margin-bottom: 0 !important;
+	}
 }
 
 .location-btn {
-  margin: 10px auto 0;
-  width: 200px;
+	margin: 10px auto 0;
+	width: 200px;
 }
 
 @media only screen and (min-width: 992px) {
-  .gamification-box {
-    .box-body {
-      height: 300px;
-      position: relative;
-      padding: 20px;
-    }
-  }
+	.gamification-box {
+		.box-body {
+			height: 300px;
+			position: relative;
+			padding: 20px;
+		}
+	}
 }
 
 .progress-container {
-  margin: 20px auto;
-  float: none !important;
+	margin: 20px auto;
+	float: none !important;
 }
 
 .gamification-badge {
-  .badgeImg {
-    height: 80px;
-  }
+	.badgeImg {
+		height: 80px;
+	}
 }

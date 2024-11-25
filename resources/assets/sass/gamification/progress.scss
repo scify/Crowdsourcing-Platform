@@ -1,31 +1,31 @@
 @import "../_variables.scss";
 
 #progress-container {
-  background-color: $grey;
+	background-color: $grey;
 
-  .progress-for-badge {
-    margin-bottom: 5rem;
+	.progress-for-badge {
+		margin-bottom: 5rem;
 
-    // on mobile, the margin is smaller
-    @media (max-width: 768px) {
-      margin-bottom: 2rem;
-    }
-  }
+		// on mobile, the margin is smaller
+		@media (max-width: 768px) {
+			margin-bottom: 2rem;
+		}
+	}
 
-  .progress {
-    background-color: rgba(#4d5359, 0.6);
-  }
+	.progress {
+		background-color: rgba(#4d5359, 0.6);
+	}
 
-  .progress-bar {
-    background-color: var(--clr-secondary-grey);
-  }
+	.progress-bar {
+		background-color: var(--clr-secondary-grey);
+	}
 
-  .your-level-progress {
-    text-align: end;
+	.your-level-progress {
+		text-align: end;
 
-    // on mobile, the text is start-aligned
-    @media (max-width: 768px) {
-      text-align: start;
-    }
-  }
+		// on mobile, the text is start-aligned
+		@media (max-width: 768px) {
+			text-align: start;
+		}
+	}
 }
