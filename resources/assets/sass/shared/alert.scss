@@ -1,13 +1,13 @@
 @import "../_variables.scss";
 
 .alert-dismissable.alert-floating {
-  position: absolute;
-  z-index: 100000;
-  right: 25px;
-  top: 25px;
-  width: min(calc(100% - 50px), 26.25rem);
+	position: absolute;
+	z-index: 100000;
+	right: 25px;
+	top: 25px;
+	width: min(calc(100% - 50px), 26.25rem);
 
-  * {
-    color: $white;
-  }
+	* {
+		color: $white;
+	}
 }

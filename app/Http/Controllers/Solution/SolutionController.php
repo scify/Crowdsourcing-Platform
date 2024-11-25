@@ -77,21 +77,21 @@ class SolutionController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id) {
+    public function edit(string $locale, int $id) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {
+    public function update(Request $request, string $locale, int $id) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) {
+    public function destroy(string $locale, int $id) {
         //
     }
 }

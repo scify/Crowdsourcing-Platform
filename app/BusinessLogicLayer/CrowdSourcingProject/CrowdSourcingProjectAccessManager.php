@@ -29,11 +29,12 @@ class CrowdSourcingProjectAccessManager {
 
     public function getProjectsUserHasAccessToEdit(User $user): Collection {
         $relationships = ['creator', 'language', 'status'];
-        if ($this->userRoleManager->userHasAdminRole($user) || $this->userRoleManager->userHasContentManagerRole($user)) {
+        if ($this->userRoleManager->userHasAdminRole($user)) {
             return $this->crowdSourcingProjectRepository
                 ->allWithTrashed(['*'], 'id', 'desc', $relationships);
         }
 
+        // if the user is content manager, return only the projects created by them
         return $this->crowdSourcingProjectRepository->whereWithTrashed(['user_creator_id' => $user->id], ['*'],
             'id', 'desc', $relationships);
     }

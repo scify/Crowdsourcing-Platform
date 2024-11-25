@@ -12,10 +12,10 @@ return new class extends Migration {
         if (!Schema::hasTable('solution_translations')) {
             Schema::create('solution_translations', function (Blueprint $table) {
                 $table->unsignedBigInteger('solution_id');
-                $table->foreign('solution_id', 'csp_problem_solution_translations_solution_id_foreign')->references('id')->on('solutions');
+                $table->foreign('solution_id', 'solution_translations_solution_id_foreign')->references('id')->on('solutions');
 
                 $table->unsignedInteger('language_id');
-                $table->foreign('language_id', 'csp_problem_solution_translations_language_id_foreign')->references('id')->on('languages_lkp');
+                $table->foreign('language_id', 'solution_translations_language_id_foreign')->references('id')->on('languages_lkp');
 
                 $table->primary(['solution_id', 'language_id'], 'solution_translations_primary');
 

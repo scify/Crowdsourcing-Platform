@@ -26,7 +26,9 @@
 					}}</a>
 				</div>
 				<div v-if="!questionnaire.respondent_auth_required" class="col-5">
-					<button class="btn btn-primary btn-lg call-to-action w-100" @click="skipLogin()">Answer anonymously</button>
+					<button class="btn btn-primary btn-lg call-to-action w-100" @click="skipLogin()">
+						Answer anonymously
+					</button>
 				</div>
 			</div>
 			<div class="row justify-content-center d-flex d-md-none">
@@ -36,7 +38,9 @@
 					}}</a>
 				</div>
 				<div v-if="!questionnaire.respondent_auth_required" class="col-10">
-					<button class="btn btn-primary btn-lg call-to-action w-100 my-4" @click="skipLogin()">Answer anonymously</button>
+					<button class="btn btn-primary btn-lg call-to-action w-100 my-4" @click="skipLogin()">
+						Answer anonymously
+					</button>
 				</div>
 			</div>
 		</div>
