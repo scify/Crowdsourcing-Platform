@@ -14,14 +14,14 @@ return new class extends Migration {
             $columnType = ColumnTypeHelper::getColumnType('users', 'id');
             Schema::create('solution_upvotes', function (Blueprint $table) use ($columnType) {
                 $table->unsignedBigInteger('solution_id');
-                $table->foreign('solution_id', 'csp_problem_solution_upvotes_solution_id_foreign')->references('id')->on('solutions');
+                $table->foreign('solution_id', 'solution_upvotes_solution_id_foreign')->references('id')->on('solutions');
 
                 if ($columnType === 'bigint') {
                     $table->unsignedBigInteger('user_voter_id');
                 } else {
                     $table->unsignedInteger('user_voter_id');
                 }
-                $table->foreign('user_voter_id', 'csp_problem_solution_upvotes_user_voter_id_foreign')->references('id')->on('users');
+                $table->foreign('user_voter_id', 'solution_upvotes_user_voter_id_foreign')->references('id')->on('users');
 
                 $table->primary(['solution_id', 'user_voter_id'], 'solution_upvotes_primary');
 
