@@ -17,7 +17,7 @@
 									<select
 										id="projectSelect"
 										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
-										v-model="selectedProject"
+										v-model="selectedProjectId"
 										@change="getProjectProblems"
 									>
 										<option value="" disabled selected>Select a Project</option>
@@ -166,7 +166,7 @@ export default {
 		return {
 			fetched: false,
 			projects: [],
-			selectedProject: "",
+			selectedProjectId: "",
 			problems: [],
 			problemStatuses: [],
 			errorMessage: "",
@@ -259,6 +259,11 @@ export default {
 				.then((response) => {
 					this.projects = response.data;
 					this.projectsFetched = true;
+					// if only one project is available, select it by default and fetch its problems
+					if (this.projects.length === 1) {
+						this.selectedProjectId = this.projects[0].id;
+						this.getProjectProblems();
+					}
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
@@ -266,12 +271,12 @@ export default {
 		},
 
 		getProjectProblems() {
-			if (this.selectedProject) {
+			if (this.selectedProjectId) {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
 					url: window.route("api.problems.get-management"),
-					data: { projectId: this.selectedProject },
+					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})
 					.then((response) => {

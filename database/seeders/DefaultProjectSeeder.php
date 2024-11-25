@@ -50,7 +50,7 @@ class DefaultProjectSeeder extends Seeder {
                 'external_url' => null,
                 'img_path' => '/images/projects/european-democracy/logo-bg.webp',
                 'logo_path' => '/images/projects/european-democracy/logo.webp',
-                'user_creator_id' => 1,
+                'user_creator_id' => 2,
                 'language_id' => 6,
                 'should_send_email_after_questionnaire_response' => 1,
                 'lp_primary_color' => '#0069d9',

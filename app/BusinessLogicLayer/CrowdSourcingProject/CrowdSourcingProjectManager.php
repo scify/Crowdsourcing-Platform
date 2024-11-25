@@ -6,6 +6,7 @@ use App\BusinessLogicLayer\Gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\User\UserManager;
+use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
@@ -43,6 +44,7 @@ class CrowdSourcingProjectManager {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
     protected ProblemRepository $crowdSourcingProjectProblemRepository;
+    protected UserRoleManager $userRoleManager;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
         QuestionnaireRepository $questionnaireRepository,
@@ -54,7 +56,8 @@ class CrowdSourcingProjectManager {
         CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager,
         QuestionnaireResponseRepository $questionnaireResponseRepository,
         CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
-        ProblemRepository $crowdSourcingProjectProblemRepository) {
+        ProblemRepository $crowdSourcingProjectProblemRepository,
+        UserRoleManager $userRoleManager) {
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->questionnaireRepository = $questionnaireRepository;
         $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
@@ -66,6 +69,7 @@ class CrowdSourcingProjectManager {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
         $this->crowdSourcingProjectProblemRepository = $crowdSourcingProjectProblemRepository;
+        $this->userRoleManager = $userRoleManager;
     }
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
@@ -465,7 +469,9 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectsForProblems(): Collection {
-        // get all projects that have at least one problem
-        return $this->crowdSourcingProjectRepository->getProjectsForProblems();
+        $user = Auth::user();
+        $user_cretor_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
+
+        return $this->crowdSourcingProjectRepository->getProjectsForProblems($user_cretor_id);
     }
 }
