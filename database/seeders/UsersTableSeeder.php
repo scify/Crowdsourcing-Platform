@@ -6,7 +6,7 @@ use App\Repository\User\UserRepository;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder {
-    protected $userRepository;
+    protected UserRepository $userRepository;
 
     public function __construct(UserRepository $userRepository) {
         $this->userRepository = $userRepository;
