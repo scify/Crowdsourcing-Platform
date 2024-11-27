@@ -43,6 +43,7 @@ class QuestionnaireResponseTranslator {
                 array_push($questionNamesToTranslate, $questionName);
             }
         }
+        Log::info('API Key: ' . config('app.google_translate_key'));
         $translations = $this->translator->translateTexts($textsToTranslate, 'en');
         $i = 0;
         foreach ($responseAnswers as $questionName => $answer) {
