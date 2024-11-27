@@ -63,13 +63,13 @@ class AdminController extends Controller {
 
     public function uploadAdminFile(Request $request) {
         $path = FileHandler::uploadAndGetPath($request->file('image'), 'solution_img');
-        $fileObject = $request->file('image');
-        $uploadedFile = UploadedFile::createFromBase($fileObject);
-        $originalFileName = $uploadedFile->getClientOriginalName();
-        $uniqueId = Str::uuid(); // Generate a unique ID for each file
-        $path_s3 = Storage::disk('s3')->put('uploads/' . $uniqueId, $uploadedFile);
-        $uploadedFilePath = Storage::disk('s3')->url($path_s3);
+        //        $fileObject = $request->file('image');
+        //        $uploadedFile = UploadedFile::createFromBase($fileObject);
+        //        $originalFileName = $uploadedFile->getClientOriginalName();
+        //        $uniqueId = Str::uuid(); // Generate a unique ID for each file
+        //        $path_s3 = Storage::disk('s3')->put('uploads/' . $uniqueId, $uploadedFile);
+        //        $uploadedFilePath = Storage::disk('s3')->url($path_s3);
 
-        return response()->json(['file_path_internal' => $path, 'file_path_s3' => $uploadedFilePath, 'original_file_name' => $originalFileName]);
+        return response()->json(['file_path_internal' => $path]);
     }
 }
