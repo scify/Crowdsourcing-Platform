@@ -33,7 +33,7 @@ class UserRegistered extends Notification {
 
         $message->line('<br><h1 style="text-align: center; margin-bottom: 5px"><b>' . __('notifications.make_an_impact') . '</b></h1>');
         $message->line('<p style="text-align: center; margin-bottom: 5px"><b>' . __('notifications.visit_your_dashboard_contribute') . '</b></p>');
-        $message->action(__('notifications.go_to_dashboard'), route('my-dashboard'));
+        $message->action(__('notifications.go_to_dashboard'), route('my-dashboard', ['locale' => app()->getLocale()]));
 
         return $message;
     }
