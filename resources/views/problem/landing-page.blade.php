@@ -1,6 +1,6 @@
 @extends('crowdsourcing-project.layout')
 @push('css')
-    @vite('resources/assets/sass/project/problem/landing-page.scss')
+    @vite('resources/assets/sass/problem/landing-page.scss')
     <style>
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}};
