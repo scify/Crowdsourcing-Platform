@@ -77,15 +77,50 @@ class SolutionController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $locale, int $id) {
-        //
+    public function edit(Request $request, string $locale, int $id) {
+        $validator = Validator::make([
+            'solution_id' => $id,
+        ], [
+            'solution_id' => 'required|different:execute_solution|exists:solutions,id',
+        ]);
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        try {
+            $viewModel = $this->solutionManager->getCreateEditSolutionViewModel(null, $id);
+
+            return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
+        } catch (\Throwable $th) { // bookmark3 - 'ModelNotFoundException $e' or '\Exception $e' or '\Throwable $th'???
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $locale, int $id) {
-        //
+        $this->validate($request, [
+            'solution-title' => ['required', 'string', 'max:100'],
+            'solution-description' => ['required', 'string', 'max:400'],
+            'solution-status' => ['required'],
+            'solution-slug' => 'required|string|alpha_dash|unique:solutions,slug,' . $id . '|max:111',
+            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'solution-owner-problem' => ['required'],
+        ]);
+
+        $attributes = $request->all();
+
+        try {
+            $this->solutionManager->updateSolution($id, $attributes);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
+        }
+
+        session()->flash('flash_message_success', 'The problem has been successfully updated.');
+
+        return back();
     }
 
     /**
