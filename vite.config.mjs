@@ -51,6 +51,7 @@ export default defineConfig({
 				"resources/assets/js/project/landing-page.js",
 				"resources/assets/js/project/manage-project.js",
 				"resources/assets/js/project/manage-project-problems.js",
+				"resources/assets/js/project/manage-project-problem-solutions.js",
 				"resources/assets/js/questionnaire/manage-questionnaires.js",
 				"resources/assets/js/questionnaire/my-questionnaire-responses.js",
 				"resources/assets/js/questionnaire/questionnaire-create-edit.js",

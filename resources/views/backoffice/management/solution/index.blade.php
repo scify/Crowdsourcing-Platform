@@ -10,8 +10,8 @@
         </div>
     </div>
 
-    <problems-management></problems-management>
+    <solutions-management></solutions-management>
 @endsection
 @push('scripts')
-    @vite('resources/assets/js/project/manage-project-problems.js')
+    @vite('resources/assets/js/project/manage-project-problem-solutions.js')
 @endpush
