@@ -35,12 +35,12 @@ class RunAdminTasks extends Command {
             $translations = Translator::translateTexts($texts, $lang_code);
             $this->info('Translations:');
             foreach ($translations as $translation) {
-                $this->info($translation);
+                $this->info($translation['input'] . ' => ' . $translation['text'] . ' => ' . $translation['source']);
             }
             $this->info('API Key: ' . config('app.google_translate_key'));
         } elseif ($task === 'Test email') {
             $this->info('Testing the email service...');
-            $email = $this->ask('Enter the email address to send the test email to:');
+            $email = $this->ask('Enter the user email address to send the test email to:');
             User::where(['email' => $email])->first()->notify(new UserRegistered);
             $this->info('The test email has been sent to ' . $email);
         } elseif ($task === 'Test Sentry error') {
