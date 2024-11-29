@@ -21,6 +21,7 @@ use App\Http\Controllers\Questionnaire\QuestionnaireAnswerAnnotationController;
 use App\Http\Controllers\Questionnaire\QuestionnaireController;
 use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
+use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\UserController;
 
 Route::middleware(['throttle:api-public'])->group(function () {
@@ -56,6 +57,8 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::get('/problems/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForProblems'])->name('api.problems.projects.get');
     Route::post('/problems/management', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.problems.get-management');
     Route::get('/problems/statuses/management', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
+    Route::get('/solutions/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForSolutions'])->name('api.solutions.projects.get');
+    Route::post('/solutions/management', [SolutionController::class, 'getSolutionsForCrowdSourcingProjectForManagement'])->name('api.solutions.get-management');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {

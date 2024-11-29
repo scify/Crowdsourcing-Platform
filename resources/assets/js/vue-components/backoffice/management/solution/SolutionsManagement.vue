@@ -94,7 +94,7 @@
 							role="status"
 							aria-hidden="true"
 						></span
-						>In understand, Delete the problem
+						>I understand, Delete the problem
 					</button>
 				</div>
 			</div>
@@ -160,7 +160,7 @@ import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
 
 export default {
-	name: "ProblemsManagement",
+	name: "SolutionsManagement",
 	components: { CommonModal },
 	data() {
 		return {
@@ -189,6 +189,7 @@ export default {
 		this.updateModal = new Modal(document.getElementById("updateModal"));
 		await this.getProblemStatusesForManagementPage();
 		await this.getCrowdSourcingProjectsForFiltering();
+		await this.getAllProjectSolutions();
 		await this.setUpDataTable();
 	},
 	methods: {
@@ -252,7 +253,7 @@ export default {
 
 		async getCrowdSourcingProjectsForFiltering() {
 			return this.get({
-				url: window.route("api.problems.projects.get"),
+				url: window.route("api.solutions.projects.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -276,6 +277,46 @@ export default {
 				this.problems = [];
 				this.post({
 					url: window.route("api.problems.get-management"),
+					data: { projectId: this.selectedProjectId },
+					urlRelative: false,
+				})
+					.then((response) => {
+						this.problems = response.data;
+						this.fetched = true;
+						this.updateFilteredProblems();
+						this.updateDataTable();
+					})
+					.catch((error) => {
+						this.showErrorMessage(error);
+					});
+			}
+		},
+
+		getAllProjectSolutions() { // bookmark4
+			this.fetched = false;
+			this.problems = [];
+			this.post({
+				url: window.route("api.solutions.get-management"),
+				data: { projectId: 1 },
+				urlRelative: false,
+			})
+				.then((response) => {
+					this.problems = response.data;
+					this.fetched = true;
+					this.updateFilteredProblems();
+					this.updateDataTable();
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				});
+		},
+
+		getSingleProjectSolutions() { // bookmark4
+			if (this.selectedProjectId) {
+				this.fetched = false;
+				this.problems = [];
+				this.post({
+					url: window.route("api.solutions.get-management"),
 					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})

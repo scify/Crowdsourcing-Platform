@@ -94,7 +94,7 @@
 							role="status"
 							aria-hidden="true"
 						></span
-						>In understand, Delete the problem
+						>I understand, Delete the problem
 					</button>
 				</div>
 			</div>

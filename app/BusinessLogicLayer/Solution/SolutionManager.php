@@ -9,6 +9,7 @@ use App\Repository\Problem\ProblemRepository;
 use App\Repository\Solution\SolutionRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -133,5 +134,9 @@ class SolutionManager {
         $extraTranslations = isset($attributes['extra_translations']) ? json_decode($attributes['extra_translations']) : [];
         $this->solutionTranslationManager
             ->updateSolutionTranslations($id, $defaultTranslation, $extraTranslations);
+    }
+
+    public function getSolutionsForCrowdSourcingProjectForManagement(?int $projectId): Collection {
+        return $this->solutionRepository->getSolutionsForCrowdSourcingProjectForManagement($projectId);
     }
 }

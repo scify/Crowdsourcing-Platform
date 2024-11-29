@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Solution;
 
 use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -128,5 +129,13 @@ class SolutionController extends Controller {
      */
     public function destroy(string $locale, int $id) {
         //
+    }
+
+    public function getSolutionsForCrowdSourcingProjectForManagement(): JsonResponse {
+        $this->validate(request(), [
+            'projectId' => 'nullable|numeric|exists:crowd_sourcing_projects,id',
+        ]);
+
+        return response()->json($this->solutionManager->getSolutionsForCrowdSourcingProjectForManagement(request('projectId')));
     }
 }
