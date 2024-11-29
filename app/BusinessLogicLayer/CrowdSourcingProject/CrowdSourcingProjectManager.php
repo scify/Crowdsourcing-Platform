@@ -470,8 +470,8 @@ class CrowdSourcingProjectManager {
 
     public function getCrowdSourcingProjectsForProblems(): Collection {
         $user = Auth::user();
-        $user_cretor_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
+        $user_creator_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
 
-        return $this->crowdSourcingProjectRepository->getProjectsForProblems($user_cretor_id);
+        return $this->crowdSourcingProjectRepository->getProjectsForProblems($user_creator_id);
     }
 }
