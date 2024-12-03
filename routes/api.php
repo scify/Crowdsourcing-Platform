@@ -55,11 +55,11 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('api.questionnaire.translation.store');
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('api.questionnaire.translations.mark');
     Route::get('/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForManagement'])->name('api.projects.get');
-    Route::post('/problems/management', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.problems.get-management');
-    Route::get('/problems/statuses/management', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
-    Route::post('solutions/management/problems', [ProblemController::class, 'getProblemsForManagement'])->name('api.solutions.problems.get-management');
-    Route::post('/solutions/management', [SolutionController::class, 'getFilteredSolutionsForManagement'])->name('api.solutions.get-management');
-    Route::get('/solutions/statuses/management', [SolutionController::class, 'getSolutionStatusesForManagementPage'])->name('api.solutions.statuses.management.get');
+    Route::post('/management/problems', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.management.problems.get');
+    Route::get('/management/problems/statuses', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.management.problems.statuses.get');
+    Route::post('/management/problems/solutions', [ProblemController::class, 'getProblemsForManagement'])->name('api.management.solutions.problems.get');
+    Route::post('/management/solutions', [SolutionController::class, 'getFilteredSolutionsForManagement'])->name('api.management.solutions.get');
+    Route::get('/management/solutions/statuses', [SolutionController::class, 'getSolutionStatusesForManagementPage'])->name('api.management.solutions.statuses.get');
     Route::post('/translate/get-translations', [LanguageController::class, 'getTranslationForTexts'])->name('api.translate.get-translations');
 });
 

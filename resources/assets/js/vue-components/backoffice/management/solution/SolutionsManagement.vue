@@ -240,7 +240,7 @@ export default {
 
 		async getSolutionStatusesForManagementPage() {
 			return this.get({
-				url: window.route("api.solutions.statuses.management.get"),
+				url: window.route("api.management.solutions.statuses.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -277,7 +277,7 @@ export default {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
-					url: window.route("api.solutions.problems.get-management"),
+					url: window.route("api.management.solutions.problems.get"),
 					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})
@@ -306,7 +306,7 @@ export default {
 				};
 				console.log(data);
 				this.post({
-					url: window.route("api.solutions.get-management"),
+					url: window.route("api.management.solutions.get"),
 					data: data,
 					urlRelative: false,
 				})

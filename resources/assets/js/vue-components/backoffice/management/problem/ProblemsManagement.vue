@@ -238,7 +238,7 @@ export default {
 
 		async getProblemStatusesForManagementPage() {
 			return this.get({
-				url: window.route("api.problems.statuses.management.get"),
+				url: window.route("api.management.problems.statuses.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -275,7 +275,7 @@ export default {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
-					url: window.route("api.problems.get-management"),
+					url: window.route("api.management.problems.get"),
 					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})
