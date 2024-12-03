@@ -77,7 +77,7 @@ class CrowdSourcingProjectRepository extends Repository {
         return $builder->get();
     }
 
-    public function getProjectsForProblems(?int $user_creator_id): Collection {
+    public function getProjectsForManagement(?int $user_creator_id): Collection {
         $builder = CrowdSourcingProject::where('status_id', '!=', CrowdSourcingProjectStatusLkp::DRAFT)
             ->where('status_id', '!=', CrowdSourcingProjectStatusLkp::UNPUBLISHED)
             ->whereHas('problems');
