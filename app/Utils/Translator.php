@@ -18,6 +18,11 @@ class Translator {
      * @throws \Exception
      */
     public static function translateTexts(array $texts, string $lang_code): array {
+        // fix for Greek language code
+        if ($lang_code === 'gr') {
+            $lang_code = 'el';
+        }
+
         $translate = new TranslateClient(['key' => config('app.google_translate_key')]);
         // Google translate capacity is 100 texts per request.
         // So we need to break the texts into 100-texts batches

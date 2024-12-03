@@ -368,11 +368,13 @@ export default defineComponent({
 			}).then((res) => res.data);
 		},
 		getQuestionnaireAnswerAdminAnalysisStatuses() {
-			return this.get({
-				url: window.route("questionnaire.answers-admin-analysis-statuses.get"),
-				data: {},
-				urlRelative: false,
-			}).then((res) => res.data);
+			if(this.userCanAnnotateAnswers) {
+				return this.get({
+					url: window.route("questionnaire.answers-admin-analysis-statuses.get"),
+					data: {},
+					urlRelative: false,
+				}).then((res) => res.data);
+			}
 		},
 		initStatistics(answers, answerVotes, answerAnnotations, adminAnalysisStatuses) {
 			// remove from the questions array the questions that should not be displayed in the statistics

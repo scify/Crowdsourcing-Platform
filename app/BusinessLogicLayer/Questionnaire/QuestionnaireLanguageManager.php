@@ -31,6 +31,10 @@ class QuestionnaireLanguageManager {
         $existingQuestionnaireLanguages = $this->getLanguagesForQuestionnaire($questionnaire_id);
         $languagesToDelete = $existingQuestionnaireLanguages->pluck('language.language_code')->toArray();
         for ($i = 0; $i < count($lang_codes); $i++) {
+            // fix for Greek language code
+            if ($lang_codes[$i] === 'gr') {
+                $lang_codes[$i] = 'el';
+            }
             if (in_array($lang_codes[$i], $languagesToDelete)) {
                 array_splice($languagesToDelete, array_search($lang_codes[$i], $languagesToDelete), 1);
             }
