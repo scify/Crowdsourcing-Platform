@@ -165,4 +165,8 @@ class ProblemController extends Controller {
 
         return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForLandingPage($request->projectId, app()->getLocale()));
     }
+
+    public function getProblemsForManagement(): JsonResponse {
+        return response()->json($this->problemManager->getProblemsForManagement());
+    }
 }

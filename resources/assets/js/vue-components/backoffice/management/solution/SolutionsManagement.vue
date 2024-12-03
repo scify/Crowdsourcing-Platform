@@ -18,7 +18,7 @@
 										id="projectSelect"
 										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 										v-model="selectedProjectId"
-										@change="getProjectProblems"
+										@change="getProblemsForFiltering"
 									>
 										<option value="" disabled selected>Select a Project</option>
 										<option v-for="project in projects" :key="project.id" :value="project.id">
@@ -110,12 +110,12 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" v-if="modalProblem.id && problemStatuses.length">
+				<div class="modal-body" v-if="modalProblem.id && solutionStatuses.length">
 					<p>
-						Select a new status for the problem <b>{{ modalProblem.default_translation.title }}</b>
+						Select a new status for the solution <b>{{ modalProblem.default_translation.title }}</b>
 					</p>
 					<select class="form-select form-control" v-model="modalProblem.status.id">
-						<option v-for="status in problemStatuses" :key="status.id" :value="status.id">
+						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
 							{{ status.title }}
 						</option>
 					</select>
@@ -168,7 +168,8 @@ export default {
 			projects: [],
 			selectedProjectId: "",
 			problems: [],
-			problemStatuses: [],
+			solutions: [],
+			solutionStatuses: [],
 			errorMessage: "",
 			showUnpublishedProblemsOnly: false,
 			filteredProblems: [],
@@ -187,9 +188,9 @@ export default {
 	async mounted() {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
 		this.updateModal = new Modal(document.getElementById("updateModal"));
-		await this.getProblemStatusesForManagementPage();
+		await this.getSolutionStatusesForManagementPage();
 		await this.getCrowdSourcingProjectsForFiltering();
-		await this.getAllProjectSolutions();
+		await this.getFilteredSolutions();
 		await this.setUpDataTable();
 	},
 	methods: {
@@ -237,14 +238,14 @@ export default {
 			});
 		},
 
-		async getProblemStatusesForManagementPage() {
+		async getSolutionStatusesForManagementPage() {
 			return this.get({
-				url: window.route("api.problems.statuses.management.get"),
+				url: window.route("api.solutions.statuses.management.get"),
 				data: {},
 				urlRelative: false,
 			})
 				.then((response) => {
-					this.problemStatuses = response.data;
+					this.solutionStatuses = response.data;
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
@@ -253,7 +254,7 @@ export default {
 
 		async getCrowdSourcingProjectsForFiltering() {
 			return this.get({
-				url: window.route("api.solutions.projects.get"),
+				url: window.route("api.projects.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -263,7 +264,7 @@ export default {
 					// if only one project is available, select it by default and fetch its problems
 					if (this.projects.length === 1) {
 						this.selectedProjectId = this.projects[0].id;
-						this.getProjectProblems();
+						this.getProblemsForFiltering();
 					}
 				})
 				.catch((error) => {
@@ -271,20 +272,20 @@ export default {
 				});
 		},
 
-		getProjectProblems() {
+		getProblemsForFiltering() {
 			if (this.selectedProjectId) {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
-					url: window.route("api.problems.get-management"),
+					url: window.route("api.solutions.problems.get-management"),
 					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})
 					.then((response) => {
 						this.problems = response.data;
 						this.fetched = true;
-						this.updateFilteredProblems();
-						this.updateDataTable();
+						// this.updateFilteredProblems(); // bookmark4
+						// this.updateDataTable(); // bookmark4
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
@@ -292,36 +293,25 @@ export default {
 			}
 		},
 
-		getAllProjectSolutions() { // bookmark4
-			this.fetched = false;
-			this.problems = [];
-			this.post({
-				url: window.route("api.solutions.get-management"),
-				data: { projectId: 1 },
-				urlRelative: false,
-			})
-				.then((response) => {
-					this.problems = response.data;
-					this.fetched = true;
-					this.updateFilteredProblems();
-					this.updateDataTable();
-				})
-				.catch((error) => {
-					this.showErrorMessage(error);
-				});
-		},
-
-		getSingleProjectSolutions() { // bookmark4
-			if (this.selectedProjectId) {
+		async getFilteredSolutions() { // bookmark4
+			if ( (this.projects.length) || (this.problems.length) ) {
 				this.fetched = false;
-				this.problems = [];
+				this.solutions = [];
+				let data = {
+					filters: {
+						projectFilters: this.projects.map( x => x.id ),
+						problemFilters: this.problems.map( x => x.id ) // bookmark4
+						// problemFilters: [5, 6, 7, 8] // bookmark4
+					}
+				};
+				console.log(data);
 				this.post({
 					url: window.route("api.solutions.get-management"),
-					data: { projectId: this.selectedProjectId },
+					data: data,
 					urlRelative: false,
 				})
 					.then((response) => {
-						this.problems = response.data;
+						this.solutions = response.data;
 						this.fetched = true;
 						this.updateFilteredProblems();
 						this.updateDataTable();
@@ -378,12 +368,12 @@ export default {
 		},
 
 		getBadgeClassForProblemStatus(problemStatus) {
-			// search by id in the problemStatuses array
-			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			// search by id in the solutionStatuses array
+			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
 			return status ? status.badgeCSSClass : "badge-secondary";
 		},
 		getBadgeTitleForProblemStatus(problemStatus) {
-			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
 			return status ? status.description : "Unknown status";
 		},
 		getProblemEditRoute(problem) {
@@ -406,7 +396,7 @@ export default {
 			axios
 				.delete(location.href + "/" + this.modalProblem.id)
 				.then(() => {
-					this.getProjectProblems();
+					this.getProblemsForFiltering();
 					this.modalProblem.id = null;
 					this.modalProblem.title = "";
 					this.actionSuccessMessage = "Problem deleted successfully!";
@@ -428,7 +418,7 @@ export default {
 					status_id: this.modalProblem.status.id,
 				})
 				.then(() => {
-					this.getProjectProblems();
+					this.getProblemsForFiltering();
 					this.modalProblem.id = null;
 					this.modalProblem.title = "";
 					this.actionSuccessMessage = "Problem status updated successfully!";

@@ -131,11 +131,15 @@ class SolutionController extends Controller {
         //
     }
 
-    public function getSolutionsForCrowdSourcingProjectForManagement(): JsonResponse {
+    public function getSolutionStatusesForManagementPage(): JsonResponse {
+        return response()->json($this->solutionManager->getSolutionStatusesForManagementPage());
+    }
+
+    public function getFilteredSolutionsForManagement(): JsonResponse {
         $this->validate(request(), [
-            'projectId' => 'nullable|numeric|exists:crowd_sourcing_projects,id',
+            'filters' => 'required',
         ]);
 
-        return response()->json($this->solutionManager->getSolutionsForCrowdSourcingProjectForManagement(request('projectId')));
+        return response()->json($this->solutionManager->getFilteredSolutionsForManagement(request('filters')));
     }
 }

@@ -4,7 +4,7 @@ namespace App\BusinessLogicLayer\Problem;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
-use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
 use App\Models\Problem\Problem;
 use App\Models\Problem\ProblemTranslation;
 use App\Repository\LanguageRepository;
@@ -148,16 +148,16 @@ class ProblemManager {
         $problemStatuses = $this->problemStatusManager->getAllProblemStatusesLkp();
         foreach ($problemStatuses as $problemStatus) {
             switch ($problemStatus->id) {
-                case CrowdSourcingProjectStatusLkp::DRAFT:
+                case ProblemStatusLkp::DRAFT:
                     $problemStatus->badgeCSSClass = 'badge-secondary';
                     break;
-                case CrowdSourcingProjectStatusLkp::PUBLISHED:
+                case ProblemStatusLkp::PUBLISHED:
                     $problemStatus->badgeCSSClass = 'badge-success';
                     break;
-                case CrowdSourcingProjectStatusLkp::FINALIZED:
+                case ProblemStatusLkp::FINALIZED:
                     $problemStatus->badgeCSSClass = 'badge-info';
                     break;
-                case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
+                case ProblemStatusLkp::UNPUBLISHED:
                     $problemStatus->badgeCSSClass = 'badge-danger';
                     break;
                 default:
@@ -181,5 +181,9 @@ class ProblemManager {
         $langId = $this->languageRepository->getLanguageByCode($getLocale)->id;
 
         return $this->problemRepository->getProblemsForCrowdSourcingProjectForLandingPage($projectId, $langId);
+    }
+
+    public function getProblemsForManagement(): Collection {
+        return $this->problemRepository->getProblemsForManagement();
     }
 }

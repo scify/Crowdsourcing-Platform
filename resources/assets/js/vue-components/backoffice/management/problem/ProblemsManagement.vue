@@ -252,7 +252,7 @@ export default {
 
 		async getCrowdSourcingProjectsForFiltering() {
 			return this.get({
-				url: window.route("api.problems.projects.get"),
+				url: window.route("api.projects.get"),
 				data: {},
 				urlRelative: false,
 			})

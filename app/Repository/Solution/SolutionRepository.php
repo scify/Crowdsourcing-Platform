@@ -21,15 +21,22 @@ class SolutionRepository extends Repository {
         return Solution::class;
     }
 
-    public function getSolutionsForCrowdSourcingProjectForManagement(?int $projectId): Collection {
-        if (!$projectId) {
-            // return Solution::all();
-            return Solution::with(['problem'])->get(); // bookmark4 - do we need/want with each solution's problem?
+    public function getSolutionsForManagementFilteredByProjectIds($idsArray): Collection {
+        $finalSolutionsCollection = new Collection;
+        foreach ($idsArray as $project_id) {
+            $problemIdsBelongingToProject = $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id');
+            foreach ($problemIdsBelongingToProject as $problem_id) {
+                // $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->get());
+                $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['problem'])->get()); // bookmark4 - do we need/want with each solution's problem?
+            }
         }
 
-        $problemIdsBelongingToProject = $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($projectId)->pluck('id');
+        return $finalSolutionsCollection;
+    }
+
+    public function getSolutionsForManagementFilteredByProblemIds($idsArray): Collection {
         $finalSolutionsCollection = new Collection;
-        foreach ($problemIdsBelongingToProject as $problem_id) {
+        foreach ($idsArray as $problem_id) {
             // $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->get());
             $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['problem'])->get()); // bookmark4 - do we need/want with each solution's problem?
         }

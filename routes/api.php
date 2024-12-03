@@ -54,11 +54,12 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('api.questionnaire.update');
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('api.questionnaire.translation.store');
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('api.questionnaire.translations.mark');
-    Route::get('/problems/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForProblems'])->name('api.problems.projects.get');
+    Route::get('/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForManagement'])->name('api.projects.get');
     Route::post('/problems/management', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.problems.get-management');
     Route::get('/problems/statuses/management', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
-    Route::get('/solutions/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForSolutions'])->name('api.solutions.projects.get');
-    Route::post('/solutions/management', [SolutionController::class, 'getSolutionsForCrowdSourcingProjectForManagement'])->name('api.solutions.get-management');
+    Route::post('solutions/management/problems', [ProblemController::class, 'getProblemsForManagement'])->name('api.solutions.problems.get-management');
+    Route::post('/solutions/management', [SolutionController::class, 'getFilteredSolutionsForManagement'])->name('api.solutions.get-management');
+    Route::get('/solutions/statuses/management', [SolutionController::class, 'getSolutionStatusesForManagementPage'])->name('api.solutions.statuses.management.get');
     Route::post('/translate/get-translations', [LanguageController::class, 'getTranslationForTexts'])->name('api.translate.get-translations');
 });
 

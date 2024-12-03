@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogicLayer\Solution;
 
+use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
 use App\Repository\LanguageRepository;
@@ -136,7 +137,30 @@ class SolutionManager {
             ->updateSolutionTranslations($id, $defaultTranslation, $extraTranslations);
     }
 
-    public function getSolutionsForCrowdSourcingProjectForManagement(?int $projectId): Collection {
-        return $this->solutionRepository->getSolutionsForCrowdSourcingProjectForManagement($projectId);
+    public function getSolutionStatusesForManagementPage(): Collection {
+        $solutionStatuses = $this->solutionStatusManager->getAllSolutionStatusesLkp();
+        foreach ($solutionStatuses as $solutionStatus) {
+            switch ($solutionStatus->id) {
+                case SolutionStatusLkp::PUBLISHED:
+                    $solutionStatus->badgeCSSClass = 'badge-success';
+                    break;
+                case SolutionStatusLkp::UNPUBLISHED:
+                    $solutionStatus->badgeCSSClass = 'badge-danger';
+                    break;
+                default:
+                    $solutionStatus->badgeCSSClass = 'badge-dark';
+                    $solutionStatus->description = 'The problem is in an unknown status';
+            }
+        }
+
+        return $solutionStatuses;
+    }
+
+    public function getFilteredSolutionsForManagement($filters): Collection {
+        if (count($filters['problemFilters'])) {
+            return $this->solutionRepository->getSolutionsForManagementFilteredByProblemIds($filters['problemFilters']);
+        }
+
+        return $this->solutionRepository->getSolutionsForManagementFilteredByProjectIds($filters['projectFilters']);
     }
 }
