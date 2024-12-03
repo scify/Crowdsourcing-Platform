@@ -9,39 +9,48 @@
 					:value="JSON.stringify(translations)"
 				/>
 
-				<!-- Language Selector Dropdown -->
-				<div class="dropdown">
-					<button
-						class="btn btn-primary btn-slim dropdown-toggle"
-						type="button"
-						id="languageDropdown"
-						data-toggle="dropdown"
-						aria-expanded="false"
-					>
-						Select Languages
-					</button>
-					<ul class="dropdown-menu p-3" aria-labelledby="languageDropdown">
-						<li
-							v-for="language in availableLanguages"
-							:key="'avail_lang_' + language.id"
-							class="dropdown-item d-flex align-items-center justify-content-between"
+				<div class="d-flex justify-content-end">
+					<!-- Language Selector Dropdown -->
+					<div class="dropdown">
+						<button
+							class="btn btn-primary btn-slim dropdown-toggle mr-4"
+							type="button"
+							id="languageDropdown"
+							data-toggle="dropdown"
+							aria-expanded="false"
 						>
-							<label class="mb-0">
-								<input
-									v-model="checkedLanguages"
-									type="checkbox"
-									class="form-check-input me-2"
-									:value="language"
-									@change="checkChanged($event, language)"
-								/>
-								{{ language.language_name }}
-							</label>
-							<span v-if="checkedLanguages.includes(language)">
-								&#10003;
-								<!-- Checkmark icon -->
-							</span>
-						</li>
-					</ul>
+							Select Languages
+						</button>
+						<ul class="dropdown-menu p-3" aria-labelledby="languageDropdown">
+							<li
+								v-for="language in availableLanguages"
+								:key="'avail_lang_' + language.id"
+								class="dropdown-item d-flex align-items-center justify-content-between"
+							>
+								<label class="mb-0">
+									<input
+										v-model="checkedLanguages"
+										type="checkbox"
+										class="form-check-input me-2"
+										:value="language"
+										@change="checkChanged($event, language)"
+									/>
+									{{ language.language_name }}
+								</label>
+								<span v-if="checkedLanguages.includes(language)">
+									&#10003;
+									<!-- Checkmark icon -->
+								</span>
+							</li>
+						</ul>
+					</div>
+					<!-- Automatic Translations Button -->
+					<button
+						class="btn btn-primary btn-slim"
+						@click="getAndFillAutomaticTranslations"
+						v-if="checkedLanguages.length > 0">
+						Get Automatic Translations
+					</button>
 				</div>
 			</div>
 		</div>
@@ -241,6 +250,24 @@ export default {
 			filteredTranslations,
 		};
 	},
+	methods: {
+		async getAndFillAutomaticTranslations() {
+			// create 2 arrays
+			// one for the language codes we need to translate to
+			// one for the texts we need to translate
+			const languages = checkedLanguages.value.map((lang) => lang.language_code);
+			console.log(languages);
+			const texts = translations.value.map((translation) => {
+				return Object.keys(translation).reduce((acc, key) => {
+					if (propertyExistsInMetadata(translation[key], key)) {
+						acc[key] = translation[key];
+					}
+					return acc;
+				}, {});
+			});
+			console.log(texts);
+		}
+	}
 };
 </script>
 

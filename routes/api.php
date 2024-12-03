@@ -59,6 +59,7 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::get('/problems/statuses/management', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
     Route::get('/solutions/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForSolutions'])->name('api.solutions.projects.get');
     Route::post('/solutions/management', [SolutionController::class, 'getSolutionsForCrowdSourcingProjectForManagement'])->name('api.solutions.get-management');
+    Route::post('/translate/get-translations', [LanguageController::class, 'getTranslationForTexts'])->name('api.translate.get-translations');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {

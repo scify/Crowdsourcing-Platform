@@ -13,15 +13,15 @@ class Translator {
      *
      * @param  array  $texts The texts that need translation. This array should contain elements of type string.
      *                            Example: ['Hello', 'Goodbye']
-     * @param  string  $lang_code The target language code in which the texts will be translated
+     * @param  string  $target_lang_code The target language code in which the texts will be translated
      * @return array The translated texts
      *
      * @throws \Exception
      */
-    public static function translateTexts(array $texts, string $lang_code): array {
+    public static function translateTexts(array $texts, string $target_lang_code): array {
         // fix for Greek language code
-        if ($lang_code === 'gr') {
-            $lang_code = 'el';
+        if ($target_lang_code === 'gr') {
+            $target_lang_code = 'el';
         }
 
         $translate = new TranslateClient(['key' => config('app.google_translate_key')]);
@@ -32,7 +32,7 @@ class Translator {
         foreach ($batches as $batch) {
             try {
                 $result = array_merge($result, $translate->translateBatch($batch, [
-                    'target' => $lang_code,
+                    'target' => $target_lang_code,
                 ]));
             } catch (\Exception $e) {
                 if (app()->bound('sentry')) {

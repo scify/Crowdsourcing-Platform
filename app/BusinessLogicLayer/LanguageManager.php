@@ -3,6 +3,7 @@
 namespace App\BusinessLogicLayer;
 
 use App\Repository\LanguageRepository;
+use App\Utils\Translator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
@@ -35,5 +36,17 @@ class LanguageManager {
 
     public function getLanguageById($languageId) {
         return $this->getAllLanguages()->firstWhere('id', '=', $languageId);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getTranslationForTexts(array $texts, array $target_lang_codes): array {
+        $translated_texts = [];
+        foreach ($target_lang_codes as $target_lang_code) {
+            $translated_texts[] = Translator::translateTexts($texts, $target_lang_code);
+        }
+
+        return $translated_texts;
     }
 }
