@@ -583,7 +583,6 @@ export default defineComponent({
 			let locales = this.surveyCreator.translationValue.getSelectedLocales() ?? [];
 			// filter out locales that are empty strings
 			locales = locales.filter((l) => l !== "");
-			console.log(locales);
 			const data = {
 				title: this.questionnaire.default_fields_translation.title,
 				description: this.questionnaire.default_fields_translation.description,
@@ -638,7 +637,8 @@ export default defineComponent({
 						confirmButtonText: "OK",
 					},
 					() => {
-						window.location = window.route("edit-questionnaire", response.data.id);
+						// refresh the page
+						location.reload();
 					},
 				);
 			} catch (error) {
