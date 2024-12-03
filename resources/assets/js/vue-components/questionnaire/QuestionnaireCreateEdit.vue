@@ -514,7 +514,7 @@ export default defineComponent({
 				this.surveyCreator.translation.toolbarItems.push({
 					id: "auto-translate",
 					visible: true,
-					title: "Translate Survey Now",
+					title: "Generate Translations",
 					action: () => {
 						instance.translateQuestionnaireToLocales(
 							instance.surveyCreator.translation.getSelectedLocales(),
