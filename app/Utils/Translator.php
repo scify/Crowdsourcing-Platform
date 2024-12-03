@@ -11,8 +11,9 @@ class Translator {
     /**
      * Translate texts to the preferred language.
      *
-     * @param  array  $texts The texts that need translation
-     * @param  string  $lang_code The language code in which the texts will be translated
+     * @param  array  $texts The texts that need translation. This array should contain elements of type string.
+     *                            Example: ['Hello', 'Goodbye']
+     * @param  string  $lang_code The target language code in which the texts will be translated
      * @return array The translated texts
      *
      * @throws \Exception

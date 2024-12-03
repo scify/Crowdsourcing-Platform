@@ -101,6 +101,9 @@ class QuestionnaireTranslator {
         return $translatedJSON;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function translateQuestionnaireJSONToLocale(string $json, string $locale): string {
         if (empty($locale)) {
             return '';
