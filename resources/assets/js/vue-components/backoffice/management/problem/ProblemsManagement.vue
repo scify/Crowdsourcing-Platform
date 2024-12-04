@@ -158,6 +158,7 @@ import "datatables.net";
 import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
 import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
+import { getLocale } from "../../../../common-utils";
 
 export default {
 	name: "ProblemsManagement",
@@ -346,7 +347,7 @@ export default {
 			return status ? status.description : "Unknown status";
 		},
 		getProblemEditRoute(problem) {
-			return window.route("problems.edit", problem.id);
+			return window.route("problems.edit", getLocale(), problem.id);
 		},
 
 		openDeleteModal(problem) {
@@ -363,7 +364,7 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(location.href + "/" + this.modalProblem.id)
+				.delete(window.route("problems.destroy", getLocale(), this.modalProblem.id))
 				.then(() => {
 					this.getProjectProblems();
 					this.modalProblem.id = null;

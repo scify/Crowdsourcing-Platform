@@ -54,3 +54,7 @@ export function getCookie(cname) {
 	}
 	return "";
 }
+
+export function getLocale() {
+	return document.querySelector("html").getAttribute("lang");
+}
