@@ -33,7 +33,7 @@ app.mount("#app");
 	};
 
 	const checkURLAndActivateTranslationsTab = function () {
-		// should check the URL for a `translations=1` variable and if set and if true, it should activate the tab. SEE DESCR
+		// should check the URL for a `translations=1` variable and if set and if true, it should activate the tab.
 		if (
 			window.location.search.indexOf("?translations=1") > -1 ||
 			window.location.search.indexOf("&translations=1") > -1

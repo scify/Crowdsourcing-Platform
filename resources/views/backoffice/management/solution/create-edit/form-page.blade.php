@@ -21,7 +21,9 @@
 
         @csrf
 
-        <input type="hidden" name="solution-owner-problem" value="{{ request()->problem_id}}">
+        @if ( (!$viewModel->isEditMode()) && (request()->problem_id) )
+            <input type="hidden" name="solution-owner-problem" value="{{ request()->problem_id}}">
+        @endif
 
         <div class="container-fluid p-0">
             <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">

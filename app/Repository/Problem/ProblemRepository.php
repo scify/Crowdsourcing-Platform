@@ -46,4 +46,13 @@ class ProblemRepository extends Repository {
                     ?? $problem->defaultTranslation;
             });
     }
+
+    public function getProblemsForManagement(int $projectId): Collection {
+        $builder = Problem::where('project_id', $projectId)
+            ->where('status_id', '!=', ProblemStatusLkp::DRAFT)
+            ->where('status_id', '!=', ProblemStatusLkp::UNPUBLISHED)
+            ->whereHas('solutions');
+
+        return $builder->get();
+    }
 }

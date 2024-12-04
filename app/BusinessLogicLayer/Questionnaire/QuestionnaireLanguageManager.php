@@ -7,8 +7,8 @@ use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use Illuminate\Support\Collection;
 
 class QuestionnaireLanguageManager {
-    protected $questionnaireLanguageRepository;
-    protected $languageManager;
+    protected QuestionnaireLanguageRepository $questionnaireLanguageRepository;
+    protected LanguageManager $languageManager;
 
     public function __construct(QuestionnaireLanguageRepository $questionnaireLanguageRepository,
         LanguageManager $languageManager) {
@@ -16,13 +16,25 @@ class QuestionnaireLanguageManager {
         $this->languageManager = $languageManager;
     }
 
-    public function saveLanguagesForQuestionnaire(array $lang_codes, int $questionnaire_id) {
+    /**
+     * Save languages for a questionnaire. If a language is already saved for the questionnaire, it will be updated.
+     * If a language is not already saved for the questionnaire, it will be added.
+     * If a language is saved for the questionnaire but is not in the list of languages to save, it will be deleted.
+     *
+     * @param array $lang_codes Array of language codes. Example: ['en', 'de']
+     * @param int $questionnaire_id The ID of the questionnaire
+     */
+    public function saveLanguagesForQuestionnaire(array $lang_codes, int $questionnaire_id): void {
         if (count($lang_codes) === 0) {
             return;
         }
         $existingQuestionnaireLanguages = $this->getLanguagesForQuestionnaire($questionnaire_id);
         $languagesToDelete = $existingQuestionnaireLanguages->pluck('language.language_code')->toArray();
         for ($i = 0; $i < count($lang_codes); $i++) {
+            // fix for Greek language code
+            if ($lang_codes[$i] === 'gr') {
+                $lang_codes[$i] = 'el';
+            }
             if (in_array($lang_codes[$i], $languagesToDelete)) {
                 array_splice($languagesToDelete, array_search($lang_codes[$i], $languagesToDelete), 1);
             }

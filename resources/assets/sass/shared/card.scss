@@ -13,11 +13,8 @@
 	}
 }
 
-.card-info {
-	border-top-color: $brand-primary;
-}
-
 .card-info:not(.card-outline) {
+	border-top: 0;
 	.card-header {
 		background-color: $brand-primary;
 	}

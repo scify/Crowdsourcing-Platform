@@ -107,9 +107,9 @@ class AirQualityProjectSeeder extends Seeder {
 
         $problems = [
             [
-                'id' => 6,
+                'id' => 7,
                 'project_id' => 4,
-                'slug' => 'air-quality-europe-problem-1',
+                'slug' => 'aqe-problem-1',
                 'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-1.png',
                 'default_language_id' => 6,
@@ -128,26 +128,28 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
                 'solutions' => [
                     [
+                        'id' => 5,
                         'user_creator_id' => 1,
-                        'slug' => 'air-quality-solution-1',
+                        'slug' => 'aqe-pblm1-solution-1',
                         'status_id' => SolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
                             [
                                 'language_id' => 6,
-                                'title' => 'Proper Air Pollution Management',
-                                'description' => 'Poorly designed urban management (lack of local consultation before creating projects, identifying solutions) and poor access to information about air pollution sources, health risks, and mitigation strategies can lead to ineffective policies that fail to address the root causes of pollution, exacerbating environmental and public health issues in urban areas.',
+                                'title' => 'Make emission requlations stricter',
+                                'description' => 'Enforcing strict emission regulations can significantly reduce air pollution, thus protecting public health by ensuring cleaner, breathable air for all communities.',
                             ],
                             [
                                 'language_id' => 12,
-                                'title' => 'Σωστή Διαχείριση της Ατμοσφαιρικής Ρύπανσης',
-                                'description' => 'Η κακώς σχεδιασμένη αστική διαχείριση (έλλειψη τοπικής διαβούλευσης πριν από τη δημιουργία έργων, τον εντοπισμό λύσεων) και η κακή πρόσβαση σε πληροφορίες σχετικά με πηγές ατμοσφαιρικής ρύπανσης, κινδύνους για την υγεία και στρατηγικές μετριασμού μπορεί να οδηγήσει σε αναποτελεσματικές πολιτικές που αποτυγχάνουν να αντιμετωπίσουν τις βασικές αιτίες της ρύπανσης, επιδεινώνοντας το περιβάλλον και ζητήματα δημόσιας υγείας στις αστικές περιοχές.',
+                                'title' => 'Εφαρμογή αυστηρότερων κανονισμών για εκπομπές ρύπων',
+                                'description' => 'Η επιβολή αυστηρών κανονισμών εκπομπών μπορεί να μειώσει σημαντικά τη ρύπανση του αέρα, προστατεύοντας έτσι τη δημόσια υγεία με τη διασφάλιση καθαρού, αναπνεύσιμου αέρα για όλες τις κοινότητες.',
                             ],
                         ],
                     ],
                     [
+                        'id' => 6,
                         'user_creator_id' => 1,
-                        'slug' => 'air-quality-solution-2',
+                        'slug' => 'aqe-pblm1-solution-2',
                         'status_id' => SolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
@@ -166,9 +168,9 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
             ],
             [
-                'id' => 7,
+                'id' => 8,
                 'project_id' => 4,
-                'slug' => 'air-quality-europe-problem-2',
+                'slug' => 'aqe-problem-2',
                 'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-2.png',
                 'default_language_id' => 12,
@@ -187,26 +189,28 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
                 'solutions' => [
                     [
+                        'id' => 7,
                         'user_creator_id' => 1,
-                        'slug' => 'air-quality-solution-3',
+                        'slug' => 'aqe-pblm2-solution-1',
                         'status_id' => SolutionStatusLkp::PUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
                             [
                                 'language_id' => 6,
-                                'title' => 'Health Issues',
-                                'description' => 'Cancer, mental health problems, asthma, headaches: the list of health problems from air pollution is long! How can we ensure that citizens stay healthy?',
+                                'title' => 'Air Filtration Systems',
+                                'description' => 'Advanced air filtration systems combat health issues by ensuring breathable, pollution-free environments for all.',
                             ],
                             [
                                 'language_id' => 12,
-                                'title' => 'Προβλήματα Υγείας',
-                                'description' => 'Καρκίνος, προβλήματα ψυχικής υγείας, άσθμα, πονοκέφαλοι: μακρύς ο κατάλογος των προβλημάτων υγείας από την ατμοσφαιρική ρύπανση! Πώς μπορούμε να διασφαλίσουμε ότι οι πολίτες παραμένουν υγιείς;',
+                                'title' => 'Συστήματα Φιλτραρίσματος Αέρα',
+                                'description' => 'Προηγμένα συστήματα διήθησης αέρα καταπολεμούν τα προβλήματα υγείας διασφαλίζοντας αναπνεύσιμα, χωρίς ρύπους περιβάλλοντα για όλους.',
                             ],
                         ],
                     ],
                     [
+                        'id' => 8,
                         'user_creator_id' => 1,
-                        'slug' => 'air-quality-solution-4',
+                        'slug' => 'aqe-pblm2-solution-2',
                         'status_id' => SolutionStatusLkp::UNPUBLISHED,
                         'img_url' => 'https://placehold.co/615x415',
                         'translations' => [
@@ -225,9 +229,9 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
             ],
             [
-                'id' => 8,
+                'id' => 9,
                 'project_id' => 4,
-                'slug' => 'air-quality-europe-problem-3',
+                'slug' => 'aqe-problem-3',
                 'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => null,
                 'default_language_id' => 12,
@@ -246,9 +250,9 @@ class AirQualityProjectSeeder extends Seeder {
                 ],
             ],
             [
-                'id' => 9,
+                'id' => 10,
                 'project_id' => 4,
-                'slug' => 'air-quality-europe-problem-4',
+                'slug' => 'aqe-problem-4',
                 'status_id' => ProblemStatusLkp::PUBLISHED,
                 'img_url' => '/images/projects/air-quality-europe/problem-4.png',
                 'default_language_id' => 6,
@@ -303,14 +307,14 @@ class AirQualityProjectSeeder extends Seeder {
                     if ($existingSolution = Solution::withTrashed()->where('slug', $solution['slug'])->first()) {
                         $existingSolution->restore();
                     }
-                    $solutionRecord = Solution::updateOrCreate(
-                        ['problem_id' => $problemRecord->id, 'slug' => $solution['slug']], [
-                            'problem_id' => $problemRecord->id,
-                            'user_creator_id' => $solution['user_creator_id'],
-                            'slug' => $solution['slug'],
-                            'status_id' => $solution['status_id'],
-                            'img_url' => $solution['img_url'],
-                        ]);
+                    $solutionRecord = Solution::updateOrCreate(['id' => $solution['id']], [
+                        'id' => $solution['id'],
+                        'problem_id' => $problemRecord->id,
+                        'user_creator_id' => $solution['user_creator_id'],
+                        'slug' => $solution['slug'],
+                        'status_id' => $solution['status_id'],
+                        'img_url' => $solution['img_url'],
+                    ]);
                     if (isset($solution['translations'])) {
                         foreach ($solution['translations'] as $translation) {
                             if (app()->environment() !== 'testing') {

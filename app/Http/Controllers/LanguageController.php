@@ -38,4 +38,18 @@ class LanguageController extends Controller {
         // redirect to the new URL:
         return redirect($url);
     }
+
+    public function getAutomaticTranslationForTexts(Request $request): JsonResponse {
+        $this->validate($request, [
+            'texts' => 'required|array',
+            'target_lang_code' => 'required|string|exists:languages_lkp,language_code',
+        ]);
+        $target_lang_code = $request->input('target_lang_code');
+        $texts = $request->input('texts');
+        $translated_texts = $this->languageManager->getAutomaticTranslationForTexts($texts, $target_lang_code);
+
+        return response()->json([
+            'translated_texts' => $translated_texts,
+        ]);
+    }
 }

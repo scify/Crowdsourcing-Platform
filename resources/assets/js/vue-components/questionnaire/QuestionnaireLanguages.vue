@@ -1,6 +1,6 @@
 <template>
 	<div class="modal-component">
-		<common-modal :open="modalOpen" :allow-close="true" :classes="''" @canceled="$emit('canceled')">
+		<common-modal :open="modalOpen" :allow-close="false">
 			<template #header>
 				<h5 class="modal-title pl-2">
 					Mark Questionnaire Languages<span
@@ -51,7 +51,7 @@
 						<div class="col-3 offset-6 pr-0">
 							<button
 								type="button"
-								class="btn btn-outline-secondary btn-lg w-100"
+								class="btn btn-outline-secondary btn-slim w-100"
 								@click="$emit('canceled')"
 							>
 								Cancel
@@ -61,7 +61,7 @@
 							<button
 								:disabled="saveLoading"
 								type="button"
-								class="btn btn-primary btn-lg w-100"
+								class="btn btn-primary btn-slim w-100 "
 								@click="saveQuestionnaireLanguagesStatus"
 							>
 								Save<span

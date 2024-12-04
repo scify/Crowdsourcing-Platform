@@ -468,10 +468,10 @@ class CrowdSourcingProjectManager {
         return $projects;
     }
 
-    public function getCrowdSourcingProjectsForProblems(): Collection {
+    public function getCrowdSourcingProjectsForManagement(): Collection {
         $user = Auth::user();
-        $user_cretor_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
+        $user_creator_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
 
-        return $this->crowdSourcingProjectRepository->getProjectsForProblems($user_cretor_id);
+        return $this->crowdSourcingProjectRepository->getProjectsForManagement($user_creator_id);
     }
 }

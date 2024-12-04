@@ -4,7 +4,7 @@
 			<div class="col">
 				<div class="card card-info">
 					<div class="card-header">
-						<h3 class="card-title">Crowdsourcing Projects Problems</h3>
+						<h3 class="card-title">Crowdsourcing Projects Problems Solutions</h3>
 					</div>
 					<div class="card-body">
 						<div class="container-fluid px-0">
@@ -18,7 +18,7 @@
 										id="projectSelect"
 										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 										v-model="selectedProjectId"
-										@change="getProjectProblems"
+										@change="getProblemsForFiltering"
 									>
 										<option value="" disabled selected>Select a Project</option>
 										<option v-for="project in projects" :key="project.id" :value="project.id">
@@ -110,12 +110,12 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" v-if="modalProblem.id && problemStatuses.length">
+				<div class="modal-body" v-if="modalProblem.id && solutionStatuses.length">
 					<p>
-						Select a new status for the problem <b>{{ modalProblem.default_translation.title }}</b>
+						Select a new status for the solution <b>{{ modalProblem.default_translation.title }}</b>
 					</p>
 					<select class="form-select form-control" v-model="modalProblem.status.id">
-						<option v-for="status in problemStatuses" :key="status.id" :value="status.id">
+						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
 							{{ status.title }}
 						</option>
 					</select>
@@ -158,10 +158,9 @@ import "datatables.net";
 import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
 import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
-import { getLocale } from "../../../../common-utils";
 
 export default {
-	name: "ProblemsManagement",
+	name: "SolutionsManagement",
 	components: { CommonModal },
 	data() {
 		return {
@@ -169,7 +168,8 @@ export default {
 			projects: [],
 			selectedProjectId: "",
 			problems: [],
-			problemStatuses: [],
+			solutions: [],
+			solutionStatuses: [],
 			errorMessage: "",
 			showUnpublishedProblemsOnly: false,
 			filteredProblems: [],
@@ -188,8 +188,9 @@ export default {
 	async mounted() {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
 		this.updateModal = new Modal(document.getElementById("updateModal"));
-		await this.getProblemStatusesForManagementPage();
+		await this.getSolutionStatusesForManagementPage();
 		await this.getCrowdSourcingProjectsForFiltering();
+		await this.getFilteredSolutions();
 		await this.setUpDataTable();
 	},
 	methods: {
@@ -237,14 +238,14 @@ export default {
 			});
 		},
 
-		async getProblemStatusesForManagementPage() {
+		async getSolutionStatusesForManagementPage() {
 			return this.get({
-				url: window.route("api.management.problems.statuses.get"),
+				url: window.route("api.management.solutions.statuses.get"),
 				data: {},
 				urlRelative: false,
 			})
 				.then((response) => {
-					this.problemStatuses = response.data;
+					this.solutionStatuses = response.data;
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
@@ -263,7 +264,7 @@ export default {
 					// if only one project is available, select it by default and fetch its problems
 					if (this.projects.length === 1) {
 						this.selectedProjectId = this.projects[0].id;
-						this.getProjectProblems();
+						this.getProblemsForFiltering();
 					}
 				})
 				.catch((error) => {
@@ -271,17 +272,46 @@ export default {
 				});
 		},
 
-		getProjectProblems() {
+		getProblemsForFiltering() {
 			if (this.selectedProjectId) {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
-					url: window.route("api.management.problems.get"),
+					url: window.route("api.management.solutions.problems.get"),
 					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})
 					.then((response) => {
 						this.problems = response.data;
+						this.fetched = true;
+						// this.updateFilteredProblems(); // bookmark4
+						// this.updateDataTable(); // bookmark4
+					})
+					.catch((error) => {
+						this.showErrorMessage(error);
+					});
+			}
+		},
+
+		async getFilteredSolutions() { // bookmark4
+			if ( (this.projects.length) || (this.problems.length) ) {
+				this.fetched = false;
+				this.solutions = [];
+				let data = {
+					filters: {
+						projectFilters: this.projects.map( x => x.id ),
+						problemFilters: this.problems.map( x => x.id ) // bookmark4
+						// problemFilters: [5, 6, 7, 8] // bookmark4
+					}
+				};
+				console.log(data);
+				this.post({
+					url: window.route("api.management.solutions.get"),
+					data: data,
+					urlRelative: false,
+				})
+					.then((response) => {
+						this.solutions = response.data;
 						this.fetched = true;
 						this.updateFilteredProblems();
 						this.updateDataTable();
@@ -338,16 +368,16 @@ export default {
 		},
 
 		getBadgeClassForProblemStatus(problemStatus) {
-			// search by id in the problemStatuses array
-			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			// search by id in the solutionStatuses array
+			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
 			return status ? status.badgeCSSClass : "badge-secondary";
 		},
 		getBadgeTitleForProblemStatus(problemStatus) {
-			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
+			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
 			return status ? status.description : "Unknown status";
 		},
 		getProblemEditRoute(problem) {
-			return window.route("problems.edit", getLocale(), problem.id);
+			return window.route("problems.edit", problem.id);
 		},
 
 		openDeleteModal(problem) {
@@ -364,9 +394,9 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(window.route("problems.destroy", getLocale(), this.modalProblem.id))
+				.delete(location.href + "/" + this.modalProblem.id)
 				.then(() => {
-					this.getProjectProblems();
+					this.getProblemsForFiltering();
 					this.modalProblem.id = null;
 					this.modalProblem.title = "";
 					this.actionSuccessMessage = "Problem deleted successfully!";
@@ -388,7 +418,7 @@ export default {
 					status_id: this.modalProblem.status.id,
 				})
 				.then(() => {
-					this.getProjectProblems();
+					this.getProblemsForFiltering();
 					this.modalProblem.id = null;
 					this.modalProblem.title = "";
 					this.actionSuccessMessage = "Problem status updated successfully!";

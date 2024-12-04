@@ -142,7 +142,7 @@ class CrowdSourcingProjectController extends Controller {
         );
     }
 
-    public function getCrowdSourcingProjectsForProblems(): JsonResponse {
-        return response()->json($this->crowdSourcingProjectManager->getCrowdSourcingProjectsForProblems());
+    public function getCrowdSourcingProjectsForManagement(): JsonResponse {
+        return response()->json($this->crowdSourcingProjectManager->getCrowdSourcingProjectsForManagement());
     }
 }

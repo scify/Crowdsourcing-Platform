@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-12">
 
-        <div class="container-fluid">
-            <div class="row">
+        <div class="container-fluid no-gutters px-0">
+            <div class="row no-gutters">
                 <div class="col-12 mx-auto">
                     <div class="card card-info collapsed-card">
                         <div class="card-header">
