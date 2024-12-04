@@ -350,7 +350,11 @@ export default {
 
 			Object.keys(this.translations[this.activeTabIndex]).forEach((key, index) => {
 				const translationValue = this.translations[this.activeTabIndex][key];
-				if (!translationValue && this.originalTranslation[key] !== null) {
+				if (
+					!translationValue &&
+					this.originalTranslation[key] !== null &&
+					this.originalTranslation[key].length
+				) {
 					translationsToBeTranslated.push({
 						id: key,
 						original_text: this.originalTranslation[key],
