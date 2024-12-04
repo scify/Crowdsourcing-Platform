@@ -46,11 +46,52 @@
 					</div>
 					<!-- Automatic Translations Button -->
 					<button
+						:disabled="translationsLoading"
+						id="get-automatic-translations-btn"
+						type="button"
 						class="btn btn-primary btn-slim"
 						@click="getAndFillAutomaticTranslations"
-						v-if="checkedLanguages.length > 0">
-						Get Automatic Translations
+						v-if="checkedLanguages.length > 0"
+					>
+						<span
+							v-if="translationsLoading"
+							class="loader spinner-border spinner-border-sm"
+							role="status"
+							aria-hidden="true"
+						></span>
+						Get Automatic Translations in {{ automaticTranslationLanguageName }}
 					</button>
+				</div>
+				<div
+					v-if="showTranslationSuccessMessage"
+					class="translation-message-container translation-successful-container mt-3"
+				>
+					<p class="title font-weight-bold m-0">
+						Translation successful for {{ automaticTranslationLanguageName }}. Please review the
+						translations and click Save.
+					</p>
+				</div>
+				<div
+					v-if="translationErrorMessage"
+					class="translation-message-container translation-error-container mt-3"
+				>
+					<p class="title font-weight-bold m-0">Error: {{ translationErrorMessage }}</p>
+				</div>
+				<div
+					v-if="translationInfoMessage"
+					class="translation-message-container translation-info-container mt-3"
+				>
+					<p class="title font-weight-bold m-0">
+						{{ translationInfoMessage }}
+					</p>
+				</div>
+				<div
+					v-if="showAlreadyTranslatedTextsMessage"
+					class="translation-message-container translation-info-container mt-3"
+				>
+					<p class="title font-weight-bold m-0">
+						All the texts in {{ automaticTranslationLanguageName }} are already translated.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -73,6 +114,7 @@
 							data-toggle="tab"
 							:href="'#language-' + translation.language_id"
 							:aria-controls="'language-' + translation.language_id"
+							@click="clickTab(index)"
 						>
 							{{ getLanguageName(translation.language_id) }}</a
 						>
@@ -106,16 +148,19 @@
 								<tr
 									v-for="(value, key) in filteredTranslations(translation)"
 									:key="'translation_row_' + key"
-									:id="'translation_row_' + value"
+									:id="'translation_row_' + getLanguageCode(translation.language_id) + '_' + key"
 								>
 									<td class="field">
 										{{ getDisplayTitleForProperty(key) }}
 									</td>
 									<td class="original-translation">
-										{{ originalTranslation[key] }}
+										<p class="original-value">{{ originalTranslation[key] }}</p>
 									</td>
 									<td>
-										<textarea class="form-control" v-model="translation[key]"></textarea>
+										<textarea
+											class="form-control translation-value"
+											v-model="translation[key]"
+										></textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -128,8 +173,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { useStore } from "vuex";
+import { computed, onMounted, ref } from "vue";
+import { mapActions, useStore } from "vuex";
 
 export default {
 	name: "TranslationsManager",
@@ -147,6 +192,15 @@ export default {
 			default: "",
 		},
 	},
+	data() {
+		return {
+			showAlreadyTranslatedTextsMessage: false,
+			showTranslationSuccessMessage: false,
+			translationsLoading: false,
+			translationErrorMessage: null,
+			translationInfoMessage: null,
+		};
+	},
 	setup(props) {
 		const store = useStore();
 		const translations = ref([]);
@@ -154,6 +208,9 @@ export default {
 		const checkedLanguages = ref([]);
 		const availableLanguages = ref([]);
 		const activeTabIndex = ref(0);
+		// make it reactive
+		const showAlreadyTranslatedTextsMessage = ref(false);
+		const showTranslationSuccessMessage = ref(false);
 
 		const getAvailableLanguagesAndInit = async () => {
 			try {
@@ -209,6 +266,11 @@ export default {
 			return lang ? lang.language_name : "Unknown";
 		};
 
+		const getLanguageCode = (languageId) => {
+			const lang = availableLanguages.value.find((lang) => lang.id === languageId);
+			return lang ? lang.language_code : "unknown";
+		};
+
 		const addNewTranslation = (language) => {
 			const copy = { ...originalTranslation.value };
 			for (const property in copy) {
@@ -222,6 +284,9 @@ export default {
 		};
 
 		const checkChanged = ($event, language) => {
+			showAlreadyTranslatedTextsMessage.value = false;
+			showTranslationSuccessMessage.value = false;
+
 			if ($event.target.checked) addNewTranslation(language);
 			else deleteTranslation(language);
 		};
@@ -238,6 +303,14 @@ export default {
 
 		onMounted(getAvailableLanguagesAndInit);
 
+		const automaticTranslationLanguageName = computed(() => {
+			const activeTranslation = translations.value[activeTabIndex.value];
+			if (activeTranslation) {
+				return getLanguageName(activeTranslation.language_id);
+			}
+			return "";
+		});
+
 		return {
 			translations,
 			originalTranslation,
@@ -246,28 +319,97 @@ export default {
 			activeTabIndex,
 			getDisplayTitleForProperty,
 			getLanguageName,
+			getLanguageCode,
 			checkChanged,
 			filteredTranslations,
+			automaticTranslationLanguageName,
 		};
 	},
 	methods: {
+		...mapActions(["post"]),
 		async getAndFillAutomaticTranslations() {
-			// create 2 arrays
-			// one for the language codes we need to translate to
-			// one for the texts we need to translate
-			const languages = checkedLanguages.value.map((lang) => lang.language_code);
-			console.log(languages);
-			const texts = translations.value.map((translation) => {
-				return Object.keys(translation).reduce((acc, key) => {
-					if (propertyExistsInMetadata(translation[key], key)) {
-						acc[key] = translation[key];
-					}
-					return acc;
-				}, {});
+			this.showAlreadyTranslatedTextsMessage = false;
+			this.showTranslationSuccessMessage = false;
+			this.translationErrorMessage = null;
+			this.translationInfoMessage = null;
+			if (this.checkedLanguages.length === 0) {
+				this.translationInfoMessage = "Please select at least one language to translate to.";
+				return;
+			}
+			// get the target language code. It is the language code of the active tab.
+			// activeTabIndex + 1, because we don't have a tab for the default language,
+			// so the translations start from the "second" tab.
+			const targetLanguage = this.checkedLanguages[this.activeTabIndex + 1].language_code;
+			// for each of the translations in the active tab,
+			// we need to get the original value and the translation value for each object that is not already translated.
+			// if the translation value is empty,
+			// add it to the list of translations to be translated, along with the id of the row.
+			// then send the list of translations to the server to be translated
+			// and update the translations in the UI.
+			const translationsToBeTranslated = [];
+
+			Object.keys(this.translations[this.activeTabIndex]).forEach((key, index) => {
+				const translationValue = this.translations[this.activeTabIndex][key];
+				if (!translationValue && this.originalTranslation[key] !== null) {
+					translationsToBeTranslated.push({
+						id: key,
+						original_text: this.originalTranslation[key],
+					});
+				}
 			});
-			console.log(texts);
-		}
-	}
+
+			if (translationsToBeTranslated.length === 0) {
+				this.showAlreadyTranslatedTextsMessage = true;
+				return;
+			}
+
+			this.performCallAndUpdateTranslations(translationsToBeTranslated, targetLanguage);
+		},
+
+		performCallAndUpdateTranslations(translationsToBeTranslated, targetLanguage) {
+			this.translationsLoading = true;
+			this.showTranslationSuccessMessage = false;
+			this.showAlreadyTranslatedTextsMessage = false;
+			this.translationInfoMessage = null;
+			this.post({
+				url: window.route("api.translate.get-automatic-translations"),
+				data: { texts: translationsToBeTranslated, target_lang_code: targetLanguage },
+				urlRelative: false,
+				handleError: false,
+			})
+				.then((response) => {
+					this.showTranslationSuccessMessage = true;
+					const translatedTexts = response.data.translated_texts;
+
+					// Update the translations array with the translated texts
+					translatedTexts.forEach((translatedText) => {
+						this.translations[this.activeTabIndex][translatedText.id] = translatedText.translated_text;
+						console.log(`Translation for "${translatedText.id}" is ${translatedText.translated_text}`);
+						// get the textarea element and add a class to it to indicate that it has been translated.
+						// add a class to the textarea element to indicate that it has been translated.
+						const textareaElementParentRow = document.getElementById(
+							`translation_row_${targetLanguage}_${translatedText.id}`,
+						);
+						if (textareaElementParentRow) {
+							const textareaElement = textareaElementParentRow.querySelector("textarea");
+							textareaElement.classList.add("translated");
+						}
+					});
+				})
+				.catch((error) => {
+					this.translationErrorMessage = error?.response?.data?.message ?? error.message;
+				})
+				.finally(() => {
+					this.translationsLoading = false;
+				});
+		},
+
+		clickTab(index) {
+			this.showAlreadyTranslatedTextsMessage = false;
+			this.showTranslationSuccessMessage = false;
+			this.activeTabIndex = index;
+		},
+	},
 };
 </script>
 
@@ -318,5 +460,35 @@ textarea {
 
 .dropdown-item input[type="checkbox"] {
 	margin-right: 8px;
+}
+
+.translation-value.translated {
+	border: 3px solid $brand-success;
+}
+
+.translation-message-container {
+	color: white;
+	padding: 1rem;
+	border-radius: 5px;
+	float: right;
+}
+
+.translation-successful-container {
+	background-color: $brand-success;
+}
+
+.translation-error-container {
+	background-color: $brand-danger;
+}
+
+.translation-info-container {
+	background-color: $teal;
+}
+
+#get-automatic-translations-btn {
+	.loader {
+		margin-top: -3px;
+		margin-right: 5px;
+	}
 }
 </style>

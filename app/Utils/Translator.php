@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Translate\V2\TranslateClient;
 use Illuminate\Support\Facades\Log;
 
@@ -35,12 +36,14 @@ class Translator {
                     'target' => $target_lang_code,
                 ]));
             } catch (\Exception $e) {
+                $error_message_from_service = json_decode($e->getMessage(), true);
+                $error_message = 'Error translating texts: ' . $error_message_from_service['error']['message'];
                 if (app()->bound('sentry')) {
                     app('sentry')->captureException($e);
                 } else {
                     Log::error($e->getMessage());
                 }
-                throw $e;
+                throw new ServiceException($error_message);
             }
         }
 
