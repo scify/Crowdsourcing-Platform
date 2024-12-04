@@ -93,12 +93,15 @@ class QuestionnaireController extends Controller {
             'language' => 'required',
             'statistics_page_visibility_lkp_id' => 'required',
             'goal' => 'required|integer',
-            'lang_codes' => 'required|array',
+            'lang_codes' => 'nullable|array',
             'content' => 'required',
             'project_ids' => 'required|array',
         ]);
         $data = $request->all();
         $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $request->id);
+        if (isset($data['lang_codes']) && count($data['lang_codes']) > 0) {
+            $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        }
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
 
         return $questionnaire;

@@ -49,7 +49,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
         if ($salutation) {
             $message->salutation($salutation);
         }
-        $message->action(__('notifications.go_to_dashboard', [], $this->locale), route('my-dashboard'));
+        $message->action(__('notifications.go_to_dashboard', [], $this->locale), route('my-dashboard', ['locale' => $this->locale]));
 
         return $message;
     }
