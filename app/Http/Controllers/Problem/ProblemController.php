@@ -167,6 +167,10 @@ class ProblemController extends Controller {
     }
 
     public function getProblemsForManagement(): JsonResponse {
-        return response()->json($this->problemManager->getProblemsForManagement());
+        $this->validate(request(), [
+            'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
+        ]);
+
+        return response()->json($this->problemManager->getProblemsForManagement(request('projectId')));
     }
 }
