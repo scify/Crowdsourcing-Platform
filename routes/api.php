@@ -57,10 +57,10 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::get('/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForManagement'])->name('api.projects.get');
     Route::post('/management/problems', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.management.problems.get');
     Route::get('/management/problems/statuses', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.management.problems.statuses.get');
-    Route::post('/management/problems/solutions', [ProblemController::class, 'getProblemsForManagement'])->name('api.management.solutions.problems.get');
+    Route::post('/management/solutions/problems', [ProblemController::class, 'getProblemsForManagement'])->name('api.management.solutions.problems.get');
     Route::post('/management/solutions', [SolutionController::class, 'getFilteredSolutionsForManagement'])->name('api.management.solutions.get');
     Route::get('/management/solutions/statuses', [SolutionController::class, 'getSolutionStatusesForManagementPage'])->name('api.management.solutions.statuses.get');
-    Route::post('/translate/get-translations', [LanguageController::class, 'getTranslationForTexts'])->name('api.translate.get-translations');
+    Route::post('/translate/get-automatic.translations', [LanguageController::class, 'getAutomaticTranslationForTexts'])->name('api.translate.get-automatic-translations');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {
