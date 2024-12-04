@@ -183,7 +183,7 @@ class ProblemManager {
         return $this->problemRepository->getProblemsForCrowdSourcingProjectForLandingPage($projectId, $langId);
     }
 
-    public function getProblemsForManagement(): Collection {
-        return $this->problemRepository->getProblemsForManagement();
+    public function getProblemsForManagement(int $projectId): Collection {
+        return $this->problemRepository->getProblemsForManagement($projectId);
     }
 }
