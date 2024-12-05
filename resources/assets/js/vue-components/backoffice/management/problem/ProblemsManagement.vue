@@ -73,7 +73,8 @@
 				</div>
 				<div class="modal-body" v-if="modalProblem.id">
 					<p>
-						Are you sure you want to delete the problem <b>{{ modalProblem.default_translation.title }}</b
+						Are you sure you want to delete the problem
+						<b>{{ modalProblem?.default_translation?.title ?? "Untitled" }}</b
 						>?
 					</p>
 
@@ -309,7 +310,7 @@ export default {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredProblems.map((problem, index) => ({
-						title: problem.default_translation.title,
+						title: problem?.default_translation?.title ?? "Untitled",
 						bookmarks: problem.bookmarks.length,
 						languages: problem.translations
 							? problem.translations.map((t) => t.language.language_name).join(", ")
