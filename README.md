@@ -430,6 +430,16 @@ found [here](https://designpatternsphp.readthedocs.io/en/latest/More/Repository/
 
 ## Run Tests
 
+### Before running the tests
+
+Make sure that you have cleared any cache and config files:
+
+```bash
+php artisan cache:clear
+
+php artisan config:clear
+```
+
 ### Method 1: PHPUnit with the Laravel Custom Command
 
 There is a custom Laravel Command that runs the test suite for the application, which can be run by executing the

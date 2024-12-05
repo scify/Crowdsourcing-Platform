@@ -9,15 +9,10 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
 use App\Models\User\UserRole;
 use Faker\Factory as Faker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
-    use RefreshDatabase;
-
-    protected bool $seed = true;
-
     protected function setUp(): void {
         parent::setUp();
 
@@ -31,7 +26,8 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myDashboardDisplaysDashboardForAuthenticated_user() {
+    public function myDashboardDisplaysDashboardForAuthenticatedUser() {
+        // print database connection in use
         $user = User::factory()->create();
         $this->be($user);
 
@@ -42,7 +38,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myDashboardRedirectsToLoginForUnauthenticated_user() {
+    public function myDashboardRedirectsToLoginForUnauthenticatedUser() {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(302);
