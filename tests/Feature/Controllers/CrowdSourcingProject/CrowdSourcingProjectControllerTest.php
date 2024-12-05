@@ -26,7 +26,6 @@ class CrowdSourcingProjectControllerTest extends TestCase {
      * @test
      */
     public function guestCanViewPublishedProjectLandingPage() {
-        // get a published project
         $project = $this->crowdSourcingProjectRepository
             ->findBy('status_id', CrowdSourcingProjectStatusLkp::PUBLISHED, 'slug')->first();
 
