@@ -49,7 +49,7 @@
 						</a>
 						<ShareCircleButton
 							:icon-color-theme="buttonTextColorTheme"
-							:share-url="getShareUrl(problem)"
+							:share-url="getProblemPageURL(problem)"
 						></ShareCircleButton>
 					</li>
 				</ul>
@@ -123,10 +123,6 @@ export default {
 			setTimeout(() => {
 				alertElement.classList.add("d-none");
 			}, 5000);
-		},
-		getShareUrl(problem) {
-			// return the current URL with the /problem_slug appended
-			return `${window.location.href}/${problem.slug}`;
 		},
 		getProblemPageURL(problem) {
 			return window.route("problem.show", getLocale(), this.projectSlug, problem.slug);
