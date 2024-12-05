@@ -150,4 +150,20 @@ class ProblemTranslationManager {
         }
         throw new Exception("Translation with language_id: {$id} not found in translations array.");
     }
+
+    /**
+     * Get the current translation for a problem.
+     * If the translation for the given language does not exist, the default translation is returned.
+     *
+     * @param int $problem_id the ID of the problem
+     * @param string $language_code the language code of the translation
+     * @return object the current translation for the problem
+     */
+    public function getProblemCurrentTranslation(int $problem_id, string $language_code): object {
+        $languageId = $this->languageRepository->getLanguageByCode($language_code)->id;
+        $problemTranslations = $this->getTranslationsForProblem($problem_id);
+        $currentTranslation = $problemTranslations->firstWhere('language_id', $languageId);
+
+        return $currentTranslation ?? $problemTranslations->firstWhere('language_id', $this->problemRepository->find($problem_id)->default_language_id);
+    }
 }

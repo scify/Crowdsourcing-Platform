@@ -12,6 +12,7 @@ use App\Repository\Problem\ProblemRepository;
 use App\Repository\RepositoryException;
 use App\Utils\FileHandler;
 use App\ViewModels\Problem\CreateEditProblem;
+use App\ViewModels\Problem\ProblemPublicPage;
 use App\ViewModels\Problem\ProblemsLandingPage;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -185,5 +186,15 @@ class ProblemManager {
 
     public function getProblemsForManagement(int $projectId): Collection {
         return $this->problemRepository->getProblemsForManagement($projectId);
+    }
+
+    public function getProblemPublicPageViewModel(string $locale, string $project_slug, string $problem_slug): ProblemPublicPage {
+        $problem = $this->problemRepository->findBy('slug', $problem_slug);
+        $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
+
+        $project = $this->problemRepository->getProjectWithProblemsByProjectSlug($project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+
+        return new ProblemPublicPage($problem, $project);
     }
 }

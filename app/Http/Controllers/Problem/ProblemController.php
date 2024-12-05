@@ -20,13 +20,13 @@ class ProblemController extends Controller {
     }
 
     /**
-     * Display the specified resource.
+     * Display the public page for a specific problem.
      */
-    public function show(Request $request): View {
-        // $viewModel = $this->crowdSourcingProjectProblemManager->getCrowdSourcingProjectProblemViewModel($slug);
+    public function show(string $locale, string $project_slug, string $problem_slug): View {
+        $viewModel = $this->problemManager->getProblemPublicPageViewModel($locale, $project_slug, $problem_slug);
 
-        // return view('crowdsourcing-project.problems.show', ['viewModel' => $viewModel]);
-        return 'test';
+        // TODO Kostas
+        return view('problem.show', ['viewModel' => $viewModel]);
     }
 
     public function showProblemsPage(Request $request): View {
@@ -41,7 +41,7 @@ class ProblemController extends Controller {
         try {
             $viewModel = $this->problemManager->getProblemsLandingPageViewModel($request->project_slug);
 
-            return view('problem.landing-page', ['viewModel' => $viewModel]);
+            return view('problem.index', ['viewModel' => $viewModel]);
         } catch (ModelNotFoundException $e) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }

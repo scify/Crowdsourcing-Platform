@@ -11,16 +11,14 @@
 
 @section('content')
 
-    <div id="project-problem-page" class="pb-5">
+    <div id="problem-page" class="pb-5">
 
         @include('partials.flash-messages-and-errors')
 
-        <section id="problems-overview" class="bg-clr-primary-white">
-            @include('problem.partials.problems-overview')
-        </section>
+        @include('problem.partials.problem-overview')
 
-        <section id="problems-list" class="bg-clr-primary-white bg-image-noise">
-            @include('problem.partials.problems-list')
+        <section id="solutions-list" class="bg-clr-primary-white bg-image-noise">
+            @include('problem.partials.solutions-list')
         </section>
 
     </div>
