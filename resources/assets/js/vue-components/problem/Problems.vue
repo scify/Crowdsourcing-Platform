@@ -63,7 +63,7 @@ import { mapActions } from "vuex";
 import ShareCircleButton from "../common/ShareCircleButton.vue";
 
 export default {
-	name: "CrowdSourcingProjectProblems",
+	name: "Problems",
 	components: {
 		ShareCircleButton,
 	},
@@ -88,6 +88,7 @@ export default {
 	methods: {
 		...mapActions(["get"]),
 		async fetchProblems() {
+			console.log("fetching problems for project", this.projectId);
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
@@ -128,6 +129,7 @@ export default {
 		projectId: "fetchProblems",
 	},
 	mounted() {
+		console.log("mounted");
 		this.fetchProblems();
 	},
 };

@@ -6,10 +6,10 @@
         </div>
     </div>
 
-    <crowd-sourcing-project-problems
+    <problems
             :project-id='{{ $viewModel->project->id }}'
             :button-text-color-theme="{{ $viewModel->project->lp_btn_text_color_theme }}">
-    </crowd-sourcing-project-problems>
+    </problems>
 
 </div>
 @push('scripts')
