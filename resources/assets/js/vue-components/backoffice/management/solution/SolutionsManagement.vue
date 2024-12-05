@@ -27,7 +27,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="row px-0 mb-3">
+							<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
 								<div class="col-12">
 									<label for="problemSelect" class="form-label mb-0"
 										>Select a Problem to further filter the Solutions</label
@@ -39,21 +39,22 @@
 										v-model="selectedProblemId"
 										@change="getFilteredSolutions"
 									>
-										<option value="" disabled selected>Select a Problem</option>
+										<option value="" disabled selected>Select a Problem</option> <!-- /* bookmark4 - what goes here? */ -->
+										<option value="all" >View all Project's Solutions</option> <!-- /* bookmark4 - what goes here? */ -->
 										<option v-for="problem in problems" :key="problem.id" :value="problem.id">
 											{{ problem.default_translation.name }}
 										</option>
 									</select>
 								</div>
 							</div>
-							<div class="row px-0 mb-3">
+							<div :class="['row px-0 mb-3', fetched ? '' : 'hidden']">
 								<div class="col">
 									<div class="form-check mb-3">
 										<input
 											class="form-check-input"
 											type="checkbox"
 											id="filterUnpublishedSolutions"
-											@change="toggleShowUnpublishedProblems"
+											@change="toggleShowUnpublishedSolutions"
 										/>
 										<label class="form-check-label" for="filterUnpublishedSolutions">
 											Show only unpublished solutions
@@ -159,7 +160,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="alert-component position-relative d-none" id="problemDeletedAlert">
+	<div class="alert-component position-relative d-none" id="solutionDeletedAlert">
 		<div class="alert alert-success" role="alert">
 			{{ actionSuccessMessage }}
 		</div>
@@ -178,6 +179,7 @@ import "datatables.net";
 import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
 import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
+import { getLocale } from "../../../../common-utils";
 
 export default {
 	name: "SolutionsManagement",
@@ -192,8 +194,8 @@ export default {
 			solutions: [],
 			solutionStatuses: [],
 			errorMessage: "",
-			showUnpublishedProblemsOnly: false,
-			filteredProblems: [],
+			showUnpublishedSolutionsOnly: false,
+			filteredSolutions: [],
 			dataTableInstance: null,
 			modalProblem: {},
 			deleteModal: null,
@@ -211,7 +213,7 @@ export default {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
 		this.updateModal = new Modal(document.getElementById("updateModal"));
 		await this.getSolutionStatusesForManagementPage();
-		await this.getCrowdSourcingProjectsForFiltering();
+		await this.getProjectsForFiltering();
 		await this.getFilteredSolutions();
 		await this.setUpDataTable();
 	},
@@ -226,9 +228,10 @@ export default {
 					data: [],
 					columns: [
 						{ title: "#", data: null, width: "5%" },
-						{ title: "Title", data: "title", width: "30%" },
-						{ title: "Bookmarks", data: "bookmarks", width: "5%" },
+						{ title: "Title", data: "title", width: "25%" },
+						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
+						{ title: "Author", data: "user", width: "5%" },
 						{ title: "Status", data: "status", width: "20%" },
 						{ title: "Actions", data: "actions", width: "20%" },
 					],
@@ -248,12 +251,12 @@ export default {
 				const actions = ["delete-btn", "update-btn"];
 				actions.forEach((action) => {
 					$("#solutionsTable tbody").on("click", `.${action}`, (event) => {
-						const problemId = parseInt(event.target.getAttribute("data-id"));
-						const problem = this.problems.find((p) => p.id === problemId);
+						const solutionId = parseInt(event.target.getAttribute("data-id"));
+						const solution = this.solutions.find((p) => p.id === solutionId);
 						if (action === "delete-btn") {
-							this.openDeleteModal(problem);
+							this.openDeleteModal(solution);
 						} else if (action === "update-btn") {
-							this.openUpdateModal(problem);
+							this.openUpdateModal(solution);
 						}
 					});
 				});
@@ -274,7 +277,7 @@ export default {
 				});
 		},
 
-		async getCrowdSourcingProjectsForFiltering() {
+		async getProjectsForFiltering() {
 			return this.get({
 				url: window.route("api.projects.get"),
 				data: {},
@@ -306,8 +309,7 @@ export default {
 					.then((response) => {
 						this.problems = response.data;
 						this.problemsFetched = true;
-						// this.updateFilteredProblems(); // bookmark4
-						// this.updateDataTable(); // bookmark4
+						// this.updateProblems(); // bookmark4
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
@@ -315,7 +317,7 @@ export default {
 			}
 		},
 
-		async getFilteredSolutions() { // bookmark4
+		async getFilteredSolutions() {
 			if ( (this.projects.length) || (this.problems.length) ) {
 				this.fetched = false;
 				this.solutions = [];
@@ -333,8 +335,8 @@ export default {
 					.then((response) => {
 						this.solutions = response.data;
 						this.fetched = true;
-						// this.updateFilteredProblems();
-						// this.updateDataTable();
+						this.updateFilteredSolutions();
+						this.updateDataTable();
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
@@ -342,42 +344,43 @@ export default {
 			}
 		},
 
-		toggleShowUnpublishedProblems() {
-			this.showUnpublishedProblemsOnly = !this.showUnpublishedProblemsOnly;
-			this.updateFilteredProblems();
+		toggleShowUnpublishedSolutions() {
+			this.showUnpublishedSolutionsOnly = !this.showUnpublishedSolutionsOnly;
+			this.updateFilteredSolutions();
 			this.updateDataTable();
 		},
 
-		updateFilteredProblems() {
-			this.filteredProblems = this.showUnpublishedProblemsOnly
-				? this.problems.filter((problem) => problem.status.id === 1)
-				: this.problems;
+		updateFilteredSolutions() {
+			this.filteredSolutions = this.showUnpublishedSolutionsOnly
+				? this.solutions.filter((solution) => solution.status.id === 1)
+				: this.solutions;
 		},
 
 		updateDataTable() {
 			this.$nextTick(() => {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
-					const tableData = this.filteredProblems.map((problem, index) => ({
-						title: problem?.default_translation?.title ?? "Untitled",
-						bookmarks: problem.bookmarks.length,
-						languages: problem.translations
-							? problem.translations.map((t) => t.language.language_name).join(", ")
+					const tableData = this.filteredSolutions.map((solution, index) => ({
+						title: solution?.default_translation?.title ?? "Untitled",
+						upvotes: solution.upvotes.length,
+						languages: solution.translations
+							? solution.translations.map((t) => t.language.language_name).join(", ")
 							: "",
-						status: `<span title="${this.getBadgeTitleForProblemStatus(problem.status)}"
-                                  class="p-2 w-75 badge ${this.getBadgeClassForProblemStatus(problem.status)}">
-                                  ${problem.status.title}</span>`,
+						user: solution?.user?.nickname ?? "N/A",
+						status: `<span title="${this.getBadgeTitleForSolutionStatusId(solution.status_id)}"
+                                  class="p-2 w-75 badge ${this.getBadgeClassForSolutionStatusId(solution.status_id)}">
+                                  ${this.getStatusTitleForSolutionStatusId(solution.status_id)}</span>`,
 						actions: `<div class="dropdown">
 									<button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"
 											data-toggle="dropdown">
 										Select an action <span class="caret"></span>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
-										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">
+										<a class="action-btn dropdown-item" target="_blank" href="${this.getSolutionEditRoute(solution)}">
 											<i class="far fa-edit mr-2"></i> Edit</a>
-										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${problem.id}">
+										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${solution.id}">
 											<i class="fas fa-cog mr-2"></i> Update Status</a>
-										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}">
+										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${solution.id}">
 											<i class="fas fa-trash mr-2"></i> Delete</a>
 									</div>
 								  </div>`,
@@ -387,17 +390,21 @@ export default {
 			});
 		},
 
-		getBadgeClassForProblemStatus(problemStatus) {
+		getBadgeClassForSolutionStatusId(solutionStatusId) {
 			// search by id in the solutionStatuses array
-			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
+			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);
 			return status ? status.badgeCSSClass : "badge-secondary";
 		},
-		getBadgeTitleForProblemStatus(problemStatus) {
-			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
+		getBadgeTitleForSolutionStatusId(solutionStatusId) {
+			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);
 			return status ? status.description : "Unknown status";
 		},
-		getProblemEditRoute(problem) {
-			return window.route("problems.edit", problem.id);
+		getStatusTitleForSolutionStatusId(solutionStatusId) {
+			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);
+			return status ? status.title : "Unknown status";
+		},
+		getSolutionEditRoute(solution) {
+			return window.route("solutions.edit", getLocale(), solution.id);
 		},
 
 		openDeleteModal(problem) {
@@ -414,7 +421,7 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(location.href + "/" + this.modalProblem.id)
+				.delete(window.route("problems.destroy", getLocale(), this.modalProblem.id))
 				.then(() => {
 					this.getProblemsForFiltering();
 					this.modalProblem.id = null;
@@ -453,7 +460,7 @@ export default {
 				});
 		},
 		showSuccessAlert() {
-			const alertElement = document.querySelector("#problemDeletedAlert");
+			const alertElement = document.querySelector("#solutionDeletedAlert");
 			alertElement.classList.remove("d-none");
 			setTimeout(() => {
 				alertElement.classList.add("d-none");
