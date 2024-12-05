@@ -13,5 +13,5 @@
     <problems-management></problems-management>
 @endsection
 @push('scripts')
-    @vite('resources/assets/js/project/manage-project-problems.js')
+    @vite('resources/assets/js/problem/manage-problems.js')
 @endpush
