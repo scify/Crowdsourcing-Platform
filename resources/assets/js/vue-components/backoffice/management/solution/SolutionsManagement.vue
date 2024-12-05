@@ -11,7 +11,7 @@
 							<div class="row px-0 mb-3">
 								<div class="col-12">
 									<label for="projectSelect" class="form-label mb-0"
-										>Select a Project to view the problems</label
+										>Select a Project to view the Solutions</label
 									>
 									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
 									<select
@@ -28,31 +28,50 @@
 								</div>
 							</div>
 							<div class="row px-0 mb-3">
+								<div class="col-12">
+									<label for="problemSelect" class="form-label mb-0"
+										>Select a Problem to further filter the Solutions</label
+									>
+									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
+									<select
+										id="problemSelect"
+										:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
+										v-model="selectedProblemId"
+										@change="getFilteredSolutions"
+									>
+										<option value="" disabled selected>Select a Problem</option>
+										<option v-for="problem in problems" :key="problem.id" :value="problem.id">
+											{{ problem.default_translation.name }}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="row px-0 mb-3">
 								<div class="col">
 									<div class="form-check mb-3">
 										<input
 											class="form-check-input"
 											type="checkbox"
-											id="filterUnpublishedProblems"
+											id="filterUnpublishedSolutions"
 											@change="toggleShowUnpublishedProblems"
 										/>
-										<label class="form-check-label" for="filterUnpublishedProblems">
-											Show only unpublished problems
+										<label class="form-check-label" for="filterUnpublishedSolutions">
+											Show only unpublished solutions
 										</label>
 									</div>
 								</div>
 							</div>
 							<div class="row px-0">
-								<div class="col" :class="[fetched && problems.length ? '' : 'd-none']">
+								<div class="col" :class="[fetched && solutions.length ? '' : 'd-none']">
 									<table
-										id="problemsTable"
+										id="solutionsTable"
 										class="display table table-striped table-bordered"
 									></table>
 								</div>
 							</div>
 							<div class="row px-0">
-								<div class="col" :class="[fetched && !problems.length ? '' : 'hidden']">
-									<div class="alert alert-warning">No problems found for the selected project</div>
+								<div class="col" :class="[fetched && !solutions.length ? '' : 'hidden']">
+									<div class="alert alert-warning">No Solutions found for the selected Filters</div>
 								</div>
 							</div>
 						</div>
@@ -73,7 +92,8 @@
 				</div>
 				<div class="modal-body" v-if="modalProblem.id">
 					<p>
-						Are you sure you want to delete the problem <b>{{ modalProblem.default_translation.title }}</b
+						Are you sure you want to delete the solution
+						<b>{{ modalProblem.default_translation.title }}</b
 						>?
 					</p>
 
@@ -168,6 +188,7 @@ export default {
 			projects: [],
 			selectedProjectId: "",
 			problems: [],
+			selectedProblemId: "",
 			solutions: [],
 			solutionStatuses: [],
 			errorMessage: "",
@@ -180,6 +201,7 @@ export default {
 			modalActionLoading: false,
 			actionSuccessMessage: "",
 			projectsFetched: false,
+			problemsFetched: false,
 		};
 	},
 	computed: {
@@ -198,7 +220,7 @@ export default {
 
 		async setUpDataTable() {
 			await this.$nextTick(() => {
-				this.dataTableInstance = $("#problemsTable").DataTable({
+				this.dataTableInstance = $("#solutionsTable").DataTable({
 					pageLength: 5,
 					autoWidth: false,
 					data: [],
@@ -225,7 +247,7 @@ export default {
 				// Event listener for action items clicks
 				const actions = ["delete-btn", "update-btn"];
 				actions.forEach((action) => {
-					$("#problemsTable tbody").on("click", `.${action}`, (event) => {
+					$("#solutionsTable tbody").on("click", `.${action}`, (event) => {
 						const problemId = parseInt(event.target.getAttribute("data-id"));
 						const problem = this.problems.find((p) => p.id === problemId);
 						if (action === "delete-btn") {
@@ -274,7 +296,7 @@ export default {
 
 		getProblemsForFiltering() {
 			if (this.selectedProjectId) {
-				this.fetched = false;
+				this.problemsFetched = false;
 				this.problems = [];
 				this.post({
 					url: window.route("api.management.solutions.problems.get"),
@@ -283,7 +305,7 @@ export default {
 				})
 					.then((response) => {
 						this.problems = response.data;
-						this.fetched = true;
+						this.problemsFetched = true;
 						// this.updateFilteredProblems(); // bookmark4
 						// this.updateDataTable(); // bookmark4
 					})
@@ -300,11 +322,9 @@ export default {
 				let data = {
 					filters: {
 						projectFilters: this.projects.map( x => x.id ),
-						problemFilters: this.problems.map( x => x.id ) // bookmark4
-						// problemFilters: [5, 6, 7, 8] // bookmark4
+						problemFilters: this.problems.map( x => x.id ),
 					}
 				};
-				console.log(data);
 				this.post({
 					url: window.route("api.management.solutions.get"),
 					data: data,
@@ -313,8 +333,8 @@ export default {
 					.then((response) => {
 						this.solutions = response.data;
 						this.fetched = true;
-						this.updateFilteredProblems();
-						this.updateDataTable();
+						// this.updateFilteredProblems();
+						// this.updateDataTable();
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
@@ -339,7 +359,7 @@ export default {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredProblems.map((problem, index) => ({
-						title: problem.default_translation.title,
+						title: problem?.default_translation?.title ?? "Untitled",
 						bookmarks: problem.bookmarks.length,
 						languages: problem.translations
 							? problem.translations.map((t) => t.language.language_name).join(", ")

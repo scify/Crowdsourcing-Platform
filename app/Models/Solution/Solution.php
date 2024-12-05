@@ -2,9 +2,11 @@
 
 namespace App\Models\Solution;
 
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,5 +32,17 @@ class Solution extends Model {
             ->join('problems', 'problems.id', '=', 'solutions.problem_id')
             ->whereColumn('solution_translations.language_id', 'problems.default_language_id')
             ->select('solution_translations.*');
+    }
+
+    public function translations(): HasMany {
+        return $this->hasMany('App\Models\Solution\SolutionTranslation', 'solution_id', 'id');
+    }
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class, 'user_creator_id', 'id');
+    }
+
+    public function upvotes(): HasMany {
+        return $this->hasMany('App\Models\Solution\SolutionUpvote', 'solution_id', 'id');
     }
 }

@@ -26,8 +26,7 @@ class SolutionRepository extends Repository {
         foreach ($idsArray as $project_id) {
             $problemIdsBelongingToProject = $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id');
             foreach ($problemIdsBelongingToProject as $problem_id) {
-                // $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->get());
-                $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['problem'])->get()); // bookmark4 - do we need/want with each solution's problem?
+                $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user', 'upvotes'])->get());
             }
         }
 
@@ -37,8 +36,7 @@ class SolutionRepository extends Repository {
     public function getSolutionsForManagementFilteredByProblemIds($idsArray): Collection {
         $finalSolutionsCollection = new Collection;
         foreach ($idsArray as $problem_id) {
-            // $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->get());
-            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['problem'])->get()); // bookmark4 - do we need/want with each solution's problem?
+            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user', 'upvotes'])->get());
         }
 
         return $finalSolutionsCollection;
