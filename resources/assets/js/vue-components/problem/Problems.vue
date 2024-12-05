@@ -22,7 +22,7 @@
 				</div>
 				<ul class="row">
 					<li v-for="problem in problems" :key="problem.id" class="col-12 col-sm-6 col-md-6 col-lg-4">
-						<a class="card-link" href="#">
+						<a class="card-link" :href="getProblemPageURL(problem)">
 							<div class="card">
 								<div v-if="!problem.img_url" class="card-placeholder-img-container">
 									<svg
@@ -61,6 +61,7 @@
 <script>
 import { mapActions } from "vuex";
 import ShareCircleButton from "../common/ShareCircleButton.vue";
+import { getLocale } from "../../common-utils";
 
 export default {
 	name: "Problems",
@@ -70,6 +71,10 @@ export default {
 	props: {
 		projectId: {
 			type: Number,
+			required: true,
+		},
+		projectSlug: {
+			type: String,
 			required: true,
 		},
 		buttonTextColorTheme: {
@@ -88,7 +93,6 @@ export default {
 	methods: {
 		...mapActions(["get"]),
 		async fetchProblems() {
-			console.log("fetching problems for project", this.projectId);
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
@@ -123,6 +127,9 @@ export default {
 		getShareUrl(problem) {
 			// return the current URL with the /problem_slug appended
 			return `${window.location.href}/${problem.slug}`;
+		},
+		getProblemPageURL(problem) {
+			return window.route("problem.show", getLocale(), this.projectSlug, problem.slug);
 		},
 	},
 	watch: {

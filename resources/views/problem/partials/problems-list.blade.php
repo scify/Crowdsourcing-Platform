@@ -8,6 +8,7 @@
 
     <problems
             :project-id='{{ $viewModel->project->id }}'
+            :project-slug='@json($viewModel->project->slug)'
             :button-text-color-theme="{{ $viewModel->project->lp_btn_text_color_theme }}">
     </problems>
 
