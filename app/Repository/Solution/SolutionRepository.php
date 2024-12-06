@@ -27,7 +27,8 @@ class SolutionRepository extends Repository {
         foreach ($idsArray as $project_id) {
             $problemIdsBelongingToProject = $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id');
             foreach ($problemIdsBelongingToProject as $problem_id) {
-                $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user', 'upvotes'])->get());
+                $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user'])
+                    ->withCount('upvotes as upvotes_count')->get());
             }
         }
 
@@ -37,7 +38,8 @@ class SolutionRepository extends Repository {
     public function getSolutionsForManagementFilteredByProblemIds($idsArray): Collection {
         $finalSolutionsCollection = new Collection;
         foreach ($idsArray as $problem_id) {
-            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user', 'upvotes'])->get());
+            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user'])
+                ->withCount('upvotes as upvotes_count')->get());
         }
 
         return $finalSolutionsCollection;
@@ -46,7 +48,8 @@ class SolutionRepository extends Repository {
     public function getSolutions(int $problem_id, int $lang_id, ?int $current_user_id): Collection {
         return Solution::where('problem_id', $problem_id)
             ->where('status_id', SolutionStatusLkp::PUBLISHED)
-            ->with(['defaultTranslation', 'translations', 'upvotes'])
+            ->with(['defaultTranslation', 'translations'])
+            ->withCount('upvotes as upvotes_count')
             ->get()
             ->each(function ($solution) use ($lang_id, $current_user_id) {
                 $solution->current_translation = $solution->translations->firstWhere('language_id', $lang_id)

@@ -60,7 +60,7 @@ class SolutionAPIControllerTest extends TestCase {
                 'user_creator_id',
                 'default_translation',
                 'translations',
-                'upvotes',
+                'upvotes_count',
                 'current_translation',
                 'upvoted_by_current_user',
             ],
@@ -109,6 +109,7 @@ class SolutionAPIControllerTest extends TestCase {
 
         // Assert
         $response->assertStatus(200);
+        dd($response->json());
         $response->assertJsonStructure([
             '*' => [
                 'id',
@@ -122,7 +123,7 @@ class SolutionAPIControllerTest extends TestCase {
                 'user_creator_id',
                 'default_translation',
                 'translations',
-                'upvotes',
+                'upvotes_count',
                 'current_translation',
                 'upvoted_by_current_user',
             ],

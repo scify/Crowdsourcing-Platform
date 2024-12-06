@@ -13,7 +13,7 @@
 									<label for="projectSelect" class="form-label mb-0"
 										>Select a Project to view the Solutions</label
 									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
+									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !projectsLoading }"></div>
 									<select
 										id="projectSelect"
 										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
@@ -32,17 +32,19 @@
 									<label for="problemSelect" class="form-label mb-0"
 										>Select a Problem to further filter the Solutions</label
 									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
+									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !problemsLoading }"></div>
 									<select
 										id="problemSelect"
 										:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
 										v-model="selectedProblemId"
 										@change="getFilteredSolutions"
 									>
-										<option value="" disabled selected>Select a Problem</option> <!-- /* bookmark4 - what goes here? */ -->
-										<option value="all" >View all Project's Solutions</option> <!-- /* bookmark4 - what goes here? */ -->
+										<option value="" disabled selected>Select a Problem</option>
+										<!-- /* bookmark4 - what goes here? */ -->
+										<option value="all">View all Project's Solutions</option>
+										<!-- /* bookmark4 - what goes here? */ -->
 										<option v-for="problem in problems" :key="problem.id" :value="problem.id">
-											{{ problem.default_translation.name }}
+											{{ problem.default_translation.title }}
 										</option>
 									</select>
 								</div>
@@ -60,6 +62,13 @@
 											Show only unpublished solutions
 										</label>
 									</div>
+								</div>
+							</div>
+							<div class="row px-0 mb-3">
+								<div class="col text-center">
+									<div
+										:class="{ 'spinner-border text-primary ml-5': true, hidden: !solutionsLoading }"
+									></div>
 								</div>
 							</div>
 							<div class="row px-0">
@@ -176,7 +185,7 @@
 import { mapActions, mapState } from "vuex";
 import $ from "jquery";
 import "datatables.net";
-import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
+import Modal from "bootstrap/js/dist/modal";
 import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
 import { getLocale } from "../../../../common-utils";
@@ -204,10 +213,13 @@ export default {
 			actionSuccessMessage: "",
 			projectsFetched: false,
 			problemsFetched: false,
+			solutionsLoading: false,
+			projectsLoading: false,
+			problemsLoading: false,
 		};
 	},
 	computed: {
-		...mapState(["loading", "modal"]),
+		...mapState(["modal"]),
 	},
 	async mounted() {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
@@ -218,7 +230,7 @@ export default {
 		await this.setUpDataTable();
 	},
 	methods: {
-		...mapActions(["get", "post", "setLoading"]),
+		...mapActions(["get", "post"]),
 
 		async setUpDataTable() {
 			await this.$nextTick(() => {
@@ -231,9 +243,9 @@ export default {
 						{ title: "Title", data: "title", width: "25%" },
 						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
-						{ title: "Author", data: "user", width: "5%" },
-						{ title: "Status", data: "status", width: "20%" },
-						{ title: "Actions", data: "actions", width: "20%" },
+						{ title: "Author", data: "user", width: "20%" },
+						{ title: "Status", data: "status", width: "10%" },
+						{ title: "Actions", data: "actions", width: "15%" },
 					],
 					columnDefs: [
 						{
@@ -278,6 +290,7 @@ export default {
 		},
 
 		async getProjectsForFiltering() {
+			this.projectsLoading = true;
 			return this.get({
 				url: window.route("api.projects.get"),
 				data: {},
@@ -294,10 +307,13 @@ export default {
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
+				}).finally(() => {
+					this.projectsLoading = false;
 				});
 		},
 
 		getProblemsForFiltering() {
+			this.problemsLoading = true;
 			if (this.selectedProjectId) {
 				this.problemsFetched = false;
 				this.problems = [];
@@ -313,19 +329,22 @@ export default {
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
+					}).finally(() => {
+						this.problemsLoading = false;
 					});
 			}
 		},
 
 		async getFilteredSolutions() {
-			if ( (this.projects.length) || (this.problems.length) ) {
+			if (this.projects.length || this.problems.length) {
 				this.fetched = false;
+				this.solutionsLoading = true;
 				this.solutions = [];
 				let data = {
 					filters: {
-						projectFilters: this.projects.map( x => x.id ),
-						problemFilters: this.problems.map( x => x.id ),
-					}
+						projectFilters: this.projects.map((x) => x.id),
+						problemFilters: this.problems.map((x) => x.id),
+					},
 				};
 				this.post({
 					url: window.route("api.management.solutions.get"),
@@ -340,6 +359,9 @@ export default {
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
+					})
+					.finally(() => {
+						this.solutionsLoading = false;
 					});
 			}
 		},
@@ -362,7 +384,7 @@ export default {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredSolutions.map((solution, index) => ({
 						title: solution?.default_translation?.title ?? "Untitled",
-						upvotes: solution.upvotes.length,
+						upvotes: solution.upvotes_count,
 						languages: solution.translations
 							? solution.translations.map((t) => t.language.language_name).join(", ")
 							: "",
@@ -377,11 +399,11 @@ export default {
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getSolutionEditRoute(solution)}">
-											<i class="far fa-edit mr-2"></i> Edit</a>
+											<i class="far fa-edit mr-2"></i>${this.trans("common.edit")}</a>
 										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${solution.id}">
-											<i class="fas fa-cog mr-2"></i> Update Status</a>
+											<i class="fas fa-cog mr-2"></i>${this.trans("common.change_status")}</a>
 										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${solution.id}">
-											<i class="fas fa-trash mr-2"></i> Delete</a>
+											<i class="fas fa-trash mr-2"></i>${this.trans("common.delete")}</a>
 									</div>
 								  </div>`,
 					}));
@@ -389,7 +411,9 @@ export default {
 				}
 			});
 		},
-
+		trans(key) {
+			return window.trans(key);
+		},
 		getBadgeClassForSolutionStatusId(solutionStatusId) {
 			// search by id in the solutionStatuses array
 			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);

@@ -46,10 +46,7 @@ class ProblemRepository extends Repository {
     }
 
     public function getProblemsForManagement(int $projectId): Collection {
-        $builder = Problem::where('project_id', $projectId)
-            ->where('status_id', '!=', ProblemStatusLkp::DRAFT)
-            ->where('status_id', '!=', ProblemStatusLkp::UNPUBLISHED)
-            ->whereHas('solutions');
+        $builder = Problem::where('project_id', $projectId);
 
         return $builder->get();
     }
