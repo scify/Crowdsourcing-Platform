@@ -39,6 +39,7 @@ Route::middleware(['throttle:api-public'])->group(function () {
 
 Route::middleware(['throttle:api-internal', 'auth'])->group(function () {
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('api.questionnaire.answer-votes.store');
+    Route::get('/solutions', [SolutionController::class, 'getSolutions'])->name('api.solutions.get');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:moderate-content-by-users']], function () {

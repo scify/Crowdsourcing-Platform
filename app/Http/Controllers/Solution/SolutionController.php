@@ -141,4 +141,12 @@ class SolutionController extends Controller {
 
         return response()->json($this->solutionManager->getFilteredSolutionsForManagement(request('filters')));
     }
+
+    public function getSolutions(Request $request): JsonResponse {
+        $this->validate(request(), [
+            'problem_id' => 'required|exists:problems,id',
+        ]);
+
+        return response()->json($this->solutionManager->getSolutions($request->problem_id));
+    }
 }

@@ -163,4 +163,12 @@ class SolutionManager {
 
         return $this->solutionRepository->getSolutionsForManagementFilteredByProjectIds($filters['projectFilters']);
     }
+
+    public function getSolutions(mixed $problem_id): Collection {
+        $current_language_code = app()->getLocale();
+        $current_language = $this->languageRepository->getLanguageByCode($current_language_code);
+        $current_language_id = $current_language ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
+
+        return $this->solutionRepository->getSolutions($problem_id, $current_language_id, Auth::id());
+    }
 }
