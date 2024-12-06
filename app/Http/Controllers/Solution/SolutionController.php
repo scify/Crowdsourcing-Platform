@@ -28,21 +28,18 @@ class SolutionController extends Controller {
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): View {
-        $validator = Validator::make([
-            'problem_id' => $request->problem_id,
-        ], [
+    public function create(Request $request): View|RedirectResponse {
+        $this->validate($request, [
             'problem_id' => 'required|different:execute_solution|exists:problems,id',
         ]);
-        if ($validator->fails()) {
-            abort(ResponseAlias::HTTP_NOT_FOUND);
-        }
         try {
             $viewModel = $this->solutionManager->getCreateEditSolutionViewModel($request->problem_id);
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
-        } catch (\Throwable $th) { // bookmark3 - 'ModelNotFoundException $e' or '\Exception $e' or '\Throwable $th'???
-            abort(ResponseAlias::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
         }
     }
 
@@ -91,8 +88,10 @@ class SolutionController extends Controller {
             $viewModel = $this->solutionManager->getCreateEditSolutionViewModel(null, $id);
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
-        } catch (\Throwable $th) { // bookmark3 - 'ModelNotFoundException $e' or '\Exception $e' or '\Throwable $th'???
-            abort(ResponseAlias::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
         }
     }
 

@@ -1,15 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Request;
-
 /**
  * Used on menu to identify that a given menu item is selected
  *
- * @param  string  $urlPatternToMatch the menu item url
+ * @param  string  $routeName the route name to compare with the current route
  * @return string A relevant CSS class
  */
-function UrlMatchesMenuItem(string $urlPatternToMatch): string {
-    return Request::is($urlPatternToMatch) ? 'active' : '';
+function UrlMatchesMenuItem(string $routeName): string {
+    return Route::currentRouteName() === $routeName ? 'active' : '';
 }
 
 function getNameOfRoute($currentRoute) {
@@ -18,23 +16,4 @@ function getNameOfRoute($currentRoute) {
     }
 
     return $currentRoute->getName();
-}
-
-function SetParameterAndGetAll($currentRoute, $parameter, $key) {
-    if ($currentRoute == null || $currentRoute->getName() == null) {
-        return [];
-    }
-
-    $currentRoute->setParameter($parameter, $key);
-
-    return $currentRoute->parameters();
-}
-
-function getRouteParameters() {
-    $fullUrl = Request::fullUrl();
-    if (!strpos($fullUrl, '?')) {
-        return '';
-    }
-
-    return substr($fullUrl, strpos($fullUrl, '?'));
 }
