@@ -37,9 +37,7 @@ class ProblemRepository extends Repository {
     public function getProblemsForCrowdSourcingProjectForLandingPage(int $projectId, int $langId): Collection {
         return Problem::where('project_id', $projectId)
             ->where('status_id', ProblemStatusLkp::PUBLISHED)
-            ->with(['defaultTranslation', 'translations' => function ($query) use ($langId) {
-                $query->where('language_id', $langId);
-            }, 'translations.language', 'bookmarks'])
+            ->with(['defaultTranslation', 'translations', 'translations.language', 'bookmarks'])
             ->get()
             ->each(function ($problem) use ($langId) {
                 $problem->currentTranslation = $problem->translations->firstWhere('language_id', $langId)
@@ -48,10 +46,7 @@ class ProblemRepository extends Repository {
     }
 
     public function getProblemsForManagement(int $projectId): Collection {
-        $builder = Problem::where('project_id', $projectId)
-            ->where('status_id', '!=', ProblemStatusLkp::DRAFT)
-            ->where('status_id', '!=', ProblemStatusLkp::UNPUBLISHED)
-            ->whereHas('solutions');
+        $builder = Problem::where('project_id', $projectId);
 
         return $builder->get();
     }

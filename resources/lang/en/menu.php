@@ -25,6 +25,8 @@ return [
     'responses' => 'Responses',
     'problems' => 'Problems',
     'see_all_problems' => 'See all problems',
+    'create_new_problem' => 'Create new problem',
+    'create_new_solution' => 'Create new solution',
     'solutions' => 'Solutions',
     'see_all_solutions' => 'See all solutions',
     'moderate_solutions' => 'Moderate solutions',

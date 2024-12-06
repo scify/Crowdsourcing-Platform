@@ -28,21 +28,18 @@ class SolutionController extends Controller {
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): View {
-        $validator = Validator::make([
-            'problem_id' => $request->problem_id,
-        ], [
+    public function create(Request $request): View|RedirectResponse {
+        $this->validate($request, [
             'problem_id' => 'required|different:execute_solution|exists:problems,id',
         ]);
-        if ($validator->fails()) {
-            abort(ResponseAlias::HTTP_NOT_FOUND);
-        }
         try {
             $viewModel = $this->solutionManager->getCreateEditSolutionViewModel($request->problem_id);
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
-        } catch (\Throwable $th) { // bookmark3 - 'ModelNotFoundException $e' or '\Exception $e' or '\Throwable $th'???
-            abort(ResponseAlias::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
         }
     }
 
@@ -91,8 +88,10 @@ class SolutionController extends Controller {
             $viewModel = $this->solutionManager->getCreateEditSolutionViewModel(null, $id);
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
-        } catch (\Throwable $th) { // bookmark3 - 'ModelNotFoundException $e' or '\Exception $e' or '\Throwable $th'???
-            abort(ResponseAlias::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
         }
     }
 
@@ -124,11 +123,19 @@ class SolutionController extends Controller {
         return back();
     }
 
+    public function updateStatus(Request $request, int $id): JsonResponse {
+        $this->validate($request, [
+            'status_id' => 'required|exists:problem_statuses_lkp,id',
+        ]);
+
+        return response()->json($this->solutionManager->updateSolutionStatus($id, $request->status_id));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $locale, int $id) {
-        //
+        return $this->solutionManager->deleteSolution($id);
     }
 
     public function getSolutionStatusesForManagementPage(): JsonResponse {
@@ -141,5 +148,13 @@ class SolutionController extends Controller {
         ]);
 
         return response()->json($this->solutionManager->getFilteredSolutionsForManagement(request('filters')));
+    }
+
+    public function getSolutions(Request $request): JsonResponse {
+        $this->validate(request(), [
+            'problem_id' => 'required|exists:problems,id',
+        ]);
+
+        return response()->json($this->solutionManager->getSolutions($request->problem_id));
     }
 }

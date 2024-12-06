@@ -39,6 +39,7 @@ Route::middleware(['throttle:api-public'])->group(function () {
 
 Route::middleware(['throttle:api-internal', 'auth'])->group(function () {
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('api.questionnaire.answer-votes.store');
+    Route::get('/solutions', [SolutionController::class, 'getSolutions'])->name('api.solutions.get');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:moderate-content-by-users']], function () {
@@ -61,6 +62,8 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/management/solutions', [SolutionController::class, 'getFilteredSolutionsForManagement'])->name('api.management.solutions.get');
     Route::get('/management/solutions/statuses', [SolutionController::class, 'getSolutionStatusesForManagementPage'])->name('api.management.solutions.statuses.get');
     Route::post('/translate/get-automatic.translations', [LanguageController::class, 'getAutomaticTranslationForTexts'])->name('api.translate.get-automatic-translations');
+    Route::put('/problems/update-status/{id}', [ProblemController::class, 'updateStatus'])->name('api.problems.update-status');
+    Route::put('/solutions/update-status/{id}', [SolutionController::class, 'updateStatus'])->name('api.solutions.update-status');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {
