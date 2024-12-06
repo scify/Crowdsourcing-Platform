@@ -23,8 +23,6 @@ class SolutionManager {
     protected SolutionStatusManager $solutionStatusManager;
     protected LanguageRepository $languageRepository;
 
-    const DEFAULT_IMAGE_PATH = '/images/solution_default_image.png'; // bookmark3 - change this to the correct path
-
     public function __construct(
         SolutionRepository $solutionRepository,
         ProblemRepository $problemRepository,
@@ -74,8 +72,6 @@ class SolutionManager {
     public function storeSolution(array $attributes): int {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
@@ -115,8 +111,6 @@ class SolutionManager {
     public function updateSolution(int $id, array $attributes) {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $modelAttributes['problem_id'] = $attributes['solution-owner-problem'];
@@ -185,7 +179,7 @@ class SolutionManager {
         // if the image is not the default one
         // and if it does not start with "/images" (meaning it is a default public image)
         // and if it does not start with "http" (meaning it is an external image)
-        if ($solution->img_url !== self::DEFAULT_IMAGE_PATH &&
+        if ($solution->img_url &&
             !str_starts_with($solution->img_url, '/images') &&
             !str_starts_with($solution->img_url, 'http')) {
             FileHandler::deleteUploadedFile($solution->img_url, 'solution_img');

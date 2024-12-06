@@ -109,7 +109,6 @@ class SolutionAPIControllerTest extends TestCase {
 
         // Assert
         $response->assertStatus(200);
-        dd($response->json());
         $response->assertJsonStructure([
             '*' => [
                 'id',

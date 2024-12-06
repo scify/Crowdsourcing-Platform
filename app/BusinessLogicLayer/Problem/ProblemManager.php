@@ -26,8 +26,6 @@ class ProblemManager {
     protected LanguageRepository $languageRepository;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
 
-    const DEFAULT_IMAGE_PATH = '/images/problem_default_image.png';
-
     public function __construct(
         ProblemRepository $problemRepository,
         CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
@@ -80,8 +78,6 @@ class ProblemManager {
     public function storeProblem(array $attributes): int {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $crowdSourcingProjectProblem = Problem::create([
@@ -110,8 +106,6 @@ class ProblemManager {
     public function updateProblem(int $id, array $attributes) {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $modelAttributes['project_id'] = $attributes['problem-owner-project'];
@@ -136,7 +130,7 @@ class ProblemManager {
         // if the image is not the default one
         // and if it does not start with "/images" (meaning it is a default public image)
         // and if it does not start with "http" (meaning it is an external image)
-        if ($problem->img_url !== self::DEFAULT_IMAGE_PATH &&
+        if ($problem->img_url &&
             !str_starts_with($problem->img_url, '/images') &&
             !str_starts_with($problem->img_url, 'http')) {
             FileHandler::deleteUploadedFile($problem->img_url, 'problem_img');
