@@ -18,7 +18,7 @@
 --}}
             <h1 class="project-title">{{ __("project-problems.temp_str_1") }} {{ $viewModel->project->currentTranslation->name }}</h1>
             <div class="project-overview pb-5 pb-lg-0">
-                <br><p>{!! __("project-problems.temp_str_2") !!}</p>
+                <br><p>{{ __("project-problems.temp_str_2") }}</p>
             </div>
         </div>
 

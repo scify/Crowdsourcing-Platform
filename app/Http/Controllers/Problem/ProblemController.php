@@ -25,7 +25,6 @@ class ProblemController extends Controller {
     public function show(string $locale, string $project_slug, string $problem_slug): View {
         $viewModel = $this->problemManager->getProblemPublicPageViewModel($locale, $project_slug, $problem_slug);
 
-        // TODO Kostas
         return view('problem.show', ['viewModel' => $viewModel]);
     }
 

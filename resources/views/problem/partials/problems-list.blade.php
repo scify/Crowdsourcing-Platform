@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12">
             <h2>{{ __("project-problems.list_of_problems") }}</h2>
-            <p style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0;">{!! __("project-problems.temp_str_3") !!}</p>
+            <p style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0;">{{ __("project-problems.temp_str_3") }}</p>
         </div>
     </div>
 

@@ -10,14 +10,14 @@
     <div class="row">
 
         <div class="col-12 col-lg-7">
-            <h2 class="project-title">{{ __("problem.solutions_for") }} {{ $viewModel->problem->currentTranslation->name }}</h2>
+            <h2 class="project-title">{{ __("problem.solutions_for") }} {{ $viewModel->problem->currentTranslation->title }}</h2>
             <div class="project-overview pb-5 pb-lg-0">
                 {!! $viewModel->problem->currentTranslation->description !!}
             </div>
         </div>
 
         <div class="col-12 col-lg-4 offset-lg-1 align-self-end text-center">
-            <img src="/images/problems/problem-page-intro-top.svg" alt="" width="384" height="416" class="img-fluid">
+            <img src="/images/problems/problem-page-intro-top-question.svg" alt="" width="384" height="416" class="img-fluid">
         </div>
 
     </div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-12 col-lg-4 offset-lg-1 align-self-end text-center">
-            <img src="/images/problems/problem-page-intro-top.svg" alt="" width="384" height="416" class="img-fluid">
+            <img src="/images/problems/problem-page-intro-top-thinking.png" alt="" width="384" height="416" class="img-fluid">
         </div>
     </div>
 </div>

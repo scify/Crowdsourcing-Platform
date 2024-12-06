@@ -21,10 +21,10 @@
 					</div>
 				</div>
 				<ul class="row">
-					<li v-for="problem in problems" :key="problem.id" class="col-12 col-sm-6 col-md-6 col-lg-4">
-						<a class="card-link" :href="getProblemPageURL(problem)">
+					<li v-for="solution in solutions" :key="solution.id" class="col-12 col-sm-6 col-md-6 col-lg-4">
+						<a class="card-link" :href="getSolutionPageURL(solution)">
 							<div class="card">
-								<div v-if="!problem.img_url" class="card-placeholder-img-container">
+								<div v-if="!solution.img_url" class="card-placeholder-img-container">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 144 92"
@@ -35,21 +35,21 @@
 									</svg>
 								</div>
 								<div v-else class="card-custom-img-container">
-									<img :src="problem.img_url" alt="Card image cap" width="282" height="180" />
+									<img :src="solution.img_url" alt="Card image cap" width="282" height="180" />
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">
-										{{ problem.currentTranslation.title }}
+										{{ solution.currentTranslation.title }}
 									</h5>
 									<p class="card-text mb-4">
-										{{ problem.currentTranslation.description }}
+										{{ solution.currentTranslation.description }}
 									</p>
 								</div>
 							</div>
 						</a>
 						<ShareCircleButton
 							:icon-color-theme="buttonTextColorTheme"
-							:share-url="getProblemPageURL(problem)"
+							:share-url="getSolutionPageURL(solution)"
 						></ShareCircleButton>
 					</li>
 				</ul>
@@ -88,7 +88,7 @@ export default {
 	},
 	data() {
 		return {
-			problems: [],
+			solutions: [],
 			loading: true,
 			error: null,
 			errorMessage: "",
@@ -96,7 +96,7 @@ export default {
 	},
 	methods: {
 		...mapActions(["get"]),
-		async fetchProblems() {
+		async fetchSolutions() {
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
@@ -107,11 +107,47 @@ export default {
 					this.problems = response.data;
 				})
 				.catch((error) => {
-					this.showErrorMessage(error);
+					// this.showErrorMessage(error); // bookmark4
+					this.loadDummyData();
 				})
 				.finally(() => {
 					this.loading = false;
 				});
+		},
+		getSolutionPageURL(solution) {
+			return "";
+		},
+		loadDummyData() {
+			this.solutions = [
+				{
+					id: 5,
+					problem_id: 7,
+					slug: "aqe-pblm1-solution-1",
+					status_id: 1,
+					img_url: "https://placehold.co/615x415",
+					currentTranslation: {
+						solution_id: 5,
+						language_id: 6,
+						title: "Make emission requlations stricter",
+						description: "Enforcing strict emission regulations can significantly reduce air pollution, thus protecting public health by ensuring cleaner, breathable air for all communities."
+					},
+					upvoted: true
+				},
+				{
+					id: 6,
+					problem_id: 7,
+					slug: "aqe-pblm1-solution-2",
+					status_id: 1,
+					img_url: "https://placehold.co/616x416",
+					currentTranslation: {
+						solution_id: 6,
+						language_id: 6,
+						title: "Improving Public Transportation",
+						description: "Encouraging the use of public transportation, cycling, and walking can reduce the number of cars on the road, decreasing air pollution and improving public health. Investing in public transportation infrastructure and creating pedestrian-friendly urban spaces can help reduce emissions and improve air quality in cities."
+					},
+					upvoted: true
+				},
+			];
 		},
 		showErrorMessage(error) {
 			// first check if the error message is just a string
@@ -137,7 +173,7 @@ export default {
 	},
 	mounted() {
 		console.log("mounted");
-		this.fetchProblems();
+		this.fetchSolutions();
 	},
 };
 </script>
