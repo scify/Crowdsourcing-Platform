@@ -86,7 +86,6 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
             Route::get('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'showEditStatisticsColorsPage'])->name('questionnaire.statistics-colors');
             Route::post('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'saveStatisticsColors'])->name('questionnaire.statistics-colors.store');
             Route::resource('problems', ProblemController::class)->except(['show']);
-            Route::put('problems/update-status/{id}', [ProblemController::class, 'updateStatus'])->name('problems.update-status');
             Route::resource('solutions', SolutionController::class)->except(['show']);
         });
     });
@@ -122,5 +121,5 @@ Route::group($localeInfo, function () {
     Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
     Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
     Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');
-    Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('project.problem-page');
+    Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('problem.show');
 });

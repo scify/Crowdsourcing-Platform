@@ -76,6 +76,3 @@
         </div>
     </div>
 </div>
-@if($viewModel->questionnaire)
-
-@endif

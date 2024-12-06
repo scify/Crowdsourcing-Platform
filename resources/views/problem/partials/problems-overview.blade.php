@@ -2,16 +2,23 @@
 
     <div class="row">
         <div class="col-12 my-4 my-lg-5 pt-4">
-            <x-go-back-link href="/{{ app()->getLocale() .'/'. $viewModel->project->slug }}" class="d-none d-lg-block">{{ __("project-problems.back") }}</x-go-back-link> <!-- bookmark1 - app()->getLocale() // is this OK? -->
+            <x-go-back-link href="/{{ app()->getLocale() .'/'. $viewModel->project->slug }}"
+                            class="d-none d-lg-block">{{ __("project-problems.back") }}</x-go-back-link> <!-- bookmark1 - app()->getLocale() // is this OK? -->
         </div>
     </div>
 
     <div class="row">
 
         <div class="col-12 col-lg-7">
+{{--
             <h1 class="project-title">{{ __("project-problems.the_topic") }} {{ $viewModel->project->currentTranslation->name }}</h1>
             <div class="project-overview pb-5 pb-lg-0">
                 {!! $viewModel->project->currentTranslation->about !!}
+            </div>
+--}}
+            <h1 class="project-title">{{ __("project-problems.temp_str_1") }} {{ $viewModel->project->currentTranslation->name }}</h1>
+            <div class="project-overview pb-5 pb-lg-0">
+                <br><p>{{ __("project-problems.temp_str_2") }}</p>
             </div>
         </div>
 

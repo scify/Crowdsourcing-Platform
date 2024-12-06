@@ -22,7 +22,7 @@
 				</div>
 				<ul class="row">
 					<li v-for="problem in problems" :key="problem.id" class="col-12 col-sm-6 col-md-6 col-lg-4">
-						<a class="card-link" href="#">
+						<a class="card-link" :href="getProblemPageURL(problem)">
 							<div class="card">
 								<div v-if="!problem.img_url" class="card-placeholder-img-container">
 									<svg
@@ -49,7 +49,7 @@
 						</a>
 						<ShareCircleButton
 							:icon-color-theme="buttonTextColorTheme"
-							:share-url="getShareUrl(problem)"
+							:share-url="getProblemPageURL(problem)"
 						></ShareCircleButton>
 					</li>
 				</ul>
@@ -61,15 +61,20 @@
 <script>
 import { mapActions } from "vuex";
 import ShareCircleButton from "../common/ShareCircleButton.vue";
+import { getLocale } from "../../common-utils";
 
 export default {
-	name: "CrowdSourcingProjectProblems",
+	name: "Problems",
 	components: {
 		ShareCircleButton,
 	},
 	props: {
 		projectId: {
 			type: Number,
+			required: true,
+		},
+		projectSlug: {
+			type: String,
 			required: true,
 		},
 		buttonTextColorTheme: {
@@ -119,15 +124,15 @@ export default {
 				alertElement.classList.add("d-none");
 			}, 5000);
 		},
-		getShareUrl(problem) {
-			// return the current URL with the /problem_slug appended
-			return `${window.location.href}/${problem.slug}`;
+		getProblemPageURL(problem) {
+			return window.route("problem.show", getLocale(), this.projectSlug, problem.slug);
 		},
 	},
 	watch: {
 		projectId: "fetchProblems",
 	},
 	mounted() {
+		console.log("mounted");
 		this.fetchProblems();
 	},
 };

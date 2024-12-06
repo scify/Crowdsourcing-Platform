@@ -74,6 +74,9 @@ class CrowdSourcingProjectManager {
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
+        if (!$language) {
+            $language = $this->languageRepository->getDefaultLanguage();
+        }
         $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus($language->id);
 
         foreach ($projects as $project) {

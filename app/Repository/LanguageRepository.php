@@ -17,4 +17,9 @@ class LanguageRepository extends Repository {
     public function getLanguageByCode(string $code): Language {
         return Language::where('language_code', $code)->first();
     }
+
+    public function getDefaultLanguage(): Language {
+        // english is the default language
+        return Language::find(6);
+    }
 }

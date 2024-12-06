@@ -13,7 +13,7 @@
 									<label for="projectSelect" class="form-label mb-0"
 										>Select a Project to view the Solutions</label
 									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
+									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !projectsLoading }"></div>
 									<select
 										id="projectSelect"
 										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
@@ -27,12 +27,12 @@
 									</select>
 								</div>
 							</div>
-							<div class="row px-0 mb-3">
+							<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
 								<div class="col-12">
 									<label for="problemSelect" class="form-label mb-0"
 										>Select a Problem to further filter the Solutions</label
 									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
+									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !problemsLoading }"></div>
 									<select
 										id="problemSelect"
 										:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
@@ -40,25 +40,35 @@
 										@change="getFilteredSolutions"
 									>
 										<option value="" disabled selected>Select a Problem</option>
+										<!-- /* bookmark4 - what goes here? */ -->
+										<option value="all">View all Project's Solutions</option>
+										<!-- /* bookmark4 - what goes here? */ -->
 										<option v-for="problem in problems" :key="problem.id" :value="problem.id">
-											{{ problem.default_translation.name }}
+											{{ problem.default_translation.title }}
 										</option>
 									</select>
 								</div>
 							</div>
-							<div class="row px-0 mb-3">
+							<div :class="['row px-0 mb-3', fetched ? '' : 'hidden']">
 								<div class="col">
 									<div class="form-check mb-3">
 										<input
 											class="form-check-input"
 											type="checkbox"
 											id="filterUnpublishedSolutions"
-											@change="toggleShowUnpublishedProblems"
+											@change="toggleShowUnpublishedSolutions"
 										/>
 										<label class="form-check-label" for="filterUnpublishedSolutions">
 											Show only unpublished solutions
 										</label>
 									</div>
+								</div>
+							</div>
+							<div class="row px-0 mb-3">
+								<div class="col text-center">
+									<div
+										:class="{ 'spinner-border text-primary ml-5': true, hidden: !solutionsLoading }"
+									></div>
 								</div>
 							</div>
 							<div class="row px-0">
@@ -90,10 +100,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" v-if="modalProblem.id">
+				<div class="modal-body" v-if="modalSolution.id">
 					<p>
 						Are you sure you want to delete the solution
-						<b>{{ modalProblem.default_translation.title }}</b
+						<b>{{ modalSolution.default_translation.title }}</b
 						>?
 					</p>
 
@@ -114,27 +124,27 @@
 							role="status"
 							aria-hidden="true"
 						></span
-						>I understand, Delete the problem
+						>I understand, Delete the solution
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Update Problem Status Modal -->
+	<!-- Update Solution Status Modal -->
 	<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="updateModalLabel">Update Problem Status</h5>
+					<h5 class="modal-title" id="updateModalLabel">Update Solution Status</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" v-if="modalProblem.id && solutionStatuses.length">
+				<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
 					<p>
-						Select a new status for the solution <b>{{ modalProblem.default_translation.title }}</b>
+						Select a new status for the solution <b>{{ modalSolution.default_translation.title }}</b>
 					</p>
-					<select class="form-select form-control" v-model="modalProblem.status.id">
+					<select class="form-select form-control" v-model="modalSolution.status.id">
 						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
 							{{ status.title }}
 						</option>
@@ -159,7 +169,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="alert-component position-relative d-none" id="problemDeletedAlert">
+	<div class="alert-component position-relative d-none" id="solutionDeletedAlert">
 		<div class="alert alert-success" role="alert">
 			{{ actionSuccessMessage }}
 		</div>
@@ -175,9 +185,10 @@
 import { mapActions, mapState } from "vuex";
 import $ from "jquery";
 import "datatables.net";
-import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
+import Modal from "bootstrap/js/dist/modal";
 import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
+import { getLocale } from "../../../../common-utils";
 
 export default {
 	name: "SolutionsManagement",
@@ -192,31 +203,34 @@ export default {
 			solutions: [],
 			solutionStatuses: [],
 			errorMessage: "",
-			showUnpublishedProblemsOnly: false,
-			filteredProblems: [],
+			showUnpublishedSolutionsOnly: false,
+			filteredSolutions: [],
 			dataTableInstance: null,
-			modalProblem: {},
+			modalSolution: {},
 			deleteModal: null,
 			updateModal: null,
 			modalActionLoading: false,
 			actionSuccessMessage: "",
 			projectsFetched: false,
 			problemsFetched: false,
+			solutionsLoading: false,
+			projectsLoading: false,
+			problemsLoading: false,
 		};
 	},
 	computed: {
-		...mapState(["loading", "modal"]),
+		...mapState(["modal"]),
 	},
 	async mounted() {
 		this.deleteModal = new Modal(document.getElementById("deleteModal"));
 		this.updateModal = new Modal(document.getElementById("updateModal"));
 		await this.getSolutionStatusesForManagementPage();
-		await this.getCrowdSourcingProjectsForFiltering();
+		await this.getProjectsForFiltering();
 		await this.getFilteredSolutions();
 		await this.setUpDataTable();
 	},
 	methods: {
-		...mapActions(["get", "post", "setLoading"]),
+		...mapActions(["get", "post"]),
 
 		async setUpDataTable() {
 			await this.$nextTick(() => {
@@ -226,11 +240,12 @@ export default {
 					data: [],
 					columns: [
 						{ title: "#", data: null, width: "5%" },
-						{ title: "Title", data: "title", width: "30%" },
-						{ title: "Bookmarks", data: "bookmarks", width: "5%" },
+						{ title: "Title", data: "title", width: "25%" },
+						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
-						{ title: "Status", data: "status", width: "20%" },
-						{ title: "Actions", data: "actions", width: "20%" },
+						{ title: "Author", data: "user", width: "18%" },
+						{ title: "Status", data: "status", width: "12%" },
+						{ title: "Actions", data: "actions", width: "15%" },
 					],
 					columnDefs: [
 						{
@@ -248,12 +263,12 @@ export default {
 				const actions = ["delete-btn", "update-btn"];
 				actions.forEach((action) => {
 					$("#solutionsTable tbody").on("click", `.${action}`, (event) => {
-						const problemId = parseInt(event.target.getAttribute("data-id"));
-						const problem = this.problems.find((p) => p.id === problemId);
+						const solutionId = parseInt(event.target.getAttribute("data-id"));
+						const solution = this.solutions.find((p) => p.id === solutionId);
 						if (action === "delete-btn") {
-							this.openDeleteModal(problem);
+							this.openDeleteModal(solution);
 						} else if (action === "update-btn") {
-							this.openUpdateModal(problem);
+							this.openUpdateModal(solution);
 						}
 					});
 				});
@@ -274,7 +289,8 @@ export default {
 				});
 		},
 
-		async getCrowdSourcingProjectsForFiltering() {
+		async getProjectsForFiltering() {
+			this.projectsLoading = true;
 			return this.get({
 				url: window.route("api.projects.get"),
 				data: {},
@@ -291,10 +307,13 @@ export default {
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
+				}).finally(() => {
+					this.projectsLoading = false;
 				});
 		},
 
 		getProblemsForFiltering() {
+			this.problemsLoading = true;
 			if (this.selectedProjectId) {
 				this.problemsFetched = false;
 				this.problems = [];
@@ -306,24 +325,26 @@ export default {
 					.then((response) => {
 						this.problems = response.data;
 						this.problemsFetched = true;
-						// this.updateFilteredProblems(); // bookmark4
-						// this.updateDataTable(); // bookmark4
+						// this.updateProblems(); // bookmark4
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
+					}).finally(() => {
+						this.problemsLoading = false;
 					});
 			}
 		},
 
-		async getFilteredSolutions() { // bookmark4
-			if ( (this.projects.length) || (this.problems.length) ) {
+		async getFilteredSolutions() {
+			if (this.projects.length || this.problems.length) {
 				this.fetched = false;
+				this.solutionsLoading = true;
 				this.solutions = [];
 				let data = {
 					filters: {
-						projectFilters: this.projects.map( x => x.id ),
-						problemFilters: this.problems.map( x => x.id ),
-					}
+						projectFilters: this.projects.map((x) => x.id),
+						problemFilters: this.problems.map((x) => x.id),
+					},
 				};
 				this.post({
 					url: window.route("api.management.solutions.get"),
@@ -333,52 +354,56 @@ export default {
 					.then((response) => {
 						this.solutions = response.data;
 						this.fetched = true;
-						// this.updateFilteredProblems();
-						// this.updateDataTable();
+						this.updateFilteredSolutions();
+						this.updateDataTable();
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
+					})
+					.finally(() => {
+						this.solutionsLoading = false;
 					});
 			}
 		},
 
-		toggleShowUnpublishedProblems() {
-			this.showUnpublishedProblemsOnly = !this.showUnpublishedProblemsOnly;
-			this.updateFilteredProblems();
+		toggleShowUnpublishedSolutions() {
+			this.showUnpublishedSolutionsOnly = !this.showUnpublishedSolutionsOnly;
+			this.updateFilteredSolutions();
 			this.updateDataTable();
 		},
 
-		updateFilteredProblems() {
-			this.filteredProblems = this.showUnpublishedProblemsOnly
-				? this.problems.filter((problem) => problem.status.id === 1)
-				: this.problems;
+		updateFilteredSolutions() {
+			this.filteredSolutions = this.showUnpublishedSolutionsOnly
+				? this.solutions.filter((solution) => solution.status.id === 1)
+				: this.solutions;
 		},
 
 		updateDataTable() {
 			this.$nextTick(() => {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
-					const tableData = this.filteredProblems.map((problem, index) => ({
-						title: problem?.default_translation?.title ?? "Untitled",
-						bookmarks: problem.bookmarks.length,
-						languages: problem.translations
-							? problem.translations.map((t) => t.language.language_name).join(", ")
+					const tableData = this.filteredSolutions.map((solution, index) => ({
+						title: solution?.default_translation?.title ?? "Untitled",
+						upvotes: solution.upvotes_count,
+						languages: solution.translations
+							? solution.translations.map((t) => t.language.language_name).join(", ")
 							: "",
-						status: `<span title="${this.getBadgeTitleForProblemStatus(problem.status)}"
-                                  class="p-2 w-75 badge ${this.getBadgeClassForProblemStatus(problem.status)}">
-                                  ${problem.status.title}</span>`,
+						user: solution?.user?.nickname ?? "N/A",
+						status: `<span title="${this.getBadgeTitleForSolutionStatusId(solution.status_id)}"
+                                  class="p-2 w-75 badge ${this.getBadgeClassForSolutionStatusId(solution.status_id)}">
+                                  ${this.getStatusTitleForSolutionStatusId(solution.status_id)}</span>`,
 						actions: `<div class="dropdown">
 									<button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"
 											data-toggle="dropdown">
 										Select an action <span class="caret"></span>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
-										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">
-											<i class="far fa-edit mr-2"></i> Edit</a>
-										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${problem.id}">
-											<i class="fas fa-cog mr-2"></i> Update Status</a>
-										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}">
-											<i class="fas fa-trash mr-2"></i> Delete</a>
+										<a class="action-btn dropdown-item" target="_blank" href="${this.getSolutionEditRoute(solution)}">
+											<i class="far fa-edit mr-2"></i>${this.trans("common.edit")}</a>
+										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${solution.id}">
+											<i class="fas fa-cog mr-2"></i>${this.trans("common.change_status")}</a>
+										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${solution.id}">
+											<i class="fas fa-trash mr-2"></i>${this.trans("common.delete")}</a>
 									</div>
 								  </div>`,
 					}));
@@ -386,40 +411,46 @@ export default {
 				}
 			});
 		},
-
-		getBadgeClassForProblemStatus(problemStatus) {
+		trans(key) {
+			return window.trans(key);
+		},
+		getBadgeClassForSolutionStatusId(solutionStatusId) {
 			// search by id in the solutionStatuses array
-			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
+			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);
 			return status ? status.badgeCSSClass : "badge-secondary";
 		},
-		getBadgeTitleForProblemStatus(problemStatus) {
-			const status = this.solutionStatuses.find((status) => status.id === problemStatus.id);
+		getBadgeTitleForSolutionStatusId(solutionStatusId) {
+			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);
 			return status ? status.description : "Unknown status";
 		},
-		getProblemEditRoute(problem) {
-			return window.route("problems.edit", problem.id);
+		getStatusTitleForSolutionStatusId(solutionStatusId) {
+			const status = this.solutionStatuses.find((status) => status.id === solutionStatusId);
+			return status ? status.title : "Unknown status";
+		},
+		getSolutionEditRoute(solution) {
+			return window.route("solutions.edit", getLocale(), solution.id);
 		},
 
-		openDeleteModal(problem) {
-			this.modalProblem = problem;
+		openDeleteModal(solution) {
+			this.modalSolution = solution;
 			this.deleteModal.show();
 		},
 
-		openUpdateModal(problem) {
-			this.modalProblem = problem;
+		openUpdateModal(solution) {
+			this.modalSolution = solution;
 			this.updateModal.show();
 		},
 
 		confirmDelete() {
-			if (!this.modalProblem.id) return;
+			if (!this.modalSolution.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(location.href + "/" + this.modalProblem.id)
+				.delete(window.route("solutions.destroy", getLocale(), this.modalSolution.id))
 				.then(() => {
-					this.getProblemsForFiltering();
-					this.modalProblem.id = null;
-					this.modalProblem.title = "";
-					this.actionSuccessMessage = "Problem deleted successfully!";
+					this.getFilteredSolutions();
+					this.modalSolution.id = null;
+					this.modalSolution.title = "";
+					this.actionSuccessMessage = "Solution deleted successfully!";
 					this.showSuccessAlert();
 				})
 				.catch((error) => {
@@ -431,17 +462,17 @@ export default {
 				});
 		},
 		confirmUpdate() {
-			if (!this.modalProblem.id) return;
+			if (!this.modalSolution.id) return;
 			this.modalActionLoading = true;
 			axios
-				.put(location.href + "/update-status/" + this.modalProblem.id, {
-					status_id: this.modalProblem.status.id,
+				.put(window.route("api.solutions.update-status", this.modalSolution.id), {
+					status_id: this.modalSolution.status.id,
 				})
 				.then(() => {
-					this.getProblemsForFiltering();
-					this.modalProblem.id = null;
-					this.modalProblem.title = "";
-					this.actionSuccessMessage = "Problem status updated successfully!";
+					this.getFilteredSolutions();
+					this.modalSolution.id = null;
+					this.modalSolution.title = "";
+					this.actionSuccessMessage = "Solution status updated successfully!";
 					this.showSuccessAlert();
 				})
 				.catch((error) => {
@@ -453,7 +484,7 @@ export default {
 				});
 		},
 		showSuccessAlert() {
-			const alertElement = document.querySelector("#problemDeletedAlert");
+			const alertElement = document.querySelector("#solutionDeletedAlert");
 			alertElement.classList.remove("d-none");
 			setTimeout(() => {
 				alertElement.classList.add("d-none");

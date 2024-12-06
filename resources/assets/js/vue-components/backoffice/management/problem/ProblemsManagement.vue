@@ -324,12 +324,14 @@ export default {
 										Select an action <span class="caret"></span>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
+										<a class="action-btn dropdown-item" target="_blank" href="${this.getAddNewSolutionRoute(problem)}">
+												<i class="fa fa-plus mr-2"></i> ${this.trans("problem.add_new_solution")}</a>
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">
-											<i class="far fa-edit mr-2"></i> Edit</a>
+											<i class="far fa-edit mr-2"></i>${this.trans("common.edit")}</a>
 										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${problem.id}">
-											<i class="fas fa-cog mr-2"></i> Update Status</a>
+											<i class="fas fa-cog mr-2"></i>${this.trans("common.change_status")}</a>
 										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}">
-											<i class="fas fa-trash mr-2"></i> Delete</a>
+											<i class="fas fa-trash mr-2"></i>${this.trans("common.delete")}</a>
 									</div>
 								  </div>`,
 					}));
@@ -337,7 +339,9 @@ export default {
 				}
 			});
 		},
-
+		trans(key) {
+			return window.trans(key);
+		},
 		getBadgeClassForProblemStatus(problemStatus) {
 			// search by id in the problemStatuses array
 			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
@@ -346,6 +350,9 @@ export default {
 		getBadgeTitleForProblemStatus(problemStatus) {
 			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
 			return status ? status.description : "Unknown status";
+		},
+		getAddNewSolutionRoute(problem) {
+			return window.route("solutions.create", getLocale()) + "?problem_id=" + problem.id;
 		},
 		getProblemEditRoute(problem) {
 			return window.route("problems.edit", getLocale(), problem.id);
