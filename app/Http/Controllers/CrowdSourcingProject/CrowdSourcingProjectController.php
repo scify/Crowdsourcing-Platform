@@ -56,9 +56,9 @@ class CrowdSourcingProjectController extends Controller {
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug|max:100',
             'language_id' => 'required|numeric|exists:languages_lkp,id',
         ]);
-        $this->crowdSourcingProjectManager->storeProject($request->all());
+        $project = $this->crowdSourcingProjectManager->storeProject($request->all());
 
-        return back()->with('flash_message_success', 'The project has been successfully created');
+        return redirect()->route('projects.edit', app()->getLocale(), $project->id)->with('flash_message_success', 'The project has been successfully created');
     }
 
     /**
