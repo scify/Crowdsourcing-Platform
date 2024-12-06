@@ -39,18 +39,25 @@
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">
-										{{ solution.currentTranslation.title }}
+										{{ solution.current_translation.title }}
 									</h5>
 									<p class="card-text mb-4">
-										{{ solution.currentTranslation.description }}
+										{{ solution.current_translation.description }}
 									</p>
 								</div>
 							</div>
 						</a>
-						<ShareCircleButton
+						<HeartCircleButton
+							:is-filled="solution.upvoted_by_current_user"
+							:solution-id="solution.id"
 							:icon-color-theme="buttonTextColorTheme"
-							:share-url="getSolutionPageURL(solution)"
-						></ShareCircleButton>
+						></HeartCircleButton>
+						<div v-if="true"><!-- bookmark4 - this div was created to "comment out" the encapsulated content without it being visible in the final markup-->
+							<ShareCircleButton
+								:icon-color-theme="buttonTextColorTheme"
+								:share-url="getSolutionPageURL(solution)"
+							></ShareCircleButton>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -61,12 +68,14 @@
 <script>
 import { mapActions } from "vuex";
 import ShareCircleButton from "../common/ShareCircleButton.vue";
+import HeartCircleButton from "../common/HeartCircleButton.vue";
 import { getLocale } from "../../common-utils";
 
 export default {
-	name: "Problems",
+	name: "Solutions",
 	components: {
 		ShareCircleButton,
+		HeartCircleButton,
 	},
 	props: {
 		problemId: {
@@ -100,22 +109,39 @@ export default {
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
-				url: window.route("api.problems.get") + `?projectId=${this.projectId}`,
+				url: window.route("api.solutions.get") + `?problem_id=${this.problemId}`,
 				urlRelative: false,
 			})
 				.then((response) => {
-					this.problems = response.data;
+					this.solutions = response.data;
 				})
 				.catch((error) => {
-					// this.showErrorMessage(error); // bookmark4
-					this.loadDummyData();
+					this.showErrorMessage(error); // bookmark4
 				})
 				.finally(() => {
 					this.loading = false;
 				});
 		},
+		showErrorMessage(error) {
+			// first check if the error message is just a string
+			if (typeof error === "string") {
+				this.errorMessage = error;
+			} else if (error.response && error.response.data && error.response.data.message) {
+				this.errorMessage = error.response.data.message;
+			} else {
+				this.errorMessage = `An error occurred. Please try again later. Error: ${error}`;
+			}
+			const alertElement = document.querySelector("#errorAlert");
+			alertElement.classList.remove("d-none");
+			setTimeout(() => {
+				alertElement.classList.add("d-none");
+			}, 5000);
+		},
 		getSolutionPageURL(solution) {
-			return "";
+			// return window.route("solution.show", getLocale(), this.projectSlug, this.problemSlug, solution.slug); // bookmark4
+			// return ""; // bookmark4
+			// return "#"; // bookmark4
+			return "javascript:void(0);"; // bookmark4
 		},
 		loadDummyData() {
 			this.solutions = [
@@ -149,27 +175,9 @@ export default {
 				},
 			];
 		},
-		showErrorMessage(error) {
-			// first check if the error message is just a string
-			if (typeof error === "string") {
-				this.errorMessage = error;
-			} else if (error.response && error.response.data && error.response.data.message) {
-				this.errorMessage = error.response.data.message;
-			} else {
-				this.errorMessage = `An error occurred. Please try again later. Error: ${error}`;
-			}
-			const alertElement = document.querySelector("#errorAlert");
-			alertElement.classList.remove("d-none");
-			setTimeout(() => {
-				alertElement.classList.add("d-none");
-			}, 5000);
-		},
-		getProblemPageURL(problem) {
-			return window.route("problem.show", getLocale(), this.projectSlug, problem.slug);
-		},
 	},
 	watch: {
-		projectId: "fetchProblems",
+		problemId: "fetchSolutions",
 	},
 	mounted() {
 		console.log("mounted");
@@ -226,7 +234,7 @@ a.card-link {
 
 .card-placeholder-img-container {
 	background-color: var(--clr-secondary-grey);
-	padding-top: 4.3rem;
+	padding-top: 3.7rem;
 	padding-bottom: 2.2rem;
 	height: 180px;
 

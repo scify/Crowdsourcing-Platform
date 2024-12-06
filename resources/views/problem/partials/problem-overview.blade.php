@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-12 col-lg-4 offset-lg-1 align-self-end text-center">
-            <img src="/images/problems/problem-page-intro-top-question.svg" alt="" width="384" height="416" class="img-fluid">
+            <img src="/images/problems/problem-page-intro-top-question.png" alt="" width="384" height="416" class="img-fluid">
         </div>
 
     </div>
