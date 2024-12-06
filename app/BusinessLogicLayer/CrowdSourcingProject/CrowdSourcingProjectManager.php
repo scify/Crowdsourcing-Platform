@@ -178,7 +178,7 @@ class CrowdSourcingProjectManager {
         );
     }
 
-    public function storeProject(array $attributes) {
+    public function storeProject(array $attributes): CrowdSourcingProject {
         $attributes['user_creator_id'] = Auth::id();
 
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes);
@@ -186,9 +186,11 @@ class CrowdSourcingProjectManager {
         $project = $this->crowdSourcingProjectRepository->create($attributes);
 
         $this->updateProject($project->id, $attributes);
+
+        return $project;
     }
 
-    public function updateProject($id, array $attributes) {
+    public function updateProject($id, array $attributes): void {
         $project = $this->getCrowdSourcingProject($id);
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes, $project);
 
@@ -237,10 +239,6 @@ class CrowdSourcingProjectManager {
 
         if (!isset($attributes['about']) || !$attributes['about']) {
             $attributes['about'] = $attributes['description'];
-        }
-
-        if (!isset($attributes['footer']) || !$attributes['footer']) {
-            $attributes['footer'] = $attributes['description'];
         }
 
         if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {

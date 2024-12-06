@@ -239,7 +239,7 @@ export default {
 		const filteredTranslations = (translation) => {
 			// return an object with only the properties that exist in the model metadata
 			return Object.keys(translation).reduce((acc, key) => {
-				if (propertyExistsInMetadata(translation[key], key)) {
+				if (propertyExistsInMetadata(translation[key], key) && translation[key] !== "<p><br></p>") {
 					acc[key] = translation[key];
 				}
 				return acc;
@@ -468,6 +468,7 @@ textarea {
 
 .translation-value.translated {
 	border: 3px solid $brand-success;
+	border-radius: 10px;
 }
 
 .translation-message-container {

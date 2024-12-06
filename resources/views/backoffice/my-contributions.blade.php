@@ -63,7 +63,7 @@
                                                     <td>{!! $response->questionnaire_description !!}</td>
                                                     <td>{{ \Carbon\Carbon::parse($response->responded_at)->diffForHumans() }}</td>
                                                     <td class="align-middle">
-                                                        <button class="btn btn-block btn-primary viewResponseBtn"
+                                                        <button class="btn btn-block btn-primary btn-slim viewResponseBtn"
                                                                 data-responseid="{{ $response->questionnaire_response_id }}">
                                                             {{ __("my-history.view_response")}}
                                                         </button>

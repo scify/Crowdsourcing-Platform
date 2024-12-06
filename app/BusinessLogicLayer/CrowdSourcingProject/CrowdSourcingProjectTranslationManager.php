@@ -58,7 +58,8 @@ class CrowdSourcingProjectTranslationManager {
             $extraTranslation = json_decode(json_encode($extraTranslation), true);
             foreach ($extraTranslation as $key => $value) {
                 if (!$value) {
-                    $extraTranslation[$key] = $defaultLanguageContentForProject[$key];
+                    $extraTranslation[$key] = $defaultLanguageContentForProject[$key] && $defaultLanguageContentForProject[$key] !== '<p><br></p>' ?
+                        $defaultLanguageContentForProject[$key] : null;
                 }
             }
             $filtered = Helpers::getFilteredAttributes($extraTranslation, $allowedKeys);
