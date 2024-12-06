@@ -23,7 +23,7 @@ class SolutionManager {
     protected SolutionStatusManager $solutionStatusManager;
     protected LanguageRepository $languageRepository;
 
-    const DEFAULT_IMAGE_PATH = '/images/problem_default_image.png'; // bookmark3 - change this to the correct path
+    const DEFAULT_IMAGE_PATH = '/images/solution_default_image.png'; // bookmark3 - change this to the correct path
 
     public function __construct(
         SolutionRepository $solutionRepository,
@@ -160,8 +160,12 @@ class SolutionManager {
         if (count($filters['problemFilters'])) {
             return $this->solutionRepository->getSolutionsForManagementFilteredByProblemIds($filters['problemFilters']);
         }
+        $problem_ids = [];
+        foreach ($filters['projectFilters'] as $project_id) {
+            $problem_ids = array_merge($problem_ids, $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id')->toArray());
+        }
 
-        return $this->solutionRepository->getSolutionsForManagementFilteredByProjectIds($filters['projectFilters']);
+        return $this->solutionRepository->getSolutionsForManagementFilteredByProjectIds($problem_ids);
     }
 
     public function getSolutions(mixed $problem_id): Collection {
@@ -170,5 +174,23 @@ class SolutionManager {
         $current_language_id = $current_language ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
 
         return $this->solutionRepository->getSolutions($problem_id, $current_language_id, Auth::id());
+    }
+
+    public function updateSolutionStatus(int $id, int $status_id) {
+        return $this->solutionRepository->update(['status_id' => $status_id], $id);
+    }
+
+    public function deleteSolution(int $id): bool {
+        $solution = $this->solutionRepository->find($id);
+        // if the image is not the default one
+        // and if it does not start with "/images" (meaning it is a default public image)
+        // and if it does not start with "http" (meaning it is an external image)
+        if ($solution->img_url !== self::DEFAULT_IMAGE_PATH &&
+            !str_starts_with($solution->img_url, '/images') &&
+            !str_starts_with($solution->img_url, 'http')) {
+            FileHandler::deleteUploadedFile($solution->img_url, 'solution_img');
+        }
+
+        return $this->solutionRepository->delete($id);
     }
 }

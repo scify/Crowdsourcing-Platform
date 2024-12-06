@@ -42,6 +42,10 @@ class Solution extends Model {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
     }
 
+    public function status(): BelongsTo {
+        return $this->belongsTo('App\Models\Solution\SolutionStatusLkp', 'status_id');
+    }
+
     public function upvotes(): HasMany {
         return $this->hasMany('App\Models\Solution\SolutionUpvote', 'solution_id', 'id');
     }

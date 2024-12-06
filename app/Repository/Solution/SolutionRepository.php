@@ -4,17 +4,10 @@ namespace App\Repository\Solution;
 
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\Solution\Solution;
-use App\Repository\Problem\ProblemRepository;
 use App\Repository\Repository;
 use Illuminate\Support\Collection;
 
 class SolutionRepository extends Repository {
-    protected ProblemRepository $problemRepository;
-
-    public function __construct(ProblemRepository $problemRepository) {
-        $this->problemRepository = $problemRepository;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -22,14 +15,13 @@ class SolutionRepository extends Repository {
         return Solution::class;
     }
 
-    public function getSolutionsForManagementFilteredByProjectIds($idsArray): Collection {
+    public function getSolutionsForManagementFilteredByProjectIds($problemIds): Collection {
         $finalSolutionsCollection = new Collection;
-        foreach ($idsArray as $project_id) {
-            $problemIdsBelongingToProject = $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id');
-            foreach ($problemIdsBelongingToProject as $problem_id) {
-                $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user'])
-                    ->withCount('upvotes as upvotes_count')->get());
-            }
+        $relationships = ['defaultTranslation', 'translations', 'translations.language', 'user', 'status'];
+
+        foreach ($problemIds as $problem_id) {
+            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with($relationships)
+                ->withCount('upvotes as upvotes_count')->get());
         }
 
         return $finalSolutionsCollection;
@@ -37,8 +29,9 @@ class SolutionRepository extends Repository {
 
     public function getSolutionsForManagementFilteredByProblemIds($idsArray): Collection {
         $finalSolutionsCollection = new Collection;
+        $relationships = ['defaultTranslation', 'translations', 'translations.language', 'user', 'status'];
         foreach ($idsArray as $problem_id) {
-            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with(['defaultTranslation', 'translations', 'translations.language', 'user'])
+            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with($relationships)
                 ->withCount('upvotes as upvotes_count')->get());
         }
 

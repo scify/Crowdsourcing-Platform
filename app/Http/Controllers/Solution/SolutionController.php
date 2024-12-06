@@ -123,11 +123,19 @@ class SolutionController extends Controller {
         return back();
     }
 
+    public function updateStatus(Request $request, int $id): JsonResponse {
+        $this->validate($request, [
+            'status_id' => 'required|exists:problem_statuses_lkp,id',
+        ]);
+
+        return response()->json($this->solutionManager->updateSolutionStatus($id, $request->status_id));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $locale, int $id) {
-        //
+        return $this->solutionManager->deleteSolution($id);
     }
 
     public function getSolutionStatusesForManagementPage(): JsonResponse {

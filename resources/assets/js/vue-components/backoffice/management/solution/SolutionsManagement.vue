@@ -100,10 +100,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" v-if="modalProblem.id">
+				<div class="modal-body" v-if="modalSolution.id">
 					<p>
 						Are you sure you want to delete the solution
-						<b>{{ modalProblem.default_translation.title }}</b
+						<b>{{ modalSolution.default_translation.title }}</b
 						>?
 					</p>
 
@@ -124,27 +124,27 @@
 							role="status"
 							aria-hidden="true"
 						></span
-						>I understand, Delete the problem
+						>I understand, Delete the solution
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Update Problem Status Modal -->
+	<!-- Update Solution Status Modal -->
 	<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="updateModalLabel">Update Problem Status</h5>
+					<h5 class="modal-title" id="updateModalLabel">Update Solution Status</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" v-if="modalProblem.id && solutionStatuses.length">
+				<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
 					<p>
-						Select a new status for the solution <b>{{ modalProblem.default_translation.title }}</b>
+						Select a new status for the solution <b>{{ modalSolution.default_translation.title }}</b>
 					</p>
-					<select class="form-select form-control" v-model="modalProblem.status.id">
+					<select class="form-select form-control" v-model="modalSolution.status.id">
 						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
 							{{ status.title }}
 						</option>
@@ -206,7 +206,7 @@ export default {
 			showUnpublishedSolutionsOnly: false,
 			filteredSolutions: [],
 			dataTableInstance: null,
-			modalProblem: {},
+			modalSolution: {},
 			deleteModal: null,
 			updateModal: null,
 			modalActionLoading: false,
@@ -243,8 +243,8 @@ export default {
 						{ title: "Title", data: "title", width: "25%" },
 						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
-						{ title: "Author", data: "user", width: "20%" },
-						{ title: "Status", data: "status", width: "10%" },
+						{ title: "Author", data: "user", width: "18%" },
+						{ title: "Status", data: "status", width: "12%" },
 						{ title: "Actions", data: "actions", width: "15%" },
 					],
 					columnDefs: [
@@ -431,26 +431,26 @@ export default {
 			return window.route("solutions.edit", getLocale(), solution.id);
 		},
 
-		openDeleteModal(problem) {
-			this.modalProblem = problem;
+		openDeleteModal(solution) {
+			this.modalSolution = solution;
 			this.deleteModal.show();
 		},
 
-		openUpdateModal(problem) {
-			this.modalProblem = problem;
+		openUpdateModal(solution) {
+			this.modalSolution = solution;
 			this.updateModal.show();
 		},
 
 		confirmDelete() {
-			if (!this.modalProblem.id) return;
+			if (!this.modalSolution.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(window.route("problems.destroy", getLocale(), this.modalProblem.id))
+				.delete(window.route("solutions.destroy", getLocale(), this.modalSolution.id))
 				.then(() => {
-					this.getProblemsForFiltering();
-					this.modalProblem.id = null;
-					this.modalProblem.title = "";
-					this.actionSuccessMessage = "Problem deleted successfully!";
+					this.getFilteredSolutions();
+					this.modalSolution.id = null;
+					this.modalSolution.title = "";
+					this.actionSuccessMessage = "Solution deleted successfully!";
 					this.showSuccessAlert();
 				})
 				.catch((error) => {
@@ -462,17 +462,17 @@ export default {
 				});
 		},
 		confirmUpdate() {
-			if (!this.modalProblem.id) return;
+			if (!this.modalSolution.id) return;
 			this.modalActionLoading = true;
 			axios
-				.put(location.href + "/update-status/" + this.modalProblem.id, {
-					status_id: this.modalProblem.status.id,
+				.put(window.route("api.solutions.update-status", this.modalSolution.id), {
+					status_id: this.modalSolution.status.id,
 				})
 				.then(() => {
-					this.getProblemsForFiltering();
-					this.modalProblem.id = null;
-					this.modalProblem.title = "";
-					this.actionSuccessMessage = "Problem status updated successfully!";
+					this.getFilteredSolutions();
+					this.modalSolution.id = null;
+					this.modalSolution.title = "";
+					this.actionSuccessMessage = "Solution status updated successfully!";
 					this.showSuccessAlert();
 				})
 				.catch((error) => {

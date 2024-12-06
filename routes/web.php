@@ -86,7 +86,6 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
             Route::get('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'showEditStatisticsColorsPage'])->name('questionnaire.statistics-colors');
             Route::post('/questionnaires/{questionnaire}/colors', [QuestionnaireStatisticsController::class, 'saveStatisticsColors'])->name('questionnaire.statistics-colors.store');
             Route::resource('problems', ProblemController::class)->except(['show']);
-            Route::put('problems/update-status/{id}', [ProblemController::class, 'updateStatus'])->name('problems.update-status');
             Route::resource('solutions', SolutionController::class)->except(['show']);
         });
     });
