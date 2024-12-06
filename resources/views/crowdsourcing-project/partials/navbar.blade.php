@@ -27,9 +27,6 @@
                 @if(!isset($onErrorPage))
                     @include("partials.login-menu-options")
                 @endif
-                @if(isset($viewModel->project))
-                    @include("partials.language-selector")
-                @endif
             </ul>
         </div>
     </nav>
