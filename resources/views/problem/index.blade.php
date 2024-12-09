@@ -11,7 +11,7 @@
 
 @section('content')
 
-    <div id="problem-page" class="pb-5">
+    <div id="problems-page" class="pb-5">
 
         @include('partials.flash-messages-and-errors')
 

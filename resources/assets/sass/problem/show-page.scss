@@ -1,11 +1,12 @@
 @import "bootstrap_4point6_custom_xxl"; // this page uses custom styles to support one more bootstrap size: xxl from 1260px and UP
 
-#problem-page {
-	#problems-overview {
+#single-problem-page {
+	#single-problem-overview,
+	.row.problem-description {
 		padding-bottom: 3.25rem;
 	}
 
-	.project-title {
+	.section-title {
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 		font-family: "Noto Sans Variable", sans-serif;
@@ -15,12 +16,12 @@
 		text-align: left;
 	}
 
-	.project-overview {
+	.section-body {
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 	}
 
-	.project-overview p {
+	.section-body p {
 		font-family: "Open Sans Variable", sans-serif;
 		font-weight: 400;
 		font-size: 16px; // 16px // bookmark1 - calulate in rem
@@ -63,31 +64,32 @@
 		}
 	}
 
-	#problems-list h2 {
+	#solutions-list h2 {
 		padding-top: 5rem;
 	}
 }
 
 // from "sm" and UP
 @media (min-width: 576px) {
-	#problem-page {
-		#problems-overview {
+	#single-problem-page {
+		#single-problem-overview,
+		.row.problem-description {
 			padding-bottom: 7.5rem;
 		}
 
-		.project-title {
+		.section-title {
 			padding-left: 0;
 			padding-right: 0;
 			font-size: 2.286rem; // 32px
 			line-height: 3.113rem; // 43.58px
 		}
 
-		.project-overview {
+		.section-body {
 			padding-left: 0;
 			padding-right: 0;
 		}
 
-		.project-overview p {
+		.section-body p {
 			font-size: 1.429rem; // 20px
 			line-height: 1.949rem; // 27.28px
 		}

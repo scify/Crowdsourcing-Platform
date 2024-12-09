@@ -1,6 +1,6 @@
 @import "bootstrap_4point6_custom_xxl"; // this page uses custom styles to support one more bootstrap size: xxl from 1260px and UP
 
-#problem-page {
+#problems-page {
 	#problems-overview {
 		padding-bottom: 3.25rem;
 	}
@@ -70,7 +70,7 @@
 
 // from "sm" and UP
 @media (min-width: 576px) {
-	#problem-page {
+	#problems-page {
 		#problems-overview {
 			padding-bottom: 7.5rem;
 		}
