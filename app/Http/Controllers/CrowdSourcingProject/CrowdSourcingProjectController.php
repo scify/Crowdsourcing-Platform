@@ -58,7 +58,7 @@ class CrowdSourcingProjectController extends Controller {
         ]);
         $project = $this->crowdSourcingProjectManager->storeProject($request->all());
 
-        return redirect()->route('projects.edit', app()->getLocale(), $project->id)->with('flash_message_success', 'The project has been successfully created');
+        return redirect()->route('projects.edit', $project->id)->with('flash_message_success', 'The project has been successfully created');
     }
 
     /**
