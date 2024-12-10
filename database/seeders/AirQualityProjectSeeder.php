@@ -136,7 +136,7 @@ class AirQualityProjectSeeder extends Seeder {
                         'translations' => [
                             [
                                 'language_id' => 6,
-                                'title' => 'Make emission requlations stricter',
+                                'title' => 'Make emission regulations stricter',
                                 'description' => 'Enforcing strict emission regulations can significantly reduce air pollution, thus protecting public health by ensuring cleaner, breathable air for all communities.',
                             ],
                             [
