@@ -50,7 +50,7 @@
                     <p class="col-md-12">Type enter or comma in order to separate the keywords.</p>
                     <div class="col-md-12">
                         <select name="sm_keywords[]" id="sm_keywords" class="form-control w-100" multiple="multiple">
-                            @foreach(explode(',', old('sm_keywords') ? old('sm_keywords') : $viewModel->project->defaultTranslation->sm_keywords) as $index => $keyword)
+                            @foreach($viewModel->project->defaultTranslation->sm_keywords as $index => $keyword)
                                 <option selected="selected">{{ $keyword }}</option>
                             @endforeach
                         </select>
