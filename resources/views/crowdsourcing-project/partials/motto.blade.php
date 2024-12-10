@@ -47,7 +47,15 @@
                                                         @if(\Illuminate\Support\Facades\Auth::check())
                                                             <div class="row">
                                                                 <div class="col-md-7 col-sm-12 mx-auto text-center">
-                                                                    <h3 class="dashboard-message w-100">{{ __('questionnaire.visit_dashboard_and_invite') }}</h3>
+                                                                    <h3 class="dashboard-message w-100">
+                                                                        @if($viewModel->projectHasPublishedProblems)
+                                                                            {{ __('project-problems.project_landing_page_problems_action_button') }}
+                                                                            &
+                                                                            {{ __('project-problems.suggest_solution') }}
+                                                                        @else
+                                                                            {{ __('questionnaire.visit_dashboard_and_invite') }}
+                                                                        @endif
+                                                                    </h3>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
