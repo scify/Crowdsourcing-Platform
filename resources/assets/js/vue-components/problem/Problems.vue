@@ -37,7 +37,7 @@
 									</svg>
 								</div>
 								<div v-else class="card-custom-img-container">
-									<img :src="problem.img_url" alt="Card image cap" width="282" height="180" />
+									<img :src="problem.img_url" alt="decorative image for problem" width="282" height="180" />
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">
@@ -143,6 +143,7 @@ export default {
 <style scoped lang="scss">
 ul {
 	list-style-type: none;
+	padding-left: 0;
 }
 
 h2 {
@@ -214,8 +215,8 @@ a.card-link {
 	.card-title {
 		font-family: "Noto Sans Variable", sans-serif;
 		font-weight: 500;
-		font-size: 24px; // 24px // bookmark1 - calulate in rem
-		line-height: 29.34px; // 29.34px // bookmark1 - calulate in rem
+		font-size: 24px; // 24px // bookmark1 - calculate in rem
+		line-height: 29.34px; // 29.34px // bookmark1 - calculate in rem
 
 		// truncate at 2 lines
 		display: -webkit-box;
@@ -229,8 +230,8 @@ a.card-link {
 	.card-text {
 		font-family: "Open Sans Variable", sans-serif;
 		font-weight: 400;
-		font-size: 16px; // 16px // bookmark1 - calulate in rem
-		line-height: 20.4px; // 20.4px // bookmark1 - calulate in rem
+		font-size: 16px; // 16px // bookmark1 - calculate in rem
+		line-height: 20.4px; // 20.4px // bookmark1 - calculate in rem
 
 		// truncate at 4 lines
 		display: -webkit-box;
