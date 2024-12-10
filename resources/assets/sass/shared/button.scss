@@ -100,3 +100,23 @@ button.share-circle-btn {
 		outline: 3px solid var(--btn-text-color); // bookmark1 - calculate in rem
 	}
 }
+
+button.heart-circle-btn {
+	border: none;
+	padding: 0;
+	border-radius: 50%;
+	overflow: clip;
+	position: absolute;
+	top: 1rem;
+	left: 2rem;
+	background-color: transparent;
+	color: var(--project-primary-color);
+
+	&:hover {
+		box-shadow: 0 4px 4px 0 var(--btn-text-color);
+	}
+
+	&:focus-visible {
+		outline: 3px solid var(--btn-text-color); // bookmark1 - calculate in rem
+	}
+}

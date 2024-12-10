@@ -27,7 +27,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
@@ -402,8 +401,11 @@ class CrowdSourcingProjectManager {
             $now = Date::now();
             $project = $this->getCrowdSourcingProject($id);
             $project->load(['language', 'status', 'translations']);
+            // remove the defaultTranslation attribute from the model
+            unset($project->defaultTranslation);
+            unset($project->currentTranslation);
+            // clone the project
             $clone = $project->replicate();
-            $clone->name .= ' - Clone';
             $clone->created_at = $now;
             $clone->updated_at = $now;
             $clone->user_creator_id = Auth::id();
@@ -413,35 +415,48 @@ class CrowdSourcingProjectManager {
                 // you may set the timestamps to the second argument of attach()
             }
             if ($clone->img_path) {
-                $clone->img_path = $this->copyProjectFile($clone->img_path);
+                $clone->img_path = $this->copyProjectFile($clone->img_path, 'project_img');
             }
             if ($clone->logo_path) {
-                $clone->logo_path = $this->copyProjectFile($clone->logo_path);
+                $clone->logo_path = $this->copyProjectFile($clone->logo_path, 'project_logos');
             }
             if ($clone->lp_questionnaire_img_path) {
-                $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path);
+                $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path, 'project_questionnaire_bg_img');
             }
             if ($clone->sm_featured_img_path) {
-                $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path);
+                $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path, 'project_sm_featured_img');
             }
             $clone->push();
+
+            // change the name of the default translation of the cloned project
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject([
+                'name' => $project->defaultTranslation->name . ' - Copy',
+                'description' => $project->defaultTranslation->description,
+                'motto_title' => $project->defaultTranslation->motto_title,
+                'motto_subtitle' => $project->defaultTranslation->motto_subtitle,
+                'about' => $project->defaultTranslation->about,
+                'sm_title' => $project->defaultTranslation->sm_title,
+                'sm_description' => $project->defaultTranslation->sm_description,
+                'sm_keywords' => $project->defaultTranslation->sm_keywords,
+                'language_id' => $project->defaultTranslation->language_id,
+                'footer' => $project->defaultTranslation->footer,
+            ], $clone->id);
+
+            // we need to also copy the extra translations
+            $extraTranslations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateExtraTranslationsForProject(
+                $extraTranslations->toArray(), $clone->id, $project->defaultTranslation->language_id);
 
             return $clone;
         });
     }
 
-    protected function copyProjectFile(string $filePath): string {
-        if (!$filePath) {
-            return '';
-        }
-        $ext = pathinfo($filePath, PATHINFO_EXTENSION);
-        $newFile = basename($filePath, '.' . $ext);
-        $newFile .= '_' . now()->getTimestamp() . '.' . $ext;
-        $file = basename($filePath, '.' . $ext);
-        $lastDirName = basename(dirname($filePath));
-        Storage::copy('public/uploads/' . $lastDirName . '/' . $file . '.' . $ext, 'public/uploads/' . $lastDirName . '/' . $newFile);
+    protected function copyProjectFile(string $filePath, string $dirName): string {
+        // copy the file to the new location
+        $newPath = FileHandler::copyFile($filePath, $dirName);
 
-        return '/storage/uploads/' . $lastDirName . '/' . $newFile;
+        // return the new path
+        return $newPath;
     }
 
     public function getCrowdSourcingProjectsWithActiveProblems(): Collection {

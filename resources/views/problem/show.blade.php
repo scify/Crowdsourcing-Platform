@@ -1,6 +1,6 @@
 @extends('crowdsourcing-project.layout')
 @push('css')
-    @vite('resources/assets/sass/problem/landing-page.scss')
+    @vite('resources/assets/sass/problem/show-page.scss')
     <style>
         :root {
             --project-primary-color: {{ $viewModel->project->lp_primary_color}};
@@ -11,11 +11,13 @@
 
 @section('content')
 
-    <div id="problem-page" class="pb-5">
+    <div id="single-problem-page" class="pb-5">
 
         @include('partials.flash-messages-and-errors')
 
-        @include('problem.partials.problem-overview')
+        <section id="single-problem-overview" class="bg-clr-primary-white">
+            @include('problem.partials.single-problem-overview')
+        </section>
 
         <section id="solutions-list" class="bg-clr-primary-white bg-image-noise">
             @include('problem.partials.solutions-list')

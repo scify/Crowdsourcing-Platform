@@ -41,7 +41,7 @@
                                                     <div class="container mt-5">
                                                         <div class="row mb-4">
                                                             <div class="col-md-8 col-sm-12 mx-auto text-center">
-                                                                @include('gamification.badge-single', ['badge' => $badge])
+                                                                @include('gamification.badge-single', ['badge' => $badge, 'title' => "You are a level " . $badge->level . " " . $badge->badgeName . "!"])
                                                             </div>
                                                         </div>
                                                         @if(\Illuminate\Support\Facades\Auth::check())
