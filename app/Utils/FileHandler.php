@@ -49,7 +49,12 @@ class FileHandler {
         if (starts_with($filePath, '/images')) {
             $filePath = public_path($filePath);
         } else {
-            $filePath = storage_path($fileName);
+            // get the last part of the directory
+            $dirNameLast = explode('/', $dirName)[0];
+            // get the file name
+            $fileNameFromPath = explode('/', $filePath);
+            $fileNameFromPath = end($fileNameFromPath);
+            $filePath = storage_path('/app/public/uploads/' . $dirNameLast . '/' . $fileNameFromPath);
         }
         $path = 'app/public/uploads/' . $dirName . '/' . $fileName;
         $newFilePath = storage_path($path);
