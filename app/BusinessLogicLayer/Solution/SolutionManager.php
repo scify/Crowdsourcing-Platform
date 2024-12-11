@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\BusinessLogicLayer\Problem\ProblemTranslationManager;
 use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
 use App\Repository\RepositoryException;
@@ -14,6 +15,7 @@ use App\Repository\Solution\SolutionRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
 use App\ViewModels\Solution\ProposeSolutionPage;
+use App\ViewModels\Solution\SolutionSubmitted;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,7 @@ use Illuminate\Support\Str;
 class SolutionManager {
     protected SolutionRepository $solutionRepository;
     protected ProblemRepository $problemRepository;
+    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected SolutionTranslationManager $solutionTranslationManager;
     protected SolutionStatusManager $solutionStatusManager;
     protected LanguageRepository $languageRepository;
@@ -33,6 +36,7 @@ class SolutionManager {
     public function __construct(
         SolutionRepository $solutionRepository,
         ProblemRepository $problemRepository,
+        CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
         SolutionTranslationManager $solutionTranslationManager,
         SolutionStatusManager $solutionStatusManager,
         LanguageRepository $languageRepository,
@@ -41,6 +45,7 @@ class SolutionManager {
     ) {
         $this->solutionRepository = $solutionRepository;
         $this->problemRepository = $problemRepository;
+        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->solutionTranslationManager = $solutionTranslationManager;
         $this->solutionStatusManager = $solutionStatusManager;
         $this->languageRepository = $languageRepository;
@@ -85,7 +90,7 @@ class SolutionManager {
      * @param array $attributes the attributes of the solution
      * @throws Exception
      */
-    public function storeSolution(array $attributes): int {
+    public function storeSolution(array $attributes): Solution {
         return $this->storeSolutionWithStatus($attributes, $attributes['solution-status']);
     }
 
@@ -94,7 +99,7 @@ class SolutionManager {
      * @param array $attributes the attributes of the solution
      * @throws Exception
      */
-    public function storeSolutionFromPublicForm(array $attributes): int {
+    public function storeSolutionFromPublicForm(array $attributes): Solution {
         return $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
     }
 
@@ -103,7 +108,7 @@ class SolutionManager {
      * @param array $attributes the attributes of the solution
      * @throws Exception
      */
-    protected function storeSolutionWithStatus(array $attributes, int $status_id): int {
+    protected function storeSolutionWithStatus(array $attributes, int $status_id): Solution {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
         } else {
@@ -132,7 +137,7 @@ class SolutionManager {
             ]);
             DB::commit();
 
-            return $solution->id;
+            return $solution;
         } catch (\Exception $e) {
             Log::error('Error: ' . $e->getCode() . '  ' . $e->getMessage());
             DB::rollBack();
@@ -233,5 +238,17 @@ class SolutionManager {
         $localeLanguage = $this->languageRepository->getLanguageByCode($locale);
 
         return new ProposeSolutionPage($project, $problem, $localeLanguage);
+    }
+
+    public function getSolutionSubmittedViewModel(string $project_slug, string $problem_slug, string $solution_slug): SolutionSubmitted {
+        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+
+        $problem = $this->problemRepository->findBy('slug', $problem_slug);
+        $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, app()->getLocale());
+
+        $solution = $this->solutionRepository->findBy('slug', $solution_slug);
+
+        return new SolutionSubmitted($solution, $problem, $project);
     }
 }

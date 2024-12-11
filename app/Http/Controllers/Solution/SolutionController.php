@@ -56,7 +56,7 @@ class SolutionController extends Controller {
         ]);
 
         try {
-            $createdSolutionId = $this->solutionManager->storeSolution($validated);
+            $createdSolutionId = $this->solutionManager->storeSolution($validated)->id;
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -79,17 +79,22 @@ class SolutionController extends Controller {
         ]);
 
         try {
-            $this->solutionManager->storeSolutionFromPublicForm($validated);
+            $solution = $this->solutionManager->storeSolutionFromPublicForm($validated);
+            $problem = $solution->problem;
+            $project = $problem->project;
+
+            $route = route('solutions.user-proposal-submitted', [
+                'project_slug' => $project->slug,
+                'problem_slug' => $problem->slug,
+                'solution_slug' => $solution->slug,
+            ]);
+
+            return redirect($route);
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
             return back()->withInput();
         }
-
-        session()->flash('flash_message_success', 'Solution Created Successfully.');
-
-        // redirect to the same route as the current one, with a "/solution-submitted" suffix
-        return redirect($request->path() . '/solution-submitted');
     }
 
     /**
@@ -198,7 +203,22 @@ class SolutionController extends Controller {
         }
     }
 
-    public function userProposalSubmitted(Request $request) {
-        return 'userProposalSubmitted';
+    public function userProposalSubmitted(string $locale, string $project_slug, string $problem_slug, string $solution_slug): View {
+        $validator = Validator::make([
+            'project_slug' => $project_slug,
+            'problem_slug' => $problem_slug,
+            'solution_slug' => $solution_slug,
+        ], [
+            'solution_slug' => 'required|exists:solutions,slug',
+            'problem_slug' => 'required|exists:problems,slug',
+            'project_slug' => 'required|exists:crowd_sourcing_projects,slug',
+        ]);
+
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        $viewModel = $this->solutionManager->getSolutionSubmittedViewModel($project_slug, $problem_slug, $solution_slug);
+
+        return view('solution.submitted', ['viewModel' => $viewModel]);
     }
 }

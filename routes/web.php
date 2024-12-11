@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth', 'setlocale']], function () use ($localeIn
     Route::group($localeInfo, function () use ($backOfficePrefix) {
         Route::get('/{project_slug}/problems/{problem_slug}/solutions/propose', [SolutionController::class, 'userProposalCreate'])->name('solutions.user-proposal-create');
         Route::post('/{project_slug}/problems/{problem_slug}/solutions', [SolutionController::class, 'userProposalStore'])->name('solutions.user-proposal-store');
-        Route::get('/{project_slug}/problems/{problem_slug}/solutions/solution-submitted', [SolutionController::class, 'userProposalSubmitted'])->name('solutions.user-proposal-submitted');
+        Route::get('/{project_slug}/problems/{problem_slug}/solutions/{solution_slug}/submitted', [SolutionController::class, 'userProposalSubmitted'])->name('solutions.user-proposal-submitted');
         Route::group(['prefix' => $backOfficePrefix], function () {
             Route::get('/my-dashboard', [UserController::class, 'myDashboard'])->name('my-dashboard');
             Route::get('/my-account', [UserController::class, 'myAccount'])->name('my-account');
