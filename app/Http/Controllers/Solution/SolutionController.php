@@ -51,7 +51,7 @@ class SolutionController extends Controller {
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-status' => ['required'],
-            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'solution-owner-problem' => ['required'],
         ]);
 
@@ -104,7 +104,7 @@ class SolutionController extends Controller {
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-status' => ['required'],
             'solution-slug' => 'required|string|alpha_dash|unique:solutions,slug,' . $id . '|max:111',
-            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'solution-owner-problem' => ['required'],
         ]);
 

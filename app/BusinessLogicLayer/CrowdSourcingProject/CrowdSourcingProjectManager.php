@@ -411,6 +411,8 @@ class CrowdSourcingProjectManager {
             $clone->updated_at = $now;
             $clone->user_creator_id = Auth::id();
 
+            $clone->slug = $project->slug . '-copy';
+
             if ($clone->img_path) {
                 $clone->img_path = $this->copyProjectFile($clone->img_path, 'project_img');
             }

@@ -111,7 +111,7 @@
                                    id="solution-image"
                                    name="solution-image"
                                    class="form-control p-2 h-auto {{ $errors->has('solution-image') ? 'is-invalid' : '' }} js-image-input"
-                                   accept="image/png,image/jpeg,image/jpg"
+                                   accept="image/png,image/jpeg,image/jpg,image/webp"
                                    placeholder="Solution Image"
                             >
                             <div id="solution-image-feedback" class="invalid-feedback">
