@@ -411,10 +411,6 @@ class CrowdSourcingProjectManager {
             $clone->updated_at = $now;
             $clone->user_creator_id = Auth::id();
 
-            foreach ($project->colors as $color) {
-                $clone->colors()->attach($color, ['created_at' => $now, 'updated_at' => $now]);
-                // you may set the timestamps to the second argument of attach()
-            }
             if ($clone->img_path) {
                 $clone->img_path = $this->copyProjectFile($clone->img_path, 'project_img');
             }
@@ -445,8 +441,22 @@ class CrowdSourcingProjectManager {
 
             // we need to also copy the extra translations
             $extraTranslations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
+            // set the name only of the default translation as the name of the cloned project + ' - Copy'
+            // find the default translation inside the extra translations and set the name to the new name
+            $extraTranslations->each(function ($translation) use ($clone) {
+                if ($translation->language_id === $clone->defaultTranslation->language_id) {
+                    $translation->name = $clone->defaultTranslation->name;
+                }
+            });
+
             $this->crowdSourcingProjectTranslationManager->storeOrUpdateExtraTranslationsForProject(
                 $extraTranslations->toArray(), $clone->id, $project->defaultTranslation->language_id);
+
+            foreach ($project->colors as $color) {
+                $cloneColor = $color->replicate();
+                $cloneColor->project_id = $clone->id;
+                $cloneColor->save();
+            }
 
             return $clone;
         });
