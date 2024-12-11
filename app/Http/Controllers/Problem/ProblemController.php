@@ -71,7 +71,7 @@ class ProblemController extends Controller {
             'problem-description' => ['required', 'string', 'max:400'],
             'problem-status' => ['required'], // bookmark2
             'problem-default-language' => ['required'], // bookmark2
-            'problem-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'problem-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'problem-owner-project' => ['required'],
         ]);
 
@@ -111,7 +111,7 @@ class ProblemController extends Controller {
             'problem-status' => ['required'], // bookmark2
             'problem-default-language' => ['required'], // bookmark2
             'problem-slug' => 'required|string|alpha_dash|unique:problems,slug,' . $id . '|max:111',
-            'problem-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'problem-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'problem-owner-project' => ['required'],
         ]);
 

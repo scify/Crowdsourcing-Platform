@@ -40,7 +40,7 @@
                                                 <div class="form-group">
                                                     <input id="avatar" type="file" class="form-control p-2 h-auto"
                                                            name="avatar"
-                                                           accept="image/png,image/jpeg,image/jpg"
+                                                           accept="image/png,image/jpeg,image/jpg,image/webp"
                                                            placeholder="{{ __("my-account.profile_image") }}">
                                                 </div>
                                             </div>
