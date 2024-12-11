@@ -55,7 +55,7 @@ jobs:
         run: php artisan config:cache --env=testing
 
       - name: Run the migrations & seeders in the testing environment
-        run: php artisan migrate:fresh --seed --env=testing
+        run: php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: php artisan test --env=testing
