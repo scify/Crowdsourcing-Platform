@@ -77,7 +77,7 @@ class CrowdSourcingProjectManager {
         if (!$language) {
             $language = $this->languageRepository->getDefaultLanguage();
         }
-        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus($language->id);
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsForHomePage($language->id);
 
         foreach ($projects as $project) {
             // if the model has a "translations" relationship and the first item is not null,

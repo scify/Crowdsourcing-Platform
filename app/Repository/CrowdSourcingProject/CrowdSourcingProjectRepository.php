@@ -19,7 +19,7 @@ class CrowdSourcingProjectRepository extends Repository {
         return CrowdSourcingProject::class;
     }
 
-    public function getActiveProjectsWithAtLeastOneQuestionnaireWithStatus(
+    public function getActiveProjectsForHomePage(
         $language_id,
         $additionalRelationships = [], $questionnaireStatusId = QuestionnaireStatusLkp::PUBLISHED
     ): Collection {
@@ -34,6 +34,11 @@ class CrowdSourcingProjectRepository extends Repository {
             })
             ->with('problems');
 
+        // also get the projects that have at least one published problem, and were not fetched by the previous query
+        $builder = $builder->orWhereHas('problems', function ($query) {
+            $query->where(['status_id' => ProblemStatusLkp::PUBLISHED]);
+        });
+
         // Load the translations related to the project, but only the one that equals to the language with id $language_id
         $builder = $builder->with(['translations' => function ($query) use ($language_id) {
             $query->where('language_id', $language_id);
@@ -42,6 +47,9 @@ class CrowdSourcingProjectRepository extends Repository {
         if (count($additionalRelationships)) {
             $builder = $builder->with($additionalRelationships);
         }
+
+        // order the projects by the most recent one
+        $builder = $builder->orderBy('created_at', 'desc');
 
         return $builder->get();
     }
