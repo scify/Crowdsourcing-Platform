@@ -90,15 +90,16 @@ class SolutionControllerTest extends TestCase {
                 'solution-owner-problem' => 1,
             ]);
 
+        $solution = SolutionTranslation::where('title', $name)->first()->solution;
+
         $response->assertRedirectContains(
             route('solutions.user-proposal-submitted',
-                ['locale' => 'en', 'project_slug' => $problem->project->slug, 'problem_slug' => $problem->slug]
+                ['locale' => 'en', 'project_slug' => $problem->project->slug, 'problem_slug' => $problem->slug, 'solution_slug' => $solution->slug]
             )
         );
 
         $response->assertStatus(302);
 
-        $solution = SolutionTranslation::where('title', $name)->first()->solution;
 
         $this->assertNotNull($solution);
         $this->assertEquals(SolutionStatusLkp::UNPUBLISHED, $solution->status_id);
