@@ -41,6 +41,7 @@ export default defineConfig({
 				"resources/assets/sass/questionnaire/statistics.scss",
 				"resources/assets/sass/problem/create-edit-problem.scss",
 				"resources/assets/sass/problem/landing-page.scss",
+				"resources/assets/sass/problem/show-page.scss",
 				"resources/assets/sass/solution/create-edit-solution.scss",
 				"resources/assets/sass/gamification/progress.scss",
 				"resources/assets/sass/pages/my-contributions.scss",
