@@ -178,4 +178,57 @@ class SolutionController extends Controller {
 
         return response()->json($this->solutionManager->getSolutions($request->problem_id));
     }
+
+    public function userProposalCreate(string $locale, string $project_slug, string $problem_slug): View|RedirectResponse {
+        $validator = Validator::make([
+            'project_slug' => $project_slug,
+            'problem_slug' => $problem_slug,
+        ], [
+            'project_slug' => 'required|different:execute_solution|exists:crowd_sourcing_projects,slug',
+            'problem_slug' => 'required|different:execute_solution|exists:problems,slug',
+        ]);
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        try {
+            $viewModel = $this->solutionManager->getProposeSolutionPageViewModel($locale, $project_slug, $problem_slug);
+
+            return view('solution.propose', ['viewModel' => $viewModel]);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
+        }
+    }
+
+    // public function userProposalStore(Request $request): RedirectResponse {
+    //     return 'user ProposalStore';
+    //     $this->validate($request, [
+    //         'solution-title' => ['required', 'string', 'max:100'],
+    //         'solution-description' => ['required', 'string', 'max:400'],
+    //         'solution-status' => ['required'],
+    //         'solution-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    //         'solution-owner-problem' => ['required'],
+    //     ]);
+
+    //     $attributes = $request->all();
+
+    //     try {
+    //         $createdSolutionId = $this->solutionManager->storeSolution($attributes);
+    //     } catch (\Exception $e) {
+    //         session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+    //         return back()->withInput();
+    //     }
+
+    //     session()->flash('flash_message_success', 'Solution Created Successfully.');
+
+    //     $route = route('solutions.edit', ['solution' => $createdSolutionId]) . '?translations=1';
+
+    //     return redirect($route);
+    // }
+
+    public function userProposalSubmitted(Request $request) {
+        return 'userProposalSubmitted';
+    }
 }

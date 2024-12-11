@@ -2,7 +2,9 @@
 
 namespace App\BusinessLogicLayer\Solution;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
+use App\BusinessLogicLayer\Problem\ProblemTranslationManager;
 use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
 use App\Repository\LanguageRepository;
@@ -11,6 +13,7 @@ use App\Repository\RepositoryException;
 use App\Repository\Solution\SolutionRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
+use App\ViewModels\Solution\ProposeSolutionPage;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -24,19 +27,25 @@ class SolutionManager {
     protected SolutionTranslationManager $solutionTranslationManager;
     protected SolutionStatusManager $solutionStatusManager;
     protected LanguageRepository $languageRepository;
+    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
+    protected ProblemTranslationManager $problemTranslationManager;
 
     public function __construct(
         SolutionRepository $solutionRepository,
         ProblemRepository $problemRepository,
         SolutionTranslationManager $solutionTranslationManager,
         SolutionStatusManager $solutionStatusManager,
-        LanguageRepository $languageRepository
+        LanguageRepository $languageRepository,
+        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
+        ProblemTranslationManager $problemTranslationManager,
     ) {
         $this->solutionRepository = $solutionRepository;
         $this->problemRepository = $problemRepository;
         $this->solutionTranslationManager = $solutionTranslationManager;
         $this->solutionStatusManager = $solutionStatusManager;
         $this->languageRepository = $languageRepository;
+        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
+        $this->problemTranslationManager = $problemTranslationManager;
     }
 
     /**
@@ -210,5 +219,17 @@ class SolutionManager {
         }
 
         return $this->solutionRepository->delete($id);
+    }
+
+    public function getProposeSolutionPageViewModel(string $locale, string $project_slug, string $problem_slug): ProposeSolutionPage {
+        $project = $this->problemRepository->getProjectWithProblemsByProjectSlug($project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+
+        $problem = $this->problemRepository->findBy('slug', $problem_slug);
+        $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
+
+        $localeLanguage = $this->languageRepository->getLanguageByCode($locale);
+
+        return new ProposeSolutionPage($project, $problem, $localeLanguage);
     }
 }
