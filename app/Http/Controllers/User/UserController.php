@@ -44,7 +44,7 @@ class UserController extends Controller {
         $validationArray = [
             'nickname' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ];
         if ($request->password) {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
