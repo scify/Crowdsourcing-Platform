@@ -72,6 +72,27 @@ class SolutionController extends Controller {
         return redirect($route);
     }
 
+    public function storeSolutionFromPublicForm(Request $request): RedirectResponse {
+        $this->validate($request, [
+            'solution-title' => ['required', 'string', 'max:100'],
+            'solution-description' => ['required', 'string', 'max:400'],
+            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'solution-owner-problem' => ['required'],
+        ]);
+
+        try {
+            $createdSolutionId = $this->solutionManager->storeSolutionFromPublicForm($request->all());
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
+        }
+
+        session()->flash('flash_message_success', 'Solution Created Successfully.');
+
+        return redirect()->route('public-solution-thanks', ['solution_id' => $createdSolutionId]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

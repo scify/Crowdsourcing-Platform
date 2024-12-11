@@ -7,9 +7,11 @@ use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
+use App\Repository\RepositoryException;
 use App\Repository\Solution\SolutionRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -69,22 +71,43 @@ class SolutionManager {
         );
     }
 
+    /**
+     * Store a solution
+     * @param array $attributes the attributes of the solution
+     * @throws Exception
+     */
     public function storeSolution(array $attributes): int {
+        return $this->storeSolutionWithStatus($attributes, $attributes['solution-status']);
+    }
+
+    /**
+     * Store a solution from a public form
+     * @param array $attributes the attributes of the solution
+     * @throws Exception
+     */
+    public function storeSolutionFromPublicForm(array $attributes): int {
+        return $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
+    }
+
+    /**
+     * Store a solution with a specific status
+     * @param array $attributes the attributes of the solution
+     * @throws Exception
+     */
+    protected function storeSolutionWithStatus(array $attributes, int $status_id): int {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
         }
-
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
 
         $default_language_id = $this->problemRepository->find($solution_owner_problem_id)->default_language_id;
-
         try {
             DB::beginTransaction();
             $solution = Solution::create([
                 'problem_id' => $solution_owner_problem_id,
                 'user_creator_id' => Auth::id(),
                 'slug' => Str::random(16), // temporary - will be changed after record creation
-                'status_id' => $attributes['solution-status'],
+                'status_id' => $status_id,
                 'img_url' => $imgPath,
             ]);
 
@@ -102,6 +125,7 @@ class SolutionManager {
         } catch (\Exception $e) {
             Log::error('Error: ' . $e->getCode() . '  ' . $e->getMessage());
             DB::rollBack();
+            throw new \Exception('An error occurred while creating the solution');
         }
     }
 
