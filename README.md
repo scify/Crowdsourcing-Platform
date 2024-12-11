@@ -440,12 +440,24 @@ php artisan cache:clear
 php artisan config:clear
 ```
 
+Create the test database file:
+
+```bash
+  touch storage/database_testing.sqlite
+```
+
+Give the necessary permissions to the test database file:
+
+```bash
+  chmod 777 storage/database_testing.sqlite
+```
+
 Then, make sure that you have set up the test database:
 
 Run the migrations & seeders for the test database:
 
 ```bash
-  php artisan migrate:fresh --seed --env=testing
+  php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 ```
 
 ### PHPUnit with the `php artisan test` command
