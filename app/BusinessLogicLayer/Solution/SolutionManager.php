@@ -106,6 +106,8 @@ class SolutionManager {
     protected function storeSolutionWithStatus(array $attributes, int $status_id): int {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
+        } else {
+            $imgPath = null;
         }
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
 

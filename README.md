@@ -442,16 +442,10 @@ php artisan config:clear
 
 Then, make sure that you have set up the test database:
 
-First you need to run the migrations for the test database:
+Run the migrations & seeders for the test database:
 
 ```bash
-  php artisan migrate --env=testing --database=sqlite_testing
-```
-
-Then run the seeders for the test database:
-
-```bash
-  php artisan db:seed --env=testing --database=sqlite_testing
+  php artisan migrate:fresh --seed --env=testing
 ```
 
 ### PHPUnit with the `php artisan test` command

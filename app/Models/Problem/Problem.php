@@ -2,6 +2,7 @@
 
 namespace App\Models\Problem;
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Solution\Solution;
 use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,6 +39,10 @@ class Problem extends Model {
 
     public function solutions(): HasMany {
         return $this->hasMany(Solution::class, 'problem_id', 'id');
+    }
+
+    public function project(): HasOne {
+        return $this->hasOne(CrowdSourcingProject::class, 'id', 'project_id');
     }
 
     //observe this model being deleted and delete the related records

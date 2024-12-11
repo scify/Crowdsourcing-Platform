@@ -47,7 +47,7 @@ class SolutionController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-status' => ['required'],
@@ -55,10 +55,8 @@ class SolutionController extends Controller {
             'solution-owner-problem' => ['required'],
         ]);
 
-        $attributes = $request->validated();
-
         try {
-            $createdSolutionId = $this->solutionManager->storeSolution($attributes);
+            $createdSolutionId = $this->solutionManager->storeSolution($validated);
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -73,7 +71,7 @@ class SolutionController extends Controller {
     }
 
     public function userProposalStore(Request $request): RedirectResponse {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
@@ -81,7 +79,7 @@ class SolutionController extends Controller {
         ]);
 
         try {
-            $createdSolutionId = $this->solutionManager->storeSolutionFromPublicForm($request->validated());
+            $this->solutionManager->storeSolutionFromPublicForm($validated);
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -90,7 +88,8 @@ class SolutionController extends Controller {
 
         session()->flash('flash_message_success', 'Solution Created Successfully.');
 
-        return redirect()->route('public-solution-thanks', ['solution_id' => $createdSolutionId]);
+        // redirect to the same route as the current one, with a "/solution-submitted" suffix
+        return redirect($request->path() . '/solution-submitted');
     }
 
     /**
@@ -120,7 +119,7 @@ class SolutionController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $locale, int $id) {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-status' => ['required'],
@@ -129,10 +128,8 @@ class SolutionController extends Controller {
             'solution-owner-problem' => ['required'],
         ]);
 
-        $attributes = $request->validated();
-
         try {
-            $this->solutionManager->updateSolution($id, $attributes);
+            $this->solutionManager->updateSolution($id, $validated);
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -200,33 +197,6 @@ class SolutionController extends Controller {
             return back()->withInput();
         }
     }
-
-    // public function userProposalStore(Request $request): RedirectResponse {
-    //     return 'user ProposalStore';
-    //     $this->validate($request, [
-    //         'solution-title' => ['required', 'string', 'max:100'],
-    //         'solution-description' => ['required', 'string', 'max:400'],
-    //         'solution-status' => ['required'],
-    //         'solution-image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-    //         'solution-owner-problem' => ['required'],
-    //     ]);
-
-    //     $attributes = $request->all();
-
-    //     try {
-    //         $createdSolutionId = $this->solutionManager->storeSolution($attributes);
-    //     } catch (\Exception $e) {
-    //         session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
-
-    //         return back()->withInput();
-    //     }
-
-    //     session()->flash('flash_message_success', 'Solution Created Successfully.');
-
-    //     $route = route('solutions.edit', ['solution' => $createdSolutionId]) . '?translations=1';
-
-    //     return redirect($route);
-    // }
 
     public function userProposalSubmitted(Request $request) {
         return 'userProposalSubmitted';
