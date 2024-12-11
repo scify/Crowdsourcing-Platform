@@ -7,8 +7,10 @@
             <div class="container">
                 <div class="row title-row mb-3 text-center">
                     <div class="col-12 px-5">
-                        <h1 id="motto-title"
-                            class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
+                        <h1 id="project-title"
+                            class="text">{!! $viewModel->project->currentTranslation->name !!}</h1>
+                        <h2 id="motto-title"
+                            class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h2>
                         @if($viewModel->project->currentTranslation->motto_subtitle)
                             <h4 id="motto-subtitle"
                                 class="text text-center pt-5">{!! $viewModel->project->currentTranslation->motto_subtitle !!}</h4>

@@ -111,16 +111,22 @@ body {
 			.title-row {
 				align-items: end;
 
-				#motto-title {
+				#project-title {
 					padding-top: 3.5rem;
 				}
 			}
 		}
 
-		#motto-title {
+		#project-title {
 			font-weight: 600;
-			margin-bottom: 0.8rem;
+			margin-bottom: 2rem;
 			font-size: 2.3rem;
+		}
+
+		#motto-title {
+			font-weight: 500;
+			margin-bottom: 0.8rem;
+			font-size: 1.8rem;
 		}
 
 		color: white;
