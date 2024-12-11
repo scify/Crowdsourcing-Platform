@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\Solution\Solution;
+use App\Models\Solution\SolutionTranslation;
 use Illuminate\Database\Seeder;
 
 class SolutionSeeder extends Seeder {
@@ -90,7 +91,7 @@ class SolutionSeeder extends Seeder {
             ]);
             if (isset($solution['translations'])) {
                 foreach ($solution['translations'] as $translation) {
-                    Solution::withTrashed()->updateOrCreate(
+                    SolutionTranslation::updateOrCreate(
                         [
                             'solution_id' => $solution['id'],
                             'language_id' => $translation['language_id'],

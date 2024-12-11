@@ -320,7 +320,7 @@ class AirQualityProjectSeeder extends Seeder {
                             if (app()->environment() !== 'testing') {
                                 echo "\nAdding Solution Translation: " . $translation['title'] . ' for Solution: ' . $solution['slug'] . "\n";
                             }
-                            SolutionTranslation::withTrashed()->updateOrCreate(
+                            SolutionTranslation::updateOrCreate(
                                 [
                                     'solution_id' => $solutionRecord->id,
                                     'language_id' => $translation['language_id'],
