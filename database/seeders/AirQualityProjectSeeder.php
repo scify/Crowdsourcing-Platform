@@ -283,7 +283,7 @@ class AirQualityProjectSeeder extends Seeder {
             ]);
             if (isset($problem['translations'])) {
                 foreach ($problem['translations'] as $translation) {
-                    ProblemTranslation::withTrashed()->updateOrCreate(
+                    ProblemTranslation::updateOrCreate(
                         [
                             'problem_id' => $problemRecord->id,
                             'language_id' => $translation['language_id'],
