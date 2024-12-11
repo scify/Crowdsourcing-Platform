@@ -31,6 +31,7 @@ use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
     const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
+    const DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG = '/images/questionnaire_bg_default.webp';
 
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected QuestionnaireRepository $questionnaireRepository;
@@ -76,7 +77,7 @@ class CrowdSourcingProjectManager {
         if (!$language) {
             $language = $this->languageRepository->getDefaultLanguage();
         }
-        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus($language->id);
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsForHomePage($language->id);
 
         foreach ($projects as $project) {
             // if the model has a "translations" relationship and the first item is not null,
@@ -255,7 +256,7 @@ class CrowdSourcingProjectManager {
 
         if ((!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
             && (!$project || !$project->lp_questionnaire_img_path)) {
-            $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH;
+            $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 
         if (!isset($attributes['lp_show_speak_up_btn'])) {
