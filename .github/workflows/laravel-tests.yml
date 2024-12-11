@@ -54,6 +54,9 @@ jobs:
       - name: Cache
         run: php artisan config:cache --env=testing
 
+      - name: Create a SQLite database for testing
+        run: touch storage/database_testing.sqlite
+
       - name: Run the migrations & seeders in the testing environment
         run: php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 
