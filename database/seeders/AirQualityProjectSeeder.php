@@ -273,7 +273,7 @@ class AirQualityProjectSeeder extends Seeder {
         ];
 
         foreach ($problems as $problem) {
-            $problemRecord = Problem::updateOrCreate(['id' => $problem['id']], [
+            $problemRecord = Problem::withTrashed()->updateOrCreate(['id' => $problem['id']], [
                 'project_id' => $problem['project_id'],
                 'slug' => $problem['slug'],
                 'status_id' => $problem['status_id'],
@@ -307,7 +307,7 @@ class AirQualityProjectSeeder extends Seeder {
                     if ($existingSolution = Solution::withTrashed()->where('slug', $solution['slug'])->first()) {
                         $existingSolution->restore();
                     }
-                    $solutionRecord = Solution::updateOrCreate(['id' => $solution['id']], [
+                    $solutionRecord = Solution::withTrashed()->updateOrCreate(['id' => $solution['id']], [
                         'id' => $solution['id'],
                         'problem_id' => $problemRecord->id,
                         'user_creator_id' => $solution['user_creator_id'],
