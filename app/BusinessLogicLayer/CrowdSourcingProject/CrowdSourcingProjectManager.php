@@ -290,10 +290,10 @@ class CrowdSourcingProjectManager {
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         if (!$project->lp_primary_color) {
-            $project->lp_primary_color = '#0069d9';
+            $project->lp_primary_color = '#F5BA16';
         }
         if (!$project->lp_btn_text_color_theme) {
-            $project->lp_btn_text_color_theme = 'light';
+            $project->lp_btn_text_color_theme = 'dark';
         }
 
         return $project;
