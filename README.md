@@ -440,59 +440,7 @@ php artisan cache:clear
 php artisan config:clear
 ```
 
-### Method 1: PHPUnit with the Laravel Custom Command
-
-There is a custom Laravel Command that runs the test suite for the application, which can be run by executing the
-following command:
-
-```bash
-php artisan app:test
-```
-
-This command is located in the `app/Console/Commands/TestCommand.php` file.
-
-This command takes the following options:
-
-- `--coverage`: Run the tests with coverage.
-- `--filter`: Filter the tests to run only a specific test class or method.
-- `--migrate`: Run the migrations before running the tests.
-- `--seed`: Seed the database before running the tests.
-
-Every time you run this command, the test database will be created (or used) at `storage/database_testing.sqlite`, the
-suite
-will be executed, and the results will be displayed in the console.
-
-If you want to only test a specific test class or method, you can run the following command:
-
-```bash
-php artisan app:test --filter={METHOD OR CLASS NAME}
-```
-
-Note that unlike the PHPUnit command, you need to use the `--filter` flag with the `=` sign.
-
-Example:
-
-```bash
-php artisan app:test --filter=CrowdSourcingProjectControllerTest
-```
-
-Example of running the tests with migrations and seeding:
-
-```bash
-  php artisan app:test --migrate --seed
-```
-
-### Run the tests with coverage
-
-In order to run the tests with coverage, you can use the `--coverage` flag, like so:
-
-```bash
-php artisan app:test --coverage
-```
-
-### Method 2: PHPUnit with the `php artisan test` command
-
-You can also run the tests using the `php artisan test` command, which is a built-in Laravel command.
+Then, make sure that you have set up the test database:
 
 First you need to run the migrations for the test database:
 
@@ -500,11 +448,15 @@ First you need to run the migrations for the test database:
   php artisan migrate --env=testing --database=sqlite_testing
 ```
 
-Then run the seeders:
+Then run the seeders for the test database:
 
 ```bash
   php artisan db:seed --env=testing --database=sqlite_testing
 ```
+
+### PHPUnit with the `php artisan test` command
+
+You can run the tests using the `php artisan test` command, which is a built-in Laravel command.
 
 And finally, run the tests:
 
