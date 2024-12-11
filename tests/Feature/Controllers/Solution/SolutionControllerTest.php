@@ -5,7 +5,6 @@ namespace Feature\Controllers\Solution;
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Problem\Problem;
-use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
 use App\Models\User\User;
 use Faker\Factory as Faker;
