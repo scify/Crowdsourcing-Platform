@@ -73,7 +73,8 @@
 				</div>
 				<div class="modal-body" v-if="modalProblem.id">
 					<p>
-						Are you sure you want to delete the problem <b>{{ modalProblem.default_translation.title }}</b
+						Are you sure you want to delete the problem
+						<b>{{ modalProblem?.default_translation?.title ?? "Untitled" }}</b
 						>?
 					</p>
 
@@ -94,7 +95,7 @@
 							role="status"
 							aria-hidden="true"
 						></span
-						>In understand, Delete the problem
+						>I understand, Delete the problem
 					</button>
 				</div>
 			</div>
@@ -158,6 +159,7 @@ import "datatables.net";
 import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
 import axios from "axios";
 import CommonModal from "../../../common/ModalComponent.vue";
+import { getLocale } from "../../../../common-utils";
 
 export default {
 	name: "ProblemsManagement",
@@ -238,7 +240,7 @@ export default {
 
 		async getProblemStatusesForManagementPage() {
 			return this.get({
-				url: window.route("api.problems.statuses.management.get"),
+				url: window.route("api.management.problems.statuses.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -252,7 +254,7 @@ export default {
 
 		async getCrowdSourcingProjectsForFiltering() {
 			return this.get({
-				url: window.route("api.problems.projects.get"),
+				url: window.route("api.projects.get"),
 				data: {},
 				urlRelative: false,
 			})
@@ -275,7 +277,7 @@ export default {
 				this.fetched = false;
 				this.problems = [];
 				this.post({
-					url: window.route("api.problems.get-management"),
+					url: window.route("api.management.problems.get"),
 					data: { projectId: this.selectedProjectId },
 					urlRelative: false,
 				})
@@ -308,7 +310,7 @@ export default {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredProblems.map((problem, index) => ({
-						title: problem.default_translation.title,
+						title: problem?.default_translation?.title ?? "Untitled",
 						bookmarks: problem.bookmarks.length,
 						languages: problem.translations
 							? problem.translations.map((t) => t.language.language_name).join(", ")
@@ -322,12 +324,14 @@ export default {
 										Select an action <span class="caret"></span>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
+										<a class="action-btn dropdown-item" target="_blank" href="${this.getAddNewSolutionRoute(problem)}">
+												<i class="fa fa-plus mr-2"></i> ${this.trans("problem.add_new_solution")}</a>
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">
-											<i class="far fa-edit mr-2"></i> Edit</a>
+											<i class="far fa-edit mr-2"></i>${this.trans("common.edit")}</a>
 										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${problem.id}">
-											<i class="fas fa-cog mr-2"></i> Update Status</a>
+											<i class="fas fa-cog mr-2"></i>${this.trans("common.change_status")}</a>
 										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}">
-											<i class="fas fa-trash mr-2"></i> Delete</a>
+											<i class="fas fa-trash mr-2"></i>${this.trans("common.delete")}</a>
 									</div>
 								  </div>`,
 					}));
@@ -335,7 +339,9 @@ export default {
 				}
 			});
 		},
-
+		trans(key) {
+			return window.trans(key);
+		},
 		getBadgeClassForProblemStatus(problemStatus) {
 			// search by id in the problemStatuses array
 			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
@@ -345,8 +351,11 @@ export default {
 			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
 			return status ? status.description : "Unknown status";
 		},
+		getAddNewSolutionRoute(problem) {
+			return window.route("solutions.create", getLocale()) + "?problem_id=" + problem.id;
+		},
 		getProblemEditRoute(problem) {
-			return window.route("problems.edit", problem.id);
+			return window.route("problems.edit", getLocale(), problem.id);
 		},
 
 		openDeleteModal(problem) {
@@ -363,7 +372,7 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.delete(location.href + "/" + this.modalProblem.id)
+				.delete(window.route("problems.destroy", getLocale(), this.modalProblem.id))
 				.then(() => {
 					this.getProjectProblems();
 					this.modalProblem.id = null;

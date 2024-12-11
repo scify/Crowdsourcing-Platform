@@ -50,15 +50,15 @@ class CrowdSourcingProjectController extends Controller {
      */
     public function store(Request $request): RedirectResponse {
         $this->validate($request, [
-            'name' => 'required|string|unique:crowd_sourcing_project_translations,name|max:100',
+            'name' => 'required|string|max:100',
             'description' => 'required|string',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug|max:100',
             'language_id' => 'required|numeric|exists:languages_lkp,id',
         ]);
-        $this->crowdSourcingProjectManager->storeProject($request->all());
+        $project = $this->crowdSourcingProjectManager->storeProject($request->all());
 
-        return back()->with('flash_message_success', 'The project has been successfully created');
+        return redirect()->route('projects.edit', $project->id)->with('flash_message_success', 'The project has been successfully created');
     }
 
     /**
@@ -70,7 +70,7 @@ class CrowdSourcingProjectController extends Controller {
      */
     public function update(Request $request, string $locale, int $id): RedirectResponse {
         $this->validate($request, [
-            'name' => 'required|string|unique:crowd_sourcing_project_translations,name,' . $id . ',project_id|max:100',
+            'name' => 'required|string|max:100',
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
             'description' => 'required|string',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug,' . $id . '|max:100',
@@ -142,7 +142,7 @@ class CrowdSourcingProjectController extends Controller {
         );
     }
 
-    public function getCrowdSourcingProjectsForProblems(): JsonResponse {
-        return response()->json($this->crowdSourcingProjectManager->getCrowdSourcingProjectsForProblems());
+    public function getCrowdSourcingProjectsForManagement(): JsonResponse {
+        return response()->json($this->crowdSourcingProjectManager->getCrowdSourcingProjectsForManagement());
     }
 }

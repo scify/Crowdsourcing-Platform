@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @include('partials.favicons')
-    <title>@yield('title_prefix', isset($viewModel->project) ? $viewModel->project->currentTranslation->name : config('app.name')) @yield('title_postfix', '')</title>
+    @if(!isset($viewModel->page_title))
+        <title>@yield('title_prefix', isset($viewModel->project) ? $viewModel->project->currentTranslation->name : config('app.name')) @yield('title_postfix', '')</title>
+    @else
+        <title>{{ $viewModel->page_title }}</title>
+    @endif
     <meta content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -33,7 +37,7 @@
      style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
-@if(isset($viewModel->project) && $viewModel->project->defaultTranslation->footer)
+@if(isset($viewModel->project) && $viewModel->project->defaultTranslation->footer && $viewModel->project->defaultTranslation->footer != "<p><br></p>")
     <footer class="py-5">
         <div class="container">
             {!! $viewModel->project->defaultTranslation->footer !!}

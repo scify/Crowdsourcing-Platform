@@ -81,7 +81,7 @@ class SolutionSeeder extends Seeder {
         ];
 
         foreach ($solutions as $solution) {
-            Solution::updateOrCreate(['id' => $solution['id']], [
+            Solution::withTrashed()->updateOrCreate(['id' => $solution['id']], [
                 'id' => $solution['id'],
                 'problem_id' => $solution['problem_id'],
                 'user_creator_id' => $solution['user_creator_id'],

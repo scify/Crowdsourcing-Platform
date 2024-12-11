@@ -7,8 +7,10 @@
             <div class="container">
                 <div class="row title-row mb-3 text-center">
                     <div class="col-12 px-5">
-                        <h1 id="motto-title"
-                            class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
+                        <h1 id="project-title"
+                            class="text">{!! $viewModel->project->currentTranslation->name !!}</h1>
+                        <h2 id="motto-title"
+                            class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h2>
                         @if($viewModel->project->currentTranslation->motto_subtitle)
                             <h4 id="motto-subtitle"
                                 class="text text-center pt-5">{!! $viewModel->project->currentTranslation->motto_subtitle !!}</h4>
@@ -41,13 +43,21 @@
                                                     <div class="container mt-5">
                                                         <div class="row mb-4">
                                                             <div class="col-md-8 col-sm-12 mx-auto text-center">
-                                                                @include('gamification.badge-single', ['badge' => $badge])
+                                                                @include('gamification.badge-single', ['badge' => $badge, 'title' => "You are a level " . $badge->level . " " . $badge->badgeName . "!"])
                                                             </div>
                                                         </div>
                                                         @if(\Illuminate\Support\Facades\Auth::check())
                                                             <div class="row">
                                                                 <div class="col-md-7 col-sm-12 mx-auto text-center">
-                                                                    <h3 class="dashboard-message w-100">{{ __('questionnaire.visit_dashboard_and_invite') }}</h3>
+                                                                    <h3 class="dashboard-message w-100">
+                                                                        @if($viewModel->projectHasPublishedProblems)
+                                                                            {{ __('project-problems.project_landing_page_problems_action_button') }}
+                                                                            &
+                                                                            {{ __('project-problems.suggest_solution') }}
+                                                                        @else
+                                                                            {{ __('questionnaire.visit_dashboard_and_invite') }}
+                                                                        @endif
+                                                                    </h3>
                                                                 </div>
                                                             </div>
                                                             <div class="row">

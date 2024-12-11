@@ -203,10 +203,12 @@
 						</div>
 					</div>
 
+					<hr class="my-5" />
+
 					<div class="row mb-3">
 						<div class="col-12">
 							<button
-								class="btn btn-primary"
+								class="btn btn-primary btn-slimmer"
 								type="button"
 								data-toggle="collapse"
 								data-target="#collapseHelpFileType"
@@ -512,7 +514,7 @@ export default defineComponent({
 				this.surveyCreator.translation.toolbarItems.push({
 					id: "auto-translate",
 					visible: true,
-					title: "Translate Survey Now",
+					title: "Generate Translations",
 					action: () => {
 						instance.translateQuestionnaireToLocales(
 							instance.surveyCreator.translation.getSelectedLocales(),
@@ -573,7 +575,7 @@ export default defineComponent({
 				this.surveyCreator.changeText(response.data.translation);
 				this.surveyCreator.showTranslationEditor();
 				this.modalOpen = false;
-				showToast("Translations generated!", "#28a745", "bottom-right");
+				showToast("Translations generated! Don't forget to Save the questionnaire!", "#28a745", "bottom-right", 7000);
 			} catch (error) {
 				console.error(error);
 				this.modalOpen = false;
@@ -583,7 +585,6 @@ export default defineComponent({
 			let locales = this.surveyCreator.translationValue.getSelectedLocales() ?? [];
 			// filter out locales that are empty strings
 			locales = locales.filter((l) => l !== "");
-			console.log(locales);
 			const data = {
 				title: this.questionnaire.default_fields_translation.title,
 				description: this.questionnaire.default_fields_translation.description,
@@ -638,7 +639,8 @@ export default defineComponent({
 						confirmButtonText: "OK",
 					},
 					() => {
-						window.location = window.route("edit-questionnaire", response.data.id);
+						// refresh the page
+						location.reload();
 					},
 				);
 			} catch (error) {

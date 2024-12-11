@@ -21,6 +21,7 @@ use App\Http\Controllers\Questionnaire\QuestionnaireAnswerAnnotationController;
 use App\Http\Controllers\Questionnaire\QuestionnaireController;
 use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
+use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\UserController;
 
 Route::middleware(['throttle:api-public'])->group(function () {
@@ -38,6 +39,7 @@ Route::middleware(['throttle:api-public'])->group(function () {
 
 Route::middleware(['throttle:api-internal', 'auth'])->group(function () {
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('api.questionnaire.answer-votes.store');
+    Route::get('/solutions', [SolutionController::class, 'getSolutions'])->name('api.solutions.get');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:moderate-content-by-users']], function () {
@@ -53,9 +55,15 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('api.questionnaire.update');
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('api.questionnaire.translation.store');
     Route::post('/questionnaire/mark-translations', [QuestionnaireController::class, 'markQuestionnaireTranslations'])->name('api.questionnaire.translations.mark');
-    Route::get('/problems/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForProblems'])->name('api.problems.projects.get');
-    Route::post('/problems/management', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.problems.get-management');
-    Route::get('/problems/statuses/management', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.problems.statuses.management.get');
+    Route::get('/management/projects', [CrowdSourcingProjectController::class, 'getCrowdSourcingProjectsForManagement'])->name('api.projects.get');
+    Route::post('/management/problems', [ProblemController::class, 'getProblemsForCrowdSourcingProjectForManagement'])->name('api.management.problems.get');
+    Route::get('/management/problems/statuses', [ProblemController::class, 'getProblemStatusesForManagementPage'])->name('api.management.problems.statuses.get');
+    Route::post('/management/solutions/problems', [ProblemController::class, 'getProblemsForManagement'])->name('api.management.solutions.problems.get');
+    Route::post('/management/solutions', [SolutionController::class, 'getFilteredSolutionsForManagement'])->name('api.management.solutions.get');
+    Route::get('/management/solutions/statuses', [SolutionController::class, 'getSolutionStatusesForManagementPage'])->name('api.management.solutions.statuses.get');
+    Route::post('/translate/get-automatic.translations', [LanguageController::class, 'getAutomaticTranslationForTexts'])->name('api.translate.get-automatic-translations');
+    Route::put('/problems/update-status/{id}', [ProblemController::class, 'updateStatus'])->name('api.problems.update-status');
+    Route::put('/solutions/update-status/{id}', [SolutionController::class, 'updateStatus'])->name('api.solutions.update-status');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {

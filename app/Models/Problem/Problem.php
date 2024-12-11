@@ -2,18 +2,22 @@
 
 namespace App\Models\Problem;
 
+use App\Models\Solution\Solution;
 use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Problem extends Model {
     use Compoships;
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'problems';
     protected $fillable = ['id', 'project_id', 'user_creator_id', 'slug', 'status_id', 'img_url', 'default_language_id'];
+    protected $with = ['defaultTranslation'];
 
     public function defaultTranslation(): HasOne {
         return $this->hasOne(ProblemTranslation::class,
@@ -30,6 +34,10 @@ class Problem extends Model {
 
     public function bookmarks(): HasMany {
         return $this->hasMany(ProblemUserBookmark::class, 'problem_id', 'id');
+    }
+
+    public function solutions(): HasMany {
+        return $this->hasMany(Solution::class, 'problem_id', 'id');
     }
 
     //observe this model being deleted and delete the related records

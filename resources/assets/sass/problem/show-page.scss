@@ -1,0 +1,125 @@
+@import "bootstrap_4point6_custom_xxl"; // this page uses custom styles to support one more bootstrap size: xxl from 1260px and UP
+
+#single-problem-page {
+	#single-problem-overview,
+	.row.problem-description {
+		padding-bottom: 3.25rem;
+	}
+
+	.section-title {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		font-family: "Noto Sans Variable", sans-serif;
+		font-weight: 600;
+		font-size: 24px; // 24px // bookmark1 - calulate in rem
+		line-height: 32.69px; // 32.69px // bookmark1 - calculate in rem
+		text-align: left;
+	}
+
+	.section-body {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
+	.section-body p {
+		font-family: "Open Sans Variable", sans-serif;
+		font-weight: 400;
+		font-size: 16px; // 16px // bookmark1 - calulate in rem
+		line-height: 21.82px; // 21.82px // bookmark1 - calulate in rem
+		text-align: left;
+	}
+
+	.go-back-link {
+		display: inline-block;
+	}
+	.go-back-link a {
+		display: inline-block;
+		border-radius: 0.2rem;
+
+		&:focus-visible {
+			outline: 2px solid black;
+		}
+	}
+	.go-back-link a i {
+		font-size: 4rem;
+		vertical-align: middle;
+		padding-right: 0.3rem;
+	}
+	.go-back-link a span {
+		font-family: "Noto Sans Variable", sans-serif;
+		font-weight: 400;
+		font-size: 1.714rem; // 24px
+		line-height: 2.335rem; // 32.69px
+		text-align: left;
+		position: relative;
+		top: 0.3rem;
+		padding-right: 0.2rem;
+	}
+
+	section {
+		p,
+		h1,
+		h2 {
+			padding: unset;
+		}
+	}
+
+	#solutions-list h2 {
+		padding-top: 5rem;
+	}
+}
+
+// from "sm" and UP
+@media (min-width: 576px) {
+	#single-problem-page {
+		#single-problem-overview,
+		.row.problem-description {
+			padding-bottom: 7.5rem;
+		}
+
+		.section-title {
+			padding-left: 0;
+			padding-right: 0;
+			font-size: 2.286rem; // 32px
+			line-height: 3.113rem; // 43.58px
+		}
+
+		.section-body {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.section-body p {
+			font-size: 1.429rem; // 20px
+			line-height: 1.949rem; // 27.28px
+		}
+	}
+}
+
+// from "lg" and UP
+@media (min-width: 992px) {
+}
+
+// from "xl" and UP
+@media (min-width: 1200px) {
+}
+
+// from (custom breakpoint) "custom_xxl" and UP
+@media (min-width: 1260px) {
+}
+
+// from "sm" and DOWN
+@media (max-width: 767.98px) {
+}
+
+// from "md" and DOWN
+@media (max-width: 991.98px) {
+}
+
+// from "lg" and DOWN
+@media (max-width: 1199.98px) {
+}
+
+// from "xl" and DOWN
+@media (max-width: 1259.98px) {
+}

@@ -4,7 +4,7 @@ namespace App\BusinessLogicLayer\Problem;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
-use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
 use App\Models\Problem\Problem;
 use App\Models\Problem\ProblemTranslation;
 use App\Repository\LanguageRepository;
@@ -12,6 +12,7 @@ use App\Repository\Problem\ProblemRepository;
 use App\Repository\RepositoryException;
 use App\Utils\FileHandler;
 use App\ViewModels\Problem\CreateEditProblem;
+use App\ViewModels\Problem\ProblemPublicPage;
 use App\ViewModels\Problem\ProblemsLandingPage;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +25,6 @@ class ProblemManager {
     protected ProblemStatusManager $problemStatusManager;
     protected LanguageRepository $languageRepository;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
-
-    const DEFAULT_IMAGE_PATH = '/images/problem_default_image.png';
 
     public function __construct(
         ProblemRepository $problemRepository,
@@ -79,8 +78,6 @@ class ProblemManager {
     public function storeProblem(array $attributes): int {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $crowdSourcingProjectProblem = Problem::create([
@@ -109,8 +106,6 @@ class ProblemManager {
     public function updateProblem(int $id, array $attributes) {
         if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $modelAttributes['project_id'] = $attributes['problem-owner-project'];
@@ -135,7 +130,7 @@ class ProblemManager {
         // if the image is not the default one
         // and if it does not start with "/images" (meaning it is a default public image)
         // and if it does not start with "http" (meaning it is an external image)
-        if ($problem->img_url !== self::DEFAULT_IMAGE_PATH &&
+        if ($problem->img_url &&
             !str_starts_with($problem->img_url, '/images') &&
             !str_starts_with($problem->img_url, 'http')) {
             FileHandler::deleteUploadedFile($problem->img_url, 'problem_img');
@@ -148,16 +143,16 @@ class ProblemManager {
         $problemStatuses = $this->problemStatusManager->getAllProblemStatusesLkp();
         foreach ($problemStatuses as $problemStatus) {
             switch ($problemStatus->id) {
-                case CrowdSourcingProjectStatusLkp::DRAFT:
+                case ProblemStatusLkp::DRAFT:
                     $problemStatus->badgeCSSClass = 'badge-secondary';
                     break;
-                case CrowdSourcingProjectStatusLkp::PUBLISHED:
+                case ProblemStatusLkp::PUBLISHED:
                     $problemStatus->badgeCSSClass = 'badge-success';
                     break;
-                case CrowdSourcingProjectStatusLkp::FINALIZED:
+                case ProblemStatusLkp::FINALIZED:
                     $problemStatus->badgeCSSClass = 'badge-info';
                     break;
-                case CrowdSourcingProjectStatusLkp::UNPUBLISHED:
+                case ProblemStatusLkp::UNPUBLISHED:
                     $problemStatus->badgeCSSClass = 'badge-danger';
                     break;
                 default:
@@ -181,5 +176,19 @@ class ProblemManager {
         $langId = $this->languageRepository->getLanguageByCode($getLocale)->id;
 
         return $this->problemRepository->getProblemsForCrowdSourcingProjectForLandingPage($projectId, $langId);
+    }
+
+    public function getProblemsForManagement(int $projectId): Collection {
+        return $this->problemRepository->getProblemsForManagement($projectId);
+    }
+
+    public function getProblemPublicPageViewModel(string $locale, string $project_slug, string $problem_slug): ProblemPublicPage {
+        $problem = $this->problemRepository->findBy('slug', $problem_slug);
+        $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
+
+        $project = $this->problemRepository->getProjectWithProblemsByProjectSlug($project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+
+        return new ProblemPublicPage($problem, $project);
     }
 }

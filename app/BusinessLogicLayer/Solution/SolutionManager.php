@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogicLayer\Solution;
 
+use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
 use App\Repository\LanguageRepository;
@@ -9,6 +10,7 @@ use App\Repository\Problem\ProblemRepository;
 use App\Repository\Solution\SolutionRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -20,8 +22,6 @@ class SolutionManager {
     protected SolutionTranslationManager $solutionTranslationManager;
     protected SolutionStatusManager $solutionStatusManager;
     protected LanguageRepository $languageRepository;
-
-    const DEFAULT_IMAGE_PATH = '/images/problem_default_image.png'; // bookmark3 - change this to the correct path
 
     public function __construct(
         SolutionRepository $solutionRepository,
@@ -72,8 +72,6 @@ class SolutionManager {
     public function storeSolution(array $attributes): int {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
@@ -113,8 +111,6 @@ class SolutionManager {
     public function updateSolution(int $id, array $attributes) {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
-        } else {
-            $imgPath = self::DEFAULT_IMAGE_PATH;
         }
 
         $modelAttributes['problem_id'] = $attributes['solution-owner-problem'];
@@ -133,5 +129,62 @@ class SolutionManager {
         $extraTranslations = isset($attributes['extra_translations']) ? json_decode($attributes['extra_translations']) : [];
         $this->solutionTranslationManager
             ->updateSolutionTranslations($id, $defaultTranslation, $extraTranslations);
+    }
+
+    public function getSolutionStatusesForManagementPage(): Collection {
+        $solutionStatuses = $this->solutionStatusManager->getAllSolutionStatusesLkp();
+        foreach ($solutionStatuses as $solutionStatus) {
+            switch ($solutionStatus->id) {
+                case SolutionStatusLkp::PUBLISHED:
+                    $solutionStatus->badgeCSSClass = 'badge-success';
+                    break;
+                case SolutionStatusLkp::UNPUBLISHED:
+                    $solutionStatus->badgeCSSClass = 'badge-danger';
+                    break;
+                default:
+                    $solutionStatus->badgeCSSClass = 'badge-dark';
+                    $solutionStatus->description = 'The problem is in an unknown status';
+            }
+        }
+
+        return $solutionStatuses;
+    }
+
+    public function getFilteredSolutionsForManagement($filters): Collection {
+        if (count($filters['problemFilters'])) {
+            return $this->solutionRepository->getSolutionsForManagementFilteredByProblemIds($filters['problemFilters']);
+        }
+        $problem_ids = [];
+        foreach ($filters['projectFilters'] as $project_id) {
+            $problem_ids = array_merge($problem_ids, $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id')->toArray());
+        }
+
+        return $this->solutionRepository->getSolutionsForManagementFilteredByProjectIds($problem_ids);
+    }
+
+    public function getSolutions(mixed $problem_id): Collection {
+        $current_language_code = app()->getLocale();
+        $current_language = $this->languageRepository->getLanguageByCode($current_language_code);
+        $current_language_id = $current_language ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
+
+        return $this->solutionRepository->getSolutions($problem_id, $current_language_id, Auth::id());
+    }
+
+    public function updateSolutionStatus(int $id, int $status_id) {
+        return $this->solutionRepository->update(['status_id' => $status_id], $id);
+    }
+
+    public function deleteSolution(int $id): bool {
+        $solution = $this->solutionRepository->find($id);
+        // if the image is not the default one
+        // and if it does not start with "/images" (meaning it is a default public image)
+        // and if it does not start with "http" (meaning it is an external image)
+        if ($solution->img_url &&
+            !str_starts_with($solution->img_url, '/images') &&
+            !str_starts_with($solution->img_url, 'http')) {
+            FileHandler::deleteUploadedFile($solution->img_url, 'solution_img');
+        }
+
+        return $this->solutionRepository->delete($id);
     }
 }

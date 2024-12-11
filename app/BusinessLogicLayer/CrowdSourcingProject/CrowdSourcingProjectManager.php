@@ -27,11 +27,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
     const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
+    const DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG = '/images/questionnaire_bg_default.webp';
 
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected QuestionnaireRepository $questionnaireRepository;
@@ -74,7 +74,10 @@ class CrowdSourcingProjectManager {
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
-        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithAtLeastOneQuestionnaireWithStatus($language->id);
+        if (!$language) {
+            $language = $this->languageRepository->getDefaultLanguage();
+        }
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsForHomePage($language->id);
 
         foreach ($projects as $project) {
             // if the model has a "translations" relationship and the first item is not null,
@@ -175,7 +178,7 @@ class CrowdSourcingProjectManager {
         );
     }
 
-    public function storeProject(array $attributes) {
+    public function storeProject(array $attributes): CrowdSourcingProject {
         $attributes['user_creator_id'] = Auth::id();
 
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes);
@@ -183,9 +186,11 @@ class CrowdSourcingProjectManager {
         $project = $this->crowdSourcingProjectRepository->create($attributes);
 
         $this->updateProject($project->id, $attributes);
+
+        return $project;
     }
 
-    public function updateProject($id, array $attributes) {
+    public function updateProject($id, array $attributes): void {
         $project = $this->getCrowdSourcingProject($id);
         $attributes = $this->setDefaultValuesForCommonProjectFields($attributes, $project);
 
@@ -236,10 +241,6 @@ class CrowdSourcingProjectManager {
             $attributes['about'] = $attributes['description'];
         }
 
-        if (!isset($attributes['footer']) || !$attributes['footer']) {
-            $attributes['footer'] = $attributes['description'];
-        }
-
         if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {
             $attributes['img_path'] = self::DEFAULT_IMAGE_PATH;
         }
@@ -255,7 +256,7 @@ class CrowdSourcingProjectManager {
 
         if ((!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
             && (!$project || !$project->lp_questionnaire_img_path)) {
-            $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH;
+            $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 
         if (!isset($attributes['lp_show_speak_up_btn'])) {
@@ -290,10 +291,10 @@ class CrowdSourcingProjectManager {
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         if (!$project->lp_primary_color) {
-            $project->lp_primary_color = '#0069d9';
+            $project->lp_primary_color = '#F5BA16';
         }
         if (!$project->lp_btn_text_color_theme) {
-            $project->lp_btn_text_color_theme = 'light';
+            $project->lp_btn_text_color_theme = 'dark';
         }
 
         return $project;
@@ -401,46 +402,74 @@ class CrowdSourcingProjectManager {
             $now = Date::now();
             $project = $this->getCrowdSourcingProject($id);
             $project->load(['language', 'status', 'translations']);
+            // remove the defaultTranslation attribute from the model
+            unset($project->defaultTranslation);
+            unset($project->currentTranslation);
+            // clone the project
             $clone = $project->replicate();
-            $clone->name .= ' - Clone';
             $clone->created_at = $now;
             $clone->updated_at = $now;
             $clone->user_creator_id = Auth::id();
 
-            foreach ($project->colors as $color) {
-                $clone->colors()->attach($color, ['created_at' => $now, 'updated_at' => $now]);
-                // you may set the timestamps to the second argument of attach()
-            }
+            $clone->slug = $project->slug . '-copy';
+
             if ($clone->img_path) {
-                $clone->img_path = $this->copyProjectFile($clone->img_path);
+                $clone->img_path = $this->copyProjectFile($clone->img_path, 'project_img');
             }
             if ($clone->logo_path) {
-                $clone->logo_path = $this->copyProjectFile($clone->logo_path);
+                $clone->logo_path = $this->copyProjectFile($clone->logo_path, 'project_logos');
             }
             if ($clone->lp_questionnaire_img_path) {
-                $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path);
+                $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path, 'project_questionnaire_bg_img');
             }
             if ($clone->sm_featured_img_path) {
-                $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path);
+                $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path, 'project_sm_featured_img');
             }
             $clone->push();
+
+            // change the name of the default translation of the cloned project
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject([
+                'name' => $project->defaultTranslation->name . ' - Copy',
+                'description' => $project->defaultTranslation->description,
+                'motto_title' => $project->defaultTranslation->motto_title,
+                'motto_subtitle' => $project->defaultTranslation->motto_subtitle,
+                'about' => $project->defaultTranslation->about,
+                'sm_title' => $project->defaultTranslation->sm_title,
+                'sm_description' => $project->defaultTranslation->sm_description,
+                'sm_keywords' => $project->defaultTranslation->sm_keywords,
+                'language_id' => $project->defaultTranslation->language_id,
+                'footer' => $project->defaultTranslation->footer,
+            ], $clone->id);
+
+            // we need to also copy the extra translations
+            $extraTranslations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
+            // set the name only of the default translation as the name of the cloned project + ' - Copy'
+            // find the default translation inside the extra translations and set the name to the new name
+            $extraTranslations->each(function ($translation) use ($clone) {
+                if ($translation->language_id === $clone->defaultTranslation->language_id) {
+                    $translation->name = $clone->defaultTranslation->name;
+                }
+            });
+
+            $this->crowdSourcingProjectTranslationManager->storeOrUpdateExtraTranslationsForProject(
+                $extraTranslations->toArray(), $clone->id, $project->defaultTranslation->language_id);
+
+            foreach ($project->colors as $color) {
+                $cloneColor = $color->replicate();
+                $cloneColor->project_id = $clone->id;
+                $cloneColor->save();
+            }
 
             return $clone;
         });
     }
 
-    protected function copyProjectFile(string $filePath): string {
-        if (!$filePath) {
-            return '';
-        }
-        $ext = pathinfo($filePath, PATHINFO_EXTENSION);
-        $newFile = basename($filePath, '.' . $ext);
-        $newFile .= '_' . now()->getTimestamp() . '.' . $ext;
-        $file = basename($filePath, '.' . $ext);
-        $lastDirName = basename(dirname($filePath));
-        Storage::copy('public/uploads/' . $lastDirName . '/' . $file . '.' . $ext, 'public/uploads/' . $lastDirName . '/' . $newFile);
+    protected function copyProjectFile(string $filePath, string $dirName): string {
+        // copy the file to the new location
+        $newPath = FileHandler::copyFile($filePath, $dirName);
 
-        return '/storage/uploads/' . $lastDirName . '/' . $newFile;
+        // return the new path
+        return $newPath;
     }
 
     public function getCrowdSourcingProjectsWithActiveProblems(): Collection {
@@ -468,10 +497,10 @@ class CrowdSourcingProjectManager {
         return $projects;
     }
 
-    public function getCrowdSourcingProjectsForProblems(): Collection {
+    public function getCrowdSourcingProjectsForManagement(): Collection {
         $user = Auth::user();
-        $user_cretor_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
+        $user_creator_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
 
-        return $this->crowdSourcingProjectRepository->getProjectsForProblems($user_cretor_id);
+        return $this->crowdSourcingProjectRepository->getProjectsForManagement($user_creator_id);
     }
 }

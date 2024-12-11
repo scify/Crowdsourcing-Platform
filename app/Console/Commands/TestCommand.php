@@ -50,6 +50,10 @@ class TestCommand extends Command {
             ]);
         }
 
+        // Clear any configuration cache
+        $this->info('Clearing the configuration cache...');
+        Artisan::call('config:clear');
+
         // Prepare the test command options
         $testOptions = [];
 
@@ -62,7 +66,7 @@ class TestCommand extends Command {
         }
 
         // Clear inherited options to avoid conflicts
-        $this->info('Running tests...');
+        $this->info('Running tests with the following options:' . PHP_EOL . json_encode($testOptions, JSON_PRETTY_PRINT));
         $this->unsetConflictOptions();
 
         Artisan::call('test', $testOptions);
