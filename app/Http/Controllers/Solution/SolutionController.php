@@ -55,7 +55,7 @@ class SolutionController extends Controller {
             'solution-owner-problem' => ['required'],
         ]);
 
-        $attributes = $request->all();
+        $attributes = $request->validated();
 
         try {
             $createdSolutionId = $this->solutionManager->storeSolution($attributes);
@@ -81,7 +81,7 @@ class SolutionController extends Controller {
         ]);
 
         try {
-            $createdSolutionId = $this->solutionManager->storeSolutionFromPublicForm($request->all());
+            $createdSolutionId = $this->solutionManager->storeSolutionFromPublicForm($request->validated());
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -129,7 +129,7 @@ class SolutionController extends Controller {
             'solution-owner-problem' => ['required'],
         ]);
 
-        $attributes = $request->all();
+        $attributes = $request->validated();
 
         try {
             $this->solutionManager->updateSolution($id, $attributes);
