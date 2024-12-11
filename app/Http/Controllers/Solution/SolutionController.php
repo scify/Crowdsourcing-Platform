@@ -72,7 +72,7 @@ class SolutionController extends Controller {
         return redirect($route);
     }
 
-    public function storeSolutionFromPublicForm(Request $request): RedirectResponse {
+    public function userProposalStore(Request $request): RedirectResponse {
         $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],

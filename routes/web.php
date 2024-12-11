@@ -127,7 +127,3 @@ Route::group($localeInfo, function () {
     Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('problem.show');
     Route::get('/{project_slug}/problems/{problem_slug}/solutions/', [ProblemController::class, 'show'])->name('problem.show.solutions');
 });
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::post('/solutions', [SolutionController::class, 'storeSolutionFromPublicForm'])->name('solutions.store.public');
-});
