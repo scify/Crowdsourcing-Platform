@@ -238,7 +238,7 @@ class CrowdSourcingProjectManager {
         }
 
         if (!isset($attributes['about']) || !$attributes['about']) {
-            $attributes['about'] = $attributes['description'];
+            $attributes['about'] = trim($attributes['description']);
         }
 
         if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {

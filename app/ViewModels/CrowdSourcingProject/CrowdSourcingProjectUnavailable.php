@@ -5,18 +5,17 @@ namespace App\ViewModels\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
 
-class CrowdSourcingProjectUnavailable {
-    public $project;
+class CrowdSourcingProjectUnavailable extends CrowdSourcingProjectLayoutPage {
     public $projects;
     public $statusMessage;
 
     public function __construct(CrowdSourcingProject $project, Collection $projects, string $statusMessage) {
-        $this->project = $project;
+        parent::__construct($project);
         $this->projects = $projects;
         $this->statusMessage = $statusMessage;
     }
 
-    public function getProjectStatusMessage() {
+    public function getProjectStatusMessage(): string {
         return $this->statusMessage;
     }
 }

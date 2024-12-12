@@ -32,6 +32,14 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 		});
 	};
 
+	const trimTextareaInputFields = function () {
+		// get all textarea elements
+		// and trim their values
+		$("textarea").each(function () {
+			$(this).val($.trim($(this).val()));
+		});
+	};
+
 	const init = function () {
 		$(".dropdown-toggle").dropdown();
 		handleLogoutBtnClick();
@@ -39,6 +47,7 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 			$("html, body").animate({ scrollTop: $(this.hash).offset().top - 100 }, 1000);
 			return false;
 		});
+		trimTextareaInputFields();
 	};
 
 	$(document).ready(function () {

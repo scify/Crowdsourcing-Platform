@@ -2,12 +2,6 @@
 
 namespace App\ViewModels\Problem;
 
-use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectLayoutPage;
 
-class ProblemsLandingPage {
-    public CrowdSourcingProject $project;
-
-    public function __construct(CrowdSourcingProject $crowdSourcingProject) {
-        $this->project = $crowdSourcingProject;
-    }
-}
+class ProblemsLandingPage extends CrowdSourcingProjectLayoutPage {}

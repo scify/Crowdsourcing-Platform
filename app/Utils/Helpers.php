@@ -12,4 +12,15 @@ class Helpers {
             ARRAY_FILTER_USE_KEY
         );
     }
+
+    /**
+     * Checks if the value is not empty
+     * @param $value mixed
+     * @return bool whether the value is not empty
+     */
+    public static function HTMLValueIsNotEmpty(mixed $value): bool {
+        return $value && $value !== '<p><br></p>'
+            && $value !== '<p><br></p><p><br></p>'
+            && $value !== '<p>&nbsp;</p>';
+    }
 }

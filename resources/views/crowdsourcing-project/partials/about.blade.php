@@ -14,7 +14,7 @@
                         {!! $viewModel->project->currentTranslation->about !!}
                     </div>
 
-                    @if($viewModel->project->external_url && starts_with($viewModel->project->external_url, ['http', 'https']))
+                    @if($viewModel->projectHasExternalURL())
                         <div class="col-md-10 col-sm-12 p-0 mx-auto">
                             <div class="text-center">
                                 <div class="container-fluid">
