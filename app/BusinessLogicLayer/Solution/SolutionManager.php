@@ -277,17 +277,14 @@ class SolutionManager {
         $problem = $this->solutionRepository->find($solution_id)->problem;
         $project = $problem->project;
 
-        $problem_ids = $project->problems->pluck('id')->toArray();
-        // we need to get all the upvote records for the current user, for these problem ids
-        // get the solution ids for these problems
-        $solution_ids = $this->solutionRepository->getSolutionsForProblems($problem_ids)->pluck('id')->toArray();
+        $user_votes = $this->getUserVotesNum($problem->id);
+        $votes_left = $project->max_votes_per_user_for_solutions - $user_votes;
 
         $solution_upvote = $this->solutionUpvoteRepository->where([
             'solution_id' => $solution_id,
             'user_voter_id' => $user_id,
         ]);
-        $user_votes = $this->solutionUpvoteRepository->getNumberOfVotesForUser($user_id, $solution_ids);
-        $votes_left = $project->max_votes_per_user_for_solutions - $user_votes;
+
 
         if ($solution_upvote) {
             $solution_upvote->delete();
@@ -312,5 +309,22 @@ class SolutionManager {
             'upvote' => $upvote,
             'user_votes_left' => $votes_left - 1,
         ];
+    }
+
+    /**
+     * Gets the number of votes the current user has for this problem
+     * @param int $problem_id the id of the problem
+     * @return int the number of votes the current user has for this problem
+     */
+    public function getUserVotesNum(int $problem_id): int {
+        $user_id = Auth::id();
+        if (!$user_id) {
+            return 0;
+        }
+        $project = $this->problemRepository->find($problem_id)->project;
+        $problem_ids = $project->problems->pluck('id')->toArray();
+        $solution_ids = $this->solutionRepository->getSolutionsForProblems($problem_ids)->pluck('id')->toArray();
+
+        return $this->solutionUpvoteRepository->getNumberOfVotesForUser($user_id, $solution_ids);
     }
 }

@@ -50,22 +50,23 @@ class SolutionAPIControllerTest extends TestCase {
         // Assert
         $response->assertStatus(200);
         $response->assertJsonStructure([
-            '*' => [
-                'id',
-                'problem_id',
-                'slug',
-                'img_url',
-                'created_at',
-                'updated_at',
-                'deleted_at',
-                'status_id',
-                'user_creator_id',
-                'default_translation',
-                'translations',
-                'upvotes_count',
-                'current_translation',
-                'upvoted_by_current_user',
-            ],
+            'solutions' => [
+                '*' => [
+                    'id',
+                    'problem_id',
+                    'slug',
+                    'img_url',
+                    'created_at',
+                    'updated_at',
+                    'deleted_at',
+                    'status_id',
+                    'user_creator_id',
+                    'default_translation',
+                    'translations',
+                    'upvotes_count',
+                    'current_translation',
+                    'upvoted_by_current_user',
+                ]],
         ]);
     }
 
@@ -112,25 +113,27 @@ class SolutionAPIControllerTest extends TestCase {
         // Assert
         $response->assertStatus(200);
         $response->assertJsonStructure([
-            '*' => [
-                'id',
-                'problem_id',
-                'slug',
-                'img_url',
-                'created_at',
-                'updated_at',
-                'deleted_at',
-                'status_id',
-                'user_creator_id',
-                'default_translation',
-                'translations',
-                'upvotes_count',
-                'current_translation',
-                'upvoted_by_current_user',
+            'solutions' => [
+                '*' => [
+                    'id',
+                    'problem_id',
+                    'slug',
+                    'img_url',
+                    'created_at',
+                    'updated_at',
+                    'deleted_at',
+                    'status_id',
+                    'user_creator_id',
+                    'default_translation',
+                    'translations',
+                    'upvotes_count',
+                    'current_translation',
+                    'upvoted_by_current_user',
+                ],
             ],
         ]);
         // assert also that the upvoted_by_current_user field is set to true for the upvoted solution
-        $solutions = $response->json();
+        $solutions = $response->json('solutions');
         $upvoted_solution = collect($solutions)->firstWhere('id', $solution_id);
         $this->assertTrue($upvoted_solution['upvoted_by_current_user']);
     }
