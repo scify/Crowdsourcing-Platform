@@ -471,6 +471,28 @@ And finally, run the tests:
   php artisan test --env=testing --filter {METHOD OR CLASS NAME} --coverage
 ```
 
+### Run the tests with the `run-tests.sh` script
+
+You can also run the tests using the `run-tests.sh` script, which is a wrapper around the PHPUnit command.
+
+```bash
+  chmod +x run-tests.sh
+
+  ./run-tests.sh
+```
+
+This can also take any arguments (like the `--filter` or `--coverage` flag) that you would pass to the PHPUnit command.
+
+```bash
+  ./run-tests.sh --filter {METHOD OR CLASS NAME}
+```
+
+or
+
+```bash
+  ./run-tests.sh --coverage
+```
+
 ## How to debug
 
 By using Docker Compose, you can debug the application by following these steps:
