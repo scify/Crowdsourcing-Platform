@@ -193,7 +193,7 @@ class SolutionAPIControllerTest extends TestCase {
      *
      * @group solutions
      *
-     * Test Scenario 2: (Downvote, or remove upvote)
+     * Test Scenario 3: (Downvote, or remove upvote)
      * GIVEN that a user is logged in,
      * AND the user has already upvoted the Solution,
      * WHEN the user votes the Solution,
