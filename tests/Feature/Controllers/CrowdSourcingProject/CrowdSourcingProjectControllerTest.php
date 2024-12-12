@@ -46,7 +46,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         $response->assertStatus(200);
-        $response->assertSee('This project is finalized.<br>Thank you for your contribution!', false);
+        $response->assertSee('This campaign is finalized.<br>Thank you for your contribution!', false);
         $response->assertViewIs('crowdsourcing-project.project-unavailable');
     }
 
@@ -65,7 +65,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         $response->assertStatus(200);
-        $response->assertSee('This project is unpublished.', false);
+        $response->assertSee('This campaign is not published yet.', false);
         $response->assertViewIs('crowdsourcing-project.project-unavailable');
     }
 

@@ -14,8 +14,11 @@
                                 {!! $viewModel->questionnaire->fieldsTranslation->description !!}
                             </div>
 
-                            <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; height: 200px"></div>
-
+                            @if($viewModel->project->lp_questionnaire_img_path)
+                                <div style="background-image: url('{{$viewModel->project->lp_questionnaire_img_path}}'); background-size: contain; background-repeat: no-repeat; height: 200px"></div>
+                            @else
+                                <div style="background-image: url('/images/project_lp_questionnaire.webp'); background-size: contain; background-repeat: no-repeat; height: 200px"></div>
+                            @endif
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10 col-sm-11 mx-auto">

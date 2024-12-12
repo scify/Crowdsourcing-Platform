@@ -348,7 +348,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the external link Call-to-Action (CTA) button
-        $response->assertSee('Visit project’s site');
+        $response->assertSee('Visit campaign webpage');
     }
 
     /**
@@ -506,7 +506,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
 
         // We need to assert that the page has the external link Call-to-Action (CTA) button
-        $response->assertSee(__('questionnaire.visit_projects_site'));
+        $response->assertSee(__('project.visit_project_webpage_link_text'));
     }
 
     /**

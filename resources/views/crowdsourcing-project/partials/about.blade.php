@@ -22,7 +22,7 @@
                                         <div class="col-12 mx-auto mt-5">
                                             <a href="{{$viewModel->project->external_url}}" target="_blank"
                                                class="btn btn-primary visit-project-website call-to-action">
-                                                {{ __("questionnaire.visit_projects_site") }}
+                                                {{ __("project.visit_project_webpage_link_text") }}
                                             </a>
                                         </div>
                                     </div>

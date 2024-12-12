@@ -178,7 +178,10 @@ class SolutionController extends Controller {
             'problem_id' => 'required|exists:problems,id',
         ]);
 
-        return response()->json($this->solutionManager->getSolutions($request->problem_id));
+        return response()->json([
+            'user_votes' => $this->solutionManager->getUserVotesNum($request->problem_id),
+            'solutions' => $this->solutionManager->getSolutions($request->problem_id),
+        ]);
     }
 
     public function userProposalCreate(string $locale, string $project_slug, string $problem_slug): View|RedirectResponse {
@@ -220,5 +223,13 @@ class SolutionController extends Controller {
         $viewModel = $this->solutionManager->getSolutionSubmittedViewModel($project_slug, $problem_slug, $solution_slug);
 
         return view('solution.submitted', ['viewModel' => $viewModel]);
+    }
+
+    public function voteOrDownVoteSolution(Request $request): JsonResponse {
+        $this->validate($request, [
+            'solution_id' => 'required|exists:solutions,id',
+        ]);
+
+        return response()->json($this->solutionManager->voteOrDownVoteSolution($request->solution_id));
     }
 }
