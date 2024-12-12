@@ -5,7 +5,12 @@
 	z-index: 100000;
 	right: 25px;
 	top: 25px;
-	width: min(calc(100% - 50px), 26.25rem);
+	max-width: 90%;
+
+	h4 {
+		margin: 0;
+		padding: 10px 0;
+	}
 
 	* {
 		color: $white;

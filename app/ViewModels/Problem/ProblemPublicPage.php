@@ -4,15 +4,15 @@ namespace App\ViewModels\Problem;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Problem\Problem;
+use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectLayoutPage;
 
-class ProblemPublicPage {
+class ProblemPublicPage extends CrowdSourcingProjectLayoutPage {
     public Problem $problem;
-    public CrowdSourcingProject $project;
     public string $page_title;
 
     public function __construct(Problem $problem, CrowdSourcingProject $project) {
+        parent::__construct($project);
         $this->problem = $problem;
-        $this->project = $project;
         $this->page_title = $project->currentTranslation->name . ' | ' . $problem->currentTranslation->title;
     }
 }

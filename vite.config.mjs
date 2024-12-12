@@ -43,6 +43,7 @@ export default defineConfig({
 				"resources/assets/sass/problem/landing-page.scss",
 				"resources/assets/sass/problem/show-page.scss",
 				"resources/assets/sass/solution/create-edit-solution.scss",
+				"resources/assets/sass/solution/propose-page.scss",
 				"resources/assets/sass/gamification/progress.scss",
 				"resources/assets/sass/pages/my-contributions.scss",
 				"resources/assets/js/common-backoffice.js",

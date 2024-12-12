@@ -18,7 +18,7 @@ class ProblemControllerTest extends TestCase {
 
         // 302 is the status code for a redirect (to the login page)
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**

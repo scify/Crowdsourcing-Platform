@@ -1,7 +1,7 @@
 <div @if (App::environment('staging')) class="header-margin-top" @endif>
     <nav class="main-header navbar navbar-expand-lg navbar-white navbar-light fixed-top navbar-default navbar-fixed-top m-0"
          style="z-index: 100000;">
-        @if(isset($viewModel->project) &&  isset($viewModel->project->external_url) && $viewModel->project->external_url !=null)
+        @if($viewModel->projectHasExternalURL())
             <a class="navbar-brand" target="_blank" href="{{ $viewModel->project->external_url}}">
                 <img loading="lazy" alt="{{$viewModel->project->currentTranslation->name}}"
                      src="{{asset($viewModel->project->logo_path)}}">
@@ -19,10 +19,14 @@
 
         <div class="collapse navbar-collapse pull-right" id="top-menu-content">
             <ul class="nav navbar-nav ml-auto">
-                @if(isset($viewModel->project))
                 <li class="nav-item">
-                    <a class="nav-link" href="/{{ app()->getLocale() }}/{{ $viewModel->project->slug }}">{{ __("menu.the_campaign")}}</a>
+                    <a class="nav-link" href="{{ route('home') }}"> {{ __('menu.home') }} </a>
                 </li>
+                @if(isset($viewModel->project))
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="/{{ app()->getLocale() }}/{{ $viewModel->project->slug }}">{{ __("menu.the_campaign")}}</a>
+                    </li>
                 @endif
                 @if(!isset($onErrorPage))
                     @include("partials.login-menu-options")

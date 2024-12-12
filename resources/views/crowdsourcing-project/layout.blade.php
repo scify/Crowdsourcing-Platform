@@ -37,7 +37,7 @@
      style="padding-top: @if (App::environment('staging')) 128.75px @else 93.75px @endif">
     @yield('content')
 </div>
-@if(isset($viewModel->project) && $viewModel->project->defaultTranslation->footer && $viewModel->project->defaultTranslation->footer != "<p><br></p>")
+@if($viewModel->projectHasCustomFooter())
     <footer class="py-5">
         <div class="container">
             {!! $viewModel->project->defaultTranslation->footer !!}

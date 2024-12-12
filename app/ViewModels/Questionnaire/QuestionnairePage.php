@@ -7,11 +7,12 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
+use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectLayoutPage;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
-class QuestionnairePage {
+class QuestionnairePage extends CrowdSourcingProjectLayoutPage {
     public Questionnaire $questionnaire;
     public ?QuestionnaireResponse $userResponse;
     public CrowdSourcingProject $project;
@@ -19,9 +20,9 @@ class QuestionnairePage {
     public bool $moderator;
 
     public function __construct(Questionnaire $questionnaire, ?QuestionnaireResponse $userResponse, CrowdSourcingProject $project, Collection $languages, bool $moderator) {
+        parent::__construct($project);
         $this->questionnaire = $questionnaire;
         $this->userResponse = $userResponse;
-        $this->project = $project;
         $this->languages = $languages;
         $this->moderator = $moderator;
     }
