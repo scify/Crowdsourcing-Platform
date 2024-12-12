@@ -307,7 +307,7 @@ class SolutionManager {
         return [
             'solution_votes' => $solution_votes,
             'upvote' => $upvote,
-            'user_votes_left' => $votes_left - 1,
+            'user_votes_left' => $upvote ? $votes_left - 1 : $votes_left,
         ];
     }
 

@@ -149,7 +149,7 @@ class SolutionAPIControllerTest extends TestCase {
      * WHEN the user upvotes the Solution,
      * THEN the votes  of the Solution should be incremented by 1,
      * AND the solution should be marked as upvoted by the user.
-     * AND the user votes for the problem should be decremented by 1.
+     * AND the user votes for the project should be decremented by 1.
      *
      * @return void
      */
@@ -183,6 +183,63 @@ class SolutionAPIControllerTest extends TestCase {
         ]);
         // ensure that the records were created in the database
         $this->assertDatabaseHas('solution_upvotes', [
+            'solution_id' => $solution->id,
+            'user_voter_id' => $user->id,
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @group solutions
+     *
+     * Test Scenario 2: (Downvote, or remove upvote)
+     * GIVEN that a user is logged in,
+     * AND the user has already upvoted the Solution,
+     * WHEN the user votes the Solution,
+     * THEN the votes  of the Solution should be decremented by 1,
+     * AND the solution should be marked as not voted by the user.
+     * AND the user votes for the project should be incremented by 1.
+     *
+     * @return void
+     */
+    public function test_downvote_solution() {
+        // create a new solution and tie it to a problem with id 1
+        $solution = Solution::factory()->create(['problem_id' => 1]);
+
+        // if the corresponding project is deleted, restore it
+        $project = $solution->problem->project;
+        if ($project->deleted_at) {
+            $project->restore();
+        }
+
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
+            ->create();
+        $this->be($user);
+
+        // set the app locale
+        app()->setLocale('en');
+
+        // set the user as having upvoted the solution
+        $data = [
+            'solution_id' => $solution->id,
+            'user_voter_id' => $user->id,
+        ];
+        $this->solutionUpvoteRepository->updateOrCreate($data, $data);
+
+        // Act
+        $response = $this->post(route('api.solutions.vote-downvote'), ['solution_id' => $solution->id]);
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertJson([
+            'solution_votes' => 0,
+            'upvote' => false,
+            'user_votes_left' => 5,
+        ]);
+        // ensure that the records were deleted in the database
+        $this->assertDatabaseMissing('solution_upvotes', [
             'solution_id' => $solution->id,
             'user_voter_id' => $user->id,
         ]);
