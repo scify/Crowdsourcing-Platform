@@ -12,6 +12,7 @@ use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
 use App\Repository\RepositoryException;
 use App\Repository\Solution\SolutionRepository;
+use App\Repository\Solution\SolutionUpvoteRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
 use App\ViewModels\Solution\ProposeSolutionPage;
@@ -25,6 +26,7 @@ use Illuminate\Support\Str;
 
 class SolutionManager {
     protected SolutionRepository $solutionRepository;
+    protected SolutionUpvoteRepository $solutionUpvoteRepository;
     protected ProblemRepository $problemRepository;
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected SolutionTranslationManager $solutionTranslationManager;
@@ -35,6 +37,7 @@ class SolutionManager {
 
     public function __construct(
         SolutionRepository $solutionRepository,
+        SolutionUpvoteRepository $solutionUpvoteRepository,
         ProblemRepository $problemRepository,
         CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
         SolutionTranslationManager $solutionTranslationManager,
@@ -44,6 +47,7 @@ class SolutionManager {
         ProblemTranslationManager $problemTranslationManager,
     ) {
         $this->solutionRepository = $solutionRepository;
+        $this->solutionUpvoteRepository = $solutionUpvoteRepository;
         $this->problemRepository = $problemRepository;
         $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->solutionTranslationManager = $solutionTranslationManager;
@@ -250,5 +254,63 @@ class SolutionManager {
         $solution = $this->solutionRepository->findBy('slug', $solution_slug);
 
         return new SolutionSubmitted($solution, $problem, $project);
+    }
+
+    /**
+     * Vote or downvote a solution
+     *
+     * Checks if the current user has already voted for this solution.
+     * if they have, we need to remove their vote
+     * if they haven't, we need to add their vote
+     * in the end, we return:
+     * - the current number of votes for the solution
+     * - the current user's vote status (voted or not)
+     * - the current user's remaining votes for this problem
+     *
+     * @param int $solution_id the id of the solution
+     * @return array described above
+     */
+    public function voteOrDownVoteSolution(int $solution_id): array {
+        $upvote = false;
+        $user_id = Auth::id();
+        // also get how many votes the user has left for this problem
+        $problem = $this->solutionRepository->find($solution_id)->problem;
+        $project = $problem->project;
+
+        $problem_ids = $project->problems->pluck('id')->toArray();
+        // we need to get all the upvote records for the current user, for these problem ids
+        // get the solution ids for these problems
+        $solution_ids = $this->solutionRepository->getSolutionsForProblems($problem_ids)->pluck('id')->toArray();
+
+        $solution_upvote = $this->solutionUpvoteRepository->where([
+            'solution_id' => $solution_id,
+            'user_voter_id' => $user_id,
+        ]);
+        $user_votes = $this->solutionUpvoteRepository->getNumberOfVotesForUser($user_id, $solution_ids);
+        $votes_left = $project->max_votes_per_user_for_solutions - $user_votes;
+
+        if ($solution_upvote) {
+            $solution_upvote->delete();
+        } else {
+            // if the user does not have any votes left, we return an error
+            if ($votes_left <= 0) {
+                return [
+                    'error' => 'You have no votes left for this problem',
+                ];
+            }
+            $this->solutionUpvoteRepository->create([
+                'solution_id' => $solution_id,
+                'user_voter_id' => $user_id,
+            ]);
+            $upvote = true;
+        }
+
+        $solution_votes = $this->solutionUpvoteRepository->allWhere(['solution_id' => $solution_id])->count();
+
+        return [
+            'solution_votes' => $solution_votes,
+            'upvote' => $upvote,
+            'user_votes_left' => $votes_left - 1,
+        ];
     }
 }

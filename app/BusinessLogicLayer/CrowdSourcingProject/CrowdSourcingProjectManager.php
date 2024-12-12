@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
 class CrowdSourcingProjectManager {
     const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
     const DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG = '/images/questionnaire_bg_default.webp';
-    const DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS = 10;
+    const DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS = 5;
     const DEFAULT_LP_PRIMARY_COLOR = '#F5BA16';
     const DEFAULT_LP_BTN_TEXT_COLOR_THEME = 'dark';
 

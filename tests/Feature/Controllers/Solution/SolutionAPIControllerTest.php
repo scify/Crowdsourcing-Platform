@@ -3,6 +3,8 @@
 namespace Feature\Controllers\Solution;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use App\Models\Problem\Problem;
+use App\Models\Solution\Solution;
 use App\Models\User\User;
 use App\Models\User\UserRole;
 use App\Repository\Solution\SolutionUpvoteRepository;
@@ -131,5 +133,55 @@ class SolutionAPIControllerTest extends TestCase {
         $solutions = $response->json();
         $upvoted_solution = collect($solutions)->firstWhere('id', $solution_id);
         $this->assertTrue($upvoted_solution['upvoted_by_current_user']);
+    }
+
+    /**
+     * @test
+     *
+     * @group solutions
+     *
+     * Test Scenario 2:
+     * GIVEN that a user is logged in,
+     * AND the user has not upvoted the Solution,
+     * WHEN the user upvotes the Solution,
+     * THEN the votes  of the Solution should be incremented by 1,
+     * AND the solution should be marked as upvoted by the user.
+     * AND the user votes for the problem should be decremented by 1.
+     *
+     * @return void
+     */
+    public function test_upvote_solution() {
+        // create a new solution and tie it to a problem with id 1
+        $solution = Solution::factory()->create(['problem_id' => 1]);
+
+        // if the corresponding project is deleted, restore it
+        $project = $solution->problem->project;
+        if ($project->deleted_at) {
+            $project->restore();
+        }
+
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
+            ->create();
+        $this->be($user);
+
+        // set the app locale
+        app()->setLocale('en');
+
+        // Act
+        $response = $this->post(route('api.solutions.vote-downvote'), ['solution_id' => $solution->id]);
+
+        // Assert
+        $response->assertStatus(200);
+        $response->assertJson([
+            'solution_votes' => 1,
+            'upvote' => true,
+            'user_votes_left' => 4,
+        ]);
+        // ensure that the records were created in the database
+        $this->assertDatabaseHas('solution_upvotes', [
+            'solution_id' => $solution->id,
+            'user_voter_id' => $user->id,
+        ]);
     }
 }

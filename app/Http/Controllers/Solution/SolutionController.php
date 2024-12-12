@@ -221,4 +221,12 @@ class SolutionController extends Controller {
 
         return view('solution.submitted', ['viewModel' => $viewModel]);
     }
+
+    public function voteOrDownVoteSolution(Request $request): JsonResponse {
+        $this->validate($request, [
+            'solution_id' => 'required|exists:solutions,id',
+        ]);
+
+        return response()->json($this->solutionManager->voteOrDownVoteSolution($request->solution_id));
+    }
 }

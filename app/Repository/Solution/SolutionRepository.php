@@ -54,4 +54,8 @@ class SolutionRepository extends Repository {
                 }
             });
     }
+
+    public function getSolutionsForProblems($problem_ids) {
+        return Solution::whereIn('problem_id', $problem_ids)->get();
+    }
 }
