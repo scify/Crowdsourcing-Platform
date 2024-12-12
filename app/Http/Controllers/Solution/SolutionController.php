@@ -47,7 +47,7 @@ class SolutionController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-status' => ['required'],
@@ -55,10 +55,8 @@ class SolutionController extends Controller {
             'solution-owner-problem' => ['required'],
         ]);
 
-        $attributes = $request->all();
-
         try {
-            $createdSolutionId = $this->solutionManager->storeSolution($attributes);
+            $createdSolutionId = $this->solutionManager->storeSolution($validated)->id;
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -70,6 +68,33 @@ class SolutionController extends Controller {
         $route = route('solutions.edit', ['solution' => $createdSolutionId]) . '?translations=1';
 
         return redirect($route);
+    }
+
+    public function userProposalStore(Request $request): RedirectResponse {
+        $validated = $this->validate($request, [
+            'solution-title' => ['required', 'string', 'max:100'],
+            'solution-description' => ['required', 'string', 'max:400'],
+            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'solution-owner-problem' => ['required'],
+        ]);
+
+        try {
+            $solution = $this->solutionManager->storeSolutionFromPublicForm($validated);
+            $problem = $solution->problem;
+            $project = $problem->project;
+
+            $route = route('solutions.user-proposal-submitted', [
+                'project_slug' => $project->slug,
+                'problem_slug' => $problem->slug,
+                'solution_slug' => $solution->slug,
+            ]);
+
+            return redirect($route);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
+        }
     }
 
     /**
@@ -99,7 +124,7 @@ class SolutionController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $locale, int $id) {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-status' => ['required'],
@@ -108,10 +133,8 @@ class SolutionController extends Controller {
             'solution-owner-problem' => ['required'],
         ]);
 
-        $attributes = $request->all();
-
         try {
-            $this->solutionManager->updateSolution($id, $attributes);
+            $this->solutionManager->updateSolution($id, $validated);
         } catch (\Exception $e) {
             session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
 
@@ -156,5 +179,46 @@ class SolutionController extends Controller {
         ]);
 
         return response()->json($this->solutionManager->getSolutions($request->problem_id));
+    }
+
+    public function userProposalCreate(string $locale, string $project_slug, string $problem_slug): View|RedirectResponse {
+        $validator = Validator::make([
+            'project_slug' => $project_slug,
+            'problem_slug' => $problem_slug,
+        ], [
+            'project_slug' => 'required|different:execute_solution|exists:crowd_sourcing_projects,slug',
+            'problem_slug' => 'required|different:execute_solution|exists:problems,slug',
+        ]);
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        try {
+            $viewModel = $this->solutionManager->getProposeSolutionPageViewModel($locale, $project_slug, $problem_slug);
+
+            return view('solution.propose', ['viewModel' => $viewModel]);
+        } catch (\Exception $e) {
+            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+
+            return back()->withInput();
+        }
+    }
+
+    public function userProposalSubmitted(string $locale, string $project_slug, string $problem_slug, string $solution_slug): View {
+        $validator = Validator::make([
+            'project_slug' => $project_slug,
+            'problem_slug' => $problem_slug,
+            'solution_slug' => $solution_slug,
+        ], [
+            'solution_slug' => 'required|exists:solutions,slug',
+            'problem_slug' => 'required|exists:problems,slug',
+            'project_slug' => 'required|exists:crowd_sourcing_projects,slug',
+        ]);
+
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+        $viewModel = $this->solutionManager->getSolutionSubmittedViewModel($project_slug, $problem_slug, $solution_slug);
+
+        return view('solution.submitted', ['viewModel' => $viewModel]);
     }
 }

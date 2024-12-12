@@ -28,7 +28,7 @@ class QuestionnaireControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -210,7 +210,7 @@ class QuestionnaireControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -302,7 +302,7 @@ class QuestionnaireControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**

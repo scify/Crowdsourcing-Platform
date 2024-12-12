@@ -42,7 +42,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /** @test */
@@ -61,7 +61,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('my-account', ['locale' => 'en']));
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /** @test */
@@ -224,7 +224,7 @@ class UserControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /** @test */
@@ -267,7 +267,7 @@ class UserControllerTest extends TestCase {
             ->post(route('deleteUser'), ['id' => $user->id]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /** @test */
@@ -302,7 +302,7 @@ class UserControllerTest extends TestCase {
         $response = $this->get(route('api.users.get-filtered', ['name' => 'John']));
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /** @test */

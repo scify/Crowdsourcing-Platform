@@ -32,5 +32,6 @@ return [
     'moderate_solutions' => 'Moderate solutions',
     'platform_management' => 'Platform Management',
     'manage_users' => 'Manage users',
+    'home' => 'Home',
 
 ];

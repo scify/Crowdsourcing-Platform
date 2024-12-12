@@ -13,6 +13,12 @@ class AuthMiddleware extends Authenticate {
      * @return string|null
      */
     protected function redirectTo($request) {
-        return route('login', ['locale' => app()->getLocale()]);
+        $params = ['locale' => app()->getLocale()];
+
+        if (!$request->query('redirectTo')) {
+            $params['redirectTo'] = $request->fullUrl();
+        }
+
+        return route('login', $params);
     }
 }

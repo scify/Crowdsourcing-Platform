@@ -34,4 +34,12 @@ class QuestionnaireStatistics {
     public function userCanViewFileTypeQuestionsStatistics(): int {
         return ($this->userCanAnnotateAnswers || $this->questionnaire->show_file_type_questions_to_statistics_page_audience) ? 1 : -1;
     }
+
+    public function projectHasExternalURL(): bool {
+        return false;
+    }
+
+    public function projectHasCustomFooter(): bool {
+        return false;
+    }
 }

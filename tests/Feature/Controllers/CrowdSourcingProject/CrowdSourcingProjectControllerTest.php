@@ -165,7 +165,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         // 302 is the status code for a redirect (to the login page)
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -202,7 +202,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response = $this->get(route('projects.index', ['locale' => 'en']));
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -288,7 +288,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -336,6 +336,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
                 'color_ids' => [1],
                 'color_names' => [$faker->name],
                 'color_codes' => [$faker->hexColor],
+                'motto_title' => $faker->name,
                 'motto_subtitle' => $faker->text,
             ]);
 
@@ -410,7 +411,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect(route('login', ['locale' => 'en']));
+        $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
     /**
@@ -459,6 +460,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
                 'color_ids' => [1],
                 'color_names' => [$faker->name],
                 'color_codes' => [$faker->hexColor],
+                'motto_title' => $faker->name,
                 'motto_subtitle' => $faker->text,
             ]);
 

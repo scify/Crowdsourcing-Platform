@@ -2,11 +2,10 @@
 
 namespace App\ViewModels\CrowdSourcingProject;
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 
-class CrowdSourcingProjectForLandingPage {
-    public $project;
+class CrowdSourcingProjectForLandingPage extends CrowdSourcingProjectLayoutPage {
     public $questionnaire;
     public $feedbackQuestionnaire;
     public $projectHasPublishedProblems;
@@ -22,7 +21,7 @@ class CrowdSourcingProjectForLandingPage {
     public $moderator;
 
     public function __construct(
-        $project,
+        CrowdSourcingProject $project,
         $questionnaire,
         $feedbackQuestionnaire,
         $projectHasPublishedProblems,
@@ -34,7 +33,7 @@ class CrowdSourcingProjectForLandingPage {
         Collection $languages,
         $shareUrlForFacebook,
         $shareUrlForTwitter) {
-        $this->project = $project;
+        parent::__construct($project);
         $this->questionnaire = $questionnaire;
         $this->feedbackQuestionnaire = $feedbackQuestionnaire;
         $this->projectHasPublishedProblems = $projectHasPublishedProblems;
@@ -50,32 +49,12 @@ class CrowdSourcingProjectForLandingPage {
         $this->moderator = false;
     }
 
-    public function getSignInURLWithParameters(): string {
-        $url = '/login?submitQuestionnaire=1&redirectTo=' . urlencode($this->project->slug . '?open=1');
-        if (Request()->referrerId) {
-            $url .= urlencode('&referrerId=') . Request()->referrerId;
-        }
-        if (Request()->questionnaireId) {
-            $url .= urlencode('&questionnaireId=') . Request()->questionnaireId;
-        }
-
-        return $url;
-    }
-
     public function displayFeedbackQuestionnaire(): bool {
         // if user has responded to the main questionnaire,
         // and a feedback questionnaire exists
-        // and the feedback questionnare has not been answered
+        // and the feedback questionnaire has not been answered
         return $this->userResponse != null &&
             $this->feedbackQuestionnaire != null
             && $this->userFeedbackQuestionnaireResponse == null;
-    }
-
-    public function shouldShowQuestionnaireStatisticsLink(): bool {
-        return true;
-    }
-
-    public function getLoggedInUser() {
-        return Auth::user();
     }
 }
