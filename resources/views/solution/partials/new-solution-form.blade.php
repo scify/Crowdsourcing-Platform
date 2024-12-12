@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    <input type="hidden" name="solution-owner-problem" value="{{auth()->user()->id}}">
+                    <input type="hidden" name="solution-owner-problem" value="{{ $viewModel->problem->id }}">
 
                     <div class="solution-language-notifier">
                         The language for this solution is: {{ $viewModel->language->language_name }}
@@ -63,7 +63,7 @@
                             <div class="form-group input-file-wrapper">
                                 <label for="solution-image">Solution Image (max-size: 2MB)</label></label>
                                 <br><small>In order to update the currently selected image, please choose a new image by
-                                    clicking the button below.</small><br> {{-- bookmark3 - fix spacing --}}
+                                    clicking the button below.</small><br> {{-- bookmark4 - fix spacing --}}
                                 <input type="file"
                                         id="solution-image"
                                         name="solution-image"
@@ -78,7 +78,7 @@
                                 <img
                                         loading="lazy"
                                         class="selected-image-preview js-selected-image-preview"
-                                        src="/images/solution_default_image.png"
+                                        src="/images/solution_default_image.png" {{-- bookmark4 - fix default image --}}
                                         alt="">
                             </div>
                         </div>
@@ -89,9 +89,9 @@
 
             <div>
                 <div class="container-fluid p-0">
-                    <div class="row p-0">
-                        <div class="col-lg-2 col-md-3 col-sm-12">
-                            <input class="btn btn-primary btn-slim w-100 mb-3" id="submit-form" type="submit" value="Save">
+                    <div class="row py-5">
+                        <div class="col-12 d-flex justify-content-center">
+                            <input class="btn btn-primary call-to-action" id="submit-form" type="submit" value="Submit"> {{-- bookmark4 - add translations --}}
                         </div>
                     </div>
                 </div>
