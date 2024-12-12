@@ -283,7 +283,8 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        $project->lp_show_speak_up_btn = true;
+        $project->lp_show_speak_up_btn = $project->lp_show_speak_up_btn ?? true;
+        $project->max_votes_per_user_for_solutions = $project->max_votes_per_user_for_solutions ?? 10;
         $project = $this->populateInitialFileValuesForProjectIfNotSet($project);
 
         return $this->populateInitialColorValuesForProjectIfNotSet($project);

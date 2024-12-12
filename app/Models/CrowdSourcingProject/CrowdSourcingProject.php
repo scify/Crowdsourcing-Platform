@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $logo_path
  * @property int $user_creator_id
  * @property int $language_id
+ * @property int $max_votes_per_user_for_solutions
  * @property int $status_id
  * @property string $sm_featured_img_path
  * @property string $lp_questionnaire_img_path
@@ -56,7 +57,8 @@ class CrowdSourcingProject extends Model {
      */
     protected $fillable = [
         'slug', 'external_url', 'img_path',
-        'logo_path', 'user_creator_id', 'language_id', 'status_id',
+        'logo_path', 'user_creator_id', 'language_id',
+        'max_votes_per_user_for_solutions', 'status_id',
         'sm_featured_img_path', 'lp_questionnaire_img_path',
         'lp_show_speak_up_btn', 'lp_primary_color', 'lp_btn_text_color_theme',
         'should_send_email_after_questionnaire_response',

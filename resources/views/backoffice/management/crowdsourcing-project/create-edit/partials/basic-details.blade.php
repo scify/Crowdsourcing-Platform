@@ -104,6 +104,20 @@
                     <br>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="max_votes_per_user_for_solutions">
+                                Number of votes per user (for solutions)
+                            </label>
+                            <input id="max_votes_per_user_for_solutions" type="number" class="form-control"
+                                   name="max_votes_per_user_for_solutions"
+                                   value="{{ old('max_votes_per_user_for_solutions') ? old('max_votes_per_user_for_solutions') : $viewModel->project->max_votes_per_user_for_solutions  }}">
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
+                <div class="row">
                     <label class="col-sm-12 control-label" for="name">Project Name (<span
                                 class="red">*</span>)</label>
                     <div class="col-sm-12">
