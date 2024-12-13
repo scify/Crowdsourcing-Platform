@@ -2,14 +2,22 @@
 
 namespace App\BusinessLogicLayer\Solution;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
+use App\BusinessLogicLayer\Problem\ProblemTranslationManager;
 use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionTranslation;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
+use App\Repository\RepositoryException;
 use App\Repository\Solution\SolutionRepository;
+use App\Repository\Solution\SolutionUpvoteRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
+use App\ViewModels\Solution\ProposeSolutionPage;
+use App\ViewModels\Solution\SolutionSubmitted;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,23 +26,35 @@ use Illuminate\Support\Str;
 
 class SolutionManager {
     protected SolutionRepository $solutionRepository;
+    protected SolutionUpvoteRepository $solutionUpvoteRepository;
     protected ProblemRepository $problemRepository;
+    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected SolutionTranslationManager $solutionTranslationManager;
     protected SolutionStatusManager $solutionStatusManager;
     protected LanguageRepository $languageRepository;
+    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
+    protected ProblemTranslationManager $problemTranslationManager;
 
     public function __construct(
         SolutionRepository $solutionRepository,
+        SolutionUpvoteRepository $solutionUpvoteRepository,
         ProblemRepository $problemRepository,
+        CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
         SolutionTranslationManager $solutionTranslationManager,
         SolutionStatusManager $solutionStatusManager,
-        LanguageRepository $languageRepository
+        LanguageRepository $languageRepository,
+        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
+        ProblemTranslationManager $problemTranslationManager,
     ) {
         $this->solutionRepository = $solutionRepository;
+        $this->solutionUpvoteRepository = $solutionUpvoteRepository;
         $this->problemRepository = $problemRepository;
+        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
         $this->solutionTranslationManager = $solutionTranslationManager;
         $this->solutionStatusManager = $solutionStatusManager;
         $this->languageRepository = $languageRepository;
+        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
+        $this->problemTranslationManager = $problemTranslationManager;
     }
 
     /**
@@ -69,22 +89,45 @@ class SolutionManager {
         );
     }
 
-    public function storeSolution(array $attributes): int {
+    /**
+     * Store a solution
+     * @param array $attributes the attributes of the solution
+     * @throws Exception
+     */
+    public function storeSolution(array $attributes): Solution {
+        return $this->storeSolutionWithStatus($attributes, $attributes['solution-status']);
+    }
+
+    /**
+     * Store a solution from a public form
+     * @param array $attributes the attributes of the solution
+     * @throws Exception
+     */
+    public function storeSolutionFromPublicForm(array $attributes): Solution {
+        return $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
+    }
+
+    /**
+     * Store a solution with a specific status
+     * @param array $attributes the attributes of the solution
+     * @throws Exception
+     */
+    protected function storeSolutionWithStatus(array $attributes, int $status_id): Solution {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
+        } else {
+            $imgPath = null;
         }
-
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
 
         $default_language_id = $this->problemRepository->find($solution_owner_problem_id)->default_language_id;
-
         try {
             DB::beginTransaction();
             $solution = Solution::create([
                 'problem_id' => $solution_owner_problem_id,
                 'user_creator_id' => Auth::id(),
                 'slug' => Str::random(16), // temporary - will be changed after record creation
-                'status_id' => $attributes['solution-status'],
+                'status_id' => $status_id,
                 'img_url' => $imgPath,
             ]);
 
@@ -98,10 +141,11 @@ class SolutionManager {
             ]);
             DB::commit();
 
-            return $solution->id;
+            return $solution;
         } catch (\Exception $e) {
             Log::error('Error: ' . $e->getCode() . '  ' . $e->getMessage());
             DB::rollBack();
+            throw new \Exception('An error occurred while creating the solution');
         }
     }
 
@@ -186,5 +230,104 @@ class SolutionManager {
         }
 
         return $this->solutionRepository->delete($id);
+    }
+
+    public function getProposeSolutionPageViewModel(string $locale, string $project_slug, string $problem_slug): ProposeSolutionPage {
+        $project = $this->problemRepository->getProjectWithProblemsByProjectSlug($project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+
+        $problem = $this->problemRepository->findBy('slug', $problem_slug);
+        $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
+
+        // we need to calculate the $localeLanguage as follows:
+        // if the problem has a translation in the current locale, we use this
+        // otherwise, we use the default language of the project
+        $localeLanguage = $problem->currentTranslation ? $problem->currentTranslation->language : $project->defaultTranslation->language;
+
+        return new ProposeSolutionPage($project, $problem, $localeLanguage);
+    }
+
+    public function getSolutionSubmittedViewModel(string $project_slug, string $problem_slug, string $solution_slug): SolutionSubmitted {
+        $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+
+        $problem = $this->problemRepository->findBy('slug', $problem_slug);
+        $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, app()->getLocale());
+
+        $solution = $this->solutionRepository->findBy('slug', $solution_slug);
+
+        return new SolutionSubmitted($solution, $problem, $project);
+    }
+
+    /**
+     * Vote or downvote a solution
+     *
+     * Checks if the current user has already voted for this solution.
+     * if they have, we need to remove their vote
+     * if they haven't, we need to add their vote
+     * in the end, we return:
+     * - the current number of votes for the solution
+     * - the current user's vote status (voted or not)
+     * - the current user's remaining votes for this problem
+     *
+     * @param int $solution_id the id of the solution
+     * @return array described above
+     */
+    public function voteOrDownVoteSolution(int $solution_id): array {
+        $upvote = false;
+        $user_id = Auth::id();
+        // also get how many votes the user has left for this problem
+        $problem = $this->solutionRepository->find($solution_id)->problem;
+        $project = $problem->project;
+
+        $user_votes = $this->getUserVotesNum($problem->id);
+        $votes_left = $project->max_votes_per_user_for_solutions - $user_votes;
+
+        $solution_upvote = $this->solutionUpvoteRepository->where([
+            'solution_id' => $solution_id,
+            'user_voter_id' => $user_id,
+        ]);
+
+
+        if ($solution_upvote) {
+            $solution_upvote->delete();
+        } else {
+            // if the user does not have any votes left, we return an error
+            if ($votes_left <= 0) {
+                return [
+                    'error' => 'You have no votes left for this problem',
+                ];
+            }
+            $this->solutionUpvoteRepository->create([
+                'solution_id' => $solution_id,
+                'user_voter_id' => $user_id,
+            ]);
+            $upvote = true;
+        }
+
+        $solution_votes = $this->solutionUpvoteRepository->allWhere(['solution_id' => $solution_id])->count();
+
+        return [
+            'solution_votes' => $solution_votes,
+            'upvote' => $upvote,
+            'user_votes_left' => $upvote ? $votes_left - 1 : $votes_left + 1,
+        ];
+    }
+
+    /**
+     * Gets the number of votes the current user has for this problem
+     * @param int $problem_id the id of the problem
+     * @return int the number of votes the current user has for this problem
+     */
+    public function getUserVotesNum(int $problem_id): int {
+        $user_id = Auth::id();
+        if (!$user_id) {
+            return 0;
+        }
+        $project = $this->problemRepository->find($problem_id)->project;
+        $problem_ids = $project->problems->pluck('id')->toArray();
+        $solution_ids = $this->solutionRepository->getSolutionsForProblems($problem_ids)->pluck('id')->toArray();
+
+        return $this->solutionUpvoteRepository->getNumberOfVotesForUser($user_id, $solution_ids);
     }
 }

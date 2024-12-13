@@ -14,4 +14,9 @@ return [
     'edit' => 'Редактиране',
     'delete' => 'Изтриване',
     'change_status' => 'Промяна на статуса',
+    'image_accepted_formats' => 'Приети формати: jpeg, png, jpg, webp',
+    'image_max_size' => 'Максимален размер: 2MB',
+    'terms_privacy' => 'Условия и Политика за поверителност',
+    'code_of_conduct' => 'Кодекс на поведение',
+    'form_fields_required' => 'Полетата, маркирани с *, са задължителни',
 ];

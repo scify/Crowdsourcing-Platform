@@ -9,13 +9,10 @@ use App\Http\Controllers\User\UserController;
 use App\Models\User\User;
 use App\ViewModels\Gamification\GamificationBadgesWithLevels;
 use App\ViewModels\User\UserDashboardViewModel;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
-    use RefreshDatabase;
-
     private User $user;
     private UserDashboardManager $userDashboardManager;
     private UserManager $userManager;

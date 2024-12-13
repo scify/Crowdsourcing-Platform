@@ -55,6 +55,9 @@ class CrowdSourcingProjectController extends Controller {
             'status_id' => 'required|numeric|exists:crowd_sourcing_project_statuses_lkp,id',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug|max:100',
             'language_id' => 'required|numeric|exists:languages_lkp,id',
+            'motto_title' => 'required|string',
+            'motto_subtitle' => 'required|string',
+            'about' => 'nullable|string',
         ]);
         $project = $this->crowdSourcingProjectManager->storeProject($request->all());
 
@@ -75,6 +78,9 @@ class CrowdSourcingProjectController extends Controller {
             'description' => 'required|string',
             'slug' => 'nullable|string|alpha_dash|unique:crowd_sourcing_projects,slug,' . $id . '|max:100',
             'language_id' => 'required|numeric|exists:languages_lkp,id',
+            'motto_title' => 'required|string',
+            'motto_subtitle' => 'required|string',
+            'about' => 'nullable|string',
         ]);
         $attributes = $request->all();
         try {

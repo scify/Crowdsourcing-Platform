@@ -32,6 +32,9 @@ use Illuminate\Support\Str;
 class CrowdSourcingProjectManager {
     const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
     const DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG = '/images/questionnaire_bg_default.webp';
+    const DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS = 10;
+    const DEFAULT_LP_PRIMARY_COLOR = '#F5BA16';
+    const DEFAULT_LP_BTN_TEXT_COLOR_THEME = 'dark';
 
     protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
     protected QuestionnaireRepository $questionnaireRepository;
@@ -238,7 +241,7 @@ class CrowdSourcingProjectManager {
         }
 
         if (!isset($attributes['about']) || !$attributes['about']) {
-            $attributes['about'] = $attributes['description'];
+            $attributes['about'] = trim($attributes['description']);
         }
 
         if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {
@@ -283,7 +286,9 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        $project->lp_show_speak_up_btn = true;
+        $project->lp_show_speak_up_btn = $project->lp_show_speak_up_btn ?? true;
+        $project->max_votes_per_user_for_solutions = $project->max_votes_per_user_for_solutions
+            ?? self::DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS;
         $project = $this->populateInitialFileValuesForProjectIfNotSet($project);
 
         return $this->populateInitialColorValuesForProjectIfNotSet($project);
@@ -291,10 +296,10 @@ class CrowdSourcingProjectManager {
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
         if (!$project->lp_primary_color) {
-            $project->lp_primary_color = '#F5BA16';
+            $project->lp_primary_color = self::DEFAULT_LP_PRIMARY_COLOR;
         }
         if (!$project->lp_btn_text_color_theme) {
-            $project->lp_btn_text_color_theme = 'dark';
+            $project->lp_btn_text_color_theme = self::DEFAULT_LP_BTN_TEXT_COLOR_THEME;
         }
 
         return $project;
@@ -311,7 +316,7 @@ class CrowdSourcingProjectManager {
             $project->sm_featured_img_path = self::DEFAULT_IMAGE_PATH;
         }
         if (!$project->lp_questionnaire_img_path) {
-            $project->lp_questionnaire_img_path = '/images/bgsectionnaire.webp';
+            $project->lp_questionnaire_img_path = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 
         return $project;
@@ -336,7 +341,7 @@ class CrowdSourcingProjectManager {
         return $attributes;
     }
 
-    protected function createProjectStatusHistoryRecord($projectId, $statusId) {
+    protected function createProjectStatusHistoryRecord($projectId, $statusId): void {
         $this->crowdSourcingProjectStatusHistoryRepository->create([
             'project_id' => $projectId,
             'status_id' => $statusId,
@@ -386,12 +391,11 @@ class CrowdSourcingProjectManager {
     public function getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug): CrowdSourcingProjectUnavailable {
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $projects = $this->getCrowdSourcingProjectsForHomePage();
-        // TODO translate the messages below
         $message = match ($project->status_id) {
-            CrowdSourcingProjectStatusLkp::FINALIZED => 'This project is finalized.<br>Thank you for your contribution!',
-            CrowdSourcingProjectStatusLkp::UNPUBLISHED => 'This project is unpublished.',
-            CrowdSourcingProjectStatusLkp::DELETED => 'This project has been archived.',
-            default => 'This project is not currently available',
+            CrowdSourcingProjectStatusLkp::FINALIZED => __('project.project_finalized_message'),
+            CrowdSourcingProjectStatusLkp::UNPUBLISHED => __('project.project_unpublished_message'),
+            CrowdSourcingProjectStatusLkp::DELETED => __('project.project_archived_message'),
+            default => __('project.project_unavailable_message'),
         };
 
         return new CrowdSourcingProjectUnavailable($project, $projects, $message);

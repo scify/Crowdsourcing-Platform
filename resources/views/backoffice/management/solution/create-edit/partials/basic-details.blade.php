@@ -121,7 +121,7 @@
                             <img
                                     loading="lazy"
                                     class="selected-image-preview js-selected-image-preview"
-                                    src="{{ $viewModel->solution->img_url ? asset($viewModel->solution->img_url) : '/images/solution_default_image.png' }}" {{-- bookmark3 - add solution_default_image.png --}}
+                                    src="{{ $viewModel->solution->img_url ? asset($viewModel->solution->img_url) : '/images/solution_default_image.png' }}"
                                     alt="">
                         </div>
                     </div>

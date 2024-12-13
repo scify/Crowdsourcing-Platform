@@ -89,7 +89,7 @@
                     <div class="lower-footer">
                         Copyright &copy; {{ date("Y") }} <a target=" _blank"
                                                             href="https://ecas.org">ECAS.org</a>
-                        All rights reserved. | Version {{ config("app.version")}}
+                        All rights reserved. | Version <pre class="d-inline">{{ config("app.version")}}</pre>
                     </div>
                 </div>
             </div>

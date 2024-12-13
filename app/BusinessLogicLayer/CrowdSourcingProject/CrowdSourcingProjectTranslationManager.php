@@ -43,6 +43,11 @@ class CrowdSourcingProjectTranslationManager {
     public function storeOrUpdateDefaultTranslationForProject(array $attributes, int $project_id): void {
         $allowedKeys = (new CrowdSourcingProjectTranslation)->getFillable();
         $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
+        // for each of the filtered attributes, if the value is empty, set it to null
+        // for the WYSIWYG editor, we need to also regard as "empty" the value '<p><br></p>'
+        foreach ($filtered as $key => $value) {
+            $filtered[$key] = Helpers::HTMLValueIsNotEmpty($value) ? $value : null;
+        }
         $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
             ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
             $filtered
@@ -58,8 +63,9 @@ class CrowdSourcingProjectTranslationManager {
             $extraTranslation = json_decode(json_encode($extraTranslation), true);
             foreach ($extraTranslation as $key => $value) {
                 if (!$value) {
-                    $extraTranslation[$key] = $defaultLanguageContentForProject[$key] && $defaultLanguageContentForProject[$key] !== '<p><br></p>' ?
-                        $defaultLanguageContentForProject[$key] : null;
+                    $extraTranslation[$key] =
+                        Helpers::HTMLValueIsNotEmpty($defaultLanguageContentForProject[$key]) ?
+                            $defaultLanguageContentForProject[$key] : null;
                 }
             }
             $filtered = Helpers::getFilteredAttributes($extraTranslation, $allowedKeys);

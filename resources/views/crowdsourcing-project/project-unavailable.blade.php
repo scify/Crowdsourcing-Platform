@@ -29,11 +29,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            @if($viewModel->project->external_url)
+                            @if($viewModel->projectHasExternalURL())
                                 <div class="col-lg-3 col-md-4 col-sm-10 mx-auto">
                                     <a href="{{ $viewModel->project->external_url }}" target="_blank"
                                        class="btn btn-primary call-to-action">
-                                        Visit Project webpage
+                                        {{ __('project.visit_project_webpage_link_text') }}
                                     </a>
                                 </div>
                             @endif

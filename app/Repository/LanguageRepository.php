@@ -20,6 +20,6 @@ class LanguageRepository extends Repository {
 
     public function getDefaultLanguage(): Language {
         // english is the default language
-        return Language::find(6);
+        return Language::findOrFail(6);
     }
 }

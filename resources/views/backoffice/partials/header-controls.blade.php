@@ -20,11 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a href="{{ route('home') }}" class="navbar-brand">
-                    <img loading="lazy" height="30"
-                         src="{{ asset('images/projects/' . config('app.installation_resources_dir') . '/logo_menu.png') }}"
-                         alt="Main Logo" class="brand-image">
-                </a>
+                <a class="nav-link" href="{{ route('home') }}"> {{ __('menu.home') }} </a>
             </li>
             <li class="nav-item {{ UrlMatchesMenuItem('my-dashboard') }}">
                 <a class="nav-link" href="{{ route('my-dashboard') }}"> {{ __('menu.my_dashboard') }} </a>

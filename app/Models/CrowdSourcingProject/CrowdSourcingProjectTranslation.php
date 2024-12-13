@@ -57,4 +57,24 @@ class CrowdSourcingProjectTranslation extends Model {
     public function language(): BelongsTo {
         return $this->belongsTo(Language::class, 'language_id', 'id');
     }
+
+    protected static function boot() {
+        parent::boot();
+
+        // Trim all string attributes before saving
+        static::saving(function ($model) {
+            $model->trimAttributes();
+        });
+    }
+
+    /**
+     * Trim all string attributes
+     */
+    protected function trimAttributes() {
+        foreach ($this->attributes as $key => $value) {
+            if (is_string($value) && $value !== '') {
+                $this->attributes[$key] = trim($value);
+            }
+        }
+    }
 }
