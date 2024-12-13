@@ -15,7 +15,7 @@ class SolutionUpvoteRepository extends Repository {
 
     public function getNumberOfVotesForUser(int $user_id, array $solution_ids): int {
         return SolutionUpvote::whereIn('solution_id', $solution_ids)
-            ->where('user_id', $user_id)
+            ->where('user_voter_id', $user_id)
             ->get()
             ->count();
     }
