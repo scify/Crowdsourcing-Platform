@@ -14,4 +14,9 @@ return [
     'edit' => 'Rediģēt',
     'delete' => 'Dzēst',
     'change_status' => 'Mainīt statusu',
+    'image_accepted_formats' => 'Pieņemtie formāti: jpeg, png, jpg, webp',
+    'image_max_size' => 'Maksimālais izmērs: 2MB',
+    'terms_privacy' => 'Lietošanas noteikumi un Konfidencialitātes politika',
+    'code_of_conduct' => 'Uzvedības kodekss',
+    'form_fields_required' => 'Lauki, kas ir atzīmēti ar *, ir obligāti',
 ];

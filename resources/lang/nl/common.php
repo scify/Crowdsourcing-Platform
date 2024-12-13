@@ -14,4 +14,9 @@ return [
     'edit' => 'Bewerken',
     'delete' => 'Verwijderen',
     'change_status' => 'Status wijzigen',
+    'image_accepted_formats' => 'Geaccepteerde formaten: jpeg, png, jpg, webp',
+    'image_max_size' => 'Maximale grootte: 2MB',
+    'terms_privacy' => 'Gebruiksvoorwaarden en Privacybeleid',
+    'code_of_conduct' => 'Gedragscode',
+    'form_fields_required' => 'Velden gemarkeerd met * zijn verplicht',
 ];

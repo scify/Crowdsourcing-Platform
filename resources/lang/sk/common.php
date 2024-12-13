@@ -14,4 +14,9 @@ return [
     'edit' => 'Upraviť',
     'delete' => 'Vymazať',
     'change_status' => 'Zmeniť stav',
+    'image_accepted_formats' => 'Akceptované formáty: jpeg, png, jpg, webp',
+    'image_max_size' => 'Maximálna veľkosť: 2MB',
+    'terms_privacy' => 'Podmienky a ochrana osobných údajov',
+    'code_of_conduct' => 'Kódex správania',
+    'form_fields_required' => 'Pole označené * sú povinné',
 ];

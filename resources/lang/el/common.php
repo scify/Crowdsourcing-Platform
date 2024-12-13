@@ -14,4 +14,9 @@ return [
     'edit' => 'Επεξεργασία',
     'delete' => 'Διαγραφή',
     'change_status' => 'Αλλαγή κατάστασης',
+    'image_accepted_formats' => 'Αποδεκτές μορφές: jpeg, png, jpg, webp',
+    'image_max_size' => 'Μέγιστο μέγεθος: 2MB',
+    'terms_privacy' => 'Όροι και Πολιτική Απορρήτου',
+    'code_of_conduct' => 'Κώδικας Συμπεριφοράς',
+    'form_fields_required' => 'Τα πεδία που σημειώνονται με * είναι υποχρεωτικά',
 ];
