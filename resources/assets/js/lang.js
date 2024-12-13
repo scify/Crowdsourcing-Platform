@@ -746,6 +746,13 @@
 		const lang = isoLangs[key];
 		return lang ? lang.nativeName : undefined;
 	};
+
+	/**
+	 * Translate the given key with replacements.
+	 * @param key {string} The key to translate
+	 * @param replace {object} The replacements. Example: {name: 'John'}
+	 * @return {*} The translated string
+	 */
 	const trans = function (key, replace = {}) {
 		let translation = key.split(".").reduce((t, i) => t[i] || null, window.Laravel.translations);
 		for (const placeholder in replace) {

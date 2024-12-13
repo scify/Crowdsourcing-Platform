@@ -49,4 +49,8 @@ class Solution extends Model {
     public function upvotes(): HasMany {
         return $this->hasMany('App\Models\Solution\SolutionUpvote', 'solution_id', 'id');
     }
+
+    public function shares(): HasMany {
+        return $this->hasMany('App\Models\Solution\SolutionShare', 'solution_id', 'id');
+    }
 }

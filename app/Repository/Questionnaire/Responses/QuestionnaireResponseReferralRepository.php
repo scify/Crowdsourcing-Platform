@@ -10,9 +10,9 @@ class QuestionnaireResponseReferralRepository extends Repository {
         return QuestionnaireResponseReferral::where('referrer_id', $userId)->get();
     }
 
-    public function create(array $array) {
+    public function create(array $data): QuestionnaireResponseReferral {
         $newQuestionnaireResponseReferral = new QuestionnaireResponseReferral;
-        $newQuestionnaireResponseReferral->fill($array);
+        $newQuestionnaireResponseReferral->fill($data);
         $newQuestionnaireResponseReferral->save();
 
         return $newQuestionnaireResponseReferral;
