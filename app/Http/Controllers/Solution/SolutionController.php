@@ -141,7 +141,7 @@ class SolutionController extends Controller {
             return back()->withInput();
         }
 
-        session()->flash('flash_message_success', 'The problem has been successfully updated.');
+        session()->flash('flash_message_success', 'Solution updated successfully.');
 
         return back();
     }

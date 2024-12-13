@@ -44,7 +44,7 @@ a.card-link {
   background-color: var(--clr-secondary-grey);
   padding-top: 2.9rem;
   padding-bottom: 2.2rem;
-  height: 180px;
+  height: 250px;
 
   svg {
     width: 100%;
@@ -54,11 +54,12 @@ a.card-link {
 
 .card-custom-img-container {
   background-color: var(--clr-secondary-grey);
-  height: 180px;
+  height: 250px;
 
   img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    height: 100%;
   }
 }
 

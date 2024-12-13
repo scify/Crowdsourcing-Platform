@@ -160,6 +160,8 @@ class SolutionManager {
     public function updateSolution(int $id, array $attributes) {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
+        } else {
+            $imgPath = null;
         }
 
         $modelAttributes['problem_id'] = $attributes['solution-owner-problem'];
@@ -336,7 +338,7 @@ class SolutionManager {
         return $this->solutionUpvoteRepository->getNumberOfVotesForUser($user_id, $solution_ids);
     }
 
-    public function handleShareSolution(mixed $solution_id): SolutionShare {
+    public function handleShareSolution(mixed $solution_id): ?SolutionShare {
         $solution = $this->solutionRepository->find($solution_id);
         // if the user who created the solution is different from the current user
         // we need to add a new share

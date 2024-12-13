@@ -37,7 +37,6 @@
 						</div>
 					</div>
 					<ul class="row">
-						<!-- <li v-for="solution in solutions" :key="solution.id" class="col-12 col-sm-6 col-md-6 col-lg-4"> -->
 						<li
 							v-for="solution in solutions"
 							:key="solution.id"
@@ -110,8 +109,6 @@
 									<img
 										:src="solution.img_url"
 										alt="decorative image for solution"
-										width="282"
-										height="180"
 									/>
 								</div>
 								<div class="card-body">
