@@ -3,7 +3,7 @@
 		<div class="col-12 col-md-10 col-lg-11 col-xl-9">
 			<div class="text-center p-0">
 				<button class="btn btn-primary call-to-action" @click="goToProposeSolutionPage">
-					Propose a Solution
+					{{ trans("solution.propose_solution_title") }}
 				</button>
 			</div>
 		</div>
@@ -20,6 +20,9 @@ export default {
 				currentUrl += "/";
 			}
 			window.location.href = currentUrl + "solutions/propose";
+		},
+		trans(key) {
+			return window.trans(key);
 		},
 	},
 };

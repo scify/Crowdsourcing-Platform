@@ -46,4 +46,5 @@ return [
     'solution_translation_notice_checkbox' => 'Megértem, hogy megoldásomat lefordítják, és ha nem támogatott nyelven nyújtják be, csak a fordításban jelenik meg.',
     'solution_consent_notice' => 'Elolvastam és elfogadom a :privacy_policy és a :code_of_conduct.',
     'submit_solution' => 'Megoldás benyújtása',
+    'propose_solution_title' => 'Javasoljon megoldást',
 ];

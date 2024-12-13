@@ -46,4 +46,5 @@ return [
     'solution_translation_notice_checkbox' => 'Je comprends que ma solution sera traduite et que si elle n\'est pas soumise dans une langue prise en charge, elle n\'apparaîtra que dans la traduction.',
     'solution_consent_notice' => 'J\'ai lu et j\'accepte la :privacy_policy et le :code_of_conduct.',
     'submit_solution' => 'Soumettre la solution',
+    'propose_solution_title' => 'Proposer une solution',
 ];
