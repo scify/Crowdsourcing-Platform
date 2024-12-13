@@ -61,8 +61,12 @@ class HomeController extends Controller {
                     if (!Str::contains($referrer, '?open')) {
                         $goBackUrl .= '?open=1';
                     } //so user can go back and open the questionnaire
+                } else {
+                    $goBackUrl = $referrer;
                 }
             }
+        } else {
+            $goBackUrl = route('home');
         }
 
         return $goBackUrl;
