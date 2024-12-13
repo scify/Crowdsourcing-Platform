@@ -46,4 +46,5 @@ return [
     'solution_translation_notice_checkbox' => 'Mõistan, et minu lahendus tõlgitakse ja kui see ei esitata toetatud keeles, ilmub see ainult tõlkes.',
     'solution_consent_notice' => 'Olen lugenud ja nõustun :privacy_policy ja :code_of_conduct.',
     'submit_solution' => 'Esita Lahendus',
+    'propose_solution_title' => 'Paku Lahendus',
 ];

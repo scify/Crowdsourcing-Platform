@@ -3,6 +3,7 @@
 namespace App\BusinessLogicLayer\Solution;
 
 use App\Models\Solution\Solution;
+use App\Repository\RepositoryException;
 use App\Repository\Solution\SolutionRepository;
 use App\Repository\Solution\SolutionTranslationRepository;
 use Exception;
@@ -71,10 +72,10 @@ class SolutionTranslationManager {
     /**
      * Updates the extra translations for a solution.
      *
-     * @throws \App\Repository\RepositoryException
+     * @throws RepositoryException
      */
     protected function updateSolutionExtraTranslations(int $solutionId, array $newExtraTranslations): void {
-        $solutionDefaultTranslationId = $this->solutionRepository->find($solutionId)->default_language_id;
+        $solutionDefaultTranslationId = $this->solutionRepository->find($solutionId)->problem->default_language_id;
         $oldExtraTranslations = $this->getTranslationsForSolution($solutionId)->whereNotIn('language_id', $solutionDefaultTranslationId);
         $alreadyUpdatedExtraTranslations = [];
 

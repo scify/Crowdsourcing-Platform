@@ -6,7 +6,7 @@
                 <div class="solution-default-language-notifier">
                     The default language for this solution is: {{ $viewModel->problem->defaultTranslation->language->language_name }}
                 </div>
-
+                <input type="hidden" name="solution-owner-problem" value="{{ $viewModel->problem->id }}">
                 <div class="form-row">
                     <div class="form-group col-sm-12">
                         <label for="solution-title">Solution Default Title (<span class="red">*</span>)</label>
@@ -57,8 +57,6 @@
                             @foreach ($viewModel->solutionStatusesLkp as $status)
                                 <option
                                         @if ($viewModel->solution->status_id == $status->id || old('solution-status') == $status->id)
-                                            selected
-                                        @elseif ($viewModel->isStatusTheDefault($status->id))
                                             selected
                                         @endif
                                         value="{{ $status->id }}"
@@ -119,9 +117,10 @@
                         </div>
                         <div class="image-preview-container">
                             <img
+
                                     loading="lazy"
-                                    class="selected-image-preview js-selected-image-preview"
-                                    src="{{ $viewModel->solution->img_url ? asset($viewModel->solution->img_url) : '/images/solution_default_image.png' }}"
+                                    class="selected-image-preview js-selected-image-preview {{ $viewModel->solution->img_url ? '' : 'hidden' }}"
+                                    src="{{ $viewModel->solution->img_url ? asset($viewModel->solution->img_url) : '' }}"
                                     alt="">
                         </div>
                     </div>

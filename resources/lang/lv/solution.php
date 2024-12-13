@@ -46,4 +46,5 @@ return [
     'solution_translation_notice_checkbox' => 'Es saprotu, ka mans risinājums tiks tulkots, un, ja tas netiks iesniegts atbalstītā valodā, tas parādīsies tikai tulkojumā.',
     'solution_consent_notice' => 'Esmu izlasījis un piekrītu :privacy_policy un :code_of_conduct.',
     'submit_solution' => 'Iesniegt risinājumu',
+    'propose_solution_title' => 'Ierosiniet risinājumu',
 ];

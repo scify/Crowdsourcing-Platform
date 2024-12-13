@@ -46,4 +46,5 @@ return [
     'solution_translation_notice_checkbox' => 'Ik begrijp dat mijn oplossing wordt vertaald en dat als deze niet in een ondersteunde taal wordt ingediend, deze alleen in vertaling verschijnt.',
     'solution_consent_notice' => 'Ik heb de :privacy_policy en de :code_of_conduct gelezen en ga akkoord.',
     'submit_solution' => 'Dien oplossing in',
+    'propose_solution_title' => 'Stel een oplossing voor',
 ];

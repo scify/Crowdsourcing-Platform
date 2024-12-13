@@ -19,4 +19,14 @@ class SolutionUpvoteRepository extends Repository {
             ->get()
             ->count();
     }
+
+    public function getUpvotesForUser(int $user_id) {
+        return SolutionUpvote::where('user_voter_id', $user_id)->get();
+    }
+
+    public function getNumOfUpvotesForSolutionsProposedByUser(int $user_id): int {
+        return SolutionUpvote::whereHas('solution', function ($query) use ($user_id) {
+            $query->where('user_creator_id', $user_id);
+        })->count();
+    }
 }
