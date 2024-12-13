@@ -6,12 +6,14 @@ use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationM
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\BusinessLogicLayer\Problem\ProblemTranslationManager;
 use App\Models\Solution\Solution;
+use App\Models\Solution\SolutionShare;
 use App\Models\Solution\SolutionTranslation;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
 use App\Repository\RepositoryException;
 use App\Repository\Solution\SolutionRepository;
+use App\Repository\Solution\SolutionShareRepository;
 use App\Repository\Solution\SolutionUpvoteRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\Solution\CreateEditSolution;
@@ -34,6 +36,7 @@ class SolutionManager {
     protected LanguageRepository $languageRepository;
     protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
     protected ProblemTranslationManager $problemTranslationManager;
+    protected SolutionShareRepository $solutionShareRepository;
 
     public function __construct(
         SolutionRepository $solutionRepository,
@@ -45,6 +48,7 @@ class SolutionManager {
         LanguageRepository $languageRepository,
         CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
         ProblemTranslationManager $problemTranslationManager,
+        SolutionShareRepository $solutionShareRepository
     ) {
         $this->solutionRepository = $solutionRepository;
         $this->solutionUpvoteRepository = $solutionUpvoteRepository;
@@ -55,6 +59,7 @@ class SolutionManager {
         $this->languageRepository = $languageRepository;
         $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
         $this->problemTranslationManager = $problemTranslationManager;
+        $this->solutionShareRepository = $solutionShareRepository;
     }
 
     /**
@@ -329,5 +334,22 @@ class SolutionManager {
         $solution_ids = $this->solutionRepository->getSolutionsForProblems($problem_ids)->pluck('id')->toArray();
 
         return $this->solutionUpvoteRepository->getNumberOfVotesForUser($user_id, $solution_ids);
+    }
+
+    public function handleShareSolution(mixed $solution_id): SolutionShare {
+        $solution = $this->solutionRepository->find($solution_id);
+        // if the user who created the solution is different from the current user
+        // we need to add a new share
+        $current_user_id = Auth::id();
+        if ($solution->user_creator_id !== $current_user_id) {
+            $data = [
+                'solution_id' => $solution_id,
+                'user_id' => $current_user_id,
+            ];
+
+            return $this->solutionShareRepository->updateOrCreate($data, $data);
+        }
+
+        return null;
     }
 }

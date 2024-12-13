@@ -1,0 +1,109 @@
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+h2 {
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 4px 0 #00000040;
+}
+
+.highlighted {
+  .card {
+    border: 3px solid var(--project-primary-color);
+  }
+}
+
+a.card-link {
+  display: block;
+  border-radius: 1rem;
+
+  &:hover {
+    color: unset;
+  }
+
+  &:focus-visible {
+    border-radius: 1rem;
+    outline: 4px solid black; // bookmark1 - calculate in rem
+  }
+}
+
+.card {
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  overflow: clip;
+}
+
+.card-placeholder-img-container {
+  background-color: var(--clr-secondary-grey);
+  padding-top: 2.9rem;
+  padding-bottom: 2.2rem;
+  height: 180px;
+
+  svg {
+    width: 100%;
+    color: var(--clr-secondary-light-grey);
+  }
+}
+
+.card-custom-img-container {
+  background-color: var(--clr-secondary-grey);
+  height: 180px;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.card-body {
+  background-color: var(--clr-secondary-light-grey);
+
+  .card-title {
+    font-family: "Noto Sans Variable", sans-serif;
+    font-weight: 500;
+    font-size: 24px; // 24px // bookmark1 - calculate in rem
+    line-height: 29.34px; // 29.34px // bookmark1 - calculate in rem
+  }
+
+  .card-text {
+    font-family: "Open Sans Variable", sans-serif;
+    font-weight: 400;
+    font-size: 16px; // 16px // bookmark1 - calculate in rem
+    line-height: 20.4px; // 20.4px // bookmark1 - calculate in rem
+  }
+}
+
+.upvote-count {
+  position: absolute;
+  top: 1.6rem;
+  left: 5.1rem;
+  color: var(--project-primary-color);
+  padding: 0 0.5rem;
+  border-radius: 2rem;
+  font-weight: 900;
+}
+
+// from "md" and UP
+@media (min-width: 768px) {
+  h2 {
+    margin-top: 7.5rem;
+  }
+}
+
+// from "xs" and DOWN
+@media (max-width: 575.98px) {
+  ul {
+    display: block;
+  }
+  li {
+    width: 22.8rem;
+    margin: 0 auto;
+  }
+}

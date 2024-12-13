@@ -232,4 +232,12 @@ class SolutionController extends Controller {
 
         return response()->json($this->solutionManager->voteOrDownVoteSolution($request->solution_id));
     }
+
+    public function handleShareSolution(Request $request): JsonResponse {
+        $this->validate($request, [
+            'solution_id' => 'required|exists:solutions,id',
+        ]);
+
+        return response()->json($this->solutionManager->handleShareSolution($request->solution_id));
+    }
 }

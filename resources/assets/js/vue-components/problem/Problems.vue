@@ -134,7 +134,6 @@ export default {
 		projectId: "fetchProblems",
 	},
 	mounted() {
-		console.log("mounted");
 		this.fetchProblems();
 	},
 };
