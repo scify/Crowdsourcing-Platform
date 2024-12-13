@@ -2,9 +2,17 @@
 	<div class="row justify-content-center py-5">
 		<div class="col-12 col-md-10 col-lg-11 col-xl-9">
 			<div class="container-fluid p-0">
+				<div class="row pb-4" v-if="userVotesLeft !== null">
+					<div class="col">
+						<p style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0;">
+							You can vote for up to {{ maxVotesPerUserForSolutions }} solutions in total. <!-- bookmark4 - how to translate with dynamic fields? -->
+							You have {{ userVotesLeft }} more votes remaining.
+						</p>
+					</div>
+				</div>
 				<div class="row" v-if="errorMessage.length">
 					<div class="col">
-						<div class="alert-component position-relative d-none" id="errorAlert">
+						<div class="alert-component position-relative d-none" id="error-alert">
 							<div class="alert alert-danger" role="alert">
 								{{ errorMessage }}
 							</div>
@@ -64,6 +72,7 @@
 							:is-filled="solution.upvoted_by_current_user"
 							:solution-id="solution.id"
 							:icon-color-theme="buttonTextColorTheme"
+							@click="heartClicked(solution.id)"
 						></HeartCircleButton>
 						<div class="upvote-count">{{ solution.upvotes_count }}</div>
 						<div v-if="false"><!-- bookmark4 - this div was created to "comment out" the encapsulated content without it being visible in the final markup-->
@@ -104,6 +113,10 @@ export default {
 			type: String,
 			required: true,
 		},
+		maxVotesPerUserForSolutions: {
+			type: Number,
+			required: true,
+		},
 		buttonTextColorTheme: {
 			type: String,
 			default: "light",
@@ -115,10 +128,12 @@ export default {
 			loading: true,
 			error: null,
 			errorMessage: "",
+			userAlreadyCastVotes: null,
+			userVotesLeft: null,
 		};
 	},
 	methods: {
-		...mapActions(["get"]),
+		...mapActions(["get", "post"]),
 		async fetchSolutions() {
 			this.loading = true;
 			this.errorMessage = "";
@@ -127,7 +142,9 @@ export default {
 				urlRelative: false,
 			})
 				.then((response) => {
-					this.solutions = response.data;
+					this.solutions = response.data.solutions;
+					this.userAlreadyCastVotes = response.data.user_votes;
+					this.userVotesLeft = this.maxVotesPerUserForSolutions - this.userAlreadyCastVotes;
 				})
 				.catch((error) => {
 					this.showErrorMessage(error); // bookmark4
@@ -145,7 +162,7 @@ export default {
 			} else {
 				this.errorMessage = `An error occurred. Please try again later. Error: ${error}`;
 			}
-			const alertElement = document.querySelector("#errorAlert");
+			const alertElement = document.querySelector("#error-alert");
 			alertElement.classList.remove("d-none");
 			setTimeout(() => {
 				alertElement.classList.add("d-none");
@@ -162,7 +179,42 @@ export default {
 		},
 		getBtnTextColor_80percent() {
 			return this.getBtnTextColor() + "cc";
-		}
+		},
+		heartClicked(solutionId) {
+			// this.loading = true;
+			this.errorMessage = "";
+			this.post({
+				url: window.route("api.solutions.vote-downvote"),
+				data: { solution_id: solutionId },
+				urlRelative: false,
+			})
+				.then((response) => {
+					// this.updateUpvotes(response.data.upvote, response.data.solution_votes);
+					// this.userVotesLeft = response.data.user_votes_left;
+				})
+				.catch((error) => {
+					this.showErrorMessage(error); // bookmark4
+				})
+				.finally(() => {
+					// this.loading = false;
+				});
+			this.updateUpvotesClientSide(solutionId);
+		},
+		updateUpvotes(isUpvoted, totalSolutionVotes) {
+			// not implemented
+		},
+		updateUpvotesClientSide(solutionId) {
+			const solution = this.solutions.filter( (solution) => { return solution.id === solutionId; } )[0];
+			const wasUpvoted = solution.upvoted_by_current_user;
+			solution.upvoted_by_current_user = !solution.upvoted_by_current_user;
+			if (wasUpvoted) {
+				solution.upvotes_count -= 1;
+				this.userVotesLeft += 1;
+			} else {
+				solution.upvotes_count += 1;
+				this.userVotesLeft -= 1;
+			}
+		},
 	},
 	watch: {
 		problemId: "fetchSolutions",
