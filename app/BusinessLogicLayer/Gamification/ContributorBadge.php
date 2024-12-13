@@ -3,17 +3,17 @@
 namespace App\BusinessLogicLayer\Gamification;
 
 class ContributorBadge extends GamificationBadge {
-    public function __construct(int $allResponses, bool $userHasAchievedBadgePlatformWide) {
+    public function __construct(int $numberOfActionsPerformed, bool $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::CONTRIBUTOR_BADGE_ID;
         $this->color = '#3F51B5';
         parent::__construct(
             __('badges_messages.contributor_title'),
             'contributor.png',
             __('badges_messages.contributor_badge_points_explanation'),
-            $allResponses,
+            $numberOfActionsPerformed,
             $userHasAchievedBadgePlatformWide,
             5,
-            __('badges_messages.contributor_bade_progress', ['count' => $allResponses]),
+            __('badges_messages.contributor_bade_progress', ['count' => $numberOfActionsPerformed]),
             50
         );
     }

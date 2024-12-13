@@ -143,7 +143,7 @@ class QuestionnaireResponseController extends Controller {
             $viewModel->thankYouMode = true;
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $response->user_id])->pluck('questionnaire_id')->toArray();
-            $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo));
+            $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($userId, count($questionnaireIdsUserHasAnsweredTo)));
 
             return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel, 'badge' => $badge]);
         } catch (Exception $e) {
