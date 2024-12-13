@@ -1,11 +1,5 @@
 <div class="container px-sm-0">
 
-    <div class="row">
-        <div class="col-12">
-            <h2>{{ __("project-problems.list_of_solutions") }}</h2>
-        </div>
-    </div>
-
     <solutions
             :problem-id='{{ $viewModel->problem->id }}'
             :problem-slug='@json($viewModel->problem->slug)'
