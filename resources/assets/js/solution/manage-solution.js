@@ -22,6 +22,7 @@ app.mount("#app");
 				if (event.files && event.files[0]) {
 					const parent = $(obj).closest(".js-image-input-container");
 					const imgPreview = parent.find(".js-selected-image-preview");
+					imgPreview.removeClass("hidden");
 					const reader = new FileReader();
 					reader.onload = function (e) {
 						imgPreview.attr("src", e.target.result);

@@ -14,4 +14,9 @@ return [
     'edit' => 'Muuda',
     'delete' => 'Kustuta',
     'change_status' => 'Muuda olekut',
+    'image_accepted_formats' => 'Aktsepteeritud formaadid: jpeg, png, jpg, webp',
+    'image_max_size' => 'Maksimaalne suurus: 2MB',
+    'terms_privacy' => 'Kasutustingimused ja Privaatsuspoliitika',
+    'code_of_conduct' => 'Käitumisjuhend',
+    'form_fields_required' => 'Väljad, mis on märgitud *, on kohustuslikud',
 ];

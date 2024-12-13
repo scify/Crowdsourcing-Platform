@@ -14,4 +14,9 @@ return [
     'edit' => 'Modifier',
     'delete' => 'Supprimer',
     'change_status' => 'Changer le statut',
+    'image_accepted_formats' => 'Formats acceptés: jpeg, png, jpg, webp',
+    'image_max_size' => 'Taille maximale: 2MB',
+    'terms_privacy' => 'Conditions d\'utilisation et Politique de confidentialité',
+    'code_of_conduct' => 'Code de conduite',
+    'form_fields_required' => 'Les champs marqués d\'un * sont obligatoires',
 ];
