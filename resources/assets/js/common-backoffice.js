@@ -38,7 +38,7 @@ const MOBILE_WIDTH = 768;
 				.slideUp(500, function () {
 					window.$(".alert-dismissable").alert("close");
 				});
-		}, 3000000);
+		}, 5000);
 	};
 
 	const initClipboardElements = function () {

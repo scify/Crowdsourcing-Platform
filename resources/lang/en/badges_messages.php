@@ -11,7 +11,7 @@ return [
 
 
     'contributor_badge_points_explanation' => 'Earn :points points each time you answer a questionnaire, submit a solution to a problem, or upvote a solution!',
-    'communicator_badge_points_explanation' => 'Earn :points points each time someone clicks on your shared questionnaires and solutions!',
+    'communicator_badge_points_explanation' => 'Earn :points points each time someone clicks on your shared questionnaires and votes your solutions!',
     'influencer_badge_points_explanation' => 'Earn :points points each time someone responds to your social media posts and contributes!',
     'you_have_answered' => 'You have answered :count',
     'questionnaire' => 'questionnaire',
@@ -51,7 +51,7 @@ return [
     'contribute_for' => 'Contribute for',
     'you_do_not_own' => 'You don\'t own this badge',
     'badges_title' => 'Badges Showcase',
-    'contributor_bade_progress' => 'You have contributed to :count projects',
+    'contributor_bade_progress' => 'You have contributed :count times so far',
     'communicator_bade_progress' => 'You have shared :count times so far',
     'influencer_bade_progress' => ':count users engaged with your shared content',
 ];

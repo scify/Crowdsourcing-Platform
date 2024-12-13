@@ -58,4 +58,8 @@ class SolutionRepository extends Repository {
     public function getSolutionsForProblems($problem_ids) {
         return Solution::whereIn('problem_id', $problem_ids)->get();
     }
+
+    public function getPublishedSolutionsProposedByUser(int $userId) {
+        return Solution::where('user_creator_id', $userId)->where('status_id', SolutionStatusLkp::PUBLISHED)->get();
+    }
 }

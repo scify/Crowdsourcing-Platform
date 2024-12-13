@@ -60,7 +60,7 @@ class QuestionnaireActionHandler {
         Language $language): void {
         $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
             ->allWhere(['user_id' => $user->id])->pluck('questionnaire_id')->toArray();
-        $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($questionnaireIdsUserHasAnsweredTo);
+        $contributorBadge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id, count($questionnaireIdsUserHasAnsweredTo));
 
         $project_translation = $project->translations->firstWhere('language_id', '=', $language->id);
         $questionnaire_translation = $questionnaire->fieldsTranslations->firstWhere('language_id', '=', $language->id);

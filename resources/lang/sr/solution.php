@@ -46,4 +46,5 @@ return [
     'solution_translation_notice_checkbox' => 'Razumem da će moje rešenje biti prevedeno i da će, ako nije poslato na podržanom jeziku, biti prikazano samo u prevodu.',
     'solution_consent_notice' => 'Pročitao sam i slažem se sa :privacy_policy i :code_of_conduct.',
     'submit_solution' => 'Pošaljite rešenje',
+    'propose_solution_title' => 'Predložite rešenje',
 ];
