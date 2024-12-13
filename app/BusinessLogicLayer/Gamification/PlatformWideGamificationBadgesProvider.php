@@ -66,10 +66,11 @@ class PlatformWideGamificationBadgesProvider {
     public function getCommunicatorBadge($userId): CommunicatorBadge {
         $numberOfShares = $this->userQuestionnaireShareRepository
             ->getUserQuestionnaireSharesForUser($userId)->count();
-        $numberOfUpvotesForSolutionsProposedByUser = $this->solutionUpvoteRepository
-            ->getNumOfUpvotesForSolutionsProposedByUser($userId);
 
-        $numberOfActionsPerformed = $numberOfShares + $numberOfUpvotesForSolutionsProposedByUser;
+
+        $totalSolutionShares = $this->solutionShareRepository->getNumOfSharesForSolutionsProposedByUser($userId);
+
+        $numberOfActionsPerformed = $numberOfShares + $totalSolutionShares;
 
         return new CommunicatorBadge($numberOfActionsPerformed,
             $numberOfActionsPerformed > 0);
@@ -77,19 +78,21 @@ class PlatformWideGamificationBadgesProvider {
 
     public function getInfluencerBadge($userId): InfluencerBadge {
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUser($userId)->count();
-        $totalSolutionShares = $this->solutionShareRepository->getNumOfSharesForSolutionsProposedByUser($userId);
-        $totalActionsPerformed = $totalQuestionnaireReferrals + $totalSolutionShares;
+        $numberOfUpvotesForSolutionsProposedByUser = $this->solutionUpvoteRepository
+            ->getNumOfUpvotesForSolutionsProposedByUser($userId);
+
+        $totalActionsPerformed = $totalQuestionnaireReferrals + $numberOfUpvotesForSolutionsProposedByUser;
 
         return new InfluencerBadge($totalActionsPerformed, $totalActionsPerformed > 0);
     }
 
     public function userHasAchievedCommunicatorBadge($userId): bool {
         return $this->userQuestionnaireShareRepository->exists(['user_id' => $userId])
-            || $this->solutionUpvoteRepository->exists(['user_voter_id' => $userId]);
+            || $this->solutionShareRepository->getNumOfSharesForSolutionsProposedByUser($userId);
     }
 
     public function userHasAchievedInfluencerBadge($userId): bool {
         return $this->questionnaireResponseReferralRepository->exists(['referrer_id' => $userId])
-            || $this->solutionShareRepository->getNumOfSharesForSolutionsProposedByUser($userId);
+            || $this->solutionUpvoteRepository->exists(['user_voter_id' => $userId]);
     }
 }
