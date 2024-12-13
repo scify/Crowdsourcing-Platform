@@ -14,4 +14,9 @@ return [
     'edit' => 'Szerkesztés',
     'delete' => 'Törlés',
     'change_status' => 'Állapot módosítása',
+    'image_accepted_formats' => 'Elfogadott formátumok: jpeg, png, jpg, webp',
+    'image_max_size' => 'Maximális méret: 2MB',
+    'terms_privacy' => 'Felhasználási feltételek és Adatvédelmi irányelvek',
+    'code_of_conduct' => 'Magatartási kódex',
+    'form_fields_required' => 'A *-gal jelölt mezők kötelezőek',
 ];

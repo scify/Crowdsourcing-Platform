@@ -239,7 +239,10 @@ class SolutionManager {
         $problem = $this->problemRepository->findBy('slug', $problem_slug);
         $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
 
-        $localeLanguage = $this->languageRepository->getLanguageByCode($locale);
+        // we need to calculate the $localeLanguage as follows:
+        // if the problem has a translation in the current locale, we use this
+        // otherwise, we use the default language of the project
+        $localeLanguage = $problem->currentTranslation ? $problem->currentTranslation->language : $project->defaultTranslation->language;
 
         return new ProposeSolutionPage($project, $problem, $localeLanguage);
     }
@@ -307,7 +310,7 @@ class SolutionManager {
         return [
             'solution_votes' => $solution_votes,
             'upvote' => $upvote,
-            'user_votes_left' => $upvote ? $votes_left - 1 : $votes_left,
+            'user_votes_left' => $upvote ? $votes_left - 1 : $votes_left + 1,
         ];
     }
 
