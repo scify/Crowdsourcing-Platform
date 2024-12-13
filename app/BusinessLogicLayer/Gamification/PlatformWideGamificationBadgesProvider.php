@@ -6,6 +6,7 @@ use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\Solution\SolutionRepository;
+use App\Repository\Solution\SolutionShareRepository;
 use App\Repository\Solution\SolutionUpvoteRepository;
 use App\Repository\User\UserQuestionnaireShareRepository;
 use App\ViewModels\Gamification\GamificationBadgesWithLevels;
@@ -19,19 +20,22 @@ class PlatformWideGamificationBadgesProvider {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected SolutionRepository $solutionRepository;
     protected SolutionUpvoteRepository $solutionUpvoteRepository;
+    protected SolutionShareRepository $solutionShareRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
         UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
         QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
         QuestionnaireResponseRepository $questionnaireResponseRepository,
         SolutionRepository $solutionRepository,
-        SolutionUpvoteRepository $solutionUpvoteRepository) {
+        SolutionUpvoteRepository $solutionUpvoteRepository,
+        SolutionShareRepository $solutionShareRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->userQuestionnaireShareRepository = $userQuestionnaireShareRepository;
         $this->questionnaireResponseReferralRepository = $questionnaireResponseReferralRepository;
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->solutionRepository = $solutionRepository;
         $this->solutionUpvoteRepository = $solutionUpvoteRepository;
+        $this->solutionShareRepository = $solutionShareRepository;
     }
 
     public function getPlatformWideGamificationBadgesListVM(int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadgesWithLevels {
@@ -73,15 +77,19 @@ class PlatformWideGamificationBadgesProvider {
 
     public function getInfluencerBadge($userId): InfluencerBadge {
         $totalQuestionnaireReferrals = $this->questionnaireResponseReferralRepository->getQuestionnaireReferralsForUser($userId)->count();
+        $totalSolutionShares = $this->solutionShareRepository->getNumOfSharesForSolutionsProposedByUser($userId);
+        $totalActionsPerformed = $totalQuestionnaireReferrals + $totalSolutionShares;
 
-        return new InfluencerBadge($totalQuestionnaireReferrals, $this->userHasAchievedInfluencerBadge($userId));
+        return new InfluencerBadge($totalActionsPerformed, $totalActionsPerformed > 0);
     }
 
     public function userHasAchievedCommunicatorBadge($userId): bool {
-        return $this->userQuestionnaireShareRepository->exists(['user_id' => $userId]);
+        return $this->userQuestionnaireShareRepository->exists(['user_id' => $userId])
+            || $this->solutionUpvoteRepository->exists(['user_voter_id' => $userId]);
     }
 
     public function userHasAchievedInfluencerBadge($userId): bool {
-        return $this->questionnaireResponseReferralRepository->exists(['referrer_id' => $userId]);
+        return $this->questionnaireResponseReferralRepository->exists(['referrer_id' => $userId])
+            || $this->solutionShareRepository->getNumOfSharesForSolutionsProposedByUser($userId);
     }
 }

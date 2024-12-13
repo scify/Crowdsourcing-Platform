@@ -12,4 +12,10 @@ class SolutionShareRepository extends Repository {
     public function getModelClassName() {
         return SolutionShare::class;
     }
+
+    public function getNumOfSharesForSolutionsProposedByUser($userId) {
+        return SolutionShare::whereHas('solution', function ($query) use ($userId) {
+            $query->where('user_creator_id', $userId);
+        })->count();
+    }
 }
