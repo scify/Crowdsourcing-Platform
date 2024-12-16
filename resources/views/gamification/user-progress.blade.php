@@ -64,7 +64,7 @@
                     <div class="row my-5">
                         <div class="col mx-auto">
                             <a href="{{ route('my-contributions') }}"
-                               class="btn btn-primary btn-lg">{{ __('my-history.my_contributions') }}</a>
+                               class="btn btn-primary btn-lg">{{ __('my-contributions.my_contributions') }}</a>
                         </div>
                     </div>
                 </div>

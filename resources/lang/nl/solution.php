@@ -47,4 +47,5 @@ return [
     'solution_consent_notice' => 'Ik heb de :privacy_policy en de :code_of_conduct gelezen en ga akkoord.',
     'submit_solution' => 'Dien oplossing in',
     'propose_solution_title' => 'Stel een oplossing voor',
+    'number_of_votes_title' => 'Aantal stemmen',
 ];

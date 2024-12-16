@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\BusinessLogicLayer\User\UserDashboardManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
@@ -15,13 +16,16 @@ class UserController extends Controller {
     private UserManager $userManager;
     private QuestionnaireResponseManager $questionnaireResponseManager;
     protected UserDashboardManager $userDashboardManager;
+    protected SolutionManager $solutionManager;
 
     public function __construct(UserManager $userManager,
         QuestionnaireResponseManager $questionnaireResponseManager,
-        UserDashboardManager $userDashboardManager) {
+        UserDashboardManager $userDashboardManager,
+        SolutionManager $solutionManager) {
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->userDashboardManager = $userDashboardManager;
+        $this->solutionManager = $solutionManager;
     }
 
     public function home() {
@@ -108,9 +112,11 @@ class UserController extends Controller {
     }
 
     public function showUserContributions() {
-        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
+        $user = Auth::user();
+        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser($user);
+        $solutions = $this->solutionManager->getSolutionsProposedByUser($user);
 
-        return view('backoffice.my-contributions', ['responses' => $responses]);
+        return view('backoffice.my-contributions', ['responses' => $responses, 'solutions' => $solutions]);
     }
 
     public function downloadMyData() {
