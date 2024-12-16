@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Jā! Dodieties uz mājaslapu',
     'answer_to_feedback_questionnaire' => 'Atbildi uz atsauksmju anketu',
     'user_feedback_given_message' => 'Paldies par atsauksmēm!',
+    'must_be_logged_in_prompt' => 'Lai atbildētu uz anketu, jābūt pierakstītam sistēmā.',
+    'create_account_prompt' => 'Tu vari izveidot kontu, lai vairāk piedalītos platformā un iegūtu zīmes!',
 ];

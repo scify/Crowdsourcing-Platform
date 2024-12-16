@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Gebruiksvoorwaarden en Privacybeleid',
     'code_of_conduct' => 'Gedragscode',
     'form_fields_required' => 'Velden gemarkeerd met * zijn verplicht',
+    'personal_information_disclaimer' => 'Uw persoonlijke informatie (e-mailadres) wordt nooit openbaar weergegeven.',
 ];

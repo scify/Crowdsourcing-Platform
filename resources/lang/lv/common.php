@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Lietošanas noteikumi un Konfidencialitātes politika',
     'code_of_conduct' => 'Uzvedības kodekss',
     'form_fields_required' => 'Lauki, kas ir atzīmēti ar *, ir obligāti',
+    'personal_information_disclaimer' => 'Jūsu personīgā informācija (e-pasta adrese) nekad netiks publiski rādīta.',
 ];

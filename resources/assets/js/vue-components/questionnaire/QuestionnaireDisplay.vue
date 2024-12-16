@@ -169,9 +169,9 @@ export default {
 		},
 		getQuestionnaireLoginPromptMessage() {
 			if (this.questionnaire.respondent_auth_required) {
-				return "You must be logged in in order to respond to this questionnaire";
+				return trans("questionnaire.must_be_logged_in_prompt");
 			}
-			return "You can create an account in order to see more questionnaires that need answering";
+			return trans("questionnaire.create_account_prompt");
 		},
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
@@ -218,14 +218,15 @@ export default {
 			}
 			this.survey.onAfterRenderSurvey.add(() => {
 				this.loading = false;
-				$(".sv_complete_btn").after(
-					"<p class='questionnaire-disclaimer'>Your personal information (email address) will never be publicly displayed.</p>",
-				);
+
 				setTimeout(() => {
 					$("textarea").each(function () {
 						$(this).attr("spellcheck", true);
 					});
-				}, 3000);
+					$(".sv-components-container-contentBottom").after(
+						"<p class='questionnaire-disclaimer d-block mb-0 px-1 text-center py-3'>" + trans('common.personal_information_disclaimer') + "</p>",
+					);
+				}, 2000);
 			});
 		},
 		prepareQuestionnaireForViewingResponse() {

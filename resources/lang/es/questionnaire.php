@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Yes! Go to homepage',
     'answer_to_feedback_questionnaire' => 'Responde al cuestionario de retroalimentación',
     'user_feedback_given_message' => '¡Gracias por tu retroalimentación!',
+    'must_be_logged_in_prompt' => 'Debes iniciar sesión para responder el cuestionario.',
+    'create_account_prompt' => '¡Puedes crear una cuenta para contribuir más a la plataforma y obtener insignias!',
 ];

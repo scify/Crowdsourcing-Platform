@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Yes! Go to homepage',
     'answer_to_feedback_questionnaire' => 'Answer the feedback questionnaire',
     'user_feedback_given_message' => 'Thank you for your feedback!',
+    'must_be_logged_in_prompt' => 'You must be logged in to answer the questionnaire.',
+    'create_account_prompt' => 'You can create an account in order to contribute more to the platform, and gain badges!',
 ];
