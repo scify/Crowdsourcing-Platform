@@ -38,7 +38,7 @@ class Solution extends Model {
         return $this->hasMany('App\Models\Solution\SolutionTranslation', 'solution_id', 'id');
     }
 
-    public function user(): BelongsTo {
+    public function creator(): BelongsTo {
         return $this->belongsTo(User::class, 'user_creator_id', 'id');
     }
 
