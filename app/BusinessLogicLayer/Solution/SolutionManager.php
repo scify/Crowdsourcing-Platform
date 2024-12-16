@@ -112,7 +112,15 @@ class SolutionManager {
     public function storeSolutionFromPublicForm(array $attributes): Solution {
         $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
         $user = Auth::user();
+
+        // notify the user that their solution has been submitted
         $user->notify(new \App\Notifications\SolutionSubmitted($solution));
+
+        // get the creator of the solution problem
+        $problem_creator = $solution->problem->creator;
+
+        // notify the creator of the solution submission
+        $problem_creator->notify(new \App\Notifications\SolutionSubmittedForReview($solution));
 
         return $solution;
     }

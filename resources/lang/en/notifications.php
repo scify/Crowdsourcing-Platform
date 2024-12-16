@@ -6,9 +6,7 @@ return [
     |--------------------------------------------------------------------------
     | Notifications elements
     |--------------------------------------------------------------------------
-
     */
-
 
     'go_to_dashboard' => 'Go to Dashboard',
     'thank_you_for_contribution' => 'Thank you for your contribution!',
@@ -35,4 +33,8 @@ return [
     'ok' => 'OK',
     'solution_submitted' => 'Solution Submitted',
     'thanks_for_proposing_solution' => 'Thank you for proposing a solution! It will soon be reviewed by our team, and you will be notified when it is approved. Once approved, other users will be able to vote on it!',
+    'new_solution_submitted' => 'A new solution has been submitted.',
+    'a_user_has_proposed_solution' => 'A user has proposed a solution.',
+    'check_solution_and_review' => 'Please check the solution and review it.',
+    'see_submitted_solutions' => 'See Submitted Solutions',
 ];
