@@ -31,6 +31,7 @@
                 @if(!isset($onErrorPage))
                     @include("partials.login-menu-options")
                 @endif
+                @include("partials.language-selector")
             </ul>
         </div>
     </nav>

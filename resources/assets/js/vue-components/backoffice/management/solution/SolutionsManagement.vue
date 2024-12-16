@@ -103,7 +103,7 @@
 				<div class="modal-body" v-if="modalSolution.id">
 					<p>
 						Are you sure you want to delete the solution
-						<b>{{ modalSolution.default_translation.title }}</b
+						<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b
 						>?
 					</p>
 
@@ -142,7 +142,7 @@
 				</div>
 				<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
 					<p>
-						Select a new status for the solution <b>{{ modalSolution.default_translation.title }}</b>
+						Select a new status for the solution <b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b>
 					</p>
 					<select class="form-select form-control" v-model="modalSolution.status.id">
 						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
@@ -388,7 +388,7 @@ export default {
 						languages: solution.translations
 							? solution.translations.map((t) => t.language.language_name).join(", ")
 							: "",
-						user: solution?.user?.nickname ?? "N/A",
+						user: solution?.creator ? solution.creator?.nickname + " (" + solution.creator.email + ")" : "N/A",
 						status: `<span title="${this.getBadgeTitleForSolutionStatusId(solution.status_id)}"
                                   class="p-2 w-75 badge ${this.getBadgeClassForSolutionStatusId(solution.status_id)}">
                                   ${this.getStatusTitleForSolutionStatusId(solution.status_id)}</span>`,

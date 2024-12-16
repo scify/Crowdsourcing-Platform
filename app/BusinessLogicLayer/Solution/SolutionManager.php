@@ -9,6 +9,7 @@ use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionShare;
 use App\Models\Solution\SolutionTranslation;
 use App\Models\User\User;
+use App\Notifications\SolutionPublished;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
@@ -245,7 +246,7 @@ class SolutionManager {
             $solution = $this->solutionRepository->find($id);
             $user = Auth::user();
             if ($solution->user_creator_id !== $user->id) {
-                $user->notify(new \App\Notifications\SolutionPublished($solution));
+                $user->notify(new SolutionPublished($solution));
             }
         }
 
