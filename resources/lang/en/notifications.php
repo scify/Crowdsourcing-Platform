@@ -32,6 +32,7 @@ return [
     'agree_privacy_policy' => 'I agree to the <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy policy.',
     'ok' => 'OK',
     'solution_submitted' => 'Solution Submitted',
+    'solution_submitted_for_review' => 'Solution submitted for review',
     'thanks_for_proposing_solution' => 'Thank you for proposing a solution! It will soon be reviewed by our team, and you will be notified when it is approved. Once approved, other users will be able to vote on it!',
     'new_solution_submitted' => 'A new solution has been submitted.',
     'a_user_has_proposed_solution' => 'A user has proposed a solution.',

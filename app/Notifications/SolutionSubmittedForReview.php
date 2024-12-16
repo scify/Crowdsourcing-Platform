@@ -34,7 +34,7 @@ class SolutionSubmittedForReview extends Notification implements ShouldQueue {
      */
     public function toMail(object $notifiable): MailMessage {
         return (new MailMessage)
-            ->subject('Crowdsourcing Platform | ' . __('notifications.solution_submitted') . ': ' . $this->solution->defaultTranslation->title)
+            ->subject('Crowdsourcing Platform | ' . __('notifications.solution_submitted_for_review') . ': ' . $this->solution->defaultTranslation->title)
             ->line(__('notifications.new_solution_submitted'))
             ->line('<div style="text-align:center; height: 200px; margin-bottom: 20px;"><img class="badgeImg" style="height: 200px; margin-bottom: 0;" src=' . asset('images/active_participation.webp') . '></div>')
             ->greeting(__('notifications.hello') . ' ' . $notifiable->nickname . '!')
