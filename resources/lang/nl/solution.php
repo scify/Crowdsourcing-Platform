@@ -48,4 +48,5 @@ return [
     'submit_solution' => 'Dien oplossing in',
     'propose_solution_title' => 'Stel een oplossing voor',
     'number_of_votes_title' => 'Aantal stemmen',
+    'have_a_solution_to_suggest' => 'Heeft u een oplossing om voor te stellen?',
 ];

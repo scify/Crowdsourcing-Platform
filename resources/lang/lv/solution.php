@@ -48,4 +48,5 @@ return [
     'submit_solution' => 'Iesniegt risinājumu',
     'propose_solution_title' => 'Ierosiniet risinājumu',
     'number_of_votes_title' => 'Balsu skaits',
+    'have_a_solution_to_suggest' => 'Vai jums ir risinājums, ko ieteikt?',
 ];
