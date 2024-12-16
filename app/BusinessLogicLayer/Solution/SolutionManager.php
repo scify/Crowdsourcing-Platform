@@ -110,7 +110,19 @@ class SolutionManager {
      * @throws Exception
      */
     public function storeSolutionFromPublicForm(array $attributes): Solution {
-        return $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
+        $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
+        $user = Auth::user();
+
+        // notify the user that their solution has been submitted
+        $user->notify(new \App\Notifications\SolutionSubmitted($solution));
+
+        // get the creator of the solution problem
+        $problem_creator = $solution->problem->creator;
+
+        // notify the creator of the solution submission
+        $problem_creator->notify(new \App\Notifications\SolutionSubmittedForReview($solution));
+
+        return $solution;
     }
 
     /**
@@ -217,13 +229,27 @@ class SolutionManager {
     public function getSolutions(mixed $problem_id): Collection {
         $current_language_code = app()->getLocale();
         $current_language = $this->languageRepository->getLanguageByCode($current_language_code);
-        $current_language_id = $current_language ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
+        $current_language_id = ($current_language && $current_language->id) ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
 
         return $this->solutionRepository->getSolutions($problem_id, $current_language_id, Auth::id());
     }
 
     public function updateSolutionStatus(int $id, int $status_id) {
-        return $this->solutionRepository->update(['status_id' => $status_id], $id);
+        $result = $this->solutionRepository->update(['status_id' => $status_id], $id);
+
+        // if the status was changed to published
+        // and if the current user is different from the creator of the solution
+        // we need to notify the user who created the solution
+
+        if ($status_id === SolutionStatusLkp::PUBLISHED) {
+            $solution = $this->solutionRepository->find($id);
+            $user = Auth::user();
+            if ($solution->user_creator_id !== $user->id) {
+                $user->notify(new \App\Notifications\SolutionPublished($solution));
+            }
+        }
+
+        return $result;
     }
 
     public function deleteSolution(int $id): bool {
