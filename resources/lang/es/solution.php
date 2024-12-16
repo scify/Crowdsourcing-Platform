@@ -47,4 +47,5 @@ return [
     'solution_consent_notice' => 'He leído y acepto la :privacy_policy y el :code_of_conduct.',
     'submit_solution' => 'Enviar Solución',
     'propose_solution_title' => 'Proponer una Solución',
+    'number_of_votes_title' => 'Número de Votos',
 ];

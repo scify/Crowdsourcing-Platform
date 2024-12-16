@@ -13,6 +13,17 @@ import * as Survey from "survey-jquery";
 				order: [],
 				columns: [{ width: "20%" }, { width: "20%" }, { width: "40%" }, { width: "10%" }, { width: "10%" }],
 			});
+
+		const proposedSolutionTable = $("#proposedSolutionsTable");
+		if (proposedSolutionTable.length)
+			proposedSolutionTable.DataTable({
+				paging: true,
+				searching: true,
+				pageLength: 10,
+				/* No ordering applied by DataTables during initialisation */
+				order: [],
+				columns: [{ width: "20%" }, { width: "20%" }, { width: "40%" }, { width: "10%" }, { width: "10%" }],
+			});
 	};
 
 	const viewResponseHandler = function () {

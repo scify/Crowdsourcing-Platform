@@ -19,8 +19,10 @@ return [
     'responded' => 'Responded',
     'actions' => 'Actions',
     'view_response' => 'View response',
-
-
+    'my_proposed_solutions' => 'My Proposed Solutions',
+    'number_of_proposed_solutions' => '{0} You have proposed <b>zero solutions</b> |{1}  You have proposed <b>1 solution</b |[2,*] You have proposed <b>:count solutions</b>',
+    'no_proposed_solutions' => 'You haven’t proposed any solutions, yet.',
+    'problem' => 'Problem',
 
 
 
