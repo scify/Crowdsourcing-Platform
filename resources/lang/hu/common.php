@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Felhasználási feltételek és Adatvédelmi irányelvek',
     'code_of_conduct' => 'Magatartási kódex',
     'form_fields_required' => 'A *-gal jelölt mezők kötelezőek',
+    'personal_information_disclaimer' => 'Az Ön személyes adatait (e-mail cím) soha nem jelenítjük meg nyilvánosan.',
 ];

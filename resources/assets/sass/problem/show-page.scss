@@ -1,6 +1,8 @@
 @import "bootstrap_4point6_custom_xxl"; // this page uses custom styles to support one more bootstrap size: xxl from 1260px and UP
 
 #single-problem-page {
+	position: relative;
+
 	#single-problem-overview,
 	.row.problem-description {
 		padding-bottom: 3.25rem;
@@ -61,6 +63,35 @@
 		h1,
 		h2 {
 			padding: unset;
+		}
+	}
+
+	#propose-solution-cta-sticky-container {
+		&.sticky-container-outer-column {
+			position: absolute;
+			top: 30px;
+			right: 60px;
+			height: 100%;
+			z-index: 10;
+		}
+		
+		.sticky-container-inner-div {
+			position: sticky;
+			top: 8rem;
+
+			.propose-solution-cta {
+				padding: 1.25rem 1.5rem;
+				width: 19rem;
+				background-color: var(--clr-primary-white);
+				border: none;
+				-webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.25);
+				box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.25);
+				border-radius: 20px;
+			}
+		}
+
+		h3 {
+			font-size: 1.5rem;
 		}
 	}
 }

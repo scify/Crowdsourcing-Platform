@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Kasutustingimused ja Privaatsuspoliitika',
     'code_of_conduct' => 'Käitumisjuhend',
     'form_fields_required' => 'Väljad, mis on märgitud *, on kohustuslikud',
+    'personal_information_disclaimer' => 'Teie isiklikku teavet (e-posti aadress) ei kuvata kunagi avalikult.',
 ];

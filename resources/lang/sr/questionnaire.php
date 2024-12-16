@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Yes! Go to homepage',
     'answer_to_feedback_questionnaire' => 'Odgovorite na upitnik o povratnim informacijama',
     'user_feedback_given_message' => 'Hvala Vam na povratnoj informaciji!',
+    'must_be_logged_in_prompt' => 'Morate biti prijavljeni da biste odgovorili na upitnik.',
+    'create_account_prompt' => 'Možete kreirati nalog kako biste više doprineli platformi i stekli značke!',
 ];

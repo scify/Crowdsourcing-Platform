@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Termos e Política de Privacidade',
     'code_of_conduct' => 'Código de Conduta',
     'form_fields_required' => 'Os campos marcados com * são obrigatórios',
+    'personal_information_disclaimer' => 'Suas informações pessoais (endereço de e-mail) nunca serão exibidas publicamente.',
 ];

@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Yes! Go to homepage',
     'answer_to_feedback_questionnaire' => 'Odpovedzte na dotazník o spätných väzbách',
     'user_feedback_given_message' => 'Ďakujeme za Vašu spätnú väzbu!',
+    'must_be_logged_in_prompt' => 'Pre zodpovedanie dotazníka musíte byť prihlásení.',
+    'create_account_prompt' => 'Môžete si vytvoriť účet, aby ste prispeli viac na platformu a získali odznaky!',
 ];

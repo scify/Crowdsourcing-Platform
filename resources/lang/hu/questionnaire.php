@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Igen! Menj a főoldalra',
     'answer_to_feedback_questionnaire' => 'Válaszoljon a visszajelzési kérdőívünkre',
     'user_feedback_given_message' => 'Köszönjük a visszajelzését!',
+    'must_be_logged_in_prompt' => 'A kérdőív kitöltéséhez be kell jelentkeznie.',
+    'create_account_prompt' => 'Hozzon létre egy fiókot, hogy még többet hozzájárulhasson a platformhoz, és jelvényeket szerezzen!',
 ];
