@@ -8,6 +8,7 @@ use App\BusinessLogicLayer\Problem\ProblemTranslationManager;
 use App\Models\Solution\Solution;
 use App\Models\Solution\SolutionShare;
 use App\Models\Solution\SolutionTranslation;
+use App\Models\User\User;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
@@ -353,5 +354,11 @@ class SolutionManager {
         }
 
         return null;
+    }
+
+    public function getSolutionsProposedByUser(User $user) {
+        return $this->solutionRepository->allWhere(['user_creator_id' => $user->id], ['*'], $orderColumn = null, $order = null, $withRelationships = [
+            'problem', 'problem.defaultTranslation', 'upvotes', 'problem.project',
+        ]);
     }
 }

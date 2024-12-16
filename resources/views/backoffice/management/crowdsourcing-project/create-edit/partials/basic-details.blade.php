@@ -107,7 +107,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="max_votes_per_user_for_solutions">
-                                Number of votes per user (for solutions)
+                                Number of votes per user (for each problem's solutions)
                             </label>
                             <input id="max_votes_per_user_for_solutions" type="number" class="form-control"
                                    name="max_votes_per_user_for_solutions"

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Controllers;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\BusinessLogicLayer\User\UserDashboardManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\User\UserController;
@@ -17,6 +18,7 @@ class UserControllerTest extends TestCase {
     private UserDashboardManager $userDashboardManager;
     private UserManager $userManager;
     private QuestionnaireResponseManager $questionnaireResponseManager;
+    private SolutionManager $solutionManager;
 
     protected function setUp(): void {
         parent::setUp();
@@ -24,6 +26,7 @@ class UserControllerTest extends TestCase {
         $this->userDashboardManager = $this->createMock(UserDashboardManager::class);
         $this->userManager = $this->createMock(UserManager::class);
         $this->questionnaireResponseManager = $this->createMock(QuestionnaireResponseManager::class);
+        $this->solutionManager = $this->createMock(SolutionManager::class);
         Auth::shouldReceive('user')->andReturn($this->user);
     }
 
@@ -31,7 +34,7 @@ class UserControllerTest extends TestCase {
         $this->userDashboardManager->method('getUserDashboardViewModel')
             ->willReturn($this->createDashboardViewModel(0, 0, 0));
 
-        $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager);
+        $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager, $this->solutionManager);
         $response = $controller->myDashboard();
 
         $this->assertEquals('backoffice.my-dashboard', $response->name());
@@ -46,7 +49,7 @@ class UserControllerTest extends TestCase {
         $this->userDashboardManager->method('getUserDashboardViewModel')
             ->willReturn($this->createDashboardViewModel(3, 2, 1));
 
-        $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager);
+        $controller = new UserController($this->userManager, $this->questionnaireResponseManager, $this->userDashboardManager, $this->solutionManager);
         $response = $controller->myDashboard();
 
         $this->assertEquals('backoffice.my-dashboard', $response->name());

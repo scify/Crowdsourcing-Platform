@@ -27,7 +27,7 @@
             </li>
             <li class="nav-item {{ UrlMatchesMenuItem('my-contributions') }}">
                 <a class="nav-link"
-                   href="{{ route('my-contributions') }}"> {{ __('my-history.my_contributions') }} </a>
+                   href="{{ route('my-contributions') }}"> {{ __('my-contributions.my_contributions') }} </a>
             </li>
             @include('partials.user-actions-header-dropdown')
         </ul>

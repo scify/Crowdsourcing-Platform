@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\BusinessLogicLayer\User\UserDashboardManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
@@ -15,13 +16,16 @@ class UserController extends Controller {
     private UserManager $userManager;
     private QuestionnaireResponseManager $questionnaireResponseManager;
     protected UserDashboardManager $userDashboardManager;
+    protected SolutionManager $solutionManager;
 
     public function __construct(UserManager $userManager,
         QuestionnaireResponseManager $questionnaireResponseManager,
-        UserDashboardManager $userDashboardManager) {
+        UserDashboardManager $userDashboardManager,
+        SolutionManager $solutionManager) {
         $this->userManager = $userManager;
         $this->questionnaireResponseManager = $questionnaireResponseManager;
         $this->userDashboardManager = $userDashboardManager;
+        $this->solutionManager = $solutionManager;
     }
 
     public function home() {
@@ -108,9 +112,11 @@ class UserController extends Controller {
     }
 
     public function showUserContributions() {
-        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
+        $user = Auth::user();
+        $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser($user);
+        $solutions = $this->solutionManager->getSolutionsProposedByUser($user);
 
-        return view('backoffice.my-contributions', ['responses' => $responses]);
+        return view('backoffice.my-contributions', ['responses' => $responses, 'solutions' => $solutions]);
     }
 
     public function downloadMyData() {
@@ -123,15 +129,21 @@ class UserController extends Controller {
         ];
 
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
-        $columns = ['Project name', 'Questionnaire title', 'Questionnaire description', 'Questionnaire JSON', 'Response JSON'];
+        $solutions = $this->solutionManager->getSolutionsProposedByUser(Auth::user());
+        $columns = ['Type', 'Project name', 'Title', 'Description', 'JSON'];
 
-        $callback = function () use ($responses, $columns) {
+        $callback = function () use ($responses, $solutions, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($responses as $response) {
-                fputcsv($file, [$response->name, $response->title, $response->questionnaire_description, $response->questionnaire_json, $response->response_json]);
+                fputcsv($file, ['Response', $response->project_name, $response->title, $response->questionnaire_description, $response->response_json]);
             }
+
+            foreach ($solutions as $solution) {
+                fputcsv($file, ['Solution', $solution->problem->project->defaultTranslation->name, $solution->defaultTranslation->title, $solution->defaultTranslation->description, '']);
+            }
+
             fclose($file);
         };
 
