@@ -236,11 +236,13 @@ export default {
 			} else {
 				this.errorMessage = `An error occurred. Please try again later. Error: ${error}`;
 			}
-			const alertElement = document.querySelector("#error-alert");
-			alertElement.classList.remove("d-none");
-			setTimeout(() => {
-				alertElement.classList.add("d-none");
-			}, 5000);
+			this.$nextTick(() => {
+				const alertElement = document.querySelector("#error-alert");
+				alertElement.classList.remove("d-none");
+				setTimeout(() => {
+					alertElement.classList.add("d-none");
+				}, 5000);
+			});
 		},
 		checkSolutionInURLAndHighlight() {
 			const urlParams = new URLSearchParams(window.location.search);
@@ -278,6 +280,10 @@ export default {
 		},
 		heartClicked(solutionId) {
 			if (this.votingInProgress) {
+				return;
+			}
+			if(this.userVotesLeft <= 0) {
+				this.showErrorMessage("You have no more votes left.");
 				return;
 			}
 			this.votingInProgress = true;
