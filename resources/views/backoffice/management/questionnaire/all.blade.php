@@ -90,7 +90,7 @@
                                                         <button data-clipboard-text="{{ $url['url'] }}"
                                                                 class="copy-clipboard action-btn dropdown-item">
                                                             <i class="copy-questionnaire-link fa fa-link"></i>
-                                                            Get {{ $url['project_name'] }} English Link
+                                                            Get {{ $url['project_name'] }} Link
                                                         </button>
                                                     @endforeach
                                                 @endif

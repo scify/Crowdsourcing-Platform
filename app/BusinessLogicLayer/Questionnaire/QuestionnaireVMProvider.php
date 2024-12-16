@@ -109,7 +109,10 @@ class QuestionnaireVMProvider {
     }
 
     protected function getQuestionnaireURL(string $projectSlug, int $questionnaireId): string {
-        return route('show-questionnaire-page', ['project' => $projectSlug, 'questionnaire' => $questionnaireId]);
+        // get the locale for the default language of the project
+        $locale = $this->crowdSourcingProjectManager->getDefaultLanguageForProject($projectSlug)->lang_code;
+
+        return route('show-questionnaire-page', ['locale' => $locale, 'project' => $projectSlug, 'questionnaire' => $questionnaireId]);
     }
 
     public function getViewModelForQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
