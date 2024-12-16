@@ -129,15 +129,21 @@ class UserController extends Controller {
         ];
 
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser(Auth::user());
-        $columns = ['Project name', 'Questionnaire title', 'Questionnaire description', 'Questionnaire JSON', 'Response JSON'];
+        $solutions = $this->solutionManager->getSolutionsProposedByUser(Auth::user());
+        $columns = ['Type', 'Project name', 'Title', 'Description', 'JSON'];
 
-        $callback = function () use ($responses, $columns) {
+        $callback = function () use ($responses, $solutions, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($responses as $response) {
-                fputcsv($file, [$response->name, $response->title, $response->questionnaire_description, $response->questionnaire_json, $response->response_json]);
+                fputcsv($file, ['Response', $response->project_name, $response->title, $response->questionnaire_description, $response->response_json]);
             }
+
+            foreach ($solutions as $solution) {
+                fputcsv($file, ['Solution', $solution->problem->project->defaultTranslation->name, $solution->defaultTranslation->title, $solution->defaultTranslation->description, '']);
+            }
+
             fclose($file);
         };
 
