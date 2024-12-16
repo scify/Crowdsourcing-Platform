@@ -85,7 +85,7 @@
                                         {{-- IF HE HAS NOT RESPONDEDED TO THE FEEDBACK, INVITE HIM TO DO SO--}}
                                         @if ($viewModel->displayFeedbackQuestionnaire())
                                             <div class="col-md-9 col-sm-12 mx-auto">
-                                                <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->feedbackQuestionnaire->id]) }}"
+                                                <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug,'questionnaire' => $viewModel->feedbackQuestionnaire->id]) }}"
                                                    class="btn btn-primary w-100 respond-questionnaire call-to-action">
                                                     {{__("questionnaire.give_us_feedback")}}
                                                 </a>
@@ -109,7 +109,7 @@
                                     @else
                                         {{-- INVITE HIM TO RESPOND TO THE PROJECT QUESTIONNAIRE --}}
                                         <div class="col-md-9 col-sm-12 mx-auto">
-                                            <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
+                                            <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
                                                class="btn btn-primary w-100 respond-questionnaire call-to-action
                                             {{ !$viewModel->project->lp_show_speak_up_btn ? 'hidden' : '' }}">
                                                 {{__("questionnaire.answer_the_questionnaire")}}
