@@ -17,5 +17,4 @@
             @csrf
         </form>
     </div>
-    @include('partials.language-selector')
 </li>

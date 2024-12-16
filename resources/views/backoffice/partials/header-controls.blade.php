@@ -30,6 +30,7 @@
                    href="{{ route('my-contributions') }}"> {{ __('my-contributions.my_contributions') }} </a>
             </li>
             @include('partials.user-actions-header-dropdown')
+            @include('partials.language-selector')
         </ul>
     </div>
 </nav>
