@@ -48,4 +48,5 @@ return [
     'submit_solution' => 'Enviar Solución',
     'propose_solution_title' => 'Proponer una Solución',
     'number_of_votes_title' => 'Número de Votos',
+    'have_a_solution_to_suggest' => '¿Tiene una solución para sugerir?',
 ];

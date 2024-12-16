@@ -48,4 +48,5 @@ return [
     'submit_solution' => 'Изпратете решение',
     'propose_solution_title' => 'Предложете решение',
     'number_of_votes_title' => 'Брой гласове',
+    'have_a_solution_to_suggest' => 'Имате ли предложение за решение?',
 ];

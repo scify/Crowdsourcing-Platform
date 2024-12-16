@@ -48,4 +48,5 @@ return [
     'submit_solution' => 'Lösung einreichen',
     'propose_solution_title' => 'Lösung vorschlagen',
     'number_of_votes_title' => 'Anzahl der Stimmen',
+    'have_a_solution_to_suggest' => 'Haben Sie eine Lösung vorzuschlagen?',
 ];
