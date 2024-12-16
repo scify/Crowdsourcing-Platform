@@ -23,6 +23,12 @@
             @include('problem.partials.solutions-list')
         </section>
 
+        <section id="propose-solution-cta-sticky-container" class="sticky-container-outer-column d-none d-sm-block">
+            <div class="sticky-container-inner-div">
+                @include('problem.partials.propose-solution-cta')
+            </div>
+        </section>
+
     </div>
 
     @if (App::environment('local'))
