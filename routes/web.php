@@ -118,7 +118,6 @@ Route::group($localeInfo, function () {
 });
 
 Route::post('/languages/setlocale', [LanguageController::class, 'setLocale'])->name('languages.setlocale');
-Route::get('/{project:slug}/questionnaire/{questionnaire:id}/respond', [QuestionnaireController::class, 'showQuestionnairePage'])->name('show-questionnaire-page');
 
 Route::group($localeInfo, function () {
     Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
@@ -126,4 +125,5 @@ Route::group($localeInfo, function () {
     Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');
     Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('problem.show');
     Route::get('/{project_slug}/problems/{problem_slug}/solutions/', [ProblemController::class, 'show'])->name('problem.show.solutions');
+    Route::get('/{project:slug}/questionnaire/{questionnaire:id}/respond', [QuestionnaireController::class, 'showQuestionnairePage'])->name('show-questionnaire-page');
 });

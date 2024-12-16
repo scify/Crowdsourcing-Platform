@@ -8,6 +8,7 @@ use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Language;
 use App\Notifications\QuestionnaireResponded;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectStatusHistoryRepository;
@@ -506,5 +507,11 @@ class CrowdSourcingProjectManager {
         $user_creator_id = $this->userRoleManager->userHasAdminRole($user) ? null : $user->id;
 
         return $this->crowdSourcingProjectRepository->getProjectsForManagement($user_creator_id);
+    }
+
+    public function getDefaultLanguageForProject(string $projectSlug): Language {
+        $project = $this->getCrowdSourcingProjectBySlug($projectSlug);
+
+        return $project->defaultTranslation->language;
     }
 }

@@ -148,7 +148,7 @@ class QuestionnaireController extends Controller {
         return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);
     }
 
-    public function showQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire) {
+    public function showQuestionnairePage(string $locale, CrowdSourcingProject $project, Questionnaire $questionnaire) {
         // 1. if the questionnaire is not active, we should not allow the user to see it
         if (!Gate::allows('create-platform-content') && $questionnaire->status_id !== QuestionnaireStatusLkp::PUBLISHED) {
             return redirect()->back()->with(['flash_message_error' => 'The questionnaire is not active.']);
