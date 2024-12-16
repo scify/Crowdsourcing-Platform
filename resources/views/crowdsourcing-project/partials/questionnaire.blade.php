@@ -24,7 +24,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-11 mx-auto">
                                         <div class="row">
                                             <div class="col-md-9 col-sm-12 mx-auto mt-5">
-                                                <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
+                                                <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug,'questionnaire' => $viewModel->questionnaire->id]) }}"
                                                    class="btn btn-primary w-100 respond-questionnaire call-to-action
                                             {{ !$viewModel->project->lp_show_speak_up_btn ? 'hidden' : '' }}">
                                                     {{__("questionnaire.start_answering")}}
@@ -52,7 +52,7 @@
                                             @if($viewModel->userFeedbackQuestionnaireResponse)
                                                 <p>{{__("questionnaire.user_feedback_given_message")}}</p>
                                             @else
-                                                <a href="{{ route('show-questionnaire-page', ['project' => $viewModel->project->slug,'questionnaire' => $viewModel->feedbackQuestionnaire->id]) }}"
+                                                <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug,'questionnaire' => $viewModel->feedbackQuestionnaire->id]) }}"
                                                    class="btn btn-primary w-100 respond-questionnaire call-to-action">
                                                     {{__("questionnaire.answer_to_feedback_questionnaire")}}
                                                 </a>

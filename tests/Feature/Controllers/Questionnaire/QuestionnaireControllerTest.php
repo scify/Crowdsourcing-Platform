@@ -431,7 +431,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
 
 
-        $response = $this->get(route('show-questionnaire-page', ['project' => $project->slug, 'questionnaire' => $questionnaire->id]));
+        $response = $this->get(route('show-questionnaire-page', ['locale' => 'en', 'project' => $project->slug, 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(200);
         $response->assertViewIs('questionnaire.questionnaire-page');
@@ -462,7 +462,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
 
 
-        $response = $this->get(route('show-questionnaire-page', ['project' => $project->slug, 'questionnaire' => $questionnaire->id]));
+        $response = $this->get(route('show-questionnaire-page', ['locale' => 'en', 'project' => $project->slug, 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_error', 'The questionnaire is not active.');
@@ -493,7 +493,7 @@ class QuestionnaireControllerTest extends TestCase {
         $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
 
 
-        $response = $this->get(route('show-questionnaire-page', ['project' => $project->slug, 'questionnaire' => $questionnaire->id]));
+        $response = $this->get(route('show-questionnaire-page', ['locale' => 'en', 'project' => $project->slug, 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_error', 'The project is not active.');
