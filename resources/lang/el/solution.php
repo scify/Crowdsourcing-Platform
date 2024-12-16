@@ -47,4 +47,5 @@ return [
     'solution_consent_notice' => 'Έχω διαβάσει και συμφωνώ με την :privacy_policy και τον :code_of_conduct.',
     'submit_solution' => 'Υποβολή Λύσης',
     'propose_solution_title' => 'Προτείνετε μια Λύση',
+    'number_of_votes_title' => 'Αριθμός Ψήφων',
 ];

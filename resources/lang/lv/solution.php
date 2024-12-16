@@ -47,4 +47,5 @@ return [
     'solution_consent_notice' => 'Esmu izlasījis un piekrītu :privacy_policy un :code_of_conduct.',
     'submit_solution' => 'Iesniegt risinājumu',
     'propose_solution_title' => 'Ierosiniet risinājumu',
+    'number_of_votes_title' => 'Balsu skaits',
 ];

@@ -47,4 +47,5 @@ return [
     'solution_consent_notice' => 'Pročitao sam i slažem se sa :privacy_policy i :code_of_conduct.',
     'submit_solution' => 'Pošaljite rešenje',
     'propose_solution_title' => 'Predložite rešenje',
+    'number_of_votes_title' => 'Broj glasova',
 ];

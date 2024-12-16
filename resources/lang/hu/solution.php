@@ -47,4 +47,5 @@ return [
     'solution_consent_notice' => 'Elolvastam és elfogadom a :privacy_policy és a :code_of_conduct.',
     'submit_solution' => 'Megoldás benyújtása',
     'propose_solution_title' => 'Javasoljon megoldást',
+    'number_of_votes_title' => 'Szavazatok száma',
 ];
