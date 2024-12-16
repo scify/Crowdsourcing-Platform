@@ -235,7 +235,21 @@ class SolutionManager {
     }
 
     public function updateSolutionStatus(int $id, int $status_id) {
-        return $this->solutionRepository->update(['status_id' => $status_id], $id);
+        $result = $this->solutionRepository->update(['status_id' => $status_id], $id);
+
+        // if the status was changed to published
+        // and if the current user is different from the creator of the solution
+        // we need to notify the user who created the solution
+
+        if ($status_id === SolutionStatusLkp::PUBLISHED) {
+            $solution = $this->solutionRepository->find($id);
+            $user = Auth::user();
+            if ($solution->user_creator_id !== $user->id) {
+                $user->notify(new \App\Notifications\SolutionPublished($solution));
+            }
+        }
+
+        return $result;
     }
 
     public function deleteSolution(int $id): bool {
