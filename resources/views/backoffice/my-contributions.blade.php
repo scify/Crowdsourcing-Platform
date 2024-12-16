@@ -12,7 +12,7 @@
 
 @section('content')
     <div id="my-contributions">
-        <div class="container-fluid px-0">
+        <div class="container-fluid px-0 pb-5">
             <div class="row">
                 <div class="col">
                     <div class="accordion" id="my-questionnaire-contributions">
