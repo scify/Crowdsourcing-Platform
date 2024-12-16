@@ -75,7 +75,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-12">
-                                            <button class="btn btn-outline-primary response-btn w-100"
+                                            <button class="btn btn-outline-primary btn-slim response-btn w-100"
                                                     data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"
                                                     data-respondent-user-id="{{ $response->respondent_user_id }}">View
                                                 Response
@@ -94,7 +94,7 @@
                             </td>
                             @can("manage-platform-content")
                                 <td class="text-center">
-                                    <button class="btn btn-outline-danger delete-response-btn"
+                                    <button class="btn btn-outline-danger btn-slim delete-response-btn"
                                             data-questionnaire-response-id="{{ $response->id }}">Delete
                                     </button>
                                 </td>
@@ -181,8 +181,8 @@
                 <form role="form" novalidate>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="questionnaire_response_id">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button id="delete-response-form-btn" type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-default btn-slim" data-dismiss="modal">Cancel</button>
+                    <button id="delete-response-form-btn" type="button" class="btn btn-danger btn-slim">
                         Delete<span id="delete-response-loader" class="spinner-border spinner-border-sm ml-2 d-none"
                                     role="status"
                                     aria-hidden="true"></span>

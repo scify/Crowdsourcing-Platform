@@ -20,4 +20,5 @@ return [
     'terms_privacy' => 'Terms and Privacy Policy',
     'code_of_conduct' => 'Code of Conduct',
     'form_fields_required' => 'Fields marked with * are required',
+    'personal_information_disclaimer' => 'Your personal information (email address) will never be publicly displayed.',
 ];

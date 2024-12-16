@@ -108,7 +108,8 @@
                         <input class="form-check-input" type="checkbox" id="translation-notice"
                                name="translation-notice" required>
                         <label class="form-check-label" for="translation-notice">
-                            {{ __('solution.solution_translation_notice_checkbox') }}
+                            {{ __('solution.solution_translation_notice_checkbox') }} (<span
+                                    class="red">*</span>)
                         </label>
                     </div>
                 </div>
@@ -151,7 +152,8 @@
                             {!! __('solution.solution_consent_notice', [
                                 'privacy_policy' => '<a href="' . route('terms.privacy') . '" target="_blank">' . __('common.terms_privacy') . '</a>',
                                 'code_of_conduct' => '<a href="' . route('codeOfConduct') . '" target="_blank">' . __('common.code_of_conduct') . '</a>'
-                            ]) !!}
+                            ]) !!} (<span
+                                    class="red">*</span>)
                         </label>
                     </div>
                 </div>

@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Podmienky a ochrana osobných údajov',
     'code_of_conduct' => 'Kódex správania',
     'form_fields_required' => 'Pole označené * sú povinné',
+    'personal_information_disclaimer' => 'Vaše osobné údaje (e-mailová adresa) nikdy nebudú verejne zobrazené.',
 ];

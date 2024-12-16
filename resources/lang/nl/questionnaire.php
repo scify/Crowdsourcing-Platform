@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Ja! Ga naar homepagina',
     'answer_to_feedback_questionnaire' => 'Beantwoord de feedback vragenlijst',
     'user_feedback_given_message' => 'Dank je wel voor je feedback!',
+    'must_be_logged_in_prompt' => 'Je moet ingelogd zijn om de vragenlijst te beantwoorden.',
+    'create_account_prompt' => 'Je kan een account aanmaken om meer bij te dragen aan het platform en badges te verdienen!',
 ];

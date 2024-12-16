@@ -50,4 +50,6 @@ return [
     'go_to_homepage' => 'Jah! Mine avalehele',
     'answer_to_feedback_questionnaire' => 'Vasta tagasiside küsimustikule',
     'user_feedback_given_message' => 'Täname tagasiside eest!',
+    'must_be_logged_in_prompt' => 'Küsimustikule vastamiseks pead olema sisse logitud.',
+    'create_account_prompt' => 'Saad luua konto, et platvormile rohkem kaasa aidata ja saada märke!',
 ];

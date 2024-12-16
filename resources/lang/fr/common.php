@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Conditions d\'utilisation et Politique de confidentialité',
     'code_of_conduct' => 'Code de conduite',
     'form_fields_required' => 'Les champs marqués d\'un * sont obligatoires',
+    'personal_information_disclaimer' => 'Vos informations personnelles (adresse e-mail) ne seront jamais affichées publiquement.',
 ];

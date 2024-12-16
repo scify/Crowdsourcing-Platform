@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => 'Ja! Gehen Sie zur Homepage',
     'answer_to_feedback_questionnaire' => 'Antworten Sie auf den Feedback-Fragebogen',
     'user_feedback_given_message' => 'Vielen Dank für Ihr Feedback!',
+    'must_be_logged_in_prompt' => 'Sie müssen angemeldet sein, um den Fragebogen zu beantworten.',
+    'create_account_prompt' => 'Sie können ein Konto erstellen, um mehr zur Plattform beizutragen und Abzeichen zu erhalten!',
 ];
