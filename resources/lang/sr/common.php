@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Uslovi korišćenja i Politika privatnosti',
     'code_of_conduct' => 'Kodeks ponašanja',
     'form_fields_required' => 'Polja označena sa * su obavezna',
+    'personal_information_disclaimer' => 'Vaši lični podaci (e-mail adresa) nikada neće biti javno prikazani.',
 ];

@@ -19,4 +19,5 @@ return [
     'terms_privacy' => 'Nutzungsbedingungen und Datenschutzrichtlinie',
     'code_of_conduct' => 'Verhaltenskodex',
     'form_fields_required' => 'Felder, die mit * markiert sind, sind erforderlich',
+    'personal_information_disclaimer' => 'Ihre persönlichen Informationen (E-Mail-Adresse) werden niemals öffentlich angezeigt.',
 ];

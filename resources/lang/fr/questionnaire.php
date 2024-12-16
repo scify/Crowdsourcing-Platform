@@ -49,4 +49,6 @@ return [
     'go_to_homepage' => "Oui! Aller à la page d'accueil",
     'answer_to_feedback_questionnaire' => 'Répondez au questionnaire de rétroaction',
     'user_feedback_given_message' => 'Merci pour votre rétroaction!',
+    'must_be_logged_in_prompt' => 'Vous devez être connecté pour répondre au questionnaire.',
+    'create_account_prompt' => 'Vous pouvez créer un compte pour contribuer davantage à la plateforme et obtenir des badges!',
 ];
