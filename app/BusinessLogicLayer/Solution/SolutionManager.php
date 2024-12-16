@@ -110,7 +110,11 @@ class SolutionManager {
      * @throws Exception
      */
     public function storeSolutionFromPublicForm(array $attributes): Solution {
-        return $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
+        $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
+        $user = Auth::user();
+        $user->notify(new \App\Notifications\SolutionSubmitted($solution));
+
+        return $solution;
     }
 
     /**
