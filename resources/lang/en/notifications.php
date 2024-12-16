@@ -38,4 +38,8 @@ return [
     'a_user_has_proposed_solution' => 'A user has proposed a solution.',
     'check_solution_and_review' => 'Please check the solution and review it.',
     'see_submitted_solutions' => 'See Submitted Solutions',
+    'solution_published' => 'Solution Published',
+    'solution_published_intro' => 'Your solution has been published!',
+    'solution_published_message' => 'Your solution has been published and is now available for other users to vote on!',
+    'see_the_solution' => 'See the solution',
 ];

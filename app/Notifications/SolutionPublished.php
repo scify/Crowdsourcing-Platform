@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SolutionSubmitted extends Notification implements ShouldQueue {
+class SolutionPublished extends Notification implements ShouldQueue {
     use Queueable;
 
     protected Solution $solution;
@@ -34,13 +34,13 @@ class SolutionSubmitted extends Notification implements ShouldQueue {
      */
     public function toMail(object $notifiable): MailMessage {
         return (new MailMessage)
-            ->subject('Crowdsourcing Platform | ' . __('notifications.solution_submitted') . ': ' . $this->solution->defaultTranslation->title)
-            ->line(__('notifications.thank_you_for_contribution'))
-            ->line('<div style="text-align:center; height: 200px; margin-bottom: 10px;"><img style="height: 200px; margin-bottom: 0;" src=' . asset('images/team-spirit.png') . '></div>')
+            ->subject('Crowdsourcing Platform | ' . __('notifications.solution_published') . ': ' . $this->solution->defaultTranslation->title)
+            ->line(__('notifications.solution_published_intro'))
+            ->line('<div style="text-align:center; height: 200px; margin-bottom: 10px;"><img style="height: 200px; margin-bottom: 0;" src=' . asset('images/dancing.png') . '></div>')
             ->line('<div style="text-align:center; font-size: 10px; margin-bottom: 10px;"><a href="https://www.flaticon.com/free-stickers/people" title="people stickers">People stickers created by Stickers - Flaticon</a></div>')
             ->greeting(__('notifications.hello') . ' ' . $notifiable->nickname . '!')
-            ->line(__('notifications.thanks_for_proposing_solution'))
-            ->action(__('notifications.visit_your_dashboard'), route('my-dashboard', ['locale' => app()->getLocale()]))
+            ->line(__('notifications.solution_published_message'))
+            ->action(__('notifications.see_the_solution'), route('problem.show.solutions', ['problem_slug' => $this->solution->problem->slug, 'project_slug' => $this->solution->problem->project->slug]) . '?solution_id=' . $this->solution->id)
             ->line(__('notifications.making_impact'))
             ->salutation(__('notifications.thanks_message_2'));
     }

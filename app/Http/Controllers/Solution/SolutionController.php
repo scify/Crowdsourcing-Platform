@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Solution;
 
 use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\Http\Controllers\Controller;
+use App\Models\Solution\Solution;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,17 @@ class SolutionController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create(Request $request): View|RedirectResponse {
+        $user = auth()->user();
+        $solution = Solution::find(1);
+        // notify the user that their solution has been submitted
+        $user->notify(new \App\Notifications\SolutionSubmitted($solution));
+
+        // get the creator of the solution problem
+        $problem_creator = $solution->problem->creator;
+
+        // notify the creator of the solution submission
+        $problem_creator->notify(new \App\Notifications\SolutionPublished($solution));
+
         $this->validate($request, [
             'problem_id' => 'required|different:execute_solution|exists:problems,id',
         ]);
