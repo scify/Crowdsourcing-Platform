@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'solutions_for' => 'Solutions for',
-    'how_to_vote' => 'How to vote',
-    'how_to_vote_text' => 'You can vote for a solution by clicking on the heart icon on each solution. You can only vote once for each solution.',
-    'add_new_solution' => 'Add new solution',
+    'solutions_for' => 'Soluții pentru',
+    'how_to_vote' => 'Cum să votezi',
+    'how_to_vote_text' => 'Poți vota pentru o soluție făcând clic pe icoana inimii de lângă fiecare soluție. Poți vota o singură dată pentru fiecare soluție.',
+    'add_new_solution' => 'Adaugă o soluție nouă',
 ];

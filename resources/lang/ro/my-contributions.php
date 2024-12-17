@@ -9,20 +9,20 @@ return [
 
     */
 
-    'my_history' => 'My history',
-    'my_contributions' => 'My Contributions',
-    'number_of_questionnaires' => '{0} You have contributed to <b>zero questionnaires</b> |{1}  You have contributed to <b>1 questionnaire</b |[2,*] You have contributed to  <b>:count questionnaires</b>',
-    'no_questionnaires' => 'You haven’t responded to any questionnaires, yet.',
-    'project' => 'Project',
-    'questionnaire_title' => 'Questionnaire title',
-    'questionnaire_description' => 'Questionnaire description',
-    'responded' => 'Responded',
-    'actions' => 'Actions',
-    'view_response' => 'View response',
-    'my_proposed_solutions' => 'My Proposed Solutions',
-    'number_of_proposed_solutions' => '{0} You have proposed <b>zero solutions</b> |{1}  You have proposed <b>1 solution</b |[2,*] You have proposed <b>:count solutions</b>',
-    'no_proposed_solutions' => 'You haven’t proposed any solutions, yet.',
-    'problem' => 'Problem',
+    'my_history' => 'Istoricul meu',
+    'my_contributions' => 'Contribuțiile mele',
+    'number_of_questionnaires' => '{0} Nu ai contribuit la niciun chestionar |{1}  Ai contribuit la <b>1 chestionar</b> |[2,*] Ai contribuit la <b>:count chestionare</b>',
+    'no_questionnaires' => 'Nu ai răspuns încă la niciun chestionar.',
+    'project' => 'Proiect',
+    'questionnaire_title' => 'Titlul chestionarului',
+    'questionnaire_description' => 'Descrierea chestionarului',
+    'responded' => 'Răspunsuri',
+    'actions' => 'Acțiuni',
+    'view_response' => 'Vezi răspunsul',
+    'my_proposed_solutions' => 'Soluțiile mele propuse',
+    'number_of_proposed_solutions' => '{0} Nu ai propus nicio soluție |{1}  Ai propus <b>1 soluție</b> |[2,*] Ai propus <b>:count soluții</b>',
+    'no_proposed_solutions' => 'Nu ai propus încă nicio soluție.',
+    'problem' => 'Problemă',
 
 
 
