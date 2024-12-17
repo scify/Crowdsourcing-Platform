@@ -61,10 +61,13 @@
                     </div>
                 @endif
             @elseif($viewModel->projectHasPublishedProblems)
-                <a href="{{ route('project.problems-page', ['project_slug' => $viewModel->project->slug]) }}"
-                   class="btn btn-primary call-to-action mx-auto">
-                    {{__("project-problems.project_landing_page_problems_action_button")}} <i
-                            class="fas fa-arrow-right"></i></a>
+                <div class="text-center content-container">
+                    <h3 class="mb-5">{{ __('my-dashboard.see_the_problems_cta') }}</h3>
+                    <a href="{{ route('project.problems-page', ['project_slug' => $viewModel->project->slug]) }}"
+                       class="btn btn-primary call-to-action mx-auto">
+                        {{__("project-problems.project_landing_page_problems_action_button")}} <i
+                                class="fas fa-arrow-right"></i></a>
+                </div>
             @else
                 <div class="text-center content-container">
                     <div>
