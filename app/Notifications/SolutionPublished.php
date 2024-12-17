@@ -40,7 +40,7 @@ class SolutionPublished extends Notification implements ShouldQueue {
             ->line('<div style="text-align:center; font-size: 10px; margin-bottom: 10px;"><a href="https://www.flaticon.com/free-stickers/people" title="people stickers">People stickers created by Stickers - Flaticon</a></div>')
             ->greeting(__('notifications.hello') . ' ' . $notifiable->nickname . '!')
             ->line(__('notifications.solution_published_message'))
-            ->action(__('notifications.see_the_solution'), route('problem.show.solutions', ['problem_slug' => $this->solution->problem->slug, 'project_slug' => $this->solution->problem->project->slug]) . '?solution_id=' . $this->solution->id)
+            ->action(__('notifications.see_the_solution'), route('problem.show.solutions', ['locale' => app()->getLocale(), 'problem_slug' => $this->solution->problem->slug, 'project_slug' => $this->solution->problem->project->slug]) . '?solution_id=' . $this->solution->id)
             ->line(__('notifications.making_impact'))
             ->salutation(__('notifications.thanks_message_2'));
     }
