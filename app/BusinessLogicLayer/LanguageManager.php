@@ -65,4 +65,10 @@ class LanguageManager {
 
         return $result;
     }
+
+    public function getLanguagesWithTranslatedResources() {
+        return Cache::rememberForever('languages_resources_translated', function () {
+            return $this->languageRepository->allWhere(['resources_translated' => true], ['*'], 'language_code');
+        });
+    }
 }

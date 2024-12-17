@@ -13,7 +13,7 @@ class LanguageSelectorComposer {
     }
 
     public function compose(View $view) {
-        $languages = $this->languageManager->getLanguagesAvailableForPlatformTranslation();
+        $languages = $this->languageManager->getLanguagesWithTranslatedResources();
         $view->with(['languages' => $languages]);
     }
 }
