@@ -12,7 +12,7 @@
                             <a href="#features">Features</a>
                         </div>
                         <div>
-                            <a href="#projects">What are we crowdsourcing?</a>
+                            <a href="#projects">{{ __('common.crowd_sourcing_campaigns') }}</a>
                         </div>
                         <div>
                             <a href="https://ecas.org/about-us/" target="_blank">About us</a>

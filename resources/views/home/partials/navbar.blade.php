@@ -13,13 +13,19 @@
             <ul class="nav navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">ABOUT US</a>
+                        <a class="nav-link" href="#about">
+                            {{ __('common.about_us') }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">FEATURES</a>
+                        <a class="nav-link" href="#features">
+                            {{ __('common.features') }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projects">WHAT ARE WE CROWDSOURCING?</a>
+                        <a class="nav-link" href="#projects">
+                            {{ __('common.crowd_sourcing_campaigns') }}
+                        </a>
                     </li>
                 @endguest
                 @if(!isset($onErrorPage))

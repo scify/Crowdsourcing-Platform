@@ -12,7 +12,7 @@
                             <a href="#features">Features</a>
                         </div>
                         <div>
-                            <a href="#projects">What are we crowdsourcing?</a>
+                            <a href="#projects">{{ __('common.crowd_sourcing_campaigns') }}</a>
                         </div>
                         <div>
                             <a href="https://www.scify.gr/site/en/who-we-are/scify" target="_blank">About us</a>

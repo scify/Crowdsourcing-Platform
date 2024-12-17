@@ -34,7 +34,9 @@
         @endif
         @if(!isset($projects) || $projects->isEmpty())
             <div class="col-md-6 col-xs-12 mx-auto text-center">
-                <h4>No active projects yet</h4>
+                <h4>
+                    {{ __('common.no_active_projects') }}
+                </h4>
             </div>
         @endif
     </div>
