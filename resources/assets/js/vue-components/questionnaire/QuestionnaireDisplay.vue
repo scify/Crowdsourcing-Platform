@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div v-else class="container-fluid p-0">
-			<div v-if="!userResponse" class="row">
+			<div v-if="!userResponse && !loading" class="row">
 				<div class="col-md-12 language-selection">
 					<div class="form-group">
 						<label class="language-selector" for="language-select">{{
@@ -145,6 +145,7 @@ export default {
 	methods: {
 		async onMounted() {
 			this.userResponse = this.userResponseData;
+			this.loading = true;
 			const fpPromise = FingerprintJS.load();
 			this.browserFingerprintId = await fpPromise.then((fp) => fp.get()).then((result) => result.visitorId);
 			this.displayLoginPrompt = !this.userLoggedIn() && !this.userResponse;
@@ -155,6 +156,7 @@ export default {
 				this.displayLoginPrompt = !this.userResponse;
 			}
 			this.initQuestionnaireDisplay();
+			this.loading = false;
 		},
 		userLoggedIn() {
 			return this.user && this.user.id;
