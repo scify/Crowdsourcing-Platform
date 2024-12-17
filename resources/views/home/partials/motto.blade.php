@@ -8,14 +8,16 @@
                 <div class="container h-100">
                     <div class="row title-row h-50">
                         <div class="col px-5">
-                            <h1>Let's crowdsource!<br>Taking decisions with citizens and not for them</h1>
+                            <h1 class="mb-5">{{ __('common.home_motto') }}</h1>
+                            <h2 class="mb-0">{{ __('common.home_sub_motto') }}</h2>
                         </div>
                     </div>
                     <div class="row h-50">
                         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
                             <div class="w-100 mx-auto btn-container">
-                                <a href="#projects" class="btn btn-block btn-primary call-to-action smooth-goto">Share
-                                    your ideas</a>
+                                <a href="#projects" class="btn btn-block btn-primary call-to-action smooth-goto">
+                                    {{ __('common.home_call_to_action') }}
+                                </a>
                             </div>
                         </div>
                     </div>
