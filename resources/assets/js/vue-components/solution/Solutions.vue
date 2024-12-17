@@ -299,7 +299,7 @@ export default {
 			if (this.votingInProgress) {
 				return;
 			}
-			if (this.userVotesLeft) {
+			if (this.userVotesLeft <= 0) {
 				showToast(
 					trans("voting.votes_remaining", {
 						votes: 0,
