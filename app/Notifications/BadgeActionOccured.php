@@ -41,6 +41,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
             ->greeting($greeting)
             ->line($title);
 
+        $badge->color = 'transparent';
 
         $message->line('<div style="text-align: center;"><br><b>' . $beforeBadge . '</b><br><br></div>');
         $message->line((string) view('gamification.badge-single', compact('badge')));
