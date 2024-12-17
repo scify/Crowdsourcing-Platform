@@ -140,12 +140,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="alert-component position-relative d-none" id="problemDeletedAlert">
+	<div class="alert-component position-relative d-none" id="problemDeletedAlert" style="display: flow-root;">
 		<div class="alert alert-success" role="alert">
 			{{ actionSuccessMessage }}
 		</div>
 	</div>
-	<div class="alert-component position-relative d-none" id="errorAlert">
+	<div class="alert-component position-relative d-none" id="errorAlert" style="display: flow-root;">
 		<div class="alert alert-danger" role="alert">
 			{{ errorMessage }}
 		</div>
@@ -392,7 +392,7 @@ export default {
 			if (!this.modalProblem.id) return;
 			this.modalActionLoading = true;
 			axios
-				.put(location.href + "/update-status/" + this.modalProblem.id, {
+				.put(window.route("api.problems.update-status", this.modalProblem.id), {
 					status_id: this.modalProblem.status.id,
 				})
 				.then(() => {

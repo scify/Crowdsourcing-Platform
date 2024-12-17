@@ -141,7 +141,7 @@ class ProblemController extends Controller {
         return response()->json($this->problemManager->getProblemStatusesForManagementPage());
     }
 
-    public function updateStatus(Request $request, string $locale, int $id): JsonResponse {
+    public function updateStatus(Request $request, int $id): JsonResponse {
         $this->validate($request, [
             'status_id' => 'required|exists:problem_statuses_lkp,id',
         ]);
