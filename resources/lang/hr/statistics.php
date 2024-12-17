@@ -9,12 +9,12 @@ return [
 
     */
 
-    'total_responses' => 'Total Responses',
-    'goal_responses' => 'Goal responses', 
-    'actual_responses' => 'Actual responses', 
-    'download_csv' => 'Download as CSV', 
-    'print' => 'Print',
-    'responses_per_language' => 'Responses per language',
+    'total_responses' => 'Ukupni odgovori',
+    'goal_responses' => 'Ciljani odgovori',
+    'actual_responses' => 'Stvarni odgovori',
+    'download_csv' => 'Preuzmi kao CSV',
+    'print' => 'Ispis',
+    'responses_per_language' => 'Odgovori po jeziku',
 
 
 
