@@ -12,7 +12,7 @@
         @endif
         <div class="col-md-12 badge-img-container">
             <img loading="lazy" class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}"
-                 alt="Badge">
+                 alt="Badge" style="height: 200px;">
         </div>
     </div>
     <div class="row">
