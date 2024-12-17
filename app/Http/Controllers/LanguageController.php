@@ -27,6 +27,10 @@ class LanguageController extends Controller {
         ]);
 
         $locale = $request->input('locale');
+        // Due to the SetLocale middleware, the locale will be automatically set
+        // we just need to replace the locale in the URL, redirect back, and the middleware will do the rest.
+        // replace the locale in the URL:
+        // get the previous URL:
         $url = url()->previous();
 
         // Replace the existing locale in the URL with the new one
