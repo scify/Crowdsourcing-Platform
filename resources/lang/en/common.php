@@ -21,5 +21,4 @@ return [
     'code_of_conduct' => 'Code of Conduct',
     'form_fields_required' => 'Fields marked with * are required',
     'personal_information_disclaimer' => 'Your personal information (email address) will never be publicly displayed.',
-    'sign_in_to_vote' => 'Create and account or sign in to vote',
 ];

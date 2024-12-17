@@ -45,8 +45,12 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-10 text-center mx-auto py-5">
-							<h4 class="mt-0 p-0 mb-5 text-center message">{{ trans("common.sign_in_to_vote") }}</h4>
-							<a class="btn btn-primary btn-lg w-50" :href="getSignInUrl()">{{ trans("questionnaire.sign_in") }}</a>
+							<h4 class="mt-0 p-0 mb-5 text-center message">
+								{{ trans("voting.sign_in_to_vote") }}
+							</h4>
+							<a class="btn btn-primary btn-lg w-50" :href="getSignInUrl()">
+								{{ trans("questionnaire.sign_in") }}
+							</a>
 						</div>
 					</div>
 				</div>
@@ -62,10 +66,15 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-10 text-center mx-auto py-5">
-							<h4 class="mt-0 p-0 mb-5 text-center message">
-								You can vote up to
-								<b>{{ questionnaire.max_votes_num }}</b> times.
-							</h4>
+							<h4
+								class="mt-0 p-0 mb-5 text-center message"
+								v-sane-html="
+									trans('voting.you_can_vote_up_to', {
+										votes: questionnaire.max_votes_num,
+										entityName: trans('voting.entity_questionnaires'),
+									})
+								"
+							></h4>
 						</div>
 					</div>
 				</div>
@@ -159,7 +168,7 @@
 				<div class="row">
 					<div class="col-12">
 						You are logged in as moderator.
-						<span v-if="projectFilterSelectedOption == -1">Select a project to filter the responses:</span>
+						<span v-if="projectFilterSelectedOption === -1">Select a project to filter the responses:</span>
 						<span v-else>You have filtered the responses, <strong> currently viewing:</strong></span>
 						<select v-model="projectFilterSelectedOption" @change="onFilterProject($event)">
 							<option value="-1">View all</option>
@@ -185,7 +194,8 @@ import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
 import { defineComponent } from "vue";
-import transMixin from '../../vue-mixins/trans-mixin';
+import transMixin from "../../vue-mixins/trans-mixin";
+
 export default defineComponent({
 	name: "QuestionnaireStatistics",
 	mixins: [transMixin],
@@ -369,7 +379,7 @@ export default defineComponent({
 			}).then((res) => res.data);
 		},
 		getQuestionnaireAnswerAdminAnalysisStatuses() {
-			if(this.userCanAnnotateAnswers) {
+			if (this.userCanAnnotateAnswers) {
 				return this.get({
 					url: window.route("questionnaire.answers-admin-analysis-statuses.get"),
 					data: {},
@@ -508,9 +518,13 @@ export default defineComponent({
 						element.toggleClass("user-downvoted");
 					}
 					const remainingVotes = instance.questionnaire.max_votes_num - instance.numOfVotesByCurrentUser;
-					let votesWord = "vote";
-					if (remainingVotes > 1) votesWord += "s";
-					showToast("You have " + remainingVotes + " " + votesWord + " left!", "#28a745", "bottom-right");
+					let votesWord = window.trans("voting.votes_remaining_singular");
+					if (remainingVotes > 1) votesWord = window.trans("voting.votes_remaining_plural");
+					const message = window.trans("voting.votes_remaining", {
+						votes: remainingVotes,
+						votesWord: votesWord,
+					});
+					showToast(message, "#28a745", "bottom-right");
 				} else instance.displayLoginPrompt();
 			});
 		},
