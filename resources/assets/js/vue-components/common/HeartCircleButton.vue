@@ -64,7 +64,7 @@ export default {
 	padding: 0;
 
 	&:hover {
-		opacity: 0.8;
+		filter: brightness(90%);
 		cursor: pointer;
 	}
 }
