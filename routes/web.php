@@ -117,8 +117,9 @@ Route::group($localeInfo, function () {
     Route::get('/questionnaires/{questionnaire}/statistics/{projectFilter?}', [QuestionnaireStatisticsController::class, 'showStatisticsPageForQuestionnaire'])->name('questionnaire.statistics')->middleware('questionnaire.page_settings');
 });
 
-Route::post('/languages/setlocale', [LanguageController::class, 'setLocale'])->name('languages.setlocale');
-
+Route::group($localeInfo, function () {
+    Route::post('/languages/setlocale', [LanguageController::class, 'setLocale'])->name('languages.setlocale');
+});
 Route::group($localeInfo, function () {
     Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
     Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
