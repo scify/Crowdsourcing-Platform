@@ -9,16 +9,16 @@ return [
 
     */
 
-    'welcome' => 'Welcome',
-    'link_copied_please_share' => 'Link copied to clipboard. Please share it to your Social Media!',
-    'copy_to_clipboard_error' => 'Copy to clipboard failed. Please try again.',
-    'edit' => 'Edit',
-    'delete' => 'Delete',
-    'change_status' => 'Change status',
-    'image_accepted_formats' => 'Accepted formats: jpeg, png, jpg, webp',
-    'image_max_size' => 'Max size: 2MB',
-    'terms_privacy' => 'Terms and Privacy Policy',
-    'code_of_conduct' => 'Code of Conduct',
-    'form_fields_required' => 'Fields marked with * are required',
-    'personal_information_disclaimer' => 'Your personal information (email address) will never be publicly displayed.',
+    'welcome' => 'Bine ai venit',
+    'link_copied_please_share' => 'Link-ul a fost copiat în clipboard. Te rugăm să-l distribui pe rețelele tale sociale!',
+    'copy_to_clipboard_error' => 'Copierea în clipboard a eșuat. Te rugăm să încerci din nou.',
+    'edit' => 'Editează',
+    'delete' => 'Șterge',
+    'change_status' => 'Schimbă statutul',
+    'image_accepted_formats' => 'Formate acceptate: jpeg, png, jpg, webp',
+    'image_max_size' => 'Dimensiune maximă: 2MB',
+    'terms_privacy' => 'Termeni și Politică de Confidențialitate',
+    'code_of_conduct' => 'Codul de Conduită',
+    'form_fields_required' => 'Câmpurile marcate cu * sunt obligatorii',
+    'personal_information_disclaimer' => 'Informațiile tale personale (adresă de email) nu vor fi niciodată afișate public.',
 ];
