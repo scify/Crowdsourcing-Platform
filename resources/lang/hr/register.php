@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'select_account_type' => 'Select the type of your account',
-    'reselect_account_type' => 'Go back to select account type again',
+    'select_account_type' => 'Odaberite vrstu svog računa',
+    'reselect_account_type' => 'Vratite se i ponovo odaberite vrstu računa',
 ];
