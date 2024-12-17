@@ -21,21 +21,27 @@ class LanguageController extends Controller {
     }
 
     public function setLocale(Request $request): RedirectResponse {
-        // validate the locale:
-        // it should exist in the languages table
+        // Validate the locale: it should exist in the languages table
         $this->validate($request, [
             'locale' => 'required|exists:languages_lkp,language_code',
         ]);
+
         $locale = $request->input('locale');
         // Due to the SetLocale middleware, the locale will be automatically set
         // we just need to replace the locale in the URL, redirect back, and the middleware will do the rest.
         // replace the locale in the URL:
         // get the previous URL:
         $url = url()->previous();
-        // replace the locale in the URL. The URL is always in the format: http://domain/{locale}/...
-        $url = preg_replace('/\/[a-z]{2}\//', "/$locale/", $url);
 
-        // redirect to the new URL:
+        // Replace the existing locale in the URL with the new one
+        $url = preg_replace('/\/[a-z]{2}(\/|$)/', '/' . $locale . '$1', $url, 1);
+
+        // If no locale was found and replaced, append it after the base URL
+        if (!preg_match('/\/[a-z]{2}(\/|$)/', url()->previous())) {
+            $url = rtrim(url('/'), '/') . '/' . $locale;
+        }
+
+        // Redirect to the new URL
         return redirect($url);
     }
 
