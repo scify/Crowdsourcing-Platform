@@ -50,6 +50,6 @@ return [
     'features_platform_1' => '<b>Kreirajte nove kampanje za crowd-sourcing</b> kako biste motivisali građane da se izjasne!',
     'features_platform_2' => '<b>Efikasno upravljajte svojim upitnicima</b> sa našim jednostavnim editorom upitnika.',
     'features_platform_3' => '<b>Proverite uticaj</b> svojih kampanja, pregledom izveštaja generisanih iz odgovora građana.',
-    'features_platform_4' => '<b>Integracija sa MailChimp-om</b> jednim klikom, kako bi korisnici uvek bili u toku sa najnovijim kampanjama i aktivnostima.',
+    'features_platform_4' => '<b>Integracija sa MailChimp</b> jednim klikom, kako bi korisnici uvek bili u toku sa najnovijim kampanjama i aktivnostima.',
 
 ];

@@ -50,6 +50,6 @@ return [
     'features_platform_1' => '<b>Loo uusi crowd-sourcing kampaaniaid</b>, et motiveerida kodanikke oma arvamust avaldama!',
     'features_platform_2' => '<b>Halda oma küsimustikke</b> tõhusalt meie lihtsasti kasutatava küsimustike redaktoriga.',
     'features_platform_3' => '<b>Kontrollige oma kampaaniate mõju</b>, vaadates kodanike vastustest genereeritud aruandeid.',
-    'features_platform_4' => '<b>Integreeri MailChimpiga</b> vaid ühe klõpsuga, et hoida kasutajad alati kursis viimaste kampaaniate ja tegevustega.',
+    'features_platform_4' => '<b>Integreeri MailChimp</b> vaid ühe klõpsuga, et hoida kasutajad alati kursis viimaste kampaaniate ja tegevustega.',
 
 ];
