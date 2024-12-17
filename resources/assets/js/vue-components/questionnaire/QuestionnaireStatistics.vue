@@ -45,8 +45,8 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-10 text-center mx-auto py-5">
-							<h4 class="mt-0 p-0 mb-5 text-center message">Please sign in to vote</h4>
-							<a class="btn btn-primary btn-lg w-100" :href="getSignInUrl()">Sign in</a>
+							<h4 class="mt-0 p-0 mb-5 text-center message">{{ trans("common.sign_in_to_vote") }}</h4>
+							<a class="btn btn-primary btn-lg w-50" :href="getSignInUrl()">{{ trans("questionnaire.sign_in") }}</a>
 						</div>
 					</div>
 				</div>
@@ -185,9 +185,10 @@ import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
 import { defineComponent } from "vue";
-
+import transMixin from '../../vue-mixins/trans-mixin';
 export default defineComponent({
 	name: "QuestionnaireStatistics",
+	mixins: [transMixin],
 	components: {
 		CommonModal,
 		StoreModal,

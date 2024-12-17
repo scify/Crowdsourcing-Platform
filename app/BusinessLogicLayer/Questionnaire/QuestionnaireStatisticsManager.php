@@ -34,13 +34,20 @@ class QuestionnaireStatisticsManager {
             ->getNumberOfResponsesPerLanguage($questionnaire->id);
         $questionnaire->project_id = $this->crowdSourcingProjectQuestionnaireRepository->where(['questionnaire_id' => $questionnaire->id])->project_id;
 
+        // get the first project of the questionnaire, or the project with the given id (if it exists)
+        $project = $this->crowdSourcingProjectQuestionnaireRepository->getFirstProjectForQuestionnaire($questionnaire->id, $projectFilter);
+
         return new QuestionnaireStatistics(
             $questionnaire,
             $questionnaireTotalResponseStatistics,
             $numberOfResponsesPerLanguage,
             Gate::allows('moderate-content-by-users'),
             Gate::allows('moderate-content-by-users'),
-            $projectFilter
+            $projectFilter,
+            [
+                'lp_primary_color' => $project->lp_primary_color,
+                'lp_btn_text_color_theme' => $project->lp_btn_text_color_theme,
+            ]
         );
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Repository\CrowdSourcingProject;
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectQuestionnaire;
 use App\Repository\Repository;
 
@@ -49,5 +50,18 @@ class CrowdSourcingProjectQuestionnaireRepository extends Repository {
         ];
 
         return CrowdSourcingProjectQuestionnaire::where($data)->delete();
+    }
+
+    public function getFirstProjectForQuestionnaire(int $id, $projectFilter): ?CrowdSourcingProject {
+        if ($projectFilter === -1) {
+            $relationship = $this->where(['questionnaire_id' => $id])->first();
+            if ($relationship) {
+                return $relationship->project;
+            } else {
+                return null;
+            }
+        } else {
+            return CrowdSourcingProject::find($projectFilter);
+        }
     }
 }
