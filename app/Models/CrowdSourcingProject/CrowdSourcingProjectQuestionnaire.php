@@ -3,6 +3,7 @@
 namespace App\Models\CrowdSourcingProject;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\CrowdSourcingProject\CrowdSourcingProjectQuestionnaire
@@ -29,4 +30,8 @@ class CrowdSourcingProjectQuestionnaire extends Model {
 
     protected $primaryKey = ['project_id', 'questionnaire_id'];
     public $incrementing = false;
+
+    public function project(): BelongsTo {
+        return $this->belongsTo(CrowdSourcingProject::class, 'project_id');
+    }
 }

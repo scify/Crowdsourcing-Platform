@@ -175,7 +175,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 				'data-respondent-user-id="' +
 				respondentUserId +
 				'" ' +
-				'type="button" title="You can vote up to 10 answers" class="btn btn-outline-secondary w-100 upvote vote-btn ' +
+				'type="button" title="You can vote up to 10 answers" class="btn btn-outline-secondary btn-slim w-100 upvote vote-btn ' +
 				userUpvotedClass +
 				'">' +
 				'<i class="far fa-thumbs-up"></i><span class="count">' +
@@ -190,7 +190,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 				'data-respondent-user-id="' +
 				respondentUserId +
 				'" ' +
-				'type="button" class="btn btn-outline-secondary w-100 downvote vote-btn' +
+				'type="button" class="btn btn-outline-secondary btn-slim w-100 downvote vote-btn' +
 				userDownvotedClass +
 				'">' +
 				'<i class="far fa-thumbs-down"></i><span class="count">' +
@@ -348,6 +348,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 			];
 		}
 		if (AnswersData.userCanAnnotateAnswers) {
+			console.log("User can annotate answers");
 			options.layout = {
 				topStart: {
 					buttons: [
@@ -362,7 +363,10 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 					],
 				},
 			};
-		} else options.layout = {};
+		} else {
+			// disable all buttons
+			options.buttons = [];
+		}
 		$(table).DataTable(options);
 	};
 	return new SurveyAnalytics.VisualizerBase(

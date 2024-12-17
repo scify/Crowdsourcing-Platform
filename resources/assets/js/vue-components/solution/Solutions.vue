@@ -11,18 +11,21 @@
 				<div class="container-fluid p-0">
 					<div class="row pb-4" v-if="userVotesLeft !== null">
 						<div class="col">
-							<p style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0">
-								You can vote for up to {{ maxVotesPerUserForSolutions }} solutions in total.
-								<!-- bookmark4 - how to translate with dynamic fields? -->
-								You have {{ userVotesLeft }} more votes remaining.
-							</p>
+							<p
+								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0"
+								v-sane-html="getVotesInfoMessage()"
+							></p>
+							<p
+								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center"
+								v-sane-html="getVotesLeftMessage()"
+							></p>
 						</div>
 					</div>
 					<div class="row" v-if="errorMessage.length">
 						<div class="col">
 							<div class="alert-component position-relative d-none" id="error-alert">
 								<div class="alert alert-danger" role="alert">
-									{{ errorMessage }}
+									<p class="my-2" v-sane-html="errorMessage"></p>
 								</div>
 							</div>
 						</div>
@@ -106,10 +109,7 @@
 									</svg>
 								</div>
 								<div v-else class="card-custom-img-container">
-									<img
-										:src="solution.img_url"
-										alt="decorative image for solution"
-									/>
+									<img :src="solution.img_url" alt="decorative image for solution" />
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">
@@ -130,7 +130,6 @@
 								{{ solution.upvotes_count }}
 							</div>
 							<div>
-								<!-- bookmark4 - this div was created to "comment out" the encapsulated content without it being visible in the final markup-->
 								<ShareCircleButton
 									:icon-color-theme="buttonTextColorTheme"
 									:share-url="getSolutionPageURL(solution)"
@@ -152,9 +151,12 @@ import { mapActions } from "vuex";
 import ShareCircleButton from "../common/ShareCircleButton.vue";
 import HeartCircleButton from "../common/HeartCircleButton.vue";
 import ProposeSolution from "./ProposeSolution.vue";
+import transMixin from "../../vue-mixins/trans-mixin";
+import { showToast } from "../../common-utils";
 
 export default {
 	name: "Solutions",
+	mixins: [transMixin],
 	components: {
 		ProposeSolution,
 		ShareCircleButton,
@@ -207,6 +209,21 @@ export default {
 			const b = parseInt(hex.substring(4, 6), 16);
 			return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 		},
+		getVotesInfoMessage() {
+			return trans("voting.you_can_vote_up_to", {
+				votes: this.maxVotesPerUserForSolutions,
+				entityName: trans("voting.entity_solutions"),
+			});
+		},
+		getVotesLeftMessage() {
+			return trans("voting.votes_remaining", {
+				votes: this.userVotesLeft,
+				votesWord:
+					this.userVotesLeft === 1
+						? trans("voting.votes_remaining_singular")
+						: trans("voting.votes_remaining_plural"),
+			});
+		},
 		async fetchSolutions() {
 			this.loading = true;
 			this.errorMessage = "";
@@ -221,7 +238,7 @@ export default {
 					this.checkSolutionInURLAndHighlight();
 				})
 				.catch((error) => {
-					this.showErrorMessage(error); // bookmark4
+					this.showErrorMessage(error);
 				})
 				.finally(() => {
 					this.loading = false;
@@ -282,8 +299,15 @@ export default {
 			if (this.votingInProgress) {
 				return;
 			}
-			if(this.userVotesLeft <= 0) {
-				this.showErrorMessage("You have no more votes left.");
+			if (this.userVotesLeft) {
+				showToast(
+					trans("voting.votes_remaining", {
+						votes: 0,
+						votesWord: trans("voting.votes_remaining_plural"),
+					}),
+					"#dc3545",
+					"bottom-right",
+				);
 				return;
 			}
 			this.votingInProgress = true;
@@ -295,7 +319,7 @@ export default {
 			})
 				.then((response) => {})
 				.catch((error) => {
-					this.showErrorMessage(error); // bookmark4
+					this.showErrorMessage(error);
 				})
 				.finally(() => {
 					this.votingInProgress = false;
@@ -310,7 +334,7 @@ export default {
 			})
 				.then((response) => {})
 				.catch((error) => {
-					this.showErrorMessage(error); // bookmark4
+					this.showErrorMessage(error);
 				});
 		},
 		updateUpvotesClientSide(solutionId) {

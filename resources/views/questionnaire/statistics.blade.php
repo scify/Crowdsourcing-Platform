@@ -4,6 +4,15 @@
     'redirectRegisterURL' => route("register") . '?redirectTo=' . url()->full(),
     ])
 
+@push('css')
+    <style>
+        :root {
+            --project-primary-color: {{ $viewModel->getProjectPrimaryColor()}};
+            --btn-text-color: {{ $viewModel->getProjectBtnTextColor()}};
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container-fluid py-5">
         <div class="row">

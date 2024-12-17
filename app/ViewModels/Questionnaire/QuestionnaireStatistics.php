@@ -15,13 +15,15 @@ class QuestionnaireStatistics {
     public $current_user_id;
     public bool $userCanAnnotateAnswers;
     public int $projectFilter;
+    public array $projectColors;
 
     public function __construct(Questionnaire $questionnaire,
         QuestionnaireResponseStatistics $questionnaireResponseStatistics,
         QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
         bool $userCanPrintStatistics,
         bool $userCanAnnotateAnswers,
-        int $projectFilter) {
+        int $projectFilter,
+        array $projectColors = []) {
         $this->questionnaire = $questionnaire;
         $this->current_user_id = Auth::check() ? Auth::id() : 0;
         $this->userCanPrintStatistics = $userCanPrintStatistics;
@@ -29,6 +31,7 @@ class QuestionnaireStatistics {
         $this->numberOfResponsesPerLanguage = $numberOfResponsesPerLanguage;
         $this->userCanAnnotateAnswers = $userCanAnnotateAnswers;
         $this->projectFilter = $projectFilter;
+        $this->projectColors = $projectColors;
     }
 
     public function userCanViewFileTypeQuestionsStatistics(): int {
@@ -41,5 +44,14 @@ class QuestionnaireStatistics {
 
     public function projectHasCustomFooter(): bool {
         return false;
+    }
+
+    public function getProjectPrimaryColor(): string {
+        return $this->projectColors['lp_primary_color'] ?? '#2b73fa';
+    }
+
+    public function getProjectBtnTextColor(): string {
+        return (isset($this->projectColors['lp_btn_text_color_theme']) &&
+        $this->projectColors['lp_btn_text_color_theme'] === 'light') ? '#ffffff' : '#212529';
     }
 }
