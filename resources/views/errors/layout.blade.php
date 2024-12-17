@@ -19,7 +19,7 @@
         </div>
     </section>
     <section id="projects" class="w-100">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.projects')
+        @include('home.partials.projects')
     </section>
 @endsection
 

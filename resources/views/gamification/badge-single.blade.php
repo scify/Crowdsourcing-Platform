@@ -10,9 +10,9 @@
                 <h3 class="badge-title">{{ $title }}</h3>
             </div>
         @endif
-        <div class="col-md-12 badge-img-container">
+        <div class="col-md-12 badge-img-container" style="text-align: center;">
             <img loading="lazy" class="badgeImg" src="{{asset("images/badges/" . $badge->badgeImageName)}}"
-                 alt="Badge" style="height: 200px; padding-top: 5px;">
+                 alt="Badge" style="height: 100px; padding-top: 5px;">
         </div>
     </div>
     <div class="row">

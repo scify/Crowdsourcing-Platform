@@ -8,7 +8,7 @@
         @include('home.partials.' . config('app.installation_resources_dir') . '.about-us')
     </section>
     <section id="projects" class="w-100 py-5">
-        @include('home.partials.' . config('app.installation_resources_dir') . '.projects')
+        @include('home.partials.projects')
     </section>
     <section id="features" class="container-fluid w-100 py-5">
         @include('home.partials.features')
