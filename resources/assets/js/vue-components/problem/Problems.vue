@@ -21,7 +21,7 @@
 					</div>
 				</div>
 				<ul class="row">
-					<li v-for="problem in problems" :key="problem.id" class="col-12 col-sm-6 col-md-6 col-lg-4">
+					<li v-for="problem in problems" :key="problem.id" class="col-12 col-sm-12 col-md-6 col-lg-6">
 						<a class="card-link" :href="getProblemPageURL(problem)">
 							<div class="card">
 								<div v-if="!problem.img_url" class="card-placeholder-img-container">
@@ -37,7 +37,7 @@
 									</svg>
 								</div>
 								<div v-else class="card-custom-img-container">
-									<img :src="problem.img_url" alt="decorative image for problem" width="282" height="180" />
+									<img :src="problem.img_url" alt="decorative image for problem" width="282" height="220" />
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">
@@ -190,7 +190,7 @@ a.card-link {
 	background-color: var(--clr-secondary-grey);
 	padding-top: 3.7rem;
 	padding-bottom: 2.2rem;
-	height: 180px;
+	height: 220px;
 
 	svg {
 		width: 100%;
@@ -200,7 +200,7 @@ a.card-link {
 
 .card-custom-img-container {
 	background-color: var(--clr-secondary-grey);
-	height: 180px;
+	height: 220px;
 
 	img {
 		width: 100%;
