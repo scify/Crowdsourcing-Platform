@@ -9,12 +9,12 @@ return [
 
     */
 
-    'total_responses' => 'Total Responses',
-    'goal_responses' => 'Goal responses', 
-    'actual_responses' => 'Actual responses', 
-    'download_csv' => 'Download as CSV', 
-    'print' => 'Print',
-    'responses_per_language' => 'Responses per language',
+    'total_responses' => 'Răspunsuri totale',
+    'goal_responses' => 'Răspunsuri țintă',
+    'actual_responses' => 'Răspunsuri efective',
+    'download_csv' => 'Descarcă ca CSV',
+    'print' => 'Imprimă',
+    'responses_per_language' => 'Răspunsuri pe limbă',
 
 
 

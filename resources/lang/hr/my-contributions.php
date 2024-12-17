@@ -9,19 +9,19 @@ return [
 
     */
 
-    'my_history' => 'My history',
-    'my_contributions' => 'My Contributions',
-    'number_of_questionnaires' => '{0} You have contributed to <b>zero questionnaires</b> |{1}  You have contributed to <b>1 questionnaire</b |[2,*] You have contributed to  <b>:count questionnaires</b>',
-    'no_questionnaires' => 'You haven’t responded to any questionnaires, yet.',
-    'project' => 'Project',
-    'questionnaire_title' => 'Questionnaire title',
-    'questionnaire_description' => 'Questionnaire description',
-    'responded' => 'Responded',
-    'actions' => 'Actions',
-    'view_response' => 'View response',
-    'my_proposed_solutions' => 'My Proposed Solutions',
-    'number_of_proposed_solutions' => '{0} You have proposed <b>zero solutions</b> |{1}  You have proposed <b>1 solution</b |[2,*] You have proposed <b>:count solutions</b>',
-    'no_proposed_solutions' => 'You haven’t proposed any solutions, yet.',
+    'my_history' => 'Moja povijest',
+    'my_contributions' => 'Moji doprinosi',
+    'number_of_questionnaires' => '{0} Niste doprinijeli nijednom upitniku |{1} Doprinosili ste <b>1 upitniku</b> |[2,*] Doprinosili ste <b>:count upitnicima</b>',
+    'no_questionnaires' => 'Još niste odgovorili na niti jedan upitnik.',
+    'project' => 'Projekt',
+    'questionnaire_title' => 'Naslov upitnika',
+    'questionnaire_description' => 'Opis upitnika',
+    'responded' => 'Odgovoreno',
+    'actions' => 'Radnje',
+    'view_response' => 'Pogledajte odgovor',
+    'my_proposed_solutions' => 'Moja predložena rješenja',
+    'number_of_proposed_solutions' => '{0} Niste predložili nijedno rješenje |{1} Predložili ste <b>1 rješenje</b> |[2,*] Predložili ste <b>:count rješenja</b>',
+    'no_proposed_solutions' => 'Još niste predložili nikakva rješenja.',
     'problem' => 'Problem',
 
 

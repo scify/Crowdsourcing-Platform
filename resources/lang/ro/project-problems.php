@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'back' => 'Back',
-    'the_topic' => 'The topic:',
-    'list_of_problems' => 'List of Problems',
-    'list_of_solutions' => 'List of Solutions',
-    'see_all_problems' => 'See all problems',
-    'solutions_for' => 'Solutions for',
-    'project_landing_page_problems_action_button' => 'See all problems',
-    'suggest_solution' => 'Suggest a solution',
-    'temp_str_1' => 'Contribute to solving the problems for topic:',
-    'temp_str_2' => 'Select a problem from the list below and vote for an existing solution, or suggest a new candidate solution. Your contributions will have a valuable impact on official policy across Europe.',
-    'temp_str_3' => 'Select a problem from the list below to begin',
+    'back' => 'Înapoi',
+    'the_topic' => 'Subiectul:',
+    'list_of_problems' => 'Lista problemelor',
+    'list_of_solutions' => 'Lista soluțiilor',
+    'see_all_problems' => 'Vezi toate problemele',
+    'solutions_for' => 'Soluții pentru',
+    'project_landing_page_problems_action_button' => 'Vezi toate problemele',
+    'suggest_solution' => 'Sugerează o soluție',
+    'temp_str_1' => 'Contribuie la rezolvarea problemelor pentru subiectul:',
+    'temp_str_2' => 'Selectează o problemă din lista de mai jos și votează pentru o soluție existentă sau sugerează o nouă soluție candidată. Contribuțiile tale vor avea un impact valoros asupra politicii oficiale la nivel european.',
+    'temp_str_3' => 'Selectează o problemă din lista de mai jos pentru a începe',
 ];
