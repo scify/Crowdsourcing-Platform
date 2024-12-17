@@ -76,21 +76,22 @@ class ProblemManager {
     }
 
     public function storeProblem(array $attributes): int {
-        if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
-            $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
-        }
-
         $crowdSourcingProjectProblem = Problem::create([
             'project_id' => $attributes['problem-owner-project'],
             'user_creator_id' => Auth::id(),
             'slug' => Str::random(16), // temporary - will be changed after record creation
             'status_id' => $attributes['problem-status'],
-            'img_url' => $imgPath,
             'default_language_id' => $attributes['problem-default-language'],
         ]);
 
         $crowdSourcingProjectProblem->slug = Str::slug($attributes['problem-title'] . '-' . $crowdSourcingProjectProblem->id);
         $crowdSourcingProjectProblem->save();
+
+        if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
+            $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
+            $crowdSourcingProjectProblem->img_url = $imgPath;
+            $crowdSourcingProjectProblem->save();
+        }
 
         $crowdSourcingProjectProblem->defaultTranslation()->create([
             'title' => $attributes['problem-title'],
@@ -104,15 +105,16 @@ class ProblemManager {
      * @throws RepositoryException
      */
     public function updateProblem(int $id, array $attributes) {
-        if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
-            $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
-        }
-
         $modelAttributes['project_id'] = $attributes['problem-owner-project'];
         $modelAttributes['slug'] = $attributes['problem-slug'];
         $modelAttributes['status_id'] = $attributes['problem-status'];
-        $modelAttributes['img_url'] = $imgPath;
         $modelAttributes['default_language_id'] = $attributes['problem-default-language'];
+
+        if (isset($attributes['problem-image']) && $attributes['problem-image']->isValid()) {
+            $imgPath = FileHandler::uploadAndGetPath($attributes['problem-image'], 'problem_img');
+            $modelAttributes['img_url'] = $imgPath;
+        }
+
         $this->problemRepository->update($modelAttributes, $id);
 
         $defaultTranslation = [
