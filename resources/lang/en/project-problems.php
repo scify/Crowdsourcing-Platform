@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'back' => 'Back',
+    'back' => 'Back to the Campaign',
     'the_topic' => 'The topic:',
     'list_of_problems' => 'List of Problems',
     'list_of_solutions' => 'List of Solutions',
