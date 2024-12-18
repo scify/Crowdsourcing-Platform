@@ -274,10 +274,8 @@ class SolutionManager {
         $problem = $this->problemRepository->findBy('slug', $problem_slug);
         $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
 
-        // we need to calculate the $localeLanguage as follows:
-        // if the problem has a translation in the current locale, we use this
-        // otherwise, we use the default language of the project
-        $localeLanguage = $problem->currentTranslation ? $problem->currentTranslation->language : $project->defaultTranslation->language;
+        // we use the default language of the problem
+        $localeLanguage = $problem->defaultTranslation->language;
 
         return new ProposeSolutionPage($project, $problem, $localeLanguage);
     }
