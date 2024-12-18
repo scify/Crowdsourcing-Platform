@@ -6,21 +6,19 @@
                     <div class="footer-grp">
                         <h3><b>"Together"</b> Crowdsourcing Platform</h3>
                         <div>
-                            <a href="#about">About</a>
+                            <a href="#about">{{ __('common.about_us') }}</a>
                         </div>
                         <div>
-                            <a href="#features">Features</a>
+                            <a href="#features">{{ __('common.features') }}</a>
                         </div>
                         <div>
                             <a href="#projects">{{ __('common.crowd_sourcing_campaigns') }}</a>
                         </div>
                         <div>
-                            <a href="https://www.scify.gr/site/en/who-we-are/scify" target="_blank">About us</a>
-                        </div>
-                        <div><a href="https://www.scify.gr/site/en/impact-areas-en" target="_blank">Impact Areas</a>
+                            <a href="https://scify.org/en" target="_blank">About SciFY</a>
                         </div>
                         <div>
-                            <a href="{{ route('terms.privacy') }}" target="_blank">Platform Privacy Policy</a>
+                            <a href="{{ route('terms.privacy') }}" target="_blank">{{ __('common.terms_privacy') }}</a>
                         </div>
                         <div>
                             <a href="javascript:void(0);" onclick="toggleCookieBanner()">Cookies Preferences</a>

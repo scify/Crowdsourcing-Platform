@@ -4,18 +4,18 @@
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <div class="footer-grp">
-                        <h3>ECAS Crowdsourcing Platform</h3>
+                        <h3>ECAS Crowd-sourcing Platform</h3>
                         <div>
-                            <a href="#about">About</a>
+                            <a href="#about">{{ __('common.about_us') }}</a>
                         </div>
                         <div>
-                            <a href="#features">Features</a>
+                            <a href="#features">{{ __('common.features') }}</a>
                         </div>
                         <div>
                             <a href="#projects">{{ __('common.crowd_sourcing_campaigns') }}</a>
                         </div>
                         <div>
-                            <a href="https://ecas.org/about-us/" target="_blank">About us</a>
+                            <a href="https://ecas.org/about-us/" target="_blank">About SciFY</a>
                         </div>
                         <div>
                             <a href="{{ route('codeOfConduct') }}" target="_blank">Code of Conduct</a>
