@@ -11,6 +11,8 @@ use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
+use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
+use App\Repository\LanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\ViewModels\Gamification\GamificationNextStep;
@@ -26,6 +28,8 @@ class UserDashboardManager {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
     protected QuestionnaireAccessManager $questionnaireAccessManager;
     protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
+    protected LanguageRepository $languageRepository;
+    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,
         PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
@@ -33,7 +37,9 @@ class UserDashboardManager {
         QuestionnaireBadgeProvider $questionnaireBadgeProvider,
         QuestionnaireResponseRepository $questionnaireResponseRepository,
         QuestionnaireAccessManager $questionnaireAccessManager,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+        CrowdSourcingProjectManager $crowdSourcingProjectManager,
+        LanguageRepository $languageRepository,
+        CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
         $this->questionnaireRepository = $questionnaireRepository;
         $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
         $this->crowdSourcingProjectGoalManager = $crowdSourcingProjectGoalManager;
@@ -41,6 +47,8 @@ class UserDashboardManager {
         $this->questionnaireResponseRepository = $questionnaireResponseRepository;
         $this->questionnaireAccessManager = $questionnaireAccessManager;
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
+        $this->languageRepository = $languageRepository;
+        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
     }
 
     private function questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses): bool {
@@ -103,7 +111,7 @@ class UserDashboardManager {
         $questionnairesToBeDisplayedInTheDashboard = $this->getQuestionnairesForDashboard($user, $userResponses, $questionnaireIdsUserHasAnsweredTo);
         $platformWideGamificationBadgesVM = $this->platformWideGamificationBadgesProvider
             ->getPlatformWideGamificationBadgesListVM($user->id, $questionnaireIdsUserHasAnsweredTo);
-        $projectsWithActiveProblems = $this->getProjectsWithActiveProblems();
+        $projectsWithActiveProblems = $this->getCrowdSourcingProjectsWithActiveProblems();
 
         return new UserDashboardViewModel($questionnairesToBeDisplayedInTheDashboard, $projectsWithActiveProblems, $platformWideGamificationBadgesVM, $user);
     }
@@ -138,7 +146,22 @@ class UserDashboardManager {
         return $questionnairesToBeDisplayedInTheDashboard;
     }
 
-    protected function getProjectsWithActiveProblems(): Collection {
-        return $this->crowdSourcingProjectManager->getCrowdSourcingProjectsWithActiveProblems();
+    public function getCrowdSourcingProjectsWithActiveProblems(): Collection {
+        $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
+        $projects = $this->crowdSourcingProjectRepository->getActiveProjectsWithoutQuestionnaireWithAtLeastOnePublishedProblemWithStatus($language->id);
+
+        foreach ($projects as $project) {
+            // if the model has a "translations" relationship and the first item is not null,
+            // then set it as the current translation.
+            // otherwise, set the default translation as the current translation
+
+            $project->currentTranslation = $project->translations->first() ?? $project->defaultTranslation;
+
+            if ($project->questionnaires->count() > 0) {
+                $project->latestQuestionnaire = $project->questionnaires->last();
+            }
+        }
+
+        return $projects;
     }
 }
