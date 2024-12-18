@@ -60,11 +60,23 @@ class CrowdSourcingProjectRepository extends Repository {
         return $builder1->union($builder2)->distinct('id')->orderBy('created_at', 'desc')->get();
     }
 
-    public function getActiveProjectsWithAtLeastOnePublishedProblemWithStatus(
+    /**
+     * Get all active projects that do not have a published questionnaire
+     * and have at least one published problem with the given status
+     *
+     * @param $language_id int - the id of the language for which the translations should be loaded
+     * @param $additionalRelationships array - additional relationships to be loaded
+     * @param $problemStatusId int - the status id of the problems to be loaded
+     * @return Collection - the collection of projects that meet the criteria
+     */
+    public function getActiveProjectsWithoutQuestionnaireWithAtLeastOnePublishedProblemWithStatus(
         $language_id,
         $additionalRelationships = [], $problemStatusId = ProblemStatusLkp::PUBLISHED
     ): Collection {
         $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
+            ->whereDoesntHave('questionnaires', function ($query) {
+                $query->where('status_id', QuestionnaireStatusLkp::PUBLISHED);
+            })
             ->with('problems', function ($query) use ($problemStatusId) {
                 $query->where(['status_id' => $problemStatusId]);
             });
