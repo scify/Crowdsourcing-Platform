@@ -57,7 +57,7 @@ class CrowdSourcingProjectRepository extends Repository {
         }
 
         // Combine the results of both queries, remove duplicates, and order by the most recent one
-        return $builder1->union($builder2)->distinct('id')->orderBy('created_at', 'desc')->get();
+        return $builder1->union($builder2)->distinct('id')->orderBy('updated_at', 'desc')->get();
     }
 
     /**
