@@ -27,7 +27,7 @@
 				</div>
 				<div v-if="!questionnaire.respondent_auth_required" class="col-5">
 					<button class="btn btn-primary btn-lg call-to-action w-100" @click="skipLogin()">
-						Answer anonymously
+						{{ trans("questionnaire.answer_anonymously") }}
 					</button>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 				</div>
 				<div v-if="!questionnaire.respondent_auth_required" class="col-10">
 					<button class="btn btn-primary btn-lg call-to-action w-100 my-4" @click="skipLogin()">
-						Answer anonymously
+						{{ trans("questionnaire.answer_anonymously") }}
 					</button>
 				</div>
 			</div>

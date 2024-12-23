@@ -50,4 +50,6 @@ return [
     'answer_to_feedback_questionnaire' => 'Odpovedzte na dotazník o spätných väzbách',
     'user_feedback_given_message' => 'Ďakujeme za Vašu spätnú väzbu!',
     'must_be_logged_in_prompt' => 'Pre zodpovedanie dotazníka musíte byť prihlásení.',
-    'create_account_prompt' => 'Vytvorte si účet, aby ste mohli viac prispievať na platformu, získavať odznaky a pomôcť nám zlepšiť kvalitu našich riešení. Vytvorením účtu sa môžete zúčastňovať diskusií, hlasovať za riešenia a byť informovaní o najnovších udalostiach. Pripojte sa k našej komunite a urobte rozdiel!', ];
+    'create_account_prompt' => 'Vytvorte si účet, aby ste mohli viac prispievať na platformu, získavať odznaky a pomôcť nám zlepšiť kvalitu našich riešení. Vytvorením účtu sa môžete zúčastňovať diskusií, hlasovať za riešenia a byť informovaní o najnovších udalostiach. Pripojte sa k našej komunite a urobte rozdiel!',
+    'answer_anonymously' => 'Odpovedať anonymne',
+];

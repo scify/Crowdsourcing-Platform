@@ -50,4 +50,6 @@ return [
     'answer_to_feedback_questionnaire' => 'Răspunde la chestionarul de feedback',
     'user_feedback_given_message' => 'Mulțumim pentru feedback-ul tău!',
     'must_be_logged_in_prompt' => 'Trebuie să fii autentificat pentru a răspunde la chestionar.',
-    'create_account_prompt' => 'Creați un cont pentru a contribui mai mult la platformă, a câștiga insigne și a ne ajuta să îmbunătățim calitatea soluțiilor noastre. Prin crearea unui cont, puteți participa la discuții, vota pentru soluții și rămâneți la curent cu cele mai recente dezvoltări. Alăturați-vă comunității noastre și faceți o diferență!', ];
+    'create_account_prompt' => 'Creați un cont pentru a contribui mai mult la platformă, a câștiga insigne și a ne ajuta să îmbunătățim calitatea soluțiilor noastre. Prin crearea unui cont, puteți participa la discuții, vota pentru soluții și rămâneți la curent cu cele mai recente dezvoltări. Alăturați-vă comunității noastre și faceți o diferență!',
+    'answer_anonymously' => 'Răspunde anonim',
+];

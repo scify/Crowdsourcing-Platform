@@ -50,4 +50,6 @@ return [
     'answer_to_feedback_questionnaire' => 'Antworten Sie auf den Feedback-Fragebogen',
     'user_feedback_given_message' => 'Vielen Dank für Ihr Feedback!',
     'must_be_logged_in_prompt' => 'Sie müssen angemeldet sein, um den Fragebogen zu beantworten.',
-    'create_account_prompt' => 'Erstellen Sie ein Konto, um mehr zur Plattform beizutragen, Abzeichen zu verdienen und uns zu helfen, die Qualität unserer Lösungen zu verbessern. Durch die Erstellung eines Kontos können Sie an Diskussionen teilnehmen, für Lösungen abstimmen und über die neuesten Entwicklungen informiert bleiben. Treten Sie unserer Gemeinschaft bei und machen Sie einen Unterschied!', ];
+    'create_account_prompt' => 'Erstellen Sie ein Konto, um mehr zur Plattform beizutragen, Abzeichen zu verdienen und uns zu helfen, die Qualität unserer Lösungen zu verbessern. Durch die Erstellung eines Kontos können Sie an Diskussionen teilnehmen, für Lösungen abstimmen und über die neuesten Entwicklungen informiert bleiben. Treten Sie unserer Gemeinschaft bei und machen Sie einen Unterschied!',
+    'answer_anonymously' => 'Anonym antworten',
+];

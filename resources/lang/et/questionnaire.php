@@ -51,4 +51,6 @@ return [
     'answer_to_feedback_questionnaire' => 'Vasta tagasiside küsimustikule',
     'user_feedback_given_message' => 'Täname tagasiside eest!',
     'must_be_logged_in_prompt' => 'Küsimustikule vastamiseks pead olema sisse logitud.',
-    'create_account_prompt' => 'Loo konto, et panustada rohkem platvormile, teenida märke ja aidata meil parandada oma lahenduste kvaliteeti. Konto loomisega saate osaleda aruteludes, hääletada lahenduste poolt ja olla kursis viimaste arengutega. Liitu meie kogukonnaga ja tee vahet!', ];
+    'create_account_prompt' => 'Loo konto, et panustada rohkem platvormile, teenida märke ja aidata meil parandada oma lahenduste kvaliteeti. Konto loomisega saate osaleda aruteludes, hääletada lahenduste poolt ja olla kursis viimaste arengutega. Liitu meie kogukonnaga ja tee vahet!',
+    'answer_anonymously' => 'Vasta anonüümselt',
+];

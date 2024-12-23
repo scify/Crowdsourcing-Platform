@@ -51,4 +51,5 @@ return [
     'user_feedback_given_message' => 'Thank you for your feedback!',
     'must_be_logged_in_prompt' => 'You must be logged in to answer the questionnaire.',
     'create_account_prompt' => 'Create an account to contribute more to the platform, earn badges, and help us improve the quality of our solutions. By creating an account, you can participate in discussions, vote on solutions, and stay updated with the latest developments. Join our community and make a difference!',
+    'answer_anonymously' => 'Answer anonymously',
 ];
