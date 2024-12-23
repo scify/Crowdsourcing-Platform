@@ -16,7 +16,7 @@
 		<div v-if="displayLoginPrompt" class="container-fluid p-0">
 			<div class="row mb-5 pt-3">
 				<div class="col text-center">
-					<h3 v-sane-html="getQuestionnaireLoginPromptMessage()"></h3>
+					<h4 class="login-message" v-sane-html="getQuestionnaireLoginPromptMessage()"></h4>
 				</div>
 			</div>
 			<div class="row justify-content-center d-none d-md-flex">
@@ -153,6 +153,7 @@ export default {
 			if (!this.userLoggedIn()) {
 				const response = await this.getAnonymousUserResponse();
 				this.userResponse = response.data.questionnaire_response ?? null;
+				console.log(this.userResponse);
 				this.displayLoginPrompt = !this.userResponse;
 			}
 			this.initQuestionnaireDisplay();
@@ -170,10 +171,11 @@ export default {
 			}, 1000);
 		},
 		getQuestionnaireLoginPromptMessage() {
+			let message = "";
 			if (this.questionnaire.respondent_auth_required) {
-				return trans("questionnaire.must_be_logged_in_prompt");
+				message += trans("questionnaire.must_be_logged_in_prompt") + "<br><br>";
 			}
-			return trans("questionnaire.create_account_prompt");
+			return (message + trans("questionnaire.create_account_prompt"));
 		},
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");

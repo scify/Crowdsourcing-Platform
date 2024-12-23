@@ -50,5 +50,4 @@ return [
     'answer_to_feedback_questionnaire' => 'Odgovorite na upitnik o povratnim informacijama',
     'user_feedback_given_message' => 'Hvala Vam na povratnoj informaciji!',
     'must_be_logged_in_prompt' => 'Morate biti prijavljeni da biste odgovorili na upitnik.',
-    'create_account_prompt' => 'Možete kreirati nalog kako biste više doprineli platformi i stekli značke!',
-];
+    'create_account_prompt' => 'Kreirajte nalog kako biste više doprineli platformi, zaradili značke i pomogli nam da poboljšamo kvalitet naših rešenja. Kreiranjem naloga možete učestvovati u diskusijama, glasati za rešenja i biti informisani o najnovijim dešavanjima. Pridružite se našoj zajednici i napravite razliku!', ];

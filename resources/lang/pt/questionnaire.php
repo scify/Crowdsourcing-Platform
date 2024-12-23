@@ -50,5 +50,4 @@ return [
     'answer_to_feedback_questionnaire' => 'Responda ao questionário de feedback',
     'user_feedback_given_message' => 'Obrigado pelo seu feedback!',
     'must_be_logged_in_prompt' => 'Deve estar logado para responder ao questionário.',
-    'create_account_prompt' => 'Pode criar uma conta para contribuir mais para a plataforma e ganhar distintivos!',
-];
+    'create_account_prompt' => 'Crie uma conta para contribuir mais com a plataforma, ganhar emblemas e nos ajudar a melhorar a qualidade de nossas soluções. Ao criar uma conta, você pode participar de discussões, votar em soluções e ficar atualizado com os últimos desenvolvimentos. Junte-se à nossa comunidade e faça a diferença!', ];
