@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Jūs varat balsot līdz <b>:votes</b> :entityName',
     'entity_solutions' => 'risinājumi',
     'entity_questionnaires' => 'aptaujas',
+    'vote_login_message' => 'Lai nodrošinātu risinājumu kvalitāti, pirms balsošanas ir jāpiesakās.',
 ];

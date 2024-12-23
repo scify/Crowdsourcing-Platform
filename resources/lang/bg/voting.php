@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Можете да гласувате до <b>:votes</b> :entityName',
     'entity_solutions' => 'решения',
     'entity_questionnaires' => 'анкети',
+    'vote_login_message' => 'За да гарантираме качеството на решенията, изискваме да влезете в профила си преди да гласувате.',
 ];

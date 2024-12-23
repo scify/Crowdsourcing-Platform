@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Saate hääletada kuni <b>:votes</b> :entityName',
     'entity_solutions' => 'lahendust',
     'entity_questionnaires' => 'küsitlust',
+    'vote_login_message' => 'Lahenduste kvaliteedi tagamiseks peate enne hääletamist sisse logima.',
 ];
