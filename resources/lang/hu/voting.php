@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Ön szavazhat akár <b>:votes</b> :entityName',
     'entity_solutions' => 'megoldások',
     'entity_questionnaires' => 'kérdőívek',
+    'vote_login_message' => 'A megoldások minőségének biztosítása érdekében be kell jelentkeznie a szavazás előtt.',
 ];

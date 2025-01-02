@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <section id="motto" class="w-100 mb-5" style="height: 650px;">
+    <section id="motto" class="w-100 mb-5" style="height: 750px;">
         @include('home.partials.motto')
     </section>
     <section id="about" class="container-fluid w-100 py-5">

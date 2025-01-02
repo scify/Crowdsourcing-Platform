@@ -420,7 +420,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/assets/sass/variables";
+@import "../../../sass/variables";
 
 .table .field {
 	max-width: 60px;

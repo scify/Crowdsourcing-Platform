@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Sie können bis zu <b>:votes</b> :entityName abstimmen',
     'entity_solutions' => 'Lösungen',
     'entity_questionnaires' => 'Fragebögen',
+    'vote_login_message' => 'Um die Qualität der Lösungen sicherzustellen, müssen Sie sich vor dem Abstimmen anmelden.',
 ];

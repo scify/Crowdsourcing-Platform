@@ -70,6 +70,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "resources/assets/sass/variables";
-@import "resources/assets/sass/shared/modal";
+@import "../../../sass/variables";
+@import "../../../sass/shared/modal";
 </style>

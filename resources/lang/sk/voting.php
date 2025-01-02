@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Môžete hlasovať až do <b>:votes</b> :entityName',
     'entity_solutions' => 'riešenia',
     'entity_questionnaires' => 'dotazníky',
+    'vote_login_message' => 'Na zabezpečenie kvality riešení vyžadujeme, aby ste sa pred hlasovaním prihlásili.',
 ];
