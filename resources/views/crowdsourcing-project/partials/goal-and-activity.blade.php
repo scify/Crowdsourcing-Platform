@@ -11,8 +11,6 @@
             @if($viewModel->shareUrlForFacebook || $viewModel->shareUrlForTwitter)
                 {{ __("questionnaire.invite_your_friends_to_answer")}}
             @endif
-
-
         </h2>
         <div class="col-10 col-md-12 mx-auto d-flex flex-wrap justify-content-center social-share">
             @include('crowdsourcing-project.partials.share-questionnaire-on-social', ["viewModel"=>$viewModel])
@@ -20,5 +18,3 @@
 
     </div>
 </div>
-
-
