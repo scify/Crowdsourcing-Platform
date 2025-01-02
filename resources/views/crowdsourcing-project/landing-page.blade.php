@@ -17,14 +17,15 @@
         <section>
             @include('crowdsourcing-project.partials.about')
         </section>
-        <section>
-            @include('crowdsourcing-project.partials.next-actions')
-        </section>
         @if($viewModel->questionnaire)
-            <section id="collective-goal">
+            <section id="collective-goal" class="pt-5">
                 @include('crowdsourcing-project.partials.goal-and-activity')
             </section>
         @endif
+        <section>
+            @include('crowdsourcing-project.partials.next-actions')
+        </section>
+        
         <section>
             @include('partials.signup_to_newsletter')
         </section>
