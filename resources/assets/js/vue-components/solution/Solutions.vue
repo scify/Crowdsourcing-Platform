@@ -7,25 +7,25 @@
 			</div>
 		</div>
 		<div class="row justify-content-center py-5">
-			<div class="col-12 col-md-10 col-lg-11 col-xl-9">
+			<div class="col-lg-12 col-md-10 col-lg-11 col-xl-9">
 				<div class="container-fluid p-0">
-					<div class="row pb-4" v-if="userVotesLeft !== null">
+					<div v-if="userVotesLeft !== null" class="row pb-4">
 						<div class="col">
 							<p
-								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0"
 								v-sane-html="getVotesInfoMessage()"
+								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0"
 							></p>
 							<p
-								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center"
 								v-sane-html="getVotesLeftMessage()"
+								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center"
 							></p>
 						</div>
 					</div>
-					<div class="row" v-if="errorMessage.length">
+					<div v-if="errorMessage.length" class="row">
 						<div class="col">
-							<div class="alert-component position-relative d-none" id="error-alert">
+							<div id="error-alert" class="alert-component position-relative d-none">
 								<div class="alert alert-danger" role="alert">
-									<p class="my-2" v-sane-html="errorMessage"></p>
+									<p v-sane-html="errorMessage" class="my-2"></p>
 								</div>
 							</div>
 						</div>
@@ -42,9 +42,9 @@
 					<ul class="row">
 						<li
 							v-for="solution in solutions"
+							:id="'solution_card_' + solution.id"
 							:key="solution.id"
 							class="col-12"
-							:id="'solution_card_' + solution.id"
 						>
 							<div class="card">
 								<div v-if="!solution.img_url" class="card-placeholder-img-container">
@@ -108,13 +108,13 @@ import SolutionDefaultImage from "./SolutionDefaultImage.vue";
 
 export default {
 	name: "Solutions",
-	mixins: [transMixin],
 	components: {
 		SolutionDefaultImage,
 		ProposeSolution,
 		ShareCircleButton,
 		HeartCircleButton,
 	},
+	mixins: [transMixin],
 	props: {
 		problemId: {
 			type: Number,
