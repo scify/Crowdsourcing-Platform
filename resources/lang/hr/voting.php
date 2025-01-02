@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Možete glasati do <b>:votes</b> :entityName',
     'entity_solutions' => 'rješenja',
     'entity_questionnaires' => 'upitnici',
+    'vote_login_message' => 'Kako bismo osigurali kvalitetu rješenja, morate se prijaviti prije glasanja.',
 ];

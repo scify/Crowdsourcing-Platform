@@ -92,5 +92,5 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../sass/_variables.scss";
-@import "resources/assets/sass/shared/modal";
+@import "../../../sass/shared/modal";
 </style>

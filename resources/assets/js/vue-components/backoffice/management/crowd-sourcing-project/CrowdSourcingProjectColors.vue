@@ -104,7 +104,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "resources/assets/sass/variables";
+@import "../../../../../sass/variables.scss";
 @import "survey-jquery/modern.min.css";
 @import "survey-analytics/survey.analytics.min.css";
 @import "bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";

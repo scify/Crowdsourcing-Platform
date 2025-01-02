@@ -2,6 +2,11 @@
 @import "survey-jquery/survey.min.css";
 
 #questionnaire-display {
+
+	.login-message {
+		line-height: 1.5;
+	}
+
 	.survey-container {
 		.sv-title {
 			color: $brand-primary;

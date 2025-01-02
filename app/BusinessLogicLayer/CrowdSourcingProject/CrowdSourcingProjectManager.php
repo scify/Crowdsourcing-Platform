@@ -136,7 +136,6 @@ class CrowdSourcingProjectManager {
         $shareUrlForFacebook = '';
         $shareUrlForTwitter = '';
         $countAll = 0;
-        $projectHasPublishedProblems = false;
         if ($questionnaire) {
             $countAll = $this->questionnaireRepository->countAllResponsesForQuestionnaire($questionnaire->id);
             $questionnaireGoalVM = $this->questionnaireGoalManager->getQuestionnaireGoalViewModel($questionnaire, $countAll);
@@ -146,10 +145,8 @@ class CrowdSourcingProjectManager {
             $shareButtonsModel = new QuestionnaireSocialShareButtons($questionnaire, $idOfUserThatCanShareTheQuestionnaire);
             $shareUrlForFacebook = $shareButtonsModel->getSocialShareURL($project, 'facebook');
             $shareUrlForTwitter = $shareButtonsModel->getSocialShareURL($project, 'twitter');
-        } else {
-            // if there is no questionnaire, we need to check if this project has published problems
-            $projectHasPublishedProblems = $this->crowdSourcingProjectProblemRepository->projectHasPublishedProblems($project->id);
         }
+        $projectHasPublishedProblems = $this->crowdSourcingProjectProblemRepository->projectHasPublishedProblems($project->id);
         if ($feedbackQuestionnaire) {
             $userFeedbackQuestionnaireResponse =
                 $this->questionnaireRepository->getUserResponseForQuestionnaire($feedbackQuestionnaire->id, $userId);
