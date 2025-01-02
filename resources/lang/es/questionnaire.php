@@ -50,5 +50,6 @@ return [
     'answer_to_feedback_questionnaire' => 'Responde al cuestionario de retroalimentación',
     'user_feedback_given_message' => '¡Gracias por tu retroalimentación!',
     'must_be_logged_in_prompt' => 'Debes iniciar sesión para responder el cuestionario.',
-    'create_account_prompt' => '¡Puedes crear una cuenta para contribuir más a la plataforma y obtener insignias!',
+    'create_account_prompt' => 'Cree una cuenta para contribuir más a la plataforma, ganar insignias y ayudarnos a mejorar la calidad de nuestras soluciones. Al crear una cuenta, puede participar en discusiones, votar por soluciones y mantenerse informado sobre los últimos desarrollos. ¡Únase a nuestra comunidad y marque la diferencia!',
+    'answer_anonymously' => 'Responder de forma anónima',
 ];

@@ -1,6 +1,7 @@
 <div class="container px-sm-0">
 
     <solutions
+            :user-logged-in='@json(Auth::check())'
             :problem-id='{{ $viewModel->problem->id }}'
             :problem-slug='@json($viewModel->problem->slug)'
             :project-slug='@json($viewModel->project->slug)'

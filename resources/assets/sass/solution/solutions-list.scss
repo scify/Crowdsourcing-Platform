@@ -108,3 +108,66 @@ a.card-link {
     margin: 0 auto;
   }
 }
+
+.floating-panel {
+  position: fixed;
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+
+  /* desktop */
+  @media (min-width: 768px) {
+    max-width: 500px;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    margin: 0 10px 0 0;
+  }
+
+  button.main-btn {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: var(--project-primary-color);
+    color: var(--button-text-color-theme);
+
+    &:hover {
+      filter: brightness(.9);
+    }
+  }
+
+  button.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    width: 30px;
+    height: 30px;
+  }
+}

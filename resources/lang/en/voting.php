@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'You can vote up to <b>:votes</b> :entityName',
     'entity_solutions' => 'solutions',
     'entity_questionnaires' => 'questionnaires',
+    'vote_login_message' => 'In order to ensure the quality of the solutions, we require you to log in before voting.',
 ];

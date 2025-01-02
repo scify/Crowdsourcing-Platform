@@ -23,6 +23,7 @@ use App\Http\Controllers\Questionnaire\QuestionnaireReportController;
 use App\Http\Controllers\Questionnaire\QuestionnaireResponseController;
 use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware(['throttle:api-public'])->group(function () {
     Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('api.questionnaire.languages.get');

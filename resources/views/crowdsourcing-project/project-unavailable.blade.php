@@ -9,7 +9,7 @@
 @endpush
 @section('content')
     <div class="container-fluid h-100 w-100 px-0">
-        <section id="motto" style="height: 650px;">
+        <section id="motto" style="height: 750px;">
             <div id="project-motto-container" class="row h-100 w-100 align-items-center mx-0 bg-img"
                  style="background-image: url({{asset($viewModel->project->img_path)}});">
                 <div class="overlay-filter"

@@ -680,5 +680,5 @@ export default defineComponent({
 @import "survey-analytics/survey.analytics.min.css";
 @import "survey-analytics/survey.analytics.tabulator.min.css";
 @import "tabulator-tables/dist/css/tabulator.min.css";
-@import "resources/assets/sass/questionnaire/statistics";
+@import "../../../sass/questionnaire/statistics";
 </style>

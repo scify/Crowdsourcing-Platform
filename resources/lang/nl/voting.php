@@ -8,4 +8,5 @@ return [
     'you_can_vote_up_to' => 'Je kunt tot <b>:votes</b> :entityName stemmen',
     'entity_solutions' => 'oplossingen',
     'entity_questionnaires' => 'vragenlijsten',
+    'vote_login_message' => 'Om de kwaliteit van de oplossingen te waarborgen, vragen we je om in te loggen voordat je stemt.',
 ];

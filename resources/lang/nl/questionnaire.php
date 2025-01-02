@@ -50,5 +50,6 @@ return [
     'answer_to_feedback_questionnaire' => 'Beantwoord de feedback vragenlijst',
     'user_feedback_given_message' => 'Dank je wel voor je feedback!',
     'must_be_logged_in_prompt' => 'Je moet ingelogd zijn om de vragenlijst te beantwoorden.',
-    'create_account_prompt' => 'Je kan een account aanmaken om meer bij te dragen aan het platform en badges te verdienen!',
+    'create_account_prompt' => 'Maak een account aan om meer bij te dragen aan het platform, badges te verdienen en ons te helpen de kwaliteit van onze oplossingen te verbeteren. Door een account aan te maken, kunt u deelnemen aan discussies, stemmen op oplossingen en op de hoogte blijven van de laatste ontwikkelingen. Sluit u aan bij onze gemeenschap en maak een verschil!',
+    'answer_anonymously' => 'Beantwoord anoniem',
 ];
