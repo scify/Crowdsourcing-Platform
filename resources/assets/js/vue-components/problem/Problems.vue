@@ -1,10 +1,10 @@
 <template>
 	<div class="row justify-content-center py-5">
-		<div class="col-12 col-md-10 col-lg-11 col-xl-9">
+		<div class="col-lg-12 col-md-10 col-lg-11 col-xl-9">
 			<div class="container-fluid p-0">
-				<div class="row" v-if="errorMessage.length">
+				<div v-if="errorMessage.length" class="row">
 					<div class="col">
-						<div class="alert-component position-relative d-none" id="errorAlert">
+						<div id="errorAlert" class="alert-component position-relative d-none">
 							<div class="alert alert-danger" role="alert">
 								{{ errorMessage }}
 							</div>
