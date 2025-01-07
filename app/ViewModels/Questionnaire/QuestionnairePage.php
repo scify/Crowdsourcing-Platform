@@ -13,18 +13,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnairePage extends CrowdSourcingProjectLayoutPage {
-    public Questionnaire $questionnaire;
-    public ?QuestionnaireResponse $userResponse;
     public CrowdSourcingProject $project;
-    public Collection $languages;
-    public bool $moderator;
 
-    public function __construct(Questionnaire $questionnaire, ?QuestionnaireResponse $userResponse, CrowdSourcingProject $project, Collection $languages, bool $moderator) {
+    public function __construct(public Questionnaire $questionnaire, public ?QuestionnaireResponse $userResponse, CrowdSourcingProject $project, public Collection $languages, public bool $moderator) {
         parent::__construct($project);
-        $this->questionnaire = $questionnaire;
-        $this->userResponse = $userResponse;
-        $this->languages = $languages;
-        $this->moderator = $moderator;
     }
 
     public function shouldShowQuestionnaireStatisticsLink(): bool {

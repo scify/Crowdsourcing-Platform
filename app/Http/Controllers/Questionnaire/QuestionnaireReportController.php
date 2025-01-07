@@ -11,14 +11,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class QuestionnaireReportController extends Controller {
-    protected QuestionnaireReportManager $questionnaireReportManager;
-    protected QuestionnaireRepository $questionnaireRepository;
-
-    public function __construct(QuestionnaireReportManager $questionnaireReportManager,
-        QuestionnaireRepository $questionnaireRepository) {
-        $this->questionnaireReportManager = $questionnaireReportManager;
-        $this->questionnaireRepository = $questionnaireRepository;
-    }
+    public function __construct(protected QuestionnaireReportManager $questionnaireReportManager, protected QuestionnaireRepository $questionnaireRepository) {}
 
     public function viewReportsPage(Request $request) {
         $selectedQuestionnaireId = $request->questionnaireId;
@@ -33,7 +26,7 @@ class QuestionnaireReportController extends Controller {
             $questionnaire = $this->questionnaireRepository->find($input['questionnaireId']);
             $reportViewModel = $this->questionnaireReportManager->getQuestionnaireReportViewModel($input);
             $responses = $reportViewModel->responses;
-            $view = view('backoffice.questionnaire.reports.report-for-questionnaire', compact('reportViewModel'));
+            $view = view('backoffice.questionnaire.reports.report-for-questionnaire', ['reportViewModel' => $reportViewModel]);
             $responseCode = ResponseAlias::HTTP_OK;
             $responseContent = ['view' => $view->render(), 'questionnaire' => $questionnaire, 'responses' => $responses];
         } catch (QueryException $e) {

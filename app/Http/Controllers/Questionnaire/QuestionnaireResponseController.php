@@ -19,20 +19,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class QuestionnaireResponseController extends Controller {
-    protected QuestionnaireResponseManager $questionnaireResponseManager;
-    protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
-    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
-    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
-
-    public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
-        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager) {
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
-        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-    }
+    public function __construct(protected QuestionnaireResponseManager $questionnaireResponseManager, protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected CrowdSourcingProjectManager $crowdSourcingProjectManager) {}
 
     public function store(Request $request): JsonResponse {
         $this->validate($request, [
@@ -101,7 +88,7 @@ class QuestionnaireResponseController extends Controller {
 
         $columns = ['Id', 'Question', 'Answer', 'Number of votes', 'Voters'];
 
-        $callback = function () use ($data, $columns) {
+        $callback = function () use ($data, $columns): void {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
@@ -146,9 +133,11 @@ class QuestionnaireResponseController extends Controller {
             $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($userId, count($questionnaireIdsUserHasAnsweredTo)));
 
             return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel, 'badge' => $badge]);
-        } catch (Exception $e) {
+        } catch (Exception) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
+        return null;
     }
 
     public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {

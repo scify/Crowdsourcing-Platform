@@ -9,22 +9,18 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class QuestionnaireStatisticsController extends Controller {
-    protected QuestionnaireStatisticsManager $questionnaireStatisticsManager;
-
-    public function __construct(QuestionnaireStatisticsManager $questionnaireStatisticsManager) {
-        $this->questionnaireStatisticsManager = $questionnaireStatisticsManager;
-    }
+    public function __construct(protected QuestionnaireStatisticsManager $questionnaireStatisticsManager) {}
 
     public function showStatisticsPageForQuestionnaire(string $locale, Questionnaire $questionnaire, int $projectFilter = -1) {
         $viewModel = $this->questionnaireStatisticsManager->getQuestionnaireVisualizationsViewModel($questionnaire, $projectFilter);
 
-        return view('questionnaire.statistics', compact(['viewModel']));
+        return view('questionnaire.statistics', ['viewModel' => $viewModel]);
     }
 
     public function showEditStatisticsColorsPage(string $locale, Questionnaire $questionnaire) {
         $viewModel = $this->questionnaireStatisticsManager->getEditQuestionnaireStatisticsColorViewModel($questionnaire);
 
-        return view('backoffice.management.questionnaire.statistics-colors', compact(['viewModel']));
+        return view('backoffice.management.questionnaire.statistics-colors', ['viewModel' => $viewModel]);
     }
 
     public function saveStatisticsColors(Request $request, string $locale, Questionnaire $questionnaire): RedirectResponse {

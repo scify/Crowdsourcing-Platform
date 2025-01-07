@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller {
-    private $userManager;
-
-    public function __construct(UserManager $userManager) {
-        $this->userManager = $userManager;
-    }
+    public function __construct(private readonly \App\BusinessLogicLayer\User\UserManager $userManager) {}
 
     public function manageUsers() {
         $viewModel = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
@@ -42,16 +38,11 @@ class AdminController extends Controller {
             null,
             $request->password,
             [$request->roleselect]);
-        switch ($result->status) {
-            case UserActionResponses::USER_UPDATED:
-                session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.');
-                break;
-            case UserActionResponses::USER_CREATED:
-                session()->flash('flash_message_success', 'User has been added to the platform.');
-                break;
-            default:
-                throw new HttpException('Not a valid request');
-        }
+        match ($result->status) {
+            UserActionResponses::USER_UPDATED => session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.'),
+            UserActionResponses::USER_CREATED => session()->flash('flash_message_success', 'User has been added to the platform.'),
+            default => throw new HttpException('Not a valid request'),
+        };
 
         return back();
     }

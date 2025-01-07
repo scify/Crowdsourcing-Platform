@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use Illuminate\Console\Command;
 use Spatie\Crawler\Crawler;
 use Spatie\Sitemap\SitemapGenerator;
@@ -24,38 +23,33 @@ class GenerateSitemap extends Command {
      */
     protected $description = 'Generates a sitemap for better SEO';
 
-    protected $crowdSourcingProjectManager;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+    public function __construct(protected \App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         parent::__construct();
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle() {
+    public function handle(): int {
         $alternateLanguages = [];
         $translatablePublicPages = ['/', '/terms-and-privacy', '/code-of-conduct'];
         $translatablePublicPagesAvailability = [
             '/terms-and-privacy' => ['bg', 'de', 'el', 'en', 'es', 'et', 'fr', 'hu', 'it', 'lv', 'nl', 'pt', 'sk', 'sr'],
             '/code-of-conduct' => ['bg', 'de', 'el', 'en', 'et', 'fr', 'hu', 'lv', 'nl', 'pt', 'sr'],
         ];
-        foreach (explode('|', config('app.regex_for_validating_locale_at_routes')) as $language) {
+        foreach (explode('|', (string) config('app.regex_for_validating_locale_at_routes')) as $language) {
             if (strlen($language) === 2 && $language !== 'en') {
                 $alternateLanguages[] = $language;
             }
         }
 
         $sitemapGenerator = SitemapGenerator::create(config('app.url'))
-            ->configureCrawler(function (Crawler $crawler) {
+            ->configureCrawler(function (Crawler $crawler): void {
                 $crawler->setMaximumDepth(3);
             })
             ->getSitemap();

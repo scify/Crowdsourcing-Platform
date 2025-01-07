@@ -13,7 +13,7 @@ use Tests\TestCase;
 
 class QuestionnaireReportControllerTest extends TestCase {
     /** @test */
-    public function viewReportsPageReturnsCorrectView() {
+    public function view_reports_page_returns_correct_view(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -28,7 +28,7 @@ class QuestionnaireReportControllerTest extends TestCase {
     }
 
     /** @test */
-    public function getReportDataForQuestionnaireReturnsCorrectJsonResponse() {
+    public function get_report_data_for_questionnaire_returns_correct_json_response(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -43,13 +43,13 @@ class QuestionnaireReportControllerTest extends TestCase {
     }
 
     /** @test */
-    public function getReportDataForQuestionnaireHandlesQueryException() {
+    public function get_report_data_for_questionnaire_handles_query_exception(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
         $this->be($user);
 
-        $this->mock(QuestionnaireRepository::class, function ($mock) {
+        $this->mock(QuestionnaireRepository::class, function ($mock): void {
             $mock->shouldReceive('find')->andThrow(new QueryException('', '', [], new Exception('Test Query Exception')));
         });
 
@@ -61,13 +61,13 @@ class QuestionnaireReportControllerTest extends TestCase {
     }
 
     /** @test */
-    public function getReportDataForQuestionnaireHandlesGeneralException() {
+    public function get_report_data_for_questionnaire_handles_general_exception(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
         $this->be($user);
 
-        $this->mock(QuestionnaireRepository::class, function ($mock) {
+        $this->mock(QuestionnaireRepository::class, function ($mock): void {
             $mock->shouldReceive('find')->andThrow(new Exception('Test General Exception', 123));
         });
 

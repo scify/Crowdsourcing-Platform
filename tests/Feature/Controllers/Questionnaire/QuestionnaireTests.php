@@ -20,7 +20,7 @@ class QuestionnaireTests extends TestCase {
     /**
      * @test
      */
-    public function test_questionnaire_free_type_questions() {
+    public function test_questionnaire_free_type_questions(): void {
         $questionnaireJSON = '
         {
            "pages":[

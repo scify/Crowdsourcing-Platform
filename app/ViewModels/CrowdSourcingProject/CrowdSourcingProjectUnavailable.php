@@ -6,7 +6,14 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectUnavailable extends CrowdSourcingProjectLayoutPage {
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $projects;
+
+    /**
+     * @var string
+     */
     public $statusMessage;
 
     public function __construct(CrowdSourcingProject $project, Collection $projects, string $statusMessage) {

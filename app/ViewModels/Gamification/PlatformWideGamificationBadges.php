@@ -3,8 +3,19 @@
 namespace App\ViewModels\Gamification;
 
 class PlatformWideGamificationBadges {
+    /**
+     * @var \App\ViewModels\Gamification\GamificationBadgeVM
+     */
     public $contributorBadge;
+
+    /**
+     * @var \App\ViewModels\Gamification\GamificationBadgeVM
+     */
     public $communicatorBadge;
+
+    /**
+     * @var \App\ViewModels\Gamification\GamificationBadgeVM
+     */
     public $influencerBadge;
 
     public function __construct(GamificationBadgeVM $contributorBadge, GamificationBadgeVM $communicatorBadge, GamificationBadgeVM $influencerBadge) {

@@ -29,10 +29,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
-     *
-     * @return void
      */
-    public function test_user_should_see_cta_for_problems_campaign_page() {
+    public function test_user_should_see_cta_for_problems_campaign_page(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -74,9 +72,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA to answer the Questionnaire
-     * @return void
      */
-    public function test_user_should_see_cta_for_questionnaire() {
+    public function test_user_should_see_cta_for_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -99,7 +96,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         }
 
         // Create a Questionnaire for the Project
-        $questionnaire = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::PUBLISHED,
         ]);
@@ -126,9 +123,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
-     * @return void
      */
-    public function test_user_should_see_cta_for_problems_campaign_page_after_answering_questionnaire() {
+    public function test_user_should_see_cta_for_problems_campaign_page_after_answering_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -157,7 +153,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // Create a response for the Questionnaire
-        $questionnaire_response = QuestionnaireResponse::factory()->create([
+        QuestionnaireResponse::factory()->create([
             'questionnaire_id' => $questionnaire->id,
             'user_id' => $user->id,
         ]);
@@ -184,9 +180,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
-     * @return void
      */
-    public function test_user_should_see_cta_for_problems_campaign_page_after_answering_completed_questionnaire() {
+    public function test_user_should_see_cta_for_problems_campaign_page_after_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -214,13 +209,13 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
             'status_id' => QuestionnaireStatusLkp::FINALIZED,
         ]);
 
-        $questionnaire_draft = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::DRAFT,
         ]);
 
         // Create a response for the Questionnaire
-        $questionnaire_response = QuestionnaireResponse::factory()->create([
+        QuestionnaireResponse::factory()->create([
             'questionnaire_id' => $questionnaire_finalized->id,
             'user_id' => $user->id,
         ]);
@@ -247,9 +242,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
-     * @return void
      */
-    public function test_user_should_see_cta_for_problems_campaign_page_without_answering_completed_questionnaire() {
+    public function test_user_should_see_cta_for_problems_campaign_page_without_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -272,12 +266,12 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         }
 
         // Create a Questionnaire for the Project
-        $questionnaire_finalized = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::FINALIZED,
         ]);
 
-        $questionnaire_draft = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::DRAFT,
         ]);
@@ -306,9 +300,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA for the external link of the Project
-     * @return void
      */
-    public function test_user_should_see_cta_for_external_link_without_answering_completed_questionnaire() {
+    public function test_user_should_see_cta_for_external_link_without_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -334,12 +327,12 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         }
 
         // Create a Questionnaire for the Project
-        $questionnaire_finalized = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::FINALIZED,
         ]);
 
-        $questionnaire_draft = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::DRAFT,
         ]);
@@ -372,9 +365,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA for answering the feedback questionnaire
-     * @return void
      */
-    public function test_user_should_see_cta_for_feedback_questionnaire_without_answering_completed_questionnaire() {
+    public function test_user_should_see_cta_for_feedback_questionnaire_without_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -400,18 +392,18 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         }
 
         // Create a Questionnaire for the Project
-        $questionnaire_finalized = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::FINALIZED,
         ]);
 
-        $questionnaire_draft = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::DRAFT,
         ]);
 
         // Create a feedback questionnaire for the Project
-        $feedback_questionnaire = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::PUBLISHED,
             'type_id' => QuestionnaireTypeLkp::FEEDBACK_QUESTIONNAIRE,
@@ -445,9 +437,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the CTA for visiting the external link of the Project
-     * @return void
      */
-    public function test_user_should_see_cta_for_external_link_after_answering_questionnaire_and_feedback_questionnaire() {
+    public function test_user_should_see_cta_for_external_link_after_answering_questionnaire_and_feedback_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -478,13 +469,13 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
             'status_id' => QuestionnaireStatusLkp::PUBLISHED,
         ]);
 
-        $questionnaire_draft = Questionnaire::factory()->create([
+        Questionnaire::factory()->create([
             'project_id' => $project->id,
             'status_id' => QuestionnaireStatusLkp::DRAFT,
         ]);
 
         // Create a response for the Questionnaire
-        $questionnaire_response = QuestionnaireResponse::factory()->create([
+        QuestionnaireResponse::factory()->create([
             'questionnaire_id' => $questionnaire->id,
             'user_id' => $user->id,
         ]);
@@ -497,7 +488,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // Create a response for the feedback Questionnaire
-        $feedback_questionnaire_response = QuestionnaireResponse::factory()->create([
+        QuestionnaireResponse::factory()->create([
             'questionnaire_id' => $feedback_questionnaire->id,
             'user_id' => $user->id,
         ]);
@@ -528,9 +519,8 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      * WHEN the user navigates in the Project Campaign page,
      *
      * THEN the user should see the message for sharing the questionnaire with friends
-     * @return void
      */
-    public function test_user_should_see_cta_for_sharing_questionnaire_after_answering_questionnaire() {
+    public function test_user_should_see_cta_for_sharing_questionnaire_after_answering_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -560,7 +550,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
         ]);
 
         // Create a response for the Questionnaire
-        $questionnaire_response = QuestionnaireResponse::factory()->create([
+        QuestionnaireResponse::factory()->create([
             'questionnaire_id' => $questionnaire->id,
             'user_id' => $user->id,
         ]);

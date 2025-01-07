@@ -62,7 +62,7 @@ class CrowdSourcingProjectTranslation extends Model {
         parent::boot();
 
         // Trim all string attributes before saving
-        static::saving(function ($model) {
+        static::saving(function ($model): void {
             $model->trimAttributes();
         });
     }

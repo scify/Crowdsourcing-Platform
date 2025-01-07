@@ -8,35 +8,48 @@ use App\Models\Solution\Solution;
 use Illuminate\Support\Collection;
 
 class CreateEditSolution {
-    public Solution $solution;
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $translations;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $solutionStatusesLkp;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $languagesLkp;
+
+    /**
+     * @var \App\Models\Problem\Problem
+     */
     public $problem;
-    public array $translationsMetaData;
+
+    public array $translationsMetaData = [
+        'title' => [
+            'display_title' => 'Solution title (*)',
+            'required' => true,
+        ],
+        'description' => [
+            'display_title' => 'Solution description (*)',
+            'required' => true,
+        ],
+    ];
 
     public function __construct(
-        Solution $solution,
+        public Solution $solution,
         Collection $translations,
         Collection $solutionStatusesLkp,
         Collection $languagesLkp,
         Problem $problem
     ) {
-        $this->solution = $solution;
         $this->translations = $translations;
         $this->solutionStatusesLkp = $solutionStatusesLkp;
         $this->languagesLkp = $languagesLkp;
         $this->problem = $problem;
-        $this->translationsMetaData = [
-            'title' => [
-                'display_title' => 'Solution title (*)',
-                'required' => true,
-            ],
-            'description' => [
-                'display_title' => 'Solution description (*)',
-                'required' => true,
-            ],
-        ];
     }
 
     public function isEditMode(): bool {

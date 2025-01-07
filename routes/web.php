@@ -26,7 +26,7 @@ $localeInfo = [
     'middleware' => 'setlocale',
 ];
 
-Route::group($localeInfo, function () {
+Route::group($localeInfo, function (): void {
     Auth::routes();
     Route::get('/', [HomeController::class, 'showHomePage'])->name('home');
     Route::get('/terms-and-privacy', [HomeController::class, 'showTermsAndPrivacyPage'])->name('terms.privacy');
@@ -39,12 +39,12 @@ Route::get('/code-of-conduct', fn () => redirect(app()->getLocale() . '/code-of-
 Route::get('login/social/{driver}', [LoginController::class, 'redirectToProvider']);
 Route::get('login/social/{driver}/callback', [LoginController::class, 'handleProviderCallback'])->name('socialLoginCallback');
 
-Route::group(['middleware' => ['auth', 'setlocale']], function () use ($localeInfo, $backOfficePrefix) {
-    Route::group($localeInfo, function () use ($backOfficePrefix) {
+Route::group(['middleware' => ['auth', 'setlocale']], function () use ($localeInfo, $backOfficePrefix): void {
+    Route::group($localeInfo, function () use ($backOfficePrefix): void {
         Route::get('/{project_slug}/problems/{problem_slug}/solutions/propose', [SolutionController::class, 'userProposalCreate'])->name('solutions.user-proposal-create');
         Route::post('/{project_slug}/problems/{problem_slug}/solutions', [SolutionController::class, 'userProposalStore'])->name('solutions.user-proposal-store');
         Route::get('/{project_slug}/problems/{problem_slug}/solutions/{solution_slug}/submitted', [SolutionController::class, 'userProposalSubmitted'])->name('solutions.user-proposal-submitted');
-        Route::group(['prefix' => $backOfficePrefix], function () {
+        Route::group(['prefix' => $backOfficePrefix], function (): void {
             Route::get('/my-dashboard', [UserController::class, 'myDashboard'])->name('my-dashboard');
             Route::get('/my-account', [UserController::class, 'myAccount'])->name('my-account');
             Route::get('/my-contributions', [UserController::class, 'showUserContributions'])->name('my-contributions');
@@ -52,8 +52,8 @@ Route::group(['middleware' => ['auth', 'setlocale']], function () use ($localeIn
     });
 });
 
-Route::group(['middleware' => ['auth', 'can:manage-users']], function () use ($backOfficePrefix) {
-    Route::group(['prefix' => $backOfficePrefix], function () {
+Route::group(['middleware' => ['auth', 'can:manage-users']], function () use ($backOfficePrefix): void {
+    Route::group(['prefix' => $backOfficePrefix], function (): void {
         Route::get('/manage-users', [AdminController::class, 'manageUsers'])->name('manage-users');
         Route::get('/edit-user/{id}', [AdminController::class, 'editUserForm'])->name('edit-user');
         Route::post('/add-user', [AdminController::class, 'addUserToPlatform']);
@@ -62,24 +62,24 @@ Route::group(['middleware' => ['auth', 'can:manage-users']], function () use ($b
     });
 });
 
-Route::group(['middleware' => ['auth', 'can:manage-platform']], function () use ($backOfficePrefix) {
-    Route::group(['prefix' => $backOfficePrefix], function () {
+Route::group(['middleware' => ['auth', 'can:manage-platform']], function () use ($backOfficePrefix): void {
+    Route::group(['prefix' => $backOfficePrefix], function (): void {
         Route::post('update-user', [AdminController::class, 'updateUserRoles']);
         Route::get('/communication/mailchimp', [CommunicationController::class, 'getMailChimpIntegration'])->name('mailchimp-integration.get');
         Route::post('/communication/mailchimp', [CommunicationController::class, 'storeMailChimpListsIds'])->name('mailchimp-integration');
     });
-    Route::middleware(['throttle:api-public'])->group(function () {
-        Route::group(['prefix' => 'admin'], function () {
-            Route::get('/phpinfo', fn () => phpinfo());
+    Route::middleware(['throttle:api-public'])->group(function (): void {
+        Route::group(['prefix' => 'admin'], function (): void {
+            Route::get('/phpinfo', fn (): true => phpinfo());
             Route::get('/check-upload', [AdminController::class, 'checkUploadPage']);
             Route::post('/upload-files', [AdminController::class, 'uploadAdminFile'])->name('admin.image.upload');
         });
     });
 });
 
-Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function () use ($localeInfo, $backOfficePrefix) {
-    Route::group($localeInfo, function () use ($backOfficePrefix) {
-        Route::group(['prefix' => $backOfficePrefix], function () {
+Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function () use ($localeInfo, $backOfficePrefix): void {
+    Route::group($localeInfo, function () use ($backOfficePrefix): void {
+        Route::group(['prefix' => $backOfficePrefix], function (): void {
             Route::resource('projects', CrowdSourcingProjectController::class)->except(['destroy']);
             Route::get('project/{id}/clone', [CrowdSourcingProjectController::class, 'clone'])->name('project.clone');
             Route::post('project/destroy', [CrowdSourcingProjectController::class, 'destroy'])->name('project.destroy');
@@ -94,9 +94,9 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
     });
 });
 
-Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], function () use ($localeInfo, $backOfficePrefix) {
-    Route::group($localeInfo, function () use ($backOfficePrefix) {
-        Route::group(['prefix' => $backOfficePrefix], function () {
+Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], function () use ($localeInfo, $backOfficePrefix): void {
+    Route::group($localeInfo, function () use ($backOfficePrefix): void {
+        Route::group(['prefix' => $backOfficePrefix], function (): void {
             Route::get('/questionnaires', [QuestionnaireController::class, 'manageQuestionnaires'])->name('questionnaires.all');
             Route::get('/questionnaires/reports', [QuestionnaireReportController::class, 'viewReportsPage'])->name('questionnaires.reports');
             Route::get('/{project:slug}/questionnaire/{questionnaire:id}/moderator-add-answer', [QuestionnaireController::class, 'showAddResponseAsModeratorToQuestionnaire'])->name('questionnaire-moderator-add-response');
@@ -104,8 +104,8 @@ Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], functi
     });
 });
 
-Route::group(['middleware' => 'auth'], function () use ($backOfficePrefix) {
-    Route::group(['prefix' => $backOfficePrefix], function () {
+Route::group(['middleware' => 'auth'], function () use ($backOfficePrefix): void {
+    Route::group(['prefix' => $backOfficePrefix], function (): void {
         Route::put('/user/update', [UserController::class, 'patch'])->name('user.update');
         Route::post('/user/deactivate', [UserController::class, 'deactivateLoggedInUser'])->name('user.deactivate');
         Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download');
@@ -113,14 +113,14 @@ Route::group(['middleware' => 'auth'], function () use ($backOfficePrefix) {
     });
 });
 
-Route::group($localeInfo, function () {
+Route::group($localeInfo, function (): void {
     Route::get('/questionnaires/{questionnaire}/statistics/{projectFilter?}', [QuestionnaireStatisticsController::class, 'showStatisticsPageForQuestionnaire'])->name('questionnaire.statistics')->middleware('questionnaire.page_settings');
 });
 
-Route::group($localeInfo, function () {
+Route::group($localeInfo, function (): void {
     Route::post('/languages/setlocale', [LanguageController::class, 'setLocale'])->name('languages.setlocale');
 });
-Route::group($localeInfo, function () {
+Route::group($localeInfo, function (): void {
     Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
     Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
     Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');

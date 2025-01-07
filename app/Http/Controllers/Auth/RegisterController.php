@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
-use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
-use App\BusinessLogicLayer\User\UserManager;
-use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
-use App\Utils\MailChimpAdaptor;
 use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -34,27 +29,16 @@ class RegisterController extends Controller {
      */
     protected string $redirectTo = '/en/backoffice/my-dashboard';
 
-    public function redirectTo() {
+    public function redirectTo(): string {
         return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
-    private $userRoleManager;
-    private $userManager;
-    private $mailChimpManager;
-    private $crowdSourcingProjectManager;
-    protected $questionnaireResponseManager;
-
-    public function __construct(UserRoleManager $userRoleManager,
-        UserManager $userManager,
-        MailChimpAdaptor $mailChimpManager,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager,
-        QuestionnaireResponseManager $questionnaireResponseManager) {
+    public function __construct(private \App\BusinessLogicLayer\User\UserRoleManager $userRoleManager,
+        private \App\BusinessLogicLayer\User\UserManager $userManager,
+        private \App\Utils\MailChimpAdaptor $mailChimpManager,
+        private \App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager $crowdSourcingProjectManager,
+        protected \App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest');
-        $this->userRoleManager = $userRoleManager;
-        $this->userManager = $userManager;
-        $this->mailChimpManager = $mailChimpManager;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
     /**
@@ -93,11 +77,11 @@ class RegisterController extends Controller {
     protected function registered(Request $request, $user) {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $numberOfResponseTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
-        if ($numberOfResponseTransferred) {
+        if ($numberOfResponseTransferred !== 0) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }
 
-        $url = session('redirectTo') ? session('redirectTo') : $this->redirectTo();
+        $url = session('redirectTo') ?: $this->redirectTo();
 
         return redirect($url);
     }

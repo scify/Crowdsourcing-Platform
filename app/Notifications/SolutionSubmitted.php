@@ -11,14 +11,10 @@ use Illuminate\Notifications\Notification;
 class SolutionSubmitted extends Notification implements ShouldQueue {
     use Queueable;
 
-    protected Solution $solution;
-
     /**
      * Create a new notification instance.
      */
-    public function __construct(Solution $solution) {
-        $this->solution = $solution;
-    }
+    public function __construct(protected Solution $solution) {}
 
     /**
      * Get the notification's delivery channels.

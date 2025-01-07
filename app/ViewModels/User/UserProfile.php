@@ -5,6 +5,9 @@ namespace App\ViewModels\User;
 use App\Models\User\User;
 
 class UserProfile {
+    /**
+     * @var \App\Models\User\User
+     */
     public $user;
 
     public function __construct(User $user) {

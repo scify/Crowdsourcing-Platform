@@ -19,23 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireController extends Controller {
-    protected QuestionnaireManager $questionnaireManager;
-    protected UserQuestionnaireShareManager $questionnaireShareManager;
-    protected QuestionnaireVMProvider $questionnaireVMProvider;
-    protected QuestionnaireTranslator $questionnaireTranslator;
-    protected QuestionnaireLanguageManager $questionnaireLanguageManager;
-
-    public function __construct(QuestionnaireManager $questionnaireManager,
-        UserQuestionnaireShareManager $questionnaireShareManager,
-        QuestionnaireVMProvider $questionnaireVMProvider,
-        QuestionnaireTranslator $questionnaireTranslator,
-        QuestionnaireLanguageManager $questionnaireLanguageManager) {
-        $this->questionnaireManager = $questionnaireManager;
-        $this->questionnaireShareManager = $questionnaireShareManager;
-        $this->questionnaireVMProvider = $questionnaireVMProvider;
-        $this->questionnaireTranslator = $questionnaireTranslator;
-        $this->questionnaireLanguageManager = $questionnaireLanguageManager;
-    }
+    public function __construct(protected QuestionnaireManager $questionnaireManager, protected UserQuestionnaireShareManager $questionnaireShareManager, protected QuestionnaireVMProvider $questionnaireVMProvider, protected QuestionnaireTranslator $questionnaireTranslator, protected QuestionnaireLanguageManager $questionnaireLanguageManager) {}
 
     public function manageQuestionnaires() {
         $questionnairesViewModel = $this->questionnaireVMProvider->getAllQuestionnairesPageViewModel();

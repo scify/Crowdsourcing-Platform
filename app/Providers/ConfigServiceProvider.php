@@ -8,28 +8,22 @@ use Illuminate\Support\ServiceProvider;
 class ConfigServiceProvider extends ServiceProvider {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot(): void {
         //
     }
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register(): void {
         $this->makeAbsoluteUrls();
     }
 
     /**
      * Make relative urls into absolute urls
-     *
-     * @return void
      */
-    private function makeAbsoluteUrls() {
+    private function makeAbsoluteUrls(): void {
         //dd(app('url')->to(\Config::get('services')['facebook']['redirect']));
         foreach (Config::get('services') as $key => $config) {
             if (!isset($config['redirect'])) {

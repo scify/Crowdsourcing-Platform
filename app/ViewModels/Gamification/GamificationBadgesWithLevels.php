@@ -5,11 +5,9 @@ namespace App\ViewModels\Gamification;
 use Illuminate\Support\Collection;
 
 class GamificationBadgesWithLevels {
-    public Collection $badgesWithLevelsList;
     public int $numOfBadges;
 
-    public function __construct(Collection $badgesWithLevelsList) {
-        $this->badgesWithLevelsList = $badgesWithLevelsList;
+    public function __construct(public Collection $badgesWithLevelsList) {
         $this->numOfBadges = $this->getNumOfBadges();
     }
 

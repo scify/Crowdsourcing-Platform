@@ -5,13 +5,12 @@ namespace App\ViewModels\Questionnaire\reports;
 use Illuminate\Support\Collection;
 
 class QuestionnaireReportFilters {
-    public $selectedProjectId;
-    public $selectedQuestionnaireId;
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $allQuestionnaires;
 
-    public function __construct(Collection $allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId) {
+    public function __construct(Collection $allQuestionnaires, public $selectedProjectId, public $selectedQuestionnaireId) {
         $this->allQuestionnaires = $allQuestionnaires;
-        $this->selectedProjectId = $selectedProjectId;
-        $this->selectedQuestionnaireId = $selectedQuestionnaireId;
     }
 }

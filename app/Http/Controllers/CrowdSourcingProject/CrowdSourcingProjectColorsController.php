@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\CrowdSourcingProject;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectColorsManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CrowdSourcingProjectColorsController extends Controller {
-    protected $crowdSourcingProjectColorsManager;
-
-    public function __construct(CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager) {
-        $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
-    }
+    public function __construct(protected \App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager) {}
 
     public function getColorsForCrowdSourcingProjectOrDefault(int $project_id): JsonResponse {
         return response()->json($this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project_id));

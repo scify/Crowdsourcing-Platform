@@ -7,6 +7,9 @@ use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Models\QuestionnairePossibleAnswer;
 
 class QuestionnaireStatisticsColors {
+    /**
+     * @var \App\Models\Questionnaire\Questionnaire
+     */
     public $questionnaire;
 
     public function __construct(Questionnaire $questionnaire) {
@@ -39,7 +42,7 @@ class QuestionnaireStatisticsColors {
         return $this->getRandomColor();
     }
 
-    private function getRandomColor() {
+    private function getRandomColor(): string {
         $colors = [
             '#ef5350', '#ab47bc', '#5c6bc0',
             '#66bb6a', '#ffa726', '#8d6e63',

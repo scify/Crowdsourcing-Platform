@@ -21,10 +21,8 @@ class RouteServiceProvider extends ServiceProvider {
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot(): void {
         ///validate the locale parameter
         $regexForLocalParameter = config('app.regex_for_validating_locale_at_routes');
         Route::pattern('locale', $regexForLocalParameter);
@@ -34,10 +32,8 @@ class RouteServiceProvider extends ServiceProvider {
 
     /**
      * Define the routes for the application.
-     *
-     * @return void
      */
-    public function map() {
+    public function map(): void {
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -80,12 +76,8 @@ class RouteServiceProvider extends ServiceProvider {
         foreach ($api_throttles as $throttle) {
             $name = $throttle['name'];
             $limit = $throttle['limit_per_minute'];
-            RateLimiter::for($name, function (Request $request) use ($limit) {
-                return Limit::perMinute($limit)->by(optional($request->user())->id ?: $request->ip())->response(function () {
-                    return response()->json(['status' => 'Too many requests!'],
-                        ResponseAlias::HTTP_TOO_MANY_REQUESTS);
-                });
-            });
+            RateLimiter::for($name, fn (Request $request) => Limit::perMinute($limit)->by(optional($request->user())->id ?: $request->ip())->response(fn () => response()->json(['status' => 'Too many requests!'],
+                ResponseAlias::HTTP_TOO_MANY_REQUESTS)));
         }
 
         Route::middleware('api')

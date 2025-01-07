@@ -8,11 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller {
-    protected LanguageManager $languageManager;
-
-    public function __construct(LanguageManager $languageManager) {
-        $this->languageManager = $languageManager;
-    }
+    public function __construct(protected LanguageManager $languageManager) {}
 
     public function getLanguages(): JsonResponse {
         return response()->json([
@@ -37,7 +33,7 @@ class LanguageController extends Controller {
         $url = preg_replace('/\/[a-z]{2}(\/|$)/', '/' . $locale . '$1', $url, 1);
 
         // If no locale was found and replaced, append it after the base URL
-        if (!preg_match('/\/[a-z]{2}(\/|$)/', url()->previous())) {
+        if (in_array(preg_match('/\/[a-z]{2}(\/|$)/', url()->previous()), [0, false], true)) {
             $url = rtrim(url('/'), '/') . '/' . $locale;
         }
 

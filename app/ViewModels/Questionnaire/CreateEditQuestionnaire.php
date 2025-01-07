@@ -6,13 +6,47 @@ use App\Models\Questionnaire\Questionnaire;
 use Illuminate\Support\Collection;
 
 class CreateEditQuestionnaire {
+    /**
+     * @var \App\Models\Questionnaire\Questionnaire
+     */
     public $questionnaire;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $projects;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $languages;
+
+    /**
+     * @var string
+     */
     public $title;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $questionnaireStatisticsPageVisibilityLkp;
-    public $translationMetaData;
+
+    public $translationMetaData = [
+        'title' => [
+            'display_title' => 'Title (*)',
+            'required' => true,
+        ],
+        'description' => [
+            'display_title' => 'Description (*)',
+            'required' => true,
+        ],
+    ];
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $questionnaireFieldsTranslations;
+
     public $type;
 
     public function __construct(Questionnaire $questionnaire,
@@ -27,15 +61,5 @@ class CreateEditQuestionnaire {
         $this->title = $title;
         $this->questionnaireStatisticsPageVisibilityLkp = $questionnaireStatisticsPageVisibilityLkp;
         $this->questionnaireFieldsTranslations = $questionnaireFieldsTranslations;
-        $this->translationMetaData = [
-            'title' => [
-                'display_title' => 'Title (*)',
-                'required' => true,
-            ],
-            'description' => [
-                'display_title' => 'Description (*)',
-                'required' => true,
-            ],
-        ];
     }
 }

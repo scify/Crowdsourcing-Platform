@@ -7,36 +7,50 @@ use App\Models\Problem\Problem;
 use Illuminate\Support\Collection;
 
 class CreateEditProblem {
-    public Problem $problem;
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $translations;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $problemStatusesLkp;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $languagesLkp;
+
     public $defaultLanguageCode = 'en';
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $projects;
-    public array $translationsMetaData;
+
+    public array $translationsMetaData = [
+        'title' => [
+            'display_title' => 'Project Name (*)',
+            'required' => true,
+        ],
+        'description' => [
+            'display_title' => 'Project description (*)',
+            'required' => true,
+        ],
+    ];
 
     public function __construct(
-        Problem $crowdSourcingProjectProblem,
+        public Problem $problem,
         Collection $translations,
         Collection $problemStatusesLkp,
         Collection $languagesLkp,
         Collection $projects
     ) {
-        $this->problem = $crowdSourcingProjectProblem;
         $this->translations = $translations;
         $this->problemStatusesLkp = $problemStatusesLkp;
         $this->languagesLkp = $languagesLkp;
         $this->projects = $projects;
-        $this->translationsMetaData = [
-            'title' => [
-                'display_title' => 'Project Name (*)',
-                'required' => true,
-            ],
-            'description' => [
-                'display_title' => 'Project description (*)',
-                'required' => true,
-            ],
-        ];
     }
 
     public function isEditMode(): bool {

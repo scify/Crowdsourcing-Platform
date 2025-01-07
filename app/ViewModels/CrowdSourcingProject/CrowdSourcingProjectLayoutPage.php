@@ -6,11 +6,7 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Utils\Helpers;
 
 abstract class CrowdSourcingProjectLayoutPage {
-    public CrowdSourcingProject $project;
-
-    public function __construct(CrowdSourcingProject $crowdSourcingProject) {
-        $this->project = $crowdSourcingProject;
-    }
+    public function __construct(public CrowdSourcingProject $project) {}
 
     public function projectHasExternalURL(): bool {
         return isset($this->project)

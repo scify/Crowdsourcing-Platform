@@ -8,13 +8,11 @@ use Illuminate\Support\ServiceProvider;
 class ComposerServiceProvider extends ServiceProvider {
     /**
      * Register bindings in the container.
-     *
-     * @return void
      */
-    public function boot() {
-        View::composer('errors::layout', 'App\ViewComposers\ErrorPagesComposer');
+    public function boot(): void {
+        View::composer('errors::layout', \App\ViewComposers\ErrorPagesComposer::class);
 
-        View::composer('partials.language-selector', 'App\ViewComposers\LanguageSelectorComposer');
+        View::composer('partials.language-selector', \App\ViewComposers\LanguageSelectorComposer::class);
     }
 
     /**
