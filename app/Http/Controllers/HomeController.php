@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller {
-    private CrowdSourcingProjectManager $crowdSourcingProjectManager;
-
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager) {
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-    }
+    public function __construct(private readonly CrowdSourcingProjectManager $crowdSourcingProjectManager) {}
 
     public function showHomePage() {
         $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
@@ -51,11 +47,9 @@ class HomeController extends Controller {
         $goBackUrl = null;
         if ($referrer) {
             $host = parse_url($referrer, PHP_URL_HOST);
-            $current_host = parse_url(config('app.url'), PHP_URL_HOST);
-            if ($host == $current_host) {
-                $route = collect(Route::getRoutes())->first(function ($route) use ($referrer) {
-                    return $route->matches(request()->create($referrer));
-                });
+            $current_host = parse_url((string) config('app.url'), PHP_URL_HOST);
+            if ($host === $current_host) {
+                $route = collect(Route::getRoutes())->first(fn ($route) => $route->matches(request()->create($referrer)));
                 if ($route != null && $route->getName() == 'project.landing-page') {
                     $goBackUrl = $referrer;
                     if (!Str::contains($referrer, '?open')) {

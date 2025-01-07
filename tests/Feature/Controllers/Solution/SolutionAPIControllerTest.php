@@ -12,7 +12,7 @@ use Tests\TestCase;
 class SolutionAPIControllerTest extends TestCase {
     protected SolutionUpvoteRepository $solutionUpvoteRepository;
 
-    public function setUp(): void {
+    protected function setUp(): void {
         parent::setUp();
         $this->solutionUpvoteRepository = $this->app->make(SolutionUpvoteRepository::class);
     }
@@ -30,10 +30,8 @@ class SolutionAPIControllerTest extends TestCase {
      * WHEN the get solutions api endpoint is called with the problem id,
      *
      * THEN the response should contain the Solutions associated with the Problem.
-     *
-     * @return void
      */
-    public function test_get_solutions_for_problem_landing_page() {
+    public function test_get_solutions_for_problem_landing_page(): void {
         $problem_id = 1;
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -85,10 +83,8 @@ class SolutionAPIControllerTest extends TestCase {
      *
      * THEN the response should contain the Solutions associated with the Problem,
      * and the upvoted_by_current_user field should be set to true for the Solutions that the user has upvoted.
-     *
-     * @return void
      */
-    public function test_get_solutions_for_problem_landing_page_with_upvoted_solutions() {
+    public function test_get_solutions_for_problem_landing_page_with_upvoted_solutions(): void {
         $problem_id = 1;
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
@@ -149,10 +145,8 @@ class SolutionAPIControllerTest extends TestCase {
      * THEN the votes  of the Solution should be incremented by 1,
      * AND the solution should be marked as upvoted by the user.
      * AND the user votes for the project should be decremented by 1.
-     *
-     * @return void
      */
-    public function test_upvote_solution() {
+    public function test_upvote_solution(): void {
         // create a new solution and tie it to a problem with id 1
         $solution = Solution::factory()->create(['problem_id' => 1]);
 
@@ -199,10 +193,8 @@ class SolutionAPIControllerTest extends TestCase {
      * THEN the votes  of the Solution should be decremented by 1,
      * AND the solution should be marked as not voted by the user.
      * AND the user votes for the project should be incremented by 1.
-     *
-     * @return void
      */
-    public function test_downvote_solution() {
+    public function test_downvote_solution(): void {
         // create a new solution and tie it to a problem with id 1
         $solution = Solution::factory()->create(['problem_id' => 1]);
 

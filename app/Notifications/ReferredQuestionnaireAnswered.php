@@ -9,6 +9,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ReferredQuestionnaireAnswered extends BadgeActionOccured implements ShouldQueue {
+    public $title;
+
     use Queueable;
 
     public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
@@ -25,9 +27,8 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function via($notifiable) {
+    public function via($notifiable): array {
         return ['mail'];
     }
 
@@ -54,9 +55,8 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function toArray($notifiable) {
+    public function toArray($notifiable): array {
         return [
             //
         ];

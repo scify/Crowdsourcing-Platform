@@ -6,11 +6,7 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
 use Illuminate\Support\Collection;
 
 class AllCrowdSourcingProjects {
-    public Collection $projects;
-
-    public function __construct(Collection $projects) {
-        $this->projects = $projects;
-    }
+    public function __construct(public Collection $projects) {}
 
     public function getProjectStatusCSSClass(CrowdSourcingProjectStatusLkp $status): string {
         return match ($status->id) {

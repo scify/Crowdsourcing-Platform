@@ -12,11 +12,7 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class SolutionController extends Controller {
-    protected SolutionManager $solutionManager;
-
-    public function __construct(SolutionManager $solutionManager) {
-        $this->solutionManager = $solutionManager;
-    }
+    public function __construct(protected SolutionManager $solutionManager) {}
 
     /**
      * Display a listing of the resource.
@@ -157,7 +153,7 @@ class SolutionController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $locale, int $id) {
+    public function destroy(string $locale, int $id): bool {
         return $this->solutionManager->deleteSolution($id);
     }
 

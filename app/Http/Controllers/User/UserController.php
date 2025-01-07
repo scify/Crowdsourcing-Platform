@@ -13,20 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller {
-    private UserManager $userManager;
-    private QuestionnaireResponseManager $questionnaireResponseManager;
-    protected UserDashboardManager $userDashboardManager;
-    protected SolutionManager $solutionManager;
-
-    public function __construct(UserManager $userManager,
-        QuestionnaireResponseManager $questionnaireResponseManager,
-        UserDashboardManager $userDashboardManager,
-        SolutionManager $solutionManager) {
-        $this->userManager = $userManager;
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
-        $this->userDashboardManager = $userDashboardManager;
-        $this->solutionManager = $solutionManager;
-    }
+    public function __construct(private readonly UserManager $userManager, private readonly QuestionnaireResponseManager $questionnaireResponseManager, protected UserDashboardManager $userDashboardManager, protected SolutionManager $solutionManager) {}
 
     public function home() {
         return redirect()->route('my-dashboard', ['locale' => app()->getLocale()]);
@@ -105,10 +92,10 @@ class UserController extends Controller {
         if ($users->count() == 0) {
             $errorMessage = 'No Users found';
 
-            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string) view('partials.ajax_error_message', compact('errorMessage'))));
-        } else {
-            return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('backoffice.management.partials.users-list', compact('users'))));
+            return json_encode(new OperationResponse(config('app.OPERATION_FAIL'), (string) view('partials.ajax_error_message', ['errorMessage' => $errorMessage])));
         }
+
+        return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('backoffice.management.partials.users-list', ['users' => $users])));
     }
 
     public function showUserContributions() {
@@ -132,7 +119,7 @@ class UserController extends Controller {
         $solutions = $this->solutionManager->getSolutionsProposedByUser(Auth::user());
         $columns = ['Type', 'Project name', 'Title', 'Description', 'JSON'];
 
-        $callback = function () use ($responses, $solutions, $columns) {
+        $callback = function () use ($responses, $solutions, $columns): void {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 

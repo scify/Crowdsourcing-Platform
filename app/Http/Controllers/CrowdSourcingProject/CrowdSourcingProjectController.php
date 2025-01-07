@@ -16,14 +16,7 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectController extends Controller {
-    private CrowdSourcingProjectManager $crowdSourcingProjectManager;
-    private UserQuestionnaireShareManager $questionnaireShareManager;
-
-    public function __construct(CrowdSourcingProjectManager $crowdSourcingProjectManager,
-        UserQuestionnaireShareManager $questionnaireShareManager) {
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->questionnaireShareManager = $questionnaireShareManager;
-    }
+    public function __construct(private readonly CrowdSourcingProjectManager $crowdSourcingProjectManager, private readonly UserQuestionnaireShareManager $questionnaireShareManager) {}
 
     public function index() {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsListPageViewModel();
@@ -111,9 +104,11 @@ class CrowdSourcingProjectController extends Controller {
             return view('crowdsourcing-project.project-unavailable')
                 ->with(['viewModel' => $this->crowdSourcingProjectManager->
                 getUnavailableCrowdSourcingProjectViewModelForLandingPage($project_slug), ]);
-        } catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
+        return null;
     }
 
     protected function showCrowdSourcingProjectLandingPage(Request $request, string $project_slug) {
@@ -134,10 +129,10 @@ class CrowdSourcingProjectController extends Controller {
         }
     }
 
-    private function shouldHandleQuestionnaireShare($request): bool {
+    private function shouldHandleQuestionnaireShare(\Illuminate\Http\Request $request): bool {
         return
-            isset($request->questionnaireId) &&
-            isset($request->referrerId);
+            property_exists($request, 'questionnaireId') && $request->questionnaireId !== null &&
+            (property_exists($request, 'referrerId') && $request->referrerId !== null);
     }
 
     public function clone(Request $request): RedirectResponse {

@@ -33,26 +33,18 @@ class LoginController extends Controller {
      */
     protected string $redirectTo = '/en/backoffice/my-dashboard';
 
-    protected ExceptionHandler $exceptionHandler;
-
-    public function redirectTo() {
+    public function redirectTo(): string {
         return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
-    protected UserManager $userManager;
-    protected QuestionnaireResponseManager $questionnaireResponseManager;
-
-    public function __construct(UserManager $userManager,
-        QuestionnaireResponseManager $questionnaireResponseManager,
-        ExceptionHandler $handler) {
-        $this->exceptionHandler = $handler;
+    public function __construct(protected UserManager $userManager,
+        protected QuestionnaireResponseManager $questionnaireResponseManager,
+        protected ExceptionHandler $exceptionHandler) {
         $this->middleware('guest')->except('logout');
-        $this->userManager = $userManager;
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
     }
 
     public function showLoginForm(Request $request, $redirectTo) {
-        $r = $request->query('redirectTo') ? $request->query('redirectTo') : $this->redirectTo();
+        $r = $request->query('redirectTo') ?: $this->redirectTo();
         $request->session()->put('redirectTo', $r);
 
         return view('auth.login')->with('displayQuestionnaireLabels', $request->submitQuestionnaire != null);
@@ -60,8 +52,8 @@ class LoginController extends Controller {
 
     protected function authenticated(Request $request, $user) {
         $numberOfResponsesTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
-        $url = session('redirectTo') ? session('redirectTo') : $this->redirectTo();
-        if ($numberOfResponsesTransferred) {
+        $url = session('redirectTo') ?: $this->redirectTo();
+        if ($numberOfResponsesTransferred !== 0) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }
 
@@ -75,6 +67,8 @@ class LoginController extends Controller {
             $this->exceptionHandler->report($e);
             abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
         }
+
+        return null;
     }
 
     /**
