@@ -4,11 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\App;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler {
@@ -35,15 +31,9 @@ class Handler extends ExceptionHandler {
      * Register the exception handling callbacks for the application.
      */
     public function register(): void {
-        //
-    }
-
-    public function report(Throwable $e): void {
-        if (app()->bound('sentry') && $this->shouldReport($e)) {
-            app('sentry')->captureException($e);
-        }
-
-        parent::report($e);
+        $this->reportable(function (Throwable $e) {
+            Integration::captureUnhandledException($e);
+        });
     }
 
     public function shouldReport(Throwable $e) {
@@ -52,29 +42,5 @@ class Handler extends ExceptionHandler {
         }
 
         return parent::shouldReport($e);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Application|RedirectResponse|Response|Redirector
-     *
-     * @throws Throwable
-     */
-    public function render($request, Throwable $exception) {
-        //        if ($exception instanceof NotFoundHttpException) {
-        //            if (!isset($urlVars[3]) || !isset($urlVars[4])) {
-        //                return redirect('/' . app()->getLocale() . '/');
-        //            }
-        //            $urlVars = explode('/', url()->current());
-        //            $locale = $urlVars[3];
-        //            $lastPart = $urlVars[4];
-        //            if (app()->getLocale() !== $locale) {
-        //                return redirect('/' . app()->getLocale() . '/' . $lastPart);
-        //            }
-        //        }
-
-        return parent::render($request, $exception);
     }
 }
