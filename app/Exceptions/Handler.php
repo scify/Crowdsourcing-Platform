@@ -36,7 +36,7 @@ class Handler extends ExceptionHandler {
         });
     }
 
-    public function shouldReport(Throwable $e) {
+    public function shouldReport(Throwable $e): bool {
         if (App::environment('local')) {
             return false;
         }
