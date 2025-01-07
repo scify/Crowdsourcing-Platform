@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\App;
+use Sentry\Laravel\Integration;
 use Throwable;
 
 class Handler extends ExceptionHandler {
