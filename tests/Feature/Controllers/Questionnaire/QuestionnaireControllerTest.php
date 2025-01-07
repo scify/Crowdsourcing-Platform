@@ -19,7 +19,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function guestCannotSaveQuestionnaireStatus() {
+    public function guest_cannot_save_questionnaire_status() {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->post(route('questionnaire.update-status', ['locale' => 'en']), [
                 'questionnaire_id' => 1,
@@ -34,7 +34,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCanSaveQuestionnaireStatus() {
+    public function admin_can_save_questionnaire_status() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -60,7 +60,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCannotSaveQuestionnaireStatusWithInvalidQuestionnaireId() {
+    public function admin_cannot_save_questionnaire_status_with_invalid_questionnaire_id() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -80,7 +80,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCannotSaveQuestionnaireStatusWithInvalidData() {
+    public function admin_cannot_save_questionnaire_status_with_invalid_data() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -100,7 +100,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCanCreateQuestionnaire() {
+    public function admin_can_create_questionnaire() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -115,7 +115,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCanStoreQuestionnaireWithValidData() {
+    public function admin_can_store_questionnaire_with_valid_data() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -156,7 +156,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCannotStoreQuestionnaireWithInvalidData() {
+    public function admin_cannot_store_questionnaire_with_invalid_data() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -183,7 +183,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function guestCannotUpdateQuestionnaire() {
+    public function guest_cannot_update_questionnaire() {
         $questionnaire = Questionnaire::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
@@ -219,7 +219,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCanUpdateQuestionnaireWithValidData() {
+    public function admin_can_update_questionnaire_with_valid_data() {
         $questionnaire = Questionnaire::factory()->create();
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -266,7 +266,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCannotUpdateQuestionnaireWithInvalidData() {
+    public function admin_cannot_update_questionnaire_with_invalid_data() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -294,7 +294,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function guestCannotTranslateQuestionnaire() {
+    public function guest_cannot_translate_questionnaire() {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->post(route('api.questionnaire.translation.store'), [
                 'questionnaire_json' => '{}',
@@ -308,7 +308,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCanTranslateQuestionnaireWithValidData() {
+    public function admin_can_translate_questionnaire_with_valid_data() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -343,7 +343,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCannotTranslateQuestionnaireWithInvalidData() {
+    public function admin_cannot_translate_questionnaire_with_invalid_data() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -362,7 +362,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function getLanguagesForQuestionnaire() {
+    public function get_languages_for_questionnaire() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -377,7 +377,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function adminCanMarkQuestionnaireTranslations() {
+    public function admin_can_mark_questionnaire_translations() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -409,7 +409,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function itCanShowQuestionnairePage() {
+    public function it_can_show_questionnaire_page() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -440,7 +440,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function itCannotShowQuestionnairePageForNonPublishedQuestionnaire() {
+    public function it_cannot_show_questionnaire_page_for_non_published_questionnaire() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
             ->create();
@@ -471,7 +471,7 @@ class QuestionnaireControllerTest extends TestCase {
     /**
      * @test
      */
-    public function itCannotShowQuestionnairePageForNonPublishedProject() {
+    public function it_cannot_show_questionnaire_page_for_non_published_project() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::REGISTERED_USER]))
             ->create();

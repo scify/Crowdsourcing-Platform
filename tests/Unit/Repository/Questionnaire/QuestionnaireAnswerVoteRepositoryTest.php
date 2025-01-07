@@ -13,7 +13,7 @@ class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
     /** @test
      * @throws BindingResolutionException
      */
-    public function getAnswerVotesForQuestionnaireAnswers_returns_correct_votes() {
+    public function get_answer_votes_for_questionnaire_answers_returns_correct_votes() {
         $questionnaire = Questionnaire::factory()->create();
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();
@@ -39,7 +39,7 @@ class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
     /** @test
      * @throws BindingResolutionException
      */
-    public function getAnswerVotesForQuestionnaireAnswers_returns_empty_collection_for_nonexistent_questionnaire() {
+    public function get_answer_votes_for_questionnaire_answers_returns_empty_collection_for_nonexistent_questionnaire() {
         $repository = $this->app->make(QuestionnaireAnswerVoteRepository::class);
         $votes = $repository->getAnswerVotesForQuestionnaireAnswers(999);
 
@@ -49,7 +49,7 @@ class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
     /** @test
      * @throws BindingResolutionException
      */
-    public function getAnswerVotesForQuestionnaireAnswers_handles_multiple_votes_correctly() {
+    public function get_answer_votes_for_questionnaire_answers_handles_multiple_votes_correctly() {
         $questionnaire = Questionnaire::factory()->create();
         $user1 = User::factory()->create();
         $user2 = User::factory()->create();

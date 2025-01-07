@@ -6,11 +6,7 @@ use App\BusinessLogicLayer\CommunicationManager;
 use Illuminate\Http\Request;
 
 class CommunicationController extends Controller {
-    private CommunicationManager $communicationManager;
-
-    public function __construct(CommunicationManager $communicationManager) {
-        $this->communicationManager = $communicationManager;
-    }
+    public function __construct(private readonly CommunicationManager $communicationManager) {}
 
     public function getMailChimpIntegration() {
         $viewModel = $this->communicationManager->getMailChimpIntegrationViewModel();

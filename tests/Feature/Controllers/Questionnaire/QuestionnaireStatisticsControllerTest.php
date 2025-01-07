@@ -15,7 +15,7 @@ use Tests\TestCase;
 
 class QuestionnaireStatisticsControllerTest extends TestCase {
     /** @test */
-    public function showStatisticsPageForQuestionnaireReturnsCorrectView() {
+    public function show_statistics_page_for_questionnaire_returns_correct_view() {
         $user = User::factory()->create();
         $this->be($user);
 
@@ -37,7 +37,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
     }
 
     /** @test */
-    public function showEditStatisticsColorsPageReturnsCorrectView() {
+    public function show_edit_statistics_colors_page_returns_correct_view() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -52,7 +52,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
     }
 
     /** @test */
-    public function saveStatisticsColorsSavesColorsAndRedirectsBackWithSuccessMessage() {
+    public function save_statistics_colors_saves_colors_and_redirects_back_with_success_message() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -71,7 +71,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
     }
 
     /** @test */
-    public function saveAllStatisticsColorsSavesColorsAndRedirectsBackWithSuccessMessage() {
+    public function save_all_statistics_colors_saves_colors_and_redirects_back_with_success_message() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -94,7 +94,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
     }
 
     /** @test */
-    public function saveStatisticsColorsSavesColorsWithWrongInputAndRedirectsBackWithErrorMessage() {
+    public function save_statistics_colors_saves_colors_with_wrong_input_and_redirects_back_with_error_message() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -112,7 +112,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
     }
 
     /** @test */
-    public function saveStatisticsColorsHandlesExceptionAndRedirectsBackWithFailureMessage() {
+    public function save_statistics_colors_handles_exception_and_redirects_back_with_failure_message() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();

@@ -13,7 +13,7 @@ use Tests\TestCase;
 
 class QuestionnaireReportControllerTest extends TestCase {
     /** @test */
-    public function viewReportsPageReturnsCorrectView() {
+    public function view_reports_page_returns_correct_view() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -28,7 +28,7 @@ class QuestionnaireReportControllerTest extends TestCase {
     }
 
     /** @test */
-    public function getReportDataForQuestionnaireReturnsCorrectJsonResponse() {
+    public function get_report_data_for_questionnaire_returns_correct_json_response() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -43,7 +43,7 @@ class QuestionnaireReportControllerTest extends TestCase {
     }
 
     /** @test */
-    public function getReportDataForQuestionnaireHandlesQueryException() {
+    public function get_report_data_for_questionnaire_handles_query_exception() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -61,7 +61,7 @@ class QuestionnaireReportControllerTest extends TestCase {
     }
 
     /** @test */
-    public function getReportDataForQuestionnaireHandlesGeneralException() {
+    public function get_report_data_for_questionnaire_handles_general_exception() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();

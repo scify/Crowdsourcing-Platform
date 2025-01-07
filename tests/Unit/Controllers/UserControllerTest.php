@@ -30,7 +30,7 @@ class UserControllerTest extends TestCase {
         Auth::shouldReceive('user')->andReturn($this->user);
     }
 
-    public function testMyDashboardWithNoBadges() {
+    public function test_my_dashboard_with_no_badges() {
         $this->userDashboardManager->method('getUserDashboardViewModel')
             ->willReturn($this->createDashboardViewModel(0, 0, 0));
 
@@ -45,7 +45,7 @@ class UserControllerTest extends TestCase {
         $this->assertCount(0, $viewModel->projectsWithActiveProblems);
     }
 
-    public function testMyDashboardWithBadges() {
+    public function test_my_dashboard_with_badges() {
         $this->userDashboardManager->method('getUserDashboardViewModel')
             ->willReturn($this->createDashboardViewModel(3, 2, 1));
 

@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class QuestionnaireResponseControllerTest extends TestCase {
     /** @test */
-    public function testStoreInvalidData() {
+    public function test_store_invalid_data() {
         $user = User::factory()->create();
         $this->be($user);
 
@@ -28,7 +28,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
     }
 
     /** @test */
-    public function testStoreWithoutAuthenticationForNonModerator() {
+    public function test_store_without_authentication_for_non_moderator() {
         $questionnaire = Questionnaire::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
@@ -62,7 +62,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
     }
 
     /** @test */
-    public function testStoreOfModerator() {
+    public function test_store_of_moderator() {
         // Create a user and set as authenticated
         $user = User::factory()->create();
         $this->be($user);
@@ -102,7 +102,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
     }
 
     /** @test */
-    public function testStoreWithoutAuthenticationForNonModeratorWithStoredCookie() {
+    public function test_store_without_authentication_for_non_moderator_with_stored_cookie() {
         // Create a user
         $user = User::factory()->create();
 
@@ -143,7 +143,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
     }
 
     /** @test */
-    public function testShowQuestionnaireThanksForRespondingPage() {
+    public function test_show_questionnaire_thanks_for_responding_page() {
         // Create a user and set as authenticated
         $user = User::factory()->create();
         $this->be($user);
@@ -175,7 +175,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
     }
 
     /** @test */
-    public function testVoteAnswerUpvote() {
+    public function test_vote_answer_upvote() {
         // Create a user and set as authenticated
         $user = User::factory()->create();
         $this->be($user);
@@ -210,7 +210,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
     }
 
     /** @test */
-    public function testVoteAnswerDownvote() {
+    public function test_vote_answer_downvote() {
         // Create a user and set as authenticated
         $user = User::factory()->create();
         $this->be($user);

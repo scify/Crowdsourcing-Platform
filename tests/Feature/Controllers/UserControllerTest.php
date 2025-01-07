@@ -26,7 +26,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myDashboardDisplaysDashboardForAuthenticatedUser() {
+    public function my_dashboard_displays_dashboard_for_authenticated_user() {
         // print database connection in use
         $user = User::factory()->create();
         $this->be($user);
@@ -38,7 +38,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myDashboardRedirectsToLoginForUnauthenticatedUser() {
+    public function my_dashboard_redirects_to_login_for_unauthenticated_user() {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
         $response->assertStatus(302);
@@ -46,7 +46,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myAccountDisplaysAccountPageForAuthenticatedUser() {
+    public function my_account_displays_account_page_for_authenticated_user() {
         $user = User::factory()->create();
         $this->be($user);
 
@@ -57,7 +57,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myAccountRedirectsToLoginForUnauthenticatedUser() {
+    public function my_account_redirects_to_login_for_unauthenticated_user() {
         $response = $this->get(route('my-account', ['locale' => 'en']));
 
         $response->assertStatus(302);
@@ -65,7 +65,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function patchUpdatesUserProfileWithValidData() {
+    public function patch_updates_user_profile_with_valid_data() {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -87,7 +87,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function patchUpdatesUserProfileWithValidDataWithImage() {
+    public function patch_updates_user_profile_with_valid_data_with_image() {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -138,7 +138,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function patchUpdatesUserProfileWithInvalidImage() {
+    public function patch_updates_user_profile_with_invalid_image() {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -171,7 +171,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function pathUpdatesUserProfileWithVeryBigImage() {
+    public function path_updates_user_profile_with_very_big_image() {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -212,7 +212,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function patchRedirectsToLoginForUnauthenticatedUser() {
+    public function patch_redirects_to_login_for_unauthenticated_user() {
         $faker = Faker::create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->put(route('user.update'), [
@@ -228,7 +228,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function patchHandlesInvalidDataCorrectly() {
+    public function patch_handles_invalid_data_correctly() {
         $user = User::factory()->create();
         $this->be($user);
 
@@ -243,7 +243,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function deleteDeactivatesUserForAdminUser() {
+    public function delete_deactivates_user_for_admin_user() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -260,7 +260,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function deleteRedirectsToLoginForUnauthenticatedUser() {
+    public function delete_redirects_to_login_for_unauthenticated_user() {
         $user = User::factory()->create();
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
@@ -271,7 +271,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function deleteHandlesInvalidUserIdCorrectly() {
+    public function delete_handles_invalid_user_id_correctly() {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -284,7 +284,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function showUsersByCriteriaReturnsCorrectUsers() {
+    public function show_users_by_criteria_returns_correct_users() {
         $user1 = User::factory()->create(['nickname' => 'John Doe']);
         $user2 = User::factory()->create(['nickname' => 'Jane Doe']);
         $user = User::factory()
@@ -298,7 +298,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function showUsersByCriteriaRedirectsToLoginForUnauthenticatedUser() {
+    public function show_users_by_criteria_redirects_to_login_for_unauthenticated_user() {
         $response = $this->get(route('api.users.get-filtered', ['name' => 'John']));
 
         $response->assertStatus(302);
@@ -306,7 +306,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function nonAdminUserCannotGetUsersByCriteria() {
+    public function non_admin_user_cannot_get_users_by_criteria() {
         $user = User::factory()->create();
         $this->be($user);
 
@@ -317,7 +317,7 @@ class UserControllerTest extends TestCase {
     }
 
     /** @test */
-    public function myDashboardDisplaysCorrectlyForUserWithNoBadges() {
+    public function my_dashboard_displays_correctly_for_user_with_no_badges() {
         // for this test, we want to emulate that the platform does not have any questionnaires or projects
         // delete all questionnaires and projects
         Questionnaire::query()->delete();

@@ -12,7 +12,7 @@ use Tests\TestCase;
 class SolutionAPIControllerTest extends TestCase {
     protected SolutionUpvoteRepository $solutionUpvoteRepository;
 
-    public function setUp(): void {
+    protected function setUp(): void {
         parent::setUp();
         $this->solutionUpvoteRepository = $this->app->make(SolutionUpvoteRepository::class);
     }

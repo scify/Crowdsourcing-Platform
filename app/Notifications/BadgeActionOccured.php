@@ -20,20 +20,19 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function via($notifiable) {
+    public function via($notifiable): array {
         return ['mail'];
     }
 
     public function objectToMail(GamificationBadgeVM $badge,
-        $subject,
+        string $subject,
         $greeting,
         $title,
-        $beforeBadge,
-        $afterBadge,
-        $actionText,
-        $actionText2,
+        string $beforeBadge,
+        string $afterBadge,
+        string $actionText,
+        string $actionText2,
         $salutation = null
     ) {
         $message = (new MailMessage)
@@ -44,7 +43,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
         $badge->color = 'transparent';
 
         $message->line('<div style="text-align: center;"><br><b>' . $beforeBadge . '</b><br><br></div>');
-        $message->line((string) view('gamification.badge-single', compact('badge')));
+        $message->line((string) view('gamification.badge-single', ['badge' => $badge]));
         $message->line('<br>' . $afterBadge);
         $message->line('<br><p style="text-align: center"><b>' . $actionText . '</b><br>' . $actionText2 . '</p>');
         if ($salutation) {
@@ -59,9 +58,8 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function toArray($notifiable) {
+    public function toArray($notifiable): array {
         return [
             //
         ];
