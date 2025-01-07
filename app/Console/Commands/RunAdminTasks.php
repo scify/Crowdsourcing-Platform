@@ -27,7 +27,7 @@ class RunAdminTasks extends Command {
     /**
      * Execute the console command.
      */
-    public function handle() {
+    public function handle(): void {
         $task = $this->choice('Which task would you like to test?', ['Translate service', 'Test email', 'Test Sentry error', 'Test supervisor']);
 
         if ($task === 'Translate service') {

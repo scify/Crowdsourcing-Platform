@@ -6,47 +6,29 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectForLandingPage extends CrowdSourcingProjectLayoutPage {
-    public $questionnaire;
-    public $feedbackQuestionnaire;
-    public $projectHasPublishedProblems;
-    public $userResponse;
-    public $userFeedbackQuestionnaireResponse;
-    public $totalResponses;
-    public $questionnaireGoalVM;
-    public $socialMediaMetadataVM;
+    /**
+     * @var \Illuminate\Support\Collection
+     */
     public $languages;
-    public $shareUrlForFacebook;
-    public $shareUrlForTwitter;
-    public $thankYouMode;
-    public $moderator;
+
+    public $thankYouMode = false;
+    public $moderator = false;
 
     public function __construct(
         CrowdSourcingProject $project,
-        $questionnaire,
-        $feedbackQuestionnaire,
-        $projectHasPublishedProblems,
-        $userResponse,
-        $userFeedbackQuestionnaireResponse,
-        $totalResponses,
-        $questionnaireGoalVM,
-        $socialMediaMetadataVM,
+        public $questionnaire,
+        public $feedbackQuestionnaire,
+        public $projectHasPublishedProblems,
+        public $userResponse,
+        public $userFeedbackQuestionnaireResponse,
+        public $totalResponses,
+        public $questionnaireGoalVM,
+        public $socialMediaMetadataVM,
         Collection $languages,
-        $shareUrlForFacebook,
-        $shareUrlForTwitter) {
+        public $shareUrlForFacebook,
+        public $shareUrlForTwitter) {
         parent::__construct($project);
-        $this->questionnaire = $questionnaire;
-        $this->feedbackQuestionnaire = $feedbackQuestionnaire;
-        $this->projectHasPublishedProblems = $projectHasPublishedProblems;
-        $this->userResponse = $userResponse;
-        $this->userFeedbackQuestionnaireResponse = $userFeedbackQuestionnaireResponse;
-        $this->totalResponses = $totalResponses;
-        $this->questionnaireGoalVM = $questionnaireGoalVM;
-        $this->socialMediaMetadataVM = $socialMediaMetadataVM;
         $this->languages = $languages;
-        $this->shareUrlForFacebook = $shareUrlForFacebook;
-        $this->shareUrlForTwitter = $shareUrlForTwitter;
-        $this->thankYouMode = false;
-        $this->moderator = false;
     }
 
     public function displayFeedbackQuestionnaire(): bool {

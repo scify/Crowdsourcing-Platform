@@ -8,30 +8,16 @@ use App\Repository\Questionnaire\Statistics\QuestionnaireResponseStatistics;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireStatistics {
-    public Questionnaire $questionnaire;
-    public bool $userCanPrintStatistics;
-    public QuestionnaireResponseStatistics $questionnaireResponseStatistics;
-    public QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage;
     public $current_user_id;
-    public bool $userCanAnnotateAnswers;
-    public int $projectFilter;
-    public array $projectColors;
 
-    public function __construct(Questionnaire $questionnaire,
-        QuestionnaireResponseStatistics $questionnaireResponseStatistics,
-        QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
-        bool $userCanPrintStatistics,
-        bool $userCanAnnotateAnswers,
-        int $projectFilter,
-        array $projectColors = []) {
-        $this->questionnaire = $questionnaire;
+    public function __construct(public Questionnaire $questionnaire,
+        public QuestionnaireResponseStatistics $questionnaireResponseStatistics,
+        public QuestionnaireResponsesPerLanguage $numberOfResponsesPerLanguage,
+        public bool $userCanPrintStatistics,
+        public bool $userCanAnnotateAnswers,
+        public int $projectFilter,
+        public array $projectColors = []) {
         $this->current_user_id = Auth::check() ? Auth::id() : 0;
-        $this->userCanPrintStatistics = $userCanPrintStatistics;
-        $this->questionnaireResponseStatistics = $questionnaireResponseStatistics;
-        $this->numberOfResponsesPerLanguage = $numberOfResponsesPerLanguage;
-        $this->userCanAnnotateAnswers = $userCanAnnotateAnswers;
-        $this->projectFilter = $projectFilter;
-        $this->projectColors = $projectColors;
     }
 
     public function userCanViewFileTypeQuestionsStatistics(): int {

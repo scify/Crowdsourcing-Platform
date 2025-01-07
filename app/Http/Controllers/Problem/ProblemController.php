@@ -13,11 +13,7 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProblemController extends Controller {
-    private ProblemManager $problemManager;
-
-    public function __construct(ProblemManager $problemManager) {
-        $this->problemManager = $problemManager;
-    }
+    public function __construct(private readonly ProblemManager $problemManager) {}
 
     /**
      * Display the public page for a specific problem.
@@ -41,7 +37,7 @@ class ProblemController extends Controller {
             $viewModel = $this->problemManager->getProblemsLandingPageViewModel($request->project_slug);
 
             return view('problem.index', ['viewModel' => $viewModel]);
-        } catch (ModelNotFoundException $e) {
+        } catch (ModelNotFoundException) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
     }
@@ -66,11 +62,11 @@ class ProblemController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse {
-        $this->validate($request, [ // bookmark2
+        $this->validate($request, [
             'problem-title' => ['required', 'string', 'max:100'],
             'problem-description' => ['required', 'string', 'max:400'],
-            'problem-status' => ['required'], // bookmark2
-            'problem-default-language' => ['required'], // bookmark2
+            'problem-status' => ['required'],
+            'problem-default-language' => ['required'],
             'problem-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'problem-owner-project' => ['required'],
         ]);
@@ -105,11 +101,11 @@ class ProblemController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $locale, int $id) {
-        $this->validate($request, [ // bookmark2
+        $this->validate($request, [
             'problem-title' => ['required', 'string', 'max:100'],
             'problem-description' => ['required', 'string', 'max:400'],
-            'problem-status' => ['required'], // bookmark2
-            'problem-default-language' => ['required'], // bookmark2
+            'problem-status' => ['required'],
+            'problem-default-language' => ['required'],
             'problem-slug' => 'required|string|alpha_dash|unique:problems,slug,' . $id . '|max:111',
             'problem-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'problem-owner-project' => ['required'],
@@ -133,7 +129,7 @@ class ProblemController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $locale, int $id) {
+    public function destroy(string $locale, int $id): bool {
         return $this->problemManager->deleteProblem($id);
     }
 

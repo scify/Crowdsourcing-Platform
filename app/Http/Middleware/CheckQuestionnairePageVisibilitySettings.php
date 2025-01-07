@@ -2,20 +2,15 @@
 
 namespace App\Http\Middleware;
 
-use App\BusinessLogicLayer\Questionnaire\QuestionnaireAccessManager;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CheckQuestionnairePageVisibilitySettings {
-    protected $questionnaireAccessManager;
-
     /**
      * CheckQuestionnairePageVisibilitySettings constructor.
      */
-    public function __construct(QuestionnaireAccessManager $questionnaireAccessManager) {
-        $this->questionnaireAccessManager = $questionnaireAccessManager;
-    }
+    public function __construct(protected \App\BusinessLogicLayer\Questionnaire\QuestionnaireAccessManager $questionnaireAccessManager) {}
 
     /**
      * Handle an incoming request.

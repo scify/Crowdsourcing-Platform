@@ -21,10 +21,8 @@ class SolutionControllerTest extends TestCase {
      *
      * AND they try to access the solution propose page,
      * THEN they should be redirected to the login page.
-     *
-     * @return void
      */
-    public function test_user_proposal_create_redirects_to_login_page_when_user_is_not_authenticated() {
+    public function test_user_proposal_create_redirects_to_login_page_when_user_is_not_authenticated(): void {
         $response = $this->get('/en/project-slug/problems/problem-slug/solutions/propose');
 
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
@@ -40,10 +38,8 @@ class SolutionControllerTest extends TestCase {
      *
      * AND they try to access the solution propose page,
      * THEN they should be able to access the page.
-     *
-     * @return void
      */
-    public function test_user_proposal_create_page_is_accessible_when_user_is_authenticated() {
+    public function test_user_proposal_create_page_is_accessible_when_user_is_authenticated(): void {
         $user = User::factory()->create();
 
         // get the problem with id 1
@@ -68,10 +64,8 @@ class SolutionControllerTest extends TestCase {
      * THEN the solution should be stored in the database.
      * AND the solution should be associated with the problem.
      * AND the solution should have an "UNPUBLISHED" status.
-     *
-     * @return void
      */
-    public function test_user_proposal_store_stores_solution_in_database_when_data_is_valid() {
+    public function test_user_proposal_store_stores_solution_in_database_when_data_is_valid(): void {
         $user = User::factory()->create();
 
         // get the problem with id 1

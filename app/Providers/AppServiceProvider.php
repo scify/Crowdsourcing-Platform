@@ -11,22 +11,16 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot(): void {
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
     }
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register() {
-        $this->app->singleton(ToxicityAnalyzerService::class, function ($app) {
-            return new GooglePerspectiveAPIService;
-        });
+    public function register(): void {
+        $this->app->singleton(ToxicityAnalyzerService::class, fn ($app): \App\BusinessLogicLayer\CommentAnalyzer\GooglePerspectiveAPIService => new GooglePerspectiveAPIService);
     }
 }

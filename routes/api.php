@@ -25,7 +25,7 @@ use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['throttle:api-public'])->group(function () {
+Route::middleware(['throttle:api-public'])->group(function (): void {
     Route::get('/questionnaire/languages', [QuestionnaireController::class, 'getLanguagesForQuestionnaire'])->name('api.questionnaire.languages.get');
     Route::get('/languages', [LanguageController::class, 'getLanguages'])->name('api.languages.get');
     Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('api.questionnaire-responses.store');
@@ -38,18 +38,18 @@ Route::middleware(['throttle:api-public'])->group(function () {
     Route::get('/problems', [ProblemController::class, 'getProblemsForCrowdSourcingProject'])->name('api.problems.get');
 });
 
-Route::middleware(['throttle:api-internal', 'auth'])->group(function () {
+Route::middleware(['throttle:api-internal', 'auth'])->group(function (): void {
     Route::post('/questionnaire/answer-votes', [QuestionnaireResponseController::class, 'voteAnswer'])->name('api.questionnaire.answer-votes.store');
 
     Route::post('/solutions/vote-downvote', [SolutionController::class, 'voteOrDownVoteSolution'])->name('api.solutions.vote-downvote');
 });
 
-Route::middleware(['throttle:api-internal'])->group(function () {
+Route::middleware(['throttle:api-internal'])->group(function (): void {
     Route::get('/solutions', [SolutionController::class, 'getSolutions'])->name('api.solutions.get');
     Route::post('/solutions/handle-share', [SolutionController::class, 'handleShareSolution'])->name('api.solutions.handle-share');
 });
 
-Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:moderate-content-by-users']], function () {
+Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:moderate-content-by-users']], function (): void {
     Route::get('questionnaire/report-data', [QuestionnaireReportController::class, 'getReportDataForQuestionnaire'])->name('api.questionnaire.report-data.get');
     Route::post('/questionnaire/answer-annotations', [QuestionnaireAnswerAnnotationController::class, 'annotateAnswer'])->name('api.questionnaire.answer-annotations.store');
     Route::post('/questionnaire/answer-annotations/delete', [QuestionnaireAnswerAnnotationController::class, 'deleteAnswerAnnotation'])->name('questionnaire.answer-annotations.destroy');
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:moderate-co
     Route::post('questionnaire/delete-response', [QuestionnaireResponseController::class, 'destroy'])->name('questionnaire_response.destroy');
 });
 
-Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-platform-content']], function () {
+Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-platform-content']], function (): void {
     Route::post('/questionnaire/new', [QuestionnaireController::class, 'store'])->name('api.questionnaire.store');
     Route::post('/questionnaire/update/{id?}', [QuestionnaireController::class, 'update'])->name('api.questionnaire.update');
     Route::post('/questionnaire/translate', [QuestionnaireController::class, 'translateQuestionnaire'])->name('api.questionnaire.translation.store');
@@ -73,6 +73,6 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::put('/solutions/update-status/{id}', [SolutionController::class, 'updateStatus'])->name('api.solutions.update-status');
 });
 
-Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function () {
+Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function (): void {
     Route::get('/users/filter', [UserController::class, 'showUsersByCriteria'])->name('api.users.get-filtered');
 });

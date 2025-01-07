@@ -15,8 +15,6 @@ abstract class TestCase extends BaseTestCase {
         putenv("APP_ENV=$environment");
 
         // Reload the app configuration to apply changes
-        $this->app->detectEnvironment(function () use ($environment) {
-            return $environment;
-        });
+        $this->app->detectEnvironment(fn (): string => $environment);
     }
 }

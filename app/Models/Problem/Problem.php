@@ -51,10 +51,10 @@ class Problem extends Model {
     }
 
     //observe this model being deleted and delete the related records
-    public static function boot() {
+    public static function boot(): void {
         parent::boot();
 
-        self::deleting(function (Problem $problem) {
+        self::deleting(function (Problem $problem): void {
             foreach ($problem->translations as $translation) {
                 $translation->delete();
             }
