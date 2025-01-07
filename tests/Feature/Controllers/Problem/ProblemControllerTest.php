@@ -13,7 +13,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A guest cannot access the create page
      */
-    public function guest_cannot_access_problem_create_page() {
+    public function guest_cannot_access_problem_create_page(): void {
         $response = $this->get(route('problems.create', ['locale' => 'en']));
 
         // 302 is the status code for a redirect (to the login page)
@@ -24,7 +24,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test An authenticated non-admin user cannot access the create page
      */
-    public function authenticated_non_admin_user_cannot_access_problem_create_page() {
+    public function authenticated_non_admin_user_cannot_access_problem_create_page(): void {
         $user = User::factory()->make();
         $this->be($user);
 
@@ -36,7 +36,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test An admin user can access the create page
      */
-    public function admin_can_access_problem_create_page() {
+    public function admin_can_access_problem_create_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
             ->create();
@@ -51,7 +51,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A contentManager user can access the create page
      */
-    public function content_manager_can_access_problem_create_page() {
+    public function content_manager_can_access_problem_create_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
@@ -66,7 +66,7 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A non-admin user cannot store a problem
      */
-    public function non_admin_user_cannot_store_problem() {
+    public function non_admin_user_cannot_store_problem(): void {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
@@ -89,13 +89,13 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A content manager can store a problem with valid data in the form (no extra translations)
      */
-    public function content_manager_can_store_problem_with_valid_data_with_no_extra_translations() {
+    public function content_manager_can_store_problem_with_valid_data_with_no_extra_translations(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
         $this->be($user);
 
-        $faker = Faker::create();
+        Faker::create();
 
         // TODO: Implement
         parent::assertTrue(true);
@@ -104,13 +104,13 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A content manager can store a problem with valid data in the form, with extra translations as well
      */
-    public function content_manager_can_store_problem_with_valid_data_with_extra_translations() {
+    public function content_manager_can_store_problem_with_valid_data_with_extra_translations(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
         $this->be($user);
 
-        $faker = Faker::create();
+        Faker::create();
 
         // TODO: Implement
         parent::assertTrue(true);
@@ -119,13 +119,13 @@ class ProblemControllerTest extends TestCase {
     /**
      * @test A content manager cannot store a problem with invalid data in the form
      */
-    public function content_manager_cannot_store_problem_with_invalid_data() {
+    public function content_manager_cannot_store_problem_with_invalid_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
             ->create();
         $this->be($user);
 
-        $faker = Faker::create();
+        Faker::create();
 
         // TODO: Implement
         parent::assertTrue(true);

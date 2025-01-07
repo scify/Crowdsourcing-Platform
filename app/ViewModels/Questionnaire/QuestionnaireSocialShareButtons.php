@@ -6,8 +6,10 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 
 class QuestionnaireSocialShareButtons {
+    /**
+     * @var \App\Models\Questionnaire\Questionnaire
+     */
     public $questionnaire;
-    public $referrerId;
 
     /**
      * QuestionnaireSocialShareButtons constructor.
@@ -16,23 +18,16 @@ class QuestionnaireSocialShareButtons {
      * @param $referrerId int (optional) the id of the user that will share
      * the questionnaire
      */
-    public function __construct(Questionnaire $questionnaire, $referrerId = null) {
+    public function __construct(Questionnaire $questionnaire, public $referrerId = null) {
         $this->questionnaire = $questionnaire;
-        $this->referrerId = $referrerId;
     }
 
-    public function getSocialShareURL(CrowdSourcingProject $project, $medium) {
-        switch ($medium) {
-            case 'facebook':
-                $url = 'https://www.facebook.com/sharer/sharer.php?u=';
-                break;
-            case 'twitter':
-                $url = 'https://x.com/share?url=';
-                break;
-            default:
-                $url = '';
-                break;
-        }
+    public function getSocialShareURL(CrowdSourcingProject $project, $medium): string {
+        $url = match ($medium) {
+            'facebook' => 'https://www.facebook.com/sharer/sharer.php?u=',
+            'twitter' => 'https://x.com/share?url=',
+            default => '',
+        };
 
         return $url . route('project.landing-page',
             ['locale' => app()->getLocale(), 'slug' => $project->slug]) . urlencode('?open=1&referrerId=' . $this->referrerId . '&questionnaireId=' . $this->questionnaire->id);

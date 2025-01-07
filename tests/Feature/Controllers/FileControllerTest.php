@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class FileControllerTest extends TestCase {
     /** @test */
-    public function upload_files_successfully_uploads_files() {
+    public function upload_files_successfully_uploads_files(): void {
         Storage::fake('s3');
         $files = [
             UploadedFile::fake()->image('photo1.jpg'),
@@ -33,7 +33,7 @@ class FileControllerTest extends TestCase {
     }
 
     /** @test */
-    public function upload_files_fails_with_invalid_file_type() {
+    public function upload_files_fails_with_invalid_file_type(): void {
         Storage::fake('s3');
         $files = [
             UploadedFile::fake()->create('document.txt', 100),
@@ -51,7 +51,7 @@ class FileControllerTest extends TestCase {
     }
 
     /** @test */
-    public function upload_files_fails_with_too_many_files() {
+    public function upload_files_fails_with_too_many_files(): void {
         Storage::fake('s3');
         $files = array_fill(0, 9, UploadedFile::fake()->image('photo.jpg'));
 
@@ -67,7 +67,7 @@ class FileControllerTest extends TestCase {
     }
 
     /** @test */
-    public function upload_files_fails_without_project_id() {
+    public function upload_files_fails_without_project_id(): void {
         Storage::fake('s3');
         $files = [
             UploadedFile::fake()->image('photo.jpg'),
@@ -84,7 +84,7 @@ class FileControllerTest extends TestCase {
     }
 
     /** @test */
-    public function upload_files_fails_without_questionnaire_id() {
+    public function upload_files_fails_without_questionnaire_id(): void {
         Storage::fake('s3');
         $files = [
             UploadedFile::fake()->image('photo.jpg'),

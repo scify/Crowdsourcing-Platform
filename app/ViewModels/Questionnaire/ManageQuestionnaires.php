@@ -13,13 +13,7 @@ class ManageQuestionnaires {
         QuestionnaireStatusLkp::DELETED => 'badge-danger',
     ];
 
-    public $questionnaires;
-    public $statuses;
-
-    public function __construct($questionnaires, $statuses) {
-        $this->statuses = $statuses;
-        $this->questionnaires = $questionnaires;
-    }
+    public function __construct(public $questionnaires, public $statuses) {}
 
     public function setCssClassForStatus($status): string {
         return self::STATUSES_CSS_CLASSES[$status];

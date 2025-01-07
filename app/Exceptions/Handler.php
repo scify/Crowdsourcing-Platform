@@ -33,14 +33,12 @@ class Handler extends ExceptionHandler {
 
     /**
      * Register the exception handling callbacks for the application.
-     *
-     * @return void
      */
-    public function register() {
+    public function register(): void {
         //
     }
 
-    public function report(Throwable $e) {
+    public function report(Throwable $e): void {
         if (app()->bound('sentry') && $this->shouldReport($e)) {
             app('sentry')->captureException($e);
         }
