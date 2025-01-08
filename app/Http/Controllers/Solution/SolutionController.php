@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Solution;
 
 use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\Http\Controllers\Controller;
+use App\Rules\ReCaptchaV3;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -72,6 +73,9 @@ class SolutionController extends Controller {
             'solution-description' => ['required', 'string', 'max:400'],
             'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'solution-owner-problem' => ['required'],
+            'g-recaptcha-response' => ['required', new ReCaptchaV3('submitSolution', 0.5)],
+            'consent-notice' => ['required', 'accepted'],
+            'translation-notice' => ['required', 'accepted'],
         ]);
 
         try {
