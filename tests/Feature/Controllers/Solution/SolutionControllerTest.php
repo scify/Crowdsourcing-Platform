@@ -8,6 +8,7 @@ use App\Models\Problem\Problem;
 use App\Models\Solution\SolutionTranslation;
 use App\Models\User\User;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class SolutionControllerTest extends TestCase {
@@ -20,12 +21,15 @@ class SolutionControllerTest extends TestCase {
      * GIVEN that a user is not authenticated,
      *
      * AND they try to access the solution propose page,
-     * THEN they should be redirected to the login page.
+     * THEN they should be able to access the page.
      */
-    public function test_user_proposal_create_redirects_to_login_page_when_user_is_not_authenticated(): void {
-        $response = $this->get('/en/project-slug/problems/problem-slug/solutions/propose');
+    public function test_user_proposal_create_is_accessible_when_user_is_not_authenticated(): void {
+        // get the first problem that is associated with a project
+        $problem = Problem::whereHas('project')->first();
+        $route = route('solutions.user-proposal-create', ['locale' => 'en', 'project_slug' => $problem->project->slug, 'problem_slug' => $problem->slug]);
+        $response = $this->get($route);
 
-        $response->assertRedirectContains(route('login', ['locale' => 'en']));
+        $response->assertOk();
     }
 
     /**
@@ -42,8 +46,8 @@ class SolutionControllerTest extends TestCase {
     public function test_user_proposal_create_page_is_accessible_when_user_is_authenticated(): void {
         $user = User::factory()->create();
 
-        // get the problem with id 1
-        $problem = Problem::findOrfail(1);
+        // get the first problem that is associated with a project
+        $problem = Problem::whereHas('project')->first();
         $route = route('solutions.user-proposal-create', ['locale' => 'en', 'project_slug' => $problem->project->slug, 'problem_slug' => $problem->slug]);
 
         $response = $this->actingAs($user)->get($route);
@@ -77,11 +81,23 @@ class SolutionControllerTest extends TestCase {
         $name = $faker->name;
         $description = $faker->text;
 
+        // Mock the HTTP response for reCAPTCHA validation
+        Http::fake([
+            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => true,
+                'score' => 0.9,
+                'action' => 'submitSolution',
+            ], 200),
+        ]);
+
         $response = $this->actingAs($user)->withoutMiddleware(VerifyCsrfToken::class)
             ->post($route, [
                 'solution-title' => $name,
                 'solution-description' => $description,
                 'solution-owner-problem' => 1,
+                'consent-notice' => 'on',
+                'translation-notice' => 'on',
+                'g-recaptcha-response' => 'valid-recaptcha-response',
             ]);
 
         $solution = SolutionTranslation::where('title', $name)->first()->solution;

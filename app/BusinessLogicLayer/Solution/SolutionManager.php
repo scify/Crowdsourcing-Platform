@@ -10,6 +10,7 @@ use App\Models\Solution\SolutionShare;
 use App\Models\Solution\SolutionTranslation;
 use App\Models\User\User;
 use App\Notifications\SolutionPublished;
+use App\Notifications\SolutionSubmittedForReview;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
@@ -113,15 +114,16 @@ class SolutionManager {
     public function storeSolutionFromPublicForm(array $attributes): Solution {
         $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
         $user = Auth::user();
-
-        // notify the user that their solution has been submitted
-        $user->notify(new \App\Notifications\SolutionSubmitted($solution));
+        if ($user && $user->email) {
+            // notify the user that their solution has been submitted
+            $user->notify(new \App\Notifications\SolutionSubmitted($solution));
+        }
 
         // get the creator of the solution problem
         $problem_creator = $solution->problem->creator;
 
         // notify the creator of the solution submission
-        $problem_creator->notify(new \App\Notifications\SolutionSubmittedForReview($solution));
+        $problem_creator->notify(new SolutionSubmittedForReview($solution));
 
         return $solution;
     }
