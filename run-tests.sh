@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Clear the cache
+php artisan cache:clear
+
+# Clear the config cache
+php artisan config:clear
+
 # Create a new database for testing
 touch storage/database_testing.sqlite
 

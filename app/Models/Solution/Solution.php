@@ -2,6 +2,7 @@
 
 namespace App\Models\Solution;
 
+use App\Models\Problem\Problem;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +20,7 @@ class Solution extends Model {
 
     // problem relationship (a solution belongs to a problem)
     public function problem(): BelongsTo {
-        return $this->belongsTo(\App\Models\Problem\Problem::class, 'problem_id');
+        return $this->belongsTo(Problem::class, 'problem_id');
     }
 
     // default translation relationship
@@ -27,7 +28,7 @@ class Solution extends Model {
     // but the records are stored in different tables (solution_translations and problem_translations)
     // so we need to take the default_language_id from the problem and use it to get the translation
     public function defaultTranslation(): HasOne {
-        return $this->hasOne(\App\Models\Solution\SolutionTranslation::class, 'solution_id')
+        return $this->hasOne(SolutionTranslation::class, 'solution_id')
             ->join('solutions', 'solution_translations.solution_id', '=', 'solutions.id')
             ->join('problems', 'problems.id', '=', 'solutions.problem_id')
             ->whereColumn('solution_translations.language_id', 'problems.default_language_id')
@@ -35,7 +36,7 @@ class Solution extends Model {
     }
 
     public function translations(): HasMany {
-        return $this->hasMany(\App\Models\Solution\SolutionTranslation::class, 'solution_id', 'id');
+        return $this->hasMany(SolutionTranslation::class, 'solution_id', 'id');
     }
 
     public function creator(): BelongsTo {
@@ -43,14 +44,14 @@ class Solution extends Model {
     }
 
     public function status(): BelongsTo {
-        return $this->belongsTo(\App\Models\Solution\SolutionStatusLkp::class, 'status_id');
+        return $this->belongsTo(SolutionStatusLkp::class, 'status_id');
     }
 
     public function upvotes(): HasMany {
-        return $this->hasMany(\App\Models\Solution\SolutionUpvote::class, 'solution_id', 'id');
+        return $this->hasMany(SolutionUpvote::class, 'solution_id', 'id');
     }
 
     public function shares(): HasMany {
-        return $this->hasMany(\App\Models\Solution\SolutionShare::class, 'solution_id', 'id');
+        return $this->hasMany(SolutionShare::class, 'solution_id', 'id');
     }
 }

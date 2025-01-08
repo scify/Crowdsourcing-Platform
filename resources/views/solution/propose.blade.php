@@ -1,5 +1,10 @@
 @extends('crowdsourcing-project.layout')
 @push('css')
+    <script>
+		function onSubmit(token) {
+			document.getElementById("solution-form").submit();
+		}
+    </script>
     @vite('resources/assets/sass/solution/propose-page.scss')
     <style>
         :root {

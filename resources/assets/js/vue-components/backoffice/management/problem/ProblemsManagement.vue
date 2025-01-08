@@ -11,7 +11,7 @@
 							<div class="row px-0 mb-3">
 								<div class="col-12">
 									<label for="projectSelect" class="form-label mb-0"
-										>Select a Project to view the problems</label
+										>Select a project to view the problems</label
 									>
 									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
 									<select
@@ -20,7 +20,7 @@
 										v-model="selectedProjectId"
 										@change="getProjectProblems"
 									>
-										<option value="" disabled selected>Select a Project</option>
+										<option value="" disabled selected>Select a project</option>
 										<option v-for="project in projects" :key="project.id" :value="project.id">
 											{{ project.default_translation.name }}
 										</option>

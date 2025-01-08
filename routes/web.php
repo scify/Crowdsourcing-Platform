@@ -41,9 +41,6 @@ Route::get('login/social/{driver}/callback', [LoginController::class, 'handlePro
 
 Route::group(['middleware' => ['auth', 'setlocale']], function () use ($localeInfo, $backOfficePrefix): void {
     Route::group($localeInfo, function () use ($backOfficePrefix): void {
-        Route::get('/{project_slug}/problems/{problem_slug}/solutions/propose', [SolutionController::class, 'userProposalCreate'])->name('solutions.user-proposal-create');
-        Route::post('/{project_slug}/problems/{problem_slug}/solutions', [SolutionController::class, 'userProposalStore'])->name('solutions.user-proposal-store');
-        Route::get('/{project_slug}/problems/{problem_slug}/solutions/{solution_slug}/submitted', [SolutionController::class, 'userProposalSubmitted'])->name('solutions.user-proposal-submitted');
         Route::group(['prefix' => $backOfficePrefix], function (): void {
             Route::get('/my-dashboard', [UserController::class, 'myDashboard'])->name('my-dashboard');
             Route::get('/my-account', [UserController::class, 'myAccount'])->name('my-account');
@@ -120,11 +117,16 @@ Route::group($localeInfo, function (): void {
 Route::group($localeInfo, function (): void {
     Route::post('/languages/setlocale', [LanguageController::class, 'setLocale'])->name('languages.setlocale');
 });
-Route::group($localeInfo, function (): void {
-    Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
-    Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
-    Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');
-    Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('problem.show');
-    Route::get('/{project_slug}/problems/{problem_slug}/solutions/', [ProblemController::class, 'show'])->name('problem.show.solutions');
-    Route::get('/{project:slug}/questionnaire/{questionnaire:id}/respond', [QuestionnaireController::class, 'showQuestionnairePage'])->name('show-questionnaire-page');
+Route::group(['middleware' => ['setlocale']], function () use ($localeInfo): void {
+    Route::group($localeInfo, function (): void {
+        Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
+        Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
+        Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');
+        Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('problem.show');
+        Route::get('/{project_slug}/problems/{problem_slug}/solutions/', [ProblemController::class, 'show'])->name('problem.show.solutions');
+        Route::get('/{project_slug}/problems/{problem_slug}/solutions/propose', [SolutionController::class, 'userProposalCreate'])->name('solutions.user-proposal-create');
+        Route::post('/{project_slug}/problems/{problem_slug}/solutions', [SolutionController::class, 'userProposalStore'])->name('solutions.user-proposal-store');
+        Route::get('/{project_slug}/problems/{problem_slug}/solutions/{solution_slug}/submitted', [SolutionController::class, 'userProposalSubmitted'])->name('solutions.user-proposal-submitted');
+        Route::get('/{project:slug}/questionnaire/{questionnaire:id}/respond', [QuestionnaireController::class, 'showQuestionnairePage'])->name('show-questionnaire-page');
+    });
 });

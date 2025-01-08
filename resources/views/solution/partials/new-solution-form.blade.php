@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <form id="problem-form" enctype="multipart/form-data" method="POST"
+    <form id="solution-form" enctype="multipart/form-data" method="POST"
           action="{{ route('solutions.user-proposal-store', [request('project_slug'), request('problem_slug')]) }}">
 
         @csrf
@@ -165,8 +165,11 @@
             <div class="container-fluid p-0">
                 <div class="row py-5">
                     <div class="col-12 d-flex justify-content-center">
-                        <input class="btn btn-primary call-to-action" id="submit-form" type="submit"
-                               value="{{ __('solution.submit_solution') }}">
+                        <button class="btn btn-primary call-to-action g-recaptcha" id="submit-form" type="submit"
+                                data-sitekey="{{ config('services.recaptcha.key') }}"
+                                data-callback="onSubmit"
+                                data-action="submitSolution"
+                        >{{ __('solution.submit_solution') }}</button>
                     </div>
                 </div>
             </div>

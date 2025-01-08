@@ -42,4 +42,5 @@ return [
     'solution_published_intro' => 'Your solution has been published!',
     'solution_published_message' => 'Your solution has been published and is now available for other users to vote on!',
     'see_the_solution' => 'See the solution',
+    'anonymous' => 'Anonymous',
 ];
