@@ -64,7 +64,6 @@
 							</div>
 							<HeartCircleButton
 								:is-filled="solution.upvoted_by_current_user"
-								:solution-id="solution.id"
 								:icon-color-theme="buttonTextColorTheme"
 								@click="(event) => heartClicked(event, solution.id)"
 							></HeartCircleButton>

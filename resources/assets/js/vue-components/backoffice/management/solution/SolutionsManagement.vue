@@ -11,7 +11,7 @@
 							<div class="row px-0 mb-3">
 								<div class="col-12">
 									<label for="projectSelect" class="form-label mb-0"
-										>Select a Project to view the Solutions</label
+										>Select a project to view the solutions</label
 									>
 									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !projectsLoading }"></div>
 									<select
@@ -20,7 +20,7 @@
 										v-model="selectedProjectId"
 										@change="getProblemsForFiltering"
 									>
-										<option value="" disabled selected>Select a Project</option>
+										<option value="" disabled selected>Select a project</option>
 										<option v-for="project in projects" :key="project.id" :value="project.id">
 											{{ project.default_translation.name }}
 										</option>
@@ -30,7 +30,7 @@
 							<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
 								<div class="col-12">
 									<label for="problemSelect" class="form-label mb-0"
-										>Select a Problem to further filter the Solutions</label
+										>Select a problem to further filter the solutions</label
 									>
 									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !problemsLoading }"></div>
 									<select
@@ -39,10 +39,8 @@
 										v-model="selectedProblemId"
 										@change="getFilteredSolutions"
 									>
-										<option value="" disabled selected>Select a Problem</option>
-										<!-- /* bookmark4 - what goes here? */ -->
-										<option value="all">View all Project's Solutions</option>
-										<!-- /* bookmark4 - what goes here? */ -->
+										<option value="" disabled selected>Select a problem</option>
+										<option value="all">View all project's solutions</option>
 										<option v-for="problem in problems" :key="problem.id" :value="problem.id">
 											{{ problem.default_translation.title }}
 										</option>
@@ -81,7 +79,7 @@
 							</div>
 							<div class="row px-0">
 								<div class="col" :class="[fetched && !solutions.length ? '' : 'hidden']">
-									<div class="alert alert-warning">No Solutions found for the selected Filters</div>
+									<div class="alert alert-warning">No solutions found for the selected filters</div>
 								</div>
 							</div>
 						</div>
@@ -325,7 +323,6 @@ export default {
 					.then((response) => {
 						this.problems = response.data;
 						this.problemsFetched = true;
-						// this.updateProblems(); // bookmark4
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
