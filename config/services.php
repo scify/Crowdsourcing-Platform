@@ -68,4 +68,9 @@ return [
         'redirect' => config('app.url') . '/login/social/linkedin-openid/callback',
     ],
 
+    'recaptcha' => [
+        'key' => env('RECAPTCHA_SITE_KEY'),
+        'secret' => env('RECAPTCHA_SECRET_KEY'),
+    ],
+
 ];

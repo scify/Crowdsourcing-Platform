@@ -15,7 +15,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script async src="https://www.google.com/recaptcha/api.js?render={{config('services.recaptcha.key')}}"></script>
     @if (isset($viewModel->socialMediaMetadataVM))
         @include('crowdsourcing-project.partials.header-meta', ['viewModel' => $viewModel->socialMediaMetadataVM])
     @else

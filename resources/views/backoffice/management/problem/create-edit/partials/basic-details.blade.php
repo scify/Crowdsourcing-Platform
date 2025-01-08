@@ -152,9 +152,12 @@
                 <div class="form-row js-image-input-container">
                     <div class="col-sm-12">
                         <div class="form-group input-file-wrapper">
-                            <label for="problem-image">Problem Image (max-size: 2MB)</label></label>
-                            <br><small>In order to update the currently selected image, please choose a new image by
-                                clicking the button below.</small><br> {{-- bookmark3 - fix spacing --}}
+                            <label for="problem-image">Problem Image (max-size: 2MB)
+                                <span class="text-sm explanation-text">
+                                    In order to update the currently selected image, please choose a new image by
+                                clicking the button below.
+                                </span>
+                            </label>
                             <input type="file"
                                    id="problem-image"
                                    name="problem-image"
