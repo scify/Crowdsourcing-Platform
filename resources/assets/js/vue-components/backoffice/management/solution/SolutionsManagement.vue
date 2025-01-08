@@ -4,7 +4,7 @@
 			<div class="col">
 				<div class="card card-info">
 					<div class="card-header">
-						<h3 class="card-title">Crowdsourcing Projects Problems Solutions</h3>
+						<h3 class="card-title">Campaigns Problems Solutions</h3>
 					</div>
 					<div class="card-body">
 						<div class="container-fluid px-0">
@@ -13,12 +13,14 @@
 									<label for="projectSelect" class="form-label mb-0"
 										>Select a project to view the solutions</label
 									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !projectsLoading }"></div>
+									<div
+										:class="{ 'spinner-border text-primary ml-5': true, hidden: !projectsLoading }"
+									></div>
 									<select
 										id="projectSelect"
 										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 										v-model="selectedProjectId"
-										@change="getProblemsForFiltering"
+										@change="getProblemsAndSolutionsForProject"
 									>
 										<option value="" disabled selected>Select a project</option>
 										<option v-for="project in projects" :key="project.id" :value="project.id">
@@ -32,7 +34,9 @@
 									<label for="problemSelect" class="form-label mb-0"
 										>Select a problem to further filter the solutions</label
 									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !problemsLoading }"></div>
+									<div
+										:class="{ 'spinner-border text-primary ml-5': true, hidden: !problemsLoading }"
+									></div>
 									<select
 										id="problemSelect"
 										:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
@@ -60,6 +64,17 @@
 											Show only unpublished solutions
 										</label>
 									</div>
+								</div>
+							</div>
+							<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
+								<div class="col-12">
+									<button
+										class="btn btn-primary btn-slim"
+										@click="exportSolutions"
+										:disabled="solutionsLoading"
+									>
+										Export Solutions
+									</button>
 								</div>
 							</div>
 							<div class="row px-0 mb-3">
@@ -140,7 +155,8 @@
 				</div>
 				<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
 					<p>
-						Select a new status for the solution <b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b>
+						Select a new status for the solution
+						<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b>
 					</p>
 					<select class="form-select form-control" v-model="modalSolution.status.id">
 						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
@@ -300,17 +316,18 @@ export default {
 					// if only one project is available, select it by default and fetch its problems
 					if (this.projects.length === 1) {
 						this.selectedProjectId = this.projects[0].id;
-						this.getProblemsForFiltering();
+						this.getProblemsAndSolutionsForProject();
 					}
 				})
 				.catch((error) => {
 					this.showErrorMessage(error);
-				}).finally(() => {
+				})
+				.finally(() => {
 					this.projectsLoading = false;
 				});
 		},
 
-		getProblemsForFiltering() {
+		getProblemsAndSolutionsForProject() {
 			this.problemsLoading = true;
 			if (this.selectedProjectId) {
 				this.problemsFetched = false;
@@ -323,10 +340,12 @@ export default {
 					.then((response) => {
 						this.problems = response.data;
 						this.problemsFetched = true;
+						this.getFilteredSolutions();
 					})
 					.catch((error) => {
 						this.showErrorMessage(error);
-					}).finally(() => {
+					})
+					.finally(() => {
 						this.problemsLoading = false;
 					});
 			}
@@ -385,7 +404,9 @@ export default {
 						languages: solution.translations
 							? solution.translations.map((t) => t.language.language_name).join(", ")
 							: "",
-						user: solution?.creator ? solution.creator?.nickname + " (" + solution.creator.email + ")" : "N/A",
+						user: solution?.creator
+							? solution.creator?.nickname + " (" + solution.creator.email + ")"
+							: "N/A",
 						status: `<span title="${this.getBadgeTitleForSolutionStatusId(solution.status_id)}"
                                   class="p-2 w-75 badge ${this.getBadgeClassForSolutionStatusId(solution.status_id)}">
                                   ${this.getStatusTitleForSolutionStatusId(solution.status_id)}</span>`,
@@ -478,6 +499,24 @@ export default {
 				.finally(() => {
 					this.updateModal.hide();
 					this.modalActionLoading = false;
+				});
+		},
+		exportSolutions() {
+			const url = window.route("api.solutions.export", this.selectedProjectId);
+
+			axios
+				.get(url, { responseType: "blob" })
+				.then((response) => {
+					const blob = new Blob([response.data], { type: "text/csv" });
+					const link = document.createElement("a");
+					link.href = URL.createObjectURL(blob);
+					link.download = `solutions_${this.selectedProjectId}.csv`;
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
 				});
 		},
 		showSuccessAlert() {

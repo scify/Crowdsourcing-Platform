@@ -240,4 +240,43 @@ class SolutionController extends Controller {
 
         return response()->json($this->solutionManager->handleShareSolution($request->solution_id));
     }
+
+    public function exportSolutions(int $project_id) {
+        $validator = Validator::make([
+            'project_id' => $project_id,
+        ], [
+            'project_id' => 'required|exists:crowd_sourcing_projects,id',
+        ]);
+
+        if ($validator->fails()) {
+            abort(ResponseAlias::HTTP_BAD_REQUEST);
+        }
+
+        $solutions = $this->solutionManager->getSolutionsByProjectId($project_id);
+
+        $callback = function () use ($solutions) {
+            $columns = ['Solution ID', 'Title', 'Description', 'Status', 'Created At'];
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($solutions as $solution) {
+                fputcsv($file, [
+                    $solution->id,
+                    $solution->defaultTranslation?->title,
+                    $solution->defaultTranslation?->description,
+                    $solution->status->title,
+                    $solution->created_at,
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="solutions.csv"',
+        ];
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

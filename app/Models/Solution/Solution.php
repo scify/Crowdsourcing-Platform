@@ -2,6 +2,7 @@
 
 namespace App\Models\Solution;
 
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Problem\Problem;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +11,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Solution extends Model {
+    use BelongsToThrough;
     use HasFactory, SoftDeletes;
 
     protected $table = 'solutions';
@@ -21,6 +24,13 @@ class Solution extends Model {
     // problem relationship (a solution belongs to a problem)
     public function problem(): BelongsTo {
         return $this->belongsTo(Problem::class, 'problem_id');
+    }
+
+    public function project(): \Znck\Eloquent\Relations\BelongsToThrough {
+        return $this->belongsToThrough(CrowdSourcingProject::class,
+            Problem::class,
+            foreignKeyLookup: [CrowdSourcingProject::class => 'project_id'],
+            localKeyLookup: [CrowdSourcingProject::class => 'id']);
     }
 
     // default translation relationship
