@@ -153,12 +153,12 @@ h2 {
 
 .card {
 	border: none;
-	box-shadow: 0 4px 4px 0 #00000040;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
 	&:hover {
 		box-shadow:
-			0 4px 4px 0 #00000040,
-			0 4px 4px 0 #00000040;
+			0 4px 4px rgba(0, 0, 0, 0.25),
+			0 4px 4px rgba(0, 0, 0, 0.25);
 
 		svg {
 			color: var(--project-primary-color);
@@ -176,7 +176,7 @@ a.card-link {
 
 	&:focus-visible {
 		border-radius: 1rem;
-		outline: 4px solid black; // bookmark1 - calculate in rem
+		outline: 0.25rem solid black;
 	}
 }
 
@@ -214,8 +214,8 @@ a.card-link {
 	.card-title {
 		font-family: "Noto Sans Variable", sans-serif;
 		font-weight: 500;
-		font-size: 24px; // 24px // bookmark1 - calculate in rem
-		line-height: 29.34px; // 29.34px // bookmark1 - calculate in rem
+		font-size: 1.5rem;
+		line-height: 1.83375rem;
 
 		// truncate at 2 lines
 		display: -webkit-box;
@@ -229,8 +229,8 @@ a.card-link {
 	.card-text {
 		font-family: "Open Sans Variable", sans-serif;
 		font-weight: 400;
-		font-size: 16px; // 16px // bookmark1 - calculate in rem
-		line-height: 20.4px; // 20.4px // bookmark1 - calculate in rem
+		font-size: 1rem;
+		line-height: 1.275;
 
 		// truncate at 4 lines
 		display: -webkit-box;
@@ -240,6 +240,12 @@ a.card-link {
 		overflow: clip;
 		height: 4lh;
 	}
+}
+
+.share-circle-btn {
+	position: absolute;
+	top: 1rem;
+	right: 2rem;
 }
 
 // from "md" and UP

@@ -13,8 +13,8 @@
 		padding-right: 0.5rem;
 		font-family: "Noto Sans Variable", sans-serif;
 		font-weight: 600;
-		font-size: 24px; // 24px // bookmark1 - calculate in rem
-		line-height: 32.69px; // 32.69px // bookmark1 - calculate in rem
+		font-size: 1.5rem;
+		line-height: 2.043125rem;
 		text-align: left;
 	}
 
@@ -26,8 +26,8 @@
 	.section-body p {
 		font-family: "Open Sans Variable", sans-serif;
 		font-weight: 400;
-		font-size: 16px; // 16px // bookmark1 - calculate in rem
-		line-height: 21.82px; // 21.82px // bookmark1 - calculate in rem
+		font-size: 1rem;
+		line-height: 1.36375;
 		text-align: left;
 	}
 
@@ -50,8 +50,8 @@
 	.go-back-link a span {
 		font-family: "Noto Sans Variable", sans-serif;
 		font-weight: 400;
-		font-size: 1.714rem; // 24px
-		line-height: 2.335rem; // 32.69px
+		font-size: 1.714rem;
+		line-height: 2.335rem;
 		text-align: left;
 		position: relative;
 		top: 0.3rem;
@@ -73,6 +73,7 @@
 			right: 60px;
 			height: 100%;
 			z-index: 10;
+			pointer-events: none;
 		}
 		
 		.sticky-container-inner-div {
@@ -87,6 +88,7 @@
 				-webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.25);
 				box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.25);
 				border-radius: 20px;
+				pointer-events: auto;
 			}
 		}
 
@@ -107,8 +109,8 @@
 		.section-title {
 			padding-left: 0;
 			padding-right: 0;
-			font-size: 2.286rem; // 32px
-			line-height: 3.113rem; // 43.58px
+			font-size: 2.286rem;
+			line-height: 3.113rem;
 		}
 
 		.section-body {
@@ -117,8 +119,8 @@
 		}
 
 		.section-body p {
-			font-size: 1.429rem; // 20px
-			line-height: 1.949rem; // 27.28px
+			font-size: 1.429rem;
+			line-height: 1.949rem;
 		}
 	}
 }
