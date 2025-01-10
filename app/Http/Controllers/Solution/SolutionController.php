@@ -71,7 +71,6 @@ class SolutionController extends Controller {
         $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:100'],
             'solution-description' => ['required', 'string', 'max:400'],
-            'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'solution-owner-problem' => ['required'],
             'g-recaptcha-response' => ['required', new ReCaptchaV3('submitSolution', 0.5)],
             'consent-notice' => ['required', 'accepted'],
