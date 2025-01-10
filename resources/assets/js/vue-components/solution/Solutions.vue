@@ -39,7 +39,8 @@
 							</div>
 						</div>
 					</div>
-					<ul class="row">
+					<!-- <ul class="row" style="padding-left: 50px; padding-right: 50px;"> --><!-- bookmark3 - to match mockup at 1320px-->
+					<ul class="row" style="padding-left: 50px; padding-right: 50px;">
 						<li
 							v-for="solution in solutions"
 							:id="'solution_card_' + solution.id"
@@ -47,10 +48,10 @@
 							class="col-12"
 						>
 							<div class="card">
-								<div v-if="!solution.img_url" class="card-placeholder-img-container">
+								<div v-if="!solution.img_url" class="card-placeholder-img-container d-none d-sm-block">
 									<SolutionDefaultImage></SolutionDefaultImage>
 								</div>
-								<div v-else class="card-custom-img-container">
+								<div v-else class="card-custom-img-container d-none d-sm-block">
 									<img :src="solution.img_url" alt="decorative image for solution" />
 								</div>
 								<div class="card-body">
@@ -67,7 +68,7 @@
 								:icon-color-theme="buttonTextColorTheme"
 								@click="(event) => heartClicked(event, solution.id)"
 							></HeartCircleButton>
-							<div class="upvote-count" :style="{ backgroundColor: rgbaColor('#000000', 0.65) }">
+							<div class="upvote-count">
 								{{ solution.upvotes_count }}
 							</div>
 							<div>
@@ -163,13 +164,6 @@ export default {
 	},
 	methods: {
 		...mapActions(["get", "post"]),
-		rgbaColor(hexColor, alpha = 0.8) {
-			const hex = hexColor.replace("#", "");
-			const r = parseInt(hex.substring(0, 2), 16);
-			const g = parseInt(hex.substring(2, 4), 16);
-			const b = parseInt(hex.substring(4, 6), 16);
-			return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-		},
 		getVotesInfoMessage() {
 			return trans("voting.you_can_vote_up_to", {
 				votes: this.maxVotesPerUserForSolutions,
