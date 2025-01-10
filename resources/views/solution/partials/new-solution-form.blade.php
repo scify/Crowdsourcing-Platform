@@ -70,34 +70,6 @@
                 </div>
             </div>
 
-            <div class="row form-row js-image-input-container">
-                <div class="col-12">
-                    <div class="form-group input-file-wrapper">
-                        <label for="solution-image">{{ __('solution.solution_image_label') }}
-                            ({{ __('common.image_max_size') }})</label>
-                        <p class="my-3">{{ __('solution.solution_image_placeholder') }}</p>
-                        <small class="mb-2 d-block"> {{ __('common.image_accepted_formats') }}</small>
-                        <input type="file"
-                               id="solution-image"
-                               name="solution-image"
-                               class="form-control p-2 h-auto {{ $errors->has('solution-image') ? 'is-invalid' : '' }} js-image-input"
-                               accept="image/png,image/jpeg,image/jpg,image/webp"
-                               placeholder="{{ __('solution.solution_image_placeholder') }}"
-                                {{ $errors->has('solution-image') ? 'aria-describedby="solution-image-feedback"' : '' }}
-                        >
-                        <div id="solution-image-feedback" class="invalid-feedback">
-                            <strong>{{ $errors->first('solution-image') }}</strong></div>
-                    </div>
-                    <div class="image-preview-container">
-                        <img
-                                loading="lazy"
-                                class="selected-image-preview js-selected-image-preview hidden"
-                                src=""
-                                alt="">
-                    </div>
-                </div>
-            </div>
-
             <div class="row form-row">
                 <div class="col-12">
                     <h4>{{ __('solution.solution_translation_notice_title') }}</h4>

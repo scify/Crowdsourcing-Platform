@@ -45,12 +45,20 @@ export default {
 .share-circle-btn {
 	background: none;
 	border: none;
-	cursor: pointer;
 	padding: 0;
+	cursor: pointer;
+	border-radius: 50%;
+	overflow: clip;
+	background-color: transparent;
+	color: var(--project-primary-color);
 
 	&:hover {
 		filter: brightness(90%);
 		cursor: pointer;
+	}
+
+	&:focus-visible {
+		outline: 0.1875rem solid var(--btn-text-color);
 	}
 }
 </style>

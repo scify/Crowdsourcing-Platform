@@ -30,51 +30,27 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class SolutionManager {
-    protected SolutionRepository $solutionRepository;
-    protected SolutionUpvoteRepository $solutionUpvoteRepository;
-    protected ProblemRepository $problemRepository;
-    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
-    protected SolutionTranslationManager $solutionTranslationManager;
-    protected SolutionStatusManager $solutionStatusManager;
-    protected LanguageRepository $languageRepository;
-    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
-    protected ProblemTranslationManager $problemTranslationManager;
-    protected SolutionShareRepository $solutionShareRepository;
-
-    public function __construct(
-        SolutionRepository $solutionRepository,
-        SolutionUpvoteRepository $solutionUpvoteRepository,
-        ProblemRepository $problemRepository,
-        CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-        SolutionTranslationManager $solutionTranslationManager,
-        SolutionStatusManager $solutionStatusManager,
-        LanguageRepository $languageRepository,
-        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
-        ProblemTranslationManager $problemTranslationManager,
-        SolutionShareRepository $solutionShareRepository
-    ) {
-        $this->solutionRepository = $solutionRepository;
-        $this->solutionUpvoteRepository = $solutionUpvoteRepository;
-        $this->problemRepository = $problemRepository;
-        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
-        $this->solutionTranslationManager = $solutionTranslationManager;
-        $this->solutionStatusManager = $solutionStatusManager;
-        $this->languageRepository = $languageRepository;
-        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
-        $this->problemTranslationManager = $problemTranslationManager;
-        $this->solutionShareRepository = $solutionShareRepository;
-    }
+    public function __construct(protected SolutionRepository $solutionRepository,
+        protected SolutionUpvoteRepository $solutionUpvoteRepository,
+        protected ProblemRepository $problemRepository,
+        protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
+        protected SolutionTranslationManager $solutionTranslationManager,
+        protected SolutionStatusManager $solutionStatusManager,
+        protected LanguageRepository $languageRepository,
+        protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
+        protected ProblemTranslationManager $problemTranslationManager,
+        protected SolutionShareRepository $solutionShareRepository) {}
 
     /**
      * In create mode $problem_id is passed to fn & $solution_id is null
      * In edit   mode $problem_id is null         & $solution_id is passed to fn
      */
     public function getCreateEditSolutionViewModel(?int $problem_id, ?int $solution_id = null): CreateEditSolution {
-        if ($problem_id) {
+        if ($problem_id !== null && $problem_id !== 0) {
             $problem = $this->problemRepository->find($problem_id);
         }
 
-        if ($solution_id) {
+        if ($solution_id !== null && $solution_id !== 0) {
             $solution = $this->solutionRepository->find($solution_id);
             $problem = $solution->problem;
         } else {
@@ -166,14 +142,14 @@ class SolutionManager {
         } catch (\Exception $e) {
             Log::error('Error: ' . $e->getCode() . '  ' . $e->getMessage());
             DB::rollBack();
-            throw new \Exception('An error occurred while creating the solution');
+            throw new \Exception('An error occurred while creating the solution', $e->getCode(), $e);
         }
     }
 
     /**
      * @throws RepositoryException
      */
-    public function updateSolution(int $id, array $attributes) {
+    public function updateSolution(int $id, array $attributes): void {
         if (isset($attributes['solution-image']) && $attributes['solution-image']->isValid()) {
             $imgPath = FileHandler::uploadAndGetPath($attributes['solution-image'], 'solution_img');
         } else {
@@ -193,7 +169,7 @@ class SolutionManager {
             'title' => $attributes['solution-title'],
             'description' => $attributes['solution-description'],
         ];
-        $extraTranslations = isset($attributes['extra_translations']) ? json_decode($attributes['extra_translations']) : [];
+        $extraTranslations = isset($attributes['extra_translations']) ? json_decode((string) $attributes['extra_translations']) : [];
         $this->solutionTranslationManager
             ->updateSolutionTranslations($id, $defaultTranslation, $extraTranslations);
     }
@@ -217,8 +193,8 @@ class SolutionManager {
         return $solutionStatuses;
     }
 
-    public function getFilteredSolutionsForManagement($filters): Collection {
-        if (count($filters['problemFilters'])) {
+    public function getFilteredSolutionsForManagement(array $filters): Collection {
+        if (count($filters['problemFilters']) > 0) {
             return $this->solutionRepository->getSolutionsForManagementFilteredByProblemIds($filters['problemFilters']);
         }
         $problem_ids = [];
@@ -232,7 +208,7 @@ class SolutionManager {
     public function getSolutions(mixed $problem_id): Collection {
         $current_language_code = app()->getLocale();
         $current_language = $this->languageRepository->getLanguageByCode($current_language_code);
-        $current_language_id = ($current_language && $current_language->id) ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
+        $current_language_id = ($current_language->id) ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
 
         return $this->solutionRepository->getSolutions($problem_id, $current_language_id, Auth::id());
     }
@@ -387,5 +363,9 @@ class SolutionManager {
         return $this->solutionRepository->allWhere(['user_creator_id' => $user->id], ['*'], $orderColumn = null, $order = null, $withRelationships = [
             'problem', 'problem.defaultTranslation', 'upvotes', 'problem.project',
         ]);
+    }
+
+    public function getSolutionsByProjectId(int $project_id): Collection {
+        return $this->solutionRepository->getSolutionsByProjectId($project_id);
     }
 }

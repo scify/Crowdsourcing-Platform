@@ -71,6 +71,7 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
     Route::post('/translate/get-automatic.translations', [LanguageController::class, 'getAutomaticTranslationForTexts'])->name('api.translate.get-automatic-translations');
     Route::put('/problems/update-status/{id}', [ProblemController::class, 'updateStatus'])->name('api.problems.update-status');
     Route::put('/solutions/update-status/{id}', [SolutionController::class, 'updateStatus'])->name('api.solutions.update-status');
+    Route::get('/export-solutions/{project_id}', [SolutionController::class, 'exportSolutions'])->name('api.solutions.export');
 });
 
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function (): void {
