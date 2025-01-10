@@ -55,11 +55,17 @@ class SolutionRepository extends Repository {
             });
     }
 
-    public function getSolutionsForProblems($problem_ids) {
+    public function getSolutionsForProblems(array $problem_ids): Collection {
         return Solution::whereIn('problem_id', $problem_ids)->get();
     }
 
-    public function getPublishedSolutionsProposedByUser(int $userId) {
+    public function getPublishedSolutionsProposedByUser(int $userId): Collection {
         return Solution::where('user_creator_id', $userId)->where('status_id', SolutionStatusLkp::PUBLISHED)->get();
+    }
+
+    public function getSolutionsByProjectId(int $project_id): Collection {
+        return Solution::whereHas('project', function ($query) use ($project_id) {
+            $query->where('project_id', $project_id);
+        })->get();
     }
 }

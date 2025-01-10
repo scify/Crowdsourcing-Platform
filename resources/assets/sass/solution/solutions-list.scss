@@ -11,7 +11,7 @@ h2 {
 
 .card {
   border: none;
-  box-shadow: 0 4px 4px 0 #00000040;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .highlighted {
@@ -20,75 +20,79 @@ h2 {
   }
 }
 
-a.card-link {
-  display: block;
-  border-radius: 1rem;
-
-  &:hover {
-    color: unset;
-  }
-
-  &:focus-visible {
-    border-radius: 1rem;
-    outline: 4px solid black; // bookmark1 - calculate in rem
-  }
-}
-
 .card {
   border-radius: 1rem;
   margin-bottom: 2rem;
   overflow: clip;
+  flex-direction: row;
+  border: 0.5rem solid var(--clr-secondary-light-grey);
 }
 
 .card-placeholder-img-container {
-  background-color: var(--clr-secondary-grey);
-  padding-top: 2.9rem;
-  padding-bottom: 2.2rem;
-  height: 250px;
+  background-color: var(--clr-secondary-light-grey);
+  padding-block: 2.05rem;
+  width: 11rem;
+  flex: 0 0 auto;
+  text-align: center;
 
   svg {
-    width: 100%;
-    color: var(--clr-secondary-light-grey);
+    height: 100%;
+    color: var(--clr-secondary-grey);
   }
 }
 
 .card-custom-img-container {
-  background-color: var(--clr-secondary-grey);
-  height: 250px;
+  background-color: var(--clr-secondary-light-grey);
+  width: 11rem;
+  flex: 0 0 auto;
 
   img {
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     height: 100%;
   }
 }
 
 .card-body {
-  background-color: var(--clr-secondary-light-grey);
+  background-color: white;
 
   .card-title {
     font-family: "Noto Sans Variable", sans-serif;
     font-weight: 500;
-    font-size: 24px; // 24px // bookmark1 - calculate in rem
-    line-height: 29.34px; // 29.34px // bookmark1 - calculate in rem
+    font-size: 1.5rem;
+    line-height: 1.83375rem;
+    width: calc(100% - 60px);
   }
 
   .card-text {
     font-family: "Open Sans Variable", sans-serif;
     font-weight: 400;
-    font-size: 16px; // 16px // bookmark1 - calculate in rem
-    line-height: 20.4px; // 20.4px // bookmark1 - calculate in rem
+    font-size: 1rem;
+    line-height: 1.275;
+    padding-left: 0.3rem !important;
+    width: calc(100% - 60px);
   }
+}
+
+.share-circle-btn {
+  position: absolute;
+  bottom: 3.6rem;
+  right: 2.8rem;
+}
+
+.heart-circle-btn {
+  position: absolute;
+	top: 1.35rem;
+	right: 2.8rem;
 }
 
 .upvote-count {
   position: absolute;
-  top: 1.6rem;
-  left: 5.1rem;
-  color: var(--project-primary-color);
-  padding: 0 0.5rem;
-  border-radius: 2rem;
-  font-weight: 900;
+  top: 3.8rem;
+  right: 1.65rem;
+  width: 5rem;
+  text-align: center;
+  cursor: default;
 }
 
 // from "md" and UP
