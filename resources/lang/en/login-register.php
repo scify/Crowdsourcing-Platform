@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'These credentials do not match our records.',
     'one_step_away'               => 'You’re one step away!',
     'avoid_duplicate_submissions' => 'In order to avoid duplicate submissions, only logged-in users can contribute. Please login to continue',
-
-
-
+    'gender'                      => '(Optional) Select the gender you most identify with',
+    'country'                     => '(Optional) Select your country',
+    'year_of_birth'               => '(Optional) Select your year of birth',
 ];
