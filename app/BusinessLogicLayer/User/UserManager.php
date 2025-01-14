@@ -186,6 +186,9 @@ class UserManager {
             'email' => $data['email'],
             'nickname' => $data['nickname'],
             'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'country' => $data['country'],
+            'year_of_birth' => $data['year-of-birth'],
         ];
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
             return $this->userRepository->create($data);
@@ -196,7 +199,10 @@ class UserManager {
                 $this->userRepository->update([
                     'email' => $data['email'],
                     'nickname' => $data['nickname'],
-                    'password' => $data['password'],
+                    'password' => $data['password'], // bookmark-10 - hash?
+                    'gender' => $data['gender'],
+                    'country' => $data['country'],
+                    'year_of_birth' => $data['year-of-birth'],
                 ], $existingUser->id);
 
                 return $this->userRepository->find($existingUser->id);
