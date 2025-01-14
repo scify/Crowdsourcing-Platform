@@ -156,12 +156,16 @@ html {
 
 .auth-btn-container {
 	@include media-breakpoint-down(sm) {
-		margin-top: 4rem;
-		margin-bottom: 4rem;
+		// margin-top: 4rem;
+		// margin-bottom: 4rem;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 
 	@include media-breakpoint-up(md) {
-		margin-top: 7rem;
-		margin-bottom: 7rem;
+		// margin-top: 7rem;
+		// margin-bottom: 7rem;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
 	}
 }

@@ -52,4 +52,7 @@ return [
     'features_platform_2' => '<b>Manage your questionnaires</b> effectively with our easy to use questionnaire editor.',
     'features_platform_3' => '<b>Check the impact</b> of your campaigns, by viewing the reports generated from the citizens responses.',
     'features_platform_4' => '<b>Integrate with MailChimp</b> in just a click, to keep users always up to date with the latest campaigns and activities.',
+    'male' => 'Male',
+    'female' => 'Female',
+    'other' => 'Other',
 ];
