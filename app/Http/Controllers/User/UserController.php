@@ -47,9 +47,9 @@ class UserController extends Controller {
             'nickname' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'gender' => 'nullable|string|max:255', // bookmark-10
-            'country' => 'nullable|string|max:255', // bookmark-10
-            'year-of-birth' => 'nullable|integer|min:1920|max:' . (date('Y') - 18), // bookmark-10
+            'gender' => 'required|nullable|string|max:255',
+            'country' => 'required|nullable|string|max:255',
+            'year-of-birth' => 'required|nullable|integer|min:1920|max:' . (date('Y') - 18),
         ];
         if ($request->password) {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
