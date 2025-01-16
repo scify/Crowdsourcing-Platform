@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'Aceste credențiale nu se potrivesc cu înregistrările noastre.',
     'one_step_away'               => 'Ești la un pas distanță!',
     'avoid_duplicate_submissions' => 'Pentru a evita trimiterile duplicate, doar utilizatorii autentificați pot contribui. Te rugăm să te autentifici pentru a continua',
-
-
-
+    'gender'         => '(Opțional) Selectați genul cu care vă identificați cel mai mult',
+    'country'        => '(Opțional) Selectați țara dumneavoastră',
+    'year_of_birth'  => '(Opțional) Selectați anul dumneavoastră de naștere',
 ];

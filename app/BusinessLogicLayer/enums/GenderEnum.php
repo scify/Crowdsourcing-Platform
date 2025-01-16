@@ -2,8 +2,8 @@
 
 namespace App\BusinessLogicLayer\enums;
 
-abstract class GenderEnum {
-    public const MALE = 'Male';
-    public const FEMALE = 'Female';
-    public const OTHER = 'Other';
+enum GenderEnum: string {
+    case Male = 'MALE';
+    case Female = 'FEMALE';
+    case Other = 'OTHER';
 }

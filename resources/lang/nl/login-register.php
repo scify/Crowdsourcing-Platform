@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'Deze gegevens komen niet overeen met onze database.',
     'one_step_away'               => 'Nog 1 stap!',
     'avoid_duplicate_submissions' => 'Om dubbele inzendingen te voorkomen, kunnen alleen ingelogde gebruikers bijdragen. Log in om door te gaan',
-
-
-
+    'gender'         => '(Optioneel) Selecteer het geslacht waarmee u zich het meest identificeert',
+    'country'        => '(Optioneel) Selecteer uw land',
+    'year_of_birth'  => '(Optioneel) Selecteer uw geboortejaar',
 ];

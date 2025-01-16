@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\BusinessLogicLayer\enums\CountryEnum;
+use App\BusinessLogicLayer\enums\GenderEnum;
 use App\BusinessLogicLayer\User\UserActionResponses;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
@@ -17,16 +19,35 @@ class AdminController extends Controller {
     public function manageUsers() {
         $viewModel = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
 
+        $availableGenders = GenderEnum::cases();
+        $viewModel->availableGenders = $availableGenders;
+
+        $availableCountries = CountryEnum::cases();
+        $viewModel->availableCountries = $availableCountries;
+
+        $availableYearsOfBirth = range(1920, (date('Y') - 18));
+        $viewModel->availableYearsOfBirth = $availableYearsOfBirth;
+
         return view('backoffice.management.manage-users', ['viewModel' => $viewModel]);
     }
 
     public function editUserForm(Request $request) {
         $viewModel = $this->userManager->getEditUserViewModel($request->id);
 
+        $availableGenders = GenderEnum::cases();
+        $viewModel->availableGenders = $availableGenders;
+
+        $availableCountries = CountryEnum::cases();
+        $viewModel->availableCountries = $availableCountries;
+
+        $availableYearsOfBirth = range(1920, (date('Y') - 18));
+        $viewModel->availableYearsOfBirth = $availableYearsOfBirth;
+
         return view('backoffice.management.edit-user', ['viewModel' => $viewModel]);
     }
 
     public function updateUserRoles(Request $request) {
+        $this->userManager->updateUserById($request->userId, $request->all());
         $this->userManager->updateUserRoles($request->userId, $request->roleselect);
 
         return redirect()->back()->with(['flash_message_success' => 'User roles have been updated.']);
@@ -37,7 +58,10 @@ class AdminController extends Controller {
             $request->nickname,
             null,
             $request->password,
-            [$request->roleselect]);
+            [$request->roleselect],
+            $request->gender,
+            $request->country,
+            $request['year-of-birth']);
         match ($result->status) {
             UserActionResponses::USER_UPDATED => session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.'),
             UserActionResponses::USER_CREATED => session()->flash('flash_message_success', 'User has been added to the platform.'),

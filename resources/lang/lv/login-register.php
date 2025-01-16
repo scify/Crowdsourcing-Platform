@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'Šādi dati nav mūsu sistēmā.',
     'one_step_away'               => 'Jūs esat viena soļa attālumā!',
     'avoid_duplicate_submissions' => 'Lai izvairītos no dublējošiem iesniegšanas gadījumiem, piedalīties var tikai pieteikušies lietotāji. Lūdzu, piesakieties, lai turpinātu',
-
-
-
+    'gender'         => '(Pēc izvēles) Izvēlieties dzimumu, ar kuru visvairāk identificējaties',
+    'country'        => '(Pēc izvēles) Izvēlieties savu valsti',
+    'year_of_birth'  => '(Pēc izvēles) Izvēlieties savu dzimšanas gadu',
 ];

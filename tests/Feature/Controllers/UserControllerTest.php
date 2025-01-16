@@ -76,6 +76,9 @@ class UserControllerTest extends TestCase {
                 'password' => '12345678',
                 'password_confirmation' => '12345678',
                 'current_password' => 'password',
+                'gender' => 'female',
+                'country' => 'Greece',
+                'year-of-birth' => 1990,
             ]);
 
         $response->assertStatus(302);
@@ -119,6 +122,9 @@ class UserControllerTest extends TestCase {
                 'password_confirmation' => '12345678',
                 'current_password' => 'password',
                 'avatar' => $fakeImageUploadedFile,
+                'gender' => 'female',
+                'country' => 'Greece',
+                'year-of-birth' => 1990,
             ]);
 
         $response->assertStatus(302);

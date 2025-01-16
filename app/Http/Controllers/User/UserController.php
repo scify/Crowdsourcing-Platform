@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\BusinessLogicLayer\enums\CountryEnum;
+use App\BusinessLogicLayer\enums\GenderEnum;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\BusinessLogicLayer\User\UserDashboardManager;
@@ -26,9 +28,18 @@ class UserController extends Controller {
     }
 
     public function myAccount() {
-        $userViewModel = $this->userManager->getUserProfile(Auth::user());
+        $viewModel = $this->userManager->getUserProfile(Auth::user());
 
-        return view('backoffice.my-account', ['viewModel' => $userViewModel]);
+        $availableGenders = GenderEnum::cases();
+        $viewModel->availableGenders = $availableGenders;
+
+        $availableCountries = CountryEnum::cases();
+        $viewModel->availableCountries = $availableCountries;
+
+        $availableYearsOfBirth = range(1920, (date('Y') - 18));
+        $viewModel->availableYearsOfBirth = $availableYearsOfBirth;
+
+        return view('backoffice.my-account', ['viewModel' => $viewModel]);
     }
 
     public function patch(Request $request) {
@@ -36,6 +47,9 @@ class UserController extends Controller {
             'nickname' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'gender' => 'required|nullable|string|max:255',
+            'country' => 'required|nullable|string|max:255',
+            'year-of-birth' => 'required|nullable|integer|min:1920|max:' . (date('Y') - 18),
         ];
         if ($request->password) {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';

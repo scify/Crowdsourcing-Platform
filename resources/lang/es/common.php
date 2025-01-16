@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Gestiona tus cuestionarios</b> de manera efectiva con nuestro editor de cuestionarios fácil de usar.',
     'features_platform_3' => '<b>Verifica el impacto</b> de tus campañas, viendo los informes generados a partir de las respuestas de los ciudadanos.',
     'features_platform_4' => '<b>Integra con MailChimp</b> con solo un clic, para mantener a los usuarios siempre actualizados con las últimas campañas y actividades.',
-
+    'MALE'           => 'Hombre',
+    'FEMALE'         => 'Mujer',
+    'OTHER'          => 'Otro',
 ];

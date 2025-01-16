@@ -22,7 +22,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="container-fluid p-0">
                                         <div class="row p-0">
-                                            <label class="col-12 control-label">{{ __("login-register.email") }}</label>
+                                            <label for="email" class="col-12 control-label">{{ __("login-register.email") }}</label>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <input id="email" type="email" class="form-control mb-1"
@@ -35,7 +35,7 @@
                                             </div>
                                         </div>
                                         <div class="row p-0">
-                                            <label class="col-12 control-label">{{ __("my-account.profile_image") }}</label>
+                                            <label for="avatar" class="col-12 control-label">{{ __("my-account.profile_image") }}</label>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <input id="avatar" type="file" class="form-control p-2 h-auto"
@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                         <div class="row p-0">
-                                            <label class="col-12 control-label">{{ __("login-register.nickname") }}</label>
+                                            <label for="nickname" class="col-12 control-label">{{ __("login-register.nickname") }}</label>
                                             <div class="col-12">
                                                 <div class="form-group has-feedback">
                                                     <input id="nickname" type="text" class="form-control mb-1"
@@ -93,7 +93,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-3 p-0">
+                                        <div class="row mb-4 p-0">
                                             <label for="password_confirmation"
                                                    class="col-12 control-label">{{ __("my-account.re_enter_password") }}</label>
                                             <div class="col-12">
@@ -102,6 +102,72 @@
                                                            id="password_confirmation"
                                                            name="password_confirmation"
                                                            placeholder="{{ __("my-account.re_enter_password") }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <label for="gender" class="col-12 control-label">{{ __("login-register.gender") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <select id="gender" name="gender" class="form-control">
+                                                        <option value="">{{ __("login-register.gender") }}</option>
+                                                        @foreach ($viewModel->availableGenders as $gender)
+                                                            <option
+                                                                    @if (old('gender') == $gender->value)
+                                                                        selected
+                                                                    @elseif ($viewModel->user->gender == $gender->value)
+                                                                        selected
+                                                                    @endif
+                                                                    value="{{ $gender->value }}"
+                                                            >
+                                                                {{ __('common.' . $gender->value) }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-0">
+                                            <label for="country" class="col-12 control-label">{{ __("login-register.country") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <select id="country" name="country" class="form-control">
+                                                        <option value="">{{ __("login-register.country") }}</option>
+                                                        @foreach ($viewModel->availableCountries as $country)
+                                                            <option
+                                                                    @if (old('country') == $country->name)
+                                                                        selected
+                                                                    @elseif ($viewModel->user->country == $country->name)
+                                                                        selected
+                                                                    @endif
+                                                                    value="{{ $country->name }}"
+                                                            >
+                                                                {{ $country->value }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4 p-0">
+                                            <label for="year-of-birth" class="col-12 control-label">{{ __("login-register.year_of_birth") }}</label>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <select id="year-of-birth" name="year-of-birth" class="form-control">
+                                                        <option value="">{{ __("login-register.year_of_birth") }}</option>
+                                                        @foreach ($viewModel->availableYearsOfBirth as $year)
+                                                            <option
+                                                                    @if (old('year-of-birth') == $year)
+                                                                        selected
+                                                                    @elseif ($viewModel->user->year_of_birth == $year)
+                                                                        selected
+                                                                    @endif
+                                                                    value="{{ $year }}"
+                                                            >
+                                                                {{ $year }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>

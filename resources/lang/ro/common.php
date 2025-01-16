@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Gestionează-ți chestionarele</b> eficient cu editorul nostru de chestionare ușor de utilizat.',
     'features_platform_3' => '<b>Verifică impactul</b> campaniilor tale, vizualizând rapoartele generate din răspunsurile cetățenilor.',
     'features_platform_4' => '<b>Integrează-te cu MailChimp</b> cu un singur clic, pentru a menține utilizatorii mereu la curent cu cele mai recente campanii și activități.',
-
+    'MALE'           => 'Masculin',
+    'FEMALE'         => 'Feminin',
+    'OTHER'          => 'Altul',
 ];

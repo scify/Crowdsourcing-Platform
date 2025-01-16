@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Efektívne spravujte svoje dotazníky</b> s naším ľahko použiteľným editorom dotazníkov.',
     'features_platform_3' => '<b>Skontrolujte vplyv</b> svojich kampaní, prezeraním správ generovaných z odpovedí občanov.',
     'features_platform_4' => '<b>Integrujte s MailChimp</b> jedným kliknutím, aby ste používateľov vždy informovali o najnovších kampaniach a aktivitách.',
-
+    'MALE'           => 'Muž',
+    'FEMALE'         => 'Žena',
+    'OTHER'          => 'Iné',
 ];

@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'A hitelesítő adatok nem egyeznek a tárolt adatokkal.',
     'one_step_away'               => 'Egy lépésre vagy!',
     'avoid_duplicate_submissions' => 'A duplikált beküldések elkerülése érdekében csak a bejelentkezett felhasználók szólhatnak hozzá. Kérjük, jelentkezzen be a folytatáshoz',
-
-
-
+    'gender'         => '(Opcionális) Válassza ki a nemet, amellyel a leginkább azonosul',
+    'country'        => '(Opcionális) Válassza ki az országát',
+    'year_of_birth'  => '(Opcionális) Válassza ki a születési évét',
 ];
