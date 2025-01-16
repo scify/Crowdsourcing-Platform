@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'Tieto poverenia sa nezhodujú s našimi záznamami.',
     'one_step_away'               => 'Ste o krok ďalej! ',
     'avoid_duplicate_submissions' => 'Aby sa predišlo duplicitným odoslaniam, môžu prispievať iba prihlásení používatelia. Ak chcete pokračovať, prihláste sa',
-
-
-
+    'gender'         => '(Voliteľné) Vyberte pohlavie, s ktorým sa najviac identifikujete',
+    'country'        => '(Voliteľné) Vyberte svoju krajinu',
+    'year_of_birth'  => '(Voliteľné) Vyberte svoj rok narodenia',
 ];

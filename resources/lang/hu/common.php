@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Kezelje kérdőíveit</b> hatékonyan a könnyen használható kérdőívszerkesztőnkkel.',
     'features_platform_3' => '<b>Ellenőrizze kampányainak hatását</b>, a polgárok válaszaiból generált jelentések megtekintésével.',
     'features_platform_4' => '<b>Integráljon a MailChimp</b> egyetlen kattintással, hogy a felhasználók mindig naprakészek legyenek a legújabb kampányokkal és tevékenységekkel kapcsolatban.',
-
+    'MALE'           => 'Férfi',
+    'FEMALE'         => 'Nő',
+    'OTHER'          => 'Egyéb',
 ];

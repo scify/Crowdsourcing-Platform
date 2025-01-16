@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'Ces informations d\'identification ne correspondent pas à nos registres.',
     'one_step_away'               => 'Vous n\'êtes plus qu\'à un pas!',
     'avoid_duplicate_submissions' => 'Afin d\'éviter les soumissions en double, seuls les utilisateurs connectés peuvent contribuer. Veuillez vous connecter pour continuer.',
-
-
-
+    'gender'         => '(Optionnel) Sélectionnez le genre avec lequel vous vous identifiez le plus',
+    'country'        => '(Optionnel) Sélectionnez votre pays',
+    'year_of_birth'  => '(Optionnel) Sélectionnez votre année de naissance',
 ];
