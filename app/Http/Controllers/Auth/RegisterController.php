@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\BusinessLogicLayer\enums\CountryEnum;
+use App\BusinessLogicLayer\enums\GenderEnum;
 use App\Http\Controllers\Controller;
 use App\Notifications\UserRegistered;
 use Exception;
@@ -51,6 +53,9 @@ class RegisterController extends Controller {
             'nickname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'gender' => 'nullable|string|max:255', // bookmark-10
+            'country' => 'nullable|string|max:255', // bookmark-10
+            'year-of-birth' => 'nullable|integer|min:1920|max:' . (date('Y') - 18), // bookmark-10
         ]);
     }
 
@@ -84,5 +89,21 @@ class RegisterController extends Controller {
         $url = session('redirectTo') ?: $this->redirectTo();
 
         return redirect($url);
+    }
+
+    public function showRegistrationForm() {
+        $availableGenders = GenderEnum::cases();
+
+        $availableCountries = CountryEnum::cases();
+
+        $availableYearsOfBirth = range(1920, (date('Y') - 18));
+
+        $viewModel = [
+            'availableGenders' => $availableGenders,
+            'availableCountries' => $availableCountries,
+            'availableYearsOfBirth' => $availableYearsOfBirth,
+        ];
+
+        return view('auth.register', ['viewModel' => $viewModel]);
     }
 }

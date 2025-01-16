@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Efikasno upravljajte svojim upitnicima</b> sa našim jednostavnim editorom upitnika.',
     'features_platform_3' => '<b>Proverite uticaj</b> svojih kampanja, pregledom izveštaja generisanih iz odgovora građana.',
     'features_platform_4' => '<b>Integracija sa MailChimp</b> jednim klikom, kako bi korisnici uvek bili u toku sa najnovijim kampanjama i aktivnostima.',
-
+    'MALE'           => 'Мушко',
+    'FEMALE'         => 'Женско',
+    'OTHER'          => 'Друго',
 ];

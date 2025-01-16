@@ -33,5 +33,7 @@ return [
     'credentials_not_match'       => 'Ovi podaci se ne podudaraju s našim zapisima.',
     'one_step_away'               => 'Samo ste jedan korak udaljeni!',
     'avoid_duplicate_submissions' => 'Kako biste izbjegli duplicirane prijave, samo prijavljeni korisnici mogu doprinositi. Molimo prijavite se za nastavak',
-
+    'gender'         => '(Opcionalno) Odaberite spol s kojim se najviše identificirate',
+    'country'        => '(Opcionalno) Odaberite svoju državu',
+    'year_of_birth'  => '(Opcionalno) Odaberite svoju godinu rođenja',
 ];
