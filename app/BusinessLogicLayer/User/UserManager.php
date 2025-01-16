@@ -210,35 +210,35 @@ class UserManager {
         }
     }
 
-    public function createUser(array $data) {
-        $data = [
-            'email' => $data['email'],
-            'nickname' => $data['nickname'],
-            'password' => Hash::make($data['password']),
-            'gender' => $data['gender'],
-            'country' => $data['country'],
-            'year_of_birth' => $data['year-of-birth'],
+    public function createUser(array $input_data) {
+        $user_data = [
+            'email' => $input_data['email'],
+            'nickname' => $input_data['nickname'],
+            'password' => Hash::make($input_data['password']),
+            'gender' => $input_data['gender'],
+            'country' => $input_data['country'],
+            'year_of_birth' => $input_data['year-of-birth'],
         ];
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
-            return $this->userRepository->create($data);
+            return $this->userRepository->create($user_data);
         } else {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
             try {
                 $existingUser = $this->userRepository->find($userId);
                 $this->userRepository->update([
-                    'email' => $data['email'],
-                    'nickname' => $data['nickname'],
-                    'password' => $data['password'], // bookmark-10 - hash?
-                    'gender' => $data['gender'],
-                    'country' => $data['country'],
-                    'year_of_birth' => $data['year-of-birth'],
+                    'email' => $user_data['email'],
+                    'nickname' => $user_data['nickname'],
+                    'password' => $user_data['password'],
+                    'gender' => $user_data['gender'],
+                    'country' => $user_data['country'],
+                    'year_of_birth' => $user_data['year-of-birth'],
                 ], $existingUser->id);
 
                 return $this->userRepository->find($existingUser->id);
             } catch (ModelNotFoundException $e) {
                 CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
 
-                return $this->createUser($data);
+                return $this->createUser($user_data);
             }
         }
     }
