@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Pārvaldiet savas aptaujas</b> efektīvi ar mūsu viegli lietojamo aptauju redaktoru.',
     'features_platform_3' => '<b>Pārbaudiet savu kampaņu ietekmi</b>, apskatot pilsoņu atbildēm ģenerētos ziņojumus.',
     'features_platform_4' => '<b>Integrējiet ar MailChimp</b> ar vienu klikšķi, lai lietotāji vienmēr būtu informēti par jaunākajām kampaņām un aktivitātēm.',
-
+    'MALE'           => 'Vīrietis',
+    'FEMALE'         => 'Sieviete',
+    'OTHER'          => 'Cits',
 ];

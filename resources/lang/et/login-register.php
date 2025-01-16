@@ -35,7 +35,7 @@ return [
     'credentials_not_match'       => 'Meie andmebaasis ei ole selliseid sisselogimisandmeid.',
     'one_step_away'               => 'Oled ühe sammu kauguse!',
     'avoid_duplicate_submissions' => 'Et vältida korduvaid sisestusi, saavad ainult sisselogitud kasutajad vastata',
-
-
-
+    'gender'         => '(Valikuline) Valige sugu, millega te end kõige rohkem identifitseerite',
+    'country'        => '(Valikuline) Valige oma riik',
+    'year_of_birth'  => '(Valikuline) Valige oma sünniaasta',
 ];

@@ -50,14 +50,14 @@
     <label for="gender" class="sr-only">{{ __("login-register.gender") }}</label>
     <select id="gender" name="gender" class="form-control">
         <option value="">{{ __("login-register.gender") }}</option>
-        @foreach ($viewModel['availableGenders'] as $genderKey => $genderValue)
+        @foreach ($viewModel['availableGenders'] as $gender)
             <option
-                    @if (old('gender') == $genderKey)
+                    @if (old('gender') == $gender->value)
                         selected
                     @endif
-                    value="{{ $genderKey }}"
+                    value="{{ $gender->value }}"
             >
-                {{ $genderValue }}
+                {{ __('common.' . $gender->value) }}
             </option>
         @endforeach
     </select>
@@ -66,14 +66,14 @@
     <label for="country" class="sr-only">{{ __("login-register.country") }}</label>
     <select id="country" name="country" class="form-control">
         <option value="">{{ __("login-register.country") }}</option>
-        @foreach ($viewModel['availableCountries'] as $countryKey => $countryValue)
+        @foreach ($viewModel['availableCountries'] as $country)
             <option
-                    @if (old('country') == $countryKey)
+                    @if (old('country') == $country->name)
                         selected
                     @endif
-                    value="{{ $countryKey }}"
+                    value="{{ $country->name }}"
             >
-                {{ $countryValue }}
+                {{ $country->value }}
             </option>
         @endforeach
     </select>

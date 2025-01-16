@@ -51,5 +51,7 @@ return [
     'features_platform_2' => '<b>Verwalten Sie Ihre Fragebögen</b> effektiv mit unserem benutzerfreundlichen Fragebogen-Editor.',
     'features_platform_3' => '<b>Überprüfen Sie die Auswirkungen</b> Ihrer Kampagnen, indem Sie die Berichte einsehen, die aus den Antworten der Bürger generiert wurden.',
     'features_platform_4' => '<b>Integrieren Sie sich mit MailChimp</b> mit nur einem Klick, um die Benutzer immer über die neuesten Kampagnen und Aktivitäten auf dem Laufenden zu halten.',
-
+    'MALE'           => 'Männlich',
+    'FEMALE'         => 'Weiblich',
+    'OTHER'          => 'Andere',
 ];
