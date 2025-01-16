@@ -60,6 +60,62 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="gender">{{ __("login-register.gender") }}</label>
+                            <select class="form-control" name="gender" id="gender">
+                                <option value="">{{ __("login-register.gender") }}</option>
+                                @foreach ($viewModel->availableGenders as $gender)
+                                    <option
+                                            @if (old('gender') == $gender->value)
+                                                selected
+                                            @elseif ($viewModel->user->gender == $gender->value)
+                                                selected
+                                            @endif
+                                            value="{{ $gender->value }}"
+                                    >
+                                        {{ __('common.' . $gender->value) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">{{ __("login-register.country") }}</label>
+                            <select class="form-control" name="country" id="country">
+                                <option value="">{{ __("login-register.country") }}</option>
+                                @foreach ($viewModel->availableCountries as $country)
+                                    <option
+                                            @if (old('country') == $country->name)
+                                                selected
+                                            @elseif ($viewModel->user->country == $country->name)
+                                                selected
+                                            @endif
+                                            value="{{ $country->name }}"
+                                    >
+                                        {{ $country->value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year-of-birth">{{ __("login-register.year_of_birth") }}</label>
+                            <select class="form-control" name="year-of-birth" id="year-of-birth">
+                                <option value="">{{ __("login-register.year_of_birth") }}</option>
+                                @foreach ($viewModel->availableYearsOfBirth as $year)
+                                    <option
+                                            @if (old('year-of-birth') == $year)
+                                                selected
+                                            @elseif ($viewModel->user->year_of_birth == $year)
+                                                selected
+                                            @endif
+                                            value="{{ $year }}"
+                                    >
+                                        {{ $year }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
                     </div>
                 </div>

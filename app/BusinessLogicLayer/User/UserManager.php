@@ -89,14 +89,23 @@ class UserManager {
         $this->userRepository->reActivateUser($user);
     }
 
-    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect): ActionResponse {
-        $emailCheck = $this->userRepository->getUserByEmail($email);
+    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect, $gender, $country, $year_of_birth): ActionResponse {
+        $user = $this->userRepository->getUserByEmail($email);
         // Check if email exists in db
-        if ($emailCheck) {
+        if ($user) {
             // If email exists, update roles
-            $this->userRepository->updateUserRoles($emailCheck->id, $roleselect);
+            $this->userRepository->updateUserRoles($user->id, $roleselect);
 
-            return new ActionResponse(UserActionResponses::USER_UPDATED, $emailCheck);
+            $user->nickname = $nickname;
+            $user->avatar = $avatar;
+            $user->password != null ? bcrypt($password) : null;
+            $user->gender = $gender;
+            $user->country = $country;
+            $user->year_of_birth = $year_of_birth;
+
+            $user->save();
+
+            return new ActionResponse(UserActionResponses::USER_UPDATED, $user);
         } else {
             // If user email does not exist in db, notify for registration.
             $user = User::create([
@@ -104,6 +113,9 @@ class UserManager {
                 'email' => $email,
                 'avatar' => $avatar,
                 'password' => $password != null ? bcrypt($password) : null,
+                'gender' => $gender,
+                'country' => $country,
+                'year_of_birth' => $year_of_birth,
             ]);
             $user->save();
             try {
@@ -126,6 +138,9 @@ class UserManager {
         $user = Auth::user();
         $user->nickname = $data['nickname'];
         $user->email = $data['email'];
+        $user->gender = $data['gender'];
+        $user->country = $data['country'];
+        $user->year_of_birth = $data['year-of-birth'];
 
         if (isset($data['password']) && $data['password'] != null) {
             $current_password = $user->password;
@@ -140,6 +155,17 @@ class UserManager {
             $path = FileHandler::uploadAndGetPath($data['avatar'], 'user_profile_img');
             $user->avatar = $path;
         }
+
+        return $user->save();
+    }
+
+    public function updateUserById(int $userId, array $data): bool {
+        $user = $this->userRepository->find($userId);
+        $user->nickname = $data['nickname'];
+        $user->email = $data['email'];
+        $user->gender = $data['gender'];
+        $user->country = $data['country'];
+        $user->year_of_birth = $data['year-of-birth'];
 
         return $user->save();
     }
@@ -164,7 +190,10 @@ class UserManager {
             $socialUser->name,
             $socialUser->avatar,
             null,
-            [UserRoles::REGISTERED_USER]);
+            [UserRoles::REGISTERED_USER],
+            null,
+            null,
+            null);
         // write user to 'Registered Users' newsletter if logins for the first time
         if ($registerToMailchimp &&
             $result->status == UserActionResponses::USER_CREATED && config('app.mailchimp_api_key') !== ''
@@ -181,35 +210,35 @@ class UserManager {
         }
     }
 
-    public function createUser(array $data) {
-        $data = [
-            'email' => $data['email'],
-            'nickname' => $data['nickname'],
-            'password' => Hash::make($data['password']),
-            'gender' => $data['gender'],
-            'country' => $data['country'],
-            'year_of_birth' => $data['year-of-birth'],
+    public function createUser(array $input_data) {
+        $user_data = [
+            'email' => $input_data['email'],
+            'nickname' => $input_data['nickname'],
+            'password' => Hash::make($input_data['password']),
+            'gender' => $input_data['gender'],
+            'country' => $input_data['country'],
+            'year_of_birth' => $input_data['year-of-birth'],
         ];
         if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
-            return $this->userRepository->create($data);
+            return $this->userRepository->create($user_data);
         } else {
             $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
             try {
                 $existingUser = $this->userRepository->find($userId);
                 $this->userRepository->update([
-                    'email' => $data['email'],
-                    'nickname' => $data['nickname'],
-                    'password' => $data['password'], // bookmark-10 - hash?
-                    'gender' => $data['gender'],
-                    'country' => $data['country'],
-                    'year_of_birth' => $data['year-of-birth'],
+                    'email' => $user_data['email'],
+                    'nickname' => $user_data['nickname'],
+                    'password' => $user_data['password'],
+                    'gender' => $user_data['gender'],
+                    'country' => $user_data['country'],
+                    'year_of_birth' => $user_data['year-of-birth'],
                 ], $existingUser->id);
 
                 return $this->userRepository->find($existingUser->id);
             } catch (ModelNotFoundException $e) {
                 CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
 
-                return $this->createUser($data);
+                return $this->createUser($user_data);
             }
         }
     }
