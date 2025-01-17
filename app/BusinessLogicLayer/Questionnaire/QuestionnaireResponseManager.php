@@ -75,6 +75,10 @@ class QuestionnaireResponseManager {
     public function storeQuestionnaireResponse($data) {
         $user = $this->userManager->getLoggedInUserOrCreateAnonymousUser();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
+        // fix for greek language
+        if (isset($data['language_code']) && $data['language_code'] == 'gr') {
+            $data['language_code'] = 'el';
+        }
         $language = isset($data['language_code'])
             ? $this->languageManager->getLanguageByCode($data['language_code'])
             : $this->languageManager->getLanguage($questionnaire->default_language_id);
@@ -118,6 +122,10 @@ class QuestionnaireResponseManager {
     public function storeQuestionnaireResponseForModerator($data) {
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
+        // fix for greek language
+        if (isset($data['language_code']) && $data['language_code'] == 'gr') {
+            $data['language_code'] = 'el';
+        }
         $language = isset($data['language_code'])
             ? $this->languageManager->getLanguageByCode($data['language_code'])
             : $this->languageManager->getLanguage($questionnaire->default_language_id);
