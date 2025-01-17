@@ -382,11 +382,9 @@ export default {
 		},
 		onLanguageChange(event) {
 			// fix for the greek language (gr to el)
-			if (event.target.value === "gr") {
-				event.target.value = "el";
+			if (event.target.value === "el") {
+				event.target.value = "gr";
 			}
-			console.log(event.target.value);
-			console.log(this.survey.getUsedLocales());
 			this.survey.locale = event.target.value;
 		},
 		getLanguageFromCode(code) {
@@ -394,7 +392,6 @@ export default {
 			if (code === "gr") {
 				code = "el";
 			}
-
 			return this.languages.find((l) => l.language_code === code);
 		},
 		getSignInUrl() {
