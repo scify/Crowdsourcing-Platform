@@ -175,11 +175,12 @@ class SolutionController extends Controller {
     public function getSolutions(Request $request): JsonResponse {
         $this->validate(request(), [
             'problem_id' => 'required|exists:problems,id',
+            'lang' => 'required|string',
         ]);
 
         return response()->json([
             'user_votes' => $this->solutionManager->getUserVotesNum($request->problem_id),
-            'solutions' => $this->solutionManager->getSolutions($request->problem_id),
+            'solutions' => $this->solutionManager->getSolutions($request->problem_id, $request->lang),
         ]);
     }
 

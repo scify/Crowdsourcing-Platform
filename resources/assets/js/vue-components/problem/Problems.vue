@@ -83,6 +83,10 @@ export default {
 			type: String,
 			default: "light",
 		},
+		locale: {
+			type: String,
+			default: "en",
+		},
 	},
 	data() {
 		return {
@@ -98,7 +102,7 @@ export default {
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
-				url: window.route("api.problems.get") + `?projectId=${this.projectId}`,
+				url: window.route("api.problems.get") + `?projectId=${this.projectId}&lang=${this.locale}`,
 				urlRelative: false,
 			})
 				.then((response) => {
