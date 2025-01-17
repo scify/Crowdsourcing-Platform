@@ -385,6 +385,8 @@ export default {
 			if (event.target.value === "gr") {
 				event.target.value = "el";
 			}
+			console.log(event.target.value);
+			this.survey.getUsedLocales();
 			this.survey.locale = event.target.value;
 		},
 		getLanguageFromCode(code) {
