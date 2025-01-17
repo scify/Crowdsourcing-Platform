@@ -145,6 +145,11 @@ export default {
 			required: true,
 			default: false,
 		},
+		locale: {
+			type: String,
+			required: true,
+			default: "en",
+		},
 	},
 	data() {
 		return {
@@ -183,7 +188,7 @@ export default {
 			this.loading = true;
 			this.errorMessage = "";
 			return this.get({
-				url: window.route("api.solutions.get") + `?problem_id=${this.problemId}`,
+				url: window.route("api.solutions.get") + `?problem_id=${this.problemId}&lang=${this.locale}`,
 				urlRelative: false,
 			})
 				.then((response) => {

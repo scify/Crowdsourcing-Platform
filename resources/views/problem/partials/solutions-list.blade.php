@@ -7,7 +7,8 @@
             :project-slug='@json($viewModel->project->slug)'
             :max-votes-per-user-for-solutions='@json($viewModel->project->max_votes_per_user_for_solutions)'
             :button-text-color-theme='@json($viewModel->project->lp_btn_text_color_theme)'
-            :project-primary-color='@json($viewModel->project->lp_primary_color)'>
+            :project-primary-color='@json($viewModel->project->lp_primary_color)'
+            :locale="'{{app()->getLocale()}}'">
     </solutions>
 
 </div>

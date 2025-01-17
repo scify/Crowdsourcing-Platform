@@ -42,7 +42,7 @@ class SolutionAPIControllerTest extends TestCase {
         app()->setLocale('en');
 
         // Act
-        $response = $this->get(route('api.solutions.get', ['problem_id' => $problem_id]));
+        $response = $this->get(route('api.solutions.get', ['problem_id' => $problem_id, 'lang' => 'en']));
 
         // Assert
         $response->assertStatus(200);
@@ -103,7 +103,7 @@ class SolutionAPIControllerTest extends TestCase {
         app()->setLocale('en');
 
         // Act
-        $response = $this->get(route('api.solutions.get', ['problem_id' => $problem_id]));
+        $response = $this->get(route('api.solutions.get', ['problem_id' => $problem_id, 'lang' => 'en']));
 
         // Assert
         $response->assertStatus(200);
