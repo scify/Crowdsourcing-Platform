@@ -381,9 +381,18 @@ export default {
 			});
 		},
 		onLanguageChange(event) {
+			// fix for the greek language (gr to el)
+			if (event.target.value === "gr") {
+				event.target.value = "el";
+			}
 			this.survey.locale = event.target.value;
 		},
 		getLanguageFromCode(code) {
+			// fix for the greek language (gr to el)
+			if (code === "gr") {
+				code = "el";
+			}
+
 			return this.languages.find((l) => l.language_code === code);
 		},
 		getSignInUrl() {
@@ -397,6 +406,10 @@ export default {
 			const urlLang = url.substring(start, end);
 			if (locales.indexOf(urlLang) !== -1) {
 				return urlLang;
+			}
+			// fix for the greek language (gr to el)
+			if (urlLang === "gr") {
+				return "el";
 			}
 			return this.defaultLangCode;
 		},
