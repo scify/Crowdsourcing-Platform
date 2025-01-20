@@ -219,12 +219,12 @@ class UserManager {
             'country' => $input_data['country'],
             'year-of-birth' => $input_data['year-of-birth'],
         ];
-        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+        $user_id = intval(CookieManager::getCookie(UserManager::$USER_COOKIE_KEY));
+        if (!$user_id) {
             return $this->userRepository->create($user_data);
         } else {
-            $userId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
             try {
-                $existingUser = $this->userRepository->find($userId);
+                $existingUser = $this->userRepository->find($user_id);
                 $this->userRepository->update([
                     'email' => $user_data['email'],
                     'nickname' => $user_data['nickname'],
@@ -247,9 +247,10 @@ class UserManager {
         if (Auth::check()) {
             return Auth::user();
         }
-        if (isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) && intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+        $user_id = intval(CookieManager::getCookie(UserManager::$USER_COOKIE_KEY));
+        if ($user_id) {
             try {
-                return $this->userRepository->find(intval($_COOKIE[UserManager::$USER_COOKIE_KEY]));
+                return $this->userRepository->find($user_id);
             } catch (ModelNotFoundException $e) {
                 return $this->createAnonymousUser();
             }

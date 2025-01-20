@@ -11,4 +11,8 @@ class CookieManager {
             unset($_COOKIE[$cookieKey]);
         }
     }
+
+    public static function getCookie(string $cookieKey): mixed {
+        return Cookie::get($cookieKey) ?? $_COOKIE[$cookieKey] ?? null;
+    }
 }
