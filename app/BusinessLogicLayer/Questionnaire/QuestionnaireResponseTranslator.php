@@ -5,7 +5,6 @@ namespace App\BusinessLogicLayer\Questionnaire;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Utils\Translator;
-use Illuminate\Support\Facades\Log;
 
 class QuestionnaireResponseTranslator {
     protected QuestionnaireResponseRepository $questionnaireResponseRepository;
@@ -23,11 +22,10 @@ class QuestionnaireResponseTranslator {
         $this->translator = $translator;
     }
 
-    public function translateFreeTextAnswersForQuestionnaireResponse(int $questionnaire_response_id) {
+    public function translateFreeTextAnswersForQuestionnaireResponse(int $questionnaire_response_id): void {
         $questionnaireResponse = $this->questionnaireResponseRepository->find($questionnaire_response_id);
         $questionnaire = $this->questionnaireRepository->find($questionnaireResponse->questionnaire_id);
         $freeTypeQuestions = $this->questionnaireResponseManager->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
-        Log::info('Questionnaire response with id: ' . $questionnaire_response_id . ' has ' . count($freeTypeQuestions) . ' num of free text questions.');
         if (!count($freeTypeQuestions)) {
             $questionnaireResponse->response_json_translated = json_encode([]);
             $questionnaireResponse->save();
@@ -43,7 +41,6 @@ class QuestionnaireResponseTranslator {
                 array_push($questionNamesToTranslate, $questionName);
             }
         }
-        Log::info('API Key: ' . config('app.google_translate_key'));
         $translations = $this->translator->translateTexts($textsToTranslate, 'en');
         $i = 0;
         foreach ($responseAnswers as $questionName => $answer) {

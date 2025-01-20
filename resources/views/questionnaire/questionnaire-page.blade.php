@@ -21,7 +21,7 @@
             <div class="container px-sm-0">
                 <div class="row">
                     <div class="col-12 mt-4 mt-lg-5 pt-4">
-                        <h3 id="questionnaireTitle">{{$viewModel->questionnaire->fieldsTranslation->title}}</h3>
+                        <h3 id="questionnaireTitle">{{$viewModel->questionnaire->currentTranslation->title}}</h3>
                     </div>
                 </div>
                 @if($viewModel->shouldShowQuestionnaireDescription())
@@ -29,7 +29,7 @@
                         <div class="col-12">
                             <div class="description-container">
                                 <div class="description">
-                                    <p>{!! $viewModel->questionnaire->fieldsTranslation->description !!}</p>
+                                    <p>{!! $viewModel->questionnaire->currentTranslation->description !!}</p>
                                 </div>
                             </div>
                         </div>

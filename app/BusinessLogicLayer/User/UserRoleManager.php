@@ -43,7 +43,7 @@ class UserRoleManager {
         });
     }
 
-    public function assignRegisteredUserRoleTo($user) {
+    public function assignRegisteredUserRoleTo($user): UserRole {
         return $this->userRoleRepository->assignRoleToUser($user->id, UserRoles::REGISTERED_USER);
     }
 
@@ -51,9 +51,8 @@ class UserRoleManager {
      * Checks if a given @see User has the admin role
      *
      * @param  User  $user the @see User instance
-     * @return bool
      */
-    public function userHasAdminRole(User $user) {
+    public function userHasAdminRole(User $user): bool {
         return $this->userHasRole($user, UserRolesLkp::ADMIN, 'user_is_admin');
     }
 
@@ -61,9 +60,8 @@ class UserRoleManager {
      * Checks if a given @see User has the Answers Moderator role
      *
      * @param  User  $user the @see User instance
-     * @return bool
      */
-    public function userHasModeratorRole(User $user) {
+    public function userHasModeratorRole(User $user): bool {
         return $this->userHasRole($user, UserRolesLkp::ANSWERS_MODERATOR, 'user_is_moderator');
     }
 
@@ -71,20 +69,21 @@ class UserRoleManager {
      * Checks if a given @see User has the content manager role
      *
      * @param  User  $user the @see User instance
-     * @return bool
      */
-    public function userHasContentManagerRole(User $user) {
+    public function userHasContentManagerRole(User $user): bool {
         return $this->userHasRole($user, UserRolesLkp::CONTENT_MANAGER, 'user_is_content_manager');
     }
 
+    public function userHasRegisteredUserRole(User $user): bool {
+        return $this->userHasRole($user, UserRolesLkp::REGISTERED_USER, 'user_is_registered');
+    }
+
     /**
-     * Checks if a given @param  User  $user the @see User instance
-     *
-     * @return bool
-     *
+     * Checks if a given
+     * @param User $user the @see User instance
      * @see User has the admin role
      */
-    public function userHasRole(User $user, int $roleId, string $roleKeyForCache) {
+    public function userHasRole(User $user, int $roleId, string $roleKeyForCache): bool {
         if ($user == null) {
             return false;
         }
@@ -96,10 +95,8 @@ class UserRoleManager {
      * Checks if a role (identified by role id) exists in a given collection of @see UserRole
      *
      * @param  Collection  $userRoles the user roles collection
-     * @param  int  $roleId
-     * @return bool
      */
-    private function rolesInclude(Collection $userRoles, $roleId) {
+    private function rolesInclude(Collection $userRoles, int $roleId): bool {
         return $userRoles->contains($roleId);
     }
 
