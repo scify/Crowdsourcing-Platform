@@ -243,10 +243,6 @@ class UserManager {
         }
     }
 
-    public function userHasContributedToAProject($userId): bool {
-        return $this->questionnaireResponseRepository->userResponseExists($userId);
-    }
-
     public function getLoggedInUserOrCreateAnonymousUser() {
         if (Auth::check()) {
             return Auth::user();

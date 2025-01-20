@@ -5,9 +5,10 @@ namespace App\BusinessLogicLayer;
 use Illuminate\Support\Facades\Cookie;
 
 class CookieManager {
-    public static function deleteCookie(string $cookieKey) {
+    public static function deleteCookie(string $cookieKey): void {
         Cookie::queue(Cookie::forget($cookieKey));
-        //setcookie($cookieKey, false);
-        //unset($_COOKIE[$cookieKey]);
+        if (isset($_COOKIE[$cookieKey])) {
+            unset($_COOKIE[$cookieKey]);
+        }
     }
 }
