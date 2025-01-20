@@ -1,11 +1,14 @@
 <?php
 
 return [
-    'back' => 'Atpakaļ',
-    'the_topic' => 'Tēma:',
+    'back-to-the-campaign' => 'Atpakaļ uz kampaņu',
+    'the_topic' => 'Palīdziet risināt problēmas tēmai:',
+    'start-contributing-directions' => 'Izvēlieties problēmu no zemāk redzamā saraksta un balsojiet par esošo risinājumu vai piedāvājiet jaunu. Jūsu ieguldījums būs vērtīgs Eiropas oficiālajā politikā.',
     'list_of_problems' => 'Problēmu saraksts',
-    'see_all_problems' => 'Skatīt visas problēmas',
-    'solutions_for' => 'Risinājumi',
-    'project_landing_page_problems_action_button' => 'Skatīt visas problēmas',
-    'suggest_solution' => 'Ieteikt risinājumu',
+    'select-a-problem-to-begin' => 'Izvēlieties problēmu no zemāk redzamā saraksta, lai uzsāktu',
+    'back-to-the-problems' => 'Atpakaļ uz problēmām',
+    'list_of_solutions' => 'Risinājumu saraksts',
+    'back-to-the-solutions' => 'Atpakaļ uz risinājumiem',
+    'suggest_solution' => 'Piedāvāt risinājumu',
+    'project_landing_page_problems_action_button' => 'Skatīt visus problēmas',
 ];
