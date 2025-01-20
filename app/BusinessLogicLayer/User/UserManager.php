@@ -231,7 +231,7 @@ class UserManager {
                     'password' => $user_data['password'],
                     'gender' => $user_data['gender'],
                     'country' => $user_data['country'],
-                    'year_of_birth' => $user_data['year-of-birth'],
+                    'year_of_birth' => $user_data['year_of_birth'],
                 ], $existingUser->id);
 
                 return $this->userRepository->find($existingUser->id);
