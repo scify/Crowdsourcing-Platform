@@ -4,15 +4,15 @@
         <div class="col-12 my-4 my-lg-5 pt-4">
             <x-go-back-link
                     href="/{{ app()->getLocale() .'/'. $viewModel->project->slug . '/problems/' . $viewModel->problem->slug }}"
-                    class="d-none d-lg-block">{{ __("project-problems.back") }}</x-go-back-link>
+                    class="d-none d-lg-block">{{ __("project-problems.back-to-the-solutions") }}</x-go-back-link>
         </div>
     </div>
     <div class="row propose-solution-description">
 
         <div class="col-12">
-            <h1 class="section-title text-center">{{ __('solution.share_your_solution') }}</h1>
+            <h1 class="section-title text-center">{{ __("solution.share_your_solution") }}</h1>
             <div class="section-body pb-5 pb-lg-0">
-                <p>{{ __('solution.do_you_have_an_idea') }}</p>
+                <p>{{ __("solution.do_you_have_an_idea") }}</p>
             </div>
         </div>
 

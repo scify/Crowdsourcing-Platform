@@ -15,8 +15,10 @@ h2 {
 }
 
 .highlighted {
+  scroll-margin-top: 22rem;
+
   .card {
-    border: 3px solid var(--project-primary-color);
+    border-color: var(--project-primary-color);
   }
 }
 

@@ -1,11 +1,14 @@
 <?php
 
 return [
-    'back' => 'Назад',
-    'the_topic' => 'Темата:',
+    'back-to-the-campaign' => 'Обратно към кампанията',
+    'the_topic' => 'Допринасяйте за решаването на проблемите по темата:',
+    'start-contributing-directions' => 'Изберете проблем от списъка по-долу и гласувайте за съществуващо решение или предложете ново решение. Вашият принос ще има ценен ефект върху официалната политика в цяла Европа.',
     'list_of_problems' => 'Списък с проблеми',
-    'see_all_problems' => 'Виж всички проблеми',
-    'solutions_for' => 'Решения за',
-    'project_landing_page_problems_action_button' => 'Виж всички проблеми',
-    'suggest_solution' => 'Предложи решение',
+    'select-a-problem-to-begin' => 'Изберете проблем от списъка по-долу, за да започнете',
+    'back-to-the-problems' => 'Обратно към проблемите',
+    'list_of_solutions' => 'Списък с решения',
+    'back-to-the-solutions' => 'Обратно към решенията',
+    'suggest_solution' => 'Предложете решение',
+    'project_landing_page_problems_action_button' => 'Вижте всички проблеми',
 ];

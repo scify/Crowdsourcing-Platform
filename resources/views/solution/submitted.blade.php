@@ -17,8 +17,8 @@
 
             <div class="row">
                 <div class="col-12 mt-2 mb-4 pt-1">
-                    <x-go-back-link href="/{{ app()->getLocale() .'/'. $viewModel->project->slug . '/problems' }}"
-                                    class="d-none d-lg-block">{{ __("project-problems.back") }}</x-go-back-link>
+                    <x-go-back-link href="/{{ app()->getLocale() .'/'. $viewModel->project->slug . '/problems/' . $viewModel->problem->slug }}"
+                                    class="d-none d-lg-block">{{ __("project-problems.back-to-the-solutions") }}</x-go-back-link>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
 
             <div class="row">
                 <div class="col-12 my-4 my-lg-3 pt-2">
-                    <h3 class="section-title">{{ __('solution.solution_title') }}</h3>
+                    <h3 class="section-title">{{ __("solution.solution_title") }}</h3>
                     <div class="section-body pb-5 pb-lg-0">
                         <p>{{ $viewModel->solution->defaultTranslation->title }}</p>
                     </div>
@@ -50,13 +50,13 @@
 
             <div class="row">
                 <div class="col-12 pt-4">
-                    <h3 class="section-title">{{ __('solution.solution_description') }}</h3>
+                    <h3 class="section-title">{{ __("solution.solution_description") }}</h3>
                     <div class="section-body pb-5 pb-lg-0">
                         <p>{!! $viewModel->solution->defaultTranslation->description !!}</p>
                     </div>
                 </div>
                 <div class="col-12 py-4">
-                    <h3>{{ __('solution.help_us_more_message') }}</h3>
+                    <h3>{{ __("solution.help_us_more_message") }}</h3>
                 </div>
             </div>
 

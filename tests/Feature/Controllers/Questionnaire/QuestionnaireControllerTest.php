@@ -423,6 +423,13 @@ class QuestionnaireControllerTest extends TestCase {
             'status_id' => QuestionnaireStatusLkp::PUBLISHED,
         ]);
 
+        // create a default translation for the questionnaire
+        $questionnaire->defaultFieldsTranslation()->create([
+            'title' => 'Test Questionnaire',
+            'description' => 'Test Description',
+            'language_id' => 6,
+        ]);
+
         // Associate the project and questionnaire
         $project->questionnaires()->attach($questionnaire->id);
 

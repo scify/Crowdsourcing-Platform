@@ -1,11 +1,14 @@
 <?php
 
 return [
-    'back' => 'Terug',
-    'the_topic' => 'Het onderwerp:',
+    'back-to-the-campaign' => 'Terug naar de campagne',
+    'the_topic' => 'Draag bij aan het oplossen van de problemen voor het onderwerp:',
+    'start-contributing-directions' => 'Selecteer een probleem uit de onderstaande lijst en stem op een bestaande oplossing of stel een nieuwe voor. Jouw bijdrage zal een waardevolle impact hebben op het officiële beleid in heel Europa.',
     'list_of_problems' => 'Lijst met problemen',
-    'see_all_problems' => 'Bekijk alle problemen',
-    'solutions_for' => 'Oplossingen voor',
-    'project_landing_page_problems_action_button' => 'Bekijk alle problemen',
+    'select-a-problem-to-begin' => 'Selecteer een probleem uit de onderstaande lijst om te beginnen',
+    'back-to-the-problems' => 'Terug naar de problemen',
+    'list_of_solutions' => 'Lijst met oplossingen',
+    'back-to-the-solutions' => 'Terug naar de oplossingen',
     'suggest_solution' => 'Stel een oplossing voor',
+    'project_landing_page_problems_action_button' => 'Bekijk alle problemen',
 ];

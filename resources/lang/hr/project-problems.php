@@ -1,15 +1,14 @@
 <?php
 
 return [
-    'back' => 'Natrag',
-    'the_topic' => 'Tema:',
+    'back-to-the-campaign' => 'Povratak na kampanju',
+    'the_topic' => 'Pomozite u rješavanju problema na temu:',
+    'start-contributing-directions' => 'Odaberite problem s popisa u nastavku i glasajte za postojeće rješenje ili predložite novo. Vaš doprinos imat će vrijedan utjecaj na službenu politiku diljem Europe.',
     'list_of_problems' => 'Popis problema',
+    'select-a-problem-to-begin' => 'Odaberite problem s popisa u nastavku kako biste započeli',
+    'back-to-the-problems' => 'Povratak na probleme',
     'list_of_solutions' => 'Popis rješenja',
-    'see_all_problems' => 'Pogledajte sve probleme',
-    'solutions_for' => 'Rješenja za',
+    'back-to-the-solutions' => 'Povratak na rješenja',
+    'suggest_solution' => 'Predloži rješenje',
     'project_landing_page_problems_action_button' => 'Pogledajte sve probleme',
-    'suggest_solution' => 'Predložite rješenje',
-    'temp_str_1' => 'Doprinosite rješavanju problema za temu:',
-    'temp_str_2' => 'Odaberite problem s popisa u nastavku i glasujte za postojeće rješenje ili predložite novo kandidatsko rješenje. Vaš doprinos imat će značajan utjecaj na službenu politiku širom Europe.',
-    'temp_str_3' => 'Odaberite problem s popisa u nastavku da biste započeli',
 ];

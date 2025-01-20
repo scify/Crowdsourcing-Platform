@@ -1,11 +1,14 @@
 <?php
 
 return [
-    'back' => 'Πίσω',
-    'the_topic' => 'Το θέμα:',
-    'list_of_problems' => 'Λίστα Προβλημάτων',
-    'see_all_problems' => 'Δες όλα τα προβλήματα',
-    'solutions_for' => 'Λύσεις για',
-    'project_landing_page_problems_action_button' => 'Δες όλα τα προβλήματα',
-    'suggest_solution' => 'Πρότεινε μια λύση',
+    'back-to-the-campaign' => 'Επιστροφή στην εκστρατεία',
+    'the_topic' => 'Συμβάλλετε στην επίλυση των προβλημάτων για το θέμα:',
+    'start-contributing-directions' => 'Επιλέξτε ένα πρόβλημα από τη λίστα παρακάτω και ψηφίστε για μια υπάρχουσα λύση ή προτείνετε μια νέα λύση. Η συμβολή σας θα έχει πολύτιμο αντίκτυπο στην επίσημη πολιτική σε όλη την Ευρώπη.',
+    'list_of_problems' => 'Λίστα προβλημάτων',
+    'select-a-problem-to-begin' => 'Επιλέξτε ένα πρόβλημα από τη λίστα παρακάτω για να ξεκινήσετε',
+    'back-to-the-problems' => 'Επιστροφή στα προβλήματα',
+    'list_of_solutions' => 'Λίστα λύσεων',
+    'back-to-the-solutions' => 'Επιστροφή στις λύσεις',
+    'suggest_solution' => 'Προτείνετε μια λύση',
+    'project_landing_page_problems_action_button' => 'Δείτε όλα τα προβλήματα',
 ];
