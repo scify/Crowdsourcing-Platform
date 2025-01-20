@@ -18,7 +18,7 @@
                             <a href="https://scify.org/en" target="_blank">About SciFY</a>
                         </div>
                         <div>
-                            <a href="{{ route('terms.privacy') }}" target="_blank">{{ __('common.terms_privacy') }}</a>
+                            <a href="{{ route('terms.privacy' , ['locale' => app()->getLocale()]) }}" target="_blank">{{ __('common.terms_privacy') }}</a>
                         </div>
                         <div>
                             <a href="javascript:void(0);" onclick="toggleCookieBanner()">Cookies Preferences</a>

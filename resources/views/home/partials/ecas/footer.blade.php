@@ -21,7 +21,7 @@
                             <a href="{{ route('codeOfConduct') }}" target="_blank">Code of Conduct</a>
                         </div>
                         <div>
-                            <a href="{{ route('terms.privacy') }}" target="_blank">Platform Privacy Policy</a>
+                            <a href="{{ route('terms.privacy' , ['locale' => app()->getLocale()]) }}" target="_blank">Platform Privacy Policy</a>
                         </div>
                         <div>
                             <a href="javascript:void(0);" onclick="toggleCookieBanner()">Cookies Preferences</a>

@@ -41,28 +41,24 @@ class HomeController extends Controller {
      * If referrer URL belongs to the application and is the questionnaire page,
      * provide the option to redirect back to the questionnaire.
      */
-    private function getRedirectBackUrl(): string {
+    public function getRedirectBackUrl(): string {
         $referrer = request()->headers->get('referer');
-        //if referer is the questionnaire page, we will allow to redirect back.
-        $goBackUrl = null;
-        if ($referrer) {
-            $host = parse_url($referrer, PHP_URL_HOST);
-            $current_host = parse_url((string) config('app.url'), PHP_URL_HOST);
-            if ($host === $current_host) {
-                $route = collect(Route::getRoutes())->first(fn ($route) => $route->matches(request()->create($referrer)));
-                if ($route != null && $route->getName() == 'project.landing-page') {
-                    $goBackUrl = $referrer;
-                    if (!Str::contains($referrer, '?open')) {
-                        $goBackUrl .= '?open=1';
-                    } //so user can go back and open the questionnaire
-                } else {
-                    $goBackUrl = $referrer;
-                }
-            }
-        } else {
-            $goBackUrl = route('home');
+        if (!$referrer) {
+            return route('home', ['locale' => app()->getLocale()]);
         }
 
-        return $goBackUrl;
+        $host = parse_url($referrer, PHP_URL_HOST);
+        $currentHost = parse_url((string) config('app.url'), PHP_URL_HOST);
+
+        if ($host !== $currentHost) {
+            return route('home', ['locale' => app()->getLocale()]);
+        }
+
+        $route = collect(Route::getRoutes())->first(fn ($route) => $route->matches(request()->create($referrer)));
+        if ($route && $route->getName() === 'project.landing-page') {
+            return Str::contains($referrer, '?open') ? $referrer : $referrer . '?open=1';
+        }
+
+        return $referrer;
     }
 }
