@@ -9,6 +9,7 @@ use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilityLkpRepository;
@@ -117,6 +118,7 @@ class QuestionnaireVMProvider {
 
     public function getViewModelForQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
         $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        $questionnaire->currentTranslation = $this->getTranslationForQuestionnaire($questionnaire, app()->getLocale());
         $user = Auth::user();
         $userResponse = null;
         if ($user) {
@@ -125,5 +127,12 @@ class QuestionnaireVMProvider {
         $languages = $this->languageManager->getAllLanguages();
 
         return new QuestionnairePage($questionnaire, $userResponse, $project, $languages, false);
+    }
+
+    private function getTranslationForQuestionnaire(Questionnaire $questionnaire, string $getLocale): QuestionnaireFieldsTranslation {
+        $language = $this->languageManager->getLanguageByCode($getLocale);
+        $translation = $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $language->id]);
+
+        return $translation ?: $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $questionnaire->default_language_id]);
     }
 }
