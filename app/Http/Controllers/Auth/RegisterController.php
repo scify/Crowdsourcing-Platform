@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\enums\CountryEnum;
 use App\BusinessLogicLayer\enums\GenderEnum;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
+use App\BusinessLogicLayer\User\UserManager;
+use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Http\Controllers\Controller;
+use App\Models\User\User;
 use App\Notifications\UserRegistered;
+use App\Utils\MailChimpAdaptor;
 use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -35,11 +41,11 @@ class RegisterController extends Controller {
         return app()->getLocale() . '/backoffice/my-dashboard';
     }
 
-    public function __construct(private \App\BusinessLogicLayer\User\UserRoleManager $userRoleManager,
-        private \App\BusinessLogicLayer\User\UserManager $userManager,
-        private \App\Utils\MailChimpAdaptor $mailChimpManager,
-        private \App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager $crowdSourcingProjectManager,
-        protected \App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager $questionnaireResponseManager) {
+    public function __construct(private UserRoleManager $userRoleManager,
+        private UserManager $userManager,
+        private MailChimpAdaptor $mailChimpManager,
+        private CrowdSourcingProjectManager $crowdSourcingProjectManager,
+        protected QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest');
     }
 
@@ -62,7 +68,7 @@ class RegisterController extends Controller {
     /**
      * Create a new user instance after a valid registration.
      *
-     * @return \App\Models\User\User
+     * @return User
      */
     protected function create(array $data) {
         $user = $this->userManager->createUser($data);
