@@ -338,12 +338,11 @@ export default {
 				this.translationInfoMessage = "Please select at least one language to translate to.";
 				return;
 			}
-			// get the target language code. It is the language code of the active tab.
-			// activeTabIndex + 1, because we don't have a tab for the default language,
-			// so the translations start from the "second" tab.
-			console.log(this.checkedLanguages);
-			console.log("Active tab index is", this.activeTabIndex);
-			const targetLanguage = this.checkedLanguages[this.activeTabIndex + 1].language_code;
+			// get the target language code. Search in the checkedLanguages array for the language code that is equal to the current active tab language code.
+			const targetLanguage = this.checkedLanguages.find(
+				(lang) => lang.id === this.translations[this.activeTabIndex].language_id,
+			).language_code;
+			console.log(`Target language code is ${targetLanguage}`);
 			// for each of the translations in the active tab,
 			// we need to get the original value and the translation value for each object that is not already translated.
 			// if the translation value is empty,
