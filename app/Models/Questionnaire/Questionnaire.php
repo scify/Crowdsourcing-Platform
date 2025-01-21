@@ -94,6 +94,10 @@ class Questionnaire extends Model {
         $languageRepository = app()->make(LanguageRepository::class);
         $language = $languageRepository->where(['language_code' => app()->getLocale()]);
 
+        if (!$language) {
+            return $this->defaultFieldsTranslation();
+        }
+
         return $this->hasOne(
             QuestionnaireFieldsTranslation::class,
             'questionnaire_id', 'id')
