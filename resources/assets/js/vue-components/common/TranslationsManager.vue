@@ -341,6 +341,8 @@ export default {
 			// get the target language code. It is the language code of the active tab.
 			// activeTabIndex + 1, because we don't have a tab for the default language,
 			// so the translations start from the "second" tab.
+			console.log(this.checkedLanguages);
+			console.log("Active tab index is", this.activeTabIndex);
 			const targetLanguage = this.checkedLanguages[this.activeTabIndex + 1].language_code;
 			// for each of the translations in the active tab,
 			// we need to get the original value and the translation value for each object that is not already translated.
