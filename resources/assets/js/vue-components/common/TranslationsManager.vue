@@ -342,7 +342,6 @@ export default {
 			const targetLanguage = this.checkedLanguages.find(
 				(lang) => lang.id === this.translations[this.activeTabIndex].language_id,
 			).language_code;
-			console.log(`Target language code is ${targetLanguage}`);
 			// for each of the translations in the active tab,
 			// we need to get the original value and the translation value for each object that is not already translated.
 			// if the translation value is empty,
@@ -391,7 +390,6 @@ export default {
 					// Update the translations array with the translated texts
 					translatedTexts.forEach((translatedText) => {
 						this.translations[this.activeTabIndex][translatedText.id] = translatedText.translated_text;
-						console.log(`Translation for "${translatedText.id}" is ${translatedText.translated_text}`);
 						// get the textarea element and add a class to it to indicate that it has been translated.
 						// add a class to the textarea element to indicate that it has been translated.
 						const textareaElementParentRow = document.getElementById(
