@@ -11,35 +11,41 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class UserRoleManager {
-    private $userRoleRepository;
+    public function __construct(private readonly UserRoleRepository $userRoleRepository) {}
 
-    public function __construct(UserRoleRepository $userRoleRepository) {
-        $this->userRoleRepository = $userRoleRepository;
-    }
+    public function registerUserPolicies(): void {
+        Gate::define('manage-platform', fn ($user): bool => $this->userHasAdminRole($user));
 
-    public function registerUserPolicies() {
-        Gate::define('manage-platform', function ($user) {
-            return $this->userHasAdminRole($user);
+        Gate::define('manage-users', fn ($user): bool => $this->userHasAdminRole($user));
+
+        Gate::define('manage-platform-content', function ($user): bool {
+            if ($this->userHasAdminRole($user)) {
+                return true;
+            }
+
+            return $this->userHasContentManagerRole($user);
         });
 
-        Gate::define('manage-users', function ($user) {
-            return $this->userHasAdminRole($user);
+        Gate::define('create-platform-content', function ($user): bool {
+            if ($this->userHasAdminRole($user)) {
+                return true;
+            }
+            if ($this->userHasContentManagerRole($user)) {
+                return true;
+            }
+
+            return $this->userHasModeratorRole($user);
         });
 
-        Gate::define('manage-platform-content', function ($user) {
-            return $this->userHasAdminRole($user) || $this->userHasContentManagerRole($user);
-        });
+        Gate::define('moderate-content-by-users', function ($user): bool {
+            if ($this->userHasAdminRole($user)) {
+                return true;
+            }
+            if ($this->userHasContentManagerRole($user)) {
+                return true;
+            }
 
-        Gate::define('create-platform-content', function ($user) {
-            return $this->userHasAdminRole($user)
-                || $this->userHasContentManagerRole($user)
-                || $this->userHasModeratorRole($user);
-        });
-
-        Gate::define('moderate-content-by-users', function ($user) {
-            return $this->userHasAdminRole($user)
-                || $this->userHasContentManagerRole($user)
-                || $this->userHasModeratorRole($user);
+            return $this->userHasModeratorRole($user);
         });
     }
 
@@ -100,7 +106,7 @@ class UserRoleManager {
         return $userRoles->contains($roleId);
     }
 
-    private function checkCacheOrDBForRoleAndStore($roleKey, User $user, $roleId) {
+    private function checkCacheOrDBForRoleAndStore(string $roleKey, User $user, int $roleId) {
         $result = Cache::get($roleKey . $user->id);
         if ($result == null) {
             $userRoles = $user->roles;
