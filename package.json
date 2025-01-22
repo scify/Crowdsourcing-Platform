@@ -48,7 +48,7 @@
     "@popperjs/core": "^2.11.8",
     "@sentry/browser": "^8.47.0",
     "admin-lte": "3.1.0",
-    "bootstrap": "^4.6.2",
+    "bootstrap": "^5.0.0",
     "bootstrap-colorpicker": "^3.4.0",
     "bootstrap-sweetalert": "^1.0.1",
     "chart.js": "^4.4.7",
