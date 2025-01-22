@@ -25,6 +25,9 @@ return [
     'no_active_projects' => 'Još uvek nema aktivnih kampanja',
     'features' => 'Funkcije',
     'about_us' => 'O nama',
+    'contact' => 'Kontakt',
+    'phone' => 'Telefon',
+    'email' => 'E-mail',
     'home_page' => 'Početna',
     'home_motto' => 'Hajde da napravimo razliku, zajedno!',
     'home_sub_motto' => 'Donosimo odluke sa građanima, a ne za njih',
@@ -55,4 +58,5 @@ return [
     'MALE'           => 'Мушко',
     'FEMALE'         => 'Женско',
     'OTHER'          => 'Друго',
+    'view_campaign' => 'Pogledaj kampanju',
 ];

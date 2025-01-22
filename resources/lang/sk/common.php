@@ -25,6 +25,9 @@ return [
     'no_active_projects' => 'Žiadne aktívne kampane zatiaľ',
     'features' => 'Funkcie',
     'about_us' => 'O nás',
+    'contact' => 'Kontakt',
+    'phone' => 'Telefón',
+    'email' => 'E-mail',
     'home_page' => 'Domov',
     'home_motto' => 'Urobme rozdiel, spolu!',
     'home_sub_motto' => 'Rozhodovanie s občanmi, a nie za nich',
@@ -55,4 +58,5 @@ return [
     'MALE'           => 'Muž',
     'FEMALE'         => 'Žena',
     'OTHER'          => 'Iné',
+    'view_campaign' => 'Zobraziť kampaň',
 ];

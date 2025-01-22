@@ -1,7 +1,7 @@
 <div class="row" id="sitemap">
     <div class="col-lg-8 col-md-10 col-sm-11 mx-auto">
         <div class="container-fluid p-0">
-            <div class="row">
+            <div class="row pt-5">
                 <div class="col-md-4 col-sm-12">
                     <div class="footer-grp">
                         <h3>ECAS Crowdsourcing Platform</h3>
@@ -31,14 +31,14 @@
                                 ({{__('common.open_source_platform')}})</a></div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-3 col-sm-12">
                     <div class="footer-grp">
-                        <h3>Get in touch</h3>
+                        <h3>{{ __('common.contact') }}</h3>
                         <div>
-                            <b>Phone:</b> +32 (0) 2 290 58 45
+                            <b>{{ __('common.phone') }}:</b> +32 (0) 2 290 58 45
                         </div>
                         <div>
-                            <b>E-mail:</b> info(at)ecas.org
+                            <b>{{ __('common.email') }}:</b> info(at)ecas.org
                         </div>
                         <div class="social-media">
                             <a href="https://www.facebook.com/pages/European-Citizen-Action-Service-ECAS/115314481819170?ref=hl"
@@ -61,35 +61,41 @@
                             <a href="https://ecas.org/feed/" title="RSS" class="social-btn rss" target="_blank"><span
                                         class="fas fa-rss"></span>
                             </a>
-
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 mx-sm-auto">
-                    <a href="https://ecas.org" target="_blank"><img loading="lazy" class="footer-logo"
-                                                                    src="{{asset('images/projects/ecas/ecas_logo_scaled.png')}}"
-                                                                    alt="ecas logo"></a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12 eu-logo">
+                <div class="col-md-5 col-sm-12 mx-sm-auto">
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="col">
+                                <a href="https://ecas.org" target="_blank"><img loading="lazy" class="footer-logo"
+                                                                                src="{{asset('images/projects/ecas/ecas_logo_scaled.png')}}"
+                                                                                alt="ECAS logo"></a>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 col-sm-6 d-flex align-items-center">
-                                <img loading="lazy" src="{{asset('images/projects/ecas/eu-logo.jpeg')}}" alt="">
+                                <img loading="lazy" class="w-100" src="{{asset('images/projects/ecas/eu-logo.png')}}"
+                                     alt="European Union Logo">
                             </div>
                             <div class="col-md-6 col-sm-6 mt-3">
                                 <p style="font-size:13px; line-height:20px; text-align: justify;">
-                                    Funded by the European Union. Views and opinions expressed are however those of
-                                    the author(s) only and do not necessarily reflect those of the European Union or
-                                    European Commission. Neither the European Union nor the granting authority can be
+                                    Funded by the European Union. Views and opinions expressed are however
+                                    those of
+                                    the author(s) only and do not necessarily reflect those of the European
+                                    Union or
+                                    European Commission. Neither the European Union nor the granting
+                                    authority can be
                                     held responsible for them.
                                 </p>
+
                             </div>
                         </div>
                     </div>
-
                 </div>
+            </div>
+            <div class="row">
+
             </div>
             <div class="row">
                 <div class="col-md-12">
