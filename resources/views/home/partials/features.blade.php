@@ -68,7 +68,7 @@
                         <div class="features-list">
                             <div class="feature img-left">
                                 <img loading="lazy" src="{{asset('images/landing-page/features/create-projects.webp')}}"
-                                     alt="create crowd-sourcing campaigns">
+                                     alt="create Crowdsourcing campaigns">
                                 <p class="large-screens small-screens">
                                     {!! __('common.features_platform_1') !!}
                                 </p>

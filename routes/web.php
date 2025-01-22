@@ -30,7 +30,7 @@ Route::group($localeInfo, function (): void {
     Auth::routes();
     Route::get('/', [HomeController::class, 'showHomePage'])->name('home');
     Route::get('/terms-and-privacy', [HomeController::class, 'showTermsAndPrivacyPage'])->name('terms.privacy');
-    Route::get('/code-of-conduct', [HomeController::class, 'showCodeOfConductPage'])->name('codeOfConduct');
+    Route::get('/code-of-conduct', [HomeController::class, 'showCodeOfConductPage'])->name('code-of-conduct');
 });
 
 Route::get('/terms-and-privacy', fn () => redirect(app()->getLocale() . '/terms-and-privacy'));
