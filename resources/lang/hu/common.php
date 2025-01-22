@@ -58,4 +58,5 @@ return [
     'MALE'           => 'Férfi',
     'FEMALE'         => 'Nő',
     'OTHER'          => 'Egyéb',
+    'view_campaign' => 'Kampány megtekintése',
 ];

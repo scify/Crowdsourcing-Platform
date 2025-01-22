@@ -58,4 +58,5 @@ return [
     'MALE'           => 'Masculin',
     'FEMALE'         => 'Feminin',
     'OTHER'          => 'Altul',
+    'view_campaign' => 'Vezi campania',
 ];

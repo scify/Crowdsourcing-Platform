@@ -58,4 +58,5 @@ return [
     'MALE'           => 'Hombre',
     'FEMALE'         => 'Mujer',
     'OTHER'          => 'Otro',
+    'view_campaign' => 'Ver campaña',
 ];

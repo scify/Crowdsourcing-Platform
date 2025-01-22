@@ -58,4 +58,5 @@ return [
     'MALE'           => 'Mees',
     'FEMALE'         => 'Naine',
     'OTHER'          => 'Muu',
+    'view_campaign' => 'Vaata kampaaniat',
 ];

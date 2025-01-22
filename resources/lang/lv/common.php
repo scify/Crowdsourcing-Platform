@@ -58,4 +58,5 @@ return [
     'MALE'           => 'Vīrietis',
     'FEMALE'         => 'Sieviete',
     'OTHER'          => 'Cits',
+    'view_campaign' => 'Apskatīt kampaņu',
 ];
