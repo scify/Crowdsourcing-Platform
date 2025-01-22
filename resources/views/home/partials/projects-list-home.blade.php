@@ -14,14 +14,15 @@
                             <div class="row">
                                 <div class="col-lg-9 col-md-9 col-sm-12 mx-auto">
                                     <div class="project-visit-btn">
-                                        @if(($project->latestQuestionnaire && $project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED) || $project->problems)
+                                        @if(($project->latestQuestionnaire && $project->latestQuestionnaire->status_id == \App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp::PUBLISHED) || $project->problems && $project->problems->count() > 0)
                                             <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $project->slug]) }}"
                                                class="btn btn-block btn-primary call-to-action action-dark">
-                                                {{ isset($projectBtnText) ? $projectBtnText : 'Contribute' }}
+                                                {{ __('badges_messages.contribute') }}
                                             </a>
                                         @else
                                             <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $project->slug]) }}"
-                                               class="btn btn-block btn-success call-to-action action-success">View
+                                               class="btn btn-block btn-success call-to-action action-success">
+                                                {{ __('common.view_campaign') }}
                                             </a>
                                         @endif
                                     </div>

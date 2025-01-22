@@ -570,8 +570,6 @@ footer {
 	}
 
 	.row:first-child {
-		padding-top: 60px;
-
 		// mobile
 		@include media-breakpoint-down(sm) {
 			padding-top: 30px;

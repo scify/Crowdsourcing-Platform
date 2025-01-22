@@ -25,6 +25,9 @@ return [
     'no_active_projects' => 'Aún no hay campañas activas',
     'features' => 'Características',
     'about_us' => 'Sobre nosotros',
+    'contact' => 'Contacto',
+    'phone' => 'Teléfono',
+    'email' => 'Correo electrónico',
     'home_page' => 'Inicio',
     'home_motto' => '¡Hagamos la diferencia, juntos!',
     'home_sub_motto' => 'Tomando decisiones con los ciudadanos, y no por ellos',
@@ -55,4 +58,5 @@ return [
     'MALE'           => 'Hombre',
     'FEMALE'         => 'Mujer',
     'OTHER'          => 'Otro',
+    'view_campaign' => 'Ver campaña',
 ];
