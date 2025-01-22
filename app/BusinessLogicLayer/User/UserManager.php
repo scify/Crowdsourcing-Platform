@@ -22,27 +22,12 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserManager {
-    private UserRepository $userRepository;
-    private UserRoleRepository $userRoleRepository;
-    private MailChimpAdaptor $mailChimpManager;
-    private QuestionnaireResponseRepository $questionnaireResponseRepository;
-    private QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
     public static int $USERS_PER_PAGE = 10;
     public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
-    public function __construct(UserRepository $userRepository,
-        UserRoleRepository $userRoleRepository,
-        MailChimpAdaptor $mailChimpManager,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {
-        $this->userRepository = $userRepository;
-        $this->userRoleRepository = $userRoleRepository;
-        $this->mailChimpManager = $mailChimpManager;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
-    }
+    public function __construct(private readonly UserRepository $userRepository, private readonly UserRoleRepository $userRoleRepository, private readonly MailChimpAdaptor $mailChimpManager, private readonly QuestionnaireResponseRepository $questionnaireResponseRepository, private readonly QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {}
 
-    public function getUserProfile($user) {
+    public function getUserProfile($user): UserProfile {
         return new UserProfile($user);
     }
 
@@ -50,14 +35,14 @@ class UserManager {
         return $this->userRepository->find($userId);
     }
 
-    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null) {
-        $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters, true);
+    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null): ManageUsers {
+        $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters);
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
 
         return new ManageUsers($users, $allRoles);
     }
 
-    public function getEditUserViewModel($id) {
+    public function getEditUserViewModel($id): EditUser {
         $user = $this->userRepository->getUser($id);
         $userRoleIds = $user->roles->pluck('id');
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
@@ -65,7 +50,7 @@ class UserManager {
         return new EditUser($user, $userRoleIds, $allRoles);
     }
 
-    public function updateUserRoles($userId, $roleSelect) {
+    public function updateUserRoles($userId, array $roleSelect): void {
         $this->userRepository->updateUserRoles($userId, $roleSelect);
     }
 
@@ -76,20 +61,20 @@ class UserManager {
         $this->userRepository->softDeleteUser($user);
     }
 
-    public function anonymizeAndDeleteUser($user): void {
+    public function anonymizeAndDeleteUser(User $user): void {
         $this->questionnaireAnswerVoteRepository->deleteAnswerVotesByUser($user->id);
         $this->questionnaireResponseRepository->deleteResponsesByUser($user->id);
         $this->userRepository->anonymizeAndDeleteUser($user);
     }
 
-    public function reactivateUser($id) {
+    public function reactivateUser($id): void {
         $user = $this->userRepository->getUserWithTrashed($id);
         $this->questionnaireAnswerVoteRepository->restoreAnswerVotesByUser($user->id);
         $this->questionnaireResponseRepository->restoreResponsesByUser($user->id);
         $this->userRepository->reActivateUser($user);
     }
 
-    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, $roleselect, $gender, $country, $year_of_birth): ActionResponse {
+    public function getOrAddUserToPlatform($email, $nickname, $avatar, $password, array $roleselect, $gender, $country, $year_of_birth): ActionResponse {
         $user = $this->userRepository->getUserByEmail($email);
         // Check if email exists in db
         if ($user) {
@@ -98,7 +83,9 @@ class UserManager {
 
             $user->nickname = $nickname;
             $user->avatar = $avatar;
-            $user->password != null ? bcrypt($password) : null;
+            if ($user->password != null) {
+                bcrypt($password);
+            }
             $user->gender = $gender;
             $user->country = $country;
             $user->year_of_birth = $year_of_birth;
@@ -106,27 +93,26 @@ class UserManager {
             $user->save();
 
             return new ActionResponse(UserActionResponses::USER_UPDATED, $user);
-        } else {
-            // If user email does not exist in db, notify for registration.
-            $user = User::create([
-                'nickname' => $nickname,
-                'email' => $email,
-                'avatar' => $avatar,
-                'password' => $password != null ? bcrypt($password) : null,
-                'gender' => $gender,
-                'country' => $country,
-                'year_of_birth' => $year_of_birth,
-            ]);
-            $user->save();
-            try {
-                $user->notify(new UserRegistered);
-            } catch (\Exception $e) {
-                Log::error($e);
-            }
-            $this->userRepository->updateUserRoles($user->id, $roleselect);
-
-            return new ActionResponse(UserActionResponses::USER_CREATED, $user);
         }
+        // If user email does not exist in db, notify for registration.
+        $user = User::create([
+            'nickname' => $nickname,
+            'email' => $email,
+            'avatar' => $avatar,
+            'password' => $password != null ? bcrypt($password) : null,
+            'gender' => $gender,
+            'country' => $country,
+            'year_of_birth' => $year_of_birth,
+        ]);
+        $user->save();
+        try {
+            $user->notify(new UserRegistered);
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
+        $this->userRepository->updateUserRoles($user->id, $roleselect);
+
+        return new ActionResponse(UserActionResponses::USER_CREATED, $user);
     }
 
     /**
@@ -205,9 +191,8 @@ class UserManager {
             auth()->login($user);
 
             return $user;
-        } else {
-            throw new \Exception($result->status);
         }
+        throw new \Exception($result->status);
     }
 
     public function createUser(array $input_data) {
@@ -220,26 +205,25 @@ class UserManager {
             'year-of-birth' => $input_data['year-of-birth'],
         ];
         $user_id = intval(CookieManager::getCookie(UserManager::$USER_COOKIE_KEY));
-        if (!$user_id) {
+        if ($user_id === 0) {
             return $this->userRepository->create($user_data);
-        } else {
-            try {
-                $existingUser = $this->userRepository->find($user_id);
-                $this->userRepository->update([
-                    'email' => $user_data['email'],
-                    'nickname' => $user_data['nickname'],
-                    'password' => Hash::make($input_data['password']),
-                    'gender' => $user_data['gender'],
-                    'country' => $user_data['country'],
-                    'year_of_birth' => $user_data['year-of-birth'],
-                ], $existingUser->id);
+        }
+        try {
+            $existingUser = $this->userRepository->find($user_id);
+            $this->userRepository->update([
+                'email' => $user_data['email'],
+                'nickname' => $user_data['nickname'],
+                'password' => Hash::make($input_data['password']),
+                'gender' => $user_data['gender'],
+                'country' => $user_data['country'],
+                'year_of_birth' => $user_data['year-of-birth'],
+            ], $existingUser->id);
 
-                return $this->userRepository->find($existingUser->id);
-            } catch (ModelNotFoundException $e) {
-                CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+            return $this->userRepository->find($existingUser->id);
+        } catch (ModelNotFoundException) {
+            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
 
-                return $this->createUser($user_data);
-            }
+            return $this->createUser($user_data);
         }
     }
 
@@ -248,10 +232,10 @@ class UserManager {
             return Auth::user();
         }
         $user_id = intval(CookieManager::getCookie(UserManager::$USER_COOKIE_KEY));
-        if ($user_id) {
+        if ($user_id !== 0) {
             try {
                 return $this->userRepository->find($user_id);
-            } catch (ModelNotFoundException $e) {
+            } catch (ModelNotFoundException) {
                 return $this->createAnonymousUser();
             }
         }

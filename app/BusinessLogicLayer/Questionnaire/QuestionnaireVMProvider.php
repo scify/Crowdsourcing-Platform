@@ -129,9 +129,12 @@ class QuestionnaireVMProvider {
         return new QuestionnairePage($questionnaire, $userResponse, $project, $languages, false);
     }
 
-    private function getTranslationForQuestionnaire(Questionnaire $questionnaire, string $getLocale): QuestionnaireFieldsTranslation {
-        $language = $this->languageManager->getLanguageByCode($getLocale);
-        $translation = $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $language->id]);
+    private function getTranslationForQuestionnaire(Questionnaire $questionnaire, string $language_code): QuestionnaireFieldsTranslation {
+        $language = $this->languageManager->getLanguageByCode($language_code);
+        $translation = null;
+        if ($language) {
+            $translation = $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $language->id]);
+        }
 
         return $translation ?: $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $questionnaire->default_language_id]);
     }
