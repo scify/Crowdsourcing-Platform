@@ -11,32 +11,19 @@ use App\Repository\User\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
 class UserQuestionnaireShareManager {
-    protected $questionnaireShareRepository;
-    protected $questionnaireRepository;
-    protected $questionnaireActionHandler;
-    protected $userRepository;
-    protected $webSessionManager;
-
-    public function __construct(UserQuestionnaireShareRepository $questionnaireShareRepository,
-        QuestionnaireRepository $questionnaireRepository,
-        QuestionnaireActionHandler $questionnaireActionHandler,
-        UserRepository $userRepository,
-        WebSessionManager $webSessionManager,
-        LanguageManager $languageManager
-    ) {
-        $this->questionnaireShareRepository = $questionnaireShareRepository;
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->questionnaireActionHandler = $questionnaireActionHandler;
-        $this->userRepository = $userRepository;
-        $this->webSessionManager = $webSessionManager;
-        $this->languageManager = $languageManager;
-    }
+    public function __construct(protected UserQuestionnaireShareRepository $questionnaireShareRepository,
+        protected QuestionnaireRepository $questionnaireRepository,
+        protected QuestionnaireActionHandler $questionnaireActionHandler,
+        protected UserRepository $userRepository,
+        protected WebSessionManager $webSessionManager,
+        protected LanguageManager $languageManager
+    ) {}
 
     public function createQuestionnaireShare(int $userId, $questionnaireId) {
         return $this->questionnaireShareRepository->create(['user_id' => $userId, 'questionnaire_id' => $questionnaireId]);
     }
 
-    public function handleQuestionnaireShare(array $parameters, int $referrerId) {
+    public function handleQuestionnaireShare(array $parameters, int $referrerId): void {
         $questionnaireId = $parameters['questionnaireId'];
         if ($this->shouldCountQuestionnaireShare($questionnaireId, $referrerId)) {
             $this->webSessionManager->setReferrerId($referrerId);
@@ -52,13 +39,13 @@ class UserQuestionnaireShareManager {
         }
     }
 
-    protected function shouldCountQuestionnaireShare(int $questionnaireId, int $referrerId) {
+    protected function shouldCountQuestionnaireShare(int $questionnaireId, int $referrerId): bool {
         return $this->questionnaireRepository->exists(['id' => $questionnaireId])
             && $this->userRepository->exists(['id' => $referrerId])
             && $this->userNotLoggedInOrDifferentThanReferrer($referrerId);
     }
 
-    protected function userNotLoggedInOrDifferentThanReferrer(int $referrerId) {
+    protected function userNotLoggedInOrDifferentThanReferrer(int $referrerId): bool {
         if (!Auth::check()) {
             return true;
         }
