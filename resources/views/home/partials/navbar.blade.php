@@ -11,22 +11,30 @@
 
         <div class="collapse navbar-collapse pull-right" id="top-menu-content">
             <ul class="nav navbar-nav ml-auto">
+                @if(Route::currentRouteName() !== 'home')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
+                            {{ __('common.home_page') }}
+                        </a>
+                    </li>
+                @endif
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}#about">
+                        {{ __('common.about_us') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}#features">
+                        {{ __('common.features') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}#projects">
+                        {{ __('common.crowd_sourcing_campaigns') }}
+                    </a>
+                </li>
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">
-                            {{ __('common.about_us') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">
-                            {{ __('common.features') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">
-                            {{ __('common.crowd_sourcing_campaigns') }}
-                        </a>
-                    </li>
+                    <!-- Guest links here -->
                 @endguest
                 @if(!isset($onErrorPage))
                     @include("partials.login-menu-options")

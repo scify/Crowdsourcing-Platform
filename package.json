@@ -1,7 +1,7 @@
 {
   "private": false,
   "author": "SciFY",
-  "description": "A modern Web Application for Crowd-sourcing Projects and Questionnaires",
+  "description": "A modern Web Application for Crowdsourcing Projects and Questionnaires",
   "license": "Apache-2.0",
   "homepage": "https://crowdsourcing.ecas.org/",
   "repository": "https://github.com/scify/Crowdsourcing-Platform",

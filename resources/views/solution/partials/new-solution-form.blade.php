@@ -123,7 +123,7 @@
                         <label class="form-check-label" for="consent-notice">
                             {!! __('solution.solution_consent_notice', [
                                 'privacy_policy' => '<a href="' . route('terms.privacy', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.terms_privacy') . '</a>',
-                                'code_of_conduct' => '<a href="' . route('codeOfConduct', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.code_of_conduct') . '</a>'
+                                'code_of_conduct' => '<a href="' . route('code-of-conduct', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.code_of_conduct') . '</a>'
                             ]) !!} (<span
                                     class="red">*</span>)
                         </label>
