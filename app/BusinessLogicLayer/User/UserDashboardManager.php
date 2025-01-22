@@ -21,37 +21,9 @@ use App\ViewModels\User\UserDashboardViewModel;
 use Illuminate\Support\Collection;
 
 class UserDashboardManager {
-    protected QuestionnaireRepository $questionnaireRepository;
-    protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
-    protected QuestionnaireGoalManager $crowdSourcingProjectGoalManager;
-    protected QuestionnaireBadgeProvider $questionnaireBadgeProvider;
-    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
-    protected QuestionnaireAccessManager $questionnaireAccessManager;
-    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
-    protected LanguageRepository $languageRepository;
-    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
+    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider, protected QuestionnaireGoalManager $crowdSourcingProjectGoalManager, protected QuestionnaireBadgeProvider $questionnaireBadgeProvider, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected QuestionnaireAccessManager $questionnaireAccessManager, protected CrowdSourcingProjectManager $crowdSourcingProjectManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {}
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-        QuestionnaireGoalManager $crowdSourcingProjectGoalManager,
-        QuestionnaireBadgeProvider $questionnaireBadgeProvider,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        QuestionnaireAccessManager $questionnaireAccessManager,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager,
-        LanguageRepository $languageRepository,
-        CrowdSourcingProjectRepository $crowdSourcingProjectRepository) {
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
-        $this->crowdSourcingProjectGoalManager = $crowdSourcingProjectGoalManager;
-        $this->questionnaireBadgeProvider = $questionnaireBadgeProvider;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->questionnaireAccessManager = $questionnaireAccessManager;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->languageRepository = $languageRepository;
-        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
-    }
-
-    private function questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses): bool {
+    private function questionnaireShouldBeDisplayedInTheDashboard($questionnaire, Collection $userResponses): bool {
         // If the questionnaire is a feedback questionnaire, then we should check
         // if the user has already answered the main project questionnaire, and has not yet answered the feedback questionnaire.
         if ($questionnaire->type_id == QuestionnaireTypeLkp::FEEDBACK_QUESTIONNAIRE) {
@@ -59,14 +31,10 @@ class UserDashboardManager {
             // So we only display them the feedback questionnaire to the dashboard
             // IF:
             //a) they are not answered already
-            $responseForThisFeedbackQuestionnaireDoesNotExist = $userResponses->first(function ($u) use ($questionnaire) {
-                return $u->questionnaire_id == $questionnaire->id;
-            }) == null;
+            $responseForThisFeedbackQuestionnaireDoesNotExist = $userResponses->first(fn ($u): bool => $u->questionnaire_id == $questionnaire->id) == null;
             //b) and user has responded to the main project questionnaire
-            $responseForMainProjectQuestionnaireExists = $userResponses->first(function ($u) use ($questionnaire) {
-                return $u->questionnaire->type_id == QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE &&
-                    $questionnaire->projects->firstWhere('id', $u->project_id) != null;
-            }) != null;
+            $responseForMainProjectQuestionnaireExists = $userResponses->first(fn ($u): bool => $u->questionnaire->type_id == QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE &&
+                    $questionnaire->projects->firstWhere('id', $u->project_id) != null) != null;
 
             return
                 $responseForThisFeedbackQuestionnaireDoesNotExist &&
@@ -79,7 +47,7 @@ class UserDashboardManager {
     /**
      * @return Collection<CrowdSourcingProject>
      */
-    private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, $userResponses): Collection {
+    private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, Collection $userResponses): Collection {
         //If user has already responded to this questionnaire, then any other actions,
         // like
         // a)  responding to the feedback questionnaire or
@@ -94,15 +62,13 @@ class UserDashboardManager {
         // b) should provide feedback by navigating to /gr/air-quality-athens.
 
         // So what we need to do, is to find if there is response for a Main project already.
-        $mainResponse = $userResponses->first(function ($u) use ($q) {
-            return $u->questionnaire->type_id == 1 &&
-                $q->projects->firstWhere('id', $u->project_id) != null;
-        });
+        $mainResponse = $userResponses->first(fn ($u): bool => $u->questionnaire->type_id == 1 &&
+            $q->projects->firstWhere('id', $u->project_id) != null);
         if ($mainResponse) {
             return collect([$q->projects->firstWhere('id', $mainResponse->project_id)]);
-        } else {
-            return $q->projects;
         }
+
+        return $q->projects;
     }
 
     public function getUserDashboardViewModel(User $user): UserDashboardViewModel {
