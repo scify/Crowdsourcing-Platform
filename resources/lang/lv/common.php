@@ -25,6 +25,9 @@ return [
     'no_active_projects' => 'Pašlaik nav aktīvu kampaņu',
     'features' => 'Funkcijas',
     'about_us' => 'Par mums',
+    'contact' => 'Kontakti',
+    'phone' => 'Tālrunis',
+    'email' => 'E-pasts',
     'home_page' => 'Sākums',
     'home_motto' => 'Veidosim izmaiņas kopā!',
     'home_sub_motto' => 'Lēmumu pieņemšana kopā ar pilsoņiem, nevis viņu vietā',
@@ -55,4 +58,5 @@ return [
     'MALE'           => 'Vīrietis',
     'FEMALE'         => 'Sieviete',
     'OTHER'          => 'Cits',
+    'view_campaign' => 'Apskatīt kampaņu',
 ];
