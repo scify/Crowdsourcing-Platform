@@ -294,12 +294,17 @@ footer {
 
 	.footer-logo {
 		width: 100%;
-		max-width: 400px;
+		max-width: 300px;
 	}
 
 	.lower-footer {
 		text-align: center;
 		margin-top: 80px;
+
+		// mobile
+		@media screen and (max-width: 768px) {
+			margin-top: 20px;
+		}
 	}
 }
 

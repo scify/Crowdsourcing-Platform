@@ -1,7 +1,7 @@
 @extends('backoffice.layout')
 @section('title', 'home')
 @section('content-header')
-    <h1>All Crowd-sourcing Projects</h1>
+    <h1>All Crowdsourcing Projects</h1>
 @endsection
 
 @push('css')

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration\Http\Controllers\Auth;
+namespace Feature\Controllers\Auth;
 
 use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Models\User\User;
