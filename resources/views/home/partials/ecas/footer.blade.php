@@ -73,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 eu-logo">
-                    <div class="container-fluid">
+                    <div class="container-fluid pl-0">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 d-flex align-items-center">
                                 <img loading="lazy" src="{{asset('images/projects/ecas/eu-logo.jpeg')}}" alt="">
