@@ -18,7 +18,7 @@
       style="background-image: url('{{ asset('images/active_participation.webp') }}');">
 @if (App::environment('staging'))
     <div class="sticky-top w-100 staging-warning py-2 text-center">
-        <h5 class="m-0">~~~ WARNING: TESTING ENVIRONMENT ~~~</h5>
+        <h5 class="m-0">~~~ TESTING ENVIRONMENT ~~~</h5>
     </div>
 @endif
 <div id="app" class="row h-100 justify-content-center align-items-center">
