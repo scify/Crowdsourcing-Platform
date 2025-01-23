@@ -153,7 +153,6 @@ export default {
 			if (!this.userLoggedIn()) {
 				const response = await this.getAnonymousUserResponse();
 				this.userResponse = response.data.questionnaire_response ?? null;
-				console.log(this.userResponse);
 				this.displayLoginPrompt = !this.userResponse;
 			}
 			this.initQuestionnaireDisplay();
@@ -217,7 +216,10 @@ export default {
 			this.survey.onValueChanged.add(this.saveQuestionnaireResponseProgress);
 			this.survey.onComplete.add(this.saveQuestionnaireResponse);
 			this.survey.onUploadFiles.add(this.onUploadSurveyFile);
-			if (this.surveyLocales && this.surveyLocales.length) {
+			// if the current locale exists in the survey locales, set it as the default locale
+			if (this.surveyLocales.find((l) => l.code === this.locale)) {
+				this.survey.locale = this.locale;
+			} else if (this.surveyLocales && this.surveyLocales.length) {
 				this.survey.locale = this.surveyLocales[0].code;
 			}
 			this.survey.onAfterRenderSurvey.add(() => {
@@ -398,22 +400,20 @@ export default {
 			return window.route("login", this.locale) + `?redirectTo=${window.location.href}`;
 		},
 		getDefaultLocaleForQuestionnaire() {
+			let locale = this.locale;
+			// fix for the greek language (el to gr)
+			if (locale === "el") {
+				locale = "gr";
+			}
 			const locales = this.survey.getUsedLocales();
-			const url = window.location.href;
-			const start = this.getPosition(url, "/", 3) + 1;
-			const end = this.getPosition(url, "/", 4);
-			const urlLang = url.substring(start, end);
-			if (locales.indexOf(urlLang) !== -1) {
-				return urlLang;
+			// if the current locale exists in the survey locales, set it as the default locale
+			if (locales && locales.length && locales.includes(locale)) {
+				this.defaultLangCode = locale;
+			} else if (locales && locales.length) {
+				this.defaultLangCode = locales[0];
 			}
-			// fix for the greek language (gr to el)
-			if (urlLang === "gr") {
-				return "el";
-			}
+
 			return this.defaultLangCode;
-		},
-		getPosition(str, subString, occurrence) {
-			return str.split(subString, occurrence).join(subString).length;
 		},
 		trans(key) {
 			return window.trans(key);
