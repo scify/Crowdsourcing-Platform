@@ -2,7 +2,7 @@
     {{-- Show Questionnaire Button if available and user has not answered --}}
     @if ($viewModel->questionnaire && !$viewModel->userResponse)
         <h3 class="project-section-title text-center mb-5">
-            {{ $viewModel->questionnaire->fieldsTranslation->title }}
+            {!! $viewModel->questionnaire->fieldsTranslation->title !!}
         </h3>
         <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug, 'questionnaire' => $viewModel->questionnaire->id]) }}"
            class="btn btn-primary w-100 respond-questionnaire call-to-action">
