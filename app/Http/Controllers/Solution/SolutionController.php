@@ -130,6 +130,7 @@ class SolutionController extends Controller {
             'solution-slug' => 'required|string|alpha_dash|unique:solutions,slug,' . $id . '|max:111',
             'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'solution-owner-problem' => ['required'],
+            'extra_translations' => 'nullable|json',
         ]);
 
         try {
