@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41233d9832beac63f1db1b5cc5c72de8",
+    "content-hash": "6f1d8195329e0ff5c69a05163b770717",
     "packages": [
         {
             "name": "accentinteractive/laravel-logcleaner",
@@ -5886,16 +5886,16 @@
         },
         {
             "name": "scify/laravel-cookies-consent",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scify/laravel-cookies-consent.git",
-                "reference": "30ab21b33ac2d26362937faa608753406a465e42"
+                "reference": "1377b1f397554ec154894d39cb396a1af0d509e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scify/laravel-cookies-consent/zipball/30ab21b33ac2d26362937faa608753406a465e42",
-                "reference": "30ab21b33ac2d26362937faa608753406a465e42",
+                "url": "https://api.github.com/repos/scify/laravel-cookies-consent/zipball/1377b1f397554ec154894d39cb396a1af0d509e7",
+                "reference": "1377b1f397554ec154894d39cb396a1af0d509e7",
                 "shasum": ""
             },
             "require": {
@@ -5955,9 +5955,9 @@
             ],
             "support": {
                 "issues": "https://github.com/scify/laravel-cookies-consent/issues",
-                "source": "https://github.com/scify/laravel-cookies-consent/tree/v2.0.2"
+                "source": "https://github.com/scify/laravel-cookies-consent/tree/v2.0.3"
             },
-            "time": "2025-01-27T09:04:33+00:00"
+            "time": "2025-01-27T16:09:36+00:00"
         },
         {
             "name": "sentry/sentry",
