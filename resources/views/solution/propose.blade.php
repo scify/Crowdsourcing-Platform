@@ -1,4 +1,7 @@
 @extends('crowdsourcing-project.layout')
+@push('header-scripts')
+    <script async src="https://www.google.com/recaptcha/api.js?render={{config('services.recaptcha.key')}}"></script>
+@endpush
 @push('css')
     <script>
 		function onSubmit(token) {

@@ -15,6 +15,12 @@ import * as Sentry from "@sentry/browser";
 if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 	Sentry.init({
 		dsn: import.meta.env.VITE_SENTRY_DSN_PUBLIC,
+		// this is a temporary fix for the issue where the Google Recaptcha does
+		// not properly reject errors. See https://github.com/getsentry/sentry-javascript/issues/2514#issuecomment-603971338
+		beforeSend(event, hint) {
+			if (hint.originalException === "Timeout") return null;
+			return event;
+		}
 	});
 }
 
