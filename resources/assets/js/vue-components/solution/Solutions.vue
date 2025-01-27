@@ -258,6 +258,7 @@ export default {
 		heartClicked(event, solutionId) {
 			if (!this.userLoggedIn) {
 				this.showLoginPanel(event.clientX, event.clientY);
+				event.preventDefault();
 				return;
 			}
 			if (this.votingInProgress) {
@@ -289,6 +290,7 @@ export default {
 					this.votingInProgress = false;
 				});
 			this.updateUpvotesClientSide(solutionId);
+			event.preventDefault();
 		},
 		showLoginPanel(x, y) {
 			console.log("showing login panel", this.$refs.loginPanel);
@@ -315,6 +317,7 @@ export default {
 			if (this.$refs.loginPanel && !this.$refs.loginPanel.contains(event.target)) {
 				this.hideLoginPanel();
 			}
+			event.stopPropagation();
 		},
 		redirectToLogin() {
 			window.location.href = window.route("login", window.Laravel.locale) + "?redirectTo=" + window.location.href;
