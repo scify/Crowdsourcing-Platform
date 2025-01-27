@@ -360,7 +360,7 @@ export default {
 			} else {
 				let questionnaireResponseThankYouURL = window.route(
 					"questionnaire.thanks",
-					this.getDefaultLocaleForQuestionnaire(),
+					this.locale,
 					this.project.slug,
 					this.questionnaire.id,
 				);
