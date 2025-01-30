@@ -2,3 +2,4 @@
 *
 !.gitignore
 !cookies_consent/
+!cookies_consent/**
