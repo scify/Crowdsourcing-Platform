@@ -31,7 +31,7 @@ return [
     'cookies' => [
         'strictly_necessary' => [
             [
-                'name' => 'cookieConsent',
+                'name' => 'crowdsourcing_app_cookies_consent',
                 'description' => 'This cookie is set by the GDPR Cookie Consent plugin and is used to store whether or not user has consented to the use of cookies. It does not store any personal data.',
                 'duration' => '2 years',
                 'policy_external_link' => null,
