@@ -17,7 +17,6 @@ yarn-error.log
 _ide_helper.php
 storage/database_testing.sqlite*
 public/images/vendor
-public/vendor
 .phpunit.result.cache
 .env.testing
 public/sitemap.xml
