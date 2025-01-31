@@ -11,4 +11,6 @@ return [
     'back-to-the-solutions' => 'Back to the Solutions',
     'suggest_solution' => 'Suggest a solution',
     'project_landing_page_problems_action_button' => 'See all problems',
+    'no_solutions_for_this_problem_yet' => 'No solutions for this problem yet!',
+    'be_the_first_to_propose_a_solution' => 'Be the first to propose a solution and make an impact!',
 ];

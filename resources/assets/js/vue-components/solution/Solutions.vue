@@ -1,89 +1,100 @@
 <template>
 	<div class="py-4">
-		<propose-solution></propose-solution>
-		<div class="row">
+		<div v-if="solutions.length === 0" class="row">
 			<div class="col-12">
-				<h2 class="my-2">{{ trans("project-problems.list_of_solutions") }}</h2>
+				<h2 class="mt-5 mb-0">
+					{{ trans("project-problems.no_solutions_for_this_problem_yet") }}
+					<br>
+					{{ trans("project-problems.be_the_first_to_propose_a_solution") }}
+				</h2>
 			</div>
 		</div>
-		<div class="row justify-content-center py-5">
-			<div class="col-lg-12 col-md-10 col-lg-11 col-xl-9">
-				<div class="container-fluid p-0">
-					<div v-if="userVotesLeft !== null" class="row pb-4">
-						<div class="col">
-							<p
-								v-sane-html="getVotesInfoMessage()"
-								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0"
-							></p>
-							<p
-								v-sane-html="getVotesLeftMessage()"
-								style="font-size: 1.429rem; line-height: 1.949rem; text-align: center"
-							></p>
-						</div>
-					</div>
-					<div v-if="errorMessage.length" class="row">
-						<div class="col">
-							<div id="error-alert" class="alert-component position-relative d-none">
-								<div class="alert alert-danger" role="alert">
-									<p v-sane-html="errorMessage" class="my-2"></p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div v-if="loading" class="row">
-						<div class="col mx-auto">
-							<div class="d-flex justify-content-center align-items-center">
-								<div class="spinner-border" role="status">
-									<span class="sr-only">Loading...</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- <ul class="row" style="padding-left: 50px; padding-right: 50px;"> --><!-- bookmark3 - to match mockup at 1320px-->
-					<ul class="row" style="padding-left: 50px; padding-right: 50px;">
-						<li
-							v-for="solution in solutions"
-							:id="'solution_card_' + solution.id"
-							:key="solution.id"
-							class="col-12"
-						>
-							<div class="card">
-								<div v-if="!solution.img_url" class="card-placeholder-img-container d-none d-sm-block">
-									<SolutionDefaultImage></SolutionDefaultImage>
-								</div>
-								<div v-else class="card-custom-img-container d-none d-sm-block">
-									<img :src="solution.img_url" alt="decorative image for solution" />
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">
-										{{ solution.current_translation.title }}
-									</h5>
-									<p class="card-text mb-4">
-										{{ solution.current_translation.description }}
-									</p>
-								</div>
-							</div>
-							<HeartCircleButton
-								:is-filled="solution.upvoted_by_current_user"
-								:icon-color-theme="buttonTextColorTheme"
-								@click="(event) => heartClicked(event, solution.id)"
-							></HeartCircleButton>
-							<div class="upvote-count">
-								{{ solution.upvotes_count }}
-							</div>
-							<div>
-								<ShareCircleButton
-									:icon-color-theme="buttonTextColorTheme"
-									:share-url="getSolutionPageURL(solution)"
-								></ShareCircleButton>
-							</div>
-						</li>
-					</ul>
+		<propose-solution></propose-solution>
+		<div v-if="solutions.length !== 0">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="my-2">{{ trans("project-problems.list_of_solutions") }}</h2>
 				</div>
 			</div>
-		</div>
-		<div v-if="solutions.length > 10">
-			<propose-solution></propose-solution>
+			<div class="row justify-content-center py-5">
+				<div class="col-lg-12 col-md-10 col-lg-11 col-xl-9">
+					<div class="container-fluid p-0">
+						<div v-if="userVotesLeft !== null" class="row pb-4">
+							<div class="col">
+								<p
+									v-sane-html="getVotesInfoMessage()"
+									style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0"
+								></p>
+								<p
+									v-sane-html="getVotesLeftMessage()"
+									style="font-size: 1.429rem; line-height: 1.949rem; text-align: center"
+								></p>
+							</div>
+						</div>
+						<div v-if="errorMessage.length" class="row">
+							<div class="col">
+								<div id="error-alert" class="alert-component position-relative d-none">
+									<div class="alert alert-danger" role="alert">
+										<p v-sane-html="errorMessage" class="my-2"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div v-if="loading" class="row">
+							<div class="col mx-auto">
+								<div class="d-flex justify-content-center align-items-center">
+									<div class="spinner-border" role="status">
+										<span class="sr-only">Loading...</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <ul class="row" style="padding-left: 50px; padding-right: 50px;"> --><!-- bookmark3 - to match mockup at 1320px-->
+						<ul class="row" style="padding-left: 50px; padding-right: 50px;">
+							<li
+								v-for="solution in solutions"
+								:id="'solution_card_' + solution.id"
+								:key="solution.id"
+								class="col-12"
+							>
+								<div class="card">
+									<div v-if="!solution.img_url" class="card-placeholder-img-container d-none d-sm-block">
+										<SolutionDefaultImage></SolutionDefaultImage>
+									</div>
+									<div v-else class="card-custom-img-container d-none d-sm-block">
+										<img :src="solution.img_url" alt="decorative image for solution" />
+									</div>
+									<div class="card-body">
+										<h5 class="card-title">
+											{{ solution.current_translation.title }}
+										</h5>
+										<p class="card-text mb-4">
+											{{ solution.current_translation.description }}
+										</p>
+									</div>
+								</div>
+								<HeartCircleButton
+									:is-filled="solution.upvoted_by_current_user"
+									:icon-color-theme="buttonTextColorTheme"
+									@click="(event) => heartClicked(event, solution.id)"
+								></HeartCircleButton>
+								<div class="upvote-count">
+									{{ solution.upvotes_count }}
+								</div>
+								<div>
+									<ShareCircleButton
+										:icon-color-theme="buttonTextColorTheme"
+										:share-url="getSolutionPageURL(solution)"
+									></ShareCircleButton>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div v-if="solutions.length > 10">
+				<propose-solution></propose-solution>
+			</div>
 		</div>
 	</div>
 	<div ref="loginPanel" class="floating-panel d-none">
