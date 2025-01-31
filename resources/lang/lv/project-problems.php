@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Atpakaļ uz risinājumiem',
     'suggest_solution' => 'Piedāvāt risinājumu',
     'project_landing_page_problems_action_button' => 'Skatīt visus problēmas',
+    'no_problems_currently_published' => '(Šim projektam pašlaik nav publicētu problēmu)',
+    'no_solutions_for_this_problem_yet' => 'Šai problēmai vēl nav risinājumu!',
+    'be_the_first_to_propose_a_solution' => 'Esi pirmais, kurš piedāvā risinājumu un maina situāciju!',
 ];
