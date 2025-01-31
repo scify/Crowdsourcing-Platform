@@ -42,9 +42,15 @@ class ProblemManager {
         $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
     }
 
-    public function getProblemsLandingPageViewModel(string $crowdSouringProjectSlug): ProblemsLandingPage {
-        $crowdSourcingProject = $this->problemRepository->getProjectWithProblemsByProjectSlug($crowdSouringProjectSlug);
+    public function getProblemsLandingPageViewModel(string $crowdSourcingProjectSlug): ProblemsLandingPage {
+        $crowdSourcingProject = $this->problemRepository->getProjectWithProblemsByProjectSlug($crowdSourcingProjectSlug);
         $crowdSourcingProject->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($crowdSourcingProject);
+
+        // only published problems should be included with the project in this context
+        $filtered = $crowdSourcingProject->problems->filter(function ($problem) {
+            return $problem->status_id === ProblemStatusLkp::PUBLISHED;
+        });
+        $crowdSourcingProject->problems = $filtered;
 
         return new ProblemsLandingPage($crowdSourcingProject);
     }
