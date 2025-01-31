@@ -1,5 +1,0 @@
-# ignore everything in this directory except this file and the cookies_consent directory
-*
-!.gitignore
-!cookies_consent/
-!cookies_consent/**
