@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Vissza a megoldásokhoz',
     'suggest_solution' => 'Javasoljon megoldást',
     'project_landing_page_problems_action_button' => 'Tekintse meg az összes problémát',
+    'no_problems_currently_published' => '(Jelenleg nincsenek közzétett problémák ehhez a projekthez)',
+    'no_solutions_for_this_problem_yet' => 'Erre a problémára még nincs megoldás!',
+    'be_the_first_to_propose_a_solution' => 'Legyen Ön az első, aki megoldást javasol és változást hoz!',
 ];

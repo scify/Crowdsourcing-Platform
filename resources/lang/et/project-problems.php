@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Tagasi lahenduste juurde',
     'suggest_solution' => 'Paku lahendus',
     'project_landing_page_problems_action_button' => 'Vaata kõiki probleeme',
+    'no_problems_currently_published' => '(Selle projekti jaoks pole praegu avaldatud probleeme)',
+    'no_solutions_for_this_problem_yet' => 'Sellele probleemile pole veel lahendusi!',
+    'be_the_first_to_propose_a_solution' => 'Ole esimene, kes pakub lahenduse ja teeb muutuse!',
 ];
