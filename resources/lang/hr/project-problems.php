@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Povratak na rješenja',
     'suggest_solution' => 'Predloži rješenje',
     'project_landing_page_problems_action_button' => 'Pogledajte sve probleme',
+    'no_problems_currently_published' => '(Trenutno nema objavljenih problema za ovaj projekt)',
+    'no_solutions_for_this_problem_yet' => 'Još nema rješenja za ovaj problem!',
+    'be_the_first_to_propose_a_solution' => 'Budite prvi koji će predložiti rješenje i napraviti promjenu!',
 ];

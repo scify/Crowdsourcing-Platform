@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Επιστροφή στις λύσεις',
     'suggest_solution' => 'Προτείνετε μια λύση',
     'project_landing_page_problems_action_button' => 'Δείτε όλα τα προβλήματα',
+    'no_problems_currently_published' => '(Δεν υπάρχουν δημοσιευμένα προβλήματα για αυτό το έργο προς το παρόν)',
+    'no_solutions_for_this_problem_yet' => 'Δεν υπάρχουν ακόμη λύσεις για αυτό το πρόβλημα!',
+    'be_the_first_to_propose_a_solution' => 'Γίνετε οι πρώτοι που θα προτείνουν μια λύση και θα κάνουν τη διαφορά!',
 ];

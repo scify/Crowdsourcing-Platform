@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Torna alle soluzioni',
     'suggest_solution' => 'Suggerisci una soluzione',
     'project_landing_page_problems_action_button' => 'Vedi tutti i problemi',
+    'no_problems_currently_published' => '(Al momento non ci sono problemi pubblicati per questo progetto)',
+    'no_solutions_for_this_problem_yet' => 'Non ci sono ancora soluzioni per questo problema!',
+    'be_the_first_to_propose_a_solution' => 'Sii il primo a proporre una soluzione e a fare la differenza!',
 ];

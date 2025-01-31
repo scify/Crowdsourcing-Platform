@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Обратно към решенията',
     'suggest_solution' => 'Предложете решение',
     'project_landing_page_problems_action_button' => 'Вижте всички проблеми',
+    'no_problems_currently_published' => '(В момента няма публикувани проблеми за този проект)',
+    'no_solutions_for_this_problem_yet' => 'Все още няма решения за този проблем!',
+    'be_the_first_to_propose_a_solution' => 'Бъдете първите, които ще предложат решение и ще окажат въздействие!',
 ];

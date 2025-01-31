@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Înapoi la soluții',
     'suggest_solution' => 'Propune o soluție',
     'project_landing_page_problems_action_button' => 'Vezi toate problemele',
+    'no_problems_currently_published' => '(Nu există probleme publicate în prezent pentru acest proiect)',
+    'no_solutions_for_this_problem_yet' => 'Încă nu există soluții pentru această problemă!',
+    'be_the_first_to_propose_a_solution' => 'Fii primul care propune o soluție și face o diferență!',
 ];

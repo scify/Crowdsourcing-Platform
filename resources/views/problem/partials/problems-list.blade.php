@@ -3,7 +3,13 @@
     <div class="row">
         <div class="col-12">
             <h2>{{ __("project-problems.list_of_problems") }}</h2>
-            <p style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0;">{{ __("project-problems.select-a-problem-to-begin") }}</p>
+            <p style="font-size: 1.429rem; line-height: 1.949rem; text-align: center; margin-bottom: 0;">
+                @if (count($viewModel->project->problems) === 0)
+                    {{ __("project-problems.no_problems_currently_published") }}
+                @else
+                    {{ __("project-problems.select-a-problem-to-begin") }}
+                @endif
+            </p>
         </div>
     </div>
     <problems
