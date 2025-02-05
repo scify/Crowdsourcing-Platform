@@ -8,6 +8,7 @@
                             <img loading="lazy" src="{{$project->logo_path}}" alt="logo of the project">
                         </div>
                         <div class="project-info">
+                            <h4 class="text-center">{!! $project->currentTranslation->name !!}</h4>
                             <p>{!! $project->currentTranslation->motto_title !!}</p>
                         </div>
                         <div class="container-fluid">
