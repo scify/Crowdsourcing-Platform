@@ -11,4 +11,7 @@ return [
     'back-to-the-solutions' => 'Terug naar de oplossingen',
     'suggest_solution' => 'Stel een oplossing voor',
     'project_landing_page_problems_action_button' => 'Bekijk alle problemen',
+    'no_problems_currently_published' => '(Er zijn momenteel geen problemen gepubliceerd voor dit project)',
+    'no_solutions_for_this_problem_yet' => 'Er zijn nog geen oplossingen voor dit probleem!',
+    'be_the_first_to_propose_a_solution' => 'Wees de eerste die een oplossing voorstelt en een verschil maakt!',
 ];
