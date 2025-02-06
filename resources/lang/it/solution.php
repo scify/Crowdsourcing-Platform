@@ -49,4 +49,5 @@ return [
     'propose_solution_title' => 'Proponi una Soluzione',
     'number_of_votes_title' => 'Numero di Voti',
     'have_a_solution_to_suggest' => 'Hai una soluzione da suggerire?',
+    'characters_left' => 'caratteri rimanenti',
 ];

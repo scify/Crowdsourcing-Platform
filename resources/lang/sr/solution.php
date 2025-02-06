@@ -49,4 +49,5 @@ return [
     'propose_solution_title' => 'Predložite rešenje',
     'number_of_votes_title' => 'Broj glasova',
     'have_a_solution_to_suggest' => 'Имате ли предлог решења?',
+    'characters_left' => 'осталих карактера',
 ];

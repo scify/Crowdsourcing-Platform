@@ -49,4 +49,5 @@ return [
     'propose_solution_title' => 'Propune o soluție',
     'number_of_votes_title' => 'Numărul de voturi',
     'have_a_solution_to_suggest' => 'Ai o soluție de propus?',
+    'characters_left' => 'caractere rămase',
 ];

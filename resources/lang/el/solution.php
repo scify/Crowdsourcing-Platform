@@ -49,4 +49,5 @@ return [
     'propose_solution_title' => 'Προτείνετε μια Λύση',
     'number_of_votes_title' => 'Αριθμός Ψήφων',
     'have_a_solution_to_suggest' => 'Έχετε να προτείνετε μια λύση;',
+    'characters_left' => 'χαρακτήρες απομένουν',
 ];

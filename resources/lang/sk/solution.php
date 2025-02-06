@@ -49,4 +49,5 @@ return [
     'propose_solution_title' => 'Navrhnúť riešenie',
     'number_of_votes_title' => 'Počet hlasov',
     'have_a_solution_to_suggest' => 'Máte riešenie na návrh?',
+    'characters_left' => 'znakov zostáva',
 ];

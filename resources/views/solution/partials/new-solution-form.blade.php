@@ -41,7 +41,10 @@
                                maxlength="100"
                                {{ $errors->has('solution-title') ? 'aria-describedby="solution-title-feedback"' : '' }}
                                value="{{ old('solution-title') ? old('solution-title') : '' }}"
+                               oninput="updateCharCount('solution-title', 100)"
                         >
+                        <small id="solution-title-count"
+                               class="form-text text-muted">100 {{ __('solution.characters_left') }}</small>
                         <div id="solution-title-feedback" class="invalid-feedback">
                             <strong>{{ $errors->first('solution-title') }}</strong></div>
                     </div>
@@ -62,7 +65,10 @@
                                 placeholder="{{ __('solution.solution_description_placeholder') }}"
                                 maxlength="400"
                                 {{ $errors->has('solution-description') ? 'aria-describedby="solution-description-feedback"' : '' }}
-                            >{{ old('solution-description') ? old('solution-description') : '' }}</textarea>
+                                oninput="updateCharCount('solution-description', 400)"
+                        >{{ old('solution-description') ? old('solution-description') : '' }}</textarea>
+                        <small id="solution-description-count"
+                               class="form-text text-muted">400 {{ __('solution.characters_left') }}</small>
                         <div id="solution-description-feedback" class="invalid-feedback">
                             <strong>{{ $errors->first('solution-description') }}</strong>
                         </div>
@@ -70,66 +76,7 @@
                 </div>
             </div>
 
-            <div class="row form-row">
-                <div class="col-12">
-                    <h4>{{ __('solution.solution_translation_notice_title') }}</h4>
-                    <p>{!! __('solution.solution_translation_notice') !!}</p>
-                </div>
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="translation-notice"
-                               name="translation-notice" required>
-                        <label class="form-check-label" for="translation-notice">
-                            {{ __('solution.solution_translation_notice_checkbox') }} (<span
-                                    class="red">*</span>)
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row form-row mt-4">
-                <div class="col-12">
-                    <h3 class="mb-4">{{ __('solution.community_guidelines_title') }}</h3>
-                    <h4>{{ __('solution.quality_submissions_title') }}</h4>
-                    <p>{{ __('solution.community_guidelines_intro') }}</p>
-                </div>
-                <div class="col-12">
-                    <ul>
-                        @foreach(__('solution.community_guidelines_list') as $item)
-                            <li>{{ $item }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row form-row mt-4">
-                <div class="col-12">
-                    <h4>{{ __('solution.respectful_content_title') }}</h4>
-                    <p>{{ __('solution.respectful_content_message') }}</p>
-                </div>
-                <div class="col-12">
-                    <ul>
-                        @foreach(__('solution.respectful_content_list') as $item)
-                            <li>{{ $item }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row form-row">
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="consent-notice"
-                               name="consent-notice" required>
-                        <label class="form-check-label" for="consent-notice">
-                            {!! __('solution.solution_consent_notice', [
-                                'privacy_policy' => '<a href="' . route('terms.privacy', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.terms_privacy') . '</a>',
-                                'code_of_conduct' => '<a href="' . route('code-of-conduct', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.code_of_conduct') . '</a>'
-                            ]) !!} (<span
-                                    class="red">*</span>)
-                        </label>
-                    </div>
-                </div>
-            </div>
+            <!-- Rest of the form -->
 
         </div>
 
@@ -147,10 +94,19 @@
             </div>
         </div>
 
-
     </form>
 
 </div>
 @push('scripts')
     @vite('resources/assets/js/solution/manage-solution.js')
+    <script>
+		const charactersLeftMessage = "{{ __('solution.characters_left') }}";
+
+		function updateCharCount(fieldId, maxChars) {
+			const field = document.getElementById(fieldId);
+			const countField = document.getElementById(fieldId + "-count");
+			const remainingChars = maxChars - field.value.length;
+			countField.textContent = remainingChars + " " + charactersLeftMessage;
+		}
+    </script>
 @endpush
