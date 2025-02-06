@@ -107,7 +107,7 @@
 	#single-problem-page {
 		#single-problem-overview,
 		.row.problem-description {
-			padding-bottom: 7.5rem;
+			padding-bottom: 3rem;
 		}
 
 		.section-title {
@@ -125,6 +125,10 @@
 		.section-body p {
 			font-size: 1.429rem;
 			line-height: 1.949rem;
+		}
+
+		.img-fluid {
+			max-height: 260px;
 		}
 	}
 }

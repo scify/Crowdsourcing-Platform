@@ -17,7 +17,7 @@
 						<h2 class="my-2">{{ trans("project-problems.list_of_solutions") }}</h2>
 					</div>
 				</div>
-				<div class="row justify-content-center py-5">
+				<div class="row justify-content-center pt-2 pb-4">
 					<div class="col-lg-12 col-md-10 col-lg-11 col-xl-9">
 						<div class="container-fluid p-0">
 							<div v-if="userVotesLeft !== null" class="row pb-4">
@@ -28,7 +28,7 @@
 											font-size: 1.429rem;
 											line-height: 1.949rem;
 											text-align: center;
-											margin-bottom: 0;
+											margin-bottom: 10px;
 										"
 									></p>
 									<p
