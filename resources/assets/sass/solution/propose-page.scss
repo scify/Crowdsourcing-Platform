@@ -122,32 +122,11 @@
 			}
 		}
 	}
-}
 
-// from "lg" and UP
-@media (min-width: 992px) {
-}
-
-// from "xl" and UP
-@media (min-width: 1200px) {
-}
-
-// from (custom breakpoint) "custom_xxl" and UP
-@media (min-width: 1260px) {
-}
-
-// from "sm" and DOWN
-@media (max-width: 767.98px) {
-}
-
-// from "md" and DOWN
-@media (max-width: 991.98px) {
-}
-
-// from "lg" and DOWN
-@media (max-width: 1199.98px) {
-}
-
-// from "xl" and DOWN
-@media (max-width: 1259.98px) {
+	.required-msg {
+		font-size: 1rem;
+		line-height: 1.167rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 }

@@ -50,4 +50,7 @@ return [
     'number_of_votes_title' => 'Nombre de votes',
     'have_a_solution_to_suggest' => 'Avez-vous une solution à proposer ?',
     'characters_left' => 'caractères restants',
+    'consent_notice_required' => 'Vous devez accepter nos directives et conditions pour soumettre une solution.',
+    'translation_notice_required' => 'Vous devez accepter l\'avis de traduction pour soumettre une solution.',
+    'required' => 'Obligatoire',
 ];

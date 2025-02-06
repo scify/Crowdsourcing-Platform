@@ -50,4 +50,7 @@ return [
     'number_of_votes_title' => 'Broj glasova',
     'have_a_solution_to_suggest' => 'Imate li rješenje za predložiti?',
     'characters_left' => 'preostalih znakova',
+    'consent_notice_required' => 'Morate se složiti s našim smjernicama i uvjetima kako biste poslali rješenje.',
+    'translation_notice_required' => 'Morate se složiti s obavijesti o prijevodu kako biste poslali rješenje.',
+    'required' => 'Obavezno',
 ];

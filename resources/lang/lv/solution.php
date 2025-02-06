@@ -50,4 +50,7 @@ return [
     'number_of_votes_title' => 'Balsu skaits',
     'have_a_solution_to_suggest' => 'Vai jums ir risinājums, ko ieteikt?',
     'characters_left' => 'atlikušie simboli',
+    'consent_notice_required' => 'Lai iesniegtu risinājumu, jums jāpiekrīt mūsu vadlīnijām un nosacījumiem.',
+    'translation_notice_required' => 'Lai iesniegtu risinājumu, jums jāpiekrīt tulkošanas paziņojumam.',
+    'required' => 'Nepieciešams',
 ];

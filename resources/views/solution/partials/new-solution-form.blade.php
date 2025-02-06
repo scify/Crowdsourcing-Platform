@@ -1,16 +1,12 @@
 <div class="container px-sm-0">
-
     <div class="row">
         <div class="col-12">
             <h2 class="solution-form-title pb-2 mb-5">{{ __('solution.submission_form') }}</h2>
         </div>
     </div>
-
     <form id="solution-form" enctype="multipart/form-data" method="POST"
           action="{{ route('solutions.user-proposal-store', [request('project_slug'), request('problem_slug')]) }}">
-
         @csrf
-
         <div class="container-fluid p-0">
 
             <div class="row form-row">
@@ -50,7 +46,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row form-row">
                 <div class="col-12">
                     <div class="form-group">
@@ -75,8 +70,68 @@
                     </div>
                 </div>
             </div>
+            <div class="row form-row">
+                <div class="col-12 mb-4">
+                    <h4>{{ __('solution.solution_translation_notice_title') }}</h4>
+                    <p>{!! __('solution.solution_translation_notice') !!}</p>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <div class="required-msg">Required:</div>
+                        <input class="form-check-input" type="checkbox" id="translation-notice"
+                               name="translation-notice" required>
+                        <label class="form-check-label" for="translation-notice">
+                            {{ __('solution.solution_translation_notice_checkbox') }} (<span
+                                    class="red">*</span>)
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-row mt-4">
+                <div class="col-12">
+                    <h3 class="mb-4">{{ __('solution.community_guidelines_title') }}</h3>
+                    <h4>{{ __('solution.quality_submissions_title') }}</h4>
+                    <p>{{ __('solution.community_guidelines_intro') }}</p>
+                </div>
+                <div class="col-12">
+                    <ul>
+                        @foreach(__('solution.community_guidelines_list') as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
 
-            <!-- Rest of the form -->
+            <div class="row form-row mt-4">
+                <div class="col-12">
+                    <h4>{{ __('solution.respectful_content_title') }}</h4>
+                    <p>{{ __('solution.respectful_content_message') }}</p>
+                </div>
+                <div class="col-12">
+                    <ul>
+                        @foreach(__('solution.respectful_content_list') as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row form-row">
+                <div class="col-12">
+                    <div class="form-check">
+                        <div class="required-msg">Required:</div>
+                        <input class="form-check-input" type="checkbox" id="consent-notice"
+                               name="consent-notice" required>
+                        <label class="form-check-label" for="consent-notice">
+                            {!! __('solution.solution_consent_notice', [
+                                'privacy_policy' => '<a href="' . route('terms.privacy', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.terms_privacy') . '</a>',
+                                'code_of_conduct' => '<a href="' . route('code-of-conduct', ['locale' => app()->getLocale()]) . '" target="_blank">' . __('common.code_of_conduct') . '</a>'
+                            ]) !!} (<span
+                                    class="red">*</span>)
+                        </label>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -89,6 +144,9 @@
                                 data-callback="onSubmit"
                                 data-action="submitSolution"
                         >{{ __('solution.submit_solution') }}</button>
+                    </div>
+                    <div class="col-12">
+                        <div id="error-messages" class="text-danger text-center py-3" style="display: none;"></div>
                     </div>
                 </div>
             </div>
