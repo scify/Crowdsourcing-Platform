@@ -575,7 +575,12 @@ export default defineComponent({
 				this.surveyCreator.changeText(response.data.translation);
 				this.surveyCreator.showTranslationEditor();
 				this.modalOpen = false;
-				showToast("Translations generated! Don't forget to Save the questionnaire!", "#28a745", "bottom-right", 7000);
+				showToast(
+					"Translations generated! Don't forget to Save the questionnaire!",
+					"#28a745",
+					"bottom-right",
+					7000,
+				);
 			} catch (error) {
 				console.error(error);
 				this.modalOpen = false;

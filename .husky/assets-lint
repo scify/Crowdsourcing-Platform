@@ -1,0 +1,23 @@
+# .husky/js-lint
+
+# Get a list of staged JavaScript files
+JS_FILES=$(git diff --cached --name-only --diff-filter=d | grep '\.js$' || true)
+
+# Run ESLint for JavaScript files only
+if [ -n "$JS_FILES" ]; then
+    echo "Running ESLint for JavaScript files..."
+    if [ "$USE_DOCKER" = "true" ]; then
+        docker run --rm -v "$PWD":/app -w /app node:22 npm run lint
+    else
+        npm run lint
+    fi
+    if [ $? -ne 0 ]; then
+        echo "ESLint failed."
+        exit 1
+    fi
+
+    # Restage JavaScript files after ESLint formatting
+    echo "$JS_FILES" | xargs -r git add
+fi
+
+exit 0

@@ -1,0 +1,23 @@
+# .husky/js-format
+
+# Get a list of staged JavaScript files
+JS_FILES=$(git diff --cached --name-only --diff-filter=d | grep '\.js$' || true)
+
+# Run Prettier for JavaScript files only
+if [ -n "$JS_FILES" ]; then
+    echo "Running Prettier for JavaScript files..."
+    if [ "$USE_DOCKER" = "true" ]; then
+        docker run --rm -v "$PWD":/app -w /app node:22 npm run format
+    else
+        npm run format
+    fi
+    if [ $? -ne 0 ]; then
+        echo "Prettier failed."
+        exit 1
+    fi
+
+    # Restage JavaScript files after Prettier formatting
+    echo "$JS_FILES" | xargs -r git add
+fi
+
+exit 0

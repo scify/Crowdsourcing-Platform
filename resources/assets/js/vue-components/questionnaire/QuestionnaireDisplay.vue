@@ -174,7 +174,7 @@ export default {
 			if (this.questionnaire.respondent_auth_required) {
 				message += trans("questionnaire.must_be_logged_in_prompt") + "<br><br>";
 			}
-			return (message + trans("questionnaire.create_account_prompt"));
+			return message + trans("questionnaire.create_account_prompt");
 		},
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
@@ -230,7 +230,9 @@ export default {
 						$(this).attr("spellcheck", true);
 					});
 					$(".sv-components-container-contentBottom").after(
-						"<p class='questionnaire-disclaimer d-block mb-0 px-1 text-center py-3'>" + trans('common.personal_information_disclaimer') + "</p>",
+						"<p class='questionnaire-disclaimer d-block mb-0 px-1 text-center py-3'>" +
+							trans("common.personal_information_disclaimer") +
+							"</p>",
 					);
 				}, 2000);
 			});

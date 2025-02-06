@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Paku Lahendus',
     'number_of_votes_title' => 'Hääletuste Arv',
     'have_a_solution_to_suggest' => 'Kas teil on lahendust pakkuda?',
+    'characters_left' => 'märgid alles',
+    'consent_notice_required' => 'Lahenduse esitamiseks peate nõustuma meie juhiste ja tingimustega.',
+    'translation_notice_required' => 'Lahenduse esitamiseks peate nõustuma tõlke teatega.',
+    'required' => 'Nõutud',
 ];

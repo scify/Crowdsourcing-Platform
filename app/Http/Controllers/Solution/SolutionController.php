@@ -69,8 +69,8 @@ class SolutionController extends Controller {
 
     public function userProposalStore(Request $request): RedirectResponse {
         $validated = $this->validate($request, [
-            'solution-title' => ['required', 'string', 'max:100'],
-            'solution-description' => ['required', 'string', 'max:400'],
+            'solution-title' => ['required', 'string', 'max:110'],
+            'solution-description' => ['required', 'string', 'max:410'],
             'solution-owner-problem' => ['required'],
             'g-recaptcha-response' => ['required', new ReCaptchaV3('submitSolution', 0.5)],
             'consent-notice' => ['required', 'accepted'],
@@ -124,8 +124,8 @@ class SolutionController extends Controller {
      */
     public function update(Request $request, string $locale, int $id) {
         $validated = $this->validate($request, [
-            'solution-title' => ['required', 'string', 'max:100'],
-            'solution-description' => ['required', 'string', 'max:400'],
+            'solution-title' => ['required', 'string', 'max:110'],
+            'solution-description' => ['required', 'string', 'max:410'],
             'solution-status' => ['required'],
             'solution-slug' => 'required|string|alpha_dash|unique:solutions,slug,' . $id . '|max:111',
             'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',

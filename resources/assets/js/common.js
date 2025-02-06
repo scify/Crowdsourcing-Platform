@@ -20,7 +20,7 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 		beforeSend(event, hint) {
 			if (hint.originalException === "Timeout") return null;
 			return event;
-		}
+		},
 	});
 }
 

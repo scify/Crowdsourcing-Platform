@@ -61,7 +61,7 @@
 							<button
 								:disabled="saveLoading"
 								type="button"
-								class="btn btn-primary btn-slim w-100 "
+								class="btn btn-primary btn-slim w-100"
 								@click="saveQuestionnaireLanguagesStatus"
 							>
 								Save<span

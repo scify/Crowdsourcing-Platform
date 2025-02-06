@@ -1,58 +1,64 @@
 <template>
-	<div class="container-fluid px-0">
-		<div class="row px-0">
-			<div class="col">
-				<div class="card card-info">
-					<div class="card-header">
-						<h3 class="card-title">Crowdsourcing Projects Problems</h3>
-					</div>
-					<div class="card-body">
-						<div class="container-fluid px-0">
-							<div class="row px-0 mb-3">
-								<div class="col-12">
-									<label for="projectSelect" class="form-label mb-0"
-										>Select a project to view the problems</label
-									>
-									<div :class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"></div>
-									<select
-										id="projectSelect"
-										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
-										v-model="selectedProjectId"
-										@change="getProjectProblems"
-									>
-										<option value="" disabled selected>Select a project</option>
-										<option v-for="project in projects" :key="project.id" :value="project.id">
-											{{ project.default_translation.name }}
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="row px-0 mb-3">
-								<div class="col">
-									<div class="form-check mb-3">
-										<input
-											class="form-check-input"
-											type="checkbox"
-											id="filterUnpublishedProblems"
-											@change="toggleShowUnpublishedProblems"
-										/>
-										<label class="form-check-label" for="filterUnpublishedProblems">
-											Show only unpublished problems
-										</label>
+	<div>
+		<div class="container-fluid px-0">
+			<div class="row px-0">
+				<div class="col">
+					<div class="card card-info">
+						<div class="card-header">
+							<h3 class="card-title">Crowdsourcing Projects Problems</h3>
+						</div>
+						<div class="card-body">
+							<div class="container-fluid px-0">
+								<div class="row px-0 mb-3">
+									<div class="col-12">
+										<label for="projectSelect" class="form-label mb-0"
+											>Select a project to view the problems</label
+										>
+										<div
+											:class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"
+										></div>
+										<select
+											id="projectSelect"
+											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
+											v-model="selectedProjectId"
+											@change="getProjectProblems"
+										>
+											<option value="" disabled selected>Select a project</option>
+											<option v-for="project in projects" :key="project.id" :value="project.id">
+												{{ project.default_translation.name }}
+											</option>
+										</select>
 									</div>
 								</div>
-							</div>
-							<div class="row px-0">
-								<div class="col" :class="[fetched && problems.length ? '' : 'd-none']">
-									<table
-										id="problemsTable"
-										class="display table table-striped table-bordered"
-									></table>
+								<div class="row px-0 mb-3">
+									<div class="col">
+										<div class="form-check mb-3">
+											<input
+												class="form-check-input"
+												type="checkbox"
+												id="filterUnpublishedProblems"
+												@change="toggleShowUnpublishedProblems"
+											/>
+											<label class="form-check-label" for="filterUnpublishedProblems">
+												Show only unpublished problems
+											</label>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="row px-0">
-								<div class="col" :class="[fetched && !problems.length ? '' : 'hidden']">
-									<div class="alert alert-warning">No problems found for the selected project</div>
+								<div class="row px-0">
+									<div class="col" :class="[fetched && problems.length ? '' : 'd-none']">
+										<table
+											id="problemsTable"
+											class="display table table-striped table-bordered"
+										></table>
+									</div>
+								</div>
+								<div class="row px-0">
+									<div class="col" :class="[fetched && !problems.length ? '' : 'hidden']">
+										<div class="alert alert-warning">
+											No problems found for the selected project
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -60,94 +66,94 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Delete Confirmation Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" v-if="modalProblem.id">
-					<p>
-						Are you sure you want to delete the problem
-						<b>{{ modalProblem?.default_translation?.title ?? "Untitled" }}</b
-						>?
-					</p>
+		<!-- Delete Confirmation Modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" v-if="modalProblem.id">
+						<p>
+							Are you sure you want to delete the problem
+							<b>{{ modalProblem?.default_translation?.title ?? "Untitled" }}</b
+							>?
+						</p>
 
-					<h5 class="text-danger">
-						<b><i class="fas fa-exclamation-triangle mr-2"></i>This action is irreversible!</b>
-					</h5>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
-					<button
-						type="button"
-						class="btn btn-danger btn-slim"
-						@click="confirmDelete"
-						:disabled="modalActionLoading"
-					>
-						<span
-							:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
-							role="status"
-							aria-hidden="true"
-						></span
-						>I understand, Delete the problem
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Update Problem Status Modal -->
-	<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="updateModalLabel">Update Problem Status</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" v-if="modalProblem.id && problemStatuses.length">
-					<p>
-						Select a new status for the problem <b>{{ modalProblem.default_translation.title }}</b>
-					</p>
-					<select class="form-select form-control" v-model="modalProblem.status.id">
-						<option v-for="status in problemStatuses" :key="status.id" :value="status.id">
-							{{ status.title }}
-						</option>
-					</select>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
-					<button
-						type="button"
-						class="btn btn-primary btn-slim"
-						@click="confirmUpdate"
-						:disabled="modalActionLoading"
-					>
-						<span
-							:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
-							role="status"
-							aria-hidden="true"
-						></span
-						>Update
-					</button>
+						<h5 class="text-danger">
+							<b><i class="fas fa-exclamation-triangle mr-2"></i>This action is irreversible!</b>
+						</h5>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+						<button
+							type="button"
+							class="btn btn-danger btn-slim"
+							@click="confirmDelete"
+							:disabled="modalActionLoading"
+						>
+							<span
+								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+								role="status"
+								aria-hidden="true"
+							></span
+							>I understand, Delete the problem
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="alert-component position-relative d-none" id="problemDeletedAlert" style="display: flow-root;">
-		<div class="alert alert-success" role="alert">
-			{{ actionSuccessMessage }}
+		<!-- Update Problem Status Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="updateModalLabel">Update Problem Status</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" v-if="modalProblem.id && problemStatuses.length">
+						<p>
+							Select a new status for the problem <b>{{ modalProblem.default_translation.title }}</b>
+						</p>
+						<select class="form-select form-control" v-model="modalProblem.status.id">
+							<option v-for="status in problemStatuses" :key="status.id" :value="status.id">
+								{{ status.title }}
+							</option>
+						</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+						<button
+							type="button"
+							class="btn btn-primary btn-slim"
+							@click="confirmUpdate"
+							:disabled="modalActionLoading"
+						>
+							<span
+								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+								role="status"
+								aria-hidden="true"
+							></span
+							>Update
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="alert-component position-relative d-none" id="errorAlert" style="display: flow-root;">
-		<div class="alert alert-danger" role="alert">
-			{{ errorMessage }}
+		<div class="alert-component position-relative d-none" id="problemDeletedAlert" style="display: flow-root">
+			<div class="alert alert-success" role="alert">
+				{{ actionSuccessMessage }}
+			</div>
+		</div>
+		<div class="alert-component position-relative d-none" id="errorAlert" style="display: flow-root">
+			<div class="alert alert-danger" role="alert">
+				{{ errorMessage }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -158,12 +164,10 @@ import $ from "jquery";
 import "datatables.net";
 import Modal from "bootstrap/js/dist/modal"; // Import Bootstrap modal
 import axios from "axios";
-import CommonModal from "../../../common/ModalComponent.vue";
 import { getLocale } from "../../../../common-utils";
 
 export default {
 	name: "ProblemsManagement",
-	components: { CommonModal },
 	data() {
 		return {
 			fetched: false,
@@ -197,6 +201,7 @@ export default {
 		...mapActions(["get", "post", "setLoading"]),
 
 		async setUpDataTable() {
+			// eslint-disable-next-line vue/valid-next-tick
 			await this.$nextTick(() => {
 				this.dataTableInstance = $("#problemsTable").DataTable({
 					pageLength: 5,
@@ -305,8 +310,9 @@ export default {
 				: this.problems;
 		},
 
-		updateDataTable() {
-			this.$nextTick(() => {
+		async updateDataTable() {
+			// eslint-disable-next-line vue/valid-next-tick
+			await this.$nextTick(() => {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredProblems.map((problem, index) => ({

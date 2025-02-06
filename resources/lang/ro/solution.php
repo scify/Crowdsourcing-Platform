@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Propune o soluție',
     'number_of_votes_title' => 'Numărul de voturi',
     'have_a_solution_to_suggest' => 'Ai o soluție de propus?',
+    'characters_left' => 'caractere rămase',
+    'consent_notice_required' => 'Trebuie să fii de acord cu ghidurile și termenii noștri pentru a trimite o soluție.',
+    'translation_notice_required' => 'Trebuie să fii de acord cu atenționarea privind traducerea pentru a trimite o soluție.',
+    'required' => 'Obligatoriu',
 ];

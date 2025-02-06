@@ -45,7 +45,8 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-12 control-label" for="motto_subtitle">Project Motto
-                                        Subtitle</label>
+                                        Subtitle (<span
+                                                class="red">*</span>)</label>
                                     <div class="col-sm-12">
                                         <div class="form-group has-feedback">
                                         <textarea id="motto_subtitle" class="form-control" name="motto_subtitle"

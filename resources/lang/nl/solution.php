@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Stel een oplossing voor',
     'number_of_votes_title' => 'Aantal stemmen',
     'have_a_solution_to_suggest' => 'Heeft u een oplossing om voor te stellen?',
+    'characters_left' => 'tekens over',
+    'consent_notice_required' => 'U moet akkoord gaan met onze richtlijnen en voorwaarden om een oplossing in te dienen.',
+    'translation_notice_required' => 'U moet akkoord gaan met de vertalingsmelding om een oplossing in te dienen.',
+    'required' => 'Verplicht',
 ];

@@ -1,7 +1,7 @@
 <div class="container px-sm-0">
 
     <div class="row">
-        <div class="col-12 my-4 my-lg-5 pt-4">
+        <div class="col-12 my-2 pt-2">
             <x-go-back-link
                     href="/{{ app()->getLocale() .'/'. $viewModel->project->slug . '/problems/' . $viewModel->problem->slug }}"
                     class="d-none d-lg-block">{{ __("project-problems.back-to-the-solutions") }}</x-go-back-link>

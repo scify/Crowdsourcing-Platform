@@ -5,8 +5,40 @@
 @push('css')
     <script>
 		function onSubmit(token) {
-			document.getElementById("solution-form").submit();
+			console.log("onSubmit")
+			const translationNotice = document.getElementById('translation-notice');
+			const consentNotice = document.getElementById('consent-notice');
+			const errorMessageDiv = document.getElementById('error-messages');
+			let valid = true;
+			let errorMessages = [];
+
+			if (!translationNotice.checked) {
+				errorMessages.push("{{ __('solution.translation_notice_required') }}");
+				valid = false;
+			}
+
+			if (!consentNotice.checked) {
+				errorMessages.push("{{ __('solution.consent_notice_required') }}");
+				valid = false;
+			}
+
+			if (valid) {
+				document.getElementById("solution-form").submit();
+			} else {
+				grecaptcha.reset();
+				errorMessageDiv.innerHTML = errorMessages.join('<br>');
+				errorMessageDiv.style.display = 'block';
+			}
 		}
+
+		document.addEventListener('DOMContentLoaded', function () {
+			document.getElementById('translation-notice').addEventListener('click', function () {
+				document.getElementById('error-messages').style.display = 'none';
+			});
+			document.getElementById('consent-notice').addEventListener('click', function () {
+				document.getElementById('error-messages').style.display = 'none';
+			});
+		});
     </script>
     @vite('resources/assets/sass/solution/propose-page.scss')
     <style>

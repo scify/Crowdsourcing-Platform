@@ -3,6 +3,6 @@ export default {
 	methods: {
 		trans(key, replace = {}) {
 			return window.trans(key, replace);
-		}
-	}
+		},
+	},
 };

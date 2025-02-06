@@ -1,100 +1,113 @@
 <template>
-	<div class="container-fluid px-0">
-		<div class="row px-0">
-			<div class="col">
-				<div class="card card-info">
-					<div class="card-header">
-						<h3 class="card-title">Campaigns Problems Solutions</h3>
-					</div>
-					<div class="card-body">
-						<div class="container-fluid px-0">
-							<div class="row px-0 mb-3">
-								<div class="col-12">
-									<label for="projectSelect" class="form-label mb-0"
-										>Select a project to view the solutions</label
-									>
-									<div
-										:class="{ 'spinner-border text-primary ml-5': true, hidden: !projectsLoading }"
-									></div>
-									<select
-										id="projectSelect"
-										:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
-										v-model="selectedProjectId"
-										@change="getProblemsAndSolutionsForProject"
-									>
-										<option value="" disabled selected>Select a project</option>
-										<option v-for="project in projects" :key="project.id" :value="project.id">
-											{{ project.default_translation.name }}
-										</option>
-									</select>
-								</div>
-							</div>
-							<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
-								<div class="col-12">
-									<label for="problemSelect" class="form-label mb-0"
-										>Select a problem to further filter the solutions</label
-									>
-									<div
-										:class="{ 'spinner-border text-primary ml-5': true, hidden: !problemsLoading }"
-									></div>
-									<select
-										id="problemSelect"
-										:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
-										v-model="selectedProblemId"
-										@change="getFilteredSolutions"
-									>
-										<option value="" disabled selected>Select a problem</option>
-										<option value="all">View all project's solutions</option>
-										<option v-for="problem in problems" :key="problem.id" :value="problem.id">
-											{{ problem.default_translation.title }}
-										</option>
-									</select>
-								</div>
-							</div>
-							<div :class="['row px-0 mb-3', fetched ? '' : 'hidden']">
-								<div class="col">
-									<div class="form-check mb-3">
-										<input
-											class="form-check-input"
-											type="checkbox"
-											id="filterUnpublishedSolutions"
-											@change="toggleShowUnpublishedSolutions"
-										/>
-										<label class="form-check-label" for="filterUnpublishedSolutions">
-											Show only unpublished solutions
-										</label>
+	<div>
+		<div class="container-fluid px-0">
+			<div class="row px-0">
+				<div class="col">
+					<div class="card card-info">
+						<div class="card-header">
+							<h3 class="card-title">Campaigns Problems Solutions</h3>
+						</div>
+						<div class="card-body">
+							<div class="container-fluid px-0">
+								<div class="row px-0 mb-3">
+									<div class="col-12">
+										<label for="projectSelect" class="form-label mb-0"
+											>Select a project to view the solutions</label
+										>
+										<div
+											:class="{
+												'spinner-border text-primary ml-5': true,
+												hidden: !projectsLoading,
+											}"
+										></div>
+										<select
+											id="projectSelect"
+											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
+											v-model="selectedProjectId"
+											@change="getProblemsAndSolutionsForProject"
+										>
+											<option value="" disabled selected>Select a project</option>
+											<option v-for="project in projects" :key="project.id" :value="project.id">
+												{{ project.default_translation.name }}
+											</option>
+										</select>
 									</div>
 								</div>
-							</div>
-							<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
-								<div class="col-12">
-									<button
-										class="btn btn-primary btn-slim"
-										@click="exportSolutions"
-										:disabled="solutionsLoading"
-									>
-										Export Solutions
-									</button>
+								<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
+									<div class="col-12">
+										<label for="problemSelect" class="form-label mb-0"
+											>Select a problem to further filter the solutions</label
+										>
+										<div
+											:class="{
+												'spinner-border text-primary ml-5': true,
+												hidden: !problemsLoading,
+											}"
+										></div>
+										<select
+											id="problemSelect"
+											:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
+											v-model="selectedProblemId"
+											@change="getFilteredSolutions"
+										>
+											<option value="" disabled selected>Select a problem</option>
+											<option value="all">View all project's solutions</option>
+											<option v-for="problem in problems" :key="problem.id" :value="problem.id">
+												{{ problem.default_translation.title }}
+											</option>
+										</select>
+									</div>
 								</div>
-							</div>
-							<div class="row px-0 mb-3">
-								<div class="col text-center">
-									<div
-										:class="{ 'spinner-border text-primary ml-5': true, hidden: !solutionsLoading }"
-									></div>
+								<div :class="['row px-0 mb-3', fetched ? '' : 'hidden']">
+									<div class="col">
+										<div class="form-check mb-3">
+											<input
+												class="form-check-input"
+												type="checkbox"
+												id="filterUnpublishedSolutions"
+												@change="toggleShowUnpublishedSolutions"
+											/>
+											<label class="form-check-label" for="filterUnpublishedSolutions">
+												Show only unpublished solutions
+											</label>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="row px-0">
-								<div class="col" :class="[fetched && solutions.length ? '' : 'd-none']">
-									<table
-										id="solutionsTable"
-										class="display table table-striped table-bordered"
-									></table>
+								<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
+									<div class="col-12">
+										<button
+											class="btn btn-primary btn-slim"
+											@click="exportSolutions"
+											:disabled="solutionsLoading"
+										>
+											Export Solutions
+										</button>
+									</div>
 								</div>
-							</div>
-							<div class="row px-0">
-								<div class="col" :class="[fetched && !solutions.length ? '' : 'hidden']">
-									<div class="alert alert-warning">No solutions found for the selected filters</div>
+								<div class="row px-0 mb-3">
+									<div class="col text-center">
+										<div
+											:class="{
+												'spinner-border text-primary ml-5': true,
+												hidden: !solutionsLoading,
+											}"
+										></div>
+									</div>
+								</div>
+								<div class="row px-0">
+									<div class="col" :class="[fetched && solutions.length ? '' : 'd-none']">
+										<table
+											id="solutionsTable"
+											class="display table table-striped table-bordered"
+										></table>
+									</div>
+								</div>
+								<div class="row px-0">
+									<div class="col" :class="[fetched && !solutions.length ? '' : 'hidden']">
+										<div class="alert alert-warning">
+											No solutions found for the selected filters
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -102,95 +115,95 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Delete Confirmation Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" v-if="modalSolution.id">
-					<p>
-						Are you sure you want to delete the solution
-						<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b
-						>?
-					</p>
+		<!-- Delete Confirmation Modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" v-if="modalSolution.id">
+						<p>
+							Are you sure you want to delete the solution
+							<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b
+							>?
+						</p>
 
-					<h5 class="text-danger">
-						<b><i class="fas fa-exclamation-triangle mr-2"></i>This action is irreversible!</b>
-					</h5>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
-					<button
-						type="button"
-						class="btn btn-danger btn-slim"
-						@click="confirmDelete"
-						:disabled="modalActionLoading"
-					>
-						<span
-							:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
-							role="status"
-							aria-hidden="true"
-						></span
-						>I understand, Delete the solution
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Update Solution Status Modal -->
-	<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="updateModalLabel">Update Solution Status</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
-					<p>
-						Select a new status for the solution
-						<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b>
-					</p>
-					<select class="form-select form-control" v-model="modalSolution.status.id">
-						<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
-							{{ status.title }}
-						</option>
-					</select>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
-					<button
-						type="button"
-						class="btn btn-primary btn-slim"
-						@click="confirmUpdate"
-						:disabled="modalActionLoading"
-					>
-						<span
-							:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
-							role="status"
-							aria-hidden="true"
-						></span
-						>Update
-					</button>
+						<h5 class="text-danger">
+							<b><i class="fas fa-exclamation-triangle mr-2"></i>This action is irreversible!</b>
+						</h5>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+						<button
+							type="button"
+							class="btn btn-danger btn-slim"
+							@click="confirmDelete"
+							:disabled="modalActionLoading"
+						>
+							<span
+								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+								role="status"
+								aria-hidden="true"
+							></span
+							>I understand, Delete the solution
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="alert-component position-relative d-none" id="solutionDeletedAlert">
-		<div class="alert alert-success" role="alert">
-			{{ actionSuccessMessage }}
+		<!-- Update Solution Status Modal -->
+		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="updateModalLabel">Update Solution Status</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
+						<p>
+							Select a new status for the solution
+							<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b>
+						</p>
+						<select class="form-select form-control" v-model="modalSolution.status.id">
+							<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
+								{{ status.title }}
+							</option>
+						</select>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+						<button
+							type="button"
+							class="btn btn-primary btn-slim"
+							@click="confirmUpdate"
+							:disabled="modalActionLoading"
+						>
+							<span
+								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+								role="status"
+								aria-hidden="true"
+							></span
+							>Update
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="alert-component position-relative d-none" id="errorAlert">
-		<div class="alert alert-danger" role="alert">
-			{{ errorMessage }}
+		<div class="alert-component position-relative d-none" id="solutionDeletedAlert">
+			<div class="alert alert-success" role="alert">
+				{{ actionSuccessMessage }}
+			</div>
+		</div>
+		<div class="alert-component position-relative d-none" id="errorAlert">
+			<div class="alert alert-danger" role="alert">
+				{{ errorMessage }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -201,12 +214,10 @@ import $ from "jquery";
 import "datatables.net";
 import Modal from "bootstrap/js/dist/modal";
 import axios from "axios";
-import CommonModal from "../../../common/ModalComponent.vue";
 import { getLocale } from "../../../../common-utils";
 
 export default {
 	name: "SolutionsManagement",
-	components: { CommonModal },
 	data() {
 		return {
 			fetched: false,
@@ -247,6 +258,7 @@ export default {
 		...mapActions(["get", "post"]),
 
 		async setUpDataTable() {
+			// eslint-disable-next-line vue/valid-next-tick
 			await this.$nextTick(() => {
 				this.dataTableInstance = $("#solutionsTable").DataTable({
 					pageLength: 5,
@@ -356,7 +368,7 @@ export default {
 				this.fetched = false;
 				this.solutionsLoading = true;
 				this.solutions = [];
-				let data = {
+				const data = {
 					filters: {
 						projectFilters: this.projects.map((x) => x.id),
 						problemFilters: this.problems.map((x) => x.id),
@@ -394,8 +406,9 @@ export default {
 				: this.solutions;
 		},
 
-		updateDataTable() {
-			this.$nextTick(() => {
+		async updateDataTable() {
+			// eslint-disable-next-line vue/valid-next-tick
+			await this.$nextTick(() => {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredSolutions.map((solution, index) => ({
