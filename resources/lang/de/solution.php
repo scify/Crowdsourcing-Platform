@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Lösung vorschlagen',
     'number_of_votes_title' => 'Anzahl der Stimmen',
     'have_a_solution_to_suggest' => 'Haben Sie eine Lösung vorzuschlagen?',
+    'characters_left' => 'Zeichen übrig',
+    'consent_notice_required' => 'Sie müssen unseren Richtlinien und Bedingungen zustimmen, um eine Lösung einzureichen.',
+    'translation_notice_required' => 'Sie müssen dem Übersetzungshinweis zustimmen, um eine Lösung einzureichen.',
+    'required' => 'Erforderlich',
 ];
