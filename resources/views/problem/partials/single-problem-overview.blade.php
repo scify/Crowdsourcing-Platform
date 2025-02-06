@@ -10,7 +10,7 @@
     <div class="row problem-description">
 
         <div class="col-12 col-lg-7">
-            <h1 class="section-title">{{ __("problem.solutions_for") }} {{ $viewModel->problem->currentTranslation->title }}</h1>
+            <h1 class="section-title">{{ __("problem.solutions_for") }} {!! $viewModel->problem->currentTranslation->title !!}</h1>
             <div class="section-body pb-5 pb-lg-0">
                 <p>{!! $viewModel->problem->currentTranslation->description !!}</p>
             </div>

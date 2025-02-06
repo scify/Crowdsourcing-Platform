@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-12 col-lg-7">
-            <h1 class="project-title">{{ __("project-problems.the_topic") }} {{ $viewModel->project->currentTranslation->name }}</h1>
+            <h1 class="project-title">{{ __("project-problems.the_topic") }} {!! $viewModel->project->currentTranslation->name !!}</h1>
             <div class="project-overview pb-5 pb-lg-0">
                 <br><p>{{ __("project-problems.start-contributing-directions") }}</p>
             </div>

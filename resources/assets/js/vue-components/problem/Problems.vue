@@ -54,12 +54,8 @@
 									/>
 								</div>
 								<div class="card-body">
-									<h5 class="card-title">
-										{{ problem.currentTranslation.title }}
-									</h5>
-									<p class="card-text mb-4">
-										{{ problem.currentTranslation.description }}
-									</p>
+									<h5 class="card-title" v-sane-html="problem.currentTranslation.title"></h5>
+									<p class="card-text mb-4" v-sane-html="problem.currentTranslation.description"></p>
 								</div>
 							</div>
 						</a>
