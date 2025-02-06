@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Предложете решение',
     'number_of_votes_title' => 'Брой гласове',
     'have_a_solution_to_suggest' => 'Имате ли предложение за решение?',
+    'characters_left' => 'оставащи символи',
+    'consent_notice_required' => 'Трябва да се съгласите с нашите правила и условия, за да изпратите решение.',
+    'translation_notice_required' => 'Трябва да се съгласите с уведомлението за превод, за да изпратите решение.',
+    'required' => 'Задължително',
 ];
