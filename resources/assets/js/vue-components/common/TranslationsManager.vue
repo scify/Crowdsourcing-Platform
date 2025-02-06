@@ -239,9 +239,11 @@ export default {
 		const filteredTranslations = (translation) => {
 			// return an object with only the properties that exist in the model metadata
 			return Object.keys(translation).reduce((acc, key) => {
-				if (propertyExistsInMetadata(translation[key], key)
-					&& translation[key] !== "<p><br></p>"
-					&& translation[key] !== "<p>&nbsp;</p>") {
+				if (
+					propertyExistsInMetadata(translation[key], key) &&
+					translation[key] !== "<p><br></p>" &&
+					translation[key] !== "<p>&nbsp;</p>"
+				) {
 					acc[key] = translation[key];
 				}
 				return acc;
