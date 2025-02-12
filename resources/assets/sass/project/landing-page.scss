@@ -1443,7 +1443,9 @@ footer {
   z-index: 2; /* Ensure content is above the overlay */
 }
 
+// Force styling for the about text in the project page
 div#project-about-text * {
   font-family: 'Open Sans Variable', sans-serif !important;
+  line-height: normal !important;
   //font-size: 1.25rem !important;
 }
