@@ -1,16 +1,12 @@
 <div class="container px-sm-0">
-
     <div class="row">
         <div class="col-12">
             <h2 class="solution-form-title pb-2 mb-5">{{ __('solution.submission_form') }}</h2>
         </div>
     </div>
-
     <form id="solution-form" enctype="multipart/form-data" method="POST"
           action="{{ route('solutions.user-proposal-store', [request('project_slug'), request('problem_slug')]) }}">
-
         @csrf
-
         <div class="container-fluid p-0">
 
             <div class="row form-row">
@@ -41,13 +37,15 @@
                                maxlength="100"
                                {{ $errors->has('solution-title') ? 'aria-describedby="solution-title-feedback"' : '' }}
                                value="{{ old('solution-title') ? old('solution-title') : '' }}"
+                               oninput="updateCharCount('solution-title', 100)"
                         >
+                        <small id="solution-title-count"
+                               class="form-text text-muted">100 {{ __('solution.characters_left') }}</small>
                         <div id="solution-title-feedback" class="invalid-feedback">
                             <strong>{{ $errors->first('solution-title') }}</strong></div>
                     </div>
                 </div>
             </div>
-
             <div class="row form-row">
                 <div class="col-12">
                     <div class="form-group">
@@ -62,21 +60,24 @@
                                 placeholder="{{ __('solution.solution_description_placeholder') }}"
                                 maxlength="400"
                                 {{ $errors->has('solution-description') ? 'aria-describedby="solution-description-feedback"' : '' }}
-                            >{{ old('solution-description') ? old('solution-description') : '' }}</textarea>
+                                oninput="updateCharCount('solution-description', 400)"
+                        >{{ old('solution-description') ? old('solution-description') : '' }}</textarea>
+                        <small id="solution-description-count"
+                               class="form-text text-muted">400 {{ __('solution.characters_left') }}</small>
                         <div id="solution-description-feedback" class="invalid-feedback">
                             <strong>{{ $errors->first('solution-description') }}</strong>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row form-row">
-                <div class="col-12">
+                <div class="col-12 mb-4">
                     <h4>{{ __('solution.solution_translation_notice_title') }}</h4>
                     <p>{!! __('solution.solution_translation_notice') !!}</p>
                 </div>
                 <div class="col-12">
                     <div class="form-check">
+                        <div class="required-msg">Required:</div>
                         <input class="form-check-input" type="checkbox" id="translation-notice"
                                name="translation-notice" required>
                         <label class="form-check-label" for="translation-notice">
@@ -118,6 +119,7 @@
             <div class="row form-row">
                 <div class="col-12">
                     <div class="form-check">
+                        <div class="required-msg">Required:</div>
                         <input class="form-check-input" type="checkbox" id="consent-notice"
                                name="consent-notice" required>
                         <label class="form-check-label" for="consent-notice">
@@ -143,14 +145,26 @@
                                 data-action="submitSolution"
                         >{{ __('solution.submit_solution') }}</button>
                     </div>
+                    <div class="col-12">
+                        <div id="error-messages" class="text-danger text-center py-3" style="display: none;"></div>
+                    </div>
                 </div>
             </div>
         </div>
-
 
     </form>
 
 </div>
 @push('scripts')
     @vite('resources/assets/js/solution/manage-solution.js')
+    <script>
+		const charactersLeftMessage = "{{ __('solution.characters_left') }}";
+
+		function updateCharCount(fieldId, maxChars) {
+			const field = document.getElementById(fieldId);
+			const countField = document.getElementById(fieldId + "-count");
+			const remainingChars = maxChars - field.value.length;
+			countField.textContent = remainingChars + " " + charactersLeftMessage;
+		}
+    </script>
 @endpush

@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Proponer una Solución',
     'number_of_votes_title' => 'Número de Votos',
     'have_a_solution_to_suggest' => '¿Tiene una solución para sugerir?',
+    'characters_left' => 'caracteres restantes',
+    'consent_notice_required' => 'Debe aceptar nuestras pautas y términos para enviar una solución.',
+    'translation_notice_required' => 'Debe aceptar el aviso de traducción para enviar una solución.',
+    'required' => 'Requerido',
 ];

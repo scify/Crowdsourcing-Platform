@@ -49,4 +49,8 @@ return [
     'propose_solution_title' => 'Javasoljon megoldást',
     'number_of_votes_title' => 'Szavazatok száma',
     'have_a_solution_to_suggest' => 'Van megoldási javaslata?',
+    'characters_left' => 'karakter maradt',
+    'consent_notice_required' => 'Megoldás benyújtásához el kell fogadnia irányelveinket és feltételeinket.',
+    'translation_notice_required' => 'Megoldás benyújtásához el kell fogadnia a fordítási értesítést.',
+    'required' => 'Kötelező',
 ];
