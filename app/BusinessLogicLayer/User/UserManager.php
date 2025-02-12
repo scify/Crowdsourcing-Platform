@@ -213,7 +213,7 @@ class UserManager {
             $this->userRepository->update([
                 'email' => $user_data['email'],
                 'nickname' => $user_data['nickname'],
-                'password' => Hash::make($input_data['password']),
+                'password' => bcrypt($input_data['password']),
                 'gender' => $user_data['gender'],
                 'country' => $user_data['country'],
                 'year_of_birth' => $user_data['year-of-birth'],
