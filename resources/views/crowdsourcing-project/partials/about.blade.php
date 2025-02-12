@@ -10,7 +10,7 @@
                 <div class="row">
 
 
-                    <div class="col-lg-12 col-md-8 p-0">
+                    <div id="project-about-text" class="col-lg-12 col-md-8 p-0">
                         {!! $viewModel->project->currentTranslation->about !!}
                     </div>
 
