@@ -78,7 +78,12 @@ class QuestionnaireVMProvider {
 
     public function getAllQuestionnairesPageViewModel(): ManageQuestionnaires {
         $projectTheUserHasAccessTo = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
-        $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($projectTheUserHasAccessTo->pluck('id')->toArray());
+        $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
+        $project_ids = $projectTheUserHasAccessTo->pluck('id')->toArray();
+        if (empty($project_ids)) {
+            return new ManageQuestionnaires([], $availableStatuses);
+        }
+        $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($project_ids);
         foreach ($questionnaires as $questionnaire) {
             if ($this->shouldShowLinkForQuestionnaire($questionnaire)) {
                 $projectSlugs = explode(',', $questionnaire->project_slugs);
@@ -92,7 +97,7 @@ class QuestionnaireVMProvider {
                 }
             }
         }
-        $availableStatuses = $this->questionnaireRepository->getAllQuestionnaireStatuses();
+
 
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
