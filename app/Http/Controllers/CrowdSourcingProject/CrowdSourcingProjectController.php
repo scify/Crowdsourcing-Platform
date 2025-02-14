@@ -116,6 +116,11 @@ class CrowdSourcingProjectController extends Controller {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
                 $request->questionnaireId ?? null,
                 $project_slug);
+            // if the project's default language is other than English, we need to set the locale to the project's language
+            $project_default_lang_code = $viewModel->project?->defaultTranslation?->language?->language_code;
+            if ($project_default_lang_code !== 'en') {
+                app()->setLocale($project_default_lang_code);
+            }
 
             if ($this->shouldHandleQuestionnaireShare($request)) {
                 $this->questionnaireShareManager->handleQuestionnaireShare($request->all(), $request->referrerId);
