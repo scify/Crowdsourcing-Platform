@@ -8,7 +8,7 @@ return [
     'cookies' => [
         'strictly_necessary' => [
             [
-                'name' => 'crowdsourcing_app__cookies_consent',
+                'name' => 'crowdsourcing_app_cookies_consent',
                 'description' => 'cookies_consent::messages.cookie_cookies_consent_description',
                 'duration' => 'cookies_consent::messages.years',
                 'duration_count' => 1,
