@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca3c3be07410647ccad9dd50273dfb0e",
+    "content-hash": "993dcde3d1247af66bc4cb8ab093a144",
     "packages": [
         {
             "name": "accentinteractive/laravel-logcleaner",
@@ -5884,16 +5884,16 @@
         },
         {
             "name": "scify/laravel-cookies-consent",
-            "version": "v3.1.3",
+            "version": "v4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scify/laravel-cookies-consent.git",
-                "reference": "7f14997f90e1ec3944ab44195649485a395d9261"
+                "reference": "9f2397ef83502f45a5f34354f7b2248a0f207433"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scify/laravel-cookies-consent/zipball/7f14997f90e1ec3944ab44195649485a395d9261",
-                "reference": "7f14997f90e1ec3944ab44195649485a395d9261",
+                "url": "https://api.github.com/repos/scify/laravel-cookies-consent/zipball/9f2397ef83502f45a5f34354f7b2248a0f207433",
+                "reference": "9f2397ef83502f45a5f34354f7b2248a0f207433",
                 "shasum": ""
             },
             "require": {
@@ -5953,9 +5953,9 @@
             ],
             "support": {
                 "issues": "https://github.com/scify/laravel-cookies-consent/issues",
-                "source": "https://github.com/scify/laravel-cookies-consent/tree/v3.1.3"
+                "source": "https://github.com/scify/laravel-cookies-consent/tree/v4.0.2"
             },
-            "time": "2025-02-05T09:59:40+00:00"
+            "time": "2025-02-17T11:52:27+00:00"
         },
         {
             "name": "sentry/sentry",
@@ -12384,5 +12384,5 @@
         "ext-zip": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
