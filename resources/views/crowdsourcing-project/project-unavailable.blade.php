@@ -5,6 +5,12 @@
             --project-primary-color: {{ $viewModel->project->lp_primary_color}};
             --btn-text-color: {{ $viewModel->project->lp_btn_text_color_theme == "light" ? "#ffffff" : "#212529"}};
         }
+
+        .motto-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 @endpush
 @section('content')
@@ -19,8 +25,12 @@
                     <div id="project-motto" class="container-fluid">
                         <div class="row mb-3 text-center">
                             <div class="col">
-                                <h1 id="motto-title"
-                                    class="text">{!! $viewModel->project->currentTranslation->motto_title !!}</h1>
+                                <h1 id="project-title" class="text">
+                                    {!! $viewModel->project->currentTranslation->name !!}
+                                </h1>
+                                <h2 id="motto-title" class="text">
+                                    {!! $viewModel->project->currentTranslation->motto_title !!}
+                                </h2>
                             </div>
                         </div>
                         <div class="row mb-5">
