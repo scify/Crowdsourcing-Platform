@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Naine',
     'OTHER'          => 'Muu',
     'view_campaign' => 'Vaata kampaaniat',
+    'footer_eu_text' => 'See veebisait on loodud ja hooldatud European Citizen Action Service (ECAS) poolt. Selle veebisaidi sisu on täielikult ECAS vastutusel ja seda ei saa pidada Euroopa Liidu ametlike seisukohtade peegelduseks.',
+
 ];

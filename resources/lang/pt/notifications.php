@@ -34,7 +34,7 @@ return [
     'code_of_conduct'                   => 'Verifique se a sua participação respeita o nosso código de conduta!',
     'agree_privacy_policy'              => 'Concordo com <a href="https://crowdsourcing.ecas.org/pt/terms-and-privacy" target="_blank"> a política de privacidade.',
     'ok'                                => 'OK',
-
+    'email_outro_text'                  => 'A Equipa de Crowdsourcing',
 
 
 

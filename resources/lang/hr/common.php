@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Žena',
     'OTHER'          => 'Drugo',
     'view_campaign' => 'Pogledaj kampanju',
+    'footer_eu_text' => 'Ova web stranica je stvorena i održavana od strane European Citizen Action Service (ECAS). Sadržaj ove web stranice je isključiva odgovornost ECAS-a i ne može se smatrati da odražava službene stavove Europske unije.',
+
 ];

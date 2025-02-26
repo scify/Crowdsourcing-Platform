@@ -74,21 +74,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                            <div class="col-md-6 col-lg-4 col-sm-6 d-flex align-items-center">
                                 <img loading="lazy" class="w-100" src="{{asset('images/projects/ecas/eu-logo.png')}}"
                                      alt="European Union Logo">
                             </div>
                             <div class="col-md-6 col-sm-6 mt-3">
                                 <p style="font-size:13px; line-height:20px; text-align: justify;">
-                                    Funded by the European Union. Views and opinions expressed are however
-                                    those of
-                                    the author(s) only and do not necessarily reflect those of the European
-                                    Union or
-                                    European Commission. Neither the European Union nor the granting
-                                    authority can be
-                                    held responsible for them.
+                                    {!! __('common.footer_eu_text') !!}
                                 </p>
-
                             </div>
                         </div>
                     </div>

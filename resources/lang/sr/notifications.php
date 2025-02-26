@@ -34,7 +34,7 @@ return [
     'code_of_conduct'                   => 'Provjerite da li se pridržavate našeg kodeksa ponašanja prije nego što odgovorite!',
     'agree_privacy_policy'              => 'Slažem se sa <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> politikom privatnosti.',
     'ok'                                => 'OK',
-
+    'email_outro_text'                  => 'Crowdsourcing Tim',
 
 
 

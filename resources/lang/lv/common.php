@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Sieviete',
     'OTHER'          => 'Cits',
     'view_campaign' => 'Apskatīt kampaņu',
+    'footer_eu_text' => 'Šo tīmekļa vietni izveidoja un uzturēja European Citizen Action Service (ECAS). Šīs tīmekļa vietnes saturs ir pilnībā ECAS atbildība un nevar tikt uzskatīts par oficiālās Eiropas Savienības nostājas atspoguļojumu.',
+
 ];

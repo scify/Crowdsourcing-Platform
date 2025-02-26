@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Weiblich',
     'OTHER'          => 'Andere',
     'view_campaign' => 'Kampagne anzeigen',
+    'footer_eu_text' => 'Mitfinanziert von der Europäischen Union. Die dargestellten Ansichten und Meinungen sind jedoch ausschließlich die des Autors und spiegeln nicht unbedingt die Ansichten der Europäischen Union oder der Exekutivagentur für Bildung, Audiovisuelles und Kultur (EACEA) wider. Weder die Europäische Union noch die EACEA können für sie verantwortlich gemacht werden.',
+
 ];

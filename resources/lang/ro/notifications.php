@@ -42,4 +42,5 @@ return [
     'solution_published_intro' => 'Soluția ta a fost publicată!',
     'solution_published_message' => 'Soluția ta a fost publicată și este acum disponibilă pentru a fi votată de alți utilizatori!',
     'see_the_solution' => 'Vezi soluția',
+    'email_outro_text'                  => 'Echipa de Crowdsourcing',
 ];

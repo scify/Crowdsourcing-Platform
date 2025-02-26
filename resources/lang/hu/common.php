@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Nő',
     'OTHER'          => 'Egyéb',
     'view_campaign' => 'Kampány megtekintése',
+    'footer_eu_text' => 'Ez a weboldal az European Citizen Action Service (ECAS) által készült és karbantartott. A weboldal tartalmáért kizárólag az ECAS felelős, és semmilyen körülmények között nem tekinthető az Európai Unió hivatalos álláspontjának.',
+
 ];
