@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 d-flex align-items-center">
+                            <div class="col-md-6 col-lg-4 col-sm-6 d-flex align-items-center">
                                 <img loading="lazy" class="w-100" src="{{asset('images/projects/ecas/eu-logo.png')}}"
                                      alt="European Union Logo">
                             </div>

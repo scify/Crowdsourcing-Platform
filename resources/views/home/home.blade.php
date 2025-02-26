@@ -4,7 +4,7 @@
     <section id="motto" class="w-100 mb-5" style="height: 750px;">
         @include('home.partials.motto')
     </section>
-    <section id="about" class="container-fluid w-100 py-5">
+    <section id="about" class="home-about container-fluid w-100 py-5">
         @include('home.partials.' . config('app.installation_resources_dir') . '.about-us')
     </section>
     <section id="projects" class="w-100 py-5">
