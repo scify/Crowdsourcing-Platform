@@ -12,7 +12,7 @@ class AlterUsersTableAvatar extends Migration {
      */
     public function up() {
         Schema::table('users', function (Blueprint $table) {
-            //https://www.geeksforgeeks.org/maximum-length-of-a-url-in-different-browsers/
+            // https://www.geeksforgeeks.org/maximum-length-of-a-url-in-different-browsers/
             $table->string('avatar', 2048)->change();
         });
     }

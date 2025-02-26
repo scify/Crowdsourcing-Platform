@@ -50,7 +50,7 @@ class Problem extends Model {
         return $this->hasOne(User::class, 'id', 'user_creator_id');
     }
 
-    //observe this model being deleted and delete the related records
+    // observe this model being deleted and delete the related records
     public static function boot(): void {
         parent::boot();
 

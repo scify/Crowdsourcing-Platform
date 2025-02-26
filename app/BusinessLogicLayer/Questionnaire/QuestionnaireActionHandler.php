@@ -49,7 +49,7 @@ class QuestionnaireActionHandler {
         CrowdSourcingProject $project,
         User $user,
         Language $language): void {
-        //check if the contributor email should be sent
+        // check if the contributor email should be sent
         if ($project->should_send_email_after_questionnaire_response) {
             $this->awardContributorBadgeToUser($questionnaire, $project, $user, $language);
         }
