@@ -34,7 +34,7 @@ return [
     'code_of_conduct'                   => 'Zorg er voor dat je instemt met onze gedragscode voordat je antwoorden geeft!',
     'agree_privacy_policy'              => 'Ik stem in met het <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy beleid.',
     'ok'                                => 'OK',
-
+    'email_outro_text'                  => 'Het Crowdsourcing Team',
 
 
 

@@ -33,8 +33,8 @@ return [
     'cookies_and_privacy_policy'        => 'Ez a weboldal cookie-kat használ, hogy a legjobb élményt nyújtsa Önnek a weboldalunkon.  A részletekért lásd az "Adatvédelmi szabályzatunkat".',
     'code_of_conduct'                   => 'Válaszadás előtt győződjön meg arról, hogy tiszteletben tartja a magatartási kódexünkben foglaltakat.',
     'agree_privacy_policy'              => 'Elfogadom az <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> adatvédelmi szabályzatot.',
-    'ok', 
-
+    'ok'                                => 'OK',
+    'email_outro_text'                  => 'Döntéshozók csapata',
 
 
 
