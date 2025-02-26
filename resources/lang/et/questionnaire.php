@@ -13,8 +13,8 @@ return [
     'already_participated' => 'Oled küsimustiku juba täitnud, aitäh!',
     'answers_so_far' => 'Praeguseks on oma arvamust avaldanud <span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> inimest.',
     'latest_contributors' => 'Hiljutised vastajad',
-    'name_and_date_of_last_contributors' => ':name vastas :date', //Maria responded at November 23, 2021
-    'answers_left_to_goal' => 'Eesmärgi saavutamiseks on vaja veel <b style="color: var(--project-primary-color);" class="number">:count</b> vastust', //1002 answers left to reach our goal
+    'name_and_date_of_last_contributors' => ':name vastas :date', // Maria responded at November 23, 2021
+    'answers_left_to_goal' => 'Eesmärgi saavutamiseks on vaja veel <b style="color: var(--project-primary-color);" class="number">:count</b> vastust', // 1002 answers left to reach our goal
     'newsletter' => 'Uudiskiri',
     'learn_about_new_projects' => 'Tutvu Euroopa Kodanike Tegevuse Teenistuse (ECAS) projektidega ja panusta sinna, kus on seda kõige rohkem vaja!',
     'sign_in' => 'Logi sisse',

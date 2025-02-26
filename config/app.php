@@ -182,7 +182,7 @@ return [
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\ComposerServiceProvider::class,
-        //For image manipulation http://image.intervention.io/
+        // For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
         \App\Providers\ConfigServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,

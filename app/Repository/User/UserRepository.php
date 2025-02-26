@@ -47,7 +47,7 @@ class UserRepository extends Repository {
             $userRole->delete();
         }
         if ($roleSelect[0] == null) {
-            UserRole::create(['user_id' => $userId, 'role_id' => 3]); //registered user
+            UserRole::create(['user_id' => $userId, 'role_id' => 3]); // registered user
         } else {
             foreach ($roleSelect as $roleId) {
                 UserRole::create(['user_id' => $userId, 'role_id' => $roleId]);
@@ -96,7 +96,7 @@ class UserRepository extends Repository {
         }
 
         $query->whereHas('userRoles', function ($userRoleQuery) {
-            $userRoleQuery->whereIn('role_id', [1, 2, 4]); //platform admin and content manager
+            $userRoleQuery->whereIn('role_id', [1, 2, 4]); // platform admin and content manager
         });
 
         if ($paginationNumber) {

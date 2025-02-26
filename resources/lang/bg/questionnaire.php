@@ -13,8 +13,8 @@ return [
     'already_participated' => 'Вие вече сте участвали, благодарим Ви!',
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> души са отговорили дотук.!',
     'latest_contributors' => 'Последни участници',
-    'name_and_date_of_last_contributors' => ':name отговори на :date', //Maria responded at November 23, 2021
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> отговора ни остават до постигане на целта', //1002 answers left to reach our goal
+    'name_and_date_of_last_contributors' => ':name отговори на :date', // Maria responded at November 23, 2021
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> отговора ни остават до постигане на целта', // 1002 answers left to reach our goal
     'newsletter' => 'Бюлетин',
     'learn_about_new_projects' => 'Научете за нашите нови инициативи, абонирайте се за последни новини и участвайте там, където е най-важно!',
     'sign_in' => 'Sign in',
