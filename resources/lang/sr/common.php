@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Женско',
     'OTHER'          => 'Друго',
     'view_campaign' => 'Pogledaj kampanju',
+    'footer_eu_text' => 'Ovaj veb sajt je kreiran i održava se od strane European Citizen Action Service (ECAS). Sadržaj ovog veb sajta je isključiva odgovornost ECAS-a i ne može se smatrati zvaničnim stavom Evropske unije.',
+
 ];

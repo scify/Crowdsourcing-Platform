@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Vrouw',
     'OTHER'          => 'Anders',
     'view_campaign' => 'Bekijk campagne',
+    'footer_eu_text' => 'Deze website is gemaakt en wordt onderhouden door de European Citizen Action Service (ECAS). De inhoud van deze website is de exclusieve verantwoordelijkheid van ECAS en kan niet worden beschouwd als het weerspiegelen van de officiële standpunten van de Europese Unie.',
+
 ];

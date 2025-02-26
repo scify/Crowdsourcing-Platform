@@ -42,4 +42,5 @@ return [
     'solution_published_intro' => 'Vaše rješenje je objavljeno!',
     'solution_published_message' => 'Vaše rješenje je objavljeno i sada je dostupno za glasovanje drugih korisnika!',
     'see_the_solution' => 'Pogledajte rješenje',
+    'email_outro_text' => 'Tim Crowdsourcinga',
 ];

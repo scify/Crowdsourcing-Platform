@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Feminino',
     'OTHER'          => 'Outro',
     'view_campaign' => 'Ver campanha',
+    'footer_eu_text' => 'Co-financiado pela União Europeia. As opiniões expressas são, no entanto, apenas do(s) autor(es) e não refletem necessariamente as da União Europeia ou da Agência Executiva de Educação e Cultura Europeia (EACEA). Nem a União Europeia nem a EACEA podem ser responsabilizadas por elas.',
+
 ];

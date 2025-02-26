@@ -53,7 +53,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
             '<br><div id="outro_text">' . $this->questionnaire_response_email_outro_text . '</div>',
             __('notifications.increase_your_impact', [], $this->locale) . '<br>',
             __('notifications.invite_your_friends', [], $this->locale),
-            __('notifications.thanks_message_2', [], $this->locale) . '<br><br>The Crowdsourcing Team');
+            __('notifications.thanks_message_2', [], $this->locale) . '<br><br>' . __('notifications.email_outro_text'));
     }
 
     /**

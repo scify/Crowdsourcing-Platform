@@ -59,4 +59,6 @@ return [
     'FEMALE'         => 'Mujer',
     'OTHER'          => 'Otro',
     'view_campaign' => 'Ver campaña',
+    'footer_eu_text' => 'Este sitio web ha sido creado y es mantenido por el Servicio de Acción Ciudadana Europea (ECAS). El contenido de este sitio web es responsabilidad exclusiva de ECAS y no puede considerarse que refleje las posiciones oficiales de la Unión Europea.',
+
 ];

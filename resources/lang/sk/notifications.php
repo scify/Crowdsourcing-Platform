@@ -34,7 +34,7 @@ return [
     'code_of_conduct'                   => 'Pred odpoveďou sa uistite, že dodržiavate náš kódex správania!',
     'agree_privacy_policy'              => 'Súhlasím so <a href="https://crowdsourcing.ecas.org/sk/terms-and-privacy" target="_blank"> zásadami ochrany osobných údajov.',
     'ok'                                => 'OK',
-
+    'email_outro_text'                  => 'Tím Crowdsourcing',
 
 
 

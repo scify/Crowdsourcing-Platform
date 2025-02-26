@@ -43,4 +43,5 @@ return [
     'solution_published_message' => 'Your solution has been published and is now available for other users to vote on!',
     'see_the_solution' => 'See the solution',
     'anonymous' => 'Anonymous',
+    'email_outro_text' => 'The Crowdsourcing Team',
 ];

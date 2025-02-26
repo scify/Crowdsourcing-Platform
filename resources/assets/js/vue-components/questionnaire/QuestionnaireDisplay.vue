@@ -194,10 +194,6 @@ export default {
 			}, 300);
 		},
 		prepareQuestionnaireForResponding() {
-			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
-			if (responseJSON && JSON.parse(responseJSON)) {
-				this.survey.data = JSON.parse(responseJSON);
-			}
 			let locales = this.survey.getUsedLocales();
 			if (!locales) {
 				locales = ["en"];
