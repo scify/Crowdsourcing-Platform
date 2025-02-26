@@ -33,8 +33,8 @@ return [
     'cookies_and_privacy_policy'        => 'See veebileht kasutab küpsiseid, et saaksid parima kasutajakogemuse. Vaata lähemalt meie „Privaatsuspoliitikat“.',
     'code_of_conduct'                   => 'Tutvu enne vastamist kindlasti meie käitumiskoodeksiga!',
     'agree_privacy_policy'              => 'Nõustun<a href="https://crowdsourcing.ecas.org/et/terms-and-privacy" target="_blank"> privaatsuspoliitikaga.',
-    'ok', 
-
+    'ok'                                => 'OK',
+    'email_outro_text'                  => 'Koosloome meeskond',
 
 
 

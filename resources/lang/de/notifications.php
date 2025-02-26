@@ -12,9 +12,9 @@ return [
 
 
     'go_to_dashboard'                   => 'Zum Dashboard gehen',
-    'thank_you_for_contribution'        => 'Vielen Dank für Ihren Beitrag!',
+    'thank_you_for_contribution'        => 'Crowdsourcen wir unsere Zukunft gemeinsam',
     'hello'                             => 'Hallo!',
-    'thanks_message_for_answering_2'    => 'Danke, dass Sie sich die Zeit genommen haben, um unseren Fragebogen',
+    'thanks_message_for_answering_2'    => 'Danke, dass Sie sich die Zeit genommen haben, um unseren Fragebogen Inklusive Digitalisierung in der EU',
     'really_means'                      => 'Das bedeutet uns wirklich viel!',
     'increase_your_impact'              => 'Machen Sie weiter mit',
     'invite_your_friends'               => 'Gehe zum Dashboard und lade Freund:innen ein!',    
@@ -33,7 +33,8 @@ return [
     'cookies_and_privacy_policy'        => 'Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten.  Siehe unsere "Datenschutzrichtlinie" für weitere Informationen.',
     'code_of_conduct'                   => 'Vergewissern Sie sich, dass Sie unseren Verhaltenskodex befolgen, bevor Sie antworten!',
     'agree_privacy_policy'              => 'Ich stimme den <a href="https://crowdsourcing.ecas.org/de/terms-and-privacy" target="_blank"> Datenschutzbestimmungen zu.',
-    'ok'                                => 'OK', 
+    'ok'                                => 'OK',
+    'email_outro_text'                  => 'Das Crowdsourcing Team',
 
 
 

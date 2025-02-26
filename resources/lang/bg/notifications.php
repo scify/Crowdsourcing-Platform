@@ -34,7 +34,7 @@ return [
     'code_of_conduct'                   => 'Моля, съобразете се с нашия кодекс на етично поведение преди да отговорите!',
     'agree_privacy_policy'              => 'Съгласен <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> съм с политиката за защита на личните данни.',
     'ok'                                => 'OK',
-
+    'email_outro_text'                  => 'Екипът на краудсорсинга',
 
 
 

@@ -34,8 +34,7 @@ return [
     'code_of_conduct'                   => 'Pirms atbildes iesniegšanas, pārliecinies, ka tā atbilst mūsu rīcības kodeksam!',
     'agree_privacy_policy'              => 'Es piekrītu <a href="https://crowdsourcing.ecas.org/lv/terms-and-privacy" target="_blank">privātuma politikai.',
     'ok'                                => 'Labi',
-
-
+    'email_outro_text'                  => 'Crowdsourcing komanda',
 
 
 
