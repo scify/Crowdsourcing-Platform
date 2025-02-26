@@ -30,9 +30,9 @@ class UserDashboardManager {
             // These are supposed to be answered IF and only IF the main project questionnaire is answered
             // So we only display them the feedback questionnaire to the dashboard
             // IF:
-            //a) they are not answered already
+            // a) they are not answered already
             $responseForThisFeedbackQuestionnaireDoesNotExist = $userResponses->first(fn ($u): bool => $u->questionnaire_id == $questionnaire->id) == null;
-            //b) and user has responded to the main project questionnaire
+            // b) and user has responded to the main project questionnaire
             $responseForMainProjectQuestionnaireExists = $userResponses->first(fn ($u): bool => $u->questionnaire->type_id == QuestionnaireTypeLkp::MAIN_QUESTIONNAIRE &&
                     $questionnaire->projects->firstWhere('id', $u->project_id) != null) != null;
 
@@ -48,7 +48,7 @@ class UserDashboardManager {
      * @return Collection<CrowdSourcingProject>
      */
     private function evaluateProjectsThatUserCanContributeTo(Questionnaire $q, Collection $userResponses): Collection {
-        //If user has already responded to this questionnaire, then any other actions,
+        // If user has already responded to this questionnaire, then any other actions,
         // like
         // a)  responding to the feedback questionnaire or
         // b) sharing to social media,
@@ -57,7 +57,7 @@ class UserDashboardManager {
         // For example user answered a questionnaire via page  /gr/air-quality-athens, but the questionnaire can also
         // belongs to project /pt/air-quality-lisbon
 
-        //When opening the dashboard, the user
+        // When opening the dashboard, the user
         // a) should only share the questionnaire via the /gr/air-quality-athens page.
         // b) should provide feedback by navigating to /gr/air-quality-athens.
 

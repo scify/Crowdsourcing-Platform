@@ -13,8 +13,8 @@ return [
     'already_participated' => 'Tu jau esi piedalījies, paldies!',
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> cilvēki līdz šim ir jau piedalījušies!',
     'latest_contributors' => 'Jaunākie dalībnieki',
-    'name_and_date_of_last_contributors' => ':name atbildēja :date', //Maria responded at November 23, 2021
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> atbildes līdz mērķa sasniegšanai', //1002 answers left to reach our goal
+    'name_and_date_of_last_contributors' => ':name atbildēja :date', // Maria responded at November 23, 2021
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> atbildes līdz mērķa sasniegšanai', // 1002 answers left to reach our goal
     'newsletter' => 'Jaunumi e-pastā',
     'learn_about_new_projects' => 'Uzzini par mūsu jaunajiem projektiem, saņem jaunumus un sniedz savu ieguldījumu tur, kur tas ir visvairāk nepieciešams!',
     'sign_in' => 'Pierakstīties',

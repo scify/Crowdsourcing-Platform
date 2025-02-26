@@ -13,8 +13,8 @@ return [
     'already_participated' => 'Hai già partecipato, grazie!',
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> persone hanno risposto finora!',
     'latest_contributors' => 'Ultimi contributori',
-    'name_and_date_of_last_contributors' => ':name ha risposto :date', //Maria responded at November 23, 2021
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> risposte rimaste per raggiungere il nostro obiettivo', //1002 answers left to reach our goal
+    'name_and_date_of_last_contributors' => ':name ha risposto :date', // Maria responded at November 23, 2021
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> risposte rimaste per raggiungere il nostro obiettivo', // 1002 answers left to reach our goal
     'newsletter' => 'Newsletter',
     'learn_about_new_projects' => 'Scopri tutti i nostri nuovi progetti, ricevi aggiornamenti su quelli attivi e contribuisci dove è più necessario!',
     'sign_in' => 'Accedi con',

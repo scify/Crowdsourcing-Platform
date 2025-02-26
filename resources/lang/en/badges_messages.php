@@ -35,7 +35,7 @@ return [
     'person' => 'person',
     'people' => 'people',
     'person_or_people_responded' => '{1} 1 person responded to your call so far. |[2,*] :count people responded to your call',
-    'you_are_an_influencer' => 'You are a Level :level Influencer! Keep Going!', //You are a Level 3 Influencer! Keep Going!
+    'you_are_an_influencer' => 'You are a Level :level Influencer! Keep Going!', // You are a Level 3 Influencer! Keep Going!
     'zero_people_responded_to_call' => 'Zero people have responded to your call so far.<br>Write a compelling message and invite more friends!',
     'good_job' => '{1} Good job! 1 person has responded to your call so far.<br>Write a compelling message and invite more friends! |[2.*] Good job! :count people have responded to your call so far.<br>Write a compelling message and invite more friends!',
     'true_influencer' => '{1} Wow, you are a true influencer!<br> 1 person has responded to your call so far. Write a compelling message and invite more friends! |[2.*] Wow, you are a true influencer!<br> :count people have responded to your call so far. Write a compelling message and invite more friends!',

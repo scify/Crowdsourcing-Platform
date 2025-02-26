@@ -13,8 +13,8 @@ return [
     'already_participated' => 'Već ste učestvovali, hvala Vam!',
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> osobe su se do sada oglasile.',
     'latest_contributors' => 'Posljednji koji su učestvovali',
-    'name_and_date_of_last_contributors' => ':name je odgovorila :date', //Maria responded at November 23, 2021
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odgovora ostalo do našeg cilja', //1002 answers left to reach our goal
+    'name_and_date_of_last_contributors' => ':name je odgovorila :date', // Maria responded at November 23, 2021
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odgovora ostalo do našeg cilja', // 1002 answers left to reach our goal
     'newsletter' => 'Bilten',
     'learn_about_new_projects' => 'Saznajte više o svim našim novim projektima, primajte ažurirane informacije o onim aktivnim i dajte doprinos tamo gde je to najpotrebnije!',
     'sign_in' => 'Prijava',

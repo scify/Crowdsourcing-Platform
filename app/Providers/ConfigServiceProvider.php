@@ -24,7 +24,7 @@ class ConfigServiceProvider extends ServiceProvider {
      * Make relative urls into absolute urls
      */
     private function makeAbsoluteUrls(): void {
-        //dd(app('url')->to(\Config::get('services')['facebook']['redirect']));
+        // dd(app('url')->to(\Config::get('services')['facebook']['redirect']));
         foreach (Config::get('services') as $key => $config) {
             if (!isset($config['redirect'])) {
                 continue;

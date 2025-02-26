@@ -12,7 +12,7 @@ class FileController extends Controller {
     public function uploadFiles(Request $request): JsonResponse {
         $request->validate([
             'files.*' => 'required|file|max:100000|mimetypes:image/*,audio/,video/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf',
-            'files' => 'max:8', //maximum number of files: 8
+            'files' => 'max:8', // maximum number of files: 8
             'project_id' => 'required|int',
             'questionnaire_id' => 'required|int',
         ]);

@@ -14,7 +14,7 @@ return [
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> people has spoken up so far!',
     'latest_contributors' => 'Latest contributors',
     'name_and_date_of_last_contributors' => ':name responded at :date',
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> answers left to reach our goal', //1002 answers left to reach our goal
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> answers left to reach our goal', // 1002 answers left to reach our goal
     'newsletter' => 'Newsletter',
     'learn_about_new_projects' => 'Learn about all our new campaigns, get updates on active ones and contribute where it is most needed!',
     'sign_in' => 'Sign in',

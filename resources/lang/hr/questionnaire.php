@@ -14,7 +14,7 @@ return [
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> ljudi je dosad sudjelovalo!',
     'latest_contributors' => 'Najnoviji sudionici',
     'name_and_date_of_last_contributors' => ':name odgovorio/la dana :date',
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odgovora preostalo do našeg cilja', //1002 odgovora preostalo do našeg cilja
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odgovora preostalo do našeg cilja', // 1002 odgovora preostalo do našeg cilja
     'newsletter' => 'Newsletter',
     'learn_about_new_projects' => 'Saznajte sve o našim novim kampanjama, pratite ažuriranja o aktivnim kampanjama i doprinosite tamo gdje je najpotrebnije!',
     'sign_in' => 'Prijavite se',

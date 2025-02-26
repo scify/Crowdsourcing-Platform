@@ -13,8 +13,8 @@ return [
     'already_participated' => 'Už ste sa zapojili, ďakujeme!',
     'answers_so_far' => '<span style="color: var(--project-primary-color);" class="number"><b>:total</b></span> ľudí!',
     'latest_contributors' => 'Najnovší prispievatelia',
-    'name_and_date_of_last_contributors' => ':name odpovedala :date', //Maria responded at November 23, 2021
-    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odpovedí na dosiahnutie nášho cieľa', //1002 answers left to reach our goal
+    'name_and_date_of_last_contributors' => ':name odpovedala :date', // Maria responded at November 23, 2021
+    'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> odpovedí na dosiahnutie nášho cieľa', // 1002 answers left to reach our goal
     'newsletter' => 'Newsletter',
     'learn_about_new_projects' => 'Získajte informácie o všetkých našich nových projektoch, získajte aktuálne informácie o aktívnych projektoch a prispievajte tam, kde je to najviac potrebné!',
     'sign_in' => 'Prihláste sa',
