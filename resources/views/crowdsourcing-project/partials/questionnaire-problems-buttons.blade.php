@@ -1,6 +1,12 @@
 <div class="text-center content-container">
     {{-- Show Questionnaire Button if available and user has not answered --}}
     @if ($viewModel->questionnaire && !$viewModel->userResponse)
+        {{-- If the questionnaire title is different from the project name --}}
+        @if ($viewModel->project && ($viewModel->questionnaire->fieldsTranslation->title != $viewModel->project->currentTranslation->name))
+            <h3 class="project-section-title text-center mb-5">
+                {{ __("questionnaire.questionnaire_for") }} {{ $viewModel->project->currentTranslation->name }}
+            </h3>
+        @endif
         <h3 class="project-section-title text-center mb-5">
             {!! $viewModel->questionnaire->fieldsTranslation->title !!}
         </h3>
@@ -9,7 +15,7 @@
             {{ __("questionnaire.start_answering") }}
         </a>
 
-    {{-- Show Problems Button if user has answered questionnaire or no questionnaire exists --}}
+        {{-- Show Problems Button if user has answered questionnaire or no questionnaire exists --}}
     @elseif (($viewModel->questionnaire && $viewModel->userResponse && $viewModel->projectHasPublishedProblems) ||
             (!$viewModel->questionnaire && $viewModel->projectHasPublishedProblems))
         <h3 class="project-section-title text-center mb-5">
