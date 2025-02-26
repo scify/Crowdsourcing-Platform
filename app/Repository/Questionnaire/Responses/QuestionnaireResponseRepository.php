@@ -50,7 +50,7 @@ class QuestionnaireResponseRepository extends Repository {
         }
 
         $anonymousQuestionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
-        //find existing questionnaires of the user.
+        // find existing questionnaires of the user.
         $existingQuestionnaireResponsesOfUser = QuestionnaireResponse::where('user_id', '=', $user_id)->get();
 
         $questionnairesThatWereTransferredToUser = collect([]);
@@ -60,10 +60,10 @@ class QuestionnaireResponseRepository extends Repository {
             });
 
             if ($itHasAlreadyBeenAnswered) {
-                //delete this anonymous response
+                // delete this anonymous response
                 QuestionnaireResponse::where('id', '=', $anonymousResponse->id)->delete();
             } else {
-                //transfer it to the new user and send email.
+                // transfer it to the new user and send email.
                 QuestionnaireResponse::where('id', '=', $anonymousResponse->id)->update(['user_id' => $user_id]);
                 $questionnairesThatWereTransferredToUser->push($anonymousResponse);
             }

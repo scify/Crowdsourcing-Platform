@@ -4,12 +4,9 @@
         {{-- If the questionnaire title is different from the project name --}}
         @if ($viewModel->project && ($viewModel->questionnaire->fieldsTranslation->title != $viewModel->project->currentTranslation->name))
             <h3 class="project-section-title text-center mb-5">
-                {{ __("questionnaire.questionnaire_for") }} {{ $viewModel->project->currentTranslation->name }}
+                {!! $viewModel->questionnaire->fieldsTranslation->title !!}
             </h3>
         @endif
-        <h3 class="project-section-title text-center mb-5">
-            {!! $viewModel->questionnaire->fieldsTranslation->title !!}
-        </h3>
         <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug, 'questionnaire' => $viewModel->questionnaire->id]) }}"
            class="btn btn-primary w-100 respond-questionnaire call-to-action">
             {{ __("questionnaire.start_answering") }}

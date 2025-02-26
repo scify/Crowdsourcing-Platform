@@ -35,7 +35,7 @@ return [
     'person'                         => 'osoba',
     'people'                         => 'ľudia',
     'person_or_people_responded'     => '{1} 1 osoba odpovedala na váš hovor. |[2,*] :count ľudia odpovedali na váš hovor',
-    'you_are_an_influencer'          => 'Ste Influencer úrovne :level! Pokračujte!', //You are a Level 3 Influencer! Keep Going!
+    'you_are_an_influencer'          => 'Ste Influencer úrovne :level! Pokračujte!', // You are a Level 3 Influencer! Keep Going!
     'zero_people_responded_to_call'  => 'Na vaše volanie zatiaľ nikto nereagoval.<br>Napíšte pôsobivú správu a pozvite ďalších priateľov!',
     'good_job'                       => '{1} Dobrá práca! 1 osoba zatiaľ odpovedala na Váš hovor.<br>Napíšte pôsobivú správu a pozvite ďalších priateľov! |[2.*] Dobrá práca! :count ľudí Odpovedali.<br>Napíšte pôsobivú správu a pozvite ďalších priateľov!',
     'true_influencer'                => '{1} Wow, ste skutočný influencer!<br> 1 osoba zatiaľ odpovedala na Váš hovor. Napíšte pôsobivú správu a pozvite ďalších priateľov! |[2.*] Wow, ste skutočný influencer!<br> :count ľudí Odpovedali. Napíšte pôsobivú správu a pozvite ďalších priateľov!',
