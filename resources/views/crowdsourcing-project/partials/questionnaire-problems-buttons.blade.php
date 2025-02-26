@@ -2,7 +2,7 @@
     {{-- Show Questionnaire Button if available and user has not answered --}}
     @if ($viewModel->questionnaire && !$viewModel->userResponse)
         {{-- If the questionnaire title is different from the project name --}}
-        @if ($viewModel->project && ($viewModel->questionnaire->fieldsTranslation->title != $viewModel->project->currentTranslation->name))
+        @if (isset($repeat_title) || $viewModel->project && ($viewModel->questionnaire->fieldsTranslation->title != $viewModel->project->currentTranslation->name))
             <h3 class="project-section-title text-center mb-5">
                 {!! $viewModel->questionnaire->fieldsTranslation->title !!}
             </h3>
