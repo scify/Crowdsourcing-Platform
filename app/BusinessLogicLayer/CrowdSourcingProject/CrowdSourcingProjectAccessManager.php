@@ -39,8 +39,9 @@ class CrowdSourcingProjectAccessManager {
             'id', 'desc', $relationships);
 
         // TODO remove after INDEU project
-        // also add the default questionnaire with id 34
-        $projects->push($this->crowdSourcingProjectRepository->find(34, ['*'], $relationships));
+        // also add the INDEU projects
+        $indeu_project_ids = [28, 29, 30, 31, 32, 33];
+        $projects->push(...CrowdSourcingProject::whereIn('id', $indeu_project_ids)->with($relationships)->get());
 
         return $projects;
     }
