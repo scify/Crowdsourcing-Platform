@@ -19,11 +19,11 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "axios": "^1.7.9",
+    "axios": "^1.8.1",
     "blade-formatter": "^1.42.2",
     "cross-env": "^7.0.3",
     "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.0.1",
+    "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-vue": "^9.32.0",
@@ -31,7 +31,7 @@
     "husky": "^9.1.7",
     "laravel-vite-plugin": "^1.2.0",
     "postcss": "^8.5.3",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.85.1",
     "sass-loader": "^16.0.5",
@@ -42,12 +42,12 @@
     "vuex": "^4.1.0"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs": "^4.6.0",
-    "@fontsource-variable/noto-sans": "^5.1.1",
-    "@fontsource-variable/open-sans": "^5.1.1",
+    "@fingerprintjs/fingerprintjs": "^4.6.1",
+    "@fontsource-variable/noto-sans": "^5.2.5",
+    "@fontsource-variable/open-sans": "^5.2.5",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.8",
-    "@sentry/browser": "^9.2.0",
+    "@sentry/browser": "^9.3.0",
     "admin-lte": "3.1.0",
     "bootstrap": "^4.6.2",
     "bootstrap-colorpicker": "^3.4.0",
@@ -74,9 +74,9 @@
     "progressbar.js": "^1.1.1",
     "select2": "^4.0.13",
     "summernote": "^0.9.1",
-    "survey-analytics": "^1.12.24",
-    "survey-core": "^1.12.24",
-    "survey-creator": "^1.12.24",
-    "survey-jquery": "^1.12.24"
+    "survey-analytics": "^1.12.25",
+    "survey-core": "^1.12.25",
+    "survey-creator": "^1.12.25",
+    "survey-jquery": "^1.12.25"
   }
 }

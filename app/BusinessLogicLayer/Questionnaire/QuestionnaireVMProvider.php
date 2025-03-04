@@ -129,7 +129,22 @@ class QuestionnaireVMProvider {
         if ($user) {
             $userResponse = $this->questionnaireRepository->getUserResponseForQuestionnaire($questionnaire->id, $user->id);
         }
-        $languages = $this->languageManager->getAllLanguages();
+
+        // TODO: Restore after INDEU project
+        // $languages = $this->languageManager->getAllLanguages();
+
+        // TODO: Remove after INDEU project
+        $languages = [];
+        if ($questionnaire->id == 34) {
+            $currentTranslationLanguage = $this->languageManager->getLanguageById($questionnaire->currentTranslation->language_id);
+            $languages[] = $currentTranslationLanguage;
+            if ($currentTranslationLanguage->code === 'en') {
+                $languages[] = $this->languageManager->getLanguageByCode('nl');
+                $languages[] = $this->languageManager->getLanguageByCode('fr');
+            }
+        } else {
+            $languages = $this->languageManager->getAllLanguages();
+        }
 
         return new QuestionnairePage($questionnaire, $userResponse, $project, $languages, false);
     }
