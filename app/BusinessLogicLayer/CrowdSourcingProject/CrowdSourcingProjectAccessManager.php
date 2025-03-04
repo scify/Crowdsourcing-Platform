@@ -35,8 +35,14 @@ class CrowdSourcingProjectAccessManager {
         }
 
         // if the user is content manager, return only the projects created by them
-        return $this->crowdSourcingProjectRepository->whereWithTrashed(['user_creator_id' => $user->id], ['*'],
+        $projects = $this->crowdSourcingProjectRepository->whereWithTrashed(['user_creator_id' => $user->id], ['*'],
             'id', 'desc', $relationships);
+
+        // TODO remove after INDEU project
+        // also add the default questionnaire with id 34
+        $projects->push($this->crowdSourcingProjectRepository->find(34, ['*'], $relationships));
+
+        return $projects;
     }
 
     protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {
