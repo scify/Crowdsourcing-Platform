@@ -138,7 +138,7 @@ class QuestionnaireVMProvider {
         if ($questionnaire->id == 34) {
             $currentTranslationLanguage = $this->languageManager->getLanguageById($questionnaire->currentTranslation->language_id);
             $languages->push($currentTranslationLanguage);
-            if ($currentTranslationLanguage->code === 'en') {
+            if ($currentTranslationLanguage->language_code === 'en') {
                 $languages->push($this->languageManager->getLanguageByCode('fr'));
                 $languages->push($this->languageManager->getLanguageByCode('nl'));
             }
