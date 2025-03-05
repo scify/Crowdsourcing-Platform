@@ -8,7 +8,7 @@
             </h3>
         @endif
         <a href="{{ route('show-questionnaire-page', ['locale' => app()->getLocale(), 'project' => $viewModel->project->slug, 'questionnaire' => $viewModel->questionnaire->id]) }}"
-           class="btn btn-primary w-100 respond-questionnaire call-to-action">
+           class="btn btn-primary w-75 respond-questionnaire call-to-action">
             {{ __("questionnaire.start_answering") }}
         </a>
 
@@ -21,7 +21,7 @@
             @endif
         </h3>
         <a href="{{ route('project.problems-page', ['project_slug' => $viewModel->project->slug]) }}"
-           class="btn btn-primary w-100 call-to-action">
+           class="btn btn-primary w-75 call-to-action">
             {{ __("project-problems.project_landing_page_problems_action_button") }}
             <i class="fas fa-arrow-right"></i>
         </a>
