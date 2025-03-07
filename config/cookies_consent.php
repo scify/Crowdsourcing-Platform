@@ -5,6 +5,8 @@ return [
     'display_floating_button' => true,
     'hide_floating_button_on_mobile' => true,
     'use_separate_page' => false,
+    'categories_collapsed_by_default' => true,
+    'cookie_policy_page_custom_url' => null,
     'cookies' => [
         'strictly_necessary' => [
             [
