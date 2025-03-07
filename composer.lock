@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ae0e890225c62d118781e23dd18d06c",
+    "content-hash": "11ac3757a3a2e89be6038aa4b5d1c269",
     "packages": [
         {
             "name": "accentinteractive/laravel-logcleaner",
@@ -5883,34 +5883,34 @@
             "time": "2024-11-27T12:13:42+00:00"
         },
         {
-            "name": "scify/laravel-cookies-consent",
+            "name": "scify/laravel-cookie-guard",
             "version": "v4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/scify/laravel-cookies-consent.git",
-                "reference": "9f7b6546e16d4a15514369b15a3333c61bf52a56"
+                "url": "https://github.com/scify/laravel-cookie-guard.git",
+                "reference": "b2ccf1d04e19cec24a6414674eda968a937fbfef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scify/laravel-cookies-consent/zipball/9f7b6546e16d4a15514369b15a3333c61bf52a56",
-                "reference": "9f7b6546e16d4a15514369b15a3333c61bf52a56",
+                "url": "https://api.github.com/repos/scify/laravel-cookie-guard/zipball/b2ccf1d04e19cec24a6414674eda968a937fbfef",
+                "reference": "b2ccf1d04e19cec24a6414674eda968a937fbfef",
                 "shasum": ""
             },
             "require": {
-                "php": "^7|^8"
+                "php": "^8"
             },
             "require-dev": {
+                "larastan/larastan": "^3.1",
                 "laravel/pint": "^1.6",
-                "nunomaduro/collision": "^7.0",
-                "nunomaduro/larastan": "^2.0.1",
-                "orchestra/testbench": "^8.0",
-                "pestphp/pest": "^2.0",
-                "pestphp/pest-plugin-laravel": "^v2.2",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^3.7",
+                "pestphp/pest-plugin-laravel": "^v3.1",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "phpunit/phpunit": "^10.4",
-                "spatie/laravel-ray": "^1.26"
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^11.5",
+                "spatie/laravel-ray": "^1.39"
             },
             "type": "library",
             "extra": {
@@ -5936,26 +5936,26 @@
             "authors": [
                 {
                     "name": "Paul Isaris",
-                    "email": "paulisaris@gmail.com",
+                    "email": "paul@scify.com",
                     "role": "Developer"
                 }
             ],
             "description": "A Laravel package that provides a Cookies consent floating window and publishes the Cookies for the different consent categories",
-            "homepage": "https://github.com/scify/laravel-cookies-consent",
+            "homepage": "https://github.com/scify/laravel-cookie-guard",
             "keywords": [
                 "cookies",
                 "gdpr",
                 "laravel",
                 "laravel cookies",
                 "laravel gdpr",
-                "laravel-cookies-consent",
+                "laravel-cookie-guard",
                 "scify"
             ],
             "support": {
-                "issues": "https://github.com/scify/laravel-cookies-consent/issues",
-                "source": "https://github.com/scify/laravel-cookies-consent/tree/v4.0.0"
+                "issues": "https://github.com/scify/laravel-cookie-guard/issues",
+                "source": "https://github.com/scify/laravel-cookie-guard/tree/v4.0.0"
             },
-            "time": "2025-02-24T08:09:41+00:00"
+            "time": "2025-03-07T10:26:38+00:00"
         },
         {
             "name": "sentry/sentry",
