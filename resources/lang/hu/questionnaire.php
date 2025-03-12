@@ -52,4 +52,5 @@ return [
     'must_be_logged_in_prompt' => 'A kérdőív kitöltéséhez be kell jelentkeznie.',
     'create_account_prompt' => 'Hozzon létre egy fiókot, hogy többet hozzájáruljon a platformhoz, jelvényeket szerezzen, és segítsen nekünk javítani megoldásaink minőségét. Fiók létrehozásával részt vehet a vitákban, szavazhat a megoldásokra, és naprakész maradhat a legújabb fejleményekkel kapcsolatban. Csatlakozzon közösségünkhöz, és tegyen különbséget!',
     'answer_anonymously' => 'Válaszadás névtelenül',
+    'thank_you_next_steps' => 'Köszönjük a részvételt a kérdőívben, válaszai és ideje nagyra értékeltek. Már készülünk az akció második fázisára, amely a megoldások kidolgozására összpontosít.',
 ];
