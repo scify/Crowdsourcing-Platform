@@ -165,8 +165,9 @@ export default {
 			this.displayLoginPrompt = false;
 			this.loading = true;
 			const surveyContainerId = this.surveyContainerId;
+			const instance = this;
 			setTimeout(() => {
-				this.survey.render(surveyContainerId);
+				instance.survey.render(surveyContainerId);
 			}, 2000);
 		},
 		getQuestionnaireLoginPromptMessage() {
@@ -237,9 +238,10 @@ export default {
 			this.survey.data = JSON.parse(this.userResponse.response_json);
 			this.survey.mode = "display";
 			const surveyContainerId = this.surveyContainerId;
+			const instance = this;
 			setTimeout(() => {
-				this.survey.render(surveyContainerId);
-				this.loading = false;
+				instance.survey.render(surveyContainerId);
+				instance.loading = false;
 			}, 2000);
 		},
 		saveQuestionnaireResponseProgress(sender, options) {
