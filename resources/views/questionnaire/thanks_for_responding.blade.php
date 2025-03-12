@@ -40,7 +40,8 @@
                             </div>
                             <div class="row pt-3 pb-5">
                                 <div class="col-lg-6 col-md-8 col-sm-11 mx-auto">
-                                    <h3 class="project-section-title">{{ __("questionnaire.thank_you_next_steps") }}</h3>
+                                    <h3 class="project-section-title text-center"
+                                        style="line-height: 2.5rem;">{{ __("questionnaire.thank_you_next_steps") }}</h3>
                                 </div>
                             </div>
                         </div>
