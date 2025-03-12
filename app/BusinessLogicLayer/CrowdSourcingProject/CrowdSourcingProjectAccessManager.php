@@ -41,7 +41,14 @@ class CrowdSourcingProjectAccessManager {
         // TODO remove after INDEU project
         // also add the INDEU projects
         $indeu_project_ids = [28, 29, 30, 31, 32, 33];
-        $projects->push(...CrowdSourcingProject::whereIn('id', $indeu_project_ids)->with($relationships)->get());
+        $extra_projects = CrowdSourcingProject::whereIn('id', $indeu_project_ids)->with($relationships)->get();
+
+        // add the extra projects to the list (only if they are not already in the list, search by id of each project)
+        $extra_projects->each(function ($extra_project) use ($projects) {
+            if (!$projects->contains('id', $extra_project->id)) {
+                $projects->push($extra_project);
+            }
+        });
 
         return $projects;
     }
