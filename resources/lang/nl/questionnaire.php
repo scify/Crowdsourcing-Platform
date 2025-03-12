@@ -52,4 +52,5 @@ return [
     'must_be_logged_in_prompt' => 'Je moet ingelogd zijn om de vragenlijst te beantwoorden.',
     'create_account_prompt' => 'Maak een account aan om meer bij te dragen aan het platform, badges te verdienen en ons te helpen de kwaliteit van onze oplossingen te verbeteren. Door een account aan te maken, kunt u deelnemen aan discussies, stemmen op oplossingen en op de hoogte blijven van de laatste ontwikkelingen. Sluit u aan bij onze gemeenschap en maak een verschil!',
     'answer_anonymously' => 'Beantwoord anoniem',
+    'thank_you_next_steps' => 'Bedankt voor je deelname aan de vragenlijst, je antwoorden en tijd worden zeer gewaardeerd. We zijn al bezig met de tweede fase van dit initiatief, die zich zal richten op de ontwikkeling van oplossingen.',
 ];

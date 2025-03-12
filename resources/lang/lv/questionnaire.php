@@ -52,4 +52,5 @@ return [
     'must_be_logged_in_prompt' => 'Lai atbildētu uz anketu, jābūt pierakstītam sistēmā.',
     'create_account_prompt' => 'Izveidojiet kontu, lai vairāk ieguldītu platformā, nopelnītu nozīmītes un palīdzētu mums uzlabot mūsu risinājumu kvalitāti. Izveidojot kontu, jūs varat piedalīties diskusijās, balsot par risinājumiem un būt informēts par jaunākajiem notikumiem. Pievienojieties mūsu kopienai un veiciet izmaiņas!',
     'answer_anonymously' => 'Atbildēt anonīmi',
+    'thank_you_next_steps' => 'Paldies par dalību anketā, tavas atbildes un laiks ir augsti novērtēti. Mēs jau sagatavojam šīs iniciatīvas otro fāzi, kas būs vērsta uz risinājumu izstrādi.',
 ];

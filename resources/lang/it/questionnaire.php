@@ -52,4 +52,5 @@ return [
     'must_be_logged_in_prompt' => 'Devi essere loggato per rispondere al questionario.',
     'create_account_prompt' => 'Crea un account per contribuire di più alla piattaforma, guadagnare badge e aiutarci a migliorare la qualità delle nostre soluzioni. Creando un account, puoi partecipare alle discussioni, votare per le soluzioni e rimanere aggiornato sugli ultimi sviluppi. Unisciti alla nostra comunità e fai la differenza!',
     'answer_anonymously' => 'Rispondi in modo anonimo',
+    'thank_you_next_steps' => 'Grazie per la tua partecipazione al questionario, le tue risposte e il tuo tempo sono molto apprezzati. Stiamo già preparando la seconda fase di questa iniziativa, che si concentrerà sullo sviluppo di soluzioni.',
 ];
