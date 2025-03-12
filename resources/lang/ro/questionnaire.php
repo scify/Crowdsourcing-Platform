@@ -52,4 +52,5 @@ return [
     'must_be_logged_in_prompt' => 'Trebuie să fii autentificat pentru a răspunde la chestionar.',
     'create_account_prompt' => 'Creați un cont pentru a contribui mai mult la platformă, a câștiga insigne și a ne ajuta să îmbunătățim calitatea soluțiilor noastre. Prin crearea unui cont, puteți participa la discuții, vota pentru soluții și rămâneți la curent cu cele mai recente dezvoltări. Alăturați-vă comunității noastre și faceți o diferență!',
     'answer_anonymously' => 'Răspunde anonim',
+    'thank_you_next_steps' => 'Mulțumim pentru participarea la chestionar, răspunsurile și timpul tău sunt foarte apreciate. Ne pregătim deja a doua fază a acestei inițiative, care se va concentra pe dezvoltarea de soluții.',
 ];
