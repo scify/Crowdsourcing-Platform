@@ -167,7 +167,7 @@ export default {
 			const surveyContainerId = this.surveyContainerId;
 			setTimeout(() => {
 				this.survey.render(surveyContainerId);
-			}, 1000);
+			}, 2000);
 		},
 		getQuestionnaireLoginPromptMessage() {
 			let message = "";
@@ -240,7 +240,7 @@ export default {
 			setTimeout(() => {
 				this.survey.render(surveyContainerId);
 				this.loading = false;
-			}, 1000);
+			}, 2000);
 		},
 		saveQuestionnaireResponseProgress(sender, options) {
 			const responseJSON = window.localStorage.getItem(this.questionnaireLocalStorageKey);
