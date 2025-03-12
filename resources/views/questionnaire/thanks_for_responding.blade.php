@@ -26,9 +26,11 @@
                                     <h1 id="project-title" class="text">
                                         {!! $viewModel->project->currentTranslation->name !!}
                                     </h1>
-                                    <h2 id="motto-title" class="text">
-                                        {!! $viewModel->project->currentTranslation->motto_title !!}
-                                    </h2>
+                                    @if($viewModel->project->currentTranslation->name !== $viewModel->project->currentTranslation->motto_title)
+                                        <h2 id="motto-title" class="text">
+                                            {!! $viewModel->project->currentTranslation->motto_title !!}
+                                        </h2>
+                                    @endif
                                     @if ($viewModel->project->currentTranslation->motto_subtitle)
                                         <h4 id="motto-subtitle" class="text text-center pt-5">
                                             {!! $viewModel->project->currentTranslation->motto_subtitle !!}
