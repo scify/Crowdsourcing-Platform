@@ -76,7 +76,11 @@ class LoginController extends Controller {
      */
     public function handleProviderCallback(Request $request, $driver) {
         if (isset($request['denied']) || isset($request['error'])) {
-            $this->exceptionHandler->report(new Exception($request['error']));
+            if (isset($request['denied'])) {
+                session()->flash('flash_message_error', 'You have denied the login request');
+            } else {
+                $this->exceptionHandler->report(new Exception($request['error']));
+            }
 
             return redirect()->route('home', ['locale' => app()->getLocale()]);
         }
