@@ -59,9 +59,9 @@ class RegisterController extends Controller {
             'nickname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'gender' => 'nullable|string|max:255', // bookmark-10
-            'country' => 'nullable|string|max:255', // bookmark-10
-            'year-of-birth' => 'nullable|integer|min:1920|max:' . (date('Y') - 18), // bookmark-10
+            'gender' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+            'year-of-birth' => 'nullable|integer|min:1920|max:' . (date('Y') - 18),
         ]);
     }
 
