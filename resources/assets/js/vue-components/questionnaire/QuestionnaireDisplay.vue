@@ -151,8 +151,10 @@ export default {
 			this.displayLoginPrompt = !this.userLoggedIn() && !this.userResponse;
 			if (!this.displayLoginPrompt) this.skipLogin();
 			if (!this.userLoggedIn()) {
-				const response = await this.getAnonymousUserResponse();
-				this.userResponse = response.data.questionnaire_response ?? null;
+				if (this.browserFingerprintId) {
+					const response = await this.getAnonymousUserResponse();
+					this.userResponse = response.data.questionnaire_response ?? null;
+				}
 				this.displayLoginPrompt = !this.userResponse;
 			}
 			this.initQuestionnaireDisplay();
