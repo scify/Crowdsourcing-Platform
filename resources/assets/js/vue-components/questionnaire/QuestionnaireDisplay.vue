@@ -153,7 +153,7 @@ export default {
 			if (!this.userLoggedIn()) {
 				if (this.browserFingerprintId) {
 					const response = await this.getAnonymousUserResponse();
-					this.userResponse = response.data.questionnaire_response ?? null;
+					this.userResponse = response?.data?.questionnaire_response ?? null;
 				}
 				this.displayLoginPrompt = !this.userResponse;
 			}
