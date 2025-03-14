@@ -136,8 +136,6 @@ class QuestionnaireResponseController extends Controller {
         } catch (Exception) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
-
-        return null;
     }
 
     public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {
@@ -149,7 +147,6 @@ class QuestionnaireResponseController extends Controller {
         return response()->json([
             'questionnaire_response' => $this->questionnaireResponseManager->getAnonymousUserResponseForQuestionnaire(
                 $request->questionnaire_id,
-                $request->getClientIp(),
                 $request->browser_fingerprint_id),
         ]);
     }

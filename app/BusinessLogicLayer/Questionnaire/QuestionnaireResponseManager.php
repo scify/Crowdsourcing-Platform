@@ -210,7 +210,7 @@ class QuestionnaireResponseManager {
         return $data;
     }
 
-    public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $ip, string $browser_fingerprint_id) {
-        return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $ip, $browser_fingerprint_id);
+    public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $browser_fingerprint_id) {
+        return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $browser_fingerprint_id);
     }
 }
