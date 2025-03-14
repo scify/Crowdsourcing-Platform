@@ -5,6 +5,7 @@ namespace App\BusinessLogicLayer\Questionnaire;
 use App\BusinessLogicLayer\LanguageManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Jobs\TranslateQuestionnaireResponse;
+use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
@@ -210,7 +211,7 @@ class QuestionnaireResponseManager {
         return $data;
     }
 
-    public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $browser_fingerprint_id) {
+    public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $browser_fingerprint_id): ?QuestionnaireResponse {
         return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $browser_fingerprint_id);
     }
 }
