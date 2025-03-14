@@ -231,12 +231,13 @@ class UserManager {
         if (Auth::check()) {
             return Auth::user();
         }
-        $user_id = intval(CookieManager::getCookie(UserManager::$USER_COOKIE_KEY));
+
+        $user_id = intval(CookieManager::getCookie(self::$USER_COOKIE_KEY));
         if ($user_id !== 0) {
             try {
                 return $this->userRepository->find($user_id);
             } catch (ModelNotFoundException) {
-                return $this->createAnonymousUser();
+                // Fall through to create a new anonymous user
             }
         }
 
