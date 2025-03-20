@@ -48,7 +48,7 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/' . php_sapi_name() . '/laravel.log'),
             'level' => 'debug',
-            'permission' => 0664,
+            'permission' => 0666,
         ],
 
         'daily' => [
@@ -56,7 +56,7 @@ return [
             'path' => storage_path('logs/' . php_sapi_name() . '/laravel.log'),
             'level' => 'debug',
             'days' => 60,
-            'permission' => 0664,
+            'permission' => 0666,
         ],
 
         'slack' => [
