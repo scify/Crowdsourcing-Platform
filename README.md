@@ -471,7 +471,7 @@ And finally, run the tests:
 
 ```bash
   # Note that you filter the tests by using the --filter flag (without the = sign)
-  php artisan test --env=testing --filter {METHOD OR CLASS NAME} --coverage
+  XDEBUG_MODE=coverage php artisan test --env=testing --filter {METHOD OR CLASS NAME} --coverage
 ```
 
 ### Run the tests with the `run-tests.sh` script
@@ -493,7 +493,7 @@ This can also take any arguments (like the `--filter` or `--coverage` flag) that
 or
 
 ```bash
-  ./run-tests.sh --coverage
+  XDEBUG_MODE=coverage ./run-tests.sh --coverage
 ```
 
 ## How to debug

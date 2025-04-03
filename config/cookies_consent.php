@@ -4,9 +4,10 @@ return [
     'cookie_prefix' => 'crowdsourcing_app_',
     'display_floating_button' => true,
     'hide_floating_button_on_mobile' => true,
-    'use_separate_page' => false,
+    'use_separate_page' => true,
     'categories_collapsed_by_default' => true,
     'cookie_policy_page_custom_url' => null,
+    'use_floating_modal' => false,
     'cookies' => [
         'strictly_necessary' => [
             [

@@ -3,14 +3,11 @@
 namespace Tests\Unit\Controllers;
 
 use App\Http\Controllers\HomeController;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class HomeControllerTest extends TestCase {
     /**
-     * @test
-     *
-     * @group home-controller
-     *
      * Test Scenario 1:
      * GIVEN that there is no referrer
      *
@@ -18,6 +15,7 @@ class HomeControllerTest extends TestCase {
      *
      * THEN it should return the home route
      */
+    #[Test]
     public function test_get_redirect_back_url_no_referrer(): void {
         // Arrange
         $controller = $this->app->make(HomeController::class);
@@ -31,10 +29,6 @@ class HomeControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group home-controller
-     *
      * Test Scenario 2:
      * GIVEN that the referrer belongs to a different host
      *
@@ -42,6 +36,7 @@ class HomeControllerTest extends TestCase {
      *
      * THEN it should return the home route
      */
+    #[Test]
     public function test_get_redirect_back_url_different_host(): void {
         // Arrange
         $controller = $this->app->make(HomeController::class);
@@ -56,10 +51,6 @@ class HomeControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group home-controller
-     *
      * Test Scenario 3:
      * GIVEN that the referrer is the project landing page
      * AND it does not contain the "?open" query string
@@ -68,6 +59,7 @@ class HomeControllerTest extends TestCase {
      *
      * THEN it should append "?open=1" to the referrer URL
      */
+    #[Test]
     public function test_get_redirect_back_url_project_landing_page_no_query(): void {
         // Arrange
         $controller = $this->app->make(HomeController::class);
@@ -82,10 +74,6 @@ class HomeControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group home-controller
-     *
      * Test Scenario 4:
      * GIVEN that the referrer is the project landing page
      * AND it already contains the "?open" query string
@@ -94,6 +82,7 @@ class HomeControllerTest extends TestCase {
      *
      * THEN it should return the referrer URL as is
      */
+    #[Test]
     public function test_get_redirect_back_url_project_landing_page_with_query(): void {
         // Arrange
         $controller = $this->app->make(HomeController::class);

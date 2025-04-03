@@ -7,12 +7,14 @@ use App\Models\Questionnaire\QuestionnaireAnswerVote;
 use App\Models\User\User;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerVoteRepository;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
-    /** @test
+    /**
      * @throws BindingResolutionException
      */
+    #[Test]
     public function get_answer_votes_for_questionnaire_answers_returns_correct_votes(): void {
         $questionnaire = Questionnaire::factory()->create();
         $user1 = User::factory()->create();
@@ -36,9 +38,6 @@ class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
         $this->assertEquals($votes->first()->upvote, 1);
     }
 
-    /** @test
-     * @throws BindingResolutionException
-     */
     public function get_answer_votes_for_questionnaire_answers_returns_empty_collection_for_nonexistent_questionnaire(): void {
         $repository = $this->app->make(QuestionnaireAnswerVoteRepository::class);
         $votes = $repository->getAnswerVotesForQuestionnaireAnswers(999);
@@ -46,9 +45,7 @@ class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
         $this->assertCount(0, $votes);
     }
 
-    /** @test
-     * @throws BindingResolutionException
-     */
+    #[Test]
     public function get_answer_votes_for_questionnaire_answers_handles_multiple_votes_correctly(): void {
         $questionnaire = Questionnaire::factory()->create();
         $user1 = User::factory()->create();
