@@ -11,6 +11,7 @@ use App\Models\User\User;
 use App\ViewModels\Gamification\GamificationBadgesWithLevels;
 use App\ViewModels\User\UserDashboardViewModel;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
@@ -30,6 +31,7 @@ class UserControllerTest extends TestCase {
         Auth::shouldReceive('user')->andReturn($this->user);
     }
 
+    #[Test]
     public function test_my_dashboard_with_no_badges(): void {
         $this->userDashboardManager->method('getUserDashboardViewModel')
             ->willReturn($this->createDashboardViewModel(0, 0, 0));
@@ -45,6 +47,7 @@ class UserControllerTest extends TestCase {
         $this->assertCount(0, $viewModel->projectsWithActiveProblems);
     }
 
+    #[Test]
     public function test_my_dashboard_with_badges(): void {
         $this->userDashboardManager->method('getUserDashboardViewModel')
             ->willReturn($this->createDashboardViewModel(3, 2, 1));

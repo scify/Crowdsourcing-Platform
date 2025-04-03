@@ -10,6 +10,7 @@ use App\Models\User\User;
 use App\Models\User\UserRole;
 use Faker\Factory as Faker;
 use Illuminate\Http\UploadedFile;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
@@ -25,7 +26,7 @@ class UserControllerTest extends TestCase {
         }
     }
 
-    /** @test */
+    #[Test]
     public function my_dashboard_displays_dashboard_for_authenticated_user(): void {
         // print database connection in use
         $user = User::factory()->create();
@@ -37,7 +38,7 @@ class UserControllerTest extends TestCase {
         $response->assertViewIs('backoffice.my-dashboard');
     }
 
-    /** @test */
+    #[Test]
     public function my_dashboard_redirects_to_login_for_unauthenticated_user(): void {
         $response = $this->get(route('my-dashboard', ['locale' => 'en']));
 
@@ -45,7 +46,7 @@ class UserControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /** @test */
+    #[Test]
     public function my_account_displays_account_page_for_authenticated_user(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -56,7 +57,7 @@ class UserControllerTest extends TestCase {
         $response->assertViewIs('backoffice.my-account');
     }
 
-    /** @test */
+    #[Test]
     public function my_account_redirects_to_login_for_unauthenticated_user(): void {
         $response = $this->get(route('my-account', ['locale' => 'en']));
 
@@ -64,7 +65,7 @@ class UserControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /** @test */
+    #[Test]
     public function patch_updates_user_profile_with_valid_data(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -89,7 +90,7 @@ class UserControllerTest extends TestCase {
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function patch_updates_user_profile_with_valid_data_with_image(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -143,7 +144,7 @@ class UserControllerTest extends TestCase {
         \File::delete($fakeImage);
     }
 
-    /** @test */
+    #[Test]
     public function patch_updates_user_profile_with_invalid_image(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -176,7 +177,7 @@ class UserControllerTest extends TestCase {
         \File::delete($fakeTxtFile);
     }
 
-    /** @test */
+    #[Test]
     public function path_updates_user_profile_with_very_big_image(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -217,7 +218,7 @@ class UserControllerTest extends TestCase {
         \File::delete($largeImage);
     }
 
-    /** @test */
+    #[Test]
     public function patch_redirects_to_login_for_unauthenticated_user(): void {
         $faker = Faker::create();
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
@@ -233,7 +234,7 @@ class UserControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /** @test */
+    #[Test]
     public function patch_handles_invalid_data_correctly(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -248,7 +249,7 @@ class UserControllerTest extends TestCase {
         $response->assertSessionHasErrors(['password', 'email']);
     }
 
-    /** @test */
+    #[Test]
     public function delete_deactivates_user_for_admin_user(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -265,7 +266,7 @@ class UserControllerTest extends TestCase {
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function delete_redirects_to_login_for_unauthenticated_user(): void {
         $user = User::factory()->create();
 
@@ -276,7 +277,7 @@ class UserControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /** @test */
+    #[Test]
     public function delete_handles_invalid_user_id_correctly(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -289,7 +290,7 @@ class UserControllerTest extends TestCase {
         $response->assertStatus(404);
     }
 
-    /** @test */
+    #[Test]
     public function show_users_by_criteria_returns_correct_users(): void {
         User::factory()->create(['nickname' => 'John Doe']);
         User::factory()->create(['nickname' => 'Jane Doe']);
@@ -303,7 +304,7 @@ class UserControllerTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    /** @test */
+    #[Test]
     public function show_users_by_criteria_redirects_to_login_for_unauthenticated_user(): void {
         $response = $this->get(route('api.users.get-filtered', ['name' => 'John']));
 
@@ -311,7 +312,7 @@ class UserControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /** @test */
+    #[Test]
     public function non_admin_user_cannot_get_users_by_criteria(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -322,7 +323,7 @@ class UserControllerTest extends TestCase {
         $response->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function my_dashboard_displays_correctly_for_user_with_no_badges(): void {
         // for this test, we want to emulate that the platform does not have any questionnaires or projects
         // delete all questionnaires and projects
