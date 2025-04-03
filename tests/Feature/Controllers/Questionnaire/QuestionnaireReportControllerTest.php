@@ -9,10 +9,11 @@ use App\Models\User\UserRole;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use Exception;
 use Illuminate\Database\QueryException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class QuestionnaireReportControllerTest extends TestCase {
-    /** @test */
+    #[Test]
     public function view_reports_page_returns_correct_view(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -27,7 +28,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         $response->assertViewHas('viewModel');
     }
 
-    /** @test */
+    #[Test]
     public function get_report_data_for_questionnaire_returns_correct_json_response(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -42,7 +43,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         $response->assertJsonStructure(['data' => ['view', 'questionnaire', 'responses']]);
     }
 
-    /** @test */
+    #[Test]
     public function get_report_data_for_questionnaire_handles_query_exception(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -60,7 +61,7 @@ class QuestionnaireReportControllerTest extends TestCase {
         $response->assertJson(['data' => 'Error: 0. A Database error occurred.']);
     }
 
-    /** @test */
+    #[Test]
     public function get_report_data_for_questionnaire_handles_general_exception(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))

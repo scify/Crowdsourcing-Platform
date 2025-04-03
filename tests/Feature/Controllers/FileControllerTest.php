@@ -5,10 +5,11 @@ namespace Tests\Feature\Controllers;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class FileControllerTest extends TestCase {
-    /** @test */
+    #[Test]
     public function upload_files_successfully_uploads_files(): void {
         Storage::fake('s3');
         $files = [
@@ -32,7 +33,7 @@ class FileControllerTest extends TestCase {
         }
     }
 
-    /** @test */
+    #[Test]
     public function upload_files_fails_with_invalid_file_type(): void {
         Storage::fake('s3');
         $files = [
@@ -50,7 +51,7 @@ class FileControllerTest extends TestCase {
         $response->assertJsonValidationErrors(['files.0']);
     }
 
-    /** @test */
+    #[Test]
     public function upload_files_fails_with_too_many_files(): void {
         Storage::fake('s3');
         $files = array_fill(0, 9, UploadedFile::fake()->image('photo.jpg'));
@@ -66,7 +67,7 @@ class FileControllerTest extends TestCase {
         $response->assertJsonValidationErrors(['files']);
     }
 
-    /** @test */
+    #[Test]
     public function upload_files_fails_without_project_id(): void {
         Storage::fake('s3');
         $files = [
@@ -83,7 +84,7 @@ class FileControllerTest extends TestCase {
         $response->assertJsonValidationErrors(['project_id']);
     }
 
-    /** @test */
+    #[Test]
     public function upload_files_fails_without_questionnaire_id(): void {
         Storage::fake('s3');
         $files = [

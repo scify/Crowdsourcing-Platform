@@ -1,10 +1,11 @@
 <?php
 
-namespace Unit\Rules;
+namespace Tests\Unit\Rules;
 
 use App\Rules\ReCaptchaV3;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ReCaptchaV3Test extends TestCase {
@@ -12,6 +13,7 @@ class ReCaptchaV3Test extends TestCase {
      * Test that reCAPTCHA verifies successfully with a valid response.
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
+    #[Test]
     public function test_re_captch_a_verifies_successfully_with_valid_response(): void {
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response([
@@ -35,6 +37,7 @@ class ReCaptchaV3Test extends TestCase {
      * Test that reCAPTCHA fails with an invalid response.
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
+    #[Test]
     public function test_re_captch_a_fails_with_invalid_response(): void {
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response([
@@ -54,6 +57,7 @@ class ReCaptchaV3Test extends TestCase {
      * Test that reCAPTCHA fails with a low score.
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
+    #[Test]
     public function test_re_captch_a_fails_with_low_score(): void {
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response([
@@ -75,6 +79,7 @@ class ReCaptchaV3Test extends TestCase {
      * Test that reCAPTCHA fails with a wrong action.
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
+    #[Test]
     public function test_re_captch_a_fails_with_wrong_action(): void {
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response([
@@ -96,6 +101,7 @@ class ReCaptchaV3Test extends TestCase {
      * Test that reCAPTCHA fails with a connection exception.
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
+    #[Test]
     public function test_re_captch_a_fails_with_connection_exception(): void {
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response(null, 500),
