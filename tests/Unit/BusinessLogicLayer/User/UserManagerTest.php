@@ -120,9 +120,8 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
+        $cookieManagerMock = Mockery::mock('overload:' . CookieManager::class);
 
-        // Create a mock for CookieManager
-        $cookieManagerMock = Mockery::mock('overload:App\BusinessLogicLayer\CookieManager');
         $faker = Factory::create();
         $email = $faker->email;
         $nickname = $faker->userName;
@@ -141,6 +140,7 @@ class UserManagerTest extends TestCase {
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY)
             ->andReturn($cookieUserId);
+
 
         $userRepositoryMock->shouldReceive('find')
             ->twice()
@@ -199,10 +199,7 @@ class UserManagerTest extends TestCase {
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
-
-        // Create a mock for CookieManager
-        $cookieManagerMock = Mockery::mock('overload:App\BusinessLogicLayer\CookieManager');
-
+        $cookieManagerMock = Mockery::mock('overload:' . CookieManager::class);
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
