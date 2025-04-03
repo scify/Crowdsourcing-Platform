@@ -23,6 +23,11 @@ trait CookieManagerMockTrait {
         }
     }
 }
+
+/**
+ * @runInSeparateProcess
+ * @preserveGlobalState disabled
+ */
 class UserManagerTest extends TestCase {
     use CookieManagerMockTrait;
 
@@ -32,7 +37,7 @@ class UserManagerTest extends TestCase {
     }
 
     protected function tearDown(): void {
-        Mockery::close(); // Clear Mockery expectations
+        Mockery::close();
         parent::tearDown();
     }
 
