@@ -16,13 +16,21 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-Mockery::getConfiguration()->setConstantsMap([
-    'App\BusinessLogicLayer\CookieManager' => [
-        'getCookie' => null,
-        'deleteCookie' => null,
-    ],
-]);
+trait CookieManagerMockTrait {
+    protected function setUpCookieManagerMock(): void {
+        if (!class_exists('App\BusinessLogicLayer\CookieManager')) {
+            class_alias('Mockery\MockInterface', 'App\BusinessLogicLayer\CookieManager');
+        }
+    }
+}
 class UserManagerTest extends TestCase {
+    use CookieManagerMockTrait;
+
+    protected function setUp(): void {
+        parent::setUp();
+        $this->setUpCookieManagerMock();
+    }
+
     protected function tearDown(): void {
         Mockery::close(); // Clear Mockery expectations
         parent::tearDown();
