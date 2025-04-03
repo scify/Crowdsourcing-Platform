@@ -21,17 +21,18 @@ use Tests\TestCase;
  * @preserveGlobalState disabled
  */
 class UserManagerTest extends TestCase {
+    protected function setUp(): void {
+        parent::setUp();
+        // Add CookieManager to Mockery's loader
+        Mockery::mock('alias:' . CookieManager::class);
+    }
+
     protected function tearDown(): void {
         Mockery::close();
         parent::tearDown();
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     *
-     * @group user-manager
-     *
      * GIVEN a valid cookie with user ID
      * AND the user does not exist in the database
      * WHEN createUser is called
@@ -105,11 +106,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     *
-     * @group user-manager
-     *
      * GIVEN a valid cookie with user ID
      * AND the user exists in the database
      * WHEN createUser is called
@@ -190,11 +186,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     *
-     * @group user-manager
-     *
      * GIVEN no cookie and user is not logged in
      * WHEN getLoggedInUserOrCreateAnonymousUser is called
      * THEN an anonymous user should be created
