@@ -43,10 +43,11 @@ class UserManagerTest extends TestCase {
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
 
-        // Mock CookieManager static methods
-        $cookieManagerMock = Mockery::mock('alias:' . CookieManager::class);
+        // Create a mock for CookieManager
+        $cookieManagerMock = Mockery::mock('overload:App\BusinessLogicLayer\CookieManager');
         $cookieUserId = 12345;
 
+        // Set up expectations
         $cookieManagerMock->shouldReceive('getCookie')
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY)
@@ -73,7 +74,6 @@ class UserManagerTest extends TestCase {
             ->once()
             ->with(Mockery::type('array'))
             ->andReturn(new User(['nickname' => 'Test_User', 'email' => 'test_user@crowd.org']));
-
 
         // Initialize UserManager
         $userManager = new UserManager(
@@ -120,7 +120,7 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock('overload:' . CookieManager::class);
 
         $faker = Factory::create();
         $email = $faker->email;
@@ -199,7 +199,7 @@ class UserManagerTest extends TestCase {
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock('overload:' . CookieManager::class);
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
