@@ -16,26 +16,11 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-trait CookieManagerMockTrait {
-    protected function setUpCookieManagerMock(): void {
-        if (!class_exists('App\BusinessLogicLayer\CookieManager')) {
-            class_alias('Mockery\MockInterface', 'App\BusinessLogicLayer\CookieManager');
-        }
-    }
-}
-
 /**
  * @runInSeparateProcess
  * @preserveGlobalState disabled
  */
 class UserManagerTest extends TestCase {
-    use CookieManagerMockTrait;
-
-    protected function setUp(): void {
-        parent::setUp();
-        $this->setUpCookieManagerMock();
-    }
-
     protected function tearDown(): void {
         Mockery::close();
         parent::tearDown();
@@ -63,7 +48,7 @@ class UserManagerTest extends TestCase {
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
 
         // Create a mock for CookieManager static methods
-        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
         $cookieUserId = 12345;
 
         // Set up expectations
@@ -139,7 +124,7 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
 
         $faker = Factory::create();
         $email = $faker->email;
@@ -218,7 +203,7 @@ class UserManagerTest extends TestCase {
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
