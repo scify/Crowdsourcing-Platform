@@ -21,17 +21,6 @@ use Tests\TestCase;
  * @preserveGlobalState disabled
  */
 class UserManagerTest extends TestCase {
-    protected function setUp(): void {
-        parent::setUp();
-        // Add CookieManager to Mockery's loader
-        Mockery::mock('alias:' . CookieManager::class);
-    }
-
-    protected function tearDown(): void {
-        Mockery::close();
-        parent::tearDown();
-    }
-
     /**
      * GIVEN a valid cookie with user ID
      * AND the user does not exist in the database
@@ -68,7 +57,7 @@ class UserManagerTest extends TestCase {
             ->with(Mockery::any())
             ->andThrow(new \Illuminate\Database\Eloquent\ModelNotFoundException);
 
-        // Mock CookieManager::getCookie to return null after deletion
+        // Mock getCookie to return null after deletion
         $cookieManagerMock->shouldReceive('getCookie')
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY)
@@ -86,7 +75,8 @@ class UserManagerTest extends TestCase {
             $userRoleRepositoryMock,
             $mailChimpAdaptorMock,
             $questionnaireResponseRepositoryMock,
-            $questionnaireAnswerVoteRepositoryMock
+            $questionnaireAnswerVoteRepositoryMock,
+            $cookieManagerMock
         );
 
         // Call the createUser method
@@ -166,7 +156,8 @@ class UserManagerTest extends TestCase {
             $userRoleRepositoryMock,
             $mailChimpAdaptorMock,
             $questionnaireResponseRepositoryMock,
-            $questionnaireAnswerVoteRepositoryMock
+            $questionnaireAnswerVoteRepositoryMock,
+            $cookieManagerMock
         );
 
         // Call the createUser method
@@ -198,7 +189,7 @@ class UserManagerTest extends TestCase {
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
-        // Mock CookieManager::getCookie to return null
+        // Mock getCookie to return null
         $cookieManagerMock->shouldReceive('getCookie')
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY)
@@ -216,7 +207,8 @@ class UserManagerTest extends TestCase {
             Mockery::mock(UserRoleRepository::class),
             Mockery::mock(MailChimpAdaptor::class),
             Mockery::mock(QuestionnaireResponseRepository::class),
-            Mockery::mock(QuestionnaireAnswerVoteRepository::class)
+            Mockery::mock(QuestionnaireAnswerVoteRepository::class),
+            $cookieManagerMock
         );
 
         // Call the method
