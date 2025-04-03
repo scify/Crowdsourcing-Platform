@@ -42,7 +42,7 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
         // Mock cookie value
         $cookieUserId = 12345;
 
@@ -119,7 +119,7 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
 
         $faker = Factory::create();
         $email = $faker->email;
@@ -198,7 +198,7 @@ class UserManagerTest extends TestCase {
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
