@@ -16,6 +16,12 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+Mockery::getConfiguration()->setConstantsMap([
+    'App\BusinessLogicLayer\CookieManager' => [
+        'getCookie' => null,
+        'deleteCookie' => null,
+    ],
+]);
 class UserManagerTest extends TestCase {
     protected function tearDown(): void {
         Mockery::close(); // Clear Mockery expectations
@@ -43,8 +49,8 @@ class UserManagerTest extends TestCase {
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
 
-        // Create a mock for CookieManager
-        $cookieManagerMock = Mockery::mock('overload:App\BusinessLogicLayer\CookieManager');
+        // Create a mock for CookieManager static methods
+        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
         $cookieUserId = 12345;
 
         // Set up expectations
@@ -120,7 +126,7 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
-        $cookieManagerMock = Mockery::mock('overload:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
 
         $faker = Factory::create();
         $email = $faker->email;
@@ -199,7 +205,7 @@ class UserManagerTest extends TestCase {
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
-        $cookieManagerMock = Mockery::mock('overload:' . CookieManager::class);
+        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
