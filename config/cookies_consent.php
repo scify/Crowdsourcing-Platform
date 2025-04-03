@@ -7,7 +7,7 @@ return [
     'use_separate_page' => false,
     'categories_collapsed_by_default' => true,
     'cookie_policy_page_custom_url' => null,
-    'use_floating_modal' => false,
+    'use_floating_modal' => true,
     'cookies' => [
         'strictly_necessary' => [
             [
