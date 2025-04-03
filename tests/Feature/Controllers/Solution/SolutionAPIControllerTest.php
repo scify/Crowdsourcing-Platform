@@ -1,12 +1,13 @@
 <?php
 
-namespace Feature\Controllers\Solution;
+namespace Tests\Feature\Controllers\Solution;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Models\Solution\Solution;
 use App\Models\User\User;
 use App\Models\User\UserRole;
 use App\Repository\Solution\SolutionUpvoteRepository;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class SolutionAPIControllerTest extends TestCase {
@@ -18,10 +19,6 @@ class SolutionAPIControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group solutions
-     *
      * Test Scenario 1:
      * GIVEN that a Project Campaign has some published Problems associated with it,
      *
@@ -31,6 +28,7 @@ class SolutionAPIControllerTest extends TestCase {
      *
      * THEN the response should contain the Solutions associated with the Problem.
      */
+    #[Test]
     public function test_get_solutions_for_problem_landing_page(): void {
         $problem_id = 1;
         $user = User::factory()
@@ -68,10 +66,6 @@ class SolutionAPIControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group solutions
-     *
      * Test Scenario 1:
      * GIVEN that a Project Campaign has some published Problems associated with it,
      *
@@ -84,6 +78,7 @@ class SolutionAPIControllerTest extends TestCase {
      * THEN the response should contain the Solutions associated with the Problem,
      * and the upvoted_by_current_user field should be set to true for the Solutions that the user has upvoted.
      */
+    #[Test]
     public function test_get_solutions_for_problem_landing_page_with_upvoted_solutions(): void {
         $problem_id = 1;
         $user = User::factory()
@@ -134,10 +129,6 @@ class SolutionAPIControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group solutions
-     *
      * Test Scenario 2:
      * GIVEN that a user is logged in,
      * AND the user has not upvoted the Solution,
@@ -146,6 +137,7 @@ class SolutionAPIControllerTest extends TestCase {
      * AND the solution should be marked as upvoted by the user.
      * AND the user votes for the project should be decremented by 1.
      */
+    #[Test]
     public function test_upvote_solution(): void {
         // create a new solution and tie it to a problem with id 1
         $solution = Solution::factory()->create(['problem_id' => 1]);
@@ -182,10 +174,6 @@ class SolutionAPIControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group solutions
-     *
      * Test Scenario 3: (Downvote, or remove upvote)
      * GIVEN that a user is logged in,
      * AND the user has already upvoted the Solution,
@@ -194,6 +182,7 @@ class SolutionAPIControllerTest extends TestCase {
      * AND the solution should be marked as not voted by the user.
      * AND the user votes for the project should be incremented by 1.
      */
+    #[Test]
     public function test_downvote_solution(): void {
         // create a new solution and tie it to a problem with id 1
         $solution = Solution::factory()->create(['problem_id' => 1]);

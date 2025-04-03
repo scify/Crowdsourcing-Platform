@@ -8,10 +8,11 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class QuestionnaireResponseControllerTest extends TestCase {
-    /** @test */
+    #[Test]
     public function test_store_invalid_data(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -27,7 +28,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         $response->assertJsonValidationErrors(['browser_fingerprint_id', 'questionnaire_id', 'project_id']);
     }
 
-    /** @test */
+    #[Test]
     public function test_store_without_authentication_for_non_moderator(): void {
         $questionnaire = Questionnaire::factory()->create();
 
@@ -61,7 +62,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function test_store_of_moderator(): void {
         // Create a user and set as authenticated
         $user = User::factory()->create();
@@ -101,7 +102,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function test_store_without_authentication_for_non_moderator_with_stored_cookie(): void {
         // Create a user
         $user = User::factory()->create();
@@ -142,7 +143,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function test_show_questionnaire_thanks_for_responding_page(): void {
         // Create a user and set as authenticated
         $user = User::factory()->create();
@@ -174,7 +175,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         $response->assertViewIs('questionnaire.thanks_for_responding');
     }
 
-    /** @test */
+    #[Test]
     public function test_vote_answer_upvote(): void {
         // Create a user and set as authenticated
         $user = User::factory()->create();
@@ -209,7 +210,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function test_vote_answer_downvote(): void {
         // Create a user and set as authenticated
         $user = User::factory()->create();

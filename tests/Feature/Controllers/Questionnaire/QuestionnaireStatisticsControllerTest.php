@@ -11,10 +11,11 @@ use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
 use App\Models\User\UserRole;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class QuestionnaireStatisticsControllerTest extends TestCase {
-    /** @test */
+    #[Test]
     public function show_statistics_page_for_questionnaire_returns_correct_view(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -36,7 +37,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $response->assertViewHas('viewModel');
     }
 
-    /** @test */
+    #[Test]
     public function show_edit_statistics_colors_page_returns_correct_view(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -51,7 +52,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $response->assertViewHas('viewModel');
     }
 
-    /** @test */
+    #[Test]
     public function save_statistics_colors_saves_colors_and_redirects_back_with_success_message(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -70,7 +71,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $response->assertSessionHas('flash_message_success', 'Colors saved!');
     }
 
-    /** @test */
+    #[Test]
     public function save_all_statistics_colors_saves_colors_and_redirects_back_with_success_message(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -93,7 +94,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $response->assertSessionHas('flash_message_success', 'Colors saved!');
     }
 
-    /** @test */
+    #[Test]
     public function save_statistics_colors_saves_colors_with_wrong_input_and_redirects_back_with_error_message(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -111,7 +112,7 @@ class QuestionnaireStatisticsControllerTest extends TestCase {
         $response->assertSessionHas('flash_message_error', 'Error: 0  Undefined array key "goal_responses_color"');
     }
 
-    /** @test */
+    #[Test]
     public function save_statistics_colors_handles_exception_and_redirects_back_with_failure_message(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))

@@ -1,10 +1,11 @@
 <?php
 
-namespace Unit\BusinessLogicLayer;
+namespace Tests\Unit\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\CookieManager;
 use Illuminate\Support\Facades\Cookie;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CookieManagerTest extends TestCase {
@@ -19,14 +20,11 @@ class CookieManagerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group cookie-manager
-     *
      * GIVEN a cookie exists
      * WHEN deleteCookie is called
      * THEN the cookie should be deleted
      */
+    #[Test]
     public function delete_cookie_existing_cookie(): void {
         $_COOKIE['test_cookie'] = 'value';
         Cookie::shouldReceive('queue')->once()->with(Cookie::forget('test_cookie'));
@@ -37,14 +35,11 @@ class CookieManagerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group cookie-manager
-     *
      * GIVEN a cookie does not exist
      * WHEN deleteCookie is called
      * THEN no error should occur
      */
+    #[Test]
     public function delete_cookie_non_existing_cookie(): void {
         Cookie::shouldReceive('queue')->once()->with(Cookie::forget('test_cookie'));
 

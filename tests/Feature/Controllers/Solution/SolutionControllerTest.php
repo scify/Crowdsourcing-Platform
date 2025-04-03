@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Controllers\Solution;
+namespace Tests\Feature\Controllers\Solution;
 
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -9,20 +9,18 @@ use App\Models\Solution\SolutionTranslation;
 use App\Models\User\User;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class SolutionControllerTest extends TestCase {
     /**
-     * @test
-     *
-     * @group solution-controller-test
-     *
      * Test Scenario 1:
      * GIVEN that a user is not authenticated,
      *
      * AND they try to access the solution propose page,
      * THEN they should be able to access the page.
      */
+    #[Test]
     public function test_user_proposal_create_is_accessible_when_user_is_not_authenticated(): void {
         // get the first problem that is associated with a project
         $problem = Problem::whereHas('project')->first();
@@ -33,16 +31,13 @@ class SolutionControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group solution-controller-test
-     *
      * Test Scenario 2:
      * GIVEN that a user is authenticated,
      *
      * AND they try to access the solution propose page,
      * THEN they should be able to access the page.
      */
+    #[Test]
     public function test_user_proposal_create_page_is_accessible_when_user_is_authenticated(): void {
         $user = User::factory()->create();
 
@@ -56,10 +51,6 @@ class SolutionControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group solution-controller-test
-     *
      * Test Scenario 3:
      * GIVEN that a user is authenticated,
      *
@@ -69,6 +60,7 @@ class SolutionControllerTest extends TestCase {
      * AND the solution should be associated with the problem.
      * AND the solution should have an "UNPUBLISHED" status.
      */
+    #[Test]
     public function test_user_proposal_store_stores_solution_in_database_when_data_is_valid(): void {
         $user = User::factory()->create();
 

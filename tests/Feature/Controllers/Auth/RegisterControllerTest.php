@@ -1,11 +1,12 @@
 <?php
 
-namespace Feature\Controllers\Auth;
+namespace Tests\Feature\Controllers\Auth;
 
 use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Models\User\User;
 use Faker\Factory;
 use Illuminate\Support\Facades\Notification;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase {
@@ -15,14 +16,11 @@ class RegisterControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group register-controller
-     *
      * GIVEN valid user data
      * WHEN create method is called
      * THEN a new user should be created and assigned the registered user role
      */
+    #[Test]
     public function create_user_with_valid_data(): void {
         $faker = Factory::create();
         $email = $faker->email;
@@ -47,14 +45,11 @@ class RegisterControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group register-controller
-     *
      * GIVEN user data with an existing email
      * WHEN create method is called
      * THEN the user should not be created and an error should be returned
      */
+    #[Test]
     public function create_user_with_existing_email(): void {
         $faker = Factory::create();
         $email = $faker->email;
@@ -77,14 +72,11 @@ class RegisterControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group register-controller
-     *
      * GIVEN user data with invalid year of birth
      * WHEN create method is called
      * THEN the user should not be created and an error should be returned
      */
+    #[Test]
     public function create_user_with_invalid_year_of_birth(): void {
         $data = [
             'nickname' => 'testuser',
@@ -103,14 +95,11 @@ class RegisterControllerTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group register-controller
-     *
      * GIVEN user data with missing required fields
      * WHEN create method is called
      * THEN the user should not be created and errors should be returned
      */
+    #[Test]
     public function create_user_with_missing_required_fields(): void {
         $data = [
             'nickname' => '',

@@ -4,6 +4,7 @@ namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class QuestionnaireTests extends TestCase {
@@ -17,9 +18,7 @@ class QuestionnaireTests extends TestCase {
         $this->questionnaireResponseManager = $this->app->make(QuestionnaireResponseManager::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_questionnaire_free_type_questions(): void {
         $questionnaireJSON = '
         {

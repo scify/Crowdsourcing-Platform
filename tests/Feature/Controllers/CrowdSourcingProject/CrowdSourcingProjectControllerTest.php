@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Controllers\CrowdSourcingProject;
+namespace Tests\Feature\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
@@ -12,6 +12,7 @@ use App\Models\User\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CrowdSourcingProjectControllerTest extends TestCase {
@@ -22,9 +23,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $this->crowdSourcingProjectRepository = $this->app->make(CrowdSourcingProjectRepository::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_can_view_published_project_landing_page(): void {
         $project = $this->crowdSourcingProjectRepository
             ->findBy('status_id', CrowdSourcingProjectStatusLkp::PUBLISHED, 'slug')->first();
@@ -33,9 +32,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_views_finalized_project_landing_page(): void {
         // create a "finalized" project from the factory
 
@@ -50,9 +47,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertViewIs('crowdsourcing-project.project-unavailable');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_user_cannot_view_non_published_project_landing_page(): void {
         $user = User::factory()->make();
 
@@ -69,9 +64,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertViewIs('crowdsourcing-project.project-unavailable');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_can_view_non_published_project_landing_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -87,18 +80,14 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_view_non_existent_project_landing_page(): void {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => 'non-existent-slug']));
 
         $response->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_user_cannot_view_non_existent_project_landing_page(): void {
         $user = User::factory()->make();
         $this->be($user);
@@ -108,9 +97,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_cannot_view_non_existent_project_landing_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -122,18 +109,14 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_view_project_with_invalid_slug(): void {
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => 'invalid-slug']));
 
         $response->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_user_cannot_view_project_with_invalid_slug(): void {
         $user = User::factory()->make();
         $this->be($user);
@@ -143,9 +126,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_cannot_view_project_with_invalid_slug(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -157,9 +138,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_access_create_page(): void {
         $response = $this->get(route('projects.create', ['locale' => 'en']));
 
@@ -168,9 +147,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_non_admin_user_cannot_access_create_page(): void {
         $user = User::factory()->make();
         $this->be($user);
@@ -180,9 +157,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(403);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_can_access_create_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -195,9 +170,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertViewIs('backoffice.management.crowdsourcing-project.create-edit.form-page');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_access_index_page(): void {
         $response = $this->get(route('projects.index', ['locale' => 'en']));
 
@@ -205,9 +178,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_user_cannot_access_index_page(): void {
         $user = User::factory()->make();
         $this->be($user);
@@ -217,9 +188,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(403);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_can_access_index_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -232,9 +201,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertViewIs('backoffice.management.crowdsourcing-project.index');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_access_edit_page(): void {
         $project = CrowdSourcingProject::factory()->create();
 
@@ -243,9 +210,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(302);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_user_cannot_access_edit_page(): void {
         $user = User::factory()->make();
         $this->be($user);
@@ -257,9 +222,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(403);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_can_access_edit_page(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -274,9 +237,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertViewIs('backoffice.management.crowdsourcing-project.create-edit.form-page');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_store_project(): void {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->post(route('projects.store', ['locale' => 'en']), [
@@ -291,9 +252,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function non_admin_user_cannot_store_project(): void {
         $user = User::factory()->create();
         $this->be($user);
@@ -313,9 +272,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(403);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_can_store_project_with_valid_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -351,9 +308,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_cannot_store_project_with_existing_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -374,9 +329,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertSessionHasErrors(['name', 'slug']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function store_project_with_invalid_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -395,9 +348,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertSessionHasErrors(['name', 'description', 'status_id', 'language_id']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guest_cannot_update_project(): void {
         $project = CrowdSourcingProject::factory()->create();
 
@@ -414,9 +365,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertRedirectContains(route('login', ['locale' => 'en']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authenticated_user_cannot_update_project(): void {
         $user = User::factory()->make();
         $this->be($user);
@@ -437,9 +386,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertStatus(403);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_can_update_project_with_valid_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -477,9 +424,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_cannot_update_project_with_invalid_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
@@ -501,9 +446,7 @@ class CrowdSourcingProjectControllerTest extends TestCase {
         $response->assertSessionHasErrors(['name', 'description', 'status_id', 'language_id']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function admin_cannot_view_landing_page_due_to_exception(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))

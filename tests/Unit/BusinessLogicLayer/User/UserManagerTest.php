@@ -1,6 +1,6 @@
 <?php
 
-namespace Unit\BusinessLogicLayer\User;
+namespace Tests\Unit\BusinessLogicLayer\User;
 
 use App\BusinessLogicLayer\CookieManager;
 use App\BusinessLogicLayer\User\UserManager;
@@ -13,6 +13,7 @@ use App\Utils\MailChimpAdaptor;
 use Faker\Factory;
 use Illuminate\Support\Facades\Auth;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserManagerTest extends TestCase {
@@ -22,7 +23,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @test
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      *
@@ -34,6 +34,7 @@ class UserManagerTest extends TestCase {
      * THEN the cookie is deleted
      * AND a new user is created
      */
+    #[Test]
     public function test_create_user_when_cookie_is_set_but_user_not_found(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
@@ -99,7 +100,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @test
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      *
@@ -111,6 +111,7 @@ class UserManagerTest extends TestCase {
      * THEN the cookie is not deleted
      * AND the user is updated
      */
+    #[Test]
     public function test_create_user_when_cookie_is_set_and_user_exists(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
@@ -184,7 +185,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @test
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      *
@@ -194,6 +194,7 @@ class UserManagerTest extends TestCase {
      * WHEN getLoggedInUserOrCreateAnonymousUser is called
      * THEN an anonymous user should be created
      */
+    #[Test]
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);

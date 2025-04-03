@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Controllers\CrowdSourcingProject;
+namespace Tests\Feature\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
@@ -13,14 +13,11 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
 use App\Models\User\UserRole;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class CrowdSourcingProjectLandingPageTest extends TestCase {
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 1:
      * GIVEN that a Project Campaign does not have any Questionnaire
      *
@@ -30,6 +27,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
      */
+    #[Test]
     public function test_user_should_see_cta_for_problems_campaign_page(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -60,10 +58,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 2:
      * GIVEN that a Project Campaign does have an active Questionnaire
      *
@@ -73,6 +67,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA to answer the Questionnaire
      */
+    #[Test]
     public function test_user_should_see_cta_for_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -109,10 +104,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 3:
      * GIVEN that a Project Campaign does have an active Questionnaire
      *
@@ -124,6 +115,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
      */
+    #[Test]
     public function test_user_should_see_cta_for_problems_campaign_page_after_answering_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -166,10 +158,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 4:
      * GIVEN that a Project Campaign has a finalized and a draft Questionnaire
      *
@@ -181,6 +169,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
      */
+    #[Test]
     public function test_user_should_see_cta_for_problems_campaign_page_after_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -228,10 +217,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 5:
      * GIVEN that a Project Campaign has a finalized and a draft Questionnaire
      *
@@ -243,6 +228,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA to contribute to the Problems campaign
      */
+    #[Test]
     public function test_user_should_see_cta_for_problems_campaign_page_without_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -284,10 +270,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 6:
      * GIVEN that a Project Campaign has a finalized and a draft Questionnaire
      *
@@ -301,6 +283,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA for the external link of the Project
      */
+    #[Test]
     public function test_user_should_see_cta_for_external_link_without_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -345,10 +328,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 7:
      * GIVEN that a Project Campaign has a finalized and a draft Questionnaire
      *
@@ -366,6 +345,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA for answering the feedback questionnaire
      */
+    #[Test]
     public function test_user_should_see_cta_for_feedback_questionnaire_without_answering_completed_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -417,10 +397,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 8:
      * GIVEN that a Project Campaign has an active and a draft Questionnaire
      *
@@ -438,6 +414,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the CTA for visiting the external link of the Project
      */
+    #[Test]
     public function test_user_should_see_cta_for_external_link_after_answering_questionnaire_and_feedback_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
@@ -501,10 +478,6 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
     }
 
     /**
-     * @test
-     *
-     * @group crowd-sourcing-project
-     *
      * Test Scenario 9:
      * GIVEN that a Project Campaign has an active Questionnaire
      *
@@ -520,6 +493,7 @@ class CrowdSourcingProjectLandingPageTest extends TestCase {
      *
      * THEN the user should see the message for sharing the questionnaire with friends
      */
+    #[Test]
     public function test_user_should_see_cta_for_sharing_questionnaire_after_answering_questionnaire(): void {
         // Given that a registered user has responded to the questionnaire
         $user = User::factory()
