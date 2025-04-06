@@ -25,7 +25,7 @@ class UserManager {
     public static int $USERS_PER_PAGE = 10;
     public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
-    public function __construct(private readonly UserRepository $userRepository, private readonly UserRoleRepository $userRoleRepository, private readonly MailChimpAdaptor $mailChimpManager, private readonly QuestionnaireResponseRepository $questionnaireResponseRepository, private readonly QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository) {}
+    public function __construct(private readonly UserRepository $userRepository, private readonly UserRoleRepository $userRoleRepository, private readonly MailChimpAdaptor $mailChimpManager, private readonly QuestionnaireResponseRepository $questionnaireResponseRepository, private readonly QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository, private readonly CookieManager $cookieManager) {}
 
     public function getUserProfile($user): UserProfile {
         return new UserProfile($user);
@@ -204,7 +204,7 @@ class UserManager {
             'country' => $input_data['country'],
             'year-of-birth' => $input_data['year-of-birth'],
         ];
-        $user_id = intval(CookieManager::getCookie(UserManager::$USER_COOKIE_KEY));
+        $user_id = intval($this->cookieManager->getCookie(UserManager::$USER_COOKIE_KEY));
         if ($user_id === 0) {
             return $this->userRepository->create($user_data);
         }
@@ -221,7 +221,7 @@ class UserManager {
 
             return $this->userRepository->find($existingUser->id);
         } catch (ModelNotFoundException) {
-            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+            $this->cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
             return $this->createUser($user_data);
         }
@@ -232,7 +232,7 @@ class UserManager {
             return Auth::user();
         }
 
-        $user_id = intval(CookieManager::getCookie(self::$USER_COOKIE_KEY));
+        $user_id = intval($this->cookieManager->getCookie(self::$USER_COOKIE_KEY));
         if ($user_id !== 0) {
             try {
                 return $this->userRepository->find($user_id);

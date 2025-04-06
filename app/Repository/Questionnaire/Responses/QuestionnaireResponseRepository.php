@@ -36,15 +36,16 @@ class QuestionnaireResponseRepository extends Repository {
             return null;
         }
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
+        $cookieManager = new CookieManager;
         if ($anonymousUserId === $user_id) {
-            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+            $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
             return null;
         }
 
         $anonymousUser = User::find($anonymousUserId);
         if (!$anonymousUser) {
-            CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+            $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
             return null;
         }
@@ -69,7 +70,7 @@ class QuestionnaireResponseRepository extends Repository {
             }
         }
         $anonymousUser->delete();
-        CookieManager::deleteCookie(UserManager::$USER_COOKIE_KEY);
+        $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
         return $questionnairesThatWereTransferredToUser;
     }

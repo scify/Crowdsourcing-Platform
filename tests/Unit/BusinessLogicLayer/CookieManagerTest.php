@@ -28,8 +28,9 @@ class CookieManagerTest extends TestCase {
     public function delete_cookie_existing_cookie(): void {
         $_COOKIE['test_cookie'] = 'value';
         Cookie::shouldReceive('queue')->once()->with(Cookie::forget('test_cookie'));
+        $cookieManager = new CookieManager;
 
-        CookieManager::deleteCookie('test_cookie');
+        $cookieManager->deleteCookie('test_cookie');
 
         $this->assertArrayNotHasKey('test_cookie', $_COOKIE);
     }
@@ -42,8 +43,8 @@ class CookieManagerTest extends TestCase {
     #[Test]
     public function delete_cookie_non_existing_cookie(): void {
         Cookie::shouldReceive('queue')->once()->with(Cookie::forget('test_cookie'));
-
-        CookieManager::deleteCookie('test_cookie');
+        $cookieManager = new CookieManager;
+        $cookieManager->deleteCookie('test_cookie');
 
         $this->assertArrayNotHasKey('test_cookie', $_COOKIE);
     }
