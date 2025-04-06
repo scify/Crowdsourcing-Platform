@@ -16,24 +16,12 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-Mockery::getConfiguration()->setConstantsMap([
-    'App\BusinessLogicLayer\CookieManager' => [
-        'getCookie' => null,
-        'deleteCookie' => null,
-    ],
-]);
+/**
+ * @runInSeparateProcess
+ * @preserveGlobalState disabled
+ */
 class UserManagerTest extends TestCase {
-    protected function tearDown(): void {
-        Mockery::close(); // Clear Mockery expectations
-        parent::tearDown();
-    }
-
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     *
-     * @group user-manager
-     *
      * GIVEN a valid cookie with user ID
      * AND the user does not exist in the database
      * WHEN createUser is called
@@ -50,7 +38,7 @@ class UserManagerTest extends TestCase {
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
 
         // Create a mock for CookieManager static methods
-        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
         $cookieUserId = 12345;
 
         // Set up expectations
@@ -69,7 +57,7 @@ class UserManagerTest extends TestCase {
             ->with(Mockery::any())
             ->andThrow(new \Illuminate\Database\Eloquent\ModelNotFoundException);
 
-        // Mock CookieManager::getCookie to return null after deletion
+        // Mock getCookie to return null after deletion
         $cookieManagerMock->shouldReceive('getCookie')
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY)
@@ -87,7 +75,8 @@ class UserManagerTest extends TestCase {
             $userRoleRepositoryMock,
             $mailChimpAdaptorMock,
             $questionnaireResponseRepositoryMock,
-            $questionnaireAnswerVoteRepositoryMock
+            $questionnaireAnswerVoteRepositoryMock,
+            $cookieManagerMock
         );
 
         // Call the createUser method
@@ -107,11 +96,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     *
-     * @group user-manager
-     *
      * GIVEN a valid cookie with user ID
      * AND the user exists in the database
      * WHEN createUser is called
@@ -126,7 +110,7 @@ class UserManagerTest extends TestCase {
         $mailChimpAdaptorMock = Mockery::mock(MailChimpAdaptor::class);
         $questionnaireResponseRepositoryMock = Mockery::mock(QuestionnaireResponseRepository::class);
         $questionnaireAnswerVoteRepositoryMock = Mockery::mock(QuestionnaireAnswerVoteRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
 
         $faker = Factory::create();
         $email = $faker->email;
@@ -172,7 +156,8 @@ class UserManagerTest extends TestCase {
             $userRoleRepositoryMock,
             $mailChimpAdaptorMock,
             $questionnaireResponseRepositoryMock,
-            $questionnaireAnswerVoteRepositoryMock
+            $questionnaireAnswerVoteRepositoryMock,
+            $cookieManagerMock
         );
 
         // Call the createUser method
@@ -192,11 +177,6 @@ class UserManagerTest extends TestCase {
     }
 
     /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     *
-     * @group user-manager
-     *
      * GIVEN no cookie and user is not logged in
      * WHEN getLoggedInUserOrCreateAnonymousUser is called
      * THEN an anonymous user should be created
@@ -205,11 +185,11 @@ class UserManagerTest extends TestCase {
     public function test_create_anonymous_user_when_no_cookie_and_not_logged_in(): void {
         // Mock dependencies
         $userRepositoryMock = Mockery::mock(UserRepository::class);
-        $cookieManagerMock = Mockery::mock('alias:App\BusinessLogicLayer\CookieManager');
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
         // Mock Auth::check to return false
         Auth::shouldReceive('check')->andReturn(false);
 
-        // Mock CookieManager::getCookie to return null
+        // Mock getCookie to return null
         $cookieManagerMock->shouldReceive('getCookie')
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY)
@@ -227,7 +207,8 @@ class UserManagerTest extends TestCase {
             Mockery::mock(UserRoleRepository::class),
             Mockery::mock(MailChimpAdaptor::class),
             Mockery::mock(QuestionnaireResponseRepository::class),
-            Mockery::mock(QuestionnaireAnswerVoteRepository::class)
+            Mockery::mock(QuestionnaireAnswerVoteRepository::class),
+            $cookieManagerMock
         );
 
         // Call the method
