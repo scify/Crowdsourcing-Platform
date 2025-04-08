@@ -162,6 +162,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         $requestData = [
             'project_slug' => CrowdSourcingProject::first()->slug,
             'questionnaire_id' => $questionnaire->id,
+            'response_id' => QuestionnaireResponse::first()->id,
             'locale' => 'en',
         ];
 

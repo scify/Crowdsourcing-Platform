@@ -16,10 +16,6 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-/**
- * @runInSeparateProcess
- * @preserveGlobalState disabled
- */
 class UserManagerTest extends TestCase {
     /**
      * GIVEN a valid cookie with user ID

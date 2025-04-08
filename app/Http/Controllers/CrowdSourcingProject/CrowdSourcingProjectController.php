@@ -107,14 +107,12 @@ class CrowdSourcingProjectController extends Controller {
         } catch (ModelNotFoundException) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
-
-        return null;
     }
 
     protected function showCrowdSourcingProjectLandingPage(Request $request, string $project_slug) {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
-                $request->questionnaireId ?? null,
+                $request->questionnaireId ?? 0,
                 $project_slug);
 
             if ($this->shouldHandleQuestionnaireShare($request)) {

@@ -53,4 +53,5 @@ return [
     'create_account_prompt' => 'Vytvorte si účet, aby ste mohli viac prispievať na platformu, získavať odznaky a pomôcť nám zlepšiť kvalitu našich riešení. Vytvorením účtu sa môžete zúčastňovať diskusií, hlasovať za riešenia a byť informovaní o najnovších udalostiach. Pripojte sa k našej komunite a urobte rozdiel!',
     'answer_anonymously' => 'Odpovedať anonymne',
     'thank_you_next_steps' => 'Ďakujeme za Vaše zapojenie do dotazníka, Vaše odpovede a čas sú veľmi ocenené. Už pripravujeme druhú fázu tejto iniciatívy, ktorá sa bude zaoberať vývojom riešení.',
+    'response_id' => 'ID odpovede',
 ];
