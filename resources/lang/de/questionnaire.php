@@ -53,4 +53,5 @@ return [
     'create_account_prompt' => 'Erstellen Sie ein Konto, um mehr zur Plattform beizutragen, Abzeichen zu verdienen und uns zu helfen, die Qualität unserer Lösungen zu verbessern. Durch die Erstellung eines Kontos können Sie an Diskussionen teilnehmen, für Lösungen abstimmen und über die neuesten Entwicklungen informiert bleiben. Treten Sie unserer Gemeinschaft bei und machen Sie einen Unterschied!',
     'answer_anonymously' => 'Anonym antworten',
     'thank_you_next_steps' => 'Vielen Dank für Ihre Teilnahme am Fragebogen, Ihre Antworten und Ihre Zeit werden sehr geschätzt. Wir bereiten bereits die zweite Phase dieser Initiative vor, die sich auf die Entwicklung von Lösungen konzentrieren wird, bei der wir erneut um Ihre Meinung bitten werden!',
+    'response_id' => 'Antwort-ID',
 ];
