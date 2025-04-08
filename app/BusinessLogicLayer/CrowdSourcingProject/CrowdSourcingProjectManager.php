@@ -20,6 +20,7 @@ use App\Utils\FileHandler;
 use App\ViewModels\CrowdSourcingProject\AllCrowdSourcingProjects;
 use App\ViewModels\CrowdSourcingProject\CreateEditCrowdSourcingProject;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectForLandingPage;
+use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectForThankYouPage;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectSocialMediaMetadata;
 use App\ViewModels\CrowdSourcingProject\CrowdSourcingProjectUnavailable;
 use App\ViewModels\Gamification\GamificationBadgeVM;
@@ -114,8 +115,8 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCrowdSourcingProjectViewModelForLandingPage(
-        $questionnaireIdRequestedInTheURL,
-        $project_slug): CrowdSourcingProjectForLandingPage {
+        int $questionnaireIdRequestedInTheURL,
+        string $project_slug): CrowdSourcingProjectForLandingPage {
         $userId = Auth::id() ?? intval($_COOKIE[UserManager::$USER_COOKIE_KEY] ?? 0);
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
@@ -172,6 +173,42 @@ class CrowdSourcingProjectManager {
             $this->languageRepository->all(),
             $shareUrlForFacebook,
             $shareUrlForTwitter);
+    }
+
+    public function getCrowdSourcingProjectViewModelForThankYouPage(
+        int $questionnaireIdRequestedInTheURL,
+        string $project_slug,
+        bool $is_moderator_view
+    ): CrowdSourcingProjectForThankYouPage {
+        // Get the landing page view model
+        $landingPageViewModel = $this->getCrowdSourcingProjectViewModelForLandingPage(
+            $questionnaireIdRequestedInTheURL,
+            $project_slug
+        );
+
+        // Retrieve the response ID
+        $response_id = $landingPageViewModel->userResponse->id ?? 0;
+
+        $view_model = new CrowdSourcingProjectForThankYouPage(
+            $landingPageViewModel->project,
+            $landingPageViewModel->questionnaire,
+            $landingPageViewModel->feedbackQuestionnaire,
+            $landingPageViewModel->projectHasPublishedProblems,
+            $landingPageViewModel->userResponse,
+            $landingPageViewModel->userFeedbackQuestionnaireResponse,
+            $landingPageViewModel->totalResponses,
+            $landingPageViewModel->questionnaireGoalVM,
+            $landingPageViewModel->socialMediaMetadataVM,
+            $landingPageViewModel->languages,
+            $landingPageViewModel->shareUrlForFacebook,
+            $landingPageViewModel->shareUrlForTwitter
+        );
+
+        $view_model->response_id = $response_id;
+        $view_model->moderator = $is_moderator_view;
+        $view_model->thankYouMode = true;
+
+        return $view_model;
     }
 
     public function getSocialMediaMetadataViewModel(CrowdSourcingProject $project): CrowdSourcingProjectSocialMediaMetadata {

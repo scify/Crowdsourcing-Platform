@@ -31,19 +31,31 @@
                                             {!! $viewModel->project->currentTranslation->motto_title !!}
                                         </h2>
                                     @endif
-                                    @if ($viewModel->project->currentTranslation->motto_subtitle)
-                                        <h4 id="motto-subtitle" class="text text-center pt-5">
-                                            {!! $viewModel->project->currentTranslation->motto_subtitle !!}
-                                        </h4>
-                                    @endif
                                 </div>
                             </div>
                             <div class="row pt-3 pb-5">
-                                <div class="col-lg-6 col-md-8 col-sm-11 mx-auto">
-                                    <h3 class="project-section-title text-center"
-                                        style="line-height: 2.5rem;">{{ __("questionnaire.thank_you_next_steps") }}</h3>
+                                <div class="col-lg-7 col-md-9 col-sm-11 mx-auto">
+                                    <h4 class="project-section-title text-center"
+                                        style="line-height: 2.5rem; font-weight: bold;">
+                                        {{ __("questionnaire.thank_you_next_steps") }}
+                                    </h4>
                                 </div>
                             </div>
+                            <div class="row pt-3 pb-5">
+                                <div class="col-lg-6 col-md-8 col-sm-11 mx-auto text-center">
+                                    <h3>Response ID: {{ $viewModel->response_id }}</h3>
+                                </div>
+                            </div>
+                            @if($viewModel->moderator)
+                                <div class="row pt-3 pb-5">
+                                    <div class="col-lg-6 col-md-8 col-sm-11 mx-auto text-center">
+                                        <a href="{{ route('questionnaires.all', ['locale' => app()->getLocale()]) }}"
+                                           class="btn btn-primary w-75 respond-questionnaire call-to-action">
+                                            {{ __("menu.see_all_questionnaires") }}
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
