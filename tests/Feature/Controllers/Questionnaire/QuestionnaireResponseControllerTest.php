@@ -153,7 +153,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         $questionnaire = Questionnaire::factory()->create();
 
         // Create a questionnaire response for this user and questionnaire
-        QuestionnaireResponse::factory()->create([
+        $response = QuestionnaireResponse::factory()->create([
             'questionnaire_id' => $questionnaire->id,
             'user_id' => $user->id,
         ]);
@@ -162,7 +162,7 @@ class QuestionnaireResponseControllerTest extends TestCase {
         $requestData = [
             'project_slug' => CrowdSourcingProject::first()->slug,
             'questionnaire_id' => $questionnaire->id,
-            'response_id' => QuestionnaireResponse::first()->id,
+            'response_id' => $response->id,
             'locale' => 'en',
         ];
 
