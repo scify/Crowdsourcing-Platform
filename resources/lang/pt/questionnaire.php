@@ -53,4 +53,5 @@ return [
     'create_account_prompt' => 'Crie uma conta para contribuir mais com a plataforma, ganhar emblemas e nos ajudar a melhorar a qualidade de nossas soluções. Ao criar uma conta, você pode participar de discussões, votar em soluções e ficar atualizado com os últimos desenvolvimentos. Junte-se à nossa comunidade e faça a diferença!',
     'answer_anonymously' => 'Responder anonimamente',
     'thank_you_next_steps' => 'Obrigado pela sua participação no questionário, suas respostas e tempo são muito apreciados. Já estamos preparando a segunda fase desta iniciativa, que se concentrará no desenvolvimento de soluções.',
+    'response_id' => 'ID de resposta',
 ];

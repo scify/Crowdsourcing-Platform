@@ -127,7 +127,7 @@ class QuestionnaireController extends Controller {
      * @throws Exception if the user is not allowed to access the questionnaire
      */
     public function showAddResponseAsModeratorToQuestionnaire(string $locale, CrowdSourcingProject $project, Questionnaire $questionnaire) {
-        $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($project, $questionnaire);
+        $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnaireResponseModeratorPage($locale, $project, $questionnaire);
 
         return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);
     }

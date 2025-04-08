@@ -16,6 +16,7 @@ use App\Repository\Questionnaire\Statistics\QuestionnaireStatisticsPageVisibilit
 use App\ViewModels\Questionnaire\CreateEditQuestionnaire;
 use App\ViewModels\Questionnaire\ManageQuestionnaires;
 use App\ViewModels\Questionnaire\QuestionnairePage;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireVMProvider {
@@ -102,14 +103,6 @@ class QuestionnaireVMProvider {
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
 
-    public function getViewModelForQuestionnaireResponseModeratorPage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
-        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
-
-        $languages = $this->languageManager->getAllLanguages();
-
-        return new QuestionnairePage($questionnaire, null, $project, $languages, false);
-    }
-
     protected function shouldShowLinkForQuestionnaire($questionnaire): bool {
         return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
     }
@@ -134,6 +127,31 @@ class QuestionnaireVMProvider {
         // $languages = $this->languageManager->getAllLanguages();
 
         // TODO: Remove after INDEU project
+        $languages = $this->getLanguagesForQuestionnairePage($questionnaire);
+
+        return new QuestionnairePage($questionnaire, $userResponse, $project, $languages, false);
+    }
+
+    public function getViewModelForQuestionnaireResponseModeratorPage(string $locale, CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
+        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        $questionnaire->currentTranslation = $this->getTranslationForQuestionnaire($questionnaire, $locale);
+
+        $languages = $this->getLanguagesForQuestionnairePage($questionnaire);
+
+        return new QuestionnairePage($questionnaire, null, $project, $languages, true);
+    }
+
+    private function getTranslationForQuestionnaire(Questionnaire $questionnaire, string $language_code): QuestionnaireFieldsTranslation {
+        $language = $this->languageManager->getLanguageByCode($language_code);
+        $translation = null;
+        if ($language) {
+            $translation = $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $language->id]);
+        }
+
+        return $translation ?: $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $questionnaire->default_language_id]);
+    }
+
+    protected function getLanguagesForQuestionnairePage(Questionnaire $questionnaire): Collection {
         $languages = collect();
         if ($questionnaire->id == 34) {
             $currentTranslationLanguage = $this->languageManager->getLanguageById($questionnaire->currentTranslation->language_id);
@@ -146,16 +164,6 @@ class QuestionnaireVMProvider {
             $languages = collect($this->languageManager->getAllLanguages());
         }
 
-        return new QuestionnairePage($questionnaire, $userResponse, $project, $languages, false);
-    }
-
-    private function getTranslationForQuestionnaire(Questionnaire $questionnaire, string $language_code): QuestionnaireFieldsTranslation {
-        $language = $this->languageManager->getLanguageByCode($language_code);
-        $translation = null;
-        if ($language) {
-            $translation = $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $language->id]);
-        }
-
-        return $translation ?: $this->questionnaireTranslationRepository->where(['questionnaire_id' => $questionnaire->id, 'language_id' => $questionnaire->default_language_id]);
+        return $languages;
     }
 }

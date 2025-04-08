@@ -120,7 +120,7 @@ Route::group($localeInfo, function (): void {
 Route::group(['middleware' => ['setlocale']], function () use ($localeInfo): void {
     Route::group($localeInfo, function (): void {
         Route::get('/{slug}', [CrowdSourcingProjectController::class, 'showLandingPage'])->name('project.landing-page');
-        Route::get('/{project_slug}/{questionnaire_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
+        Route::get('/{project_slug}/{questionnaire_id}/{response_id}/thanks', [QuestionnaireResponseController::class, 'showQuestionnaireThanksForRespondingPage'])->name('questionnaire.thanks');
         Route::get('/{project_slug}/problems', [ProblemController::class, 'showProblemsPage'])->name('project.problems-page');
         Route::get('/{project_slug}/problems/{problem_slug}', [ProblemController::class, 'show'])->name('problem.show');
         Route::get('/{project_slug}/problems/{problem_slug}/solutions/', [ProblemController::class, 'show'])->name('problem.show.solutions');

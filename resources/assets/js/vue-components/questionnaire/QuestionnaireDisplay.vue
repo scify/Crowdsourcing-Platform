@@ -328,6 +328,7 @@ export default {
 				})
 				.then((response) => {
 					const anonymousUserId = response.data.anonymousUserId;
+					const responseId = response.data.responseId;
 					if (anonymousUserId) {
 						setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
 					}
@@ -346,7 +347,7 @@ export default {
 						this.questionnaire.id,
 					);
 					window.localStorage.removeItem(this.questionnaireLocalStorageKey);
-					this.displaySuccessResponse(anonymousUserId);
+					this.displaySuccessResponse(anonymousUserId, responseId);
 				})
 				.catch((error) => {
 					console.error(error);
@@ -356,23 +357,26 @@ export default {
 					window.$("#questionnaire-modal").modal("hide");
 				});
 		},
-		displaySuccessResponse(anonymousUserId) {
-			if (this.moderator) {
-				history.back();
-			} else {
-				let questionnaireResponseThankYouURL = window.route(
-					"questionnaire.thanks",
-					this.locale,
-					this.project.slug,
-					this.questionnaire.id,
-				);
-				if (anonymousUserId) {
-					questionnaireResponseThankYouURL += `?anonymous_user_id=${anonymousUserId}`;
-				}
+		displaySuccessResponse(anonymousUserId, responseId) {
+			let questionnaireResponseThankYouURL = window.route(
+				"questionnaire.thanks",
+				this.locale,
+				this.project.slug,
+				this.questionnaire.id,
+				responseId,
+			);
 
-				$("#pyro").addClass("pyro-on");
-				window.location = questionnaireResponseThankYouURL;
+			if (anonymousUserId) {
+				questionnaireResponseThankYouURL += `?anonymous_user_id=${anonymousUserId}`;
 			}
+
+			if (this.moderator) {
+				const separator = questionnaireResponseThankYouURL.includes("?") ? "&" : "?";
+				questionnaireResponseThankYouURL += `${separator}is_moderator_view=true`;
+			}
+
+			$("#pyro").addClass("pyro-on");
+			window.location = questionnaireResponseThankYouURL;
 		},
 		async displayErrorResponse(error) {
 			const { default: swal } = await import("bootstrap-sweetalert");

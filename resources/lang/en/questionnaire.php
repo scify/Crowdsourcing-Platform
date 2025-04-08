@@ -53,4 +53,5 @@ return [
     'create_account_prompt' => 'Create an account to contribute more to the platform, earn badges, and help us improve the quality of our solutions. By creating an account, you can participate in discussions, vote on solutions, and stay updated with the latest developments. Join our community and make a difference!',
     'answer_anonymously' => 'Answer anonymously',
     'thank_you_next_steps' => 'Thank you for your participation in the questionnaire, your responses and time are highly appreciated. We are already preparing the second phase of this initiative, which will focus on the development of solutions, where we will ask for your opinion again!',
+    'response_id' => 'Response ID',
 ];

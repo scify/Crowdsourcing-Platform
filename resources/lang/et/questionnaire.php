@@ -53,4 +53,5 @@ return [
     'create_account_prompt' => 'Loo konto, et panustada rohkem platvormile, teenida märke ja aidata meil parandada oma lahenduste kvaliteeti. Konto loomisega saate osaleda aruteludes, hääletada lahenduste poolt ja olla kursis viimaste arengutega. Liitu meie kogukonnaga ja tee vahet!',
     'answer_anonymously' => 'Vasta anonüümselt',
     'thank_you_next_steps' => 'Täname osalemast küsimustikus, sinu vastused ja aeg on väga hinnatud. Oleme juba valmistumas selle algatuse teiseks etapiks, mis keskendub lahenduste väljatöötamisele.',
+    'response_id' => 'Vastuse ID',
 ];

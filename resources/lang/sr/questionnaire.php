@@ -53,4 +53,5 @@ return [
     'create_account_prompt' => 'Kreirajte nalog kako biste više doprineli platformi, zaradili značke i pomogli nam da poboljšamo kvalitet naših rešenja. Kreiranjem naloga možete učestvovati u diskusijama, glasati za rešenja i biti informisani o najnovijim dešavanjima. Pridružite se našoj zajednici i napravite razliku!',
     'answer_anonymously' => 'Odgovorite anonimno',
     'thank_you_next_steps' => 'Hvala Vam na učešću u upitniku, Vaši odgovori i vreme su visoko cenjeni. Već pripremamo drugu fazu ove inicijative, koja će se fokusirati na razvoj rešenja.',
+    'response_id' => 'ID odgovora',
 ];

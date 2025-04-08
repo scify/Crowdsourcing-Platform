@@ -38,6 +38,7 @@ class QuestionnaireResponseController extends Controller {
         }
         $response = response()->json([
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id,
+            'responseId' => $questionnaireResponse->id,
         ]);
         if (!Auth::check()) {
             $response->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $questionnaireResponse->user_id));
@@ -124,10 +125,14 @@ class QuestionnaireResponseController extends Controller {
             } else {
                 $userId = $request->anonymous_user_id;
             }
-            $response = $this->questionnaireResponseRepository->where(['questionnaire_id' => $request->questionnaire_id, 'user_id' => $userId]);
+            $is_moderator_view = $request->is_moderator_view ?? false;
+            $response = $this->questionnaireResponseRepository->where(['id' => $request->response_id, 'user_id' => $userId]);
+            if (!$response) {
+                abort(ResponseAlias::HTTP_NOT_FOUND);
+            }
             $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($response->project_id);
-            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage($request->questionnaire_id, $project->slug);
-            $viewModel->thankYouMode = true;
+            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForThankYouPage($request->questionnaire_id, $project->slug, $is_moderator_view);
+            $viewModel->response_id = $response->id;
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $response->user_id])->pluck('questionnaire_id')->toArray();
             $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($userId, count($questionnaireIdsUserHasAnsweredTo)));
