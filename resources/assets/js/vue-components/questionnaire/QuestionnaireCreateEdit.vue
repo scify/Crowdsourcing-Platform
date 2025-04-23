@@ -666,25 +666,27 @@ export default defineComponent({
 					obj.forEach((item) => cleanLocales(item));
 				} else if (typeof obj === "object" && obj !== null) {
 					for (const key in obj) {
-						const value = obj[key];
+						if (Object.prototype.hasOwnProperty.call(obj, key)) {
+							const value = obj[key];
 
-						// Check if the value is a localized object (like title: { "default": "text", "fr": "texte" })
-						if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-							const localeKeys = Object.keys(value);
-							const allAreLocales = localeKeys.every((k) => typeof value[k] === "string");
+							// Check if the value is a localized object (like title: { "default": "text", "fr": "texte" })
+							if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+								const localeKeys = Object.keys(value);
+								const allAreLocales = localeKeys.every((k) => typeof value[k] === "string");
 
-							if (allAreLocales) {
-								// Keep only allowed locales and default
-								for (const localeKey of localeKeys) {
-									if (localeKey !== "default" && !allowedLocales.includes(localeKey)) {
-										delete value[localeKey];
+								if (allAreLocales) {
+									// Keep only allowed locales and default
+									for (const localeKey of localeKeys) {
+										if (localeKey !== "default" && !allowedLocales.includes(localeKey)) {
+											delete value[localeKey];
+										}
 									}
+								} else {
+									cleanLocales(value);
 								}
 							} else {
 								cleanLocales(value);
 							}
-						} else {
-							cleanLocales(value);
 						}
 					}
 				}
