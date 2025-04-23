@@ -83,10 +83,7 @@ class QuestionnaireController extends Controller {
         ]);
         $data = $request->all();
         $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $request->id);
-        if (isset($data['lang_codes']) && count($data['lang_codes']) > 0) {
-            $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
-        }
-        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'], $questionnaire->id);
+        $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'] ?? [], $questionnaire->id);
 
         return $questionnaire;
     }

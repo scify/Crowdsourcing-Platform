@@ -15,6 +15,34 @@
 			}
 		}
 
+		.sv_main .sv_header__text {
+			text-align: center;
+		}
+
+		.sv_main .sv_header h3 {
+			text-align: center;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+			font-weight: 600;
+			font-size: 2.5rem;
+		}
+
+		.sv_main .sv_p_root {
+			.sv_page_title {
+				padding: 0.5em 1em;
+				font-weight: 700;
+				font-size: 1.5em;
+			}
+
+			.sv_page_title + div {
+				.sv-string-viewer.sv-string-viewer--multiline {
+					font-style: italic;
+					padding: 0 1.5em;
+					display: block;
+				}
+			}
+		}
+
 		.sv-btn.sv-footer__complete-btn,
 		.sv-btn.sv-footer__next-btn,
 		.sv-btn.sv-footer__prev-btn,
