@@ -54,8 +54,8 @@
 									/>
 								</div>
 								<div class="card-body">
-									<h5 class="card-title" v-sane-html="problem.currentTranslation.title"></h5>
-									<p class="card-text mb-4" v-sane-html="problem.currentTranslation.description"></p>
+									<h5 v-sane-html="problem.currentTranslation.title" class="card-title"></h5>
+									<p v-sane-html="problem.currentTranslation.description" class="card-text mb-4"></p>
 								</div>
 							</div>
 						</a>
@@ -107,6 +107,12 @@ export default {
 			errorMessage: "",
 		};
 	},
+	watch: {
+		projectId: "fetchProblems",
+	},
+	mounted() {
+		this.fetchProblems();
+	},
 	methods: {
 		...mapActions(["get"]),
 		async fetchProblems() {
@@ -144,12 +150,6 @@ export default {
 		getProblemPageURL(problem) {
 			return window.route("problem.show", getLocale(), this.projectSlug, problem.slug);
 		},
-	},
-	watch: {
-		projectId: "fetchProblems",
-	},
-	mounted() {
-		this.fetchProblems();
 	},
 };
 </script>

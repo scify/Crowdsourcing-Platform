@@ -16,7 +16,7 @@
 		<div v-if="displayLoginPrompt" class="container-fluid p-0">
 			<div class="row mb-5 pt-3">
 				<div class="col text-center">
-					<h4 class="login-message" v-sane-html="getQuestionnaireLoginPromptMessage()"></h4>
+					<h4 v-sane-html="getQuestionnaireLoginPromptMessage()" class="login-message"></h4>
 				</div>
 			</div>
 			<div class="row justify-content-center d-none d-md-flex">
