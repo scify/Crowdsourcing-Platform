@@ -617,7 +617,7 @@ export default defineComponent({
 				const { default: swal } = await import("bootstrap-sweetalert");
 				return swal({
 					title: "Fields Missing!",
-					text: "Please provide a title, description, goal, and at least one project.",
+					text: "Please provide a goal and at least one project.",
 					type: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
@@ -661,7 +661,7 @@ export default defineComponent({
 			}
 		},
 		formInvalid(data) {
-			return !data.title || !data.description || !data.goal || isNaN(data.goal) || !data.project_ids.length;
+			return  !data.goal || isNaN(data.goal) || !data.project_ids.length;
 		},
 		shuffle(array) {
 			for (let i = array.length - 1; i > 0; i--) {
