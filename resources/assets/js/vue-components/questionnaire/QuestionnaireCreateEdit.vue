@@ -597,7 +597,7 @@ export default defineComponent({
 				language: this.questionnaire.default_language_id,
 				project_ids: [],
 				statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
-				content: this.cleanQuestionnaireJson(this.surveyCreator.text, locales),
+				content: this.surveyCreator.text,
 				lang_codes: locales,
 				extra_fields_translations: document.getElementById("extra_translations").value,
 				max_votes_num: this.questionnaire.max_votes_num,
@@ -666,25 +666,27 @@ export default defineComponent({
 					obj.forEach((item) => cleanLocales(item));
 				} else if (typeof obj === "object" && obj !== null) {
 					for (const key in obj) {
-						const value = obj[key];
+						if (Object.prototype.hasOwnProperty.call(obj, key)) {
+							const value = obj[key];
 
-						// Check if the value is a localized object (like title: { "default": "text", "fr": "texte" })
-						if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-							const localeKeys = Object.keys(value);
-							const allAreLocales = localeKeys.every((k) => typeof value[k] === "string");
+							// Check if the value is a localized object (like title: { "default": "text", "fr": "texte" })
+							if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+								const localeKeys = Object.keys(value);
+								const allAreLocales = localeKeys.every((k) => typeof value[k] === "string");
 
-							if (allAreLocales) {
-								// Keep only allowed locales and default
-								for (const localeKey of localeKeys) {
-									if (localeKey !== "default" && !allowedLocales.includes(localeKey)) {
-										delete value[localeKey];
+								if (allAreLocales) {
+									// Keep only allowed locales and default
+									for (const localeKey of localeKeys) {
+										if (localeKey !== "default" && !allowedLocales.includes(localeKey)) {
+											delete value[localeKey];
+										}
 									}
+								} else {
+									cleanLocales(value);
 								}
 							} else {
 								cleanLocales(value);
 							}
-						} else {
-							cleanLocales(value);
 						}
 					}
 				}
