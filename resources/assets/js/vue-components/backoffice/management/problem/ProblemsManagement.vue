@@ -19,8 +19,8 @@
 										></div>
 										<select
 											id="projectSelect"
-											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 											v-model="selectedProjectId"
+											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 											@change="getProjectProblems"
 										>
 											<option value="" disabled selected>Select a project</option>
@@ -34,9 +34,9 @@
 									<div class="col">
 										<div class="form-check mb-3">
 											<input
+												id="filterUnpublishedProblems"
 												class="form-check-input"
 												type="checkbox"
-												id="filterUnpublishedProblems"
 												@change="toggleShowUnpublishedProblems"
 											/>
 											<label class="form-check-label" for="filterUnpublishedProblems">
@@ -67,16 +67,16 @@
 			</div>
 		</div>
 		<!-- Delete Confirmation Modal -->
-		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div id="deleteModal" class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+						<h5 id="deleteModalLabel" class="modal-title">Confirm Delete</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" v-if="modalProblem.id">
+					<div v-if="modalProblem.id" class="modal-body">
 						<p>
 							Are you sure you want to delete the problem
 							<b>{{ modalProblem?.default_translation?.title ?? "Untitled" }}</b
@@ -92,8 +92,8 @@
 						<button
 							type="button"
 							class="btn btn-danger btn-slim"
-							@click="confirmDelete"
 							:disabled="modalActionLoading"
+							@click="confirmDelete"
 						>
 							<span
 								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
@@ -107,20 +107,20 @@
 			</div>
 		</div>
 		<!-- Update Problem Status Modal -->
-		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+		<div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="updateModalLabel">Update Problem Status</h5>
+						<h5 id="updateModalLabel" class="modal-title">Update Problem Status</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" v-if="modalProblem.id && problemStatuses.length">
+					<div v-if="modalProblem.id && problemStatuses.length" class="modal-body">
 						<p>
 							Select a new status for the problem <b>{{ modalProblem.default_translation.title }}</b>
 						</p>
-						<select class="form-select form-control" v-model="modalProblem.status.id">
+						<select v-model="modalProblem.status.id" class="form-select form-control">
 							<option v-for="status in problemStatuses" :key="status.id" :value="status.id">
 								{{ status.title }}
 							</option>
@@ -131,8 +131,8 @@
 						<button
 							type="button"
 							class="btn btn-primary btn-slim"
-							@click="confirmUpdate"
 							:disabled="modalActionLoading"
+							@click="confirmUpdate"
 						>
 							<span
 								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
@@ -145,12 +145,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="alert-component position-relative d-none" id="problemDeletedAlert" style="display: flow-root">
+		<div id="problemDeletedAlert" class="alert-component position-relative d-none" style="display: flow-root">
 			<div class="alert alert-success" role="alert">
 				{{ actionSuccessMessage }}
 			</div>
 		</div>
-		<div class="alert-component position-relative d-none" id="errorAlert" style="display: flow-root">
+		<div id="errorAlert" class="alert-component position-relative d-none" style="display: flow-root">
 			<div class="alert alert-danger" role="alert">
 				{{ errorMessage }}
 			</div>

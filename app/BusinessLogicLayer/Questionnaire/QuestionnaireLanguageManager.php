@@ -40,6 +40,9 @@ class QuestionnaireLanguageManager {
             }
 
             $language = $this->languageManager->getLanguageByCode($lang_codes[$i]);
+            if (!$language) {
+                continue;
+            }
             $data = [
                 'questionnaire_id' => $questionnaire_id,
                 'language_id' => $language->id,

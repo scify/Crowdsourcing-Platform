@@ -22,8 +22,8 @@
 										></div>
 										<select
 											id="projectSelect"
-											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 											v-model="selectedProjectId"
+											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 											@change="getProblemsAndSolutionsForProject"
 										>
 											<option value="" disabled selected>Select a project</option>
@@ -46,8 +46,8 @@
 										></div>
 										<select
 											id="problemSelect"
-											:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
 											v-model="selectedProblemId"
+											:class="['form-select form-control mt-3', problemsFetched ? '' : 'hidden']"
 											@change="getFilteredSolutions"
 										>
 											<option value="" disabled selected>Select a problem</option>
@@ -62,9 +62,9 @@
 									<div class="col">
 										<div class="form-check mb-3">
 											<input
+												id="filterUnpublishedSolutions"
 												class="form-check-input"
 												type="checkbox"
-												id="filterUnpublishedSolutions"
 												@change="toggleShowUnpublishedSolutions"
 											/>
 											<label class="form-check-label" for="filterUnpublishedSolutions">
@@ -77,8 +77,8 @@
 									<div class="col-12">
 										<button
 											class="btn btn-primary btn-slim"
-											@click="exportSolutions"
 											:disabled="solutionsLoading"
+											@click="exportSolutions"
 										>
 											Export Solutions
 										</button>
@@ -116,16 +116,16 @@
 			</div>
 		</div>
 		<!-- Delete Confirmation Modal -->
-		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div id="deleteModal" class="modal fade" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+						<h5 id="deleteModalLabel" class="modal-title">Confirm Delete</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" v-if="modalSolution.id">
+					<div v-if="modalSolution.id" class="modal-body">
 						<p>
 							Are you sure you want to delete the solution
 							<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b
@@ -141,8 +141,8 @@
 						<button
 							type="button"
 							class="btn btn-danger btn-slim"
-							@click="confirmDelete"
 							:disabled="modalActionLoading"
+							@click="confirmDelete"
 						>
 							<span
 								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
@@ -156,21 +156,21 @@
 			</div>
 		</div>
 		<!-- Update Solution Status Modal -->
-		<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+		<div id="updateModal" class="modal fade" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="updateModalLabel">Update Solution Status</h5>
+						<h5 id="updateModalLabel" class="modal-title">Update Solution Status</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body" v-if="modalSolution.id && solutionStatuses.length">
+					<div v-if="modalSolution.id && solutionStatuses.length" class="modal-body">
 						<p>
 							Select a new status for the solution
 							<b>{{ modalSolution?.default_translation?.title ?? "Untitled" }}</b>
 						</p>
-						<select class="form-select form-control" v-model="modalSolution.status.id">
+						<select v-model="modalSolution.status.id" class="form-select form-control">
 							<option v-for="status in solutionStatuses" :key="status.id" :value="status.id">
 								{{ status.title }}
 							</option>
@@ -181,8 +181,8 @@
 						<button
 							type="button"
 							class="btn btn-primary btn-slim"
-							@click="confirmUpdate"
 							:disabled="modalActionLoading"
+							@click="confirmUpdate"
 						>
 							<span
 								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
@@ -195,12 +195,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="alert-component position-relative d-none" id="solutionDeletedAlert">
+		<div id="solutionDeletedAlert" class="alert-component position-relative d-none">
 			<div class="alert alert-success" role="alert">
 				{{ actionSuccessMessage }}
 			</div>
 		</div>
-		<div class="alert-component position-relative d-none" id="errorAlert">
+		<div id="errorAlert" class="alert-component position-relative d-none">
 			<div class="alert alert-danger" role="alert">
 				{{ errorMessage }}
 			</div>

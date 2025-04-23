@@ -40,7 +40,7 @@ class QuestionnaireFieldsTranslationManager {
         return $this->questionnaireFieldsTranslationRepository->allWhere(['questionnaire_id' => $questionnaire->id]);
     }
 
-    public function storeOrUpdateDefaultFieldsTranslationForQuestionnaire(array $attributes, int $questionnaire_id) {
+    public function storeOrUpdateDefaultFieldsTranslationForQuestionnaire(array $attributes, int $questionnaire_id): void {
         $allowedKeys = (new QuestionnaireFieldsTranslation)->getFillable();
         $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
         $this->questionnaireFieldsTranslationRepository->updateOrCreate(
@@ -49,7 +49,7 @@ class QuestionnaireFieldsTranslationManager {
         );
     }
 
-    public function storeOrUpdateFieldsTranslationsForQuestionnaire(array $attributesArray, int $questionnaire_id, int $language_id) {
+    public function storeOrUpdateFieldsTranslationsForQuestionnaire(array $attributesArray, int $questionnaire_id, int $language_id): void {
         $defaultLanguageContentForProject = $this->questionnaireFieldsTranslationRepository->where([
             'questionnaire_id' => $questionnaire_id, 'language_id' => $language_id, ])
             ->toArray();

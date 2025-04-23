@@ -1,0 +1,37 @@
+name: linter
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+permissions:
+    contents: write
+
+jobs:
+    quality:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+
+            - name: Copy Environment File
+              run: cp .env.testing .env
+
+            - name: Install Dependencies
+              run: |
+                  composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+                  npm install
+
+            - name: Run Pint
+              run: vendor/bin/pint --test -v
+
+            - name: Lint Frontend
+              run: npm run lint

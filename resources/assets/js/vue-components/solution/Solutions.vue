@@ -190,6 +190,12 @@ export default {
 			return this.buttonTextColorTheme === "dark" ? "#000000" : "#ffffff";
 		},
 	},
+	watch: {
+		problemId: "fetchSolutions",
+	},
+	mounted() {
+		this.fetchSolutions();
+	},
 	methods: {
 		...mapActions(["get", "post"]),
 		getVotesInfoMessage() {
@@ -373,12 +379,6 @@ export default {
 		trans(key) {
 			return window.trans(key);
 		},
-	},
-	watch: {
-		problemId: "fetchSolutions",
-	},
-	mounted() {
-		this.fetchSolutions();
 	},
 };
 </script>

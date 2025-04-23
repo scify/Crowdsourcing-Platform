@@ -57,7 +57,7 @@ app.mount("#app");
 	};
 
 	const showProjectBannerIfEnabled = function () {
-		if (viewModel.project.display_landing_page_banner) {
+		if (viewModel && viewModel.project.display_landing_page_banner) {
 			const bannerTitle = viewModel.project.currentTranslation
 				? viewModel.project.currentTranslation.banner_title
 				: viewModel.project.default_translation.banner_title;

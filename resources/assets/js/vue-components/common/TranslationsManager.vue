@@ -13,9 +13,9 @@
 					<!-- Language Selector Dropdown -->
 					<div class="dropdown">
 						<button
+							id="languageDropdown"
 							class="btn btn-primary btn-slim dropdown-toggle mr-4"
 							type="button"
-							id="languageDropdown"
 							data-toggle="dropdown"
 							aria-expanded="false"
 						>
@@ -46,12 +46,12 @@
 					</div>
 					<!-- Automatic Translations Button -->
 					<button
-						:disabled="translationsLoading"
+						v-if="checkedLanguages.length > 0"
 						id="get-automatic-translations-btn"
+						:disabled="translationsLoading"
 						type="button"
 						class="btn btn-primary btn-slim"
 						@click="getAndFillAutomaticTranslations"
-						v-if="checkedLanguages.length > 0"
 					>
 						<span
 							v-if="translationsLoading"
@@ -147,8 +147,8 @@
 							<tbody>
 								<tr
 									v-for="(value, key) in filteredTranslations(translation)"
-									:key="'translation_row_' + key"
 									:id="'translation_row_' + getLanguageCode(translation.language_id) + '_' + key"
+									:key="'translation_row_' + key"
 								>
 									<td class="field">
 										{{ getDisplayTitleForProperty(key) }}
@@ -158,8 +158,8 @@
 									</td>
 									<td>
 										<textarea
-											class="form-control translation-value"
 											v-model="translation[key]"
+											class="form-control translation-value"
 										></textarea>
 									</td>
 								</tr>
@@ -191,15 +191,6 @@ export default {
 			type: [String, Number],
 			default: "",
 		},
-	},
-	data() {
-		return {
-			showAlreadyTranslatedTextsMessage: false,
-			showTranslationSuccessMessage: false,
-			translationsLoading: false,
-			translationErrorMessage: null,
-			translationInfoMessage: null,
-		};
 	},
 	setup(props) {
 		const store = useStore();
@@ -327,6 +318,15 @@ export default {
 			checkChanged,
 			filteredTranslations,
 			automaticTranslationLanguageName,
+		};
+	},
+	data() {
+		return {
+			showAlreadyTranslatedTextsMessage: false,
+			showTranslationSuccessMessage: false,
+			translationsLoading: false,
+			translationErrorMessage: null,
+			translationInfoMessage: null,
 		};
 	},
 	methods: {
