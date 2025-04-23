@@ -29,7 +29,7 @@
 
 		.sv_main .sv_p_root {
 			.sv_page_title {
-				padding: 0.5em 1em 1.5em 1em;
+				padding: 0.5em 1em;
 				font-weight: 700;
 				font-size: 1.5em;
 			}
@@ -37,7 +37,8 @@
 			.sv_page_title + div {
 				.sv-string-viewer.sv-string-viewer--multiline {
 					font-style: italic;
-					padding: 0 1em;
+					padding: 0 1.5em;
+					display: block;
 				}
 			}
 		}
