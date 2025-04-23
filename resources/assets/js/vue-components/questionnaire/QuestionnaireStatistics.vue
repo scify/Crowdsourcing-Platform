@@ -67,13 +67,13 @@
 					<div class="row justify-content-center">
 						<div class="col-10 text-center mx-auto py-5">
 							<h4
-								class="mt-0 p-0 mb-5 text-center message"
 								v-sane-html="
 									trans('voting.you_can_vote_up_to', {
 										votes: questionnaire.max_votes_num,
 										entityName: trans('voting.entity_questionnaires'),
 									})
 								"
+								class="mt-0 p-0 mb-5 text-center message"
 							></h4>
 						</div>
 					</div>
@@ -198,11 +198,11 @@ import transMixin from "../../vue-mixins/trans-mixin";
 
 export default defineComponent({
 	name: "QuestionnaireStatistics",
-	mixins: [transMixin],
 	components: {
 		CommonModal,
 		StoreModal,
 	},
+	mixins: [transMixin],
 	props: {
 		questionnaire: {
 			type: Object,
