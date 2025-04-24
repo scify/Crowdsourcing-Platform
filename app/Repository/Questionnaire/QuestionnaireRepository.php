@@ -102,6 +102,7 @@ class QuestionnaireRepository extends Repository {
         $questionnaire = $this->find($questionnaireId);
         $questionnaireStatusHistory->questionnaire_id = $questionnaireId;
         $questionnaireStatusHistory->status_id = $statusId;
+        $questionnaireStatusHistory->updated_by_user_id = auth()->user()->id;
         $questionnaireStatusHistory->comments = $comments;
         $questionnaireStatusHistory->current_json = $questionnaire->questionnaire_json;
         $questionnaireStatusHistory->save();
