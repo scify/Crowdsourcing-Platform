@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $id
  * @property int $questionnaire_id
  * @property int $status_id
+ * @property int $updated_by_user_id
  * @property string $comments
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
