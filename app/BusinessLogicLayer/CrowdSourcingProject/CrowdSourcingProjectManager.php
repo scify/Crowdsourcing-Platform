@@ -111,6 +111,14 @@ class CrowdSourcingProjectManager {
         $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug, ['*'], false, $withRelationships);
         $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
 
+        // If copy_footer_across_languages is true, ensure the default footer is set
+        if ($project->copy_footer_across_languages) {
+            $defaultTranslation = $project->defaultTranslation;
+            if ($defaultTranslation && $defaultTranslation->footer) {
+                $project->currentTranslation->footer = $defaultTranslation->footer;
+            }
+        }
+
         return $project;
     }
 
@@ -250,6 +258,10 @@ class CrowdSourcingProjectManager {
             (isset($attributes['display_landing_page_banner'])
                 && $attributes['display_landing_page_banner'] == 'on') ? 1 : 0;
 
+        $attributes['copy_footer_across_languages'] =
+            (isset($attributes['copy_footer_across_languages'])
+                && $attributes['copy_footer_across_languages'] == '1') ? 1 : 0;
+
         $this->crowdSourcingProjectRepository->update($attributes, $id);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED) {
             $this->crowdSourcingProjectRepository->delete($id);
@@ -265,9 +277,24 @@ class CrowdSourcingProjectManager {
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(
             $attributes, $id);
+
+        // Handle extra translations
         if (isset($attributes['extra_translations'])) {
+            $extraTranslations = json_decode($attributes['extra_translations'], true);
+
+            // If copy_footer_across_languages is true, copy the footer from default translation to all languages
+            if ($attributes['copy_footer_across_languages']) {
+                $defaultTranslation = $this->crowdSourcingProjectTranslationManager->getDefaultTranslationForProject($id);
+                $defaultFooter = $defaultTranslation->footer;
+
+                // Update all translations with the default footer
+                foreach ($extraTranslations as &$translation) {
+                    $translation['footer'] = $defaultFooter;
+                }
+            }
+
             $this->crowdSourcingProjectTranslationManager->storeOrUpdateExtraTranslationsForProject(
-                json_decode($attributes['extra_translations']), $project->id, intval($attributes['language_id']));
+                $extraTranslations, $project->id, intval($attributes['language_id']));
         }
     }
 
@@ -412,6 +439,15 @@ class CrowdSourcingProjectManager {
             app()->getLocale()
         ))->toMail(null)->render();
         $translations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
+
+        // Remove footer field from translations if copyFooterAcrossLanguages is true
+        if ($project->copy_footer_across_languages) {
+            $translations = $translations->map(function ($translation) {
+                unset($translation->footer);
+
+                return $translation;
+            });
+        }
 
         return new CreateEditCrowdSourcingProject(
             $project,
