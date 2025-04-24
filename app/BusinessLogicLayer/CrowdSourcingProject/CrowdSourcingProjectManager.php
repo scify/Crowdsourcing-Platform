@@ -284,8 +284,7 @@ class CrowdSourcingProjectManager {
 
             // If copy_footer_across_languages is true, copy the footer from default translation to all languages
             if ($attributes['copy_footer_across_languages']) {
-                $defaultTranslation = $this->crowdSourcingProjectTranslationManager->getDefaultTranslationForProject($id);
-                $defaultFooter = $defaultTranslation->footer;
+                $defaultFooter = $project->defaultTranslation->footer;
 
                 // Update all translations with the default footer
                 foreach ($extraTranslations as &$translation) {
