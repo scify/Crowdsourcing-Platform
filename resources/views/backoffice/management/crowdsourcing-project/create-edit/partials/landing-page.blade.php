@@ -178,6 +178,23 @@
                         </div>
                         <div class="card-body">
                             <div class="container-fluid">
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input
+                                                type="checkbox"
+                                                class="form-check-input"
+                                                id="copy_footer_across_languages"
+                                                name="copy_footer_across_languages"
+                                                value="1"
+                                                {{ old('copy_footer_across_languages', true) ? 'checked' : '' }}
+                                            />
+                                            <label class="form-check-label" for="copy_footer_across_languages">
+                                                Copy footer text across all languages
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <label class="col-sm-12 control-label" for="footer">Footer Text (<span

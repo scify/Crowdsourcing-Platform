@@ -154,13 +154,29 @@
 										{{ getDisplayTitleForProperty(key) }}
 									</td>
 									<td class="original-translation">
-										<p class="original-value">{{ originalTranslation[key] }}</p>
+										<div class="original-value-container">
+											<p class="original-value">{{ originalTranslation[key] }}</p>
+											<button 
+												v-if="isHtmlContent(originalTranslation[key])"
+												class="btn btn-sm btn-outline-secondary preview-toggle"
+												@click.prevent="showPreview(key)"
+												type="button"
+											>
+												Show Preview
+											</button>
+										</div>
 									</td>
 									<td>
 										<textarea
+											v-if="!isHtmlContent(originalTranslation[key])"
 											v-model="translation[key]"
 											class="form-control translation-value"
 										></textarea>
+										<div 
+											v-else
+											:id="'summernote-' + translation.language_id + '-' + key"
+											class="summernote-editor"
+										></div>
 									</td>
 								</tr>
 							</tbody>
@@ -169,11 +185,28 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Preview Modal -->
+		<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="previewModalLabel">HTML Preview</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div v-if="previewContent" v-html="previewContent"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch, nextTick } from "vue";
 import { mapActions, useStore } from "vuex";
 
 export default {
@@ -202,6 +235,7 @@ export default {
 		// make it reactive
 		const showAlreadyTranslatedTextsMessage = ref(false);
 		const showTranslationSuccessMessage = ref(false);
+		const previewContent = ref(null);
 
 		const getAvailableLanguagesAndInit = async () => {
 			try {
@@ -296,6 +330,78 @@ export default {
 			return props.existingTranslations.find((t) => t.language_id === props.defaultLangId) || {};
 		};
 
+		const initializeSummernote = (languageId, key, content) => {
+			const editor = document.getElementById(`summernote-${languageId}-${key}`);
+			if (editor) {
+				$(editor).summernote({
+					height: 200,
+					toolbar: [
+						['style', ['style']],
+						['font', ['bold', 'underline', 'clear']],
+						['color', ['color']],
+						['para', ['ul', 'ol', 'paragraph']],
+						['table', ['table']],
+						['insert', ['link', 'picture']],
+						['view', ['fullscreen', 'codeview', 'help']]
+					],
+					callbacks: {
+						onChange: function(contents) {
+							const currentTranslation = translations.value.find(t => t.language_id === languageId);
+							if (currentTranslation) {
+								currentTranslation[key] = contents;
+							}
+						}
+					}
+				});
+				$(editor).summernote('code', content || '');
+			}
+		};
+
+		const destroySummernote = (languageId, key) => {
+			const editor = document.getElementById(`summernote-${languageId}-${key}`);
+			if (editor) {
+				$(editor).summernote('destroy');
+			}
+		};
+
+		const initializeEditorsForCurrentTab = async () => {
+			await nextTick();
+			
+			const currentTranslation = translations.value[activeTabIndex.value];
+			if (currentTranslation) {
+				Object.keys(currentTranslation).forEach(key => {
+					if (isHtmlContent(originalTranslation.value[key])) {
+						initializeSummernote(currentTranslation.language_id, key, currentTranslation[key]);
+					}
+				});
+			}
+		};
+
+		const destroyAllEditors = () => {
+			translations.value.forEach(translation => {
+				Object.keys(translation).forEach(key => {
+					if (isHtmlContent(originalTranslation.value[key])) {
+						destroySummernote(translation.language_id, key);
+					}
+				});
+			});
+		};
+
+		// Watch for tab changes to reinitialize editors
+		watch(activeTabIndex, async () => {
+			// Destroy all existing editors
+			destroyAllEditors();
+			
+			// Reinitialize editors for the new tab
+			await initializeEditorsForCurrentTab();
+		});
+
+		// Initialize editors when component is mounted
+		onMounted(async () => {
+			await getAvailableLanguagesAndInit();
+			await initializeEditorsForCurrentTab();
+		});
+
 		onMounted(getAvailableLanguagesAndInit);
 
 		const automaticTranslationLanguageName = computed(() => {
@@ -305,6 +411,16 @@ export default {
 			}
 			return "";
 		});
+
+		const isHtmlContent = (content) => {
+			if (!content) return false;
+			return /<[a-z][\s\S]*>/i.test(content);
+		};
+
+		const showPreview = (key) => {
+			previewContent.value = originalTranslation.value[key];
+			$('#previewModal').modal('show');
+		};
 
 		return {
 			translations,
@@ -318,6 +434,9 @@ export default {
 			checkChanged,
 			filteredTranslations,
 			automaticTranslationLanguageName,
+			isHtmlContent,
+			showPreview,
+			previewContent,
 		};
 	},
 	data() {
@@ -391,15 +510,29 @@ export default {
 
 					// Update the translations array with the translated texts
 					translatedTexts.forEach((translatedText) => {
-						this.translations[this.activeTabIndex][translatedText.id] = translatedText.translated_text;
-						// get the textarea element and add a class to it to indicate that it has been translated.
-						// add a class to the textarea element to indicate that it has been translated.
-						const textareaElementParentRow = document.getElementById(
-							`translation_row_${targetLanguage}_${translatedText.id}`,
-						);
-						if (textareaElementParentRow) {
-							const textareaElement = textareaElementParentRow.querySelector("textarea");
-							textareaElement.classList.add("translated");
+						const currentTranslation = this.translations[this.activeTabIndex];
+						currentTranslation[translatedText.id] = translatedText.translated_text;
+
+						// Check if this is an HTML content field
+						if (this.isHtmlContent(this.originalTranslation[translatedText.id])) {
+							// Update the Summernote editor content
+							const editor = document.getElementById(
+								`summernote-${currentTranslation.language_id}-${translatedText.id}`
+							);
+							if (editor) {
+								$(editor).summernote('code', translatedText.translated_text);
+							}
+						} else {
+							// For regular textareas, add the translated class
+							const textareaElementParentRow = document.getElementById(
+								`translation_row_${targetLanguage}_${translatedText.id}`,
+							);
+							if (textareaElementParentRow) {
+								const textareaElement = textareaElementParentRow.querySelector("textarea");
+								if (textareaElement) {
+									textareaElement.classList.add("translated");
+								}
+							}
 						}
 					});
 				})
@@ -423,8 +556,18 @@ export default {
 <style lang="scss" scoped>
 @import "../../../sass/variables";
 
+.table {
+	table-layout: fixed;
+	width: 100%;
+
+	th, td {
+		width: 33.33%;
+		word-wrap: break-word;
+	}
+}
+
 .table .field {
-	max-width: 60px;
+	max-width: none;
 }
 
 textarea {
@@ -433,7 +576,7 @@ textarea {
 }
 
 .table .original-translation {
-	max-width: 300px;
+	max-width: none;
 }
 
 .lang {
@@ -498,5 +641,28 @@ textarea {
 		margin-top: -3px;
 		margin-right: 5px;
 	}
+}
+
+.original-value-container {
+	position: relative;
+	min-height: 30px;
+}
+
+.original-value {
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+.preview-toggle {
+	margin-top: 5px;
+}
+
+.modal-body {
+	max-height: 70vh;
+	overflow-y: auto;
+}
+
+.summernote-editor {
+	width: 100%;
 }
 </style>
