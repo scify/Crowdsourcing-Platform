@@ -16,6 +16,12 @@ class QuestionnaireLanguageRepository extends Repository {
     }
 
     public function deleteLanguageFromQuestionnaire(int $lang_id, int $questionnaire_id) {
-        return $this->where(['language_id' => $lang_id, 'questionnaire_id' => $questionnaire_id])->forceDelete();
+        $recordExists = QuestionnaireLanguage::where(['language_id' => $lang_id, 'questionnaire_id' => $questionnaire_id])->exists();
+
+        if ($recordExists) {
+            return QuestionnaireLanguage::where(['language_id' => $lang_id, 'questionnaire_id' => $questionnaire_id])->forceDelete();
+        }
+
+        return false;
     }
 }
