@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use Illuminate\Console\Command;
 use Spatie\Crawler\Crawler;
 use Spatie\Sitemap\SitemapGenerator;
@@ -28,7 +29,7 @@ class GenerateSitemap extends Command {
      *
      * @return void
      */
-    public function __construct(protected \App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager $crowdSourcingProjectManager) {
+    public function __construct(protected CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         parent::__construct();
     }
 
