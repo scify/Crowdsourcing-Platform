@@ -22,6 +22,9 @@ class Kernel extends ConsoleKernel {
      */
     protected function schedule(Schedule $schedule) {
         $schedule->command('logcleaner:run')->daily()->at('01:00');
+        $schedule->command('db:backup')
+            ->twiceDaily(2, 14)
+            ->appendOutputTo(storage_path('logs/backup.log'));
     }
 
     /**

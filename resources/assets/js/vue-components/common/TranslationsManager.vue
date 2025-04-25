@@ -156,11 +156,11 @@
 									<td class="original-translation">
 										<div class="original-value-container">
 											<p class="original-value">{{ originalTranslation[key] }}</p>
-											<button 
+											<button
 												v-if="isHtmlContent(originalTranslation[key])"
 												class="btn btn-sm btn-outline-secondary preview-toggle"
-												@click.prevent="showPreview(key)"
 												type="button"
+												@click.prevent="showPreview(key)"
 											>
 												Show Preview
 											</button>
@@ -172,7 +172,7 @@
 											v-model="translation[key]"
 											class="form-control translation-value"
 										></textarea>
-										<div 
+										<div
 											v-else
 											:id="'summernote-' + translation.language_id + '-' + key"
 											class="summernote-editor"
@@ -187,11 +187,18 @@
 		</div>
 
 		<!-- Preview Modal -->
-		<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+		<div
+			id="previewModal"
+			class="modal fade"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="previewModalLabel"
+			aria-hidden="true"
+		>
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="previewModalLabel">HTML Preview</h5>
+						<h5 id="previewModalLabel" class="modal-title">HTML Preview</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -336,40 +343,40 @@ export default {
 				$(editor).summernote({
 					height: 200,
 					toolbar: [
-						['style', ['style']],
-						['font', ['bold', 'underline', 'clear']],
-						['color', ['color']],
-						['para', ['ul', 'ol', 'paragraph']],
-						['table', ['table']],
-						['insert', ['link', 'picture']],
-						['view', ['fullscreen', 'codeview', 'help']]
+						["style", ["style"]],
+						["font", ["bold", "underline", "clear"]],
+						["color", ["color"]],
+						["para", ["ul", "ol", "paragraph"]],
+						["table", ["table"]],
+						["insert", ["link", "picture"]],
+						["view", ["fullscreen", "codeview", "help"]],
 					],
 					callbacks: {
-						onChange: function(contents) {
-							const currentTranslation = translations.value.find(t => t.language_id === languageId);
+						onChange: function (contents) {
+							const currentTranslation = translations.value.find((t) => t.language_id === languageId);
 							if (currentTranslation) {
 								currentTranslation[key] = contents;
 							}
-						}
-					}
+						},
+					},
 				});
-				$(editor).summernote('code', content || '');
+				$(editor).summernote("code", content || "");
 			}
 		};
 
 		const destroySummernote = (languageId, key) => {
 			const editor = document.getElementById(`summernote-${languageId}-${key}`);
 			if (editor) {
-				$(editor).summernote('destroy');
+				$(editor).summernote("destroy");
 			}
 		};
 
 		const initializeEditorsForCurrentTab = async () => {
 			await nextTick();
-			
+
 			const currentTranslation = translations.value[activeTabIndex.value];
 			if (currentTranslation) {
-				Object.keys(currentTranslation).forEach(key => {
+				Object.keys(currentTranslation).forEach((key) => {
 					if (isHtmlContent(originalTranslation.value[key])) {
 						initializeSummernote(currentTranslation.language_id, key, currentTranslation[key]);
 					}
@@ -378,8 +385,8 @@ export default {
 		};
 
 		const destroyAllEditors = () => {
-			translations.value.forEach(translation => {
-				Object.keys(translation).forEach(key => {
+			translations.value.forEach((translation) => {
+				Object.keys(translation).forEach((key) => {
 					if (isHtmlContent(originalTranslation.value[key])) {
 						destroySummernote(translation.language_id, key);
 					}
@@ -391,7 +398,7 @@ export default {
 		watch(activeTabIndex, async () => {
 			// Destroy all existing editors
 			destroyAllEditors();
-			
+
 			// Reinitialize editors for the new tab
 			await initializeEditorsForCurrentTab();
 		});
@@ -419,7 +426,7 @@ export default {
 
 		const showPreview = (key) => {
 			previewContent.value = originalTranslation.value[key];
-			$('#previewModal').modal('show');
+			$("#previewModal").modal("show");
 		};
 
 		return {
@@ -517,10 +524,10 @@ export default {
 						if (this.isHtmlContent(this.originalTranslation[translatedText.id])) {
 							// Update the Summernote editor content
 							const editor = document.getElementById(
-								`summernote-${currentTranslation.language_id}-${translatedText.id}`
+								`summernote-${currentTranslation.language_id}-${translatedText.id}`,
 							);
 							if (editor) {
-								$(editor).summernote('code', translatedText.translated_text);
+								$(editor).summernote("code", translatedText.translated_text);
 							}
 						} else {
 							// For regular textareas, add the translated class
@@ -560,7 +567,8 @@ export default {
 	table-layout: fixed;
 	width: 100%;
 
-	th, td {
+	th,
+	td {
 		width: 33.33%;
 		word-wrap: break-word;
 	}

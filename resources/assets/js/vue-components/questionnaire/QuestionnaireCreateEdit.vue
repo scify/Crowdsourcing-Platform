@@ -661,8 +661,7 @@ export default defineComponent({
 			}
 		},
 		cleanQuestionnaireJson(jsonStr, allowedLocales) {
-			if(allowedLocales.length === 0)
-				return jsonStr;
+			if (allowedLocales.length === 0) return jsonStr;
 
 			function cleanLocales(obj) {
 				if (Array.isArray(obj)) {
