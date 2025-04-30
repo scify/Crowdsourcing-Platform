@@ -188,6 +188,18 @@ export default {
 				this.prepareQuestionnaireForViewingResponse();
 			}
 
+			// Scroll to the top when the page changes
+			this.survey.onCurrentPageChanged.add(() => {
+				setTimeout(() => {
+					const questionnaireDisplay = document.getElementById("questionnaire-display");
+					if (questionnaireDisplay) {
+						questionnaireDisplay.scrollIntoView({ behavior: "smooth", block: "start" });
+					} else {
+						console.error("Element #questionnaire-display not found for scrolling.");
+					}
+				}, 200); // Delay to ensure DOM updates
+			});
+
 			window.setInterval(() => {
 				if ($(".sv-ranking--drag").length > 0) {
 					$("body,#questionnaire-modal").addClass("disable-scroll");
