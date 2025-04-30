@@ -2,11 +2,16 @@
 
 namespace App\Console\Commands;
 
+use App\BusinessLogicLayer\Gamification\PlatformWideGamificationBadgesProvider;
 use App\Jobs\TranslateQuestionnaireResponse;
+use App\Models\Language;
+use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
+use App\Notifications\QuestionnaireResponded;
 use App\Notifications\UserRegistered;
 use App\Utils\Translator;
+use App\ViewModels\Gamification\GamificationBadgeVM;
 use Illuminate\Console\Command;
 
 class RunAdminTasks extends Command {
@@ -23,6 +28,16 @@ class RunAdminTasks extends Command {
      * @var string
      */
     protected $description = 'This command is used to test the availability of some tasks, like the external translation service and the emailing service.';
+
+    private PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
+
+    /**
+     * Create a new command instance.
+     */
+    public function __construct(PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
+        parent::__construct();
+        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
+    }
 
     /**
      * Execute the console command.
@@ -43,8 +58,44 @@ class RunAdminTasks extends Command {
         } elseif ($task === 'Test email') {
             $this->info('Testing the email service...');
             $email = $this->ask('Enter the user email address to send the test email to:');
-            User::where(['email' => $email])->first()->notify(new UserRegistered);
-            $this->info('The test email has been sent to ' . $email);
+            $user = User::where(['email' => $email])->first();
+
+            if (!$user) {
+                $this->error('User not found with the given email address.');
+
+                return;
+            }
+
+            $questionnaireId = $this->ask('Enter the questionnaire ID (0 for UserRegistered notification):');
+
+            if ((int) $questionnaireId === 0) {
+                $user->notify(new UserRegistered);
+                $this->info('The UserRegistered notification has been sent to ' . $email);
+            } else {
+                $questionnaire = Questionnaire::find($questionnaireId);
+
+                if (!$questionnaire) {
+                    $this->error('Questionnaire not found with the given ID.');
+
+                    return;
+                }
+
+                $language = $user->language ?? Language::where('language_code', 'en')->first();
+                $badge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id, 10);
+                $badgeVM = new GamificationBadgeVM($badge);
+                $projectTranslation = $questionnaire->project->translations->firstWhere('language_id', $language->id);
+                $fieldsTranslation = $questionnaire->fieldsTranslations->firstWhere('language_id', $language->id);
+
+                $user->notify(new QuestionnaireResponded(
+                    $fieldsTranslation,
+                    $badge,
+                    $badgeVM,
+                    $projectTranslation,
+                    $language->language_code
+                ));
+
+                $this->info('The QuestionnaireResponded notification has been sent for questionnaire ID ' . $questionnaireId . ' to ' . $email);
+            }
         } elseif ($task === 'Test Sentry error') {
             $this->info('Testing the Sentry error reporting service...');
             $message = $this->ask('Enter the message for the Sentry error:');
