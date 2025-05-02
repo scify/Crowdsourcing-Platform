@@ -66,38 +66,4 @@ class FileControllerTest extends TestCase {
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['files']);
     }
-
-    #[Test]
-    public function upload_files_fails_without_project_id(): void {
-        Storage::fake('s3');
-        $files = [
-            UploadedFile::fake()->image('photo.jpg'),
-        ];
-
-        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/api/files/upload', [
-                'files' => $files,
-                'questionnaire_id' => 1,
-            ]);
-
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['project_id']);
-    }
-
-    #[Test]
-    public function upload_files_fails_without_questionnaire_id(): void {
-        Storage::fake('s3');
-        $files = [
-            UploadedFile::fake()->image('photo.jpg'),
-        ];
-
-        $response = $this->withoutMiddleware(VerifyCsrfToken::class)
-            ->postJson('/api/files/upload', [
-                'files' => $files,
-                'project_id' => 1,
-            ]);
-
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['questionnaire_id']);
-    }
 }

@@ -35,7 +35,7 @@ class FileController extends Controller {
                 }
 
                 // Compress the image
-                $image->encode('jpg', 80);
+                $image->encode('jpg', 90);
 
                 // Save the processed image to a temporary file
                 $tempPath = sys_get_temp_dir() . '/' . $uniqueId . '.jpg';
