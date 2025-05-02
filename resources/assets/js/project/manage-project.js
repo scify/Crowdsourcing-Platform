@@ -28,6 +28,18 @@ app.mount("#app");
 			$(".summernote").summernote({
 				height: 150, // set editable area's height
 				prettifyHtml: true,
+				callbacks: {
+					onChange: function (contents) {
+						setTimeout(function () {
+							$(this).val(contents);
+						}, 50);
+					},
+					onImageUpload: function (files) {
+						for (let i = 0; i < files.length; i++) {
+							uploadImage(files[i], $(this));
+						}
+					},
+				},
 			});
 			initializeCommunicationResourcesHandlers();
 		}, 2000);
@@ -82,6 +94,49 @@ app.mount("#app");
 						targetEl.html(contents);
 					}, 50);
 				},
+				onImageUpload: function (files) {
+					for (let i = 0; i < files.length; i++) {
+						uploadImage(files[i], summernoteEl);
+					}
+				},
+			},
+		});
+	};
+
+	const uploadImage = function (file, summernoteEl) {
+		const data = new FormData();
+		data.append("files[]", file);
+
+		// Add a temporary message above the Summernote editor
+		const messageId = "upload-message-" + Date.now();
+		summernoteEl.before(`<div id="${messageId}" class="upload-message">Uploading image, please wait...</div>`);
+
+		$.ajax({
+			url: "/api/files/upload",
+			method: "POST",
+			data: data,
+			contentType: false,
+			processData: false,
+			success: function (response) {
+				const uploadedFilePath = Object.values(response)[0]; // Get the first uploaded file URL
+				console.log(uploadedFilePath);
+				summernoteEl.summernote("insertImage", uploadedFilePath);
+			},
+			error: function (xhr) {
+				if (xhr.responseJSON && xhr.responseJSON.errors) {
+					const errors = xhr.responseJSON.errors;
+					let errorMessage = "File upload failed:\n";
+					for (const field in errors) {
+						if (errors.hasOwnProperty(field)) errorMessage += `${field}: ${errors[field].join(", ")}\n`;
+					}
+					alert(errorMessage);
+				} else {
+					alert("An unexpected error occurred during file upload.");
+				}
+			},
+			complete: function () {
+				// Remove the temporary message
+				$(`#${messageId}`).remove();
 			},
 		});
 	};

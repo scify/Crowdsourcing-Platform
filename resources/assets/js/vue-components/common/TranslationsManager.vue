@@ -215,6 +215,7 @@
 <script>
 import { computed, onMounted, ref, watch, nextTick } from "vue";
 import { mapActions, useStore } from "vuex";
+import $ from "jquery";
 
 export default {
 	name: "TranslationsManager",
@@ -358,10 +359,52 @@ export default {
 								currentTranslation[key] = contents;
 							}
 						},
+						onImageUpload: function (files) {
+							uploadImage(files[0], $(editor));
+						},
 					},
 				});
 				$(editor).summernote("code", content || "");
 			}
+		};
+
+		const uploadImage = function (file, summernoteEl) {
+			const data = new FormData();
+			data.append("files[]", file);
+
+			// Add a temporary message above the Summernote editor
+			const messageId = "upload-message-" + Date.now();
+			summernoteEl.before(`<div id="${messageId}" class="upload-message">Uploading image, please wait...</div>`);
+
+			$.ajax({
+				url: "/api/files/upload",
+				method: "POST",
+				data: data,
+				contentType: false,
+				processData: false,
+				success: function (response) {
+					const uploadedFilePath = Object.values(response)[0]; // Get the first uploaded file URL
+					console.log(uploadedFilePath);
+					summernoteEl.summernote("insertImage", uploadedFilePath);
+				},
+				error: function (xhr) {
+					if (xhr.responseJSON && xhr.responseJSON.errors) {
+						const errors = xhr.responseJSON.errors;
+						let errorMessage = "File upload failed:\n";
+						for (const field in errors) {
+							if (errors[field].length === 0) continue;
+							errorMessage += `${field}: ${errors[field].join(", ")}\n`;
+						}
+						alert(errorMessage);
+					} else {
+						alert("An unexpected error occurred during file upload.");
+					}
+				},
+				complete: function () {
+					// Remove the temporary message
+					$(`#${messageId}`).remove();
+				},
+			});
 		};
 
 		const destroySummernote = (languageId, key) => {

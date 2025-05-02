@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="status_id">Project status</label>
 
-                            <small class="text-blue">(The project status can only be changed by a platform
+                            <small class="text-blue ml-2">(The project status can only be changed by a platform
                                 administrator.)</small>
                             <select id="status_id" class="form-control" name="status_id">
                                 @foreach ($viewModel->projectStatusesLkp as $status)
