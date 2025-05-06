@@ -597,7 +597,7 @@ export default defineComponent({
 				language: this.questionnaire.default_language_id,
 				project_ids: [],
 				statistics_page_visibility_lkp_id: this.questionnaire.statistics_page_visibility_lkp_id,
-				content: this.surveyCreator.text,
+				content: this.cleanQuestionnaireJson(this.surveyCreator.text, locales),
 				lang_codes: locales,
 				extra_fields_translations: document.getElementById("extra_translations").value,
 				max_votes_num: this.questionnaire.max_votes_num,
