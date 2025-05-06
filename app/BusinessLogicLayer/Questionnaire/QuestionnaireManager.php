@@ -53,6 +53,7 @@ class QuestionnaireManager {
             'language_id' => $questionnaire->defaultLanguage->id,
         ];
         $this->questionnaireLanguageRepository->updateOrCreate($questionnaireData, $questionnaireData);
+        $this->questionnaireRepository->saveNewQuestionnaireStatusHistory($questionnaire->id, $questionnaire->status_id, 'Updated by user ' . auth()->user()->id);
         $this->crowdSourcingProjectQuestionnaireRepository->setQuestionnaireToProjects($questionnaire->id, $data['project_ids']);
         $this->questionnaireFieldsTranslationManager->storeOrUpdateDefaultFieldsTranslationForQuestionnaire([
             'title' => $data['title'],
