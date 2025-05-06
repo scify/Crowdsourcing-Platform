@@ -65,7 +65,7 @@ class QuestionnaireRepository extends Repository {
                 $showGeneralStatistics, $type_id, $respondentAuthRequired,
                 $show_file_type_questions_to_statistics_page_audience);
             // store with status 'Draft'
-            $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.');
+            $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.', null);
 
             return $questionnaire;
         });
@@ -93,11 +93,11 @@ class QuestionnaireRepository extends Repository {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
             $questionnaire->status_id = $statusId;
             $questionnaire->save();
-            $this->saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments);
+            $this->saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments, null);
         });
     }
 
-    public function saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments): QuestionnaireStatusHistory {
+    public function saveNewQuestionnaireStatusHistory($questionnaireId, $statusId, $comments, $old_json): QuestionnaireStatusHistory {
         $questionnaireStatusHistory = new QuestionnaireStatusHistory;
         $questionnaire = $this->find($questionnaireId);
         $questionnaireStatusHistory->questionnaire_id = $questionnaireId;
