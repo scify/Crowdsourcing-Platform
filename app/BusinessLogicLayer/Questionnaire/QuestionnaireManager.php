@@ -39,6 +39,7 @@ class QuestionnaireManager {
                 $data['show_file_type_questions_to_statistics_page_audience']
             );
         } else {
+            $questionnaire_json_old = $this->questionnaireRepository->find($id)->questionnaire_json;
             $questionnaire = $this->questionnaireRepository->updateQuestionnaire($id,
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
@@ -47,13 +48,13 @@ class QuestionnaireManager {
                 $data['type_id'],
                 $data['respondent_auth_required'],
                 $data['show_file_type_questions_to_statistics_page_audience']);
+            $this->questionnaireRepository->saveNewQuestionnaireStatusHistory($questionnaire->id, null, 'Updated by user ' . auth()->user()->id, $questionnaire_json_old);
         }
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
             'language_id' => $questionnaire->defaultLanguage->id,
         ];
         $this->questionnaireLanguageRepository->updateOrCreate($questionnaireData, $questionnaireData);
-        $this->questionnaireRepository->saveNewQuestionnaireStatusHistory($questionnaire->id, $questionnaire->status_id, 'Updated by user ' . auth()->user()->id);
         $this->crowdSourcingProjectQuestionnaireRepository->setQuestionnaireToProjects($questionnaire->id, $data['project_ids']);
         $this->questionnaireFieldsTranslationManager->storeOrUpdateDefaultFieldsTranslationForQuestionnaire([
             'title' => $data['title'],
