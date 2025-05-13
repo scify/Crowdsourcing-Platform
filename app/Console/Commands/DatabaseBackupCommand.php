@@ -45,11 +45,16 @@ class DatabaseBackupCommand extends Command {
         $filepath = "{$backupPath}/{$filename}";
 
         // Create backup using mysqldump
+        $mysqldumpPath = '/usr/bin/mysqldump';
+        if (app()->environment('production')) {
+            $mysqldumpPath = '/opt/bitnami/mariadb/bin/mysqldump';
+        }
         $command = sprintf(
-            'mysqldump -h %s -u %s -p%s %s > %s',
+            'MYSQL_PWD=%s %s -h %s -u %s %s > %s 2>&1',
+            escapeshellarg($password),
+            $mysqldumpPath,
             escapeshellarg($host),
             escapeshellarg($username),
-            escapeshellarg($password),
             escapeshellarg($database),
             escapeshellarg($filepath)
         );
@@ -57,7 +62,8 @@ class DatabaseBackupCommand extends Command {
         exec($command, $output, $returnVar);
 
         if ($returnVar !== 0) {
-            $this->error('Backup failed!');
+            $this->error('Backup failed! Command: ' . $command);
+            $this->error(implode("\n", $output));
 
             return 1;
         }
