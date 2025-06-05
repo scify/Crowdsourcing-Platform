@@ -77,6 +77,14 @@
 					<div :id="surveyContainerId" class="survey-container"></div>
 				</div>
 			</div>
+			<!-- Display the browser fingerprint ID with small letters -->
+			<div class="row mt-3">
+				<div class="col-md-12 text-center">
+					<small class="browser-fingerprint-id">
+						{{ browserFingerprintId }}
+					</small>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
