@@ -145,7 +145,13 @@ class QuestionnaireResponseController extends Controller {
 
     public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {
         $this->validate($request, [
-            'browser_fingerprint_id' => 'required|string',
+            'browser_fingerprint_id' => [
+                'required',
+                'string',
+                'min:12',
+                'max:128',
+                'regex:/^[a-zA-Z0-9\-_]+$/',
+            ],
             'questionnaire_id' => 'required|integer',
         ]);
 
