@@ -78,10 +78,10 @@
 				</div>
 			</div>
 			<!-- Display the browser fingerprint ID with small letters -->
-			<div class="row mt-3">
+			<div v-if="!loading" class="row mt-3">
 				<div class="col-md-12 text-center">
 					<small class="browser-fingerprint-id">
-						{{ browserFingerprintId }}
+						Support ID: {{ browserFingerprintId }}
 					</small>
 				</div>
 			</div>
@@ -460,4 +460,10 @@ export default {
 
 <style lang="scss">
 @import "../../../sass/questionnaire/questionnaire-display";
+
+.browser-fingerprint-id {
+	font-size: 0.7rem;
+    color: grey;
+    font-style: italic;
+}
 </style>
