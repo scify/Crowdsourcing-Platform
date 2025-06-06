@@ -25,7 +25,7 @@
                                 Privacy Policy</a>
                         </div>
                         <div class="mb-1">
-                            <a href="javascript:void(0);" onclick="toggleCookieBanner()">Cookies Preferences</a>
+                            <a href="#consent-settings">Cookies Preferences</a>
                         </div>
                         <div class="mb-1"><a href="https://github.com/scify/Crowdsourcing-Platform" target="_blank">Github
                                 ({{__('common.open_source_platform')}})</a></div>
