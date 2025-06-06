@@ -80,9 +80,7 @@
 			<!-- Display the browser fingerprint ID with small letters -->
 			<div v-if="!loading" class="row mt-3">
 				<div class="col-md-12 text-center">
-					<small class="browser-fingerprint-id">
-						Support ID: {{ browserFingerprintId }}
-					</small>
+					<small class="browser-fingerprint-id"> Support ID: {{ browserFingerprintId }} </small>
 				</div>
 			</div>
 		</div>
@@ -463,7 +461,7 @@ export default {
 
 .browser-fingerprint-id {
 	font-size: 0.7rem;
-    color: grey;
-    font-style: italic;
+	color: grey;
+	font-style: italic;
 }
 </style>
