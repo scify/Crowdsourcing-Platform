@@ -60,7 +60,7 @@
 </div>
 @stack("modals")
 <x-laravel-cookie-guard-scripts></x-laravel-cookie-guard-scripts>
-<x-laravel-cookie-guard></x-laravel-cookie-guard>
+<x-laravel-cookie-guard heading="h3" accordion-heading="h5"></x-laravel-cookie-guard>
 @include('partials.footer-scripts')
 </body>
 </html>
