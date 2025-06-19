@@ -38,7 +38,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
         $message = (new MailMessage)
             ->subject('Crowdsourcing Platform | ' . $subject)
             ->greeting($greeting)
-            ->line($title);
+            ->html($title);
 
         $badge->color = 'transparent';
 
