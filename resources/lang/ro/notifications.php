@@ -10,9 +10,9 @@ return [
 
     'go_to_dashboard' => 'Mergi la tabloul de bord',
     'thank_you_for_contribution' => 'Mulțumim pentru contribuția ta!',
-    'hello' => 'Bună!',
-    'thanks_message_for_answering_2' => 'Mulțumim că ai acordat timp pentru a răspunde la chestionarul nostru',
-    'really_means' => 'Aceasta înseamnă foarte mult pentru noi!',
+    'hello' => '<b>Bună!</b>',
+    'thanks_message_for_answering_2' => 'Îți mulțumim tare mult că ai răspuns la chestionarul nostru privind <i>digitalizarea incluzivă în Uniunea Europeană.</i>',
+    'really_means' => 'Contează mult pentru noi și ne bucurăm că ești parte din acest proiect. Te ținem la curent cu pașii următori.',
     'increase_your_impact' => 'Crește-ți impactul',
     'invite_your_friends' => 'Mergi la tabloul tău de bord și invită-ți prietenii!',
     'thanks_message_2' => 'Îți mulțumim încă o dată!',

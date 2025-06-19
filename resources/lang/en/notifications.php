@@ -10,9 +10,9 @@ return [
 
     'go_to_dashboard' => 'Go to Dashboard',
     'thank_you_for_contribution' => 'Thank you for your contribution!',
-    'hello' => 'Hello!',
+    'hello' => '<b>Hello!</b>',
     'thanks_message_for_answering_2' => 'Thank you for taking the time to answer our questionnaire',
-    'really_means' => 'This really means a lot to us!',
+    'really_means' => 'This <b><i>really</i></b> means a lot to us!',
     'increase_your_impact' => 'Increase your impact',
     'invite_your_friends' => 'Go to your dashboard, and invite your friends!',
     'thanks_message_2' => 'Thank you once again!',
