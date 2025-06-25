@@ -77,7 +77,8 @@
                                         <div class="col-12">
                                             <button class="btn btn-outline-primary btn-slim response-btn w-100"
                                                     data-respondent-user-data="{{ $response->respondent_email . ' / ' . $response->respondent_nickname }}"
-                                                    data-respondent-user-id="{{ $response->respondent_user_id }}">View
+                                                    data-respondent-user-id="{{ $response->respondent_user_id }}"
+                                                    data-response-id="{{ $response->id }}">View
                                                 Response
                                             </button>
                                         </div>
