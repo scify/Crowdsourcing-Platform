@@ -213,7 +213,16 @@ class QuestionnaireResponseManager {
 
     public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $browser_fingerprint_id): ?QuestionnaireResponse {
         $client_ip = request()->getClientIp();
+        if (!$this->browser_ip_and_browser_fingerprint_id_are_valid($browser_fingerprint_id, $client_ip)) {
+            return null;
+        }
 
         return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $browser_fingerprint_id, $client_ip);
+    }
+
+    protected function browser_ip_and_browser_fingerprint_id_are_valid(string $browser_fingerprint_id, string $client_ip): bool {
+        return !empty($browser_fingerprint_id)
+            && strlen($browser_fingerprint_id) >= 5
+            && filter_var($client_ip, FILTER_VALIDATE_IP) !== false;
     }
 }
