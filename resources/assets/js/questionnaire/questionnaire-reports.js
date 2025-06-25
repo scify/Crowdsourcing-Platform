@@ -51,9 +51,9 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 
 	const viewResponseBtnHandler = function () {
 		$("body").on("click", ".response-btn", function () {
-			const respondentUserId = $(this).data("respondentUserId");
+			const responseId = $(this).data("responseId");
 			const respondentUserData = $(this).data("respondentUserData");
-			const answer = getResponseJSONByRespondentId(respondentUserId);
+			const answer = getResponseJSONByRespondentId(responseId);
 			if (answer) {
 				$("#respondent-answers-modal-title").html(respondentUserData);
 				survey.data = answer;
@@ -113,9 +113,8 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		});
 	};
 
-	const getResponseJSONByRespondentId = function (id) {
-		for (let i = 0; i < answers.length; i++)
-			if (answers[i].user_id === id) return JSON.parse(answers[i].response_json);
+	const getResponseJSONByResponseId = function (id) {
+		for (let i = 0; i < answers.length; i++) if (answers[i].id === id) return JSON.parse(answers[i].response_json);
 	};
 
 	const getReportsForCriteria = function (criteria) {
