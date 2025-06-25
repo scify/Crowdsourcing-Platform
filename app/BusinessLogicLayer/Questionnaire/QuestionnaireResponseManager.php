@@ -212,6 +212,8 @@ class QuestionnaireResponseManager {
     }
 
     public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $browser_fingerprint_id): ?QuestionnaireResponse {
-        return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $browser_fingerprint_id);
+        $client_ip = request()->getClientIp();
+
+        return $this->questionnaireResponseRepository->getResponseByAnonymousData($questionnaire_id, $browser_fingerprint_id, $client_ip);
     }
 }

@@ -130,11 +130,11 @@ class QuestionnaireResponseRepository extends Repository {
             ->sortByDesc('responded_at');
     }
 
-    public function getResponseByAnonymousData(int $questionnaire_id, string $browser_fingerprint_id): ?QuestionnaireResponse {
+    public function getResponseByAnonymousData(int $questionnaire_id, string $browser_fingerprint_id, string $client_ip): ?QuestionnaireResponse {
         return QuestionnaireResponse::where([
             'questionnaire_id' => $questionnaire_id,
-        ])->where(function ($query) use ($browser_fingerprint_id) {
-            $query->where('browser_fingerprint_id', $browser_fingerprint_id);
+        ])->where(function ($query) use ($browser_fingerprint_id, $client_ip) {
+            $query->where(['browser_fingerprint_id' => $browser_fingerprint_id, 'browser_ip' => $client_ip]);
         })->first();
     }
 }
