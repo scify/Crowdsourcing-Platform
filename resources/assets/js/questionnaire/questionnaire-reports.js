@@ -53,7 +53,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		$("body").on("click", ".response-btn", function () {
 			const responseId = $(this).data("responseId");
 			const respondentUserData = $(this).data("respondentUserData");
-			const answer = getResponseJSONByRespondentId(responseId);
+			const answer = getResponseJSONByResponseId(responseId);
 			if (answer) {
 				$("#respondent-answers-modal-title").html(respondentUserData);
 				survey.data = answer;
