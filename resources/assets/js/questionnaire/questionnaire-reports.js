@@ -160,6 +160,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 			paging: true,
 			searching: true,
 			pageLength: 25,
+			order: [[1, "desc"]],
 			layout: {
 				topStart: {
 					buttons: [
