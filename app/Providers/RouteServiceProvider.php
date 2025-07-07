@@ -23,6 +23,27 @@ class RouteServiceProvider extends ServiceProvider {
      * Define your route model bindings, pattern filters, etc.
      */
     public function boot(): void {
+        // Define rate limiters BEFORE parent::boot() and before routes are loaded
+        $api_throttles = [
+            [
+                'name' => 'api-internal',
+                'limit_per_minute' => 1000,
+            ],
+            [
+                'name' => 'api-public',
+                'limit_per_minute' => 30,
+            ],
+        ];
+
+        foreach ($api_throttles as $throttle) {
+            $name = $throttle['name'];
+            $limit = $throttle['limit_per_minute'];
+            RateLimiter::for($name, fn (Request $request) => Limit::perMinute($limit)
+                ->by(optional($request->user())->id ?: $request->ip())
+                ->response(fn () => response()->json(['status' => 'Too many requests!'], ResponseAlias::HTTP_TOO_MANY_REQUESTS))
+            );
+        }
+
         // /validate the locale parameter
         $regexForLocalParameter = config('app.regex_for_validating_locale_at_routes');
         Route::pattern('locale', $regexForLocalParameter);
@@ -62,24 +83,6 @@ class RouteServiceProvider extends ServiceProvider {
      * @return void
      */
     protected function mapApiRoutes() {
-        $api_throttles = [
-            [
-                'name' => 'api-internal',
-                'limit_per_minute' => 1000,
-            ],
-            [
-                'name' => 'api-public',
-                'limit_per_minute' => 30,
-            ],
-        ];
-
-        foreach ($api_throttles as $throttle) {
-            $name = $throttle['name'];
-            $limit = $throttle['limit_per_minute'];
-            RateLimiter::for($name, fn (Request $request) => Limit::perMinute($limit)->by(optional($request->user())->id ?: $request->ip())->response(fn () => response()->json(['status' => 'Too many requests!'],
-                ResponseAlias::HTTP_TOO_MANY_REQUESTS)));
-        }
-
         Route::middleware('api')
             ->prefix('api')
             ->namespace($this->namespace)
