@@ -138,7 +138,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => array_merge([
         /*
          * Laravel Framework Service Providers...
          */
@@ -178,19 +178,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // Only load IDE Helper and Debug Bar in local environment
-        ...(app()->environment('local') ? [
-            Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-            Barryvdh\Debugbar\ServiceProvider::class,
-        ] : []),
-
-
         \App\Providers\ComposerServiceProvider::class,
         // For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
         \App\Providers\ConfigServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
-    ],
+    ], env('APP_ENV') === 'local' ? [
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+    ] : []),
 
     /*
     |--------------------------------------------------------------------------
