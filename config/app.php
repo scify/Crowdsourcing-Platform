@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /**
      * Operation codes used in AJAX responses
      */
@@ -140,7 +139,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -179,8 +177,14 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        Barryvdh\Debugbar\ServiceProvider::class,
+
+        // Only load IDE Helper and Debug Bar in local environment
+        ...(app()->environment('local') ? [
+            Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+            Barryvdh\Debugbar\ServiceProvider::class,
+        ] : []),
+
+
         \App\Providers\ComposerServiceProvider::class,
         // For image manipulation http://image.intervention.io/
         Intervention\Image\ImageServiceProvider::class,
@@ -200,7 +204,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -235,7 +238,5 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
     ],
-
 ];
