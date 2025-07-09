@@ -59,7 +59,10 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-title">Problem Default Title (<span class="red">*</span>)</label>
+                        <label class="m-0" for="problem-title">Problem Title (<span class="red">*</span>)</label>
+                        <span class="text-sm explanation-text ml-0 mb-2">
+                            (The title should be concise and descriptive, under 100 characters.)
+                        </span>
                         <input type="text"
                                id="problem-title"
                                name="problem-title"
@@ -77,16 +80,19 @@
 
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="problem-description">Problem Default Description (<span
+                        <label class="m-0" for="problem-description">Problem Description (<span
                                     class="red">*</span>)</label>
+                        <span class="text-sm explanation-text ml-0 mb-2">
+                            (The description should be concise and descriptive, under 600 characters.)
+                        </span>
                         <textarea
                                 id="problem-description"
                                 name="problem-description"
                                 class="form-control {{ $errors->has('problem-description') ? 'is-invalid' : '' }}"
                                 required
-                                rows="6"
+                                rows="5"
                                 placeholder="Problem Description"
-                                maxlength="400"
+                                maxlength="600"
                             {{ $errors->has('problem-description') ? 'aria-describedby="problem-description-feedback"' : '' }}
                         >{{ old('problem-description') ? old('problem-description') : $viewModel->problem->defaultTranslation->description }}</textarea>
                         <div id="problem-description-feedback" class="invalid-feedback">
