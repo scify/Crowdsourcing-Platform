@@ -210,10 +210,10 @@ export default {
 					columns: [
 						{ title: "#", data: null, width: "5%" },
 						{ title: "Title", data: "title", width: "30%" },
-						{ title: "Bookmarks", data: "bookmarks", width: "5%" },
-						{ title: "Languages", data: "languages", width: "20%" },
-						{ title: "Status", data: "status", width: "20%" },
-						{ title: "Actions", data: "actions", width: "20%" },
+						{ title: "Description", data: "description", width: "30%" },
+						{ title: "Languages", data: "languages", width: "15%" },
+						{ title: "Status", data: "status", width: "10%" },
+						{ title: "Actions", data: "actions", width: "10%" },
 					],
 					columnDefs: [
 						{
@@ -221,7 +221,7 @@ export default {
 							render: (data, type, row, meta) => meta.row + 1,
 						},
 						{
-							targets: [0, 2, 4, 5], // Indices of columns to center
+							targets: [0, 4, 5], // Indices of columns to center
 							className: "text-center",
 						},
 					],

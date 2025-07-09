@@ -280,7 +280,7 @@ export default {
 							render: (data, type, row, meta) => meta.row + 1,
 						},
 						{
-							targets: [0, 2, 4, 5], // Indices of columns to center
+							targets: [0, 3, 5, 6, 7], // Indices of columns to center
 							className: "text-center",
 						},
 					],
