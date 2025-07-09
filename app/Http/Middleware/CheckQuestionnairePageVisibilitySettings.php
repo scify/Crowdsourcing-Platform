@@ -24,6 +24,7 @@ class CheckQuestionnairePageVisibilitySettings {
             return $next($request);
         }
 
-        return redirect()->route('home', ['locale' => app()->getLocale()]);
+        return redirect()->route('login', ['locale' => app()->getLocale(), 'redirectTo' => $request->fullUrl()])
+            ->with('flash_message_error', __('You do not have access to this page.'));
     }
 }
