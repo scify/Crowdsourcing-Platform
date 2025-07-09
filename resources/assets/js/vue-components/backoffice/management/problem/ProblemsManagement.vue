@@ -317,6 +317,7 @@ export default {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredProblems.map((problem, index) => ({
 						title: problem?.default_translation?.title ?? "Untitled",
+						description: problem?.default_translation?.description ?? "No description",
 						bookmarks: problem.bookmarks.length,
 						languages: problem.translations
 							? problem.translations.map((t) => t.language.language_name).join(", ")
