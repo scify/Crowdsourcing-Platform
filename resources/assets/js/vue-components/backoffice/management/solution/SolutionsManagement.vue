@@ -269,7 +269,7 @@ export default {
 						{ 
 							title: "Title", 
 							data: null, 
-							width: "15%",
+							width: "10%",
 							render: function(data, type, row) {
 								return row.default_translation?.title ?? "Untitled";
 							}
@@ -277,7 +277,7 @@ export default {
 						{ 
 							title: "Description", 
 							data: null, 
-							width: "25%",
+							width: "30%",
 							render: function(data, type, row) {
 								return row.default_translation?.description ?? "No description";
 							}
