@@ -266,8 +266,22 @@ export default {
 					data: [],
 					columns: [
 						{ title: "#", data: null, width: "5%" },
-						{ title: "Title", data: "title", width: "15%" },
-						{ title: "Description", data: "description", width: "25%" },
+						{ 
+							title: "Title", 
+							data: null, 
+							width: "15%",
+							render: function(data, type, row) {
+								return row.default_translation?.title ?? "Untitled";
+							}
+						},
+						{ 
+							title: "Description", 
+							data: null, 
+							width: "25%",
+							render: function(data, type, row) {
+								return row.default_translation?.description ?? "No description";
+							}
+						},
 						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
 						{ title: "Author", data: "user", width: "10%" },
@@ -413,7 +427,7 @@ export default {
 				if (this.dataTableInstance) {
 					this.dataTableInstance.clear();
 					const tableData = this.filteredSolutions.map((solution, index) => ({
-						title: solution?.default_translation?.title ?? "Untitled",
+						...solution, // Pass the raw solution object
 						upvotes: solution.upvotes_count,
 						languages: solution.translations
 							? solution.translations.map((t) => t.language.language_name).join(", ")
