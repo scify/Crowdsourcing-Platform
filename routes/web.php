@@ -111,7 +111,8 @@ Route::group(['middleware' => 'auth'], function () use ($backOfficePrefix): void
 });
 
 Route::group($localeInfo, function (): void {
-    Route::get('/questionnaires/{questionnaire}/statistics/{projectFilter?}', [QuestionnaireStatisticsController::class, 'showStatisticsPageForQuestionnaire'])->name('questionnaire.statistics')->middleware('questionnaire.page_settings');
+    Route::get('/questionnaires/{questionnaire}/statistics/{projectFilter?}', [QuestionnaireStatisticsController::class, 'showStatisticsPageForQuestionnaire'])
+        ->name('questionnaire.statistics')->middleware('questionnaire.page_settings');
 });
 
 Route::group($localeInfo, function (): void {
