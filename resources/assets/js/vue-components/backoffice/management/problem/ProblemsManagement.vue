@@ -209,8 +209,8 @@ export default {
 					data: [],
 					columns: [
 						{ title: "#", data: null, width: "5%" },
-						{ title: "Title", data: "title", width: "30%" },
-						{ title: "Description", data: "description", width: "30%" },
+						{ title: "Title", data: "title", width: "15%" },
+						{ title: "Description", data: "description", width: "45%" },
 						{ title: "Languages", data: "languages", width: "15%" },
 						{ title: "Status", data: "status", width: "10%" },
 						{ title: "Actions", data: "actions", width: "10%" },
