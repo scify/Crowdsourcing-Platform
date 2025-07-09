@@ -61,7 +61,7 @@
                     <div class="form-group col-sm-12">
                         <label class="m-0" for="problem-title">Problem Title (<span class="red">*</span>)</label>
                         <span class="text-sm explanation-text ml-0 mb-2">
-                            (The title should be concise and descriptive, under 100 characters.)
+                            (The title should be concise and descriptive, under <b>100</b> characters.)
                         </span>
                         <input type="text"
                                id="problem-title"
@@ -83,7 +83,7 @@
                         <label class="m-0" for="problem-description">Problem Description (<span
                                     class="red">*</span>)</label>
                         <span class="text-sm explanation-text ml-0 mb-2">
-                            (The description should be concise and descriptive, under 600 characters.)
+                            (The description should be concise and descriptive, under <b>600</b> characters.)
                         </span>
                         <textarea
                                 id="problem-description"

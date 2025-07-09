@@ -266,12 +266,13 @@ export default {
 					data: [],
 					columns: [
 						{ title: "#", data: null, width: "5%" },
-						{ title: "Title", data: "title", width: "25%" },
+						{ title: "Title", data: "title", width: "15%" },
+						{ title: "Description", data: "description", width: "25%" },
 						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
-						{ title: "Author", data: "user", width: "18%" },
-						{ title: "Status", data: "status", width: "12%" },
-						{ title: "Actions", data: "actions", width: "15%" },
+						{ title: "Author", data: "user", width: "10%" },
+						{ title: "Status", data: "status", width: "10%" },
+						{ title: "Actions", data: "actions", width: "10%" },
 					],
 					columnDefs: [
 						{
