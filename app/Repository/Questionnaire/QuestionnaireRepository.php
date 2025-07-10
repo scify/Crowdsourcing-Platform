@@ -145,8 +145,8 @@ class QuestionnaireRepository extends Repository {
                         q.updated_at,
                         q.deleted_at,
                         COUNT(csp.id) AS num_of_projects,
-                        GROUP_CONCAT(DISTINCT cspt.name ORDER BY csp.id SEPARATOR ', ') AS project_names,
-                        GROUP_CONCAT(DISTINCT csp.slug ORDER BY csp.id SEPARATOR ', ') AS project_slugs,
+                        GROUP_CONCAT(DISTINCT cspt.name ORDER BY FIELD(csp.id, $projectIdsStr) SEPARATOR ', ') AS project_names,
+                        GROUP_CONCAT(DISTINCT csp.slug ORDER BY FIELD(csp.id, $projectIdsStr) SEPARATOR ', ') AS project_slugs,
        
                         qsl.title AS status_title,
                         responsesInfo.number_of_responses,
@@ -192,7 +192,7 @@ class QuestionnaireRepository extends Repository {
                         GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
 
                             
-                        where cspq.project_id in (" . $projectIdsStr . ') 
+                        where cspq.project_id in ($projectIdsStr)
                         and q.deleted_at is null
                         and csp.deleted_at is null
                         GROUP BY q.id, q.prerequisite_order, q.status_id,
@@ -209,6 +209,6 @@ class QuestionnaireRepository extends Repository {
                         dl.language_name,
                         number_of_responses,
                         languages
-                        order by q.created_at desc');
+                        order by q.created_at desc");
     }
 }
