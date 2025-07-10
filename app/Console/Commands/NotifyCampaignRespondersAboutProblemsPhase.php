@@ -62,13 +62,15 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
 
         // Print header
         $this->info("#\tUser Email\tLanguage");
-        foreach ($responses as $i => $response) {
+        $i = 0;
+        foreach ($responses as $response) {
             $user = $users[$response->user_id] ?? null;
 
             $language = $languages[$response->language_id] ?? null;
             if (!$user || !$language) {
                 continue;
             }
+            $i++;
             $email = $user->email;
             $lang = $language->language_code;
             $this->line("#{$i}\t$email\t$lang");
