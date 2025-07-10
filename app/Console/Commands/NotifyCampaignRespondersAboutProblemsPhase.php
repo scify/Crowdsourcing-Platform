@@ -40,9 +40,13 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
             ->distinct()
             ->get();
 
+        dd($responses);
+
         // Eager load users and languages
         $userIds = $responses->pluck('user_id')->unique();
         $languageIds = $responses->pluck('language_id')->unique();
+
+        dd($userIds, $languageIds);
         $users = User::whereIn('id', $userIds)->get()->keyBy('id');
         $languages = Language::whereIn('id', $languageIds)->get()->keyBy('id');
 
