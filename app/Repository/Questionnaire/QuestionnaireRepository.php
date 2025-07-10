@@ -145,10 +145,8 @@ class QuestionnaireRepository extends Repository {
                         q.updated_at,
                         q.deleted_at,
                         COUNT(csp.id) AS num_of_projects,
-                        GROUP_CONCAT(cspt.name
-                            SEPARATOR ', ') AS project_names,
-                        GROUP_CONCAT(csp.slug
-                            SEPARATOR ', ') AS project_slugs,
+                        GROUP_CONCAT(cspt.name ORDER BY csp.id SEPARATOR ', ') AS project_names,
+                        GROUP_CONCAT(csp.slug ORDER BY csp.id SEPARATOR ', ') AS project_slugs,
        
                         qsl.title AS status_title,
                         responsesInfo.number_of_responses,
