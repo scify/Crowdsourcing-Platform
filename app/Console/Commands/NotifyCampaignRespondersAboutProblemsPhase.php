@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectQuestionnaire;
 use App\Models\Language;
-use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
 use App\Notifications\NotifyProjectPhaseChanged;
@@ -31,8 +31,8 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
     public function handle() {
         $projectId = $this->argument('project_id');
 
-        // Get all questionnaires for the project
-        $questionnaireIds = Questionnaire::where('project_id', $projectId)->pluck('id');
+        // Get all questionnaires for the project from the intermediate table
+        $questionnaireIds = CrowdSourcingProjectQuestionnaire::where('project_id', $projectId)->pluck('questionnaire_id');
 
         // Get all unique user/language pairs from responses to these questionnaires
         $responses = QuestionnaireResponse::whereIn('questionnaire_id', $questionnaireIds)
@@ -40,13 +40,10 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
             ->distinct()
             ->get();
 
-        dd($responses);
-
         // Eager load users and languages
         $userIds = $responses->pluck('user_id')->unique();
         $languageIds = $responses->pluck('language_id')->unique();
 
-        dd($userIds, $languageIds);
         $users = User::whereIn('id', $userIds)->get()->keyBy('id');
         $languages = Language::whereIn('id', $languageIds)->get()->keyBy('id');
 
