@@ -34,8 +34,9 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
         // Get all questionnaires for the project from the intermediate table
         $questionnaireIds = CrowdSourcingProjectQuestionnaire::where('project_id', $projectId)->pluck('questionnaire_id');
 
-        // Get all unique user/language pairs from responses to these questionnaires
+        // Get all unique user/language pairs from responses to these questionnaires, filtered by project_id
         $responses = QuestionnaireResponse::whereIn('questionnaire_id', $questionnaireIds)
+            ->where('project_id', $projectId)
             ->select('user_id', 'language_id')
             ->distinct()
             ->get();
