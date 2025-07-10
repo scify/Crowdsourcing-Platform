@@ -144,10 +144,9 @@ class QuestionnaireRepository extends Repository {
                         q.created_at,
                         q.updated_at,
                         q.deleted_at,
-                        COUNT(csp.id) AS num_of_projects,
+                        COUNT(DISTINCT csp.id) AS num_of_projects,
                         GROUP_CONCAT(DISTINCT cspt.name ORDER BY csp.id SEPARATOR ', ') AS project_names,
                         GROUP_CONCAT(DISTINCT csp.slug ORDER BY csp.id SEPARATOR ', ') AS project_slugs,
-       
                         qsl.title AS status_title,
                         responsesInfo.number_of_responses,
                         languagesInfo.languages,
@@ -160,11 +159,11 @@ class QuestionnaireRepository extends Repository {
                             INNER JOIN
                         crowd_sourcing_projects csp ON csp.id = cspq.project_id
                             INNER JOIN
-                        crowd_sourcing_project_translations cspt ON cspt.project_id = cspq.project_id 
-                                                                        and cspt.language_id = csp.language_id
+                        crowd_sourcing_project_translations cspt ON cspt.project_id = csp.id 
+                                                                and cspt.language_id = csp.language_id
                             INNER JOIN
                         questionnaire_fields_translations qft ON qft.questionnaire_id = q.id 
-                                                                        and qft.language_id = q.default_language_id
+                                                                and qft.language_id = q.default_language_id
                             INNER JOIN
                         languages_lkp AS dl ON dl.id = q.default_language_id
                             INNER JOIN
@@ -191,7 +190,7 @@ class QuestionnaireRepository extends Repository {
                             AND ql.language_id <> q.default_language_id
                         GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
 
-                            
+                        
                         where cspq.project_id in ($projectIdsStr)
                         and q.deleted_at is null
                         and csp.deleted_at is null
