@@ -49,7 +49,7 @@
     "@fontsource-variable/open-sans": "^5.2.6",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.8",
-    "@sentry/browser": "^9.35.0",
+    "@sentry/browser": "^9.36.0",
     "admin-lte": "3.1.0",
     "bootstrap": "^4.6.2",
     "bootstrap-colorpicker": "^3.4.0",
@@ -78,7 +78,7 @@
     "summernote": "^0.9.1",
     "survey-analytics": "^1.12.25",
     "survey-core": "^1.12.25",
-    "survey-creator": "^1.12.43",
-    "survey-jquery": "^1.12.43"
+    "survey-creator": "^1.12.44",
+    "survey-jquery": "^1.12.44"
   }
 }
