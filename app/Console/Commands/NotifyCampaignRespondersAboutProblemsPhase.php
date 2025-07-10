@@ -45,7 +45,11 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
         $userIds = $responses->pluck('user_id')->unique();
         $languageIds = $responses->pluck('language_id')->unique();
 
-        $users = User::whereIn('id', $userIds)->get()->keyBy('id');
+        // Filter out users whose email contains 'Anonymous_User_'
+        $users = User::whereIn('id', $userIds)
+            ->where('email', 'not like', '%Anonymous_User_%')
+            ->get()
+            ->keyBy('id');
         $languages = Language::whereIn('id', $languageIds)->get()->keyBy('id');
 
         $project = CrowdSourcingProject::find($projectId);
