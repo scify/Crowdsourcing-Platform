@@ -194,9 +194,7 @@ class QuestionnaireRepository extends Repository {
                             
                         where cspq.project_id in (" . $projectIdsStr . ') 
                         and q.deleted_at is null
-                        and cspq.deleted_at is null
                         and csp.deleted_at is null
-                        and qft.deleted_at is null
                         GROUP BY q.id, q.prerequisite_order, q.status_id,
                         q.default_language_id,
                         qft.title,
