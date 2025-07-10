@@ -98,8 +98,12 @@
                                             @if (!$viewModel->isQuestionnaireArchived($questionnaire) && $questionnaire->project_slugs)
                                                 @foreach(explode(",", $questionnaire->project_slugs) as $project_slug)
                                                     <a class="action-btn dropdown-item"
-                                                       href="{{route('questionnaire-moderator-add-response', ['locale' => app()->getLocale(), 'questionnaire' => $questionnaire->id, 'project' => $project_slug])}}"><i
-                                                                class="fas fa-plus"></i> Add Response
+                                                       href="{{ route('questionnaire-moderator-add-response', [
+                                                            'locale' => app()->getLocale(),
+                                                            'questionnaire' => $questionnaire->id,
+                                                            'project' => trim($project_slug)
+                                                        ]) }}">
+                                                        <i class="fas fa-plus"></i> Add Response
                                                         | {{ explode(",", $questionnaire->project_names)[$loop->index] }}
                                                     </a>
                                                 @endforeach
