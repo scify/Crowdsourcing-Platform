@@ -42,7 +42,7 @@
                                 data-status="{{$questionnaire->status_id}}">
                                 <td class="text-center">{{ $loop->index + 1 }}</td>
                                 <td>{{$questionnaire->title}}</td>
-                                <td>{{ $questionnaire->project_names }} / {{ $questionnaire->project_slugs }}</td>
+                                <td>{{ $questionnaire->project_names }}</td>
                                 <td>
                                     @if($questionnaire->goal)
                                         {{ $questionnaire->number_of_responses ?? 0 }} / {{ $questionnaire->goal }}
