@@ -52,18 +52,31 @@ class QuestionnaireRepository extends Repository {
             ->orderBy('created_at', 'desc')->count();
     }
 
-    public function saveNewQuestionnaire($goal, $languageId, $questionnaireJson,
-        $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
-        $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
-        return DB::transaction(function () use (
-            $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-            $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience
-        ) {
+    public function saveNewQuestionnaire(
+        $goal,
+        $languageId,
+        $questionnaireJson,
+        $statisticsPageVisibilityLkpId,
+        $maxVotesNum,
+        $showGeneralStatistics,
+        $type_id,
+        $respondentAuthRequired,
+        $show_file_type_questions_to_statistics_page_audience
+    ) {
+        return DB::transaction(function () use ($goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
             $questionnaire = new Questionnaire;
-            $questionnaire = $this->storeQuestionnaire($questionnaire,
-                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                $showGeneralStatistics, $type_id, $respondentAuthRequired,
-                $show_file_type_questions_to_statistics_page_audience);
+            $questionnaire = $this->storeQuestionnaire(
+                $questionnaire,
+                $goal,
+                $languageId,
+                $questionnaireJson,
+                $statisticsPageVisibilityLkpId,
+                $maxVotesNum,
+                $showGeneralStatistics,
+                $type_id,
+                $respondentAuthRequired,
+                $show_file_type_questions_to_statistics_page_audience
+            );
             // store with status 'Draft'
             $this->saveNewQuestionnaireStatusHistory($questionnaire->id, QuestionnaireStatusLkp::DRAFT, 'The questionnaire has been created.', null);
 
@@ -71,20 +84,33 @@ class QuestionnaireRepository extends Repository {
         });
     }
 
-    public function updateQuestionnaire($questionnaireId,
-        $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics,
-        $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
-        return DB::transaction(function () use (
-            $questionnaireId, $goal,
-            $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-            $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience
-        ) {
+    public function updateQuestionnaire(
+        $questionnaireId,
+        $goal,
+        $languageId,
+        $questionnaireJson,
+        $statisticsPageVisibilityLkpId,
+        $maxVotesNum,
+        $showGeneralStatistics,
+        $type_id,
+        $respondentAuthRequired,
+        $show_file_type_questions_to_statistics_page_audience
+    ) {
+        return DB::transaction(function () use ($questionnaireId, $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum, $showGeneralStatistics, $type_id, $respondentAuthRequired, $show_file_type_questions_to_statistics_page_audience) {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
 
-            return $this->storeQuestionnaire($questionnaire,
-                $goal, $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-                $showGeneralStatistics, $type_id, $respondentAuthRequired,
-                $show_file_type_questions_to_statistics_page_audience);
+            return $this->storeQuestionnaire(
+                $questionnaire,
+                $goal,
+                $languageId,
+                $questionnaireJson,
+                $statisticsPageVisibilityLkpId,
+                $maxVotesNum,
+                $showGeneralStatistics,
+                $type_id,
+                $respondentAuthRequired,
+                $show_file_type_questions_to_statistics_page_audience
+            );
         });
     }
 
@@ -110,10 +136,18 @@ class QuestionnaireRepository extends Repository {
         return $questionnaireStatusHistory;
     }
 
-    private function storeQuestionnaire($questionnaire, $goal,
-        $languageId, $questionnaireJson, $statisticsPageVisibilityLkpId, $maxVotesNum,
-        $showGeneralStatistics, $type_id, $respondentAuthRequired,
-        $show_file_type_questions_to_statistics_page_audience) {
+    private function storeQuestionnaire(
+        $questionnaire,
+        $goal,
+        $languageId,
+        $questionnaireJson,
+        $statisticsPageVisibilityLkpId,
+        $maxVotesNum,
+        $showGeneralStatistics,
+        $type_id,
+        $respondentAuthRequired,
+        $show_file_type_questions_to_statistics_page_audience
+    ) {
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)
@@ -145,8 +179,7 @@ class QuestionnaireRepository extends Repository {
                         q.updated_at,
                         q.deleted_at,
                         COUNT(DISTINCT csp.id) AS num_of_projects,
-                        GROUP_CONCAT(DISTINCT cspt.name ORDER BY csp.id SEPARATOR ', ') AS project_names,
-                        GROUP_CONCAT(DISTINCT csp.slug ORDER BY csp.id SEPARATOR ', ') AS project_slugs,
+                        MAX(projectData.project_info) AS project_info,
                         qsl.title AS status_title,
                         responsesInfo.number_of_responses,
                         languagesInfo.languages,
@@ -168,7 +201,28 @@ class QuestionnaireRepository extends Repository {
                         languages_lkp AS dl ON dl.id = q.default_language_id
                             INNER JOIN
                         questionnaire_statuses_lkp AS qsl ON qsl.id = q.status_id
-                            LEFT JOIN
+                        LEFT JOIN (
+                            SELECT 
+                                cspq.questionnaire_id,
+                                GROUP_CONCAT(
+                                    JSON_OBJECT(
+                                        'name', cspt.name,
+                                        'slug', csp.slug,
+                                        'default_locale', lang.language_code
+                                    )
+                                    ORDER BY csp.id
+                                    SEPARATOR ','
+                                ) AS project_info
+                            FROM crowd_sourcing_project_questionnaires cspq
+                            JOIN crowd_sourcing_projects csp ON csp.id = cspq.project_id
+                            JOIN crowd_sourcing_project_translations cspt ON cspt.project_id = csp.id 
+                                                                        AND cspt.language_id = csp.language_id
+                            JOIN languages_lkp lang ON cspt.language_id = lang.id
+                            WHERE csp.deleted_at IS NULL
+                            GROUP BY cspq.questionnaire_id
+                        ) AS projectData ON projectData.questionnaire_id = q.id
+
+                        LEFT JOIN
                         (SELECT 
                             questionnaire_id, COUNT(*) AS number_of_responses
                         FROM

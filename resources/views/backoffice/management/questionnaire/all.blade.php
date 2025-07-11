@@ -96,19 +96,12 @@
                                                 @endif
                                             @endif
                                             @if (!$viewModel->isQuestionnaireArchived($questionnaire) && $questionnaire->project_slugs)
-                                                @php
-                                                    $names = array_map('trim', explode(',', $questionnaire->project_names));
-                                                    $slugs = array_map('trim', explode(',', $questionnaire->project_slugs));
-                                                @endphp
-                                                @foreach($slugs as $i => $project_slug)
+                                                @foreach($questionnaire->moderator_add_response_urls as $moderator_add_response_url_item)
                                                     <a class="action-btn dropdown-item"
-                                                       href="{{ route('questionnaire-moderator-add-response', [
-                                                            'locale' => app()->getLocale(),
-                                                            'questionnaire' => $questionnaire->id,
-                                                            'project' => $project_slug
-                                                        ]) }}">
+                                                       href="{{ $moderator_add_response_url_item['url'] }}"
+                                                       target="_blank">
                                                         <i class="fas fa-plus"></i> Add Response
-                                                        | {{ $names[$i] ?? '' }}
+                                                        | {{ $moderator_add_response_url_item['project_name'] }}
                                                     </a>
                                                 @endforeach
                                             @endif

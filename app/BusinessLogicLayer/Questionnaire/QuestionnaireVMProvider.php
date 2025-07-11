@@ -86,19 +86,43 @@ class QuestionnaireVMProvider {
         }
         $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($project_ids);
         foreach ($questionnaires as $questionnaire) {
+            $projectInfoArray = json_decode('[' . $questionnaire->project_info . ']', true);
+
+            $questionnaire->project_info = $projectInfoArray;
+
+            // Initialize the arrays
+            $project_names = [];
+            $project_slugs = [];
+            $project_default_locales = [];
+
+            foreach ($projectInfoArray as $projectInfo) {
+                $project_names[] = $projectInfo['name'];
+                $project_slugs[] = $projectInfo['slug'];
+                $project_default_locales[] = $projectInfo['default_locale'];
+            }
+
+            // Assign or use as needed
+            $questionnaire->project_names = implode(', ', $project_names);
+            $questionnaire->project_slugs = implode(', ', $project_slugs);
+            $questionnaire->urls = [];
             if ($this->shouldShowLinkForQuestionnaire($questionnaire)) {
-                $projectSlugs = explode(',', $questionnaire->project_slugs);
-                $projectNames = explode(',', $questionnaire->project_names);
-                $questionnaire->urls = [];
-                foreach ($projectSlugs as $index => $projectSlug) {
+                foreach ($project_slugs as $index => $projectSlug) {
                     $questionnaire->urls[] = [
-                        'project_name' => $projectNames[$index],
-                        'url' => $this->getQuestionnaireURL(trim($projectSlug), $questionnaire->id),
+                        'project_name' => $project_names[$index],
+                        'url' => $this->getQuestionnaireURL(trim($projectSlug), $questionnaire->id, $project_default_locales[$index]),
                     ];
                 }
             }
-        }
 
+            $questionnaire->moderator_add_response_urls = [];
+
+            foreach ($project_slugs as $index => $project_slug) {
+                $questionnaire->moderator_add_response_urls[] = [
+                    'url' => $this->getQuestionnaireModeratorAddResponseURL($project_slug, $questionnaire->id, $project_default_locales[$index]),
+                    'project_name' => $project_names[$index],
+                ];
+            }
+        }
 
         return new ManageQuestionnaires($questionnaires, $availableStatuses);
     }
@@ -107,11 +131,12 @@ class QuestionnaireVMProvider {
         return in_array($questionnaire->status_id, [QuestionnaireStatusLkp::DRAFT, QuestionnaireStatusLkp::PUBLISHED]);
     }
 
-    protected function getQuestionnaireURL(string $projectSlug, int $questionnaireId): string {
-        // get the locale for the default language of the project
-        $locale = $this->crowdSourcingProjectManager->getDefaultLanguageForProject($projectSlug)->lang_code;
+    protected function getQuestionnaireURL(string $project_slug, int $questionnaire_id, string $project_default_locale): string {
+        return route('show-questionnaire-page', ['locale' => $project_default_locale, 'project' => $project_slug, 'questionnaire' => $questionnaire_id]);
+    }
 
-        return route('show-questionnaire-page', ['locale' => $locale, 'project' => $projectSlug, 'questionnaire' => $questionnaireId]);
+    protected function getQuestionnaireModeratorAddResponseURL(string $project_slug, int $questionnaire_id, string $project_default_locale): string {
+        return url("/{$project_default_locale}/backoffice/{$project_slug}/questionnaire/{$questionnaire_id}/moderator-add-answer");
     }
 
     public function getViewModelForQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {
