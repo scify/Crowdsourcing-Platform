@@ -266,21 +266,21 @@ export default {
 					data: [],
 					columns: [
 						{ title: "#", data: null, width: "5%" },
-						{ 
-							title: "Title", 
-							data: null, 
+						{
+							title: "Title",
+							data: null,
 							width: "10%",
-							render: function(data, type, row) {
+							render: function (data, type, row) {
 								return row.default_translation?.title ?? "Untitled";
-							}
+							},
 						},
-						{ 
-							title: "Description", 
-							data: null, 
+						{
+							title: "Description",
+							data: null,
 							width: "30%",
-							render: function(data, type, row) {
+							render: function (data, type, row) {
 								return row.default_translation?.description ?? "No description";
-							}
+							},
 						},
 						{ title: "Upvotes", data: "upvotes", width: "5%" },
 						{ title: "Languages", data: "languages", width: "20%" },
