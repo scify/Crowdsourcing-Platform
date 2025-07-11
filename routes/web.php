@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
     });
 });
 
-Route::group(['middleware' => ['auth', 'can:moderate-content-by-users']], function () use ($localeInfo, $backOfficePrefix): void {
+Route::group(['middleware' => ['auth', 'can:moderate-content-by-users', 'setlocale']], function () use ($localeInfo, $backOfficePrefix): void {
     Route::group($localeInfo, function () use ($backOfficePrefix): void {
         Route::group(['prefix' => $backOfficePrefix], function (): void {
             Route::get('/questionnaires', [QuestionnaireController::class, 'manageQuestionnaires'])->name('questionnaires.all');

@@ -28,10 +28,10 @@
 				searching: true,
 				columns: [
 					{ width: "5%" },
-					{ width: "30%" },
+					{ width: "25%" },
+					{ width: "25%" },
 					{ width: "10%" },
 					{ width: "10%" },
-					{ width: "20%" },
 					{ width: "10%" },
 					{ width: "5%" },
 					{ width: "10%" },
