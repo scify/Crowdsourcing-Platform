@@ -11,7 +11,7 @@ class NotifyProjectPhaseChanged extends Notification implements ShouldQueue {
     use Queueable;
 
     protected $projectName;
-    protected $locale;
+    public $locale;
 
     /**
      * Create a new notification instance.
