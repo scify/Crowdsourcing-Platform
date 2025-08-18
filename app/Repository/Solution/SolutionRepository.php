@@ -17,7 +17,7 @@ class SolutionRepository extends Repository {
 
     public function getSolutionsForManagementFilteredByProjectIds($problemIds): Collection {
         $finalSolutionsCollection = new Collection;
-        $relationships = ['defaultTranslation', 'translations', 'translations.language', 'creator', 'status'];
+        $relationships = ['defaultTranslation', 'translations', 'translations.language', 'creator', 'status', 'upvotes'];
 
         foreach ($problemIds as $problem_id) {
             $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with($relationships)
@@ -29,7 +29,7 @@ class SolutionRepository extends Repository {
 
     public function getSolutionsForManagementFilteredByProblemIds($idsArray): Collection {
         $finalSolutionsCollection = new Collection;
-        $relationships = ['defaultTranslation', 'translations', 'translations.language', 'creator', 'status'];
+        $relationships = ['defaultTranslation', 'translations', 'translations.language', 'creator', 'status', 'upvotes'];
         foreach ($idsArray as $problem_id) {
             $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with($relationships)
                 ->withCount('upvotes as upvotes_count')->get());
