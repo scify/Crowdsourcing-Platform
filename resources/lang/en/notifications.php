@@ -44,20 +44,20 @@ return [
     'see_the_solution' => 'See the solution',
     'anonymous' => 'Anonymous',
     'email_outro_text' => 'The Crowdsourcing Team',
-    'project_phase_changed_subject'     => 'IDEU geht in die nächste Runde - nehmen Sie jetzt teil!',
-    'project_phase_changed_greeting'    => 'Liebe:r Teilnehmer:in,',
-    'project_phase_changed_body'        => '<p>vor einiger Zeit haben Sie an unserer Umfrage zur inklusiven Digitalisierung in der EU im Rahmen des IDEU-Projekts teilgenommen. Vielen Dank dafür! Nun geht das Projekt in die nächste Runde. Auch dafür brauchen wir Sie!</p>
+    'project_phase_changed_subject'     => 'IDEU moves to the next round - participate now!',
+    'project_phase_changed_greeting'    => 'Dear participant,',
+    'project_phase_changed_body'        => '<p>Some time ago, you participated in our survey on inclusive digitalization in the EU as part of the IDEU project. Thank you for that! Now the project is moving to the next round. We need you for this too!</p>
 
-<p>Nachdem es in der ersten Runde darum ging, Probleme im Rahmen der Digitalisierung zu identifizieren, geht es nun darum, gemeinsam mit Ihnen Lösungen für diese Probleme zu finden.</p>
+<p>While the first round was about identifying problems in the context of digitalization, it is now about working together with you to find solutions to these problems.</p>
 
-<p>Hierzu können Sie ab jetzt Lösungsvorschläge auf unserer Plattform machen und über bereits vorgeschlagene Lösungen abstimmen.</p>
+<p>To this end, you can now make solution proposals on our platform and vote on already proposed solutions.</p>
 
-<p>Hier geht es zur Plattform: <a href="https://crowdsourcing.ecas.org/de/inclusive-digitalisation-in-the-EU-de">https://crowdsourcing.ecas.org/de/inclusive-digitalisation-in-the-EU-de</a></p>
+<p>Here is the link to the platform: <a href="https://crowdsourcing.ecas.org/de/inclusive-digitalisation-in-the-EU-de">https://crowdsourcing.ecas.org/de/inclusive-digitalisation-in-the-EU-de</a></p>
 
-<p>Aus den vorgeschlagenen Lösungen werden wir in der letzten Phase konkrete Politikempfehlungen formulieren und an die EU senden. Wir geben Ihnen natürlich Bescheid, sobald diese Phase losgeht.</p>
+<p>From the proposed solutions, we will formulate concrete policy recommendations in the final phase and send them to the EU. We will of course let you know as soon as this phase begins.</p>
 
-<p>Kontaktieren Sie uns gerne, wenn Sie Fragen haben. Weitere Informationen finden Sie auch auf unserer Website. Teilen Sie unseren Aufruf außerdem gerne auch mit Menschen in Ihrem Umfeld, die sich für das Projekt interessieren könnten.</p>
+<p>Please feel free to contact us if you have any questions. You can also find more information on our website. Also, feel free to share our call with people in your network who might be interested in the project.</p>
 
-<p>Herzlichen Dank für Ihre Teilnahme. Wir freuen uns auf Ihre Lösungsvorschläge!</p>',
-    'project_phase_changed_salutation' => '<p>Mit freundlichen Grüßen, <strong>Democracy International e.V.</strong></p>',
+<p>Thank you very much for your participation. We look forward to your solution proposals!</p>',
+    'project_phase_changed_salutation' => '<p>Best regards, <strong>Democracy International e.V.</strong></p>',
 ];
