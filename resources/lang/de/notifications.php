@@ -49,14 +49,7 @@ return [
 
 <p>Kontaktieren Sie uns gerne, wenn Sie Fragen haben. Weitere Informationen finden Sie auch auf unserer Website. Teilen Sie unseren Aufruf außerdem gerne auch mit Menschen in Ihrem Umfeld, die sich für das Projekt interessieren könnten.</p>
 
-<p>Herzlichen Dank für Ihre Teilnahme. Wir freuen uns auf Ihre Lösungsvorschläge!</p>
-
-<p>Mit freundlichen Grüßen</p>
-
-<p><strong>Democracy International e.V.</strong></p>',
-
-
-
-
+<p>Herzlichen Dank für Ihre Teilnahme. Wir freuen uns auf Ihre Lösungsvorschläge!</p>',
+    'project_phase_changed_salutation' => '<p>Mit freundlichen Grüßen, <strong>Democracy International e.V.</strong></p>',
 
 ];
