@@ -44,4 +44,23 @@ return [
     'see_the_solution' => 'See the solution',
     'anonymous' => 'Anonymous',
     'email_outro_text' => 'The Crowdsourcing Team',
+    'project_phase_changed_subject'     => 'IDEU geht in die nächste Runde - nehmen Sie jetzt teil!',
+    'project_phase_changed_greeting'    => 'Liebe:r Teilnehmer:in,',
+    'project_phase_changed_body'        => '<p>vor einiger Zeit haben Sie an unserer Umfrage zur inklusiven Digitalisierung in der EU im Rahmen des IDEU-Projekts teilgenommen. Vielen Dank dafür! Nun geht das Projekt in die nächste Runde. Auch dafür brauchen wir Sie!</p>
+
+<p>Nachdem es in der ersten Runde darum ging, Probleme im Rahmen der Digitalisierung zu identifizieren, geht es nun darum, gemeinsam mit Ihnen Lösungen für diese Probleme zu finden.</p>
+
+<p>Hierzu können Sie ab jetzt Lösungsvorschläge auf unserer Plattform machen und über bereits vorgeschlagene Lösungen abstimmen.</p>
+
+<p>Hier geht es zur Plattform: <a href="https://crowdsourcing.ecas.org/de/inclusive-digitalisation-in-the-EU-de">https://crowdsourcing.ecas.org/de/inclusive-digitalisation-in-the-EU-de</a></p>
+
+<p>Aus den vorgeschlagenen Lösungen werden wir in der letzten Phase konkrete Politikempfehlungen formulieren und an die EU senden. Wir geben Ihnen natürlich Bescheid, sobald diese Phase losgeht.</p>
+
+<p>Kontaktieren Sie uns gerne, wenn Sie Fragen haben. Weitere Informationen finden Sie auch auf unserer Website. Teilen Sie unseren Aufruf außerdem gerne auch mit Menschen in Ihrem Umfeld, die sich für das Projekt interessieren könnten.</p>
+
+<p>Herzlichen Dank für Ihre Teilnahme. Wir freuen uns auf Ihre Lösungsvorschläge!</p>
+
+<p>Mit freundlichen Grüßen</p>
+
+<p><strong>Democracy International e.V.</strong></p>',
 ];
