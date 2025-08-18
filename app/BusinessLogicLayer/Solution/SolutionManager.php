@@ -325,6 +325,31 @@ class SolutionManager {
     }
 
     /**
+     * Administrator method to add a vote to a solution
+     * This bypasses the normal user vote limits and toggle behavior
+     * Intended for administrative use only
+     *
+     * @param int $solution_id the id of the solution
+     * @return array containing the updated vote count
+     */
+    public function adminAddVoteToSolution(int $solution_id): array {
+        $user_id = Auth::id();
+
+        // Create a new upvote record for the admin
+        $this->solutionUpvoteRepository->create([
+            'solution_id' => $solution_id,
+            'user_voter_id' => $user_id,
+        ]);
+
+        $solution_votes = $this->solutionUpvoteRepository->allWhere(['solution_id' => $solution_id])->count();
+
+        return [
+            'solution_votes' => $solution_votes,
+            'admin_vote_added' => true,
+        ];
+    }
+
+    /**
      * Gets the number of votes the current user has for this problem
      * @param int $problem_id the id of the problem
      * @return int the number of votes the current user has for this problem

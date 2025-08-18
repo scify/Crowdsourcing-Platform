@@ -155,6 +155,19 @@ class SolutionController extends Controller {
     }
 
     /**
+     * Administrator method to add a vote to a solution (bypasses normal vote limits)
+     */
+    public function adminAddVote(Request $request, int $id): JsonResponse {
+        try {
+            $result = $this->solutionManager->adminAddVoteToSolution($id);
+
+            return response()->json($result);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $locale, int $id): bool {
