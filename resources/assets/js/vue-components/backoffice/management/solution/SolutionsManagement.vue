@@ -301,7 +301,7 @@ export default {
 				});
 
 				// Event listener for action items clicks
-				const actions = ["delete-btn", "update-btn"];
+				const actions = ["delete-btn", "update-btn", "admin-upvote-btn", "admin-downvote-btn"];
 				actions.forEach((action) => {
 					$("#solutionsTable tbody").on("click", `.${action}`, (event) => {
 						const solutionId = parseInt(event.target.getAttribute("data-id"));
@@ -310,6 +310,10 @@ export default {
 							this.openDeleteModal(solution);
 						} else if (action === "update-btn") {
 							this.openUpdateModal(solution);
+						} else if (action === "admin-upvote-btn") {
+							this.adminUpvoteSolution(solution);
+						} else if (action === "admin-downvote-btn") {
+							this.adminDownvoteSolution(solution);
 						}
 					});
 				});
@@ -448,6 +452,10 @@ export default {
 											<i class="far fa-edit mr-2"></i>${this.trans("common.edit")}</a>
 										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${solution.id}">
 											<i class="fas fa-cog mr-2"></i>${this.trans("common.change_status")}</a>
+										<a href="javascript:void(0)" class="dropdown-item admin-upvote-btn" data-id="${solution.id}">
+											<i class="fas fa-thumbs-up mr-2"></i>Admin Upvote</a>
+										<a href="javascript:void(0)" class="dropdown-item admin-downvote-btn" data-id="${solution.id}">
+											<i class="fas fa-thumbs-down mr-2"></i>Admin Downvote</a>
 										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${solution.id}">
 											<i class="fas fa-trash mr-2"></i>${this.trans("common.delete")}</a>
 									</div>
@@ -529,6 +537,37 @@ export default {
 					this.modalActionLoading = false;
 				});
 		},
+
+		adminUpvoteSolution(solution) {
+			// Use the admin-specific endpoint that bypasses vote limits
+			axios
+				.post(window.route("api.solutions.admin-add-vote", solution.id))
+				.then(() => {
+					this.getFilteredSolutions();
+					this.actionSuccessMessage = "Solution upvoted successfully!";
+					this.showSuccessAlert();
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				});
+		},
+
+		adminDownvoteSolution(solution) {
+			// Use the existing vote functionality to remove a vote
+			axios
+				.post(window.route("api.solutions.vote-downvote"), {
+					solution_id: solution.id,
+				})
+				.then(() => {
+					this.getFilteredSolutions();
+					this.actionSuccessMessage = "Solution downvoted successfully!";
+					this.showSuccessAlert();
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				});
+		},
+
 		exportSolutions() {
 			const url = window.route("api.solutions.export", this.selectedProjectId);
 
