@@ -8,8 +8,8 @@ use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
+use App\Notifications\NotifyProjectPhaseChanged;
 use App\Notifications\QuestionnaireResponded;
-use App\Notifications\UserRegistered;
 use App\Utils\Translator;
 use App\ViewModels\Gamification\GamificationBadgeVM;
 use Illuminate\Console\Command;
@@ -66,11 +66,11 @@ class RunAdminTasks extends Command {
                 return;
             }
 
-            $questionnaireId = $this->ask('Enter the questionnaire ID (0 for UserRegistered notification):');
+            $questionnaireId = $this->ask('Enter the questionnaire ID (0 for NotifyProjectPhaseChanged notification):');
 
             if ((int) $questionnaireId === 0) {
-                $user->notify(new UserRegistered);
-                $this->info('The UserRegistered notification has been sent to ' . $email);
+                $user->notify(new NotifyProjectPhaseChanged('Test Project', 'de'));
+                $this->info('The NotifyProjectPhaseChanged notification has been sent to ' . $email);
             } else {
                 $questionnaire = Questionnaire::find($questionnaireId);
 
