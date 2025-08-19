@@ -69,7 +69,7 @@ class RunAdminTasks extends Command {
             $questionnaireId = $this->ask('Enter the questionnaire ID (0 for NotifyProjectPhaseChanged notification):');
 
             if ((int) $questionnaireId === 0) {
-                $user->notify(new NotifyProjectPhaseChanged('Test Project', 'en'));
+                $user->notify(new NotifyProjectPhaseChanged('Test Project', 'de'));
                 $this->info('The NotifyProjectPhaseChanged notification has been sent to ' . $email);
             } else {
                 $questionnaire = Questionnaire::find($questionnaireId);
@@ -80,7 +80,7 @@ class RunAdminTasks extends Command {
                     return;
                 }
 
-                $language = $user->language ?? Language::where('language_code', 'de')->first();
+                $language = $user->language ?? Language::where('language_code', 'en')->first();
                 $badge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id, 10);
                 $badgeVM = new GamificationBadgeVM($badge);
                 $projectTranslation = $questionnaire->projects->get(0)->translations->firstWhere('language_id', $language->id);
