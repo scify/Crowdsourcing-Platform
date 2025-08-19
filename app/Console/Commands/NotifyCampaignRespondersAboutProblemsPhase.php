@@ -60,7 +60,7 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
         }
         $projectName = $project->defaultTranslation->name ?? $project->slug;
 
-        $i = 0;
+        $notifications_sent = 0;
         foreach ($responses as $response) {
             $user = $users[$response->user_id] ?? null;
 
@@ -68,7 +68,7 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
             if (!$user || !$language) {
                 continue;
             }
-            $i++;
+
             $email = $user->email;
             $lang = $language->language_code;
 
@@ -77,9 +77,11 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
 
                 continue;
             }
+            $notifications_sent++;
             // Send notification
             $user->notify(new NotifyProjectPhaseChanged($projectName, $lang));
             $this->info("Notification sent to: {$email} in language: {$lang}.");
         }
+        $this->info("Total notifications sent: {$notifications_sent}.");
     }
 }
