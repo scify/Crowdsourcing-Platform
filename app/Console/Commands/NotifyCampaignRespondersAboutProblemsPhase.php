@@ -60,8 +60,6 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
         }
         $projectName = $project->defaultTranslation->name ?? $project->slug;
 
-        // Print header
-        $this->info("#\tUser Email\tLanguage");
         $i = 0;
         foreach ($responses as $response) {
             $user = $users[$response->user_id] ?? null;
@@ -73,10 +71,15 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
             $i++;
             $email = $user->email;
             $lang = $language->language_code;
-            $this->line("#{$i}\t$email\t$lang");
 
+            if (!$email || !$lang) {
+                $this->error("User or language not found for response ID: {$response->id}");
+
+                continue;
+            }
             // Send notification
-            // $user->notify(new NotifyProjectPhaseChanged($projectName, $lang));
+            $user->notify(new NotifyProjectPhaseChanged($projectName, $lang));
+            $this->info("Notification sent to: {$email} in language: {$lang}.");
         }
     }
 }
