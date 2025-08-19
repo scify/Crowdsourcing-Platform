@@ -80,7 +80,7 @@ class RunAdminTasks extends Command {
                     return;
                 }
 
-                $language = $user->language ?? Language::where('language_code', 'en')->first();
+                $language = $user->language ?? Language::where('language_code', 'de')->first();
                 $badge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id, 10);
                 $badgeVM = new GamificationBadgeVM($badge);
                 $projectTranslation = $questionnaire->projects->get(0)->translations->firstWhere('language_id', $language->id);
