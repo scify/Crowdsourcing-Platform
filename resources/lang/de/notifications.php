@@ -36,7 +36,7 @@ return [
     'ok'                                => 'OK',
     'email_outro_text'                  => 'Das Crowdsourcing Team',
     'project_phase_changed_subject'     => 'IDEU geht in die nächste Runde - nehmen Sie jetzt teil!',
-    'project_phase_changed_greeting'    => 'Liebe:r Teilnehmer:in,',
+    'project_phase_changed_greeting'    => 'Liebe:r',
     'project_phase_changed_body'        => '<p>vor einiger Zeit haben Sie an unserer Umfrage zur inklusiven Digitalisierung in der EU im Rahmen des IDEU-Projekts teilgenommen. Vielen Dank dafür! Nun geht das Projekt in die nächste Runde. Auch dafür brauchen wir Sie!</p>
 
 <p>Nachdem es in der ersten Runde darum ging, Probleme im Rahmen der Digitalisierung zu identifizieren, geht es nun darum, gemeinsam mit Ihnen Lösungen für diese Probleme zu finden.</p>
