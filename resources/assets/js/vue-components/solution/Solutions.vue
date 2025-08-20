@@ -165,12 +165,12 @@ export default {
 		},
 		userLoggedIn: {
 			type: Boolean,
-			required: true,
+			required: false,
 			default: false,
 		},
 		locale: {
 			type: String,
-			required: true,
+			required: false,
 			default: "en",
 		},
 	},
