@@ -543,7 +543,9 @@ export default {
 			axios
 				.post(window.route("api.solutions.admin-add-vote", solution.id))
 				.then(() => {
-					this.getFilteredSolutions();
+					// Increment locally without refetching the entire list
+					solution.upvotes_count = (solution.upvotes_count || 0) + 1;
+					this.updateVotesCell(solution.id, solution.upvotes_count);
 					this.actionSuccessMessage = "Solution upvoted successfully!";
 					this.showSuccessAlert();
 				})
@@ -559,7 +561,9 @@ export default {
 					solution_id: solution.id,
 				})
 				.then(() => {
-					this.getFilteredSolutions();
+					// Decrement locally without refetching; do not drop below zero
+					solution.upvotes_count = Math.max(0, (solution.upvotes_count || 0) - 1);
+					this.updateVotesCell(solution.id, solution.upvotes_count);
 					this.actionSuccessMessage = "Solution downvoted successfully!";
 					this.showSuccessAlert();
 				})
@@ -608,6 +612,27 @@ export default {
 			setTimeout(() => {
 				alertElement.classList.add("d-none");
 			}, 5000);
+		},
+
+		// Update only the votes cell in the DataTable for the given solution id
+		updateVotesCell(solutionId, newCount) {
+			if (!this.dataTableInstance) return;
+			const table = this.dataTableInstance;
+			// Find the row index by matching the raw solution object id stored in the row data
+			const rowIndexes = table.rows().indexes().toArray();
+			let targetIndex = null;
+			for (const idx of rowIndexes) {
+				const rowData = table.row(idx).data();
+				if (rowData && rowData.id === solutionId) {
+					targetIndex = idx;
+					break;
+				}
+			}
+			if (targetIndex === null) return;
+			// Upvotes column index is 3 (0-based) as defined in setUpDataTable()
+			table.cell(targetIndex, 3).data(newCount);
+			// Keep paging and ordering; do a minimal redraw
+			table.draw(false);
 		},
 	},
 };
