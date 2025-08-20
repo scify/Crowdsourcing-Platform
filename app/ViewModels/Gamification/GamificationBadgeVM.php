@@ -1,17 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\Gamification;
 
 use App\BusinessLogicLayer\Gamification\GamificationBadge;
 
 class GamificationBadgeVM {
     public string $badgeImageName;
+
     public string $badgeName;
+
     public int $level;
+
     public string $badgeMessage;
+
     public string $statusMessage;
+
     public string $color;
+
     public string $messageForLevel;
+
     public GamificationBadge $badge;
 
     public function __construct(GamificationBadge $badge) {

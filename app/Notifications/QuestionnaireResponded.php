@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\BusinessLogicLayer\Gamification\GamificationBadge;
@@ -11,7 +13,9 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
     use Queueable;
 
     protected $title;
+
     protected $questionnaire_response_email_outro_text;
+
     protected $questionnaire_response_email_intro_text;
 
     public function __construct($questionnaireFieldsTranslation,
@@ -40,6 +44,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {

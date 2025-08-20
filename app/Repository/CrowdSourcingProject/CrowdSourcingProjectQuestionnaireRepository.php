@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -10,16 +12,17 @@ class CrowdSourcingProjectQuestionnaireRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return CrowdSourcingProjectQuestionnaire::class;
     }
 
-    public function setQuestionnaireToProjects(int $questionnaire_id, array $project_ids) {
+    public function setQuestionnaireToProjects(int $questionnaire_id, array $project_ids): void {
         $existing_project_ids = $this->allWhere(['questionnaire_id' => $questionnaire_id])->pluck('project_id')->toArray();
         foreach ($project_ids as $project_id) {
             if (in_array($project_id, $existing_project_ids)) {
-                array_splice($existing_project_ids, array_search($project_id, $existing_project_ids), 1);
+                array_splice($existing_project_ids, array_search($project_id, $existing_project_ids, true), 1);
             }
+
             $data = [
                 'project_id' => $project_id,
                 'questionnaire_id' => $questionnaire_id,
@@ -29,6 +32,7 @@ class CrowdSourcingProjectQuestionnaireRepository extends Repository {
                 $data
             );
         }
+
         foreach ($existing_project_ids as $project_id) {
             $this->removeQuestionnaireFromProject($questionnaire_id, $project_id);
         }
@@ -57,11 +61,11 @@ class CrowdSourcingProjectQuestionnaireRepository extends Repository {
             $relationship = $this->where(['questionnaire_id' => $id])->first();
             if ($relationship) {
                 return $relationship->project;
-            } else {
-                return null;
             }
-        } else {
-            return CrowdSourcingProject::find($projectFilter);
+
+            return null;
         }
+
+        return CrowdSourcingProject::find($projectFilter);
     }
 }

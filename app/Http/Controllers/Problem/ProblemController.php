@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Problem;
 
 use App\BusinessLogicLayer\Problem\ProblemManager;
@@ -33,6 +35,7 @@ class ProblemController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
         try {
             $viewModel = $this->problemManager->getProblemsLandingPageViewModel($request->project_slug);
 
@@ -75,8 +78,8 @@ class ProblemController extends Controller {
 
         try {
             $createdProblemId = $this->problemManager->storeProblem($attributes);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -115,8 +118,8 @@ class ProblemController extends Controller {
 
         try {
             $this->problemManager->updateProblem($id, $attributes);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }

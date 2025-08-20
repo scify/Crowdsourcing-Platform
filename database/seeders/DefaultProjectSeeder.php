@@ -12,6 +12,7 @@ use Illuminate\Database\Seeder;
 
 class DefaultProjectSeeder extends Seeder {
     protected $projectRepository;
+
     protected $projectTranslationRepository;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,

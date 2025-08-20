@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -12,6 +14,7 @@ class CrowdSourcingProjectForLandingPage extends CrowdSourcingProjectLayoutPage 
     public $languages;
 
     public $thankYouMode = false;
+
     public $moderator = false;
 
     public function __construct(

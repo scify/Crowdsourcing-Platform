@@ -11,7 +11,7 @@ return [
 
     'login' => 'ΣΥΝΔΕΣΗ',
     'register' => 'ΕΓΓΡΑΦΗ',
-    'dashboard' =>  'Η ΠΛΑΤΦΟΡΜΑ ΜΟΥ',
+    'dashboard' => 'Η ΠΛΑΤΦΟΡΜΑ ΜΟΥ',
     'my_dashboard' => 'Η ΠΛΑΤΦΟΡΜΑ ΜΟΥ',
     'my_account' => 'Ο ΛΟΓΑΡΙΑΣΜΟΣ ΜΟΥ',
     'my_history' => 'ΤΟ ΙΣΤΟΡΙΚΟ ΜΟΥ',

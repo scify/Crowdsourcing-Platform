@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
@@ -11,21 +13,15 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 
 class CrowdSourcingProjectAccessManager {
-    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
-    protected UserRoleManager $userRoleManager;
-
     public function registerCrowdSourcingProjectPolicies(): void {
-        Gate::define('view-landing-page', function (?User $user, string $project_slug) {
+        Gate::define('view-landing-page', function (?User $user, string $project_slug): bool {
             $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug);
 
             return $this->shouldShowLandingPageToUser($user, $project);
         });
     }
 
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository, UserRoleManager $userRoleManager) {
-        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
-        $this->userRoleManager = $userRoleManager;
-    }
+    public function __construct(protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository, protected UserRoleManager $userRoleManager) {}
 
     public function getProjectsUserHasAccessToEdit(User $user): Collection {
         $relationships = ['creator', 'language', 'status'];
@@ -44,8 +40,8 @@ class CrowdSourcingProjectAccessManager {
         $extra_projects = CrowdSourcingProject::whereIn('id', $indeu_project_ids)->with($relationships)->get();
 
         // add the extra projects to the list (only if they are not already in the list, search by id of each project)
-        $extra_projects->each(function ($extra_project) use ($projects) {
-            if (!$projects->contains('id', $extra_project->id)) {
+        $extra_projects->each(function ($extra_project) use ($projects): void {
+            if (! $projects->contains('id', $extra_project->id)) {
                 $projects->push($extra_project);
             }
         });
@@ -53,11 +49,12 @@ class CrowdSourcingProjectAccessManager {
         return $projects;
     }
 
-    protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $project): bool {
-        if (!$project->id) {
+    protected function shouldShowLandingPageToUser($user, CrowdSourcingProject $crowdSourcingProject): bool {
+        if (! $crowdSourcingProject->id) {
             return false;
         }
-        if ($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED) {
+
+        if ($crowdSourcingProject->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED) {
             return true;
         }
 
@@ -65,11 +62,14 @@ class CrowdSourcingProjectAccessManager {
     }
 
     public function userHasAccessToManageProjects($user): bool {
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 
-        return $this->userRoleManager->userHasAdminRole($user) ||
-            $this->userRoleManager->userHasContentManagerRole($user);
+        if ($this->userRoleManager->userHasAdminRole($user)) {
+            return true;
+        }
+
+        return $this->userRoleManager->userHasContentManagerRole($user);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\User;
 
 use App\BusinessLogicLayer\enums\CountryEnum;
@@ -17,33 +19,33 @@ class AdminController extends Controller {
     public function __construct(private readonly \App\BusinessLogicLayer\User\UserManager $userManager) {}
 
     public function manageUsers() {
-        $viewModel = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
+        $manageUsers = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
 
         $availableGenders = GenderEnum::cases();
-        $viewModel->availableGenders = $availableGenders;
+        $manageUsers->availableGenders = $availableGenders;
 
         $availableCountries = CountryEnum::cases();
-        $viewModel->availableCountries = $availableCountries;
+        $manageUsers->availableCountries = $availableCountries;
 
         $availableYearsOfBirth = range(1920, (date('Y') - 18));
-        $viewModel->availableYearsOfBirth = $availableYearsOfBirth;
+        $manageUsers->availableYearsOfBirth = $availableYearsOfBirth;
 
-        return view('backoffice.management.manage-users', ['viewModel' => $viewModel]);
+        return view('backoffice.management.manage-users', ['viewModel' => $manageUsers]);
     }
 
     public function editUserForm(Request $request) {
-        $viewModel = $this->userManager->getEditUserViewModel($request->id);
+        $editUser = $this->userManager->getEditUserViewModel($request->id);
 
         $availableGenders = GenderEnum::cases();
-        $viewModel->availableGenders = $availableGenders;
+        $editUser->availableGenders = $availableGenders;
 
         $availableCountries = CountryEnum::cases();
-        $viewModel->availableCountries = $availableCountries;
+        $editUser->availableCountries = $availableCountries;
 
         $availableYearsOfBirth = range(1920, (date('Y') - 18));
-        $viewModel->availableYearsOfBirth = $availableYearsOfBirth;
+        $editUser->availableYearsOfBirth = $availableYearsOfBirth;
 
-        return view('backoffice.management.edit-user', ['viewModel' => $viewModel]);
+        return view('backoffice.management.edit-user', ['viewModel' => $editUser]);
     }
 
     public function updateUserRoles(Request $request) {
@@ -54,7 +56,7 @@ class AdminController extends Controller {
     }
 
     public function addUserToPlatform(Request $request) {
-        $result = $this->userManager->getOrAddUserToPlatform($request->email,
+        $actionResponse = $this->userManager->getOrAddUserToPlatform($request->email,
             $request->nickname,
             null,
             $request->password,
@@ -62,7 +64,7 @@ class AdminController extends Controller {
             $request->gender,
             $request->country,
             $request['year-of-birth']);
-        match ($result->status) {
+        match ($actionResponse->status) {
             UserActionResponses::USER_UPDATED => session()->flash('flash_message_success', 'User exists in platform. Their roles were updated.'),
             UserActionResponses::USER_CREATED => session()->flash('flash_message_success', 'User has been added to the platform.'),
             default => throw new HttpException('Not a valid request'),
@@ -82,15 +84,15 @@ class AdminController extends Controller {
 
         $fileObject = $request->file('image');
 
-        if (!$fileObject->isValid()) {
+        if (! $fileObject->isValid()) {
             return response()->json(['error' => 'Invalid file upload.'], 400);
         }
 
         $originalFileName = $fileObject->getClientOriginalName();
-        $uniqueId = Str::uuid(); // Generate a unique ID for each file
+        $uuid = Str::uuid(); // Generate a unique ID for each file
 
         // Store the file in S3
-        $path_s3 = Storage::disk('s3')->put('uploads/' . $uniqueId, $fileObject);
+        $path_s3 = Storage::disk('s3')->put('uploads/' . $uuid, $fileObject);
         $uploadedFilePathS3 = Storage::disk('s3')->url($path_s3);
 
         // also store the file in the local storage (storage/app/public/uploads/solution_img)

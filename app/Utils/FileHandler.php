@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Utils;
 
 use Illuminate\Http\UploadedFile;
@@ -10,8 +12,9 @@ use Illuminate\Support\Str;
  */
 class FileHandler {
     /**
-     * @param UploadedFile $file The file to upload
-     * @param string $directoryName The directory name to upload the file to
+     * @param  UploadedFile  $file  The file to upload
+     * @param  string  $directoryName  The directory name to upload the file to
+     *
      * @return string The path of the uploaded file (relative to the storage/app/public directory)
      *
      * This method uploads the file to the server and returns the path of the uploaded file.
@@ -56,6 +59,7 @@ class FileHandler {
             $fileNameFromPath = end($fileNameFromPath);
             $filePath = storage_path('/app/public/uploads/' . $dirNameLast . '/' . $fileNameFromPath);
         }
+
         $path = 'app/public/uploads/' . $dirName . '/' . $fileName;
         $newFilePath = storage_path($path);
         copy($filePath, $newFilePath);

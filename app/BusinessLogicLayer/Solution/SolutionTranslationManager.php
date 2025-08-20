@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Solution;
 
 use App\Models\Solution\Solution;
@@ -10,16 +12,7 @@ use Exception;
 use Illuminate\Support\Collection;
 
 class SolutionTranslationManager {
-    protected SolutionTranslationRepository $solutionTranslationRepository;
-    protected SolutionRepository $solutionRepository;
-
-    public function __construct(
-        SolutionTranslationRepository $solutionTranslationRepository,
-        SolutionRepository $solutionRepository,
-    ) {
-        $this->solutionTranslationRepository = $solutionTranslationRepository;
-        $this->solutionRepository = $solutionRepository;
-    }
+    public function __construct(protected SolutionTranslationRepository $solutionTranslationRepository, protected SolutionRepository $solutionRepository) {}
 
     /**
      * Get all the translations for a solution.
@@ -28,16 +21,12 @@ class SolutionTranslationManager {
      * Solution class and returns a Collection object
      * with all of the solution's defined translations.
      *
-     * @param int|Solution $input An integer ID or a Solution object.
+     * @param  int|Solution  $input  An integer ID or a Solution object.
      */
     public function getTranslationsForSolution(int|Solution $input): Collection {
-        if (gettype($input) !== 'integer') {
-            $id = $input->id;
-        } else {
-            $id = $input;
-        }
+        $id = gettype($input) !== 'integer' ? $input->id : $input;
 
-        if (!$id) {
+        if (! $id) {
             return new Collection;
         }
 
@@ -108,7 +97,7 @@ class SolutionTranslationManager {
         // now we need to add the new translations
         foreach ($newExtraTranslations as $newExtraTranslation) {
             // if not already updated, create the record in the DB
-            if (!$this->translationExistsInTranslationsArray($newExtraTranslation, $alreadyUpdatedExtraTranslations)) {
+            if (! $this->translationExistsInTranslationsArray($newExtraTranslation, $alreadyUpdatedExtraTranslations)) {
                 $this->solutionTranslationRepository->create(
                     [
                         'solution_id' => $solutionId,
@@ -136,6 +125,7 @@ class SolutionTranslationManager {
 
     /**
      * Get the translation from the translations array via the language_id.
+     *
      * @throws Exception If the translation with the given language_id is not found in the translations array.
      */
     protected function getTranslationFromTranslationsArrayViaLanguageId(array $translations, int $id): object {
@@ -144,6 +134,7 @@ class SolutionTranslationManager {
                 return $translation;
             }
         }
-        throw new Exception("Translation with language_id: {$id} not found in translations array.");
+
+        throw new Exception(sprintf('Translation with language_id: %d not found in translations array.', $id));
     }
 }

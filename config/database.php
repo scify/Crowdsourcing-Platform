@@ -1,6 +1,5 @@
 <?php
 
-
 return [
 
     /*
@@ -41,9 +40,9 @@ return [
         ],
 
         'sqlite_testing' => [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => storage_path('database_testing.sqlite'),
-            'prefix'   => '',
+            'prefix' => '',
         ],
 
         'mysql' => [

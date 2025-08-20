@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        if (!Schema::hasTable('problem_translations')) {
+        if (! Schema::hasTable('problem_translations')) {
             Schema::create('problem_translations', function (Blueprint $table) {
                 $table->unsignedBigInteger('problem_id');
                 $table->foreign('problem_id')->references('id')->on('problems');

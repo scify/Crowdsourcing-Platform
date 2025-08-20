@@ -13,10 +13,10 @@ class UserRoleLkpTableSeeder extends Seeder {
      */
     public function run() {
         $user_roles = [
-            ['id'=> 1, 'name'=>'Platform Administrator'],
-            ['id'=> 2, 'name'=>'Content Manager'],
-            ['id'=> 3, 'name'=>'Registered User'],
-            ['id'=> 4, 'name'=>'Answers Moderator'],
+            ['id' => 1, 'name' => 'Platform Administrator'],
+            ['id' => 2, 'name' => 'Content Manager'],
+            ['id' => 3, 'name' => 'Registered User'],
+            ['id' => 4, 'name' => 'Answers Moderator'],
         ];
 
         foreach ($user_roles as $user_role) {

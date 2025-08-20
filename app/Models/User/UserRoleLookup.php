@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\User;
 
 use Carbon\Carbon;
@@ -15,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
+ *
  * @mixin Eloquent
  */
 class UserRoleLookup extends Model {

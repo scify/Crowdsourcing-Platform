@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire;
 
 use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
@@ -7,7 +9,7 @@ use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Repository\Repository;
 
 class QuestionnaireTranslationRepository extends Repository {
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return QuestionnaireFieldsTranslation::class;
     }
 

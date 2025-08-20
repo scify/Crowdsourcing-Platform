@@ -1,11 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Statistics;
 
 class QuestionnaireResponsesPerLanguage {
-    public $data;
-
-    public function __construct($data) {
-        $this->data = $data;
-    }
+    public function __construct(public $data) {}
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Solution;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,5 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SolutionStatusLkp extends Model {
     public $timestamps = false;
+
     protected $table = 'solution_statuses_lkp';
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -31,16 +33,16 @@ class Handler extends ExceptionHandler {
      * Register the exception handling callbacks for the application.
      */
     public function register(): void {
-        $this->reportable(function (Throwable $e) {
-            Integration::captureUnhandledException($e);
+        $this->reportable(function (Throwable $throwable): void {
+            Integration::captureUnhandledException($throwable);
         });
     }
 
-    public function shouldReport(Throwable $e): bool {
+    public function shouldReport(Throwable $throwable): bool {
         if (App::environment('local')) {
             return false;
         }
 
-        return parent::shouldReport($e);
+        return parent::shouldReport($throwable);
     }
 }

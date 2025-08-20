@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
@@ -11,11 +13,9 @@ class QuestionnaireGoalManager {
         if ($responsesNeededToReachGoal < 0) {
             $responsesNeededToReachGoal = 0;
         }
-        if ($questionnaire->goal == 0) {
-            $targetAchievedPercentage = 0;
-        } else {
-            $targetAchievedPercentage = round($responses_count / $questionnaire->goal * 100, 1);
-        }
+
+        $targetAchievedPercentage = $questionnaire->goal == 0 ? 0 : intval(round($responses_count / $questionnaire->goal * 100, 1));
+
         $goal = $questionnaire->goal;
 
         return new QuestionnaireProjectGoal($responsesNeededToReachGoal, $targetAchievedPercentage, $goal);

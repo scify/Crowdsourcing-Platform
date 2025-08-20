@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -60,7 +62,7 @@ class CrowdSourcingProjectController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param int $id the project id
+     * @param  int  $id  the project id
      *
      * @throws ValidationException
      */
@@ -78,8 +80,8 @@ class CrowdSourcingProjectController extends Controller {
         $attributes = $request->all();
         try {
             $this->crowdSourcingProjectManager->updateProject($id, $attributes);
-        } catch (\Exception $e) {
-            return back()->with('flash_message_error', $e->getMessage());
+        } catch (\Exception $exception) {
+            return back()->with('flash_message_error', $exception->getMessage());
         }
 
         return back()->with('flash_message_success', 'The project has been successfully updated');
@@ -95,6 +97,7 @@ class CrowdSourcingProjectController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
         try {
             $project_slug = $request->slug;
             if (Gate::allows('view-landing-page', $project_slug)) {
@@ -107,6 +110,8 @@ class CrowdSourcingProjectController extends Controller {
         } catch (ModelNotFoundException) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
+        return null;
     }
 
     protected function showCrowdSourcingProjectLandingPage(Request $request, string $project_slug) {
@@ -120,8 +125,8 @@ class CrowdSourcingProjectController extends Controller {
             }
 
             return view('crowdsourcing-project.landing-page')->with(['viewModel' => $viewModel]);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return redirect()->to(route('home', ['locale' => app()->getLocale()]));
         }

@@ -1,22 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Gamification;
 
 class InfluencerBadge extends GamificationBadge {
-    public int $questionnaireReferralsNum;
-
-    public function __construct(int $questionnaireReferralsNum, $userHasAchievedBadgePlatformWide) {
+    public function __construct(public int $questionnaireReferralsNum, bool $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::INFLUENCER_BADGE_ID;
         $this->color = '#f44336';
-        $this->questionnaireReferralsNum = $questionnaireReferralsNum;
         parent::__construct(
             __('badges_messages.influencer_title'),
             'influencer.png',
             __('badges_messages.gain_influencer_badge'),
-            $questionnaireReferralsNum,
+            $this->questionnaireReferralsNum,
             $userHasAchievedBadgePlatformWide,
             15,
-            __('badges_messages.influencer_bade_progress', ['count' => $questionnaireReferralsNum]),
+            __('badges_messages.influencer_bade_progress', ['count' => $this->questionnaireReferralsNum]),
             60
         );
     }
@@ -30,11 +29,11 @@ class InfluencerBadge extends GamificationBadge {
             return __('email_messages.unlocked_new_badge');
         }
 
-        return __('badges_messages.you_are_an_influencer', ['level' => "<b> $this->level </b>"]);
+        return __('badges_messages.you_are_an_influencer', ['level' => sprintf('<b> %s </b>', $this->level)]);
     }
 
     public function getNextStepMessage(): string {
-        if (!$this->questionnaireReferralsNum) {
+        if ($this->questionnaireReferralsNum === 0) {
             $title = __('badges_messages.zero_people_responded_to_call');
         } elseif ($this->questionnaireReferralsNum < 2) {
             $title = __('badges_messages.good_job', $this->questionnaireReferralsNum, ['count' => $this->questionnaireReferralsNum]);

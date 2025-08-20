@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\User;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -86,7 +88,7 @@ class UserDashboardManager {
         $questionnaires = $this->questionnaireRepository->getActiveQuestionnaires();
         $questionnairesToBeDisplayedInTheDashboard = new Collection;
         foreach ($questionnaires as $questionnaire) {
-            if (!$this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses)) {
+            if (! $this->questionnaireShouldBeDisplayedInTheDashboard($questionnaire, $userResponses)) {
                 continue;
             }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\Gamification;
 
 use Illuminate\Support\Collection;
@@ -15,7 +17,7 @@ class GamificationBadgesWithLevels {
         $i = 0;
         foreach ($this->badgesWithLevelsList as $item) {
             if ($item->level) {
-                $i++;
+                ++$i;
             }
         }
 

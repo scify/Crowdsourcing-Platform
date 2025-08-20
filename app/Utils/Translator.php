@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Utils;
 
 use Google\Cloud\Core\Exception\ServiceException;
@@ -12,9 +14,10 @@ class Translator {
     /**
      * Translate texts to the preferred language.
      *
-     * @param  array  $texts The texts that need translation. This array should contain elements of type string.
-     *                            Example: ['Hello', 'Goodbye']
-     * @param  string  $target_lang_code The target language code in which the texts will be translated
+     * @param  array  $texts  The texts that need translation. This array should contain elements of type string.
+     *                        Example: ['Hello', 'Goodbye']
+     * @param  string  $target_lang_code  The target language code in which the texts will be translated
+     *
      * @return array The translated texts
      *
      * @throws \Exception
@@ -43,6 +46,7 @@ class Translator {
                 } else {
                     Log::error($e->getMessage());
                 }
+
                 throw new ServiceException($error_message);
             }
         }

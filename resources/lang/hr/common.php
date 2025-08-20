@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Učinkovito upravljajte svojim upitnicima</b> s našim jednostavnim uređivačem upitnika.',
     'features_platform_3' => '<b>Provjerite utjecaj</b> svojih kampanja, pregledavanjem izvještaja generiranih iz odgovora građana.',
     'features_platform_4' => '<b>Integrirajte se s MailChimp</b> jednim klikom, kako biste korisnike uvijek držali u tijeku s najnovijim kampanjama i aktivnostima.',
-    'MALE'           => 'Muškarac',
-    'FEMALE'         => 'Žena',
-    'OTHER'          => 'Drugo',
+    'MALE' => 'Muškarac',
+    'FEMALE' => 'Žena',
+    'OTHER' => 'Drugo',
     'view_campaign' => 'Pogledaj kampanju',
     'footer_eu_text' => 'Ova web stranica je stvorena i održavana od strane European Citizen Action Service (ECAS). Sadržaj ove web stranice je isključiva odgovornost ECAS-a i ne može se smatrati da odražava službene stavove Europske unije.',
 

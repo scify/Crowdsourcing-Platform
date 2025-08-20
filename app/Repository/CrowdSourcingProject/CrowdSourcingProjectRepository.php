@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
@@ -12,10 +14,8 @@ use Illuminate\Support\Collection;
 class CrowdSourcingProjectRepository extends Repository {
     /**
      * Specify Model class name
-     *
-     * @return mixed
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return CrowdSourcingProject::class;
     }
 
@@ -25,7 +25,7 @@ class CrowdSourcingProjectRepository extends Repository {
     ): Collection {
         // First query to get projects with published status and their questionnaires
         $builder1 = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
-            ->with('questionnaires', function ($query) use ($questionnaireStatusId) {
+            ->with('questionnaires', function ($query) use ($questionnaireStatusId): void {
                 $query->select(['id', 'prerequisite_order', 'status_id', 'default_language_id',
                     'goal', 'statistics_page_visibility_lkp_id', 'questionnaires.created_at as questionnaire_created'])
                     ->where(['status_id' => $questionnaireStatusId])
@@ -34,25 +34,25 @@ class CrowdSourcingProjectRepository extends Repository {
                     ->orderBy('questionnaire_created', 'desc');
             })
             ->with('problems')
-            ->with(['translations' => function ($query) use ($language_id) {
+            ->with(['translations' => function ($query) use ($language_id): void {
                 $query->where('language_id', $language_id);
             }]);
 
         // Add additional relationships if provided
-        if (count($additionalRelationships)) {
+        if (count($additionalRelationships) > 0) {
             $builder1 = $builder1->with($additionalRelationships);
         }
 
         // Second query to get projects that have at least one published problem
-        $builder2 = CrowdSourcingProject::whereHas('problems', function ($query) {
+        $builder2 = CrowdSourcingProject::whereHas('problems', function ($query): void {
             $query->where(['status_id' => ProblemStatusLkp::PUBLISHED]);
         })
-            ->with(['translations' => function ($query) use ($language_id) {
+            ->with(['translations' => function ($query) use ($language_id): void {
                 $query->where('language_id', $language_id);
             }]);
 
         // Add additional relationships if provided
-        if (count($additionalRelationships)) {
+        if (count($additionalRelationships) > 0) {
             $builder2 = $builder2->with($additionalRelationships);
         }
 
@@ -64,9 +64,10 @@ class CrowdSourcingProjectRepository extends Repository {
      * Get all active projects that do not have a published questionnaire
      * and have at least one published problem with the given status
      *
-     * @param $language_id int - the id of the language for which the translations should be loaded
-     * @param $additionalRelationships array - additional relationships to be loaded
-     * @param $problemStatusId int - the status id of the problems to be loaded
+     * @param  $language_id  int - the id of the language for which the translations should be loaded
+     * @param  $additionalRelationships  array - additional relationships to be loaded
+     * @param  $problemStatusId  int - the status id of the problems to be loaded
+     *
      * @return Collection - the collection of projects that meet the criteria
      */
     public function getActiveProjectsWithoutQuestionnaireWithAtLeastOnePublishedProblemWithStatus(
@@ -74,19 +75,19 @@ class CrowdSourcingProjectRepository extends Repository {
         $additionalRelationships = [], $problemStatusId = ProblemStatusLkp::PUBLISHED
     ): Collection {
         $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED])
-            ->whereDoesntHave('questionnaires', function ($query) {
+            ->whereDoesntHave('questionnaires', function ($query): void {
                 $query->where('status_id', QuestionnaireStatusLkp::PUBLISHED);
             })
-            ->with('problems', function ($query) use ($problemStatusId) {
+            ->with('problems', function ($query) use ($problemStatusId): void {
                 $query->where(['status_id' => $problemStatusId]);
             });
 
         // Load the translations related to the project, but only the one that equals to the language with id $language_id
-        $builder = $builder->with(['translations' => function ($query) use ($language_id) {
+        $builder = $builder->with(['translations' => function ($query) use ($language_id): void {
             $query->where('language_id', $language_id);
         }]);
 
-        if (count($additionalRelationships)) {
+        if (count($additionalRelationships) > 0) {
             $builder = $builder->with($additionalRelationships);
         }
 
@@ -96,7 +97,7 @@ class CrowdSourcingProjectRepository extends Repository {
     public function getAllProjectsWithDefaultTranslation($additionalRelationships = []): Collection {
         $builder = CrowdSourcingProject::where(['status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED]);
 
-        if (count($additionalRelationships)) {
+        if (count($additionalRelationships) > 0) {
             $builder = $builder->with($additionalRelationships);
         }
 
@@ -108,7 +109,7 @@ class CrowdSourcingProjectRepository extends Repository {
             ->where('status_id', '!=', CrowdSourcingProjectStatusLkp::UNPUBLISHED)
             ->whereHas('problems');
 
-        if (!is_null($user_creator_id)) {
+        if (! is_null($user_creator_id)) {
             $builder->where('user_creator_id', $user_creator_id);
         }
 

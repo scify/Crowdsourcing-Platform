@@ -1,16 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerAnnotationRepository;
 use Illuminate\Support\Collection;
 
 class QuestionnaireAnswerAnnotator {
-    protected $questionnaireAnswerAnnotationRepository;
-
-    public function __construct(QuestionnaireAnswerAnnotationRepository $questionnaireAnswerAnnotationRepository) {
-        $this->questionnaireAnswerAnnotationRepository = $questionnaireAnswerAnnotationRepository;
-    }
+    public function __construct(protected QuestionnaireAnswerAnnotationRepository $questionnaireAnswerAnnotationRepository) {}
 
     public function getAnswerAnnotationsForQuestionnaireAnswers(int $questionnaire_id): Collection {
         return $this->questionnaireAnswerAnnotationRepository->getAnswerAnnotationsForQuestionnaireAnswers($questionnaire_id);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Responses;
 
 use App\Models\Questionnaire\QuestionnaireAnswerAnnotation;
@@ -10,7 +12,7 @@ class QuestionnaireAnswerAnnotationRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return QuestionnaireAnswerAnnotation::class;
     }
 

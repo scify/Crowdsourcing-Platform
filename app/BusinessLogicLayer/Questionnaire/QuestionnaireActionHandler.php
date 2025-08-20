@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\BusinessLogicLayer\Gamification\PlatformWideGamificationBadgesProvider;
@@ -18,32 +20,7 @@ use App\Repository\User\UserRepository;
 use App\ViewModels\Gamification\GamificationBadgeVM;
 
 class QuestionnaireActionHandler {
-    protected WebSessionManager $webSessionManager;
-    protected UserRepository $userRepository;
-    protected QuestionnaireResponseReferralManager $questionnaireResponseReferralManager;
-    protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
-    protected UserQuestionnaireShareRepository $questionnaireShareRepository;
-    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
-    protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
-    protected LanguageManager $languageManager;
-
-    public function __construct(WebSessionManager $webSessionManager,
-        UserRepository $userRepository,
-        QuestionnaireResponseReferralManager $questionnaireResponseReferralManager,
-        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider,
-        UserQuestionnaireShareRepository $questionnaireShareRepository,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager,
-        LanguageManager $languageManager) {
-        $this->webSessionManager = $webSessionManager;
-        $this->userRepository = $userRepository;
-        $this->questionnaireResponseReferralManager = $questionnaireResponseReferralManager;
-        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
-        $this->questionnaireShareRepository = $questionnaireShareRepository;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
-        $this->languageManager = $languageManager;
-    }
+    public function __construct(protected WebSessionManager $webSessionManager, protected UserRepository $userRepository, protected QuestionnaireResponseReferralManager $questionnaireResponseReferralManager, protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider, protected UserQuestionnaireShareRepository $questionnaireShareRepository, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager, protected LanguageManager $languageManager) {}
 
     public function handleQuestionnaireContributor(Questionnaire $questionnaire,
         CrowdSourcingProject $project,

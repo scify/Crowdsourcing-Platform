@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Solution;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectTranslationManager;
@@ -75,7 +77,9 @@ class SolutionManager {
 
     /**
      * Store a solution
-     * @param array $attributes the attributes of the solution
+     *
+     * @param  array  $attributes  the attributes of the solution
+     *
      * @throws Exception
      */
     public function storeSolution(array $attributes): Solution {
@@ -84,7 +88,9 @@ class SolutionManager {
 
     /**
      * Store a solution from a public form
-     * @param array $attributes the attributes of the solution
+     *
+     * @param  array  $attributes  the attributes of the solution
+     *
      * @throws Exception
      */
     public function storeSolutionFromPublicForm(array $attributes): Solution {
@@ -106,7 +112,9 @@ class SolutionManager {
 
     /**
      * Store a solution with a specific status
-     * @param array $attributes the attributes of the solution
+     *
+     * @param  array  $attributes  the attributes of the solution
+     *
      * @throws Exception
      */
     protected function storeSolutionWithStatus(array $attributes, int $status_id): Solution {
@@ -115,6 +123,7 @@ class SolutionManager {
         } else {
             $imgPath = null;
         }
+
         $solution_owner_problem_id = $attributes['solution-owner-problem'];
 
         $default_language_id = $this->problemRepository->find($solution_owner_problem_id)->default_language_id;
@@ -139,10 +148,11 @@ class SolutionManager {
             DB::commit();
 
             return $solution;
-        } catch (\Exception $e) {
-            Log::error('Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
             DB::rollBack();
-            throw new \Exception('An error occurred while creating the solution', $e->getCode(), $e);
+
+            throw new \Exception('An error occurred while creating the solution', $exception->getCode(), $exception);
         }
     }
 
@@ -180,9 +190,11 @@ class SolutionManager {
             switch ($solutionStatus->id) {
                 case SolutionStatusLkp::PUBLISHED:
                     $solutionStatus->badgeCSSClass = 'badge-success';
+
                     break;
                 case SolutionStatusLkp::UNPUBLISHED:
                     $solutionStatus->badgeCSSClass = 'badge-danger';
+
                     break;
                 default:
                     $solutionStatus->badgeCSSClass = 'badge-dark';
@@ -197,6 +209,7 @@ class SolutionManager {
         if (count($filters['problemFilters']) > 0) {
             return $this->solutionRepository->getSolutionsForManagementFilteredByProblemIds($filters['problemFilters']);
         }
+
         $problem_ids = [];
         foreach ($filters['projectFilters'] as $project_id) {
             $problem_ids = array_merge($problem_ids, $this->problemRepository->getProblemsForCrowdSourcingProjectForManagement($project_id)->pluck('id')->toArray());
@@ -207,7 +220,7 @@ class SolutionManager {
 
     public function getSolutions(int $problem_id, string $language_code): Collection {
         $current_language = $this->languageRepository->getLanguageByCode($language_code);
-        $current_language_id = ($current_language->id) ? $current_language->id : $this->languageRepository->getDefaultLanguage()->id;
+        $current_language_id = $current_language->id ?: $this->languageRepository->getDefaultLanguage()->id;
 
         return $this->solutionRepository->getSolutions($problem_id, $current_language_id, Auth::id());
     }
@@ -236,8 +249,8 @@ class SolutionManager {
         // and if it does not start with "/images" (meaning it is a default public image)
         // and if it does not start with "http" (meaning it is an external image)
         if ($solution->img_url &&
-            !str_starts_with($solution->img_url, '/images') &&
-            !str_starts_with($solution->img_url, 'http')) {
+            ! str_starts_with((string) $solution->img_url, '/images') &&
+            ! str_starts_with((string) $solution->img_url, 'http')) {
             FileHandler::deleteUploadedFile($solution->img_url, 'solution_img');
         }
 
@@ -280,7 +293,8 @@ class SolutionManager {
      * - the current user's vote status (voted or not)
      * - the current user's remaining votes for this problem
      *
-     * @param int $solution_id the id of the solution
+     * @param  int  $solution_id  the id of the solution
+     *
      * @return array described above
      */
     public function voteOrDownVoteSolution(int $solution_id): array {
@@ -298,7 +312,6 @@ class SolutionManager {
             'user_voter_id' => $user_id,
         ]);
 
-
         if ($solution_upvote) {
             $solution_upvote->delete();
         } else {
@@ -308,6 +321,7 @@ class SolutionManager {
                     'error' => 'You have no votes left for this problem',
                 ];
             }
+
             $this->solutionUpvoteRepository->create([
                 'solution_id' => $solution_id,
                 'user_voter_id' => $user_id,
@@ -329,7 +343,8 @@ class SolutionManager {
      * This bypasses the normal user vote limits and toggle behavior
      * Intended for administrative use only
      *
-     * @param int $solution_id the id of the solution
+     * @param  int  $solution_id  the id of the solution
+     *
      * @return array containing the updated vote count
      */
     public function adminAddVoteToSolution(int $solution_id): array {
@@ -351,14 +366,17 @@ class SolutionManager {
 
     /**
      * Gets the number of votes the current user has for this problem
-     * @param int $problem_id the id of the problem
+     *
+     * @param  int  $problem_id  the id of the problem
+     *
      * @return int the number of votes the current user has for this problem
      */
     public function getUserVotesNum(int $problem_id): int {
         $user_id = Auth::id();
-        if (!$user_id) {
+        if (! $user_id) {
             return 0;
         }
+
         $project = $this->problemRepository->find($problem_id)->project;
         $problem_ids = $project->problems->pluck('id')->toArray();
         $solution_ids = $this->solutionRepository->getSolutionsForProblems($problem_ids)->pluck('id')->toArray();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Gamification;
 
 use App\Models\Questionnaire\Questionnaire;
@@ -9,36 +11,20 @@ use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\Repository\User\UserQuestionnaireShareRepository;
 
 class QuestionnaireBadgeProvider {
-    protected $questionnaireRepository;
-    protected $questionnaireResponseRepository;
-    protected $userQuestionnaireShareRepository;
-    protected $questionnaireResponseReferralRepository;
-    protected $platformWideGamificationBadgesProvider;
-
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        UserQuestionnaireShareRepository $userQuestionnaireShareRepository,
-        QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository,
-        PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->userQuestionnaireShareRepository = $userQuestionnaireShareRepository;
-        $this->questionnaireResponseReferralRepository = $questionnaireResponseReferralRepository;
-        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
-    }
+    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected UserQuestionnaireShareRepository $userQuestionnaireShareRepository, protected QuestionnaireResponseReferralRepository $questionnaireResponseReferralRepository, protected PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {}
 
     public function getNextBadgeToUnlockForQuestionnaire(Questionnaire $questionnaire, int $userId, array $questionnaireIdsUserHasAnsweredTo): GamificationBadge {
-        if (!$this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire->id, $questionnaireIdsUserHasAnsweredTo)) {
-            return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), count($questionnaireIdsUserHasAnsweredTo));
+        if (! $this->userHasAchievedContributorBadgeForQuestionnaire($questionnaire->id, $questionnaireIdsUserHasAnsweredTo)) {
+            return new ContributorBadge(count($questionnaireIdsUserHasAnsweredTo), $questionnaireIdsUserHasAnsweredTo !== []);
         }
 
-        if (!$this->userHasAchievedCommunicatorBadgeForQuestionnaire($questionnaire, $userId)) {
+        if (! $this->userHasAchievedCommunicatorBadgeForQuestionnaire($questionnaire, $userId)) {
             return new CommunicatorBadge($this->userQuestionnaireShareRepository->
             getUserQuestionnaireSharesForUserForQuestionnaire($questionnaire->id, $userId),
                 $this->platformWideGamificationBadgesProvider->userHasAchievedCommunicatorBadge($userId));
         }
 
-        if (!$this->userHasAchievedInfluencerBadgeForQuestionnaire($questionnaire, $userId)) {
+        if (! $this->userHasAchievedInfluencerBadgeForQuestionnaire($questionnaire, $userId)) {
             return new InfluencerBadge($this->questionnaireResponseReferralRepository->
             getQuestionnaireReferralsForUserForQuestionnaire($questionnaire->id, $userId)->count(),
                 $this->platformWideGamificationBadgesProvider->userHasAchievedInfluencerBadge($userId));

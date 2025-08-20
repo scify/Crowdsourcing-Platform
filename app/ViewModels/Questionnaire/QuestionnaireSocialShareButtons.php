@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\Questionnaire;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -14,9 +16,9 @@ class QuestionnaireSocialShareButtons {
     /**
      * QuestionnaireSocialShareButtons constructor.
      *
-     * @param $questionnaire Questionnaire the questionnaire to be shared
-     * @param $referrerId int (optional) the id of the user that will share
-     * the questionnaire
+     * @param  $questionnaire  Questionnaire the questionnaire to be shared
+     * @param  $referrerId  int (optional) the id of the user that will share
+     *                     the questionnaire
      */
     public function __construct(Questionnaire $questionnaire, public $referrerId = null) {
         $this->questionnaire = $questionnaire;

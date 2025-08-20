@@ -1,13 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Questionnaire;
 
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireAnswerAnnotator;
 use App\Http\Controllers\Controller;
+use App\Repository\Questionnaire\Responses\QuestionnaireAnswerAdminReviewLkpRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class QuestionnaireAnswerAnnotationController extends Controller {
-    public function __construct(protected \App\BusinessLogicLayer\Questionnaire\QuestionnaireAnswerAnnotator $questionnaireAnswerAnnotator, protected \App\Repository\Questionnaire\Responses\QuestionnaireAnswerAdminReviewLkpRepository $questionnaireAnswerAdminReviewStatusesRepository) {}
+    public function __construct(protected QuestionnaireAnswerAnnotator $questionnaireAnswerAnnotator, protected QuestionnaireAnswerAdminReviewLkpRepository $questionnaireAnswerAdminReviewStatusesRepository) {}
 
     public function getAnswerAnnotationsForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
         return response()->json($this->questionnaireAnswerAnnotator

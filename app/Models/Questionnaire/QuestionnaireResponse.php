@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -24,10 +26,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read User $user
  */
 class QuestionnaireResponse extends Model {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'questionnaire_responses';
+
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     protected $fillable = [
         'questionnaire_id',
         'project_id',

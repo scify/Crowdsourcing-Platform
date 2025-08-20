@@ -10,7 +10,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        if (!Schema::hasTable('solution_upvotes')) {
+        if (! Schema::hasTable('solution_upvotes')) {
             $columnType = ColumnTypeHelper::getColumnType('users', 'id');
             Schema::create('solution_upvotes', function (Blueprint $table) use ($columnType) {
                 $table->unsignedBigInteger('solution_id');

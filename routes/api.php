@@ -11,7 +11,6 @@
 |
 */
 
-
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectColorsController;
 use App\Http\Controllers\CrowdSourcingProject\CrowdSourcingProjectController;
 use App\Http\Controllers\FileController;

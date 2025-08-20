@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -28,7 +30,7 @@ class FileController extends Controller {
 
                 // Resize only if the width is greater than 1024
                 if ($image->width() > 1024) {
-                    $image->resize(1024, null, function ($constraint) {
+                    $image->resize(1024, null, function ($constraint): void {
                         $constraint->aspectRatio();
                         $constraint->upsize();
                     });

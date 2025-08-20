@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Solution;
 
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
@@ -11,7 +13,7 @@ class SolutionRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return Solution::class;
     }
 
@@ -44,7 +46,7 @@ class SolutionRepository extends Repository {
             ->with(['defaultTranslation', 'translations'])
             ->withCount('upvotes as upvotes_count')
             ->get()
-            ->each(function ($solution) use ($lang_id, $current_user_id) {
+            ->each(function ($solution) use ($lang_id, $current_user_id): void {
                 $solution->current_translation = $solution->translations->firstWhere('language_id', $lang_id)
                     ?? $solution->defaultTranslation;
                 if ($current_user_id !== null) {
@@ -64,7 +66,7 @@ class SolutionRepository extends Repository {
     }
 
     public function getSolutionsByProjectId(int $project_id): Collection {
-        return Solution::whereHas('project', function ($query) use ($project_id) {
+        return Solution::whereHas('project', function ($query) use ($project_id): void {
             $query->where('project_id', $project_id);
         })->get();
     }

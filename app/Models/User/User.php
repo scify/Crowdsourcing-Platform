@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\User;
 
 use App\Notifications\ResetPassword;
@@ -29,10 +31,13 @@ use Illuminate\Notifications\Notifiable;
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read Collection|UserRoleLookup[] $roles
  * @property-read Collection|UserRole[] $userRoles
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

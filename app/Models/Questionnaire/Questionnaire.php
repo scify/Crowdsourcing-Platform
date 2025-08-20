@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -51,6 +53,7 @@ class Questionnaire extends Model {
     use SoftDeletes;
 
     protected $table = 'questionnaires';
+
     protected $fillable = [
         'project_id',
         'prerequisite_order',
@@ -94,7 +97,7 @@ class Questionnaire extends Model {
         $languageRepository = app()->make(LanguageRepository::class);
         $language = $languageRepository->where(['language_code' => app()->getLocale()]);
 
-        if (!$language) {
+        if (! $language) {
             return $this->defaultFieldsTranslation();
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Solution;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -15,10 +17,13 @@ use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Solution extends Model {
     use BelongsToThrough;
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'solutions';
+
     protected $fillable = ['id', 'problem_id', 'user_creator_id', 'slug', 'status_id', 'img_url'];
+
     protected $with = ['defaultTranslation'];
 
     // problem relationship (a solution belongs to a problem)

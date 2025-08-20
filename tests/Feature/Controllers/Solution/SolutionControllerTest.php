@@ -102,7 +102,6 @@ class SolutionControllerTest extends TestCase {
 
         $response->assertStatus(302);
 
-
         $this->assertNotNull($solution);
         $this->assertEquals(SolutionStatusLkp::UNPUBLISHED, $solution->status_id);
         $this->assertEquals($problem->id, $solution->problem_id);

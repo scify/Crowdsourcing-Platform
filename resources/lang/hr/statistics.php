@@ -16,6 +16,4 @@ return [
     'print' => 'Ispis',
     'responses_per_language' => 'Odgovori po jeziku',
 
-
-
 ];

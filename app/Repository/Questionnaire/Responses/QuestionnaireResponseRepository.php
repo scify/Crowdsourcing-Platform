@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Responses;
 
 use App\BusinessLogicLayer\CookieManager;
@@ -11,7 +13,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireResponseRepository extends Repository {
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return QuestionnaireResponse::class;
     }
 
@@ -32,9 +34,10 @@ class QuestionnaireResponseRepository extends Repository {
     }
 
     public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id): ?Collection {
-        if (!isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || !intval($_COOKIE[UserManager::$USER_COOKIE_KEY])) {
+        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || intval($_COOKIE[UserManager::$USER_COOKIE_KEY]) === 0) {
             return null;
         }
+
         $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
         $cookieManager = new CookieManager;
         if ($anonymousUserId === $user_id) {
@@ -44,7 +47,7 @@ class QuestionnaireResponseRepository extends Repository {
         }
 
         $anonymousUser = User::find($anonymousUserId);
-        if (!$anonymousUser) {
+        if (! $anonymousUser) {
             $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
             return null;
@@ -56,9 +59,7 @@ class QuestionnaireResponseRepository extends Repository {
 
         $questionnairesThatWereTransferredToUser = collect([]);
         foreach ($anonymousQuestionnaireResponses as $anonymousResponse) {
-            $itHasAlreadyBeenAnswered = $existingQuestionnaireResponsesOfUser->contains(function ($existing) use ($anonymousResponse) {
-                return $existing->questionnaire_id == $anonymousResponse->questionnaire_id;
-            });
+            $itHasAlreadyBeenAnswered = $existingQuestionnaireResponsesOfUser->contains(fn ($existing): bool => $existing->questionnaire_id == $anonymousResponse->questionnaire_id);
 
             if ($itHasAlreadyBeenAnswered) {
                 // delete this anonymous response
@@ -69,6 +70,7 @@ class QuestionnaireResponseRepository extends Repository {
                 $questionnairesThatWereTransferredToUser->push($anonymousResponse);
             }
         }
+
         $anonymousUser->delete();
         $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
@@ -114,15 +116,15 @@ class QuestionnaireResponseRepository extends Repository {
             'languages_lkp.language_code')
             ->join('questionnaires as q', 'q.id', '=', 'questionnaire_responses.questionnaire_id')
             ->join('crowd_sourcing_projects as csp', 'csp.id', '=', 'questionnaire_responses.project_id')
-            ->join('crowd_sourcing_project_translations as cspt', function ($join) {
+            ->join('crowd_sourcing_project_translations as cspt', function ($join): void {
                 $join->on('cspt.project_id', '=', 'csp.id');
                 $join->on('cspt.language_id', '=', 'csp.language_id');
             })
-            ->join('questionnaire_fields_translations as qft', function ($join) {
+            ->join('questionnaire_fields_translations as qft', function ($join): void {
                 $join->on('qft.questionnaire_id', '=', 'questionnaire_responses.questionnaire_id');
                 $join->on('qft.language_id', '=', 'questionnaire_responses.language_id');
             })
-            ->join('languages_lkp', function ($join) {
+            ->join('languages_lkp', function ($join): void {
                 $join->on('languages_lkp.id', '=', 'questionnaire_responses.language_id');
             })
             ->where('user_id', $userId)
@@ -133,7 +135,7 @@ class QuestionnaireResponseRepository extends Repository {
     public function getResponseByAnonymousData(int $questionnaire_id, string $browser_fingerprint_id, string $client_ip): ?QuestionnaireResponse {
         return QuestionnaireResponse::where([
             'questionnaire_id' => $questionnaire_id,
-        ])->where(function ($query) use ($browser_fingerprint_id, $client_ip) {
+        ])->where(function ($query) use ($browser_fingerprint_id, $client_ip): void {
             $query->where(['browser_fingerprint_id' => $browser_fingerprint_id, 'browser_ip' => $client_ip]);
         })->first();
     }

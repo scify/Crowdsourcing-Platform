@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\User\User;
@@ -22,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Questionnaire $questionnaire
  * @property-read User $referrer
  * @property-read User $respondent
+ *
  * @mixin Eloquent
  */
 class QuestionnaireResponseReferral extends Model {

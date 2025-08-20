@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -43,7 +45,7 @@ class HomeController extends Controller {
      */
     public function getRedirectBackUrl(): string {
         $referrer = request()->headers->get('referer');
-        if (!$referrer) {
+        if (! $referrer) {
             return route('home', ['locale' => app()->getLocale()]);
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -10,14 +12,12 @@ use Illuminate\Notifications\Notification;
 class NotifyProjectPhaseChanged extends Notification implements ShouldQueue {
     use Queueable;
 
-    protected $projectName;
     public $locale;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(string $projectName, string $locale) {
-        $this->projectName = $projectName;
+    public function __construct(protected string $projectName, string $locale) {
         $this->locale = $locale;
     }
 
@@ -34,6 +34,7 @@ class NotifyProjectPhaseChanged extends Notification implements ShouldQueue {
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {

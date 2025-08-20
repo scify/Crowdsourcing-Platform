@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Statistics;
 
 use Illuminate\Support\Facades\DB;
@@ -26,9 +28,9 @@ class QuestionnaireStatisticsRepository {
                     where questionnaires.id = ? and questionnaires.deleted_at is null;', [$questionnaireId]);
 
         return new QuestionnaireResponseStatistics(
-            count($totalResponses) ? $totalResponses[0]->count : 0,
+            count($totalResponses) !== 0 ? $totalResponses[0]->count : 0,
             $goalResponses[0]->goal,
-            count($totalResponses) ? $totalResponses[0]->total_responses_color : null,
+            count($totalResponses) !== 0 ? $totalResponses[0]->total_responses_color : null,
             $goalResponses[0]->goal_responses_color
         );
     }
@@ -38,9 +40,8 @@ class QuestionnaireStatisticsRepository {
      * * Returns number of responses per language.
      * *
      * * @param  mixed  $questionnaireId
-     * * @return QuestionnaireResponsesPerLanguage
      * */
-    public function getNumberOfResponsesPerLanguage($questionnaireId) {
+    public function getNumberOfResponsesPerLanguage($questionnaireId): \App\Repository\Questionnaire\Statistics\QuestionnaireResponsesPerLanguage {
         $query = DB::select('SELECT count(*) as num_responses, 
                             language_code, language_name, 
                             ifnull(ql.color, default_color) as color 

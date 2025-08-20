@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Utils;
 
 use Exception;
@@ -15,7 +17,8 @@ class MailChimpAdaptor {
             if ($name) {
                 $mergeFields['FNAME'] = $name;
             }
-            if (!Newsletter::isSubscribed($email, $listName)) {
+
+            if (! Newsletter::isSubscribed($email, $listName)) {
                 Newsletter::subscribeOrUpdate($email, $mergeFields, $listName);
             }
         }

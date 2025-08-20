@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
@@ -63,9 +65,9 @@ class LoginController extends Controller {
     public function redirectToProvider($driver) {
         try {
             return Socialite::driver($driver)->redirect();
-        } catch (Exception $e) {
-            $this->exceptionHandler->report($e);
-            abort(Response::HTTP_INTERNAL_SERVER_ERROR, $e->getMessage());
+        } catch (Exception $exception) {
+            $this->exceptionHandler->report($exception);
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
         }
 
         return null;

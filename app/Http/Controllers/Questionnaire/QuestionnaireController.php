@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
@@ -44,7 +46,7 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
-        if (!isset($data['status_id'])) {
+        if (! isset($data['status_id'])) {
             $data['status_id'] = QuestionnaireStatusLkp::DRAFT;
         }
 
@@ -105,7 +107,7 @@ class QuestionnaireController extends Controller {
         ]);
 
         return response()->json([
-            'questionnaire_languages' => $this->questionnaireLanguageManager->getLanguagesForQuestionnaire(($request->questionnaire_id)),
+            'questionnaire_languages' => $this->questionnaireLanguageManager->getLanguagesForQuestionnaire(intval($request->questionnaire_id)),
         ]);
     }
 
@@ -131,17 +133,20 @@ class QuestionnaireController extends Controller {
 
     public function showQuestionnairePage(string $locale, CrowdSourcingProject $project, Questionnaire $questionnaire) {
         // 1. if the questionnaire is not active, we should not allow the user to see it
-        if (!Gate::allows('create-platform-content') && $questionnaire->status_id !== QuestionnaireStatusLkp::PUBLISHED) {
+        if (! Gate::allows('create-platform-content') && $questionnaire->status_id !== QuestionnaireStatusLkp::PUBLISHED) {
             return redirect()->back()->with(['flash_message_error' => 'The questionnaire is not active.']);
         }
+
         // 2. if the questionnaire does not belong to the project, we should not allow the user to see it
-        if (!$questionnaire->projects->contains($project)) {
+        if (! $questionnaire->projects->contains($project)) {
             return redirect()->back()->with(['flash_message_error' => 'The questionnaire does not belong to the project.']);
         }
+
         // 3. if the project is not active, we should not allow the user to see it
-        if (!Gate::allows('create-platform-content') && $project->status_id !== CrowdSourcingProjectStatusLkp::PUBLISHED) {
+        if (! Gate::allows('create-platform-content') && $project->status_id !== CrowdSourcingProjectStatusLkp::PUBLISHED) {
             return redirect()->back()->with(['flash_message_error' => 'The project is not active.']);
         }
+
         $viewModel = $this->questionnaireVMProvider->getViewModelForQuestionnairePage($project, $questionnaire);
 
         return view('questionnaire.questionnaire-page')->with(['viewModel' => $viewModel]);

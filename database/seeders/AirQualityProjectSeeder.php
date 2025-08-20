@@ -18,6 +18,7 @@ use Illuminate\Database\Seeder;
 
 class AirQualityProjectSeeder extends Seeder {
     protected $projectRepository;
+
     protected $projectTranslationRepository;
 
     public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
