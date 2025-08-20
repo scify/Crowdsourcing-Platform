@@ -33,7 +33,7 @@ class QuestionnaireController extends Controller {
         $this->validate($request, [
             'status_id' => 'required|integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
         ]);
-        $this->questionnaireManager->updateQuestionnaireStatus($request->questionnaire_id, $request->status_id, $request->comments);
+        $this->questionnaireManager->updateQuestionnaireStatus(intval($request->questionnaire_id), intval($request->status_id) ?? QuestionnaireStatusLkp::DRAFT, $request->comments);
 
         return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
     }
@@ -84,7 +84,7 @@ class QuestionnaireController extends Controller {
             'project_ids' => 'required|array',
         ]);
         $data = $request->all();
-        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, $request->id);
+        $questionnaire = $this->questionnaireManager->storeOrUpdateQuestionnaire($data, intval($request->id));
         $this->questionnaireLanguageManager->saveLanguagesForQuestionnaire($data['lang_codes'] ?? [], $questionnaire->id);
 
         return $questionnaire;
@@ -118,7 +118,7 @@ class QuestionnaireController extends Controller {
         ]);
 
         return response()->json([
-            'success' => $this->questionnaireTranslator->markQuestionnaireTranslations($request->questionnaire_id, $request->lang_ids_to_status),
+            'success' => $this->questionnaireTranslator->markQuestionnaireTranslations(intval($request->questionnaire_id), $request->lang_ids_to_status),
         ]);
     }
 

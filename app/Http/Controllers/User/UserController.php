@@ -82,7 +82,7 @@ class UserController extends Controller {
     }
 
     public function delete(Request $request) {
-        $this->userManager->deactivateUser($request->id);
+        $this->userManager->deactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User deleted.');
 
         return back();
@@ -96,7 +96,7 @@ class UserController extends Controller {
     }
 
     public function restore(Request $request) {
-        $this->userManager->reactivateUser($request->id);
+        $this->userManager->reactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User restored.');
 
         return back();

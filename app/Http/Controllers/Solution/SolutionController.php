@@ -154,7 +154,7 @@ class SolutionController extends Controller {
             'status_id' => 'required|exists:problem_statuses_lkp,id',
         ]);
 
-        return response()->json($this->solutionManager->updateSolutionStatus($id, $request->status_id));
+        return response()->json($this->solutionManager->updateSolutionStatus($id, intval($request->status_id)));
     }
 
     /**

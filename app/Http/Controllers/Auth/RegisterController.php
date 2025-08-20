@@ -87,7 +87,7 @@ class RegisterController extends Controller {
     /**
      * @throws Exception
      */
-    protected function registered(Request $request, $user) {
+    protected function registered(Request $request, \App\Models\User\User $user) {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $numberOfResponseTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         if ($numberOfResponseTransferred !== 0) {

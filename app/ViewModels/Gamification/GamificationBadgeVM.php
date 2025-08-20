@@ -41,6 +41,6 @@ class GamificationBadgeVM {
 
         $percentage = ($this->level / $this->badge->finalLevel) * 100;
 
-        return $percentage > 100 ? 100 : ($percentage == 0 ? 1 : $percentage);
+        return intval($percentage > 100 ? 100 : ($percentage == 0 ? 1 : $percentage));
     }
 }

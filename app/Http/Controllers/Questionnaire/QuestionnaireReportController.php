@@ -16,7 +16,7 @@ class QuestionnaireReportController extends Controller {
     public function __construct(protected QuestionnaireReportManager $questionnaireReportManager, protected QuestionnaireRepository $questionnaireRepository) {}
 
     public function viewReportsPage(Request $request) {
-        $selectedQuestionnaireId = $request->questionnaireId;
+        $selectedQuestionnaireId = intval($request->questionnaireId);
         $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
 
         return view('backoffice.questionnaire.reports.reports-with-filters', ['viewModel' => $viewModel]);

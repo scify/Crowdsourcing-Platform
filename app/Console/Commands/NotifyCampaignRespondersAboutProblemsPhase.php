@@ -71,6 +71,7 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
             if (! $user) {
                 continue;
             }
+
             if (! $language) {
                 continue;
             }

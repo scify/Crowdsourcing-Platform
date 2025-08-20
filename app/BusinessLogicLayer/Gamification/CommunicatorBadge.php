@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\BusinessLogicLayer\Gamification;
 
 class CommunicatorBadge extends GamificationBadge {
-    public function __construct(int $questionnairesSharedByUser, $userHasAchievedBadgePlatformWide) {
+    public function __construct(int $questionnairesSharedByUser, bool $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID;
         $this->color = '#4CAF50';
         $numberOfActionsPerformed = $questionnairesSharedByUser;

@@ -62,10 +62,10 @@ class QuestionnaireResponseController extends Controller {
     public function voteAnswer(Request $request): JsonResponse {
         return response()->json($this->questionnaireResponseManager
             ->voteAnswer(
-                $request->questionnaire_id,
+                intval($request->questionnaire_id),
                 $request->question_name,
                 $request->respondent_user_id,
-                $request->voter_user_id,
+                intval($request->voter_user_id),
                 $request->upvote)
         );
     }
@@ -166,7 +166,7 @@ class QuestionnaireResponseController extends Controller {
 
         return response()->json([
             'questionnaire_response' => $this->questionnaireResponseManager->getAnonymousUserResponseForQuestionnaire(
-                $request->questionnaire_id,
+                intval($request->questionnaire_id),
                 $request->browser_fingerprint_id),
         ]);
     }

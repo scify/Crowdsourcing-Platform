@@ -145,7 +145,7 @@ class ProblemController extends Controller {
             'status_id' => 'required|exists:problem_statuses_lkp,id',
         ]);
 
-        return response()->json($this->problemManager->updateProblemStatus($id, $request->status_id));
+        return response()->json($this->problemManager->updateProblemStatus($id, intval($request->status_id)));
     }
 
     public function getProblemsForCrowdSourcingProjectForManagement(): JsonResponse {
@@ -153,7 +153,7 @@ class ProblemController extends Controller {
             'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
         ]);
 
-        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForManagement(request('projectId')));
+        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForManagement(intval(request('projectId'))));
     }
 
     public function getProblemsForCrowdSourcingProject(Request $request): JsonResponse {
@@ -162,7 +162,7 @@ class ProblemController extends Controller {
             'lang' => 'required|string',
         ]);
 
-        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForLandingPage($request->projectId, $request->lang));
+        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForLandingPage(intval($request->projectId), $request->lang));
     }
 
     public function getProblemsForManagement(): JsonResponse {
@@ -170,6 +170,6 @@ class ProblemController extends Controller {
             'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
         ]);
 
-        return response()->json($this->problemManager->getProblemsForManagement(request('projectId')));
+        return response()->json($this->problemManager->getProblemsForManagement(intval(request('projectId'))));
     }
 }

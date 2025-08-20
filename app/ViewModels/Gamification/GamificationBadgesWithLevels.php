@@ -44,6 +44,6 @@ class GamificationBadgesWithLevels {
 
         $percentage = ($this->getTotalPoints() / $this->getMaxTotalPoints()) * 100;
 
-        return $percentage > 100 ? 100 : ($percentage == 0 ? 1 : $percentage);
+        return intval($percentage > 100 ? 100 : ($percentage == 0 ? 1 : $percentage));
     }
 }
