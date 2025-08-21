@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Sie müssen unseren Richtlinien und Bedingungen zustimmen, um eine Lösung einzureichen.',
     'translation_notice_required' => 'Sie müssen dem Übersetzungshinweis zustimmen, um eine Lösung einzureichen.',
     'required' => 'Erforderlich',
+    'login_prompt_message' => 'Sie können Ihre Lösung anonym einreichen oder sich anmelden, um Ihre Beiträge zu verfolgen und Abzeichen zu verdienen.',
+    'submit_anonymously' => 'Anonym einreichen',
 ];

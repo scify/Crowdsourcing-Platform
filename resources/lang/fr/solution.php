@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Vous devez accepter nos directives et conditions pour soumettre une solution.',
     'translation_notice_required' => 'Vous devez accepter l\'avis de traduction pour soumettre une solution.',
     'required' => 'Obligatoire',
+    'login_prompt_message' => 'Vous pouvez soumettre votre solution anonymement ou vous connecter pour suivre vos contributions et gagner des badges.',
+    'submit_anonymously' => 'Soumettre anonymement',
 ];

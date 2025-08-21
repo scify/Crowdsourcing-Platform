@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Megoldás benyújtásához el kell fogadnia irányelveinket és feltételeinket.',
     'translation_notice_required' => 'Megoldás benyújtásához el kell fogadnia a fordítási értesítést.',
     'required' => 'Kötelező',
+    'login_prompt_message' => 'Megoldását anonim módon is beküldheti, vagy bejelentkezhet, hogy nyomon tudja követni a hozzájárulásait és megkaphatja a díjakat.',
+    'submit_anonymously' => 'Benyújtás anonim módon',
 ];

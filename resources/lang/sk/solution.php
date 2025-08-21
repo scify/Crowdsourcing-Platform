@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Na odoslanie riešenia musíte súhlasiť s našimi pokynmi a podmienkami.',
     'translation_notice_required' => 'Na odoslanie riešenia musíte súhlasiť s oznámením o preklade.',
     'required' => 'Povinné',
+    'login_prompt_message' => 'Môžete odoslať svoje riešenie anonymne alebo sa prihlásiť, aby ste mohli sledovať svoje príspevky a získať odmeny.',
+    'submit_anonymously' => 'Odoslať anonymne',
 ];
