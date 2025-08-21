@@ -274,16 +274,21 @@ class SolutionController extends Controller {
         $solutions = $this->solutionManager->getSolutionsByProjectId($project_id);
 
         $callback = function () use ($solutions): void {
-            $columns = ['Solution ID', 'Title', 'Description', 'Status', 'Created At'];
+            $columns = ['Solution ID', 'Title', 'Status', 'Problem Title', 'Votes Count', 'Voter Emails', 'Created At'];
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($solutions as $solution) {
+                // Get voter emails separated by comma
+                $voterEmails = $solution->upvotes->pluck('user.email')->filter()->implode(', ');
+
                 fputcsv($file, [
                     $solution->id,
                     $solution->defaultTranslation?->title,
-                    $solution->defaultTranslation?->description,
                     $solution->status->title,
+                    $solution->problem->defaultTranslation?->title,
+                    $solution->upvotes->count(),
+                    $voterEmails,
                     $solution->created_at,
                 ]);
             }
