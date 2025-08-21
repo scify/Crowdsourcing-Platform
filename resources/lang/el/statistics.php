@@ -10,12 +10,10 @@ return [
     */
 
     'total_responses' => 'Συνολικές απαντήσεις',
-    'goal_responses' => 'Στόχος απαντήσεων', 
-    'actual_responses' => 'Πραγματικές απαντήσεις', 
-    'download_csv' => 'Λήψη σε μορφή CSV', 
+    'goal_responses' => 'Στόχος απαντήσεων',
+    'actual_responses' => 'Πραγματικές απαντήσεις',
+    'download_csv' => 'Λήψη σε μορφή CSV',
     'print' => 'Εκτύπωση',
     'responses_per_language' => 'Απαντήσεις ανα γλώσσα',
-
-
 
 ];

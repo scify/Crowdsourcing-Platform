@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\User;
 
 use App\BusinessLogicLayer\ActionResponse;
@@ -23,6 +25,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserManager {
     public static int $USERS_PER_PAGE = 10;
+
     public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
     public function __construct(private readonly UserRepository $userRepository, private readonly UserRoleRepository $userRoleRepository, private readonly MailChimpAdaptor $mailChimpManager, private readonly QuestionnaireResponseRepository $questionnaireResponseRepository, private readonly QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository, private readonly CookieManager $cookieManager) {}
@@ -86,6 +89,7 @@ class UserManager {
             if ($user->password != null) {
                 bcrypt($password);
             }
+
             $user->gender = $gender;
             $user->country = $country;
             $user->year_of_birth = $year_of_birth;
@@ -94,6 +98,7 @@ class UserManager {
 
             return new ActionResponse(UserActionResponses::USER_UPDATED, $user);
         }
+
         // If user email does not exist in db, notify for registration.
         $user = User::create([
             'nickname' => $nickname,
@@ -107,16 +112,17 @@ class UserManager {
         $user->save();
         try {
             $user->notify(new UserRegistered);
-        } catch (\Exception $e) {
-            Log::error($e);
+        } catch (\Exception $exception) {
+            Log::error($exception);
         }
+
         $this->userRepository->updateUserRoles($user->id, $roleselect);
 
         return new ActionResponse(UserActionResponses::USER_CREATED, $user);
     }
 
     /**
-     * @param $data array the form data array
+     * @param  $data  array the form data array
      *
      * @throws HttpException
      */
@@ -167,7 +173,7 @@ class UserManager {
         // Facebook might not return email (if the user has signed up using phone for example).
         // In that case, we should use another field that is always present.
         $registerToMailchimp = true;
-        if (!$socialUser->email) {
+        if (! $socialUser->email) {
             $socialUser->email = $socialUser->id . '@dummy.crowdsourcing.org';
             $registerToMailchimp = false;
         }
@@ -186,12 +192,14 @@ class UserManager {
             && config('app.mailchimp_api_key') !== null) {
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
         }
+
         if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
             $user = $result->data;
             auth()->login($user);
 
             return $user;
         }
+
         throw new \Exception($result->status);
     }
 
@@ -208,6 +216,7 @@ class UserManager {
         if ($user_id === 0) {
             return $this->userRepository->create($user_data);
         }
+
         try {
             $existingUser = $this->userRepository->find($user_id);
             $this->userRepository->update([

@@ -1,17 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Statistics;
 
 class QuestionnaireResponseStatistics {
+    /**
+     * @var int
+     */
     public $totalResponses;
-    public $goalResponses;
-    public $totalResponsesColor;
-    public $goalResponsesColor;
 
-    public function __construct(int $totalResponses, int $goalResponses, $totalResponsesColor, $goalResponsesColor) {
+    /**
+     * @var int
+     */
+    public $goalResponses;
+
+    public function __construct(int $totalResponses, int $goalResponses, public $totalResponsesColor, public $goalResponsesColor) {
         $this->totalResponses = $totalResponses;
         $this->goalResponses = $goalResponses;
-        $this->totalResponsesColor = $totalResponsesColor;
-        $this->goalResponsesColor = $goalResponsesColor;
     }
 }

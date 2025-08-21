@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;

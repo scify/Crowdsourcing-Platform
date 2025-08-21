@@ -1,16 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer;
 
 use App\Repository\MailChimpListRepository;
 use App\ViewModels\MailChimpIntegration;
 
 class CommunicationManager {
-    private MailChimpListRepository $mailChimpListRepository;
-
-    public function __construct(MailChimpListRepository $mailChimpListRepository) {
-        $this->mailChimpListRepository = $mailChimpListRepository;
-    }
+    public function __construct(private readonly MailChimpListRepository $mailChimpListRepository) {}
 
     public function getMailChimpIntegrationViewModel(): MailChimpIntegration {
         $mailChimpLists = $this->mailChimpListRepository->all();

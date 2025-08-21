@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\User;
 
 use App\Models\User\UserQuestionnaireShare;
@@ -8,10 +10,8 @@ use App\Repository\Repository;
 class UserQuestionnaireShareRepository extends Repository {
     /**
      * Specify Model class name
-     *
-     * @return mixed
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return UserQuestionnaireShare::class;
     }
 

@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        if (!Schema::hasTable('problems')) {
+        if (! Schema::hasTable('problems')) {
             Schema::create('problems', function (Blueprint $table) {
                 $table->id();
 

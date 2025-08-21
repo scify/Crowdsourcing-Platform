@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\ViewModels\Gamification\GamificationBadgeVM;
@@ -12,8 +14,11 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
     use Queueable;
 
     protected $questionnaire;
+
     protected $questionnaireFieldsTranslation;
+
     protected $badge;
+
     protected $badgeVM;
 
     /**
@@ -49,6 +54,7 @@ class BadgeActionOccured extends Notification implements ShouldQueue {
         if ($salutation) {
             $message->salutation($salutation);
         }
+
         $message->action(__('notifications.go_to_dashboard', [], $this->locale), route('my-dashboard', ['locale' => $this->locale]));
 
         return $message;

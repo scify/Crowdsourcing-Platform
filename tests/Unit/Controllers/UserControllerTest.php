@@ -16,9 +16,13 @@ use Tests\TestCase;
 
 class UserControllerTest extends TestCase {
     private User $user;
+
     private UserDashboardManager $userDashboardManager;
+
     private UserManager $userManager;
+
     private QuestionnaireResponseManager $questionnaireResponseManager;
+
     private SolutionManager $solutionManager;
 
     protected function setUp(): void {
@@ -65,17 +69,17 @@ class UserControllerTest extends TestCase {
 
     private function createDashboardViewModel(int $numBadges, int $numQuestionnaires, int $numProjects): UserDashboardViewModel {
         $badges = collect();
-        for ($i = 0; $i < $numBadges; $i++) {
+        for ($i = 0; $i < $numBadges; ++$i) {
             $badges->push((object) ['statusMessage' => 'Badge ' . $i, 'messageForLevel' => 'Level ' . $i, 'level' => $i]);
         }
 
         $questionnaires = collect();
-        for ($i = 0; $i < $numQuestionnaires; $i++) {
+        for ($i = 0; $i < $numQuestionnaires; ++$i) {
             $questionnaires->push((object) ['id' => $i, 'fieldsTranslation' => (object) ['title' => 'Questionnaire ' . $i]]);
         }
 
         $projects = collect();
-        for ($i = 0; $i < $numProjects; $i++) {
+        for ($i = 0; $i < $numProjects; ++$i) {
             $projects->push((object) ['id' => $i, 'currentTranslation' => (object) ['name' => 'Project ' . $i]]);
         }
 

@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Pārvaldiet savas aptaujas</b> efektīvi ar mūsu viegli lietojamo aptauju redaktoru.',
     'features_platform_3' => '<b>Pārbaudiet savu kampaņu ietekmi</b>, apskatot pilsoņu atbildēm ģenerētos ziņojumus.',
     'features_platform_4' => '<b>Integrējiet ar MailChimp</b> ar vienu klikšķi, lai lietotāji vienmēr būtu informēti par jaunākajām kampaņām un aktivitātēm.',
-    'MALE'           => 'Vīrietis',
-    'FEMALE'         => 'Sieviete',
-    'OTHER'          => 'Cits',
+    'MALE' => 'Vīrietis',
+    'FEMALE' => 'Sieviete',
+    'OTHER' => 'Cits',
     'view_campaign' => 'Apskatīt kampaņu',
     'footer_eu_text' => 'Šo tīmekļa vietni izveidoja un uzturēja European Citizen Action Service (ECAS). Šīs tīmekļa vietnes saturs ir pilnībā ECAS atbildība un nevar tikt uzskatīts par oficiālās Eiropas Savienības nostājas atspoguļojumu.',
 

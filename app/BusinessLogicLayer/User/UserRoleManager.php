@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\User;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
@@ -30,6 +32,7 @@ class UserRoleManager {
             if ($this->userHasAdminRole($user)) {
                 return true;
             }
+
             if ($this->userHasContentManagerRole($user)) {
                 return true;
             }
@@ -41,6 +44,7 @@ class UserRoleManager {
             if ($this->userHasAdminRole($user)) {
                 return true;
             }
+
             if ($this->userHasContentManagerRole($user)) {
                 return true;
             }
@@ -56,7 +60,7 @@ class UserRoleManager {
     /**
      * Checks if a given @see User has the admin role
      *
-     * @param  User  $user the @see User instance
+     * @param  User  $user  the @see User instance
      */
     public function userHasAdminRole(User $user): bool {
         return $this->userHasRole($user, UserRolesLkp::ADMIN, 'user_is_admin');
@@ -65,7 +69,7 @@ class UserRoleManager {
     /**
      * Checks if a given @see User has the Answers Moderator role
      *
-     * @param  User  $user the @see User instance
+     * @param  User  $user  the @see User instance
      */
     public function userHasModeratorRole(User $user): bool {
         return $this->userHasRole($user, UserRolesLkp::ANSWERS_MODERATOR, 'user_is_moderator');
@@ -74,7 +78,7 @@ class UserRoleManager {
     /**
      * Checks if a given @see User has the content manager role
      *
-     * @param  User  $user the @see User instance
+     * @param  User  $user  the @see User instance
      */
     public function userHasContentManagerRole(User $user): bool {
         return $this->userHasRole($user, UserRolesLkp::CONTENT_MANAGER, 'user_is_content_manager');
@@ -86,7 +90,9 @@ class UserRoleManager {
 
     /**
      * Checks if a given
-     * @param User $user the @see User instance
+     *
+     * @param  User  $user  the @see User instance
+     *
      * @see User has the admin role
      */
     public function userHasRole(User $user, int $roleId, string $roleKeyForCache): bool {
@@ -100,7 +106,7 @@ class UserRoleManager {
     /**
      * Checks if a role (identified by role id) exists in a given collection of @see UserRole
      *
-     * @param  Collection  $userRoles the user roles collection
+     * @param  Collection  $userRoles  the user roles collection
      */
     private function rolesInclude(Collection $userRoles, int $roleId): bool {
         return $userRoles->contains($roleId);

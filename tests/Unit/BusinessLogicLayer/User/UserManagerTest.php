@@ -127,7 +127,6 @@ class UserManagerTest extends TestCase {
             ->with(UserManager::$USER_COOKIE_KEY)
             ->andReturn($cookieUserId);
 
-
         $userRepositoryMock->shouldReceive('find')
             ->twice()
             ->with($cookieUserId)

@@ -9,7 +9,6 @@ return [
 
     */
 
-
     'contributor_badge_points_explanation' => 'Câștigă :points puncte de fiecare dată când răspunzi la un chestionar, trimiti o soluție la o problemă sau dai un vot pozitiv unei soluții!',
     'communicator_badge_points_explanation' => 'Câștigă :points puncte de fiecare dată când cineva dă click pe chestionarele tale partajate și votează soluțiile tale!',
     'influencer_badge_points_explanation' => 'Câștigă :points puncte de fiecare dată când cineva răspunde la postările tale de pe rețelele sociale și contribuie!',

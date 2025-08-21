@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +27,9 @@ class QuestionnaireResponseToxicity extends Model {
     use SoftDeletes;
 
     protected $table = 'questionnaire_response_toxicities';
+
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     protected $fillable = [
         'questionnaire_response_id',
         'answer_text',

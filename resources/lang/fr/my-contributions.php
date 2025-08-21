@@ -20,9 +20,4 @@ return [
     'actions' => 'Actions',
     'view_response' => 'Voir la réponse',
 
-
-
-
-
-
 ];

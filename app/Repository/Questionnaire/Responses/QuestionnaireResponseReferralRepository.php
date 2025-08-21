@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Responses;
 
 use App\Models\Questionnaire\QuestionnaireResponseReferral;
@@ -26,7 +28,7 @@ class QuestionnaireResponseReferralRepository extends Repository {
         return QuestionnaireResponseReferral::where(['referrer_id' => $userId, 'questionnaire_id' => $questionnaireId])->get();
     }
 
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return QuestionnaireResponseReferral::class;
     }
 }

@@ -20,9 +20,4 @@ return [
     'actions' => 'Akcije',
     'view_response' => 'Pogledajte odgovor',
 
-
-
-
-
-
 ];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Problem;
 
 use App\Models\Language;
@@ -12,8 +14,11 @@ class ProblemUserBookmark extends Model {
     use Compoships;
 
     protected $table = 'problem_user_bookmarks';
+
     protected $fillable = ['problem_id', 'user_id', 'problem_bookmark_language_id'];
+
     protected $primaryKey = ['problem_id', 'user_id'];
+
     public $incrementing = false;
 
     public function problem(): BelongsTo {

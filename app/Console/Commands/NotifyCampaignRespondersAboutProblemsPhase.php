@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -28,7 +30,7 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
     /**
      * Execute the console command.
      */
-    public function handle() {
+    public function handle(): void {
         $projectId = $this->argument('project_id');
 
         // Get all questionnaires for the project from the intermediate table
@@ -53,11 +55,12 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
         $languages = Language::whereIn('id', $languageIds)->get()->keyBy('id');
 
         $project = CrowdSourcingProject::find($projectId);
-        if (!$project) {
+        if (! $project) {
             $this->error('Project not found.');
 
             return;
         }
+
         $projectName = $project->defaultTranslation->name ?? $project->slug;
 
         $notifications_sent = 0;
@@ -65,23 +68,29 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
             $user = $users[$response->user_id] ?? null;
 
             $language = $languages[$response->language_id] ?? null;
-            if (!$user || !$language) {
+            if (! $user) {
+                continue;
+            }
+
+            if (! $language) {
                 continue;
             }
 
             $email = $user->email;
             $lang = $language->language_code;
 
-            if (!$email || !$lang) {
-                $this->error("User or language not found for response ID: {$response->id}");
+            if (! $email || ! $lang) {
+                $this->error('User or language not found for response ID: ' . $response->id);
 
                 continue;
             }
-            $notifications_sent++;
+
+            ++$notifications_sent;
             // Send notification
             $user->notify(new NotifyProjectPhaseChanged($projectName, $lang));
-            $this->info("Notification sent to: {$email} in language: {$lang}.");
+            $this->info(sprintf('Notification sent to: %s in language: %s.', $email, $lang));
         }
-        $this->info("Total notifications sent: {$notifications_sent}.");
+
+        $this->info(sprintf('Total notifications sent: %d.', $notifications_sent));
     }
 }

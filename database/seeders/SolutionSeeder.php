@@ -15,7 +15,7 @@ class SolutionSeeder extends Seeder {
         $solutions = [
             [
                 'id' => 1,
-                'problem_id' => 1, 
+                'problem_id' => 1,
                 'user_creator_id' => 1,
                 'slug' => 'european-elections-problem-1-solution-1',
                 'status_id' => SolutionStatusLkp::PUBLISHED,
@@ -35,7 +35,7 @@ class SolutionSeeder extends Seeder {
             ],
             [
                 'id' => 2,
-                'problem_id' => 1, 
+                'problem_id' => 1,
                 'user_creator_id' => 2,
                 'slug' => 'european-elections-problem-1-solution-2',
                 'status_id' => SolutionStatusLkp::PUBLISHED,
@@ -50,7 +50,7 @@ class SolutionSeeder extends Seeder {
             ],
             [
                 'id' => 3,
-                'problem_id' => 1, 
+                'problem_id' => 1,
                 'user_creator_id' => 3,
                 'slug' => 'european-elections-problem-1-solution-3',
                 'status_id' => SolutionStatusLkp::UNPUBLISHED,
@@ -65,7 +65,7 @@ class SolutionSeeder extends Seeder {
             ],
             [
                 'id' => 4,
-                'problem_id' => 5, 
+                'problem_id' => 5,
                 'user_creator_id' => 3,
                 'slug' => 'european-democracy-problem-2-solution-1',
                 'status_id' => SolutionStatusLkp::PUBLISHED,

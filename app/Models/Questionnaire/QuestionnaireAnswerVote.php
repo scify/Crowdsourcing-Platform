@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\CompositeKeysModel;
@@ -23,6 +25,7 @@ class QuestionnaireAnswerVote extends CompositeKeysModel {
     use HasFactory;
 
     protected $table = 'questionnaire_answer_votes';
+
     protected $fillable = [
         'questionnaire_id',
         'question_name',
@@ -30,7 +33,9 @@ class QuestionnaireAnswerVote extends CompositeKeysModel {
         'voter_user_id',
         'upvote',
     ];
+
     protected $primaryKey = ['questionnaire_id', 'question_name', 'respondent_user_id', 'voter_user_id'];
+
     public $incrementing = false;
 
     public function voter(): BelongsTo {

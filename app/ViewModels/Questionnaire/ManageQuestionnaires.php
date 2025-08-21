@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
@@ -20,7 +22,7 @@ class ManageQuestionnaires {
     }
 
     public function isQuestionnaireArchived($questionnaire): bool {
-        $dateCreated = date('Y/m/d', strtotime($questionnaire->created_at));
+        $dateCreated = date('Y/m/d', strtotime((string) $questionnaire->created_at));
 
         return $dateCreated < '2018/04/01';
     }

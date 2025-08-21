@@ -14,7 +14,6 @@ return new class extends Migration {
             return;
         }
 
-
         // Check the data type of the users.id column
         $columnType = ColumnTypeHelper::getColumnType('users', 'id');
 

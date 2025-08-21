@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Problem;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -18,7 +20,9 @@ class Problem extends Model {
     use SoftDeletes;
 
     protected $table = 'problems';
+
     protected $fillable = ['id', 'project_id', 'user_creator_id', 'slug', 'status_id', 'img_url', 'default_language_id'];
+
     protected $with = ['defaultTranslation'];
 
     public function defaultTranslation(): HasOne {
@@ -51,13 +55,14 @@ class Problem extends Model {
     }
 
     // observe this model being deleted and delete the related records
-    public static function boot(): void {
+    protected static function boot(): void {
         parent::boot();
 
         self::deleting(function (Problem $problem): void {
             foreach ($problem->translations as $translation) {
                 $translation->delete();
             }
+
             foreach ($problem->bookmarks as $bookmark) {
                 $bookmark->delete();
             }

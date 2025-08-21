@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Utils;
 
 class Helpers {
@@ -13,7 +15,9 @@ class Helpers {
 
     /**
      * Checks if the value is not empty
-     * @param $value mixed
+     *
+     * @param  $value  mixed
+     *
      * @return bool whether the value is not empty
      */
     public static function HTMLValueIsNotEmpty(mixed $value): bool {

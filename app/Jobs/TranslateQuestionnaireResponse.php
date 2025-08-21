@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseTranslator;
@@ -10,10 +12,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 class TranslateQuestionnaireResponse implements ShouldQueue {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected static string $QUEUE_NAME = 'questionnaire-response-translate';
-    protected int $questionnaire_response_id;
 
     /**
      * The number of times the job may be attempted.
@@ -25,17 +29,14 @@ class TranslateQuestionnaireResponse implements ShouldQueue {
      *
      * @return void
      */
-    public function __construct(int $questionnaire_response_id) {
-        $this->questionnaire_response_id = $questionnaire_response_id;
+    public function __construct(protected int $questionnaire_response_id) {
         $this->onQueue(self::$QUEUE_NAME);
     }
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle(QuestionnaireResponseTranslator $questionnaireResponseTranslator) {
+    public function handle(QuestionnaireResponseTranslator $questionnaireResponseTranslator): void {
         $questionnaireResponseTranslator->translateFreeTextAnswersForQuestionnaireResponse($this->questionnaire_response_id);
     }
 }

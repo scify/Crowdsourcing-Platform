@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Solution;
 
 use App\Models\User\User;
@@ -11,6 +13,7 @@ class SolutionUpvote extends Model {
     use HasFactory;
 
     protected $table = 'solution_upvotes';
+
     protected $fillable = ['solution_id', 'user_voter_id'];
 
     public function solution(): BelongsTo {

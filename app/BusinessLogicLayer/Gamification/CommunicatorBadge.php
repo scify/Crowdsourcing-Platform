@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Gamification;
 
 class CommunicatorBadge extends GamificationBadge {
-    public function __construct(int $questionnairesSharedByUser, $userHasAchievedBadgePlatformWide) {
+    public function __construct(int $questionnairesSharedByUser, bool $userHasAchievedBadgePlatformWide) {
         $this->badgeID = GamificationBadgeIdsEnum::COMMUNICATOR_BADGE_ID;
         $this->color = '#4CAF50';
         $numberOfActionsPerformed = $questionnairesSharedByUser;
@@ -25,7 +27,7 @@ class CommunicatorBadge extends GamificationBadge {
             return __('email_messages.unlocked_new_badge');
         }
 
-        return __('badges_messages.you_are_a_communicator', ['level' => "<b> $this->level </b>"]);
+        return __('badges_messages.you_are_a_communicator', ['level' => sprintf('<b> %s </b>', $this->level)]);
     }
 
     public function getNextStepMessage(): string {

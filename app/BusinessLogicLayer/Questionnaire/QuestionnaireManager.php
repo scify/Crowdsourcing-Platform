@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectQuestionnaireRepository;
@@ -7,20 +9,7 @@ use App\Repository\Questionnaire\QuestionnaireLanguageRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 
 class QuestionnaireManager {
-    protected QuestionnaireRepository $questionnaireRepository;
-    protected CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository;
-    protected QuestionnaireLanguageRepository $questionnaireLanguageRepository;
-    protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
-
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-        CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository,
-        QuestionnaireLanguageRepository $questionnaireLanguageRepository,
-        QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
-        $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
-        $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
-    }
+    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository, protected QuestionnaireLanguageRepository $questionnaireLanguageRepository, protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {}
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments): void {
         $comments = is_null($comments) ? '' : $comments;
@@ -28,7 +17,7 @@ class QuestionnaireManager {
     }
 
     public function storeOrUpdateQuestionnaire($data, $id = null) {
-        if (!$id) {
+        if (! $id) {
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
                 $data['goal'], $data['language'], $data['content'],
                 $data['statistics_page_visibility_lkp_id'],
@@ -50,6 +39,7 @@ class QuestionnaireManager {
                 $data['show_file_type_questions_to_statistics_page_audience']);
             $this->questionnaireRepository->saveNewQuestionnaireStatusHistory($questionnaire->id, null, 'Updated by user ' . auth()->user()->id, $questionnaire_json_old);
         }
+
         $questionnaireData = [
             'questionnaire_id' => $questionnaire->id,
             'language_id' => $questionnaire->defaultLanguage->id,

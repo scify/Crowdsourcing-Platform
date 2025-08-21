@@ -1,33 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Gamification;
 
 abstract class GamificationBadge {
-    protected int $pointsPerAction = 1;
     public string $badgeID;
-    public int $numberOfActionsPerformed = -1;
-    public int $level = 0;
-    public string $name;
-    public string $messageForLevel;
-    public string $imageFileName;
-    public string $statusMessage;
-    public string $color;
-    public string $progressMessage;
-    public int $finalLevel;
-    protected bool $userHasAchievedBadgePlatformWide;
 
-    public function __construct($name, $imageFileName, $requiredActionMessage,
-        $numberOfActionsPerformed, $userHasAchievedBadgePlatformWide, $pointsPerAction, $progressMessage = '', $finalLevel = 0) {
-        $this->name = $name;
-        $this->imageFileName = $imageFileName;
-        $this->numberOfActionsPerformed = $numberOfActionsPerformed;
-        $this->pointsPerAction = $pointsPerAction;
+    public int $level = 0;
+
+    public string $messageForLevel;
+
+    public string $statusMessage;
+
+    public string $color;
+
+    public function __construct(public string $name, public string $imageFileName, $requiredActionMessage,
+        public int $numberOfActionsPerformed, protected bool $userHasAchievedBadgePlatformWide, protected int $pointsPerAction, public string $progressMessage = '', public int $finalLevel = 0) {
         $this->level = $this->calculateLevel();
         $this->messageForLevel = $this->getBadgeMessageForLevel();
         $this->statusMessage = $this->calculateStatusMessage($requiredActionMessage);
-        $this->userHasAchievedBadgePlatformWide = $userHasAchievedBadgePlatformWide;
-        $this->progressMessage = $progressMessage;
-        $this->finalLevel = $finalLevel;
     }
 
     abstract protected function getBadgeMessageForLevel();

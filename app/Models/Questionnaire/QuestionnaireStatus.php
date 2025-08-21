@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,5 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class QuestionnaireStatus extends Model {
     public $timestamps = false;
+
     protected $table = 'questionnaire_statuses_lkp';
 }

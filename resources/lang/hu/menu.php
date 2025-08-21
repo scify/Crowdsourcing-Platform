@@ -11,7 +11,7 @@ return [
 
     'login' => 'Bejelentkezés',
     'register' => 'Regisztráció',
-    'dashboard' =>  'Irányítópult',
+    'dashboard' => 'Irányítópult',
     'my_dashboard' => 'Főoldal',
     'my_account' => 'Fiókom',
     'my_history' => 'Előzmények',

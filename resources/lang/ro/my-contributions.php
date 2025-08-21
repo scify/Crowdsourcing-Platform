@@ -24,7 +24,4 @@ return [
     'no_proposed_solutions' => 'Nu ai propus încă nicio soluție.',
     'problem' => 'Problemă',
 
-
-
-
 ];

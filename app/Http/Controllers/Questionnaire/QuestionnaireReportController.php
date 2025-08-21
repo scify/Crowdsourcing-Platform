@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireReportManager;
@@ -14,7 +16,7 @@ class QuestionnaireReportController extends Controller {
     public function __construct(protected QuestionnaireReportManager $questionnaireReportManager, protected QuestionnaireRepository $questionnaireRepository) {}
 
     public function viewReportsPage(Request $request) {
-        $selectedQuestionnaireId = $request->questionnaireId;
+        $selectedQuestionnaireId = intval($request->questionnaireId);
         $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
 
         return view('backoffice.questionnaire.reports.reports-with-filters', ['viewModel' => $viewModel]);
@@ -24,7 +26,7 @@ class QuestionnaireReportController extends Controller {
         $input = $request->all();
         try {
             $questionnaire = $this->questionnaireRepository->find($input['questionnaireId'], ['*']);
-            $questionnaireJson = json_decode($questionnaire->questionnaire_json, true);
+            $questionnaireJson = json_decode((string) $questionnaire->questionnaire_json, true);
 
             $newQuestion = [
                 'type' => 'text',
@@ -50,7 +52,7 @@ class QuestionnaireReportController extends Controller {
             $responseCode = ResponseAlias::HTTP_INTERNAL_SERVER_ERROR;
             $responseContent = 'Error: ' . $e->getCode() . '  ' . $e->getMessage();
         } finally {
-            return response()->json(['data' => $responseContent], $responseCode);
+            return response()->json(['data' => $responseContent ?? null], $responseCode);
         }
     }
 }

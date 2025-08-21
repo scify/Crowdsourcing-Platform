@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Beheer uw vragenlijsten</b> effectief met onze gebruiksvriendelijke vragenlijsteditor.',
     'features_platform_3' => '<b>Controleer de impact</b> van uw campagnes door de rapporten te bekijken die zijn gegenereerd uit de reacties van burgers.',
     'features_platform_4' => '<b>Integreer met MailChimp</b> met slechts één klik, om gebruikers altijd op de hoogte te houden van de nieuwste campagnes en activiteiten.',
-    'MALE'           => 'Man',
-    'FEMALE'         => 'Vrouw',
-    'OTHER'          => 'Anders',
+    'MALE' => 'Man',
+    'FEMALE' => 'Vrouw',
+    'OTHER' => 'Anders',
     'view_campaign' => 'Bekijk campagne',
     'footer_eu_text' => 'Deze website is gemaakt en wordt onderhouden door de European Citizen Action Service (ECAS). De inhoud van deze website is de exclusieve verantwoordelijkheid van ECAS en kan niet worden beschouwd als het weerspiegelen van de officiële standpunten van de Europese Unie.',
 

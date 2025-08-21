@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Kezelje kérdőíveit</b> hatékonyan a könnyen használható kérdőívszerkesztőnkkel.',
     'features_platform_3' => '<b>Ellenőrizze kampányainak hatását</b>, a polgárok válaszaiból generált jelentések megtekintésével.',
     'features_platform_4' => '<b>Integráljon a MailChimp</b> egyetlen kattintással, hogy a felhasználók mindig naprakészek legyenek a legújabb kampányokkal és tevékenységekkel kapcsolatban.',
-    'MALE'           => 'Férfi',
-    'FEMALE'         => 'Nő',
-    'OTHER'          => 'Egyéb',
+    'MALE' => 'Férfi',
+    'FEMALE' => 'Nő',
+    'OTHER' => 'Egyéb',
     'view_campaign' => 'Kampány megtekintése',
     'footer_eu_text' => 'Ez a weboldal az European Citizen Action Service (ECAS) által készült és karbantartott. A weboldal tartalmáért kizárólag az ECAS felelős, és semmilyen körülmények között nem tekinthető az Európai Unió hivatalos álláspontjának.',
 

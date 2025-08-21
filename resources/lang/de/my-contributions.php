@@ -20,9 +20,4 @@ return [
     'actions' => 'Aktivitäten',
     'view_response' => 'Antwort anzeigen',
 
-
-
-
-
-
 ];

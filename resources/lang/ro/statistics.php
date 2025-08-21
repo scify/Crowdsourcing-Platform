@@ -16,6 +16,4 @@ return [
     'print' => 'Imprimă',
     'responses_per_language' => 'Răspunsuri pe limbă',
 
-
-
 ];

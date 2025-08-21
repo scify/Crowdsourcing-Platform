@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\CompositeKeysModel;
@@ -33,5 +35,6 @@ class QuestionnaireFieldsTranslation extends CompositeKeysModel {
     ];
 
     protected $primaryKey = ['questionnaire_id', 'language_id'];
+
     public $incrementing = false;
 }

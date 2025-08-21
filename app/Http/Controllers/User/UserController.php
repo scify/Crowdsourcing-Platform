@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\User;
 
 use App\BusinessLogicLayer\enums\CountryEnum;
@@ -55,6 +57,7 @@ class UserController extends Controller {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
             $validationArray['current_password'] = 'required|string|min:8';
         }
+
         // here we need to add custom messages for the validation, since the field is called 'avatar' and not 'profile image'.
         $customMessages = [
             'avatar.image' => __('validation.image', ['attribute' => __('my-account.profile_image')]),
@@ -71,15 +74,15 @@ class UserController extends Controller {
             session()->flash('flash_message_success', 'Profile updated.');
 
             return back();
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
     }
 
     public function delete(Request $request) {
-        $this->userManager->deactivateUser($request->id);
+        $this->userManager->deactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User deleted.');
 
         return back();
@@ -93,7 +96,7 @@ class UserController extends Controller {
     }
 
     public function restore(Request $request) {
-        $this->userManager->reactivateUser($request->id);
+        $this->userManager->reactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User restored.');
 
         return back();

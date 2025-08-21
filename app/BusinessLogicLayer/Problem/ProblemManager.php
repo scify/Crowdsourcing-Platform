@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Problem;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -19,44 +21,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ProblemManager {
-    protected ProblemRepository $problemRepository;
-    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
-    protected ProblemTranslationManager $problemTranslationManager;
-    protected ProblemStatusManager $problemStatusManager;
-    protected LanguageRepository $languageRepository;
-    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
-
-    public function __construct(
-        ProblemRepository $problemRepository,
-        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
-        ProblemTranslationManager $problemTranslationManager,
-        ProblemStatusManager $problemStatusManager,
-        LanguageRepository $languageRepository,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager
-    ) {
-        $this->problemRepository = $problemRepository;
-        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
-        $this->problemTranslationManager = $problemTranslationManager;
-        $this->problemStatusManager = $problemStatusManager;
-        $this->languageRepository = $languageRepository;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-    }
+    public function __construct(protected ProblemRepository $problemRepository, protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager, protected ProblemTranslationManager $problemTranslationManager, protected ProblemStatusManager $problemStatusManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectManager $crowdSourcingProjectManager) {}
 
     public function getProblemsLandingPageViewModel(string $crowdSourcingProjectSlug): ProblemsLandingPage {
         $crowdSourcingProject = $this->problemRepository->getProjectWithProblemsByProjectSlug($crowdSourcingProjectSlug);
         $crowdSourcingProject->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($crowdSourcingProject);
 
         // only published problems should be included with the project in this context
-        $filtered = $crowdSourcingProject->problems->filter(function ($problem) {
-            return $problem->status_id === ProblemStatusLkp::PUBLISHED;
-        });
+        $filtered = $crowdSourcingProject->problems->filter(fn ($problem): bool => $problem->status_id === ProblemStatusLkp::PUBLISHED);
         $crowdSourcingProject->problems = $filtered;
 
         return new ProblemsLandingPage($crowdSourcingProject);
     }
 
     public function getCreateEditProblemViewModel(?int $id = null): CreateEditProblem {
-        if ($id) {
+        if ($id !== null && $id !== 0) {
             $problem = $this->problemRepository->find($id);
         } else {
             $problem = new Problem;
@@ -70,14 +49,14 @@ class ProblemManager {
 
         $languagesLkp = $this->languageRepository->all();
 
-        $projects = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjectsWithDefaultTranslation();
+        $allCrowdSourcingProjectsWithDefaultTranslation = $this->crowdSourcingProjectManager->getAllCrowdSourcingProjectsWithDefaultTranslation();
 
         return new CreateEditProblem(
             $problem,
             $translations,
             $statusesLkp,
             $languagesLkp,
-            $projects
+            $allCrowdSourcingProjectsWithDefaultTranslation
         );
     }
 
@@ -110,7 +89,7 @@ class ProblemManager {
     /**
      * @throws RepositoryException
      */
-    public function updateProblem(int $id, array $attributes) {
+    public function updateProblem(int $id, array $attributes): void {
         $modelAttributes['project_id'] = $attributes['problem-owner-project'];
         $modelAttributes['slug'] = $attributes['problem-slug'];
         $modelAttributes['status_id'] = $attributes['problem-status'];
@@ -139,8 +118,8 @@ class ProblemManager {
         // and if it does not start with "/images" (meaning it is a default public image)
         // and if it does not start with "http" (meaning it is an external image)
         if ($problem->img_url &&
-            !str_starts_with($problem->img_url, '/images') &&
-            !str_starts_with($problem->img_url, 'http')) {
+            ! str_starts_with((string) $problem->img_url, '/images') &&
+            ! str_starts_with((string) $problem->img_url, 'http')) {
             FileHandler::deleteUploadedFile($problem->img_url, 'problem_img');
         }
 
@@ -153,15 +132,19 @@ class ProblemManager {
             switch ($problemStatus->id) {
                 case ProblemStatusLkp::DRAFT:
                     $problemStatus->badgeCSSClass = 'badge-secondary';
+
                     break;
                 case ProblemStatusLkp::PUBLISHED:
                     $problemStatus->badgeCSSClass = 'badge-success';
+
                     break;
                 case ProblemStatusLkp::FINALIZED:
                     $problemStatus->badgeCSSClass = 'badge-info';
+
                     break;
                 case ProblemStatusLkp::UNPUBLISHED:
                     $problemStatus->badgeCSSClass = 'badge-danger';
+
                     break;
                 default:
                     $problemStatus->badgeCSSClass = 'badge-dark';
@@ -194,9 +177,9 @@ class ProblemManager {
         $problem = $this->problemRepository->findBy('slug', $problem_slug);
         $problem->currentTranslation = $this->problemTranslationManager->getProblemCurrentTranslation($problem->id, $locale);
 
-        $project = $this->problemRepository->getProjectWithProblemsByProjectSlug($project_slug);
-        $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
+        $crowdSourcingProject = $this->problemRepository->getProjectWithProblemsByProjectSlug($project_slug);
+        $crowdSourcingProject->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($crowdSourcingProject);
 
-        return new ProblemPublicPage($problem, $project);
+        return new ProblemPublicPage($problem, $crowdSourcingProject);
     }
 }

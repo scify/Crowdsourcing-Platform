@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\Repository\Questionnaire\QuestionnaireRepository;
@@ -11,21 +13,7 @@ use App\ViewModels\Questionnaire\reports\QuestionnaireReportResults;
 use Illuminate\Support\Collection;
 
 class QuestionnaireReportManager {
-    protected QuestionnaireRepository $questionnaireRepository;
-    protected QuestionnaireReportRepository $questionnaireReportRepository;
-    protected QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository;
-    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
-
-    public function __construct(
-        QuestionnaireRepository $questionnaireRepository,
-        QuestionnaireReportRepository $questionnaireReportRepository,
-        QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
-        QuestionnaireResponseRepository $questionnaireResponseRepository) {
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->questionnaireReportRepository = $questionnaireReportRepository;
-        $this->questionnaireResponseAnswerRepository = $questionnaireResponseAnswerRepository;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-    }
+    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected QuestionnaireReportRepository $questionnaireReportRepository, protected QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository, protected QuestionnaireResponseRepository $questionnaireResponseRepository) {}
 
     public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null): QuestionnaireReportFilters {
         $allQuestionnaires = $this->questionnaireRepository->all(['*'], 'id', 'desc');
@@ -34,13 +22,13 @@ class QuestionnaireReportManager {
     }
 
     public function getQuestionnaireReportViewModel(array $input): QuestionnaireReportResults {
-        $questionnaireId = $input['questionnaireId'];
+        $questionnaireId = intval($input['questionnaireId']);
         $respondentsRows = $this->questionnaireReportRepository->getRespondentsData($questionnaireId);
         $responses = new Collection;
         $responses_results = $this->questionnaireResponseRepository->allWhere(['questionnaire_id' => $questionnaireId], ['*'], null, null, ['project']);
 
         foreach ($responses_results as $responses_result) {
-            $responseJson = json_decode($responses_result->response_json, true);
+            $responseJson = json_decode((string) $responses_result->response_json, true);
             $campaignName = ['campaign_name' => $responses_result->project->defaultTranslation->name];
             $responseJson = array_merge($campaignName, $responseJson);
             unset($responses_result->project);

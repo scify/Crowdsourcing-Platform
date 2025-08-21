@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Solution;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SolutionShare extends Model {
     protected $table = 'solution_shares';
+
     protected $fillable = [
         'solution_id',
         'user_id',

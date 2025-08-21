@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\CommentAnalyzer;
 
 use App\BusinessLogicLayer\CommentAnalyzer\Exception\AnalyzerException;
@@ -10,7 +12,8 @@ use GuzzleHttp\RequestOptions;
 
 class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
     private $api_key;
-    private $client;
+
+    private readonly \GuzzleHttp\Client $client;
 
     const API_URL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze';
 
@@ -35,8 +38,8 @@ class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
                     ],
                 ],
             ]);
-        } catch (Exception $e) {
-            throw new AnalyzerException(sprintf('Call to Perspective API Failed: %s', $e->getMessage()));
+        } catch (Exception $exception) {
+            throw new AnalyzerException(sprintf('Call to Perspective API Failed: %s', $exception->getMessage()));
         }
 
         if ($response->getStatusCode() != 200) {

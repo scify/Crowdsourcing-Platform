@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\Gamification\ContributorBadge;
@@ -33,55 +35,23 @@ use Illuminate\Support\Str;
 
 class CrowdSourcingProjectManager {
     const DEFAULT_IMAGE_PATH = '/images/image_temp.png';
+
     const DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG = '/images/questionnaire_bg_default.webp';
+
     const DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS = 10;
+
     const DEFAULT_LP_PRIMARY_COLOR = '#F5BA16';
+
     const DEFAULT_LP_BTN_TEXT_COLOR_THEME = 'dark';
 
-    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
-    protected QuestionnaireRepository $questionnaireRepository;
-    protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager;
-    protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository;
-    protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager;
-    protected QuestionnaireGoalManager $questionnaireGoalManager;
-    protected LanguageRepository $languageRepository;
-    protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager;
-    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
-    protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
-    protected ProblemRepository $crowdSourcingProjectProblemRepository;
-    protected UserRoleManager $userRoleManager;
-
-    public function __construct(CrowdSourcingProjectRepository $crowdSourcingProjectRepository,
-        QuestionnaireRepository $questionnaireRepository,
-        CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager,
-        CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-        CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository,
-        QuestionnaireGoalManager $questionnaireGoalManager,
-        LanguageRepository $languageRepository,
-        CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager,
-        ProblemRepository $crowdSourcingProjectProblemRepository,
-        UserRoleManager $userRoleManager) {
-        $this->crowdSourcingProjectRepository = $crowdSourcingProjectRepository;
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->crowdSourcingProjectStatusManager = $crowdSourcingProjectStatusManager;
-        $this->crowdSourcingProjectStatusHistoryRepository = $crowdSourcingProjectStatusHistoryRepository;
-        $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
-        $this->questionnaireGoalManager = $questionnaireGoalManager;
-        $this->languageRepository = $languageRepository;
-        $this->crowdSourcingProjectColorsManager = $crowdSourcingProjectColorsManager;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
-        $this->crowdSourcingProjectProblemRepository = $crowdSourcingProjectProblemRepository;
-        $this->userRoleManager = $userRoleManager;
-    }
+    public function __construct(protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository, protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager, protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager, protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository, protected QuestionnaireGoalManager $questionnaireGoalManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager, protected ProblemRepository $crowdSourcingProjectProblemRepository, protected UserRoleManager $userRoleManager) {}
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
-        if (!$language) {
+        if (! $language) {
             $language = $this->languageRepository->getDefaultLanguage();
         }
+
         $projects = $this->crowdSourcingProjectRepository->getActiveProjectsForHomePage($language->id);
 
         foreach ($projects as $project) {
@@ -90,7 +60,6 @@ class CrowdSourcingProjectManager {
             // otherwise, set the default translation as the current translation
 
             $project->currentTranslation = $project->translations->first() ?? $project->defaultTranslation;
-
 
             if ($project->questionnaires->count() > 0) {
                 $project->latestQuestionnaire = $project->questionnaires->last();
@@ -107,7 +76,7 @@ class CrowdSourcingProjectManager {
         return $project;
     }
 
-    public function getCrowdSourcingProjectBySlug($project_slug, $withRelationships = []) {
+    public function getCrowdSourcingProjectBySlug($project_slug, array $withRelationships = []) {
         $project = $this->crowdSourcingProjectRepository->findBy('slug', $project_slug, ['*'], false, $withRelationships);
         $project->currentTranslation = $this->crowdSourcingProjectTranslationManager->getFieldsTranslationForProject($project);
 
@@ -135,7 +104,7 @@ class CrowdSourcingProjectManager {
         }
 
         $activeQuestionnairesForThisProject = $this->questionnaireRepository->getActiveQuestionnairesForProject($project->id);
-        if ($questionnaireIdRequestedInTheURL) {
+        if ($questionnaireIdRequestedInTheURL !== 0) {
             $questionnaire = $activeQuestionnairesForThisProject->firstWhere('id', '=', $questionnaireIdRequestedInTheURL);
         } else {
             $questionnaire = $activeQuestionnairesForThisProject->firstWhere('type_id', '=', 1);
@@ -160,6 +129,7 @@ class CrowdSourcingProjectManager {
             $shareUrlForFacebook = $shareButtonsModel->getSocialShareURL($project, 'facebook');
             $shareUrlForTwitter = $shareButtonsModel->getSocialShareURL($project, 'twitter');
         }
+
         $projectHasPublishedProblems = $this->crowdSourcingProjectProblemRepository->projectHasPublishedProblems($project->id);
         if ($feedbackQuestionnaire) {
             $userFeedbackQuestionnaireResponse =
@@ -167,7 +137,6 @@ class CrowdSourcingProjectManager {
         }
 
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
-
 
         return new CrowdSourcingProjectForLandingPage($project,
             $questionnaire,
@@ -266,14 +235,16 @@ class CrowdSourcingProjectManager {
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED) {
             $this->crowdSourcingProjectRepository->delete($id);
         }
+
         $colors = [];
-        for ($i = 0; $i < count($attributes['color_codes']); $i++) {
+        for ($i = 0; $i < count($attributes['color_codes']); ++$i) {
             $colors[] = [
                 'id' => $attributes['color_ids'][$i],
                 'color_name' => $attributes['color_names'][$i],
                 'color_code' => $attributes['color_codes'][$i],
             ];
         }
+
         $this->crowdSourcingProjectColorsManager->saveColorsForCrowdSourcingProject($colors, $id);
         $this->crowdSourcingProjectTranslationManager->storeOrUpdateDefaultTranslationForProject(
             $attributes, $id);
@@ -283,7 +254,7 @@ class CrowdSourcingProjectManager {
             $extraTranslations = json_decode($attributes['extra_translations'], true);
 
             // If copy_footer_across_languages is true, copy the footer from default translation to all languages
-            if ($attributes['copy_footer_across_languages']) {
+            if ($attributes['copy_footer_across_languages'] !== 0) {
                 $defaultFooter = $project->defaultTranslation->footer;
 
                 // Update all translations with the default footer
@@ -298,37 +269,37 @@ class CrowdSourcingProjectManager {
     }
 
     protected function setDefaultValuesForCommonProjectFields(array $attributes, ?CrowdSourcingProject $project = null): array {
-        if (!isset($attributes['slug']) || !$attributes['slug']) {
+        if (! isset($attributes['slug']) || ! $attributes['slug']) {
             $attributes['slug'] = Str::slug($attributes['name'], '-');
         }
 
-        if (!isset($attributes['motto_title']) || !$attributes['motto_title']) {
+        if (! isset($attributes['motto_title']) || ! $attributes['motto_title']) {
             $attributes['motto_title'] = $attributes['name'];
         }
 
-        if (!isset($attributes['about']) || !$attributes['about']) {
-            $attributes['about'] = trim($attributes['description']);
+        if (! isset($attributes['about']) || ! $attributes['about']) {
+            $attributes['about'] = trim((string) $attributes['description']);
         }
 
-        if ((!isset($attributes['img_path']) || !$attributes['img_path']) && (!$project || !$project->img_path)) {
+        if ((! isset($attributes['img_path']) || ! $attributes['img_path']) && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->img_path)) {
             $attributes['img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
-        if ((!isset($attributes['logo_path']) || !$attributes['logo_path']) && (!$project || !$project->logo_path)) {
+        if ((! isset($attributes['logo_path']) || ! $attributes['logo_path']) && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->logo_path)) {
             $attributes['logo_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
-        if ((!isset($attributes['sm_featured_img_path']) || !$attributes['sm_featured_img_path'])
-            && (!$project || !$project->sm_featured_img_path)) {
+        if ((! isset($attributes['sm_featured_img_path']) || ! $attributes['sm_featured_img_path'])
+            && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->sm_featured_img_path)) {
             $attributes['sm_featured_img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
-        if ((!isset($attributes['lp_questionnaire_img_path']) || !$attributes['lp_questionnaire_img_path'])
-            && (!$project || !$project->lp_questionnaire_img_path)) {
+        if ((! isset($attributes['lp_questionnaire_img_path']) || ! $attributes['lp_questionnaire_img_path'])
+            && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->lp_questionnaire_img_path)) {
             $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 
-        if (!isset($attributes['lp_show_speak_up_btn'])) {
+        if (! isset($attributes['lp_show_speak_up_btn'])) {
             $attributes['lp_show_speak_up_btn'] = true;
         }
 
@@ -336,13 +307,15 @@ class CrowdSourcingProjectManager {
     }
 
     protected function setDefaultValuesForSocialMediaFields(array $attributes): array {
-        if (!isset($attributes['sm_title']) || !$attributes['sm_title']) {
+        if (! isset($attributes['sm_title']) || ! $attributes['sm_title']) {
             $attributes['sm_title'] = $attributes['name'];
         }
-        if (!isset($attributes['sm_description']) || !$attributes['sm_description']) {
+
+        if (! isset($attributes['sm_description']) || ! $attributes['sm_description']) {
             $attributes['sm_description'] = $attributes['description'];
         }
-        if (!isset($attributes['sm_keywords']) || !$attributes['sm_keywords']) {
+
+        if (! isset($attributes['sm_keywords']) || ! $attributes['sm_keywords']) {
             $attributes['sm_keywords'] = str_replace(' ', ',', $attributes['name']);
         } else {
             $attributes['sm_keywords'] = implode(',', $attributes['sm_keywords']);
@@ -352,19 +325,19 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        $project->lp_show_speak_up_btn = $project->lp_show_speak_up_btn ?? true;
-        $project->max_votes_per_user_for_solutions = $project->max_votes_per_user_for_solutions
-            ?? self::DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS;
+        $project->lp_show_speak_up_btn ??= true;
+        $project->max_votes_per_user_for_solutions ??= self::DEFAULT_MAX_VOTES_PER_USER_FOR_SOLUTIONS;
         $project = $this->populateInitialFileValuesForProjectIfNotSet($project);
 
         return $this->populateInitialColorValuesForProjectIfNotSet($project);
     }
 
     public function populateInitialColorValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        if (!$project->lp_primary_color) {
+        if (! $project->lp_primary_color) {
             $project->lp_primary_color = self::DEFAULT_LP_PRIMARY_COLOR;
         }
-        if (!$project->lp_btn_text_color_theme) {
+
+        if (! $project->lp_btn_text_color_theme) {
             $project->lp_btn_text_color_theme = self::DEFAULT_LP_BTN_TEXT_COLOR_THEME;
         }
 
@@ -372,16 +345,19 @@ class CrowdSourcingProjectManager {
     }
 
     public function populateInitialFileValuesForProjectIfNotSet(CrowdSourcingProject $project): CrowdSourcingProject {
-        if (!$project->img_path) {
+        if (! $project->img_path) {
             $project->img_path = self::DEFAULT_IMAGE_PATH;
         }
-        if (!$project->logo_path) {
+
+        if (! $project->logo_path) {
             $project->logo_path = self::DEFAULT_IMAGE_PATH;
         }
-        if (!$project->sm_featured_img_path) {
+
+        if (! $project->sm_featured_img_path) {
             $project->sm_featured_img_path = self::DEFAULT_IMAGE_PATH;
         }
-        if (!$project->lp_questionnaire_img_path) {
+
+        if (! $project->lp_questionnaire_img_path) {
             $project->lp_questionnaire_img_path = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 
@@ -392,6 +368,7 @@ class CrowdSourcingProjectManager {
         if (isset($attributes['logo'])) {
             $attributes['logo_path'] = FileHandler::uploadAndGetPath($attributes['logo'], 'project_logos');
         }
+
         if (isset($attributes['img'])) {
             $attributes['img_path'] = FileHandler::uploadAndGetPath($attributes['img'], 'project_img');
         }
@@ -415,20 +392,16 @@ class CrowdSourcingProjectManager {
     }
 
     public function getCreateEditProjectViewModel(?int $id = null): CreateEditCrowdSourcingProject {
-        if ($id) {
-            $project = $this->getCrowdSourcingProject($id);
-        } else {
-            $project = $this->crowdSourcingProjectRepository->getModelInstance();
-        }
+        $project = $id !== null && $id !== 0 ? $this->getCrowdSourcingProject($id) : $this->crowdSourcingProjectRepository->getModelInstance();
 
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
         $project->colors = $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id);
+
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
 
         $contributorBadge = new ContributorBadge(1, true);
         $contributorBadgeVM = new GamificationBadgeVM($contributorBadge);
         $questionnaire = $this->questionnaireRepository->getModelInstance();
-
 
         $templateForNotification = (new QuestionnaireResponded(
             $questionnaire->defaultFieldsTranslation,
@@ -453,7 +426,7 @@ class CrowdSourcingProjectManager {
             $translations,
             $statusesLkp,
             $this->languageRepository->all(),
-            $templateForNotification
+            (string) $templateForNotification
         );
     }
 
@@ -495,15 +468,19 @@ class CrowdSourcingProjectManager {
             if ($clone->img_path) {
                 $clone->img_path = $this->copyProjectFile($clone->img_path, 'project_img');
             }
+
             if ($clone->logo_path) {
                 $clone->logo_path = $this->copyProjectFile($clone->logo_path, 'project_logos');
             }
+
             if ($clone->lp_questionnaire_img_path) {
                 $clone->lp_questionnaire_img_path = $this->copyProjectFile($clone->lp_questionnaire_img_path, 'project_questionnaire_bg_img');
             }
+
             if ($clone->sm_featured_img_path) {
                 $clone->sm_featured_img_path = $this->copyProjectFile($clone->sm_featured_img_path, 'project_sm_featured_img');
             }
+
             $clone->push();
 
             // change the name of the default translation of the cloned project
@@ -524,7 +501,7 @@ class CrowdSourcingProjectManager {
             $extraTranslations = $this->crowdSourcingProjectTranslationManager->getTranslationsForProject($project);
             // set the name only of the default translation as the name of the cloned project + ' - Copy'
             // find the default translation inside the extra translations and set the name to the new name
-            $extraTranslations->each(function ($translation) use ($clone) {
+            $extraTranslations->each(function ($translation) use ($clone): void {
                 if ($translation->language_id === $clone->defaultTranslation->language_id) {
                     $translation->name = $clone->defaultTranslation->name;
                 }
@@ -552,9 +529,7 @@ class CrowdSourcingProjectManager {
     }
 
     public function getAllCrowdSourcingProjectsWithDefaultTranslation(): Collection {
-        $projects = $this->crowdSourcingProjectRepository->getAllProjectsWithDefaultTranslation();
-
-        return $projects;
+        return $this->crowdSourcingProjectRepository->getAllProjectsWithDefaultTranslation();
     }
 
     public function getCrowdSourcingProjectsForManagement(): Collection {

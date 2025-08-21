@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Gérez vos questionnaires</b> efficacement avec notre éditeur de questionnaires facile à utiliser.',
     'features_platform_3' => '<b>Vérifiez l\'impact</b> de vos campagnes, en consultant les rapports générés à partir des réponses des citoyens.',
     'features_platform_4' => '<b>Intégrez-vous avec MailChimp</b> en un seul clic, pour tenir les utilisateurs toujours informés des dernières campagnes et activités.',
-    'MALE'           => 'Homme',
-    'FEMALE'         => 'Femme',
-    'OTHER'          => 'Autre',
+    'MALE' => 'Homme',
+    'FEMALE' => 'Femme',
+    'OTHER' => 'Autre',
     'view_campaign' => 'Voir la campagne',
     'footer_eu_text' => 'Ce site Web a été créé et est maintenu par le European Citizen Action Service (ECAS). Le contenu de ce site Web est de la seule responsabilité de l\'ECAS et ne peut en aucun cas être considéré comme reflétant les positions officielles de l\'Union européenne.',
 

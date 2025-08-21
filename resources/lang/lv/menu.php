@@ -11,7 +11,7 @@ return [
 
     'login' => 'Pieteikties',
     'register' => 'Reģistrēties',
-    'dashboard' =>  'Vadības panelis',
+    'dashboard' => 'Vadības panelis',
     'my_dashboard' => 'Mans vadības panelis',
     'my_account' => 'Mans profils',
     'my_history' => 'Mana vēsture',

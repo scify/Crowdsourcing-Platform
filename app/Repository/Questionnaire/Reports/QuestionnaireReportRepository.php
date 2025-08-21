@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire\Reports;
 
 use Illuminate\Support\Facades\DB;
@@ -15,6 +17,6 @@ class QuestionnaireReportRepository {
                         inner join users on users.id=qr.user_id
                         inner join crowd_sourcing_projects p on p.id = qr.project_id
                         inner join crowd_sourcing_project_translations t on t.project_id = p.id and t.language_id = p.language_id
-                        where qr.questionnaire_id = $questionnaireId and qr.deleted_at is null and users.deleted_at is null;");
+                        where qr.questionnaire_id = {$questionnaireId} and qr.deleted_at is null and users.deleted_at is null;");
     }
 }

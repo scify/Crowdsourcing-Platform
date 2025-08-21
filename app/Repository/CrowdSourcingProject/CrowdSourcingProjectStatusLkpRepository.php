@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProjectStatusLkp;
@@ -9,7 +11,7 @@ class CrowdSourcingProjectStatusLkpRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return CrowdSourcingProjectStatusLkp::class;
     }
 }

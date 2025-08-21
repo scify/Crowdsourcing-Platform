@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\BusinessLogicLayer\Gamification\PlatformWideGamificationBadgesProvider;
@@ -29,14 +31,11 @@ class RunAdminTasks extends Command {
      */
     protected $description = 'This command is used to test the availability of some tasks, like the external translation service and the emailing service.';
 
-    private PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider;
-
     /**
      * Create a new command instance.
      */
-    public function __construct(PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
+    public function __construct(private readonly PlatformWideGamificationBadgesProvider $platformWideGamificationBadgesProvider) {
         parent::__construct();
-        $this->platformWideGamificationBadgesProvider = $platformWideGamificationBadgesProvider;
     }
 
     /**
@@ -54,13 +53,14 @@ class RunAdminTasks extends Command {
             foreach ($translations as $translation) {
                 $this->info($translation['input'] . ' => ' . $translation['text'] . ' => ' . $translation['source']);
             }
+
             $this->info('API Key: ' . config('app.google_translate_key'));
         } elseif ($task === 'Test email') {
             $this->info('Testing the email service...');
             $email = $this->ask('Enter the user email address to send the test email to:');
             $user = User::where(['email' => $email])->first();
 
-            if (!$user) {
+            if (! $user) {
                 $this->error('User not found with the given email address.');
 
                 return;
@@ -74,7 +74,7 @@ class RunAdminTasks extends Command {
             } else {
                 $questionnaire = Questionnaire::find($questionnaireId);
 
-                if (!$questionnaire) {
+                if (! $questionnaire) {
                     $this->error('Questionnaire not found with the given ID.');
 
                     return;
@@ -99,6 +99,7 @@ class RunAdminTasks extends Command {
         } elseif ($task === 'Test Sentry error') {
             $this->info('Testing the Sentry error reporting service...');
             $message = $this->ask('Enter the message for the Sentry error:');
+
             throw new \Exception('Test Sentry error: ' . $message);
         } elseif ($task === 'Test supervisor') {
             $this->info('Testing the supervisor service...');

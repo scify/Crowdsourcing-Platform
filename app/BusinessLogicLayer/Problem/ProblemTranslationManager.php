@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Problem;
 
 use App\Models\Problem\Problem;
@@ -11,19 +13,7 @@ use Exception;
 use Illuminate\Support\Collection;
 
 class ProblemTranslationManager {
-    protected ProblemTranslationRepository $problemTranslationRepository;
-    protected LanguageRepository $languageRepository;
-    protected ProblemRepository $problemRepository;
-
-    public function __construct(
-        ProblemTranslationRepository $problemTranslationRepository,
-        LanguageRepository $languageRepository,
-        ProblemRepository $problemRepository
-    ) {
-        $this->problemTranslationRepository = $problemTranslationRepository;
-        $this->languageRepository = $languageRepository;
-        $this->problemRepository = $problemRepository;
-    }
+    public function __construct(protected ProblemTranslationRepository $problemTranslationRepository, protected LanguageRepository $languageRepository, protected ProblemRepository $problemRepository) {}
 
     /**
      * Get all the translations for a problem.
@@ -32,16 +22,12 @@ class ProblemTranslationManager {
      * CrowdSourcingProjectProblem class and returns a Collection object
      * with all of the problems defined translations.
      *
-     * @param int|Problem $input An integer ID or a CrowdSourcingProjectProblem object.
+     * @param  int|Problem  $input  An integer ID or a CrowdSourcingProjectProblem object.
      */
     public function getTranslationsForProblem(int|Problem $input): Collection {
-        if (gettype($input) !== 'integer') {
-            $id = $input->id;
-        } else {
-            $id = $input;
-        }
+        $id = gettype($input) !== 'integer' ? $input->id : $input;
 
-        if (!$id) {
+        if (! $id) {
             return new Collection;
         }
 
@@ -112,7 +98,7 @@ class ProblemTranslationManager {
         // now we need to add the new translations
         foreach ($newExtraTranslations as $newExtraTranslation) {
             // if not already updated, create the record in the DB
-            if (!$this->translationExistsInTranslationsArray($newExtraTranslation, $alreadyUpdatedExtraTranslations)) {
+            if (! $this->translationExistsInTranslationsArray($newExtraTranslation, $alreadyUpdatedExtraTranslations)) {
                 $this->problemTranslationRepository->create(
                     [
                         'problem_id' => $problemId,
@@ -140,6 +126,7 @@ class ProblemTranslationManager {
 
     /**
      * Get the translation from the translations array via the language_id.
+     *
      * @throws Exception If the translation with the given language_id is not found in the translations array.
      */
     protected function getTranslationFromTranslationsArrayViaLanguageId(array $translations, int $id): object {
@@ -148,15 +135,17 @@ class ProblemTranslationManager {
                 return $translation;
             }
         }
-        throw new Exception("Translation with language_id: {$id} not found in translations array.");
+
+        throw new Exception(sprintf('Translation with language_id: %d not found in translations array.', $id));
     }
 
     /**
      * Get the current translation for a problem.
      * If the translation for the given language does not exist, the default translation is returned.
      *
-     * @param int $problem_id the ID of the problem
-     * @param string $language_code the language code of the translation
+     * @param  int  $problem_id  the ID of the problem
+     * @param  string  $language_code  the language code of the translation
+     *
      * @return object the current translation for the problem
      */
     public function getProblemCurrentTranslation(int $problem_id, string $language_code): object {
