@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Você deve concordar com nossas diretrizes e termos para enviar uma solução.',
     'translation_notice_required' => 'Você deve concordar com o aviso de tradução para enviar uma solução.',
     'required' => 'Obrigatório',
+    'login_prompt_message' => 'Você pode enviar sua solução anonimamente ou entrar para acompanhar suas contribuições e ganhar prêmios.',
+    'submit_anonymously' => 'Enviar Anonimamente',
 ];

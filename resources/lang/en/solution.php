@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'You must agree to our guidelines and terms to submit a solution.',
     'translation_notice_required' => 'You must agree to the translation notice to submit a solution.',
     'required' => 'Required',
+    'login_prompt_message' => 'You can submit your solution anonymously or sign in to track your contributions and earn badges.',
+    'submit_anonymously' => 'Submit Anonymously',
 ];

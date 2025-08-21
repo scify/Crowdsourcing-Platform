@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Lai iesniegtu risinājumu, jums jāpiekrīt mūsu vadlīnijām un nosacījumiem.',
     'translation_notice_required' => 'Lai iesniegtu risinājumu, jums jāpiekrīt tulkošanas paziņojumam.',
     'required' => 'Nepieciešams',
+    'login_prompt_message' => 'Jūs varat iesniegt savu risinājumu anonīmi vai piesakoties, lai sekotu saviem ieguldījumiem un iegūtu ieguldījumus.',
+    'submit_anonymously' => 'Iesniegt anonīmi',
 ];

@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Debe aceptar nuestras pautas y términos para enviar una solución.',
     'translation_notice_required' => 'Debe aceptar el aviso de traducción para enviar una solución.',
     'required' => 'Requerido',
+    'login_prompt_message' => 'Puede enviar su solución de forma anónima o iniciar sesión para rastrear sus contribuciones y ganar insignias.',
+    'submit_anonymously' => 'Enviar Anónimamente',
 ];

@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Devi accettare le nostre linee guida e i nostri termini per inviare una soluzione.',
     'translation_notice_required' => 'Devi accettare l\'avviso di traduzione per inviare una soluzione.',
     'required' => 'Richiesto',
+    'must_be_logged_in_prompt' => 'Devi essere loggato per proporre una soluzione.',
+    'create_account_prompt' => 'Crea un account per contribuire di più alla piattaforma, guadagnare badge e aiutarci a migliorare la qualità delle nostre soluzioni. Creando un account, puoi partecipare alle discussioni, votare sulle soluzioni e tracciare i tuoi contributi.',
 ];
