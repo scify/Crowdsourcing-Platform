@@ -6,7 +6,7 @@
   "homepage": "https://crowdsourcing.ecas.org/",
   "repository": "https://github.com/scify/Crowdsourcing-Platform",
   "name": "crowdsourcing-platform",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "readme": "README.md",
   "scripts": {
     "lint": "eslint resources/assets",
