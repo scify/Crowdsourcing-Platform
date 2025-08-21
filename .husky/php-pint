@@ -31,14 +31,14 @@ fi
 if [ -n "$PHP_FILES" ]; then
     if [ "$USE_DOCKER" = "true" ]; then
         echo "Running Pint in Docker for PHP files..."
-        docker compose exec -T php vendor/bin/pint $PHP_FILES
+        docker compose exec -T php vendor/bin/pint -v --parallel $PHP_FILES
         if [ $? -ne 0 ]; then
             echo "Pint failed while running inside Docker."
             exit 1
         fi
     else
         echo "Running Pint locally for PHP files..."
-        vendor/bin/pint $PHP_FILES
+        vendor/bin/pint -v --parallel $PHP_FILES
         if [ $? -ne 0 ]; then
             echo "Pint failed while running locally."
             exit 1
