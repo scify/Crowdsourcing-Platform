@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Morate se složiti s našim smjernicama i uvjetima kako biste poslali rješenje.',
     'translation_notice_required' => 'Morate se složiti s obavijesti o prijevodu kako biste poslali rješenje.',
     'required' => 'Obavezno',
+    'login_prompt_message' => 'Možete poslati svoje rješenje anonimno ili se prijaviti kako biste pratili svoje doprinose i zaradili nagrade.',
+    'submit_anonymously' => 'Pošalji anonimno',
 ];

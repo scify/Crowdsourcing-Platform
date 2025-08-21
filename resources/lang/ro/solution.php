@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Trebuie să fii de acord cu ghidurile și termenii noștri pentru a trimite o soluție.',
     'translation_notice_required' => 'Trebuie să fii de acord cu atenționarea privind traducerea pentru a trimite o soluție.',
     'required' => 'Obligatoriu',
+    'login_prompt_message' => 'Poți trimite soluția ta anonim sau să te conectezi pentru a urmări contribuțiile tale și a câștiga premii.',
+    'submit_anonymously' => 'Trimite anonim',
 ];

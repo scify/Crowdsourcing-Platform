@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'Lahenduse esitamiseks peate nõustuma meie juhiste ja tingimustega.',
     'translation_notice_required' => 'Lahenduse esitamiseks peate nõustuma tõlke teatega.',
     'required' => 'Nõutud',
+    'login_prompt_message' => 'Saad lahenduse esitada anonüümseks või logida sisse, et jälgida oma panuseid ja saada hüvendid.',
+    'submit_anonymously' => 'Esita anonüümselt',
 ];

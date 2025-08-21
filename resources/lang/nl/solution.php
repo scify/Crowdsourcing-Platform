@@ -53,4 +53,6 @@ return [
     'consent_notice_required' => 'U moet akkoord gaan met onze richtlijnen en voorwaarden om een oplossing in te dienen.',
     'translation_notice_required' => 'U moet akkoord gaan met de vertalingsmelding om een oplossing in te dienen.',
     'required' => 'Verplicht',
+    'login_prompt_message' => 'U kunt uw oplossing anoniem indienen of inloggen om uw bijdragen te volgen en badges te verdienen.',
+    'submit_anonymously' => 'Indienen anoniem',
 ];
