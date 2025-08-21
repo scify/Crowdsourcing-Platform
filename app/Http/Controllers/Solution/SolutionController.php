@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Solution;
 
 use App\BusinessLogicLayer\Solution\SolutionManager;
@@ -33,8 +35,8 @@ class SolutionController extends Controller {
             $viewModel = $this->solutionManager->getCreateEditSolutionViewModel($request->problem_id);
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -54,8 +56,8 @@ class SolutionController extends Controller {
 
         try {
             $createdSolutionId = $this->solutionManager->storeSolution($validated)->id;
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -89,8 +91,8 @@ class SolutionController extends Controller {
             ]);
 
             return redirect($route);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -108,12 +110,13 @@ class SolutionController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
         try {
             $viewModel = $this->solutionManager->getCreateEditSolutionViewModel(null, $id);
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -135,8 +138,8 @@ class SolutionController extends Controller {
 
         try {
             $this->solutionManager->updateSolution($id, $validated);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -151,7 +154,7 @@ class SolutionController extends Controller {
             'status_id' => 'required|exists:problem_statuses_lkp,id',
         ]);
 
-        return response()->json($this->solutionManager->updateSolutionStatus($id, $request->status_id));
+        return response()->json($this->solutionManager->updateSolutionStatus($id, intval($request->status_id)));
     }
 
     /**
@@ -162,8 +165,8 @@ class SolutionController extends Controller {
             $result = $this->solutionManager->adminAddVoteToSolution($id);
 
             return response()->json($result);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
 
@@ -193,8 +196,8 @@ class SolutionController extends Controller {
         ]);
 
         return response()->json([
-            'user_votes' => $this->solutionManager->getUserVotesNum($request->problem_id),
-            'solutions' => $this->solutionManager->getSolutions($request->problem_id, $request->lang),
+            'user_votes' => $this->solutionManager->getUserVotesNum(intval($request->problem_id)),
+            'solutions' => $this->solutionManager->getSolutions(intval($request->problem_id), $request->lang),
         ]);
     }
 
@@ -209,12 +212,13 @@ class SolutionController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
         try {
             $viewModel = $this->solutionManager->getProposeSolutionPageViewModel($locale, $project_slug, $problem_slug);
 
             return view('solution.propose', ['viewModel' => $viewModel]);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -234,9 +238,10 @@ class SolutionController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
-        $viewModel = $this->solutionManager->getSolutionSubmittedViewModel($project_slug, $problem_slug, $solution_slug);
 
-        return view('solution.submitted', ['viewModel' => $viewModel]);
+        $solutionSubmitted = $this->solutionManager->getSolutionSubmittedViewModel($project_slug, $problem_slug, $solution_slug);
+
+        return view('solution.submitted', ['viewModel' => $solutionSubmitted]);
     }
 
     public function voteOrDownVoteSolution(Request $request): JsonResponse {
@@ -268,17 +273,22 @@ class SolutionController extends Controller {
 
         $solutions = $this->solutionManager->getSolutionsByProjectId($project_id);
 
-        $callback = function () use ($solutions) {
-            $columns = ['Solution ID', 'Title', 'Description', 'Status', 'Created At'];
+        $callback = function () use ($solutions): void {
+            $columns = ['Solution ID', 'Title', 'Status', 'Problem Title', 'Votes Count', 'Voter Emails', 'Created At'];
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($solutions as $solution) {
+                // Get voter emails separated by comma
+                $voterEmails = $solution->upvotes->pluck('user.email')->filter()->implode(', ');
+
                 fputcsv($file, [
                     $solution->id,
                     $solution->defaultTranslation?->title,
-                    $solution->defaultTranslation?->description,
                     $solution->status->title,
+                    $solution->problem->defaultTranslation?->title,
+                    $solution->upvotes->count(),
+                    $voterEmails,
                     $solution->created_at,
                 ]);
             }

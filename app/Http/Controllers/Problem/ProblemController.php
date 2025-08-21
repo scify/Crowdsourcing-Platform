@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Problem;
 
 use App\BusinessLogicLayer\Problem\ProblemManager;
@@ -33,6 +35,7 @@ class ProblemController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
         try {
             $viewModel = $this->problemManager->getProblemsLandingPageViewModel($request->project_slug);
 
@@ -75,8 +78,8 @@ class ProblemController extends Controller {
 
         try {
             $createdProblemId = $this->problemManager->storeProblem($attributes);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -115,8 +118,8 @@ class ProblemController extends Controller {
 
         try {
             $this->problemManager->updateProblem($id, $attributes);
-        } catch (\Exception $e) {
-            session()->flash('flash_message_error', 'Error: ' . $e->getCode() . '  ' . $e->getMessage());
+        } catch (\Exception $exception) {
+            session()->flash('flash_message_error', 'Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
 
             return back()->withInput();
         }
@@ -142,7 +145,7 @@ class ProblemController extends Controller {
             'status_id' => 'required|exists:problem_statuses_lkp,id',
         ]);
 
-        return response()->json($this->problemManager->updateProblemStatus($id, $request->status_id));
+        return response()->json($this->problemManager->updateProblemStatus($id, intval($request->status_id)));
     }
 
     public function getProblemsForCrowdSourcingProjectForManagement(): JsonResponse {
@@ -150,7 +153,7 @@ class ProblemController extends Controller {
             'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
         ]);
 
-        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForManagement(request('projectId')));
+        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForManagement(intval(request('projectId'))));
     }
 
     public function getProblemsForCrowdSourcingProject(Request $request): JsonResponse {
@@ -159,7 +162,7 @@ class ProblemController extends Controller {
             'lang' => 'required|string',
         ]);
 
-        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForLandingPage($request->projectId, $request->lang));
+        return response()->json($this->problemManager->getProblemsForCrowdSourcingProjectForLandingPage(intval($request->projectId), $request->lang));
     }
 
     public function getProblemsForManagement(): JsonResponse {
@@ -167,6 +170,6 @@ class ProblemController extends Controller {
             'projectId' => 'required|numeric|exists:crowd_sourcing_projects,id',
         ]);
 
-        return response()->json($this->problemManager->getProblemsForManagement(request('projectId')));
+        return response()->json($this->problemManager->getProblemsForManagement(intval(request('projectId'))));
     }
 }

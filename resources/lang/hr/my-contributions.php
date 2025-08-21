@@ -24,7 +24,4 @@ return [
     'no_proposed_solutions' => 'Još niste predložili nikakva rješenja.',
     'problem' => 'Problem',
 
-
-
-
 ];

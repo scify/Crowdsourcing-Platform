@@ -24,7 +24,4 @@ return [
     'no_proposed_solutions' => 'You haven’t proposed any solutions, yet.',
     'problem' => 'Problem',
 
-
-
-
 ];

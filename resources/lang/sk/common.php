@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Efektívne spravujte svoje dotazníky</b> s naším ľahko použiteľným editorom dotazníkov.',
     'features_platform_3' => '<b>Skontrolujte vplyv</b> svojich kampaní, prezeraním správ generovaných z odpovedí občanov.',
     'features_platform_4' => '<b>Integrujte s MailChimp</b> jedným kliknutím, aby ste používateľov vždy informovali o najnovších kampaniach a aktivitách.',
-    'MALE'           => 'Muž',
-    'FEMALE'         => 'Žena',
-    'OTHER'          => 'Iné',
+    'MALE' => 'Muž',
+    'FEMALE' => 'Žena',
+    'OTHER' => 'Iné',
     'view_campaign' => 'Zobraziť kampaň',
     'footer_eu_text' => 'Tento web bol vytvorený a udržiavaný European Citizen Action Service (ECAS). Obsah tejto webovej stránky je plne zodpovednosťou ECAS a nemožno ho považovať za oficiálne stanovisko Európskej únie.',
 

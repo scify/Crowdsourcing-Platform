@@ -21,7 +21,7 @@ class UserControllerTest extends TestCase {
         $tempDir = sys_get_temp_dir();
 
         // Ensure the temporary directory is writable
-        if (!is_writable($tempDir)) {
+        if (! is_writable($tempDir)) {
             throw new \RuntimeException("The temporary directory is not writable: {$tempDir}");
         }
     }
@@ -100,11 +100,11 @@ class UserControllerTest extends TestCase {
         $fakeImage = $faker->image($tempDir, 400, 300, 'cats', false, false, 'Faker');
 
         // Check if the image was created successfully
-        if (!$fakeImage) {
+        if (! $fakeImage) {
             echo "Warning: Failed to create a fake image. Using a default image.\n";
             $defaultImagePath = public_path('images/image_temp.png');
             $fakeImage = public_path('images/default_image_copy.png');
-            if (!copy($defaultImagePath, $fakeImage)) {
+            if (! copy($defaultImagePath, $fakeImage)) {
                 throw new \RuntimeException('Failed to copy the default image.');
             }
         } else {
@@ -152,7 +152,7 @@ class UserControllerTest extends TestCase {
 
         $defaultTextFilePath = public_path('images/test/test.txt');
         $fakeTxtFile = public_path('images/test_copy.txt');
-        if (!copy($defaultTextFilePath, $fakeTxtFile)) {
+        if (! copy($defaultTextFilePath, $fakeTxtFile)) {
             throw new \RuntimeException('Failed to copy the default image.');
         }
 
@@ -187,11 +187,11 @@ class UserControllerTest extends TestCase {
         $largeImage = $faker->image($tempDir, 3000, 3000, 'cats', false, false, 'Faker');
 
         // Check if the image was created successfully
-        if (!$largeImage) {
+        if (! $largeImage) {
             echo "Warning: Failed to create a fake image. Using a default large image.\n";
             $defaultImagePath = public_path('images/test/image_temp_big.jpg');
             $largeImage = public_path('images/test/image_temp_big_copy.jpg');
-            if (!copy($defaultImagePath, $largeImage)) {
+            if (! copy($defaultImagePath, $largeImage)) {
                 throw new \RuntimeException('Failed to copy the default large image.');
             }
         } else {

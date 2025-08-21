@@ -9,7 +9,6 @@ return [
 
     */
 
-
     'contributor_badge_points_explanation' => 'Earn :points points each time you answer a questionnaire, submit a solution to a problem, or upvote a solution!',
     'communicator_badge_points_explanation' => 'Earn :points points each time someone clicks on your shared questionnaires and votes your solutions!',
     'influencer_badge_points_explanation' => 'Earn :points points each time someone responds to your social media posts and contributes!',

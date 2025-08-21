@@ -55,9 +55,9 @@ return [
     'features_platform_2' => '<b>Gerencie seus questionários</b> de forma eficaz com nosso editor de questionários fácil de usar.',
     'features_platform_3' => '<b>Verifique o impacto</b> de suas campanhas, visualizando os relatórios gerados a partir das respostas dos cidadãos.',
     'features_platform_4' => '<b>Integre com o MailChimp</b> com apenas um clique, para manter os usuários sempre atualizados com as últimas campanhas e atividades.',
-    'MALE'           => 'Masculino',
-    'FEMALE'         => 'Feminino',
-    'OTHER'          => 'Outro',
+    'MALE' => 'Masculino',
+    'FEMALE' => 'Feminino',
+    'OTHER' => 'Outro',
     'view_campaign' => 'Ver campanha',
     'footer_eu_text' => 'Co-financiado pela União Europeia. As opiniões expressas são, no entanto, apenas do(s) autor(es) e não refletem necessariamente as da União Europeia ou da Agência Executiva de Educação e Cultura Europeia (EACEA). Nem a União Europeia nem a EACEA podem ser responsabilizadas por elas.',
 

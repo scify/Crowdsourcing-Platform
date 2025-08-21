@@ -20,9 +20,4 @@ return [
     'actions' => 'Tegevused',
     'view_response' => 'Vaata vastuseid',
 
-
-
-
-
-
 ];

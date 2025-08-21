@@ -11,7 +11,7 @@ return [
 
     'login' => 'Prihlásenie',
     'register' => 'Registrácia',
-    'dashboard' =>  'DASHBOARD',
+    'dashboard' => 'DASHBOARD',
     'my_dashboard' => 'Môj Dashboard',
     'my_account' => 'Môj účet',
     'my_history' => 'Moja história',

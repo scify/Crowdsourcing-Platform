@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Solution;
 
 use App\Models\Solution\SolutionUpvote;
@@ -9,7 +11,7 @@ class SolutionUpvoteRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return SolutionUpvote::class;
     }
 
@@ -25,7 +27,7 @@ class SolutionUpvoteRepository extends Repository {
     }
 
     public function getNumOfUpvotesForSolutionsProposedByUser(int $user_id): int {
-        return SolutionUpvote::whereHas('solution', function ($query) use ($user_id) {
+        return SolutionUpvote::whereHas('solution', function ($query) use ($user_id): void {
             $query->where('user_creator_id', $user_id);
         })->count();
     }

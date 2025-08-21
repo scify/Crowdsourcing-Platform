@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\Language;
@@ -27,7 +29,9 @@ class QuestionnaireLanguage extends Model {
     use SoftDeletes;
 
     protected $table = 'questionnaire_languages';
+
     protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'questionnaire_id',
         'language_id',

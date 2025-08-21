@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\BusinessLogicLayer\LanguageManager;
@@ -16,32 +18,13 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class QuestionnaireResponseManager {
-    protected QuestionnaireRepository $questionnaireRepository;
-    protected QuestionnaireResponseRepository $questionnaireResponseRepository;
-    protected LanguageManager $languageManager;
-    protected QuestionnaireActionHandler $questionnaireActionHandler;
-    protected QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository;
-    protected UserManager $userManager;
-
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-        QuestionnaireResponseRepository $questionnaireResponseRepository,
-        LanguageManager $languageManager,
-        QuestionnaireActionHandler $questionnaireActionHandler,
-        QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository,
-        UserManager $userManager) {
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->questionnaireResponseRepository = $questionnaireResponseRepository;
-        $this->languageManager = $languageManager;
-        $this->questionnaireActionHandler = $questionnaireActionHandler;
-        $this->questionnaireAnswerVoteRepository = $questionnaireAnswerVoteRepository;
-        $this->userManager = $userManager;
-    }
+    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected LanguageManager $languageManager, protected QuestionnaireActionHandler $questionnaireActionHandler, protected QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository, protected UserManager $userManager) {}
 
     public function getQuestionnaireResponsesForUser(User $user) {
         return $this->questionnaireResponseRepository->getAllResponsesGivenByUser($user->id);
     }
 
-    public function questionnaireResponsesForUserAndQuestionnaireExists($userId, $questionnaireId): bool {
+    public function questionnaireResponsesForUserAndQuestionnaireExists(int $userId, int $questionnaireId): bool {
         return $this->questionnaireResponseRepository->questionnaireResponseExists($userId, $questionnaireId);
     }
 
@@ -55,9 +38,9 @@ class QuestionnaireResponseManager {
         return $this->questionnaireResponseRepository->allWhere($queryFilters, ['*'], 'id', 'desc', ['project']);
     }
 
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser($user): int {
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser(\App\Models\User\User $user): int {
         $questionnaireResponsesThatWereTransferredToUser = $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
-        if ($questionnaireResponsesThatWereTransferredToUser) {
+        if ($questionnaireResponsesThatWereTransferredToUser instanceof \Illuminate\Support\Collection) {
             foreach ($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse) {
                 $lang = $this->languageManager->getLanguageById($questionnaireResponse->language_id);
                 $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project,
@@ -80,6 +63,7 @@ class QuestionnaireResponseManager {
         if (isset($data['language_code']) && $data['language_code'] == 'gr') {
             $data['language_code'] = 'el';
         }
+
         $language = isset($data['language_code'])
             ? $this->languageManager->getLanguageByCode($data['language_code'])
             : $this->languageManager->getLanguage($questionnaire->default_language_id);
@@ -93,7 +77,7 @@ class QuestionnaireResponseManager {
             $queryData,
             array_merge($queryData, [
                 'language_id' => $language->id,
-                'response_json' => json_encode(json_decode($data['response'])),
+                'response_json' => json_encode(json_decode((string) $data['response'])),
                 'browser_fingerprint_id' => $data['browser_fingerprint_id'],
                 'browser_ip' => $data['ip'],
             ])
@@ -108,12 +92,13 @@ class QuestionnaireResponseManager {
                 // if the user got invited by another user to answer the questionnaire, also award the referrer user.
                 $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaire, $user, $language);
             }
+
             TranslateQuestionnaireResponse::dispatch($questionnaireResponse->id);
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             if (app()->bound('sentry')) {
-                app('sentry')->captureException($e);
+                app('sentry')->captureException($exception);
             } else {
-                Log::error($e->getMessage());
+                Log::error($exception->getMessage());
             }
         }
 
@@ -127,6 +112,7 @@ class QuestionnaireResponseManager {
         if (isset($data['language_code']) && $data['language_code'] == 'gr') {
             $data['language_code'] = 'el';
         }
+
         $language = isset($data['language_code'])
             ? $this->languageManager->getLanguageByCode($data['language_code'])
             : $this->languageManager->getLanguage($questionnaire->default_language_id);
@@ -140,7 +126,7 @@ class QuestionnaireResponseManager {
         return $this->questionnaireResponseRepository->create(
             array_merge($queryData, [
                 'language_id' => $language->id,
-                'response_json' => json_encode(json_decode($data['response'])),
+                'response_json' => json_encode(json_decode((string) $data['response'])),
                 'browser_fingerprint_id' => $data['browser_fingerprint_id'],
                 'browser_ip' => $data['ip'],
             ])
@@ -182,9 +168,9 @@ class QuestionnaireResponseManager {
         $existing = $this->questionnaireAnswerVoteRepository->where($data);
         if ($existing && $existing->upvote == $upvote) {
             return $existing->delete();
-        } else {
-            return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
         }
+
+        return $this->questionnaireAnswerVoteRepository->updateOrCreate($data, array_merge($data, ['upvote' => $upvote]));
     }
 
     public function deleteResponse(int $questionnaire_response_id) {
@@ -196,15 +182,15 @@ class QuestionnaireResponseManager {
         $answerVotesWithVoterInfoForQuestionnaire = $this->questionnaireAnswerVoteRepository->getAnswerVotesWithVoterInfoForQuestionnaire($questionnaire_id);
         $freeTypeQuestions = $this->getFreeTypeQuestionsFromQuestionnaireJSON($questionnaire->questionnaire_json);
         $data = new Collection;
-        foreach ($answerVotesWithVoterInfoForQuestionnaire as $record) {
+        foreach ($answerVotesWithVoterInfoForQuestionnaire as $answerVoteWithVoterInfoForQuestionnaire) {
             $response = [];
-            $response['response_id'] = $record->response_id;
-            $response['voters'] = $record->voters;
-            $response['num_votes'] = $record->votes;
-            $response['question'] = $freeTypeQuestions[$record->question_name]->title;
-            $response_json = json_decode($record->response_json);
-            $response_json_translated = json_decode($record->response_json_translated);
-            $response['answer'] = $response_json_translated->{$record->question_name} ?? $response_json->{$record->question_name};
+            $response['response_id'] = $answerVoteWithVoterInfoForQuestionnaire->response_id;
+            $response['voters'] = $answerVoteWithVoterInfoForQuestionnaire->voters;
+            $response['num_votes'] = $answerVoteWithVoterInfoForQuestionnaire->votes;
+            $response['question'] = $freeTypeQuestions[$answerVoteWithVoterInfoForQuestionnaire->question_name]->title;
+            $response_json = json_decode((string) $answerVoteWithVoterInfoForQuestionnaire->response_json);
+            $response_json_translated = json_decode((string) $answerVoteWithVoterInfoForQuestionnaire->response_json_translated);
+            $response['answer'] = $response_json_translated->{$answerVoteWithVoterInfoForQuestionnaire->question_name} ?? $response_json->{$answerVoteWithVoterInfoForQuestionnaire->question_name};
             $data->add($response);
         }
 
@@ -213,7 +199,7 @@ class QuestionnaireResponseManager {
 
     public function getAnonymousUserResponseForQuestionnaire(int $questionnaire_id, string $browser_fingerprint_id): ?QuestionnaireResponse {
         $client_ip = request()->getClientIp();
-        if (!$this->browser_ip_and_browser_fingerprint_id_are_valid($browser_fingerprint_id, $client_ip)) {
+        if (! $this->browser_ip_and_browser_fingerprint_id_are_valid($browser_fingerprint_id, $client_ip)) {
             return null;
         }
 
@@ -221,7 +207,7 @@ class QuestionnaireResponseManager {
     }
 
     protected function browser_ip_and_browser_fingerprint_id_are_valid(string $browser_fingerprint_id, string $client_ip): bool {
-        return !empty($browser_fingerprint_id)
+        return $browser_fingerprint_id !== '' && $browser_fingerprint_id !== '0'
             && strlen($browser_fingerprint_id) >= 5
             && filter_var($client_ip, FILTER_VALIDATE_IP) !== false;
     }

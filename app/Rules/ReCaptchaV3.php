@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use Closure;
@@ -15,9 +17,10 @@ readonly class ReCaptchaV3 implements ValidationRule {
     /**
      * Run the validation rule.
      *
-     * @param string $attribute The attribute being validated
-     * @param mixed $value The value of the attribute
-     * @param Closure $fail The callback that should be called if the validation fails
+     * @param  string  $attribute  The attribute being validated
+     * @param  mixed  $value  The value of the attribute
+     * @param  Closure  $fail  The callback that should be called if the validation fails
+     *
      * @throws ConnectionException when the connection to the reCAPTCHA service fails
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void {
@@ -48,15 +51,15 @@ readonly class ReCaptchaV3 implements ValidationRule {
 
             // When this fails it means the action didn't match the one set in the button's data-action.
             // Either a bot or a code mistake. Compare form data-action and value passed to $action (should be equal).
-            if (!is_null($this->action) && $this->action != $body['action']) {
-                $fail('The action found in the form didn\'t match the Google reCAPTCHA action, please try again.');
+            if (! is_null($this->action) && $this->action != $body['action']) {
+                $fail("The action found in the form didn't match the Google reCAPTCHA action, please try again.");
 
                 return;
             }
 
             // If we set a minScore threshold, verify that the spam score didn't go below it
             // More info can be found at: https://developers.google.com/recaptcha/docs/v3#interpreting_the_score
-            if (!is_null($this->minScore) && $this->minScore > $body['score']) {
+            if (! is_null($this->minScore) && $this->minScore > $body['score']) {
                 $fail('The Google reCAPTCHA verification score was too low, please try again.');
 
                 return;

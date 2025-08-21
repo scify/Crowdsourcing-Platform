@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -75,8 +77,8 @@ class RegisterController extends Controller {
         $this->userRoleManager->assignRegisteredUserRoleTo($user);
         try {
             $user->notify(new UserRegistered);
-        } catch (Exception $e) {
-            Log::error($e);
+        } catch (Exception $exception) {
+            Log::error($exception);
         }
 
         return $user;
@@ -85,7 +87,7 @@ class RegisterController extends Controller {
     /**
      * @throws Exception
      */
-    protected function registered(Request $request, $user) {
+    protected function registered(Request $request, \App\Models\User\User $user) {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $numberOfResponseTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         if ($numberOfResponseTransferred !== 0) {

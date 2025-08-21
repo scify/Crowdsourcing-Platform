@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Config;
@@ -26,10 +28,11 @@ class ConfigServiceProvider extends ServiceProvider {
     private function makeAbsoluteUrls(): void {
         // dd(app('url')->to(\Config::get('services')['facebook']['redirect']));
         foreach (Config::get('services') as $key => $config) {
-            if (!isset($config['redirect'])) {
+            if (! isset($config['redirect'])) {
                 continue;
             }
-            Config::set("services.$key.redirect", url($config['redirect']));
+
+            Config::set(sprintf('services.%s.redirect', $key), url($config['redirect']));
         }
     }
 }

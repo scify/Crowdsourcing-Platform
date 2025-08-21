@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Gamification;
 
 class AllBadgesCompletedBadge extends GamificationBadge {
@@ -13,11 +15,11 @@ class AllBadgesCompletedBadge extends GamificationBadge {
             0, true);
     }
 
-    public function getBadgeMessageForLevel() {
+    protected function getBadgeMessageForLevel() {
         return __('badges_messages.huge_impact');
     }
 
-    public function getEmailBody() {
+    public function getEmailBody(): string {
         return '';
     }
 

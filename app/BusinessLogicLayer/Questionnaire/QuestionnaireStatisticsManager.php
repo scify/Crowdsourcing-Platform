@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
@@ -12,25 +14,12 @@ use App\ViewModels\Questionnaire\QuestionnaireStatisticsColors;
 use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireStatisticsManager {
-    protected $questionnaireStatisticsRepository;
-    protected $questionnaireBasicStatisticsColorsRepository;
-    protected $questionnaireLanguageRepository;
-    protected $crowdSourcingProjectQuestionnaireRepository;
-
-    public function __construct(QuestionnaireStatisticsRepository $questionnaireStatisticsRepository,
-        QuestionnaireBasicStatisticsColorsRepository $questionnaireBasicStatisticsColorsRepository,
-        QuestionnaireLanguageRepository $questionnaireLanguageRepository,
-        CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository) {
-        $this->questionnaireStatisticsRepository = $questionnaireStatisticsRepository;
-        $this->questionnaireBasicStatisticsColorsRepository = $questionnaireBasicStatisticsColorsRepository;
-        $this->questionnaireLanguageRepository = $questionnaireLanguageRepository;
-        $this->crowdSourcingProjectQuestionnaireRepository = $crowdSourcingProjectQuestionnaireRepository;
-    }
+    public function __construct(protected QuestionnaireStatisticsRepository $questionnaireStatisticsRepository, protected QuestionnaireBasicStatisticsColorsRepository $questionnaireBasicStatisticsColorsRepository, protected QuestionnaireLanguageRepository $questionnaireLanguageRepository, protected CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository) {}
 
     public function getQuestionnaireVisualizationsViewModel(Questionnaire $questionnaire, $projectFilter): QuestionnaireStatistics {
-        $questionnaireTotalResponseStatistics = $this->questionnaireStatisticsRepository
+        $questionnaireResponseStatistics = $this->questionnaireStatisticsRepository
             ->getQuestionnaireResponseStatistics($questionnaire->id);
-        $numberOfResponsesPerLanguage = $this->questionnaireStatisticsRepository
+        $questionnaireResponsesPerLanguage = $this->questionnaireStatisticsRepository
             ->getNumberOfResponsesPerLanguage($questionnaire->id);
         $questionnaire->project_id = $this->crowdSourcingProjectQuestionnaireRepository->where(['questionnaire_id' => $questionnaire->id])->project_id;
 
@@ -39,8 +28,8 @@ class QuestionnaireStatisticsManager {
 
         return new QuestionnaireStatistics(
             $questionnaire,
-            $questionnaireTotalResponseStatistics,
-            $numberOfResponsesPerLanguage,
+            $questionnaireResponseStatistics,
+            $questionnaireResponsesPerLanguage,
             Gate::allows('moderate-content-by-users'),
             Gate::allows('moderate-content-by-users'),
             $projectFilter,
@@ -61,7 +50,7 @@ class QuestionnaireStatisticsManager {
         return new QuestionnaireStatisticsColors($questionnaire);
     }
 
-    public function saveStatisticsColors(Questionnaire $questionnaire, array $requestData) {
+    public function saveStatisticsColors(Questionnaire $questionnaire, array $requestData): void {
         $this->saveBasicStatisticsColorsForQuestionnaire($questionnaire, $requestData['goal_responses_color'], $requestData['actual_responses_color']);
         if (isset($requestData['lang_colors'])) {
             $this->saveQuestionnaireLanguagesColors($requestData['lang_colors']);

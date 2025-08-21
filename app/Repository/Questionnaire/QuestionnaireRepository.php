@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
@@ -12,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class QuestionnaireRepository extends Repository {
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return Questionnaire::class;
     }
 
@@ -30,7 +32,7 @@ class QuestionnaireRepository extends Repository {
     }
 
     public function getActiveQuestionnairesForProject(int $projectId) {
-        return Questionnaire::whereHas('projects', function (Builder $query) use ($projectId) {
+        return Questionnaire::whereHas('projects', function (Builder $query) use ($projectId): void {
             $query->where(['id' => $projectId]);
         })
             ->where('status_id', QuestionnaireStatusLkp::PUBLISHED)
@@ -114,8 +116,8 @@ class QuestionnaireRepository extends Repository {
         });
     }
 
-    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments) {
-        DB::transaction(function () use ($questionnaireId, $statusId, $comments) {
+    public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments): void {
+        DB::transaction(function () use ($questionnaireId, $statusId, $comments): void {
             $questionnaire = Questionnaire::findOrFail($questionnaireId);
             $questionnaire->status_id = $statusId;
             $questionnaire->save();
@@ -151,7 +153,7 @@ class QuestionnaireRepository extends Repository {
         $questionnaire->goal = $goal;
         $questionnaire->default_language_id = $languageId;
         // decoding and re-encoding the json, in order to "flatten" it (no new lines)
-        $questionnaire->questionnaire_json = json_encode(json_decode($questionnaireJson));
+        $questionnaire->questionnaire_json = json_encode(json_decode((string) $questionnaireJson));
         $questionnaire->statistics_page_visibility_lkp_id = $statisticsPageVisibilityLkpId;
         $questionnaire->max_votes_num = $maxVotesNum;
         $questionnaire->show_general_statistics = $showGeneralStatistics;
@@ -245,7 +247,7 @@ class QuestionnaireRepository extends Repository {
                         GROUP BY q.id) AS languagesInfo ON languagesInfo.questionnaire_id = q.id
 
                         
-                        where cspq.project_id in ($projectIdsStr)
+                        where cspq.project_id in ({$projectIdsStr})
                         and q.deleted_at is null
                         and csp.deleted_at is null
                         GROUP BY q.id, q.prerequisite_order, q.status_id,

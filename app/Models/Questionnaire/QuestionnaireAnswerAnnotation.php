@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Questionnaire;
 
 use App\Models\CompositeKeysModel;
@@ -24,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class QuestionnaireAnswerAnnotation extends CompositeKeysModel {
     protected $table = 'questionnaire_answer_annotations';
+
     protected $fillable = [
         'questionnaire_id',
         'question_name',
@@ -33,7 +36,9 @@ class QuestionnaireAnswerAnnotation extends CompositeKeysModel {
         'admin_review_status_id',
         'admin_review_comment',
     ];
+
     protected $primaryKey = ['questionnaire_id', 'question_name', 'respondent_user_id'];
+
     public $incrementing = false;
 
     public function annotator(): BelongsTo {

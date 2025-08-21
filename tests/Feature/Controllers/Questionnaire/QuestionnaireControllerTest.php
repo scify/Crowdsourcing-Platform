@@ -358,7 +358,6 @@ class QuestionnaireControllerTest extends TestCase {
             'color' => '#000000',
         ]);
 
-
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->post(route('api.questionnaire.translations.mark'), [
                 'questionnaire_id' => $questionnaire->id,
@@ -400,7 +399,6 @@ class QuestionnaireControllerTest extends TestCase {
         $this->assertDatabaseHas('crowd_sourcing_projects', ['id' => $project->id]);
         $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
 
-
         $response = $this->get(route('show-questionnaire-page', ['locale' => 'en', 'project' => $project->slug, 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(200);
@@ -429,7 +427,6 @@ class QuestionnaireControllerTest extends TestCase {
         $this->assertDatabaseHas('crowd_sourcing_projects', ['id' => $project->id]);
         $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
 
-
         $response = $this->get(route('show-questionnaire-page', ['locale' => 'en', 'project' => $project->slug, 'questionnaire' => $questionnaire->id]));
 
         $response->assertStatus(302);
@@ -457,7 +454,6 @@ class QuestionnaireControllerTest extends TestCase {
         // Check if the project and questionnaire exist in the database
         $this->assertDatabaseHas('crowd_sourcing_projects', ['id' => $project->id]);
         $this->assertDatabaseHas('questionnaires', ['id' => $questionnaire->id]);
-
 
         $response = $this->get(route('show-questionnaire-page', ['locale' => 'en', 'project' => $project->slug, 'questionnaire' => $questionnaire->id]));
 

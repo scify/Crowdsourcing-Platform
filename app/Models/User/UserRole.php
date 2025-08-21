@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\User;
 
 use Carbon\Carbon;
@@ -24,7 +26,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin Eloquent
  */
 class UserRole extends Model {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     /**
      * The table associated with the model.

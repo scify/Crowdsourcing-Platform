@@ -11,7 +11,7 @@ return [
 
     'login' => 'Iniciar sesión',
     'register' => 'Registrarse',
-    'dashboard' =>  'TABLERO',
+    'dashboard' => 'TABLERO',
     'my_dashboard' => 'Mi Tablero',
     'my_account' => 'Mi cuenta',
     'my_history' => 'Mi historial',

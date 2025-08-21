@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
@@ -8,14 +10,7 @@ use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
 
 class QuestionnaireAccessManager {
-    protected QuestionnaireResponseManager $questionnaireResponseManager;
-    protected UserRoleManager $userRoleManager;
-
-    public function __construct(QuestionnaireResponseManager $questionnaireResponseManager,
-        UserRoleManager $userRoleManager) {
-        $this->questionnaireResponseManager = $questionnaireResponseManager;
-        $this->userRoleManager = $userRoleManager;
-    }
+    public function __construct(protected QuestionnaireResponseManager $questionnaireResponseManager, protected UserRoleManager $userRoleManager) {}
 
     public function userHasAccessToViewQuestionnaireStatisticsPage(?User $user, Questionnaire $questionnaire): bool {
         return match ($questionnaire->statistics_page_visibility_lkp_id) {
@@ -27,7 +22,11 @@ class QuestionnaireAccessManager {
         };
     }
 
-    public function userIsAdminOrContentManager($user) {
-        return $this->userRoleManager->userHasAdminRole($user) || $this->userRoleManager->userHasContentManagerRole($user);
+    public function userIsAdminOrContentManager(\App\Models\User\User $user): bool {
+        if ($this->userRoleManager->userHasAdminRole($user)) {
+            return true;
+        }
+
+        return $this->userRoleManager->userHasContentManagerRole($user);
     }
 }

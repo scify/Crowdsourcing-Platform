@@ -11,7 +11,7 @@ return [
 
     'login' => 'Anmelden',
     'register' => 'Registrieren',
-    'dashboard' =>  'Dashboard',
+    'dashboard' => 'Dashboard',
     'my_dashboard' => 'Mein Dashboard',
     'my_account' => 'Mein Konto',
     'my_history' => 'Meine Historie',

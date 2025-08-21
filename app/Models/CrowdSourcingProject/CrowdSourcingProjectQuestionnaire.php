@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\CrowdSourcingProject;
 
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +31,7 @@ class CrowdSourcingProjectQuestionnaire extends Model {
     ];
 
     protected $primaryKey = ['project_id', 'questionnaire_id'];
+
     public $incrementing = false;
 
     public function project(): BelongsTo {

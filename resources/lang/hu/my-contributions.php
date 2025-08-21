@@ -20,9 +20,4 @@ return [
     'actions' => 'Lehetőségek',
     'view_response' => 'Válasz megtekintése',
 
-
-
-
-
-
 ];

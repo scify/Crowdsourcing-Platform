@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\User;
 
 use App\Models\User\User;
@@ -9,10 +11,8 @@ use App\Repository\Repository;
 class UserRepository extends Repository {
     /**
      * Specify Model class name
-     *
-     * @return mixed
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return User::class;
     }
 
@@ -32,7 +32,7 @@ class UserRepository extends Repository {
         return $this->getModelInstance()->where('email', $email)->first();
     }
 
-    public function updateUser($id, $nickname, $roleselect, $email) {
+    public function updateUser($id, $nickname, array $roleselect, $email): void {
         $user = $this->getModelInstance()->find($id);
         $user->nickname = $nickname;
         $user->email = $email;
@@ -41,11 +41,12 @@ class UserRepository extends Repository {
         $this->updateUserRoles($id, $roleselect);
     }
 
-    public function updateUserRoles($userId, array $roleSelect) {
+    public function updateUserRoles($userId, array $roleSelect): void {
         $userRoles = UserRole::where('user_id', $userId)->get();
         foreach ($userRoles as $userRole) {
             $userRole->delete();
         }
+
         if ($roleSelect[0] == null) {
             UserRole::create(['user_id' => $userId, 'role_id' => 3]); // registered user
         } else {
@@ -55,8 +56,8 @@ class UserRepository extends Repository {
         }
     }
 
-    public function userIsPlatformAdmin($user) {
-        return !is_null(UserRole::where('role_id', 1)->where('user_id', $user->id)->first());
+    public function userIsPlatformAdmin($user): bool {
+        return ! is_null(UserRole::where('role_id', 1)->where('user_id', $user->id)->first());
     }
 
     public function getAllUsersWithRole($roleId) {
@@ -78,7 +79,7 @@ class UserRepository extends Repository {
         $user->delete();
     }
 
-    public function softDeleteUser(User $user) {
+    public function softDeleteUser(User $user): void {
         $user->email = $user->email . '_deleted_' . $user->id;
         $user->save();
         $user->delete();
@@ -95,7 +96,7 @@ class UserRepository extends Repository {
             $query = $query->where('email', 'like', '%' . $filters['email'] . '%');
         }
 
-        $query->whereHas('userRoles', function ($userRoleQuery) {
+        $query->whereHas('userRoles', function ($userRoleQuery): void {
             $userRoleQuery->whereIn('role_id', [1, 2, 4]); // platform admin and content manager
         });
 
@@ -106,7 +107,7 @@ class UserRepository extends Repository {
         return $query->get();
     }
 
-    public function reActivateUser($user) {
+    public function reActivateUser($user): void {
         $user->restore();
     }
 }

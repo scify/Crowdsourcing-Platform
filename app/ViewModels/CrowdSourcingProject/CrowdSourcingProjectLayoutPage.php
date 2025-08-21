@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\CrowdSourcingProject;
 
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
@@ -10,7 +12,7 @@ abstract class CrowdSourcingProjectLayoutPage {
 
     public function projectHasExternalURL(): bool {
         return isset($this->project)
-            && !empty($this->project->external_url)
+            && ! empty($this->project->external_url)
             && $this->project->external_url !== null
             && starts_with($this->project->external_url, ['http', 'https'])
             && filter_var($this->project->external_url, FILTER_VALIDATE_URL);

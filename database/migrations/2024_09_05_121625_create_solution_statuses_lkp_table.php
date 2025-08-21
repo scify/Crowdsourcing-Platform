@@ -9,7 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        if (!Schema::hasTable('solution_statuses_lkp')) {
+        if (! Schema::hasTable('solution_statuses_lkp')) {
             Schema::create('solution_statuses_lkp', function (Blueprint $table) {
                 $table->id();
                 $table->string('title', 30);

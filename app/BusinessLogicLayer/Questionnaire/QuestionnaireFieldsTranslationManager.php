@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
@@ -10,20 +12,14 @@ use App\Utils\Helpers;
 use Illuminate\Support\Collection;
 
 class QuestionnaireFieldsTranslationManager {
-    protected $questionnaireFieldsTranslationRepository;
-    protected $languageRepository;
-
-    public function __construct(QuestionnaireFieldsTranslationRepository $questionnaireFieldsTranslationRepository,
-        LanguageRepository $languageRepository) {
-        $this->questionnaireFieldsTranslationRepository = $questionnaireFieldsTranslationRepository;
-        $this->languageRepository = $languageRepository;
-    }
+    public function __construct(protected QuestionnaireFieldsTranslationRepository $questionnaireFieldsTranslationRepository, protected LanguageRepository $languageRepository) {}
 
     public function getFieldsTranslationForQuestionnaire(Questionnaire $questionnaire): QuestionnaireFieldsTranslation {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
-        if (!$language) {
+        if (! $language) {
             return $questionnaire->defaultFieldsTranslation;
         }
+
         $fieldsTranslation = $this->questionnaireFieldsTranslationRepository->where([
             'questionnaire_id' => $questionnaire->id,
             'language_id' => $language->id,
@@ -33,7 +29,7 @@ class QuestionnaireFieldsTranslationManager {
     }
 
     public function getFieldsTranslationsForQuestionnaire(Questionnaire $questionnaire): Collection {
-        if (!$questionnaire->id) {
+        if (! $questionnaire->id) {
             return new Collection;
         }
 
@@ -57,10 +53,11 @@ class QuestionnaireFieldsTranslationManager {
         foreach ($attributesArray as $attributes) {
             $attributes = json_decode(json_encode($attributes), true);
             foreach ($attributes as $key => $value) {
-                if (!$value) {
+                if (! $value) {
                     $attributes[$key] = $defaultLanguageContentForProject[$key];
                 }
             }
+
             $filtered = Helpers::getFilteredAttributes($attributes, $allowedKeys);
             $filtered['questionnaire_id'] = $questionnaire_id;
             $this->questionnaireFieldsTranslationRepository->updateOrCreate(

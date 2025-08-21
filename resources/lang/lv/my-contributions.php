@@ -20,9 +20,4 @@ return [
     'actions' => 'Darbības',
     'view_response' => 'Apskatīt atbildi',
 
-
-
-
-
-
 ];

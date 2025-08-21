@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -36,15 +38,16 @@ class QuestionnaireResponseController extends Controller {
         } else {
             $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($data);
         }
-        $response = response()->json([
+
+        $jsonResponse = response()->json([
             'anonymousUserId' => Auth::check() ? null : $questionnaireResponse->user_id,
             'responseId' => $questionnaireResponse->id,
         ]);
-        if (!Auth::check()) {
-            $response->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $questionnaireResponse->user_id));
+        if (! Auth::check()) {
+            $jsonResponse->withCookie(Cookie::forever(UserManager::$USER_COOKIE_KEY, $questionnaireResponse->user_id));
         }
 
-        return $response;
+        return $jsonResponse;
     }
 
     public function getResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter = -1): JsonResponse {
@@ -59,10 +62,10 @@ class QuestionnaireResponseController extends Controller {
     public function voteAnswer(Request $request): JsonResponse {
         return response()->json($this->questionnaireResponseManager
             ->voteAnswer(
-                $request->questionnaire_id,
+                intval($request->questionnaire_id),
                 $request->question_name,
                 $request->respondent_user_id,
-                $request->voter_user_id,
+                intval($request->voter_user_id),
                 $request->upvote)
         );
     }
@@ -81,7 +84,7 @@ class QuestionnaireResponseController extends Controller {
 
         $headers = [
             'Content-type' => 'text/csv',
-            'Content-Disposition' => "attachment; filename=$fileName",
+            'Content-Disposition' => 'attachment; filename=' . $fileName,
             'Pragma' => 'no-cache',
             'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
             'Expires' => '0',
@@ -102,6 +105,7 @@ class QuestionnaireResponseController extends Controller {
 
                 fputcsv($file, [$row['Id'], $row['Question'], $row['Answer'], $row['Number of votes'], $row['Voters']]);
             }
+
             fclose($file);
         };
 
@@ -119,28 +123,33 @@ class QuestionnaireResponseController extends Controller {
         if ($validator->fails()) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
         try {
             if (Auth::check()) {
                 $userId = Auth::id();
             } else {
                 $userId = $request->anonymous_user_id;
             }
+
             $is_moderator_view = $request->is_moderator_view ?? false;
             $response = $this->questionnaireResponseRepository->where(['id' => $request->response_id, 'user_id' => $userId]);
-            if (!$response) {
+            if (! $response) {
                 abort(ResponseAlias::HTTP_NOT_FOUND);
             }
+
             $project = $this->crowdSourcingProjectManager->getCrowdSourcingProject($response->project_id);
-            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForThankYouPage($request->questionnaire_id, $project->slug, $is_moderator_view);
+            $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForThankYouPage(intval($request->questionnaire_id), $project->slug, $is_moderator_view);
             $viewModel->response_id = $response->id;
             $questionnaireIdsUserHasAnsweredTo = $this->questionnaireResponseRepository
                 ->allWhere(['user_id' => $response->user_id])->pluck('questionnaire_id')->toArray();
-            $badge = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($userId, count($questionnaireIdsUserHasAnsweredTo)));
+            $gamificationBadgeVM = new GamificationBadgeVM($this->platformWideGamificationBadgesProvider->getContributorBadge($userId, count($questionnaireIdsUserHasAnsweredTo)));
 
-            return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel, 'badge' => $badge]);
+            return view('questionnaire.thanks_for_responding')->with(['viewModel' => $viewModel, 'badge' => $gamificationBadgeVM]);
         } catch (Exception) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
+
+        return null;
     }
 
     public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {
@@ -157,7 +166,7 @@ class QuestionnaireResponseController extends Controller {
 
         return response()->json([
             'questionnaire_response' => $this->questionnaireResponseManager->getAnonymousUserResponseForQuestionnaire(
-                $request->questionnaire_id,
+                intval($request->questionnaire_id),
                 $request->browser_fingerprint_id),
         ]);
     }

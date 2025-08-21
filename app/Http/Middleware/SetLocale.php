@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -20,12 +22,15 @@ class SetLocale {
         foreach ($acceptedLocales as $acceptedLocale) {
             if ($localeToTry === $acceptedLocale) {
                 $locale = $localeToTry;
+
                 break;
             }
         }
+
         if ($locale === null || $locale === '' || $locale === '0') {
             $locale = 'en';
         }
+
         app()->setLocale($locale);
 
         return $next($request);

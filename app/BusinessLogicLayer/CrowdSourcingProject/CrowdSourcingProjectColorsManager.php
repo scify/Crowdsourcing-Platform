@@ -1,21 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectColorsRepository;
 use Illuminate\Database\Eloquent\Collection;
 
 class CrowdSourcingProjectColorsManager {
-    protected $crowdSourcingProjectColorsRepository;
-
-    public function __construct(CrowdSourcingProjectColorsRepository $crowdSourcingProjectColorsRepository) {
-        $this->crowdSourcingProjectColorsRepository = $crowdSourcingProjectColorsRepository;
-    }
+    public function __construct(protected CrowdSourcingProjectColorsRepository $crowdSourcingProjectColorsRepository) {}
 
     public function getColorsForCrowdSourcingProjectOrDefault($project_id): Collection {
         $colors = $this->getColorsForCrowdSourcingProject($project_id);
         if ($colors->isEmpty()) {
-            $colors = $this->getDefaultColors();
+            return $this->getDefaultColors();
         }
 
         return $colors;
@@ -29,12 +27,13 @@ class CrowdSourcingProjectColorsManager {
         return $this->crowdSourcingProjectColorsRepository->allWhere(['project_id' => $project_id]);
     }
 
-    public function saveColorsForCrowdSourcingProject(array $colors, int $project_id) {
+    public function saveColorsForCrowdSourcingProject(array $colors, int $project_id): void {
         $existingColorIds = $this->getColorsForCrowdSourcingProject($project_id)->pluck(['id'])->toArray();
         foreach ($colors as $color) {
             if (isset($color['id']) && in_array($color['id'], $existingColorIds)) {
-                array_splice($existingColorIds, array_search($color['id'], $existingColorIds), 1);
+                array_splice($existingColorIds, array_search($color['id'], $existingColorIds, true), 1);
             }
+
             $this->crowdSourcingProjectColorsRepository->updateOrCreate(
                 [
                     'project_id' => $project_id,
@@ -47,8 +46,9 @@ class CrowdSourcingProjectColorsManager {
                 ]
             );
         }
-        foreach ($existingColorIds as $colorId) {
-            $this->crowdSourcingProjectColorsRepository->delete($colorId);
+
+        foreach ($existingColorIds as $existingColorId) {
+            $this->crowdSourcingProjectColorsRepository->delete($existingColorId);
         }
     }
 }

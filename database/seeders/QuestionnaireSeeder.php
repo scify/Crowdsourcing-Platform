@@ -12,8 +12,11 @@ use Illuminate\Database\Seeder;
 
 class QuestionnaireSeeder extends Seeder {
     protected QuestionnaireRepository $questionnaireRepository;
+
     protected QuestionnaireTranslationRepository $questionnaireTranslationRepository;
+
     protected QuestionnaireLanguageRepository $questionnaireLanguageRepository;
+
     protected CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository;
 
     public function __construct(QuestionnaireRepository $questionnaireRepository,

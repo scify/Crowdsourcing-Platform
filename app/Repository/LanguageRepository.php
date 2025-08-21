@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Models\Language;
@@ -7,10 +9,8 @@ use App\Models\Language;
 class LanguageRepository extends Repository {
     /**
      * Specify Model class name
-     *
-     * @return string
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return Language::class;
     }
 

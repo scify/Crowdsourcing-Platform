@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
@@ -20,35 +22,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionnaireVMProvider {
-    protected QuestionnaireRepository $questionnaireRepository;
-    protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager;
-    protected LanguageManager $languageManager;
-    protected QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository;
-    protected QuestionnaireTranslationRepository $questionnaireTranslationRepository;
-    protected QuestionnaireManager $questionnaireManager;
-    protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager;
-    protected CrowdSourcingProjectManager $crowdSourcingProjectManager;
-    private CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager;
-
-    public function __construct(QuestionnaireRepository $questionnaireRepository,
-        QuestionnaireManager $questionnaireManager,
-        CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
-        LanguageManager $languageManager,
-        QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository,
-        QuestionnaireTranslationRepository $questionnaireTranslationRepository,
-        QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager,
-        CrowdSourcingProjectManager $crowdSourcingProjectManager,
-        CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {
-        $this->questionnaireRepository = $questionnaireRepository;
-        $this->crowdSourcingProjectAccessManager = $crowdSourcingProjectAccessManager;
-        $this->languageManager = $languageManager;
-        $this->questionnaireStatisticsPageVisibilityLkpRepository = $questionnaireStatisticsPageVisibilityLkpRepository;
-        $this->questionnaireTranslationRepository = $questionnaireTranslationRepository;
-        $this->questionnaireManager = $questionnaireManager;
-        $this->questionnaireFieldsTranslationManager = $questionnaireFieldsTranslationManager;
-        $this->crowdSourcingProjectManager = $crowdSourcingProjectManager;
-        $this->crowdSourcingProjectTranslationManager = $crowdSourcingProjectTranslationManager;
-    }
+    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected QuestionnaireManager $questionnaireManager, protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager, protected LanguageManager $languageManager, protected QuestionnaireStatisticsPageVisibilityLkpRepository $questionnaireStatisticsPageVisibilityLkpRepository, protected QuestionnaireTranslationRepository $questionnaireTranslationRepository, protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager, protected CrowdSourcingProjectManager $crowdSourcingProjectManager, private readonly CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager) {}
 
     public function getCreateEditQuestionnaireViewModel($id = null): CreateEditQuestionnaire {
         if ($id) {
@@ -63,6 +37,7 @@ class QuestionnaireVMProvider {
             $questionnaire->show_file_type_questions_to_statistics_page_audience = 0;
             $title = 'Create Questionnaire';
         }
+
         $projects = $this->crowdSourcingProjectAccessManager->getProjectsUserHasAccessToEdit(Auth::user());
         $languages = $this->languageManager->getAllLanguages();
         $questionnaireStatisticsPageVisibilityLkp = $this->questionnaireStatisticsPageVisibilityLkpRepository->all();
@@ -84,6 +59,7 @@ class QuestionnaireVMProvider {
         if (empty($project_ids)) {
             return new ManageQuestionnaires([], $availableStatuses);
         }
+
         $questionnaires = $this->questionnaireRepository->getAllQuestionnairesWithRelatedInfo($project_ids);
         foreach ($questionnaires as $questionnaire) {
             $projectInfoArray = json_decode('[' . $questionnaire->project_info . ']', true);
@@ -109,7 +85,7 @@ class QuestionnaireVMProvider {
                 foreach ($project_slugs as $index => $projectSlug) {
                     $questionnaire->urls[] = [
                         'project_name' => $project_names[$index],
-                        'url' => $this->getQuestionnaireURL(trim($projectSlug), $questionnaire->id, $project_default_locales[$index]),
+                        'url' => $this->getQuestionnaireURL(trim((string) $projectSlug), $questionnaire->id, $project_default_locales[$index]),
                     ];
                 }
             }
@@ -136,7 +112,7 @@ class QuestionnaireVMProvider {
     }
 
     protected function getQuestionnaireModeratorAddResponseURL(string $project_slug, int $questionnaire_id, string $project_default_locale): string {
-        return url("/{$project_default_locale}/backoffice/{$project_slug}/questionnaire/{$questionnaire_id}/moderator-add-answer");
+        return url(sprintf('/%s/backoffice/%s/questionnaire/%d/moderator-add-answer', $project_default_locale, $project_slug, $questionnaire_id));
     }
 
     public function getViewModelForQuestionnairePage(CrowdSourcingProject $project, Questionnaire $questionnaire): QuestionnairePage {

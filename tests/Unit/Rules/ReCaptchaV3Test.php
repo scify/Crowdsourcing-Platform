@@ -11,6 +11,7 @@ use Tests\TestCase;
 class ReCaptchaV3Test extends TestCase {
     /**
      * Test that reCAPTCHA verifies successfully with a valid response.
+     *
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
     #[Test]
@@ -35,6 +36,7 @@ class ReCaptchaV3Test extends TestCase {
 
     /**
      * Test that reCAPTCHA fails with an invalid response.
+     *
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
     #[Test]
@@ -55,6 +57,7 @@ class ReCaptchaV3Test extends TestCase {
 
     /**
      * Test that reCAPTCHA fails with a low score.
+     *
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
     #[Test]
@@ -77,6 +80,7 @@ class ReCaptchaV3Test extends TestCase {
 
     /**
      * Test that reCAPTCHA fails with a wrong action.
+     *
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
     #[Test]
@@ -99,6 +103,7 @@ class ReCaptchaV3Test extends TestCase {
 
     /**
      * Test that reCAPTCHA fails with a connection exception.
+     *
      * @throws ConnectionException when the connection to the reCAPTCHA service fails.
      */
     #[Test]

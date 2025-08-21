@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -55,25 +57,26 @@ class GenerateSitemap extends Command {
             })
             ->getSitemap();
 
-        $projects = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
+        $crowdSourcingProjectsForHomePage = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsForHomePage();
 
-        foreach ($projects as $project) {
-            $link = Url::create('/en/' . $project->slug);
+        foreach ($crowdSourcingProjectsForHomePage as $crowdSourcingProjectForHomePage) {
+            $link = Url::create('/en/' . $crowdSourcingProjectForHomePage->slug);
             foreach ($alternateLanguages as $alternateLanguage) {
-                $link->addAlternate('/' . $alternateLanguage . '/' . $project->slug, $alternateLanguage);
+                $link->addAlternate('/' . $alternateLanguage . '/' . $crowdSourcingProjectForHomePage->slug, $alternateLanguage);
             }
+
             $sitemapGenerator->add($link);
         }
 
         foreach ($translatablePublicPages as $translatablePublicPage) {
             $link = Url::create($translatablePublicPage . 'en');
             $languagesToCrawl = $translatablePublicPagesAvailability[$translatablePublicPage] ?? $alternateLanguages;
-            foreach ($languagesToCrawl as $alternateLanguage) {
-                $link->addAlternate($alternateLanguage . $translatablePublicPage, $alternateLanguage);
+            foreach ($languagesToCrawl as $languageToCrawl) {
+                $link->addAlternate($languageToCrawl . $translatablePublicPage, $languageToCrawl);
             }
+
             $sitemapGenerator->add($link);
         }
-
 
         $sitemapGenerator->writeToFile(public_path('sitemap.xml'));
 

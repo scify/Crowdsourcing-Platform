@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\CrowdSourcingProject;
 
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +18,7 @@ class CrowdSourcingProjectStatusHistory extends Model {
     use SoftDeletes;
 
     protected $table = 'crowd_sourcing_project_status_history';
+
     protected $fillable = [
         'project_id', 'status_id',
     ];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Solution;
 
 use App\Models\Solution\SolutionStatusLkp;
@@ -9,7 +11,7 @@ class SolutionStatusLkpRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return SolutionStatusLkp::class;
     }
 }

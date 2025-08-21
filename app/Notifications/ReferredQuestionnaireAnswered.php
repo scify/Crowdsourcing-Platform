@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\BusinessLogicLayer\Gamification\GamificationBadge;
@@ -36,6 +38,7 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {

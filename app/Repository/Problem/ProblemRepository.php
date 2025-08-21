@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository\Problem;
 
 use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
@@ -12,7 +14,7 @@ class ProblemRepository extends Repository {
     /**
      * {@inheritDoc}
      */
-    public function getModelClassName() {
+    public function getModelClassName(): string {
         return Problem::class;
     }
 
@@ -21,12 +23,10 @@ class ProblemRepository extends Repository {
     }
 
     public function projectHasPublishedProblems(int $project_id): bool {
-        $hasPublishedProblemsWithTranslations = Problem::where('project_id', $project_id)
+        return Problem::where('project_id', $project_id)
             ->where('status_id', ProblemStatusLkp::PUBLISHED)
             ->whereHas('translations')
             ->exists();
-
-        return $hasPublishedProblemsWithTranslations;
     }
 
     public function getProblemsForCrowdSourcingProjectForManagement(int $projectId): Collection {
@@ -39,7 +39,7 @@ class ProblemRepository extends Repository {
             ->where('status_id', ProblemStatusLkp::PUBLISHED)
             ->with(['defaultTranslation', 'translations', 'translations.language', 'bookmarks'])
             ->get()
-            ->each(function ($problem) use ($langId) {
+            ->each(function ($problem) use ($langId): void {
                 $problem->currentTranslation = $problem->translations->firstWhere('language_id', $langId)
                     ?? $problem->defaultTranslation;
             });

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels\Gamification;
 
 use Illuminate\Support\Collection;
@@ -15,7 +17,7 @@ class GamificationBadgesWithLevels {
         $i = 0;
         foreach ($this->badgesWithLevelsList as $item) {
             if ($item->level) {
-                $i++;
+                ++$i;
             }
         }
 
@@ -42,6 +44,6 @@ class GamificationBadgesWithLevels {
 
         $percentage = ($this->getTotalPoints() / $this->getMaxTotalPoints()) * 100;
 
-        return $percentage > 100 ? 100 : ($percentage == 0 ? 1 : $percentage);
+        return intval($percentage > 100 ? 100 : ($percentage == 0 ? 1 : $percentage));
     }
 }

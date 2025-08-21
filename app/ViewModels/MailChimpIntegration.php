@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ViewModels;
 
 class MailChimpIntegration {
     public $newsletterList;
+
     public $registeredUsersList;
 
     public function __construct($mailChimpLists) {

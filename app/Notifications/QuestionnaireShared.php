@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\BusinessLogicLayer\Gamification\GamificationBadge;
@@ -12,11 +14,13 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
     use Queueable;
 
     protected $title;
+
     protected $badge;
+
     protected $badgeVM;
 
     /**
-     * @param  string  $locale We add the locale here because this notification may be trigger by an api.web action.
+     * @param  string  $locale  We add the locale here because this notification may be trigger by an api.web action.
      */
     public function __construct(QuestionnaireFieldsTranslation $questionnaireFieldsTranslation,
         GamificationBadge $badge,
@@ -41,6 +45,7 @@ class QuestionnaireShared extends BadgeActionOccured implements ShouldQueue {
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {

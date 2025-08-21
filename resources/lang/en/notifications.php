@@ -44,9 +44,9 @@ return [
     'see_the_solution' => 'See the solution',
     'anonymous' => 'Anonymous',
     'email_outro_text' => 'The Crowdsourcing Team',
-    'project_phase_changed_subject'     => 'IDEU moves to the next round - participate now!',
-    'project_phase_changed_greeting'    => 'Dear participant,',
-    'project_phase_changed_body'        => '<p>Some time ago, you participated in our survey on inclusive digitalization in the EU as part of the IDEU project. Thank you for that! Now the project is moving to the next round. We need you for this too!</p>
+    'project_phase_changed_subject' => 'IDEU moves to the next round - participate now!',
+    'project_phase_changed_greeting' => 'Dear participant,',
+    'project_phase_changed_body' => '<p>Some time ago, you participated in our survey on inclusive digitalization in the EU as part of the IDEU project. Thank you for that! Now the project is moving to the next round. We need you for this too!</p>
 
 <p>While the first round was about identifying problems in the context of digitalization, it is now about working together with you to find solutions to these problems.</p>
 
