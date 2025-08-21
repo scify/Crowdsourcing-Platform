@@ -264,6 +264,7 @@ export default {
 					pageLength: 5,
 					autoWidth: false,
 					data: [],
+					order: [[3, "desc"]], // Order by upvotes column (index 3) in descending order
 					columns: [
 						{ title: "#", data: null, width: "5%" },
 						{
