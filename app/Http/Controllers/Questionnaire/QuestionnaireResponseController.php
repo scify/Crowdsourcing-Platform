@@ -126,9 +126,9 @@ class QuestionnaireResponseController extends Controller {
 
         try {
             if (Auth::check()) {
-                $userId = Auth::id();
+                $userId = intval(Auth::id());
             } else {
-                $userId = $request->anonymous_user_id;
+                $userId = intval($request->anonymous_user_id);
             }
 
             $is_moderator_view = $request->is_moderator_view ?? false;
