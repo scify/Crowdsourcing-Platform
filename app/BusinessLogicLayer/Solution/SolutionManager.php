@@ -254,7 +254,7 @@ class SolutionManager {
             FileHandler::deleteUploadedFile($solution->img_url, 'solution_img');
         }
 
-        return $this->solutionRepository->delete($id);
+        return $this->solutionRepository->delete($id) > 0;
     }
 
     public function getProposeSolutionPageViewModel(string $locale, string $project_slug, string $problem_slug): ProposeSolutionPage {
