@@ -32,7 +32,7 @@ class SolutionController extends Controller {
             'problem_id' => 'required|different:execute_solution|exists:problems,id',
         ]);
         try {
-            $viewModel = $this->solutionManager->getCreateEditSolutionViewModel($request->problem_id);
+            $viewModel = $this->solutionManager->getCreateEditSolutionViewModel(intval($request->problem_id));
 
             return view('backoffice.management.solution.create-edit.form-page', ['viewModel' => $viewModel]);
         } catch (\Exception $exception) {
