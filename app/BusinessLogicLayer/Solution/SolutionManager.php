@@ -83,7 +83,7 @@ class SolutionManager {
      * @throws Exception
      */
     public function storeSolution(array $attributes): Solution {
-        return $this->storeSolutionWithStatus($attributes, $attributes['solution-status']);
+        return $this->storeSolutionWithStatus($attributes, intval($attributes['solution-status']));
     }
 
     /**
@@ -124,7 +124,7 @@ class SolutionManager {
             $imgPath = null;
         }
 
-        $solution_owner_problem_id = $attributes['solution-owner-problem'];
+        $solution_owner_problem_id = intval($attributes['solution-owner-problem']);
 
         $default_language_id = $this->problemRepository->find($solution_owner_problem_id)->default_language_id;
         try {
@@ -166,13 +166,13 @@ class SolutionManager {
             $imgPath = null;
         }
 
-        $modelAttributes['problem_id'] = $attributes['solution-owner-problem'];
+        $modelAttributes['problem_id'] = intval($attributes['solution-owner-problem']);
         $modelAttributes['slug'] = $attributes['solution-slug'];
-        $modelAttributes['status_id'] = $attributes['solution-status'];
+        $modelAttributes['status_id'] = intval($attributes['solution-status']);
         $modelAttributes['img_url'] = $imgPath;
         $this->solutionRepository->update($modelAttributes, $id);
 
-        $default_language_id = $this->problemRepository->find($modelAttributes['problem_id'])->default_language_id;
+        $default_language_id = $this->problemRepository->find(intval($modelAttributes['problem_id']))->default_language_id;
 
         $defaultTranslation = [
             'language_id' => $default_language_id,

@@ -27,4 +27,3 @@ public/*.html
 
 bootstrap/cache/*
 public/fonts/vendor
-push-all.sh
