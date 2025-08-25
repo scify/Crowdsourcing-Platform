@@ -83,7 +83,7 @@ class SolutionManager {
      * @throws Exception
      */
     public function storeSolution(array $attributes): Solution {
-        return $this->storeSolutionWithStatus($attributes, $attributes['solution-status']);
+        return $this->storeSolutionWithStatus($attributes, intval($attributes['solution-status']));
     }
 
     /**
