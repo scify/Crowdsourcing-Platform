@@ -34,7 +34,7 @@ return [
     'ok' => 'OK',
     'email_outro_text' => 'El equipo de Crowdsourcing',
     'project_phase_changed_subject' => '¡Participa en la segunda fase de IDEU!',
-    'project_phase_changed_greeting' => 'Dear',
+    'project_phase_changed_greeting' => '¡Hola',
     'project_phase_changed_body' => '<p style="text-align: center;">Queremos compartir contigo una novedad importante sobre nuestro proyecto IDEU.</p>
 
 <p style="text-align: center;"><b>Ya está abierta la segunda fase de nuestra campaña de crowdsourcing para una digitalización más inclusiva en la Unión Europea.</b></p>
@@ -48,6 +48,6 @@ return [
 <p>Ahora nos ponemos en contacto contigo porque ha llegado el momento de que conozcamos cómo crees que podríamos abordar los problemas que más se destacaron. En esta segunda fase de nuestra campaña queremos que votes las soluciones que más resuenen contigo o que propongas tus propias soluciones.</p>
 
 <p style="text-align: center;"><b>No queremos que nadie se quede atrás en la transición digital. Haz click <a href="https://crowdsourcing.ecas.org/es/inclusive-digitalisation-in-the-eu-es" target="_blank">AQUÍ</a> y contribuye con tus ideas a un nivel internacional.</b></p>',
-    'project_phase_changed_salutation' => '<p>Regards, <strong>Ciber Voluntarios</strong></p>',
+    'project_phase_changed_salutation' => '<p>Un saludo, <strong>Fundación Cibervoluntarios</strong></p>',
 
 ];
