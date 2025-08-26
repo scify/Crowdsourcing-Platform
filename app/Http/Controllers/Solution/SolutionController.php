@@ -279,17 +279,23 @@ class SolutionController extends Controller {
             fputcsv($file, $columns);
 
             foreach ($solutions as $solution) {
-                // Get voter emails separated by comma, each wrapped in <>
+                // Get voter emails as "Nickname <email>", separated by comma
                 $voterEmails = $solution->upvotes
-                    ->pluck('user.email')
+                    ->map(function ($upvote) {
+                        $user = $upvote->user;
+                        if ($user) {
+                            return ($user->nickname ?? $user->name ?? 'Anonymous') . ' <' . $user->email . '>';
+                        }
+
+                        return 'N/A';
+                    })
                     ->filter()
-                    ->map(fn ($email) => "<$email>")
                     ->implode(', ');
 
                 fputcsv($file, [
                     $solution->id,
                     $solution->defaultTranslation?->title,
-                    $solution->creator ? $solution->creator?->name . ' <' . $solution->creator?->email . '>' : 'Anonymous',
+                    $solution->creator ? $solution->creator?->nickname . ' <' . $solution->creator?->email . '>' : 'Anonymous',
                     $solution->status->title,
                     $solution->problem->defaultTranslation?->title,
                     $solution->upvotes->count(),
