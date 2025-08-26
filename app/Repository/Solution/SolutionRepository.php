@@ -68,6 +68,6 @@ class SolutionRepository extends Repository {
     public function getSolutionsByProjectId(int $project_id): Collection {
         return Solution::whereHas('problem', function ($query) use ($project_id): void {
             $query->where('project_id', $project_id);
-        })->with(['problem.defaultTranslation', 'upvotes.user'])->get();
+        })->with(['problem.defaultTranslation', 'upvotes.user', 'creator'])->get();
     }
 }
