@@ -123,7 +123,7 @@ class ProblemManager {
             FileHandler::deleteUploadedFile($problem->img_url, 'problem_img');
         }
 
-        return $this->problemRepository->delete($id);
+        return $this->problemRepository->delete($id) > 0;
     }
 
     public function getProblemStatusesForManagementPage(): Collection {
