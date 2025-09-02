@@ -67,7 +67,7 @@ class ProblemController extends Controller {
     public function store(Request $request): RedirectResponse {
         $this->validate($request, [
             'problem-title' => ['required', 'string', 'max:100'],
-            'problem-description' => ['required', 'string', 'max:400'],
+            'problem-description' => ['required', 'string', 'max:600'],
             'problem-status' => ['required'],
             'problem-default-language' => ['required'],
             'problem-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
@@ -106,7 +106,7 @@ class ProblemController extends Controller {
     public function update(Request $request, string $locale, int $id) {
         $this->validate($request, [
             'problem-title' => ['required', 'string', 'max:100'],
-            'problem-description' => ['required', 'string', 'max:400'],
+            'problem-description' => ['required', 'string', 'max:600'],
             'problem-status' => ['required'],
             'problem-default-language' => ['required'],
             'problem-slug' => 'required|string|alpha_dash|unique:problems,slug,' . $id . '|max:111',
