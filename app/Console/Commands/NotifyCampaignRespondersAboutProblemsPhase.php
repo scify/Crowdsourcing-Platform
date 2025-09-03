@@ -87,7 +87,7 @@ class NotifyCampaignRespondersAboutProblemsPhase extends Command {
 
             ++$notifications_sent;
             // Send notification
-            $user->notify(new NotifyProjectPhaseChanged($projectName, $lang));
+            // $user->notify(new NotifyProjectPhaseChanged($projectName, $lang));
             $this->info(sprintf('Notification sent to: %s in language: %s.', $email, $lang));
         }
 
