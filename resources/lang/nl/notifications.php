@@ -33,5 +33,35 @@ return [
     'agree_privacy_policy' => 'Ik stem in met het <a href="https://crowdsourcing.ecas.org/en/terms-and-privacy" target="_blank"> privacy beleid.',
     'ok' => 'OK',
     'email_outro_text' => 'Het Crowdsourcing Team',
+    'project_phase_changed_subject' => 'Digitalisering in de Europese Unie - geef nogmaals uw mening!',
+    'project_phase_changed_greeting' => 'Beste deelnemer,',
+    'project_phase_changed_body' => '<p>Enige tijd geleden heeft u deelgenomen aan onze enquête over digitalisering in de
+Europese Unie in het kader van het IDEU-project. Hartelijk dank voor uw bijdrage! Het
+project gaat nu de volgende fase in en daarom vragen we u nogmaals om uw hulp.</p>
 
+<p><i>De volgende fase</i></p>
+
+<p>Zoals u zich wellicht herinnert, was de eerste fase gericht op het identificeren van
+problemen met betrekking tot digitalisering. In de huidige fase focussen we ons op het
+vinden van oplossingen voor deze problemen. We zouden u daarom nogmaals willen
+vragen om ons te helpen door in te loggen op het platform en te stemmen op een aantal
+oplossingen. Als u aanvullende of betere ideeën heeft, kunt u zelfs uw eigen ideeën
+inbrengen!</p>
+
+<p>Het kost niet meer dan 5 minuten en levert een grote bijdrage aan het creëren van
+inclusief en toekomstbestendig digitaal beleid.</p>
+
+<p>Klik hier om naar het platform te gaan: <a href="https://crowdsourcing.ecas.org/nl/inclusive-digitalisation-in-the-european-union-indeu">https://crowdsourcing.ecas.org/nl/inclusive-digitalisation-in-the-european-union-indeu</a></p>
+
+<p><i>Over IDEU</i></p>
+
+<p>Na de huidige fase zullen we concrete beleidsaanbevelingen voor de Europese Unie
+formuleren op basis van de problemen en oplossingen die Europese burgers –
+waaronder u! – ons via het platform hebben aangereikt. Tegen die tijd zullen we
+opnieuw contact met u opnemen.</p>
+
+<p>Mocht u in de tussentijd vragen of opmerkingen hebben, neem dan gerust contact met
+ons op. Daarnaast zouden we het zeer op prijs stellen als u dit bericht zou willen delen
+met andere personen binnen uw netwerk.</p>',
+    'project_phase_changed_salutation' => '<p>Met vriendelijke groet,</p>',
 ];
