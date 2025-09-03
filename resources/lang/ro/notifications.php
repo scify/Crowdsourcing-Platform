@@ -43,4 +43,21 @@ return [
     'solution_published_message' => 'Soluția ta a fost publicată și este acum disponibilă pentru a fi votată de alți utilizatori!',
     'see_the_solution' => 'Vezi soluția',
     'email_outro_text' => 'Echipa de Crowdsourcing',
+    'project_phase_changed_subject' => 'România Digitală: continuăm dezbaterea',
+    'project_phase_changed_greeting' => 'Dragi prieteni,',
+    'project_phase_changed_body' => '<p><b>Vă mulțumim pentru ajutorul oferit în completarea chestionarului CRPE privind România
+digitală.</b> Continuăm să strângem idei, opinii și bune practici despre cum putem contribui la
+îmbunătățirea competențelor digitale în România și, mai ales, la dezvoltarea și promovarea unor
+politici publice și instrumente mai incluzive, adaptate nevoilor fiecăruia dintre noi.</p>
+
+<p><b>Peste 320 dintre voi ați fost parte din prima etapă a proiectului nostru.</b> Sperăm să rămâneți cu noi
+și în etapele următoare pe care abia le-am lansat în care evaluăm și dezbatem problemele și soluțiile
+pe care voi și noi le vedem ca fiind critice pentru creșterea competențelor digitale și îmbunătățirea
+serviciilor publice.</p>
+
+<p><b>Vă invităm să participați în continuare:</b> comentați, adăugați noi soluții sau ridicați provocări pe
+care nu le-am identificat încă.</p>
+
+<p>Dezbaterea continuă pe <a href="https://crowdsourcing.ecas.org/ro/inclusive-digitalisation-in-the-eu-ro">https://crowdsourcing.ecas.org/ro/inclusive-digitalisation-in-the-eu-ro</a></p>',
+    'project_phase_changed_salutation' => '<p>Vă mulțumim, <br>Echipa CRPE</p>',
 ];

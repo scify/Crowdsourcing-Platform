@@ -69,7 +69,7 @@ class RunAdminTasks extends Command {
             $questionnaireId = $this->ask('Enter the questionnaire ID (0 for NotifyProjectPhaseChanged notification):');
 
             if ((int) $questionnaireId === 0) {
-                $user->notify(new NotifyProjectPhaseChanged('Test Project', 'es'));
+                $user->notify(new NotifyProjectPhaseChanged('Test Project', 'ro'));
                 $this->info('The NotifyProjectPhaseChanged notification has been sent to ' . $email);
             } else {
                 $questionnaire = Questionnaire::find($questionnaireId);

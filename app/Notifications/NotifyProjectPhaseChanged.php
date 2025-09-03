@@ -40,7 +40,7 @@ class NotifyProjectPhaseChanged extends Notification implements ShouldQueue {
     public function toMail($notifiable) {
         return (new MailMessage)
             ->subject(__('notifications.project_phase_changed_subject', ['project' => $this->projectName], $this->locale))
-            ->greeting(__('notifications.project_phase_changed_greeting', [], $this->locale) . ' ' . ($notifiable->nickname ?? $notifiable->name ?? '') . '!')
+            ->greeting(__('notifications.project_phase_changed_greeting', [], $this->locale))
             ->line(__('notifications.project_phase_changed_body', ['project' => $this->projectName], $this->locale))
             ->line('<br/>')
             ->salutation(__('notifications.project_phase_changed_salutation', [], $this->locale));
