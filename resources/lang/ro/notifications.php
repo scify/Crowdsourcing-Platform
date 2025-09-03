@@ -58,6 +58,6 @@ serviciilor publice.</p>
 <p><b>Vă invităm să participați în continuare:</b> comentați, adăugați noi soluții sau ridicați provocări pe
 care nu le-am identificat încă.</p>
 
-<p>Dezbaterea continuă pe <a href="https://crowdsourcing.ecas.org/ro/inclusive-digitalisation-in-the-eu-ro">https://crowdsourcing.ecas.org/ro/inclusive-digitalisation-in-the-eu-ro</a></p>',
+<p>Dezbaterea continuă pe <a href="https://crowdsourcing.ecas.org/ro/inclusive-digitalization-in-the-eu-ro">https://crowdsourcing.ecas.org/ro/inclusive-digitalization-in-the-eu-ro</a></p>',
     'project_phase_changed_salutation' => '<p>Vă mulțumim, <br>Echipa CRPE</p>',
 ];
