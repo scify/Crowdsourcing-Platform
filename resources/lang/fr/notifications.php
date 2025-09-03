@@ -33,7 +33,7 @@ return [
     'agree_privacy_policy' => 'J\'accepte la politique de <a href="https://crowdsourcing.ecas.org/fr/terms-and-privacy" target="_blank"> confidentialité.',
     'ok' => 'OK',
     'email_outro_text' => 'L\'équipe de Crowdsourcing',
-    'project_phase_changed_subject' => 'La numérisation dans l&#39;Union européenne - donnez-nous à nouveau votre avis !',
+    'project_phase_changed_subject' => 'La numérisation dans l\'Union européenne - donnez-nous à nouveau votre avis !',
     'project_phase_changed_greeting' => 'Cher participant, chère participante,',
     'project_phase_changed_body' => '<p>Il y a quelque temps, vous avez participé à notre enquête sur la numérisation dans
 l&#39;Union européenne dans le cadre du projet IDEU. Merci beaucoup pour votre
@@ -55,12 +55,12 @@ d\'une politique numérique inclusive et durable.</p>
 
 <p><i>À propos de l\'IDEU</i></p>
 
-<p>À l&#39;issue de la phase actuelle, nous synthétiserons les contributions que vous nous avez
+<p>À l\'issue de la phase actuelle, nous synthétiserons les contributions que vous nous avez
 soumises via la plateforme. Sur la base des problèmes et des solutions identifiées par les
 citoyens, nous formulerons des recommandations politiques concrètes pour l\'Union
 européenne. Nous vous recontacterons à ce moment-là.</p>
 
-<p>Si vous avez des questions ou des commentaires entre-temps, n&#39;hésitez pas à nous
+<p>Si vous avez des questions ou des commentaires entre-temps, n\'hésitez pas à nous
 contacter.</p>',
     'project_phase_changed_salutation' => '<p>Bien cordialement,</p>',
 ];
