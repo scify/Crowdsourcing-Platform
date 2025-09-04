@@ -12,7 +12,7 @@
 								<div class="row px-0 mb-3">
 									<div class="col-12">
 										<label for="projectSelect" class="form-label mb-0"
-											>Select a project to view the solutions</label
+											>Select a campaign to view the solutions</label
 										>
 										<div
 											:class="{
@@ -26,7 +26,7 @@
 											:class="['form-select form-control mt-3', projectsFetched ? '' : 'hidden']"
 											@change="getProblemsAndSolutionsForProject"
 										>
-											<option value="" disabled selected>Select a project</option>
+											<option value="" disabled selected>Select a campaign</option>
 											<option v-for="project in projects" :key="project.id" :value="project.id">
 												{{ project.default_translation.name }}
 											</option>
@@ -51,7 +51,7 @@
 											@change="getFilteredSolutions"
 										>
 											<option value="" disabled selected>Select a problem</option>
-											<option value="all">View all project's solutions</option>
+											<option value="all">View all solutions</option>
 											<option v-for="problem in problems" :key="problem.id" :value="problem.id">
 												{{ problem.default_translation.title }}
 											</option>
@@ -390,8 +390,13 @@ export default {
 				this.solutions = [];
 				const data = {
 					filters: {
-						projectFilters: this.projects.map((x) => x.id),
-						problemFilters: this.problems.map((x) => x.id),
+						projectFilters: this.selectedProjectId
+							? [this.selectedProjectId]
+							: this.projects.map((x) => x.id),
+						problemFilters:
+							this.selectedProblemId && this.selectedProblemId !== "all"
+								? [this.selectedProblemId]
+								: this.problems.map((x) => x.id),
 					},
 				};
 				this.post({
