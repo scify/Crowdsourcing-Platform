@@ -22,8 +22,13 @@ class SolutionRepository extends Repository {
         $relationships = ['defaultTranslation', 'translations', 'translations.language', 'creator', 'status', 'upvotes'];
 
         foreach ($problemIds as $problem_id) {
-            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with($relationships)
-                ->withCount('upvotes as upvotes_count')->get());
+            $finalSolutionsCollection = $finalSolutionsCollection->merge(
+                Solution::where('problem_id', $problem_id)
+                    ->with($relationships)
+                    ->withCount('upvotes as upvotes_count')
+                    ->orderByDesc('upvotes_count')
+                    ->get()
+            );
         }
 
         return $finalSolutionsCollection;
@@ -33,8 +38,13 @@ class SolutionRepository extends Repository {
         $finalSolutionsCollection = new Collection;
         $relationships = ['defaultTranslation', 'translations', 'translations.language', 'creator', 'status', 'upvotes'];
         foreach ($idsArray as $problem_id) {
-            $finalSolutionsCollection = $finalSolutionsCollection->merge(Solution::where('problem_id', $problem_id)->with($relationships)
-                ->withCount('upvotes as upvotes_count')->get());
+            $finalSolutionsCollection = $finalSolutionsCollection->merge(
+                Solution::where('problem_id', $problem_id)
+                    ->with($relationships)
+                    ->withCount('upvotes as upvotes_count')
+                    ->orderByDesc('upvotes_count')
+                    ->get()
+            );
         }
 
         return $finalSolutionsCollection;
