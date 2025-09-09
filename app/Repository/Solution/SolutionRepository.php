@@ -26,12 +26,11 @@ class SolutionRepository extends Repository {
                 Solution::where('problem_id', $problem_id)
                     ->with($relationships)
                     ->withCount('upvotes as upvotes_count')
-                    ->orderByDesc('upvotes_count')
                     ->get()
             );
         }
 
-        return $finalSolutionsCollection;
+        return $finalSolutionsCollection->sortByDesc('upvotes_count')->values();
     }
 
     public function getSolutionsForManagementFilteredByProblemIds($idsArray): Collection {
@@ -42,12 +41,11 @@ class SolutionRepository extends Repository {
                 Solution::where('problem_id', $problem_id)
                     ->with($relationships)
                     ->withCount('upvotes as upvotes_count')
-                    ->orderByDesc('upvotes_count')
                     ->get()
             );
         }
 
-        return $finalSolutionsCollection;
+        return $finalSolutionsCollection->sortByDesc('upvotes_count')->values();
     }
 
     public function getSolutions(int $problem_id, int $lang_id, ?int $current_user_id): Collection {
