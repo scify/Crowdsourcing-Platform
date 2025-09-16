@@ -113,6 +113,9 @@
                                             </thead>
                                             <tbody>
                                             @foreach($solutions as $solution)
+                                                @if (!$solution->problem || !$solution->problem->defaultTranslation)
+                                                    @continue
+                                                @endif
                                                 <tr>
                                                     <td>
                                                         <a href="{{ route('problem.show', ['locale' => app()->getLocale(), 'project_slug' => $solution->problem->project->slug, 'problem_slug' => $solution->problem->slug]) }}">
