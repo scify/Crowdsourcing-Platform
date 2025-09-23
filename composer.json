@@ -80,7 +80,15 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
-    ]
+    ],
+    "lint": [
+			"npm run lint",
+      "vendor/bin/pint --parallel --test"
+		],
+		"format": [
+			"npm run format",
+			"vendor/bin/pint --parallel"
+		]
   },
   "config": {
     "preferred-install": "dist",

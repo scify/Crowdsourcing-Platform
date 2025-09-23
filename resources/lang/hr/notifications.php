@@ -43,4 +43,25 @@ return [
     'solution_published_message' => 'Vaše rješenje je objavljeno i sada je dostupno za glasovanje drugih korisnika!',
     'see_the_solution' => 'Pogledajte rješenje',
     'email_outro_text' => 'Tim Crowdsourcinga',
+    'project_phase_changed_subject' => 'Sudjelujte u trećoj fazi kampanje "Uključiva digitalizacija u EU-u"!',
+    'project_phase_changed_greeting' => 'Poštovani/a,',
+    'project_phase_changed_body' => '<p>zahvaljujemo još jednom na vašem aktivnom sudjelovanju u prvoj fazi naše
+crowdsourcing kampanje “Uključiva digitalizacija u EU”. Analizom vaših odgovora
+definirali smo <b>listu od 10 ključnih problema</b>, koji su dostupni na sljedećoj poveznici:
+<a target="_blank" href="https://crowdsourcing.ecas.org/hr/inclusive-digitalisation-in-the-eu-hr/problems">https://crowdsourcing.ecas.org/hr/inclusive-digitalisation-in-the-eu-hr/problems</a></p>
+
+<p>Sada prelazimo u treću fazu procesa - predlaganje rješenja i glasanje!</p>
+
+<p>Pozivamo vas da odaberete <a target="_blank" href="https://crowdsourcing.ecas.org/hr/inclusive-digitalisation-in-the-eu-hr/problems">najvažnije probleme s pripremljenog popisa</a>, glasate za
+već ponuđena rješenja te predložite vlastito. Glas se daje klikom na ikonu srca uz
+rješenje, a za svako rješenje možete glasati samo jednom. Na raspolaganju imate
+najviše 10 glasova.</p>
+
+<p>Cilj ovog crowdsourcing procesa je uključiti građane kako bismo bolje razumjeli
+izazove digitalnog društva i zajedno pronašli rješenja za unaprjeđenje osnovnih
+digitalnih vještina, povećanje broja IKT stručnjaka te ravnopravnije sudjelovanje žena
+u tom sektoru.</p>
+
+<p>Vaše sudjelovanje je važno za oblikovanje digitalne budućnosti Hrvatske i Europe.</p>',
+    'project_phase_changed_salutation' => '<p>Srdačan pozdrav iz ODRAZ-a!</p>',
 ];
