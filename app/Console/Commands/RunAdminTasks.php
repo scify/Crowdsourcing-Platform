@@ -69,7 +69,7 @@ class RunAdminTasks extends Command {
             $questionnaireId = $this->ask('Enter the questionnaire ID (0 for NotifyProjectPhaseChanged notification):');
 
             if ((int) $questionnaireId === 0) {
-                $languages = ['en', 'fr', 'nl'];
+                $languages = ['hr'];
                 foreach ($languages as $language) {
                     $user->notify(new NotifyProjectPhaseChanged('Test Project', $language));
                 }
