@@ -55,6 +55,19 @@
 															</div>
 														</div>
 													</div>
+													<div class="col-md-3 col-sm-6">
+														<div class="info-box">
+															<span class="info-box-icon bg-success"
+																><i class="fas fa-thumbs-up"></i
+															></span>
+															<div class="info-box-content">
+																<span class="info-box-text">Number of Votes</span>
+																<span class="info-box-number">{{
+																	statistics.total_votes_count || 0
+																}}</span>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
