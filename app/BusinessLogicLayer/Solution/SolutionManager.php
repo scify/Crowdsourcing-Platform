@@ -410,4 +410,8 @@ class SolutionManager {
     public function getSolutionsByProjectId(int $project_id): Collection {
         return $this->solutionRepository->getSolutionsByProjectId($project_id);
     }
+
+    public function getCampaignVotingStatistics(int $project_id): array {
+        return $this->solutionRepository->getCampaignVotingStatistics($project_id);
+    }
 }
