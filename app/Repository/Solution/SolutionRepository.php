@@ -86,11 +86,19 @@ class SolutionRepository extends Repository {
             ->join('solutions', 'solution_upvotes.solution_id', '=', 'solutions.id')
             ->join('problems', 'solutions.problem_id', '=', 'problems.id')
             ->where('problems.project_id', $project_id)
-            ->distinct('solution_upvotes.user_voter_id')
-            ->count('solution_upvotes.user_voter_id');
+            ->distinct('solution_upvotes.user_id')
+            ->count('solution_upvotes.user_id');
+
+        // Get total votes count for solutions in this project
+        $totalVotesCount = DB::table('solution_upvotes')
+            ->join('solutions', 'solution_upvotes.solution_id', '=', 'solutions.id')
+            ->join('problems', 'solutions.problem_id', '=', 'problems.id')
+            ->where('problems.project_id', $project_id)
+            ->count();
 
         return [
             'voters_count' => $votersCount,
+            'total_votes_count' => $totalVotesCount,
         ];
     }
 }
