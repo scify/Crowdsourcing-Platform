@@ -314,4 +314,20 @@ class SolutionController extends Controller {
 
         return response()->stream($callback, 200, $headers);
     }
+
+    public function getCampaignVotingStatistics(int $project_id): JsonResponse {
+        $validator = Validator::make([
+            'project_id' => $project_id,
+        ], [
+            'project_id' => 'required|exists:crowd_sourcing_projects,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Invalid project ID'], 400);
+        }
+
+        $statistics = $this->solutionManager->getCampaignVotingStatistics($project_id);
+
+        return response()->json($statistics);
+    }
 }
