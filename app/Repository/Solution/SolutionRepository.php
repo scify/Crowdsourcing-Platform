@@ -8,6 +8,7 @@ use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
 use App\Models\Solution\Solution;
 use App\Repository\Repository;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class SolutionRepository extends Repository {
     /**
@@ -77,5 +78,19 @@ class SolutionRepository extends Repository {
         return Solution::whereHas('problem', function ($query) use ($project_id): void {
             $query->where('project_id', $project_id);
         })->with(['problem.defaultTranslation', 'upvotes.user', 'creator'])->get();
+    }
+
+    public function getCampaignVotingStatistics(int $project_id): array {
+        // Get distinct voters count for solutions in this project
+        $votersCount = DB::table('solution_upvotes')
+            ->join('solutions', 'solution_upvotes.solution_id', '=', 'solutions.id')
+            ->join('problems', 'solutions.problem_id', '=', 'problems.id')
+            ->where('problems.project_id', $project_id)
+            ->distinct('solution_upvotes.user_voter_id')
+            ->count('solution_upvotes.user_voter_id');
+
+        return [
+            'voters_count' => $votersCount,
+        ];
     }
 }
