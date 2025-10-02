@@ -77,3 +77,5 @@ Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-plat
 Route::group(['middleware' => ['throttle:api-internal', 'auth', 'can:manage-users']], function (): void {
     Route::get('/users/filter', [UserController::class, 'showUsersByCriteria'])->name('api.users.get-filtered');
 });
+Route::get('/projects/{project_id}/voting-statistics', [SolutionController::class, 'getCampaignVotingStatistics'])
+    ->name('api.projects.voting-statistics.get');

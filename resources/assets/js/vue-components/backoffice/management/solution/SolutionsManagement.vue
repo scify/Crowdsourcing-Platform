@@ -33,6 +33,33 @@
 										</select>
 									</div>
 								</div>
+								<!-- Campaign Voting Statistics Section -->
+								<div :class="['row px-0 mb-3', selectedProjectId && statisticsFetched ? '' : 'hidden']">
+									<div class="col-12">
+										<div class="card card-info">
+											<div class="card-header">
+												<h3 class="card-title">Campaign Voting Statistics</h3>
+											</div>
+											<div class="card-body">
+												<div class="row">
+													<div class="col-md-3 col-sm-6">
+														<div class="info-box">
+															<span class="info-box-icon bg-info"
+																><i class="fas fa-users"></i
+															></span>
+															<div class="info-box-content">
+																<span class="info-box-text">Number of Voters</span>
+																<span class="info-box-number">{{
+																	statistics.voters_count || 0
+																}}</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div :class="['row px-0 mb-3', selectedProjectId ? '' : 'hidden']">
 									<div class="col-12">
 										<label for="problemSelect" class="form-label mb-0"
@@ -241,6 +268,9 @@ export default {
 			solutionsLoading: false,
 			projectsLoading: false,
 			problemsLoading: false,
+			statisticsFetched: false,
+			statisticsLoading: false,
+			statistics: {},
 		};
 	},
 	computed: {
@@ -363,7 +393,11 @@ export default {
 			this.problemsLoading = true;
 			if (this.selectedProjectId) {
 				this.problemsFetched = false;
+				this.statisticsFetched = false;
 				this.problems = [];
+				this.statistics = {};
+
+				// Get problems
 				this.post({
 					url: window.route("api.management.solutions.problems.get"),
 					data: { projectId: this.selectedProjectId },
@@ -380,7 +414,31 @@ export default {
 					.finally(() => {
 						this.problemsLoading = false;
 					});
+
+				// Get voting statistics
+				this.getCampaignVotingStatistics();
 			}
+		},
+
+		async getCampaignVotingStatistics() {
+			if (!this.selectedProjectId) return;
+
+			this.statisticsLoading = true;
+			this.get({
+				url: window.route("api.projects.voting-statistics.get", this.selectedProjectId),
+				data: {},
+				urlRelative: false,
+			})
+				.then((response) => {
+					this.statistics = response.data;
+					this.statisticsFetched = true;
+				})
+				.catch((error) => {
+					this.showErrorMessage(error);
+				})
+				.finally(() => {
+					this.statisticsLoading = false;
+				});
 		},
 
 		async getFilteredSolutions() {
