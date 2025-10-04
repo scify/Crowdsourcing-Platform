@@ -12,6 +12,8 @@ use App\BusinessLogicLayer\User\UserDashboardManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use App\Http\OperationResponse;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -23,13 +25,13 @@ class UserController extends Controller {
         return redirect()->route('my-dashboard', ['locale' => app()->getLocale()]);
     }
 
-    public function myDashboard() {
+    public function myDashboard(): View|Factory {
         $dashboardViewModel = $this->userDashboardManager->getUserDashboardViewModel(Auth::user());
 
         return view('backoffice.my-dashboard', ['viewModel' => $dashboardViewModel]);
     }
 
-    public function myAccount() {
+    public function myAccount(): View|Factory {
         $viewModel = $this->userManager->getUserProfile(Auth::user());
 
         $availableGenders = GenderEnum::cases();
@@ -81,7 +83,7 @@ class UserController extends Controller {
         }
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request): \Illuminate\Http\RedirectResponse {
         $this->userManager->deactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User deleted.');
 
@@ -95,7 +97,7 @@ class UserController extends Controller {
         return redirect()->route('home', ['locale' => app()->getLocale()]);
     }
 
-    public function restore(Request $request) {
+    public function restore(Request $request): \Illuminate\Http\RedirectResponse {
         $this->userManager->reactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User restored.');
 
@@ -115,7 +117,7 @@ class UserController extends Controller {
         return json_encode(new OperationResponse(config('app.OPERATION_SUCCESS'), (string) view('backoffice.management.partials.users-list', ['users' => $users])));
     }
 
-    public function showUserContributions() {
+    public function showUserContributions(): View|Factory {
         $user = Auth::user();
         $responses = $this->questionnaireResponseManager->getQuestionnaireResponsesForUser($user);
         $solutions = $this->solutionManager->getSolutionsProposedByUser($user);

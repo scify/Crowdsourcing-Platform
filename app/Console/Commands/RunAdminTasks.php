@@ -73,6 +73,7 @@ class RunAdminTasks extends Command {
                 foreach ($languages as $language) {
                     $user->notify(new NotifyProjectPhaseChanged('Test Project', $language));
                 }
+
                 $this->info('The NotifyProjectPhaseChanged notification has been sent to ' . $email . ' in the following languages: ' . implode(', ', $languages));
             } else {
                 $questionnaire = Questionnaire::find($questionnaireId);

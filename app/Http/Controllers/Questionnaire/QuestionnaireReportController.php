@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Questionnaire;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireReportManager;
 use App\Http\Controllers\Controller;
 use App\Repository\Questionnaire\QuestionnaireRepository;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class QuestionnaireReportController extends Controller {
     public function __construct(protected QuestionnaireReportManager $questionnaireReportManager, protected QuestionnaireRepository $questionnaireRepository) {}
 
-    public function viewReportsPage(Request $request) {
+    public function viewReportsPage(Request $request): View|Factory {
         $selectedQuestionnaireId = intval($request->questionnaireId);
         $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
 

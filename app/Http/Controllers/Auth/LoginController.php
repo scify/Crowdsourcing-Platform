@@ -52,7 +52,7 @@ class LoginController extends Controller {
         return view('auth.login')->with('displayQuestionnaireLabels', $request->submitQuestionnaire != null);
     }
 
-    protected function authenticated(Request $request, \App\Models\User\User $user) {
+    protected function authenticated(Request $request, \App\Models\User\User $user): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $numberOfResponsesTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         $url = session('redirectTo') ?: $this->redirectTo();
         if ($numberOfResponsesTransferred !== 0) {

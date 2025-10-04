@@ -7,6 +7,8 @@ namespace App\Http\Controllers\CrowdSourcingProject;
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\User\UserQuestionnaireShareManager;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -14,13 +16,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectController extends Controller {
     public function __construct(private readonly CrowdSourcingProjectManager $crowdSourcingProjectManager, private readonly UserQuestionnaireShareManager $questionnaireShareManager) {}
 
-    public function index() {
+    public function index(): View|Factory {
         $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectsListPageViewModel();
 
         return view('backoffice.management.crowdsourcing-project.index', ['viewModel' => $viewModel]);

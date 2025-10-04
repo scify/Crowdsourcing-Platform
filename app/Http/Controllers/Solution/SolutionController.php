@@ -281,7 +281,7 @@ class SolutionController extends Controller {
             foreach ($solutions as $solution) {
                 // Get voter emails as "Nickname <email>", separated by comma
                 $voterEmails = $solution->upvotes
-                    ->map(function ($upvote) {
+                    ->map(function ($upvote): string {
                         $user = $upvote->user;
                         if ($user) {
                             return ($user->nickname ?? $user->name ?? 'Anonymous') . ' <' . $user->email . '>';
