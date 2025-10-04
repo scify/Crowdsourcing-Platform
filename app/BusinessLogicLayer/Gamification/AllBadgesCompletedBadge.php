@@ -15,7 +15,7 @@ class AllBadgesCompletedBadge extends GamificationBadge {
             0, true);
     }
 
-    protected function getBadgeMessageForLevel() {
+    protected function getBadgeMessageForLevel(): string|array|null {
         return __('badges_messages.huge_impact');
     }
 
@@ -23,7 +23,7 @@ class AllBadgesCompletedBadge extends GamificationBadge {
         return '';
     }
 
-    public function getNextStepMessage() {
+    public function getNextStepMessage(): string|array|null {
         return __('badges_messages.all_star_crowdsourcer');
     }
 }
