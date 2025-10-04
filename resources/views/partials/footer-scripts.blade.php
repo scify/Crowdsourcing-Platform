@@ -27,12 +27,25 @@
     @vite('resources/assets/js/common-backoffice.js') {{-- backend common code --}}
 @endif
 @if(config('app.user_way_id'))
-    <script defer async>(function () {
-            const s = document.createElement("script");
-            s.setAttribute("data-account", '{{ config('app.user_way_id') }}');
-            s.setAttribute("src", "https://cdn.userway.org/widget.js");
-            document.body.appendChild(s);
-        })();</script>
+    <script>
+        // Suppress Userway internal errors
+        window.addEventListener('error', function(e) {
+            if (e.filename && e.filename.includes('userway.org')) {
+                e.preventDefault();
+                return true;
+            }
+        }, true);
+
+        (function() {
+            if (typeof window.UserWay !== 'undefined') return;
+            var s = document.createElement('script');
+            s.setAttribute('data-account', '{{ config('app.user_way_id') }}');
+            s.setAttribute('src', 'https://cdn.userway.org/widget.js');
+            s.setAttribute('async', '');
+            s.onerror = function() { console.warn('UserWay widget failed to load'); };
+            (document.body || document.documentElement).appendChild(s);
+        })();
+    </script>
     <noscript>Enable JavaScript to ensure <a href="https://userway.org">website accessibility</a></noscript>
 @endif
 @stack('scripts')

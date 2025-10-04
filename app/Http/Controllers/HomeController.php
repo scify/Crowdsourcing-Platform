@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -17,7 +19,7 @@ class HomeController extends Controller {
         return view('home.home')->with(['projects' => $projects]);
     }
 
-    public function showTermsAndPrivacyPage() {
+    public function showTermsAndPrivacyPage(): View|Factory {
         $locale = app()->getLocale();
         if (view()->exists('privacy-policy.' . $locale)) {
             return view('privacy-policy.' . $locale);
