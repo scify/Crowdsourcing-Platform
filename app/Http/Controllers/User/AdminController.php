@@ -11,6 +11,8 @@ use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use App\Utils\FileHandler;
 use HttpException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -18,7 +20,7 @@ use Illuminate\Support\Str;
 class AdminController extends Controller {
     public function __construct(private readonly \App\BusinessLogicLayer\User\UserManager $userManager) {}
 
-    public function manageUsers() {
+    public function manageUsers(): View|Factory {
         $manageUsers = $this->userManager->getManagePlatformUsersViewModel(UserManager::$USERS_PER_PAGE);
 
         $availableGenders = GenderEnum::cases();
@@ -33,7 +35,7 @@ class AdminController extends Controller {
         return view('backoffice.management.manage-users', ['viewModel' => $manageUsers]);
     }
 
-    public function editUserForm(Request $request) {
+    public function editUserForm(Request $request): View|Factory {
         $editUser = $this->userManager->getEditUserViewModel($request->id);
 
         $availableGenders = GenderEnum::cases();
@@ -55,7 +57,7 @@ class AdminController extends Controller {
         return redirect()->back()->with(['flash_message_success' => 'User roles have been updated.']);
     }
 
-    public function addUserToPlatform(Request $request) {
+    public function addUserToPlatform(Request $request): \Illuminate\Http\RedirectResponse {
         $actionResponse = $this->userManager->getOrAddUserToPlatform($request->email,
             $request->nickname,
             null,
@@ -73,7 +75,7 @@ class AdminController extends Controller {
         return back();
     }
 
-    public function checkUploadPage() {
+    public function checkUploadPage(): View|Factory {
         return view('backoffice.admin.check-upload');
     }
 

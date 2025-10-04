@@ -15,6 +15,8 @@ use App\Models\User\User;
 use App\Notifications\UserRegistered;
 use App\Utils\MailChimpAdaptor;
 use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -87,7 +89,7 @@ class RegisterController extends Controller {
     /**
      * @throws Exception
      */
-    protected function registered(Request $request, \App\Models\User\User $user) {
+    protected function registered(Request $request, \App\Models\User\User $user): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $numberOfResponseTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         if ($numberOfResponseTransferred !== 0) {
@@ -99,7 +101,7 @@ class RegisterController extends Controller {
         return redirect($url);
     }
 
-    public function showRegistrationForm() {
+    public function showRegistrationForm(): View|Factory {
         $availableGenders = GenderEnum::cases();
 
         $availableCountries = CountryEnum::cases();
