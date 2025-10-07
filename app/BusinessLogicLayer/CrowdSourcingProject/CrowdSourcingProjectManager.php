@@ -236,6 +236,20 @@ class CrowdSourcingProjectManager {
             $this->crowdSourcingProjectRepository->delete($id);
         }
 
+        if (isset($attributes['color_names'], $attributes['color_codes']) &&
+            is_array($attributes['color_names']) &&
+            is_array($attributes['color_codes']) &&
+            count($attributes['color_names']) === count($attributes['color_codes'])
+        ) {
+            if (! isset($attributes['color_ids']) || ! is_array($attributes['color_ids']) || count($attributes['color_ids']) !== count($attributes['color_names'])) {
+                $attributes['color_ids'] = array_fill(0, count($attributes['color_names']), null);
+            }
+        } else {
+            $attributes['color_names'] = [];
+            $attributes['color_codes'] = [];
+            $attributes['color_ids'] = [];
+        }
+
         $colors = [];
         for ($i = 0; $i < count($attributes['color_codes']); ++$i) {
             $colors[] = [
