@@ -30,8 +30,11 @@ class CrowdSourcingProjectColorsManager {
     public function saveColorsForCrowdSourcingProject(array $colors, int $project_id): void {
         $existingColorIds = $this->getColorsForCrowdSourcingProject($project_id)->pluck(['id'])->toArray();
         foreach ($colors as $color) {
-            if (isset($color['id']) && in_array($color['id'], $existingColorIds)) {
-                array_splice($existingColorIds, array_search($color['id'], $existingColorIds, true), 1);
+            if (isset($color['id']) && in_array(intval($color['id']), $existingColorIds)) {
+                $index = array_search(intval($color['id']), $existingColorIds, true);
+                if ($index !== false) {
+                    array_splice($existingColorIds, $index, 1);
+                }
             }
 
             $this->crowdSourcingProjectColorsRepository->updateOrCreate(
