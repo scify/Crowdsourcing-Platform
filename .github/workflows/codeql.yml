@@ -108,7 +108,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run Semgrep
-      uses: semgrep/semgrep-action@v1
+      uses: semgrep/semgrep-action@v1 # NOSONAR - This action is widely used and trusted
       with:
         config: >-
           p/security-audit

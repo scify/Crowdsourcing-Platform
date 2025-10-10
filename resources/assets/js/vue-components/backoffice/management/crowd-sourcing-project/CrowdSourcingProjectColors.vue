@@ -49,7 +49,7 @@ export default {
 		const generateRandomColor = () => {
 			return (
 				"#" +
-				Math.floor(Math.random() * 16777215)
+				Math.floor(Math.random() * 16777215) // NOSONAR - Using for UI colors only, not security-sensitive
 					.toString(16)
 					.toUpperCase()
 			);

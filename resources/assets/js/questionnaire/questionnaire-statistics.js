@@ -210,7 +210,7 @@ app.mount("#app");
 			"#FFFF00",
 		];
 		// Copy the array and sort the copy
-		const sortedArray = array.slice().sort(() => Math.random() - 0.5);
+		const sortedArray = array.slice().sort(() => Math.random() - 0.5); // NOSONAR - Using for UI colors only, not security-sensitive
 
 		// Return the first 'num' elements of the sorted array
 		return sortedArray.slice(0, num);
