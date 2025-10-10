@@ -113,4 +113,3 @@ jobs:
         config: >-
           p/security-audit
           p/php
-          p/laravel
