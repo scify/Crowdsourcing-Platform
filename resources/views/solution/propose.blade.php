@@ -75,6 +75,18 @@
         .btn-primary.call-to-action:hover {
             opacity: 0.9;
         }
+
+        .submission-closed-message {
+            color: var(--project-primary-color, #000);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .submission-closed-icon {
+            font-size: 4rem;
+            color: #dc3545;
+            margin-bottom: 1.5rem;
+        }
     </style>
 @endpush
 
@@ -88,62 +100,79 @@
             @include('solution.partials.propose-solution-overview')
         </section>
 
-        <section id="propose-solution-form" class="bg-clr-primary-white bg-image-noise">
-            <!-- Show login prompt if user is not logged in -->
-            @if(!Auth::check())
+        @if(!$viewModel->project->solution_submission_open)
+            <!-- Show submission closed message -->
+            <section id="submission-closed" class="bg-clr-primary-white bg-image-noise">
                 <div class="container-fluid pt-0 pb-5">
                     <div class="row justify-content-center">
                         <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
-                            <div class="container-fluid">
-                                <div class="row mb-5 pt-3">
-
-                                    <div class="col text-center">
-                                        <h4 class="login-message">{!! __('solution.login_prompt_message') !!}</h4>
-                                    </div>
+                            <div class="submission-closed-message">
+                                <div class="submission-closed-icon">
+                                    <i class="fas fa-lock"></i>
                                 </div>
-                                <div class="row justify-content-center d-none d-md-flex">
-                                    <div class="col-5">
-                                        <a class="btn btn-primary btn-lg call-to-action w-100"
-                                            href="{{ route('login', ['locale' => app()->getLocale()]) }}?redirectTo={{ url()->current() }}">
-                                            {{ __('questionnaire.sign_in') }}
-                                        </a>
+                                <h4 class="my-4">{{ __('solution.submission_closed') }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @else
+            <!-- Show normal form/login flow when submissions are open -->
+            <section id="propose-solution-form" class="bg-clr-primary-white bg-image-noise">
+                <!-- Show login prompt if user is not logged in -->
+                @if(!Auth::check())
+                    <div class="container-fluid pt-0 pb-5">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-11 col-md-10 col-lg-8 col-xl-6">
+                                <div class="container-fluid">
+                                    <div class="row mb-5 pt-3">
+                                        <div class="col text-center">
+                                            <h4 class="login-message">{!! __('solution.login_prompt_message') !!}</h4>
+                                        </div>
                                     </div>
-                                    <div class="col-5">
-                                        <button class="btn btn-primary btn-lg call-to-action w-100"
-                                            onclick="showSolutionForm()">
-                                            {{ __('solution.submit_anonymously') }}
-                                        </button>
+                                    <div class="row justify-content-center d-none d-md-flex">
+                                        <div class="col-5">
+                                            <a class="btn btn-primary btn-lg call-to-action w-100"
+                                                href="{{ route('login', ['locale' => app()->getLocale()]) }}?redirectTo={{ url()->current() }}">
+                                                {{ __('questionnaire.sign_in') }}
+                                            </a>
+                                        </div>
+                                        <div class="col-5">
+                                            <button class="btn btn-primary btn-lg call-to-action w-100"
+                                                onclick="showSolutionForm()">
+                                                {{ __('solution.submit_anonymously') }}
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row justify-content-center d-flex d-md-none">
-                                    <div class="col-10">
-                                        <a class="btn btn-primary btn-lg call-to-action w-100 mb-3"
-                                            href="{{ route('login', ['locale' => app()->getLocale()]) }}?redirectTo={{ url()->current() }}">
-                                            {{ __('questionnaire.sign_in') }}
-                                        </a>
-                                    </div>
-                                    <div class="col-10">
-                                        <button class="btn btn-primary btn-lg call-to-action w-100"
-                                            onclick="showSolutionForm()">
-                                            {{ __('solution.submit_anonymously') }}
-                                        </button>
+                                    <div class="row justify-content-center d-flex d-md-none">
+                                        <div class="col-10">
+                                            <a class="btn btn-primary btn-lg call-to-action w-100 mb-3"
+                                                href="{{ route('login', ['locale' => app()->getLocale()]) }}?redirectTo={{ url()->current() }}">
+                                                {{ __('questionnaire.sign_in') }}
+                                            </a>
+                                        </div>
+                                        <div class="col-10">
+                                            <button class="btn btn-primary btn-lg call-to-action w-100"
+                                                onclick="showSolutionForm()">
+                                                {{ __('solution.submit_anonymously') }}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                </div>
-
-                <!-- Hidden form that appears when user chooses to submit anonymously -->
-                <div id="anonymous-solution-form" class="d-none">
+                    <!-- Hidden form that appears when user chooses to submit anonymously -->
+                    <div id="anonymous-solution-form" class="d-none">
+                        @include('solution.partials.new-solution-form')
+                    </div>
+                @else
+                    <!-- Show form for logged-in users -->
                     @include('solution.partials.new-solution-form')
-                </div>
-            @else
-                <!-- Show form for logged-in users -->
-                @include('solution.partials.new-solution-form')
-            @endif
-        </section>
+                @endif
+            </section>
+        @endif
 
     </div>
 

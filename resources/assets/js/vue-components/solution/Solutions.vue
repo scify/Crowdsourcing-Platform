@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div v-if="solutions.length > 10">
-					<propose-solution></propose-solution>
+					<propose-solution :project-accepting-solutions="projectAcceptingSolutions"></propose-solution>
 				</div>
 			</div>
 		</div>
@@ -172,6 +172,11 @@ export default {
 			type: String,
 			required: false,
 			default: "en",
+		},
+		projectAcceptingSolutions: {
+			type: Boolean,
+			required: false,
+			default: true,
 		},
 	},
 	data() {
