@@ -8,6 +8,7 @@
             :max-votes-per-user-for-solutions='@json($viewModel->project->max_votes_per_user_for_solutions)'
             :button-text-color-theme='@json($viewModel->project->lp_btn_text_color_theme)'
             :project-primary-color='@json($viewModel->project->lp_primary_color)'
+            :project-accepting-solutions='@json($viewModel->project->solution_submission_open)'
             :locale="'{{app()->getLocale()}}'">
     </solutions>
 
