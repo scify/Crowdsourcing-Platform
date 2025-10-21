@@ -94,6 +94,12 @@ class SolutionManager {
      * @throws Exception
      */
     public function storeSolutionFromPublicForm(array $attributes): Solution {
+        // check if the campaign (project) is still accepting solutions
+        $problem = $this->problemRepository->find(intval($attributes['solution-owner-problem']));
+        $project = $problem->project;
+        if (! $project->solution_submission_open) {
+            throw new \Exception('Solution submission is closed for this campaign');
+        }
         $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
         $user = Auth::user();
         if ($user && $user->email) {

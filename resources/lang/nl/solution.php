@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Ik heb de :privacy_policy en de :code_of_conduct gelezen en ga akkoord.',
     'submit_solution' => 'Dien oplossing in',
     'propose_solution_title' => 'Stel een oplossing voor',
+    'submission_closed' => 'Het indienen van oplossingen is nu gesloten',
     'number_of_votes_title' => 'Aantal stemmen',
     'have_a_solution_to_suggest' => 'Heeft u een oplossing om voor te stellen?',
     'characters_left' => 'tekens over',

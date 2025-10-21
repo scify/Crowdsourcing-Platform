@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Prečítal som a súhlasím s :privacy_policy a :code_of_conduct.',
     'submit_solution' => 'Odoslať riešenie',
     'propose_solution_title' => 'Navrhnúť riešenie',
+    'submission_closed' => 'Predkladanie riešení je teraz uzavreté',
     'number_of_votes_title' => 'Počet hlasov',
     'have_a_solution_to_suggest' => 'Máte riešenie na návrh?',
     'characters_left' => 'znakov zostáva',

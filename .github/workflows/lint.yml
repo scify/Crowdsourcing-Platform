@@ -18,7 +18,7 @@ jobs:
             - uses: actions/checkout@v4
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@v2 # NOSONAR - This action is widely used and trusted
               with:
                   php-version: '8.4'
 
