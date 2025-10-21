@@ -10,7 +10,7 @@
 					</h2>
 				</div>
 			</div>
-			<propose-solution></propose-solution>
+			<propose-solution :project-accepting-solutions="projectAcceptingSolutions"></propose-solution>
 			<div v-if="solutions.length !== 0">
 				<div class="row">
 					<div class="col-12">
