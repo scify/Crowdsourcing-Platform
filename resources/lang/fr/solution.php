@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'J\'ai lu et j\'accepte la :privacy_policy et le :code_of_conduct.',
     'submit_solution' => 'Soumettre la solution',
     'propose_solution_title' => 'Proposer une solution',
+    'submission_closed' => 'La soumission des solutions est maintenant fermée',
     'number_of_votes_title' => 'Nombre de votes',
     'have_a_solution_to_suggest' => 'Avez-vous une solution à proposer ?',
     'characters_left' => 'caractères restants',

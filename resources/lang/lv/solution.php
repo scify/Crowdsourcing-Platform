@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Esmu izlasījis un piekrītu :privacy_policy un :code_of_conduct.',
     'submit_solution' => 'Iesniegt risinājumu',
     'propose_solution_title' => 'Ierosiniet risinājumu',
+    'submission_closed' => 'Risinājumu iesniegšana tagad ir slēgta',
     'number_of_votes_title' => 'Balsu skaits',
     'have_a_solution_to_suggest' => 'Vai jums ir risinājums, ko ieteikt?',
     'characters_left' => 'atlikušie simboli',

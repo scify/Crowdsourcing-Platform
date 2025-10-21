@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Pročitao sam i slažem se sa :privacy_policy i :code_of_conduct.',
     'submit_solution' => 'Pošaljite rešenje',
     'propose_solution_title' => 'Predložite rešenje',
+    'submission_closed' => 'Slanje rešenja je sada zatvoreno',
     'number_of_votes_title' => 'Broj glasova',
     'have_a_solution_to_suggest' => 'Имате ли предлог решења?',
     'characters_left' => 'осталих карактера',
