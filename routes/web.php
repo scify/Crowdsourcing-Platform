@@ -67,7 +67,6 @@ Route::group(['middleware' => ['auth', 'can:manage-platform']], function () use 
     });
     Route::middleware(['throttle:api-public'])->group(function (): void {
         Route::group(['prefix' => 'admin'], function (): void {
-            Route::get('/phpinfo', fn (): true => phpinfo());
             Route::get('/check-upload', [AdminController::class, 'checkUploadPage']);
             Route::post('/upload-files', [AdminController::class, 'uploadAdminFile'])->name('admin.image.upload');
         });

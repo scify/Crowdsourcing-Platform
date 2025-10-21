@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Am citit și sunt de acord cu :privacy_policy și :code_of_conduct.',
     'submit_solution' => 'Trimite soluția',
     'propose_solution_title' => 'Propune o soluție',
+    'submission_closed' => 'Trimiterea soluțiilor este acum închisă',
     'number_of_votes_title' => 'Numărul de voturi',
     'have_a_solution_to_suggest' => 'Ai o soluție de propus?',
     'characters_left' => 'caractere rămase',

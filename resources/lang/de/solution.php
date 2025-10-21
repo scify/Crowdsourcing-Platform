@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Ich habe die :privacy_policy und den :code_of_conduct gelesen und stimme ihnen zu.',
     'submit_solution' => 'Lösung einreichen',
     'propose_solution_title' => 'Lösung vorschlagen',
+    'submission_closed' => 'Die Einreichung von Lösungen ist jetzt geschlossen',
     'number_of_votes_title' => 'Anzahl der Stimmen',
     'have_a_solution_to_suggest' => 'Haben Sie eine Lösung vorzuschlagen?',
     'characters_left' => 'Zeichen übrig',

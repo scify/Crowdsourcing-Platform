@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'Olen lugenud ja nõustun :privacy_policy ja :code_of_conduct.',
     'submit_solution' => 'Esita Lahendus',
     'propose_solution_title' => 'Paku Lahendus',
+    'submission_closed' => 'Lahenduste esitamine on nüüd suletud',
     'number_of_votes_title' => 'Hääletuste Arv',
     'have_a_solution_to_suggest' => 'Kas teil on lahendust pakkuda?',
     'characters_left' => 'märgid alles',

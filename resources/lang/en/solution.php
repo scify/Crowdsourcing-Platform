@@ -47,6 +47,7 @@ return [
     'solution_consent_notice' => 'I have read and agreed to the :privacy_policy and :code_of_conduct.',
     'submit_solution' => 'Submit Solution',
     'propose_solution_title' => 'Propose a Solution',
+    'submission_closed' => 'The solutions submission is now closed',
     'number_of_votes_title' => 'Number of Votes',
     'have_a_solution_to_suggest' => 'Have a solution to suggest?',
     'characters_left' => 'characters left',
