@@ -75,7 +75,7 @@ class QuestionnaireResponseController extends Controller {
             'questionnaire_response_id' => 'required|integer|exists:questionnaire_responses,id',
         ]);
 
-        return $this->questionnaireResponseManager->deleteResponse($request->questionnaire_response_id);
+        return $this->questionnaireResponseManager->deleteResponse(intval($request->questionnaire_response_id));
     }
 
     public function downloadQuestionnaireResponses(int $questionnaire_id): StreamedResponse {
