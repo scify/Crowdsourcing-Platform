@@ -1,5 +1,5 @@
 <template>
-	<button class="heart-circle-btn" @click="upvote">
+	<button class="heart-circle-btn" :disabled="disabled" :class="{ disabled: disabled }" @click="upvote">
 		<svg v-if="isFilled" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<!-- <circle cx="22" cy="22" r="22" :fill="getIconColor()" opacity="0.8" /> -->
 			<circle cx="22" cy="22" r="22" fill="white" />
@@ -35,6 +35,10 @@ export default {
 			type: String,
 			default: "light",
 		},
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	methods: {
 		getIconColor() {
@@ -62,6 +66,18 @@ export default {
 
 	&:focus-visible {
 		outline: 0.1875rem solid var(--btn-text-color);
+	}
+
+	&.disabled,
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+		pointer-events: none;
+
+		&:hover {
+			filter: none;
+			cursor: not-allowed;
+		}
 	}
 }
 </style>

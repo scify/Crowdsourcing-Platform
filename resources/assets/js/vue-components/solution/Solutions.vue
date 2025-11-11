@@ -86,6 +86,7 @@
 									<HeartCircleButton
 										:is-filled="solution.upvoted_by_current_user"
 										:icon-color-theme="buttonTextColorTheme"
+										:disabled="!projectVotingOpen"
 										@click="(event) => heartClicked(event, solution.id)"
 									></HeartCircleButton>
 									<div class="upvote-count">
@@ -174,6 +175,11 @@ export default {
 			default: "en",
 		},
 		projectAcceptingSolutions: {
+			type: Boolean,
+			required: false,
+			default: true,
+		},
+		projectVotingOpen: {
 			type: Boolean,
 			required: false,
 			default: true,
@@ -290,6 +296,10 @@ export default {
 			return `${window.location.href}?solution_id=${solution.id}`;
 		},
 		heartClicked(event, solutionId) {
+			if (!this.projectVotingOpen) {
+				event.preventDefault();
+				return;
+			}
 			if (!this.userLoggedIn) {
 				this.showLoginPanel(event.clientX, event.clientY);
 				event.preventDefault();

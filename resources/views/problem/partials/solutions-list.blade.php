@@ -9,6 +9,7 @@
             :button-text-color-theme='@json($viewModel->project->lp_btn_text_color_theme)'
             :project-primary-color='@json($viewModel->project->lp_primary_color)'
             :project-accepting-solutions='@json($viewModel->project->solution_submission_open)'
+            :project-voting-open='@json($viewModel->project->solution_voting_open)'
             :locale="'{{app()->getLocale()}}'">
     </solutions>
 
