@@ -304,11 +304,19 @@ class SolutionManager {
      * @return array described above
      */
     public function voteOrDownVoteSolution(int $solution_id): array {
+
         $upvote = false;
         $user_id = Auth::id();
         // also get how many votes the user has left for this problem
         $problem = $this->solutionRepository->find($solution_id)->problem;
         $project = $problem->project;
+
+        // if the solution voting is not open for the project, we return an error
+        if (! $project->solution_voting_open) {
+            return [
+                'error' => 'Solution voting is closed for this campaign',
+            ];
+        }
 
         $user_votes = $this->getUserVotesNum($problem->id);
         $votes_left = $project->max_votes_per_user_for_solutions - $user_votes;
