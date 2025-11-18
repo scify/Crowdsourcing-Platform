@@ -78,6 +78,10 @@
                                             Page</a>
                                         <a class="dropdown-item" href="{{ route('questionnaires.reports') }}">View
                                             Reports</a>
+                                        <a class="dropdown-item"
+                                           href="{{ route('project.download-user-engagement-report', ['id' => $project->id]) }}">
+                                            <i class="fas fa-download"></i> Download User Engagement Report
+                                        </a>
                                     </div>
                                 </div>
                             </td>

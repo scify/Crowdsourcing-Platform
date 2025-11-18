@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth', 'can:manage-platform-content']], function
             Route::resource('projects', CrowdSourcingProjectController::class)->except(['destroy']);
             Route::get('project/{id}/clone', [CrowdSourcingProjectController::class, 'clone'])->name('project.clone');
             Route::post('project/destroy', [CrowdSourcingProjectController::class, 'destroy'])->name('project.destroy');
+            Route::get('project/{id}/download-user-engagement-report', [CrowdSourcingProjectController::class, 'downloadUserEngagementReport'])->name('project.download-user-engagement-report');
             Route::get('/questionnaire/new', [QuestionnaireController::class, 'createQuestionnaire'])->name('create-questionnaire');
             Route::get('/questionnaire/{id}/edit', [QuestionnaireController::class, 'editQuestionnaire'])->name('edit-questionnaire');
             Route::post('/questionnaire/update-status', [QuestionnaireController::class, 'saveQuestionnaireStatus'])->name('questionnaire.update-status');

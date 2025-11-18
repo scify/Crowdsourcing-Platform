@@ -558,4 +558,155 @@ class CrowdSourcingProjectManager {
 
         return $project->defaultTranslation->language;
     }
+
+    public function getUserEngagementDataForProject(int $project_id): Collection {
+        // Get all users who filled questionnaires for this project
+        $questionnaireResponses = DB::table('questionnaire_responses as qr')
+            ->leftJoin('users as u', 'qr.user_id', '=', 'u.id')
+            ->where('qr.project_id', $project_id)
+            ->whereNull('qr.deleted_at')
+            ->select(
+                'qr.user_id',
+                'qr.browser_ip',
+                'u.nickname',
+                'u.email',
+                DB::raw('MIN(qr.created_at) as questionnaire_date')
+            )
+            ->groupBy('qr.user_id', 'qr.browser_ip', 'u.nickname', 'u.email');
+
+        // Get all users who created solutions for problems in this project
+        $solutionCreators = DB::table('solutions as s')
+            ->join('problems as p', 's.problem_id', '=', 'p.id')
+            ->leftJoin('users as u', 's.user_creator_id', '=', 'u.id')
+            ->where('p.project_id', $project_id)
+            ->whereNull('s.deleted_at')
+            ->whereNull('p.deleted_at')
+            ->select(
+                's.user_creator_id as user_id',
+                DB::raw('NULL as browser_ip'),
+                'u.nickname',
+                'u.email',
+                DB::raw('NULL as questionnaire_date')
+            )
+            ->groupBy('s.user_creator_id', 'u.nickname', 'u.email');
+
+        // Get all users who voted for solutions in this project
+        $voters = DB::table('solution_upvotes as sv')
+            ->join('solutions as s', 'sv.solution_id', '=', 's.id')
+            ->join('problems as p', 's.problem_id', '=', 'p.id')
+            ->leftJoin('users as u', 'sv.user_voter_id', '=', 'u.id')
+            ->where('p.project_id', $project_id)
+            ->whereNull('s.deleted_at')
+            ->whereNull('p.deleted_at')
+            ->select(
+                'sv.user_voter_id as user_id',
+                DB::raw('NULL as browser_ip'),
+                'u.nickname',
+                'u.email',
+                DB::raw('NULL as questionnaire_date')
+            )
+            ->groupBy('sv.user_voter_id', 'u.nickname', 'u.email');
+
+        // Combine all users
+        $allUsers = $questionnaireResponses
+            ->union($solutionCreators)
+            ->union($voters)
+            ->get()
+            ->groupBy(function ($item) {
+                // Group by user_id if exists, otherwise by browser_ip
+                return $item->user_id ?? 'ip_' . $item->browser_ip;
+            })
+            ->map(function ($group) {
+                // Take the first item from each group to get user info
+                return $group->first();
+            });
+
+        // Now for each unique user, gather their engagement data
+        $engagementData = collect();
+
+        foreach ($allUsers as $key => $user) {
+            $userId = $user->user_id;
+            $browserIp = $user->browser_ip;
+
+            // Phase 1: Questionnaire response
+            $questionnaireResponse = DB::table('questionnaire_responses')
+                ->where('project_id', $project_id)
+                ->when($userId, fn ($query) => $query->where('user_id', $userId))
+                ->when(! $userId && $browserIp, fn ($query) => $query->where('browser_ip', $browserIp))
+                ->whereNull('deleted_at')
+                ->orderBy('created_at', 'asc')
+                ->select('created_at', 'response_json')
+                ->first();
+
+            // Extract gender and country from questionnaire response JSON
+            $gender = null;
+            $country = null;
+            if ($questionnaireResponse && $questionnaireResponse->response_json) {
+                $responseData = json_decode($questionnaireResponse->response_json, true);
+                if (is_array($responseData)) {
+                    // Look for gender field (common field names)
+                    foreach (['gender', 'Gender', 'sex', 'Sex'] as $genderKey) {
+                        if (isset($responseData[$genderKey])) {
+                            $gender = $responseData[$genderKey];
+
+                            break;
+                        }
+                    }
+
+                    // Look for country field (common field names)
+                    foreach (['country', 'Country', 'question1', 'nationality', 'Nationality'] as $countryKey) {
+                        if (isset($responseData[$countryKey])) {
+                            $country = $responseData[$countryKey];
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Phase 2: Solution proposed
+            $solutionProposed = null;
+            if ($userId) {
+                $solutionProposed = DB::table('solutions as s')
+                    ->join('problems as p', 's.problem_id', '=', 'p.id')
+                    ->where('p.project_id', $project_id)
+                    ->where('s.user_creator_id', $userId)
+                    ->whereNull('s.deleted_at')
+                    ->whereNull('p.deleted_at')
+                    ->exists();
+            }
+
+            // Phase 3: Votes
+            $firstVote = null;
+            if ($userId) {
+                $firstVote = DB::table('solution_upvotes as sv')
+                    ->join('solutions as s', 'sv.solution_id', '=', 's.id')
+                    ->join('problems as p', 's.problem_id', '=', 'p.id')
+                    ->where('p.project_id', $project_id)
+                    ->where('sv.user_voter_id', $userId)
+                    ->whereNull('s.deleted_at')
+                    ->whereNull('p.deleted_at')
+                    ->orderBy('sv.created_at', 'asc')
+                    ->first();
+            }
+
+            // Check if user is anonymous (has "Anonymous_User" in nickname or email)
+            $isAnonymous = (str_contains($user->nickname ?? '', 'Anonymous_User') ||
+                           str_contains($user->email ?? '', 'Anonymous_User'));
+
+            $engagementData->push([
+                'name_nickname' => $user->nickname ?? $user->email ?? $browserIp ?? 'Anonymous',
+                'email_ip' => $isAnonymous ? ($browserIp ?? '') : ($user->email ?? ''),
+                'gender' => $gender ?? '',
+                'country' => $country ?? '',
+                'phase1_questionnaire' => $questionnaireResponse ? 'yes' : 'no',
+                'phase1_date' => $questionnaireResponse?->created_at ?? '',
+                'phase2_solution' => $solutionProposed ? 'yes' : 'no',
+                'phase3_votes' => $firstVote ? 'yes' : 'no',
+                'phase3_date' => $firstVote?->created_at ?? '',
+            ]);
+        }
+
+        return $engagementData;
+    }
 }
