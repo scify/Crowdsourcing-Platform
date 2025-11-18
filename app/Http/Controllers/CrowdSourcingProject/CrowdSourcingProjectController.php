@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectController extends Controller {
@@ -147,5 +149,74 @@ class CrowdSourcingProjectController extends Controller {
 
     public function getCrowdSourcingProjectsForManagement(): JsonResponse {
         return response()->json($this->crowdSourcingProjectManager->getCrowdSourcingProjectsForManagement());
+    }
+
+    public function downloadUserEngagementReport(string $locale, int $id) {
+        $engagementData = $this->crowdSourcingProjectManager->getUserEngagementDataForProject($id);
+        $fileName = 'user_engagement_report_project_' . $id . '_' . date('Y-m-d') . '.xlsx';
+
+        // Create new Spreadsheet object
+        $spreadsheet = new Spreadsheet;
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Set headers
+        $headers = [
+            'Name/Nickname',
+            'Email/IP',
+            'Gender',
+            'Country',
+            'Phase 1: Questionnaire answers',
+            'Phase 1 date',
+            'Phase 2: Solution proposed',
+            'Phase 3: Votes',
+            'Phase 3: Votes date',
+        ];
+
+        // Add headers to the first row
+        $sheet->fromArray($headers, null, 'A1');
+
+        // Style the header row
+        $sheet->getStyle('A1:I1')->getFont()->setBold(true);
+        $sheet->getStyle('A1:I1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+        $sheet->getStyle('A1:I1')->getFill()->getStartColor()->setARGB('FFCCCCCC');
+
+        // Add data rows
+        $rowNumber = 2;
+        foreach ($engagementData as $record) {
+            $sheet->fromArray([
+                $record['name_nickname'],
+                $record['email_ip'],
+                $record['gender'],
+                $record['country'],
+                $record['phase1_questionnaire'],
+                $record['phase1_date'],
+                $record['phase2_solution'],
+                $record['phase3_votes'],
+                $record['phase3_date'],
+            ], null, 'A' . $rowNumber);
+            ++$rowNumber;
+        }
+
+        // Auto-size columns
+        foreach (range('A', 'I') as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+
+        // Create writer and save to output
+        $writer = new Xlsx($spreadsheet);
+
+        $headers = [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0',
+        ];
+
+        $callback = function () use ($writer): void {
+            $writer->save('php://output');
+        };
+
+        return response()->stream($callback, ResponseAlias::HTTP_OK, $headers);
     }
 }
