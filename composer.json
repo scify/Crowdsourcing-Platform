@@ -26,6 +26,7 @@
     "laravel/ui": "^4.0",
     "league/flysystem-aws-s3-v3": "^3.0",
     "nunomaduro/collision": "^8.6",
+    "phpoffice/phpspreadsheet": "^5.2",
     "predis/predis": "^1.1",
     "scify/laravel-cookie-guard": "^4.1",
     "sentry/sentry": "^4.14",
