@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifyProjectPhaseChanged extends Notification implements CampaignNotificationInterface, ShouldQueue {
+class NotifyProjectEnded extends Notification implements CampaignNotificationInterface, ShouldQueue {
     use Queueable;
 
     public $locale;
@@ -39,12 +39,17 @@ class NotifyProjectPhaseChanged extends Notification implements CampaignNotifica
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {
+        $params = [
+            'project' => $this->projectName,
+            'date' => now()->format('d.m.Y'),
+        ];
+
         return (new MailMessage)
-            ->subject(__('notifications.project_phase_changed_subject', ['project' => $this->projectName], $this->locale))
-            ->greeting(__('notifications.project_phase_changed_greeting', [], $this->locale))
-            ->line(__('notifications.project_phase_changed_body', ['project' => $this->projectName], $this->locale))
+            ->subject(__('notifications.project_ended_subject', $params, $this->locale))
+            ->greeting(__('notifications.project_ended_greeting', $params, $this->locale))
+            ->line(__('notifications.project_ended_body', $params, $this->locale))
             ->line('<br/>')
-            ->salutation(__('notifications.project_phase_changed_salutation', [], $this->locale));
+            ->salutation(__('notifications.project_ended_salutation', $params, $this->locale));
     }
 
     /**

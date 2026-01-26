@@ -64,4 +64,25 @@ u tom sektoru.</p>
 
 <p>Vaše sudjelovanje je važno za oblikovanje digitalne budućnosti Hrvatske i Europe.</p>',
     'project_phase_changed_salutation' => '<p>Srdačan pozdrav iz ODRAZ-a!</p>',
+    'project_ended_subject' => 'Zahvala na sudjelovanju u istraživanju o digitalnoj transformaciji i poziv na ispunjavanje ankete programa CERV',
+    'project_ended_greeting' => 'Poštovana/poštovani,',
+    'project_ended_body' => '<p>zahvaljujemo vam na sudjelovanju u procesu grupnog prikupljanja ideja (crowdsourcing) u okviru projekta „Uključiva digitalizacija u EU-u" (IDEU). Cijenimo što ste izdvojili vrijeme kako biste podijelili svoje mišljenje o unaprjeđenju digitalnih vještina i povećanju broja IKT stručnjaka.</p>
+
+<p>Završne preporuke proizašle iz grupnog prikupljanja ideja za Hrvatsku nalaze se na sljedećoj poveznici:<br/>
+<a href="https://www.odraz.hr/wp-content/uploads/2026/01/Ukljuciva-digitalizacija_Preporuke-gradana_HR.pdf" target="_blank">https://www.odraz.hr/wp-content/uploads/2026/01/Ukljuciva-digitalizacija_Preporuke-gradana_HR.pdf</a></p>
+
+<p>Budući da je projekt IDEU financiran sredstvima Europske unije, ljubazno vas pozivamo da ispunite kratku anketu o samom procesu. Anketi možete pristupiti putem sljedeće poveznice:<br/>
+<a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027" target="_blank">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+
+<p>Molimo da na prvoj stranici ankete upišite sljedeće podatke:</p>
+<ul>
+<li>Reference of the project: 101147200</li>
+<li>Type of activity: Mutual learning</li>
+<li>Title of the event: Crowdsourcing citizens\' opinions in Croatia</li>
+<li>Date: :date</li>
+<li>Online or in person?: Online event</li>
+</ul>
+
+<p>Ispunjavanje ankete je anonimno i traje svega pet do deset minuta. Vaš doprinos nam je iznimno vrijedan te vam zahvaljujemo na vremenu i uloženom trudu.</p>',
+    'project_ended_salutation' => '<p>Srdačan pozdrav</p>',
 ];

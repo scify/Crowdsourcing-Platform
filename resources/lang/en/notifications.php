@@ -77,4 +77,25 @@ network who may be interested in the project.</p>
 <p>Thank you very much in advance for your participation. We look forward to seeing your
 proposed solutions.</p>',
     'project_phase_changed_salutation' => '<p>Kind regards,</p>',
+    'project_ended_subject' => 'Thank you for participating in the digital transformation research - CERV survey invitation',
+    'project_ended_greeting' => 'Dear participant,',
+    'project_ended_body' => '<p>Thank you for participating in the crowdsourcing process as part of the "Inclusive Digitalisation in the EU" (IDEU) project. We appreciate the time you took to share your opinion on improving digital skills and increasing the number of ICT professionals.</p>
+
+<p>The final recommendations from the crowdsourcing process are available at the following link:<br/>
+<a href="https://crowdsourcing.ecas.org">View recommendations</a></p>
+
+<p>Since the IDEU project is funded by the European Union, we kindly invite you to complete a short survey about the process. You can access the survey via the following link:<br/>
+<a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+
+<p>Please enter the following information on the first page of the survey:</p>
+<ul>
+<li>Reference of the project: 101147200</li>
+<li>Type of activity: Mutual learning</li>
+<li>Title of the event: Crowdsourcing citizens\' opinions</li>
+<li>Date: :date</li>
+<li>Online or in person?: Online event</li>
+</ul>
+
+<p>The survey is anonymous and takes only five to ten minutes. Your contribution is extremely valuable and we thank you for your time and effort.</p>',
+    'project_ended_salutation' => '<p>Kind regards</p>',
 ];

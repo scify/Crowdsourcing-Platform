@@ -10,7 +10,6 @@ use App\Models\Language;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
-use App\Notifications\NotifyProjectPhaseChanged;
 use App\Notifications\QuestionnaireResponded;
 use App\Utils\Translator;
 use App\ViewModels\Gamification\GamificationBadgeVM;
@@ -66,40 +65,32 @@ class RunAdminTasks extends Command {
                 return;
             }
 
-            $questionnaireId = $this->ask('Enter the questionnaire ID (0 for NotifyProjectPhaseChanged notification):');
+            $questionnaireId = $this->ask('Enter the questionnaire ID');
 
-            if ((int) $questionnaireId === 0) {
-                $languages = ['hr'];
-                foreach ($languages as $language) {
-                    $user->notify(new NotifyProjectPhaseChanged('Test Project', $language));
-                }
+            $questionnaire = Questionnaire::find($questionnaireId);
 
-                $this->info('The NotifyProjectPhaseChanged notification has been sent to ' . $email . ' in the following languages: ' . implode(', ', $languages));
-            } else {
-                $questionnaire = Questionnaire::find($questionnaireId);
+            if (! $questionnaire) {
+                $this->error('Questionnaire not found with the given ID.');
 
-                if (! $questionnaire) {
-                    $this->error('Questionnaire not found with the given ID.');
-
-                    return;
-                }
-
-                $language = $user->language ?? Language::where('language_code', 'en')->first();
-                $badge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id, 10);
-                $badgeVM = new GamificationBadgeVM($badge);
-                $projectTranslation = $questionnaire->projects->get(0)->translations->firstWhere('language_id', $language->id);
-                $fieldsTranslation = $questionnaire->fieldsTranslations->firstWhere('language_id', $language->id);
-
-                $user->notify(new QuestionnaireResponded(
-                    $fieldsTranslation,
-                    $badge,
-                    $badgeVM,
-                    $projectTranslation,
-                    $language->language_code
-                ));
-
-                $this->info('The QuestionnaireResponded notification has been sent for questionnaire ID ' . $questionnaireId . ' to ' . $email);
+                return;
             }
+
+            $language = $user->language ?? Language::where('language_code', 'en')->first();
+            $badge = $this->platformWideGamificationBadgesProvider->getContributorBadge($user->id, 10);
+            $badgeVM = new GamificationBadgeVM($badge);
+            $projectTranslation = $questionnaire->projects->get(0)->translations->firstWhere('language_id', $language->id);
+            $fieldsTranslation = $questionnaire->fieldsTranslations->firstWhere('language_id', $language->id);
+
+            $user->notify(new QuestionnaireResponded(
+                $fieldsTranslation,
+                $badge,
+                $badgeVM,
+                $projectTranslation,
+                $language->language_code
+            ));
+
+            $this->info('The QuestionnaireResponded notification has been sent for questionnaire ID ' . $questionnaireId . ' to ' . $email);
+
         } elseif ($task === 'Test Sentry error') {
             $this->info('Testing the Sentry error reporting service...');
             $message = $this->ask('Enter the message for the Sentry error:');
