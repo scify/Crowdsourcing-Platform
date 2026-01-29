@@ -104,7 +104,7 @@ class NotifyCampaignResponders extends Command {
 
         $notificationsSent = 0;
         foreach ($users as $user) {
-            // $user->notify(new $notificationClass($projectName, $locale));
+            $user->notify(new $notificationClass($projectName, $locale));
             $this->info(sprintf('Notification sent to: %s in locale: %s.', $user->email, $locale));
             ++$notificationsSent;
         }
