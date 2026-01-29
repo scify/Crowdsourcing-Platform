@@ -37,7 +37,7 @@
                                 <div class="col-lg-7 col-md-9 col-sm-11 mx-auto">
                                     <h4 class="project-section-title text-center"
                                         style="line-height: 2.5rem; font-weight: bold;">
-                                        {{ __("questionnaire.thank_you_next_steps") }}
+                                        {!! $viewModel->project->currentTranslation->thank_you_message ?? __("questionnaire.thank_you_next_steps") !!}
                                     </h4>
                                 </div>
                             </div>

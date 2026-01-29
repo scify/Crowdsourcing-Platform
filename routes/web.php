@@ -13,6 +13,7 @@ use App\Http\Controllers\Questionnaire\QuestionnaireStatisticsController;
 use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\UserController;
+use App\Notifications\NotifyProjectEnded;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,12 @@ $localeInfo = [
     'where' => ['locale' => config('app.regex_for_validating_locale_at_routes')],
     'middleware' => 'setlocale',
 ];
+
+Route::get('/mail-preview', function () {
+    $notification = new NotifyProjectEnded('Test Project', 'hr');
+
+    return $notification->toMail(null)->render();
+});
 
 Route::group($localeInfo, function (): void {
     Auth::routes();
