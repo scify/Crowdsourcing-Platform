@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.3",
-    "axios": "^1.13.3",
+    "axios": "^1.13.4",
     "blade-formatter": "^1.44.2",
     "cross-env": "^7.0.3",
     "eslint": "^9.39.2",
@@ -48,7 +48,7 @@
     "@fontsource-variable/open-sans": "^5.2.7",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.8",
-    "@sentry/browser": "^10.36.0",
+    "@sentry/browser": "^10.37.0",
     "admin-lte": "3.1.0",
     "bootstrap": "^4.6.2",
     "bootstrap-colorpicker": "^3.4.0",
@@ -77,7 +77,7 @@
     "summernote": "^0.9.1",
     "survey-analytics": "^1.12.25",
     "survey-core": "^1.12.25",
-    "survey-creator": "^1.12.58",
-    "survey-jquery": "^1.12.58"
+    "survey-creator": "^1.12.59",
+    "survey-jquery": "^1.12.59"
   }
 }
