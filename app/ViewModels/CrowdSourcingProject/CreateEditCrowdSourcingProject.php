@@ -82,6 +82,10 @@ class CreateEditCrowdSourcingProject {
             'display_title' => 'Landing page banner text',
             'required' => false,
         ],
+        'thank_you_message' => [
+            'display_title' => 'Thank you page message',
+            'required' => false,
+        ],
     ];
 
     /**

@@ -213,6 +213,31 @@
 
                     <div class="card card-info collapsed-card">
                         <div class="card-header">
+                            <h2 class="card-title">Thank You Page</h2>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <label class="col-sm-12 control-label" for="thank_you_message">Thank You Page Message</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group has-feedback">
+                                        <textarea id="thank_you_message" class="form-control summernote"
+                                                  name="thank_you_message"
+                                                  placeholder="Thank You Page Message">{{ old('thank_you_message') ? old('thank_you_message') : $viewModel->project->defaultTranslation->thank_you_message }}</textarea>
+                                            <span class="help-block"><strong>{{ $errors->first('thank_you_message') }}</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-info collapsed-card">
+                        <div class="card-header">
                             <h2 class="card-title">Sticky Banner</h2>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i

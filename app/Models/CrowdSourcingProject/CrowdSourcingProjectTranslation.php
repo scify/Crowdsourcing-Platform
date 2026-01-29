@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $questionnaire_response_email_outro_text
  * @property string $banner_title
  * @property string $banner_text
+ * @property string $thank_you_message
  */
 class CrowdSourcingProjectTranslation extends Model {
     use Compoships;
@@ -49,7 +50,7 @@ class CrowdSourcingProjectTranslation extends Model {
         'language_id', 'project_id', 'name', 'motto_title', 'motto_subtitle', 'description',
         'about', 'footer', 'sm_title', 'sm_description', 'sm_keywords',
         'questionnaire_response_email_intro_text', 'questionnaire_response_email_outro_text',
-        'banner_title', 'banner_text',
+        'banner_title', 'banner_text', 'thank_you_message',
     ];
 
     public function project(): BelongsTo {
