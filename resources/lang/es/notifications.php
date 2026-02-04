@@ -49,5 +49,21 @@ return [
 
 <p style="text-align: center;"><b>No queremos que nadie se quede atrás en la transición digital. Haz click <a href="https://crowdsourcing.ecas.org/es/inclusive-digitalisation-in-the-eu-es" target="_blank">AQUÍ</a> y contribuye con tus ideas a un nivel internacional.</b></p>',
     'project_phase_changed_salutation' => '<p>Un saludo, <strong>Fundación Cibervoluntarios</strong></p>',
+    'project_ended_subject' => 'Encuesta en torno al proceso de Crowdsourcing  sobre la Digitalización Inclusiva en la Unión Europea (IDEU)',
+    'project_ended_greeting' => 'Querido/a participante,',
+    'project_ended_body' => '<p>Muchas gracias por haber participado en el proceso de participación colectiva (crowdsourcing) sobre Digitalización Inclusiva en la Unión Europea - <i>Inclusive Digitalisation in the European Union (IDEU)</i>.<br><br>Apreciamos profundamente que se haya tomado el tiempo de compartirnos su opinión sobre cómo mejorar las competencias digitales y aumentar el número de especialistas TIC en Europa y, especialmente, en España. <a href="https://docs.google.com/document/d/1G06Xzyu6ElM3PAhJnmSj9_p-SKfpkt_Q/edit?usp=sharing&ouid=112450853816293774196&rtpof=true&sd=true" target="_blank">Aquí</a>, encontrará las recomendaciones finales obtenidas de la consulta realizada en España.</p>
 
+<p>Como el proyecto IDEU está financiado por un proyecto de la Unión Europea, le invitamos a rellenar esta encuesta sobre el proceso. Por favor, utilice <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027" target="_blank">este enlace.</a></p>
+
+<p>Puede utilizar la siguiente información en la primera página:</p>
+<ul>
+<li><b>Referencia del proyecto:</b> 101147200</li>
+<li><b>Tipo de actividad:</b> Aprendizaje mútuo</li>
+<li><b>Título del evento:</b> Consulta masiva (Crowdsourcing) a la ciudadanía en España. </li>
+<li><b>Fecha:</b> [Fecha del envío del correo]</li>
+<li><b>En línea o en persona in person? :</b> Evento en línea</li>
+</ul>
+
+<p>Rellenar la encuesta es anónimo, solo requiere 5 a 10 minutos, y nos ayudaría mucho.</p>',
+    'project_ended_salutation' => '<p>Gracias por su tiempo y esfuerzo.</p>',
 ];
