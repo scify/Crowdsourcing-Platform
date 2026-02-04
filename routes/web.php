@@ -27,8 +27,8 @@ $localeInfo = [
     'middleware' => 'setlocale',
 ];
 
-Route::get('/mail-preview', function () {
-    $notification = new NotifyProjectEnded('Test Project', 'hr');
+Route::get('/mail-preview/{locale}', function ($locale) {
+    $notification = new NotifyProjectEnded('Test Project', $locale);
 
     return $notification->toMail(null)->render();
 });
