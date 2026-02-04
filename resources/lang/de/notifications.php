@@ -49,5 +49,22 @@ return [
 
 <p>Herzlichen Dank für Ihre Teilnahme. Wir freuen uns auf Ihre Lösungsvorschläge!</p>',
     'project_phase_changed_salutation' => '<p>Mit freundlichen Grüßen, <strong>Democracy International e.V.</strong></p>',
+    'project_ended_subject' => 'Danke für Ihre Beteiligung an IDEU – Ergebnisse und Feedbackmöglichkeit',
+    'project_ended_greeting' => 'Sehr geehrte Teilnehmer*innen,',
+    'project_ended_body' => '<p>vielen Dank für Ihre Teilnahme am Crowdsourcing- Prozess Inklusive Digitalisierung in der EU (IDEU). Wir wissen es sehr zu schätzen, dass Sie sich die Zeit genommen haben, Ihre Perspektiven zur Verbesserung digitaler Kompetenzen sowie zur Erhöhung der Zahl von IKT- Fachkräften mit uns zu teilen. Die abschließenden Empfehlungen aus der Crowdsourcing- Initiative in Deutschland finden Sie hier: <a href="https://www.democracy-international.org/de/project/ideu" target="_blank">https://www.democracy-international.org/de/project/ideu</a></p>
+
+<p>Da das IDEU- Projekt durch Mittel der Europäischen Union gefördert wurde, möchten wir Sie herzlich bitten, an einer kurzen Umfrage zum Ablauf des Prozesses teilzunehmen. Bitte nutzen Sie hierfür folgenden Link: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027" target="_blank">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+
+<p>Auf der ersten Seite der Umfrage können Sie folgende Angaben verwenden:</p>
+<ul>
+<li><b>Projektreferenz:</b> 101147200</li>
+<li><b>Art der Aktivität:</b> Mutual Learning</li>
+<li><b>Titel der Veranstaltung:</b> Crowdsourcing citizens\' opinions in Deutschland </li>
+<li><b>Datum:</b> Datum des Versands dieser E-Mail</li>
+<li><b>Online oder in Präsenz:</b> Online- Veranstaltung</li>
+</ul>
+
+<p>Das Ausfüllen der Umfrage ist anonym, dauert etwa 5 bis 10 Minuten und würde uns sehr helfen. Vielen Dank für Ihre Zeit und Ihr Engagement.</p>',
+    'project_ended_salutation' => '<p></p>',
 
 ];
