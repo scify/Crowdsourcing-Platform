@@ -83,9 +83,9 @@ proposed solutions.</p>',
 
 <p>Dear participant,</p>
 
-<p>Thank you for taking part in the Inclusive Digitalisation in the European Union (IDEU) crowdsourcing process. We truly appreciate the fact that you took the time to share your views on improving digital skills and increasing the number of ICT specialists. The final recommendations that followed from the Belgian crowdsourcing initiative can be found <a href="https://docs.google.com/document/d/13tLc5aiIZ6h7djDQp1_1nbwGavBNdqHt5GREi17IXDk/edit?usp=sharing">HERE</a>.</p>
+<p>Thank you for taking part in the Inclusive Digitalisation in the European Union (IDEU) crowdsourcing process. We truly appreciate the fact that you took the time to share your views on improving digital skills and increasing the number of ICT specialists. The final recommendations that followed from the Belgian crowdsourcing initiative can be found <a href="https://docs.google.com/document/d/13tLc5aiIZ6h7djDQp1_1nbwGavBNdqHt5GREi17IXDk/edit?usp=sharing"  target="_blank">HERE</a>.</p>
 
-<p>Since the IDEU project was funded by an EU project, we kindly invite you to fill in a survey about the process. Please use this link: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+<p>Since the IDEU project was funded by an EU project, we kindly invite you to fill in a survey about the process. Please use this link: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027" target="_blank">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
 
 <p>You can use the following data on the first page:</p>
 <p><b>Reference of the project</b>: 101147200<br>
@@ -105,9 +105,9 @@ proposed solutions.</p>',
 
 <p>Beste,</p>
 
-<p>Via deze email willen wij u graag hartelijk danken voor uw deelname aan de Inclusieve Digitalisering in de Europese Unie (IDEU) crowdsourcing campagne. We stellen het op prijs dat u de tijd en moeite heeft genomen om uw meningen aangaande digitale inclusie met ons te delen. De aanbevelingen die - mede met uw bijdrage - tot stand zijn gekomen voor België, kunt u <a href="https://docs.google.com/document/d/1XaR4MH50cfL_RzvUhqTAWEmmLJzbQ_ORxrTDedVSRjM/edit?usp=sharing">HIER</a> terugvinden.</p>
+<p>Via deze email willen wij u graag hartelijk danken voor uw deelname aan de Inclusieve Digitalisering in de Europese Unie (IDEU) crowdsourcing campagne. We stellen het op prijs dat u de tijd en moeite heeft genomen om uw meningen aangaande digitale inclusie met ons te delen. De aanbevelingen die - mede met uw bijdrage - tot stand zijn gekomen voor België, kunt u <a href="https://docs.google.com/document/d/1XaR4MH50cfL_RzvUhqTAWEmmLJzbQ_ORxrTDedVSRjM/edit?usp=sharing"  target="_blank">HIER</a> terugvinden.</p>
 
-<p>Aangezien het IDEU-project is gefinancierd met EU-fondsen, willen wij u vriendelijk verzoeken om een korte vragenlijst over het proces in te vullen. U kunt daarvoor de volgende link gebruiken: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+<p>Aangezien het IDEU-project is gefinancierd met EU-fondsen, willen wij u vriendelijk verzoeken om een korte vragenlijst over het proces in te vullen. U kunt daarvoor de volgende link gebruiken: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027"  target="_blank">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
 
 <p>U kunt de volgende informatie gebruiken voor de vragen op de eerste pagina van de vragenlijst:</p>
 <p><b>Reference of the project</b>: 101147200<br>
@@ -127,9 +127,9 @@ proposed solutions.</p>',
 
 <p>Cher.e participant.e.s,</p>
 
-<p>Merci d\'avoir participé à l\'exercise de production participative (crowdsourcing) de la numérisation inclusive dans l\'Union européenne. Nous vous remercions sincèrement pour le temps que vous avez consacré à partager votre opinion sur le renforcement des compétences numériques et sur l\'augmentation du nombre de spécialistes en informatique. Les recommendations finales issues de l\'initiative de crowdsourcing menée en Belgique sont disponibles <a href="https://docs.google.com/document/d/1e8AjRtxXus5VAHS3Gl1cvQ6WLKXZVp8CWOt_ICnjw98/edit?usp=sharing">ICI</a>.</p>
+<p>Merci d\'avoir participé à l\'exercise de production participative (crowdsourcing) de la numérisation inclusive dans l\'Union européenne. Nous vous remercions sincèrement pour le temps que vous avez consacré à partager votre opinion sur le renforcement des compétences numériques et sur l\'augmentation du nombre de spécialistes en informatique. Les recommendations finales issues de l\'initiative de crowdsourcing menée en Belgique sont disponibles <a href="https://docs.google.com/document/d/1e8AjRtxXus5VAHS3Gl1cvQ6WLKXZVp8CWOt_ICnjw98/edit?usp=sharing" target="_blank">ICI</a>.</p>
 
-<p>Comme le projet de numérisation inclusive dans l\'Union européenne a été financé par l\'Union européenne, nous vous invitons à remplir un questionnaire de satisfaction. Merci de bien vouloir utiliser le lien suivant: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+<p>Comme le projet de numérisation inclusive dans l\'Union européenne a été financé par l\'Union européenne, nous vous invitons à remplir un questionnaire de satisfaction. Merci de bien vouloir utiliser le lien suivant: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027" target="_blank">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
 
 <p>Vous pouvez utiliser les informations suivantes:</p>
 <p><b>Reference of the project</b>: 101147200<br>
