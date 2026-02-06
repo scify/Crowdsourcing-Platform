@@ -68,12 +68,12 @@ care nu le-am identificat încă.</p>
 
 <p><b>Pe prima pagină a chestionarului puteți utiliza următoarele date:</b></p>
 <ul>
-<li><b>Referința proiectului:</b> 101147200</li>
-<li><b>Tipul activității:</b> Învățare reciprocă</li>
-<li><b>Titlul evenimentului:</b> Colectarea opiniilor cetățenilor prin crowdsourcing în România</li>
-<li><b>Online sau fizic:</b> Eveniment online</li>
+<li style="font-size: initial"><b>Referința proiectului:</b> 101147200</li>
+<li style="font-size: initial"><b>Tipul activității:</b> Învățare reciprocă</li>
+<li style="font-size: initial"><b>Titlul evenimentului:</b> Colectarea opiniilor cetățenilor prin crowdsourcing în România</li>
+<li style="font-size: initial"><b>Online sau fizic:</b> Eveniment online</li>
 </ul>
 
 <p>Completarea chestionarului este anonimă, durează doar 5–10 minute și ne-ar ajuta foarte mult. Vă mulțumim pentru timpul și implicarea dumneavoastră.</p>',
-    'project_ended_salutation' => '<p>Mulțumiri multe, Echipa CRPE</p>',
+    'project_ended_salutation' => '<p>Mulțumiri multe,<br>Echipa CRPE</p>',
 ];
