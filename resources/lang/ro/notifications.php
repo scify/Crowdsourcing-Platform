@@ -60,4 +60,20 @@ care nu le-am identificat încă.</p>
 
 <p>Dezbaterea continuă pe <a href="https://crowdsourcing.ecas.org/ro/inclusive-digitalization-in-the-eu-ro">https://crowdsourcing.ecas.org/ro/inclusive-digitalization-in-the-eu-ro</a></p>',
     'project_phase_changed_salutation' => '<p>Vă mulțumim, <br>Echipa CRPE</p>',
+    'project_ended_subject' => 'Digitalizarea incluzivă: Rezultatele procesului de crowdsourcing desfășurat de Centrul Român de Politici Europene',
+    'project_ended_greeting' => 'Dragi prieteni,',
+    'project_ended_body' => '<p>Vă mulțumim pentru participarea la procesul de crowdsourcing din cadrul proiectului <i>Digitalizare incluzivă în Uniunea Europeană (IDEU)</i>, derulat în România de Centrul Român de Politici Europene. Apreciem faptul că v-ați alocat timp pentru a vă împărtăși opiniile privind îmbunătățirea competențelor digitale și avansarea digitalizării în România.</p>
+<p><b>Recomandările finale rezultate în urma inițiativei de crowdsourcing din România pot fi consultate aici:</b> <a href="https://www.crpe.ro/ro/digitalizare-incluziva-in-uniunea-europeana-ce-ne-au-spus-400-de-romani-despre-romania-digitala/" target="_blank"> Digitalizare incluzivă în Uniunea Europeană: ce ne-au spus 400 de români despre România Digitală</a></p>
+<p>Întrucât proiectul IDEU este finanțat printr-un program al Uniunii Europene, vă invităm să completați un chestionar privind desfășurarea acestui proces. Vă rugăm să utilizați următorul link: <a href="https://ec.europa.eu/eusurvey/runner/CERV_2021-2027" target="_blank">https://ec.europa.eu/eusurvey/runner/CERV_2021-2027</a></p>
+
+<p><b>Pe prima pagină a chestionarului puteți utiliza următoarele date:</b></p>
+<ul>
+<li><b>Referința proiectului:</b> 101147200</li>
+<li><b>Tipul activității:</b> Învățare reciprocă</li>
+<li><b>Titlul evenimentului:</b> Colectarea opiniilor cetățenilor prin crowdsourcing în România</li>
+<li><b>Online sau fizic:</b> Eveniment online</li>
+</ul>
+
+<p>Completarea chestionarului este anonimă, durează doar 5–10 minute și ne-ar ajuta foarte mult. Vă mulțumim pentru timpul și implicarea dumneavoastră.</p>',
+    'project_ended_salutation' => '<p>Mulțumiri multe, Echipa CRPE</p>',
 ];
