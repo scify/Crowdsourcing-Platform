@@ -64,7 +64,7 @@
     "datatables.net-responsive-bs4": "^3.0.7",
     "datatables.net-select": "^2.1.0",
     "datatables.net-select-bs4": "^2.1.0",
-    "dompurify": "^3.3.1",
+    "dompurify": "^3.3.2",
     "fastclick": "^1.0.6",
     "icheck": "^1.0.2",
     "jquery": "^3.7.1",
