@@ -30,6 +30,9 @@ jobs:
             - name: Copy Environment File
               run: cp .env.testing .env
 
+            - name: Upgrade npm
+              run: npm install -g npm@latest
+
             - name: Install Dependencies
               run: |
                   composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist

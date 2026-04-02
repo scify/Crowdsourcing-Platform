@@ -25,6 +25,9 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
       - name: Run composer install
         run: composer install -n --prefer-dist --no-ansi --no-progress --no-suggest --no-interaction --no-scripts
 
