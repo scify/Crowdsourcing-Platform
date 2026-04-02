@@ -8,6 +8,10 @@
   "name": "crowdsourcing-platform",
   "version": "8.2.0",
   "readme": "README.md",
+  "engines": {
+    "node": ">=24.14.0",
+    "npm": ">=11.11.0"
+  },
   "scripts": {
     "lint": "eslint resources/assets",
     "lint:fix": "eslint --fix resources/assets",
