@@ -13,11 +13,6 @@
                                                             data-toggle="tab">
                         {{ __('common.for_administrators') }}
                     </a></li>
-                <li role="presentation" class="nav-item"><a class="nav-link" href="#platform" aria-controls="platform"
-                                                            role="tab"
-                                                            data-toggle="tab">
-                        {{ __('common.open_source_platform') }}
-                    </a></li>
             </ul>
             <div class="tab-content py-5">
                 <div role="tabpanel" class="tab-pane fade show active" id="citizens">
@@ -141,36 +136,6 @@
                                      class="img-placeholder">
                                 <p class="large-screens small-screens">
                                     {!! __('common.features_admin_5') !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="platform">
-                    <div class="features-wrapper">
-                        <div class="features-list">
-                            <div class="feature img-left">
-                                <img loading="lazy" src="{{asset('images/landing-page/features/create-projects.webp')}}"
-                                     alt="create Crowdsourcing campaigns">
-                                <p class="large-screens small-screens">
-                                    {!! __('common.features_platform_1') !!}
-                                </p>
-                            </div>
-                            <div class="feature img-right">
-                                <p class="large-screens">
-                                    {!! __('common.features_platform_2') !!}
-                                </p>
-                                <img loading="lazy" src="{{asset('images/landing-page/features/questionnaire.webp')}}"
-                                     alt="manage your questionnaires">
-                                <p class="small-screens">
-                                    {!! __('common.features_platform_3') !!}
-                                </p>
-                            </div>
-                            <div class="feature img-left">
-                                <img loading="lazy" src="{{asset('images/landing-page/features/integrate.webp')}}"
-                                     alt="integrate">
-                                <p class="large-screens small-screens">
-                                    {!! __('common.features_platform_4') !!}
                                 </p>
                             </div>
                         </div>
