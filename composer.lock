@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1765859c6c5d20c23099d302e30bb443",
+    "content-hash": "384a0d8579fb4b41fbbaca381c1eca6f",
     "packages": [
         {
             "name": "accentinteractive/laravel-logcleaner",
@@ -6169,16 +6169,16 @@
         },
         {
             "name": "scify/laravel-cookie-guard",
-            "version": "v4.1.12",
+            "version": "v4.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scify/laravel-cookie-guard.git",
-                "reference": "0b924a9e6ef0b6e34a964f35dbe76e3e29d12697"
+                "reference": "93f3b00cfbe52c8a1b7082f35f3b88b69258792f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scify/laravel-cookie-guard/zipball/0b924a9e6ef0b6e34a964f35dbe76e3e29d12697",
-                "reference": "0b924a9e6ef0b6e34a964f35dbe76e3e29d12697",
+                "url": "https://api.github.com/repos/scify/laravel-cookie-guard/zipball/93f3b00cfbe52c8a1b7082f35f3b88b69258792f",
+                "reference": "93f3b00cfbe52c8a1b7082f35f3b88b69258792f",
                 "shasum": ""
             },
             "require": {
@@ -6240,9 +6240,9 @@
             ],
             "support": {
                 "issues": "https://github.com/scify/laravel-cookie-guard/issues",
-                "source": "https://github.com/scify/laravel-cookie-guard/tree/v4.1.12"
+                "source": "https://github.com/scify/laravel-cookie-guard/tree/v4.1.13"
             },
-            "time": "2026-03-16T07:13:37+00:00"
+            "time": "2026-04-07T10:31:33+00:00"
         },
         {
             "name": "sentry/sentry",
