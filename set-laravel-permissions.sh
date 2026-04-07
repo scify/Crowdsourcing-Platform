@@ -35,22 +35,11 @@ sudo chown -R "$OWNER:$GROUP" "$LARAVEL_ROOT/storage" "$LARAVEL_ROOT/bootstrap/c
 echo "🔧 Making specific scripts executable..."
 
 chmod +x "$LARAVEL_ROOT/artisan"
-chmod +x "$LARAVEL_ROOT/tools/git-hooks/install.sh"
-chmod +x "$LARAVEL_ROOT/tools/git-hooks/pre-commit"
-chmod +x "$LARAVEL_ROOT/set-laravel-permissions.sh"
-chmod +x "$LARAVEL_ROOT/set-laravel-permissions-ci.sh"
-chmod +x "$LARAVEL_ROOT/clear-cache.sh"
 
 # Make all vendor/bin scripts executable
 if [ -d "$LARAVEL_ROOT/vendor/bin" ]; then
   echo "🔧 Making vendor/bin scripts executable..."
   find "$LARAVEL_ROOT/vendor/bin" -type f -exec chmod +x {} \;
-fi
-
-# Make DDEV custom command scripts executable
-if [ -d "$LARAVEL_ROOT/.ddev/commands" ]; then
-  echo "⚙️  Making .ddev/commands executable..."
-  find "$LARAVEL_ROOT/.ddev/commands" -type f -exec chmod +x {} \;
 fi
 
 # ...existing code...
