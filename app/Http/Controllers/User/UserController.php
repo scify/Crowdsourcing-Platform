@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\OperationResponse;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -83,7 +84,7 @@ class UserController extends Controller {
         }
     }
 
-    public function delete(Request $request): \Illuminate\Http\RedirectResponse {
+    public function delete(Request $request): RedirectResponse {
         $this->userManager->deactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User deleted.');
 
@@ -97,7 +98,7 @@ class UserController extends Controller {
         return redirect()->route('home', ['locale' => app()->getLocale()]);
     }
 
-    public function restore(Request $request): \Illuminate\Http\RedirectResponse {
+    public function restore(Request $request): RedirectResponse {
         $this->userManager->reactivateUser(intval($request->id));
         session()->flash('flash_message_success', 'User restored.');
 

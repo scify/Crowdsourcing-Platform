@@ -38,9 +38,9 @@ class QuestionnaireResponseManager {
         return $this->questionnaireResponseRepository->allWhere($queryFilters, ['*'], 'id', 'desc', ['project']);
     }
 
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser(\App\Models\User\User $user): int {
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser(User $user): int {
         $questionnaireResponsesThatWereTransferredToUser = $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
-        if ($questionnaireResponsesThatWereTransferredToUser instanceof \Illuminate\Support\Collection) {
+        if ($questionnaireResponsesThatWereTransferredToUser instanceof Collection) {
             foreach ($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse) {
                 $lang = $this->languageManager->getLanguageById($questionnaireResponse->language_id);
                 $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project,

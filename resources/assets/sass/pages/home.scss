@@ -116,6 +116,12 @@ $colorForTabs: $brand-primary;
 					@media screen and (max-width: 950px) {
 						display: block;
 					}
+
+					&.img-placeholder {
+						background-color: #e9ecef;
+						object-fit: contain;
+						min-height: 150px;
+					}
 				}
 
 				p {

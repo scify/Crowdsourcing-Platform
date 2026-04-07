@@ -22,10 +22,10 @@
                     <h2 class="text-center">Crowdsourcing</h2>
                     <p>
                         Crowdsourcing is a way of solving problems and producing new ideas
-                        by connecting online with
-                        people that you otherwise wouldn’t reach, giving citizens the <strong>opportunity to learn from
-                            others,
-                            collaborate and participate in the decision-making.</strong>
+                        by connecting online with people that you otherwise wouldn’t reach —
+                        giving citizens the <strong>opportunity to learn from others,
+                            collaborate, propose solutions, vote on ideas,
+                            and participate in the decision-making.</strong>
                     </p>
 
                 </div>
@@ -37,13 +37,16 @@
                             <p>&#10004; encouraging citizens to speak up on issues directly affecting them</p>
                         </li>
                         <li>
-                            <p>&#10004; increasing citizens democratic participation in political life</p>
+                            <p>&#10004; increasing citizens’ democratic participation in political life</p>
                         </li>
                         <li>
-                            <p>&#10004; stimulating citizens engagement with the common societal issues</p>
+                            <p>&#10004; empowering citizens to <strong>propose and vote on solutions</strong> to real-world problems</p>
                         </li>
                         <li>
-                            <p>&#10004; improving citizens understanding of policy-making processes in national and european levels</p>
+                            <p>&#10004; stimulating citizens’ engagement with common societal issues</p>
+                        </li>
+                        <li>
+                            <p>&#10004; improving citizens’ understanding of policy-making processes at national and European levels</p>
                         </li>
                     </ul>
 

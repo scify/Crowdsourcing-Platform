@@ -70,5 +70,45 @@
             <br>
         </div>
     </div>
+    @if (App::environment('staging'))
+    <div class="demo-access mx-4 mb-4 mt-2 p-3">
+        <div class="demo-access__label d-flex align-items-center mb-2">
+            <i class="fas fa-flask mr-2 text-muted" aria-hidden="true"></i>
+            <span class="text-muted font-weight-bold" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:.05em;">
+                Demo Quick Access
+            </span>
+        </div>
+        <div class="d-flex" style="gap:.5rem;">
+            <button type="button"
+                    class="btn btn-outline-secondary btn-block btn-sm demo-login-btn"
+                    data-email="demo-user@demo.com"
+                    data-password="{{ config('app.admin_pass_seed') }}">
+                <i class="fas fa-user mr-1" aria-hidden="true"></i> Demo User
+            </button>
+            <button type="button"
+                    class="btn btn-outline-danger btn-block btn-sm demo-login-btn mt-0"
+                    data-email="demo-admin@demo.com"
+                    data-password="{{ config('app.admin_pass_seed') }}">
+                <i class="fas fa-user-shield mr-1" aria-hidden="true"></i> Demo Admin
+            </button>
+        </div>
+        <p class="text-muted mt-2 mb-0" style="font-size:0.7rem;">
+            These accounts contain demo data only and are not for production use.
+        </p>
+    </div>
+
+    @push('scripts')
+    <script>
+        document.querySelectorAll('.demo-login-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var form = document.querySelector('form[action="{{ route('login') }}"]');
+                form.querySelector('input[name="email"]').value = this.dataset.email;
+                form.querySelector('input[name="password"]').value = this.dataset.password;
+                form.submit();
+            });
+        });
+    </script>
+    @endpush
+    @endif
 @endsection
 

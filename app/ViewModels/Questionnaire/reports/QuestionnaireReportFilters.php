@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class QuestionnaireReportFilters {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $allQuestionnaires;
 

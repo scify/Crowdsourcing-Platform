@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\BusinessLogicLayer\Questionnaire;
 
+use App\Models\Questionnaire\QuestionnaireResponseReferral;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseReferralRepository;
 
 class QuestionnaireResponseReferralManager {
@@ -16,7 +17,7 @@ class QuestionnaireResponseReferralManager {
      *
      * @return mixed the object created
      */
-    public function createQuestionnaireResponseReferral($questionnaireId, $respondentId, $referrerId): \App\Models\Questionnaire\QuestionnaireResponseReferral {
+    public function createQuestionnaireResponseReferral($questionnaireId, $respondentId, $referrerId): QuestionnaireResponseReferral {
         return $this->questionnaireResponseReferralRepository->create([
             'questionnaire_id' => $questionnaireId,
             'respondent_id' => $respondentId,

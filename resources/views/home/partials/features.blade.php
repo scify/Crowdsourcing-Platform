@@ -8,6 +8,11 @@
                                                             data-toggle="tab">
                         {{ __('common.built_for_citizens') }}
                     </a></li>
+                <li role="presentation" class="nav-item"><a class="nav-link" href="#administrators"
+                                                            aria-controls="administrators" role="tab"
+                                                            data-toggle="tab">
+                        {{ __('common.for_administrators') }}
+                    </a></li>
                 <li role="presentation" class="nav-item"><a class="nav-link" href="#platform" aria-controls="platform"
                                                             role="tab"
                                                             data-toggle="tab">
@@ -58,6 +63,84 @@
                                      alt="celebrating">
                                 <p class="large-screens small-screens">
                                     {!! __('common.features_citizens_7') !!}
+                                </p>
+                            </div>
+                            <div class="feature img-right">
+                                <p class="large-screens">
+                                    {!! __('common.features_citizens_8') !!}
+                                </p>
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/propose-solutions.webp') }}"
+                                     alt="propose solutions"
+                                     class="img-placeholder">
+                                <p class="small-screens">
+                                    {!! __('common.features_citizens_8') !!}
+                                </p>
+                            </div>
+                            <div class="feature img-left">
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/vote-solutions.webp') }}"
+                                     alt="vote for solutions"
+                                     class="img-placeholder">
+                                <p class="large-screens small-screens">
+                                    {!! __('common.features_citizens_9') !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="administrators">
+                    <div class="features-wrapper">
+                        <div class="features-list">
+                            <div class="feature img-left">
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/admin-campaigns.webp') }}"
+                                     alt="create and manage campaigns"
+                                     class="img-placeholder">
+                                <p class="large-screens small-screens">
+                                    {!! __('common.features_admin_1') !!}
+                                </p>
+                            </div>
+                            <div class="feature img-right">
+                                <p class="large-screens">
+                                    {!! __('common.features_admin_2') !!}
+                                </p>
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/admin-problems-solutions.webp') }}"
+                                     alt="manage problems and solutions"
+                                     class="img-placeholder">
+                                <p class="small-screens">
+                                    {!! __('common.features_admin_2') !!}
+                                </p>
+                            </div>
+                            <div class="feature img-left">
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/admin-multilingual.webp') }}"
+                                     alt="multilingual content"
+                                     class="img-placeholder">
+                                <p class="large-screens small-screens">
+                                    {!! __('common.features_admin_3') !!}
+                                </p>
+                            </div>
+                            <div class="feature img-right">
+                                <p class="large-screens">
+                                    {!! __('common.features_admin_4') !!}
+                                </p>
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/admin-statistics.webp') }}"
+                                     alt="statistics and reports"
+                                     class="img-placeholder">
+                                <p class="small-screens">
+                                    {!! __('common.features_admin_4') !!}
+                                </p>
+                            </div>
+                            <div class="feature img-left">
+                                <img loading="lazy"
+                                     src="{{ asset('images/landing-page/features/admin-moderation.webp') }}"
+                                     alt="moderation"
+                                     class="img-placeholder">
+                                <p class="large-screens small-screens">
+                                    {!! __('common.features_admin_5') !!}
                                 </p>
                             </div>
                         </div>

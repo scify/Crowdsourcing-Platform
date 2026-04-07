@@ -13,7 +13,6 @@ html {
 
 .login-box {
 	margin: 0 auto;
-	width: 90%;
 	max-width: 90%;
 }
 
@@ -167,5 +166,16 @@ html {
 		// margin-bottom: 7rem;
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+	}
+}
+
+.demo-access {
+	border: 1px dashed #dee2e6;
+	border-radius: 6px;
+	background-color: #fafafa;
+
+	&__label {
+		border-bottom: 1px solid #e9ecef;
+		padding-bottom: 0.4rem;
 	}
 }

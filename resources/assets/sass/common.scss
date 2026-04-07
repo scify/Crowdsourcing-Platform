@@ -210,13 +210,61 @@ table {
 	position: relative;
 }
 
-.staging-warning {
-	background-color: $yellow;
+/* Staging / Demo environment indicator */
+.staging-banner {
+	background: linear-gradient(90deg, #c0392b 0%, #e67e22 50%, #c0392b 100%);
+	background-size: 200% 100%;
+	animation: staging-slide 4s linear infinite;
 
-	h5 {
-		color: $header-font-color;
-		font-weight: bold;
-		text-align: center;
+	&__inner {
+		min-height: 35px;
+		line-height: 1;
+	}
+
+	&__title,
+	&__subtitle {
+		color: #ffffff;
+		font-size: 0.78rem;
+		letter-spacing: 0.05em;
+	}
+
+	&__subtitle {
+		opacity: 0.85;
+	}
+
+	.fas.fa-flask {
+		color: #ffffff;
+		font-size: 0.85rem;
+	}
+
+	&__pulse {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: #ffffff;
+		animation: staging-pulse 1.4s ease-in-out infinite;
+	}
+}
+
+@keyframes staging-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.3;
+		transform: scale(0.6);
+	}
+}
+
+@keyframes staging-slide {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 200% 50%;
 	}
 }
 

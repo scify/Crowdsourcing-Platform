@@ -81,7 +81,7 @@
 		"summernote": "^0.9.1",
 		"survey-analytics": "^1.12.25",
 		"survey-core": "^1.12.25",
-		"survey-creator": "^1.12.61",
-		"survey-jquery": "^1.12.61"
+		"survey-creator": "^1.12.59",
+		"survey-jquery": "^1.12.59"
 	}
 }

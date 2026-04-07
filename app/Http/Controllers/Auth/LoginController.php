@@ -7,10 +7,13 @@ namespace App\Http\Controllers\Auth;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
+use App\Models\User\User;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +55,7 @@ class LoginController extends Controller {
         return view('auth.login')->with('displayQuestionnaireLabels', $request->submitQuestionnaire != null);
     }
 
-    protected function authenticated(Request $request, \App\Models\User\User $user): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
+    protected function authenticated(Request $request, User $user): Redirector|RedirectResponse {
         $numberOfResponsesTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         $url = session('redirectTo') ?: $this->redirectTo();
         if ($numberOfResponsesTransferred !== 0) {

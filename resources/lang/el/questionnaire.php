@@ -44,6 +44,7 @@ return [
     'project_no_active_questionnaire' => 'Αυτό το έργο δεν έχει ενεργό ερωτηματολόγιο ακόμα.',
     'check_what_other_respondents' => 'Πριν απαντήσετε το ερωτηματολόγιο, δείτε τι έχουν πει άλλοι ερωτηθέντες πατώντας',
     'here' => 'εδώ',
+    'see_results' => 'Δείτε τι απάντησαν οι συμμετέχοντες',
     'select_language' => 'Επιλογή γλώσσας',
     'invite_your_friends_to_answer' => 'Προσκαλέστε τους φίλους σας να απαντήσουν',
     'go_to_homepage' => 'Ναι! Πήγαινε στη homepage',

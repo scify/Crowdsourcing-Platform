@@ -11,6 +11,7 @@ use App\Repository\User\UserRepository;
 use App\Repository\User\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
 use Faker\Factory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Mockery;
 use PHPUnit\Framework\Attributes\Test;
@@ -51,7 +52,7 @@ class UserManagerTest extends TestCase {
         $userRepositoryMock->shouldReceive('find')
             ->once()
             ->with(Mockery::any())
-            ->andThrow(new \Illuminate\Database\Eloquent\ModelNotFoundException);
+            ->andThrow(new ModelNotFoundException);
 
         // Mock getCookie to return null after deletion
         $cookieManagerMock->shouldReceive('getCookie')

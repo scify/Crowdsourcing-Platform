@@ -9,13 +9,15 @@ use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectForLandingPage extends CrowdSourcingProjectLayoutPage {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $languages;
 
     public $thankYouMode = false;
 
     public $moderator = false;
+
+    public bool $userCanViewStatistics = false;
 
     public function __construct(
         CrowdSourcingProject $project,

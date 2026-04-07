@@ -41,7 +41,7 @@ class QuestionnaireStatisticsRepository {
      * *
      * * @param  mixed  $questionnaireId
      * */
-    public function getNumberOfResponsesPerLanguage($questionnaireId): \App\Repository\Questionnaire\Statistics\QuestionnaireResponsesPerLanguage {
+    public function getNumberOfResponsesPerLanguage($questionnaireId): QuestionnaireResponsesPerLanguage {
         $query = DB::select('SELECT count(*) as num_responses, 
                             language_code, language_name, 
                             ifnull(ql.color, default_color) as color 
