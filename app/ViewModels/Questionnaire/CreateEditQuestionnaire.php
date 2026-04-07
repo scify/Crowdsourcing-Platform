@@ -9,17 +9,17 @@ use Illuminate\Support\Collection;
 
 class CreateEditQuestionnaire {
     /**
-     * @var \App\Models\Questionnaire\Questionnaire
+     * @var Questionnaire
      */
     public $questionnaire;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $projects;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $languages;
 
@@ -29,7 +29,7 @@ class CreateEditQuestionnaire {
     public $title;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $questionnaireStatisticsPageVisibilityLkp;
 
@@ -45,7 +45,7 @@ class CreateEditQuestionnaire {
     ];
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $questionnaireFieldsTranslations;
 

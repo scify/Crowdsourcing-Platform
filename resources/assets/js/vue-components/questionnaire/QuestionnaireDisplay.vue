@@ -187,6 +187,7 @@ export default {
 		},
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
+			console.log(this.questionnaire.questionnaire_json);
 			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
 			if (!this.userResponse || Object.keys(this.userResponse).length === 0) {
 				this.prepareQuestionnaireForResponding();

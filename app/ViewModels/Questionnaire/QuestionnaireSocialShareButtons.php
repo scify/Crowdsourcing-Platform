@@ -9,7 +9,7 @@ use App\Models\Questionnaire\Questionnaire;
 
 class QuestionnaireSocialShareButtons {
     /**
-     * @var \App\Models\Questionnaire\Questionnaire
+     * @var Questionnaire
      */
     public $questionnaire;
 

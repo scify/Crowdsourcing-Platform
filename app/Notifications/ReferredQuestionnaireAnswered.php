@@ -9,6 +9,7 @@ use App\Models\Questionnaire\QuestionnaireFieldsTranslation;
 use App\ViewModels\Gamification\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class ReferredQuestionnaireAnswered extends BadgeActionOccured implements ShouldQueue {
     public $title;
@@ -39,7 +40,7 @@ class ReferredQuestionnaireAnswered extends BadgeActionOccured implements Should
      *
      * @param  mixed  $notifiable
      *
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable) {
         return parent::objectToMail(

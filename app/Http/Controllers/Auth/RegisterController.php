@@ -18,7 +18,9 @@ use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -89,7 +91,7 @@ class RegisterController extends Controller {
     /**
      * @throws Exception
      */
-    protected function registered(Request $request, \App\Models\User\User $user): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse {
+    protected function registered(Request $request, User $user): Redirector|RedirectResponse {
         $this->mailChimpManager->subscribe($user->email, 'registered_users', $user->nickname);
         $numberOfResponseTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
         if ($numberOfResponseTransferred !== 0) {

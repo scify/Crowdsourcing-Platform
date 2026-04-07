@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 class CrowdSourcingProjectUnavailable extends CrowdSourcingProjectLayoutPage {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $projects;
 

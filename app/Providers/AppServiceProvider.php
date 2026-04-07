@@ -23,6 +23,6 @@ class AppServiceProvider extends ServiceProvider {
      * Register any application services.
      */
     public function register(): void {
-        $this->app->singleton(ToxicityAnalyzerService::class, fn ($app): \App\BusinessLogicLayer\CommentAnalyzer\GooglePerspectiveAPIService => new GooglePerspectiveAPIService);
+        $this->app->singleton(ToxicityAnalyzerService::class, fn ($app): GooglePerspectiveAPIService => new GooglePerspectiveAPIService);
     }
 }

@@ -22,7 +22,7 @@ class QuestionnaireAccessManager {
         };
     }
 
-    public function userIsAdminOrContentManager(\App\Models\User\User $user): bool {
+    public function userIsAdminOrContentManager(User $user): bool {
         if ($this->userRoleManager->userHasAdminRole($user)) {
             return true;
         }

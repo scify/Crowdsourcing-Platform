@@ -16,13 +16,9 @@
 </head>
 <body class="hold-transition background-page @yield('body_class') container-fluid"
       style="background-image: url('{{ asset('images/active_participation.webp') }}');">
-@if (App::environment('staging'))
-    <div class="sticky-top w-100 staging-warning py-2 text-center">
-        <h5 class="m-0">~~~ TESTING ENVIRONMENT ~~~</h5>
-    </div>
-@endif
+@include('partials.staging-indicator')
 <div id="app" class="row h-100 justify-content-center align-items-center">
-    <div class="login-box col-xl-5 col-lg-6 col-md-9 col-sm-9">
+    <div class="login-box col-xl-4 col-lg-5 col-md-9 col-sm-10">
         <div class="login-box-body px-md-5 px-sm-2 py-5 w-100">
             @yield('auth-form')
         </div>

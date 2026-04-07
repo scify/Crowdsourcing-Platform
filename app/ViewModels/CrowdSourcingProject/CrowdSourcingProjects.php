@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class CrowdSourcingProjects {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $projects;
 

@@ -13,7 +13,7 @@ use GuzzleHttp\RequestOptions;
 class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
     private $api_key;
 
-    private readonly \GuzzleHttp\Client $client;
+    private readonly Client $client;
 
     const API_URL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze';
 

@@ -98,7 +98,7 @@ class SolutionManager {
         $problem = $this->problemRepository->find(intval($attributes['solution-owner-problem']));
         $project = $problem->project;
         if (! $project->solution_submission_open) {
-            throw new \Exception('Solution submission is closed for this campaign');
+            throw new Exception('Solution submission is closed for this campaign');
         }
         $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
         $user = Auth::user();
@@ -154,11 +154,11 @@ class SolutionManager {
             DB::commit();
 
             return $solution;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             Log::error('Error: ' . $exception->getCode() . '  ' . $exception->getMessage());
             DB::rollBack();
 
-            throw new \Exception('An error occurred while creating the solution', $exception->getCode(), $exception);
+            throw new Exception('An error occurred while creating the solution', $exception->getCode(), $exception);
         }
     }
 

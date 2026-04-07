@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Twitter\TwitterExtendSocialite;
 
 class EventServiceProvider extends ServiceProvider {
     /**
@@ -16,9 +18,9 @@ class EventServiceProvider extends ServiceProvider {
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        SocialiteWasCalled::class => [
             // ... other providers
-            \SocialiteProviders\Twitter\TwitterExtendSocialite::class . '@handle',
+            TwitterExtendSocialite::class . '@handle',
         ],
     ];
 

@@ -10,24 +10,24 @@ use Illuminate\Support\Collection;
 
 class CreateEditProblem {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $translations;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $problemStatusesLkp;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $languagesLkp;
 
     public $defaultLanguageCode = 'en';
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $projects;
 

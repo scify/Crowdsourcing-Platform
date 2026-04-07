@@ -36,7 +36,7 @@ class NotifyProjectEnded extends Notification implements CampaignNotificationInt
      *
      * @param  mixed  $notifiable
      *
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable) {
         $params = [

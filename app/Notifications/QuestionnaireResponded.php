@@ -8,6 +8,7 @@ use App\BusinessLogicLayer\Gamification\GamificationBadge;
 use App\ViewModels\Gamification\GamificationBadgeVM;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
     use Queueable;
@@ -45,7 +46,7 @@ class QuestionnaireResponded extends BadgeActionOccured implements ShouldQueue {
      *
      * @param  mixed  $notifiable
      *
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable) {
         return parent::objectToMail(
