@@ -54,6 +54,7 @@
 		"psr-4": {
 			"App\\": "app/",
 			"Database\\Factories\\": "database/factories/",
+			"Database\\Helpers\\": "database/helpers/",
 			"Database\\Seeders\\": "database/seeders/"
 		},
 		"files": [
