@@ -17,6 +17,26 @@ export default defineConfig({
 		https: false,
 	},
 	plugins: [
+		// Fix Knockout.js strict-mode incompatibility bundled inside survey-jquery.
+		// Knockout's binding evaluator has two paths: an eval() path (used when a
+		// CSP createScript helper is present) and a new Function() path. ES modules
+		// are always strict mode, and strict mode forbids `with` statements that
+		// Knockout injects via eval(). Forcing new Function() avoids this entirely.
+		// This transform hook runs for both dev and production (Rollup) builds.
+		{
+			name: "fix-knockout-strict-mode",
+			transform(code, id) {
+				if (/survey\.jquery\.js$/.test(id)) {
+					return {
+						code: code.replace(
+							'return H?eval(H.createScript("(function($context,$element){"+e+"})")):new Function("$context","$element",e)',
+							'return new Function("$context","$element",e)',
+						),
+						map: null,
+					};
+				}
+			},
+		},
 		laravel({
 			input: [
 				"resources/assets/sass/auth.scss",
