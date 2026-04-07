@@ -10,7 +10,7 @@ use App\Models\QuestionnairePossibleAnswer;
 
 class QuestionnaireStatisticsColors {
     /**
-     * @var \App\Models\Questionnaire\Questionnaire
+     * @var Questionnaire
      */
     public $questionnaire;
 

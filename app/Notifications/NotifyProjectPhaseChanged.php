@@ -36,7 +36,7 @@ class NotifyProjectPhaseChanged extends Notification implements CampaignNotifica
      *
      * @param  mixed  $notifiable
      *
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable) {
         return (new MailMessage)

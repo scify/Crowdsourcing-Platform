@@ -10,17 +10,17 @@ use Illuminate\Support\Collection;
 
 class CreateEditCrowdSourcingProject {
     /**
-     * @var \App\Models\CrowdSourcingProject\CrowdSourcingProject
+     * @var CrowdSourcingProject
      */
     public $project;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $translations;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $projectStatusesLkp;
 
@@ -89,7 +89,7 @@ class CreateEditCrowdSourcingProject {
     ];
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $languagesLkp;
 

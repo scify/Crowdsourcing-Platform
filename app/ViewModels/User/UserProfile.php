@@ -8,7 +8,7 @@ use App\Models\User\User;
 
 class UserProfile {
     /**
-     * @var \App\Models\User\User
+     * @var User
      */
     public $user;
 

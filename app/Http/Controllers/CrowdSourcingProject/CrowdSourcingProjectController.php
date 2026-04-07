@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -133,7 +134,7 @@ class CrowdSourcingProjectController extends Controller {
         }
     }
 
-    private function shouldHandleQuestionnaireShare(\Illuminate\Http\Request $request): bool {
+    private function shouldHandleQuestionnaireShare(Request $request): bool {
         return
             property_exists($request, 'questionnaireId') && $request->questionnaireId !== null &&
             (property_exists($request, 'referrerId') && $request->referrerId !== null);
@@ -177,7 +178,7 @@ class CrowdSourcingProjectController extends Controller {
 
         // Style the header row
         $sheet->getStyle('A1:I1')->getFont()->setBold(true);
-        $sheet->getStyle('A1:I1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+        $sheet->getStyle('A1:I1')->getFill()->setFillType(Fill::FILL_SOLID);
         $sheet->getStyle('A1:I1')->getFill()->getStartColor()->setARGB('FFCCCCCC');
 
         // Add data rows

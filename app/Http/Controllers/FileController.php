@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -44,7 +45,7 @@ class FileController extends Controller {
                 $image->save($tempPath);
 
                 // Upload the processed image to S3
-                $path = Storage::disk('s3')->putFileAs('uploads', new \Illuminate\Http\File($tempPath), $uniqueId . '.jpg');
+                $path = Storage::disk('s3')->putFileAs('uploads', new File($tempPath), $uniqueId . '.jpg');
                 unlink($tempPath); // Delete the temporary file
             } else {
                 // Upload non-image files directly

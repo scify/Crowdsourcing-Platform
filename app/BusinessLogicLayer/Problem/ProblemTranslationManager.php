@@ -62,7 +62,7 @@ class ProblemTranslationManager {
     /**
      * Updates the extra translations for a problem.
      *
-     * @throws \App\Repository\RepositoryException
+     * @throws RepositoryException
      */
     protected function updateProblemExtraTranslations(int $problemId, array $newExtraTranslations): void {
         $problemDefaultTranslationId = $this->problemRepository->find($problemId)->default_language_id;

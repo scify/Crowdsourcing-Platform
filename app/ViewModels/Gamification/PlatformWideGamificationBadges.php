@@ -6,17 +6,17 @@ namespace App\ViewModels\Gamification;
 
 class PlatformWideGamificationBadges {
     /**
-     * @var \App\ViewModels\Gamification\GamificationBadgeVM
+     * @var GamificationBadgeVM
      */
     public $contributorBadge;
 
     /**
-     * @var \App\ViewModels\Gamification\GamificationBadgeVM
+     * @var GamificationBadgeVM
      */
     public $communicatorBadge;
 
     /**
-     * @var \App\ViewModels\Gamification\GamificationBadgeVM
+     * @var GamificationBadgeVM
      */
     public $influencerBadge;
 

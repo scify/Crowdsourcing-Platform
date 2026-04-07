@@ -6,6 +6,7 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\Gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\Questionnaire\QuestionnaireAccessManager;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\BusinessLogicLayer\User\UserRoleManager;
@@ -44,7 +45,7 @@ class CrowdSourcingProjectManager {
 
     const DEFAULT_LP_BTN_TEXT_COLOR_THEME = 'dark';
 
-    public function __construct(protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository, protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager, protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager, protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository, protected QuestionnaireGoalManager $questionnaireGoalManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager, protected ProblemRepository $crowdSourcingProjectProblemRepository, protected UserRoleManager $userRoleManager) {}
+    public function __construct(protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository, protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager, protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager, protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository, protected QuestionnaireGoalManager $questionnaireGoalManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager, protected ProblemRepository $crowdSourcingProjectProblemRepository, protected UserRoleManager $userRoleManager, protected QuestionnaireAccessManager $questionnaireAccessManager) {}
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
@@ -138,7 +139,7 @@ class CrowdSourcingProjectManager {
 
         $socialMediaMetadataVM = $this->getSocialMediaMetadataViewModel($project);
 
-        return new CrowdSourcingProjectForLandingPage($project,
+        $viewModel = new CrowdSourcingProjectForLandingPage($project,
             $questionnaire,
             $feedbackQuestionnaire,
             $projectHasPublishedProblems,
@@ -150,6 +151,13 @@ class CrowdSourcingProjectManager {
             $this->languageRepository->all(),
             $shareUrlForFacebook,
             $shareUrlForTwitter);
+
+        if ($questionnaire) {
+            $viewModel->userCanViewStatistics = $this->questionnaireAccessManager
+                ->userHasAccessToViewQuestionnaireStatisticsPage(Auth::user(), $questionnaire);
+        }
+
+        return $viewModel;
     }
 
     public function getCrowdSourcingProjectViewModelForThankYouPage(
@@ -295,21 +303,21 @@ class CrowdSourcingProjectManager {
             $attributes['about'] = trim((string) $attributes['description']);
         }
 
-        if ((! isset($attributes['img_path']) || ! $attributes['img_path']) && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->img_path)) {
+        if ((! isset($attributes['img_path']) || ! $attributes['img_path']) && (! $project instanceof CrowdSourcingProject || ! $project->img_path)) {
             $attributes['img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
-        if ((! isset($attributes['logo_path']) || ! $attributes['logo_path']) && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->logo_path)) {
+        if ((! isset($attributes['logo_path']) || ! $attributes['logo_path']) && (! $project instanceof CrowdSourcingProject || ! $project->logo_path)) {
             $attributes['logo_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
         if ((! isset($attributes['sm_featured_img_path']) || ! $attributes['sm_featured_img_path'])
-            && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->sm_featured_img_path)) {
+            && (! $project instanceof CrowdSourcingProject || ! $project->sm_featured_img_path)) {
             $attributes['sm_featured_img_path'] = self::DEFAULT_IMAGE_PATH;
         }
 
         if ((! isset($attributes['lp_questionnaire_img_path']) || ! $attributes['lp_questionnaire_img_path'])
-            && (! $project instanceof \App\Models\CrowdSourcingProject\CrowdSourcingProject || ! $project->lp_questionnaire_img_path)) {
+            && (! $project instanceof CrowdSourcingProject || ! $project->lp_questionnaire_img_path)) {
             $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 

@@ -44,6 +44,7 @@ return [
     'project_no_active_questionnaire' => 'This campaign does not have an active questionnaire yet.',
     'check_what_other_respondents' => 'Before answering to the questionnaire, you can check what the other respondents have said by clicking',
     'here' => 'here',
+    'see_results' => 'See what respondents have answered',
     'select_language' => 'Select language',
     'invite_your_friends_to_answer' => 'Invite your friends to answer',
     'go_to_homepage' => 'Yes! Go to homepage',

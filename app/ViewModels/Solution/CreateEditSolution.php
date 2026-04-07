@@ -11,22 +11,22 @@ use Illuminate\Support\Collection;
 
 class CreateEditSolution {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $translations;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $solutionStatusesLkp;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $languagesLkp;
 
     /**
-     * @var \App\Models\Problem\Problem
+     * @var Problem
      */
     public $problem;
 

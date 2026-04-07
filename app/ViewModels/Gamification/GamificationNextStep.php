@@ -10,7 +10,7 @@ class GamificationNextStep {
     public $subtitle;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var Collection
      */
     public $projects;
 
