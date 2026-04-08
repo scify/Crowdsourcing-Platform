@@ -132,8 +132,8 @@ class DefaultProjectSeeder extends Seeder {
                 'language_id' => 12,
                 'project_id' => 1,
                 'name' => 'Έρευνα Κλιματικής Δράσης',
-                'motto_title' => 'Βοηθήστε να διαμορφωθεί η κλιματική πολιτική της πόλης — η γνώμη σας μετράει!',
-                'motto_subtitle' => 'Αφιερώστε 2 λεπτά για να μοιραστείτε τις απόψεις σας για τις τοπικές κλιματικές προτεραιότητες.',
+                'motto_title' => 'Βοηθήστε να διαμορφωθεί η κλιματική πολιτική — η γνώμη σας μετράει!',
+                'motto_subtitle' => 'Αφιερώστε 2 λεπτά για να μοιραστείτε τις απόψεις σας για τις κλιματικές προτεραιότητες.',
                 'description' => 'Μια πρωτοβουλία συμμετοχής πολιτών για τη συλλογή απόψεων σχετικά με τα τοπικά μέτρα κλιματικής δράσης.',
                 'about' => '<p>Η Έρευνα Κλιματικής Δράσης καλεί τους πολίτες να μοιραστούν τις προτεραιότητές τους για την τοπική περιβαλλοντική πολιτική. <a href="https://www.scify.gr/site/en/">Μάθετε περισσότερα για το έργο μας.</a></p>',
                 'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
@@ -148,6 +148,75 @@ class DefaultProjectSeeder extends Seeder {
                 'thank_you_message' => 'Ευχαριστούμε για τη συνεισφορά σας στην έρευνά μας για το κλίμα!',
                 'questionnaire_response_email_intro_text' => '<p>Χάρη στη συνεισφορά σας είμαστε ένα βήμα πιο κοντά στη δημιουργία ενός βιώσιμου μέλλοντος.<br></p>',
                 'questionnaire_response_email_outro_text' => '<p>Σας ευχαριστούμε για τον χρόνο και την αφοσίωσή σας στην κοινότητά μας.<br></p>',
+            ],
+            // Project 1 — Climate Action Survey — DE
+            [
+                'id' => 9,
+                'language_id' => 11,
+                'project_id' => 1,
+                'name' => 'Klimaaktionsumfrage',
+                'motto_title' => 'Helfen Sie, die Klimareaktion unserer Stadt zu gestalten — Ihre Meinung zählt!',
+                'motto_subtitle' => 'Nehmen Sie sich 2 Minuten Zeit, um Ihre Ansichten zu lokalen Klimaprioritäten zu teilen.',
+                'description' => 'Eine Bürgerengagement-Initiative zur Sammlung von Meinungen zu lokalen Klimaschutzmaßnahmen.',
+                'about' => '<p>Die Klimaaktionsumfrage lädt Bürger ein, ihre Prioritäten für die lokale Umweltpolitik zu teilen. Gemeinsam können wir eine grünere, nachhaltigere Stadt aufbauen. <a href="https://www.scify.gr/site/en/">Erfahren Sie mehr über unsere Arbeit.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Nutzungsbedingungen</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Datenschutzrichtlinie</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Cookie-Richtlinie</a>',
+                'sm_title' => 'Klimaaktionsumfrage',
+                'sm_description' => 'Helfen Sie, die Klimareaktion unserer Stadt zu gestalten — Ihre Meinung zählt!',
+                'sm_keywords' => 'Klima, Umwelt, Umfrage, Bürgerengagement',
+                'banner_title' => 'Ihre Stimme zählt',
+                'banner_text' => 'Über 200 Bürger haben bereits geantwortet. Machen Sie mit!',
+                'thank_you_message' => 'Vielen Dank für Ihren Beitrag zu unserer Klimaumfrage!',
+                'questionnaire_response_email_intro_text' => '<p>Dank Ihres Beitrags sind wir einem nachhaltigen Zukunft einen Schritt näher.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Vielen Dank für Ihre Zeit und Ihr Engagement für unsere Gemeinschaft.<br></p>',
+            ],
+            // Project 1 — Climate Action Survey — ES
+            [
+                'id' => 10,
+                'language_id' => 22,
+                'project_id' => 1,
+                'name' => 'Encuesta de Acción Climática',
+                'motto_title' => '¡Ayuda a dar forma a la respuesta climática de nuestra ciudad — tu opinión importa!',
+                'motto_subtitle' => 'Tómate 2 minutos para compartir tus puntos de vista sobre las prioridades climáticas locales.',
+                'description' => 'Una iniciativa de participación ciudadana para recopilar opiniones sobre las medidas locales de acción climática.',
+                'about' => '<p>La Encuesta de Acción Climática invita a los ciudadanos a compartir sus prioridades para la política ambiental local. Juntos podemos construir una ciudad más verde y sostenible. <a href="https://www.scify.gr/site/en/">Conoce más sobre nuestro trabajo.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Términos de uso</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Política de privacidad</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Política de cookies</a>',
+                'sm_title' => 'Encuesta de Acción Climática',
+                'sm_description' => '¡Ayuda a dar forma a la respuesta climática de nuestra ciudad — tu opinión importa!',
+                'sm_keywords' => 'clima, medio ambiente, encuesta, participación ciudadana',
+                'banner_title' => 'Tu voz cuenta',
+                'banner_text' => 'Más de 200 ciudadanos ya han respondido. ¡Únete a ellos!',
+                'thank_you_message' => '¡Gracias por contribuir a nuestra encuesta climática!',
+                'questionnaire_response_email_intro_text' => '<p>Gracias a tu contribución estamos un paso más cerca de construir un futuro sostenible.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Gracias por tu tiempo y dedicación a nuestra comunidad.<br></p>',
+            ],
+            // Project 1 — Climate Action Survey — FR
+            [
+                'id' => 11,
+                'language_id' => 10,
+                'project_id' => 1,
+                'name' => 'Enquête sur l\'Action Climatique',
+                'motto_title' => 'Aidez à façonner la réponse climatique de notre ville — votre opinion compte !',
+                'motto_subtitle' => 'Prenez 2 minutes pour partager vos points de vue sur les priorités climatiques locales.',
+                'description' => 'Une initiative de participation citoyenne pour recueillir des opinions sur les mesures locales d\'action climatique.',
+                'about' => '<p>L\'Enquête sur l\'Action Climatique invite les citoyens à partager leurs priorités pour la politique environnementale locale. Ensemble, nous pouvons construire une ville plus verte et plus durable. <a href="https://www.scify.gr/site/en/">En savoir plus sur notre travail.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Conditions d\'utilisation</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Politique de confidentialité</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Politique des cookies</a>',
+                'sm_title' => 'Enquête sur l\'Action Climatique',
+                'sm_description' => 'Aidez à façonner la réponse climatique de notre ville — votre opinion compte !',
+                'sm_keywords' => 'climat, environnement, enquête, participation citoyenne',
+                'banner_title' => 'Votre voix compte',
+                'banner_text' => 'Plus de 200 citoyens ont déjà répondu. Rejoignez-les !',
+                'thank_you_message' => 'Merci d\'avoir contribué à notre enquête climatique !',
+                'questionnaire_response_email_intro_text' => '<p>Grâce à votre contribution, nous sommes un pas plus près de construire un avenir durable.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Merci pour votre temps et votre dévouement à notre communauté.<br></p>',
             ],
             // Project 2 — Urban Innovation Hub — EN
             [
@@ -188,6 +257,66 @@ class DefaultProjectSeeder extends Seeder {
                 'sm_keywords' => 'αστικές λύσεις, καινοτομία, πόλη, συμμετοχή πολιτών',
                 'questionnaire_response_email_intro_text' => '<p>Χάρη στη συνεισφορά σας είμαστε ένα βήμα πιο κοντά στην επίλυση των αστικών προκλήσεων.<br></p>',
                 'questionnaire_response_email_outro_text' => '<p>Σας ευχαριστούμε για τον χρόνο και την προσπάθειά σας.<br></p>',
+            ],
+            // Project 2 — Urban Innovation Hub — DE
+            [
+                'id' => 12,
+                'language_id' => 11,
+                'project_id' => 2,
+                'name' => 'Zentrum für Stadtinnovation',
+                'motto_title' => 'Welche städtischen Herausforderungen sollte unsere Stadt zuerst angehen?',
+                'motto_subtitle' => 'Probleme teilen, Lösungen vorschlagen, für die besten Ideen stimmen.',
+                'description' => 'Eine Plattform für Bürger, um städtische Herausforderungen zu identifizieren und gemeinsam innovative Lösungen zu entwickeln.',
+                'about' => '<p>Das Zentrum für Stadtinnovation befähigt die Bewohner, die dringendsten Probleme der Stadt aufzuzeigen und gemeinsam kreative Lösungen zu entwickeln. <a href="https://www.scify.gr/site/en/">Erfahren Sie mehr über unseren Ansatz.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Nutzungsbedingungen</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Datenschutzrichtlinie</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Cookie-Richtlinie</a>',
+                'sm_title' => 'Zentrum für Stadtinnovation',
+                'sm_description' => 'Probleme teilen, Lösungen vorschlagen, für die besten Ideen für unsere Stadt stimmen.',
+                'sm_keywords' => 'Stadtentwicklung, Innovation, Lösungen, Stadt, Bürgerbeteiligung',
+                'questionnaire_response_email_intro_text' => '<p>Dank Ihres Beitrags sind wir einen Schritt näher daran, die Herausforderungen unserer Stadt zu lösen.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Vielen Dank für Ihre Zeit und Ihr Engagement.<br></p>',
+            ],
+            // Project 2 — Urban Innovation Hub — ES
+            [
+                'id' => 13,
+                'language_id' => 22,
+                'project_id' => 2,
+                'name' => 'Centro de Innovación Urbana',
+                'motto_title' => '¿Qué desafíos urbanos debería afrontar primero nuestra ciudad?',
+                'motto_subtitle' => 'Comparte problemas, propone soluciones, vota las mejores ideas.',
+                'description' => 'Una plataforma para que los ciudadanos identifiquen desafíos urbanos y desarrollen colectivamente soluciones innovadoras.',
+                'about' => '<p>El Centro de Innovación Urbana empodera a los residentes para identificar los problemas más urgentes de la ciudad y desarrollar colaborativamente soluciones creativas. <a href="https://www.scify.gr/site/en/">Conoce más sobre nuestro enfoque.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Términos de uso</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Política de privacidad</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Política de cookies</a>',
+                'sm_title' => 'Centro de Innovación Urbana',
+                'sm_description' => 'Comparte problemas, propone soluciones, vota las mejores ideas para nuestra ciudad.',
+                'sm_keywords' => 'urbano, innovación, soluciones, ciudad, participación ciudadana',
+                'questionnaire_response_email_intro_text' => '<p>Gracias a tu contribución estamos un paso más cerca de resolver los desafíos de nuestra ciudad.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Gracias por tu tiempo y esfuerzo.<br></p>',
+            ],
+            // Project 2 — Urban Innovation Hub — FR
+            [
+                'id' => 14,
+                'language_id' => 10,
+                'project_id' => 2,
+                'name' => 'Hub d\'Innovation Urbaine',
+                'motto_title' => 'Quels défis urbains notre ville devrait-elle relever en premier ?',
+                'motto_subtitle' => 'Partagez des problèmes, proposez des solutions, votez pour les meilleures idées.',
+                'description' => 'Une plateforme permettant aux citoyens d\'identifier les défis urbains et de développer collectivement des solutions innovantes.',
+                'about' => '<p>Le Hub d\'Innovation Urbaine permet aux résidents de faire émerger les problèmes les plus urgents de la ville et de développer collaborativement des solutions créatives. <a href="https://www.scify.gr/site/en/">En savoir plus sur notre approche.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Conditions d\'utilisation</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Politique de confidentialité</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Politique des cookies</a>',
+                'sm_title' => 'Hub d\'Innovation Urbaine',
+                'sm_description' => 'Partagez des problèmes, proposez des solutions, votez pour les meilleures idées pour notre ville.',
+                'sm_keywords' => 'urbain, innovation, solutions, ville, participation citoyenne',
+                'questionnaire_response_email_intro_text' => '<p>Grâce à votre contribution, nous sommes un pas plus près de résoudre les défis de notre ville.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Merci pour votre temps et vos efforts.<br></p>',
             ],
             // Project 3 — Digital Democracy — EN
             [
@@ -232,6 +361,72 @@ class DefaultProjectSeeder extends Seeder {
                 'banner_text' => 'Συμπληρώστε την έρευνα και ψηφίστε στις κοινοτικές προτάσεις.',
                 'questionnaire_response_email_intro_text' => '<p>Χάρη στη συνεισφορά σας είμαστε ένα βήμα πιο κοντά στην κατανόηση τι σημαίνει ψηφιακή δημοκρατία.<br></p>',
                 'questionnaire_response_email_outro_text' => '<p>Σας ευχαριστούμε για τον χρόνο και τη συμμετοχή σας.<br></p>',
+            ],
+            // Project 3 — Digital Democracy — DE
+            [
+                'id' => 15,
+                'language_id' => 11,
+                'project_id' => 3,
+                'name' => 'Initiative Digitale Demokratie',
+                'motto_title' => 'Wie sollten digitale Werkzeuge die Bürgerbeteiligung neu gestalten?',
+                'motto_subtitle' => 'Nehmen Sie an der Diskussion über E-Demokratie, offene Daten und digitale Verwaltung teil.',
+                'description' => 'Eine umfangreiche Kampagne, die untersucht, wie Technologie die demokratische Beteiligung auf allen Ebenen der Verwaltung stärken kann.',
+                'about' => '<p>Die Initiative Digitale Demokratie verbindet Bürgerbefragungen und Community-Ideenfindung, um die Zukunft der digitalen Verwaltung zu gestalten. Teilen Sie Ihre Ansichten und stimmen Sie für die besten Vorschläge. <a href="https://www.scify.gr/site/en/">Erfahren Sie mehr über unser Projekt.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Nutzungsbedingungen</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Datenschutzrichtlinie</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Cookie-Richtlinie</a>',
+                'sm_title' => 'Initiative Digitale Demokratie',
+                'sm_description' => 'Wie sollten digitale Werkzeuge die Bürgerbeteiligung neu gestalten? Nehmen Sie an der Diskussion teil.',
+                'sm_keywords' => 'digitale Demokratie, E-Government, Bürgerbeteiligung, offene Daten',
+                'banner_title' => 'Gestalten Sie die Zukunft der Demokratie',
+                'banner_text' => 'Nehmen Sie an der Umfrage teil und stimmen Sie unten über Gemeinschaftsvorschläge ab.',
+                'questionnaire_response_email_intro_text' => '<p>Dank Ihres Beitrags sind wir einen Schritt näher daran, zu verstehen, was digitale Demokratie für unsere Gemeinschaft bedeutet.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Vielen Dank für Ihre Zeit und Ihr bürgerliches Engagement.<br></p>',
+            ],
+            // Project 3 — Digital Democracy — ES
+            [
+                'id' => 16,
+                'language_id' => 22,
+                'project_id' => 3,
+                'name' => 'Iniciativa de Democracia Digital',
+                'motto_title' => '¿Cómo deberían las herramientas digitales reformar la participación cívica?',
+                'motto_subtitle' => 'Únete a la conversación sobre e-democracia, datos abiertos y gobernanza digital.',
+                'description' => 'Una campaña completa que explora cómo la tecnología puede fortalecer la participación democrática en todos los niveles de gobernanza.',
+                'about' => '<p>La Iniciativa de Democracia Digital combina encuestas ciudadanas e ideación comunitaria para dar forma al futuro de la gobernanza digital. Comparte tus puntos de vista y vota por las mejores propuestas. <a href="https://www.scify.gr/site/en/">Conoce más sobre nuestro proyecto.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Términos de uso</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Política de privacidad</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Política de cookies</a>',
+                'sm_title' => 'Iniciativa de Democracia Digital',
+                'sm_description' => '¿Cómo deberían las herramientas digitales reformar la participación cívica? Únete a la conversación.',
+                'sm_keywords' => 'democracia digital, e-gobernanza, participación cívica, datos abiertos',
+                'banner_title' => 'Da forma al futuro de la democracia',
+                'banner_text' => 'Completa la encuesta y vota las propuestas de la comunidad a continuación.',
+                'questionnaire_response_email_intro_text' => '<p>Gracias a tu contribución estamos un paso más cerca de entender qué significa la democracia digital para nuestra comunidad.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Gracias por tu tiempo y tu participación cívica.<br></p>',
+            ],
+            // Project 3 — Digital Democracy — FR
+            [
+                'id' => 17,
+                'language_id' => 10,
+                'project_id' => 3,
+                'name' => 'Initiative pour la Démocratie Numérique',
+                'motto_title' => 'Comment les outils numériques devraient-ils remodeler la participation civique ?',
+                'motto_subtitle' => 'Rejoignez la conversation sur la démocratie électronique, les données ouvertes et la gouvernance numérique.',
+                'description' => 'Une campagne complète explorant comment la technologie peut renforcer la participation démocratique à tous les niveaux de gouvernance.',
+                'about' => '<p>L\'Initiative pour la Démocratie Numérique combine des enquêtes citoyennes et une idéation communautaire pour façonner l\'avenir de la gouvernance numérique. Partagez vos points de vue et votez pour les meilleures propositions. <a href="https://www.scify.gr/site/en/">En savoir plus sur notre projet.</a></p>',
+                'footer' => '<p style="font-size: 12px;">© SCIFY ' . now()->year . '&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Conditions d\'utilisation</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Politique de confidentialité</a>&nbsp;|&nbsp;
+                    <a href="https://www.scify.gr/site/en/" target="_blank" title="Read more">Politique des cookies</a>',
+                'sm_title' => 'Initiative pour la Démocratie Numérique',
+                'sm_description' => 'Comment les outils numériques devraient-ils remodeler la participation civique ? Rejoignez la conversation.',
+                'sm_keywords' => 'démocratie numérique, e-gouvernance, participation civique, données ouvertes',
+                'banner_title' => 'Façonnez l\'avenir de la démocratie',
+                'banner_text' => 'Complétez l\'enquête et votez pour les propositions communautaires ci-dessous.',
+                'questionnaire_response_email_intro_text' => '<p>Grâce à votre contribution, nous sommes un pas plus près de comprendre ce que la démocratie numérique signifie pour notre communauté.<br></p>',
+                'questionnaire_response_email_outro_text' => '<p>Merci pour votre temps et votre engagement civique.<br></p>',
             ],
             // Project 4 — Smart Cities 2030 — EN
             [

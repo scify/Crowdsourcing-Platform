@@ -33,6 +33,21 @@ class ProblemSeeder extends Seeder {
                         'title' => 'Έλλειψη Θέσεων Στάθμευσης στο Κέντρο',
                         'description' => 'Η χρόνια έλλειψη θέσεων στάθμευσης στο κέντρο της πόλης αναγκάζει τους κατοίκους να οδηγούν περισσότερο αναζητώντας χώρο, αυξάνοντας την κυκλοφορία, τις εκπομπές και την απογοήτευση.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Parkplatzmangel in der Innenstadt',
+                        'description' => 'Der chronische Mangel an Innenstadtparkplätzen zwingt Anwohner, länger nach Parkmöglichkeiten zu suchen, was Staus, Emissionen und Frustration erhöht. Periphere Bereiche sind überfüllt, während zentrale Ziele mit dem Auto unzugänglich bleiben.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Escasez de Aparcamiento en el Centro Urbano',
+                        'description' => 'La crónica escasez de aparcamiento en el centro de la ciudad obliga a los residentes a conducir más en busca de plazas, aumentando la congestión, las emisiones y la frustración. Las zonas periféricas están saturadas mientras los destinos centrales permanecen inaccesibles en coche.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Manque de Stationnement en Centre-Ville',
+                        'description' => 'La pénurie chronique de stationnement en centre-ville contraint les résidents à conduire plus loin pour trouver des places, augmentant la congestion, les émissions et la frustration. Les zones périphériques sont surpeuplées tandis que les destinations centrales restent inaccessibles en voiture.',
+                    ],
                 ],
             ],
             [
@@ -54,6 +69,21 @@ class ProblemSeeder extends Seeder {
                         'title' => 'Ανεπαρκής Υποδομή Ποδηλασίας',
                         'description' => 'Η έλλειψη ασφαλών, διασυνδεδεμένων ποδηλατοδρόμων αποθαρρύνει τους κατοίκους από την επιλογή βιώσιμων μεταφορών. Τα κενά στο δίκτυο αναγκάζουν τους ποδηλάτες στους πολυσύχναστους δρόμους.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Unzureichende Fahrradinfrastruktur',
+                        'description' => 'Das Fehlen sicherer, vernetzter Radwege schreckt die Bewohner davon ab, nachhaltige Verkehrsmittel zu wählen. Lücken im Netz zwingen Radfahrer auf belebte Straßen, was das Radfahren für alle Altersgruppen gefährlich und unattraktiv erscheinen lässt.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Infraestructura Ciclista Inadecuada',
+                        'description' => 'La falta de rutas ciclistas seguras y conectadas desincentiva a los residentes de elegir el transporte sostenible. Las brechas en la red obligan a los ciclistas a circular por carreteras concurridas, haciendo que el ciclismo parezca peligroso y poco atractivo para todos los grupos de edad.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Infrastructure Cycliste Inadéquate',
+                        'description' => 'Le manque d\'itinéraires cyclables sûrs et connectés dissuade les résidents de choisir des transports durables. Les lacunes du réseau forcent les cyclistes à emprunter des routes fréquentées, rendant le vélo dangereux et peu attrayant pour tous les groupes d\'âge.',
+                    ],
                 ],
             ],
             [
@@ -74,6 +104,21 @@ class ProblemSeeder extends Seeder {
                         'language_id' => 12,
                         'title' => 'Αστικές Θερμικές Νησίδες',
                         'description' => 'Οι γειτονιές με πολύ σκυρόδεμα υποφέρουν από ακραία ζέστη το καλοκαίρι λόγω έλλειψης σκιάς, πράσινων χώρων και διαπερατών επιφανειών. Οι θερμοκρασίες επιφάνειας μπορεί να υπερβαίνουν τις αγροτικές περιοχές κατά 5–8°C.',
+                    ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Städtische Wärmeinseln',
+                        'description' => 'Betonlastige Viertel leiden im Sommer unter extremer Hitze aufgrund fehlender Beschattung, Grünflächen und wasserdurchlässiger Oberflächen. Die Oberflächentemperaturen in diesen Gebieten können die umliegenden ländlichen Zonen um 5–8°C überschreiten, was Gesundheitsrisiken für gefährdete Bewohner birgt.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Islas de Calor Urbano',
+                        'description' => 'Los barrios con mucho hormigón sufren calor extremo en verano debido a la falta de sombra, espacios verdes y superficies permeables. Las temperaturas superficiales en estas zonas pueden superar las zonas rurales circundantes en 5–8°C, lo que supone riesgos para la salud de los residentes vulnerables.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Îlots de Chaleur Urbains',
+                        'description' => 'Les quartiers très bétonnés souffrent de chaleurs extrêmes en été en raison du manque d\'ombre, d\'espaces verts et de surfaces perméables. Les températures de surface dans ces zones peuvent dépasser les zones rurales environnantes de 5 à 8°C, posant des risques sanitaires pour les résidents vulnérables.',
                     ],
                 ],
             ],
@@ -97,6 +142,21 @@ class ProblemSeeder extends Seeder {
                         'title' => 'Χαμηλή Συμμετοχή Ψηφοφόρων στις Τοπικές Εκλογές',
                         'description' => 'Η συμμετοχή στις τοπικές εκλογές σπάνια ξεπερνά το 40%, αφήνοντας σημαντικές αποφάσεις στα χέρια μειοψηφίας. Πολλοί πολίτες αισθάνονται αποξενωμένοι από την τοπική διακυβέρνηση.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Geringe Wahlbeteiligung bei Kommunalwahlen',
+                        'description' => 'Die Wahlbeteiligung bei Kommunalwahlen übersteigt selten 40%, wodurch wichtige Entscheidungen in den Händen einer Minderheit liegen. Viele Bürger fühlen sich von der lokalen Verwaltung abgekoppelt und glauben, dass ihre Stimme wenig Einfluss auf Entscheidungen hat, die ihr tägliches Leben direkt betreffen.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Baja Participación Electoral en Elecciones Locales',
+                        'description' => 'La participación en las elecciones locales rara vez supera el 40%, dejando decisiones importantes en manos de una minoría. Muchos ciudadanos se sienten desconectados de la gobernanza local y creen que su voto tiene poco impacto en las decisiones que afectan directamente a su vida cotidiana.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Faible Participation Électorale aux Élections Locales',
+                        'description' => 'La participation aux élections locales dépasse rarement 40%, laissant les décisions importantes entre les mains d\'une minorité. De nombreux citoyens se sentent déconnectés de la gouvernance locale et estiment que leur vote a peu d\'impact sur les décisions qui affectent directement leur vie quotidienne.',
+                    ],
                 ],
             ],
             [
@@ -117,6 +177,21 @@ class ProblemSeeder extends Seeder {
                         'language_id' => 12,
                         'title' => 'Ψηφιακός Αποκλεισμός Ηλικιωμένων Πολιτών',
                         'description' => 'Πολλοί ηλικιωμένοι κάτοικοι δεν μπορούν να έχουν πρόσβαση σε ψηφιακές δημόσιες υπηρεσίες ή να συμμετάσχουν σε ηλεκτρονικές διαδικασίες. Καθώς περισσότερες υπηρεσίες μεταφέρονται online, αυτή η ομάδα κινδυνεύει να αποκλειστεί.',
+                    ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Digitaler Ausschluss älterer Bürger',
+                        'description' => 'Viele ältere Bewohner können nicht auf digitale öffentliche Dienste zugreifen oder an Online-Bürgerprozessen teilnehmen. Da immer mehr staatliche Dienste online gehen, läuft diese Gruppe Gefahr, abgehängt zu werden und ihre Stimme in Entscheidungen, die sie am meisten betreffen, zu verlieren.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Exclusión Digital de los Ciudadanos Mayores',
+                        'description' => 'Muchos residentes mayores no pueden acceder a servicios públicos digitales ni participar en procesos cívicos en línea. A medida que más servicios gubernamentales se trasladan en línea, este grupo corre el riesgo de quedarse atrás y perder su voz en las decisiones que más les afectan.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Exclusion Numérique des Citoyens Âgés',
+                        'description' => 'De nombreux résidents âgés ne peuvent pas accéder aux services publics numériques ni participer aux processus civiques en ligne. À mesure que de plus en plus de services gouvernementaux passent en ligne, ce groupe risque d\'être laissé pour compte et de perdre sa voix dans les décisions qui les touchent le plus.',
                     ],
                 ],
             ],
