@@ -6,7 +6,7 @@
                 <li role="presentation" class="nav-item"><a class="nav-link active" href="#administrators"
                                                             aria-controls="administrators" role="tab"
                                                             data-toggle="tab">
-                        {{ __('common.for_administrators') }}
+                        {{ __('common.for_organisations') }}
                     </a></li>
                 <li role="presentation" class="nav-item"><a class="nav-link" href="#citizens"
                                                             aria-controls="citizens" role="tab"
