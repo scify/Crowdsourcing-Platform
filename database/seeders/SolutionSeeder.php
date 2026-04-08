@@ -32,6 +32,21 @@ class SolutionSeeder extends Seeder {
                         'title' => 'Επέκταση Συστήματος Park-and-Ride',
                         'description' => 'Ανάπτυξη αφιερωμένων σταθμών park-and-ride στα κύρια σημεία εισόδου της πόλης με συχνά, δωρεάν λεωφορεία ανακύκλωσης προς το κέντρο. Αυτό απομακρύνει τα αυτοκίνητα πριν εισέλθουν στις συμφορημένες περιοχές.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Park-and-Ride-System ausbauen',
+                        'description' => 'Entwicklung dedizierter Park-and-Ride-Knotenpunkte an den wichtigsten Stadteinfahrten mit häufigen, kostenlosen Pendelbus-Verbindungen ins Zentrum. Dies entfernt Autos, bevor sie in überfüllte Bereiche gelangen, und bietet eine bequeme, nachhaltige Alternative zum Parken in der Innenstadt.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Ampliar el Sistema Park-and-Ride',
+                        'description' => 'Desarrollar centros park-and-ride dedicados en los principales puntos de entrada a la ciudad con autobuses lanzadera frecuentes y gratuitos al centro. Esto elimina los coches antes de que entren en zonas congestionadas y ofrece una alternativa conveniente y sostenible al aparcamiento en el centro urbano.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Développer le Système Park-and-Ride',
+                        'description' => 'Développer des pôles park-and-ride dédiés aux principales entrées de la ville avec des navettes fréquentes et gratuites vers le centre. Cela élimine les voitures avant qu\'elles n\'entrent dans les zones congestionnées et offre une alternative pratique et durable au stationnement en centre-ville.',
+                    ],
                 ],
             ],
             [
@@ -51,6 +66,21 @@ class SolutionSeeder extends Seeder {
                         'language_id' => 12,
                         'title' => 'Εισαγωγή Δυναμικής Τιμολόγησης Στάθμευσης',
                         'description' => 'Χρήση αισθητήρων πραγματικού χρόνου και μεταβλητής τιμολόγησης για ομοιόμορφη κατανομή της ζήτησης σε όλες τις διαθέσιμες θέσεις. Οι τιμές αυξάνονται στις πολυσύχναστες περιοχές και μειώνονται στις λιγότερο χρησιμοποιούμενες.',
+                    ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Dynamische Parkgebühren einführen',
+                        'description' => 'Echtzeit-Sensoren und variable Preisgestaltung verteilen die Nachfrage gleichmäßig auf alle verfügbaren Parkanlagen. Preise steigen in belebten Bereichen und sinken in weniger genutzten, was Fahrer zu freien Plätzen leitet und den Suchverkehr um schätzungsweise 30% reduziert.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Introducir Tarifas de Aparcamiento Dinámicas',
+                        'description' => 'Usar sensores en tiempo real y precios variables para distribuir la demanda de forma uniforme en todas las instalaciones de aparcamiento disponibles. Los precios suben en zonas concurridas y bajan en las poco utilizadas, guiando a los conductores a plazas disponibles y reduciendo el tráfico de búsqueda en un estimado del 30%.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Instaurer une Tarification Dynamique du Stationnement',
+                        'description' => 'Utiliser des capteurs en temps réel et une tarification variable pour répartir la demande uniformément dans toutes les infrastructures de stationnement disponibles. Les prix augmentent dans les zones fréquentées et baissent dans les moins utilisées, guidant les conducteurs vers les places disponibles et réduisant le trafic de recherche d\'environ 30%.',
                     ],
                 ],
             ],
@@ -73,6 +103,21 @@ class SolutionSeeder extends Seeder {
                         'title' => 'Κατασκευή Προστατευμένων Ποδηλατοδρόμων στους Κύριους Δρόμους',
                         'description' => 'Φυσικά διαχωρισμένες ποδηλατικές λωρίδες στους 10 πιο πολυσύχναστους δρόμους θα επέτρεπαν ασφαλή ποδηλασία για όλες τις ηλικίες. Φραγές, αφιερωμένα φανάρια και ασφαλής στάθμευση στους κύριους προορισμούς.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Geschützte Fahrradspuren auf Hauptstraßen bauen',
+                        'description' => 'Physisch getrennte Fahrradspuren auf den 10 belebtesten Korridoren würden sicheres Radfahren für alle Altersgruppen und Fähigkeiten ermöglichen. Bordsteingeschützte Spuren, eigene Ampeln und sichere Abstellanlagen an wichtigen Zielen würden das Radfahren für Pendler zur attraktiven Option machen.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Construir Carriles Bici Protegidos en Vías Principales',
+                        'description' => 'Los carriles bici físicamente separados en los 10 corredores más transitados permitirían pedalear con seguridad a todas las edades y capacidades. Carriles protegidos por bordillos, semáforos dedicados y aparcamiento seguro en destinos clave harían del ciclismo una opción viable para los trabajadores diarios.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Aménager des Pistes Cyclables Protégées sur les Axes Principaux',
+                        'description' => 'Des pistes cyclables physiquement séparées sur les 10 corridors les plus fréquentés permettraient de circuler à vélo en toute sécurité pour tous les âges et aptitudes. Des pistes protégées par des bordures, des feux dédiés et des stationnements sécurisés aux destinations clés rendraient le vélo viable pour les navetteurs quotidiens.',
+                    ],
                 ],
             ],
             [
@@ -92,6 +137,21 @@ class SolutionSeeder extends Seeder {
                         'language_id' => 12,
                         'title' => 'Εκκίνηση Προγράμματος Κοινόχρηστων Ποδηλάτων σε Επίπεδο Πόλης',
                         'description' => 'Ένα δίκτυο 500+ σταθμών σύνδεσης με e-bikes θα καθιστούσε την ποδηλασία προσβάσιμη σε όλους τους μετακινούμενους ανεξαρτήτως φυσικής κατάστασης.',
+                    ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Stadtweites Fahrrad-Sharing-Programm starten',
+                        'description' => 'Ein Netz von 500+ Andockstationen mit E-Bikes würde das Radfahren für alle Pendler unabhängig von der körperlichen Fitness zugänglich machen. Minuten-Tarife und eine Monatsabo-Option würden sowohl gelegentliche als auch regelmäßige Nutzer bedienen.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Lanzar un Programa de Bicicletas Compartidas en Toda la Ciudad',
+                        'description' => 'Una red de más de 500 estaciones de acoplamiento con bicicletas eléctricas haría el ciclismo accesible a todos los trabajadores independientemente de su condición física. La tarificación por minuto y una opción de suscripción mensual servirían tanto a usuarios ocasionales como habituales.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Lancer un Programme de Vélos en Libre-Service à l\'Échelle de la Ville',
+                        'description' => 'Un réseau de 500+ stations d\'ancrage avec des vélos électriques rendrait le cyclisme accessible à tous les navetteurs quelle que soit leur condition physique. Une tarification à la minute et une option d\'abonnement mensuel serviraient à la fois les utilisateurs occasionnels et réguliers.',
                     ],
                 ],
             ],
@@ -114,6 +174,21 @@ class SolutionSeeder extends Seeder {
                         'title' => 'Δημιουργία Πράσινων Αστικών Διαδρόμων',
                         'description' => 'Φύτευση δέντρων κάθε 8 μέτρα κατά μήκος των κύριων δρόμων και εγκατάσταση υδατοαπορροφητικών πεζοδρομίων για μείωση της θερμοκρασίας επιφάνειας κατά έως 4°C. Οι πράσινοι διάδρομοι βελτιώνουν επίσης την ποιότητα του αέρα.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Städtische Begrünungskorridore schaffen',
+                        'description' => 'Baumpflanzungen alle 8 Meter entlang der Hauptstraßen und wasserdurchlässige Pflasterung zur Senkung der Oberflächentemperaturen um bis zu 4°C. Grüne Korridore verbessern zudem die Luftqualität, reduzieren den Regenwasserabfluss und spenden Fußgängern Schatten.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Crear Corredores de Urbanización Verde',
+                        'description' => 'Plantar árboles cada 8 metros a lo largo de las calles principales e instalar pavimentos permeables que absorban el agua para reducir las temperaturas superficiales hasta 4°C. Los corredores verdes también mejoran la calidad del aire, reducen la escorrentía de aguas pluviales y proporcionan sombra a los peatones.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Créer des Corridors de Verdissement Urbain',
+                        'description' => 'Planter des arbres tous les 8 mètres le long des artères principales et installer des pavés perméables absorbant l\'eau pour réduire les températures de surface jusqu\'à 4°C. Les corridors verts améliorent également la qualité de l\'air, réduisent le ruissellement des eaux pluviales et offrent de l\'ombre aux piétons.',
+                    ],
                 ],
             ],
             // Problem 4 — Low Voter Engagement (project 3)
@@ -135,6 +210,21 @@ class SolutionSeeder extends Seeder {
                         'title' => 'Απλοποιημένη Ψηφιακή Εγγραφή Ψηφοφόρων',
                         'description' => 'Ένα σύστημα ηλεκτρονικής εγγραφής ενός κλικ συνδεδεμένο με το εθνικό μητρώο θα εξάλειφε το μεγαλύτερο γραφειοκρατικό εμπόδιο. Αυτόματες υπενθυμίσεις πριν από εκλογές και πρόσβαση μέσω κινητού.',
                     ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Vereinfachte digitale Wählerregistrierung',
+                        'description' => 'Ein Online-Registrierungssystem per Klick, das mit der nationalen Ausweisdatenbank verknüpft ist, würde die größte bürokratische Hürde bei der Anmeldung beseitigen. Automatische Erinnerungen vor Wahlen und mobilfreundlicher Zugang würden die Registrierungsraten unter jungen Wählern deutlich steigern.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Registro Electoral Digital Simplificado',
+                        'description' => 'Un sistema de registro en línea con un solo clic vinculado a la base de datos del DNI nacional eliminaría el mayor obstáculo burocrático para la inscripción. Los recordatorios automáticos antes de las elecciones y el acceso adaptado a móviles aumentarían significativamente las tasas de registro entre los jóvenes votantes.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Inscription Électorale Numérique Simplifiée',
+                        'description' => 'Un système d\'inscription en ligne en un clic lié à la base de données nationale des cartes d\'identité supprimerait le plus grand obstacle bureaucratique à l\'enregistrement. Des rappels automatiques avant les élections et un accès adapté aux mobiles augmenteraient considérablement les taux d\'inscription parmi les jeunes électeurs.',
+                    ],
                 ],
             ],
             [
@@ -154,6 +244,21 @@ class SolutionSeeder extends Seeder {
                         'language_id' => 12,
                         'title' => 'Πρόγραμμα Πολιτικής Αγωγής στα Σχολεία',
                         'description' => 'Υποχρεωτικά μαθήματα συμμετοχής πολιτών από 14 ετών θα καλλιεργούσαν μια κουλτούρα δημοκρατικής εμπλοκής πριν από την ηλικία ψήφου. Πρακτικές ασκήσεις όπως εικονικές εκλογές και επισκέψεις σε τοπικά συμβούλια.',
+                    ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Programm zur politischen Bildung in Schulen',
+                        'description' => 'Verbindliche Module zur Bürgerbeteiligung ab 14 Jahren würden eine Kultur demokratischen Engagements vor dem Wahlalter fördern. Praktische Übungen — wie Probewahlen, Besuche im Stadtrat und Planung kommunaler Projekte — bilden dauerhafte staatsbürgerliche Gewohnheiten.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Programa de Educación Cívica en las Escuelas',
+                        'description' => 'Los módulos obligatorios de participación cívica a partir de los 14 años fomentarían una cultura de compromiso democrático antes de la edad de voto. Ejercicios prácticos — como elecciones simuladas, visitas al ayuntamiento local y planificación de proyectos comunitarios — generan hábitos cívicos duraderos.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Programme d\'Éducation Civique dans les Écoles',
+                        'description' => 'Des modules obligatoires de participation civique à partir de 14 ans favoriseraient une culture d\'engagement démocratique avant l\'âge de voter. Des exercices pratiques — comme des élections simulées, des visites au conseil municipal et la planification de projets communautaires — forment des habitudes civiques durables.',
                     ],
                 ],
             ],
@@ -175,6 +280,21 @@ class SolutionSeeder extends Seeder {
                         'language_id' => 12,
                         'title' => 'Δωρεάν Κέντρα Ψηφιακής Γραμματισμού στις Βιβλιοθήκες',
                         'description' => 'Εξοπλισμένα κέντρα ψηφιακής υποστήριξης σε όλες τις δημόσιες βιβλιοθήκες με απλοποιημένα tablet και υπομονετική ατομική καθοδήγηση. Εβδομαδιαίες συνεδρίες για ηλεκτρονικές δημόσιες υπηρεσίες και ασφαλή περιήγηση.',
+                    ],
+                    [
+                        'language_id' => 11,
+                        'title' => 'Kostenlose Zentren für digitale Kompetenz in Bibliotheken',
+                        'description' => 'Betreute digitale Hilfsstellen in allen öffentlichen Bibliotheken mit vereinfachten Tablets und geduldiger Einzelbetreuung. Wöchentliche offene Sprechstunden zu Online-Behördendiensten, Videoanrufen und sicherem Surfen würden die digitale Kluft für Senioren überbrücken.',
+                    ],
+                    [
+                        'language_id' => 22,
+                        'title' => 'Centros Gratuitos de Alfabetización Digital en Bibliotecas',
+                        'description' => 'Puntos de asistencia digital con personal en todas las bibliotecas públicas con tabletas simplificadas y orientación individual y paciente. Sesiones semanales abiertas que cubren servicios gubernamentales en línea, videollamadas y navegación segura reducirían la brecha digital para los mayores.',
+                    ],
+                    [
+                        'language_id' => 10,
+                        'title' => 'Centres Gratuits de Compétences Numériques dans les Bibliothèques',
+                        'description' => 'Des espaces d\'assistance numérique dotés de personnel dans toutes les bibliothèques publiques, avec des tablettes simplifiées et un accompagnement individuel patient. Des sessions hebdomadaires ouvertes couvrant les services publics en ligne, les appels vidéo et la navigation sécurisée combleraient le fossé numérique pour les seniors.',
                     ],
                 ],
             ],
