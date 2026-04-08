@@ -7,15 +7,15 @@
                     <p>SciFY is a not-for-profit organization, that develops cutting-edge information technology systems
                         and <b>freely offers them to all</b>, including the design, the implementation details, and the
                         support
-                        needed, in order to solve <b>real-life problems</b>.<br/>
+                        needed, in order to solve <b>real-life problems</b>.<br />
                         We use our expertise in <b>artificial intelligence</b> and other technologies, and a strong
                         network of
                         collaborators (universities, research institutes, NGOs and companies) to collaboratively produce
                         new solutions.
-                        <br/>
-                        Established in 2012, SciFY has now reached a personnel of 6, a volunteer base of more than 10
-                        people, and some awards, including one from the President of the Hellenic Republic.
-                        <br/>
+                        <br />
+                        Established in 2012, SciFY has now reached a personnel of 20, and many natinal and international
+                        distinctions, including two from IRCAI/UNESCO.
+                        <br />
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -31,7 +31,8 @@
                 </div>
                 <div class="col-md-4">
                     <h2 class="text-center">Our platform</h2>
-                    <p style="margin-bottom:0;"> With our <strong><i>"Together"</i> crowdsourcing platform</strong> we aim at:</p>
+                    <p style="margin-bottom:0;"> With our <strong><i>"Together"</i> crowdsourcing platform</strong> we
+                        aim at:</p>
                     <ul>
                         <li>
                             <p>&#10004; encouraging citizens to speak up on issues directly affecting them</p>
@@ -40,13 +41,15 @@
                             <p>&#10004; increasing citizens’ democratic participation in political life</p>
                         </li>
                         <li>
-                            <p>&#10004; empowering citizens to <strong>propose and vote on solutions</strong> to real-world problems</p>
+                            <p>&#10004; empowering citizens to <strong>propose and vote on solutions</strong> to
+                                real-world problems</p>
                         </li>
                         <li>
                             <p>&#10004; stimulating citizens’ engagement with common societal issues</p>
                         </li>
                         <li>
-                            <p>&#10004; improving citizens’ understanding of policy-making processes at national and European levels</p>
+                            <p>&#10004; improving citizens’ understanding of policy-making processes at national and
+                                European levels</p>
                         </li>
                     </ul>
 
