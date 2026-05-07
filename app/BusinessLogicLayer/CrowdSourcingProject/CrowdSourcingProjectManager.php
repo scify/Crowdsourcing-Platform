@@ -96,6 +96,9 @@ class CrowdSourcingProjectManager {
         int $questionnaireIdRequestedInTheURL,
         string $project_slug): CrowdSourcingProjectForLandingPage {
         $userId = Auth::id() ?? intval($_COOKIE[UserManager::$USER_COOKIE_KEY] ?? 0);
+        if ($project_default_lang_code !== 'en') {
+            app()->setLocale($project_default_lang_code);
+        }
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $project_default_lang_code = $project?->defaultTranslation?->language?->language_code;
