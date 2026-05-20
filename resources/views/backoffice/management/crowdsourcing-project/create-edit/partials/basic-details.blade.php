@@ -45,6 +45,27 @@
                     <br>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="user_creator_id">Project Creator / Manager</label>
+                            <small class="text-blue ml-2">(Only platform administrators can change this assignment.)</small>
+                            <select id="user_creator_id" class="form-control" name="user_creator_id">
+                                @foreach ($viewModel->adminsAndContentManagers as $userRole)
+                                    <option
+                                            value="{{ $userRole->user_id }}"
+                                            @if (old('user_creator_id', $viewModel->project->user_creator_id) == $userRole->user_id)
+                                                selected
+                                            @endif
+                                    >
+                                        {{ $userRole->user->nickname ?? $userRole->user->email }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="row">
                     <label class="col-md-12 control-label" for="slug">Project Slug <br>(it defines the
                         project's url,
                         for example:<br>

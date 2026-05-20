@@ -93,16 +93,23 @@ class CreateEditCrowdSourcingProject {
      */
     public $languagesLkp;
 
+    /**
+     * @var Collection
+     */
+    public $adminsAndContentManagers;
+
     public $defaultLanguageCode = 'en';
 
     public function __construct(CrowdSourcingProject $project, Collection $translations,
         Collection $projectStatusesLkp,
-        Collection $languagesLkp, string $contributorEmailView) {
+        Collection $languagesLkp, string $contributorEmailView,
+        Collection $adminsAndContentManagers = new Collection) {
         $this->project = $project;
         $this->translations = $translations;
         $this->projectStatusesLkp = $projectStatusesLkp;
         $this->languagesLkp = $languagesLkp;
         $this->contributorEmailView = $contributorEmailView;
+        $this->adminsAndContentManagers = $adminsAndContentManagers;
     }
 
     public function isEditMode(): bool {

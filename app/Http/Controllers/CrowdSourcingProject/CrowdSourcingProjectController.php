@@ -80,6 +80,7 @@ class CrowdSourcingProjectController extends Controller {
             'motto_title' => 'required|string',
             'motto_subtitle' => 'required|string',
             'about' => 'nullable|string',
+            'user_creator_id' => 'nullable|numeric|exists:users,id',
         ]);
         $attributes = $request->all();
         try {
