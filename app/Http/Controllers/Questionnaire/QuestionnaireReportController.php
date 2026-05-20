@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class QuestionnaireReportController extends Controller {
@@ -19,7 +20,7 @@ class QuestionnaireReportController extends Controller {
 
     public function viewReportsPage(Request $request): View|Factory {
         $selectedQuestionnaireId = intval($request->questionnaireId);
-        $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(null, $selectedQuestionnaireId);
+        $viewModel = $this->questionnaireReportManager->getCrowdSourcingProjectReportsViewModel(Auth::user(), null, $selectedQuestionnaireId);
 
         return view('backoffice.questionnaire.reports.reports-with-filters', ['viewModel' => $viewModel]);
     }

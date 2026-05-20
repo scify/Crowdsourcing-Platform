@@ -42,6 +42,12 @@ class QuestionnaireRepository extends Repository {
             ->get();
     }
 
+    public function getQuestionnairesForProjects(array $projectIds) {
+        return Questionnaire::whereHas('projects', function (Builder $query) use ($projectIds): void {
+            $query->whereIn('id', $projectIds);
+        })->orderBy('id', 'desc')->get();
+    }
+
     public function getUserResponseForQuestionnaire($questionnaireId, $userId) {
         return QuestionnaireResponse::where('questionnaire_id', $questionnaireId)->where('user_id', $userId)->first();
     }
