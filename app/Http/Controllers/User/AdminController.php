@@ -52,10 +52,14 @@ class AdminController extends Controller {
     }
 
     public function updateUserRoles(Request $request) {
+        $request->validate([
+            'new_password' => 'nullable|string|min:8|confirmed',
+        ]);
+
         $this->userManager->updateUserById(intval($request->userId), $request->all());
         $this->userManager->updateUserRoles(intval($request->userId), $request->roleselect);
 
-        return redirect()->back()->with(['flash_message_success' => 'User roles have been updated.']);
+        return redirect()->back()->with(['flash_message_success' => 'User info has been updated.']);
     }
 
     public function addUserToPlatform(Request $request): RedirectResponse {
