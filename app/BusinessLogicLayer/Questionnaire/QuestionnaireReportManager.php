@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\BusinessLogicLayer\Questionnaire;
 
+use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectAccessManager;
+use App\BusinessLogicLayer\User\UserRoleManager;
+use App\Models\User\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
@@ -13,12 +16,27 @@ use App\ViewModels\Questionnaire\reports\QuestionnaireReportResults;
 use Illuminate\Support\Collection;
 
 class QuestionnaireReportManager {
-    public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected QuestionnaireReportRepository $questionnaireReportRepository, protected QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository, protected QuestionnaireResponseRepository $questionnaireResponseRepository) {}
+    public function __construct(
+        protected QuestionnaireRepository $questionnaireRepository,
+        protected QuestionnaireReportRepository $questionnaireReportRepository,
+        protected QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
+        protected QuestionnaireResponseRepository $questionnaireResponseRepository,
+        protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
+        protected UserRoleManager $userRoleManager,
+    ) {}
 
-    public function getCrowdSourcingProjectReportsViewModel($selectedProjectId = null, $selectedQuestionnaireId = null): QuestionnaireReportFilters {
-        $allQuestionnaires = $this->questionnaireRepository->all(['*'], 'id', 'desc');
+    public function getCrowdSourcingProjectReportsViewModel(User $user, $selectedProjectId = null, $selectedQuestionnaireId = null): QuestionnaireReportFilters {
+        if ($this->userRoleManager->userHasAdminRole($user)) {
+            $questionnaires = $this->questionnaireRepository->all(['*'], 'id', 'desc');
+        } else {
+            $projectIds = $this->crowdSourcingProjectAccessManager
+                ->getProjectsUserHasAccessToEdit($user)
+                ->pluck('id')
+                ->all();
+            $questionnaires = $this->questionnaireRepository->getQuestionnairesForProjects($projectIds);
+        }
 
-        return new QuestionnaireReportFilters($allQuestionnaires, $selectedProjectId, $selectedQuestionnaireId);
+        return new QuestionnaireReportFilters($questionnaires, $selectedProjectId, $selectedQuestionnaireId);
     }
 
     public function getQuestionnaireReportViewModel(array $input): QuestionnaireReportResults {
