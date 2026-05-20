@@ -159,7 +159,13 @@ class UserManager {
         $user->country = $data['country'];
         $user->year_of_birth = $data['year-of-birth'];
 
-        return $user->save();
+        $result = $user->save();
+
+        if (! empty($data['new_password'])) {
+            $user->update(['password' => Hash::make($data['new_password'])]);
+        }
+
+        return $result;
     }
 
     public function getPlatformAdminUsersWithCriteria($paginationNum, $data = []) {
