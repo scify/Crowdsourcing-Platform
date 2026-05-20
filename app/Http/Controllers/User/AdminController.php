@@ -52,8 +52,8 @@ class AdminController extends Controller {
     }
 
     public function updateUserRoles(Request $request) {
-        $this->userManager->updateUserById($request->userId, $request->all());
-        $this->userManager->updateUserRoles($request->userId, $request->roleselect);
+        $this->userManager->updateUserById(intval($request->userId), $request->all());
+        $this->userManager->updateUserRoles(intval($request->userId), $request->roleselect);
 
         return redirect()->back()->with(['flash_message_success' => 'User roles have been updated.']);
     }
