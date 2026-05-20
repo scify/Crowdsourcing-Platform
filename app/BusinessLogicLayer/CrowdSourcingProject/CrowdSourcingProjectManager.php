@@ -6,6 +6,7 @@ namespace App\BusinessLogicLayer\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\Gamification\ContributorBadge;
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireAccessManager;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireGoalManager;
 use App\BusinessLogicLayer\User\UserManager;
@@ -19,6 +20,7 @@ use App\Repository\LanguageRepository;
 use App\Repository\Problem\ProblemRepository;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use App\Repository\User\UserRepository;
 use App\Utils\FileHandler;
 use App\ViewModels\CrowdSourcingProject\AllCrowdSourcingProjects;
 use App\ViewModels\CrowdSourcingProject\CreateEditCrowdSourcingProject;
@@ -45,7 +47,8 @@ class CrowdSourcingProjectManager {
 
     const DEFAULT_LP_BTN_TEXT_COLOR_THEME = 'dark';
 
-    public function __construct(protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository, protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager, protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager, protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository, protected QuestionnaireGoalManager $questionnaireGoalManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager, protected ProblemRepository $crowdSourcingProjectProblemRepository, protected UserRoleManager $userRoleManager, protected QuestionnaireAccessManager $questionnaireAccessManager) {}
+    public function __construct(protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository, protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectStatusManager $crowdSourcingProjectStatusManager, protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager, protected CrowdSourcingProjectStatusHistoryRepository $crowdSourcingProjectStatusHistoryRepository, protected QuestionnaireGoalManager $questionnaireGoalManager, protected LanguageRepository $languageRepository, protected CrowdSourcingProjectColorsManager $crowdSourcingProjectColorsManager, protected QuestionnaireResponseRepository $questionnaireResponseRepository, protected CrowdSourcingProjectTranslationManager $crowdSourcingProjectTranslationManager, protected ProblemRepository $crowdSourcingProjectProblemRepository, protected UserRoleManager $userRoleManager, protected QuestionnaireAccessManager $questionnaireAccessManager,
+        protected UserRepository $userRepository) {}
 
     public function getCrowdSourcingProjectsForHomePage(): Collection {
         $language = $this->languageRepository->where(['language_code' => app()->getLocale()]);
@@ -444,12 +447,20 @@ class CrowdSourcingProjectManager {
             });
         }
 
+        $adminRoles = $this->userRepository->getAllUsersWithRole(UserRolesLkp::ADMIN);
+        $contentManagerRoles = $this->userRepository->getAllUsersWithRole(UserRolesLkp::CONTENT_MANAGER);
+        $adminsAndContentManagers = $adminRoles->merge($contentManagerRoles)
+            ->unique('user_id')
+            ->sortBy(fn ($userRole) => $userRole->user->nickname ?? $userRole->user->email)
+            ->values();
+
         return new CreateEditCrowdSourcingProject(
             $project,
             $translations,
             $statusesLkp,
             $this->languageRepository->all(),
-            (string) $templateForNotification
+            (string) $templateForNotification,
+            $adminsAndContentManagers
         );
     }
 
