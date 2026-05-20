@@ -61,6 +61,23 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="new_password">New Password <small class="text-muted">(leave blank to keep current)</small></label>
+                            <input id="new_password" type="password" class="form-control" name="new_password"
+                                   placeholder="New password (min. 8 characters)">
+                            @if ($errors->has('new_password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('new_password') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_password_confirmation">Confirm New Password</label>
+                            <input id="new_password_confirmation" type="password" class="form-control"
+                                   name="new_password_confirmation" placeholder="Confirm new password">
+                        </div>
+
+                        <div class="form-group">
                             <label for="gender">{{ __("login-register.gender") }}</label>
                             <select class="form-control" name="gender" id="gender">
                                 <option value="">{{ __("login-register.gender") }}</option>
