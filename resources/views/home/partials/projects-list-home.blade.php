@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col-lg-9 col-md-9 col-sm-12 mx-auto">
                                     <div class="project-visit-btn">
-                                        @if (intval($project->status_id) === \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED)
+                                        @if ($project->status_id == \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED)
                                             <a href="{{ route('project.landing-page', ['locale' => app()->getLocale(), 'slug' => $project->slug]) }}"
                                                class="btn btn-block btn-success call-to-action action-success">
                                                 {{ __('common.view_campaign') }}
