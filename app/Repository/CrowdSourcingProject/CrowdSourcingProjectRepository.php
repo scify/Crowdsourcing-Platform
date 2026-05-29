@@ -31,12 +31,14 @@ class CrowdSourcingProjectRepository extends Repository {
                     ->where(['status_id' => $questionnaireStatusId])
                     ->withCount('responses')
                     ->orderBy('prerequisite_order')
-                    ->orderBy('status_id', 'asc');
+                    ->orderBy('questionnaire_created', 'desc');
             })
             ->with('problems')
             ->with(['translations' => function ($query) use ($language_id): void {
                 $query->where('language_id', $language_id);
-            }]);
+            }])
+            ->orderBy('status_id', 'asc')
+            ->orderBy('updated_at', 'desc');
 
         // Add additional relationships if provided
         if (count($additionalRelationships) > 0) {
