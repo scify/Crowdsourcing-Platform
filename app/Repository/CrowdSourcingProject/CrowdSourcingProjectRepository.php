@@ -31,7 +31,7 @@ class CrowdSourcingProjectRepository extends Repository {
                     ->where(['status_id' => $questionnaireStatusId])
                     ->withCount('responses')
                     ->orderBy('prerequisite_order')
-                    ->orderBy('questionnaire_created', 'desc');
+                    ->orderBy('status_id', 'asc');
             })
             ->with('problems')
             ->with(['translations' => function ($query) use ($language_id): void {
