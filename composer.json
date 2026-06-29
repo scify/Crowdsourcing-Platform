@@ -18,7 +18,7 @@
 		"doctrine/dbal": "^3.10.4",
 		"drewm/mailchimp-api": "^2.5.4",
 		"google/cloud-translate": "^1.21",
-		"intervention/image": "^2.7.2",
+		"intervention/image": "^4.1.4",
 		"laravel/framework": "^12.49",
 		"laravel/helpers": "^1.8.2",
 		"laravel/socialite": "^5.24.2",
