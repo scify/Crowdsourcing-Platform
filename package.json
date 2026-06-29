@@ -79,7 +79,7 @@
 		"progressbar.js": "^1.1.1",
 		"select2": "^4.1.0",
 		"summernote": "^0.9.1",
-		"survey-analytics": "^1.12.63",
+		"survey-analytics": "^2.5.29",
 		"survey-core": "^1.12.63",
 		"survey-creator": "^1.12.63",
 		"survey-jquery": "^1.12.63"
