@@ -17,7 +17,7 @@
 		"cocur/slugify": "^4.7.1",
 		"doctrine/dbal": "^3.10.4",
 		"drewm/mailchimp-api": "^2.5.4",
-		"google/cloud-translate": "^1.21",
+		"google/cloud-translate": "^2.3",
 		"intervention/image": "^2.7.2",
 		"laravel/framework": "^12.49",
 		"laravel/helpers": "^1.8.2",
