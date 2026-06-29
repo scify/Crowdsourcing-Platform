@@ -25,7 +25,7 @@
 		"@vitejs/plugin-vue": "^6.0.7",
 		"axios": "^1.18.0",
 		"blade-formatter": "^1.44.4",
-		"cross-env": "^7.0.3",
+		"cross-env": "^10.1.0",
 		"eslint": "^9.39.4",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-jsdoc": "^54.7.0",
