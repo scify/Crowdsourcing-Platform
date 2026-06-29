@@ -39,7 +39,7 @@
 		"symfony/mailgun-mailer": "^7.4"
 	},
 	"require-dev": {
-		"barryvdh/laravel-debugbar": "^3.16.5",
+		"barryvdh/laravel-debugbar": "^4.3.0",
 		"barryvdh/laravel-ide-helper": "^3.6.1",
 		"brianium/paratest": "^7.8.5",
 		"fakerphp/faker": "^1.24.1",
