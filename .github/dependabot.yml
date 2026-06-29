@@ -28,6 +28,12 @@ updates:
       labels:
           - dependencies
           - php
+      # Routine updates: minor/patch only. Major bumps are skipped here, but
+      # security updates can still propose a major if that's the only fix.
+      ignore:
+          - dependency-name: '*'
+            update-types:
+                - version-update:semver-major
       groups:
           composer-minor-patch:
               applies-to: version-updates
@@ -50,6 +56,12 @@ updates:
       labels:
           - dependencies
           - javascript
+      # Routine updates: minor/patch only. Major bumps are skipped here, but
+      # security updates can still propose a major if that's the only fix.
+      ignore:
+          - dependency-name: '*'
+            update-types:
+                - version-update:semver-major
       groups:
           npm-minor-patch:
               applies-to: version-updates
@@ -71,6 +83,13 @@ updates:
       labels:
           - dependencies
           - github-actions
+      # Routine updates: minor/patch only. NOTE: many actions release via major
+      # tags (v4 -> v5), so this keeps you on the current major. Remove this
+      # ignore block if you want major action bumps proposed automatically.
+      ignore:
+          - dependency-name: '*'
+            update-types:
+                - version-update:semver-major
       groups:
           github-actions:
               patterns:
