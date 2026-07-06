@@ -24,7 +24,7 @@
 		"laravel/socialite": "^5.24.2",
 		"laravel/tinker": "^2.11",
 		"laravel/ui": "^4.6.1",
-		"league/flysystem-aws-s3-v3": "^3.31",
+		"league/flysystem-aws-s3-v3": "^3.35",
 		"nunomaduro/collision": "^8.8.3",
 		"phpoffice/phpspreadsheet": "^5.4",
 		"predis/predis": "^1.1.10",
@@ -47,7 +47,7 @@
 		"laravel/pint": "^1.27",
 		"mockery/mockery": "^1.6.12",
 		"phpunit/phpunit": "^11.5.50",
-		"rector/rector": "^2.3.5",
+		"rector/rector": "^2.5.2",
 		"symfony/thanks": "^1.4.1"
 	},
 	"autoload": {
