@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Language;
 use App\Models\User\User;
 use App\Models\User\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
@@ -30,6 +31,24 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
         $response->assertStatus(200);
+    }
+
+    #[Test]
+    public function landing_page_keeps_url_locale_when_project_default_language_has_no_translated_resources(): void {
+        $language = Language::firstOrCreate(
+            ['language_code' => 'no'],
+            ['language_name' => 'Norwegian', 'available_for_platform_translation' => true, 'resources_translated' => false]
+        );
+
+        $project = CrowdSourcingProject::factory()->create([
+            'status_id' => CrowdSourcingProjectStatusLkp::PUBLISHED,
+            'language_id' => $language->id,
+        ]);
+
+        $response = $this->get(route('project.landing-page', ['locale' => 'en', 'slug' => $project->slug]));
+
+        $response->assertStatus(200);
+        $this->assertSame('en', app()->getLocale());
     }
 
     #[Test]

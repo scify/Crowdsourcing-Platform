@@ -101,9 +101,9 @@ class CrowdSourcingProjectManager {
         $userId = Auth::id() ?? intval($_COOKIE[UserManager::$USER_COOKIE_KEY] ?? 0);
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
-        $project_default_lang_code = $project?->defaultTranslation?->language?->language_code;
-        if ($project_default_lang_code !== 'en') {
-            app()->setLocale($project_default_lang_code);
+        $projectDefaultLanguage = $project?->defaultTranslation?->language;
+        if ($projectDefaultLanguage && $projectDefaultLanguage->language_code !== 'en' && $projectDefaultLanguage->resources_translated) {
+            app()->setLocale($projectDefaultLanguage->language_code);
             // Refetch so currentTranslation is resolved under the new locale
             $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         }
