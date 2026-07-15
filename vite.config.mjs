@@ -4,6 +4,15 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 
 export default defineConfig({
+	css: {
+		// The vendored iCheck stylesheet (imported in common.scss) uses legacy
+		// IE star-property hacks (e.g. `*display: inline;`). LightningCSS — the
+		// default CSS minifier since Vite 8 — rejects this invalid syntax instead
+		// of ignoring it like browsers do. errorRecovery strips the hacks instead.
+		lightningcss: {
+			errorRecovery: true,
+		},
+	},
 	server: {
 		host: '0.0.0.0', // Allow Vite to listen on all network interfaces
 		port: 5173, // Vite development server port (use this for hot-reloading)
