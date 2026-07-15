@@ -208,6 +208,13 @@ class LanguagesLkpTableSeeder extends Seeder {
                 'available_for_platform_translation' => true,
                 'resources_translated' => false,
             ],
+            [
+                'code' => 'no',
+                'name' => 'Norwegian',
+                'default_color' => '#e53935',
+                'available_for_platform_translation' => true,
+                'resources_translated' => false,
+            ],
         ];
         foreach ($languages as $languageObj) {
             $this->languagesRepository->updateOrCreate(['language_code' => $languageObj['code']],
