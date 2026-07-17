@@ -27,12 +27,16 @@
 								:key="'avail_lang_' + language.id"
 								class="dropdown-item d-flex align-items-center justify-content-between"
 							>
-								<label class="mb-0">
+								<label
+									class="mb-0"
+									:title="isDefaultLanguage(language) ? 'The default language cannot be removed' : ''"
+								>
 									<input
 										v-model="checkedLanguages"
 										type="checkbox"
 										class="form-check-input me-2"
 										:value="language"
+										:disabled="isDefaultLanguage(language)"
 										@change="checkChanged($event, language)"
 									/>
 									{{ language.language_name }}
@@ -320,7 +324,16 @@ export default {
 			activeTabIndex.value = translations.value.length - 1;
 		};
 
+		const isDefaultLanguage = (language) => {
+			return language.id === props.defaultLangId;
+		};
+
 		const checkChanged = ($event, language) => {
+			if (isDefaultLanguage(language)) {
+				$event.target.checked = true;
+				return;
+			}
+
 			showAlreadyTranslatedTextsMessage.value = false;
 			showTranslationSuccessMessage.value = false;
 
@@ -481,6 +494,7 @@ export default {
 			getDisplayTitleForProperty,
 			getLanguageName,
 			getLanguageCode,
+			isDefaultLanguage,
 			checkChanged,
 			filteredTranslations,
 			automaticTranslationLanguageName,

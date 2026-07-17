@@ -7,6 +7,7 @@ use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\CrowdSourcingProject\CrowdSourcingProjectTranslation;
 use App\Models\Language;
 use App\Models\User\User;
 use App\Models\User\UserRole;
@@ -463,6 +464,104 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['name', 'description', 'status_id', 'language_id']);
+    }
+
+    #[Test]
+    public function admin_can_remove_extra_translation_language_when_updating_project(): void {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $defaultLanguage = Language::firstOrCreate(
+            ['language_code' => 'cs'],
+            ['language_name' => 'Czech', 'available_for_platform_translation' => true, 'resources_translated' => false]
+        );
+        $extraLanguage = Language::firstOrCreate(
+            ['language_code' => 'en'],
+            ['language_name' => 'English', 'available_for_platform_translation' => true, 'resources_translated' => true]
+        );
+
+        $project = CrowdSourcingProject::factory()->create(['language_id' => $defaultLanguage->id]);
+        CrowdSourcingProjectTranslation::create([
+            'project_id' => $project->id,
+            'language_id' => $extraLanguage->id,
+            'name' => 'Old English Name',
+            'motto_title' => 'Old English Motto',
+            'motto_subtitle' => 'Old English Motto Subtitle',
+            'description' => 'Old English Description',
+        ]);
+
+        $this->assertDatabaseHas('crowd_sourcing_project_translations', [
+            'project_id' => $project->id,
+            'language_id' => $extraLanguage->id,
+        ]);
+
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update',
+            ['locale' => 'en', 'project' => $project->id]), [
+                'name' => $project->defaultTranslation->name ?? 'Updated Name',
+                'description' => 'Updated Description',
+                'status_id' => 1,
+                'slug' => $project->slug,
+                'language_id' => $defaultLanguage->id,
+                'motto_title' => 'Updated Motto',
+                'motto_subtitle' => 'Updated Motto Subtitle',
+                'extra_translations' => json_encode([]),
+            ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseMissing('crowd_sourcing_project_translations', [
+            'project_id' => $project->id,
+            'language_id' => $extraLanguage->id,
+        ]);
+        $this->assertDatabaseHas('crowd_sourcing_project_translations', [
+            'project_id' => $project->id,
+            'language_id' => $defaultLanguage->id,
+        ]);
+    }
+
+    #[Test]
+    public function updating_project_does_not_delete_default_language_translation(): void {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $defaultLanguage = Language::firstOrCreate(
+            ['language_code' => 'cs'],
+            ['language_name' => 'Czech', 'available_for_platform_translation' => true, 'resources_translated' => false]
+        );
+
+        $project = CrowdSourcingProject::factory()->create(['language_id' => $defaultLanguage->id]);
+        CrowdSourcingProjectTranslation::create([
+            'project_id' => $project->id,
+            'language_id' => $defaultLanguage->id,
+            'name' => 'Original Czech Name',
+            'motto_title' => 'Original Czech Motto',
+            'motto_subtitle' => 'Original Czech Motto Subtitle',
+            'description' => 'Original Czech Description',
+        ]);
+
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update',
+            ['locale' => 'en', 'project' => $project->id]), [
+                'name' => 'Updated Czech Name',
+                'description' => 'Updated Czech Description',
+                'status_id' => 1,
+                'slug' => $project->slug,
+                'language_id' => $defaultLanguage->id,
+                'motto_title' => 'Updated Motto',
+                'motto_subtitle' => 'Updated Motto Subtitle',
+                'extra_translations' => json_encode([]),
+            ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('crowd_sourcing_project_translations', [
+            'project_id' => $project->id,
+            'language_id' => $defaultLanguage->id,
+            'name' => 'Updated Czech Name',
+        ]);
     }
 
     #[Test]

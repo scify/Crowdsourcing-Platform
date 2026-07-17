@@ -56,6 +56,7 @@ class CrowdSourcingProjectTranslationManager {
             'project_id' => $project_id, 'language_id' => $language_id, ])
             ->toArray();
         $allowedKeys = (new CrowdSourcingProjectTranslation)->getFillable();
+        $submittedLanguageIds = [];
         foreach ($extraTranslations as $extraTranslation) {
             $extraTranslation = json_decode(json_encode($extraTranslation), true);
             foreach ($extraTranslation as $key => $value) {
@@ -68,10 +69,20 @@ class CrowdSourcingProjectTranslationManager {
 
             $filtered = Helpers::getFilteredAttributes($extraTranslation, $allowedKeys);
             $filtered['project_id'] = $project_id;
+            $submittedLanguageIds[] = $filtered['language_id'];
             $this->crowdSourcingProjectTranslationRepository->updateOrCreate(
                 ['project_id' => $project_id, 'language_id' => $filtered['language_id']],
                 $filtered
             );
+        }
+
+        $oldExtraTranslations = $this->crowdSourcingProjectTranslationRepository
+            ->allWhere(['project_id' => $project_id])
+            ->whereNotIn('language_id', [$language_id]);
+        foreach ($oldExtraTranslations as $oldExtraTranslation) {
+            if (! in_array($oldExtraTranslation->language_id, $submittedLanguageIds, true)) {
+                $this->crowdSourcingProjectTranslationRepository->deleteTranslation($project_id, $oldExtraTranslation->language_id);
+            }
         }
     }
 }
