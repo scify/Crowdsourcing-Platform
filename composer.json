@@ -15,7 +15,7 @@
 		"accentinteractive/laravel-logcleaner": "^1.6",
 		"awobaz/compoships": "^2.5.4",
 		"cocur/slugify": "^4.7.1",
-		"doctrine/dbal": "^3.10.4",
+		"doctrine/dbal": "^3.10.6",
 		"drewm/mailchimp-api": "^2.5.4",
 		"google/cloud-translate": "^1.21",
 		"intervention/image": "^2.7.2",
