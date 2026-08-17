@@ -29,7 +29,7 @@
 		"phpoffice/phpspreadsheet": "^5.9",
 		"predis/predis": "^1.1.10",
 		"scify/laravel-cookie-guard": "^4.1",
-		"sentry/sentry": "^4.29.0",
+		"sentry/sentry": "^4.30.0",
 		"sentry/sentry-laravel": "^4.27.0",
 		"socialiteproviders/twitter": "^4.1.2",
 		"spatie/laravel-newsletter": "^5.3.1",
