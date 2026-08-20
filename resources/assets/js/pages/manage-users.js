@@ -1,5 +1,6 @@
 import "datatables.net-buttons-bs4";
 import "datatables.net-buttons/js/buttons.html5.mjs";
+import DOMPurify from "dompurify";
 
 window.UsersListController = function () {};
 
@@ -67,13 +68,13 @@ window.UsersListController.prototype = (function () {
 		if (responseObj.status === 2) {
 			loaderEl.addClass("hidden");
 			errorMsgEl.removeClass("hidden");
-			errorMsgEl.html(responseObj.data);
+			errorMsgEl.html(DOMPurify.sanitize(responseObj.data));
 			usersListEl.html("");
 		} else {
 			errorMsgEl.html("");
 			errorMsgEl.addClass("hidden");
 			loaderEl.addClass("hidden");
-			usersListEl.html(responseObj.data);
+			usersListEl.html(DOMPurify.sanitize(responseObj.data));
 		}
 	};
 	const initDataTables = function () {

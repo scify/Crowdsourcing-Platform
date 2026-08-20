@@ -2,6 +2,7 @@ import * as Survey from "survey-jquery";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
 import "datatables.net-buttons-bs4";
 import "datatables.net-buttons/js/buttons.html5.mjs";
+import DOMPurify from "dompurify";
 
 (function () {
 	let respondentsTable;
@@ -21,14 +22,15 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 
 	const updateURLSearchParams = function (criteria) {
 		const searchParams = new URLSearchParams(window.location.search);
+		const questionnaireId = /^\d+$/.test(String(criteria.questionnaireId)) ? criteria.questionnaireId : "";
 		let newURL;
 		if (searchParams.has("questionnaireId")) {
 			newURL = location.href.replace(
 				"questionnaireId=" + searchParams.get("questionnaireId"),
-				"questionnaireId=" + criteria.questionnaireId,
+				"questionnaireId=" + questionnaireId,
 			);
 		} else {
-			newURL = location.href += "?questionnaireId=" + criteria.questionnaireId;
+			newURL = location.href + "?questionnaireId=" + questionnaireId;
 		}
 
 		if (window.history.replaceState) {
@@ -107,7 +109,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 				error: function (error) {
 					loader.addClass("d-none");
 					errorEl.removeClass("d-none");
-					errorEl.html(error.responseJSON.data);
+					errorEl.text(error.responseJSON.data);
 				},
 			});
 		});
@@ -135,7 +137,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 			error: function (error) {
 				loader.addClass("d-none");
 				errorEl.removeClass("d-none");
-				errorEl.html(error.responseJSON.data);
+				errorEl.text(error.responseJSON.data);
 			},
 		});
 	};
@@ -144,7 +146,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		const resultsEl = $("#results");
 		resultsEl.html("");
 		$("#errorMsg").addClass("d-none");
-		resultsEl.html(response.data.view);
+		resultsEl.html(DOMPurify.sanitize(response.data.view));
 		questionnaire = response.data.questionnaire;
 		answers = response.data.responses;
 		survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
