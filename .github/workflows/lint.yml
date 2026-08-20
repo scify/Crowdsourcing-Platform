@@ -31,12 +31,12 @@ jobs:
               run: cp .env.testing .env
 
             - name: Upgrade npm
-              run: npm install -g npm@11.16.0
+              run: npm install -g npm@11.16.0 --ignore-scripts
 
             - name: Install Dependencies
               run: |
                   composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-                  npm ci
+                  npm ci --ignore-scripts
 
             - name: Run Pint
               run: vendor/bin/pint --test -v
