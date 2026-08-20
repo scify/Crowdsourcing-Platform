@@ -2,16 +2,16 @@ FROM php:8.4-fpm
 
 # Install dependencies first as root
 RUN apt-get update \
-  && apt-get install -y build-essential zlib1g-dev default-mysql-client curl gnupg procps vim git unzip libzip-dev libpq-dev \
+  && apt-get install -y --no-install-recommends build-essential zlib1g-dev default-mysql-client curl gnupg procps vim git unzip libzip-dev libpq-dev \
   && docker-php-ext-install zip pdo_mysql pdo_pgsql pgsql
 
 # intl
-RUN apt-get install -y libicu-dev \
+RUN apt-get install -y --no-install-recommends libicu-dev \
   && docker-php-ext-configure intl \
   && docker-php-ext-install intl
 
 # gd
-RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && \
+RUN apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev && \
 docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
 docker-php-ext-install gd
 
@@ -50,7 +50,10 @@ RUN composer global require "laravel/installer"
 ENV NODE_VERSION=18.19.0
 ENV NVM_DIR=/usr/local/.nvm
 RUN mkdir "$NVM_DIR"
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+RUN curl -fsSL -o /tmp/nvm-install.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh \
+  && echo "0b882590028d326ce5d07a198c1061d2ab2ba00e3631e8ed96f65a60d06a8619  /tmp/nvm-install.sh" | sha256sum -c - \
+  && bash /tmp/nvm-install.sh \
+  && rm /tmp/nvm-install.sh
 RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
