@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+    contents: read
+
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
@@ -26,7 +29,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Upgrade npm
-        run: npm install -g npm@latest
+        run: npm install -g npm@11.16.0
 
       - name: Run composer install
         run: composer install -n --prefer-dist --no-ansi --no-progress --no-suggest --no-interaction --no-scripts
