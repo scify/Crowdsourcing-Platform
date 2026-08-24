@@ -79,9 +79,9 @@
 		"progressbar.js": "^1.1.1",
 		"select2": "^4.1.0",
 		"summernote": "^0.9.1",
-		"survey-analytics": "^1.12.66",
-		"survey-core": "^1.12.66",
-		"survey-creator": "^1.12.66",
-		"survey-jquery": "^1.12.66"
+		"survey-analytics": "^1.12.67",
+		"survey-core": "^1.12.67",
+		"survey-creator": "^1.12.67",
+		"survey-jquery": "^1.12.67"
 	}
 }
