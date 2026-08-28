@@ -50,7 +50,7 @@ RUN composer global require "laravel/installer"
 ENV NODE_VERSION=18.19.0
 ENV NVM_DIR=/usr/local/.nvm
 RUN mkdir "$NVM_DIR"
-RUN curl -fsSL -o /tmp/nvm-install.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh \
+RUN curl -fsSL --proto "=https" --tlsv1.2 -o /tmp/nvm-install.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh \
   && echo "0b882590028d326ce5d07a198c1061d2ab2ba00e3631e8ed96f65a60d06a8619  /tmp/nvm-install.sh" | sha256sum -c - \
   && bash /tmp/nvm-install.sh \
   && rm /tmp/nvm-install.sh
