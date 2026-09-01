@@ -4,7 +4,6 @@
 [![GitHub Issues](https://img.shields.io/github/issues/scify/Crowdsourcing-Platform)](https://img.shields.io/github/issues/scify/Crowdsourcing-Platform)
 [![GitHub Stars](https://img.shields.io/github/stars/scify/Crowdsourcing-Platform)](https://img.shields.io/github/stars/scify/Crowdsourcing-Platform)
 [![GitHub forks](https://img.shields.io/github/forks/scify/Crowdsourcing-Platform)](https://img.shields.io/github/forks/scify/Crowdsourcing-Platform)
-[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/dwyl/goodparts "JavaScript The Good Parts")
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
@@ -42,7 +41,7 @@ This is a [Laravel](https://laravel.com/) Web Application for Crowdsourcing Proj
 - [Code Linting \& Formatting](#code-linting--formatting)
   - [PHP code style - Laravel Pint](#php-code-style---laravel-pint)
   - [JavaScript \&\& CSS code style - ESLint \&\& Prettier](#javascript--css-code-style---eslint--prettier)
-- [Related HTML Template](#related-html-template)
+- [Front-end stack](#front-end-stack)
 - [Installation-specific resources](#installation-specific-resources)
 - [Development Guidelines](#development-guidelines)
   - [Directory Structure](#directory-structure)
@@ -370,11 +369,12 @@ npm run lint # this command will check the code style
 npm run format # this command will format the code style
 ```
 
-## Related HTML Template
+## Front-end stack
 
-This project uses the free [AdminLTE](https://adminlte.io/docs/3.0/) template.
-
-It also makes use of [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
+The back-office uses a custom admin shell built on
+[Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/),
+along with [Vue 3](https://vuejs.org/), [SurveyJS](https://surveyjs.io/), and
+[DataTables](https://datatables.net/). Assets are compiled with [Vite](https://vitejs.dev/).
 
 ## Installation-specific resources
 
