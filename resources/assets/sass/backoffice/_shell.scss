@@ -20,6 +20,13 @@ body.backoffice {
 	border-bottom: 1px solid $grey;
 	padding-left: 25px;
 	padding-right: 25px;
+
+	// Match the production topbar: uppercase, bold, black links
+	.navbar-nav .nav-link {
+		color: $header-font-color;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
 }
 
 // ---- Body row ----
@@ -47,11 +54,12 @@ body.backoffice {
 		padding: 0.75rem 0.5rem;
 	}
 
+	// Matches the production sidebar section headers: #d0d4db, 1rem, underlined
 	.nav-header {
-		color: rgba($color-navbar-head, 0.6);
-		font-size: 0.78rem;
+		color: #d0d4db;
+		font-size: 1rem;
 		text-transform: uppercase;
-		letter-spacing: 0.06em;
+		text-decoration: underline;
 		padding: 0.5rem 0.75rem 0.25rem;
 	}
 

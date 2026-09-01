@@ -12,6 +12,13 @@ $line-height-base: 1.6;
 $body-bg: #ffffff;
 $link-decoration: none;
 $link-hover-decoration: none;
+// Bootstrap 5 picks text color on colored backgrounds via color-contrast();
+// its default 4.5 threshold chooses black on our primary/success. Bootstrap 4's
+// YIQ check chose white. 2.5 restores white text on primary and success while
+// keeping dark text on warning, matching the production (BS4) appearance.
+// 2.3 (not 2.5): white vs our success green computes at ~2.5 exactly and
+// rounds under a 2.5 threshold.
+$min-contrast-ratio: 2.3;
 
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/variables-dark";
