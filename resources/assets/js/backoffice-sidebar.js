@@ -4,7 +4,12 @@ const COLLAPSED_KEY = "backoffice.sidebar-collapsed";
 // DOM. A listener bound directly to #sidebar-menu-toggler is therefore lost when
 // the element is re-created. Delegate from the document instead, which survives
 // any re-render of the subtree.
-let bound = false;
+//
+// The guard lives on window, not in module scope. Under Vite dev and HMR this
+// module can be instantiated more than once under different URLs (`?t=` stamped
+// versus unstamped after an invalidation). A module-level flag is per-instance,
+// so each instance would bind its own listener and a single click would toggle
+// the class on and straight back off.
 
 export function initBackofficeSidebar() {
 	try {
@@ -15,10 +20,10 @@ export function initBackofficeSidebar() {
 		// localStorage unavailable (private mode); ignore
 	}
 
-	if (bound) {
+	if (window.__backofficeSidebarBound) {
 		return;
 	}
-	bound = true;
+	window.__backofficeSidebarBound = true;
 
 	document.addEventListener("click", (e) => {
 		const toggler = e.target.closest("#sidebar-menu-toggler");
