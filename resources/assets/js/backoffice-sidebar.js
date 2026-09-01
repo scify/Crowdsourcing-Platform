@@ -1,24 +1,33 @@
 const COLLAPSED_KEY = "backoffice.sidebar-collapsed";
 
-export function initBackofficeSidebar() {
-	const body = document.body;
+// Backoffice pages mount Vue apps onto #app, and Vue 3 replaces the container's
+// DOM. A listener bound directly to #sidebar-menu-toggler is therefore lost when
+// the element is re-created. Delegate from the document instead, which survives
+// any re-render of the subtree.
+let bound = false;
 
+export function initBackofficeSidebar() {
 	try {
 		if (localStorage.getItem(COLLAPSED_KEY) === "1") {
-			body.classList.add("sidebar-collapsed");
+			document.body.classList.add("sidebar-collapsed");
 		}
 	} catch {
 		// localStorage unavailable (private mode); ignore
 	}
 
-	const toggler = document.getElementById("sidebar-menu-toggler");
-	if (!toggler) {
+	if (bound) {
 		return;
 	}
+	bound = true;
 
-	toggler.addEventListener("click", (e) => {
+	document.addEventListener("click", (e) => {
+		const toggler = e.target.closest("#sidebar-menu-toggler");
+		if (!toggler) {
+			return;
+		}
+
 		e.preventDefault();
-		const collapsed = body.classList.toggle("sidebar-collapsed");
+		const collapsed = document.body.classList.toggle("sidebar-collapsed");
 		try {
 			localStorage.setItem(COLLAPSED_KEY, collapsed ? "1" : "0");
 		} catch {
