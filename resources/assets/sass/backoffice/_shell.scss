@@ -182,8 +182,52 @@ body.backoffice .card {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 
 	> .card-header {
-		background-color: transparent;
 		border-bottom: 1px solid $grey;
+
+		// AdminLTE sized .card-title down from the heading defaults; keep that.
+		.card-title {
+			font-size: 1.1rem;
+			font-weight: 400;
+			margin-bottom: 0;
+		}
+	}
+
+	// Transparent header is the default; colored variants (card-info) keep
+	// their own background from shared/card.scss.
+	&:not(.card-info) > .card-header {
+		background-color: transparent;
+	}
+}
+
+// AdminLTE-era info-box (e.g. Number of Voters / Number of Votes in
+// solutions management). Replicates the production AdminLTE 3 rendering.
+.info-box {
+	display: flex;
+	background-color: $white;
+	border-radius: 4px;
+	padding: 8px;
+	min-height: 80px;
+	margin-bottom: 1rem;
+
+	.info-box-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 70px;
+		flex-shrink: 0;
+		border-radius: 4px;
+		font-size: 30px;
+	}
+
+	.info-box-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 0 10px;
+	}
+
+	.info-box-number {
+		font-weight: 700;
 	}
 }
 

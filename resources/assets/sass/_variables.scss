@@ -5,6 +5,9 @@ $blue: #2b73fa;
 $green: #39ba6e;
 $primary: $blue;
 $success: $green;
+// Bootstrap 4's info color; keeps bg-info, card-info, and the solutions
+// info-boxes identical to the production (AdminLTE/BS4) rendering.
+$info: #17a2b8;
 
 $font-family-sans-serif: "Open Sans", sans-serif;
 $font-size-base: 1rem;
