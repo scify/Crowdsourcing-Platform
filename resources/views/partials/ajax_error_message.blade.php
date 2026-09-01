@@ -1,3 +1,3 @@
 <h4>
-    {{$errorMessage}}
+    {{ $errorMessage }}
 </h4>
