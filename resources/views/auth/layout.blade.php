@@ -17,8 +17,10 @@
 <body class="background-page @yield('body_class') container-fluid"
       style="background-image: url('{{ asset('images/active_participation.webp') }}');">
 @include('partials.staging-indicator')
-<div id="app" class="row h-100 justify-content-center align-items-center">
-    <div class="login-box col-xl-4 col-lg-5 col-md-9 col-sm-10">
+{{-- min-vh-100 + my-auto centers the card without clipping the top when the
+     card is taller than the viewport (align-items-center clips overflow) --}}
+<div id="app" class="row min-vh-100 justify-content-center">
+    <div class="login-box col-xl-4 col-lg-5 col-md-9 col-sm-10 my-auto">
         <div class="login-box-body px-md-5 px-sm-2 py-5 w-100">
             @yield('auth-form')
         </div>

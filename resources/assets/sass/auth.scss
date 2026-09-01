@@ -41,18 +41,21 @@ html {
 	}
 }
 
-.whole {
-	padding-top: 3px;
+// Previously scoped under the removed .whole grid cell; the boxed style now
+// applies straight to the branded square icons (Google, Microsoft).
+.socialSignIn.google,
+.socialSignIn.microsoft {
+	margin-top: 3px;
 
-	.socialSignIn.google {
+	&.google {
 		background-color: #db4437;
 	}
 
-	.socialSignIn.microsoft {
+	&.microsoft {
 		background-color: #00adef;
 	}
 
-	.socialSignIn {
+	& {
 		border-radius: 5px;
 		height: calc(100% - 3px);
 		width: 50px;
