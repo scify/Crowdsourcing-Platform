@@ -111,6 +111,11 @@ php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 XDEBUG_MODE=coverage php artisan test --env=testing --filter {METHOD OR CLASS NAME} --coverage
 ```
 
+Every test runs inside a database transaction that rolls back
+(`DatabaseTransactions` on the base `TestCase`), so the seeded test database
+stays pristine: you only need the `migrate:fresh --seed` setup once, and
+repeated `php artisan test` runs are stable.
+
 ### Run the tests with the `run-tests.sh` script
 
 The `run-tests.sh` script is a wrapper around the PHPUnit command:
