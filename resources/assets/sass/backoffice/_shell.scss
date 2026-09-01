@@ -21,11 +21,18 @@ body.backoffice {
 	padding-left: 25px;
 	padding-right: 25px;
 
-	// Match the production topbar: uppercase, bold, black links
+	// Match the production topbar: uppercase, bold, black links, spaced by a
+	// large left padding (the old .navbar-light rule in shared/navbar.scss
+	// no longer matches this navbar)
 	.navbar-nav .nav-link {
 		color: $header-font-color;
 		text-transform: uppercase;
 		font-weight: 600;
+		padding-left: 3rem;
+
+		@include media-breakpoint-down(md) {
+			padding-left: 0;
+		}
 	}
 }
 
