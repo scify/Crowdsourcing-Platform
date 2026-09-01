@@ -43,7 +43,8 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 		// get all textarea elements
 		// and trim their values
 		$("textarea").each(function () {
-			$(this).val($.trim($(this).val()));
+			// String.prototype.trim: $.trim was removed in jQuery 4
+			$(this).val(($(this).val() || "").trim());
 		});
 	};
 

@@ -1,4 +1,5 @@
-import "jquery/dist/jquery.min";
+// jQuery 4 no longer exports ./dist/jquery.min; import the package entry
+import $ from "jquery";
 import Coloris from "@melloware/coloris";
 
 (function () {

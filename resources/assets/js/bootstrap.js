@@ -5,6 +5,10 @@
  */
 import $ from "jquery";
 
+// jQuery 4 removed $.now; summernote 0.9.x still calls it during init.
+// Remove this shim when summernote ships a jQuery 4-compatible release.
+$.now = $.now || Date.now;
+
 try {
 	window.$ = window.jQuery = $;
 } catch (e) {
@@ -13,6 +17,16 @@ try {
 
 import * as bootstrap from "bootstrap";
 window.bootstrap = bootstrap;
+
+// Bootstrap 5 registers its jQuery plugin interfaces ($().tooltip() etc.) in
+// a DOMContentLoaded listener. jQuery 4 runs ready callbacks before that
+// listener, so plugins that summernote calls during init would not exist
+// yet. Register them explicitly instead of relying on the timing.
+for (const component of [bootstrap.Tooltip, bootstrap.Dropdown, bootstrap.Modal, bootstrap.Popover]) {
+	const name = component.NAME;
+	$.fn[name] = component.jQueryInterface;
+	$.fn[name].Constructor = component;
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
