@@ -1,15 +1,18 @@
 <!-- omit in toc -->
 # Crowdsourcing Web Application
 
-[![GitHub Issues](https://img.shields.io/github/issues/scify/Crowdsourcing-Platform)](https://img.shields.io/github/issues/scify/Crowdsourcing-Platform)
-[![GitHub Stars](https://img.shields.io/github/stars/scify/Crowdsourcing-Platform)](https://img.shields.io/github/stars/scify/Crowdsourcing-Platform)
-[![GitHub forks](https://img.shields.io/github/forks/scify/Crowdsourcing-Platform)](https://img.shields.io/github/forks/scify/Crowdsourcing-Platform)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://crowdsourcing.scify.org/)
-[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/scify)
-[![GitHub release](https://img.shields.io/github/release/scify/Crowdsourcing-Platform.svg)](https://github.com/scify/Crowdsourcing-Platform/releases/tag/v8.0)
+[![Tests](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/tests.yml?label=tests)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/lint.yml?label=lint)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/codeql.yml?label=codeql)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml)
+[![GitHub release](https://img.shields.io/github/v/release/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/releases)
+[![GitHub Issues](https://img.shields.io/github/issues/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/network/members)
+[![License](https://img.shields.io/github/license/scify/Crowdsourcing-Platform)](LICENSE)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fcrowdsourcing.ecas.org)](https://crowdsourcing.ecas.org/en)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
+[![PHP](https://img.shields.io/badge/PHP-%5E8.3-777BB4?logo=php&logoColor=white)](composer.json)
+[![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)](composer.json)
 
 ## Introduction
 
