@@ -91,7 +91,7 @@ Offering the code under open source licenses includes many benefits. Of those, t
 
 [ECAS official installation](https://crowdsourcing.ecas.org/en)
 
-[SciFY official installation](https://crowdsourcing.scify.org/)
+[SciFY demo installation](https://crowdsourcing.scify.org/)
 
 ## Setup Instructions
 
