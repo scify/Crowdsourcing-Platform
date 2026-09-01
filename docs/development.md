@@ -116,6 +116,13 @@ Every test runs inside a database transaction that rolls back
 stays pristine: you only need the `migrate:fresh --seed` setup once, and
 repeated `php artisan test` runs are stable.
 
+### Coverage ratchet
+
+CI runs the suite with `--coverage --min=48`, so the build fails if line
+coverage drops below the floor. When you raise coverage, raise the ratchet:
+bump `--min` in `.github/workflows/tests.yml` and the coverage badge in
+`README.md` together.
+
 ### Run the tests with the `run-tests.sh` script
 
 The `run-tests.sh` script is a wrapper around the PHPUnit command:

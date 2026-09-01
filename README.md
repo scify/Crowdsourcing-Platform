@@ -2,6 +2,7 @@
 # Crowdsourcing Web Application
 
 [![Tests](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/tests.yml?label=tests)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
+[![Coverage](https://img.shields.io/badge/coverage-%E2%89%A548%25-orange)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/lint.yml?label=lint)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml)
 [![CodeQL](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/codeql.yml?label=codeql)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml)
 [![GitHub release](https://img.shields.io/github/v/release/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/releases)

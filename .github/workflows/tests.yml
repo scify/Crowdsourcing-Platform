@@ -21,7 +21,7 @@ jobs:
         with:
           php-version: '8.3'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: none
+          coverage: pcov
 
       - name: Setup Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
@@ -67,4 +67,4 @@ jobs:
         run: php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: php artisan test --env=testing
+        run: php artisan test --env=testing --coverage --min=48
