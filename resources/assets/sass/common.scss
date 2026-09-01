@@ -1,6 +1,5 @@
 @import "_variables.scss";
 @import "bootstrap/scss/bootstrap";
-@import "bootstrap/scss/functions";
 
 // Fonts
 @import "@fortawesome/fontawesome-free/css/all.css";
@@ -12,8 +11,6 @@
 
 // Supports weights 300-800
 @import "@fontsource-variable/open-sans";
-
-@import "sidebar";
 
 // import everything from the common folder
 @import "shared/button";

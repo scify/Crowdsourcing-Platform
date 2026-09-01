@@ -1,5 +1,5 @@
 import * as SurveyAnalytics from "survey-analytics";
-import "datatables.net-buttons-bs4";
+import "datatables.net-buttons-bs5";
 import "datatables.net-buttons/js/buttons.html5.mjs";
 
 export class AnswersData {

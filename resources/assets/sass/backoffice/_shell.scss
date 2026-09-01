@@ -1,0 +1,193 @@
+// Custom backoffice shell (replaces AdminLTE)
+
+:root {
+	--bo-sidebar-width: 250px;
+	--bo-sidebar-width-collapsed: 4.5rem;
+	--bo-topbar-height: 57px;
+}
+
+body.backoffice {
+	background-color: $body-bg;
+}
+
+// ---- Topbar ----
+.bo-topbar {
+	position: sticky;
+	top: 0;
+	z-index: $zindex-sticky;
+	min-height: var(--bo-topbar-height);
+	background-color: $header-background-color;
+	border-bottom: 1px solid $grey;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+// ---- Body row ----
+.bo-body {
+	display: flex;
+	align-items: stretch;
+	min-height: calc(100vh - var(--bo-topbar-height));
+}
+
+// ---- Sidebar ----
+.bo-sidebar {
+	background-color: $bg-color-navbar;
+	color: $color-navbar-head;
+	width: var(--bo-sidebar-width);
+	flex-shrink: 0;
+
+	.nav {
+		padding: 0.75rem 0.5rem;
+	}
+
+	.nav-header {
+		color: rgba($color-navbar-head, 0.6);
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		padding: 0.5rem 0.75rem 0.25rem;
+	}
+
+	.nav-link {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		color: $color-navbar-head;
+		border-radius: $border-radius;
+		padding: 0.5rem 0.75rem;
+		margin-bottom: 2px;
+
+		p {
+			margin: 0;
+		}
+
+		.nav-icon {
+			width: 1.25rem;
+			text-align: center;
+			flex-shrink: 0;
+		}
+
+		&:hover {
+			color: $white;
+			background-color: rgba($white, 0.08);
+		}
+	}
+
+	.nav-item.active .nav-link,
+	.nav-link.active {
+		color: $white;
+		background-color: $primary;
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.bo-sidebar {
+		position: sticky;
+		top: var(--bo-topbar-height);
+		height: calc(100vh - var(--bo-topbar-height));
+		overflow-y: auto;
+	}
+
+	// Collapsed-to-icons mode (desktop only)
+	body.sidebar-collapsed {
+		.bo-sidebar {
+			width: var(--bo-sidebar-width-collapsed);
+
+			.nav-header {
+				display: none;
+			}
+
+			.nav-link {
+				justify-content: center;
+
+				p {
+					display: none;
+				}
+			}
+		}
+
+		#sidebar-menu-toggler i {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+@include media-breakpoint-down(lg) {
+	// Offcanvas mode: BS5 offcanvas-lg handles positioning; we style the panel
+	.bo-sidebar {
+		width: var(--bo-sidebar-width);
+	}
+}
+
+#sidebar-menu-toggler i {
+	transition: transform 0.2s ease-in-out;
+}
+
+// ---- Main content ----
+.bo-main {
+	flex-grow: 1;
+	min-width: 0;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: rgba(255, 255, 255, 0.95);
+
+	// Keep the current watermark background
+	&::after {
+		background-color: $body-bg;
+		background-image: url(../images/active_participation.webp);
+		background-size: cover;
+		filter: grayscale(100%);
+		opacity: 0.08;
+		position: absolute;
+		z-index: -1;
+		content: "";
+		inset: 0;
+	}
+
+	> .content {
+		flex-grow: 1;
+	}
+
+	.content-header {
+		padding-top: 25px;
+		padding-bottom: 10px;
+	}
+}
+
+#main-content {
+	max-width: 1440px;
+}
+
+// ---- Footer ----
+.bo-footer {
+	font-size: 12px;
+	padding: 0.75rem 25px;
+	border-top: 1px solid $grey;
+	background-color: $white;
+}
+
+// ---- Cards: modern-refresh polish ----
+body.backoffice .card {
+	border: 1px solid $grey;
+	border-radius: $border-radius-lg;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+	> .card-header {
+		background-color: transparent;
+		border-bottom: 1px solid $grey;
+	}
+}
+
+.card-collapse-toggle {
+	color: $secondary;
+	line-height: 1;
+
+	i {
+		transition: transform 0.2s ease-in-out;
+	}
+
+	&[aria-expanded="false"] i {
+		transform: rotate(180deg);
+	}
+}

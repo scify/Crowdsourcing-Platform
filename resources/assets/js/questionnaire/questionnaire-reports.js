@@ -1,6 +1,6 @@
 import * as Survey from "survey-jquery";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
-import "datatables.net-buttons-bs4";
+import "datatables.net-buttons-bs5";
 import "datatables.net-buttons/js/buttons.html5.mjs";
 import DOMPurify from "dompurify";
 
