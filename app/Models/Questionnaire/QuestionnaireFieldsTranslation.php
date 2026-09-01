@@ -43,7 +43,7 @@ class QuestionnaireFieldsTranslation extends CompositeKeysModel {
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'questionnaire_id', 'language_id', 'title', 'description',

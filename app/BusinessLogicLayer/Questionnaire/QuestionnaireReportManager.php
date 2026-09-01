@@ -9,7 +9,6 @@ use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Models\User\User;
 use App\Repository\Questionnaire\QuestionnaireRepository;
 use App\Repository\Questionnaire\Reports\QuestionnaireReportRepository;
-use App\Repository\Questionnaire\Responses\QuestionnaireResponseAnswerRepository;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
 use App\ViewModels\Questionnaire\reports\QuestionnaireReportFilters;
 use App\ViewModels\Questionnaire\reports\QuestionnaireReportResults;
@@ -19,7 +18,6 @@ class QuestionnaireReportManager {
     public function __construct(
         protected QuestionnaireRepository $questionnaireRepository,
         protected QuestionnaireReportRepository $questionnaireReportRepository,
-        protected QuestionnaireResponseAnswerRepository $questionnaireResponseAnswerRepository,
         protected QuestionnaireResponseRepository $questionnaireResponseRepository,
         protected CrowdSourcingProjectAccessManager $crowdSourcingProjectAccessManager,
         protected UserRoleManager $userRoleManager,

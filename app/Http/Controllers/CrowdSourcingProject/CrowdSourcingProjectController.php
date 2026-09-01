@@ -120,7 +120,7 @@ class CrowdSourcingProjectController extends Controller {
     protected function showCrowdSourcingProjectLandingPage(Request $request, string $project_slug) {
         try {
             $viewModel = $this->crowdSourcingProjectManager->getCrowdSourcingProjectViewModelForLandingPage(
-                intval($request->questionnaireId) ?? 0,
+                intval($request->questionnaireId),
                 $project_slug);
 
             if ($this->shouldHandleQuestionnaireShare($request)) {

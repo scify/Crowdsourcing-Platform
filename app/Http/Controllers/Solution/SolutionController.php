@@ -295,7 +295,7 @@ class SolutionController extends Controller {
                 fputcsv($file, [
                     $solution->id,
                     $solution->defaultTranslation?->title,
-                    $solution->creator ? $solution->creator?->nickname . ' <' . $solution->creator?->email . '>' : 'Anonymous',
+                    $solution->creator ? $solution->creator->nickname . ' <' . $solution->creator->email . '>' : 'Anonymous',
                     $solution->status->title,
                     $solution->problem->defaultTranslation?->title,
                     $solution->upvotes->count(),

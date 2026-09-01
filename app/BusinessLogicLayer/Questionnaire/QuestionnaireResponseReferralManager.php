@@ -15,7 +15,7 @@ class QuestionnaireResponseReferralManager {
      * @param  $respondentId  int the id of the user who responded
      * @param  $referrerId  int the id of the user who shared the questionnaire
      *
-     * @return mixed the object created
+     * @return QuestionnaireResponseReferral the object created
      */
     public function createQuestionnaireResponseReferral($questionnaireId, $respondentId, $referrerId): QuestionnaireResponseReferral {
         return $this->questionnaireResponseReferralRepository->create([

@@ -48,6 +48,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection<int, CrowdSourcingProjectColors> $colors
  * @property-read int|null $colors_count
  * @property-read User|null $creator
+ * @property CrowdSourcingProjectTranslation $currentTranslation
  * @property-read CrowdSourcingProjectTranslation $defaultTranslation
  * @property-read Language|null $language
  * @property-read Collection<int, Language> $languages
@@ -109,7 +110,7 @@ class CrowdSourcingProject extends Model {
      *
      * Note: in the lp_* fields, lp stands for landing page
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'slug', 'external_url', 'img_path',
@@ -126,7 +127,7 @@ class CrowdSourcingProject extends Model {
     /**
      * The relationships that should always be loaded.
      *
-     * @var array
+     * @var list<string>
      */
     protected $with = ['defaultTranslation'];
 

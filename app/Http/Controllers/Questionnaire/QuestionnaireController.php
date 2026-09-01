@@ -33,7 +33,7 @@ class QuestionnaireController extends Controller {
         $this->validate($request, [
             'status_id' => 'required|integer|in:' . implode(',', QuestionnaireStatusLkp::GetAllStatusIds()),
         ]);
-        $this->questionnaireManager->updateQuestionnaireStatus(intval($request->questionnaire_id), intval($request->status_id) ?? QuestionnaireStatusLkp::DRAFT, $request->comments);
+        $this->questionnaireManager->updateQuestionnaireStatus(intval($request->questionnaire_id), intval($request->status_id), $request->comments);
 
         return redirect()->back()->with(['flash_message_success' => 'The questionnaire status has been updated.']);
     }

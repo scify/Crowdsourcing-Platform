@@ -720,10 +720,10 @@ class CrowdSourcingProjectManager {
                 'gender' => $gender ?? '',
                 'country' => $country ?? '',
                 'phase1_questionnaire' => $questionnaireResponse ? 'yes' : 'no',
-                'phase1_date' => $questionnaireResponse?->created_at ?? '',
+                'phase1_date' => $questionnaireResponse->created_at ?? '',
                 'phase2_solution' => $solutionProposed ? 'yes' : 'no',
                 'phase3_votes' => $firstVote ? 'yes' : 'no',
-                'phase3_date' => $firstVote?->created_at ?? '',
+                'phase3_date' => $firstVote->created_at ?? '',
             ]);
         }
 

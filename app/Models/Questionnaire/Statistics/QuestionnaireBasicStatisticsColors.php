@@ -35,7 +35,7 @@ class QuestionnaireBasicStatisticsColors extends Model {
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'questionnaire_id', 'total_responses_color', 'goal_responses_color',

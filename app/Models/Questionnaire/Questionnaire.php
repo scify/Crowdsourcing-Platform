@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
+ * @property QuestionnaireFieldsTranslation $currentTranslation
  * @property-read Language $defaultLanguage
  * @property-read CrowdSourcingProject $project
  * @property-read Collection|QuestionnaireStatusHistory[] $statusHistory
@@ -113,7 +114,7 @@ class Questionnaire extends Model {
     /**
      * The relationships that should always be loaded.
      *
-     * @var array
+     * @var list<string>
      */
     protected $with = ['defaultFieldsTranslation', 'currentLocaleFieldsTranslation'];
 

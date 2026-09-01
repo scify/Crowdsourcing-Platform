@@ -28,6 +28,7 @@ use Znck\Eloquent\Traits\BelongsToThrough;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  * @property-read User|null $creator
+ * @property SolutionTranslation|null $current_translation
  * @property-read SolutionTranslation|null $defaultTranslation
  * @property-read Problem|null $problem
  * @property-read Collection<int, SolutionShare> $shares
@@ -37,6 +38,7 @@ use Znck\Eloquent\Traits\BelongsToThrough;
  * @property-read int|null $translations_count
  * @property-read Collection<int, SolutionUpvote> $upvotes
  * @property-read int|null $upvotes_count
+ * @property bool $upvoted_by_current_user
  * @property-read CrowdSourcingProject|null $project
  *
  * @method static \Database\Factories\Solution\SolutionFactory factory($count = null, $state = [])

@@ -40,7 +40,7 @@ class CrowdSourcingProjectColors extends Model {
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'project_id', 'color_name', 'color_code',

@@ -113,7 +113,7 @@ class CreateEditCrowdSourcingProject {
     }
 
     public function isEditMode(): bool {
-        return $this->project->id !== null;
+        return $this->project->exists;
     }
 
     public function shouldLanguageBeSelected(Language $language): bool {

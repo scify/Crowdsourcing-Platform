@@ -8,6 +8,7 @@ use App\Models\CompositeKeysModel;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -40,6 +41,10 @@ use Illuminate\Support\Carbon;
  */
 class QuestionnaireAnswerVote extends CompositeKeysModel {
     use HasFactory;
+
+    // Votes are soft-deleted when a user is deleted, and restored together
+    // with the user (UserManager). See restoreAnswerVotesByUser().
+    use SoftDeletes;
 
     protected $table = 'questionnaire_answer_votes';
 

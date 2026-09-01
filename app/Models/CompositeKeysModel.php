@@ -16,6 +16,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CompositeKeysModel extends Model {
     /**
+     * The parent's getKeyName() has no declared return type, so this
+     * override narrows nothing and just documents that composite-key
+     * subclasses return an array of column names instead of a string.
+     *
+     * @return string|list<string>
+     */
+    public function getKeyName() {
+        return $this->primaryKey;
+    }
+
+    /**
      * Set the keys for a save update query.
      *
      * @param  Builder  $query

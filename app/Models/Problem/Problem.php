@@ -30,6 +30,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection<int, ProblemUserBookmark> $bookmarks
  * @property-read int|null $bookmarks_count
  * @property-read User|null $creator
+ * @property ProblemTranslation|null $currentTranslation
  * @property-read ProblemTranslation|null $defaultTranslation
  * @property-read CrowdSourcingProject|null $project
  * @property-read Collection<int, Solution> $solutions

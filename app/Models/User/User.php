@@ -68,7 +68,7 @@ class User extends Authenticatable {
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var list<string>
      */
     protected $fillable = [
         'nickname', 'avatar', 'email', 'password', 'gender', 'country', 'year_of_birth',
@@ -77,7 +77,7 @@ class User extends Authenticatable {
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var list<string>
      */
     protected $hidden = [
         'password', 'remember_token',

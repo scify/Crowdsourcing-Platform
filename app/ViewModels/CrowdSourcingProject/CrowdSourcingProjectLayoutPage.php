@@ -11,9 +11,7 @@ abstract class CrowdSourcingProjectLayoutPage {
     public function __construct(public CrowdSourcingProject $project) {}
 
     public function projectHasExternalURL(): bool {
-        return isset($this->project)
-            && ! empty($this->project->external_url)
-            && $this->project->external_url !== null
+        return ! empty($this->project->external_url)
             && starts_with($this->project->external_url, ['http', 'https'])
             && filter_var($this->project->external_url, FILTER_VALIDATE_URL);
     }

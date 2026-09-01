@@ -79,7 +79,8 @@
         ],
         "lint": [
             "npm run lint",
-            "vendor/bin/pint --parallel --test"
+            "vendor/bin/pint --parallel --test",
+			"vendor/bin/phpstan analyse --no-progress"
         ],
         "format": [
             "npm run format",

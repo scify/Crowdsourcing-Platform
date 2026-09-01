@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\enums\CountryEnum;
 use App\BusinessLogicLayer\enums\GenderEnum;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
@@ -50,7 +49,6 @@ class RegisterController extends Controller {
     public function __construct(private UserRoleManager $userRoleManager,
         private UserManager $userManager,
         private MailChimpAdaptor $mailChimpManager,
-        private CrowdSourcingProjectManager $crowdSourcingProjectManager,
         protected QuestionnaireResponseManager $questionnaireResponseManager) {
         $this->middleware('guest');
     }
