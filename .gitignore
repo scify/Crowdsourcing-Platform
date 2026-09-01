@@ -26,4 +26,4 @@ public/*.html
 .phpunit.cache
 
 bootstrap/cache/*
-public/fonts/vendordocs/superpowers/plans/baseline-screenshots/
+public/fonts/vendor
