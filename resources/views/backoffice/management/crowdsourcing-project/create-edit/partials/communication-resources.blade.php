@@ -29,7 +29,7 @@
                 <div class="row">
                     <label class="col-sm-12 control-label" for="about">Congratulations email intro text</label>
                     <div class="col-sm-12">
-                        <div class="form-group has-feedback">
+                        <div class="mb-3 has-feedback">
                                         <textarea id="questionnaire_response_email_intro_text"
                                                   class="form-control"
                                                   name="questionnaire_response_email_intro_text"
@@ -41,7 +41,7 @@
                 <div class="row">
                     <label class="col-sm-12 control-label" for="about">Congratulations email outro text</label>
                     <div class="col-sm-12">
-                        <div class="form-group has-feedback">
+                        <div class="mb-3 has-feedback">
                                         <textarea id="questionnaire_response_email_outro_text"
                                                   class="form-control"
                                                   name="questionnaire_response_email_outro_text"

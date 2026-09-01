@@ -2,25 +2,25 @@
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-6">
-            <div class="col-md-12 form-group">
-                <div class="form-group ">
-                    <label for="email" class="sr-only">Email</label>
+            <div class="col-md-12 mb-3">
+                <div class="mb-3 ">
+                    <label for="email" class="visually-hidden form-label">Email</label>
                     <input id="email" type="email" class="form-control" name="email" required autofocus
                            placeholder="Email">
                 </div>
 
-                <div class="form-group ">
-                    <label for="name" class="sr-only">Full name</label>
+                <div class="mb-3 ">
+                    <label for="name" class="visually-hidden form-label">Full name</label>
                     <input id="name" type="text" class="form-control" name="nickname" required autofocus
                            placeholder="Full name">
                 </div>
-                <div class="form-group">
-                    <label for="password" class="sr-only">Password</label>
+                <div class="mb-3">
+                    <label for="password" class="visually-hidden form-label">Password</label>
                     <input id="password" type="password" class="form-control" name="password" required autofocus
                            placeholder="Password">
                 </div>
-                <div class="form-group">
-                    <label for="roleselect" class="sr-only">Select a role</label>
+                <div class="mb-3">
+                    <label for="roleselect" class="visually-hidden form-label">Select a role</label>
                     <select class="form-control" name="roleselect" id="roleselect">
                         @foreach ($roles as $role)
                             <option value="{{ $role->id }}" name="roleVal[{{ $role->id }}]">
@@ -29,8 +29,8 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="gender" class="sr-only">{{ __("login-register.gender") }}</label>
+                <div class="mb-3">
+                    <label for="gender" class="visually-hidden form-label">{{ __("login-register.gender") }}</label>
                     <select class="form-control" name="gender" id="gender">
                         <option value="">{{ __("login-register.gender") }}</option>
                         @foreach ($viewModel->availableGenders as $gender)
@@ -45,8 +45,8 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="country" class="sr-only">{{ __("login-register.country") }}</label>
+                <div class="mb-3">
+                    <label for="country" class="visually-hidden form-label">{{ __("login-register.country") }}</label>
                     <select class="form-control" name="country" id="country">
                         <option value="">{{ __("login-register.country") }}</option>
                         @foreach ($viewModel->availableCountries as $country)
@@ -61,8 +61,8 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="year-of-birth" class="sr-only">{{ __("login-register.year_of_birth") }}</label>
+                <div class="mb-3">
+                    <label for="year-of-birth" class="visually-hidden form-label">{{ __("login-register.year_of_birth") }}</label>
                     <select class="form-control" name="year-of-birth" id="year-of-birth">
                         <option value="">{{ __("login-register.year_of_birth") }}</option>
                         @foreach ($viewModel->availableYearsOfBirth as $year)
@@ -81,7 +81,7 @@
             <div class="col-md-12 margin-top">
 
 
-                <div class="col-md-3 p-0 form-group">
+                <div class="col-md-3 p-0 mb-3">
                     <button type="submit" class="btn btn-primary btn-block btn-slim">Add user</button>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 
     @include('analytics')
 </head>
-<body class="hold-transition background-page @yield('body_class') container-fluid"
+<body class="background-page @yield('body_class') container-fluid"
       style="background-image: url('{{ asset('images/active_participation.webp') }}');">
 @include('partials.staging-indicator')
 <div id="app" class="row h-100 justify-content-center align-items-center">

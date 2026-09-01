@@ -30,7 +30,7 @@
                         <div class="col-md-2 offset-md-1 col-sm-12 justify-content-center align-items-center">
                             <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg"
                                     data-url="{{ route('api.questionnaire.report-data.get') }}"><i
-                                        class="fas fa-search mr-1"></i> View
+                                        class="fas fa-search me-1"></i> View
                             </button>
                         </div>
                     </div>
@@ -55,15 +55,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Question: "<span id="questionTitle"></span>"</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <table id="answerTextsTable" class="display w-100 table table-striped table-bordered"
                            width="100%"></table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-default">Close</button>
                 </div>
             </div>
         </div>

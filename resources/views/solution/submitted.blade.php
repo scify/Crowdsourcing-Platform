@@ -69,7 +69,7 @@
                             'project_slug' => $viewModel->project->slug
                        ]) }}">
                         {{ __("menu.see_all_problems") }} & {{ __('project-problems.suggest_solution') }}<i
-                                class="fas fa-arrow-right ml-2"></i>
+                                class="fas fa-arrow-right ms-2"></i>
                     </a>
                 </div>
             </div>

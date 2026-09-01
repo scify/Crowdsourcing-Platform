@@ -34,17 +34,17 @@
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="card-body">
                         <p>Please provide the following MailChimp lists IDs (see instructions above).</p>
-                        {{--<div class="form-group">--}}
-                        {{--<label for="newsletter">Newsletter <a href="javascript:void(0)" data-widget="tooltip"--}}
+                        {{--<div class="mb-3">--}}
+                        {{--<label class="form-label" for="newsletter">Newsletter <a href="javascript:void(0)" data-bs-toggle="tooltip"--}}
                         {{--title="All mails subscribed to our newsletter via the landing pages will be added to this list"><span--}}
                         {{--class="fa fa-info-circle"></span></a></label>--}}
                         {{--<input type="text" id="newsletter" class="form-control" name="newsletter"--}}
                         {{--placeholder="Insert the Newsletter's list ID"--}}
                         {{--value="{{isset($viewModel) && isset($viewModel->newsletterList) ? $viewModel->newsletterList->list_id : ''}}">--}}
                         {{--</div>--}}
-                        <div class="form-group">
-                            <label for="registered-users">Newsletter for registered users <a href="javascript:void(0)"
-                                                                                             data-widget="tooltip"
+                        <div class="mb-3">
+                            <label class="form-label" for="registered-users">Newsletter for registered users <a href="javascript:void(0)"
+                                                                                             data-bs-toggle="tooltip"
                                                                                              title="All the registered users to the platform will be added to this list"><span
                                             class="fa fa-info-circle"></span></a></label>
                             <input type="text" id="registered-users" class="form-control" name="registered_users"

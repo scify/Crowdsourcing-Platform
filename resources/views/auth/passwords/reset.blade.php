@@ -9,7 +9,7 @@
 
             <input type="hidden" name="token" value="{{ $token }}">
 
-            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+            <div class="mb-3 has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                 <input type="email" name="email" class="form-control" value="{{ $email ?? old('email') }}"
                        placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -19,7 +19,7 @@
                         </span>
                 @endif
             </div>
-            <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+            <div class="mb-3 has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                 <input type="password" name="password" class="form-control"
                        placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -29,7 +29,7 @@
                         </span>
                 @endif
             </div>
-            <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+            <div class="mb-3 has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
                 <input type="password" name="password_confirmation" class="form-control"
                        placeholder="Retype Password">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>

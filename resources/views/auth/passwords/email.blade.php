@@ -12,7 +12,7 @@
         <form action="{{ route('password.email') }}" method="post">
             {!! csrf_field() !!}
 
-            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+            <div class="mb-3 has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                 <input type="email" name="email" class="form-control" value="{{ $email ?? old('email') }}"
                        placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

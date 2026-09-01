@@ -15,8 +15,8 @@
                         <h3 class="card-title">Edit user {{ $viewModel->user->nickname }}</h3>
                     </div>
                     <div class="card-body">
-                        <div class="form-group has-feedback">
-                            <label for="email">Email</label>
+                        <div class="mb-3 has-feedback">
+                            <label class="form-label" for="email">Email</label>
                             <input id="email" type="text" class="form-control" name="email"
                                    value="{{ $viewModel->user->email }}"
                                    required
@@ -28,8 +28,8 @@
                             @endif
                         </div>
 
-                        <div class="form-group has-feedback">
-                            <label for="nickname">Nickname</label>
+                        <div class="mb-3 has-feedback">
+                            <label class="form-label" for="nickname">Nickname</label>
                             <input id="nickname" type="text" class="form-control" name="nickname"
                                    value="{{ $viewModel->user->nickname  }}"
                                    required
@@ -43,8 +43,8 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
-                            <label for="rolesselect">User roles</label>
+                        <div class="mb-3">
+                            <label class="form-label" for="rolesselect">User roles</label>
                             <select class="form-control" name="roleselect[]" id="rolesselect">
                                 @foreach ($viewModel->allRoles as $role)
                                     <option
@@ -60,8 +60,8 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="new_password">New Password <small class="text-muted">(leave blank to keep current)</small></label>
+                        <div class="mb-3">
+                            <label class="form-label" for="new_password">New Password <small class="text-muted">(leave blank to keep current)</small></label>
                             <input id="new_password" type="password" class="form-control" name="new_password"
                                    placeholder="New password (min. 8 characters)">
                             @if ($errors->has('new_password'))
@@ -71,14 +71,14 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
-                            <label for="new_password_confirmation">Confirm New Password</label>
+                        <div class="mb-3">
+                            <label class="form-label" for="new_password_confirmation">Confirm New Password</label>
                             <input id="new_password_confirmation" type="password" class="form-control"
                                    name="new_password_confirmation" placeholder="Confirm new password">
                         </div>
 
-                        <div class="form-group">
-                            <label for="gender">{{ __("login-register.gender") }}</label>
+                        <div class="mb-3">
+                            <label class="form-label" for="gender">{{ __("login-register.gender") }}</label>
                             <select class="form-control" name="gender" id="gender">
                                 <option value="">{{ __("login-register.gender") }}</option>
                                 @foreach ($viewModel->availableGenders as $gender)
@@ -96,8 +96,8 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="country">{{ __("login-register.country") }}</label>
+                        <div class="mb-3">
+                            <label class="form-label" for="country">{{ __("login-register.country") }}</label>
                             <select class="form-control" name="country" id="country">
                                 <option value="">{{ __("login-register.country") }}</option>
                                 @foreach ($viewModel->availableCountries as $country)
@@ -115,8 +115,8 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="year-of-birth">{{ __("login-register.year_of_birth") }}</label>
+                        <div class="mb-3">
+                            <label class="form-label" for="year-of-birth">{{ __("login-register.year_of_birth") }}</label>
                             <select class="form-control" name="year-of-birth" id="year-of-birth">
                                 <option value="">{{ __("login-register.year_of_birth") }}</option>
                                 @foreach ($viewModel->availableYearsOfBirth as $year)

@@ -18,8 +18,8 @@
                     <div class="accordion" id="my-questionnaire-contributions">
                         <div class="card">
                             <div class="card-header" id="questionnaires-header">
-                                <a href="#" class="btn btn-header-link" data-toggle="collapse"
-                                   data-target="#questionnaires-content"
+                                <a href="#" class="btn btn-header-link" data-bs-toggle="collapse"
+                                   data-bs-target="#questionnaires-content"
                                    aria-expanded="true"
                                    aria-controls="questionnaires-content">{{ __('my-dashboard.questionnaires') }}</a>
                             </div>
@@ -84,8 +84,8 @@
                     <div class="accordion" id="my-proposed-solutions">
                         <div class="card">
                             <div class="card-header" id="proposed-solutions-header">
-                                <a href="#" class="btn btn-header-link" data-toggle="collapse"
-                                   data-target="#proposed-solutions-content"
+                                <a href="#" class="btn btn-header-link" data-bs-toggle="collapse"
+                                   data-bs-target="#proposed-solutions-content"
                                    aria-expanded="true"
                                    aria-controls="proposed-solutions-content">{{ __('my-contributions.my_proposed_solutions') }}</a>
                             </div>
@@ -158,13 +158,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" id="questionnaireTitle"></h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="questionnaire-display">
                         <div id="questionnaireResponse" class="survey-container"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-primary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

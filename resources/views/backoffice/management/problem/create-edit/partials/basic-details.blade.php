@@ -4,8 +4,8 @@
             <div class="card-body">
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-owner-project">Project the problem belongs to (<span
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label" for="problem-owner-project">Project the problem belongs to (<span
                                     class="red">*</span>)</label>
                         <select
                                 id="problem-owner-project"
@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-default-language">Problem Default Language (<span
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label" for="problem-default-language">Problem Default Language (<span
                                     class="red">*</span>)</label>
                         <select
                                 id="problem-default-language"
@@ -58,9 +58,9 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label class="m-0" for="problem-title">Problem Title (<span class="red">*</span>)</label>
-                        <span class="text-sm explanation-text ml-0 mb-2">
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label m-0" for="problem-title">Problem Title (<span class="red">*</span>)</label>
+                        <span class="text-sm explanation-text ms-0 mb-2">
                             (The title should be concise and descriptive, under <b>100</b> characters.)
                         </span>
                         <input type="text"
@@ -79,10 +79,10 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label class="m-0" for="problem-description">Problem Description (<span
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label m-0" for="problem-description">Problem Description (<span
                                     class="red">*</span>)</label>
-                        <span class="text-sm explanation-text ml-0 mb-2">
+                        <span class="text-sm explanation-text ms-0 mb-2">
                             (The description should be concise and descriptive, under <b>600</b> characters.)
                         </span>
                         <textarea
@@ -101,8 +101,8 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="problem-status">Problem Status (<span class="red">*</span>)</label>
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label" for="problem-status">Problem Status (<span class="red">*</span>)</label>
                         <select
                                 id="problem-status"
                                 name="problem-status"
@@ -128,8 +128,8 @@
 
                 @if($viewModel->isEditMode())
                     <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="problem-slug">Problem Slug (<span class="red">*</span>)
+                        <div class="mb-3 col-sm-12">
+                            <label class="form-label" for="problem-slug">Problem Slug (<span class="red">*</span>)
                                 <span class="text-sm explanation-text">
                                     (It defines the problems's url, for example:
                                     <ul>
@@ -157,8 +157,8 @@
 
                 <div class="form-row js-image-input-container">
                     <div class="col-sm-12">
-                        <div class="form-group input-file-wrapper">
-                            <label for="problem-image">Problem Image (max-size: 2MB)
+                        <div class="mb-3 input-file-wrapper">
+                            <label class="form-label" for="problem-image">Problem Image (max-size: 2MB)
                                 <span class="text-sm explanation-text">
                                     In order to update the currently selected image, please choose a new image by
                                 clicking the button below.

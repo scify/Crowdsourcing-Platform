@@ -23,7 +23,7 @@
                                                      src="{{asset($viewModel->project->img_path) ? asset($viewModel->project->img_path) : ''}}"
                                                      alt="Selected motto background">
                                             </div>
-                                            <div class="form-group has-feedback input-file-wrapper">
+                                            <div class="mb-3 has-feedback input-file-wrapper">
                                                 <small>In order to update the currently selected image, please choose a new
                                                     image by
                                                     clicking the button below.
@@ -37,7 +37,7 @@
                                         <label class="col-sm-12 control-label" for="motto">Project Motto Title (<span
                                                     class="red">*</span>)</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                             <textarea id="motto" class="form-control" name="motto_title"
                                                       placeholder="Project Motto">{{ old('motto_title') ? old('motto_title') : $viewModel->project->defaultTranslation->motto_title }}</textarea>
                                                 <span class="help-block"><strong>{{ $errors->first('motto_title') }}</strong></span>
@@ -49,7 +49,7 @@
                                             Subtitle (<span
                                                     class="red">*</span>)</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                             <textarea id="motto_subtitle" class="form-control" name="motto_subtitle"
                                                       placeholder="Project Motto Subtitle">{{ old('motto_subtitle') ? old('motto_subtitle') : $viewModel->project->defaultTranslation->motto_subtitle }}</textarea>
                                                 <span class="help-block"><strong>{{ $errors->first('motto_subtitle') }}</strong></span>
@@ -68,7 +68,7 @@
                                                        class="form-control"
                                                        value="{{ old('lp_primary_color') ? old('lp_primary_color') :
                                                                 $viewModel->project->lp_primary_color  }}" />
-                                                <span class="input-group-addon"><i></i></span>
+                                                <span class="input-group-text"><i></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                         <label class="col-sm-12 control-label" for="about">About Text (<span
                                                     class="red">*</span>)</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                             <textarea id="about" class="form-control summernote" name="about"
                                                       placeholder="About Text">{{ old('about') ? old('about') : $viewModel->project->defaultTranslation->about }}</textarea>
                                                 <span class="help-block"><strong>{{ $errors->first('about') }}</strong></span>
@@ -158,7 +158,7 @@
                                                      src="{{asset($viewModel->project->lp_questionnaire_img_path)}}"
                                                      alt="Selected questionnaire background">
                                             </div>
-                                            <div class="form-group has-feedback input-file-wrapper">
+                                            <div class="mb-3 has-feedback input-file-wrapper">
                                                 <small>In order to update the currently selected image, please choose a new
                                                     image by
                                                     clicking the button below.
@@ -207,7 +207,7 @@
                                         <label class="col-sm-12 control-label" for="footer">Footer Text (<span
                                                     class="red">*</span>)</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                             <textarea id="footer" class="form-control summernote" name="footer"
                                                       placeholder="Footer Section">{{ old('footer') ? old('footer') : $viewModel->project->defaultTranslation->footer }}</textarea>
                                                 <span class="help-block"><strong>{{ $errors->first('footer') }}</strong></span>
@@ -233,7 +233,7 @@
                                     <div class="row">
                                         <label class="col-sm-12 control-label" for="thank_you_message">Thank You Page Message</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                             <textarea id="thank_you_message" class="form-control summernote"
                                                       name="thank_you_message"
                                                       placeholder="Thank You Page Message">{{ old('thank_you_message') ? old('thank_you_message') : $viewModel->project->defaultTranslation->thank_you_message }}</textarea>
@@ -272,7 +272,7 @@
                                     <div class="row mb-2">
                                         <label class="col-sm-12 control-label" for="footer">Sticky Banner Title</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                                 <input id="banner_title" type="text"
                                                        name="banner_title"
                                                        class="form-control"
@@ -286,7 +286,7 @@
                                     <div class="row">
                                         <label class="col-sm-12 control-label" for="footer">Sticky Banner Text</label>
                                         <div class="col-sm-12">
-                                            <div class="form-group has-feedback">
+                                            <div class="mb-3 has-feedback">
                                             <textarea id="banner_text" class="form-control summernote"
                                                       name="banner_text"
                                                       placeholder="Footer Section">{{ old('banner_text') ? old('banner_text') : $viewModel->project->defaultTranslation->banner_text }}</textarea>

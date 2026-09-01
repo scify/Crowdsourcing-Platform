@@ -24,7 +24,7 @@
                                     <div class="col">
                                         <a class="btn btn-primary btn-sm btn-statistics" target="_blank"
                                            href="{{ route('questionnaire.statistics', $questionnaire) }}">
-                                            <i class="fas fa-chart-pie mr-2"></i> {{ __("my-dashboard.view_statistics")}}
+                                            <i class="fas fa-chart-pie me-2"></i> {{ __("my-dashboard.view_statistics")}}
                                         </a>
                                     </div>
                                 </div>

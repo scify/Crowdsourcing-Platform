@@ -24,9 +24,9 @@
 
             <div class="row form-row">
                 <div class="col-12">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <small class="d-block mb-2">{{ __('common.form_fields_required') }}</small>
-                        <label for="solution-title">{{ __('solution.solution_title_label') }} (<span
+                        <label class="form-label" for="solution-title">{{ __('solution.solution_title_label') }} (<span
                                     class="red">*</span>)</label>
                         <input type="text"
                                id="solution-title"
@@ -48,8 +48,8 @@
             </div>
             <div class="row form-row">
                 <div class="col-12">
-                    <div class="form-group">
-                        <label for="solution-description">{{ __('solution.solution_description_label') }} (<span
+                    <div class="mb-3">
+                        <label class="form-label" for="solution-description">{{ __('solution.solution_description_label') }} (<span
                                     class="red">*</span>)</label>
                         <textarea
                                 id="solution-description"

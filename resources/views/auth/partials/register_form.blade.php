@@ -1,6 +1,6 @@
 {!! csrf_field() !!}
-<div class="form-group has-feedback {{ $errors->has('nickname') ? 'has-error' : '' }}">
-    <label for="nickname" class="sr-only">{{ __("login-register.nickname") }}</label>
+<div class="mb-3 has-feedback {{ $errors->has('nickname') ? 'has-error' : '' }}">
+    <label for="nickname" class="visually-hidden form-label">{{ __("login-register.nickname") }}</label>
     <input type="text" name="nickname" id="nickname" class="form-control mb-1" value="{{ old('nickname') }}"
            placeholder="{{ __("login-register.nickname") }}">
     <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -13,8 +13,8 @@
         </span>
     @endif
 </div>
-<div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-    <label for="email" class="sr-only">{{ __("login-register.email") }}</label>
+<div class="mb-3 has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+    <label for="email" class="visually-hidden form-label">{{ __("login-register.email") }}</label>
     <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}"
            placeholder="{{ __("login-register.email") }}">
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -24,8 +24,8 @@
         </span>
     @endif
 </div>
-<div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-    <label for="password" class="sr-only">{{ __("login-register.password") }}</label>
+<div class="mb-3 has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+    <label for="password" class="visually-hidden form-label">{{ __("login-register.password") }}</label>
     <input type="password" name="password" id="password" class="form-control"
            placeholder="{{ __("login-register.password") }}">
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -35,8 +35,8 @@
         </span>
     @endif
 </div>
-<div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-    <label for="retype-password" class="sr-only">{{ __("login-register.retype_password") }}</label>
+<div class="mb-3 has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+    <label for="retype-password" class="visually-hidden form-label">{{ __("login-register.retype_password") }}</label>
     <input type="password" name="password_confirmation" id="retype-password" class="form-control"
            placeholder="{{ __("login-register.retype_password") }}">
     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
@@ -46,8 +46,8 @@
         </span>
     @endif
 </div>
-<div class="form-group">
-    <label for="gender" class="sr-only">{{ __("login-register.gender") }}</label>
+<div class="mb-3">
+    <label for="gender" class="visually-hidden form-label">{{ __("login-register.gender") }}</label>
     <select id="gender" name="gender" class="form-control">
         <option value="">{{ __("login-register.gender") }}</option>
         @foreach ($viewModel['availableGenders'] as $gender)
@@ -62,8 +62,8 @@
         @endforeach
     </select>
 </div>
-<div class="form-group">
-    <label for="country" class="sr-only">{{ __("login-register.country") }}</label>
+<div class="mb-3">
+    <label for="country" class="visually-hidden form-label">{{ __("login-register.country") }}</label>
     <select id="country" name="country" class="form-control">
         <option value="">{{ __("login-register.country") }}</option>
         @foreach ($viewModel['availableCountries'] as $country)
@@ -78,8 +78,8 @@
         @endforeach
     </select>
 </div>
-<div class="form-group">
-    <label for="year-of-birth" class="sr-only">{{ __("login-register.year_of_birth") }}</label>
+<div class="mb-3">
+    <label for="year-of-birth" class="visually-hidden form-label">{{ __("login-register.year_of_birth") }}</label>
     <select id="year-of-birth" name="year-of-birth" class="form-control">
         <option value="">{{ __("login-register.year_of_birth") }}</option>
         @foreach ($viewModel['availableYearsOfBirth'] as $year)
@@ -94,10 +94,10 @@
         @endforeach
     </select>
 </div>
-<div class="form-group ">
+<div class="mb-3 ">
     <div class="form-check">
         <input class="form-check-input" type="checkbox" required name="privacy-policy" id="privacy-policy">
-        {{-- <span class="ml-3">I agree to the <a href="{{route('terms.privacy')}}" target="_blank">the privacy policy</a></span> --}}
+        {{-- <span class="ms-3">I agree to the <a href="{{route('terms.privacy')}}" target="_blank">the privacy policy</a></span> --}}
         <label class="form-check-label" for="privacy-policy">{!! __("notifications.agree_privacy_policy") !!}</a></label>
     </div>
 </div>

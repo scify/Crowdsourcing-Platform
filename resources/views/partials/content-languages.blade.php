@@ -1,5 +1,5 @@
 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" aria-expanded="false">
         {{ app()->getLocale() }} <span class="caret"></span>
     </a>
     <div class="dropdown-menu" style="">

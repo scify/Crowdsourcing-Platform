@@ -1,5 +1,5 @@
 <li class="nav-item dropdown user user-menu">
-    <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
+    <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-bs-toggle="dropdown" aria-haspopup="true"
        aria-expanded="false">
         @if (Auth::user()->avatar)
             <img loading="lazy" src="{{ Auth::user()->avatar }}" class="user-image" alt="User Image">

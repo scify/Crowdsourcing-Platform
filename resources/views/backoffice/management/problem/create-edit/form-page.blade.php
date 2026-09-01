@@ -24,11 +24,11 @@
         <div class="container-fluid p-0">
             <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab"
+                    <a class="nav-link active" id="basic-details-tab" data-bs-toggle="tab" href="#basic-details" role="tab"
                        aria-controls="basic-details" aria-selected="true">Basic Details</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="translations-tab" data-toggle="tab" href="#translations" role="tab"
+                    <a class="nav-link" id="translations-tab" data-bs-toggle="tab" href="#translations" role="tab"
                        aria-controls="translations" aria-selected="false">Translations</a>
                 </li>
             </ul>

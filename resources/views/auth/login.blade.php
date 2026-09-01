@@ -20,7 +20,7 @@
             <form action="{{ route('login') }}" method="post">
                 {!! csrf_field() !!}
 
-                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+                <div class="mb-3 has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}"
                            placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -30,7 +30,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+                <div class="mb-3 has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control"
                            placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -72,7 +72,7 @@
     @if (App::environment('staging'))
     <div class="demo-access mx-4 mb-4 mt-2 p-3">
         <div class="demo-access__label d-flex align-items-center mb-2">
-            <i class="fas fa-flask mr-2 text-muted" aria-hidden="true"></i>
+            <i class="fas fa-flask me-2 text-muted" aria-hidden="true"></i>
             <span class="text-muted font-weight-bold" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:.05em;">
                 Demo Quick Access
             </span>
@@ -82,13 +82,13 @@
                     class="btn btn-outline-secondary btn-block btn-sm demo-login-btn"
                     data-email="demo-user@demo.com"
                     data-password="{{ config('app.admin_pass_seed') }}">
-                <i class="fas fa-user mr-1" aria-hidden="true"></i> Demo User
+                <i class="fas fa-user me-1" aria-hidden="true"></i> Demo User
             </button>
             <button type="button"
                     class="btn btn-outline-danger btn-block btn-sm demo-login-btn mt-0"
                     data-email="demo-admin@demo.com"
                     data-password="{{ config('app.admin_pass_seed') }}">
-                <i class="fas fa-user-shield mr-1" aria-hidden="true"></i> Demo Admin
+                <i class="fas fa-user-shield me-1" aria-hidden="true"></i> Demo Admin
             </button>
         </div>
         <p class="text-muted mt-2 mb-0" style="font-size:0.7rem;">

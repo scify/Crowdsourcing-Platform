@@ -19,29 +19,29 @@
         <div class="container-fluid p-0">
             <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab"
+                    <a class="nav-link active" id="basic-details-tab" data-bs-toggle="tab" href="#basic-details" role="tab"
                        aria-controls="basic-details" aria-selected="true">Basic Details</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="landing-page-tab" data-toggle="tab" href="#landing-page" role="tab"
+                    <a class="nav-link" id="landing-page-tab" data-bs-toggle="tab" href="#landing-page" role="tab"
                        aria-controls="profile" aria-selected="false">Landing Page</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="social-media-tab" data-toggle="tab" href="#social-media" role="tab"
+                    <a class="nav-link" id="social-media-tab" data-bs-toggle="tab" href="#social-media" role="tab"
                        aria-controls="contact" aria-selected="false">Social Media</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="communication-tab" data-toggle="tab" href="#communication-resources"
+                    <a class="nav-link" id="communication-tab" data-bs-toggle="tab" href="#communication-resources"
                        role="tab"
                        aria-controls="contact" aria-selected="false">Communication Emails</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="statistics-colors-tab" data-toggle="tab" href="#statistics-colors"
+                    <a class="nav-link" id="statistics-colors-tab" data-bs-toggle="tab" href="#statistics-colors"
                        role="tab"
                        aria-controls="contact" aria-selected="false">Statistics Colors</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="translations-tab" data-toggle="tab" href="#translations" role="tab"
+                    <a class="nav-link" id="translations-tab" data-bs-toggle="tab" href="#translations" role="tab"
                        aria-controls="contact" aria-selected="false">Translations</a>
                 </li>
             </ul>

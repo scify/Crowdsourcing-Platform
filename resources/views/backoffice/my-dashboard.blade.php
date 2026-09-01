@@ -31,8 +31,8 @@
                     <div class="accordion" id="projects-with-next-actions">
                         <div class="card">
                             <div class="card-header" id="projects-with-questionnaires-header">
-                                <a href="#" class="btn btn-header-link" data-toggle="collapse"
-                                   data-target="#projects-with-questionnaires-content"
+                                <a href="#" class="btn btn-header-link" data-bs-toggle="collapse"
+                                   data-bs-target="#projects-with-questionnaires-content"
                                    aria-expanded="true"
                                    aria-controls="projects-with-questionnaires-content">{{ __('my-dashboard.projects_with_active_questionnaires') }}</a>
                             </div>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="projects-with-problems-header">
-                                <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse"
-                                   data-target="#projects-with-problems-content"
+                                <a href="#" class="btn btn-header-link collapsed" data-bs-toggle="collapse"
+                                   data-bs-target="#projects-with-problems-content"
                                    aria-expanded="true" aria-controls="projects-with-problems-content">
                                     {{ __('my-dashboard.projects_to_suggest_solutions') }}
                                 </a>

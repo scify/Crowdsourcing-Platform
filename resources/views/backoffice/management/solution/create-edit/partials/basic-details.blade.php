@@ -8,8 +8,8 @@
                 </div>
                 <input type="hidden" name="solution-owner-problem" value="{{ $viewModel->problem->id }}">
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="solution-title">Solution Default Title (<span class="red">*</span>)</label>
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label" for="solution-title">Solution Default Title (<span class="red">*</span>)</label>
                         <input type="text"
                                id="solution-title"
                                name="solution-title"
@@ -26,8 +26,8 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="solution-description">Solution Default Description (<span
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label" for="solution-description">Solution Default Description (<span
                                     class="red">*</span>)</label>
                         <textarea
                                 id="solution-description"
@@ -45,8 +45,8 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="solution-status">Solution Status (<span class="red">*</span>)</label>
+                    <div class="mb-3 col-sm-12">
+                        <label class="form-label" for="solution-status">Solution Status (<span class="red">*</span>)</label>
                         <select
                                 id="solution-status"
                                 name="solution-status"
@@ -72,8 +72,8 @@
 
                 @if($viewModel->isEditMode())
                     <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="solution-slug">Solution Slug (<span class="red">*</span>)
+                        <div class="mb-3 col-sm-12">
+                            <label class="form-label" for="solution-slug">Solution Slug (<span class="red">*</span>)
                                 <span class="text-sm explanation-text">
                                     (It defines the solutions's url, for example:
                                     <ul>
@@ -101,8 +101,8 @@
 
                 <div class="form-row js-image-input-container">
                     <div class="col-sm-12">
-                        <div class="form-group input-file-wrapper">
-                            <label for="solution-image">Solution Image (max-size: 2MB)
+                        <div class="mb-3 input-file-wrapper">
+                            <label class="form-label" for="solution-image">Solution Image (max-size: 2MB)
                                 <span class="text-sm explanation-text">
                                     In order to update the currently selected image, please choose a new image by
                                 clicking the button below.

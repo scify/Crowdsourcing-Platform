@@ -20,7 +20,7 @@
                         <div class="col-md-3 col-sm-11">
                             <a class="btn btn-block btn-primary new-questionnaire w-100"
                                href="{{route("create-questionnaire")}}"><i
-                                        class="fa fa-plus mr-2"></i> Create new questionnaire</a>
+                                        class="fa fa-plus me-2"></i> Create new questionnaire</a>
                         </div>
                     </div>
                     <table class="w-100 table table-striped table-bordered" id="questionnaires-table" cellspacing="0">
@@ -63,7 +63,7 @@
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"
-                                                data-toggle="dropdown">Select an action
+                                                data-bs-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             @can("manage-platform-content")
@@ -117,8 +117,8 @@
                                                 <hr>
                                                 <a class="action-btn dropdown-item change-status"
                                                    href="javascript:void(0)"
-                                                   data-toggle="modal"
-                                                   data-target="#changeStatusModal"><i class="fa fa-cog"></i> Change
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#changeStatusModal"><i class="fa fa-cog"></i> Change
                                                     status</a>
                                             @endcan
                                         </div>
@@ -140,15 +140,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Change status for Questionnaire</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{route('questionnaire.update-status')}}" method="post">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="modal-body">
                         <input type="hidden" name="questionnaire_id" id="questionnaire-id">
                         <div class="row">
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12 mb-3">
                                 <select name="status_id" id="status-select" class="form-control">
                                     @foreach($viewModel->statuses as $status)
                                         <option value="{{$status->id}}">{{$status->title}}</option>
@@ -157,7 +156,7 @@
                             </div>
                         </div>
                         <div class="row hide">
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12 mb-3">
                                 <textarea name="comments" id="comments" class="form-control" cols="30"
                                           rows="5"></textarea>
                             </div>

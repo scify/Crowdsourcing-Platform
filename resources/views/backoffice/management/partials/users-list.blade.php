@@ -68,6 +68,6 @@
     </table>
     {{ method_exists($users, 'links') ? $users->links() : '' }}
     <div id="users-list-loader" class="spinner-border loader hidden" role="status">
-        <span class="sr-only">Loading...</span>
+        <span class="visually-hidden">Loading...</span>
     </div>
 </div>
