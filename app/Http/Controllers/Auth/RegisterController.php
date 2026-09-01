@@ -80,7 +80,7 @@ class RegisterController extends Controller {
         try {
             $user->notify(new UserRegistered);
         } catch (Exception $exception) {
-            Log::error($exception);
+            Log::error($exception->getMessage(), ['exception' => $exception]);
         }
 
         return $user;

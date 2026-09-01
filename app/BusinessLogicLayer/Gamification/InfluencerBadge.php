@@ -36,9 +36,9 @@ class InfluencerBadge extends GamificationBadge {
         if ($this->questionnaireReferralsNum === 0) {
             $title = __('badges_messages.zero_people_responded_to_call');
         } elseif ($this->questionnaireReferralsNum < 2) {
-            $title = __('badges_messages.good_job', $this->questionnaireReferralsNum, ['count' => $this->questionnaireReferralsNum]);
+            $title = __('badges_messages.good_job', ['count' => $this->questionnaireReferralsNum]);
         } else {
-            $title = __('badges_messages.true_influencer', $this->questionnaireReferralsNum, ['count' => $this->questionnaireReferralsNum]);
+            $title = __('badges_messages.true_influencer', ['count' => $this->questionnaireReferralsNum]);
         }
 
         if ($this->userHasAchievedBadgePlatformWide) {

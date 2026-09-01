@@ -77,13 +77,12 @@ class SolutionTranslationManager {
                     'solution_id' => $solutionId,
                     'language_id' => $oldExtraTranslation['language_id'],
                 ];
-                $this->solutionTranslationRepository->update(
+                $this->solutionTranslationRepository->updateWhere(
+                    $solutionAndLanguage,
                     array_merge($solutionAndLanguage, [
                         'title' => $newExtraTranslation->title,
                         'description' => $newExtraTranslation->description,
-                    ]),
-                    $solutionAndLanguage,
-                    $solutionAndLanguage
+                    ])
                 );
 
                 // keep track that the translation has already been updated in the DB
