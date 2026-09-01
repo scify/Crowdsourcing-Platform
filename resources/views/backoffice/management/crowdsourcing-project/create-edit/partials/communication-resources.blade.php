@@ -62,19 +62,21 @@
     </div>
 </div>
 
-<div class="card card-info collapsed-card">
-    <div class="card-header">
-        <h2 class="card-title">Contributor email</h2>
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                        class="fas fa-plus"></i></button>
-        </div>
+<div class="card card-info">
+    <div class="card-header d-flex align-items-center">
+        <h2 class="card-title mb-0">Contributor email</h2>
+        <button type="button" class="btn btn-sm btn-link ms-auto card-collapse-toggle" data-bs-toggle="collapse"
+                data-bs-target="#card-body-contributor-email" aria-expanded="false" aria-controls="card-body-contributor-email">
+            <i class="fa fa-chevron-up"></i>
+        </button>
     </div>
-    <div class="card-body">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    {!! $viewModel->contributorEmailView !!}
+    <div class="collapse" id="card-body-contributor-email">
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        {!! $viewModel->contributorEmailView !!}
+                    </div>
                 </div>
             </div>
         </div>
