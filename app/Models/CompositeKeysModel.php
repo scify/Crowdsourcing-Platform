@@ -7,6 +7,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static Builder<static>|CompositeKeysModel newModelQuery()
+ * @method static Builder<static>|CompositeKeysModel newQuery()
+ * @method static Builder<static>|CompositeKeysModel query()
+ *
+ * @mixin \Eloquent
+ */
 class CompositeKeysModel extends Model {
     /**
      * Set the keys for a save update query.

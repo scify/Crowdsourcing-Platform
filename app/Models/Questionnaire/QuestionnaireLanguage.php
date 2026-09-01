@@ -23,6 +23,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  * @property-read Language $language
+ *
+ * @method static \Database\Factories\Questionnaire\QuestionnaireLanguageFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereHumanApproved($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereLanguageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireLanguage withoutTrashed()
+ *
+ * @mixin \Eloquent
  */
 class QuestionnaireLanguage extends Model {
     use HasFactory;

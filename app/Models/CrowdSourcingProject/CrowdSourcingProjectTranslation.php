@@ -9,6 +9,7 @@ use Awobaz\Compoships\Compoships;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\CrowdSourcingProjectTranslation
@@ -29,6 +30,41 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $banner_title
  * @property string $banner_text
  * @property string $thank_you_message
+ * @property int $id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Language|null $language
+ * @property-read CrowdSourcingProject|null $project
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereAbout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereBannerText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereBannerTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereFooter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereLanguageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereMottoSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereMottoTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereQuestionnaireResponseEmailIntroText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereQuestionnaireResponseEmailOutroText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereSmDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereSmKeywords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereSmTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereThankYouMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectTranslation withoutTrashed()
+ *
+ * @mixin \Eloquent
  */
 class CrowdSourcingProjectTranslation extends Model {
     use Compoships;

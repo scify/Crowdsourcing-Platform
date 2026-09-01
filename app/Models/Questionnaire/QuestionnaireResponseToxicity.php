@@ -22,6 +22,24 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  * @property-read QuestionnaireResponse $questionnaireResponse
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereAnswerText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereQuestionName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereQuestionnaireResponseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereToxicityApiResponse($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereToxicityScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseToxicity withoutTrashed()
+ *
+ * @mixin \Eloquent
  */
 class QuestionnaireResponseToxicity extends Model {
     use SoftDeletes;

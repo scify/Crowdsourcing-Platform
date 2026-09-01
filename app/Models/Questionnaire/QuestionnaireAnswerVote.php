@@ -8,6 +8,7 @@ use App\Models\CompositeKeysModel;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\QuestionnaireAnswerVote
@@ -20,6 +21,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read User $voter
  * @property-read User $respondent
  * @property-read Questionnaire $questionnaire
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @method static \Database\Factories\Questionnaire\QuestionnaireAnswerVoteFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereQuestionName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereRespondentUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereUpvote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerVote whereVoterUserId($value)
+ *
+ * @mixin \Eloquent
  */
 class QuestionnaireAnswerVote extends CompositeKeysModel {
     use HasFactory;

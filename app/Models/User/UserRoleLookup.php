@@ -18,6 +18,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRoleLookup withoutTrashed()
+ *
  * @mixin Eloquent
  */
 class UserRoleLookup extends Model {

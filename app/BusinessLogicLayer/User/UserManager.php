@@ -199,7 +199,7 @@ class UserManager {
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
         }
 
-        if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
+        if (in_array($result->status, [UserActionResponses::USER_CREATED, UserActionResponses::USER_UPDATED])) {
             $user = $result->data;
             auth()->login($user);
 

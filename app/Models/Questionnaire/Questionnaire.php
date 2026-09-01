@@ -46,6 +46,47 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Collection|QuestionnaireResponse[] $responses
  * @property-read QuestionnaireStatisticsPageVisibilityLkp $statisticsPageVisibilityStatus
  * @property-read QuestionnaireBasicStatisticsColors $basicStatisticsColors
+ * @property int|null $prerequisite_order
+ *                                        Number that states the order in which the questionnaires of a project must be answered
+ * @property-read QuestionnaireFieldsTranslation|null $currentLocaleFieldsTranslation
+ * @property-read QuestionnaireFieldsTranslation $defaultFieldsTranslation
+ * @property-read Collection<int, QuestionnaireFieldsTranslation> $fieldsTranslations
+ * @property-read int|null $fields_translations_count
+ * @property-read mixed $fields_translation
+ * @property-read Collection<int, Language> $languages
+ * @property-read int|null $languages_count
+ * @property-read Collection<int, CrowdSourcingProject> $projects
+ * @property-read int|null $projects_count
+ * @property-read Collection<int, QuestionnaireLanguage> $questionnaireLanguages
+ * @property-read int|null $questionnaire_languages_count
+ * @property-read int|null $responses_count
+ * @property-read int|null $status_history_count
+ *
+ * @method static \Database\Factories\Questionnaire\QuestionnaireFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereDefaultLanguageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereGoal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereMaxVotesNum($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire wherePrerequisiteOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereQuestionnaireJson($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereRespondentAuthRequired($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereShowFileTypeQuestionsToStatisticsPageAudience($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereShowGeneralStatistics($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereStatisticsPageVisibilityLkpId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Questionnaire withoutTrashed()
+ *
+ * @mixin \Eloquent
  */
 class Questionnaire extends Model {
     use Compoships;

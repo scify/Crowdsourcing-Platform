@@ -48,6 +48,7 @@ class SolutionManager {
      * In edit   mode $problem_id is null         & $solution_id is passed to fn
      */
     public function getCreateEditSolutionViewModel(?int $problem_id, ?int $solution_id = null): CreateEditSolution {
+        $problem = null;
         if ($problem_id !== null && $problem_id !== 0) {
             $problem = $this->problemRepository->find($problem_id);
         }

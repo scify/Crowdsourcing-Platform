@@ -148,8 +148,6 @@ class QuestionnaireResponseController extends Controller {
         } catch (Exception) {
             abort(ResponseAlias::HTTP_NOT_FOUND);
         }
-
-        return null;
     }
 
     public function getAnonymousUserResponseForQuestionnaire(Request $request): JsonResponse {

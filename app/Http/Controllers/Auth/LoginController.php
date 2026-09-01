@@ -72,8 +72,6 @@ class LoginController extends Controller {
             $this->exceptionHandler->report($exception);
             abort(Response::HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
         }
-
-        return null;
     }
 
     /**

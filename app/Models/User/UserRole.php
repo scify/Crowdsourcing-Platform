@@ -23,6 +23,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read UserRoleLookup $role
  * @property-read User $user
  *
+ * @method static \Database\Factories\User\UserRoleFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole whereRoleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|UserRole withoutTrashed()
+ *
  * @mixin Eloquent
  */
 class UserRole extends Model {

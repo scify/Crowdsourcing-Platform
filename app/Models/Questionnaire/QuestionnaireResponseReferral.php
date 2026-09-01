@@ -25,6 +25,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read User $referrer
  * @property-read User $respondent
  *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereReferrerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereRespondentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponseReferral withoutTrashed()
+ *
  * @mixin Eloquent
  */
 class QuestionnaireResponseReferral extends Model {

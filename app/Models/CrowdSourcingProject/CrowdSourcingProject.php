@@ -9,6 +9,7 @@ use App\Models\Problem\Problem;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
 use Awobaz\Compoships\Compoships;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\CrowdSourcingProject
@@ -37,6 +39,58 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $lp_btn_text_color_theme
  * @property int $should_send_email_after_questionnaire_response
  * @property int $display_landing_page_banner
+ * @property int $solution_submission_open
+ * @property int $solution_voting_open
+ * @property int $copy_footer_across_languages
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Collection<int, CrowdSourcingProjectColors> $colors
+ * @property-read int|null $colors_count
+ * @property-read User|null $creator
+ * @property-read CrowdSourcingProjectTranslation $defaultTranslation
+ * @property-read Language|null $language
+ * @property-read Collection<int, Language> $languages
+ * @property-read int|null $languages_count
+ * @property-read Collection<int, Problem> $problems
+ * @property-read int|null $problems_count
+ * @property-read Collection<int, Questionnaire> $questionnaires
+ * @property-read int|null $questionnaires_count
+ * @property-read CrowdSourcingProjectStatusLkp|null $status
+ * @property-read Collection<int, CrowdSourcingProjectTranslation> $translations
+ * @property-read int|null $translations_count
+ *
+ * @method static \Database\Factories\CrowdSourcingProject\CrowdSourcingProjectFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereCopyFooterAcrossLanguages($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereDisplayLandingPageBanner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereExternalUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereImgPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereLanguageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereLogoPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereLpBtnTextColorTheme($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereLpPrimaryColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereLpQuestionnaireImgPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereLpShowSpeakUpBtn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereMaxVotesPerUserForSolutions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereShouldSendEmailAfterQuestionnaireResponse($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereSmFeaturedImgPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereSolutionSubmissionOpen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereSolutionVotingOpen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject whereUserCreatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProject withoutTrashed()
+ *
+ * @mixin \Eloquent
  */
 class CrowdSourcingProject extends Model {
     use Compoships;

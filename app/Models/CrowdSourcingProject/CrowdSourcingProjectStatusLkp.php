@@ -12,6 +12,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $status_name
  * @property string $status_description
+ * @property string $title
+ * @property string $description
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectStatusLkp newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectStatusLkp newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectStatusLkp query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectStatusLkp whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectStatusLkp whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|CrowdSourcingProjectStatusLkp whereTitle($value)
+ *
+ * @mixin \Eloquent
  */
 class CrowdSourcingProjectStatusLkp extends Model {
     public $timestamps = false;

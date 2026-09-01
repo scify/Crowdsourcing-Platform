@@ -12,7 +12,7 @@ class AllBadgesCompletedBadge extends GamificationBadge {
         parent::__construct(__('badges_messages.badges_completed'),
             'all_badges_completed.png',
             __('badges_messages.received_all_badges'),
-            0, true);
+            0, true, 0);
     }
 
     protected function getBadgeMessageForLevel(): string|array|null {
