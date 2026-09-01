@@ -29,7 +29,7 @@ class ProblemManager {
 
         // only published problems should be included with the project in this context
         $filtered = $crowdSourcingProject->problems->filter(fn ($problem): bool => $problem->status_id === ProblemStatusLkp::PUBLISHED);
-        $crowdSourcingProject->problems = $filtered;
+        $crowdSourcingProject->setRelation('problems', $filtered);
 
         return new ProblemsLandingPage($crowdSourcingProject);
     }

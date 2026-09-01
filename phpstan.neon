@@ -1,6 +1,5 @@
 includes:
     - vendor/larastan/larastan/extension.neon
-    - phpstan-baseline.neon
 
 parameters:
     level: 4
@@ -8,3 +7,20 @@ parameters:
         - app
         - database
         - routes
+
+    ignoreErrors:
+        # Composite-key models (CompositeKeysModel pattern) assign an array to
+        # Eloquent's string-typed $primaryKey. Modelling this correctly needs a
+        # PHPStan stub or a rework of the pattern, not annotations. Deliberate.
+        -
+            identifier: property.defaultValue
+            message: '#\$primaryKey \(string\) does not accept default value of type array#'
+
+        # Seeder fixture arrays: PHPStan proves isset('translations') is always
+        # true on the literal data. The guard stays for safety when fixtures
+        # change. Deliberate.
+        -
+            identifier: isset.offset
+            paths:
+                - database/seeders/ProblemSeeder.php
+                - database/seeders/SolutionSeeder.php

@@ -421,7 +421,7 @@ class CrowdSourcingProjectManager {
         $project = $id !== null && $id !== 0 ? $this->getCrowdSourcingProject($id) : $this->crowdSourcingProjectRepository->getModelInstance();
 
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
-        $project->colors = $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id);
+        $project->setRelation('colors', $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id));
 
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
 

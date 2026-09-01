@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Collection|QuestionnaireStatusHistory[] $statusHistory
  * @property-read Collection|QuestionnaireResponse[] $responses
  * @property-read QuestionnaireStatisticsPageVisibilityLkp $statisticsPageVisibilityStatus
- * @property-read QuestionnaireBasicStatisticsColors $basicStatisticsColors
+ * @property-read QuestionnaireBasicStatisticsColors|null $basicStatisticsColors
  * @property int|null $prerequisite_order
  *                                        Number that states the order in which the questionnaires of a project must be answered
  * @property-read QuestionnaireFieldsTranslation|null $currentLocaleFieldsTranslation
