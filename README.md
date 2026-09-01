@@ -1,10 +1,10 @@
 <!-- omit in toc -->
 # Crowdsourcing Web Application
 
-[![Tests](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/tests.yml?label=tests)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
-[![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fscify%2FCrowdsourcing-Platform%2Fbadges%2Fcoverage.json)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
-[![Lint](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/lint.yml?label=lint)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml)
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/scify/Crowdsourcing-Platform/codeql.yml?label=codeql)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml)
+[![Tests](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
+[![Lint](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml)
+[![CodeQL](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml)
+[![codecov](https://codecov.io/github/scify/Crowdsourcing-Platform/graph/badge.svg)](https://codecov.io/github/scify/Crowdsourcing-Platform)
 [![GitHub release](https://img.shields.io/github/v/release/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/releases)
 [![GitHub Issues](https://img.shields.io/github/issues/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/stargazers)
