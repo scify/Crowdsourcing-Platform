@@ -1,11 +1,10 @@
-import "datatables.net";
+// Import the Bootstrap 5 styling variants only. Each one pulls in both the
+// DataTables core (via datatables.net-bs5) and its own base extension, so a
+// single core instance is shared. Importing the base extensions directly as
+// well risks resolving a second core instance.
 import "datatables.net-bs5";
-import "datatables.net-buttons";
 import "datatables.net-buttons-bs5";
-
-import "datatables.net-responsive";
 import "datatables.net-responsive-bs5";
-import "datatables.net-select";
 import "datatables.net-select-bs5";
 import Clipboard from "clipboard/dist/clipboard";
 import $ from "jquery";

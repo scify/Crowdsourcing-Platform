@@ -31,8 +31,15 @@ body.backoffice {
 
 // ---- Sidebar ----
 .bo-sidebar {
-	background-color: $bg-color-navbar;
+	// Bootstrap emits `.offcanvas-lg { background-color: transparent !important }`
+	// at >=lg, so our background needs equal !important to win. The same rule
+	// applies to `.offcanvas-body`, so an inner wrapper cannot carry it either.
+	background-color: $bg-color-navbar !important;
 	color: $color-navbar-head;
+	// Below lg, `.offcanvas-lg.offcanvas-start` (0,2,0) sets the panel width from
+	// this variable and outranks our `.bo-sidebar` width (0,1,0). Setting the
+	// variable makes both modes use the same width.
+	--bs-offcanvas-width: var(--bo-sidebar-width);
 	width: var(--bo-sidebar-width);
 	flex-shrink: 0;
 
@@ -109,13 +116,6 @@ body.backoffice {
 		#sidebar-menu-toggler i {
 			transform: rotate(180deg);
 		}
-	}
-}
-
-@include media-breakpoint-down(lg) {
-	// Offcanvas mode: BS5 offcanvas-lg handles positioning; we style the panel
-	.bo-sidebar {
-		width: var(--bo-sidebar-width);
 	}
 }
 

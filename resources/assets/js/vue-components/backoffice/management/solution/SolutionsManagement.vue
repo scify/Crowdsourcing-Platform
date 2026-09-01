@@ -251,7 +251,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import $ from "jquery";
-import "datatables.net";
+import "datatables.net-bs5";
 import Modal from "bootstrap/js/dist/modal";
 import axios from "axios";
 import { getLocale } from "../../../../common-utils";
