@@ -550,11 +550,11 @@ export default defineComponent({
 		async translateQuestionnaireToLocales(locales) {
 			locales = locales.filter((el) => el !== "");
 			if (!locales.length) {
-				const { default: swal } = await import("bootstrap-sweetalert");
-				return swal({
+				const { default: Swal } = await import("sweetalert2");
+				return Swal.fire({
 					title: "Languages Missing!",
 					text: "Please provide at least one language from the dropdown menu.",
-					type: "warning",
+					icon: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
@@ -614,11 +614,11 @@ export default defineComponent({
 				});
 
 			if (this.formInvalid(data)) {
-				const { default: swal } = await import("bootstrap-sweetalert");
-				return swal({
+				const { default: Swal } = await import("sweetalert2");
+				return Swal.fire({
 					title: "Fields Missing!",
 					text: "Please provide a goal and at least one project.",
-					type: "warning",
+					icon: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
@@ -634,27 +634,26 @@ export default defineComponent({
 					handleError: false,
 				});
 				this.loading = false;
-				const { default: swal } = await import("bootstrap-sweetalert");
-				swal(
-					{
-						title: "Success!",
-						text: "The questionnaire has been successfully stored.",
-						type: "success",
-						confirmButtonClass: "btn-success",
-						confirmButtonText: "OK",
-					},
-					() => {
+				const { default: Swal } = await import("sweetalert2");
+				Swal.fire({
+					title: "Success!",
+					text: "The questionnaire has been successfully stored.",
+					icon: "success",
+					confirmButtonClass: "btn-success",
+					confirmButtonText: "OK",
+				}).then((result) => {
+					if (result.isConfirmed) {
 						// refresh the page
 						location.reload();
-					},
-				);
+					}
+				});
 			} catch (error) {
 				this.loading = false;
-				const { default: swal } = await import("bootstrap-sweetalert");
-				swal({
+				const { default: Swal } = await import("sweetalert2");
+				Swal.fire({
 					title: "Oops!",
 					text: "An error occurred, please try again later." + error.toString(),
-					type: "error",
+					icon: "error",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});

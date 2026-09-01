@@ -395,11 +395,11 @@ export default {
 			window.location = questionnaireResponseThankYouURL;
 		},
 		async displayErrorResponse(error) {
-			const { default: swal } = await import("bootstrap-sweetalert");
-			swal({
+			const { default: Swal } = await import("sweetalert2");
+			Swal.fire({
 				title: "Oops!",
 				text: `An error occurred: ${error.toString()}`,
-				type: "error",
+				icon: "error",
 				confirmButtonClass: "btn-danger",
 				confirmButtonText: "OK",
 			});

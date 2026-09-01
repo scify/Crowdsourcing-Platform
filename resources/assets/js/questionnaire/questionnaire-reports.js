@@ -76,7 +76,6 @@ import DOMPurify from "dompurify";
 			const questionnaireResponseId = $("input[name=questionnaire_response_id]").val();
 			const loader = $("#delete-response-loader");
 			const errorEl = $("#delete-response-error");
-			const swal = import("bootstrap-sweetalert");
 			const headers = {
 				"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
 			};
@@ -98,12 +97,14 @@ import DOMPurify from "dompurify";
 					respondentsTable.row(tableRow).remove().draw();
 
 					window.$("#delete-response-modal").modal("hide");
-					swal({
-						title: "Response deleted!",
-						text: "",
-						type: "success",
-						confirmButtonClass: "btn-success",
-						confirmButtonText: "OK",
+					import("sweetalert2").then(({ default: Swal }) => {
+						Swal.fire({
+							title: "Response deleted!",
+							text: "",
+							icon: "success",
+							confirmButtonClass: "btn-success",
+							confirmButtonText: "OK",
+						});
 					});
 				},
 				error: function (error) {
