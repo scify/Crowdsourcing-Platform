@@ -286,11 +286,7 @@
 				<div class="card-footer">
 					<div class="row">
 						<div class="col-md-2">
-							<button
-								:disabled="loading"
-								class="btn btn-block btn-primary btn-lg w-100"
-								@click="saveQuestionnaire"
-							>
+							<button :disabled="loading" class="btn btn-primary btn-lg w-100" @click="saveQuestionnaire">
 								Save
 							</button>
 						</div>

@@ -368,9 +368,6 @@ export default {
 				.catch((error) => {
 					console.error(error);
 					this.displayErrorResponse(error);
-				})
-				.finally(() => {
-					window.bootstrap.Modal.getOrCreateInstance(document.getElementById("questionnaire-modal")).hide();
 				});
 		},
 		displaySuccessResponse(anonymousUserId, responseId) {

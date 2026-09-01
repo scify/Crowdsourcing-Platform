@@ -167,7 +167,7 @@ function FreeTextQuestionStatisticsCustomVisualizer(question, data) {
 			td2.setAttribute("data-order", getOrderingFactorForAnswer(annotation, upvotesNum, downvotesNum).toString());
 			td2.innerHTML =
 				'<div class="container-fluid">' +
-				'<div class="row text-center no-gutters reaction-buttons" ' +
+				'<div class="row text-center g-0 reaction-buttons" ' +
 				'<div class="col">' +
 				'<button data-question-name="' +
 				questionName +

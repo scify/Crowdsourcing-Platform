@@ -2,7 +2,7 @@
 	<div class="modal-component">
 		<common-modal :open="modalOpen" :allow-close="false">
 			<template #header>
-				<h5 class="modal-title pl-2">
+				<h5 class="modal-title ps-2">
 					Mark Questionnaire Languages<span
 						v-if="contentLoading"
 						class="spinner-border spinner-border-sm ms-2"
@@ -48,7 +48,7 @@
 			<template #footer>
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-3 offset-6 pr-0">
+						<div class="col-3 offset-6 pe-0">
 							<button
 								type="button"
 								class="btn btn-outline-secondary btn-slim w-100"
@@ -57,7 +57,7 @@
 								Cancel
 							</button>
 						</div>
-						<div class="col-3 pr-0">
+						<div class="col-3 pe-0">
 							<button
 								:disabled="saveLoading"
 								type="button"

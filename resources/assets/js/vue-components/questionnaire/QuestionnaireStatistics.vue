@@ -87,7 +87,7 @@
 			@canceled="annotationModalOpen = false"
 		>
 			<template #header>
-				<h5 class="modal-title pl-2">Moderate Answer</h5>
+				<h5 class="modal-title ps-2">Moderate Answer</h5>
 			</template>
 			<template #body>
 				<div class="container py-4">
