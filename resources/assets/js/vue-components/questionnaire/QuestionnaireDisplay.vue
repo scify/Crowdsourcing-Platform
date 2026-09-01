@@ -5,7 +5,7 @@
 			<div id="questionnaire-files-loader-row" class="row">
 				<div class="col mb-4 text-center">
 					<div class="spinner-border" role="status">
-						<span class="sr-only">Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
 				<div class="col-12 text-center">
@@ -47,8 +47,8 @@
 		<div v-else class="container-fluid p-0">
 			<div v-if="!userResponse && !loading" class="row">
 				<div class="col-md-12 language-selection">
-					<div class="form-group">
-						<label class="language-selector" for="language-select">{{
+					<div class="mb-3">
+						<label class="language-selector form-label" for="language-select">{{
 							trans("questionnaire.select_language")
 						}}</label>
 						<select id="language-select" class="form-control" @change="onLanguageChange($event)">
@@ -67,7 +67,7 @@
 			<div v-if="loading" id="questionnaire-loader" class="row my-5">
 				<div class="col text-center">
 					<div class="spinner-border" role="status">
-						<span class="sr-only">Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
 			</div>
@@ -370,7 +370,7 @@ export default {
 					this.displayErrorResponse(error);
 				})
 				.finally(() => {
-					window.$("#questionnaire-modal").modal("hide");
+					window.bootstrap.Modal.getOrCreateInstance(document.getElementById("questionnaire-modal")).hide();
 				});
 		},
 		displaySuccessResponse(anonymousUserId, responseId) {

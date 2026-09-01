@@ -15,9 +15,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Projects the Questionnaire belongs to</label>
+							<label class="col-form-label" for="language">Projects the Questionnaire belongs to</label>
 						</div>
 						<div class="col-md-6 col-sm-9 col-xs-12">
 							<select id="project-ids" class="select2" multiple="multiple">
@@ -32,9 +32,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Type</label>
+							<label class="col-form-label" for="language">Type</label>
 						</div>
 						<div class="col-md-6 col-sm-9 col-xs-12">
 							<select id="questionnaire-types" v-model="questionnaire.type_id">
@@ -48,9 +48,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Statistics page visibility</label>
+							<label class="col-form-label" for="language">Statistics page visibility</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
@@ -68,9 +68,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Show general statistics charts</label>
+							<label class="col-form-label" for="goal">Show general statistics charts</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -81,9 +81,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Show file-type question statistics</label>
+							<label class="col-form-label" for="goal">Show file-type question statistics</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -94,9 +94,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Allow anonymous responses</label>
+							<label class="col-form-label" for="language">Allow anonymous responses</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
@@ -112,9 +112,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="title">Questionnaire's Title</label>
+							<label class="col-form-label" for="title">Questionnaire's Title</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -126,9 +126,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="description">Description</label>
+							<label class="col-form-label" for="description">Description</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<textarea
@@ -140,9 +140,9 @@
 							</textarea>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Responses Goal</label>
+							<label class="col-form-label" for="goal">Responses Goal</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -155,9 +155,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Max number of votes (statistics page)</label>
+							<label class="col-form-label" for="goal">Max number of votes (statistics page)</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -169,9 +169,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label>Other translations</label>
+							<label class="col-form-label">Other translations</label>
 						</div>
 						<div class="col-md-10 col-sm-6 col-xs-12">
 							<translations-manager
@@ -181,9 +181,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group mb-5">
+					<div class="row mb-5">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Default Language</label>
+							<label class="col-form-label" for="language">Default Language</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
@@ -210,8 +210,8 @@
 							<button
 								class="btn btn-primary btn-slimmer"
 								type="button"
-								data-toggle="collapse"
-								data-target="#collapseHelpFileType"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseHelpFileType"
 								aria-expanded="false"
 								aria-controls="collapseHelpFileType"
 							>

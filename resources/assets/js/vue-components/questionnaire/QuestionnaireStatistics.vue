@@ -4,7 +4,7 @@
 			<div class="col">
 				<div class="d-flex justify-content-center">
 					<div class="spinner-border" role="status">
-						<span class="sr-only">Loading...</span>
+						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div v-if="userCanAnnotateAnswers" class="row mt-5 mb-1">
-			<div class="col-lg-11 col-md-12 col-sm-12 mx-auto text-left">
+			<div class="col-lg-11 col-md-12 col-sm-12 mx-auto text-start">
 				<h4>Download all responses</h4>
 			</div>
 		</div>
@@ -135,7 +135,7 @@
 								class="btn btn-primary btn-lg w-100"
 								@click="saveAnnotation"
 							>
-								<span class="mr-2">Save</span
+								<span class="me-2">Save</span
 								><span
 									v-if="annotationSaveLoading"
 									class="spinner-border spinner-border-sm"
@@ -150,7 +150,7 @@
 								class="btn btn-outline-danger btn-lg w-100"
 								@click="deleteAnnotation"
 							>
-								<span class="mr-2">Undo/Remove your action</span
+								<span class="me-2">Undo/Remove your action</span
 								><span
 									v-if="annotationDeleteLoading"
 									class="spinner-border spinner-border-sm"

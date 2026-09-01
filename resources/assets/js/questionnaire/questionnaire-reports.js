@@ -59,7 +59,7 @@ import DOMPurify from "dompurify";
 			if (answer) {
 				$("#respondent-answers-modal-title").html(respondentUserData);
 				survey.data = answer;
-				window.$("#respondent-answers-modal").modal();
+				window.bootstrap.Modal.getOrCreateInstance(document.getElementById("respondent-answers-modal")).show();
 			}
 		});
 	};
@@ -69,7 +69,7 @@ import DOMPurify from "dompurify";
 		body.on("click", ".delete-response-btn", function () {
 			const questionnaireResponseId = $(this).data("questionnaireResponseId");
 			$("input[name=questionnaire_response_id]").val(questionnaireResponseId);
-			window.$("#delete-response-modal").modal();
+			window.bootstrap.Modal.getOrCreateInstance(document.getElementById("delete-response-modal")).show();
 		});
 
 		body.on("click", "#delete-response-form-btn", function () {
@@ -96,7 +96,7 @@ import DOMPurify from "dompurify";
 					const tableRow = $("#questionnaire_response_" + questionnaireResponseId);
 					respondentsTable.row(tableRow).remove().draw();
 
-					window.$("#delete-response-modal").modal("hide");
+					window.bootstrap.Modal.getOrCreateInstance(document.getElementById("delete-response-modal")).hide();
 					import("sweetalert2").then(({ default: Swal }) => {
 						Swal.fire({
 							title: "Response deleted!",

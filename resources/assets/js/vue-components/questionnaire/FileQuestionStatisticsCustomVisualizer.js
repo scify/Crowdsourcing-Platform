@@ -28,7 +28,7 @@ function FileQuestionStatisticsCustomVisualizer(question, data) {
 				fileURL +
 				'" target="_blank" rel="nofollow">' +
 				fileName +
-				' <i class="fas fa-external-link-alt ml-2"></i></a>';
+				' <i class="fas fa-external-link-alt ms-2"></i></a>';
 
 			tr.appendChild(td0);
 			tbody.appendChild(tr);

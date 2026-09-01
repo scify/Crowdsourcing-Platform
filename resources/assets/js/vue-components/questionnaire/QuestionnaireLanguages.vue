@@ -5,7 +5,7 @@
 				<h5 class="modal-title pl-2">
 					Mark Questionnaire Languages<span
 						v-if="contentLoading"
-						class="spinner-border spinner-border-sm ml-2"
+						class="spinner-border spinner-border-sm ms-2"
 						role="status"
 						aria-hidden="true"
 					></span>
@@ -66,7 +66,7 @@
 							>
 								Save<span
 									v-if="saveLoading"
-									class="spinner-border spinner-border-sm ml-2"
+									class="spinner-border spinner-border-sm ms-2"
 									role="status"
 									aria-hidden="true"
 								></span>

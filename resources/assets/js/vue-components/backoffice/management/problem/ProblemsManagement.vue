@@ -15,7 +15,7 @@
 											>Select a project to view the problems</label
 										>
 										<div
-											:class="{ 'spinner-border text-primary ml-5': true, hidden: !loading }"
+											:class="{ 'spinner-border text-primary ms-5': true, hidden: !loading }"
 										></div>
 										<select
 											id="projectSelect"
@@ -72,9 +72,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 id="deleteModalLabel" class="modal-title">Confirm Delete</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div v-if="modalProblem.id" class="modal-body">
 						<p>
@@ -84,11 +82,11 @@
 						</p>
 
 						<h5 class="text-danger">
-							<b><i class="fas fa-exclamation-triangle mr-2"></i>This action is irreversible!</b>
+							<b><i class="fas fa-exclamation-triangle me-2"></i>This action is irreversible!</b>
 						</h5>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-secondary btn-slim" data-bs-dismiss="modal">Cancel</button>
 						<button
 							type="button"
 							class="btn btn-danger btn-slim"
@@ -96,7 +94,7 @@
 							@click="confirmDelete"
 						>
 							<span
-								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+								:class="['spinner-border spinner-border-sm me-2', { 'd-none': !modalActionLoading }]"
 								role="status"
 								aria-hidden="true"
 							></span
@@ -112,9 +110,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 id="updateModalLabel" class="modal-title">Update Problem Status</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div v-if="modalProblem.id && problemStatuses.length" class="modal-body">
 						<p>
@@ -127,7 +123,7 @@
 						</select>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-slim" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-secondary btn-slim" data-bs-dismiss="modal">Cancel</button>
 						<button
 							type="button"
 							class="btn btn-primary btn-slim"
@@ -135,7 +131,7 @@
 							@click="confirmUpdate"
 						>
 							<span
-								:class="['spinner-border spinner-border-sm mr-2', { 'd-none': !modalActionLoading }]"
+								:class="['spinner-border spinner-border-sm me-2', { 'd-none': !modalActionLoading }]"
 								role="status"
 								aria-hidden="true"
 							></span
@@ -327,18 +323,18 @@ export default {
                                   ${problem.status.title}</span>`,
 						actions: `<div class="dropdown">
 									<button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"
-											data-toggle="dropdown">
+											data-bs-toggle="dropdown">
 										Select an action <span class="caret"></span>
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getAddNewSolutionRoute(problem)}">
-												<i class="fa fa-plus mr-2"></i> ${this.trans("problem.add_new_solution")}</a>
+												<i class="fa fa-plus me-2"></i> ${this.trans("problem.add_new_solution")}</a>
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">
-											<i class="far fa-edit mr-2"></i>${this.trans("common.edit")}</a>
+											<i class="far fa-edit me-2"></i>${this.trans("common.edit")}</a>
 										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${problem.id}">
-											<i class="fas fa-cog mr-2"></i>${this.trans("common.change_status")}</a>
+											<i class="fas fa-cog me-2"></i>${this.trans("common.change_status")}</a>
 										<a href="javascript:void(0)" class="dropdown-item delete-btn" data-id="${problem.id}">
-											<i class="fas fa-trash mr-2"></i>${this.trans("common.delete")}</a>
+											<i class="fas fa-trash me-2"></i>${this.trans("common.delete")}</a>
 									</div>
 								  </div>`,
 					}));
@@ -352,7 +348,7 @@ export default {
 		getBadgeClassForProblemStatus(problemStatus) {
 			// search by id in the problemStatuses array
 			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);
-			return status ? status.badgeCSSClass : "badge-secondary";
+			return status ? status.badgeCSSClass : "text-bg-secondary";
 		},
 		getBadgeTitleForProblemStatus(problemStatus) {
 			const status = this.problemStatuses.find((status) => status.id === problemStatus.id);

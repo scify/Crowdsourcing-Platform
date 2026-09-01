@@ -1,7 +1,7 @@
 <template>
 	<div class="container-fluid">
 		<div class="row mb-4">
-			<div class="col text-right">
+			<div class="col text-end">
 				<input
 					id="extra_translations"
 					type="hidden"
@@ -14,9 +14,9 @@
 					<div class="dropdown">
 						<button
 							id="languageDropdown"
-							class="btn btn-primary btn-slim dropdown-toggle mr-4"
+							class="btn btn-primary btn-slim dropdown-toggle me-4"
 							type="button"
-							data-toggle="dropdown"
+							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
 							Select Languages
@@ -115,7 +115,7 @@
 							:class="{ 'nav-link': true, active: index === activeTabIndex }"
 							aria-selected="false"
 							role="tab"
-							data-toggle="tab"
+							data-bs-toggle="tab"
 							:href="'#language-' + translation.language_id"
 							:aria-controls="'language-' + translation.language_id"
 							@click="clickTab(index)"
@@ -203,9 +203,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 id="previewModalLabel" class="modal-title">HTML Preview</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<div v-if="previewContent" v-html="previewContent"></div>
@@ -482,7 +480,7 @@ export default {
 
 		const showPreview = (key) => {
 			previewContent.value = originalTranslation.value[key];
-			$("#previewModal").modal("show");
+			window.bootstrap.Modal.getOrCreateInstance(document.getElementById("previewModal")).show();
 		};
 
 		return {

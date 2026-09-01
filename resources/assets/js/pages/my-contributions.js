@@ -44,7 +44,7 @@ import * as Survey from "survey-jquery";
 			survey.mode = "display";
 			survey.render("questionnaireResponse");
 			survey.locale = response.language_code;
-			responseModal.modal();
+			window.bootstrap.Modal.getOrCreateInstance(document.getElementById("questionnaireResponseModal")).show();
 		}
 	};
 

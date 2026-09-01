@@ -13,11 +13,10 @@
 									v-if="modal.allowClose"
 									tabindex="-1"
 									type="button"
-									class="close"
+									class="btn-close"
+									aria-label="Close"
 									@click.prevent="close"
-								>
-									<span aria-hidden="true"><i class="fas fa-times"></i></span>
-								</button>
+								></button>
 							</div>
 							<div class="modal-body">
 								<div class="container">
