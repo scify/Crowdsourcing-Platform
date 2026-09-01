@@ -925,7 +925,9 @@ Run `npm run build`; verify one converted card collapses/expands in the browser.
 git add -A && git commit -m "refactor: convert AdminLTE card widgets to Bootstrap 5 collapse"
 ```
 
----### Task 8: Site-wide Blade markup migration (BS4 → BS5)
+---
+
+### Task 8: Site-wide Blade markup migration (BS4 → BS5)
 
 **Files:**
 - Modify: all Blade files under `resources/views/` (about 30 with hits)
