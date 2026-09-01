@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-12 share-success d-none">
             <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                 {!! __("my-dashboard.thank_you_for_sharing") !!}
 
             </div>

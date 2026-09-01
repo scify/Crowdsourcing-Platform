@@ -63,7 +63,7 @@
 
             <div class="row">
                 <div class="col-lg-5 col-sm-11 mx-auto my-1 my-lg-1 py-3">
-                    <a class="btn btn-primary btn-block"
+                    <a class="btn btn-primary w-100"
                        href="{{ route('project.problems-page', [
                             'locale' => app()->getLocale(),
                             'project_slug' => $viewModel->project->slug

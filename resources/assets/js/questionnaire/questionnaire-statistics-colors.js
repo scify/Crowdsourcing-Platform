@@ -1,5 +1,4 @@
 import "jquery/dist/jquery.min";
-import "bootstrap/dist/js/bootstrap.min";
 import Coloris from "@melloware/coloris";
 
 (function () {

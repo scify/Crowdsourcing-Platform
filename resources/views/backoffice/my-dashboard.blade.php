@@ -39,7 +39,7 @@
 
                             <div id="projects-with-questionnaires-content" class="collapse show"
                                  aria-labelledby="projects-with-questionnaires-header"
-                                 data-parent="#projects-with-next-actions">
+                                 data-bs-parent="#projects-with-next-actions">
                                 <div class="card-body px-2">
                                     @include('backoffice.projects-with-active-questionnaires', ['questionnaires' => $viewModel->questionnaires])
                                 </div>
@@ -56,7 +56,7 @@
 
                             <div id="projects-with-problems-content" class="collapse show"
                                  aria-labelledby="projects-with-problems-header"
-                                 data-parent="#projects-with-next-actions">
+                                 data-bs-parent="#projects-with-next-actions">
                                 <div class="card-body px-2">
                                     @include('backoffice.projects-with-active-problems', ['projects' => $viewModel->projectsWithActiveProblems])
                                 </div>

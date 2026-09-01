@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div class="col-md-2 offset-md-1 col-sm-12 justify-content-center align-items-center">
-                            <button id="searchBtn" class="btn btn-block btn-primary search-btn btn-lg"
+                            <button id="searchBtn" class="btn w-100 btn-primary search-btn btn-lg"
                                     data-url="{{ route('api.questionnaire.report-data.get') }}"><i
                                         class="fas fa-search me-1"></i> View
                             </button>

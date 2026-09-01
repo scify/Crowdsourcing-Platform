@@ -131,23 +131,23 @@ class ProblemManager {
         foreach ($problemStatuses as $problemStatus) {
             switch ($problemStatus->id) {
                 case ProblemStatusLkp::DRAFT:
-                    $problemStatus->badgeCSSClass = 'badge-secondary';
+                    $problemStatus->badgeCSSClass = 'text-bg-secondary';
 
                     break;
                 case ProblemStatusLkp::PUBLISHED:
-                    $problemStatus->badgeCSSClass = 'badge-success';
+                    $problemStatus->badgeCSSClass = 'text-bg-success';
 
                     break;
                 case ProblemStatusLkp::FINALIZED:
-                    $problemStatus->badgeCSSClass = 'badge-info';
+                    $problemStatus->badgeCSSClass = 'text-bg-info';
 
                     break;
                 case ProblemStatusLkp::UNPUBLISHED:
-                    $problemStatus->badgeCSSClass = 'badge-danger';
+                    $problemStatus->badgeCSSClass = 'text-bg-danger';
 
                     break;
                 default:
-                    $problemStatus->badgeCSSClass = 'badge-dark';
+                    $problemStatus->badgeCSSClass = 'text-bg-dark';
                     $problemStatus->description = 'The problem is in an unknown status';
             }
         }

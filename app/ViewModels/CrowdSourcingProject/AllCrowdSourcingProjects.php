@@ -12,10 +12,10 @@ class AllCrowdSourcingProjects {
 
     public function getProjectStatusCSSClass(CrowdSourcingProjectStatusLkp $status): string {
         return match ($status->id) {
-            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DRAFT => 'badge-warning',
-            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::PUBLISHED => 'badge-success',
-            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED => 'badge-primary',
-            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DELETED, \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::UNPUBLISHED => 'badge-danger',
+            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DRAFT => 'text-bg-warning',
+            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::PUBLISHED => 'text-bg-success',
+            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::FINALIZED => 'text-bg-primary',
+            \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::DELETED, \App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp::UNPUBLISHED => 'text-bg-danger',
             default => '',
         };
     }

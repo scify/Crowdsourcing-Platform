@@ -326,7 +326,7 @@ export default {
 											data-bs-toggle="dropdown">
 										Select an action <span class="caret"></span>
 									</button>
-									<div class="dropdown-menu dropdown-menu-right">
+									<div class="dropdown-menu dropdown-menu-end">
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getAddNewSolutionRoute(problem)}">
 												<i class="fa fa-plus me-2"></i> ${this.trans("problem.add_new_solution")}</a>
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getProblemEditRoute(problem)}">

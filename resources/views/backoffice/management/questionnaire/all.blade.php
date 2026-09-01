@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <div class="row margin-bottom">
                         <div class="col-md-3 col-sm-11">
-                            <a class="btn btn-block btn-primary new-questionnaire w-100"
+                            <a class="btn btn-primary new-questionnaire w-100"
                                href="{{route("create-questionnaire")}}"><i
                                         class="fa fa-plus me-2"></i> Create new questionnaire</a>
                         </div>
@@ -65,7 +65,7 @@
                                         <button class="btn btn-primary btn-slimmer dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown">Select an action
                                             <span class="caret"></span></button>
-                                        <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="dropdown-menu dropdown-menu-end">
                                             @can("manage-platform-content")
                                                 @if (!$viewModel->isQuestionnaireArchived($questionnaire))
                                                     <a class="action-btn dropdown-item"

@@ -520,7 +520,7 @@ export default {
 											data-bs-toggle="dropdown">
 										Select an action <span class="caret"></span>
 									</button>
-									<div class="dropdown-menu dropdown-menu-right">
+									<div class="dropdown-menu dropdown-menu-end">
 										<a class="action-btn dropdown-item" target="_blank" href="${this.getSolutionEditRoute(solution)}">
 											<i class="far fa-edit me-2"></i>${this.trans("common.edit")}</a>
 										<a href="javascript:void(0)" class="dropdown-item update-btn" data-id="${solution.id}">

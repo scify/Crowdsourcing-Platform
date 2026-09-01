@@ -7,7 +7,7 @@
         <span class="hidden-xs">{{ Auth::user()->nickname }}</span>
         <i class="fas fa-caret-down"></i>
     </a>
-    <div class="dropdown-menu dropdown-menu-right py-2" aria-labelledby="userMenu">
+    <div class="dropdown-menu dropdown-menu-end py-2" aria-labelledby="userMenu">
         <a class="dropdown-item text-center"
            href="{{ route('my-account') }}"> {{ __('menu.my_account') }} </a>
         <div class="dropdown-divider"></div>

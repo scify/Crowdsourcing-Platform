@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-12">
 
-        <div class="container-fluid no-gutters px-0">
-            <div class="row no-gutters">
+        <div class="container-fluid g-0 px-0">
+            <div class="row g-0">
                 <div class="col-12 mx-auto">
                     <div class="card card-info">
                         <div class="card-header d-flex align-items-center">
@@ -65,7 +65,7 @@
                                         <div class="col-md-6 col-sm-12">
                                             <div class="input-group colorpicker-component color-picker">
                                                 <input id="lp_primary_color" type="text" name="lp_primary_color"
-                                                       class="form-control"
+                                                       class="form-control color-picker-input"
                                                        value="{{ old('lp_primary_color') ? old('lp_primary_color') :
                                                                 $viewModel->project->lp_primary_color  }}" />
                                                 <span class="input-group-text"><i></i></span>
@@ -80,7 +80,7 @@
                                                     class="red">*</span>)<br>
                                         </label>
                                         <div class="col-md-6 col-sm-12">
-                                            <div class="input-group colorpicker-component color-picker">
+                                            <div class="input-group colorpicker-component">
                                                 <select id="lp_btn_text_color_theme" name="lp_btn_text_color_theme"
                                                         class="form-control">
                                                     <option value="light"

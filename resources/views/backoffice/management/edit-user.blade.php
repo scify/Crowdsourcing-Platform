@@ -140,7 +140,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <button type="submit" class="btn btn-block btn-primary btn-lg">Update user info</button>
+                <button type="submit" class="btn w-100 btn-primary btn-lg">Update user info</button>
             </div>
         </div>
     </form>

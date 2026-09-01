@@ -82,7 +82,7 @@
 
 
                 <div class="col-md-3 p-0 mb-3">
-                    <button type="submit" class="btn btn-primary btn-block btn-slim">Add user</button>
+                    <button type="submit" class="btn btn-primary w-100 btn-slim">Add user</button>
                 </div>
             </div>
         </div>

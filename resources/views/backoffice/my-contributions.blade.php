@@ -26,7 +26,7 @@
 
                             <div id="questionnaires-content" class="collapse show"
                                  aria-labelledby="questionnaires-header"
-                                 data-parent="#my-contributions">
+                                 data-bs-parent="#my-contributions">
                                 <div class="card-body px-2">
                                     <p>{!! trans_choice("my-contributions.number_of_questionnaires",  $responses->count()  , [ "count" =>  $responses->count()  ]) !!}</p>
 
@@ -63,7 +63,7 @@
                                                     <td>{!! $response->questionnaire_description !!}</td>
                                                     <td>{{ \Carbon\Carbon::parse($response->responded_at)->diffForHumans() }}</td>
                                                     <td class="align-middle">
-                                                        <button class="btn btn-block btn-primary btn-slim viewResponseBtn"
+                                                        <button class="btn w-100 btn-primary btn-slim viewResponseBtn"
                                                                 data-responseid="{{ $response->questionnaire_response_id }}">
                                                             {{ __("my-contributions.view_response")}}
                                                         </button>
@@ -92,7 +92,7 @@
 
                             <div id="proposed-solutions-content" class="collapse show"
                                  aria-labelledby="proposed-solutions-header"
-                                 data-parent="#my-contributions">
+                                 data-bs-parent="#my-contributions">
                                 <div class="card-body px-2">
                                     <p>{!! trans_choice("my-contributions.number_of_proposed_solutions",  $solutions->count()  , [ "count" =>  $solutions->count()  ]) !!}</p>
 

@@ -26,7 +26,7 @@
                 <div class="row auth-btn-container">
                     <div class="col-md-6 col-sm-11 mx-auto">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat m-0"
+                                class="btn btn-primary w-100 btn-flat m-0"
                         >{{ __("login-register.send_password_reset_link")}}</button>
                     </div>
                 </div>

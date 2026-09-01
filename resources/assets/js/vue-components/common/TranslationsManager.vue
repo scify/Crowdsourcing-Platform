@@ -70,7 +70,7 @@
 					v-if="showTranslationSuccessMessage"
 					class="translation-message-container translation-successful-container mt-3"
 				>
-					<p class="title font-weight-bold m-0">
+					<p class="title fw-bold m-0">
 						Translation successful for {{ automaticTranslationLanguageName }}. Please review the
 						translations and click Save.
 					</p>
@@ -79,13 +79,13 @@
 					v-if="translationErrorMessage"
 					class="translation-message-container translation-error-container mt-3"
 				>
-					<p class="title font-weight-bold m-0">Error: {{ translationErrorMessage }}</p>
+					<p class="title fw-bold m-0">Error: {{ translationErrorMessage }}</p>
 				</div>
 				<div
 					v-if="translationInfoMessage"
 					class="translation-message-container translation-info-container mt-3"
 				>
-					<p class="title font-weight-bold m-0">
+					<p class="title fw-bold m-0">
 						{{ translationInfoMessage }}
 					</p>
 				</div>
@@ -93,7 +93,7 @@
 					v-if="showAlreadyTranslatedTextsMessage"
 					class="translation-message-container translation-info-container mt-3"
 				>
-					<p class="title font-weight-bold m-0">
+					<p class="title fw-bold m-0">
 						All the texts in {{ automaticTranslationLanguageName }} are already translated.
 					</p>
 				</div>

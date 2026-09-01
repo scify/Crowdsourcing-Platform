@@ -11,13 +11,13 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h4>Edit Colors for Questionnaire:</h4>
-                <h3 class="font-weight-bold">{{$viewModel->questionnaire->fieldsTranslation->title}}</h3>
+                <h3 class="fw-bold">{{$viewModel->questionnaire->fieldsTranslation->title}}</h3>
             </div>
             <div class="card-body">
                 <div class="container mt-4">
                     <div class="row">
                         <div class="col p-0">
-                            <h3 class="font-weight-bold">Total Responses Colors:</h3>
+                            <h3 class="fw-bold">Total Responses Colors:</h3>
                         </div>
                     </div>
                     <div class="row my-3 py-5 align-items-center bg-gradient-light">
@@ -49,7 +49,7 @@
 
                     <div class="row mt-5">
                         <div class="col p-0">
-                            <h3 class="font-weight-bold">Language Statistics Colors:</h3>
+                            <h3 class="fw-bold">Language Statistics Colors:</h3>
                         </div>
                     </div>
                     <div class="row my-3 py-5 align-items-center bg-gradient-light">
@@ -77,7 +77,7 @@
                     <div class="row">
                         <div class="col-md-offset-10 col-md-2">
                             <button type="submit"
-                                    class="btn btn-block btn-primary btn-lg">Save
+                                    class="btn w-100 btn-primary btn-lg">Save
                             </button>
                         </div>
                     </div>

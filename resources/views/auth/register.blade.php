@@ -10,7 +10,7 @@
                 <div class="row auth-btn-container">
                     <div class="col">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat btn-lg m-0">{{ __("login-register.register") }}</button>
+                                class="btn btn-primary w-100 btn-flat btn-lg m-0">{{ __("login-register.register") }}</button>
                     </div>
                 </div>
             </div>

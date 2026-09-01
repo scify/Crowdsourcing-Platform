@@ -195,15 +195,15 @@ class SolutionManager {
         foreach ($solutionStatuses as $solutionStatus) {
             switch ($solutionStatus->id) {
                 case SolutionStatusLkp::PUBLISHED:
-                    $solutionStatus->badgeCSSClass = 'badge-success';
+                    $solutionStatus->badgeCSSClass = 'text-bg-success';
 
                     break;
                 case SolutionStatusLkp::UNPUBLISHED:
-                    $solutionStatus->badgeCSSClass = 'badge-danger';
+                    $solutionStatus->badgeCSSClass = 'text-bg-danger';
 
                     break;
                 default:
-                    $solutionStatus->badgeCSSClass = 'badge-dark';
+                    $solutionStatus->badgeCSSClass = 'text-bg-dark';
                     $solutionStatus->description = 'The problem is in an unknown status';
             }
         }

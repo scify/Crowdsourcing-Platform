@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <form action="{{ url('backoffice/edit-user') . '/' . $user->id }}" method="GET">
-                                <button type="submit" class="btn btn-block btn-slim btn-primary">Edit</button>
+                                <button type="submit" class="btn w-100 btn-slim btn-primary">Edit</button>
                             </form>
                         </div>
                         <div class="col-sm-6">
@@ -49,13 +49,13 @@
                                     <form class="form-disable" action="{{ url('user/delete') }}" method="POST">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="hidden" name="id" value="{{ $user->id }}">
-                                        <button type="submit" class="btn btn-block btn-slim btn-danger">Deactivate</button>
+                                        <button type="submit" class="btn w-100 btn-slim btn-danger">Deactivate</button>
                                     </form>
                                 @else
                                     <form class="form-disable" action="{{ url('user/restore') }}" method="POST">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="hidden" name="id" value="{{ $user->id }}">
-                                        <button type="submit" class="btn btn-block btn-slim btn-success">Reactivate</button>
+                                        <button type="submit" class="btn w-100 btn-slim btn-success">Reactivate</button>
                                     </form>
                                 @endif
                             @endif

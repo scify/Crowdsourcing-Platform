@@ -51,7 +51,7 @@
                 <div class="row auth-btn-container">
                     <div class="col-md-6 col-sm-11 mx-auto">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat btn-lg my-0">{{ __("questionnaire.sign_in")}}
+                                class="btn btn-primary w-100 btn-flat btn-lg my-0">{{ __("questionnaire.sign_in")}}
                         </button>
                     </div>
                 </div>
@@ -73,19 +73,19 @@
     <div class="demo-access mx-4 mb-4 mt-2 p-3">
         <div class="demo-access__label d-flex align-items-center mb-2">
             <i class="fas fa-flask me-2 text-muted" aria-hidden="true"></i>
-            <span class="text-muted font-weight-bold" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:.05em;">
+            <span class="text-muted fw-bold" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:.05em;">
                 Demo Quick Access
             </span>
         </div>
         <div class="d-flex" style="gap:.5rem;">
             <button type="button"
-                    class="btn btn-outline-secondary btn-block btn-sm demo-login-btn"
+                    class="btn btn-outline-secondary w-100 btn-sm demo-login-btn"
                     data-email="demo-user@demo.com"
                     data-password="{{ config('app.admin_pass_seed') }}">
                 <i class="fas fa-user me-1" aria-hidden="true"></i> Demo User
             </button>
             <button type="button"
-                    class="btn btn-outline-danger btn-block btn-sm demo-login-btn mt-0"
+                    class="btn btn-outline-danger w-100 btn-sm demo-login-btn mt-0"
                     data-email="demo-admin@demo.com"
                     data-password="{{ config('app.admin_pass_seed') }}">
                 <i class="fas fa-user-shield me-1" aria-hidden="true"></i> Demo Admin

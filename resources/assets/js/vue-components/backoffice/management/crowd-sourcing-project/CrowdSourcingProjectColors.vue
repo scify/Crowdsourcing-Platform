@@ -36,7 +36,6 @@
 
 <script>
 import { ref, onMounted, nextTick } from "vue";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import Coloris from "@melloware/coloris";
 
 export default {

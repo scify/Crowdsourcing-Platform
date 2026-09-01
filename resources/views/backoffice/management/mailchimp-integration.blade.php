@@ -55,7 +55,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4 col-xs-12">
-                                <button type="submit" class="btn btn-block btn-primary">Save</button>
+                                <button type="submit" class="btn w-100 btn-primary">Save</button>
                             </div>
                         </div>
                     </div>

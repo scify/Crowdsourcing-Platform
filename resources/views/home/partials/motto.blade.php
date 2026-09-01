@@ -15,7 +15,7 @@
                     <div class="row h-50">
                         <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
                             <div class="w-100 mx-auto btn-container">
-                                <a href="#projects" class="btn btn-block btn-primary call-to-action smooth-goto">
+                                <a href="#projects" class="btn w-100 btn-primary call-to-action smooth-goto">
                                     {{ __('common.home_call_to_action') }}
                                 </a>
                             </div>
