@@ -95,12 +95,10 @@
     </select>
 </div>
 <div class="form-group ">
-    <div class="checkbox icheck">
-        <label>
-            <input class="icheck-input" type="checkbox" required name="privacy-policy">
-            {{-- <span class="ml-3">I agree to the <a href="{{route('terms.privacy')}}" target="_blank">the privacy policy</a></span> --}}
-            <span class="ml-3">{!! __("notifications.agree_privacy_policy") !!}</a></span>
-        </label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" required name="privacy-policy" id="privacy-policy">
+        {{-- <span class="ml-3">I agree to the <a href="{{route('terms.privacy')}}" target="_blank">the privacy policy</a></span> --}}
+        <label class="form-check-label" for="privacy-policy">{!! __("notifications.agree_privacy_policy") !!}</a></label>
     </div>
 </div>
 

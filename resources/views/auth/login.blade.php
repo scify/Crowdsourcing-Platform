@@ -42,10 +42,9 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6 col-sm-12">
-                        <div class="checkbox icheck">
-                            <label>
-                                <input class="icheck-input" type="checkbox" name="remember"><span class="ml-3">{{ __("login-register.remember_me") }}</span>
-                            </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">{{ __("login-register.remember_me") }}</label>
                         </div>
                     </div>
                 </div>

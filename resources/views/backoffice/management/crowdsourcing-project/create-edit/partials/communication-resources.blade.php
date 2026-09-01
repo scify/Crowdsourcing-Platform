@@ -7,13 +7,12 @@
                     <div class="col-sm-12">
                         <div class="row mt-2">
                             <div class="col">
-                                <div class="checkbox icheck">
-                                    <label>
-                                        <input
-                                                {{$viewModel->project->should_send_email_after_questionnaire_response ? 'checked' : ''}}
-                                                class="icheck-input" type="checkbox" name="should_send_email_after_questionnaire_response"><span class="ml-3">
-                                            Respondents to questionnaires for this project should receive a "congratulations" email.</span>
-                                    </label>
+                                <div class="form-check">
+                                    <input
+                                            {{$viewModel->project->should_send_email_after_questionnaire_response ? 'checked' : ''}}
+                                            class="form-check-input" type="checkbox" name="should_send_email_after_questionnaire_response" id="should_send_email_after_questionnaire_response">
+                                    <label class="form-check-label" for="should_send_email_after_questionnaire_response">
+                                        Respondents to questionnaires for this project should receive a "congratulations" email.</label>
                                 </div>
                             </div>
                         </div>

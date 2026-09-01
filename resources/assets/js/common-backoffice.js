@@ -1,5 +1,3 @@
-import "icheck";
-
 import "admin-lte/dist/js/adminlte.min"; // 'admin-lte/dist/js/app.min.js'
 
 import "datatables.net";
@@ -18,14 +16,6 @@ import { showToast } from "./common-utils";
 const MOBILE_WIDTH = 768;
 
 (function () {
-	const initializeIcheck = function () {
-		$(".icheck-input").iCheck({
-			checkboxClass: "icheckbox_square-blue",
-			radioClass: "iradio_square-blue",
-			increaseArea: "20%", // optional
-		});
-	};
-
 	const closeDismissibleAlerts = function () {
 		setTimeout(function () {
 			/* Close any flash message after some time*/
@@ -96,7 +86,6 @@ const MOBILE_WIDTH = 768;
 	};
 
 	$(document).ready(function () {
-		initializeIcheck();
 		closeDismissibleAlerts();
 		initClipboardElements();
 		listenToReadMoreClicks();

@@ -248,14 +248,13 @@
                             <div class="container-fluid">
                                 <div class="row my-2">
                                     <div class="col">
-                                        <div class="checkbox icheck">
-                                            <label>
-                                                <input
-                                                        {{$viewModel->project->display_landing_page_banner ? 'checked' : ''}}
-                                                        class="icheck-input" type="checkbox"
-                                                        name="display_landing_page_banner"><span class="ml-3">
-                                            Display Landing page banner</span>
-                                            </label>
+                                        <div class="form-check">
+                                            <input
+                                                    {{$viewModel->project->display_landing_page_banner ? 'checked' : ''}}
+                                                    class="form-check-input" type="checkbox"
+                                                    name="display_landing_page_banner" id="display_landing_page_banner">
+                                            <label class="form-check-label" for="display_landing_page_banner">
+                                            Display Landing page banner</label>
                                         </div>
                                     </div>
                                 </div>
