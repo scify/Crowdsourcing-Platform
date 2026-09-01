@@ -12,6 +12,8 @@ permissions:
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
+    outputs:
+      coverage-pct: ${{ steps.coverage.outputs.pct }}
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -67,4 +69,34 @@ jobs:
         run: php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: php artisan test --env=testing --coverage --min=48
+        run: php artisan test --env=testing --coverage --min=48 --coverage-clover=coverage.xml
+
+      - name: Extract coverage percentage
+        id: coverage
+        run: |
+          pct=$(php -r '$x=simplexml_load_file("coverage.xml"); $m=$x->project->metrics; echo round(100*(int)$m["coveredstatements"]/max(1,(int)$m["statements"]),1);')
+          echo "pct=$pct" >> "$GITHUB_OUTPUT"
+          echo "Total coverage: $pct%" >> "$GITHUB_STEP_SUMMARY"
+  publish-coverage-badge:
+    # Publishes the live coverage number that the README badge renders.
+    needs: laravel-tests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Push badge data to the badges branch
+        env:
+          PCT: ${{ needs.laravel-tests.outputs.coverage-pct }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          color=orange
+          awk "BEGIN{exit !($PCT >= 50)}" && color=yellow
+          awk "BEGIN{exit !($PCT >= 70)}" && color=yellowgreen
+          awk "BEGIN{exit !($PCT >= 85)}" && color=brightgreen
+          mkdir badges && cd badges
+          printf '{"schemaVersion":1,"label":"coverage","message":"%s%%","color":"%s"}\n' "$PCT" "$color" > coverage.json
+          git init -b badges -q
+          git -c user.name=github-actions -c user.email=github-actions@github.com add coverage.json
+          git -c user.name=github-actions -c user.email=github-actions@github.com commit -q -m "coverage: $PCT%"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" badges

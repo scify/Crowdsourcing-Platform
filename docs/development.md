@@ -119,9 +119,13 @@ repeated `php artisan test` runs are stable.
 ### Coverage ratchet
 
 CI runs the suite with `--coverage --min=48`, so the build fails if line
-coverage drops below the floor. When you raise coverage, raise the ratchet:
-bump `--min` in `.github/workflows/tests.yml` and the coverage badge in
-`README.md` together.
+coverage drops below the floor. When you raise coverage, raise the ratchet by
+bumping `--min` in `.github/workflows/tests.yml`.
+
+The README coverage badge is live: after every push to `master`, the tests
+workflow computes the exact percentage and publishes it as JSON to the
+`badges` branch, which the shields.io endpoint badge renders. No manual badge
+updates are needed.
 
 ### Run the tests with the `run-tests.sh` script
 
