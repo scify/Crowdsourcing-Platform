@@ -12,7 +12,7 @@ along with [Vue 3](https://vuejs.org/), [SurveyJS](https://surveyjs.io/), and
 
 This section describes the custom directories of the application. For the
 general Laravel directory structure, refer to the
-[official documentation](https://laravel.com/docs/12.x/structure).
+[official documentation](https://laravel.com/docs/13.x/structure).
 
 ```text
 ├── app                         # Laravel application directory
@@ -60,7 +60,7 @@ More information about the Repository Pattern can be found
 
 ### PHP — Laravel Pint
 
-The application uses [Laravel Pint](https://laravel.com/docs/12.x/pint) for the
+The application uses [Laravel Pint](https://laravel.com/docs/13.x/pint) for the
 PHP code style:
 
 ```bash

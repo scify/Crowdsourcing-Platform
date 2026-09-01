@@ -12,7 +12,7 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fcrowdsourcing.ecas.org)](https://crowdsourcing.ecas.org/en)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
 [![PHP](https://img.shields.io/badge/PHP-%5E8.3-777BB4?logo=php&logoColor=white)](composer.json)
-[![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)](composer.json)
+[![Laravel](https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white)](composer.json)
 
 A [Laravel](https://laravel.com/) Web Application for Crowdsourcing Projects
 and Questionnaires.

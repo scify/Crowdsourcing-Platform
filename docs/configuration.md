@@ -2,7 +2,7 @@
 
 ## Social Login — Sign in with Socialite
 
-The app uses [Laravel Socialite](https://laravel.com/docs/12.x/socialite) to
+The app uses [Laravel Socialite](https://laravel.com/docs/13.x/socialite) to
 handle social login (Facebook, Google, LinkedIn, Twitter/X).
 
 To get it working in your development environment:
