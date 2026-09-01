@@ -27,13 +27,10 @@
                                     <h4>Goal Responses</h4>
                                 </div>
                                 <div class="col-lg-7 col-md-6 col-sm-12">
-                                    <div class="input-group colorpicker-component color-picker">
-                                        <input id="goal_responses_color" type="text" name="goal_responses_color"
-                                               class="form-control"
-                                               value="{{ old('goal_responses_color') ? old('goal_responses_color') :
-                                                            $viewModel->getGoalResponsesDefaultColor()  }}" />
-                                        <span class="input-group-addon"><i></i></span>
-                                    </div>
+                                    <input id="goal_responses_color" type="text" name="goal_responses_color"
+                                           class="form-control color-picker-input"
+                                           value="{{ old('goal_responses_color') ? old('goal_responses_color') :
+                                                        $viewModel->getGoalResponsesDefaultColor()  }}" />
                                 </div>
                             </div>
                             <div class="row">
@@ -41,13 +38,10 @@
                                     <h4>Actual Responses</h4>
                                 </div>
                                 <div class="col-lg-7 col-md-6 col-sm-12">
-                                    <div class="input-group colorpicker-component color-picker">
-                                        <input id="actual_responses_color" type="text" name="actual_responses_color"
-                                               class="form-control"
-                                               value="{{ old('actual_responses_color') ? old('actual_responses_color') :
-                                                            $viewModel->getActualResponsesDefaultColor()  }}" />
-                                        <span class="input-group-addon"><i></i></span>
-                                    </div>
+                                    <input id="actual_responses_color" type="text" name="actual_responses_color"
+                                           class="form-control color-picker-input"
+                                           value="{{ old('actual_responses_color') ? old('actual_responses_color') :
+                                                        $viewModel->getActualResponsesDefaultColor()  }}" />
                                 </div>
                             </div>
                         </div>
@@ -67,15 +61,12 @@
                                             ({{ $questionnaireLanguage->language->language_code }})</h4>
                                     </div>
                                     <div class="col-lg-7 col-md-6 col-sm-12">
-                                        <div class="input-group colorpicker-component color-picker">
-                                            <input id="lang_colors_{{ $questionnaireLanguage->language->language_code }}"
-                                                   type="text"
-                                                   name="lang_colors[{{ $questionnaireLanguage->id }}]"
-                                                   class="form-control"
-                                                   value="{{ old('lang_colors[' . $questionnaireLanguage->id . ']') ? old('lang_colors[' . $questionnaireLanguage->id . ']') :
-                                                            $viewModel->getColorForQuestionnaireLanguage($questionnaireLanguage)  }}" />
-                                            <span class="input-group-addon"><i></i></span>
-                                        </div>
+                                        <input id="lang_colors_{{ $questionnaireLanguage->language->language_code }}"
+                                               type="text"
+                                               name="lang_colors[{{ $questionnaireLanguage->id }}]"
+                                               class="form-control color-picker-input"
+                                               value="{{ old('lang_colors[' . $questionnaireLanguage->id . ']') ? old('lang_colors[' . $questionnaireLanguage->id . ']') :
+                                                        $viewModel->getColorForQuestionnaireLanguage($questionnaireLanguage)  }}" />
                                     </div>
                                 </div>
                             @endforeach

@@ -8,9 +8,14 @@
 				</div>
 			</div>
 			<div class="col-6">
-				<div :id="'color_' + index" class="input-group colorpicker-component color-picker">
-					<input type="text" name="color_codes[]" class="form-control" :value="color.color_code" />
-					<span class="input-group-addon"><i></i></span>
+				<div class="input-group">
+					<input
+						:id="'color_' + index"
+						type="text"
+						name="color_codes[]"
+						class="form-control color-picker-input"
+						:value="color.color_code"
+					/>
 				</div>
 			</div>
 			<div class="col-1">
@@ -31,9 +36,8 @@
 
 <script>
 import { ref, onMounted, nextTick } from "vue";
-import $ from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import "bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min";
+import Coloris from "@melloware/coloris";
 
 export default {
 	name: "CrowdSourcingProjectColors",
@@ -61,31 +65,25 @@ export default {
 				color_code: generateRandomColor(),
 			});
 			await nextTick();
-			initSingleColorPicker($(`#color_${colors.value.length - 1}`));
+			Coloris.wrap(".color-picker-input");
 		};
 
 		const removeColor = (index) => {
 			colors.value.splice(index, 1);
 			colors.value.forEach((color, i) => {
-				$(`#color_${i}`).colorpicker("setValue", color.color_code);
-			});
-		};
-
-		const initSingleColorPicker = (el) => {
-			$(el).colorpicker({ horizontal: true });
-
-			$(el).on("colorpickerCreate", (event) => {
-				$(el).find(".input-group-addon").css("background-color", event.color.toString());
-			});
-
-			$(el).on("colorpickerChange", (event) => {
-				$(el).find(".input-group-addon").css("background-color", event.color.toString());
+				const input = document.getElementById(`color_${i}`);
+				if (input) {
+					input.value = color.color_code;
+					input.dispatchEvent(new Event("input", { bubbles: true }));
+				}
 			});
 		};
 
 		const initializeColorPicker = () => {
-			$(".color-picker").each((i, el) => {
-				initSingleColorPicker(el);
+			Coloris.init();
+			Coloris({
+				el: ".color-picker-input",
+				format: "hex",
 			});
 		};
 
@@ -97,7 +95,6 @@ export default {
 			removeColor,
 			generateRandomColor,
 			initializeColorPicker,
-			initSingleColorPicker,
 		};
 	},
 };
@@ -107,5 +104,5 @@ export default {
 @import "../../../../../sass/variables.scss";
 @import "survey-jquery/modern.min.css";
 @import "survey-analytics/survey.analytics.min.css";
-@import "bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";
+@import "@melloware/coloris/dist/coloris.css";
 </style>
