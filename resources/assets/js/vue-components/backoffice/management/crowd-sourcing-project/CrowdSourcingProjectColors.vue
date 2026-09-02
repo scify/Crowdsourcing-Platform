@@ -101,7 +101,5 @@ export default {
 
 <style lang="scss">
 @import "../../../../../sass/variables.scss";
-@import "survey-jquery/modern.min.css";
-@import "survey-analytics/survey.analytics.min.css";
 @import "@melloware/coloris/dist/coloris.css";
 </style>

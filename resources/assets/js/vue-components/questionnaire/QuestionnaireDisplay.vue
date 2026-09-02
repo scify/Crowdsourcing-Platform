@@ -75,6 +75,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div :id="surveyContainerId" class="survey-container"></div>
+					<p v-if="showDisclaimer" class="questionnaire-disclaimer d-block mb-0 px-1 text-center py-3">
+						{{ disclaimerText }}
+					</p>
 				</div>
 			</div>
 			<!-- Display the browser fingerprint ID with small letters -->
@@ -88,7 +91,10 @@
 </template>
 
 <script>
-import * as Survey from "survey-jquery";
+import { markRaw } from "vue";
+import { Model } from "survey-core";
+import "survey-js-ui";
+import { DefaultLight } from "survey-core/themes";
 import { arrayMove, setCookie } from "../../common-utils";
 import AnalyticsLogger from "../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
@@ -134,6 +140,8 @@ export default {
 		return {
 			surveyCreator: null,
 			survey: null,
+			showDisclaimer: false,
+			disclaimerText: trans("common.personal_information_disclaimer"),
 			surveyLocales: [],
 			userResponse: {},
 			browserFingerprintId: null,
@@ -175,7 +183,7 @@ export default {
 			const surveyContainerId = this.surveyContainerId;
 			const instance = this;
 			setTimeout(() => {
-				instance.survey.render(surveyContainerId);
+				instance.survey.render(document.getElementById(surveyContainerId));
 			}, 2000);
 		},
 		getQuestionnaireLoginPromptMessage() {
@@ -186,8 +194,15 @@ export default {
 			return message + trans("questionnaire.create_account_prompt");
 		},
 		initQuestionnaireDisplay() {
-			Survey.StylesManager.applyTheme("modern");
-			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
+			const questionnaireJson =
+				typeof this.questionnaire.questionnaire_json === "string"
+					? JSON.parse(this.questionnaire.questionnaire_json)
+					: this.questionnaire.questionnaire_json;
+			// markRaw: Vue must not proxy the SurveyJS model (identity checks inside the library break).
+			this.survey = markRaw(new Model(questionnaireJson));
+			this.survey.applyTheme(DefaultLight);
+			// SurveyJS v2+ hides question numbers by default; keep the numbering respondents are used to.
+			if (questionnaireJson.showQuestionNumbers === undefined) this.survey.showQuestionNumbers = "on";
 			if (!this.userResponse || Object.keys(this.userResponse).length === 0) {
 				this.prepareQuestionnaireForResponding();
 			} else {
@@ -241,16 +256,12 @@ export default {
 			}
 			this.survey.onAfterRenderSurvey.add(() => {
 				this.loading = false;
+				this.showDisclaimer = true;
 
 				setTimeout(() => {
 					$("textarea").each(function () {
 						$(this).attr("spellcheck", true);
 					});
-					$(".sv-components-container-contentBottom").after(
-						"<p class='questionnaire-disclaimer d-block mb-0 px-1 text-center py-3'>" +
-							trans("common.personal_information_disclaimer") +
-							"</p>",
-					);
 				}, 2000);
 			});
 		},
@@ -260,7 +271,7 @@ export default {
 			const surveyContainerId = this.surveyContainerId;
 			const instance = this;
 			setTimeout(() => {
-				instance.survey.render(surveyContainerId);
+				instance.survey.render(document.getElementById(surveyContainerId));
 				instance.loading = false;
 			}, 2000);
 		},

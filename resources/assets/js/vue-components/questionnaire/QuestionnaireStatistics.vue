@@ -184,8 +184,8 @@
 </template>
 
 <script>
-import * as Survey from "survey-jquery";
-import * as SurveyAnalytics from "survey-analytics";
+import { Model, Serializer, setLicenseKey } from "survey-core";
+import { Dashboard, VisualizationManager, WordCloud, localization } from "survey-analytics";
 import { mapActions } from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, { AnswersData } from "./FreeTextQuestionStatisticsCustomVisualizer";
 import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
@@ -193,8 +193,10 @@ import { showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
-import { defineComponent } from "vue";
+import { defineComponent, markRaw } from "vue";
 import transMixin from "../../vue-mixins/trans-mixin";
+
+if (import.meta.env.VITE_SURVEYJS_LICENSE_KEY) setLicenseKey(import.meta.env.VITE_SURVEYJS_LICENSE_KEY);
 
 export default defineComponent({
 	name: "QuestionnaireStatistics",
@@ -237,7 +239,7 @@ export default defineComponent({
 		return {
 			survey: null,
 			questions: [],
-			statsPanelIndexToColors: new Map(),
+			questionNameToColors: new Map(),
 			loading: false,
 			questionTypesToApplyCustomTextsTableVisualizer: ["text", "comment"],
 			signInModalOpen: false,
@@ -272,41 +274,37 @@ export default defineComponent({
 	},
 	created() {
 		this.loading = true;
-		Survey.JsonObject.metaData.addProperty("itemvalue", {
+		Serializer.addProperty("itemvalue", {
 			name: "statsColor",
 		});
-		Survey.StylesManager.applyTheme("bootstrap");
 
-		SurveyAnalytics.VisualizationPanel.haveCommercialLicense = true;
-		for (let i = 0; i < this.questionTypesToApplyCustomTextsTableVisualizer.length; i++) {
-			const type = this.questionTypesToApplyCustomTextsTableVisualizer[i];
-			// Register custom visualizer for the free text question type
-			const visualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(type);
-			// arrange visualizers
-			const wordCloud = visualizers[0];
-			const simpleTable = visualizers[1];
-
-			SurveyAnalytics.VisualizationManager.unregisterVisualizer(type, wordCloud);
-			SurveyAnalytics.VisualizationManager.unregisterVisualizer(type, simpleTable);
-			SurveyAnalytics.VisualizationManager.registerVisualizer(type, FreeTextQuestionStatisticsCustomVisualizer);
-			SurveyAnalytics.VisualizationManager.registerVisualizer(type, wordCloud);
+		const unregisterAllVisualizers = (type) => {
+			VisualizationManager.getVisualizersByType(type).forEach((visualizer) =>
+				VisualizationManager.unregisterVisualizer(type, visualizer),
+			);
+		};
+		// v3 resolves a visualizer both by question type and by its own type name (the 4th argument),
+		// so custom visualizers must be registered under both keys, exactly like the built-ins are.
+		const registerCustomVisualizer = (questionType, visualizerClass, typeName) => {
+			VisualizationManager.registerVisualizer(questionType, visualizerClass, 0, typeName);
+			VisualizationManager.registerVisualizer(typeName, visualizerClass, undefined, typeName);
+		};
+		for (const type of this.questionTypesToApplyCustomTextsTableVisualizer) {
+			// The custom responses table is the default visualizer; the word cloud stays as the alternative.
+			unregisterAllVisualizers(type);
+			registerCustomVisualizer(type, FreeTextQuestionStatisticsCustomVisualizer, "freeTextVisualizer");
+			VisualizationManager.registerVisualizer(type, WordCloud, 1, "wordcloud");
 		}
-		const fileType = "file";
-		const fileVisualizers = SurveyAnalytics.VisualizationManager.getVisualizersByType(fileType);
-		if (fileVisualizers && fileVisualizers.length) {
-			SurveyAnalytics.VisualizationManager.unregisterVisualizer(fileType, fileVisualizers[0]);
-			if (this.showFileTypeQuestionsStatistics !== -1) {
-				SurveyAnalytics.VisualizationManager.registerVisualizer(
-					fileType,
-					FileQuestionStatisticsCustomVisualizer,
-				);
-			}
+		unregisterAllVisualizers("file");
+		if (this.showFileTypeQuestionsStatistics !== -1) {
+			registerCustomVisualizer("file", FileQuestionStatisticsCustomVisualizer, "fileVisualizer");
 		}
 		// Set localized title of this visualizer
-		SurveyAnalytics.localization.locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
+		localization.locales["en"]["visualizer_freeTextVisualizer"] = "Responses Table";
 
-		this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
-		this.questions = this.survey.getAllQuestions();
+		// markRaw: Vue must not proxy the SurveyJS objects (identity checks inside the library break).
+		this.survey = markRaw(new Model(this.questionnaire.questionnaire_json));
+		this.questions = markRaw(this.survey.getAllQuestions());
 		this.getColorsForCrowdSourcingProject();
 	},
 	mounted() {
@@ -413,7 +411,7 @@ export default defineComponent({
 					if (this.questions[i].otherItem) {
 						colors.unshift("blue");
 					}
-					this.statsPanelIndexToColors.set(i, colors);
+					this.questionNameToColors.set(this.questions[i].name, colors);
 				}
 			}
 
@@ -430,23 +428,22 @@ export default defineComponent({
 			this.loading = false;
 		},
 		visualizeQuestions(questionsWithNoCustomVisualizer, questionsWithNoCustomVisualizerResponses, elementId) {
-			const visPanel = new SurveyAnalytics.VisualizationPanel(
-				questionsWithNoCustomVisualizer,
-				questionsWithNoCustomVisualizerResponses,
-				{
-					labelTruncateLength: -1,
-					allowDynamicLayout: false,
-					allowSelection: false,
-				},
-			);
-			visPanel.showHeader = false;
+			const visPanel = new Dashboard({
+				questions: questionsWithNoCustomVisualizer,
+				data: questionsWithNoCustomVisualizerResponses,
+				labelTruncateLength: -1,
+				allowDynamicLayout: false,
+				allowSelection: false,
+				showToolbar: false,
+			});
 
 			const instance = this;
 			visPanel.visualizers.forEach((visualizer) => {
 				if (!visualizer.onAnswersDataReady) return;
 				visualizer.onAnswersDataReady.add((sender, options) => {
-					if (instance.statsPanelIndexToColors.has(sender.options.index))
-						options.colors = instance.statsPanelIndexToColors.get(sender.options.index);
+					const questionName = sender.question ? sender.question.name : null;
+					if (instance.questionNameToColors.has(questionName))
+						options.colors = instance.questionNameToColors.get(questionName);
 				});
 			});
 			visPanel.render(document.getElementById(elementId));
@@ -454,7 +451,6 @@ export default defineComponent({
 		initializeQuestionnaireResponsesReport() {
 			const panelEl = document.getElementById("questionnaire-responses-report");
 			panelEl.innerHTML = "";
-			Tabulator.haveCommercialLicense = true;
 			const answersForSurveyTabulator = this.answersData.map((response) => JSON.parse(response.response_json));
 			const surveyAnalyticsTabulator = new Tabulator(this.survey, answersForSurveyTabulator, {
 				downloadButtons: ["csv"],
@@ -676,9 +672,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "survey-jquery/modern.min.css";
-@import "survey-analytics/survey.analytics.min.css";
-@import "survey-analytics/survey.analytics.tabulator.min.css";
+@import "survey-core/survey-core.css";
+@import "survey-analytics/survey.analytics.css";
+@import "survey-analytics/survey.analytics.tabulator.css";
 @import "tabulator-tables/dist/css/tabulator.min.css";
 @import "../../../sass/questionnaire/statistics";
 </style>

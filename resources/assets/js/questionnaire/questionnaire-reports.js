@@ -1,8 +1,12 @@
-import * as Survey from "survey-jquery";
-import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
+import { Model, setLicenseKey } from "survey-core";
+import "survey-js-ui";
+import { DefaultLight } from "survey-core/themes";
+import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import "datatables.net-buttons-bs5";
 import "datatables.net-buttons/js/buttons.html5.mjs";
 import DOMPurify from "dompurify";
+
+if (import.meta.env.VITE_SURVEYJS_LICENSE_KEY) setLicenseKey(import.meta.env.VITE_SURVEYJS_LICENSE_KEY);
 
 (function () {
 	let respondentsTable;
@@ -150,9 +154,10 @@ import DOMPurify from "dompurify";
 		resultsEl.html(DOMPurify.sanitize(response.data.view));
 		questionnaire = response.data.questionnaire;
 		answers = response.data.responses;
-		survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
+		survey = new Model(JSON.parse(questionnaire.questionnaire_json));
+		survey.applyTheme(DefaultLight);
 		survey.mode = "display";
-		survey.render("respondent-answers-panel");
+		survey.render(document.getElementById("respondent-answers-panel"));
 		initializeDataTables();
 		initializeQuestionnaireResponsesReport();
 		loader.addClass("d-none");
@@ -190,7 +195,6 @@ import DOMPurify from "dompurify";
 	const initializeQuestionnaireResponsesReport = function () {
 		const panelEl = document.getElementById("questionnaire-responses-report");
 		panelEl.innerHTML = "";
-		Tabulator.haveCommercialLicense = true;
 		const answersForSurveyTabulator = answers.map((answer) => JSON.parse(answer.response_json));
 		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
 			downloadButtons: ["csv"],
@@ -200,7 +204,6 @@ import DOMPurify from "dompurify";
 
 	const init = function () {
 		loader = $("#loader");
-		Survey.StylesManager.applyTheme("modern");
 
 		searchBtnHandler();
 		viewResponseBtnHandler();

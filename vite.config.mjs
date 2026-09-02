@@ -26,26 +26,6 @@ export default defineConfig({
 		https: false,
 	},
 	plugins: [
-		// Fix Knockout.js strict-mode incompatibility bundled inside survey-jquery.
-		// Knockout's binding evaluator has two paths: an eval() path (used when a
-		// CSP createScript helper is present) and a new Function() path. ES modules
-		// are always strict mode, and strict mode forbids `with` statements that
-		// Knockout injects via eval(). Forcing new Function() avoids this entirely.
-		// This transform hook runs for both dev and production (Rollup) builds.
-		{
-			name: "fix-knockout-strict-mode",
-			transform(code, id) {
-				if (/survey\.jquery\.js$/.test(id)) {
-					return {
-						code: code.replace(
-							'return H?eval(H.createScript("(function($context,$element){"+e+"})")):new Function("$context","$element",e)',
-							'return new Function("$context","$element",e)',
-						),
-						map: null,
-					};
-				}
-			},
-		},
 		laravel({
 			input: [
 				"resources/assets/sass/auth.scss",
@@ -108,41 +88,10 @@ export default defineConfig({
 			},
 		}),
 	],
-	optimizeDeps: {
-		esbuildOptions: {
-			plugins: [
-				{
-					name: "fix-knockout-indirect-eval",
-					setup(build) {
-						build.onLoad({ filter: /survey\.jquery\.js$/ }, async (args) => {
-							const { readFile } = await import("node:fs/promises");
-							let contents = await readFile(args.path, "utf8");
-							// esbuild converts (0,eval) → eval, turning indirect eval into direct eval.
-							// Direct eval inside an ES module (strict mode) forbids 'with' statements,
-							// which Knockout uses in its binding evaluator. Force the new Function()
-							// path instead, which is non-strict and works correctly.
-							contents = contents.replace(
-								'return H?eval(H.createScript("(function($context,$element){"+e+"})")):new Function("$context","$element",e)',
-								'return new Function("$context","$element",e)',
-							);
-							return { contents, loader: "js" };
-						});
-					},
-				},
-			],
-		},
-	},
 	resolve: {
 		alias: {
 			jQuery: path.resolve(__dirname, "node_modules/jquery/dist/jquery.js"),
 			vue: "vue/dist/vue.esm-bundler.js",
-		},
-		fallback: {
-			fs: false,
-			path: false,
-			stream: false,
-			constants: false,
-			crypto: false,
 		},
 	},
 });

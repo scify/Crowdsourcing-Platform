@@ -1,7 +1,8 @@
-import * as Survey from "survey-jquery";
+import { Model } from "survey-core";
+import "survey-js-ui";
+import { DefaultLight } from "survey-core/themes";
 
 (function () {
-	let survey;
 	const initializeDataTable = function () {
 		const usersTable = $("#responsesTable");
 		if (usersTable.length)
@@ -37,13 +38,19 @@ import * as Survey from "survey-jquery";
 		const response = getResponseById(responseId);
 		const responseModal = window.$("#questionnaireResponseModal");
 		if (response) {
-			responseModal.find("#questionnaireResponse").html("");
 			responseModal.find("#questionnaireTitle").html(response.title);
-			survey.setJsonObject(JSON.parse(response.questionnaire_json));
+			// The v3 UI keeps a virtual DOM per container, so render every response
+			// into a fresh child element instead of reusing a cleared container.
+			const container = document.getElementById("questionnaireResponse");
+			container.innerHTML = "";
+			const surveyEl = document.createElement("div");
+			container.appendChild(surveyEl);
+			const survey = new Model(JSON.parse(response.questionnaire_json));
+			survey.applyTheme(DefaultLight);
 			survey.data = JSON.parse(response.response_json);
 			survey.mode = "display";
-			survey.render("questionnaireResponse");
 			survey.locale = response.language_code;
+			survey.render(surveyEl);
 			window.bootstrap.Modal.getOrCreateInstance(document.getElementById("questionnaireResponseModal")).show();
 		}
 	};
@@ -57,8 +64,6 @@ import * as Survey from "survey-jquery";
 	};
 
 	const init = function () {
-		Survey.StylesManager.applyTheme("modern");
-		survey = new Survey.Model();
 		$(document).ready(function () {
 			initializeDataTable();
 			viewResponseHandler();

@@ -1,8 +1,8 @@
 "use strict";
 import Chart from "chart.js/auto";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-// Register the plugin to all charts:
-Chart.register(ChartDataLabels);
+// The datalabels plugin is registered per chart (see createChart), not globally:
+// survey-analytics shares this chart.js instance and must not get data labels.
 
 import { createApp } from "vue";
 import store from "../store/store";
@@ -105,6 +105,7 @@ app.mount("#app");
 			type: chartType,
 			data: data,
 			options: options,
+			plugins: [ChartDataLabels],
 		};
 		if (chartType === "bar" || chartType === "horizontalBar") config.borderWidth = 1;
 		return new Chart(canvasContext, config);
