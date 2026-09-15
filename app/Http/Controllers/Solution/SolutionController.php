@@ -128,7 +128,7 @@ class SolutionController extends Controller {
     public function update(Request $request, string $locale, int $id) {
         $validated = $this->validate($request, [
             'solution-title' => ['required', 'string', 'max:110'],
-            'solution-description' => ['required', 'string', 'max:410'],
+            'solution-description' => ['required', 'string', 'max:600'],
             'solution-status' => ['required'],
             'solution-slug' => 'required|string|alpha_dash|unique:solutions,slug,' . $id . '|max:111',
             'solution-image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
