@@ -36,7 +36,7 @@
                                 required
                                 rows="6"
                                 placeholder="Solution Description"
-                                maxlength="400"
+                                maxlength="600"
                             {{ $errors->has('solution-description') ? 'aria-describedby="solution-description-feedback"' : '' }}
                         >{{ old('solution-description') ? old('solution-description') : $viewModel->solution->defaultTranslation->description }}</textarea>
                         <div id="solution-description-feedback" class="invalid-feedback">

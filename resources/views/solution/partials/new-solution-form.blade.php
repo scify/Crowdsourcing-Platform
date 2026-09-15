@@ -58,12 +58,12 @@
                                 required
                                 rows="6"
                                 placeholder="{{ __('solution.solution_description_placeholder') }}"
-                                maxlength="400"
+                                maxlength="600"
                                 {{ $errors->has('solution-description') ? 'aria-describedby="solution-description-feedback"' : '' }}
-                                oninput="updateCharCount('solution-description', 400)"
+                                oninput="updateCharCount('solution-description', 600)"
                         >{{ old('solution-description') ? old('solution-description') : '' }}</textarea>
                         <small id="solution-description-count"
-                               class="form-text text-muted">400 {{ __('solution.characters_left') }}</small>
+                               class="form-text text-muted">600 {{ __('solution.characters_left') }}</small>
                         <div id="solution-description-feedback" class="invalid-feedback">
                             <strong>{{ $errors->first('solution-description') }}</strong>
                         </div>
