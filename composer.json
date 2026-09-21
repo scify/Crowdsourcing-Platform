@@ -25,7 +25,7 @@
         "nunomaduro/collision": "^8.9.5",
         "phpoffice/phpspreadsheet": "^5.9",
         "predis/predis": "^3.0",
-        "scify/laravel-cookie-guard": "^4.1",
+        "scify/laravel-cookie-guard": "^5.1.0",
         "sentry/sentry": "^4.30.0",
         "sentry/sentry-laravel": "^4.27.0",
         "socialiteproviders/twitter": "^4.1.2",
@@ -76,6 +76,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=cookies-consent-public --force"
         ],
         "lint": [
             "npm run lint",
