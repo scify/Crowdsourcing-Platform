@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aab251fea6d548e01005f05ca5850ae0",
+    "content-hash": "7649ac52ecdb234a3b7b1c61b320b7e7",
     "packages": [
         {
             "name": "awobaz/compoships",
@@ -5822,34 +5822,35 @@
         },
         {
             "name": "scify/laravel-cookie-guard",
-            "version": "v4.1.13",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scify/laravel-cookie-guard.git",
-                "reference": "93f3b00cfbe52c8a1b7082f35f3b88b69258792f"
+                "reference": "f534ce38f4c4b83865cb7b628bb0555184b45dcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scify/laravel-cookie-guard/zipball/93f3b00cfbe52c8a1b7082f35f3b88b69258792f",
-                "reference": "93f3b00cfbe52c8a1b7082f35f3b88b69258792f",
+                "url": "https://api.github.com/repos/scify/laravel-cookie-guard/zipball/f534ce38f4c4b83865cb7b628bb0555184b45dcb",
+                "reference": "f534ce38f4c4b83865cb7b628bb0555184b45dcb",
                 "shasum": ""
             },
             "require": {
-                "php": "^8"
+                "illuminate/contracts": "^12.0|^13.0",
+                "php": "^8.2"
             },
             "require-dev": {
                 "driftingly/rector-laravel": "^2.1",
                 "larastan/larastan": "^3.3",
                 "laravel/pint": "^1.21",
                 "nunomaduro/collision": "^8.8",
-                "orchestra/testbench": "^10.0",
-                "pestphp/pest": "^3.8",
-                "pestphp/pest-plugin-laravel": "^v3.1",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^3.8|^4.0",
+                "pestphp/pest-plugin-laravel": "^3.1|^4.0",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^2.0",
                 "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^11.5",
-                "rector/rector": "^2.3",
+                "phpunit/phpunit": "^11.5|^12.0",
+                "rector/rector": "^2.5",
                 "spatie/laravel-ray": "^1.40"
             },
             "type": "library",
@@ -5893,9 +5894,9 @@
             ],
             "support": {
                 "issues": "https://github.com/scify/laravel-cookie-guard/issues",
-                "source": "https://github.com/scify/laravel-cookie-guard/tree/v4.1.13"
+                "source": "https://github.com/scify/laravel-cookie-guard/tree/v5.1.0"
             },
-            "time": "2026-04-07T10:31:33+00:00"
+            "time": "2026-09-12T06:31:54+00:00"
         },
         {
             "name": "sentry/sentry",
