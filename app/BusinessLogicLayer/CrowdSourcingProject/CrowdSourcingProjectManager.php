@@ -243,6 +243,14 @@ class CrowdSourcingProjectManager {
             (isset($attributes['copy_footer_across_languages'])
                 && $attributes['copy_footer_across_languages'] == '1') ? 1 : 0;
 
+        $attributes['solution_submission_open'] =
+            (isset($attributes['solution_submission_open'])
+                && $attributes['solution_submission_open'] == 'on') ? 1 : 0;
+
+        $attributes['solution_voting_open'] =
+            (isset($attributes['solution_voting_open'])
+                && $attributes['solution_voting_open'] == 'on') ? 1 : 0;
+
         $this->crowdSourcingProjectRepository->update($attributes, $id);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED) {
             $this->crowdSourcingProjectRepository->delete($id);

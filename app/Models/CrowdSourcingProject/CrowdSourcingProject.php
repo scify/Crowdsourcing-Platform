@@ -122,6 +122,7 @@ class CrowdSourcingProject extends Model {
         'display_landing_page_banner',
         'copy_footer_across_languages',
         'solution_submission_open',
+        'solution_voting_open',
     ];
 
     /**
