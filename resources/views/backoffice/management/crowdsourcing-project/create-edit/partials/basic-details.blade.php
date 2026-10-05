@@ -139,6 +139,30 @@
                     <br>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input
+                                            {{ ($viewModel->project->solution_submission_open ?? true) ? 'checked' : '' }}
+                                            class="icheck-input" type="checkbox"
+                                            name="solution_submission_open"><span class="ml-3">
+                                        Solution submission open (users can propose solutions)</span>
+                                </label>
+                            </div>
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input
+                                            {{ ($viewModel->project->solution_voting_open ?? true) ? 'checked' : '' }}
+                                            class="icheck-input" type="checkbox"
+                                            name="solution_voting_open"><span class="ml-3">
+                                        Solution voting open (users can vote for solutions)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <label class="col-sm-12 control-label" for="name">Project Name (<span
                                 class="red">*</span>)</label>
                     <div class="col-sm-12">
