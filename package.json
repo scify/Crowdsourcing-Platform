@@ -62,7 +62,7 @@
 		"datatables.net-responsive-bs5": "^4.0.3",
 		"datatables.net-select": "^4.0.1",
 		"datatables.net-select-bs5": "^4.0.1",
-		"dompurify": "^3.4.15",
+		"dompurify": "^3.4.16",
 		"jquery": "^4.0.0",
 		"jquery-toast-plugin": "^1.3.2",
 		"select2": "^4.1.0",
