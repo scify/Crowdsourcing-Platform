@@ -47,7 +47,7 @@ RUN composer config --global process-timeout 3600
 RUN composer global require "laravel/installer"
 
 # Node.js/NVM installation
-ENV NODE_VERSION=18.19.0
+ENV NODE_VERSION=26.12.1
 ENV NVM_DIR=/usr/local/.nvm
 RUN mkdir "$NVM_DIR"
 RUN curl -fsSL --proto "=https" --tlsv1.2 -o /tmp/nvm-install.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh \

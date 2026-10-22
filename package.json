@@ -9,8 +9,15 @@
 	"version": "9.0.0",
 	"readme": "README.md",
 	"engines": {
-		"node": ">=24.14.0",
+		"node": "^22.23.4 || ^24.22.1 || ^26.12.1",
 		"npm": ">=11.11.0"
+	},
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": "^22.23.4 || ^24.22.1 || ^26.12.1",
+			"onFail": "error"
+		}
 	},
 	"scripts": {
 		"lint": "eslint resources/assets",
