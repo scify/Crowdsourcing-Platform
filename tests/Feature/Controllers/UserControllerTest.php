@@ -182,23 +182,8 @@ class UserControllerTest extends TestCase {
         $user = User::factory()->create();
         $this->be($user);
         $faker = Faker::create();
-        // Use the system's temporary directory
-        $tempDir = sys_get_temp_dir();
-        $largeImage = $faker->image($tempDir, 3000, 3000, 'cats', false, false, 'Faker');
-
-        // Check if the image was created successfully
-        if (! $largeImage) {
-            echo "Warning: Failed to create a fake image. Using a default large image.\n";
-            $defaultImagePath = public_path('images/test/image_temp_big.jpg');
-            $largeImage = public_path('images/test/image_temp_big_copy.jpg');
-            if (! copy($defaultImagePath, $largeImage)) {
-                throw new \RuntimeException('Failed to copy the default large image.');
-            }
-        } else {
-            $largeImage = $tempDir . '/' . $largeImage;
-        }
-
-        $largeImageUploadedFile = new UploadedFile($largeImage, 'fake-image.jpg', 'image/jpeg', null, true);
+        // 3 MB, above the 2 MB limit of the avatar rule. A local fake keeps the test independent of external image services.
+        $largeImageUploadedFile = UploadedFile::fake()->image('fake-image.jpg', 3000, 3000)->size(3072);
 
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
             ->put(route('user.update'), [
@@ -214,8 +199,6 @@ class UserControllerTest extends TestCase {
         $response->assertStatus(302);
         // Assert that the session has errors related to the avatar
         $response->assertSessionHasErrors(['avatar']);
-        // delete the large image
-        \File::delete($largeImage);
     }
 
     #[Test]
