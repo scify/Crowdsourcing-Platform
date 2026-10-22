@@ -16,7 +16,7 @@
         "drewm/mailchimp-api": "^2.5.4",
         "google/cloud-translate": "^1.21",
         "intervention/image": "^4.0",
-        "laravel/framework": "^13.0",
+        "laravel/framework": "^13.36.0",
         "laravel/helpers": "^1.8.2",
         "laravel/socialite": "^5.29.0",
         "laravel/tinker": "^3.0",
