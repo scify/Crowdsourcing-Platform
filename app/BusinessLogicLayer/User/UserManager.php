@@ -113,7 +113,7 @@ class UserManager {
         try {
             $user->notify(new UserRegistered);
         } catch (\Exception $exception) {
-            Log::error($exception);
+            Log::error($exception->getMessage(), ['exception' => $exception]);
         }
 
         $this->userRepository->updateUserRoles($user->id, $roleselect);
@@ -199,7 +199,7 @@ class UserManager {
             $this->mailChimpManager->subscribe($socialUser->email, 'registered_users', $socialUser->name);
         }
 
-        if ($result->status == UserActionResponses::USER_CREATED || UserActionResponses::USER_UPDATED) {
+        if (in_array($result->status, [UserActionResponses::USER_CREATED, UserActionResponses::USER_UPDATED])) {
             $user = $result->data;
             auth()->login($user);
 

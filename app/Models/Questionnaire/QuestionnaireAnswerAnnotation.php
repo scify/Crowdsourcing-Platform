@@ -8,6 +8,7 @@ use App\Models\CompositeKeysModel;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\QuestionnaireAnswerAnnotation
@@ -23,6 +24,23 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read User $respondent
  * @property-read Questionnaire $questionnaire
  * @property-read QuestionnaireAnswerAdminReviewLkp $adminReviewStatusLkp
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereAdminReviewComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereAdminReviewStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereAnnotationText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereAnnotatorUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereQuestionName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereRespondentUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireAnswerAnnotation whereUpdatedAt($value)
+ *
+ * @mixin \Eloquent
  */
 class QuestionnaireAnswerAnnotation extends CompositeKeysModel {
     protected $table = 'questionnaire_answer_annotations';

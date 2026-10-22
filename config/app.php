@@ -62,8 +62,6 @@ use Illuminate\Support\Str;
 use Illuminate\Translation\TranslationServiceProvider;
 use Illuminate\Validation\ValidationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
-use Intervention\Image\Facades\Image;
-use Intervention\Image\ImageServiceProvider;
 
 return [
     /**
@@ -245,7 +243,6 @@ return [
 
         ComposerServiceProvider::class,
         // For image manipulation http://image.intervention.io/
-        ImageServiceProvider::class,
         ConfigServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
     ], env('APP_ENV') === 'local' ? [
@@ -298,7 +295,6 @@ return [
         'URL' => URL::class,
         'Validator' => Validator::class,
         'View' => View::class,
-        'Image' => Image::class,
         'Str' => Str::class,
     ],
 ];

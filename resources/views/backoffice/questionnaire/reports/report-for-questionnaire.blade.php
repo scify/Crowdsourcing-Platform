@@ -128,15 +128,13 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Answers for user: <b
                                 id="respondent-answers-modal-title"></b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="respondent-answers-panel" style="height: 80vh;"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -150,15 +148,13 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Answers for user: <b
                                 id="respondent-answers-table-modal-title"></b></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="respondent-answers-table-panel" class="responses-report"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -169,7 +165,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{ __("my-account.are_you_sure") }}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p class="text-danger"><b>Waring:</b> This action will delete the response.
@@ -182,9 +178,9 @@
                 <form role="form" novalidate>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="questionnaire_response_id">
-                    <button type="button" class="btn btn-default btn-slim" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default btn-slim" data-bs-dismiss="modal">Cancel</button>
                     <button id="delete-response-form-btn" type="button" class="btn btn-danger btn-slim">
-                        Delete<span id="delete-response-loader" class="spinner-border spinner-border-sm ml-2 d-none"
+                        Delete<span id="delete-response-loader" class="spinner-border spinner-border-sm ms-2 d-none"
                                     role="status"
                                     aria-hidden="true"></span>
                     </button>

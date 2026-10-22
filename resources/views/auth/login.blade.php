@@ -20,7 +20,7 @@
             <form action="{{ route('login') }}" method="post">
                 {!! csrf_field() !!}
 
-                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+                <div class="mb-3 has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}"
                            placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -30,7 +30,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+                <div class="mb-3 has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control"
                            placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -42,17 +42,16 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6 col-sm-12">
-                        <div class="checkbox icheck">
-                            <label>
-                                <input class="icheck-input" type="checkbox" name="remember"><span class="ml-3">{{ __("login-register.remember_me") }}</span>
-                            </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">{{ __("login-register.remember_me") }}</label>
                         </div>
                     </div>
                 </div>
                 <div class="row auth-btn-container">
                     <div class="col-md-6 col-sm-11 mx-auto">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat btn-lg my-0">{{ __("questionnaire.sign_in")}}
+                                class="btn btn-primary w-100 btn-flat btn-lg my-0">{{ __("questionnaire.sign_in")}}
                         </button>
                     </div>
                 </div>
@@ -73,23 +72,23 @@
     @if (App::environment('staging'))
     <div class="demo-access mx-4 mb-4 mt-2 p-3">
         <div class="demo-access__label d-flex align-items-center mb-2">
-            <i class="fas fa-flask mr-2 text-muted" aria-hidden="true"></i>
-            <span class="text-muted font-weight-bold" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:.05em;">
+            <i class="fas fa-flask me-2 text-muted" aria-hidden="true"></i>
+            <span class="text-muted fw-bold" style="font-size:0.8rem; text-transform:uppercase; letter-spacing:.05em;">
                 Demo Quick Access
             </span>
         </div>
         <div class="d-flex" style="gap:.5rem;">
             <button type="button"
-                    class="btn btn-outline-secondary btn-block btn-sm demo-login-btn"
+                    class="btn btn-outline-secondary w-100 btn-sm demo-login-btn"
                     data-email="demo-user@demo.com"
                     data-password="{{ config('app.admin_pass_seed') }}">
-                <i class="fas fa-user mr-1" aria-hidden="true"></i> Demo User
+                <i class="fas fa-user me-1" aria-hidden="true"></i> Demo User
             </button>
             <button type="button"
-                    class="btn btn-outline-danger btn-block btn-sm demo-login-btn mt-0"
+                    class="btn btn-outline-danger w-100 btn-sm demo-login-btn mt-0"
                     data-email="demo-admin@demo.com"
                     data-password="{{ config('app.admin_pass_seed') }}">
-                <i class="fas fa-user-shield mr-1" aria-hidden="true"></i> Demo Admin
+                <i class="fas fa-user-shield me-1" aria-hidden="true"></i> Demo Admin
             </button>
         </div>
         <p class="text-muted mt-2 mb-0" style="font-size:0.7rem;">

@@ -24,9 +24,9 @@
 
             <div class="row form-row">
                 <div class="col-12">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <small class="d-block mb-2">{{ __('common.form_fields_required') }}</small>
-                        <label for="solution-title">{{ __('solution.solution_title_label') }} (<span
+                        <label class="form-label" for="solution-title">{{ __('solution.solution_title_label') }} (<span
                                     class="red">*</span>)</label>
                         <input type="text"
                                id="solution-title"
@@ -48,8 +48,8 @@
             </div>
             <div class="row form-row">
                 <div class="col-12">
-                    <div class="form-group">
-                        <label for="solution-description">{{ __('solution.solution_description_label') }} (<span
+                    <div class="mb-3">
+                        <label class="form-label" for="solution-description">{{ __('solution.solution_description_label') }} (<span
                                     class="red">*</span>)</label>
                         <textarea
                                 id="solution-description"
@@ -58,12 +58,12 @@
                                 required
                                 rows="6"
                                 placeholder="{{ __('solution.solution_description_placeholder') }}"
-                                maxlength="400"
+                                maxlength="600"
                                 {{ $errors->has('solution-description') ? 'aria-describedby="solution-description-feedback"' : '' }}
-                                oninput="updateCharCount('solution-description', 400)"
+                                oninput="updateCharCount('solution-description', 600)"
                         >{{ old('solution-description') ? old('solution-description') : '' }}</textarea>
                         <small id="solution-description-count"
-                               class="form-text text-muted">400 {{ __('solution.characters_left') }}</small>
+                               class="form-text text-muted">600 {{ __('solution.characters_left') }}</small>
                         <div id="solution-description-feedback" class="invalid-feedback">
                             <strong>{{ $errors->first('solution-description') }}</strong>
                         </div>

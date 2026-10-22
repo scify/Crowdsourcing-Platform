@@ -16,6 +16,8 @@
 .card-info:not(.card-outline) {
 	border-top: 0;
 	.card-header {
-		background-color: $brand-primary;
+		// Matches the production (AdminLTE 3) card-info header: teal, white text
+		background-color: $info;
+		color: $white;
 	}
 }

@@ -10,13 +10,11 @@
 								<button
 									v-if="allowClose"
 									type="button"
-									class="close"
-									data-dismiss="modal"
+									class="btn-close"
+									data-bs-dismiss="modal"
 									aria-label="Close"
 									@click="cancel"
-								>
-									<span aria-hidden="true">&times;</span>
-								</button>
+								></button>
 							</div>
 							<div class="modal-body p-0">
 								<slot name="body"></slot>

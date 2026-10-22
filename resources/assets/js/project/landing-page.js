@@ -3,15 +3,10 @@ import { showToast } from "../common-utils";
 
 import { createApp } from "vue";
 import store from "../store/store";
-import QuestionnaireDisplay from "../vue-components/questionnaire/QuestionnaireDisplay.vue";
 
 import DOMPurify from "dompurify";
 
-const app = createApp({
-	components: {
-		QuestionnaireDisplay,
-	},
-});
+const app = createApp({});
 
 // Register the "sane-html" directive globally
 app.directive("sane-html", {

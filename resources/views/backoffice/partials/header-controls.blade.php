@@ -1,24 +1,22 @@
-<nav class="main-header navbar navbar-expand-lg navbar-white navbar-light">
+<nav class="bo-topbar navbar navbar-expand-lg">
 
     @canany(['moderate-content-by-users'])
-        <!-- Sidebar toggle button-->
-        <ul class="navbar-nav">
-            <div class="sidebar-menu-toggler-container">
-                <a id="sidebar-menu-toggler" class="nav-link p-0" data-widget="pushmenu" href="#"><i
-                            class="fa fa-chevron-left"></i></a>
-            </div>
-        </ul>
+        {{-- Desktop: collapse-to-icons toggle --}}
+        <a id="sidebar-menu-toggler" class="nav-link p-0 d-none d-lg-inline-block me-3" href="#"
+           role="button" aria-label="Toggle sidebar"><i class="fa fa-chevron-left"></i></a>
+        {{-- Mobile: offcanvas toggle --}}
+        <button class="btn d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#backofficeSidebar" aria-controls="backofficeSidebar"
+                aria-label="Open menu"><i class="fa fa-bars"></i></button>
     @endcanany
 
-    <!-- Burger menu button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('home') }}"> {{ __('menu.home') }} </a>
             </li>

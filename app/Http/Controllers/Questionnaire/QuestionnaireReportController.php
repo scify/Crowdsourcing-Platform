@@ -55,7 +55,10 @@ class QuestionnaireReportController extends Controller {
             $responseCode = ResponseAlias::HTTP_INTERNAL_SERVER_ERROR;
             $responseContent = 'Error: ' . $e->getCode() . '  ' . $e->getMessage();
         } finally {
-            return response()->json(['data' => $responseContent ?? null], $responseCode);
+            return response()->json(
+                ['data' => $responseContent ?? null],
+                $responseCode ?? ResponseAlias::HTTP_INTERNAL_SERVER_ERROR
+            );
         }
     }
 }

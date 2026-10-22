@@ -5,7 +5,7 @@
         <div class="row p-0">
             <div class="col">
                 <a href="{{ route('problems.create') }}" class="btn btn-primary">
-                    <i class="fa fa-plus mr-2"></i>{{ __('menu.create_new_problem') }}</a>
+                    <i class="fa fa-plus me-2"></i>{{ __('menu.create_new_problem') }}</a>
             </div>
         </div>
     </div>

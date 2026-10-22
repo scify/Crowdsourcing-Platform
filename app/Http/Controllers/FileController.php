@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
+use Intervention\Image\ImageManager;
 
 class FileController extends Controller {
     public function uploadFiles(Request $request): JsonResponse {
@@ -27,22 +28,15 @@ class FileController extends Controller {
 
             if (Str::startsWith($uploadedFile->getMimeType(), 'image/')) {
                 // Load the image
-                $image = Image::make($uploadedFile->getPathname());
+                $image = ImageManager::usingDriver(GdDriver::class)->decodePath($uploadedFile->getPathname());
 
-                // Resize only if the width is greater than 1024
-                if ($image->width() > 1024) {
-                    $image->resize(1024, null, function ($constraint): void {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    });
-                }
+                // Shrink to a max width of 1024, keeping the aspect ratio
+                // (scaleDown never upscales smaller images)
+                $image->scaleDown(width: 1024);
 
-                // Compress the image
-                $image->encode('jpg', 90);
-
-                // Save the processed image to a temporary file
+                // Compress and save the processed image to a temporary file
                 $tempPath = sys_get_temp_dir() . '/' . $uniqueId . '.jpg';
-                $image->save($tempPath);
+                $image->encodeUsingMediaType('image/jpeg', quality: 90)->save($tempPath);
 
                 // Upload the processed image to S3
                 $path = Storage::disk('s3')->putFileAs('uploads', new File($tempPath), $uniqueId . '.jpg');

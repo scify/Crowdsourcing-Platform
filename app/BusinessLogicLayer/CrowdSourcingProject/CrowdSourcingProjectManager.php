@@ -243,6 +243,14 @@ class CrowdSourcingProjectManager {
             (isset($attributes['copy_footer_across_languages'])
                 && $attributes['copy_footer_across_languages'] == '1') ? 1 : 0;
 
+        $attributes['solution_submission_open'] =
+            (isset($attributes['solution_submission_open'])
+                && $attributes['solution_submission_open'] == 'on') ? 1 : 0;
+
+        $attributes['solution_voting_open'] =
+            (isset($attributes['solution_voting_open'])
+                && $attributes['solution_voting_open'] == 'on') ? 1 : 0;
+
         $this->crowdSourcingProjectRepository->update($attributes, $id);
         if ($attributes['status_id'] === CrowdSourcingProjectStatusLkp::DELETED) {
             $this->crowdSourcingProjectRepository->delete($id);
@@ -421,7 +429,7 @@ class CrowdSourcingProjectManager {
         $project = $id !== null && $id !== 0 ? $this->getCrowdSourcingProject($id) : $this->crowdSourcingProjectRepository->getModelInstance();
 
         $project = $this->populateInitialValuesForProjectIfNotSet($project);
-        $project->colors = $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id);
+        $project->setRelation('colors', $this->crowdSourcingProjectColorsManager->getColorsForCrowdSourcingProjectOrDefault($project->id));
 
         $statusesLkp = $this->crowdSourcingProjectStatusManager->getAllCrowdSourcingProjectStatusesLkp();
 
@@ -720,10 +728,10 @@ class CrowdSourcingProjectManager {
                 'gender' => $gender ?? '',
                 'country' => $country ?? '',
                 'phase1_questionnaire' => $questionnaireResponse ? 'yes' : 'no',
-                'phase1_date' => $questionnaireResponse?->created_at ?? '',
+                'phase1_date' => $questionnaireResponse->created_at ?? '',
                 'phase2_solution' => $solutionProposed ? 'yes' : 'no',
                 'phase3_votes' => $firstVote ? 'yes' : 'no',
-                'phase3_date' => $firstVote?->created_at ?? '',
+                'phase3_date' => $firstVote->created_at ?? '',
             ]);
         }
 

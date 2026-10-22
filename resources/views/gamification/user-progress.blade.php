@@ -21,7 +21,7 @@
                                 <div class="container-fluid px-lg-5 px-sm-2 py-lg-5 py-sm-3" id="progress-container">
                                     @foreach($badgesVM->badgesWithLevelsList as $badge)
                                         <div class="row progress-for-badge">
-                                            <div class="col-md-6 col-sm-12 text-left">
+                                            <div class="col-md-6 col-sm-12 text-start">
                                                 <h6>{{ $badge->badgeName }}</h6>
                                                 <p class="mb-1">{{ $badge->badge->progressMessage }}</p>
                                             </div>
@@ -41,10 +41,10 @@
                                         </div>
                                     @endforeach
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-12 text-left">
+                                        <div class="col-md-6 col-sm-12 text-start">
                                             <h6>{{ __('my-dashboard.points') }}</h6>
                                         </div>
-                                        <div class="col-md-6 col-sm-12 text-right">
+                                        <div class="col-md-6 col-sm-12 text-end">
                                             <p class="mb-1">{{ $badgesVM->getTotalPoints() }}
                                                 / {{ $badgesVM->getMaxTotalPoints() }} {{ __('my-dashboard.unlock_a_gift') }}</p>
                                         </div>

@@ -24,7 +24,7 @@
                                         <div class="row p-0">
                                             <label for="email" class="col-12 control-label">{{ __("login-register.email") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <input id="email" type="email" class="form-control mb-1"
                                                            name="email"
                                                            value="{{ $viewModel->user->email  }}"
@@ -37,7 +37,7 @@
                                         <div class="row p-0">
                                             <label for="avatar" class="col-12 control-label">{{ __("my-account.profile_image") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <input id="avatar" type="file" class="form-control p-2 h-auto"
                                                            name="avatar"
                                                            accept="image/png,image/jpeg,image/jpg,image/webp"
@@ -48,7 +48,7 @@
                                         <div class="row p-0">
                                             <label for="nickname" class="col-12 control-label">{{ __("login-register.nickname") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group has-feedback">
+                                                <div class="mb-3 has-feedback">
                                                     <input id="nickname" type="text" class="form-control mb-1"
                                                            name="nickname"
                                                            value="{{ $viewModel->user->nickname  }}"
@@ -73,7 +73,7 @@
                                                 <label for="current_password"
                                                        class="col-12 control-label">{{ __("my-account.current_password") }}</label>
                                                 <div class="col-12">
-                                                    <div class="form-group">
+                                                    <div class="mb-3">
                                                         <input type="password" class="form-control"
                                                                id="current_password"
                                                                name="current_password"
@@ -86,7 +86,7 @@
                                             <label for="password"
                                                    class="col-12 control-label">{{ __("my-account.new_password") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <input type="password" class="form-control" id="password"
                                                            name="password"
                                                            placeholder="{{ __("login-register.password") }}">
@@ -97,7 +97,7 @@
                                             <label for="password_confirmation"
                                                    class="col-12 control-label">{{ __("my-account.re_enter_password") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <input type="password" class="form-control"
                                                            id="password_confirmation"
                                                            name="password_confirmation"
@@ -108,7 +108,7 @@
                                         <div class="row p-0">
                                             <label for="gender" class="col-12 control-label">{{ __("login-register.gender") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <select id="gender" name="gender" class="form-control">
                                                         <option value="">{{ __("login-register.gender") }}</option>
                                                         @foreach ($viewModel->availableGenders as $gender)
@@ -130,7 +130,7 @@
                                         <div class="row p-0">
                                             <label for="country" class="col-12 control-label">{{ __("login-register.country") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <select id="country" name="country" class="form-control">
                                                         <option value="">{{ __("login-register.country") }}</option>
                                                         @foreach ($viewModel->availableCountries as $country)
@@ -152,7 +152,7 @@
                                         <div class="row mb-4 p-0">
                                             <label for="year-of-birth" class="col-12 control-label">{{ __("login-register.year_of_birth") }}</label>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="mb-3">
                                                     <select id="year-of-birth" name="year-of-birth" class="form-control">
                                                         <option value="">{{ __("login-register.year_of_birth") }}</option>
                                                         @foreach ($viewModel->availableYearsOfBirth as $year)
@@ -196,7 +196,7 @@
                     <div class="container-fluid p-0">
                         <div class="row p-0">
                             <div class="col">
-                                <a href="{{ route('my-data.download') }}" data-widget="tooltip"
+                                <a href="{{ route('my-data.download') }}" data-bs-toggle="tooltip"
                                    title="This includes all your responses to questionnaires" target="_blank"
                                    class="btn btn-primary btn-slim">{{ __("my-account.download_my_data") }}</a>
                             </div>
@@ -218,7 +218,7 @@
                             <div class="col-12">
                                 <a href="#deactivationConfirmationModal"
                                    class="btn btn-outline-danger btn-slim"
-                                   data-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
+                                   data-bs-toggle="modal">{{ __("my-account.deactivate_my_account") }}</a>
                             </div>
                         </div>
                     </div>
@@ -232,7 +232,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">{{ __("my-account.are_you_sure") }}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p class="text-danger">{!! __("my-account.warning_for_deactivation") !!}</p>
@@ -244,7 +244,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                    <button type="button" class="btn btn-default btn-slim w-100" data-dismiss="modal">
+                                    <button type="button" class="btn btn-default btn-slim w-100" data-bs-dismiss="modal">
                                         Close
                                     </button>
                                 </div>

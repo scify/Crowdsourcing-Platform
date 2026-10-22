@@ -8,11 +8,11 @@ use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 
 class ManageQuestionnaires {
     const STATUSES_CSS_CLASSES = [
-        QuestionnaireStatusLkp::DRAFT => 'badge-warning',
-        QuestionnaireStatusLkp::PUBLISHED => 'badge-success',
-        QuestionnaireStatusLkp::FINALIZED => 'badge-primary',
-        QuestionnaireStatusLkp::UNPUBLISHED => 'badge-danger',
-        QuestionnaireStatusLkp::DELETED => 'badge-danger',
+        QuestionnaireStatusLkp::DRAFT => 'text-bg-warning',
+        QuestionnaireStatusLkp::PUBLISHED => 'text-bg-success',
+        QuestionnaireStatusLkp::FINALIZED => 'text-bg-primary',
+        QuestionnaireStatusLkp::UNPUBLISHED => 'text-bg-danger',
+        QuestionnaireStatusLkp::DELETED => 'text-bg-danger',
     ];
 
     public function __construct(public $questionnaires, public $statuses) {}

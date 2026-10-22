@@ -126,9 +126,6 @@ return [
             ],
         ],
     ],
-    'enabled' => [
-        'strictly_necessary',
-    ],
     'required' => ['strictly_necessary'],
     'cookie_lifetime' => 365,
 ];

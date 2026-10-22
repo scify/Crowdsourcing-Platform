@@ -6,33 +6,33 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+    contents: read
+
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup PHP
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2 # NOSONAR - This action is widely used and trusted
         with:
           php-version: '8.3'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: none
+          coverage: pcov
 
       - name: Setup Node.js
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version-file: '.nvmrc'
-
-      - name: Upgrade npm
-        run: npm install -g npm@latest
 
       - name: Run composer install
         run: composer install -n --prefer-dist --no-ansi --no-progress --no-suggest --no-interaction --no-scripts
 
       - name: Install npm dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Build assets with Vite
         run: npm run build
@@ -44,7 +44,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
+        run: chmod -R 755 storage bootstrap/cache
 
       - name: Create storage directories
         run: |
@@ -64,4 +64,10 @@ jobs:
         run: php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: php artisan test --env=testing
+        run: php artisan test --env=testing --coverage --min=48 --coverage-clover=coverage.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml

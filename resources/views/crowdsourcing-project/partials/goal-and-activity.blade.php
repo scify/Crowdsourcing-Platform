@@ -20,7 +20,7 @@
                 <a href="{{ route('questionnaire.statistics', ['questionnaire' => $viewModel->questionnaire->id]) }}"
                    class="btn btn-outline-primary"
                    target="_blank">
-                    <i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>
+                    <i class="fas fa-chart-bar me-1" aria-hidden="true"></i>
                     {{ __("questionnaire.see_results") }}
                 </a>
             </div>

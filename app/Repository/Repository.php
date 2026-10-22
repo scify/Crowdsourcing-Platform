@@ -87,6 +87,13 @@ abstract class Repository implements RepositoryInterface {
         return $this->modelInstance->where($attribute, '=', $id)->update($this->onlyFillable($data));
     }
 
+    /**
+     * Update the records that match an array of column => value criteria.
+     */
+    public function updateWhere(array $criteria, array $data) {
+        return $this->modelInstance->where($criteria)->update($this->onlyFillable($data));
+    }
+
     public function updateOrCreate($criteria, $data) {
         return $this->modelInstance->updateOrCreate(
             $criteria,

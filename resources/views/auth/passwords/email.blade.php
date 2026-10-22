@@ -12,7 +12,7 @@
         <form action="{{ route('password.email') }}" method="post">
             {!! csrf_field() !!}
 
-            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+            <div class="mb-3 has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                 <input type="email" name="email" class="form-control" value="{{ $email ?? old('email') }}"
                        placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -26,7 +26,7 @@
                 <div class="row auth-btn-container">
                     <div class="col-md-6 col-sm-11 mx-auto">
                         <button type="submit"
-                                class="btn btn-primary btn-block btn-flat m-0"
+                                class="btn btn-primary w-100 btn-flat m-0"
                         >{{ __("login-register.send_password_reset_link")}}</button>
                     </div>
                 </div>

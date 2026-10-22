@@ -1,5 +1,5 @@
 import "select2";
-import "summernote/dist/summernote-bs4.min";
+import "summernote/dist/summernote-bs5.min";
 
 import { createApp } from "vue";
 import store from "../store/store";

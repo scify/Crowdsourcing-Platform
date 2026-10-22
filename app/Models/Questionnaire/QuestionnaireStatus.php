@@ -12,6 +12,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $title
  * @property string $description
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireStatus newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireStatus newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireStatus query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireStatus whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireStatus whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireStatus whereTitle($value)
+ *
+ * @mixin \Eloquent
  */
 class QuestionnaireStatus extends Model {
     public $timestamps = false;

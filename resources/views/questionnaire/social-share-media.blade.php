@@ -3,7 +3,7 @@
         <div class="dropdown show">
             <a class="fb-share-button btn btn-lg btn-default dropdown-toggle {{ strtolower($mediumName) }}"
                href="#" role="button" id="dropdownMenuLink"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fab {{ $fontAwesomeBtnClass }}"></i>{{ $mediumName }}
             </a>
 
@@ -14,7 +14,7 @@
                         'questionnaire_title' => $viewModel->questionnaire->fieldsTranslation->title ,
                         'questionnaire_id' =>$viewModel->questionnaire->id,
                         'socialShareURL' => $viewModel->getSocialShareURL($project, strtolower($mediumName)),
-                        'additionalBtnStyleClasses' => 'text-left btn-link mb-2',
+                        'additionalBtnStyleClasses' => 'text-start btn-link mb-2',
                         'btnText' => 'Share for: ' . $project->defaultTranslation->name
                     ])
                 @endforeach

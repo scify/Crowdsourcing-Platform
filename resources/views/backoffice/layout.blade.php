@@ -14,46 +14,41 @@
     @vite('resources/assets/sass/common.scss')
     @vite('resources/assets/sass/common-backoffice.scss')
     @stack('css')
-    <!--[if lt IE 9]>
-    <script defer src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script defer src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-    <![endif]-->
     @include('analytics')
 </head>
-<body class="logged-in-env {{ !app(Gate::class)->check("moderate-content-by-users")? "no-sidebar": ""  }} hold-transition skin-white sidebar-mini layout-fixed layout-navbar-fixed @yield('body_class')">
-<div id="app" class="wrapper">
+<body class="backoffice logged-in-env {{ !app(Gate::class)->check("moderate-content-by-users") ? "no-sidebar" : "" }} @yield('body_class')">
+<div id="app">
     @include("backoffice.partials.header-controls")
-    @canany(['moderate-content-by-users'])
-        @include("backoffice.partials.sidebar-menu")
-    @endcanany
-    <div class="content-wrapper">
-        <section class="content">
-            <div class="container" id="main-content">
-                <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="row my-4">
-                        <div class="col p-0">
-                            @yield("content-header")
+    <div class="bo-body">
+        @canany(['moderate-content-by-users'])
+            @include("backoffice.partials.sidebar-menu")
+        @endcanany
+        <main class="bo-main">
+            <section class="content">
+                <div class="container" id="main-content">
+                    <div class="content-header">
+                        <div class="row my-4">
+                            <div class="col p-0">
+                                @yield("content-header")
+                            </div>
                         </div>
                     </div>
+                    @include('partials.flash-messages-and-errors')
+                    @yield('content')
                 </div>
-                @include('partials.flash-messages-and-errors')
-                @yield('content')
-            </div>
-        </section>
+            </section>
+            <footer class="bo-footer">
+                <div class="float-end d-none d-sm-inline">
+                    <b>Version</b> {{ config("app.version") }}
+                </div>
+                <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
+            </footer>
+        </main>
     </div>
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-inline">
-            <b>Version</b> {{ config("app.version")}}
-        </div>
-        <strong>Created by <a target="_blank" href="https://www.scify.org">SciFY.org</a></strong>
-    </footer>
-
 </div>
 
 @stack("modals")
-@include("partials.footer-scripts",["includeBackofficeCommonJs" => true])
+@include("partials.footer-scripts", ["includeBackofficeCommonJs" => true])
 
 </body>
 </html>

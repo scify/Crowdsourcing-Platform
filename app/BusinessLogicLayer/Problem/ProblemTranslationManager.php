@@ -78,13 +78,12 @@ class ProblemTranslationManager {
                     'problem_id' => $problemId,
                     'language_id' => $oldExtraTranslation['language_id'],
                 ];
-                $this->problemTranslationRepository->update(
+                $this->problemTranslationRepository->updateWhere(
+                    $problemAndLanguage,
                     array_merge($problemAndLanguage, [
                         'title' => $newExtraTranslation->title,
                         'description' => $newExtraTranslation->description,
-                    ]),
-                    $problemAndLanguage,
-                    $problemAndLanguage
+                    ])
                 );
 
                 // keep track that the translation has already been updated in the DB

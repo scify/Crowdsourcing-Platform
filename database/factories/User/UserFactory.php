@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Random\RandomException;
 
+/**
+ * @extends Factory<User>
+ */
 class UserFactory extends Factory {
     protected $model = User::class;
 

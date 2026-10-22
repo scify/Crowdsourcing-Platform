@@ -1,42 +1,25 @@
-import "icheck";
-
-import "fastclick";
-import "admin-lte/dist/js/adminlte.min"; // 'admin-lte/dist/js/app.min.js'
-
-import "jquery-slimscroll";
-
-import "datatables.net";
-import "datatables.net-bs4";
-import "datatables.net-buttons";
-import "datatables.net-buttons-bs4";
-
-import "datatables.net-responsive";
-import "datatables.net-responsive-bs4";
-import "datatables.net-select";
-import "datatables.net-select-bs4";
+// Import the Bootstrap 5 styling variants only. Each one pulls in both the
+// DataTables core (via datatables.net-bs5) and its own base extension, so a
+// single core instance is shared. Importing the base extensions directly as
+// well risks resolving a second core instance.
+import "datatables.net-bs5";
+import "datatables.net-buttons-bs5";
+import "datatables.net-responsive-bs5";
+import "datatables.net-select-bs5";
 import Clipboard from "clipboard/dist/clipboard";
 import $ from "jquery";
 import { showToast } from "./common-utils";
-
-const MOBILE_WIDTH = 768;
+import { initBackofficeSidebar } from "./backoffice-sidebar";
 
 (function () {
-	const initializeIcheck = function () {
-		$(".icheck-input").iCheck({
-			checkboxClass: "icheckbox_square-blue",
-			radioClass: "iradio_square-blue",
-			increaseArea: "20%", // optional
-		});
-	};
-
 	const closeDismissibleAlerts = function () {
 		setTimeout(function () {
 			/* Close any flash message after some time*/
 			window
-				.$(".alert-dismissable")
+				.$(".alert-dismissable, .alert-dismissible")
 				.fadeTo(4000, 500)
 				.slideUp(500, function () {
-					window.$(".alert-dismissable").alert("close");
+					window.bootstrap.Alert.getOrCreateInstance(this).close();
 				});
 		}, 5000);
 	};
@@ -71,40 +54,17 @@ const MOBILE_WIDTH = 768;
 	};
 
 	const initializeTooltips = function () {
-		window.$('[data-toggle="tooltip"]').tooltip();
-	};
-
-	const toggleIconOnSidebarMenuToggle = function () {
-		// if on mobile, set the icon to "fa-chevron-right" by default
-		if (window.innerWidth < MOBILE_WIDTH) {
-			$("#sidebar-menu-toggler").find("i").removeClass("fa-chevron-left").addClass("fa-chevron-right");
-		}
-
-		const toggler = $("#sidebar-menu-toggler");
-		// on click, check if the button has an <i> element with a "fa-chevron-left" class.
-		// If it does, then change it to "fa-chevron-right". Otherwise, change it to "fa-chevron-left".
-		toggler.on("click", function () {
-			// check if we are not in a mobile device
-			if (window.innerWidth < MOBILE_WIDTH) {
-				return;
-			}
-
-			const icon = toggler.find("i");
-			if (icon.hasClass("fa-chevron-left")) {
-				icon.removeClass("fa-chevron-left").addClass("fa-chevron-right");
-			} else {
-				icon.removeClass("fa-chevron-right").addClass("fa-chevron-left");
-			}
+		document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+			window.bootstrap.Tooltip.getOrCreateInstance(el);
 		});
 	};
 
 	$(document).ready(function () {
-		initializeIcheck();
+		initBackofficeSidebar();
 		closeDismissibleAlerts();
 		initClipboardElements();
 		listenToReadMoreClicks();
 		initializeTooltips();
-		toggleIconOnSidebarMenuToggle();
 	});
 })();
 

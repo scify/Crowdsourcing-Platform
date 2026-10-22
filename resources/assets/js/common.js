@@ -43,12 +43,12 @@ if (import.meta.env.VITE_SENTRY_DSN_PUBLIC) {
 		// get all textarea elements
 		// and trim their values
 		$("textarea").each(function () {
-			$(this).val($.trim($(this).val()));
+			// String.prototype.trim: $.trim was removed in jQuery 4
+			$(this).val(($(this).val() || "").trim());
 		});
 	};
 
 	const init = function () {
-		$(".dropdown-toggle").dropdown();
 		handleLogoutBtnClick();
 		$(".smooth-goto").on("click", function () {
 			$("html, body").animate({ scrollTop: $(this.hash).offset().top - 100 }, 1000);

@@ -55,7 +55,7 @@ class CreateEditSolution {
     }
 
     public function isEditMode(): bool {
-        return $this->solution->id !== null;
+        return $this->solution->exists;
     }
 
     public function isStatusTheDefault(int $status_id): bool {

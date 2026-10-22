@@ -24,6 +24,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
  * @property-read User $user
+ * @property int|null $project_id
+ * @property string|null $browser_fingerprint_id
+ * @property string|null $browser_ip
+ * @property string|null $response_json_translated
+ * @property-read CrowdSourcingProject|null $project
+ * @property-read Questionnaire|null $questionnaire
+ *
+ * @method static \Database\Factories\Questionnaire\QuestionnaireResponseFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereBrowserFingerprintId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereBrowserIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereLanguageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereQuestionnaireId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereResponseJson($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereResponseJsonTranslated($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|QuestionnaireResponse withoutTrashed()
+ *
+ * @mixin \Eloquent
  */
 class QuestionnaireResponse extends Model {
     use HasFactory;

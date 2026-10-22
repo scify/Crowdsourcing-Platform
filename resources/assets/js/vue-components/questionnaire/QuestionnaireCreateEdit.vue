@@ -15,9 +15,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Projects the Questionnaire belongs to</label>
+							<label class="col-form-label" for="language">Projects the Questionnaire belongs to</label>
 						</div>
 						<div class="col-md-6 col-sm-9 col-xs-12">
 							<select id="project-ids" class="select2" multiple="multiple">
@@ -32,9 +32,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Type</label>
+							<label class="col-form-label" for="language">Type</label>
 						</div>
 						<div class="col-md-6 col-sm-9 col-xs-12">
 							<select id="questionnaire-types" v-model="questionnaire.type_id">
@@ -48,9 +48,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Statistics page visibility</label>
+							<label class="col-form-label" for="language">Statistics page visibility</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
@@ -68,9 +68,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Show general statistics charts</label>
+							<label class="col-form-label" for="goal">Show general statistics charts</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -81,9 +81,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Show file-type question statistics</label>
+							<label class="col-form-label" for="goal">Show file-type question statistics</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -94,9 +94,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Allow anonymous responses</label>
+							<label class="col-form-label" for="language">Allow anonymous responses</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
@@ -112,9 +112,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="title">Questionnaire's Title</label>
+							<label class="col-form-label" for="title">Questionnaire's Title</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -126,9 +126,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="description">Description</label>
+							<label class="col-form-label" for="description">Description</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<textarea
@@ -140,9 +140,9 @@
 							</textarea>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Responses Goal</label>
+							<label class="col-form-label" for="goal">Responses Goal</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -155,9 +155,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="goal">Max number of votes (statistics page)</label>
+							<label class="col-form-label" for="goal">Max number of votes (statistics page)</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<input
@@ -169,9 +169,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group">
+					<div class="row mb-3">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label>Other translations</label>
+							<label class="col-form-label">Other translations</label>
 						</div>
 						<div class="col-md-10 col-sm-6 col-xs-12">
 							<translations-manager
@@ -181,9 +181,9 @@
 							/>
 						</div>
 					</div>
-					<div class="row form-group mb-5">
+					<div class="row mb-5">
 						<div class="col-md-2 col-sm-3 col-xs-12">
-							<label for="language">Default Language</label>
+							<label class="col-form-label" for="language">Default Language</label>
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12">
 							<select
@@ -210,8 +210,8 @@
 							<button
 								class="btn btn-primary btn-slimmer"
 								type="button"
-								data-toggle="collapse"
-								data-target="#collapseHelpFileType"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseHelpFileType"
 								aria-expanded="false"
 								aria-controls="collapseHelpFileType"
 							>
@@ -279,6 +279,23 @@
 					</div>
 					<div class="row editor-wrapper">
 						<div class="col-12">
+							<div v-if="activeTab === 'translation'" class="mb-3 d-flex gap-2">
+								<button
+									type="button"
+									class="btn btn-outline-primary"
+									@click="translateQuestionnaireToLocales(getSelectedLocales())"
+								>
+									Generate Translations
+								</button>
+								<button
+									v-if="questionnaire.id"
+									type="button"
+									class="btn btn-outline-secondary"
+									@click="questionnaireLanguagesModalOpen = true"
+								>
+									Mark languages as approved
+								</button>
+							</div>
 							<div id="questionnaire-editor"></div>
 						</div>
 					</div>
@@ -286,11 +303,7 @@
 				<div class="card-footer">
 					<div class="row">
 						<div class="col-md-2">
-							<button
-								:disabled="loading"
-								class="btn btn-block btn-primary btn-lg w-100"
-								@click="saveQuestionnaire"
-							>
+							<button :disabled="loading" class="btn btn-primary btn-lg w-100" @click="saveQuestionnaire">
 								Save
 							</button>
 						</div>
@@ -333,16 +346,19 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, markRaw } from "vue";
 import { mapActions } from "vuex";
-import * as Survey from "survey-jquery";
-import * as SurveyCreator from "survey-creator";
+import { Model, Serializer, surveyLocalization, setLicenseKey } from "survey-core";
+import { SurveyCreator } from "survey-creator-js";
+import { editorLocalization } from "survey-creator-core";
 import { arrayMove, showToast } from "../../common-utils";
 import { isObject } from "../../common-backoffice";
 import QuestionnaireLanguages from "./QuestionnaireLanguages.vue";
 import CommonModal from "../common/ModalComponent.vue";
 import TranslationsManager from "../common/TranslationsManager.vue";
 import select2 from "select2";
+
+if (import.meta.env.VITE_SURVEYJS_LICENSE_KEY) setLicenseKey(import.meta.env.VITE_SURVEYJS_LICENSE_KEY);
 
 select2($);
 const FILE_MAX_SIZE_BYTES = 3145728; // 3MB;
@@ -408,7 +424,7 @@ export default defineComponent({
 				"file",
 			],
 			colors: [],
-			isTranTabInitialised: false,
+			activeTab: "designer",
 			modalOpen: false,
 			modalMessage: null,
 			defaultLocale: null,
@@ -471,76 +487,60 @@ export default defineComponent({
 
 			this.initLocaleForQuestionnaireEditor(locale);
 
-			Survey.JsonObject.metaData.addProperty("itemvalue", {
+			Serializer.addProperty("itemvalue", {
 				name: "statsColor",
 				title: "Stats Color",
 				choices: this.colors,
 				isRequired: false,
 			});
 
-			Survey.Serializer.findProperty("question", "name").readOnly = true;
+			Serializer.findProperty("question", "name").readOnly = true;
 
 			const options = {
-				showEmbeddedSurveyTab: false,
-				showTestSurveyTab: true,
+				showDesignerTab: true,
+				showPreviewTab: true,
 				showJSONEditorTab: true,
 				showTranslationTab: true,
+				showLogicTab: false,
+				showThemeTab: false,
 				questionTypes: this.questionTypes,
 			};
 
-			this.surveyCreator = new SurveyCreator.SurveyCreator(null, options);
+			// markRaw: Vue must not proxy the Creator model (identity checks inside the library break).
+			this.surveyCreator = markRaw(new SurveyCreator(options));
 			this.surveyCreator.render("questionnaire-editor");
-			this.surveyCreator.haveCommercialLicense = true;
 			this.surveyCreator.onQuestionAdded.add((sender, options) => {
 				const question = options.question;
 				const type = question.getType();
 				if (type === "file") {
 					question.maxSize = FILE_MAX_SIZE_BYTES;
 					question.waitForUpload = true;
-					question.allowImagesPreview = true;
 					question.storeDataAsText = false;
 				}
+			});
+			// The translation-tab buttons live in the Vue template and show only while that tab is active.
+			this.surveyCreator.onActiveTabChanged.add((_, options) => {
+				this.activeTab = options.tabName;
 			});
 
 			if (this.questionnaireData.questionnaire_json)
 				this.surveyCreator.text = this.assignRandomColorsToChoices(this.questionnaireData.questionnaire_json);
-			const instance = this;
-			const usedLocales = new Survey.Model(this.surveyCreator.text).getUsedLocales();
-
-			if (!this.isTranTabInitialised) {
-				if (usedLocales.length) this.surveyCreator.translation.setSelectedLocales(usedLocales);
-				this.isTranTabInitialised = true;
-				this.surveyCreator.translation.mergeLocaleWithDefault();
-				this.surveyCreator.translation.toolbarItems.push({
-					id: "auto-translate",
-					visible: true,
-					title: "Generate Translations",
-					action: () => {
-						instance.translateQuestionnaireToLocales(
-							instance.surveyCreator.translation.getSelectedLocales(),
-						);
-					},
-				});
-				if (this.questionnaire.id)
-					this.surveyCreator.translation.toolbarItems.push({
-						id: "questionnaire-languages",
-						visible: true,
-						title: "Mark languages as approved",
-						action: () => {
-							instance.questionnaireLanguagesModalOpen = true;
-						},
-					});
-			}
+		},
+		getSelectedLocales() {
+			// The translation model exists only while the Translation tab is active.
+			const plugin = this.surveyCreator.getPlugin("translation");
+			const model = plugin && plugin.model;
+			const locales = model ? model.getSelectedLocales() : new Model(this.surveyCreator.JSON).getUsedLocales();
+			return (locales ?? []).filter((l) => l !== "");
 		},
 		initLocaleForQuestionnaireEditor(locale) {
 			this.defaultLocale = locale;
 			arrayMove(this.languages, this.getIndexOfDefaultLocale(), 0);
-			Survey.surveyLocalization.supportedLocales = this.languages.map((language) => language.language_code);
-			Survey.surveyLocalization.defaultLocale = this.defaultLocale;
-			SurveyCreator.editorLocalization.currentLocale = this.defaultLocale;
+			surveyLocalization.supportedLocales = this.languages.map((language) => language.language_code);
+			surveyLocalization.defaultLocale = this.defaultLocale;
+			editorLocalization.currentLocale = this.defaultLocale;
 			for (let i = 0; i < this.languages.length; i++)
-				Survey.surveyLocalization.localeNames[this.languages[i].language_code] =
-					this.languages[i].language_name;
+				surveyLocalization.localeNames[this.languages[i].language_code] = this.languages[i].language_name;
 		},
 		getIndexOfDefaultLocale() {
 			for (let i = 0; i < this.languages.length; i++)
@@ -550,11 +550,11 @@ export default defineComponent({
 		async translateQuestionnaireToLocales(locales) {
 			locales = locales.filter((el) => el !== "");
 			if (!locales.length) {
-				const { default: swal } = await import("bootstrap-sweetalert");
-				return swal({
+				const { default: Swal } = await import("sweetalert2");
+				return Swal.fire({
 					title: "Languages Missing!",
 					text: "Please provide at least one language from the dropdown menu.",
-					type: "warning",
+					icon: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
@@ -573,7 +573,7 @@ export default defineComponent({
 					handleError: false,
 				});
 				this.surveyCreator.changeText(response.data.translation);
-				this.surveyCreator.showTranslationEditor();
+				this.surveyCreator.switchTab("translation");
 				this.modalOpen = false;
 				showToast(
 					"Translations generated! Don't forget to Save the questionnaire!",
@@ -587,9 +587,7 @@ export default defineComponent({
 			}
 		},
 		async saveQuestionnaire() {
-			let locales = this.surveyCreator.translationValue.getSelectedLocales() ?? [];
-			// filter out locales that are empty strings
-			locales = locales.filter((l) => l !== "");
+			const locales = this.getSelectedLocales();
 			const data = {
 				title: this.questionnaire.default_fields_translation.title,
 				description: this.questionnaire.default_fields_translation.description,
@@ -614,11 +612,11 @@ export default defineComponent({
 				});
 
 			if (this.formInvalid(data)) {
-				const { default: swal } = await import("bootstrap-sweetalert");
-				return swal({
+				const { default: Swal } = await import("sweetalert2");
+				return Swal.fire({
 					title: "Fields Missing!",
 					text: "Please provide a goal and at least one project.",
-					type: "warning",
+					icon: "warning",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
@@ -634,27 +632,26 @@ export default defineComponent({
 					handleError: false,
 				});
 				this.loading = false;
-				const { default: swal } = await import("bootstrap-sweetalert");
-				swal(
-					{
-						title: "Success!",
-						text: "The questionnaire has been successfully stored.",
-						type: "success",
-						confirmButtonClass: "btn-success",
-						confirmButtonText: "OK",
-					},
-					() => {
+				const { default: Swal } = await import("sweetalert2");
+				Swal.fire({
+					title: "Success!",
+					text: "The questionnaire has been successfully stored.",
+					icon: "success",
+					confirmButtonClass: "btn-success",
+					confirmButtonText: "OK",
+				}).then((result) => {
+					if (result.isConfirmed) {
 						// refresh the page
 						location.reload();
-					},
-				);
+					}
+				});
 			} catch (error) {
 				this.loading = false;
-				const { default: swal } = await import("bootstrap-sweetalert");
-				swal({
+				const { default: Swal } = await import("sweetalert2");
+				Swal.fire({
 					title: "Oops!",
 					text: "An error occurred, please try again later." + error.toString(),
-					type: "error",
+					icon: "error",
 					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 				});
@@ -773,23 +770,3 @@ export default defineComponent({
 	},
 });
 </script>
-
-<style scoped lang="scss">
-@import "../../../sass/variables.scss";
-
-#questionnaire-create-edit {
-	.sjs-cb-switch input:checked {
-		background-color: $brand-primary;
-		border-color: $brand-primary;
-	}
-
-	.svd-empty-message-container .svd-empty-message {
-		color: $brand-primary;
-	}
-
-	.svd_container .icon-gearactive .svd-svg-icon,
-	.svd_container .icon-dotsactive .svd-svg-icon {
-		fill: $brand-primary;
-	}
-}
-</style>

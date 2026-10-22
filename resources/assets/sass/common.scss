@@ -1,20 +1,16 @@
 @import "_variables.scss";
 @import "bootstrap/scss/bootstrap";
-@import "bootstrap/scss/functions";
 
 // Fonts
 @import "@fortawesome/fontawesome-free/css/all.css";
-@import url("../../../node_modules/icheck/skins/square/blue.css");
 @import url("jquery-toast-plugin/dist/jquery.toast.min.css");
-@import "../../../node_modules/bootstrap-sweetalert/dist/sweetalert.css";
+@import "../../../node_modules/sweetalert2/dist/sweetalert2.min.css";
 
 // Supports weights 100-900
 @import "@fontsource-variable/noto-sans";
 
 // Supports weights 300-800
 @import "@fontsource-variable/open-sans";
-
-@import "sidebar";
 
 // import everything from the common folder
 @import "shared/button";
@@ -305,7 +301,7 @@ table {
 }
 
 .color-picker {
-	.input-group-addon {
+	.input-group-text {
 		height: 33px;
 		width: 33px;
 		margin-left: 0.5rem;

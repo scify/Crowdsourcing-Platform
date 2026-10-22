@@ -10,7 +10,7 @@
                                  src="{{$viewModel->project->sm_featured_img_path ? asset($viewModel->project->sm_featured_img_path) : ''}}"
                                  alt="Social media featured">
                         </div>
-                        <div class="form-group has-feedback input-file-wrapper">
+                        <div class="mb-3 has-feedback input-file-wrapper">
                             <small>In order to update the currently selected image, please choose a new
                                 image by
                                 clicking the button below.
@@ -24,7 +24,7 @@
                 <div class="row">
                     <label class="col-sm-12 control-label" for="sm_title">Social Media Title</label>
                     <div class="col-sm-12">
-                        <div class="form-group has-feedback {{ $errors->has('sm_title') ? 'has-error' : '' }}">
+                        <div class="mb-3 has-feedback {{ $errors->has('sm_title') ? 'has-error' : '' }}">
                             <input id="sm_title" type="text" class="form-control" name="sm_title"
                                    value="{{ old('sm_title') ? old('sm_title') : $viewModel->project->defaultTranslation->sm_title  }}"
                                    placeholder="Enter the title you would like to appear when posting the project to social media">
@@ -37,7 +37,7 @@
                     <label class="col-md-12 control-label" for="sm_description">Social Media Description<br>
                     </label>
                     <div class="col-md-12">
-                        <div class="form-group has-feedback">
+                        <div class="mb-3 has-feedback">
                         <textarea id="sm_description" class="form-control" name="sm_description"
                                   placeholder="Enter the description you would like to appear when posting the project to social media">
                             {{ old('sm_description') ? old('sm_description') : trim($viewModel->project->defaultTranslation->sm_description) }}</textarea>

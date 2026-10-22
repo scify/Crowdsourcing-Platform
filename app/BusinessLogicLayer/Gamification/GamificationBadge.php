@@ -24,6 +24,8 @@ abstract class GamificationBadge {
 
     abstract protected function getBadgeMessageForLevel();
 
+    abstract public function getNextStepMessage(): string|array|null;
+
     abstract public function getEmailBody();
 
     protected function calculateLevel(): int {

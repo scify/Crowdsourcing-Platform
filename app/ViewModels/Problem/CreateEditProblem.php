@@ -56,7 +56,7 @@ class CreateEditProblem {
     }
 
     public function isEditMode(): bool {
-        return $this->problem->id !== null;
+        return $this->problem->exists;
     }
 
     public function shouldLanguageBeSelected(Language $language): bool {

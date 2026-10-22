@@ -13,7 +13,7 @@ class QuestionnaireTranslationRepository extends Repository {
         return QuestionnaireFieldsTranslation::class;
     }
 
-    public function getQuestionnaireLanguage($questionnaireId, $langId): QuestionnaireLanguage {
+    public function getQuestionnaireLanguage($questionnaireId, $langId): ?QuestionnaireLanguage {
         return QuestionnaireLanguage::where(['questionnaire_id' => $questionnaireId, 'language_id' => $langId])->first();
     }
 }

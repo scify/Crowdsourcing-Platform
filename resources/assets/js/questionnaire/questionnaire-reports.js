@@ -1,7 +1,12 @@
-import * as Survey from "survey-jquery";
-import { Tabulator } from "survey-analytics/survey.analytics.tabulator.js";
-import "datatables.net-buttons-bs4";
+import { Model, setLicenseKey } from "survey-core";
+import "survey-js-ui";
+import { DefaultLight } from "survey-core/themes";
+import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
+import "datatables.net-buttons-bs5";
 import "datatables.net-buttons/js/buttons.html5.mjs";
+import DOMPurify from "dompurify";
+
+if (import.meta.env.VITE_SURVEYJS_LICENSE_KEY) setLicenseKey(import.meta.env.VITE_SURVEYJS_LICENSE_KEY);
 
 (function () {
 	let respondentsTable;
@@ -21,14 +26,15 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 
 	const updateURLSearchParams = function (criteria) {
 		const searchParams = new URLSearchParams(window.location.search);
+		const questionnaireId = /^\d+$/.test(String(criteria.questionnaireId)) ? criteria.questionnaireId : "";
 		let newURL;
 		if (searchParams.has("questionnaireId")) {
 			newURL = location.href.replace(
 				"questionnaireId=" + searchParams.get("questionnaireId"),
-				"questionnaireId=" + criteria.questionnaireId,
+				"questionnaireId=" + questionnaireId,
 			);
 		} else {
-			newURL = location.href += "?questionnaireId=" + criteria.questionnaireId;
+			newURL = location.href + "?questionnaireId=" + questionnaireId;
 		}
 
 		if (window.history.replaceState) {
@@ -57,7 +63,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 			if (answer) {
 				$("#respondent-answers-modal-title").html(respondentUserData);
 				survey.data = answer;
-				window.$("#respondent-answers-modal").modal();
+				window.bootstrap.Modal.getOrCreateInstance(document.getElementById("respondent-answers-modal")).show();
 			}
 		});
 	};
@@ -67,14 +73,13 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		body.on("click", ".delete-response-btn", function () {
 			const questionnaireResponseId = $(this).data("questionnaireResponseId");
 			$("input[name=questionnaire_response_id]").val(questionnaireResponseId);
-			window.$("#delete-response-modal").modal();
+			window.bootstrap.Modal.getOrCreateInstance(document.getElementById("delete-response-modal")).show();
 		});
 
 		body.on("click", "#delete-response-form-btn", function () {
 			const questionnaireResponseId = $("input[name=questionnaire_response_id]").val();
 			const loader = $("#delete-response-loader");
 			const errorEl = $("#delete-response-error");
-			const swal = import("bootstrap-sweetalert");
 			const headers = {
 				"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
 			};
@@ -95,19 +100,21 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 					const tableRow = $("#questionnaire_response_" + questionnaireResponseId);
 					respondentsTable.row(tableRow).remove().draw();
 
-					window.$("#delete-response-modal").modal("hide");
-					swal({
-						title: "Response deleted!",
-						text: "",
-						type: "success",
-						confirmButtonClass: "btn-success",
-						confirmButtonText: "OK",
+					window.bootstrap.Modal.getOrCreateInstance(document.getElementById("delete-response-modal")).hide();
+					import("sweetalert2").then(({ default: Swal }) => {
+						Swal.fire({
+							title: "Response deleted!",
+							text: "",
+							icon: "success",
+							confirmButtonClass: "btn-success",
+							confirmButtonText: "OK",
+						});
 					});
 				},
 				error: function (error) {
 					loader.addClass("d-none");
 					errorEl.removeClass("d-none");
-					errorEl.html(error.responseJSON.data);
+					errorEl.text(error.responseJSON.data);
 				},
 			});
 		});
@@ -135,7 +142,7 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 			error: function (error) {
 				loader.addClass("d-none");
 				errorEl.removeClass("d-none");
-				errorEl.html(error.responseJSON.data);
+				errorEl.text(error.responseJSON.data);
 			},
 		});
 	};
@@ -144,12 +151,13 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 		const resultsEl = $("#results");
 		resultsEl.html("");
 		$("#errorMsg").addClass("d-none");
-		resultsEl.html(response.data.view);
+		resultsEl.html(DOMPurify.sanitize(response.data.view));
 		questionnaire = response.data.questionnaire;
 		answers = response.data.responses;
-		survey = new Survey.Model(JSON.parse(questionnaire.questionnaire_json));
+		survey = new Model(JSON.parse(questionnaire.questionnaire_json));
+		survey.applyTheme(DefaultLight);
 		survey.mode = "display";
-		survey.render("respondent-answers-panel");
+		survey.render(document.getElementById("respondent-answers-panel"));
 		initializeDataTables();
 		initializeQuestionnaireResponsesReport();
 		loader.addClass("d-none");
@@ -187,7 +195,6 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 	const initializeQuestionnaireResponsesReport = function () {
 		const panelEl = document.getElementById("questionnaire-responses-report");
 		panelEl.innerHTML = "";
-		Tabulator.haveCommercialLicense = true;
 		const answersForSurveyTabulator = answers.map((answer) => JSON.parse(answer.response_json));
 		const surveyAnalyticsTabulator = new Tabulator(survey, answersForSurveyTabulator, {
 			downloadButtons: ["csv"],
@@ -197,7 +204,6 @@ import "datatables.net-buttons/js/buttons.html5.mjs";
 
 	const init = function () {
 		loader = $("#loader");
-		Survey.StylesManager.applyTheme("modern");
 
 		searchBtnHandler();
 		viewResponseBtnHandler();

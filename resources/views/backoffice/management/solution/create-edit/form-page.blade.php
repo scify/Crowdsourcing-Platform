@@ -3,7 +3,7 @@
 @section('content-header')
     <h1>{{ $viewModel->isEditMode() ? 'Edit' : 'Create' }}
         Solution for: {{ $viewModel->problem->defaultTranslation->title}}
-        <br><small class="font-weight-light">(required fields are marked with <span class="red">*</span>)</small></h1>
+        <br><small class="fw-light">(required fields are marked with <span class="red">*</span>)</small></h1>
 @endsection
 
 @push('css')
@@ -28,11 +28,11 @@
         <div class="container-fluid p-0">
             <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="basic-details-tab" data-toggle="tab" href="#basic-details" role="tab"
+                    <a class="nav-link active" id="basic-details-tab" data-bs-toggle="tab" href="#basic-details" role="tab"
                        aria-controls="basic-details" aria-selected="true">Basic Details</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="translations-tab" data-toggle="tab" href="#translations" role="tab"
+                    <a class="nav-link" id="translations-tab" data-bs-toggle="tab" href="#translations" role="tab"
                        aria-controls="translations" aria-selected="false">Translations</a>
                 </li>
             </ul>

@@ -5,12 +5,12 @@
             <ul id="features-nav" class="nav nav-pills justify-content-center mb-5" role="tablist">
                 <li role="presentation" class="nav-item"><a class="nav-link active" href="#administrators"
                                                             aria-controls="administrators" role="tab"
-                                                            data-toggle="tab">
+                                                            data-bs-toggle="tab">
                         {{ __('common.for_organisations') }}
                     </a></li>
                 <li role="presentation" class="nav-item"><a class="nav-link" href="#citizens"
                                                             aria-controls="citizens" role="tab"
-                                                            data-toggle="tab">
+                                                            data-bs-toggle="tab">
                         {{ __('common.built_for_citizens') }}
                     </a></li>
             </ul>

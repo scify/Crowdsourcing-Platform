@@ -48,6 +48,7 @@ class SolutionManager {
      * In edit   mode $problem_id is null         & $solution_id is passed to fn
      */
     public function getCreateEditSolutionViewModel(?int $problem_id, ?int $solution_id = null): CreateEditSolution {
+        $problem = null;
         if ($problem_id !== null && $problem_id !== 0) {
             $problem = $this->problemRepository->find($problem_id);
         }
@@ -195,15 +196,15 @@ class SolutionManager {
         foreach ($solutionStatuses as $solutionStatus) {
             switch ($solutionStatus->id) {
                 case SolutionStatusLkp::PUBLISHED:
-                    $solutionStatus->badgeCSSClass = 'badge-success';
+                    $solutionStatus->badgeCSSClass = 'text-bg-success';
 
                     break;
                 case SolutionStatusLkp::UNPUBLISHED:
-                    $solutionStatus->badgeCSSClass = 'badge-danger';
+                    $solutionStatus->badgeCSSClass = 'text-bg-danger';
 
                     break;
                 default:
-                    $solutionStatus->badgeCSSClass = 'badge-dark';
+                    $solutionStatus->badgeCSSClass = 'text-bg-dark';
                     $solutionStatus->description = 'The problem is in an unknown status';
             }
         }

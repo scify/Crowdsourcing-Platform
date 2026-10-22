@@ -445,6 +445,69 @@ class CrowdSourcingProjectControllerTest extends TestCase {
     }
 
     #[Test]
+    public function admin_can_open_solution_submission_and_voting_when_updating_project(): void {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $project = CrowdSourcingProject::factory()->create([
+            'solution_submission_open' => 0,
+            'solution_voting_open' => 0,
+        ]);
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update',
+            ['locale' => 'en', 'project' => $project->id]), [
+                'name' => 'Project Name',
+                'description' => 'Project Description',
+                'motto_title' => 'Motto Title',
+                'motto_subtitle' => 'Motto Subtitle',
+                'status_id' => 1,
+                'language_id' => 1,
+                'solution_submission_open' => 'on',
+                'solution_voting_open' => 'on',
+            ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('crowd_sourcing_projects', [
+            'id' => $project->id,
+            'solution_submission_open' => 1,
+            'solution_voting_open' => 1,
+        ]);
+    }
+
+    #[Test]
+    public function admin_can_close_solution_submission_and_voting_when_updating_project(): void {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))
+            ->create();
+        $this->be($user);
+
+        $project = CrowdSourcingProject::factory()->create([
+            'solution_submission_open' => 1,
+            'solution_voting_open' => 1,
+        ]);
+        // Unchecked checkboxes are not sent by the browser.
+        $response = $this->withoutMiddleware(VerifyCsrfToken::class)->put(route('projects.update',
+            ['locale' => 'en', 'project' => $project->id]), [
+                'name' => 'Project Name',
+                'description' => 'Project Description',
+                'motto_title' => 'Motto Title',
+                'motto_subtitle' => 'Motto Subtitle',
+                'status_id' => 1,
+                'language_id' => 1,
+            ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('crowd_sourcing_projects', [
+            'id' => $project->id,
+            'solution_submission_open' => 0,
+            'solution_voting_open' => 0,
+        ]);
+    }
+
+    #[Test]
     public function admin_cannot_update_project_with_invalid_data(): void {
         $user = User::factory()
             ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::ADMIN]))

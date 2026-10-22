@@ -11,13 +11,13 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h4>Edit Colors for Questionnaire:</h4>
-                <h3 class="font-weight-bold">{{$viewModel->questionnaire->fieldsTranslation->title}}</h3>
+                <h3 class="fw-bold">{{$viewModel->questionnaire->fieldsTranslation->title}}</h3>
             </div>
             <div class="card-body">
                 <div class="container mt-4">
                     <div class="row">
                         <div class="col p-0">
-                            <h3 class="font-weight-bold">Total Responses Colors:</h3>
+                            <h3 class="fw-bold">Total Responses Colors:</h3>
                         </div>
                     </div>
                     <div class="row my-3 py-5 align-items-center bg-gradient-light">
@@ -27,13 +27,10 @@
                                     <h4>Goal Responses</h4>
                                 </div>
                                 <div class="col-lg-7 col-md-6 col-sm-12">
-                                    <div class="input-group colorpicker-component color-picker">
-                                        <input id="goal_responses_color" type="text" name="goal_responses_color"
-                                               class="form-control"
-                                               value="{{ old('goal_responses_color') ? old('goal_responses_color') :
-                                                            $viewModel->getGoalResponsesDefaultColor()  }}" />
-                                        <span class="input-group-addon"><i></i></span>
-                                    </div>
+                                    <input id="goal_responses_color" type="text" name="goal_responses_color"
+                                           class="form-control color-picker-input"
+                                           value="{{ old('goal_responses_color') ? old('goal_responses_color') :
+                                                        $viewModel->getGoalResponsesDefaultColor()  }}" />
                                 </div>
                             </div>
                             <div class="row">
@@ -41,13 +38,10 @@
                                     <h4>Actual Responses</h4>
                                 </div>
                                 <div class="col-lg-7 col-md-6 col-sm-12">
-                                    <div class="input-group colorpicker-component color-picker">
-                                        <input id="actual_responses_color" type="text" name="actual_responses_color"
-                                               class="form-control"
-                                               value="{{ old('actual_responses_color') ? old('actual_responses_color') :
-                                                            $viewModel->getActualResponsesDefaultColor()  }}" />
-                                        <span class="input-group-addon"><i></i></span>
-                                    </div>
+                                    <input id="actual_responses_color" type="text" name="actual_responses_color"
+                                           class="form-control color-picker-input"
+                                           value="{{ old('actual_responses_color') ? old('actual_responses_color') :
+                                                        $viewModel->getActualResponsesDefaultColor()  }}" />
                                 </div>
                             </div>
                         </div>
@@ -55,7 +49,7 @@
 
                     <div class="row mt-5">
                         <div class="col p-0">
-                            <h3 class="font-weight-bold">Language Statistics Colors:</h3>
+                            <h3 class="fw-bold">Language Statistics Colors:</h3>
                         </div>
                     </div>
                     <div class="row my-3 py-5 align-items-center bg-gradient-light">
@@ -67,15 +61,12 @@
                                             ({{ $questionnaireLanguage->language->language_code }})</h4>
                                     </div>
                                     <div class="col-lg-7 col-md-6 col-sm-12">
-                                        <div class="input-group colorpicker-component color-picker">
-                                            <input id="lang_colors_{{ $questionnaireLanguage->language->language_code }}"
-                                                   type="text"
-                                                   name="lang_colors[{{ $questionnaireLanguage->id }}]"
-                                                   class="form-control"
-                                                   value="{{ old('lang_colors[' . $questionnaireLanguage->id . ']') ? old('lang_colors[' . $questionnaireLanguage->id . ']') :
-                                                            $viewModel->getColorForQuestionnaireLanguage($questionnaireLanguage)  }}" />
-                                            <span class="input-group-addon"><i></i></span>
-                                        </div>
+                                        <input id="lang_colors_{{ $questionnaireLanguage->language->language_code }}"
+                                               type="text"
+                                               name="lang_colors[{{ $questionnaireLanguage->id }}]"
+                                               class="form-control color-picker-input"
+                                               value="{{ old('lang_colors[' . $questionnaireLanguage->id . ']') ? old('lang_colors[' . $questionnaireLanguage->id . ']') :
+                                                        $viewModel->getColorForQuestionnaireLanguage($questionnaireLanguage)  }}" />
                                     </div>
                                 </div>
                             @endforeach
@@ -86,7 +77,7 @@
                     <div class="row">
                         <div class="col-md-offset-10 col-md-2">
                             <button type="submit"
-                                    class="btn btn-block btn-primary btn-lg">Save
+                                    class="btn w-100 btn-primary btn-lg">Save
                             </button>
                         </div>
                     </div>

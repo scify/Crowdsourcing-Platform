@@ -1,5 +1,5 @@
 @import "../variables";
-@import "survey-jquery/survey.min.css";
+@import "survey-core/survey-core.css";
 
 #questionnaire-display {
 	.login-message {
@@ -7,57 +7,51 @@
 	}
 
 	.survey-container {
-		.sv-title {
-			color: $brand-primary;
-
-			&.sv-container-modern__title {
-				margin: 0;
-			}
+		// SurveyJS v3 styles everything through --sjs2-* design tokens. The project
+		// colours come from the inline :root variables set in questionnaire-page.blade.php.
+		.sd-root-modern {
+			// brand-600 is the seed the library derives its hover/dim shades from.
+			--sjs2-color-project-brand-600: var(--project-primary-color);
+			--sjs2-color-bg-brand-primary: var(--project-primary-color);
+			--sjs2-color-fg-brand-on-primary: var(--btn-text-color);
+			font-family: "Open Sans", sans-serif;
 		}
 
-		.sv_main .sv_header__text {
+		.sd-header__text {
 			text-align: center;
-		}
 
-		.sv_main .sv_header h3 {
-			text-align: center;
-			margin-top: 2rem;
-			margin-bottom: 2rem;
-			font-weight: 600;
-			font-size: 2.5rem;
-		}
-
-		.sv_main .sv_p_root {
-			.sv_page_title {
-				padding: 0.5em 1em;
-				font-weight: 700;
-				font-size: 1.5em;
-			}
-
-			.sv_page_title + div {
-				.sv-string-viewer.sv-string-viewer--multiline {
-					font-style: italic;
-					padding: 0 1.5em;
-					display: block;
-				}
+			.sd-title {
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+				font-weight: 600;
+				font-size: 2.5rem;
 			}
 		}
 
-		.sv-btn.sv-footer__complete-btn,
-		.sv-btn.sv-footer__next-btn,
-		.sv-btn.sv-footer__prev-btn,
-		.sv-btn.sv-footer__start-btn,
-		.sv_nav_btn {
-			background-color: var(--project-primary-color);
-			color: var(--btn-text-color);
+		.sd-page__title {
+			font-weight: 700;
+			font-size: 1.5em;
+		}
+
+		.sd-page__description {
+			font-style: italic;
+		}
+
+		.sd-navigation__complete-btn,
+		.sd-navigation__next-btn,
+		.sd-navigation__prev-btn,
+		.sd-navigation__start-btn {
 			border-radius: 21px;
 			border: none;
-			width: 270px;
+			min-width: 270px;
 			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 			padding: 25px 30px;
-			font-size: 20px;
-			font-weight: 600;
-			line-height: 25px;
+
+			.sd-action__title {
+				font-size: 20px;
+				font-weight: 600;
+				line-height: 25px;
+			}
 
 			&:hover {
 				box-shadow:
@@ -74,85 +68,14 @@
 			}
 		}
 
-		.sv-btn.sv-footer__prev-btn {
-			float: left;
+		.sd-file__preview-item img {
+			max-width: 100%;
 		}
 
-		.sv-btn.sv-footer__complete-btn,
-		.sv-btn.sv-footer__next-btn,
-		.sv-btn.sv-footer__start-btn {
-			float: right;
-		}
-
-		.sv_main.sv_default_css .sv_body {
-			border-color: var(--project-primary-color);
-		}
-
-		.sv_main .sv_body {
-			padding-left: 0;
-			padding-right: 0;
-		}
-
-		.sv-page.sv-body__page,
-		.sv-footer {
-			margin-left: 0;
-			margin-right: 0;
-		}
-
-		.sv-root-modern .sv-question__title--answer {
-			background-color: rgba(0, 119, 255, 0.2);
-		}
-
-		.sv-root-modern .sv-rating__item--selected .sv-rating__item-text {
-			background-color: $brand-primary;
-			color: rgb(255, 255, 255);
-			border-color: $brand-primary;
-		}
-
-		.sv-root-modern .sv-checkbox--checked .sv-checkbox__svg {
-			background-color: $brand-primary;
-		}
-
-		.sv-root-modern ::-webkit-scrollbar-thumb {
-			background: $brand-primary;
-		}
-
-		.sv-file__preview {
-			width: 100%;
-
-			img {
-				width: 100%;
-			}
-
-			.sv-file__remove-svg {
-				width: 25px;
-				height: 25px;
-			}
-		}
-
-		.sv_main {
-			font-size: large;
-			font-family: "Open Sans", sans-serif;
-		}
-
-		.sv_main.sv_default_css .sv_select_wrapper::before {
-			background-color: $brand-primary;
-		}
-
-		.sv_main .sv_q_file_choose_button {
-			background-color: $brand-primary;
-		}
-
-		.sv_q_description {
-			.sv-string-viewer {
-				margin-top: 10px;
-				margin-bottom: 15px;
-				display: inline-block;
-			}
-		}
-
-		.sv_q.sv_qstn h5 span {
-			display: inline;
+		.sd-question__description .sv-string-viewer {
+			margin-top: 10px;
+			margin-bottom: 15px;
+			display: inline-block;
 		}
 	}
 
@@ -208,10 +131,4 @@
 		padding: 20px;
 		display: block;
 	}
-}
-
-.sv-action-bar.sv-action-bar--default-size-mode.sv_nav {
-	margin: 0 auto;
-	padding-left: 0;
-	overflow: visible;
 }

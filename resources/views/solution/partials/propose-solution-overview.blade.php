@@ -18,7 +18,7 @@
 
     </div>
 </div>
-<div id="propose-solution-description-container" class="container-fluid no-gutters pt-5">
+<div id="propose-solution-description-container" class="container-fluid g-0 pt-5">
     <div class="row">
         <div class="container">
 
