@@ -120,7 +120,7 @@ repeated `php artisan test` runs are stable.
 
 CI runs the suite with `--coverage --min=48`, so the build fails if line
 coverage drops below the floor. When you raise coverage, raise the ratchet by
-bumping `--min` in `.github/workflows/tests.yml`.
+bumping `--min` in `.github/workflows/ci.yml`.
 
 Coverage is uploaded to [Codecov](https://codecov.io/github/scify/Crowdsourcing-Platform)
 on every CI run, which powers the README badge and per-PR coverage reports.
