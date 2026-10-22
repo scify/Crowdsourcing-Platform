@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\BusinessLogicLayer\User;
 
 use App\BusinessLogicLayer\CookieManager;
@@ -17,7 +19,7 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class UserManagerTest extends TestCase {
+final class UserManagerTest extends TestCase {
     /**
      * GIVEN a valid cookie with user ID
      * AND the user does not exist in the database

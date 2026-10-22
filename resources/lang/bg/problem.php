@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'solutions_for' => 'Решения за',
     'how_to_vote' => 'Как да гласувате',

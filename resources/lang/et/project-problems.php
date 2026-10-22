@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'back-to-the-campaign' => 'Tagasi kampaania juurde',
     'the_topic' => 'Aita lahendada teema probleeme:',

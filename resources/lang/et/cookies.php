@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Selle küpsise paigaldab Google Analytics. Küpsist kasutatakse külastajate, seansside ja kampaaniate andmete arvutamiseks ning saidi kasutamise jälgimiseks saidi analüüsiraporti jaoks. Küpsised salvestavad teavet anonüümselt ja määravad ainulaadsete külastajate tuvastamiseks juhuslikult genereeritud numbri.',

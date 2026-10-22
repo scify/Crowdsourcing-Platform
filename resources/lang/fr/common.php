@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -40,7 +42,7 @@ return [
     'our_platform_description' => 'Avec notre <strong>plateforme de Crowdsourcing ECAS</strong>, nous visons à:',
     'our_platform_description_1' => 'encourager les citoyens à s\'exprimer sur des questions qui les affectent directement',
     'our_platform_description_2' => 'augmenter la participation démocratique des citoyens à la vie politique',
-    'our_platform_description_3' => 'stimuler l\'engagement des citoyens avec l\'UE',
+    'our_platform_description_3' => "stimuler l'engagement des citoyens avec l'UE",
     'our_platform_description_4' => 'améliorer la compréhension des citoyens des processus de prise de décision de l\'UE',
     'built_for_citizens' => 'Construit pour les citoyens',
     'open_source_platform' => 'Plateforme open-source',

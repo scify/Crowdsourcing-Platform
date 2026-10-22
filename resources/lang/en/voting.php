@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_in_to_vote' => 'Create and account or sign in to vote',
     'votes_remaining' => 'You have <b>:votes</b> :votesWord left',

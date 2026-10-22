@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_in_to_vote' => 'Hozzon létre egy fiókot, vagy jelentkezzen be a szavazáshoz',
     'votes_remaining' => 'Önnek még <b>:votes</b> :votesWord van hátra',

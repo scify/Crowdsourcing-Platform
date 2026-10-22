@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Ova kampanja je završena.<br>Hvala na vašem doprinosu!',
     'project_unpublished_message' => 'Ova kampanja još nije objavljena.',

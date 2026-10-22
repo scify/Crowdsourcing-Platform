@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -40,13 +42,13 @@ return [
     'our_platform_description' => 'Con la nostra <strong>Piattaforma di Crowdsourcing di ECAS</strong> miriamo a:',
     'our_platform_description_1' => 'incoraggiare i cittadini a esprimersi su questioni che li riguardano direttamente',
     'our_platform_description_2' => 'aumentare la partecipazione democratica dei cittadini alla vita politica',
-    'our_platform_description_3' => 'stimolare l\'impegno dei cittadini con l\'UE',
-    'our_platform_description_4' => 'migliorare la comprensione dei cittadini sui processi decisionali dell\'UE',
+    'our_platform_description_3' => "stimolare l'impegno dei cittadini con l'UE",
+    'our_platform_description_4' => "migliorare la comprensione dei cittadini sui processi decisionali dell'UE",
     'built_for_citizens' => 'Costruito per i cittadini',
     'open_source_platform' => 'Piattaforma open-source',
     'features_citizens_1' => 'Unisciti alla nostra piattaforma di crowdsourcing per <b>far sentire la tua voce</b>! Puoi contribuire alla nostra missione esprimendoti e fornendo il tuo contributo.',
-    'features_citizens_2' => '<b>Verifica l\'impatto</b> del tuo contributo, dopo che le opinioni dei cittadini si trasformano in un rapporto disponibile pubblicamente.',
-    'features_citizens_3' => '<b>Verifica l\'impatto</b> del tuo contributo, dopo che le opinioni dei cittadini si trasformano in un rapporto disponibile pubblicamente.',
+    'features_citizens_2' => "<b>Verifica l'impatto</b> del tuo contributo, dopo che le opinioni dei cittadini si trasformano in un rapporto disponibile pubblicamente.",
+    'features_citizens_3' => "<b>Verifica l'impatto</b> del tuo contributo, dopo che le opinioni dei cittadini si trasformano in un rapporto disponibile pubblicamente.",
     'features_citizens_4' => '<b>Tieni traccia</b> delle tue risposte e rimani informato sulle altre campagne attive.',
     'features_citizens_5' => '<b>Invita i tuoi amici</b> a contribuire a campagne che contano davvero.',
     'features_citizens_6' => '<b>Condividi le tue idee</b> e aiutaci a migliorare la piattaforma.',

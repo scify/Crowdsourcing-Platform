@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Paku Lahendus',
     'proposal_submitted_title' => 'Ettepanek Esitatud',

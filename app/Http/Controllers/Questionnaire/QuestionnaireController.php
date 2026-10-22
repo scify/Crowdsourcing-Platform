@@ -46,9 +46,7 @@ class QuestionnaireController extends Controller {
 
     public function store(Request $request) {
         $data = $request->all();
-        if (! isset($data['status_id'])) {
-            $data['status_id'] = QuestionnaireStatusLkp::DRAFT;
-        }
+        $data['status_id'] ??= QuestionnaireStatusLkp::DRAFT;
 
         $this->validate($request, [
             'type_id' => 'required|integer',

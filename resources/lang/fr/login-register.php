@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -13,7 +15,7 @@ return [
     'login_message' => 'Connectez-vous avec votre compte',
     'remember_me' => 'Se souvenir de moi',
     'login_with' => 'Ou connectez-vous avec:',
-    'register_option' => 'Je veux m\'inscrire',
+    'register_option' => "Je veux m'inscrire",
     'i_forgot_my_password' => 'J\'ai oublié mon mot de passe',
     'create_your_account' => 'Créer votre compte',
     'nickname' => 'Pseudonyme',

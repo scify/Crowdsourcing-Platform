@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'back-to-the-campaign' => 'Înapoi la campanie',
     'the_topic' => 'Contribuie la rezolvarea problemelor pentru tema:',

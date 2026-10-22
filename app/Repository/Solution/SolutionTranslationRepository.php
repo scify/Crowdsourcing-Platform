@@ -25,7 +25,7 @@ class SolutionTranslationRepository extends Repository {
         return SolutionTranslation::class;
     }
 
-    public function deleteTranslation($solution_id, $language_id): int {
+    public function deleteTranslation(int $solution_id, $language_id): int {
         $solutionDefaultTranslationId = $this->solutionRepository->find($solution_id)->default_language_id;
         if ($language_id === $solutionDefaultTranslationId) {
             throw new RepositoryException(sprintf("Cannot delete translation with ['solution_id' => %s, 'language_id' => %s] - it is the defaultTranslation for the solution.", $solution_id, $language_id));

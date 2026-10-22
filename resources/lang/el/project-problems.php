@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'back-to-the-campaign' => 'Επιστροφή στην καμπάνια',
     'the_topic' => 'Συμβάλλετε στην επίλυση των προβλημάτων για το θέμα:',

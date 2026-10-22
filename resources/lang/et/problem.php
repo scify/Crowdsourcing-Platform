@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'solutions_for' => 'Lahendused',
     'how_to_vote' => 'Kuidas hääletada',

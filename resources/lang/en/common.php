@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -21,7 +23,7 @@ return [
     'form_fields_required' => 'Fields marked with * are required',
     'personal_information_disclaimer' => 'Your personal information (email address) will never be publicly displayed.',
     'crowd_sourcing_campaigns' => 'Campaigns',
-    'crowd_sourcing_campaigns_description' => 'The Crowdsourcing platform hosts various campaigns. Please check below those that are the currently active and waiting for your contribution. Visit a campaign\'s page, and make an impact!',
+    'crowd_sourcing_campaigns_description' => "The Crowdsourcing platform hosts various campaigns. Please check below those that are the currently active and waiting for your contribution. Visit a campaign's page, and make an impact!",
     'no_active_projects' => 'No active campaigns yet',
     'features' => 'Features',
     'about_us' => 'About Us',
@@ -29,7 +31,7 @@ return [
     'phone' => 'Phone',
     'email' => 'Email',
     'home_page' => 'Home',
-    'home_motto' => 'Let\'s make a difference, together!',
+    'home_motto' => "Let's make a difference, together!",
     'home_sub_motto' => 'Taking decisions with the citizens, and not for them',
     'home_call_to_action' => 'Share your ideas',
     'who_we_are' => 'Who we are',

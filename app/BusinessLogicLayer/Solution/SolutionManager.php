@@ -101,6 +101,7 @@ class SolutionManager {
         if (! $project->solution_submission_open) {
             throw new Exception('Solution submission is closed for this campaign');
         }
+
         $solution = $this->storeSolutionWithStatus($attributes, SolutionStatusLkp::UNPUBLISHED);
         $user = Auth::user();
         if ($user && $user->email) {

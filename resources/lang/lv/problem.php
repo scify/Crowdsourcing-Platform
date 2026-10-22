@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'solutions_for' => 'Risinājumi priekš',
     'how_to_vote' => 'Kā balsot',

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Auth;
 
 use App\BusinessLogicLayer\User\UserRoleManager;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\Notification;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class RegisterControllerTest extends TestCase {
+final class RegisterControllerTest extends TestCase {
     protected function setUp(): void {
         parent::setUp();
         Notification::fake();

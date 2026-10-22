@@ -47,7 +47,7 @@ class Translator {
                     Log::error($e->getMessage());
                 }
 
-                throw new ServiceException($error_message);
+                throw new ServiceException($error_message, $e->getCode());
             }
         }
 

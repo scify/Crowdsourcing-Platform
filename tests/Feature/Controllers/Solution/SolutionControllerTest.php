@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Solution;
 
 use App\BusinessLogicLayer\lkp\SolutionStatusLkp;
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class SolutionControllerTest extends TestCase {
+final class SolutionControllerTest extends TestCase {
     /**
      * Test Scenario 1:
      * GIVEN that a user is not authenticated,

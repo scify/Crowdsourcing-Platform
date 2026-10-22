@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Rules;
 
 use App\Rules\ReCaptchaV3;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class ReCaptchaV3Test extends TestCase {
+final class ReCaptchaV3Test extends TestCase {
     /**
      * Test that reCAPTCHA verifies successfully with a valid response.
      *
@@ -25,7 +27,7 @@ class ReCaptchaV3Test extends TestCase {
         ]);
 
         $rule = new ReCaptchaV3('submitSolution', 0.5);
-        $fail = function ($message): void {
+        $fail = function (string $message): never {
             $this->fail($message);
         };
 
@@ -95,7 +97,7 @@ class ReCaptchaV3Test extends TestCase {
 
         $rule = new ReCaptchaV3('submitSolution', 0.5);
         $fail = function ($message): void {
-            $this->assertEquals('The action found in the form didn\'t match the Google reCAPTCHA action, please try again.', $message);
+            $this->assertEquals("The action found in the form didn't match the Google reCAPTCHA action, please try again.", $message);
         };
 
         $rule->validate('g-recaptcha-response', 'valid-recaptcha-response', $fail);

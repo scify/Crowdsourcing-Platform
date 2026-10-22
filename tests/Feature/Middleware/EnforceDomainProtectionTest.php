@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Middleware;
 
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class EnforceDomainProtectionTest extends TestCase {
+final class EnforceDomainProtectionTest extends TestCase {
     /**
      * Test that a request from an allowed domain passes the middleware.
      */

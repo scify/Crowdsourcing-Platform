@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Predložite rješenje',
     'proposal_submitted_title' => 'Prijedlog poslan',

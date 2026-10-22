@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Tento súbor cookie je nainštalovaný službou Google Analytics. Súbor cookie sa používa na výpočet údajov o návštevníkoch, reláciách a kampaniach a na sledovanie používania stránky pre analytickú správu stránky. Súbory cookie ukladajú informácie anonymne a priraďujú náhodne vygenerované číslo na identifikáciu jedinečných návštevníkov.',

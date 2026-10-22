@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\BusinessLogicLayer;
 
 use App\BusinessLogicLayer\CookieManager;
@@ -8,7 +10,7 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class CookieManagerTest extends TestCase {
+final class CookieManagerTest extends TestCase {
     protected function setUp(): void {
         parent::setUp();
         Cookie::shouldReceive('forget')->andReturnSelf();

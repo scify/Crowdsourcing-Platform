@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
@@ -16,7 +18,7 @@ use Mockery;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class QuestionnaireControllerTest extends TestCase {
+final class QuestionnaireControllerTest extends TestCase {
     #[Test]
     public function guest_cannot_save_questionnaire_status(): void {
         $response = $this->withoutMiddleware(VerifyCsrfToken::class)
@@ -133,6 +135,7 @@ class QuestionnaireControllerTest extends TestCase {
             ]);
 
         $response->assertStatus(201);
+
         $questionnaire = Questionnaire::latest()->first();
         $this->assertDatabaseHas('questionnaires', [
             'id' => $questionnaire->id,

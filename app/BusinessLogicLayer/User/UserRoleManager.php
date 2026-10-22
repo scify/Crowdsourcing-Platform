@@ -16,9 +16,9 @@ class UserRoleManager {
     public function __construct(private readonly UserRoleRepository $userRoleRepository) {}
 
     public function registerUserPolicies(): void {
-        Gate::define('manage-platform', fn ($user): bool => $this->userHasAdminRole($user));
+        Gate::define('manage-platform', fn (User $user): bool => $this->userHasAdminRole($user));
 
-        Gate::define('manage-users', fn ($user): bool => $this->userHasAdminRole($user));
+        Gate::define('manage-users', fn (User $user): bool => $this->userHasAdminRole($user));
 
         Gate::define('manage-platform-content', function ($user): bool {
             if ($this->userHasAdminRole($user)) {
