@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Propune o soluție',
     'proposal_submitted_title' => 'Propunerea a fost trimisă',

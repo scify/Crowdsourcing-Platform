@@ -333,9 +333,7 @@ class CrowdSourcingProjectManager {
             $attributes['lp_questionnaire_img_path'] = self::DEFAULT_IMAGE_PATH_QUESTIONNAIRE_BG;
         }
 
-        if (! isset($attributes['lp_show_speak_up_btn'])) {
-            $attributes['lp_show_speak_up_btn'] = true;
-        }
+        $attributes['lp_show_speak_up_btn'] ??= true;
 
         return $attributes;
     }
@@ -640,19 +638,17 @@ class CrowdSourcingProjectManager {
             ->union($solutionCreators)
             ->union($voters)
             ->get()
-            ->groupBy(function ($item) {
+            ->groupBy(
                 // Group by user_id if exists, otherwise by browser_ip
-                return $item->user_id ?? 'ip_' . $item->browser_ip;
-            })
-            ->map(function ($group) {
+                fn ($item) => $item->user_id ?? 'ip_' . $item->browser_ip)
+            ->map(
                 // Take the first item from each group to get user info
-                return $group->first();
-            });
+                fn ($group) => $group->first());
 
         // Now for each unique user, gather their engagement data
         $engagementData = collect();
 
-        foreach ($allUsers as $key => $user) {
+        foreach ($allUsers as $user) {
             $userId = $user->user_id;
             $browserIp = $user->browser_ip;
 

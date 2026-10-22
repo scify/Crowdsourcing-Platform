@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Solution;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
@@ -10,8 +12,8 @@ use App\Repository\Solution\SolutionUpvoteRepository;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class SolutionAPIControllerTest extends TestCase {
-    protected SolutionUpvoteRepository $solutionUpvoteRepository;
+final class SolutionAPIControllerTest extends TestCase {
+    private SolutionUpvoteRepository $solutionUpvoteRepository;
 
     protected function setUp(): void {
         parent::setUp();

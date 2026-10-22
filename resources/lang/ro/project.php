@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Această campanie este finalizată.<br>Mulțumim pentru contribuția ta!',
     'project_unpublished_message' => 'Această campanie nu este încă publicată.',

@@ -56,7 +56,7 @@ class QuestionnaireResponseManager {
         return 0;
     }
 
-    public function storeQuestionnaireResponse($data) {
+    public function storeQuestionnaireResponse(array $data) {
         $user = $this->userManager->getLoggedInUserOrCreateAnonymousUser();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
         // fix for greek language
@@ -105,7 +105,7 @@ class QuestionnaireResponseManager {
         return $questionnaireResponse;
     }
 
-    public function storeQuestionnaireResponseForModerator($data) {
+    public function storeQuestionnaireResponseForModerator(array $data) {
         $user = Auth::user();
         $questionnaire = $this->questionnaireRepository->find($data['questionnaire_id']);
         // fix for greek language

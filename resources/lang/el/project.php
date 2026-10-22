@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Αυτή η καμπάνια έχει ολοκληρωθεί.<br>Ευχαριστούμε για τη συμβολή σας!',
     'project_unpublished_message' => 'Αυτή η καμπάνια δεν έχει δημοσιευτεί ακόμα.',

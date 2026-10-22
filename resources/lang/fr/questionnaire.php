@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -15,7 +17,7 @@ return [
     'latest_contributors' => 'Les contributeurs les plus récents',
     'name_and_date_of_last_contributors' => ':name a répondu le :date', // Maria responded at November 23, 2021
     'answers_left_to_goal' => '<b style="color: var(--project-primary-color);" class="number">:count</b> réponses pour atteindre notre objectif', // 1002 answers left to reach our goal
-    'newsletter' => 'Newsletter ou Bulletin d\'information',
+    'newsletter' => "Newsletter ou Bulletin d'information",
     'learn_about_new_projects' => 'Découvrez tous nos nouveaux projets, obtenez des mises à jour sur les projets en cours et contribuez  là où c\'est le  plus nécessaire!',
     'sign_in' => 'Connectez-vous',
     'sign_up' => 'Inscrivez-vous',
@@ -23,7 +25,7 @@ return [
     'visit_dashboard_and_invite' => 'Visitez votre tableau de bord pour inviter vos amis',
     'go_to_dashboard' => 'Accéder au tableau de bord',
     'answers_saved_anonymously' => 'Vos réponses ont été sauvegardées de manière anonyme.',
-    'by_registering_you' => 'S\'inscrire comme utilisateur de la plateforme<sup>*</sup>:',
+    'by_registering_you' => "S'inscrire comme utilisateur de la plateforme<sup>*</sup>:",
     'filter_spammers' => 'Vous <b>verrez</b> vos réponses.',
     'view_your_contribution' => 'Vous <b>pouvez voir</b> les réponses des autres.',
     'vote_thumbs_up' => 'Vous <b>pouvez être</b> informé des activités futures et des résultats du projet.',
@@ -41,7 +43,7 @@ return [
     'no_active_questionnaires' => 'Vous avez déjà complété le questionnaire',
     'next_questionnaire' => 'Restez à l\'écoute pour la prochaine phase!',
     'answer_the_questionnaire' => 'Répondez au questionnaire',
-    'project_no_active_questionnaire' => 'Ce projet n\'a pas encore de questionnaire actif.',
+    'project_no_active_questionnaire' => "Ce projet n'a pas encore de questionnaire actif.",
     'check_what_other_respondents' => 'Avant de répondre au questionnaire, vérifiez ce que les autres répondants ont dit en cliquant',
     'here' => 'ici',
     'select_language' => 'Sélectionner la langue',

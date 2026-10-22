@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -20,11 +22,11 @@ return [
     'thank_you_for_sharing' => 'Merci de partager!',
     'sharing_the_questionnaire' => 'Merci d\'avoir partagé le Questionnaire<br>',
     'sharing_is_caring' => 'Partager, c\'est montrer de l\'intérêt!',
-    'visit_your_dashboard' => 'Visitez votre tableau de bord pour voir ce qu\'il faut faire maintenant',
+    'visit_your_dashboard' => "Visitez votre tableau de bord pour voir ce qu'il faut faire maintenant",
     'thank_you_for_referral' => 'Merci pour votre recommandation!',
     'making_impact' => 'Vous avez un impact!',
     'someone_answered_to_questionnaire' => 'Quelqu\'un a répondu à un questionnaire que vous avez partagé!<br>',
-    'visit_your_dashboard_and_invite' => 'Visitez votre tableau de bord et invitez d\'autres amis',
+    'visit_your_dashboard_and_invite' => "Visitez votre tableau de bord et invitez d'autres amis",
     'thanks_message' => 'Merci de rejoindre la plateforme de crowdsourcing!',
     'make_an_impact' => 'Êtes-vous prêt à avoir un impact?',
     'visit_your_dashboard_contribute' => 'Visitez votre tableau de bord pour voir comment vous pouvez contribuer:',

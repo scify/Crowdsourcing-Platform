@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'cookie_prefix' => 'crowdsourcing_app_',
     'display_floating_button' => true,

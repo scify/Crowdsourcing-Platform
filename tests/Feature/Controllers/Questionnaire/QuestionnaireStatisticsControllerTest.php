@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
@@ -14,7 +16,7 @@ use App\Models\User\UserRole;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class QuestionnaireStatisticsControllerTest extends TestCase {
+final class QuestionnaireStatisticsControllerTest extends TestCase {
     #[Test]
     public function show_statistics_page_for_questionnaire_returns_correct_view(): void {
         $user = User::factory()->create();

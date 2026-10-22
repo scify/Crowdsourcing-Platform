@@ -1,0 +1,36 @@
+# Security checks for a SciFY repository.
+# The logic lives in scify/.github. Change inputs here, not the steps.
+# Guide:  https://github.com/scify/.github/blob/main/.github/workflows/README.md#security
+#
+# Each commented-out input shows its default. Uncomment a line only to change it.
+# The "e.g." comment shows other accepted values.
+# To change an input, also uncomment the `with:` line.
+# CodeQL and Semgrep (static analysis of our own code) stay in codeql.yml.
+name: Security
+
+on:
+    pull_request:
+    # The weekly run finds new advisories and scans the full git history.
+    schedule:
+        - cron: "0 11 * * 1"
+
+permissions:
+    contents: read
+
+jobs:
+    security:
+        uses: scify/.github/.github/workflows/security.yml@v0.1
+        with:
+            # working-directory: .                          # e.g. frontend (the folder with package.json)
+            php-version: "8.3" # matches config.platform.php in composer.json
+            # composer-abandoned: report                    # e.g. fail, ignore
+            # npm-audit-level: high                         # e.g. moderate, critical
+            # braces (through blade-formatter, a dev tool) has a high advisory without a
+            # fixed release. Audit only the production dependencies. Check the dev
+            # dependencies again when a fixed release exists.
+            npm-audit-omit-dev: true
+            # node-version-file: ''                         # e.g. .nvmrc (default: the .nvmrc in working-directory)
+            # npm-min-release-age: '7'                      # e.g. '14' (days, 7 or more)
+            # gitleaks-full-history: false                  # true: pull requests scan the full history too
+            # strict-dev-configs: false                     # true: fail on suspicious commands in dev tool configs
+            # allowed-dev-scripts: ''                       # e.g. .claude/hooks/*.sh (one glob per line)

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -17,8 +19,8 @@ use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class CrowdSourcingProjectControllerTest extends TestCase {
-    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
+final class CrowdSourcingProjectControllerTest extends TestCase {
+    private CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
 
     protected function setUp(): void {
         parent::setUp();

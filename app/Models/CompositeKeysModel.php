@@ -54,9 +54,7 @@ class CompositeKeysModel extends Model {
      * @return mixed
      */
     protected function getKeyForSaveQuery($keyName = null) {
-        if (is_null($keyName)) {
-            $keyName = $this->getKeyName();
-        }
+        $keyName ??= $this->getKeyName();
 
         return $this->original[$keyName] ?? $this->getAttribute($keyName);
     }

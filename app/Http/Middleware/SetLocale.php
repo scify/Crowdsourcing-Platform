@@ -27,7 +27,7 @@ class SetLocale {
             }
         }
 
-        if ($locale === null || $locale === '' || $locale === '0') {
+        if (in_array($locale, [null, '', '0'], true)) {
             $locale = 'en';
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Ez a kampány befejeződött.<br>Köszönjük a hozzájárulását!',
     'project_unpublished_message' => 'Ez a kampány még nincs közzétéve.',

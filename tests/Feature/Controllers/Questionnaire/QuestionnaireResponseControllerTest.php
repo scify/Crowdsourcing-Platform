@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\User\UserManager;
@@ -11,7 +13,7 @@ use App\Models\User\User;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class QuestionnaireResponseControllerTest extends TestCase {
+final class QuestionnaireResponseControllerTest extends TestCase {
     #[Test]
     public function test_store_invalid_data(): void {
         $user = User::factory()->create();

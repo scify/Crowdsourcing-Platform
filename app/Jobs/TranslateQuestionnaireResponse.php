@@ -26,8 +26,6 @@ class TranslateQuestionnaireResponse implements ShouldQueue {
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(protected int $questionnaire_response_id) {
         $this->onQueue(self::$QUEUE_NAME);

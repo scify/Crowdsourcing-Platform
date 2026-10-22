@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Šo sīkfailu instalē Google Analytics. Sīkfails tiek izmantots, lai aprēķinātu apmeklētāju, sesiju un kampaņu datus un izsekotu vietnes izmantošanu vietnes analīzes pārskatam. Sīkfaili anonīmi glabā informāciju un piešķir nejauši ģenerētu numuru, lai identificētu unikālus apmeklētājus.',

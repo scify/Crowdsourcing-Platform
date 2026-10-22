@@ -1,8 +1,8 @@
 <!-- omit in toc -->
 # Crowdsourcing Web Application
 
-[![Tests](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/tests.yml)
-[![Lint](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/lint.yml)
+[![CI](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/ci.yml)
+[![Security](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/security.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/security.yml)
 [![CodeQL](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml/badge.svg)](https://github.com/scify/Crowdsourcing-Platform/actions/workflows/codeql.yml)
 [![codecov](https://codecov.io/github/scify/Crowdsourcing-Platform/graph/badge.svg)](https://codecov.io/github/scify/Crowdsourcing-Platform)
 [![GitHub release](https://img.shields.io/github/v/release/scify/Crowdsourcing-Platform)](https://github.com/scify/Crowdsourcing-Platform/releases)

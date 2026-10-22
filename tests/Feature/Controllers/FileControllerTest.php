@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers;
 
 use App\Http\Middleware\VerifyCsrfToken;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class FileControllerTest extends TestCase {
+final class FileControllerTest extends TestCase {
     #[Test]
     public function upload_files_successfully_uploads_files(): void {
         Storage::fake('s3');
@@ -26,6 +28,7 @@ class FileControllerTest extends TestCase {
 
         $response->assertStatus(200);
         $response->assertJsonCount(2);
+
         $filePaths = $response->json();
         foreach ($filePaths as $filePath) {
             $relativePath = str_replace(Storage::disk('s3')->url(''), '', $filePath);

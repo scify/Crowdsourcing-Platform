@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_in_to_vote' => 'Създайте акаунт или влезте, за да гласувате',
     'votes_remaining' => 'Имате <b>:votes</b> :votesWord останали',

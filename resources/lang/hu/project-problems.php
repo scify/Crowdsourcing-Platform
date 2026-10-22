@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'back-to-the-campaign' => 'Vissza a kampányhoz',
     'the_topic' => 'Segítsen megoldani a téma problémáit:',

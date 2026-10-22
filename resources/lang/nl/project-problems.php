@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'back-to-the-campaign' => 'Terug naar de campagne',
     'the_topic' => 'Draag bij aan het oplossen van de problemen voor het onderwerp:',

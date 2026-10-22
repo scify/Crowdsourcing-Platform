@@ -15,9 +15,9 @@ class QuestionnaireAccessManager {
     public function userHasAccessToViewQuestionnaireStatisticsPage(?User $user, Questionnaire $questionnaire): bool {
         return match ($questionnaire->statistics_page_visibility_lkp_id) {
             QuestionnaireStatisticsPageVisibilityLkp::PUBLIC => true,
-            QuestionnaireStatisticsPageVisibilityLkp::RESPONDENTS_ONLY => ($user && $this->questionnaireResponseManager->questionnaireResponsesForUserAndQuestionnaireExists($user->id, $questionnaire->id))
-                || ($user && $this->userIsAdminOrContentManager($user)),
-            QuestionnaireStatisticsPageVisibilityLkp::ADMIN_AND_CONTENT_MANAGERS_ONLY => $user && $this->userIsAdminOrContentManager($user),
+            QuestionnaireStatisticsPageVisibilityLkp::RESPONDENTS_ONLY => ($user instanceof User && $this->questionnaireResponseManager->questionnaireResponsesForUserAndQuestionnaireExists($user->id, $questionnaire->id))
+                || ($user instanceof User && $this->userIsAdminOrContentManager($user)),
+            QuestionnaireStatisticsPageVisibilityLkp::ADMIN_AND_CONTENT_MANAGERS_ONLY => $user instanceof User && $this->userIsAdminOrContentManager($user),
             default => false,
         };
     }

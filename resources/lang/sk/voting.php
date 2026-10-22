@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_in_to_vote' => 'Vytvorte si účet alebo sa prihláste, aby ste mohli hlasovať',
     'votes_remaining' => 'Máte <b>:votes</b> :votesWord zostávajúcich',

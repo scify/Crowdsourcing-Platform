@@ -105,7 +105,7 @@ class UserController extends Controller {
         return back();
     }
 
-    public function showUsersByCriteria(Request $request) {
+    public function showUsersByCriteria(Request $request): string|false {
         $input = $request->all();
         $users = $this->userManager->getPlatformAdminUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
         $users->setPath('#');

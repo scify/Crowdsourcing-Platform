@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Proponi Soluzione',
     'proposal_submitted_title' => 'Proposta Inviata',
@@ -18,7 +20,7 @@ return [
     'solution_title_placeholder' => 'Inserisci il titolo della tua soluzione',
     'solution_description_placeholder' => 'Si prega di descrivere la tua soluzione in dettaglio. Aiutaci a capire come funziona e come può risolvere il problema.',
     'solution_image_label' => 'Immagine della Soluzione',
-    'solution_image_placeholder' => 'Carica un\'immagine che rappresenta la tua soluzione. Assicurati che l\'immagine sia chiara e pertinente alla soluzione, e che tu abbia il diritto di usarla.',
+    'solution_image_placeholder' => "Carica un'immagine che rappresenta la tua soluzione. Assicurati che l'immagine sia chiara e pertinente alla soluzione, e che tu abbia il diritto di usarla.",
     'solution_get_involved_title' => 'Partecipa: Proponi la tua Soluzione!',
     'solution_get_involved_message' => 'Risolvere queste sfide richiede idee innovative e azione collettiva. Ti invitiamo, come cittadino impegnato e riflessivo, a proporre la tua soluzione per aiutare a creare un futuro più inclusivo ed equo. Pensa a come gli strumenti digitali, l\'istruzione o le iniziative guidate dalla comunità possono fare la differenza. La tua prospettiva unica potrebbe ispirare la prossima svolta. La tua voce conta. Insieme, possiamo plasmare politiche e iniziative che non lasciano indietro nessuno. Unisciti a noi per costruire un futuro digitale più inclusivo!',
     'community_guidelines_title' => 'Linee Guida della Comunità',
@@ -52,7 +54,7 @@ return [
     'have_a_solution_to_suggest' => 'Hai una soluzione da suggerire?',
     'characters_left' => 'caratteri rimanenti',
     'consent_notice_required' => 'Devi accettare le nostre linee guida e i nostri termini per inviare una soluzione.',
-    'translation_notice_required' => 'Devi accettare l\'avviso di traduzione per inviare una soluzione.',
+    'translation_notice_required' => "Devi accettare l'avviso di traduzione per inviare una soluzione.",
     'required' => 'Richiesto',
     'must_be_logged_in_prompt' => 'Devi essere loggato per proporre una soluzione.',
     'create_account_prompt' => 'Crea un account per contribuire di più alla piattaforma, guadagnare badge e aiutarci a migliorare la qualità delle nostre soluzioni. Creando un account, puoi partecipare alle discussioni, votare sulle soluzioni e tracciare i tuoi contributi.',

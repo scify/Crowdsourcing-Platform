@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Táto kampaň je ukončená.<br>Ďakujeme za váš príspevok!',
     'project_unpublished_message' => 'Táto kampaň ešte nie je zverejnená.',

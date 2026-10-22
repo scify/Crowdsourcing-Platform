@@ -39,10 +39,10 @@ class GooglePerspectiveAPIService implements ToxicityAnalyzerService {
                 ],
             ]);
         } catch (Exception $exception) {
-            throw new AnalyzerException(sprintf('Call to Perspective API Failed: %s', $exception->getMessage()));
+            throw new AnalyzerException(sprintf('Call to Perspective API Failed: %s', $exception->getMessage()), $exception->getCode());
         }
 
-        if ($response->getStatusCode() != 200) {
+        if ($response->getStatusCode() !== 200) {
             throw new AnalyzerException(sprintf('Call to Perspective API Failed: HTTP %s', $response->getStatusCode()));
         }
 

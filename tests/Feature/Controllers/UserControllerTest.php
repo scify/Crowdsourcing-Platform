@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
@@ -13,7 +15,7 @@ use Illuminate\Http\UploadedFile;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class UserControllerTest extends TestCase {
+final class UserControllerTest extends TestCase {
     protected function setUp(): void {
         parent::setUp();
 
@@ -321,6 +323,7 @@ class UserControllerTest extends TestCase {
         $response->assertStatus(200);
         $response->assertViewIs('backoffice.my-dashboard');
         $response->assertViewHas('viewModel');
+
         $viewModel = $response->original->getData()['viewModel'];
         $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);
         $this->assertCount(0, $viewModel->questionnaires);

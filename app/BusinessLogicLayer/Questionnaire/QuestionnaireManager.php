@@ -12,11 +12,11 @@ class QuestionnaireManager {
     public function __construct(protected QuestionnaireRepository $questionnaireRepository, protected CrowdSourcingProjectQuestionnaireRepository $crowdSourcingProjectQuestionnaireRepository, protected QuestionnaireLanguageRepository $questionnaireLanguageRepository, protected QuestionnaireFieldsTranslationManager $questionnaireFieldsTranslationManager) {}
 
     public function updateQuestionnaireStatus($questionnaireId, $statusId, $comments): void {
-        $comments = is_null($comments) ? '' : $comments;
+        $comments ??= '';
         $this->questionnaireRepository->updateQuestionnaireStatus($questionnaireId, $statusId, $comments);
     }
 
-    public function storeOrUpdateQuestionnaire($data, $id = null) {
+    public function storeOrUpdateQuestionnaire(array $data, $id = null) {
         if (! $id) {
             $questionnaire = $this->questionnaireRepository->saveNewQuestionnaire(
                 $data['goal'], $data['language'], $data['content'],

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\BusinessLogicLayer\Questionnaire;
 
+use App\Models\Questionnaire\QuestionnaireLanguage;
 use App\Repository\Questionnaire\QuestionnaireTranslationRepository;
 use App\Utils\Translator;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -273,13 +274,13 @@ class QuestionnaireTranslator {
     }
 
     protected function identifierRefersToInnerChoices(string $identifier): bool {
-        return in_array($identifier, ['choices', 'rows', 'columns']);
+        return in_array($identifier, ['choices', 'rows', 'columns'], true);
     }
 
     public function markQuestionnaireTranslations(int $questionnaireId, array $lang_ids_to_status): bool {
         foreach ($lang_ids_to_status as $lang_id_with_status) {
             $questionnaireLanguage = $this->questionnaireTranslationRepository->getQuestionnaireLanguage($questionnaireId, $lang_id_with_status['id']);
-            if (! $questionnaireLanguage) {
+            if (! $questionnaireLanguage instanceof QuestionnaireLanguage) {
                 $lang_id = $lang_id_with_status['id'];
 
                 throw new ResourceNotFoundException('Questionnaire Language not found. Questionnaire Id: ' . $questionnaireId . ' Lang id: ' . $lang_id);

@@ -38,7 +38,7 @@ class UserManager {
         return $this->userRepository->find($userId);
     }
 
-    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null): ManageUsers {
+    public function getManagePlatformUsersViewModel($paginationNumber, ?array $filters = null): ManageUsers {
         $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters);
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
 
@@ -168,7 +168,7 @@ class UserManager {
         return $result;
     }
 
-    public function getPlatformAdminUsersWithCriteria($paginationNum, $data = []) {
+    public function getPlatformAdminUsersWithCriteria($paginationNum, ?array $data = []) {
         return $this->userRepository->getPlatformUsers($paginationNum, $data);
     }
 
