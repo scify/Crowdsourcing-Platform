@@ -58,6 +58,17 @@ More information about the Repository Pattern can be found
 
 ## Code linting & formatting
 
+Two Composer scripts run all the checks together. With DDEV, prefix them with
+`ddev`, for example `ddev composer lint:check`:
+
+```bash
+composer lint:check # Pint, Rector, Larastan, ESLint and Prettier, all check only; the same checks as CI
+composer lint:fix   # Pint, ESLint --fix and Prettier, then Larastan
+composer analyse    # Larastan only
+```
+
+The sections below describe the individual tools.
+
 ### PHP — Laravel Pint
 
 The application uses [Laravel Pint](https://laravel.com/docs/13.x/pint) for the
@@ -74,73 +85,55 @@ The application uses [ESLint](https://eslint.org/) and
 [Prettier](https://prettier.io/):
 
 ```bash
-npm run lint   # check the code style
-npm run format # format the code
+npm run lint         # check the code style (ESLint)
+npm run format:check # check the formatting (Prettier)
+npm run check        # both checks; CI runs this script
+npm run format       # format the code
 ```
 
-Both run automatically on staged files through the Husky pre-commit hooks.
+Prettier formats `resources/assets/`, `vite.config.mjs` and `eslint.config.js`.
+It does not format `composer.json` and `composer.lock`, because Composer writes
+those files in its own format.
+
+The Husky pre-commit hooks run ESLint and Prettier automatically: Prettier
+formats the staged `.js`, `.mjs`, `.vue`, `.scss` and `.css` files and stages
+the result again.
 
 ## Run the tests
 
-### Before running the tests
-
-Clear any cache and config files:
-
-```bash
-php artisan cache:clear
-php artisan config:clear
-```
-
-Create the test database file and give it the necessary permissions:
+The tests run on a seeded SQLite file (`storage/database_testing.sqlite`,
+connection `sqlite_testing`). The Composer scripts clear the config cache,
+create and seed that file, and then run the suite. With DDEV, prefix them with
+`ddev`, for example `ddev composer test`:
 
 ```bash
-touch storage/database_testing.sqlite
-chmod 777 storage/database_testing.sqlite
+composer test                               # the full suite
+composer test -- --filter={METHOD OR CLASS} # extra arguments go to artisan test
+composer test:coverage                      # with coverage and the CI minimum
 ```
 
-Run the migrations and seeders for the test database:
-
-```bash
-php artisan migrate:fresh --seed --env=testing --database=sqlite_testing
-```
-
-### Run the tests with `php artisan test`
-
-```bash
-# Filter the tests with the --filter flag (without the = sign)
-XDEBUG_MODE=coverage php artisan test --env=testing --filter {METHOD OR CLASS NAME} --coverage
-```
+`composer test:coverage` needs Xdebug or PCOV. In DDEV, run `ddev xdebug on`
+first, and `ddev xdebug off` afterwards.
 
 Every test runs inside a database transaction that rolls back
 (`DatabaseTransactions` on the base `TestCase`), so the seeded test database
-stays pristine: you only need the `migrate:fresh --seed` setup once, and
-repeated `php artisan test` runs are stable.
+stays pristine. After the first `composer test`, you can also run
+`php artisan test --env=testing` directly; it skips the database rebuild.
 
 ### Coverage ratchet
 
 CI runs the suite with `--coverage --min=48`, so the build fails if line
 coverage drops below the floor. When you raise coverage, raise the ratchet by
-bumping `--min` in `.github/workflows/ci.yml`.
+bumping `--min` in the `test:coverage` script in `composer.json`.
 
 Coverage is uploaded to [Codecov](https://codecov.io/github/scify/Crowdsourcing-Platform)
 on every CI run, which powers the README badge and per-PR coverage reports.
 
-### Run the tests with the `run-tests.sh` script
-
-The `run-tests.sh` script is a wrapper around the PHPUnit command:
-
-```bash
-chmod +x run-tests.sh
-./run-tests.sh
-./run-tests.sh --filter {METHOD OR CLASS NAME}
-XDEBUG_MODE=coverage ./run-tests.sh --coverage
-```
-
 ## How to debug
 
-With Docker Compose, you can debug the application with Xdebug and VSCode:
+With DDEV, you can debug the application with Xdebug and VSCode:
 
-1. Run `docker compose up` to start the containers.
+1. Run `ddev xdebug on`. Xdebug slows PHP down, so run `ddev xdebug off` when you are done.
 2. In VSCode, open the project directory and install the PHP Debug extension.
 3. Make sure that you have a `.vscode/launch.json` file with the following
    contents:
@@ -155,7 +148,7 @@ With Docker Compose, you can debug the application with Xdebug and VSCode:
       "request": "launch",
       "port": 9003,
       "pathMappings": {
-        "/var/www": "${workspaceFolder}"
+        "/var/www/html": "${workspaceFolder}"
       },
       "log": true
     }
@@ -170,16 +163,11 @@ With Docker Compose, you can debug the application with Xdebug and VSCode:
 For debugging the tests:
 
 1. Open the test file you want to debug and add breakpoints.
-2. Run `docker exec -it crowdsourcing_platform_server bash` to enter the PHP
-   container.
-3. Run `php artisan app:test --filter {METHOD OR CLASS NAME}`. For example
-   `php artisan app:test --filter authenticatedNonAdminUserCannotAccessCreatePage`.
+2. Run `ddev composer test -- --filter={METHOD OR CLASS NAME}`. For example
+   `ddev composer test -- --filter=authenticatedNonAdminUserCannotAccessCreatePage`.
 
 ## Troubleshooting
 
-1. Check container logs if using Docker Compose: `docker compose logs`
-2. Verify the Nginx and PHP-FPM status: `systemctl status nginx` and `systemctl status php-fpm`
-3. Review the Laravel logs located in `storage/logs/laravel.log`
-4. Ensure your `.env` file has the correct database credentials
-5. Verify the MySQL service is running: `systemctl status mysql`
-6. Check the Nginx configuration: `nginx -t`
+For a DDEV installation, see the troubleshooting section of
+[setup-ddev.md](./setup-ddev.md#troubleshooting). For a manual installation,
+see [setup-manual.md](./setup-manual.md#troubleshooting).
