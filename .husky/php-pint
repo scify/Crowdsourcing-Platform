@@ -1,14 +1,4 @@
 
-# Load .env variables from the project root, line by line
-if [ -f .env ]; then
-    while IFS='=' read -r key value || [ -n "$key" ]; do
-        # Skip lines that are comments or do not contain valid key=value format
-        if echo "$key" | grep -Eq '^[A-Za-z_][A-Za-z0-9_]*$'; then
-            export "$key=$value"
-        fi
-    done < .env
-fi
-
 # Get a list of staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=d)
 
@@ -29,20 +19,11 @@ fi
 
 # Run Pint for PHP files only
 if [ -n "$PHP_FILES" ]; then
-    if [ "$USE_DOCKER" = "true" ]; then
-        echo "Running Pint in Docker for PHP files..."
-        docker compose exec -T php vendor/bin/pint -v --parallel $PHP_FILES
-        if [ $? -ne 0 ]; then
-            echo "Pint failed while running inside Docker."
-            exit 1
-        fi
-    else
-        echo "Running Pint locally for PHP files..."
-        vendor/bin/pint -v --parallel $PHP_FILES
-        if [ $? -ne 0 ]; then
-            echo "Pint failed while running locally."
-            exit 1
-        fi
+    echo "Running Pint for PHP files..."
+    .husky/run-tool vendor/bin/pint -v --parallel $PHP_FILES
+    if [ $? -ne 0 ]; then
+        echo "Pint failed."
+        exit 1
     fi
 
     # Restage PHP files after Pint formatting

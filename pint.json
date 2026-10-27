@@ -1,7 +1,6 @@
 {
 	"preset": "laravel",
 	"exclude": [
-		"docker",
 		"deployment",
 		"public",
 		"storage",
