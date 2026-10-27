@@ -250,3 +250,37 @@ body.backoffice .card {
 		transform: rotate(180deg);
 	}
 }
+
+// Collapsible cards: light header, and the whole header toggles the card.
+// The toggle button's ::after stretches over the header (as Bootstrap's
+// .stretched-link does), so the button keeps its focus and aria state.
+body.backoffice .card > .card-header:has(> .card-collapse-toggle) {
+	position: relative;
+	background-color: tint-color($info, 88%);
+	color: shade-color($info, 60%);
+	transition: background-color 0.15s ease-in-out;
+
+	&:hover {
+		background-color: tint-color($info, 78%);
+	}
+
+	.card-collapse-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+		background-color: $white;
+		border: 1px solid tint-color($info, 50%);
+		color: shade-color($info, 40%);
+		font-size: 1rem;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+		}
+	}
+}

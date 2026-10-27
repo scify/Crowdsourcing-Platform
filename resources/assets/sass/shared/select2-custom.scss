@@ -27,17 +27,21 @@
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
 	background-color: $button-background-color-hover;
 	border-color: $button-border-color;
-	padding: 0 10px !important;
+	color: #fff;
+	// Select2 4.1 positions the remove button absolutely on the left, so leave room for it
+	padding: 0 10px 0 24px;
 }
 
 /* multiple specific css */
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-	color: rgba(255, 255, 255, 0.8) !important;
-	margin-right: 5px !important;
+	color: rgba(255, 255, 255, 0.8);
+	border-right-color: rgba(255, 255, 255, 0.4);
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-	opacity: 0.5 !important;
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover,
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+	background-color: transparent;
+	color: #fff;
 }
 
 .select2-container--default .select2-selection--single,
