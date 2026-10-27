@@ -56,8 +56,8 @@ and Questionnaires.
 Pick the setup guide that matches your environment. Each guide is complete —
 follow it from top to bottom:
 
-- **[Docker-based setup (recommended)](docs/setup-docker.md)**
-- **[Non-Docker setup](docs/setup-non-docker.md)**
+- **[DDEV setup (recommended)](docs/setup-ddev.md)**
+- **[Manual setup (without DDEV)](docs/setup-manual.md)**
 
 ## Documentation
 

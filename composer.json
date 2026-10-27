@@ -80,17 +80,40 @@
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=cookies-consent-public --force"
         ],
-        "lint": [
-            "npm run lint",
-            "vendor/bin/pint --parallel --test",
-			"vendor/bin/phpstan analyse --no-progress"
+        "setup": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@composer install",
+            "@php -r \"require 'vendor/autoload.php'; empty(Dotenv\\Dotenv::parse(file_get_contents('.env'))['APP_KEY'] ?? null) && exit(pclose(popen(escapeshellarg(PHP_BINARY) . ' artisan key:generate --ansi', 'w')));\"",
+            "@php -r \"file_exists('node_modules/.package-lock.json') && filemtime('node_modules/.package-lock.json') >= filemtime('package-lock.json') || exit(pclose(popen('npm ci', 'w')));\"",
+            "npm run build"
         ],
-        "format": [
+        "test": [
+            "@php artisan config:clear --ansi @no_additional_args",
+            "@php -r \"touch('storage/database_testing.sqlite');\" @no_additional_args",
+            "@php artisan migrate:fresh --seed --env=testing --database=sqlite_testing --ansi @no_additional_args",
+            "@php artisan test --env=testing"
+        ],
+        "test:coverage": [
+            "Composer\\Config::disableProcessTimeout",
+            "@putenv XDEBUG_MODE=coverage",
+            "@php artisan config:clear --ansi @no_additional_args",
+            "@php -r \"touch('storage/database_testing.sqlite');\" @no_additional_args",
+            "@php artisan migrate:fresh --seed --env=testing --database=sqlite_testing --ansi @no_additional_args",
+            "@php artisan test --env=testing --coverage --min=48"
+        ],
+        "analyse": "phpstan analyse --no-progress",
+        "lint:check": [
+            "pint --parallel --test",
+            "rector --dry-run --no-progress-bar",
+            "@analyse",
+            "npm run check"
+        ],
+        "lint:fix": [
+            "pint --parallel",
+            "npm run lint:fix",
             "npm run format",
-            "vendor/bin/pint --parallel"
-        ],
-        "analyse": [
-            "vendor/bin/phpstan analyse --no-progress"
+            "@analyse"
         ]
     },
     "config": {
@@ -104,5 +127,13 @@
         "platform": {
             "php": "8.3.29"
         }
+    },
+    "scripts-descriptions": {
+        "setup": "Create .env if missing, install PHP dependencies and (when package-lock.json changed) npm dependencies, generate APP_KEY if empty and build the frontend.",
+        "test": "Rebuild and seed the SQLite test database, then run the test suite. Extra arguments go to `artisan test`, e.g. `composer test -- --filter=Name`.",
+        "test:coverage": "Run the test suite with coverage and the CI minimum of 48% (needs Xdebug or PCOV; in DDEV run `ddev xdebug on` first).",
+        "analyse": "Run static analysis (Larastan).",
+        "lint:check": "Check PHP style (Pint) and refactoring rules (Rector dry run), run static analysis (Larastan), lint JavaScript (ESLint) and check formatting (Prettier) without changing files. Same checks as CI.",
+        "lint:fix": "Fix PHP style (Pint), JavaScript (ESLint --fix) and asset formatting (Prettier), then report what Larastan still finds."
     }
 }
