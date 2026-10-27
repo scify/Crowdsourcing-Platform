@@ -5,8 +5,8 @@
 # Each commented-out input shows its default. Uncomment a line only to change it.
 # The "e.g." comment shows other accepted values.
 # In branch protection, require the check "ci / CI".
-# No database service: the tests must run on SQLite. If they need MySQL or
-# PostgreSQL, read "Environment and database" in the guide first.
+# Database: SQLite needs no input. For MySQL or MariaDB, set database-image.
+# PostgreSQL is not supported. See "Environment and database" in the guide.
 name: CI
 
 on:
@@ -33,6 +33,10 @@ jobs:
             # php-extensions: mbstring, dom, fileinfo, intl, pdo_sqlite, sqlite3, gd, zip, bcmath
             # env-file: ''                                  # e.g. .env.testing, .env.ci ('' = .env.testing, else .env.example)
 
+            # Database ('' = no service; SQLite needs none)
+            # database-image: ''                            # e.g. mariadb:11.8, mysql:8.4
+            # database-name: testing                        # e.g. app_test (the service creates it; exported as DB_DATABASE)
+
             # Frontend
             # frontend: true                                # false: repository without package.json
             # build-frontend-for-tests: true                # false: tests do not need the Vite manifest
@@ -46,13 +50,10 @@ jobs:
             #   /tmp/rector_cached_files
 
             # Tests
-            # The tests run in transactions on a seeded SQLite file (sqlite_testing in
-            # config/database.php), so the database is created and seeded first.
-            # Raise --min when coverage improves.
-            test-command: >-
-                touch storage/database_testing.sqlite && php artisan migrate:fresh --seed --env=testing
-                --database=sqlite_testing && php artisan test --env=testing --coverage --min=48
-                --coverage-clover=coverage.xml
+            # `composer test:coverage` creates and seeds the SQLite test database
+            # (sqlite_testing in config/database.php), then runs the suite with
+            # --coverage --min=48. Raise --min in composer.json when coverage improves.
+            test-command: composer test:coverage -- --coverage-clover=coverage.xml
             coverage-file: coverage.xml # turns on PCOV and the Codecov upload
             # browser-tests: false                          # true: run the Playwright job
             # browser-test-command: vendor/bin/pest --testsuite=Browser
