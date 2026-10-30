@@ -92,7 +92,7 @@
 
 <script>
 import { markRaw } from "vue";
-import { Model } from "survey-core";
+import { Model, surveyLocalization } from "survey-core";
 import "survey-js-ui";
 import { DefaultLight } from "survey-core/themes";
 import { arrayMove, setCookie } from "../../common-utils";
@@ -198,6 +198,10 @@ export default {
 				typeof this.questionnaire.questionnaire_json === "string"
 					? JSON.parse(this.questionnaire.questionnaire_json)
 					: this.questionnaire.questionnaire_json;
+			// The editor saves the texts of the questionnaire default language under the "default" key.
+			// getUsedLocales() reports that key as surveyLocalization.defaultLocale, so set it to the real language.
+			surveyLocalization.defaultLocale =
+				this.getSurveyLocaleFromLanguageId(this.questionnaire.default_language_id) ?? "en";
 			// markRaw: Vue must not proxy the SurveyJS model (identity checks inside the library break).
 			this.survey = markRaw(new Model(questionnaireJson));
 			this.survey.applyTheme(DefaultLight);
@@ -436,14 +440,22 @@ export default {
 				locale = "gr";
 			}
 			const locales = this.survey.getUsedLocales();
-			// if the current locale exists in the survey locales, set it as the default locale
+			const projectLocale = this.getSurveyLocaleFromLanguageId(this.project?.language_id);
+			// prefer the URL locale, then the project language, then the questionnaire default language
 			if (locales && locales.length && locales.includes(locale)) {
 				this.defaultLangCode = locale;
+			} else if (locales && locales.length && locales.includes(projectLocale)) {
+				this.defaultLangCode = projectLocale;
 			} else if (locales && locales.length) {
 				this.defaultLangCode = locales[0];
 			}
 
 			return this.defaultLangCode;
+		},
+		getSurveyLocaleFromLanguageId(languageId) {
+			const code = this.languages.find((l) => l.id === languageId)?.language_code;
+			// fix for the greek language (el to gr)
+			return code === "el" ? "gr" : code;
 		},
 		trans(key) {
 			return window.trans(key);
