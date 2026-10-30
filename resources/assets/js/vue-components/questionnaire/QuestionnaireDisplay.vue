@@ -187,6 +187,10 @@ export default {
 		},
 		initQuestionnaireDisplay() {
 			Survey.StylesManager.applyTheme("modern");
+			// The editor saves the texts of the questionnaire default language under the "default" key.
+			// getUsedLocales() reports that key as surveyLocalization.defaultLocale, so set it to the real language.
+			Survey.surveyLocalization.defaultLocale =
+				this.getSurveyLocaleFromLanguageId(this.questionnaire.default_language_id) ?? "en";
 			this.survey = new Survey.Model(this.questionnaire.questionnaire_json);
 			if (!this.userResponse || Object.keys(this.userResponse).length === 0) {
 				this.prepareQuestionnaireForResponding();
@@ -428,14 +432,22 @@ export default {
 				locale = "gr";
 			}
 			const locales = this.survey.getUsedLocales();
-			// if the current locale exists in the survey locales, set it as the default locale
+			const projectLocale = this.getSurveyLocaleFromLanguageId(this.project?.language_id);
+			// prefer the URL locale, then the project language, then the questionnaire default language
 			if (locales && locales.length && locales.includes(locale)) {
 				this.defaultLangCode = locale;
+			} else if (locales && locales.length && locales.includes(projectLocale)) {
+				this.defaultLangCode = projectLocale;
 			} else if (locales && locales.length) {
 				this.defaultLangCode = locales[0];
 			}
 
 			return this.defaultLangCode;
+		},
+		getSurveyLocaleFromLanguageId(languageId) {
+			const code = this.languages.find((l) => l.id === languageId)?.language_code;
+			// fix for the greek language (el to gr)
+			return code === "el" ? "gr" : code;
 		},
 		trans(key) {
 			return window.trans(key);
