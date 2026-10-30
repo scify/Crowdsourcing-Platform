@@ -50,7 +50,7 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/' . PHP_SAPI . '/laravel.log'),
             'level' => 'debug',
-            'permission' => 0666,
+            'permission' => 0660,
         ],
 
         'daily' => [
@@ -58,7 +58,7 @@ return [
             'path' => storage_path('logs/' . PHP_SAPI . '/laravel.log'),
             'level' => 'debug',
             'days' => 60,
-            'permission' => 0666,
+            'permission' => 0660,
         ],
 
         'slack' => [
