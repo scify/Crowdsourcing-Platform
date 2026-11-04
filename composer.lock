@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6974f6ebaf95809c7301a9b8ad64f7cc",
+    "content-hash": "2ea7d22487399b5a0c51576e9630062f",
     "packages": [
         {
             "name": "awobaz/compoships",
@@ -11179,7 +11179,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-03T20:38:19+00:00"
+            "time": "2026-09-03T20:38:19+00:00",
+            "published-time": "2026-09-03T20:38:35+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
