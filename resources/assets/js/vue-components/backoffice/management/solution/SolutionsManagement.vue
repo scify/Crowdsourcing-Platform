@@ -250,7 +250,7 @@ import $ from "jquery";
 import "datatables.net-bs5";
 import Modal from "bootstrap/js/dist/modal";
 import axios from "axios";
-import { getLocale } from "../../../../common-utils";
+import { escapeHtml, getLocale } from "../../../../common-utils";
 
 export default {
 	name: "SolutionsManagement",
@@ -311,7 +311,7 @@ export default {
 							data: null,
 							width: "10%",
 							render: function (data, type, row) {
-								return row.default_translation?.title ?? "Untitled";
+								return escapeHtml(row.default_translation?.title ?? "Untitled");
 							},
 						},
 						{
@@ -319,7 +319,7 @@ export default {
 							data: null,
 							width: "30%",
 							render: function (data, type, row) {
-								return row.default_translation?.description ?? "No description";
+								return escapeHtml(row.default_translation?.description ?? "No description");
 							},
 						},
 						{ title: "Upvotes", data: "upvotes", width: "5%" },
@@ -510,7 +510,7 @@ export default {
 							? solution.translations.map((t) => t.language.language_name).join(", ")
 							: "",
 						user: solution?.creator
-							? solution.creator?.nickname + " (" + solution.creator.email + ")"
+							? escapeHtml(solution.creator?.nickname + " (" + solution.creator.email + ")")
 							: "N/A",
 						status: `<span title="${this.getBadgeTitleForSolutionStatusId(solution.status_id)}"
                                   class="p-2 w-75 badge ${this.getBadgeClassForSolutionStatusId(solution.status_id)}">

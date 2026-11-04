@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireAnswerAnnotator;
 use App\Http\Controllers\Controller;
+use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\Responses\QuestionnaireAnswerAdminReviewLkpRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,9 +14,9 @@ use Illuminate\Http\Request;
 class QuestionnaireAnswerAnnotationController extends Controller {
     public function __construct(protected QuestionnaireAnswerAnnotator $questionnaireAnswerAnnotator, protected QuestionnaireAnswerAdminReviewLkpRepository $questionnaireAnswerAdminReviewStatusesRepository) {}
 
-    public function getAnswerAnnotationsForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
+    public function getAnswerAnnotationsForQuestionnaireAnswers(Questionnaire $questionnaire): JsonResponse {
         return response()->json($this->questionnaireAnswerAnnotator
-            ->getAnswerAnnotationsForQuestionnaireAnswers($questionnaire_id));
+            ->getAnswerAnnotationsForQuestionnaireAnswers($questionnaire->id));
     }
 
     public function annotateAnswer(Request $request): JsonResponse {

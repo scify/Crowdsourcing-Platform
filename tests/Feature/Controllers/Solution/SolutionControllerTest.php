@@ -197,4 +197,36 @@ final class SolutionControllerTest extends TestCase {
 
         $response->assertSessionHasErrors('solution-description');
     }
+
+    /**
+     * GIVEN that a user submits a solution proposal with HTML in the description,
+     * WHEN the confirmation page is shown,
+     * THEN the description is shown as escaped text.
+     */
+    #[Test]
+    public function test_user_proposal_submitted_page_escapes_the_description(): void {
+        $user = User::factory()->create();
+        $problem = Problem::findOrfail(1);
+        $title = 'XSS solution ' . uniqid();
+        $payload = '<img src=x onerror=alert(1)>';
+        Http::fake([
+            'https://www.google.com/recaptcha/api/siteverify' => Http::response(['success' => true, 'score' => 0.9, 'action' => 'submitSolution'], 200),
+        ]);
+
+        $response = $this->actingAs($user)->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('solutions.user-proposal-store', ['locale' => 'en', 'project_slug' => $problem->project->slug, 'problem_slug' => $problem->slug]), [
+                'solution-title' => $title,
+                'solution-description' => $payload,
+                'solution-owner-problem' => 1,
+                'consent-notice' => 'on',
+                'translation-notice' => 'on',
+                'g-recaptcha-response' => 'valid-recaptcha-response',
+            ]);
+
+        $page = $this->actingAs($user)->get($response->headers->get('Location'));
+
+        $page->assertOk();
+        $page->assertDontSee($payload, false);
+        $page->assertSee(e($payload), false);
+    }
 }

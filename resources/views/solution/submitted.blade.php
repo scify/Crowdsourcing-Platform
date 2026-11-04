@@ -52,7 +52,7 @@
                 <div class="col-12 pt-4">
                     <h3 class="section-title">{{ __("solution.solution_description") }}</h3>
                     <div class="section-body pb-5 pb-lg-0">
-                        <p>{!! $viewModel->solution->defaultTranslation->description !!}</p>
+                        <p>{{ $viewModel->solution->defaultTranslation->description }}</p>
                     </div>
                 </div>
                 <div class="col-12 py-4">

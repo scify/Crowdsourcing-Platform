@@ -72,6 +72,16 @@ class QuestionnaireResponse extends Model {
         'browser_ip',
     ];
 
+    /**
+     * Respondent tracking data. Never send it to the browser.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'browser_fingerprint_id',
+        'browser_ip',
+    ];
+
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }

@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class UserRoleManager {
+    private const array ROLE_CACHE_KEYS = ['user_is_admin', 'user_is_moderator', 'user_is_content_manager', 'user_is_registered'];
+
     public function __construct(private readonly UserRoleRepository $userRoleRepository) {}
 
     public function registerUserPolicies(): void {
@@ -112,14 +114,14 @@ class UserRoleManager {
         return $userRoles->contains($roleId);
     }
 
-    private function checkCacheOrDBForRoleAndStore(string $roleKey, User $user, int $roleId) {
-        $result = Cache::get($roleKey . $user->id);
-        if ($result == null) {
-            $userRoles = $user->roles;
-            $result = $this->rolesInclude($userRoles, $roleId);
-            Cache::put($roleKey . $user->id, $result, 5000);
+    public static function forgetCachedRolesOfUser(int $userId): void {
+        foreach (self::ROLE_CACHE_KEYS as $roleKey) {
+            Cache::forget($roleKey . $userId);
         }
+    }
 
-        return $result;
+    private function checkCacheOrDBForRoleAndStore(string $roleKey, User $user, int $roleId): bool {
+        // Cache::remember also keeps a cached "false", so a missing role is not re-queried on every check.
+        return Cache::remember($roleKey . $user->id, 5000, fn (): bool => $this->rolesInclude($user->roles()->pluck('role_id'), $roleId));
     }
 }

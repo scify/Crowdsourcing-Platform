@@ -25,35 +25,92 @@ class QuestionnaireResponseManager {
     }
 
     public function questionnaireResponsesForUserAndQuestionnaireExists(int $userId, int $questionnaireId): bool {
-        return $this->questionnaireResponseRepository->questionnaireResponseExists($userId, $questionnaireId);
+        return $this->questionnaireResponseRepository->questionnaireResponseExists($questionnaireId, $userId);
     }
 
     public function getQuestionnaireResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter): Collection {
+        $userCanModerate = Gate::allows('moderate-content-by-users');
         $queryFilters = ['questionnaire_id' => $questionnaire_id];
         // we only allow the responses to be filtered by project for logged in Answer Moderators
-        if ($projectFilter > 0 && Gate::allows('moderate-content-by-users')) {
+        if ($projectFilter > 0 && $userCanModerate) {
             $queryFilters['project_id'] = $projectFilter;
         }
 
-        return $this->questionnaireResponseRepository->allWhere($queryFilters, ['*'], 'id', 'desc', ['project']);
+        $responses = $this->questionnaireResponseRepository->allWhere($queryFilters, ['*'], 'id', 'desc', ['project']);
+        if ($userCanModerate) {
+            return $responses;
+        }
+
+        $questionnaire = $this->questionnaireRepository->find($questionnaire_id);
+        $sensitiveQuestionNames = $this->getSensitiveQuestionNamesFromQuestionnaireJSON($questionnaire->questionnaire_json);
+        if ($sensitiveQuestionNames === []) {
+            return $responses;
+        }
+
+        foreach ($responses as $response) {
+            $response->response_json = $this->removeAnswersFromResponseJSON($response->response_json, $sensitiveQuestionNames);
+            $response->response_json_translated = $this->removeAnswersFromResponseJSON($response->response_json_translated, $sensitiveQuestionNames);
+        }
+
+        return $responses;
+    }
+
+    /**
+     * Questions that ask for the respondent's email. Only moderators may see their answers.
+     *
+     * @return list<string>
+     */
+    protected function getSensitiveQuestionNamesFromQuestionnaireJSON(string $questionnaireJSON): array {
+        $names = [];
+        foreach (json_decode($questionnaireJSON, true)['pages'] ?? [] as $page) {
+            foreach ($page['elements'] ?? [] as $question) {
+                $titles = (array) ($question['title'] ?? []);
+                foreach ($titles as $title) {
+                    if (is_string($title) && str_contains(mb_strtolower($title), 'please indicate your email')) {
+                        $names[] = $question['name'];
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $names;
+    }
+
+    protected function removeAnswersFromResponseJSON(?string $responseJSON, array $questionNames): ?string {
+        if ($responseJSON === null) {
+            return null;
+        }
+
+        $answers = json_decode($responseJSON, true);
+        if (! is_array($answers)) {
+            return $responseJSON;
+        }
+
+        $remainingAnswers = array_diff_key($answers, array_flip($questionNames));
+
+        return $remainingAnswers === [] ? '{}' : json_encode($remainingAnswers, JSON_UNESCAPED_UNICODE);
     }
 
     public function transferQuestionnaireResponsesOfAnonymousUserToUser(User $user): int {
-        $questionnaireResponsesThatWereTransferredToUser = $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($user->id);
-        if ($questionnaireResponsesThatWereTransferredToUser instanceof Collection) {
-            foreach ($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse) {
-                $lang = $this->languageManager->getLanguageById($questionnaireResponse->language_id);
-                $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project,
-                    $user, $lang);
-                // if the user got invited by another user to answer the questionnaire, also award the referrer user.
-                $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaireResponse->questionnaire, $user,
-                    $lang);
-            }
-
-            return count($questionnaireResponsesThatWereTransferredToUser);
+        $anonymousUser = $this->userManager->getAnonymousUserFromCookie();
+        if (! $anonymousUser instanceof User || $anonymousUser->id === $user->id) {
+            return 0;
         }
 
-        return 0;
+        $questionnaireResponsesThatWereTransferredToUser = $this->questionnaireResponseRepository->transferQuestionnaireResponsesOfAnonymousUserToUser($anonymousUser, $user->id);
+        $this->userManager->forgetAnonymousUserCookie();
+        foreach ($questionnaireResponsesThatWereTransferredToUser as $questionnaireResponse) {
+            $lang = $this->languageManager->getLanguageById($questionnaireResponse->language_id);
+            $this->questionnaireActionHandler->handleQuestionnaireContributor($questionnaireResponse->questionnaire, $questionnaireResponse->project,
+                $user, $lang);
+            // if the user got invited by another user to answer the questionnaire, also award the referrer user.
+            $this->questionnaireActionHandler->handleQuestionnaireReferrer($questionnaireResponse->questionnaire, $user,
+                $lang);
+        }
+
+        return count($questionnaireResponsesThatWereTransferredToUser);
     }
 
     public function storeQuestionnaireResponse(array $data) {

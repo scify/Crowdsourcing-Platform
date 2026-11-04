@@ -32,6 +32,7 @@ use App\ViewModels\Gamification\GamificationBadgeVM;
 use App\ViewModels\Questionnaire\QuestionnaireSocialShareButtons;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -98,7 +99,7 @@ class CrowdSourcingProjectManager {
     public function getCrowdSourcingProjectViewModelForLandingPage(
         int $questionnaireIdRequestedInTheURL,
         string $project_slug): CrowdSourcingProjectForLandingPage {
-        $userId = Auth::id() ?? intval($_COOKIE[UserManager::$USER_COOKIE_KEY] ?? 0);
+        $userId = Auth::id() ?? intval(Cookie::get(UserManager::$USER_COOKIE_KEY));
 
         $project = $this->getCrowdSourcingProjectBySlug($project_slug);
         $projectDefaultLanguage = $project?->defaultTranslation?->language;

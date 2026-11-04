@@ -10,6 +10,15 @@ function renderHeader(table) {
 	table.appendChild(header);
 }
 
+function isHttpUrl(value) {
+	try {
+		const url = new URL(value, window.location.origin);
+		return url.protocol === "https:" || url.protocol === "http:";
+	} catch {
+		return false;
+	}
+}
+
 function renderRows(table, visualizer) {
 	const tbody = document.createElement("tbody");
 	const questionName = visualizer.question.name;
@@ -22,12 +31,16 @@ function renderRows(table, visualizer) {
 		const tr = document.createElement("tr");
 		const td0 = document.createElement("td");
 
-		td0.innerHTML =
-			"<a class='file-link' href=\"" +
-			fileURL +
-			'" target="_blank" rel="nofollow">' +
-			fileName +
-			' <i class="fas fa-external-link-alt ms-2"></i></a>';
+		const link = document.createElement("a");
+		link.className = "file-link";
+		link.target = "_blank";
+		link.rel = "nofollow noopener";
+		if (isHttpUrl(fileURL)) link.href = fileURL;
+		link.textContent = fileName + " ";
+		const icon = document.createElement("i");
+		icon.className = "fas fa-external-link-alt ms-2";
+		link.appendChild(icon);
+		td0.appendChild(link);
 
 		tr.appendChild(td0);
 		tbody.appendChild(tr);

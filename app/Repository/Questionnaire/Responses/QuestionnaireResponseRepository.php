@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Repository\Questionnaire\Responses;
 
-use App\BusinessLogicLayer\CookieManager;
-use App\BusinessLogicLayer\User\UserManager;
 use App\Models\Questionnaire\QuestionnaireResponse;
 use App\Models\User\User;
 use App\Repository\Repository;
@@ -33,26 +31,8 @@ class QuestionnaireResponseRepository extends Repository {
         return QuestionnaireResponse::onlyTrashed()->whereIn('user_id', [$id])->restore();
     }
 
-    public function transferQuestionnaireResponsesOfAnonymousUserToUser(int $user_id): ?Collection {
-        if (! isset($_COOKIE[UserManager::$USER_COOKIE_KEY]) || intval($_COOKIE[UserManager::$USER_COOKIE_KEY]) === 0) {
-            return null;
-        }
-
-        $anonymousUserId = intval($_COOKIE[UserManager::$USER_COOKIE_KEY]);
-        $cookieManager = new CookieManager;
-        if ($anonymousUserId === $user_id) {
-            $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
-
-            return null;
-        }
-
-        $anonymousUser = User::find($anonymousUserId);
-        if (! $anonymousUser) {
-            $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
-
-            return null;
-        }
-
+    public function transferQuestionnaireResponsesOfAnonymousUserToUser(User $anonymousUser, int $user_id): Collection {
+        $anonymousUserId = $anonymousUser->id;
         $anonymousQuestionnaireResponses = QuestionnaireResponse::where('user_id', '=', $anonymousUserId)->get();
         // find existing questionnaires of the user.
         $existingQuestionnaireResponsesOfUser = QuestionnaireResponse::where('user_id', '=', $user_id)->get();
@@ -72,7 +52,6 @@ class QuestionnaireResponseRepository extends Repository {
         }
 
         $anonymousUser->delete();
-        $cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
 
         return $questionnairesThatWereTransferredToUser;
     }

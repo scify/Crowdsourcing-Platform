@@ -95,7 +95,7 @@ import { markRaw } from "vue";
 import { Model, surveyLocalization } from "survey-core";
 import "survey-js-ui";
 import { DefaultLight } from "survey-core/themes";
-import { arrayMove, setCookie } from "../../common-utils";
+import { arrayMove } from "../../common-utils";
 import AnalyticsLogger from "../../analytics-logger";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import axios from "axios";
@@ -360,9 +360,6 @@ export default {
 				.then((response) => {
 					const anonymousUserId = response.data.anonymousUserId;
 					const responseId = response.data.responseId;
-					if (anonymousUserId) {
-						setCookie("crowdsourcing_anonymous_user_id", anonymousUserId, 3650);
-					}
 					const time = performance.now() - this.t0;
 					const title = this.questionnaire.default_fields_translation.title;
 					AnalyticsLogger.logEvent(
