@@ -209,4 +209,19 @@ final class RegisterControllerTest extends TestCase {
             'year-of-birth' => 1990,
         ];
     }
+
+    /**
+     * GIVEN an email in the social-login placeholder domain
+     * WHEN a visitor registers with it
+     * THEN the registration is rejected
+     */
+    #[Test]
+    public function register_rejects_social_login_placeholder_email(): void {
+        $email = '1234567890@' . UserManager::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN;
+
+        $response = $this->post(route('register', ['locale' => 'en']), $this->registrationData($email));
+
+        $response->assertSessionHasErrors('email');
+        $this->assertDatabaseMissing('users', ['email' => $email]);
+    }
 }

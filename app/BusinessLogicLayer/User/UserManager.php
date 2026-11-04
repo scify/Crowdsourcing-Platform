@@ -27,6 +27,18 @@ class UserManager {
 
     public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
 
+    /**
+     * Email domain for social logins that return no email. Nobody may register an address in it.
+     */
+    public const string SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN = 'dummy.crowdsourcing.org';
+
+    /**
+     * Validation rule that rejects addresses in the social-login placeholder domain.
+     */
+    public static function placeholderEmailDomainRule(): string {
+        return 'not_regex:/@' . preg_quote(self::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN, '/') . '$/i';
+    }
+
     public function __construct(private readonly UserRepository $userRepository, private readonly UserRoleRepository $userRoleRepository, private readonly MailChimpAdaptor $mailChimpManager, private readonly QuestionnaireResponseRepository $questionnaireResponseRepository, private readonly QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository, private readonly CookieManager $cookieManager) {}
 
     public function getUserProfile($user): UserProfile {
@@ -179,8 +191,16 @@ class UserManager {
         // In that case, we should use another field that is always present.
         $registerToMailchimp = true;
         if (! $socialUser->email) {
-            $socialUser->email = $socialUser->id . '@dummy.crowdsourcing.org';
+            $socialUser->email = $socialUser->id . '@' . self::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN;
             $registerToMailchimp = false;
+        }
+
+        // An existing account is only logged in. Social login must not change its roles or profile.
+        $existingUser = $this->userRepository->getUserByEmail($socialUser->email);
+        if ($existingUser instanceof User) {
+            auth()->login($existingUser);
+
+            return $existingUser;
         }
 
         $result = $this->getOrAddUserToPlatform($socialUser->email,

@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use App\Utils\SpreadsheetCell;
 use App\ViewModels\Gamification\GamificationBadgeVM;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -144,7 +145,7 @@ class QuestionnaireResponseController extends Controller {
                 $row['Number of votes'] = $record['num_votes'];
                 $row['Voters'] = $record['voters'];
 
-                fputcsv($file, [$row['Id'], $row['Question'], $row['Answer'], $row['Number of votes'], $row['Voters']]);
+                fputcsv($file, SpreadsheetCell::csvRow([$row['Id'], $row['Question'], $row['Answer'], $row['Number of votes'], $row['Voters']]));
             }
 
             fclose($file);

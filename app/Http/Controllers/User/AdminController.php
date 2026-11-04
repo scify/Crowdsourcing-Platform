@@ -86,7 +86,7 @@ class AdminController extends Controller {
 
     public function uploadAdminFile(Request $request) {
         $request->validate([
-            'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $fileObject = $request->file('image');

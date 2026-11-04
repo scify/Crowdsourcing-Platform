@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Solution;
 use App\BusinessLogicLayer\Solution\SolutionManager;
 use App\Http\Controllers\Controller;
 use App\Rules\ReCaptchaV3;
+use App\Utils\SpreadsheetCell;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -292,7 +293,7 @@ class SolutionController extends Controller {
                     ->filter()
                     ->implode(', ');
 
-                fputcsv($file, [
+                fputcsv($file, SpreadsheetCell::csvRow([
                     $solution->id,
                     $solution->defaultTranslation?->title,
                     $solution->creator ? $solution->creator->nickname . ' <' . $solution->creator->email . '>' : 'Anonymous',
@@ -301,7 +302,7 @@ class SolutionController extends Controller {
                     $solution->upvotes->count(),
                     $voterEmails,
                     $solution->created_at,
-                ]);
+                ]));
             }
 
             fclose($file);

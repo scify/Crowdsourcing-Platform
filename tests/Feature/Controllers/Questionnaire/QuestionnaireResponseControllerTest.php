@@ -376,4 +376,28 @@ final class QuestionnaireResponseControllerTest extends TestCase {
             'response' => json_encode(['question1' => 5]),
         ];
     }
+
+    #[Test]
+    public function test_download_questionnaire_responses_neutralises_formulas(): void {
+        $questionnaire = Questionnaire::factory()->create();
+        $contentManager = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
+            ->create();
+        $this->partialMock(QuestionnaireResponseManager::class)
+            ->shouldReceive('getAnswersWithVotesAndVoterInfoForQuestionnaire')
+            ->andReturn(collect([[
+                'response_id' => 1,
+                'question' => 'Your idea',
+                'answer' => '=HYPERLINK("https://evil.example","Click")',
+                'num_votes' => 1,
+                'voters' => '@SUM(1)',
+            ]]));
+
+        $response = $this->actingAs($contentManager)
+            ->get(route('questionnaire.responses.download', ['questionnaire_id' => $questionnaire->id]));
+
+        $csv = $response->streamedContent();
+        $this->assertStringContainsString('"\'=HYPERLINK(', $csv);
+        $this->assertStringContainsString("'@SUM(1)", $csv);
+    }
 }

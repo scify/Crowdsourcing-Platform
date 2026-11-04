@@ -18,7 +18,8 @@ class ResetPassword extends Notification {
         return (new MailMessage)
             ->subject(__('email_messages.reset_password'))
             ->line(__('email_messages.email_reset_password'))
-            ->action(__('email_messages.reset_password'), url(app()->getLocale() . '/password/reset', $this->token))
+            // Built from APP_URL, never from the request Host header, so the token cannot be sent to another host.
+            ->action(__('email_messages.reset_password'), rtrim((string) config('app.url'), '/') . '/' . app()->getLocale() . '/password/reset/' . $this->token)
             ->line(__('email_messages.no_further_action'));
     }
 }
