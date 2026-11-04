@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 return [
     'back-to-the-campaign' => 'Vissza a kampányhoz',
-    'the_topic' => 'Segítsen megoldani a téma problémáit:',
-    'start-contributing-directions' => 'Válasszon egy problémát az alábbi listából, és szavazzon egy meglévő megoldásra, vagy javasoljon egy újat. Hozzájárulása értékes hatással lesz az európai hivatalos politikára.',
+    'the_topic' => 'Segítsen megtalálni a megoldást:',
+    'start-contributing-directions' => 'Válasszon egy problémát az alábbi listából, és szavazzon egy meglévő megoldásra, vagy javasoljon egy újat. Az Ön ezzel hozzájárul az európai szakpolitikák alakításához.',
     'list_of_problems' => 'Problémák listája',
     'select-a-problem-to-begin' => 'Válasszon egy problémát az alábbi listából a kezdéshez',
     'back-to-the-problems' => 'Vissza a problémákhoz',
