@@ -61,7 +61,7 @@ if (import.meta.env.VITE_SURVEYJS_LICENSE_KEY) setLicenseKey(import.meta.env.VIT
 			const respondentUserData = $(this).data("respondentUserData");
 			const answer = getResponseJSONByResponseId(responseId);
 			if (answer) {
-				$("#respondent-answers-modal-title").html(respondentUserData);
+				$("#respondent-answers-modal-title").text(respondentUserData);
 				survey.data = answer;
 				window.bootstrap.Modal.getOrCreateInstance(document.getElementById("respondent-answers-modal")).show();
 			}

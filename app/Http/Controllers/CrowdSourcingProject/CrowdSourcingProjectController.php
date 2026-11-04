@@ -16,12 +16,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CrowdSourcingProjectController extends Controller {
+    private const array PROJECT_IMAGE_RULES = [
+        'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+        'img' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+        'sm_featured_img' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+        'lp_questionnaire_img' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+    ];
+
     public function __construct(private readonly CrowdSourcingProjectManager $crowdSourcingProjectManager, private readonly UserQuestionnaireShareManager $questionnaireShareManager) {}
 
     public function index(): View|Factory {
@@ -57,6 +66,7 @@ class CrowdSourcingProjectController extends Controller {
             'motto_title' => 'required|string',
             'motto_subtitle' => 'required|string',
             'about' => 'nullable|string',
+            ...self::PROJECT_IMAGE_RULES,
         ]);
         $project = $this->crowdSourcingProjectManager->storeProject($request->all());
 
@@ -81,6 +91,7 @@ class CrowdSourcingProjectController extends Controller {
             'motto_subtitle' => 'required|string',
             'about' => 'nullable|string',
             'user_creator_id' => 'nullable|numeric|exists:users,id',
+            ...self::PROJECT_IMAGE_RULES,
         ]);
         $attributes = $request->all();
         try {
@@ -185,7 +196,7 @@ class CrowdSourcingProjectController extends Controller {
         // Add data rows
         $rowNumber = 2;
         foreach ($engagementData as $record) {
-            $sheet->fromArray([
+            $values = [
                 $record['name_nickname'],
                 $record['email_ip'],
                 $record['gender'],
@@ -195,7 +206,17 @@ class CrowdSourcingProjectController extends Controller {
                 $record['phase2_solution'],
                 $record['phase3_votes'],
                 $record['phase3_date'],
-            ], null, 'A' . $rowNumber);
+            ];
+            foreach ($values as $columnIndex => $value) {
+                $cell = Coordinate::stringFromColumnIndex($columnIndex + 1) . $rowNumber;
+                // Text is written as a plain string, so a value that starts with "=" never becomes a formula.
+                if (is_string($value)) {
+                    $sheet->setCellValueExplicit($cell, $value, DataType::TYPE_STRING);
+                } else {
+                    $sheet->setCellValue($cell, $value);
+                }
+            }
+
             ++$rowNumber;
         }
 

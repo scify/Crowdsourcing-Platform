@@ -12,6 +12,7 @@ use App\BusinessLogicLayer\User\UserDashboardManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use App\Http\OperationResponse;
+use App\Utils\SpreadsheetCell;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -59,6 +60,10 @@ class UserController extends Controller {
         if ($request->password) {
             $validationArray['password'] = 'required_with:password_confirmation|string|min:8|confirmed';
             $validationArray['current_password'] = 'required|string|min:8';
+        }
+
+        if ($request->email !== Auth::user()->email) {
+            $validationArray['email'] = ['required', 'email', 'max:255', UserManager::placeholderEmailDomainRule()];
         }
 
         // here we need to add custom messages for the validation, since the field is called 'avatar' and not 'profile image'.
@@ -144,11 +149,11 @@ class UserController extends Controller {
             fputcsv($file, $columns);
 
             foreach ($responses as $response) {
-                fputcsv($file, ['Response', $response->project_name, $response->title, $response->questionnaire_description, $response->response_json]);
+                fputcsv($file, SpreadsheetCell::csvRow(['Response', $response->project_name, $response->title, $response->questionnaire_description, $response->response_json]));
             }
 
             foreach ($solutions as $solution) {
-                fputcsv($file, ['Solution', $solution->problem->project->defaultTranslation->name, $solution->defaultTranslation->title, $solution->defaultTranslation->description, '']);
+                fputcsv($file, SpreadsheetCell::csvRow(['Solution', $solution->problem->project->defaultTranslation->name, $solution->defaultTranslation->title, $solution->defaultTranslation->description, '']));
             }
 
             fclose($file);

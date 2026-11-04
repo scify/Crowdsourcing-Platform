@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Controllers;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
+use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\CrowdSourcingProject\CrowdSourcingProject;
 use App\Models\Questionnaire\Questionnaire;
@@ -328,5 +329,49 @@ final class UserControllerTest extends TestCase {
         $this->assertCount(3, $viewModel->platformWideGamificationBadgesVM->badgesWithLevelsList);
         $this->assertCount(0, $viewModel->questionnaires);
         $this->assertCount(0, $viewModel->projectsWithActiveProblems);
+    }
+
+    /**
+     * GIVEN a JPEG avatar with an ".html" file name
+     * WHEN the user updates the profile
+     * THEN the avatar is stored with the ".jpg" extension
+     */
+    #[Test]
+    public function patch_stores_avatar_with_extension_of_its_content(): void {
+        $user = User::factory()->create();
+        $tmp = tempnam(sys_get_temp_dir(), 'avatar');
+        imagejpeg(imagecreatetruecolor(2, 2), $tmp);
+
+        $this->actingAs($user)->withoutMiddleware(VerifyCsrfToken::class)
+            ->put(route('user.update'), [
+                'email' => $user->email,
+                'nickname' => 'nick',
+                'avatar' => new UploadedFile($tmp, 'probe.html', null, null, true),
+                'gender' => 'female',
+                'country' => 'Greece',
+                'year-of-birth' => 1990,
+            ]);
+
+        $avatar = (string) $user->fresh()->avatar;
+        $this->assertStringStartsWith('/storage/uploads/user_profile_img/', $avatar);
+        $this->assertStringEndsWith('.jpg', $avatar);
+        \File::delete(storage_path('app/public/uploads/user_profile_img/' . basename($avatar)));
+    }
+
+    #[Test]
+    public function patch_rejects_change_to_social_login_placeholder_email(): void {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->withoutMiddleware(VerifyCsrfToken::class)
+            ->put(route('user.update'), [
+                'email' => '1234567890@' . UserManager::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN,
+                'nickname' => 'nick',
+                'gender' => 'female',
+                'country' => 'Greece',
+                'year-of-birth' => 1990,
+            ]);
+
+        $response->assertSessionHasErrors('email');
+        $this->assertNotSame('1234567890@' . UserManager::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN, $user->fresh()->email);
     }
 }
