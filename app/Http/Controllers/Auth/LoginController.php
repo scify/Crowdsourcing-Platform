@@ -32,6 +32,7 @@ class LoginController extends Controller {
     */
 
     use AuthenticatesUsers;
+    use RedirectsToSafeUrl;
 
     /**
      * Where to redirect users after login.
@@ -49,15 +50,14 @@ class LoginController extends Controller {
     }
 
     public function showLoginForm(Request $request, $redirectTo) {
-        $r = $request->query('redirectTo') ?: $this->redirectTo();
-        $request->session()->put('redirectTo', $r);
+        $request->session()->put('redirectTo', $this->safeRedirectUrl($request->query('redirectTo')));
 
         return view('auth.login')->with('displayQuestionnaireLabels', $request->submitQuestionnaire != null);
     }
 
     protected function authenticated(Request $request, User $user): Redirector|RedirectResponse {
         $numberOfResponsesTransferred = $this->questionnaireResponseManager->transferQuestionnaireResponsesOfAnonymousUserToUser($user);
-        $url = session('redirectTo') ?: $this->redirectTo();
+        $url = $this->safeRedirectUrl(session('redirectTo'));
         if ($numberOfResponsesTransferred !== 0) {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }

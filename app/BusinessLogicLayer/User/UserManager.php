@@ -17,7 +17,6 @@ use App\Utils\MailChimpAdaptor;
 use App\ViewModels\User\EditUser;
 use App\ViewModels\User\ManageUsers;
 use App\ViewModels\User\UserProfile;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -218,28 +217,21 @@ class UserManager {
             'country' => $input_data['country'],
             'year-of-birth' => $input_data['year-of-birth'],
         ];
-        $user_id = intval($this->cookieManager->getCookie(UserManager::$USER_COOKIE_KEY));
-        if ($user_id === 0) {
+        $anonymousUser = $this->getAnonymousUserFromCookie();
+        if (! $anonymousUser instanceof User) {
             return $this->userRepository->create($user_data);
         }
 
-        try {
-            $existingUser = $this->userRepository->find($user_id);
-            $this->userRepository->update([
-                'email' => $user_data['email'],
-                'nickname' => $user_data['nickname'],
-                'password' => $user_data['password'],
-                'gender' => $user_data['gender'],
-                'country' => $user_data['country'],
-                'year_of_birth' => $user_data['year-of-birth'],
-            ], $existingUser->id);
+        $this->userRepository->update([
+            'email' => $user_data['email'],
+            'nickname' => $user_data['nickname'],
+            'password' => $user_data['password'],
+            'gender' => $user_data['gender'],
+            'country' => $user_data['country'],
+            'year_of_birth' => $user_data['year-of-birth'],
+        ], $anonymousUser->id);
 
-            return $this->userRepository->find($existingUser->id);
-        } catch (ModelNotFoundException) {
-            $this->cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
-
-            return $this->createUser($user_data);
-        }
+        return $this->userRepository->find($anonymousUser->id);
     }
 
     public function getLoggedInUserOrCreateAnonymousUser() {
@@ -247,16 +239,31 @@ class UserManager {
             return Auth::user();
         }
 
-        $user_id = intval($this->cookieManager->getCookie(self::$USER_COOKIE_KEY));
-        if ($user_id !== 0) {
-            try {
-                return $this->userRepository->find($user_id);
-            } catch (ModelNotFoundException) {
-                // Fall through to create a new anonymous user
-            }
+        return $this->getAnonymousUserFromCookie() ?? $this->createAnonymousUser();
+    }
+
+    /**
+     * Returns the account that the anonymous-user cookie points to, but only when that
+     * account is still anonymous. A cookie that points to any other account is discarded.
+     */
+    public function getAnonymousUserFromCookie(): ?User {
+        $userId = intval($this->cookieManager->getCookie(self::$USER_COOKIE_KEY));
+        if ($userId === 0) {
+            return null;
         }
 
-        return $this->createAnonymousUser();
+        $user = $this->userRepository->getUser($userId);
+        if ($user instanceof User && $user->isAnonymous()) {
+            return $user;
+        }
+
+        $this->forgetAnonymousUserCookie();
+
+        return null;
+    }
+
+    public function forgetAnonymousUserCookie(): void {
+        $this->cookieManager->deleteCookie(self::$USER_COOKIE_KEY);
     }
 
     protected function createAnonymousUser(): User {

@@ -12,7 +12,5 @@ class EncryptCookies extends Middleware {
      *
      * @var array<int, string>
      */
-    protected $except = [
-        'crowdsourcing_anonymous_user_id',
-    ];
+    protected $except = [];
 }

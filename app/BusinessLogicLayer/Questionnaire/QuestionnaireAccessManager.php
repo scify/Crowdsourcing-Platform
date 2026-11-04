@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\BusinessLogicLayer\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\QuestionnaireStatisticsPageVisibilityLkp;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\User\UserRoleManager;
 use App\Models\Questionnaire\Questionnaire;
 use App\Models\User\User;
@@ -13,6 +14,10 @@ class QuestionnaireAccessManager {
     public function __construct(protected QuestionnaireResponseManager $questionnaireResponseManager, protected UserRoleManager $userRoleManager) {}
 
     public function userHasAccessToViewQuestionnaireStatisticsPage(?User $user, Questionnaire $questionnaire): bool {
+        if ($questionnaire->status_id === QuestionnaireStatusLkp::DRAFT) {
+            return $user instanceof User && $this->userIsAdminOrContentManager($user);
+        }
+
         return match ($questionnaire->statistics_page_visibility_lkp_id) {
             QuestionnaireStatisticsPageVisibilityLkp::PUBLIC => true,
             QuestionnaireStatisticsPageVisibilityLkp::RESPONDENTS_ONLY => ($user instanceof User && $this->questionnaireResponseManager->questionnaireResponsesForUserAndQuestionnaireExists($user->id, $questionnaire->id))

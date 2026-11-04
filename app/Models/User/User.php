@@ -92,6 +92,16 @@ class User extends Authenticatable {
         return $this->hasMany(UserRole::class, 'user_id', 'id');
     }
 
+    /**
+     * An anonymous account is created when a visitor responds without logging in.
+     * It has no password, no roles and an auto-generated "@crowd.org" email.
+     */
+    public function isAnonymous(): bool {
+        return $this->password === null
+            && str_ends_with((string) $this->email, '@crowd.org')
+            && ! $this->userRoles()->exists();
+    }
+
     public function sendPasswordResetNotification($token): void {
         // Your your own implementation.
         $this->notify(new ResetPassword($token));

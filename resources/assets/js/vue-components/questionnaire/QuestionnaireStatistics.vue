@@ -189,7 +189,7 @@ import { Dashboard, VisualizationManager, WordCloud, localization } from "survey
 import { mapActions } from "vuex";
 import FreeTextQuestionStatisticsCustomVisualizer, { AnswersData } from "./FreeTextQuestionStatisticsCustomVisualizer";
 import FileQuestionStatisticsCustomVisualizer from "./FileQuestionStatisticsCustomVisualizer";
-import { showToast } from "../../common-utils";
+import { escapeHtml, showToast } from "../../common-utils";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import CommonModal from "../common/ModalComponent.vue";
 import StoreModal from "../common/StoreModalComponent.vue";
@@ -551,7 +551,6 @@ export default defineComponent({
 					questionnaire_id: this.questionnaire.id,
 					question_name: questionName,
 					respondent_user_id: respondentUserId,
-					voter_user_id: this.userId,
 					upvote: upvote,
 				},
 				urlRelative: false,
@@ -608,13 +607,13 @@ export default defineComponent({
 				const annotationElement = cellElement.find(".annotation-wrapper");
 				if (this.annotation.annotation_text) {
 					if (annotationElement.length !== 0)
-						annotationElement.find(".annotation-text").html(this.annotation.annotation_text);
+						annotationElement.find(".annotation-text").text(this.annotation.annotation_text);
 					else {
 						cellElement
 							.find(".annotation-button")
 							.after(
 								'<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">' +
-									this.annotation.annotation_text +
+									escapeHtml(this.annotation.annotation_text) +
 									"</p></div><b>Original answer:</b>",
 							);
 					}

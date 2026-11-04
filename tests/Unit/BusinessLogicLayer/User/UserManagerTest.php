@@ -13,7 +13,6 @@ use App\Repository\User\UserRepository;
 use App\Repository\User\UserRoleRepository;
 use App\Utils\MailChimpAdaptor;
 use Faker\Factory;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Mockery;
 use PHPUnit\Framework\Attributes\Test;
@@ -50,16 +49,10 @@ final class UserManagerTest extends TestCase {
             ->once()
             ->with(UserManager::$USER_COOKIE_KEY);
 
-        // Mock UserRepository::find to throw ModelNotFoundException
-        $userRepositoryMock->shouldReceive('find')
+        // The cookie points to a user that does not exist
+        $userRepositoryMock->shouldReceive('getUser')
             ->once()
-            ->with(Mockery::any())
-            ->andThrow(new ModelNotFoundException);
-
-        // Mock getCookie to return null after deletion
-        $cookieManagerMock->shouldReceive('getCookie')
-            ->once()
-            ->with(UserManager::$USER_COOKIE_KEY)
+            ->with($cookieUserId)
             ->andReturn(null);
 
         // Mock UserRepository::create to create a new user
@@ -96,10 +89,10 @@ final class UserManagerTest extends TestCase {
 
     /**
      * GIVEN a valid cookie with user ID
-     * AND the user exists in the database
+     * AND the user is an anonymous user in the database
      * WHEN createUser is called
      * THEN the cookie is not deleted
-     * AND the user is updated
+     * AND the anonymous user is updated
      */
     #[Test]
     public function test_create_user_when_cookie_is_set_and_user_exists(): void {
@@ -115,11 +108,10 @@ final class UserManagerTest extends TestCase {
         $email = $faker->email;
         $nickname = $faker->userName;
 
-        // Mock existing user in database
+        // An anonymous user that responded before registering
         $existingUser = User::create([
-            'nickname' => $nickname,
-            'email' => $email,
-            'password' => $faker->password,
+            'nickname' => 'Anonymous_User_' . uniqid(),
+            'email' => 'Anonymous_User_' . uniqid() . '@crowd.org',
         ]);
 
         // Mock cookie value
@@ -130,10 +122,15 @@ final class UserManagerTest extends TestCase {
             ->with(UserManager::$USER_COOKIE_KEY)
             ->andReturn($cookieUserId);
 
-        $userRepositoryMock->shouldReceive('find')
-            ->twice()
+        $userRepositoryMock->shouldReceive('getUser')
+            ->once()
             ->with($cookieUserId)
             ->andReturn($existingUser);
+
+        $userRepositoryMock->shouldReceive('find')
+            ->once()
+            ->with($cookieUserId)
+            ->andReturnUsing(fn () => $existingUser->fill(['email' => $email, 'nickname' => $nickname]));
 
         // Mock user update
         $userRepositoryMock->shouldReceive('update')
@@ -216,5 +213,54 @@ final class UserManagerTest extends TestCase {
         $this->assertInstanceOf(User::class, $result);
         $this->assertStringStartsWith('Anonymous_User_', $result->nickname);
         $this->assertStringEndsWith('@crowd.org', $result->email);
+    }
+
+    /**
+     * GIVEN a cookie with the ID of a registered (non-anonymous) user
+     * WHEN createUser is called
+     * THEN the cookie is deleted
+     * AND a new user is created instead of updating the registered user
+     */
+    #[Test]
+    public function test_create_user_when_cookie_points_to_registered_user(): void {
+        $userRepositoryMock = Mockery::mock(UserRepository::class);
+        $cookieManagerMock = Mockery::mock(CookieManager::class);
+        $registeredUser = User::factory()->create();
+
+        $cookieManagerMock->shouldReceive('getCookie')
+            ->once()
+            ->with(UserManager::$USER_COOKIE_KEY)
+            ->andReturn((string) $registeredUser->id);
+        $cookieManagerMock->shouldReceive('deleteCookie')
+            ->once()
+            ->with(UserManager::$USER_COOKIE_KEY);
+        $userRepositoryMock->shouldReceive('getUser')
+            ->once()
+            ->with($registeredUser->id)
+            ->andReturn($registeredUser);
+        $userRepositoryMock->shouldNotReceive('update');
+        $userRepositoryMock->shouldReceive('create')
+            ->once()
+            ->andReturn(new User(['nickname' => 'New_User', 'email' => 'new_user@example.com']));
+
+        $userManager = new UserManager(
+            $userRepositoryMock,
+            Mockery::mock(UserRoleRepository::class),
+            Mockery::mock(MailChimpAdaptor::class),
+            Mockery::mock(QuestionnaireResponseRepository::class),
+            Mockery::mock(QuestionnaireAnswerVoteRepository::class),
+            $cookieManagerMock
+        );
+
+        $result = $userManager->createUser([
+            'email' => 'new_user@example.com',
+            'nickname' => 'New_User',
+            'password' => 'password123',
+            'gender' => 'Male',
+            'country' => 'CountryX',
+            'year-of-birth' => 1990,
+        ]);
+
+        $this->assertSame('new_user@example.com', $result->email);
     }
 }

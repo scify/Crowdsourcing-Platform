@@ -35,6 +35,7 @@ class RegisterController extends Controller {
     |
     */
 
+    use RedirectsToSafeUrl;
     use RegistersUsers;
 
     /**
@@ -96,7 +97,7 @@ class RegisterController extends Controller {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }
 
-        $url = session('redirectTo') ?: $this->redirectTo();
+        $url = $this->safeRedirectUrl(session('redirectTo'));
 
         return redirect($url);
     }

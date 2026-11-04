@@ -113,7 +113,8 @@ Route::group(['middleware' => 'auth'], function () use ($backOfficePrefix): void
     Route::group(['prefix' => $backOfficePrefix], function (): void {
         Route::put('/user/update', [UserController::class, 'patch'])->name('user.update');
         Route::post('/user/deactivate', [UserController::class, 'deactivateLoggedInUser'])->name('user.deactivate');
-        Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download');
+        Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download')
+            ->middleware('can:manage-platform-content');
         Route::get('/user/my-data/download', [UserController::class, 'downloadMyData'])->name('my-data.download');
     });
 });
