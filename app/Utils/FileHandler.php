@@ -6,11 +6,17 @@ namespace App\Utils;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 /**
  * Class FileUploader
  */
 class FileHandler {
+    /**
+     * Uploaded files are served from the public storage directory, so only image extensions are allowed.
+     */
+    private const array ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+
     /**
      * @param  UploadedFile  $file  The file to upload
      * @param  string  $directoryName  The directory name to upload the file to
@@ -19,10 +25,18 @@ class FileHandler {
      *
      * This method uploads the file to the server and returns the path of the uploaded file.
      * The path is relative to the storage/app/public directory.
+     * The extension comes from the file content, never from the client file name.
+     *
+     * @throws InvalidArgumentException if the file is not an allowed image type
      */
     public static function uploadAndGetPath(UploadedFile $file, string $directoryName = ''): string {
-        $originalFileName = Str::slug($file->getClientOriginalName());
-        $filePath = pathinfo($originalFileName, PATHINFO_FILENAME) . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $extension = $file->guessExtension();
+        if (! in_array($extension, self::ALLOWED_EXTENSIONS, true)) {
+            throw new InvalidArgumentException('Unsupported file type.');
+        }
+
+        $baseName = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) ?: 'file';
+        $filePath = $baseName . '_' . time() . '.' . $extension;
         $file->move(storage_path('app/public/uploads/' . $directoryName), $filePath);
 
         $returnPath = '/storage/uploads/' . $directoryName;

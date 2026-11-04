@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Repository\Questionnaire;
 
 use App\Models\Questionnaire\Questionnaire;
@@ -10,7 +12,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
+final class QuestionnaireAnswerVoteRepositoryTest extends TestCase {
     /**
      * @throws BindingResolutionException
      */

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Navrhnúť riešenie',
     'proposal_submitted_title' => 'Návrh odoslaný',

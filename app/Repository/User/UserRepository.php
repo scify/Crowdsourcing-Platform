@@ -89,7 +89,7 @@ class UserRepository extends Repository {
         return User::all();
     }
 
-    public function getPlatformUsers($paginationNumber, $filters) {
+    public function getPlatformUsers($paginationNumber, ?array $filters) {
         $query = User::withTrashed()->with('userRoles');
 
         if (isset($filters['email'])) {

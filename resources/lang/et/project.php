@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'See kampaania on lõppenud.<br>Täname teid panuse eest!',
     'project_unpublished_message' => 'See kampaania ei ole veel avaldatud.',

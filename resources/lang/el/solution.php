@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Προτείνετε Λύση',
     'proposal_submitted_title' => 'Η Πρόταση Υποβλήθηκε',

@@ -35,6 +35,7 @@ class RegisterController extends Controller {
     |
     */
 
+    use RedirectsToSafeUrl;
     use RegistersUsers;
 
     /**
@@ -61,7 +62,7 @@ class RegisterController extends Controller {
     protected function validator(array $data) {
         return Validator::make($data, [
             'nickname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', UserManager::placeholderEmailDomainRule()],
             'password' => 'required|string|min:8|confirmed',
             'gender' => 'nullable|string|max:255',
             'country' => 'nullable|string|max:255',
@@ -96,7 +97,7 @@ class RegisterController extends Controller {
             session()->flash('flash_message_success', 'Thanks for answering! ');
         }
 
-        $url = session('redirectTo') ?: $this->redirectTo();
+        $url = $this->safeRedirectUrl(session('redirectTo'));
 
         return redirect($url);
     }

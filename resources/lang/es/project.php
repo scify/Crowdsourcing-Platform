@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Esta campaña está finalizada.<br>¡Gracias por su contribución!',
     'project_unpublished_message' => 'Esta campaña aún no está publicada.',

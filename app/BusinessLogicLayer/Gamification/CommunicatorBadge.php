@@ -23,7 +23,7 @@ class CommunicatorBadge extends GamificationBadge {
     }
 
     public function getEmailBody(): string {
-        if ($this->level == 1) {
+        if ($this->level === 1) {
             return __('email_messages.unlocked_new_badge');
         }
 

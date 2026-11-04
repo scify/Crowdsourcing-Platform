@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Esta cookie es instalada por Google Analytics. La cookie se utiliza para calcular datos de visitantes, sesiones y campañas y para realizar un seguimiento del uso del sitio para el informe de análisis del sitio. Las cookies almacenan información de forma anónima y asignan un número generado aleatoriamente para identificar visitantes únicos.',

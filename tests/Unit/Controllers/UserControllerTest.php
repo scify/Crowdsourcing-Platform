@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Controllers;
 
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
@@ -12,18 +14,19 @@ use App\ViewModels\Gamification\GamificationBadgesWithLevels;
 use App\ViewModels\User\UserDashboardViewModel;
 use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use Tests\TestCase;
 
-class UserControllerTest extends TestCase {
+final class UserControllerTest extends TestCase {
     private User $user;
 
-    private UserDashboardManager $userDashboardManager;
+    private MockObject $userDashboardManager;
 
-    private UserManager $userManager;
+    private MockObject $userManager;
 
-    private QuestionnaireResponseManager $questionnaireResponseManager;
+    private MockObject $questionnaireResponseManager;
 
-    private SolutionManager $solutionManager;
+    private MockObject $solutionManager;
 
     protected function setUp(): void {
         parent::setUp();

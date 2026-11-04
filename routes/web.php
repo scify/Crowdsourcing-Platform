@@ -14,10 +14,11 @@ use App\Http\Controllers\Solution\SolutionController;
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\UserController;
 use App\Notifications\NotifyProjectEnded;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect(app()->getLocale()));
+Route::get('/', fn (): RedirectResponse => redirect(app()->getLocale()));
 
 $backOfficePrefix = 'backoffice';
 
@@ -40,8 +41,8 @@ Route::group($localeInfo, function (): void {
     Route::get('/code-of-conduct', [HomeController::class, 'showCodeOfConductPage'])->name('code-of-conduct');
 });
 
-Route::get('/terms-and-privacy', fn () => redirect(app()->getLocale() . '/terms-and-privacy'));
-Route::get('/code-of-conduct', fn () => redirect(app()->getLocale() . '/code-of-conduct'));
+Route::get('/terms-and-privacy', fn (): RedirectResponse => redirect(app()->getLocale() . '/terms-and-privacy'));
+Route::get('/code-of-conduct', fn (): RedirectResponse => redirect(app()->getLocale() . '/code-of-conduct'));
 
 Route::get('login/social/{driver}', [LoginController::class, 'redirectToProvider']);
 Route::get('login/social/{driver}/callback', [LoginController::class, 'handleProviderCallback'])->name('socialLoginCallback');
@@ -112,7 +113,8 @@ Route::group(['middleware' => 'auth'], function () use ($backOfficePrefix): void
     Route::group(['prefix' => $backOfficePrefix], function (): void {
         Route::put('/user/update', [UserController::class, 'patch'])->name('user.update');
         Route::post('/user/deactivate', [UserController::class, 'deactivateLoggedInUser'])->name('user.deactivate');
-        Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download');
+        Route::get('/questionnaire/{questionnaire_id}/download-responses', [QuestionnaireResponseController::class, 'downloadQuestionnaireResponses'])->name('questionnaire.responses.download')
+            ->middleware('can:manage-platform-content');
         Route::get('/user/my-data/download', [UserController::class, 'downloadMyData'])->name('my-data.download');
     });
 });

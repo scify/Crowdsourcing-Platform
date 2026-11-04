@@ -28,6 +28,10 @@ class CheckQuestionnairePageVisibilitySettings {
             return $next($request);
         }
 
+        if ($request->routeIs('api.*') || $request->expectsJson()) {
+            abort(403);
+        }
+
         return redirect()->route('login', ['locale' => app()->getLocale(), 'redirectTo' => $request->fullUrl()])
             ->with('flash_message_error', __('You do not have access to this page.'));
     }

@@ -17,7 +17,7 @@ class ManageQuestionnaires {
 
     public function __construct(public $questionnaires, public $statuses) {}
 
-    public function setCssClassForStatus($status): string {
+    public function setCssClassForStatus(int $status): string {
         return self::STATUSES_CSS_CLASSES[$status];
     }
 

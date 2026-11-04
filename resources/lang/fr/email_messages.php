@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -17,7 +19,7 @@ return [
     'no_further_action' => 'Si vous n\'avez pas demandé de réinitialisation du mot de passe, aucune action supplémentaire n\'est requise.',
     'regards' => 'Salutations',
     'trouble_with_button' => 'Si vous avez des difficultés à cliquer sur le bouton ',
-    'copy_paste_url' => ' copiez et collez l\'URL ci-dessous dans votre navigateur web:',
+    'copy_paste_url' => " copiez et collez l'URL ci-dessous dans votre navigateur web:",
     'thanks_message_for_answering' => 'Merci de prendre le temps de répondre à notre questionnaire intitulé: ',
     'thanks_message_for_contribution' => 'Grâce à votre contribution, nous nous rapprochons un peu plus de notre objectif!',
     'unlocked_new_badge' => 'Vous avez également débloqué un nouveau badge:',

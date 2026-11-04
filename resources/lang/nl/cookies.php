@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Deze cookie wordt geïnstalleerd door Google Analytics. De cookie wordt gebruikt om bezoekers-, sessie- en campagnedata te berekenen en om het gebruik van de site bij te houden voor het analytische rapport van de site. De cookies slaan informatie anoniem op en wijzen een willekeurig gegenereerd nummer toe om unieke bezoekers te identificeren.',

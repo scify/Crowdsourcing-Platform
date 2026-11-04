@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Ezt a sütit a Google Analytics telepíti. A süti a látogatók, munkamenetek és kampányadatok kiszámítására, valamint a webhely használatának nyomon követésére szolgál a webhely elemzési jelentéséhez. A sütik névtelenül tárolják az információkat, és véletlenszerűen generált számot rendelnek az egyedi látogatók azonosításához.',

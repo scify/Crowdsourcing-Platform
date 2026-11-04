@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'solutions_for' => 'Solutions pour',
     'how_to_vote' => 'Comment voter',

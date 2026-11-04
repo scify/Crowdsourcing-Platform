@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Stel een oplossing voor',
     'proposal_submitted_title' => 'Voorstel ingediend',

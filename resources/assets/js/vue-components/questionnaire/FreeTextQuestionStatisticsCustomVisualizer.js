@@ -1,6 +1,7 @@
 import { VisualizerBase } from "survey-analytics";
 import "datatables.net-buttons-bs5";
 import "datatables.net-buttons/js/buttons.html5.mjs";
+import { escapeHtml } from "../../common-utils";
 
 export class AnswersData {
 	static answerVotes = [];
@@ -80,9 +81,9 @@ function renderRowsSimple(table, visualizer) {
 		const td0 = document.createElement("td");
 		const td1 = document.createElement("td");
 		const td2 = document.createElement("td");
-		td0.innerHTML = response.initial_answer;
-		td1.innerHTML = response.translated_answer;
-		td2.innerHTML = window.getLanguageName(response.initial_language_detected);
+		td0.textContent = response.initial_answer;
+		td1.textContent = response.translated_answer;
+		td2.textContent = window.getLanguageName(response.initial_language_detected);
 		tr.appendChild(td0);
 		tr.appendChild(td1);
 		tr.appendChild(td2);
@@ -104,7 +105,7 @@ function renderRowsFull(table, visualizer) {
 
 		const tr = document.createElement("tr");
 		const td0 = document.createElement("td");
-		td0.innerHTML = '<span class="answer-id">' + responseId + "</span>";
+		td0.innerHTML = '<span class="answer-id">' + escapeHtml(responseId) + "</span>";
 		tr.appendChild(td0);
 		const td1 = document.createElement("td");
 		td1.className = "answer-column";
@@ -124,15 +125,15 @@ function renderRowsFull(table, visualizer) {
 			td1.innerHTML =
 				'<span class="annotation-button"><button ' +
 				'data-annotation="' +
-				annotationText +
+				escapeHtml(annotationText) +
 				'" data-annotation-admin-review-status-id="' +
-				adminReviewStatusId +
+				escapeHtml(adminReviewStatusId) +
 				'" data-annotation-admin-review-comment="' +
-				adminReviewComment +
+				escapeHtml(adminReviewComment) +
 				'" data-question="' +
-				questionName +
+				escapeHtml(questionName) +
 				'" data-respondent="' +
-				respondentUserId +
+				escapeHtml(respondentUserId) +
 				'" ' +
 				'class="btn annotate-btn"><i class="fa fa-edit"></i>' +
 				annotationIndication +
@@ -141,7 +142,7 @@ function renderRowsFull(table, visualizer) {
 		if (annotationText && annotationText !== "") {
 			td1.innerHTML +=
 				'<div class="annotation-wrapper"><b>Comment by the admin:</b><p class="annotation-text">' +
-				annotationText +
+				escapeHtml(annotationText) +
 				"</p></div><b>Original answer:</b><br>";
 		}
 		td1.innerHTML += "<p>" + getAnswerHTML(responseText, "initial_answer") + "</p>";
@@ -149,7 +150,7 @@ function renderRowsFull(table, visualizer) {
 		if (!isString(responseText) && responseText.translated_answer !== "")
 			td1.innerHTML +=
 				"<br><b>Translation (" +
-				window.getLanguageName(responseText.initial_language_detected) +
+				escapeHtml(window.getLanguageName(responseText.initial_language_detected)) +
 				"):</b><p>" +
 				getAnswerHTML(responseText, "translated_answer") +
 				"</p>";
@@ -168,10 +169,10 @@ function renderRowsFull(table, visualizer) {
 			'<div class="row text-center g-0 reaction-buttons" ' +
 			'<div class="col">' +
 			'<button data-question-name="' +
-			questionName +
+			escapeHtml(questionName) +
 			'" ' +
 			'data-respondent-user-id="' +
-			respondentUserId +
+			escapeHtml(respondentUserId) +
 			'" ' +
 			'type="button" title="You can vote up to 10 answers" class="btn btn-outline-secondary btn-slim w-100 upvote vote-btn ' +
 			userUpvotedClass +
@@ -183,10 +184,10 @@ function renderRowsFull(table, visualizer) {
 			"</div>" +
 			'<div class="col-6 d-none">' +
 			'<button data-question-name="' +
-			questionName +
+			escapeHtml(questionName) +
 			'" ' +
 			'data-respondent-user-id="' +
-			respondentUserId +
+			escapeHtml(respondentUserId) +
 			'" ' +
 			'type="button" class="btn btn-outline-secondary btn-slim w-100 downvote vote-btn' +
 			userDownvotedClass +
@@ -199,8 +200,8 @@ function renderRowsFull(table, visualizer) {
 			"</div>" +
 			"</div>";
 		tr.appendChild(td2);
-		td3.innerHTML = upvotesNum;
-		td4.innerHTML = value.project_name;
+		td3.textContent = upvotesNum;
+		td4.textContent = value.project_name;
 		tr.appendChild(td3);
 		tr.appendChild(td4);
 		tbody.appendChild(tr);
@@ -211,14 +212,14 @@ function renderRowsFull(table, visualizer) {
 function getAnswerHTML(answer, field_name) {
 	const maxLength = 350;
 	const answerText = isString(answer) ? answer.trim() : answer[field_name].trim();
-	if (answerText.length < maxLength) return answerText;
+	if (answerText.length < maxLength) return escapeHtml(answerText);
 	const shortStr = answerText.substring(0, maxLength);
 	const removedStr = answerText.substring(maxLength, answerText.length);
 	return (
-		shortStr +
+		escapeHtml(shortStr) +
 		'<a href="javascript:void(0);" class="read-more">Read more...</a>' +
 		'<span class="more-text hidden">' +
-		removedStr +
+		escapeHtml(removedStr) +
 		"</span>"
 	);
 }

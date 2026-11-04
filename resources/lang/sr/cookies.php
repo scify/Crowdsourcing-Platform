@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
         '_ga_description' => 'Ovaj kolačić instalira Google Analytics. Kolačić se koristi za izračunavanje podataka o posetiocima, sesijama i kampanjama i za praćenje upotrebe sajta za analitički izveštaj sajta. Kolačići anonimno čuvaju informacije i dodeljuju nasumično generisan broj za identifikaciju jedinstvenih posetilaca.',

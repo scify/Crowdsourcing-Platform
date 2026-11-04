@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -44,7 +46,7 @@ return [
     'huge_impact' => 'Vous avez eu un impact énorme dans ce questionnaire!',
     'all_star_crowdsourcer' => 'Félicitations ! Tu as reçu tous les badges disponibles pour ce questionnaire ! Vous êtes une star de la collecte de fonds!',
     'get_more_badges' => 'Vous obtenez plus de badges en répondant et en invitant les autres à le faire!',
-    'no_badges_yet' => 'Vous n\'avez pas encore de badges! Cliquez sur chaque badge pour voir sa description et comprendre comment l\'obtenir.',
+    'no_badges_yet' => "Vous n'avez pas encore de badges! Cliquez sur chaque badge pour voir sa description et comprendre comment l'obtenir.",
     'you_have_badges' => '{1} Vous avez <span class="numOfBadges">1</span> badge jusqu\'à présent. Cliquez sur chaque badge pour voir sa description et comprendre comment l\'obtenir. |[2,*] Vous avez <span class="numOfBadges">:count</span> badges jusqu\'à présent. Cliquez sur chaque badge pour voir sa description et comprendre comment l\'obtenir.',
     'contribute' => 'Contribuez',
     'contribute_for' => 'Contribuez à',

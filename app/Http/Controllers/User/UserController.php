@@ -12,6 +12,7 @@ use App\BusinessLogicLayer\User\UserDashboardManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
 use App\Http\OperationResponse;
+use App\Utils\SpreadsheetCell;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -61,6 +62,10 @@ class UserController extends Controller {
             $validationArray['current_password'] = 'required|string|min:8';
         }
 
+        if ($request->email !== Auth::user()->email) {
+            $validationArray['email'] = ['required', 'email', 'max:255', UserManager::placeholderEmailDomainRule()];
+        }
+
         // here we need to add custom messages for the validation, since the field is called 'avatar' and not 'profile image'.
         $customMessages = [
             'avatar.image' => __('validation.image', ['attribute' => __('my-account.profile_image')]),
@@ -105,7 +110,7 @@ class UserController extends Controller {
         return back();
     }
 
-    public function showUsersByCriteria(Request $request) {
+    public function showUsersByCriteria(Request $request): string|false {
         $input = $request->all();
         $users = $this->userManager->getPlatformAdminUsersWithCriteria(UserManager::$USERS_PER_PAGE, $input);
         $users->setPath('#');
@@ -144,11 +149,11 @@ class UserController extends Controller {
             fputcsv($file, $columns);
 
             foreach ($responses as $response) {
-                fputcsv($file, ['Response', $response->project_name, $response->title, $response->questionnaire_description, $response->response_json]);
+                fputcsv($file, SpreadsheetCell::csvRow(['Response', $response->project_name, $response->title, $response->questionnaire_description, $response->response_json]));
             }
 
             foreach ($solutions as $solution) {
-                fputcsv($file, ['Solution', $solution->problem->project->defaultTranslation->name, $solution->defaultTranslation->title, $solution->defaultTranslation->description, '']);
+                fputcsv($file, SpreadsheetCell::csvRow(['Solution', $solution->problem->project->defaultTranslation->name, $solution->defaultTranslation->title, $solution->defaultTranslation->description, '']));
             }
 
             fclose($file);

@@ -130,7 +130,7 @@
                                                         </a>
                                                     </td>
                                                     <td>{{ $solution->defaultTranslation->title }}</td>
-                                                    <td>{!! $solution->defaultTranslation->description !!}</td>
+                                                    <td>{{ $solution->defaultTranslation->description }}</td>
                                                     <td>
                                                         @if($solution->img_url)
                                                             <img loading="lazy" height="70"

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\lkp\ProblemStatusLkp;
@@ -16,7 +18,7 @@ use App\Models\User\UserRole;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class CrowdSourcingProjectLandingPageTest extends TestCase {
+final class CrowdSourcingProjectLandingPageTest extends TestCase {
     /**
      * Test Scenario 1:
      * GIVEN that a Project Campaign does not have any Questionnaire

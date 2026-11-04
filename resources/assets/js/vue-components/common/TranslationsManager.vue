@@ -218,6 +218,7 @@
 import { computed, onMounted, ref, watch, nextTick } from "vue";
 import { mapActions, useStore } from "vuex";
 import $ from "jquery";
+import DOMPurify from "dompurify";
 
 export default {
 	name: "TranslationsManager",
@@ -479,7 +480,7 @@ export default {
 		};
 
 		const showPreview = (key) => {
-			previewContent.value = originalTranslation.value[key];
+			previewContent.value = DOMPurify.sanitize(originalTranslation.value[key] ?? "");
 			window.bootstrap.Modal.getOrCreateInstance(document.getElementById("previewModal")).show();
 		};
 

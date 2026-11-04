@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Proposer une solution',
     'proposal_submitted_title' => 'Proposition soumise',
@@ -44,7 +46,7 @@ return [
     'solution_translation_notice_title' => 'Avis de traduction de la solution',
     'solution_translation_notice' => 'Votre solution pourrait être traduite par notre équipe afin d\'atteindre plus de personnes.<br>Nous conserverons le contenu original et la traduction sera marquée comme telle.',
     'solution_translation_notice_checkbox' => 'Je comprends que ma solution sera traduite et que si elle n\'est pas soumise dans une langue prise en charge, elle n\'apparaîtra que dans la traduction.',
-    'solution_consent_notice' => 'J\'ai lu et j\'accepte la :privacy_policy et le :code_of_conduct.',
+    'solution_consent_notice' => "J'ai lu et j'accepte la :privacy_policy et le :code_of_conduct.",
     'submit_solution' => 'Soumettre la solution',
     'propose_solution_title' => 'Proposer une solution',
     'submission_closed' => 'La soumission des solutions est maintenant fermée',
@@ -52,7 +54,7 @@ return [
     'have_a_solution_to_suggest' => 'Avez-vous une solution à proposer ?',
     'characters_left' => 'caractères restants',
     'consent_notice_required' => 'Vous devez accepter nos directives et conditions pour soumettre une solution.',
-    'translation_notice_required' => 'Vous devez accepter l\'avis de traduction pour soumettre une solution.',
+    'translation_notice_required' => "Vous devez accepter l'avis de traduction pour soumettre une solution.",
     'required' => 'Obligatoire',
     'login_prompt_message' => 'Vous pouvez soumettre votre solution anonymement ou vous connecter pour suivre vos contributions et gagner des badges.',
     'submit_anonymously' => 'Soumettre anonymement',

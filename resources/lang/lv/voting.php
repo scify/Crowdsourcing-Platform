@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_in_to_vote' => 'Izveidojiet kontu vai piesakieties, lai balsotu',
     'votes_remaining' => 'Jums ir palikuši <b>:votes</b> :votesWord',

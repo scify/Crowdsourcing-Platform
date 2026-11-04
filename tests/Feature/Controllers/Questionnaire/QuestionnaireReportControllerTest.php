@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
@@ -12,7 +14,7 @@ use Illuminate\Database\QueryException;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class QuestionnaireReportControllerTest extends TestCase {
+final class QuestionnaireReportControllerTest extends TestCase {
     #[Test]
     public function view_reports_page_returns_correct_view(): void {
         $user = User::factory()

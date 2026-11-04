@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Propose Solution',
     'proposal_submitted_title' => 'Proposal Submitted',

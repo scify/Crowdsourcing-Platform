@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\User;
 
+use App\BusinessLogicLayer\User\UserRoleManager;
 use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,6 +59,14 @@ class UserRole extends Model {
     protected $fillable = [
         'user_id', 'role_id',
     ];
+
+    protected static function booted(): void {
+        // Role checks are cached per user. Any change to a user's roles must clear that cache.
+        $forgetCachedRoles = fn (UserRole $userRole) => UserRoleManager::forgetCachedRolesOfUser($userRole->user_id);
+        static::saved($forgetCachedRoles);
+        static::deleted($forgetCachedRoles);
+        static::restored($forgetCachedRoles);
+    }
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'user_id', 'id');

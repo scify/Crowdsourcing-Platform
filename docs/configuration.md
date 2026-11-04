@@ -22,7 +22,7 @@ openssl req -new -sha256 -newkey rsa:2048 -nodes \
 A guide for enabling HTTPS on your local machine can be found
 [here](https://deliciousbrains.com/https-locally-without-browser-privacy-errors/).
 
-### Nginx configuration for HTTPS (non-Docker installations)
+### Nginx configuration for HTTPS (manual installations)
 
 Reference the two generated files in the Nginx configuration of the
 application, and change the port to 443:

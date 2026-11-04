@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\Problem;
 
 use App\BusinessLogicLayer\lkp\UserRolesLkp;
@@ -10,7 +12,7 @@ use Faker\Factory as Faker;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class ProblemControllerTest extends TestCase {
+final class ProblemControllerTest extends TestCase {
     #[Test]
     public function guest_cannot_access_problem_create_page(): void {
         $response = $this->get(route('problems.create', ['locale' => 'en']));

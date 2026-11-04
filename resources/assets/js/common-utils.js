@@ -1,5 +1,14 @@
 import "jquery-toast-plugin";
 
+const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+
+/**
+ * Escapes a value for use in HTML text or in a quoted HTML attribute.
+ */
+export function escapeHtml(value) {
+	return String(value ?? "").replace(/[&<>"']/g, (character) => HTML_ESCAPES[character]);
+}
+
 export function arrayMove(arr, fromIndex, toIndex) {
 	const element = arr[fromIndex];
 	arr.splice(fromIndex, 1);
@@ -30,13 +39,6 @@ export function showToast(
 	if (icon) options.icon = icon;
 
 	$.toast(options);
-}
-
-export function setCookie(cname, cvalue, exdays) {
-	const d = new Date();
-	d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-	const expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 export function getCookie(cname) {

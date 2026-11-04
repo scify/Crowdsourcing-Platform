@@ -33,7 +33,7 @@ abstract class GamificationBadge {
     }
 
     private function calculateStatusMessage($requiredActionMessage) {
-        if ($this->level == 0) {
+        if ($this->level === 0) {
             return $requiredActionMessage;
         }
 

@@ -28,8 +28,6 @@ class GenerateSitemap extends Command {
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct(protected CrowdSourcingProjectManager $crowdSourcingProjectManager) {
         parent::__construct();

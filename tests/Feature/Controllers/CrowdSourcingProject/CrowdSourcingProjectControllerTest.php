@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Controllers\CrowdSourcingProject;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
@@ -13,12 +15,13 @@ use App\Models\User\User;
 use App\Models\User\UserRole;
 use App\Repository\CrowdSourcingProject\CrowdSourcingProjectRepository;
 use Faker\Factory as Faker;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class CrowdSourcingProjectControllerTest extends TestCase {
-    protected CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
+final class CrowdSourcingProjectControllerTest extends TestCase {
+    private CrowdSourcingProjectRepository $crowdSourcingProjectRepository;
 
     protected function setUp(): void {
         parent::setUp();
@@ -647,5 +650,28 @@ class CrowdSourcingProjectControllerTest extends TestCase {
 
         $response->assertStatus(302);
         $response->assertSessionHas('flash_message_error', 'Error: 0  Test Exception');
+    }
+
+    #[Test]
+    public function content_manager_cannot_upload_a_php_file_as_project_logo(): void {
+        $user = User::factory()
+            ->has(UserRole::factory()->state(['role_id' => UserRolesLkp::CONTENT_MANAGER]))
+            ->create();
+        $tmp = tempnam(sys_get_temp_dir(), 'logo');
+        file_put_contents($tmp, '<?php echo "x";');
+
+        $response = $this->actingAs($user)->withoutMiddleware(VerifyCsrfToken::class)
+            ->post(route('projects.store', ['locale' => 'en']), [
+                'name' => 'Logo test',
+                'description' => 'Test Description',
+                'status_id' => 1,
+                'slug' => 'logo-test-' . uniqid(),
+                'language_id' => 1,
+                'motto_title' => 'Motto',
+                'motto_subtitle' => 'Subtitle',
+                'logo' => new UploadedFile($tmp, 'shell.php', null, null, true),
+            ]);
+
+        $response->assertSessionHasErrors('logo');
     }
 }

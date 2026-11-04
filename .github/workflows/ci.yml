@@ -1,0 +1,59 @@
+# Continuous integration for a Laravel repository.
+# The logic lives in scify/.github. Change inputs here, not the steps.
+# Guide:  https://github.com/scify/.github/blob/main/.github/workflows/README.md#laravel-ci
+#
+# Each commented-out input shows its default. Uncomment a line only to change it.
+# The "e.g." comment shows other accepted values.
+# In branch protection, require the check "ci / CI".
+# Database: SQLite needs no input. For MySQL or MariaDB, set database-image.
+# PostgreSQL is not supported. See "Environment and database" in the guide.
+name: CI
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+
+permissions:
+    contents: read
+
+# A newer push to the same branch or pull request cancels the run in progress.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    ci:
+        uses: scify/.github/.github/workflows/laravel-ci.yml@v0.1
+        secrets:
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }} # needed only with coverage-file
+        with:
+            php-version: "8.3" # matches config.platform.php in composer.json
+            # working-directory: .                          # e.g. backend (the folder with composer.json)
+            # php-extensions: mbstring, dom, fileinfo, intl, pdo_sqlite, sqlite3, gd, zip, bcmath
+            # env-file: ''                                  # e.g. .env.testing, .env.ci ('' = .env.testing, else .env.example)
+
+            # Database ('' = no service; SQLite needs none)
+            # database-image: ''                            # e.g. mariadb:11.8, mysql:8.4
+            # database-name: testing                        # e.g. app_test (the service creates it; exported as DB_DATABASE)
+
+            # Frontend
+            # frontend: true                                # false: repository without package.json
+            # build-frontend-for-tests: true                # false: tests do not need the Vite manifest
+            # node-version-file: .nvmrc                     # e.g. package.json
+
+            # Static checks ('' = auto-detect Pint, Rector, PHPStan and npm scripts)
+            # lint-command: ''                              # e.g. composer check
+            # types-command: ''                             # e.g. composer check:types
+            # analysis-cache-paths: |                       # match tmpDir in phpstan.neon and cacheDirectory in rector.php
+            #   /tmp/phpstan
+            #   /tmp/rector_cached_files
+
+            # Tests
+            # `composer test:coverage` creates and seeds the SQLite test database
+            # (sqlite_testing in config/database.php), then runs the suite with
+            # --coverage --min=48. Raise --min in composer.json when coverage improves.
+            test-command: composer test:coverage -- --coverage-clover=coverage.xml
+            coverage-file: coverage.xml # turns on PCOV and the Codecov upload
+            # browser-tests: false                          # true: run the Playwright job
+            # browser-test-command: vendor/bin/pest --testsuite=Browser

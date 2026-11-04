@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Deze campagne is afgerond.<br>Bedankt voor uw bijdrage!',
     'project_unpublished_message' => 'Deze campagne is nog niet gepubliceerd.',

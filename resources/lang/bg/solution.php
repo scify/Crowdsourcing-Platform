@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'propose_solution' => 'Предложи решение',
     'proposal_submitted_title' => 'Предложението е изпратено',

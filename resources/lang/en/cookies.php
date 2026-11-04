@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'google_analytics' => [
-        '_ga_description' => 'This cookie is installed by Google Analytics. The cookie is used to calculate visitor, session, campaign data and keep track of site usage for the site\'s analytics report. The cookies store information anonymously and assign a randomly generated number to identify unique visitors.',
+        '_ga_description' => "This cookie is installed by Google Analytics. The cookie is used to calculate visitor, session, campaign data and keep track of site usage for the site's analytics report. The cookies store information anonymously and assign a randomly generated number to identify unique visitors.",
         '_gat_description' => 'This cookies is installed by Google Universal Analytics to throttle the request rate to limit the collection of data on high traffic sites.',
     ],
     'linkedin' => [

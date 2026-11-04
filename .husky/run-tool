@@ -1,0 +1,9 @@
+#!/bin/sh
+# Run a tool inside the DDEV web container when the DDEV project is running,
+# and with the local toolchain otherwise.
+
+if [ -d .ddev ] && command -v ddev >/dev/null 2>&1 && ddev exec true >/dev/null 2>&1; then
+    exec ddev exec "$@"
+fi
+
+exec "$@"

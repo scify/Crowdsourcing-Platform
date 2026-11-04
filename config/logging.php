@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 
@@ -46,17 +48,17 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/' . php_sapi_name() . '/laravel.log'),
+            'path' => storage_path('logs/' . PHP_SAPI . '/laravel.log'),
             'level' => 'debug',
-            'permission' => 0666,
+            'permission' => 0660,
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/' . php_sapi_name() . '/laravel.log'),
+            'path' => storage_path('logs/' . PHP_SAPI . '/laravel.log'),
             'level' => 'debug',
             'days' => 60,
-            'permission' => 0666,
+            'permission' => 0660,
         ],
 
         'slack' => [

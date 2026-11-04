@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'solutions_for' => 'Riešenia pre',
     'how_to_vote' => 'Ako hlasovať',

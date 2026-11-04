@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'sign_in_to_vote' => 'Maak een account aan of log in om te stemmen',
     'votes_remaining' => 'Je hebt nog <b>:votes</b> :votesWord over',

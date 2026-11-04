@@ -17,7 +17,6 @@ use App\Utils\MailChimpAdaptor;
 use App\ViewModels\User\EditUser;
 use App\ViewModels\User\ManageUsers;
 use App\ViewModels\User\UserProfile;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -27,6 +26,18 @@ class UserManager {
     public static int $USERS_PER_PAGE = 10;
 
     public static string $USER_COOKIE_KEY = 'crowdsourcing_anonymous_user_id';
+
+    /**
+     * Email domain for social logins that return no email. Nobody may register an address in it.
+     */
+    public const string SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN = 'dummy.crowdsourcing.org';
+
+    /**
+     * Validation rule that rejects addresses in the social-login placeholder domain.
+     */
+    public static function placeholderEmailDomainRule(): string {
+        return 'not_regex:/@' . preg_quote(self::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN, '/') . '$/i';
+    }
 
     public function __construct(private readonly UserRepository $userRepository, private readonly UserRoleRepository $userRoleRepository, private readonly MailChimpAdaptor $mailChimpManager, private readonly QuestionnaireResponseRepository $questionnaireResponseRepository, private readonly QuestionnaireAnswerVoteRepository $questionnaireAnswerVoteRepository, private readonly CookieManager $cookieManager) {}
 
@@ -38,7 +49,7 @@ class UserManager {
         return $this->userRepository->find($userId);
     }
 
-    public function getManagePlatformUsersViewModel($paginationNumber, $filters = null): ManageUsers {
+    public function getManagePlatformUsersViewModel($paginationNumber, ?array $filters = null): ManageUsers {
         $users = $this->userRepository->getPlatformUsers($paginationNumber, $filters);
         $allRoles = $this->userRoleRepository->getAllPlatformSpecificRoles();
 
@@ -168,7 +179,7 @@ class UserManager {
         return $result;
     }
 
-    public function getPlatformAdminUsersWithCriteria($paginationNum, $data = []) {
+    public function getPlatformAdminUsersWithCriteria($paginationNum, ?array $data = []) {
         return $this->userRepository->getPlatformUsers($paginationNum, $data);
     }
 
@@ -180,8 +191,16 @@ class UserManager {
         // In that case, we should use another field that is always present.
         $registerToMailchimp = true;
         if (! $socialUser->email) {
-            $socialUser->email = $socialUser->id . '@dummy.crowdsourcing.org';
+            $socialUser->email = $socialUser->id . '@' . self::SOCIAL_LOGIN_PLACEHOLDER_EMAIL_DOMAIN;
             $registerToMailchimp = false;
+        }
+
+        // An existing account is only logged in. Social login must not change its roles or profile.
+        $existingUser = $this->userRepository->getUserByEmail($socialUser->email);
+        if ($existingUser instanceof User) {
+            auth()->login($existingUser);
+
+            return $existingUser;
         }
 
         $result = $this->getOrAddUserToPlatform($socialUser->email,
@@ -218,28 +237,21 @@ class UserManager {
             'country' => $input_data['country'],
             'year-of-birth' => $input_data['year-of-birth'],
         ];
-        $user_id = intval($this->cookieManager->getCookie(UserManager::$USER_COOKIE_KEY));
-        if ($user_id === 0) {
+        $anonymousUser = $this->getAnonymousUserFromCookie();
+        if (! $anonymousUser instanceof User) {
             return $this->userRepository->create($user_data);
         }
 
-        try {
-            $existingUser = $this->userRepository->find($user_id);
-            $this->userRepository->update([
-                'email' => $user_data['email'],
-                'nickname' => $user_data['nickname'],
-                'password' => $user_data['password'],
-                'gender' => $user_data['gender'],
-                'country' => $user_data['country'],
-                'year_of_birth' => $user_data['year-of-birth'],
-            ], $existingUser->id);
+        $this->userRepository->update([
+            'email' => $user_data['email'],
+            'nickname' => $user_data['nickname'],
+            'password' => $user_data['password'],
+            'gender' => $user_data['gender'],
+            'country' => $user_data['country'],
+            'year_of_birth' => $user_data['year-of-birth'],
+        ], $anonymousUser->id);
 
-            return $this->userRepository->find($existingUser->id);
-        } catch (ModelNotFoundException) {
-            $this->cookieManager->deleteCookie(UserManager::$USER_COOKIE_KEY);
-
-            return $this->createUser($user_data);
-        }
+        return $this->userRepository->find($anonymousUser->id);
     }
 
     public function getLoggedInUserOrCreateAnonymousUser() {
@@ -247,16 +259,31 @@ class UserManager {
             return Auth::user();
         }
 
-        $user_id = intval($this->cookieManager->getCookie(self::$USER_COOKIE_KEY));
-        if ($user_id !== 0) {
-            try {
-                return $this->userRepository->find($user_id);
-            } catch (ModelNotFoundException) {
-                // Fall through to create a new anonymous user
-            }
+        return $this->getAnonymousUserFromCookie() ?? $this->createAnonymousUser();
+    }
+
+    /**
+     * Returns the account that the anonymous-user cookie points to, but only when that
+     * account is still anonymous. A cookie that points to any other account is discarded.
+     */
+    public function getAnonymousUserFromCookie(): ?User {
+        $userId = intval($this->cookieManager->getCookie(self::$USER_COOKIE_KEY));
+        if ($userId === 0) {
+            return null;
         }
 
-        return $this->createAnonymousUser();
+        $user = $this->userRepository->getUser($userId);
+        if ($user instanceof User && $user->isAnonymous()) {
+            return $user;
+        }
+
+        $this->forgetAnonymousUserCookie();
+
+        return null;
+    }
+
+    public function forgetAnonymousUserCookie(): void {
+        $this->cookieManager->deleteCookie(self::$USER_COOKIE_KEY);
     }
 
     protected function createAnonymousUser(): User {

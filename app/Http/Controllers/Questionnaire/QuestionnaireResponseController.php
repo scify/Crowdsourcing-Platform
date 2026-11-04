@@ -6,16 +6,22 @@ namespace App\Http\Controllers\Questionnaire;
 
 use App\BusinessLogicLayer\CrowdSourcingProject\CrowdSourcingProjectManager;
 use App\BusinessLogicLayer\Gamification\PlatformWideGamificationBadgesProvider;
+use App\BusinessLogicLayer\lkp\CrowdSourcingProjectStatusLkp;
+use App\BusinessLogicLayer\lkp\QuestionnaireStatusLkp;
 use App\BusinessLogicLayer\Questionnaire\QuestionnaireResponseManager;
 use App\BusinessLogicLayer\User\UserManager;
 use App\Http\Controllers\Controller;
+use App\Models\CrowdSourcingProject\CrowdSourcingProject;
+use App\Models\Questionnaire\Questionnaire;
 use App\Repository\Questionnaire\Responses\QuestionnaireResponseRepository;
+use App\Utils\SpreadsheetCell;
 use App\ViewModels\Gamification\GamificationBadgeVM;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -26,14 +32,20 @@ class QuestionnaireResponseController extends Controller {
     public function store(Request $request): JsonResponse {
         $this->validate($request, [
             'browser_fingerprint_id' => 'required|string',
-            'questionnaire_id' => 'required|integer',
-            'project_id' => 'required|integer',
+            'questionnaire_id' => 'required|integer|exists:questionnaires,id',
+            'project_id' => 'required|integer|exists:crowd_sourcing_projects,id',
             'response' => 'required|json',
         ]);
+        $isModeratorResponse = $request->boolean('moderator');
+        $this->authorizeResponseSubmission(
+            Questionnaire::findOrFail($request->integer('questionnaire_id')),
+            CrowdSourcingProject::findOrFail($request->integer('project_id')),
+            $isModeratorResponse
+        );
         app()->setLocale($request->lang);
         $data = $request->all();
         $data['ip'] = $request->getClientIp();
-        if ($data['moderator']) {
+        if ($isModeratorResponse) {
             $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponseForModerator($data);
         } else {
             $questionnaireResponse = $this->questionnaireResponseManager->storeQuestionnaireResponse($data);
@@ -50,23 +62,53 @@ class QuestionnaireResponseController extends Controller {
         return $jsonResponse;
     }
 
-    public function getResponsesForQuestionnaire(int $questionnaire_id, int $projectFilter = -1): JsonResponse {
-        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire_id, $projectFilter));
+    /**
+     * Applies the same rules as the questionnaire pages: the questionnaire must belong to the project,
+     * and only content managers may respond to a questionnaire or project that is not published.
+     * Moderator responses need the moderator permission and use the moderator page rules.
+     */
+    private function authorizeResponseSubmission(Questionnaire $questionnaire, CrowdSourcingProject $project, bool $isModeratorResponse): void {
+        abort_unless($questionnaire->projects->contains($project), ResponseAlias::HTTP_FORBIDDEN, 'The questionnaire does not belong to the project.');
+
+        if ($isModeratorResponse) {
+            abort_unless(Gate::allows('moderate-content-by-users'), ResponseAlias::HTTP_FORBIDDEN);
+
+            return;
+        }
+
+        if (Gate::allows('create-platform-content')) {
+            return;
+        }
+
+        abort_unless($questionnaire->status_id === QuestionnaireStatusLkp::PUBLISHED, ResponseAlias::HTTP_FORBIDDEN, 'The questionnaire is not active.');
+        abort_unless($project->status_id === CrowdSourcingProjectStatusLkp::PUBLISHED, ResponseAlias::HTTP_FORBIDDEN, 'The project is not active.');
     }
 
-    public function getAnswerVotesForQuestionnaireAnswers(int $questionnaire_id): JsonResponse {
+    public function getResponsesForQuestionnaire(Questionnaire $questionnaire, int $projectFilter = -1): JsonResponse {
+        return response()->json($this->questionnaireResponseManager->getQuestionnaireResponsesForQuestionnaire($questionnaire->id, $projectFilter));
+    }
+
+    public function getAnswerVotesForQuestionnaireAnswers(Questionnaire $questionnaire): JsonResponse {
         return response()->json($this->questionnaireResponseManager
-            ->getAnswerVotesForQuestionnaireAnswers($questionnaire_id));
+            ->getAnswerVotesForQuestionnaireAnswers($questionnaire->id));
     }
 
     public function voteAnswer(Request $request): JsonResponse {
+        $this->validate($request, [
+            'questionnaire_id' => 'required|integer|exists:questionnaires,id',
+            'question_name' => 'required|string|max:255',
+            'respondent_user_id' => 'required|integer',
+            'upvote' => 'required|boolean',
+        ]);
+
+        // The voter is always the logged-in user. A voter_user_id in the request is ignored.
         return response()->json($this->questionnaireResponseManager
             ->voteAnswer(
                 intval($request->questionnaire_id),
                 $request->question_name,
-                $request->respondent_user_id,
-                intval($request->voter_user_id),
-                $request->upvote)
+                intval($request->respondent_user_id),
+                intval(Auth::id()),
+                $request->boolean('upvote'))
         );
     }
 
@@ -103,7 +145,7 @@ class QuestionnaireResponseController extends Controller {
                 $row['Number of votes'] = $record['num_votes'];
                 $row['Voters'] = $record['voters'];
 
-                fputcsv($file, [$row['Id'], $row['Question'], $row['Answer'], $row['Number of votes'], $row['Voters']]);
+                fputcsv($file, SpreadsheetCell::csvRow([$row['Id'], $row['Question'], $row['Answer'], $row['Number of votes'], $row['Voters']]));
             }
 
             fclose($file);

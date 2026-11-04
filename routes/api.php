@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,11 +32,15 @@ Route::middleware(['throttle:api-public'])->group(function (): void {
     Route::post('/questionnaire/respond', [QuestionnaireResponseController::class, 'store'])->name('api.questionnaire-responses.store');
     Route::get('/questionnaire/response-anonymous', [QuestionnaireResponseController::class, 'getAnonymousUserResponseForQuestionnaire'])->name('api.questionnaire.anonymous-responses.get');
     Route::get('/crowd-sourcing-projects/colors/{id}', [CrowdSourcingProjectColorsController::class, 'getColorsForCrowdSourcingProjectOrDefault'])->name('api.crowd-sourcing-project.colors.get');
-    Route::get('/questionnaire/responses-get/{id}/{projectFilter?}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])->name('api.questionnaire.responses.get');
-    Route::get('/questionnaire/answer-votes-get/{id}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])->name('api.questionnaire.answer-votes.get');
-    Route::get('/questionnaire/answer-annotations-get/{id}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])->name('api.questionnaire.answer-annotations.get');
     Route::post('/files/upload', [FileController::class, 'uploadFiles'])->name('api.files.upload');
     Route::get('/problems', [ProblemController::class, 'getProblemsForCrowdSourcingProject'])->name('api.problems.get');
+});
+
+// The statistics data follows the same visibility rule as the statistics page.
+Route::middleware(['throttle:api-public', 'questionnaire.page_settings'])->group(function (): void {
+    Route::get('/questionnaire/responses-get/{questionnaire}/{projectFilter?}', [QuestionnaireResponseController::class, 'getResponsesForQuestionnaire'])->name('api.questionnaire.responses.get');
+    Route::get('/questionnaire/answer-votes-get/{questionnaire}', [QuestionnaireResponseController::class, 'getAnswerVotesForQuestionnaireAnswers'])->name('api.questionnaire.answer-votes.get');
+    Route::get('/questionnaire/answer-annotations-get/{questionnaire}', [QuestionnaireAnswerAnnotationController::class, 'getAnswerAnnotationsForQuestionnaireAnswers'])->name('api.questionnaire.answer-annotations.get');
 });
 
 Route::middleware(['throttle:api-internal', 'auth'])->group(function (): void {

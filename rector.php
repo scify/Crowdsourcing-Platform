@@ -27,11 +27,9 @@ return RectorConfig::configure()
         typeDeclarations: true,
         rectorPreset: true,
         earlyReturn: true,
-        strictBooleans: true,
     )
     // Add modern PHP features
     ->withSets([
-        SetList::PHP_82,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,

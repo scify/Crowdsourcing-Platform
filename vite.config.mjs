@@ -3,6 +3,19 @@ import laravel from "laravel-vite-plugin";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 
+// Inside DDEV (`ddev npm run dev`) the browser loads assets from the project URL
+// on port 5173, which .ddev/config.yaml exposes. Outside DDEV, Vite's defaults apply.
+const ddevUrl = process.env.DDEV_PRIMARY_URL;
+const ddevServer = ddevUrl
+	? {
+			host: "0.0.0.0",
+			port: 5173,
+			strictPort: true,
+			origin: `${ddevUrl.replace(/:\d+$/, "")}:5173`,
+			cors: { origin: /https?:\/\/([A-Za-z0-9\-.]+)?(\.ddev\.site)(?::\d+)?$/ },
+		}
+	: {};
+
 export default defineConfig({
 	css: {
 		// The vendored iCheck stylesheet (imported in common.scss) uses legacy
@@ -13,18 +26,7 @@ export default defineConfig({
 			errorRecovery: true,
 		},
 	},
-	server: {
-		host: '0.0.0.0', // Allow Vite to listen on all network interfaces
-		port: 5173, // Vite development server port (use this for hot-reloading)
-		hmr: {
-			host: 'localhost',
-			port: 5173, // Same as above, make sure it's exposed in Docker
-		},
-		watch: {
-			usePolling: true, // Useful for file changes in Docker
-		},
-		https: false,
-	},
+	server: ddevServer,
 	plugins: [
 		laravel({
 			input: [

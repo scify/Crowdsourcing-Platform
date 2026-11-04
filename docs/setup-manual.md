@@ -1,4 +1,4 @@
-# Non-Docker Setup
+# Manual Setup (without DDEV)
 
 This guide is self-contained: follow it from top to bottom to get a working
 development installation directly on your machine.

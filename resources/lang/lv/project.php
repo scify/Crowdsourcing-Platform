@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'project_finalized_message' => 'Šī kampaņa ir pabeigta.<br>Paldies par jūsu ieguldījumu!',
     'project_unpublished_message' => 'Šī kampaņa vēl nav publicēta.',

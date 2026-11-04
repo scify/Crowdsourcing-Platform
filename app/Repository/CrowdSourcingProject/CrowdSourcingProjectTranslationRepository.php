@@ -25,7 +25,7 @@ class CrowdSourcingProjectTranslationRepository extends Repository {
         return CrowdSourcingProjectTranslation::class;
     }
 
-    public function deleteTranslation($project_id, $language_id): int {
+    public function deleteTranslation(int $project_id, $language_id): int {
         $projectDefaultLanguageId = $this->crowdSourcingProjectRepository->find($project_id)->language_id;
         if ($language_id === $projectDefaultLanguageId) {
             throw new RepositoryException(sprintf("Cannot delete translation with ['project_id' => %s, 'language_id' => %s] - it is the defaultTranslation for the project.", $project_id, $language_id));

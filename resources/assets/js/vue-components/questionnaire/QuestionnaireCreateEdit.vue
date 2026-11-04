@@ -77,7 +77,7 @@
 								id="show_general_statistics"
 								v-model="questionnaire.show_general_statistics"
 								type="checkbox"
-								class="form-control checkbox"
+								class="form-check-input"
 							/>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 								id="show_file_type_questions_to_statistics_page_audience"
 								v-model="questionnaire.show_file_type_questions_to_statistics_page_audience"
 								type="checkbox"
-								class="form-control checkbox"
+								class="form-check-input"
 							/>
 						</div>
 					</div>
