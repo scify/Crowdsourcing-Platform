@@ -10,6 +10,9 @@ name: Security
 
 on:
     pull_request:
+        branches: [master, production, staging_scify_org]
+        # exclude docs-only changes
+        paths-ignore: ["**.md", "docs/**"]
     # The weekly run finds new advisories and scans the full git history.
     schedule:
         - cron: "0 11 * * 1"
