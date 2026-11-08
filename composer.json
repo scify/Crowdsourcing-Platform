@@ -34,6 +34,7 @@
         "staudenmeir/belongs-to-through": "^2.18"
     },
     "require-dev": {
+        "composer": "^2.11",
         "barryvdh/laravel-debugbar": "^4.0",
         "barryvdh/laravel-ide-helper": "^3.6.1",
         "fakerphp/faker": "^1.24.1",

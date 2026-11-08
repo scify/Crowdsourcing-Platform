@@ -21,6 +21,10 @@ updates:
           time: '06:00'
           timezone: Etc/UTC
       open-pull-requests-limit: 0
+      # Matches config.policy.cooldown.period in composer.json. Applies to
+      # version updates only; security updates ignore it.
+      cooldown:
+          default-days: 7
       # Raise the constraint in composer.json, not only the lock file, so a later
       # `composer update` cannot resolve back to the vulnerable version.
       versioning-strategy: increase
