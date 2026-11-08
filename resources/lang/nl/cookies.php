@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     'google_analytics' => [
         '_ga_description' => 'Deze cookie wordt geïnstalleerd door Google Analytics. De cookie wordt gebruikt om bezoekers-, sessie- en campagnedata te berekenen en om het gebruik van de site bij te houden voor het analytische rapport van de site. De cookies slaan informatie anoniem op en wijzen een willekeurig gegenereerd nummer toe om unieke bezoekers te identificeren.',
-        '_gid_description' => 'Deze cookie wordt geïnstalleerd door Google Analytics. De cookie wordt gebruikt om informatie op te slaan over hoe bezoekers een website gebruiken en helpt bij het maken van een analytisch rapport over hoe de website functioneert. De verzamelde gegevens omvatten het aantal bezoekers, de bron van waar ze vandaan komen en de bezochte pagina\'s in anonieme vorm.',
+        '_gid_description' => "Deze cookie wordt geïnstalleerd door Google Analytics. De cookie wordt gebruikt om informatie op te slaan over hoe bezoekers een website gebruiken en helpt bij het maken van een analytisch rapport over hoe de website functioneert. De verzamelde gegevens omvatten het aantal bezoekers, de bron van waar ze vandaan komen en de bezochte pagina's in anonieme vorm.",
         '_gat_description' => 'Deze cookie wordt geïnstalleerd door Google Universal Analytics om de aanvraagfrequentie te beperken en de gegevensverzameling op sites met veel verkeer te beperken.',
     ],
     'linkedin' => [

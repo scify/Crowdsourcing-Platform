@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Rector\CodeQuality\Rector\For_\ForRepeatedCountToOwnVariableRector;
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\SetList;
 
@@ -40,8 +39,6 @@ return RectorConfig::configure()
         __DIR__ . '/storage',
         __DIR__ . '/bootstrap/cache',
         __DIR__ . '/node_modules',
-        // Skip increment optimization to avoid conflicts with Pint
-        ForRepeatedCountToOwnVariableRector::class,
     ])
     // Parallel processing for better performance
     ->withParallel();
