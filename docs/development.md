@@ -63,7 +63,7 @@ Two Composer scripts run all the checks together. With DDEV, prefix them with
 
 ```bash
 composer lint:check # Pint, Rector, Larastan, ESLint and Prettier, all check only; the same checks as CI
-composer lint:fix   # Pint, ESLint --fix and Prettier, then Larastan
+composer lint:fix   # Rector, Pint, ESLint --fix and Prettier, then Larastan
 composer analyse    # Larastan only
 ```
 
